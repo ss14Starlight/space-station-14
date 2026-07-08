@@ -44,7 +44,7 @@ public sealed class MindCommand : ToolshedCommand
         _mind.TransferTo(mindId, target, mind: mind);
         return target;
     }
-    
+
     //Starlight begin
     [CommandImplementation("takeover")]
     public EntityUid Takeover(IInvocationContext ctx, [PipedArgument] EntityUid uid)
@@ -53,7 +53,7 @@ public sealed class MindCommand : ToolshedCommand
         _mind.ControlMob(ctx.Session!.UserId, uid);
         return uid;
     }
-    
+
     [CommandImplementation("wipe")]
     public EntityUid Wipe(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
@@ -67,7 +67,7 @@ public sealed class MindCommand : ToolshedCommand
         _mind.WipeMind(mindId);
         return uid;
     }
-    
+
     [CommandImplementation("wipe")]
     public ICommonSession Wipe(IInvocationContext ctx, [PipedArgument] ICommonSession player)
     {
@@ -90,7 +90,7 @@ public sealed class MindCommand : ToolshedCommand
         _mind.ControlMob(ctx.Session!.UserId, uid);
         return uid;
     }
-    
+
     [CommandImplementation("controlwipe")]
     public EntityUid ControlWipe(IInvocationContext ctx, [PipedArgument] EntityUid uid, ICommonSession player)
     {

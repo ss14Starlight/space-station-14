@@ -1,20 +1,19 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Shared.Player;
 
 namespace Content.Shared._NullLink;
 
-[Virtual]
-public abstract class SharedNullLinkPlayerResourcesManager : ISharedNullLinkPlayerResourcesManager
+public abstract partial class SharedNullLinkPlayerResourcesManager : ISharedNullLinkPlayerResourcesManager
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly ISharedPlayersRoleManager _sharedPlayers = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    [Dependency] private ISharedPlayersRoleManager _sharedPlayers = default!;
 
     protected ISawmill _sawmill = default!;
 
 
-    public virtual void Initialize() 
+    public virtual void Initialize()
         => _sawmill = _logManager.GetSawmill("_null.resources");
 
     #region Setters
@@ -48,7 +47,7 @@ public abstract class SharedNullLinkPlayerResourcesManager : ISharedNullLinkPlay
     {
         if (_sharedPlayers.GetPlayerData(session) is not { } data)
             return false;
-        
+
         if (data.Resources.TryGetValue(id, out var current))
             data.Resources[id] = current + value;
         else
@@ -107,7 +106,7 @@ public abstract class SharedNullLinkPlayerResourcesManager : ISharedNullLinkPlay
     public bool TryGetResource(ICommonSession session, string id, [NotNullWhen(true)] out double? value)
     {
         value = null;
-        if (!TryGetResources(session, out var values) 
+        if (!TryGetResources(session, out var values)
             || !values.TryGetValue(id, out var Value))
             return false;
 

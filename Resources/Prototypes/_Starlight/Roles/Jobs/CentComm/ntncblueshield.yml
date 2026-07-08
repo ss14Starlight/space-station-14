@@ -15,10 +15,11 @@
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  bypassEorPacification: true
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
   special:
     - !type:AddImplantSpecial
-      implants: [ MindShieldImplant, DeathRattleImplantCentcomm, RadioImplantCentcomm ]
+      implants: [ MindShieldImplant, DeathRattleImplantNanoTrasen, RadioImplantNanoTrasen ]

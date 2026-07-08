@@ -10,14 +10,17 @@
       Skating:
         knockback: 0.2
         staminaMultiplier: 0.0
+      Rodentia:
+        knockback: 0.2
+        staminaMultiplier: 0.0
       Resomi:
-        knockback: 0.02
+        knockback: 0.2
         staminaMultiplier: 0.0
       Avali:
-        knockback: 0.01
+        knockback: 0.1
         staminaMultiplier: 0.0
       Felionoid:
-        knockback: 0.01
+        knockback: 0.1
         staminaMultiplier: 0.0
   - type: MultiHandedItem
   - type: HeldSpeedModifier
@@ -55,6 +58,19 @@
   id: SkatesRacing
   name: High Speed Racing Skates
   parent: ClothingShoesSkates
+  suffix: ADMEME
+  description: SuperGlideTM racing skates with built in collision protection!
+  components:
+  - type: Skates
+    speedDamage: 0.0
+    friction: 0.0
+    frictionNoInput: 0.0
+    stunSeconds: 0.0
+
+- type: entity
+  id: SkatesRacingCool
+  name: Cooler High Speed Racing Skates
+  parent: ClothingShoesSkatesCool
   suffix: ADMEME
   description: SuperGlideTM racing skates with built in collision protection!
   components:

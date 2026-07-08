@@ -7,9 +7,9 @@ namespace Content.Shared.MouseRotator;
 /// This handles rotating an entity based on mouse location
 /// </summary>
 /// <see cref="MouseRotatorComponent"/>
-public abstract class SharedMouseRotatorSystem : EntitySystem
+public abstract partial class SharedMouseRotatorSystem : EntitySystem
 {
-    [Dependency] private readonly RotateToFaceSystem _rotate = default!;
+    [Dependency] private RotateToFaceSystem _rotate = default!;
 
     public override void Initialize()
     {
@@ -30,9 +30,9 @@ public abstract class SharedMouseRotatorSystem : EntitySystem
         {
             if (rotator.GoalRotation == null)
                 continue;
-            
+
             var target = uid;
-            
+
             if (TryComp<MechPilotComponent>(uid, out var mechPilot))
             {
                 target = mechPilot.Mech;

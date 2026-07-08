@@ -12,7 +12,7 @@ namespace Content.Shared.EntityEffects.Effects.StatusEffects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class JitterEntityEffectSystem : EntityEffectSystem<StatusEffectsComponent, Jitter>
 {
-    [Dependency] private readonly SharedJitteringSystem _jittering = default!;
+    [Dependency] private SharedJitteringSystem _jittering = default!;
 
     protected override void Effect(Entity<StatusEffectsComponent> entity, ref EntityEffectEvent<Jitter> args)
     {
@@ -40,6 +40,6 @@ public sealed partial class Jitter : EntityEffectBase<Jitter>
     [DataField]
     public bool Refresh = true;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
-        Loc.GetString("entity-effect-guidebook-jittering", ("chance", Probability));
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
+        loc.GetString("entity-effect-guidebook-jittering", ("chance", Probability));
 }

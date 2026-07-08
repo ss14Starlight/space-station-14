@@ -1,33 +1,20 @@
-using System.Linq;
 using Content.Client.Eui;
 using Content.Client.Lobby;
-using Content.Client.Players.PlayTimeTracking;
-using Content.Shared.Starlight.NewLife;
+using Content.Shared._Starlight.NewLife;
 using Content.Shared.Eui;
-using Content.Shared.Ghost.Roles;
-using Content.Shared.Humanoid.Markings;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
-using Robust.Client.ResourceManagement;
-using Robust.Client.State;
-using Robust.Client.UserInterface;
-using Robust.Shared.Configuration;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.NewLife;
 
 [UsedImplicitly]
-public sealed class NewLifeEui : BaseEui
+public sealed partial class NewLifeEui : BaseEui
 {
-    [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
+    [Dependency] private IClientPreferencesManager _preferencesManager = default!;
 
     private readonly NewLifeWindow _window;
 
     public NewLifeEui()
-    {
-        _window = new NewLifeWindow(_preferencesManager);
-    }
+        => _window = new NewLifeWindow(_preferencesManager);
 
     public override void Opened()
     {

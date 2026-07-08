@@ -20,11 +20,11 @@
 // public sealed class StationInitCommand : LocalizedCommands
 // {
 //     // syntax: stationinit GRID_ID STATION_PROTO_ID TARGET_STATION_ID
-//     
+//
 //     [Dependency] private readonly IEntityManager _entityManager = default!;
 //     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
 //     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-//     
+//
 //     public override string Command => "stationinit";
 //     public override string Description => "Turns a grid into a new or existing station.";
 //
@@ -86,7 +86,7 @@
 //             shell.WriteLine($"Station with ID {id} initialized!");
 //             return;
 //         }
-//         
+//
 //         if (!_prototypeManager.TryIndex(args[1], out var prototype))
 //         {
 //             shell.WriteError(
@@ -104,7 +104,7 @@
 //
 //             var data = _entityManager.GetComponent<StationDataComponent>(station.Value);
 //             var name = _entityManager.GetComponent<MetaDataComponent>(station.Value).EntityName;
-//             
+//
 //             stationSystem.AddGridToStation(station.Value, grid.Value, null, data, name);
 //             shell.WriteLine($"Added grid with ID ${grid.Value} to station with ID ${station.Value}!");
 //         }

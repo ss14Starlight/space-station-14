@@ -7,7 +7,7 @@ namespace Content.Client._FarHorizons.Silicons.IPC;
 
 public sealed partial class IPCSystem
 {
-    [Dependency] private readonly BatteryAlertSystem _batteryAlert = default!;
+    [Dependency] private BatteryAlertSystem _batteryAlert = default!;
 
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private static readonly TimeSpan _updateRate = TimeSpan.FromSeconds(1f);
@@ -23,11 +23,11 @@ public sealed partial class IPCSystem
 
     private void OnPlayerAttached(Entity<IPCBatteryComponent> ent, ref LocalPlayerAttachedEvent args) => UpdateBatteryAlert(ent);
 
-    protected override void UpdateBattery(float frameTime) 
+    protected override void UpdateBattery(float frameTime)
     {
         if (_player.LocalEntity is not { } localPlayer)
             return;
-        
+
         if (_timing.CurTime < _nextUpdate)
             return;
 

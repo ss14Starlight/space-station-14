@@ -25,23 +25,23 @@ namespace Content.Shared.Strip;
 
 using System.Collections.Generic;
 
-public abstract class SharedStrippableSystem : EntitySystem
+public abstract partial class SharedStrippableSystem : EntitySystem
 {
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
 
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
 
-    [Dependency] private readonly SharedCuffableSystem _cuffableSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedCuffableSystem _cuffableSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
 
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
 
     // Starlight Start: Track active strip DoAfters per user with them queues
-    [Dependency] private readonly PullingSystem _pullingSystem = default!;
+    [Dependency] private PullingSystem _pullingSystem = default!;
 
     private readonly Dictionary<EntityUid, Queue<DoAfterId>> _activeStripDoAfters = new();
 
@@ -257,6 +257,15 @@ public abstract class SharedStrippableSystem : EntitySystem
             return false;
         }
 
+        // Starlight start: server-side HideFromStrip enforcement
+        if (_inventorySystem.TryGetSlot(target, slot, out var insertSlotDef) &&
+            insertSlotDef.HideFromStrip &&
+            user.Owner != target)
+        {
+            return false;
+        }
+        // Starlight end
+
         var targetIdentity = Identity.Entity(target, EntityManager);
 
         if (_inventorySystem.TryGetSlotEntity(target, slot, out _))
@@ -367,6 +376,15 @@ public abstract class SharedStrippableSystem : EntitySystem
         EntityUid item,
         string slot)
     {
+        // Starlight start: server-side HideFromStrip enforcement
+        if (_inventorySystem.TryGetSlot(target, slot, out var removeSlotDef) &&
+            removeSlotDef.HideFromStrip &&
+            user != target)
+        {
+            return false;
+        }
+        // Starlight end
+
         if (!_inventorySystem.TryGetSlotEntity(target, slot, out var slotItem))
         {
             _popupSystem.PopupCursor(Loc.GetString("strippable-component-item-slot-free-message", ("owner", Identity.Entity(target, EntityManager))));

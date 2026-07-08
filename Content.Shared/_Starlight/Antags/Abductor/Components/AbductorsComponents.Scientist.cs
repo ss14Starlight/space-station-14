@@ -1,11 +1,8 @@
-using Content.Shared.Actions;
-using Content.Shared.Communications;
-using Content.Shared.Ninja.Systems;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Starlight.Antags.Abductor;
+namespace Content.Shared._Starlight.Antags.Abductor.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedAbductorSystem)), AutoGenerateComponentState]
 public sealed partial class AbductorGizmoComponent : Component
@@ -39,10 +36,10 @@ public sealed partial class AbductorScientistComponent : Component
 {
     [DataField("position"), AutoNetworkedField]
     public EntityCoordinates? SpawnPosition;
-    
+
     [DataField, AutoNetworkedField]
     public EntityUid? Console;
-    
+
     [DataField, AutoNetworkedField]
     public EntityUid? Agent;
 }

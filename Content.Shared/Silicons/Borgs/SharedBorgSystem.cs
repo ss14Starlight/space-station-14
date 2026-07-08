@@ -1,7 +1,6 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Body.Events;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Gibbing;
@@ -36,11 +35,9 @@ using Robust.Shared.Timing;
 using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Actions.Components;
-using Content.Shared.Starlight.TextToSpeech;
 // Starlight begin
-using System.Linq;
+using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared.Tag;
-using Content.Server.Administration.Systems;
 // Starlight end
 
 namespace Content.Shared.Silicons.Borgs;
@@ -50,30 +47,30 @@ namespace Content.Shared.Silicons.Borgs;
 /// </summary>
 public abstract partial class SharedBorgSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedHandheldLightSystem _handheldLight = default!;
-    [Dependency] private readonly SharedAccessSystem _access = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly TagSystem _tag = default!; // Starlight
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedHandheldLightSystem _handheldLight = default!;
+    [Dependency] private SharedAccessSystem _access = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private TagSystem _tag = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -196,18 +193,18 @@ public abstract partial class SharedBorgSystem : EntitySystem
                     borgShunt.Return = shunt.Return;
                     borgShunt.ReturnAction = _actions.AddAction(chassis, shuntable.UnshuntAction);
                 }
-        
+
                 //Get borging consent
                 if(!brain.BorgConsent)
                     RaiseLocalEvent(args.Entity, new AskBorgingChoiceEvent());
                 else
                     TransferMindToChassis(args.Entity, mindId, mind);
-                    
+
                 //regardless of outcome here, the player will either be
-                //choosing to play borg or be ghosted, and we do not want 
-                //to ask whoever chooses to take over the gost role again 
+                //choosing to play borg or be ghosted, and we do not want
+                //to ask whoever chooses to take over the gost role again
                 //if they get a chassis transfer.
-                brain.BorgConsent = true; 
+                brain.BorgConsent = true;
         }
         //#endregion Starlight
     }
@@ -216,6 +213,8 @@ public abstract partial class SharedBorgSystem : EntitySystem
     {
         if (_timing.ApplyingState)
             return; // The changes are already networked with the same game state
+
+        ValidateWhitelists(chassis, args.Entity);
 
         if (args.Container != chassis.Comp.BrainContainer)
             return;
@@ -432,18 +431,18 @@ public abstract partial class SharedBorgSystem : EntitySystem
             _throwing.TryThrow(brain, _random.NextVector2() * 5, 5f);
             return;
         }
-        
+
         //Starlight Start
         if(!brain.Comp.BorgConsent)
             RaiseLocalEvent(brain.Owner, new AskBorgingChoiceEvent());
         else
             TransferMindToChassis(brain.Owner, mindId, mind);
-            
+
         //regardless of outcome here, the player will either be
-        //choosing to play borg or be ghosted, and we do not want 
-        //to ask whoever chooses to take over the gost role again 
+        //choosing to play borg or be ghosted, and we do not want
+        //to ask whoever chooses to take over the gost role again
         //if they get a chassis transfer.
-        brain.Comp.BorgConsent = true; 
+        brain.Comp.BorgConsent = true;
     }
 
     public void TransferMindToChassis(EntityUid uid, EntityUid mindId, MindComponent mind)

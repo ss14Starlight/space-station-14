@@ -1,0 +1,82 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Created by Road-Train (github) for Space Station 14. Centcomm module by Abby (happymemories11 - discord), MedTak by SevenShades",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "centcomm"
+        },
+        {
+            "name": "icon-centcomm"
+        },
+        {
+            "name": "base-icon-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-icon-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-module-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-module-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-part-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-part-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-stripes-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-stripes-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "medtak"
+        },
+        {
+            "name": "icon-medtak-med"
+        },
+        {
+            "name": "icon-medtak-sec"
+        },
+		{
+            "name": "xenoborg_heavy",
+			"copyright": "Samuka-C"
+        },
+        {
+            "name": "xenoborg_scout",
+			"copyright": "Samuka-C"
+        },
+        {
+            "name": "xenoborg_stealth",
+			"copyright": "Samuka-C"
+        },
+		{
+            "name": "icon-xenoborg-laser3",
+			"copyright": "Samuka-C, wonderfulnewworld"
+        },
+		{
+            "name": "icon-xenoborg-sword3",
+			"copyright": "Samuka-C, wonderfulnewworld"
+        },
+		{
+            "name": "icon-xenoborg-hypo2",
+			"copyright": "Samuka-C, wonderfulnewworld"
+        }
+    ]
+}

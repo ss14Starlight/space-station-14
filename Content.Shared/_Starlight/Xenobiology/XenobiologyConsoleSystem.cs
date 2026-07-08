@@ -1,11 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._Starlight.Computers.RemoteEye;
+using Content.Shared._Starlight.Computers.RemoteEye.Components;
 using Content.Shared._Starlight.Xenobiology.MiscItems;
 using Content.Shared._Starlight.Xenobiology.Potions;
 using Content.Shared.Actions;
 using Content.Shared.Construction;
 using Content.Shared.Damage.Components;
-using Content.Shared.Destructible;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
@@ -14,12 +13,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Xenobiology;
 
-public sealed class XenobiologyConsoleSystem : EntitySystem
+public sealed partial class XenobiologyConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private EntityLookupSystem _entityLookupSystem = default!;
 
     private static readonly EntProtoId _monkeyCubeName = "MonkeyCube";
     private static readonly EntProtoId _mutationPotionName = "SlimeMutationPotion";
@@ -30,7 +29,7 @@ public sealed class XenobiologyConsoleSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<XenobiologyConsoleComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
         SubscribeLocalEvent<XenobiologyConsoleComponent, MachineDeconstructedEvent>(OnMachineDeconstruction);
-        
+
         SubscribeLocalEvent<ConsoleGrabSlimeEvent>(OnConsoleGrabSlime);
         SubscribeLocalEvent<ConsolePlaceSlimeEvent>(OnConsolePlaceSlime);
         SubscribeLocalEvent<ConsolePlaceMonkeyEvent>(OnConsolePlaceMonkey);
@@ -79,7 +78,7 @@ public sealed class XenobiologyConsoleSystem : EntitySystem
         for (var i = 0; i < entity.Comp.StabilizerPotions; i++)
             SpawnNextToOrDrop(_stabilizerPotionName, entity.Owner);
     }
-    
+
     private bool VerifyComponents(InstantActionEvent args, [NotNullWhen(true)] out RemoteEyeActorComponent? remoteEyeActorComponent,
         [NotNullWhen(true)] out Entity<XenobiologyConsoleComponent>? xenobiologyConsole, [NotNullWhen(true)] out EntityUid? remoteEntity)
     {
@@ -196,7 +195,7 @@ public sealed class XenobiologyConsoleSystem : EntitySystem
         }
         args.Handled = true;
     }
-    
+
     private void OnConsoleApplyStabilizerPotion(ConsoleApplyStabilizerPotionEvent args)
     {
         if (!VerifyComponents(args, out var remoteEyeActorComponent, out var xenobiologyConsole, out var remoteEntity)) return;

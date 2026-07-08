@@ -15,8 +15,7 @@ using Robust.Shared.Input;
 
 #region Starlight
 using Robust.Client.UserInterface;
-using Robust.Shared.IoC;
-using static Content.Shared.Paper.PaperComponent;
+using Content.Client._Starlight.UserInterface.RichText;
 #endregion Starlight
 
 namespace Content.Client.Paper.UI
@@ -26,8 +25,8 @@ namespace Content.Client.Paper.UI
     {
         private PaperComponent.PaperBoundUserInterfaceState _currentState = default!;
         private string _currentRawText = string.Empty;
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IResourceCache _resCache = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private IResourceCache _resCache = default!;
 
         private static Color DefaultTextColor = new(25, 25, 25);
 
@@ -45,12 +44,13 @@ namespace Content.Client.Paper.UI
         // If paper limits the size in one or both axes, it'll affect whether
         // we're able to resize this UI or not. Default to everything enabled:
         private DragMode _allowedResizeModes = ~DragMode.None;
-        
+
         // Store original margin to restore when switching modes
         private Thickness _originalContentMargin;
 
         public event Action<string>? OnSaved;
         public event Action<int>? OnSignatureRequested;
+        public event Action<int>? OnDateTimeRequested;
 
         private int _MaxInputLength = -1;
         public int MaxInputLength
@@ -224,10 +224,11 @@ namespace Content.Client.Paper.UI
             if (WrittenTextLabel.TryGetStyleProperty<Font>("font", out var font))
             {
                 float fontLineHeight = font.GetLineHeight(1.0f);
-                
+
                 // Set the font line height in tag handlers so buttons match text height
                 FormTagHandler.FontLineHeight = fontLineHeight;
                 SignatureTagHandler.FontLineHeight = fontLineHeight;
+                DateTimeTagHandler.FontLineHeight = fontLineHeight;
                 CheckTagHandler.FontLineHeight = fontLineHeight;
 
                 // Position the background texture so font baseline aligns with texture lines
@@ -252,7 +253,7 @@ namespace Content.Client.Paper.UI
         /// <summary>
         /// Populate the paper window with content based on the current paper state.
         /// Handles both editing mode (showing text input) and reading mode (showing formatted text).
-        /// Processes markup tags like [form] and [signature] for interactive elements.
+        /// Processes markup tags like [form], [signature], and [datetime] for interactive elements.
         /// </summary>
         /// <param name="state">Current paper state containing text, mode, and stamp information</param>
         public void Populate(PaperComponent.PaperBoundUserInterfaceState state)
@@ -272,7 +273,7 @@ namespace Content.Client.Paper.UI
             {
                 // Reset margin to original when editing (no tag buttons visible)
                 PaperContent.Margin = _originalContentMargin;
-                    
+
                 // Initialize the text input field with server content if it's currently empty
                 // This allows editing existing documents while preserving any text the user has already typed
                 var shouldCopy = Input.TextLength == 0 && state.Text.Length > 0;
@@ -294,6 +295,7 @@ namespace Content.Client.Paper.UI
             FormTagHandler.SetFormText(state.Text);
             FormTagHandler.ResetFormCounter();
             SignatureTagHandler.ResetSignatureCounter();
+            DateTimeTagHandler.ResetDateTimeCounter();
             CheckTagHandler.ResetCheckCounter();
 
             // Display text with markup processing (forms, signatures, colors, etc.)
@@ -301,11 +303,11 @@ namespace Content.Client.Paper.UI
             var fm = new FormattedMessage();
             fm.AddMarkupPermissive(state.Text);
             WrittenTextLabel.SetMessage(fm, UserFormattableTags.BaseAllowedTags, DefaultTextColor);
-            
+
             // Add extra bottom margin based on tag count to prevent cutoff (only in read mode)
             var tagCount = CountTags(state.Text);
             var extraBottomMargin = tagCount * 3.0f; // 3 pixels per tag for extra height
-            PaperContent.Margin = new Thickness(_originalContentMargin.Left, _originalContentMargin.Top, 
+            PaperContent.Margin = new Thickness(_originalContentMargin.Left, _originalContentMargin.Top,
                 _originalContentMargin.Right, _originalContentMargin.Bottom + extraBottomMargin);
 
             // Add stamps that have been applied to this paper
@@ -380,14 +382,14 @@ namespace Content.Client.Paper.UI
         }
 
         /// <summary>
-        /// Removes any unfilled [form] and [signature] tags from the paper text.
+        /// Removes any unfilled [form], [signature], and [datetime] tags from the paper text.
         /// Called when the paper is stamped to finalize the document.
         /// </summary>
         /// <param name="text">The paper text to clean</param>
         /// <returns>Text with unfilled tags removed</returns>
         public static string CleanUnfilledTags(string text)
         {
-            return text.Replace("[form]", string.Empty).Replace("[signature]", string.Empty);
+            return text.Replace("[form]", string.Empty).Replace("[signature]", string.Empty).Replace("[datetime]", string.Empty);
         }
 
         /// <summary>
@@ -401,7 +403,7 @@ namespace Content.Client.Paper.UI
             var formButton = FindFormButton(formIndex);
             if (formButton != null)
                 formButton.ModulateSelfOverride = Color.LightBlue;
-                
+
             // Create the popup dialog structure
             var popup = new Popup();
             var vbox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(10) };
@@ -465,13 +467,22 @@ namespace Content.Client.Paper.UI
         }
 
         /// <summary>
+        /// Sends a datetime request to the server to handle datetime with proper identity system.
+        /// </summary>
+        /// <param name="dateTimeIndex">Zero-based index of which [datetime] tag to replace</param>
+        public void SendDateTimeRequest(int dateTimeIndex)
+        {
+            OnDateTimeRequested?.Invoke(dateTimeIndex);
+        }
+
+        /// <summary>
         /// Finds a form button by index for visual feedback.
         /// </summary>
         private Button? FindFormButton(int formIndex)
         {
             return FindButtonRecursive(WrittenTextLabel, "Fill", formIndex);
         }
-        
+
         /// <summary>
         /// Finds a check button by index for visual feedback.
         /// </summary>
@@ -479,7 +490,7 @@ namespace Content.Client.Paper.UI
         {
             return FindCheckButtonRecursive(WrittenTextLabel, checkIndex);
         }
-        
+
         /// <summary>
         /// Finds check buttons (which can have different text: ☐, ✔, ✖).
         /// </summary>
@@ -488,7 +499,7 @@ namespace Content.Client.Paper.UI
             var currentIndex = 0;
             return FindCheckButtonRecursiveHelper(control, targetIndex, ref currentIndex);
         }
-        
+
         private Button? FindCheckButtonRecursiveHelper(Control control, int targetIndex, ref int currentIndex)
         {
             if (control is Button btn && (btn.Text == "☐" || btn.Text == "✔" || btn.Text == "✖"))
@@ -497,17 +508,17 @@ namespace Content.Client.Paper.UI
                     return btn;
                 currentIndex++;
             }
-            
+
             foreach (Control child in control.Children)
             {
                 var result = FindCheckButtonRecursiveHelper(child, targetIndex, ref currentIndex);
                 if (result != null)
                     return result;
             }
-            
+
             return null;
         }
-        
+
         /// <summary>
         /// Recursively searches for a button with specific text and index.
         /// </summary>
@@ -516,7 +527,7 @@ namespace Content.Client.Paper.UI
             var currentIndex = 0;
             return FindButtonRecursiveHelper(control, buttonText, targetIndex, ref currentIndex);
         }
-        
+
         private Button? FindButtonRecursiveHelper(Control control, string buttonText, int targetIndex, ref int currentIndex)
         {
             if (control is Button btn && btn.Text == buttonText)
@@ -525,14 +536,14 @@ namespace Content.Client.Paper.UI
                     return btn;
                 currentIndex++;
             }
-            
+
             foreach (Control child in control.Children)
             {
                 var result = FindButtonRecursiveHelper(child, buttonText, targetIndex, ref currentIndex);
                 if (result != null)
                     return result;
             }
-            
+
             return null;
         }
 
@@ -556,7 +567,7 @@ namespace Content.Client.Paper.UI
 
         private Popup? _activeCheckPopup;
         private Button? _activeCheckButton;
-        
+
         /// <summary>
         /// Opens a modal dialog allowing the user to select a check state.
         /// </summary>
@@ -570,40 +581,40 @@ namespace Content.Client.Paper.UI
                     _activeCheckButton.ModulateSelfOverride = null;
                 _activeCheckPopup.Close();
             }
-            
+
             // Find and highlight the check button
             var checkButton = FindCheckButton(checkIndex);
             if (checkButton != null)
                 checkButton.ModulateSelfOverride = Color.LightBlue;
             _activeCheckButton = checkButton;
-            
+
             var popup = new Popup();
             _activeCheckPopup = popup;
             var vbox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(10) };
             var hbox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
-            
+
             var blankBtn = new Button { Text = "☐ Blank", MinWidth = 80 };
             var checkBtn = new Button { Text = "✔ Check", MinWidth = 80 };
             var crossBtn = new Button { Text = "✖ Cross", MinWidth = 80 };
-            
+
             blankBtn.OnPressed += _ => {
                 var newText = ReplaceNthCheckTag(_currentRawText, checkIndex, "☐");
                 OnSaved?.Invoke(newText);
                 CloseCheckDialog();
             };
-            
+
             checkBtn.OnPressed += _ => {
                 var newText = ReplaceNthCheckTag(_currentRawText, checkIndex, "✔");
                 OnSaved?.Invoke(newText);
                 CloseCheckDialog();
             };
-            
+
             crossBtn.OnPressed += _ => {
                 var newText = ReplaceNthCheckTag(_currentRawText, checkIndex, "✖");
                 OnSaved?.Invoke(newText);
                 CloseCheckDialog();
             };
-            
+
             hbox.AddChild(blankBtn);
             hbox.AddChild(checkBtn);
             hbox.AddChild(crossBtn);
@@ -612,7 +623,7 @@ namespace Content.Client.Paper.UI
             AddChild(popup);
             popup.Open();
         }
-        
+
         private void CloseCheckDialog()
         {
             if (_activeCheckButton != null)
@@ -622,7 +633,7 @@ namespace Content.Client.Paper.UI
             _activeCheckButton = null;
             _activeCheckPopup = null;
         }
-        
+
         /// <summary>
         /// Replaces the nth occurrence of [check] tag with replacement symbol.
         /// </summary>
@@ -720,7 +731,7 @@ namespace Content.Client.Paper.UI
             // Index not found, return original text unchanged
             return text;
         }
-        
+
         /// <summary>
         /// Counts the total number of interactive tags that create taller buttons.
         /// </summary>
@@ -728,10 +739,11 @@ namespace Content.Client.Paper.UI
         {
             var formCount = CountOccurrences(text, "[form]");
             var signatureCount = CountOccurrences(text, "[signature]");
+            var dateTimeCount = CountOccurrences(text, "[datetime]");
             var checkCount = CountOccurrences(text, "[check]");
-            return formCount + signatureCount + checkCount;
+            return formCount + signatureCount + checkCount + dateTimeCount;
         }
-        
+
         /// <summary>
         /// Counts occurrences of a substring in text.
         /// </summary>

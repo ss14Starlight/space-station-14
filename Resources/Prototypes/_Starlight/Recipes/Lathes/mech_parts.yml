@@ -213,6 +213,26 @@
     Diamond: 150
 
 - type: latheRecipe
+  id: MechEquipmentHonkerPieCannon
+  result: WeaponMechSpecialPieCannon
+  categories:
+  - Mech
+  completetime: 10
+  materials:
+    Steel: 1200
+    Bananium: 1150
+
+- type: latheRecipe
+  id: MechEquipmentHonkerAirHorn
+  result: WeaponMechSpecialAirHorn
+  categories:
+  - Mech
+  completetime: 10
+  materials:
+    Steel: 1200
+    Bananium: 1200
+
+- type: latheRecipe
   id: MechEquipmentHonkerBananaMortar
   result: WeaponMechSpecialBananaMortar
   categories:
@@ -303,3 +323,14 @@
     Plastic: 300
     Gold: 200
     Uranium: 200
+
+- type: latheRecipe
+  id: MechEquipmentBorgBeacon
+  result: MechEquipmentBorgPilot
+  categories:
+    - Mech
+  completetime: 15
+  materials:
+    Steel: 500
+    Glass: 100
+    Gold: 200

@@ -119,7 +119,7 @@
     sprite: _Starlight/Clothing/Shoes/Boots/ratvar_boots.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Shoes/Boots/ratvar_boots.rsi
-    
+
 - type: entity
   parent: ClothingShoesBaseUnprotected
   id: ClothingShoesPawBoots

@@ -54,30 +54,59 @@
 
 - type: startingGear
   id: SyndicateReinforcementMedic
-  parent: SyndicateOperativeClothing
   equipment:
-    pocket1: WeaponPistolViper
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesColorRed
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadHatSurgcapPurple
+    id: VisitorPDA
+    belt: ClothingBeltMedicalFilled
+    back: ClothingBackpackDuffelMedical
+    ears: ClothingHeadsetMedical
+    eyes: ClothingEyesHudMedical
+    pocket1: HandheldHealthAnalyzer
+    pocket2: PillCanisterBicaridine
   inhand:
     - MedkitCombatFilled
+  storage:
+    back:
+    - Defibrillator
+    - CigPackSyndicate
+    - UniformScrubsColorPurple
+    - ChemistryBottleToxin
+    - WeaponPistolViper
+    - Syringe
+    - JetInjector # Starlight
 
 - type: startingGear
   id: SyndicateReinforcementSpy
-  parent: SyndicateOperativeClothing
   equipment:
-    id: AgentIDCard
-    mask: ClothingMaskGasVoiceChameleon
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpack
+    shoes: ClothingShoesColorBlack
+    gloves: ClothingHandsGlovesColorBlack
     pocket1: WeaponPistolViper
+    pocket2: VoiceMaskImplanter
+  inhand:
+    - ClothingBackpackChameleonFillAgent
+    - ChameleonControllerImplanter # Starlight, since it was removed from the backpack
 
 - type: startingGear
   id: SyndicateReinforcementThief
-  parent: SyndicateOperativeClothing
+#  parent: SyndicateOperativeClothing # Starlight, don't inherit, since we want to give them their own gloves
   equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative # Starlight start
+    back: ClothingBackpackSyndicate
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ThievingGlovesReinforcement # Starlight end
     pocket1: WeaponPistolViper
+    pocket2: MagazinePistolHighCapacitySP # Starlight
   inhand:
     - ToolboxSyndicateFilled
   storage:
     back:
     - SyndicateJawsOfLife
+    - CameraBug
 
 #Syndicate Operative Outfit - Basic
 - type: startingGear

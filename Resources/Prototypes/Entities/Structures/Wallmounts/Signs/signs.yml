@@ -13,6 +13,7 @@
   id: BaseSignDirectional
   abstract: true
   components:
+    - type: DirectionalSign
     - type: Sprite
       snapCardinals: false
 
@@ -606,7 +607,7 @@
   parent: BaseSign
   id: SignHead
   name: head sign
-  description: An official sign indicating the dwellings of a Nanotrasen-certified head of department.
+  description: An official sign indicating the dwellings of a NanoTrasen-certified head of department. # SL
   components:
   - type: Sprite
     state: commander
@@ -654,6 +655,7 @@
   description: A sign indicating the presence of the (typically absent) rule of law.
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi # Starlight
     state: law
 
 - type: entity
@@ -1011,7 +1013,7 @@
   parent: BaseSign
   id: SignZomlab
   name: zombie lab sign
-  description: The final remains of a shut-down Nanotrasen research project that aimed to harness the powers of Romerol. I wonder how that went...
+  description: The final remains of a shut-down NanoTrasen research project that aimed to harness the powers of Romerol. I wonder how that went... # SL
   components:
   - type: Sprite
     state: zomlab

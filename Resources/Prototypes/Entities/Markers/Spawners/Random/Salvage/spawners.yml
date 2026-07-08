@@ -402,13 +402,13 @@
       - id: NitrousOxideCanister
         weight: 0.25
       #Starlight Start
-      - id: BZCanister 
+      - id: BZCanister
         weight: 0.3
-      - id: PluoxiumCanister 
+      - id: PluoxiumCanister
         weight: 0.35
-      - id: HalonCanister 
+      - id: HalonCanister
         weight: 0.4
-      - id: HydrogenCanister 
+      - id: HydrogenCanister
         weight: 0.3
       #Starlight End
 

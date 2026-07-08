@@ -1,25 +1,20 @@
 #nullable enable
-using Content;
-using Content.Shared.Starlight.MHelp;
-using Content.Shared.Administration;
+using Content.Shared._Starlight.MHelp;
 using JetBrains.Annotations;
-using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.MHelp;
 
 [UsedImplicitly]
-public sealed class MentorSystem : SharedMentorSystem
+public sealed partial class MentorSystem : SharedMentorSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public event EventHandler<MHelpTextMessage>? OnMentoringTextMessageReceived;
     private (TimeSpan Timestamp, bool Typing) _lastTypingUpdateSent;
 
     protected override void OnMentoringTextMessage(MHelpTextMessage message, EntitySessionEventArgs eventArgs)
-    {
-        OnMentoringTextMessageReceived?.Invoke(this, message);
-    }
+        => OnMentoringTextMessageReceived?.Invoke(this, message);
 
     public void Send(Guid? ticket, string text, bool playSound)
     {

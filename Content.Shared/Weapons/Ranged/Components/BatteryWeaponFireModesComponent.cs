@@ -49,20 +49,20 @@ public sealed partial class BatteryWeaponFireMode
     /// </summary>
     [DataField]
     public bool PacifismAllowedMode = false;
-    
+
     /// <summary>
     /// Conditions that must be satisfied to activate this firing mode
     /// </summary>
     [DataField("conditions", serverOnly: true)]
     [NonSerialized]
     public List<FireModeCondition>? Conditions;
-    
+
     [DataField("heldPrefix")]
     public string? HeldPrefix;
-    
+
     [DataField("magState")]
     public string? MagState;
-    
+
     [DataField("visualState")]
     public string? VisualState;
 }

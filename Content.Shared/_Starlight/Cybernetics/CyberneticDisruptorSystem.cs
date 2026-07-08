@@ -6,11 +6,11 @@ using Content.Shared.Humanoid;
 
 namespace Content.Shared._Starlight.Cybernetics;
 
-public sealed class CyberneticDisruptorSystem : EntitySystem
+public sealed partial class CyberneticDisruptorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedCyberneticDisruptionSystem _disrupt = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedCyberneticDisruptionSystem _disrupt = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
 
     public override void Initialize()
     {
@@ -23,7 +23,7 @@ public sealed class CyberneticDisruptorSystem : EntitySystem
     {
         if (!args.CanReach || args.Target is not { } target)
             return;
-        
+
         if (!TryComp(target, out HumanoidAppearanceComponent? _))
             return;
 
@@ -39,7 +39,7 @@ public sealed class CyberneticDisruptorSystem : EntitySystem
     }
 
     private void OnDoafter(EntityUid uid, CyberneticDisruptorComponent comp, CyberneticDisruptorDoafterEvent args)
-    { 
+    {
         if (args.Target is not { } target)
             return;
 

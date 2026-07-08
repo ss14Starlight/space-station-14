@@ -8,14 +8,14 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Camera;
 
-public sealed class ShakeOnStairsSystem : EntitySystem
+public sealed partial class ShakeOnStairsSystem : EntitySystem
 {
-    [Dependency] private readonly ScreenshakeSystem _shake = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    
+    [Dependency] private ScreenshakeSystem _shake = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private TagSystem _tag = default!;
+
     private readonly Dictionary<EntityUid, MapCoordinates> _lastShakeCoords = [];
     private static readonly ProtoId<TagPrototype> StairTag = new("Stairs");
     private static readonly string ShakeKey = "stairShake";
@@ -28,7 +28,7 @@ public sealed class ShakeOnStairsSystem : EntitySystem
         SubscribeLocalEvent<EntityTerminatingEvent>(OnTerminating);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
     }
-    
+
     private void OnMoveEvent(ref MoveEvent ev)
     {
         // This is probably extremely inefficient, but I can't think of a better way to do this.

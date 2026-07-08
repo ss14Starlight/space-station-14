@@ -11,9 +11,9 @@ namespace Content.Shared.EntityEffects.Effects.Transform;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class FlashEntityEffectSystem : EntityEffectSystem<TransformComponent, Flash>
 {
-    [Dependency] private readonly SharedFlashSystem _flash = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
+    [Dependency] private SharedFlashSystem _flash = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
 
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<Flash> args)
     {
@@ -76,6 +76,6 @@ public sealed partial class Flash : EntityEffectBase<Flash>
     [DataField]
     public SoundSpecifier? Sound = new SoundPathSpecifier("/Audio/Weapons/flash.ogg");
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-flash-reaction-effect", ("chance", Probability));
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
+        => loc.GetString("entity-effect-guidebook-flash-reaction-effect", ("chance", Probability));
 }

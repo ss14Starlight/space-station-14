@@ -11,9 +11,9 @@ namespace Content.Shared.EntityEffects.Effects.Solution;
 /// Quantity is modified by scale.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed class AddReagentToSolutionEntityEffectSystem : EntityEffectSystem<SolutionContainerManagerComponent, AddReagentToSolution>
+public sealed partial class AddReagentToSolutionEntityEffectSystem : EntityEffectSystem<SolutionContainerManagerComponent, AddReagentToSolution>
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     protected override void Effect(Entity<SolutionContainerManagerComponent> entity, ref EntityEffectEvent<AddReagentToSolution> args)
     {
@@ -48,10 +48,10 @@ public sealed partial class AddReagentToSolution : EntityEffectBase<AddReagentTo
     [DataField]
     public float StrengthModifier = 1.0f;
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
     {
         return prototype.Resolve(Reagent, out ReagentPrototype? proto)
-            ? Loc.GetString("entity-effect-guidebook-add-to-solution-reaction",
+            ? loc.GetString("entity-effect-guidebook-add-to-solution-reaction",
                 ("chance", Probability),
                 ("reagent", proto.LocalizedName))
             : null;

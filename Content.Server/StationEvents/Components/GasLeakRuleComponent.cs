@@ -15,15 +15,15 @@ public sealed partial class GasLeakRuleComponent : Component
         Gas.Frezon,
         Gas.WaterVapor, // the fog
         // Funkystation Start: Funky atmos - /tg/ gases
-        Gas.BZ, 
-        Gas.Healium, 
-        Gas.Nitrium, 
-        Gas.Pluoxium, 
-        Gas.HyperNoblium, 
-        Gas.ProtoNitrate, 
-        Gas.Halon, 
-        Gas.Helium, 
-        Gas.AntiNoblium, 
+        Gas.BZ,
+        Gas.Healium,
+        Gas.Nitrium,
+        Gas.Pluoxium,
+        Gas.HyperNoblium,
+        Gas.ProtoNitrate,
+        Gas.Halon,
+        Gas.Helium,
+        Gas.AntiNoblium,
         // Funkystation End: Funky atmos - /tg/ gases
     };
 

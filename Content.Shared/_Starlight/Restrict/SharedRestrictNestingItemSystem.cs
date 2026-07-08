@@ -1,34 +1,24 @@
-using System.Linq;
 using Content.Shared.ActionBlocker;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
-using Content.Shared.Item;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Strip.Components;
-using Content.Shared.Tag;
 using Content.Shared.Verbs;
-using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Network;
-using Robust.Shared.Random;
 using Robust.Shared.Serialization;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Starlight.Restrict;
+namespace Content.Shared._Starlight.Restrict;
 public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
     public override void Initialize()
     {
         //register a new verb for picking up the mob
@@ -43,7 +33,7 @@ public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
         //skip if its yourself
         if (args.Target == args.User)
             return;
-        
+
         if (!InRange(args.User, args.Target))
             return;
 
@@ -74,7 +64,7 @@ public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
     private void StripAttempt(Entity<RestrictNestingItemComponent> ent, ref StripAttemptEvent args)
     {
         //if we are already in a container
-        if(_containerSystem.TryGetContainingContainer((args.Target, null, null), out var container) || 
+        if(_containerSystem.TryGetContainingContainer((args.Target, null, null), out var container) ||
            _containerSystem.TryGetContainingContainer((args.User, null, null), out var container2))
         {
             //check if the thing we are trying to insert is a nesting item
@@ -90,7 +80,7 @@ public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
     {
         if(_containerSystem.TryGetContainingContainer((user, null, null), out var container))
             return;
-        
+
         //check range
         if (!InRange(user, target))
             return;
@@ -102,7 +92,7 @@ public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
             _popup.PopupClient(Loc.GetString("restrict-nesting-item-cant-pickup", ("user", ent)), user, user);
             return;
         }
-        
+
         //start a doafter
         var doAfterEvent = new DoAfterArgs(EntityManager,
             user,
@@ -159,7 +149,7 @@ public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
         //hacky solution for now, but if we are already in a container, then cancel
         if(_containerSystem.TryGetContainingContainer((args.User, null, null), out var container))
             return;
-        
+
         //check range
         if (!InRange(args.User, ent))
             return;
@@ -203,7 +193,7 @@ public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
             Log.Warning($"{nameof(RecursivelyCheckForNesting)} hit max depth of {depth} for item {item}");
             return false;
         }
-        
+
         if (skipInitialItem && !TryComp<MobMoverComponent>(item, out var mobMover))
             return false;
 
@@ -216,15 +206,15 @@ public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
             return false;
 
         //now run this on all items in the inventory
-        var containers = containerManager.GetAllContainers().ToList();
-        var items = containers.SelectMany(container => container.ContainedEntities).ToList();
-
-        foreach (var itemInInventory in items)
+        foreach (var container in _containerSystem.GetAllContainers(item, containerManager))
         {
-            //run recursive check
-            if (RecursivelyCheckForNesting(itemInInventory, depth + 1))
+            foreach (var itemInInventory in container.ContainedEntities)
             {
-                return true;
+                //run recursive check
+                if (RecursivelyCheckForNesting(itemInInventory, depth + 1))
+                {
+                    return true;
+                }
             }
         }
 

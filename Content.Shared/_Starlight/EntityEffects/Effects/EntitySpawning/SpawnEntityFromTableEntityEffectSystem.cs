@@ -13,18 +13,18 @@ namespace Content.Shared._Starlight.EntityEffects.Effects.EntitySpawning;
 /// Amount is modified by scale.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed class SpawnEntityFromTableEntityEffectSystem : EntityEffectSystem<TransformComponent, SpawnEntityFromTable>
+public sealed partial class SpawnEntityFromTableEntityEffectSystem : EntityEffectSystem<TransformComponent, SpawnEntityFromTable>
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<SpawnEntityFromTable> args)
     {
         var quantity = args.Effect.Number * (int)Math.Floor(args.Scale);
         var random = _robustRandom.GetRandom();
-        
+
         if (_net.IsServer)
         {
             for (var i = 0; i < quantity; i++)

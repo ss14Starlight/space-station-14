@@ -1,7 +1,7 @@
 - type: entity
   name: cash register
   id: CashRegister
-  parent: [ BaseStructureDynamic, BaseBagOpenClose ]
+  parent: [ BaseStructure, BaseBagOpenClose ]
   description: A vaguely secure way to store currency. Wheres the lock...?
   components:
   - type: Anchorable

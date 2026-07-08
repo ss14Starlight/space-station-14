@@ -1,4 +1,3 @@
-using Content.Server.Body.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Robust.Shared.Timing;
@@ -9,16 +8,17 @@ using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Player;
 using Content.Shared.Damage.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server._Starlight.Actions.EntitySystems;
 
-public sealed class StasisSystem : SharedStasisSystem
+public sealed partial class StasisSystem : SharedStasisSystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private BloodstreamSystem _bloodstream = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -38,7 +38,7 @@ public sealed class StasisSystem : SharedStasisSystem
         base.Update(frameTime);
 
         var curTime = _timing.CurTime;
-        
+
         var query = EntityQueryEnumerator<StasisComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -57,9 +57,7 @@ public sealed class StasisSystem : SharedStasisSystem
     }
 
     private void OnMapInit(EntityUid uid, StasisComponent comp, MapInitEvent args)
-    {
-        _actionsSystem.AddAction(uid, ref comp.EnterStasisActionEntity, comp.EnterStasisAction);
-    }
+        => _actionsSystem.AddAction(uid, ref comp.EnterStasisActionEntity, comp.EnterStasisAction);
 
     private void OnCompRemove(EntityUid uid, StasisComponent comp, ComponentShutdown args)
     {
@@ -78,7 +76,7 @@ public sealed class StasisSystem : SharedStasisSystem
         // TODO: this might mean like hitting yourself with a bomb or something while in stasis wont resist damage.
         if (!ent.Comp.IsInStasis || args.Origin == ent)
             return;
-        
+
         // Reduce all positive damage.
         var updatedDamage = new DamageSpecifier();
         foreach (var damage in args.Damage.DamageDict)

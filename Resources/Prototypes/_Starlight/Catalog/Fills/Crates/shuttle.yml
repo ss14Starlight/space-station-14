@@ -26,7 +26,7 @@
         - id: PowerCellSmall
         - id: SheetGlass1
           amount: 2
-    
+
 - type: entity
   parent: CrateSyndicate
   id: CrateNameSyndicateFriendshipBundle

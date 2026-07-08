@@ -167,6 +167,7 @@
     - id: AirGrenade
     - id: trayScanner # Starlight: Add t-ray scanner to atmos lockers
     - id: ClothingHandsGlovesColorYellow # Starlight: Add insulated gloves to atmos lockers
+    - id: HoloprojectorEngineering # Starlight
 
 - type: entityTable
   id: FillAtmosphericsHardsuit
@@ -175,6 +176,7 @@
     - id: ClothingOuterHardsuitAtmos
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
     - id: ClothingMaskBreath
 
 - type: entity
@@ -216,6 +218,7 @@
     - id: RCD
     - id: RCDAmmo
     - id: MetalFoamGrenade
+    - id: HoloprojectorEngineering # Starlight
 
 - type: entityTable
   id: FillEngineerHardsuit
@@ -224,6 +227,7 @@
     - id: ClothingOuterHardsuitEngineering
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
     - id: ClothingShoesBootsMag
     - id: ClothingMaskBreath
 

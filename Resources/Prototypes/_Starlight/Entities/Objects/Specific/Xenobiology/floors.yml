@@ -80,7 +80,7 @@
   id: FloorTileBluespace
   name: stack-bluespace-tile
   spawn: FloorTileItemBluespace
-  
+
 - type: entity
   parent: FloorTileItemBluespace
   id: FloorTileItemBluespace1

@@ -1,7 +1,10 @@
-using System.Numerics; // _Starlight
-using Content.Shared.Shuttles.Components; // _Starlight
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
+#region Starlight
+using Content.Shared._Starlight.Shuttles.Components;
+using System.Numerics;
+using Content.Shared.Shuttles.Components;
+#endregion
 
 namespace Content.Shared.Shuttles.BUIStates;
 
@@ -19,8 +22,6 @@ public sealed class NavInterfaceState
     /// The relevant rotation to rotate the angle around.
     /// </summary>
     public Angle? Angle;
-
-    public Dictionary<NetEntity, List<DockingPortState>> Docks;
 
     public bool RotateWithEntity = true;
 
@@ -40,13 +41,12 @@ public sealed class NavInterfaceState
     public NavInterfaceState(
         float maxRange,
         NetCoordinates? coordinates,
-        Angle? angle,
-        Dictionary<NetEntity, List<DockingPortState>> docks)
+        Angle? angle) // Starlight: -docks
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
         Angle = angle;
-        Docks = docks;
+        // Starlight: -docks
     }
 }
 

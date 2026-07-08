@@ -15,14 +15,15 @@ using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using static Content.Client.Tips.TippyUI;
 using Content.Client.Humanoid; // Starlight
-using Content.Shared.Humanoid; // Starlight
+using Content.Shared.Humanoid;
+using Content.Client._Starlight.Humanoid; // Starlight
 
 namespace Content.Client.Tips;
 
-public sealed class TippyUIController : UIController
+public sealed partial class TippyUIController : UIController
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IResourceCache _resCache = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IResourceCache _resCache = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
     [UISystemDependency] private readonly HumanoidAppearanceSystem _appearance = default!; // Starlight
@@ -133,15 +134,15 @@ public sealed class TippyUIController : UIController
                 _entity = next.Proto is null
                     ? EntityManager.SpawnEntity(_cfg.GetCVar(CCVars.TippyEntity), MapCoordinates.Nullspace)
                     : EntityManager.SpawnEntity(next.Proto, MapCoordinates.Nullspace);
-                
+
                 if (!EntityManager.TryGetComponent(_entity, out sprite))
                     return;
-                
+
                 //Starlight begin - Allow updating humanoid appearance component if it exists
                 if (EntityManager.TryGetComponent<HumanoidAppearanceComponent>(_entity, out var appearance))
                     _appearance.UpdateSprite((_entity, appearance, sprite));
                 //Starlight end
-                
+
                 // Only modify layers if they have all of the required ones.
                 tippy.ModifyLayers = _sprite.TryGetLayer(_entity, "revealing", out _, false) &&
                                      _sprite.TryGetLayer(_entity, "speaking", out _, false) &&

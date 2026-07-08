@@ -1,18 +1,14 @@
 using Content.Shared._Starlight.Cargo.MailCompanion;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
-using Robust.Shared.GameObjects;
+using Content.Client._Starlight.UserInterface;
 
 namespace Content.Client._Starlight.Cargo.MailCompanion;
 
 [UsedImplicitly]
-public sealed class MailCompanionBoundUserInterface : BoundUserInterface
+public sealed class MailCompanionBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     private MailCompanionWindow? _window;
-
-    public MailCompanionBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     protected override void Open()
     {
@@ -29,7 +25,7 @@ public sealed class MailCompanionBoundUserInterface : BoundUserInterface
                 stationName = metaData.EntityName;
         }
 
-        _window = this.CreateWindow<MailCompanionWindow>();
+        _window = this.CreatePopOutableWindow<MailCompanionWindow>(EntMan);
         _window.Set(stationName, gridUid);
     }
 
@@ -39,5 +35,13 @@ public sealed class MailCompanionBoundUserInterface : BoundUserInterface
 
         if (state is MailCompanionState companionState)
             _window?.UpdateState(companionState, Owner);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (disposing)
+            _window?.DisposePopOut();
     }
 }

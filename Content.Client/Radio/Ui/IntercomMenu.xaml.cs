@@ -13,7 +13,7 @@ namespace Content.Client.Radio.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class IntercomMenu : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public event Action<bool>? OnMicPressed;
     public event Action<bool>? OnSpeakerPressed;
@@ -72,7 +72,7 @@ public sealed partial class IntercomMenu : FancyWindow
             totalIds++;
         }
         //Starlight end
-        
+
         if (entity.Comp.SupportedChannels.Count == 0 && entity.Comp.CustomChannels.Count == 0) // Starlight edit
         {
             ChannelOptions.AddItem(Loc.GetString("intercom-options-none"), 0);

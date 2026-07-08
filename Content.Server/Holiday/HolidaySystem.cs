@@ -6,18 +6,18 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Holiday
 {
-    public sealed class HolidaySystem : EntitySystem
+    public sealed partial class HolidaySystem : EntitySystem
     {
-        [Dependency] private readonly IConfigurationManager _configManager = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IChatManager _chatManager = default!;
+        [Dependency] private IConfigurationManager _configManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IChatManager _chatManager = default!;
 
         [ViewVariables]
         private readonly List<HolidayPrototype> _currentHolidays = new();
 
         [ViewVariables]
         private bool _enabled = true;
-        
+
         public bool enabled => _enabled;
 
         public override void Initialize()
@@ -73,7 +73,7 @@ namespace Content.Server.Holiday
         {
             if (!_prototypeManager.TryIndex(holiday, out HolidayPrototype? prototype))
                 return false;
-            
+
             if (_currentHolidays.Count == 0)
                 RefreshCurrentHolidays();
 

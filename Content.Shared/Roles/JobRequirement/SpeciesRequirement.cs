@@ -50,7 +50,7 @@ public sealed partial class SpeciesRequirement : JobRequirement
         // Inverted = Blacklist mode, meaning player must be NONE of the species.
         if (!Inverted == hasRequiredSpecies)
             return true;
-        
+
         // Change to fail message.
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-blacklisted-species-fail" : "role-timer-whitelisted-species-fail",

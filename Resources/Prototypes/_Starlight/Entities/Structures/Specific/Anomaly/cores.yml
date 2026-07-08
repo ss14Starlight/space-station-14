@@ -10,7 +10,7 @@
     energy: 2.0
     color: "#ded949"
     castShadows: false
-    
+
 - type: entity
   parent: BaseAnomalyInertCore
   id: AnomalyCoreBananaInert

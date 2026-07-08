@@ -1,4 +1,3 @@
-using Content.Shared.Power;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Content.Shared._Starlight.Weapons.Ranged.Components;
@@ -8,12 +7,13 @@ using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Containers;
 using Content.Shared.Mech.EntitySystems;
 
-namespace Content.Shared.Weapons.Ranged.Systems; //Wrong namespace for this, but it needs to be in the same namespace as GunSystem
+// ReSharper disable once CheckNamespace
+namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem
 {
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly SharedMechSystem _mech = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private SharedMechSystem _mech = default!;
     protected virtual void InitializeMech()
     {
         SubscribeLocalEvent<MechAmmoProviderComponent, EntGotInsertedIntoContainerMessage>(OnGunInstalled);
@@ -41,7 +41,7 @@ public abstract partial class SharedGunSystem
     {
         if (!ent.Comp.Mech.HasValue || !TryComp(ent.Comp.Mech.Value, out MechComponent? mechComp))
             return;
-        
+
         if (mechComp.BatterySlot.ContainedEntity != null &&
             TryComp(mechComp.BatterySlot.ContainedEntity.Value, out BatteryComponent? batteryComp))
         {
@@ -51,7 +51,7 @@ public abstract partial class SharedGunSystem
             {
                 if(!_mech.TryChangeEnergy(ent.Comp.Mech.Value, ent.Comp.FireCost))
                     break;
-                    
+
                 args.Ammo.Add(GetShootable(ent, args.Coordinates));
             }
         }
@@ -68,7 +68,7 @@ public abstract partial class SharedGunSystem
     {
         if (!ent.Comp.Mech.HasValue || !TryComp(ent.Comp.Mech.Value, out MechComponent? mechComp))
             return;
-        
+
         if (mechComp.BatterySlot.ContainedEntity != null &&
             TryComp(mechComp.BatterySlot.ContainedEntity.Value, out BatteryComponent? batteryComp))
         {

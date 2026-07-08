@@ -11,7 +11,7 @@ namespace Content.Shared.EntityEffects.Effects;
 /// TODO: This can probably be made into a generic "CleanEntityEffect" which multiple components listen to...
 public sealed partial class WashCreamPieEntityEffectSystem : EntityEffectSystem<CreamPiedComponent, WashCreamPie>
 {
-    [Dependency] private readonly SharedCreamPieSystem _creamPie = default!;
+    [Dependency] private SharedCreamPieSystem _creamPie = default!;
 
     protected override void Effect(Entity<CreamPiedComponent> entity, ref EntityEffectEvent<WashCreamPie> args)
     {
@@ -22,6 +22,6 @@ public sealed partial class WashCreamPieEntityEffectSystem : EntityEffectSystem<
 /// <inheritdoc cref="EntityEffect"/>
 public sealed partial class WashCreamPie : EntityEffectBase<WashCreamPie>
 {
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-wash-cream-pie-reaction", ("chance", Probability));
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
+        loc.GetString("entity-effect-guidebook-wash-cream-pie-reaction", ("chance", Probability));
 }

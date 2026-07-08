@@ -9,7 +9,7 @@
   - type: TimedDespawn
     lifetime: 2
   - type: EmitSoundOnSpawn
-    sound: 
+    sound:
       path: /Audio/Effects/Lightning/lightningbolt.ogg
   - type: Sprite
     drawdepth: Effects

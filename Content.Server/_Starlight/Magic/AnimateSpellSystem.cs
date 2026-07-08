@@ -4,7 +4,6 @@ using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Shared.Actions.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Destructible.Thresholds.Triggers;
-using Content.Shared.Item;
 using Content.Shared.Magic.Components;
 using Content.Shared._Starlight.Magic.Components;
 using Content.Shared.Magic.Events;
@@ -18,10 +17,10 @@ namespace Content.Server._Starlight.Magic;
 /// Server-side system for handling animated objects, specifically setting their HP based on size.
 /// HP ranges are configurable per-staff via AnimatedObjectHPComponent.
 /// </summary>
-public sealed class AnimateSpellSystem : EntitySystem
+public sealed partial class AnimateSpellSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    
+    [Dependency] private IRobustRandom _random = default!;
+
     private EntityUid? _lastActionUsed; // Track the last action used for animated objects
 
     public override void Initialize()
@@ -47,15 +46,15 @@ public sealed class AnimateSpellSystem : EntitySystem
         AnimatedObjectHPComponent? hpConfig = null;
         if (action != null && TryComp<ActionComponent>(action.Value, out var actionComp) && actionComp.Container != null)
         {
-            TryComp<AnimatedObjectHPComponent>(actionComp.Container.Value, out hpConfig);
+            TryComp(actionComp.Container.Value, out hpConfig);
         }
 
         // Use default values if no config found on staff
         hpConfig ??= new AnimatedObjectHPComponent();
-        
+
         // Determine HP based on item size with random variance
         int hp = 0;
-        
+
         // Check for stored original size (Item component may have been removed)
         if (TryComp<AnimatedObjectSizeComponent>(uid, out var sizeComp))
         {
@@ -64,7 +63,7 @@ public sealed class AnimateSpellSystem : EntitySystem
             // Get HP range based on size from component configuration
             if (!hpConfig.Ranges.TryGetValue(sizeId, out var range))
                 return;
-            
+
             hp = _random.Next(range.Min, range.Max + 1);
         }
         else

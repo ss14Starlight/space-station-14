@@ -1,28 +1,25 @@
 using System.Linq;
+using Content.Shared._Starlight.ItemSwitch.Components;
+using Content.Shared._Starlight.Switchable;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
-using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
-using Content.Shared.Temperature;
-using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
-using Content.Shared.Wieldable;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 
-namespace Content.Shared.Starlight.ItemSwitch;
-public abstract class SharedItemSwitchSystem : EntitySystem
+namespace Content.Shared._Starlight.ItemSwitch;
+public abstract partial class SharedItemSwitchSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly ClothingSystem _clothing = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private ClothingSystem _clothing = default!;
 
     private EntityQuery<ItemSwitchComponent> _query;
 
@@ -52,7 +49,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
     {
         if (args.Handled || !ent.Comp.OnUse || ent.Comp.States.Count == 0) return;
         args.Handled = true;
-        
+
         if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
             return;
 
@@ -78,7 +75,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
             });
             addedVerbs++;
         }
-        
+
         if (addedVerbs > 0)
             args.ExtraCategories.Add(VerbCategory.Switch);
     }
@@ -89,10 +86,10 @@ public abstract class SharedItemSwitchSystem : EntitySystem
             return;
 
         args.Handled = true;
-        
+
         if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
             return;
-        
+
         Switch((ent.Owner, ent.Comp), Next(ent), args.User, predicted: ent.Comp.Predictable);
     }
 

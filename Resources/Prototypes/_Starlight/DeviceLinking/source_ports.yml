@@ -3,7 +3,7 @@
   name: signal-port-name-body-scanner-sender
   description: signal-port-description-body-scanner-sender
   defaultLinks: [ BodyScannerReceiver ]
-  
+
 - type: sourcePort
   id: AiLawConsoleSender
   name: signal-port-name-ai-law-console-sender
@@ -19,8 +19,8 @@
   id: ScanGateFail
   name: signal-port-name-scan-gate-fail
   description: signal-port-description-scan-gate-fail
-  
-- type: sourcePort  
+
+- type: sourcePort
   id: MassDriverConsoleSender
   name: signal-port-name-mass-driver-console-sender
   description: signal-port-description-mass-driver-console-sender

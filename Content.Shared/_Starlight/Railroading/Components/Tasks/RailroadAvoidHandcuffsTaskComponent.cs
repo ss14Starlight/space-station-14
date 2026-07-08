@@ -1,6 +1,6 @@
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Tasks;
 
 [RegisterComponent]
 public sealed partial class RailroadAvoidHandcuffsTaskComponent : Component
@@ -12,5 +12,5 @@ public sealed partial class RailroadAvoidHandcuffsTaskComponent : Component
     public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Misc/handcuffs.rsi"), "handcuff");
 
     [DataField]
-    public bool IsCompleted = true;
+    public bool IsFailed = false;
 }

@@ -16,7 +16,7 @@
           color: "#333333"
         - state: base1
     - type: RandomSprite
-      available: 
+      available:
         - 0: #replaces layer 0 (eyes) with a random one and uses the "Black" color pallete
             eyes_angry: Black
             eyes_cat: Black

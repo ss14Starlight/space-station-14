@@ -1,5 +1,11 @@
 - type: localizedDataset
-  id: names_felionoid
+  id: names_felionoid_prefix
   values:
-    prefix: names-felionoid-dataset-
-    count: 115
+    prefix: names-felionoid-prefix-dataset-
+    count: 253
+
+- type: localizedDataset
+  id: names_felionoid_suffix
+  values:
+    prefix: names-felionoid-suffix-dataset-
+    count: 146

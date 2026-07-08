@@ -21,7 +21,7 @@ public sealed class GhostThemeEui : BaseEui
     public override void HandleMessage(EuiMessageBase msg)
     {
         base.HandleMessage(msg);
-        
+
         if (msg is GhostThemeSelectedMessage selectedTheme)
         {
             _ghostThemeSystem.ChangeTheme(Player, selectedTheme.ID);

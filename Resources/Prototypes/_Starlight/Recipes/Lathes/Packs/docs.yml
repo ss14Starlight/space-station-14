@@ -52,6 +52,7 @@
   - PrintedDocumentOrderRecognizingReasonablenessCreatureRecipe
   - PrintedDocumentMedicalInterventionOrderRecipe
   - PrintedDocumentExecutionDNROrderRecipe
+  - PrintedDocumentEOCDesignationRecipe
   # Orders
   - PrintedDocumentProductOrderRecipe
   # Communications

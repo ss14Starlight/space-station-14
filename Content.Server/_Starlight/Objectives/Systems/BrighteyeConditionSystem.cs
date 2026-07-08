@@ -1,13 +1,13 @@
 using Content.Shared.Objectives.Components;
 using Content.Shared.Mind;
 using Content.Server._Starlight.Objectives.Components;
-using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.Objectives.Systems;
 
-public sealed class BrighteyeConditionSystem : EntitySystem
+public sealed partial class BrighteyeConditionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -25,7 +25,7 @@ public sealed class BrighteyeConditionSystem : EntitySystem
             return;
         }
 
-        args.Progress = HasComp<BrighteyeComponent>(args.Mind.OwnedEntity) ? 1f : 0f; 
+        args.Progress = HasComp<BrighteyeComponent>(args.Mind.OwnedEntity) ? 1f : 0f;
     }
 
     private void OnPortalGetProgress(EntityUid uid, BrighteyePortalConditionComponent comp, ref ObjectiveGetProgressEvent args)
@@ -36,6 +36,6 @@ public sealed class BrighteyeConditionSystem : EntitySystem
             return;
         }
 
-        args.Progress = brighteye.Portal is null ? 0f : 1f; 
+        args.Progress = brighteye.Portal is null ? 0f : 1f;
     }
 }

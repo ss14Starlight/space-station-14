@@ -15,15 +15,15 @@ using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
 
 namespace Content.Server.Projectiles;
 
-public sealed class ProjectileSystem : SharedProjectileSystem
+public sealed partial class ProjectileSystem : SharedProjectileSystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
-    [Dependency] private readonly GunSystem _guns = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
-    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private ColorFlashEffectSystem _color = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private GunSystem _guns = default!;
+    [Dependency] private SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
 
     public override void Initialize()
     {
@@ -60,20 +60,21 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         }
         var deleted = Deleted(target);
 
-        if (_damageableSystem.TryChangeDamage((target, damageableComponent), ev.Damage, out var damage, component.IgnoreResistances, origin: component.Shooter) && Exists(component.Shooter))
+        if (_damageableSystem.TryChangeDamage((target, damageableComponent), ev.Damage, out var damage, component.IgnoreResistances, origin: component.Shooter)) // Starlight
         {
             if (!deleted)
             {
                 _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, Filter.Pvs(target, entityManager: EntityManager));
             }
 
-            _adminLogger.Add(LogType.BulletHit,
-                LogImpact.Medium,
-                $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(component.Shooter!.Value):user} hit {otherName:target} and dealt {damage:damage} damage");
+            if (Exists(component.Shooter)) // Starlight
+                _adminLogger.Add(LogType.BulletHit,
+                    LogImpact.Medium,
+                    $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(component.Shooter!.Value):user} hit {otherName:target} and dealt {damage:damage} damage"); // Starlight
 
-            component.ProjectileSpent = !TryPenetrate((uid, component), damage, damageRequired);
+            component.ProjectileSpent = !TryPenetrateByType((uid, component), damage, damageRequired); // Starlight
         }
-        else
+        else if (component.ProjectileType == ProjectileType.Solid) // Starlight: Solid projectiles are spent on first collision, even if dmg fails.
         {
             component.ProjectileSpent = true;
         }
@@ -85,7 +86,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             //Starlight begin | ES Screenshake
             var shakeParams = new ScreenshakeParameters
             {
-                Trauma = 0.45f, 
+                Trauma = 0.45f,
                 DecayRate = 1.1f,
                 Frequency = 0.04f,
             };
@@ -95,7 +96,8 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             //Starlight end
         }
 
-        if (component.DeleteOnCollide && component.ProjectileSpent)
+        if (component is { ProjectileType: ProjectileType.Solid, DeleteOnCollide: true, ProjectileSpent: true } // Starlight: Original logic for Solid
+            or { ProjectileType: ProjectileType.Intangible, DeleteOnMaximumHits: true, ProjectileSpent: true }) // Starlight: New logic for Intangible
             QueueDel(uid);
 
         if (component.ImpactEffect != null && TryComp(uid, out TransformComponent? xform))
@@ -140,4 +142,22 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         return true;
     }
+
+    #region Starlight
+    /// <summary>
+    ///     TryPenetrate for projectiles with the Intangible type.
+    /// </summary>
+    private bool TryPenetrateIntangible(Entity<ProjectileComponent> projectile) =>
+        ++projectile.Comp.Hits < projectile.Comp.MaximumHits;
+
+    /// <summary>
+    ///     Drop-in replacement method that disambiguates the call between <see cref="TryPenetrate"/> for
+    ///     Solid type particles and <see cref="TryPenetrateIntangible"/> for Intangible ones.
+    /// </summary>
+    private bool TryPenetrateByType(Entity<ProjectileComponent> projectile, DamageSpecifier damage,
+        FixedPoint2 damageRequired) =>
+        projectile.Comp.ProjectileType == ProjectileType.Solid
+            ? TryPenetrate(projectile, damage, damageRequired)
+            : TryPenetrateIntangible(projectile);
+    #endregion
 }

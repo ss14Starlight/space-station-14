@@ -24,3 +24,6 @@ uplink-x4-desc = Used to put even bigger holes in areas you really hate.
 
 uplink-x4-bundle-name = X-4 Bundle
 uplink-x4-bundle-desc = A bundle of eight X-4. You must really want to blow the hell out of something.
+
+uplink-disruptor-name = Syndicate Disruptor
+uplink-disruptor-desc = Call in various disruptions to create opportunities, such as power or comms outages.

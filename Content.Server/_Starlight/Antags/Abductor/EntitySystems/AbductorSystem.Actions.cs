@@ -8,25 +8,26 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
+using Content.Shared._Starlight.Antags.Abductor.Components;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly PullingSystem _pullingSystem = default!;
-    [Dependency] private readonly InventorySystem _inv = default!;
-    [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly RemoteEyeSystem _remoteEye = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private PullingSystem _pullingSystem = default!;
+    [Dependency] private InventorySystem _inv = default!;
+    [Dependency] private SharedCuffableSystem _cuffs = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private RemoteEyeSystem _remoteEye = default!;
 
     private static readonly EntProtoId _teleportationEffect = "EffectTeleportation";
     private static readonly EntProtoId _teleportationEffectEntity = "EffectTeleportationEntity";
@@ -46,10 +47,10 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         SubscribeLocalEvent<GizmoMarkEvent>(OnGizmoMark);
     }
 
-    private void AbductorScientistComponentStartup(Entity<AbductorScientistComponent> ent, ref ComponentStartup args) 
+    private void AbductorScientistComponentStartup(Entity<AbductorScientistComponent> ent, ref ComponentStartup args)
         => InitializeComponentStartup(ent.Owner, ent.Comp);
 
-    private void AbductorAgentComponentStartup(Entity<AbductorAgentComponent> ent, ref ComponentStartup args) 
+    private void AbductorAgentComponentStartup(Entity<AbductorAgentComponent> ent, ref ComponentStartup args)
         => InitializeComponentStartup(ent.Owner, ent.Comp);
 
     private void InitializeComponentStartup(EntityUid uid, Component comp)
@@ -88,7 +89,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             _popup.PopupEntity(Loc.GetString("abductor-return-cuffed"), ev.Performer, ev.Performer);
             return;
         }
-          
+
         AbductorAgentComponent? agentComp = null;
         if (!TryComp<AbductorScientistComponent>(ev.Performer, out var scientistComp) && !TryComp<AbductorAgentComponent>(ev.Performer, out agentComp))
             EnsureComp<AbductorScientistComponent>(ev.Performer, out scientistComp);
@@ -122,7 +123,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             BreakOnDamage = true
         };
 
-        
         _doAfter.TryStartDoAfter(doAfter);
         ev.Handled = true;
     }

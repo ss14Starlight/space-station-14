@@ -69,24 +69,24 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     public readonly string? ObfuscatedMessage; // not null if this was a whisper
     public readonly bool IsWhisper; // Starlight
     public readonly LanguagePrototype Language; // Starlight
-    
+
     /// <summary>
     /// If the entity was trying to speak into a radio, this was the channel they were trying to access. If a radio
     /// message gets sent on this channel, this should be set to null to prevent duplicate messages.
     /// </summary>
     public RadioChannelPrototype? Channel;
-    
+
     //Starlight beign
     /// <summary>
     /// Whether to switch to custom channel system or not.
     /// </summary>
     public bool UsingCustomChannel;
-    
+
     /// <summary>
     /// If the entity was trying to speak into a radio, this was the custom channel they were trying to access.
     /// </summary>
     public CustomRadioChannelData? CustomChannel;
-    
+
     public EntitySpokeEvent(EntityUid source, SpeechMessage message, string? obfuscatedMessage, bool isWhisper, LanguagePrototype language, CustomRadioChannelData customChannel)
     {
         Source = source;

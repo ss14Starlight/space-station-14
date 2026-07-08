@@ -1,4 +1,3 @@
-using Content.Shared.Body.Events;
 using Content.Shared.Gibbing;
 using Content.Shared.Implants.Components;
 using Content.Shared.Storage;

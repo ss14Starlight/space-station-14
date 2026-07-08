@@ -14,7 +14,7 @@
     guides:
     - GasTurbine
     - Power
- 
+
 # Blades
 - type: entity
   id: BaseGasTurbineBlade

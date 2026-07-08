@@ -3,6 +3,7 @@
   mapName: 'Starboard'
   mapPath: /Maps/_Starlight/Stations/Starboard.yml
   minPlayers: 90
+  maxPlayers: 500
   stations:
     StarlightStarboard:
       stationProto: StandardNanotrasenStation
@@ -25,6 +26,7 @@
             Janitor: [ 2, 3 ]
             Chaplain: [ 2, 3 ]
             Librarian: [ 1, 1 ]
+            Lawyer: [ 2, 2 ]
             ServiceWorker: [ 3, 5 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -33,7 +35,7 @@
             TechnicalAssistant: [ 2, 4 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
-            Chemist: [ 2, 2 ]
+            Chemist: [ 4, 4 ]
             MedicalDoctor: [ 4, 6 ]
             MedicalIntern: [ 2, 4 ]
             Paramedic: [ 2, 2 ]
@@ -48,32 +50,32 @@
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 2 ]
-            Detective: [ 1, 1 ]
-            SecurityOfficer: [ 6, 10 ]
-            SecurityCadet: [ 4, 6 ]
-            Brigmedic: [ 1, 1 ]
+            SecurityOfficer: [ 10, 12 ]
+            SecurityCadet: [ 5, 6 ]
+            Brigmedic: [ 2, 2 ]
+            Detective: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 3, 4 ]
-            CargoTechnician: [ 6, 7 ]
-            MiningSpecialist: [ 1, 2]
-            MailTech: [ 2, 3 ]
             SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 4, 4 ]
+            MiningSpecialist: [ 4, 4 ]
+            CargoTechnician: [ 6, 7 ]
+            MailTech: [ 2, 3 ]
             #civillian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 3 ]
-            Performer: [ 3, 5 ]   
+            Performer: [ 3, 5 ]
             Boxer: [ 2, 2 ]
             Reporter: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 4, 4 ]  
+            Borg: [ 4, 4 ]
             #law
             Magistrate: [ 1, 1 ]
-            IAA: [ 2, 2 ]      
-            #Representives
+            IAA: [ 2, 2 ]
+            #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

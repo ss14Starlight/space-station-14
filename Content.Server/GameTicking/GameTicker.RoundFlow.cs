@@ -32,10 +32,10 @@ namespace Content.Server.GameTicking
 {
     public sealed partial class GameTicker
     {
-        [Dependency] private readonly DiscordWebhook _discord = default!;
-        [Dependency] private readonly RoleSystem _role = default!;
-        [Dependency] private readonly ITaskManager _taskManager = default!;
-        [Dependency] private readonly IBugReportManager _bugManager = default!; // Starlight
+        [Dependency] private DiscordWebhook _discord = default!;
+        [Dependency] private RoleSystem _role = default!;
+        [Dependency] private ITaskManager _taskManager = default!;
+        [Dependency] private IBugReportManager _bugManager = default!; // Starlight
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -43,7 +43,7 @@ namespace Content.Server.GameTicking
 
         private static readonly Gauge RoundLengthMetric = Metrics.CreateGauge(
             "ss14_round_length",
-            "Round length in seconds.");     
+            "Round length in seconds.");
 #if EXCEPTION_TOLERANCE
         [ViewVariables]
         private int _roundStartFailCount = 0;
@@ -364,6 +364,7 @@ namespace Content.Server.GameTicking
                 return;
 
             _startingRound = true;
+            RoundStartTimeSpan = _gameTiming.CurTime;
 
             if (RoundId == 0)
                 IncrementRoundNumber();
@@ -433,7 +434,6 @@ namespace Content.Server.GameTicking
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
 
-            RoundStartTimeSpan = _gameTiming.CurTime;
             SendStatusToAll();
             ReqWindowAttentionAll();
             UpdateLateJoinStatus();
@@ -731,7 +731,7 @@ namespace Content.Server.GameTicking
             _mapManager.Restart();
 
             _banManager.Restart();
-            
+
             _bugManager.Restart(); // Starlight
 
             _gameMapManager.ClearSelectedMap();

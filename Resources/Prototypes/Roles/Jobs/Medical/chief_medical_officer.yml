@@ -15,6 +15,11 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 20h # Starlight
+    - !type:TraitsRequirement # Starlight
+      traits:
+        - Iterator
+        - Muted
+      inverted: true
   weight: 10
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"
@@ -30,6 +35,7 @@
   - Cryogenics
   - Surgery # Starlight
   - Paramedic # Starlight
+  - Debrief # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -42,7 +48,7 @@
   equipment:
     id: CMOPDA
     ears: ClothingHeadsetCMO
-    belt: ClothingBeltMedicalFilled
+    belt: ClothingBeltMedicalFilled # Starlight - adding back belts
   storage:
     back:
     - Flash

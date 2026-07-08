@@ -23,8 +23,8 @@ namespace Content.Client.Chemistry.UI
     [GenerateTypedNameReferences]
     public sealed partial class ChemMasterWindow : FancyWindow
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
 
         private readonly SpriteSystem _sprite;
 
@@ -181,7 +181,7 @@ namespace Content.Client.Chemistry.UI
                 ? "chem-master-window-valve-open"
                 : "chem-master-window-valve-closed");
             // Starlight-end
-            
+
             UpdateDosageFields(castState);
         }
 
@@ -202,7 +202,7 @@ namespace Content.Client.Chemistry.UI
 
             PillDosage.Value = (int)Math.Min(outputVolume, castState.PillDosageLimit);
             PatchDosage.Value = (int)Math.Min(outputVolume, castState.PatchDosageLimit); // Starlight
-            
+
             PillTypeButtons[castState.SelectedPillType].Pressed = true;
 
             PillNumber.IsValid = x => x >= 0 && x <= pillNumberMax;
@@ -217,7 +217,7 @@ namespace Content.Client.Chemistry.UI
                 PillNumber.Value = pillNumberMax;
             if (BottleDosage.Value > bottleAmountMax)
                 BottleDosage.Value = bottleAmountMax;
-            
+
             if (PatchNumber.Value > pillNumberMax)
                 PatchNumber.Value = pillNumberMax;
 
@@ -230,7 +230,7 @@ namespace Content.Client.Chemistry.UI
             {
                 PillNumber.Value = 0;
             }
-            
+
             // Starlight-start
             if (PatchDosage.Value > 0)
             {

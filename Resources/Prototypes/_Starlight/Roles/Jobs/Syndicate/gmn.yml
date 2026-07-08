@@ -28,7 +28,7 @@
     mask: ClothingMaskGasSyndicate
     belt: ClothingBeltMilitaryWebbingFilledDamageControle
     gloves: ClothingHandsGlovesCombat
-    
+
 - type: entity
   id: ClothingBackpackSyndicateGMNDamageControl
   parent: ClothingBackpackSyndicate

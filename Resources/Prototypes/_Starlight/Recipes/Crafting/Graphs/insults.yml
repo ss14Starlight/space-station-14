@@ -20,7 +20,7 @@
               doAfter: 5
     - node: fabric
       entity: InsulatedFabric
-      
+
 - type: constructionGraph
   id: FingerlessInsuls
   start: start

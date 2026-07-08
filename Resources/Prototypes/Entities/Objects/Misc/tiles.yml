@@ -13,6 +13,12 @@
     damage:
       types:
         Blunt: 5
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  # Starlight end
   - type: Stack
     count: 1
   - type: Damageable

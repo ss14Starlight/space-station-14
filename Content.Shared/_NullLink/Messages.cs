@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Robust.Shared.Network;
-using Robust.Shared.Serialization;
+﻿using Robust.Shared.Serialization;
 
 namespace Content.Shared._NullLink;
 public static class NullLink
@@ -55,6 +49,12 @@ public static class NullLink
     }
 
     [Serializable, NetSerializable]
+    public sealed class ServerRequirements() : EntityEventArgs
+    {
+        public required Dictionary<string, bool> InsufficientPlaytime { get; set; }
+    }
+
+    [Serializable, NetSerializable]
     public record Server
     {
         public required string Title { get; set; }
@@ -66,6 +66,10 @@ public static class NullLink
         public bool IsAdultOnly { get; set; }
 
         public required string ConnectionString { get; set; }
+
+        public int? PanicBunkerMinAccountAge { get; set; }
+
+        public int? PanicBunkerMinOverallMinutes { get; set; }
     }
 
     [Serializable, NetSerializable]
@@ -92,6 +96,8 @@ public static class NullLink
 
         public int? Players { get; set; }
 
+        public bool? PanicBunkerActive { get; set; }
+
         public ServerStatus Status { get; set; }
         public string GetStatus()=> Status switch
         {
@@ -100,7 +106,7 @@ public static class NullLink
             ServerStatus.Round => "Round",
             ServerStatus.RoundEnding => "Ending",
             _ => "Unknown"
-        };  
+        };
     }
 
     [Serializable, NetSerializable]

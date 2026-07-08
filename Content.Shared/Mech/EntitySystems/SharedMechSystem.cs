@@ -32,7 +32,10 @@ using Content.Shared.Stunnable;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Wires;
+using Content.Shared.Electrocution;
 using Content.Shared._Starlight.Mech;
+using Content.Shared._Starlight.Weapons.Melee.Events;
 #endregion
 
 namespace Content.Shared.Mech.EntitySystems;
@@ -42,25 +45,25 @@ namespace Content.Shared.Mech.EntitySystems;
 /// </summary>
 public abstract partial class SharedMechSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedPointLightSystem _light = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!; //Starlight
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedMoverController _mover = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedPointLightSystem _light = default!;
+    [Dependency] private SharedBatterySystem _battery = default!; //Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction);
+        // SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction); Starlight - moved to SharedMechEquipmentSelectSystem
         SubscribeLocalEvent<MechComponent, MechToggleInternalsEvent>(OnMechToggleInternals);
         SubscribeLocalEvent<MechComponent, MechEjectPilotEvent>(OnEjectPilotEvent);
         SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
@@ -72,6 +75,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<MechComponent, GotEmaggedEvent>(OnEmagged);
 
+        SubscribeLocalEvent<MechPilotComponent, GetMeleeOriginEvent>(OnGetMeleeOrigin); // Starlight
         SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
         SubscribeLocalEvent<MechPilotComponent, CanAttackFromContainerEvent>(OnCanAttackFromContainer);
         SubscribeLocalEvent<MechPilotComponent, AttackAttemptEvent>(OnAttackAttempt);
@@ -86,7 +90,9 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
         SubscribeLocalEvent<MechComponent, ShotAttemptedEvent>(OnShootAttempt); // Moved from server side, broken
         SubscribeLocalEvent<MechComponent, CanRepairEvent>(OnRepairAttempt); //  Moved from server side, broken
+        SubscribeLocalEvent<MechComponent, AttemptChangePanelEvent>(OnAttemptPanelChanged);
         SubscribeLocalEvent<MechPilotComponent, KnockDownAttemptEvent>(OnKnockdownAttempt);
+        SubscribeLocalEvent<MechPilotComponent, ElectrocutionAttemptEvent>(OnMechPilotElectrocutionAttempt);
         #endregion
 
         InitializeRelay();
@@ -286,14 +292,6 @@ public abstract partial class SharedMechSystem : EntitySystem
             _actions.AddAction(pilot, ref component.MechToggleInternalsActionEntity, component.MechToggleInternalsAction, mech);
         if (_light.TryGetLight(mech, out var light))
             _actions.AddAction(pilot, ref component.MechToggleLightActionEntity, component.MechToggleLightAction, mech);
-        if (component.SirenAvailable)
-            _actions.AddAction(pilot, ref component.MechToggleSirenActionEntity, component.MechToggleSirenAction, mech);
-        if (HasComp<MechThrustersComponent>(mech))
-            _actions.AddAction(pilot, ref component.MechToggleThrustersActionEntity, component.MechToggleThrustersAction, mech);
-        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-            if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
-                _actions.AddAction(pilot, ref actionComp.EquipmentActionEntity, actionComp.EquipmentAction, ent);
     }
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)
@@ -304,12 +302,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         RemComp<InteractionRelayComponent>(pilot);
 
         _actions.RemoveProvidedActions(pilot, mech);
-        if (!TryComp<MechComponent>(mech, out var mechComp))
-            return;
-        var equipment = new List<EntityUid>(mechComp.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-            if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
-                _actions.RemoveProvidedActions(pilot, ent);
     }
 
     /// <summary>
@@ -471,7 +463,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         //Starlight Start - play sounds dependent on *battery*
         if (component.BatterySlot.ContainedEntity != null && TryComp(component.BatterySlot.ContainedEntity, out BatteryComponent? battery))
-        {        
+        {
             if ((int)(_battery.GetCharge((component.BatterySlot.ContainedEntity.Value, battery)) / battery.MaxCharge * 100) <= 33 //Starlight Edit: Earlier low power warning, and we run it off of the % power readout
                 && component.PlayPowerSound
                 && component.PilotSlot.ContainedEntity != null)
@@ -572,10 +564,17 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         SetupUser(uid, toInsert.Value);
 
+        // Starlight Begin - Pilot Events
         var ev = new BeforePilotInsertEvent(uid, toInsert.Value);
         RaiseLocalEvent(uid, ref ev);
+        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
+        foreach (var ent in equipment)
+        {
+            RaiseLocalEvent(ent, ref ev);
+        }
 
         RaiseLocalEvent(toInsert.Value, ref ev);
+        // Starlight End
 
         _container.Insert(toInsert.Value, component.PilotSlot);
         UpdateAppearance(uid, component);
@@ -601,10 +600,16 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         var pilot = component.PilotSlot.ContainedEntity.Value;
 
+        // Starlight Begin - Pilot Events
         var ev = new BeforePilotEjectEvent(uid, pilot);
         RaiseLocalEvent(uid, ref ev);
-
+        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
+        foreach (var ent in equipment)
+        {
+            RaiseLocalEvent(ent, ref ev);
+        }
         RaiseLocalEvent(pilot, ref ev);
+        // Starlight End
 
         _container.RemoveEntity(uid, pilot);
         return true;
@@ -617,6 +622,20 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (TryComp<MechComponent>(component.Mech, out var mechComp))
             UpdateAppearance(component.Mech, mechComp);
     }
+
+    #region Starlight
+    private void OnGetMeleeOrigin(EntityUid uid, MechPilotComponent component, GetMeleeOriginEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!HasComp<MechComponent>(component.Mech))
+            return;
+
+        args.OriginEntity = component.Mech;
+        args.Handled = true;
+    }
+    #endregion
 
     private void OnGetMeleeWeapon(EntityUid uid, MechPilotComponent component, GetMeleeWeaponEvent args)
     {
@@ -651,7 +670,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         _appearance.SetData(uid, MechVisuals.Open, IsEmpty(component), appearance);
         _appearance.SetData(uid, MechVisuals.Broken, component.Broken, appearance);
         _appearance.SetData(uid, MechVisuals.Light, component.Light, appearance);
-        _appearance.SetData(uid, MechVisuals.Siren, component.Siren, appearance);
     }
 
     private void OnDragDrop(EntityUid uid, MechComponent component, ref DragDropTargetEvent args)
@@ -684,6 +702,17 @@ public abstract partial class SharedMechSystem : EntitySystem
         component.EquipmentWhitelist = null;
         Dirty(uid, component);
     }
+
+    #region Starlight
+    // Blocks any modification of the wires panel, except by the mech itself
+    private void OnAttemptPanelChanged(EntityUid uid, MechComponent component, ref AttemptChangePanelEvent args)
+    {
+        args.Cancelled = args.User != uid;
+    }
+
+    private void OnMechPilotElectrocutionAttempt(EntityUid uid, MechPilotComponent comp, ElectrocutionAttemptEvent args)
+        => args.SiemensCoefficient *= 0f; // Fully insulate the pilot
+    #endregion
 }
 
 /// <summary>

@@ -12,7 +12,13 @@
   - type: Item
     sprite: _Starlight/Objects/Specific/wizcoin.rsi
     size: Tiny
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
+  # Starlight end
     count: 20
     stackType: WizCoin
   - type: StaticPrice

@@ -2,14 +2,13 @@ using Content.Shared.Examine;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Localization;
 
 namespace Content.Shared._Starlight.Silicons.Borgs;
 
-public sealed class LawboardSystem : EntitySystem
+public sealed partial class LawboardSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     public override void Initialize()
     {
@@ -27,8 +26,8 @@ public sealed class LawboardSystem : EntitySystem
         if (!_prototype.TryIndex<SiliconLawsetPrototype>(component.Laws, out var lawsetProto))
             return;
 
-        var lawsetName = lawsetProto.Name != null 
-            ? _loc.GetString(lawsetProto.Name) 
+        var lawsetName = lawsetProto.Name != null
+            ? _loc.GetString(lawsetProto.Name)
             : "Unknown";
         var description = $"[color=cyan]An electronics board containing the [color=yellow]{lawsetName}[/color] lawset.[/color]\n[color=orange]Uploaded Laws:[/color]";
 

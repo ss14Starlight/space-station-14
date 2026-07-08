@@ -10,3 +10,8 @@
     sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
   - type: StaticPrice
     price: 10
+  - type: Engraveable
+    engraveVerb: "engraving-verb-engrave"
+    noEngravingText: "engraving-dogtags-no-message"
+    engraveSuccessMessage: "engraving-dogtags-succeed"
+    hasEngravingText: "engraving-dogtags-has-message"

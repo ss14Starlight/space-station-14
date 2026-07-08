@@ -10,7 +10,7 @@
         - parents
         - hope
     - type: Edible
-      trash: 
+      trash:
       - FoodPlate
     - type: Sprite
       sprite: _Starlight/Objects/Consumable/Food/plate.rsi

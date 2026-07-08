@@ -9,7 +9,7 @@ public sealed partial class GhostThemeComponent : Component
     [ViewVariables(VVAccess.ReadOnly)] // No admeme
     [DataField]
     public string SelectedGhostTheme = "None";
-    
+
     [ViewVariables(VVAccess.ReadOnly)] // No admeme
     [DataField]
     public Color GhostThemeColor = Color.White;

@@ -8,4 +8,4 @@ namespace Content.Client._Starlight.Actions.EntitySystems;
 /// </summary>
 public sealed class StasisFrozenSystem : SharedStasisFrozenSystem
 {
-} 
+}

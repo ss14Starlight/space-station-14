@@ -62,6 +62,10 @@
     tags:
     - AirSensor
     - Unstackable
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  # Starlight end
   - type: GuideHelp
     guides:
     - AtmosphericNetworkMonitor

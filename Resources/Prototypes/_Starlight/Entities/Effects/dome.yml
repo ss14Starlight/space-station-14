@@ -164,7 +164,7 @@
     layers:
     - state: big
       color: "#6c15ae"
-  - type: Stealth   
+  - type: Stealth
     minVisibility: 0.8
     maxVisibility: 0.8
     lastVisibility: 0.8

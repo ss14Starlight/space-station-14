@@ -1,0 +1,15 @@
+- type: entity
+  name: jaunt
+  parent: EtherealJaunt
+  id: InfernalJaunt
+  suffix: Devil
+  components:
+  - type: Sprite
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    color: "#ac0808"
+    layers:
+    - state: animated
+      shader: unshaded
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts

@@ -42,7 +42,7 @@
   icon: { sprite: _Starlight/Objects/Materials/ore.rsi, state: abyssium }
   spawn: AbyssiumOre1
   maxCount: 10
-  
+
 - type: entity
   parent: AbyssiumOre
   id: AbyssiumOre1

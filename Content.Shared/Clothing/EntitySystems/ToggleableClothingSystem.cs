@@ -14,19 +14,29 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
+#region Starlight
+using Content.Shared.Item.ItemToggle;
+using Content.Shared.Light.Components;
+using Content.Shared.Light;
+#endregion
+
 namespace Content.Shared.Clothing.EntitySystems;
 
-public sealed class ToggleableClothingSystem : EntitySystem
+public sealed partial class ToggleableClothingSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedStrippableSystem _strippable = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedStrippableSystem _strippable = default!;
+    #region Starlight
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private SharedHandheldLightSystem _lightSystem = default!;
+    #endregion
 
     public override void Initialize()
     {
@@ -160,7 +170,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
         // This should maybe double check that the entity currently in the slot is actually the attached clothing, but
         // if its not, then something else has gone wrong already...
         if (component.Container != null && component.Container.ContainedEntity == null && component.ClothingUid != null)
-            _inventorySystem.TryUnequip(args.Equipee, component.Slot, force: true, triggerHandContact: true);
+            _inventorySystem.TryUnequip(args.EquipTarget, component.Slot, force: true, triggerHandContact: true);
     }
 
     private void OnRemoveToggleable(EntityUid uid, ToggleableClothingComponent component, ComponentRemove args)
@@ -219,7 +229,14 @@ public sealed class ToggleableClothingSystem : EntitySystem
         // As unequipped gets called in the middle of container removal, we cannot call a container-insert without causing issues.
         // So we delay it and process it during a system update:
         if (toggleComp.ClothingUid != null && toggleComp.Container != null)
+        {
             _containerSystem.Insert(toggleComp.ClothingUid.Value, toggleComp.Container);
+            // Starlight-start: deactivate lights after unequip to avoid power drain.
+            toggleComp.IsLightToggled = TryComp<HandheldLightComponent>(toggleComp.ClothingUid.Value, out var light) && light.Activated;
+            if (toggleComp.IsLightToggled)
+                _lightSystem.SetActivated(toggleComp.ClothingUid.Value, false, light, false);
+            // Starlight-end
+        }
     }
 
     /// <summary>
@@ -248,7 +265,18 @@ public sealed class ToggleableClothingSystem : EntitySystem
                 user, user);
         }
         else
-            _inventorySystem.TryEquip(user, parent, component.ClothingUid.Value, component.Slot, triggerHandContact: true);
+        {
+            // Starlight-start
+            if (!_inventorySystem.TryEquip(user, parent, component.ClothingUid.Value, component.Slot, triggerHandContact: true))
+                return;
+
+            if (TryComp<HandheldLightComponent>(component.ClothingUid.Value, out var light))
+            {
+                _lightSystem.SetDrawSource(component.ClothingUid.Value, component.RedirectDraw ? target : null, light);
+                _lightSystem.SetActivated(component.ClothingUid.Value, component.IsLightToggled, light, false);
+            }
+            // Starlight-end
+        }
     }
 
     private void OnGetActions(EntityUid uid, ToggleableClothingComponent component, GetItemActionsEvent args)

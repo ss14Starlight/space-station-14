@@ -48,6 +48,7 @@
   - MechReactorHigh #Starlight
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
+  - SMESHyperAdvancedMachineCircuitboard #SL
   radioChannels:
   - Engineering
 

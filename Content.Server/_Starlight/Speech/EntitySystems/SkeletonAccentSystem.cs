@@ -9,8 +9,8 @@ namespace Content.Server._Starlight.Speech.EntitySystems;
 
 public sealed partial class SkeletonAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     [GeneratedRegex(@"(?<!\w)[^aeiou]one", RegexOptions.IgnoreCase)]
     private static partial Regex BoneRegex();
@@ -41,6 +41,6 @@ public sealed partial class SkeletonAccentSystem : EntitySystem
         return message;
     }
 
-    private void OnAccentGet(EntityUid uid, SkeletonAccentComponent component, AccentGetEvent args) 
+    private void OnAccentGet(EntityUid uid, SkeletonAccentComponent component, AccentGetEvent args)
         => args.Message = Accentuate(args.Message, component);
 }

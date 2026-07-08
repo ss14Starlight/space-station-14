@@ -14,7 +14,7 @@
     suitstorage: WeaponSubMachineGunWt550
     pocket1: MindShieldImplanter
     pocket2: DeathRattleImplanterCentcomm
-  inhand: 
+  inhand:
   - RadioImplanterCentcomm
 
 - type: startingGear
@@ -34,7 +34,7 @@
     suitstorage: WeaponSubMachineGunWt550
     pocket1: MindShieldImplanter
     pocket2: DeathRattleImplanterCentcomm
-  inhand: 
+  inhand:
   - RadioImplanterCentcomm
 
 - type: startingGear
@@ -54,7 +54,7 @@
     suitstorage: WeaponSubMachineGunWt550
     pocket1: MindShieldImplanter
     pocket2: DeathRattleImplanterCentcomm
-  inhand: 
+  inhand:
   - RadioImplanterCentcomm
 
 - type: startingGear
@@ -73,5 +73,5 @@
     suitstorage: WeaponSubMachineGunWt550
     pocket1: MindShieldImplanter
     pocket2: DeathRattleImplanterCentcomm
-  inhand: 
+  inhand:
   - RadioImplanterCentcomm

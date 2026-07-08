@@ -1,5 +1,7 @@
+using Content.Shared.Alert;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Prying.Components;
 
@@ -18,6 +20,7 @@ public sealed partial class PryingComponent : Component
     /// </summary>
     [DataField]
     public bool Force;
+
     /// <summary>
     /// Modifier on the prying time.
     /// Lower values result in more time.
@@ -37,6 +40,12 @@ public sealed partial class PryingComponent : Component
     [DataField]
     public bool Enabled = true;
 
+    /// <summary>
+    /// What alert to show to an entity with this component.
+    /// </summary>
+    [DataField]
+    public ProtoId<AlertPrototype>? PryingAlertProtoId = "Prying";
+
     #region Starlight
 
     /// <summary>
@@ -48,7 +57,7 @@ public sealed partial class PryingComponent : Component
     /// <summary>
     /// What sound to play when prying is started.
     /// </summary>
-    [DataField] 
+    [DataField]
     public SoundSpecifier useSoundOnDoafter = new SoundPathSpecifier("/Audio/_Starlight/Machines/airlock_pry.ogg");
     #endregion Starlight
 }
@@ -76,6 +85,26 @@ public record struct BeforePryEvent(EntityUid User, bool PryPowered, bool Force,
     /// <summary>
     /// Whether anything other than bare hands were used. This should only be false if prying is being performed without a prying comp.
     /// </summary>
+    public readonly bool StrongPry = StrongPry;
+
+    public string? Message;
+
+    public bool Cancelled;
+}
+
+/// <summary>
+/// Raised directed on the user before they attempt to pry a target.
+/// Cancel to stop the pry before target-side pry validation runs.
+/// </summary>
+[ByRefEvent]
+public record struct UserBeforePryEvent(EntityUid Target, bool PryPowered, bool Force, bool StrongPry)
+{
+    public readonly EntityUid Target = Target;
+
+    public readonly bool PryPowered = PryPowered;
+
+    public readonly bool Force = Force;
+
     public readonly bool StrongPry = StrongPry;
 
     public string? Message;
@@ -117,4 +146,3 @@ public record struct GetPryTimeModifierEvent
         User = user;
     }
 }
-

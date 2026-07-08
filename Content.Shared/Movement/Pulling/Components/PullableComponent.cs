@@ -41,6 +41,15 @@ public sealed partial class PullableComponent : Component
 
     [DataField]
     public ProtoId<AlertPrototype> PulledAlert = "Pulled";
+
+    #region Starlight
+
+    /// <summary>
+    /// Ignores <see cref="PullerComponent.NeedsHands"/>, makes it not take up hand slots when pulled.
+    /// </summary>
+    [DataField, AutoNetworkedField] public bool IgnoreNeedsHands;
+
+    #endregion
 }
 
 public sealed partial class StopBeingPulledAlertEvent : BaseAlertEvent;

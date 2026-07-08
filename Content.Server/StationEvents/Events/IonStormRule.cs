@@ -4,17 +4,17 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Station.Components;
 using Content.Server._Starlight.Thaven; //Starlight
-using Content.Shared._Starlight.Thaven.Components; //Starlight 
 using Content.Server._FarHorizons.Silicons.Glitching;
 using Content.Shared._FarHorizons.Silicons.Glitching;
+using Content.Shared._Starlight.Thaven;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
+public sealed partial class IonStormRule : StationEventSystem<IonStormRuleComponent>
 {
-    [Dependency] private readonly IonStormSystem _ionStorm = default!;
-    [Dependency] private readonly GlitchingSystem _glitching = default!; // Far Horizons
-    [Dependency] private readonly ThavenMoodsSystem _thavenMood = default!; //Starlight
+    [Dependency] private IonStormSystem _ionStorm = default!;
+    [Dependency] private GlitchingSystem _glitching = default!; // Far Horizons
+    [Dependency] private ThavenMoodsSystem _thavenMood = default!; //Starlight
 
     protected override void Started(EntityUid uid, IonStormRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -49,11 +49,11 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
         //Starlight begin | Ion storm affects Thaven moods
         var moodsQuery = EntityQueryEnumerator<ThavenMoodsComponent, TransformComponent>();
         while (moodsQuery.MoveNext(out var ent, out var moodHolder, out var xform))
-        {            
+        {
             // only affect Thaven Moods holders on the station
             if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != chosenStation)
                 continue;
-        
+
             _thavenMood.OnIonStorm((ent, moodHolder));
         }
         //Startlight end

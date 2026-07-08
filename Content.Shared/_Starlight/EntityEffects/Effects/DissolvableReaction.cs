@@ -1,13 +1,12 @@
-using JetBrains.Annotations;
 using Content.Shared.EntityEffects;
 using Content.Shared.Database;
 using Content.Shared.Tag;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
-using Content.Shared.Starlight.EntityEffects.Components;
-using Content.Shared.Starlight.EntityEffects.EntitySystems;
+using Content.Shared._Starlight.EntityEffects.Components;
+using Content.Shared._Starlight.EntityEffects.EntitySystems;
 
-namespace Content.Shared.Starlight.EntityEffects.Effects;
+namespace Content.Shared._Starlight.EntityEffects.Effects;
 
 /// <summary>
 /// Makes this entity sentient. Allows ghost to take it over if it's not already occupied.
@@ -16,10 +15,10 @@ namespace Content.Shared.Starlight.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class DissolvableReactionEntityEffectSystem : EntityEffectSystem<DissolvableComponent, DissolvableReaction>
 {
-    [Dependency] private readonly SharedDissolvableSystem _dissolvable = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly EntityManager _entMan = default!;
+    [Dependency] private SharedDissolvableSystem _dissolvable = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private EntityManager _entMan = default!;
 
     protected override void Effect(Entity<DissolvableComponent> entity, ref EntityEffectEvent<DissolvableReaction> args)
     {
@@ -47,7 +46,7 @@ public sealed partial class DissolvableReaction : EntityEffectBase<DissolvableRe
 
     [DataField]
     public float MultiplierOnExisting = -1f;
-    
+
     [DataField(required: true)]
     [ViewVariables(VVAccess.ReadWrite)]
     public DamageSpecifier Damage = new();
@@ -55,11 +54,9 @@ public sealed partial class DissolvableReaction : EntityEffectBase<DissolvableRe
     [DataField]
     public EntProtoId? DissolveEffectPrototype = "ThermiteEntity";
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-    {
-        return Loc.GetString("reagent-effect-guidebook-dissolvable-reaction",
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
+        loc.GetString("reagent-effect-guidebook-dissolvable-reaction",
                 ("chance", Probability));
-    }
 
     public override LogImpact? Impact => LogImpact.Medium;
 }

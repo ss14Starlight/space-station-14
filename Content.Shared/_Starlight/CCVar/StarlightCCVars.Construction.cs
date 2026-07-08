@@ -1,6 +1,6 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared.Starlight.CCVar;
+namespace Content.Shared._Starlight.CCVar;
 
 public sealed partial class StarlightCCVars
 {
@@ -9,4 +9,4 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<int> ConstructionMaxGhostsPerTile =
         CVarDef.Create("construction.max_ghosts_per_tile", 6, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
-} 
+}

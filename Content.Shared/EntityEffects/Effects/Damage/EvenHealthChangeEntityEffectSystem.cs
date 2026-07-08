@@ -14,7 +14,7 @@ namespace Content.Shared.EntityEffects.Effects.Damage;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class EvenHealthChangeEntityEffectSystem : EntityEffectSystem<DamageableComponent, EvenHealthChange>
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     protected override void Effect(Entity<DamageableComponent> entity, ref EntityEffectEvent<EvenHealthChange> args)
     {
@@ -40,7 +40,7 @@ public sealed partial class EvenHealthChange : EntityEffectBase<EvenHealthChange
     [DataField]
     public bool IgnoreResistances = true;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
     {
         var damages = new List<string>();
         var heals = false;
@@ -72,7 +72,7 @@ public sealed partial class EvenHealthChange : EntityEffectBase<EvenHealthChange
             }
 
             damages.Add(
-                Loc.GetString("health-change-display",
+                loc.GetString("health-change-display",
                     ("kind", groupProto.LocalizedName),
                     ("amount", MathF.Abs(amount.Float() * mod)),
                     ("deltasign", sign)
@@ -80,7 +80,7 @@ public sealed partial class EvenHealthChange : EntityEffectBase<EvenHealthChange
         }
 
         var healsordeals = heals ? deals ? "both" : "heals" : deals ? "deals" : "none";
-        return Loc.GetString("entity-effect-guidebook-even-health-change",
+        return loc.GetString("entity-effect-guidebook-even-health-change",
             ("chance", Probability),
             ("changes", ContentLocalizationManager.FormatList(damages)),
             ("healsordeals", healsordeals));

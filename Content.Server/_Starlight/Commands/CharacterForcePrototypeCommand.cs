@@ -1,11 +1,8 @@
 using System.Linq;
 using Content.Server.Administration;
-using Content.Server.Database;
 using Content.Server.Preferences.Managers;
-using Content.Server.Station.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Preferences;
-using Content.Shared.Station.Components;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Player;
@@ -14,11 +11,11 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Starlight.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class CharacterForcePrototypeCommand : LocalizedCommands
+public sealed partial class CharacterForcePrototypeCommand : LocalizedCommands
 {
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IServerPreferencesManager _prefsManager = default!;
 
     public override string Command => "characterforceprototype";
     public override string Description => "Changed ForcedPrototype on the character slot selected.";

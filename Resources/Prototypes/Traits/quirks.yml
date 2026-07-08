@@ -25,7 +25,7 @@
 #   components:
 #   - type: Snoring
 
-# - type: trait #starlight 
+# - type: trait #starlight
 #   id: Clumsy
 #   name: trait-clumsy-name
 #   description: trait-clumsy-desc
@@ -33,7 +33,7 @@
 #   components:
 #     - type: Clumsy
 #       gunShootFailDamage:
-#         types: 
+#         types:
 #           Blunt: 5
 #           Piercing: 4
 #         groups:

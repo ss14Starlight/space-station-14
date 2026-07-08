@@ -11,7 +11,7 @@ public sealed partial class ParrotAccentSystem : EntitySystem
     [GeneratedRegex("[^A-Za-z0-9 -]")]
     private static partial Regex WordCleanupRegex();
 
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -19,7 +19,7 @@ public sealed partial class ParrotAccentSystem : EntitySystem
         SubscribeLocalEvent<ParrotAccentComponent, AccentGetEvent>(OnAccentGet);
     }
 
-    private void OnAccentGet(Entity<ParrotAccentComponent> entity, ref AccentGetEvent args) 
+    private void OnAccentGet(Entity<ParrotAccentComponent> entity, ref AccentGetEvent args)
         => args.Message.Text = args.Message.Tts = Accentuate(entity, args.Message.Text);
 
     public string Accentuate(Entity<ParrotAccentComponent> entity, string message)
@@ -58,6 +58,6 @@ public sealed partial class ParrotAccentSystem : EntitySystem
         return message;
     }
 
-    private string GetRandomSquawk(Entity<ParrotAccentComponent> entity) 
+    private string GetRandomSquawk(Entity<ParrotAccentComponent> entity)
         => Loc.GetString(_random.Pick(entity.Comp.Squawks));
 }

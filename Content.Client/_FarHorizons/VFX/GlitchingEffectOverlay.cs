@@ -6,13 +6,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._FarHorizons.VFX;
 
-public sealed class GlitchingEffectOverlay : Overlay
+public sealed partial class GlitchingEffectOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> _shaderProto = "GlitchingEffect";
 
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IPlayerManager _playerMan = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IPlayerManager _playerMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
@@ -47,7 +47,7 @@ public sealed class GlitchingEffectOverlay : Overlay
         if (playerEntity == null ||
             ScreenTexture == null)
             return;
-        
+
         if (_entMan.TryGetComponent<EyeComponent>(playerEntity, out var content))
             _shader.SetParameter("Zoom", content.Zoom.X);
 

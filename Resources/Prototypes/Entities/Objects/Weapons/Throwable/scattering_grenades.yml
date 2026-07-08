@@ -110,6 +110,7 @@
     positional: true
   - type: StaticPrice
     price: 2500
+  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   parent: [FragileGrenadeBase, ScatteringGrenadeBase, BaseSyndicateContraband]
@@ -135,6 +136,7 @@
     sound:
       path: "/Audio/Items/bikehorn.ogg"
     positional: true
+  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   parent: [SoapSyndie, ScatteringGrenadeBase, BaseSyndicateContraband]

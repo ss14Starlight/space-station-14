@@ -19,4 +19,4 @@ public sealed partial class IdClothingBlockerComponent : Component
 
     [DataField]
     public bool FreezeUser = true;
-} 
+}

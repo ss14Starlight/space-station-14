@@ -12,14 +12,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Emp;
 
-public abstract class SharedEmpSystem : EntitySystem
+public abstract partial class SharedEmpSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedCyberneticDisruptionSystem _disrupt = default!; // Starlight
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedCyberneticDisruptionSystem _disrupt = default!; // Starlight
 
     private HashSet<EntityUid> _entSet = new();
     private EntityQuery<EmpResistanceComponent> _resistanceQuery;
@@ -71,7 +71,8 @@ public abstract class SharedEmpSystem : EntitySystem
     /// <param name="energyConsumption">The amount of energy consumed by the EMP pulse.</param>
     /// <param name="duration">The duration of the EMP effects.</param>
     /// <param name="user">The player that caused the effect. Used for predicted audio.</param>
-    public void EmpPulse(EntityCoordinates coordinates, float range, float energyConsumption, TimeSpan duration, EntityUid? user = null)
+    /// <param name="predicted">Whether this pulse is being replicated on the client.</param>
+    public void EmpPulse(EntityCoordinates coordinates, float range, float energyConsumption, TimeSpan duration, EntityUid? user = null, bool predicted = true)
     {
         _entSet.Clear();
         _lookup.GetEntitiesInRange(coordinates, range, _entSet);
@@ -83,7 +84,10 @@ public abstract class SharedEmpSystem : EntitySystem
         if (_net.IsServer)
             Spawn(EmpPulseEffectPrototype, coordinates);
 
-        _audio.PlayPredicted(EmpSound, coordinates, user);
+        if (predicted)
+            _audio.PlayPredicted(EmpSound, coordinates, user);
+        else
+            _audio.PlayPvs(EmpSound, coordinates);
     }
 
     /// <summary>
@@ -127,7 +131,7 @@ public abstract class SharedEmpSystem : EntitySystem
         // TODO: replace with PredictedSpawn once it works with animated sprites
         if (ev.Affected && _net.IsServer)
             Spawn(EmpDisabledEffectPrototype, Transform(uid).Coordinates);
-        
+
         //Starlight Start
         //Disrupt humanoids.
         if(TryComp(uid, out HumanoidAppearanceComponent? _))

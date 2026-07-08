@@ -12,7 +12,7 @@
     materialComposition:
       Cloth: 100
   - type: StaticPrice
-    price: 10
+    price: 50
   - type: Damageable
     damageContainer: Inorganic
   - type: Appearance
@@ -22,7 +22,7 @@
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
     canCollide: false
   - type: Fixtures
     fixtures:

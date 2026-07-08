@@ -47,16 +47,16 @@ public abstract partial class SharedIPCSystem
     public static bool IsLocked(Entity<IPCLockComponent> ent) =>
         ent.Comp.Lock.Locked;
 
-    public bool CanBeLocked(Entity<IPCLockComponent?> ent) => 
-        Resolve(ent, ref ent.Comp) && 
-        !ent.Comp.WiresPanel.Open && 
+    public bool CanBeLocked(Entity<IPCLockComponent?> ent) =>
+        Resolve(ent, ref ent.Comp) &&
+        !ent.Comp.WiresPanel.Open &&
         !IsLocked(ent!);
-    
-    public bool CanBeUnlocked(Entity<IPCLockComponent?> ent) => 
-        Resolve(ent, ref ent.Comp) && 
-        !ent.Comp.WiresPanel.Open && 
+
+    public bool CanBeUnlocked(Entity<IPCLockComponent?> ent) =>
+        Resolve(ent, ref ent.Comp) &&
+        !ent.Comp.WiresPanel.Open &&
         IsLocked(ent!);
-    
+
     public void Lock(Entity<IPCLockComponent?> ent, EntityUid? user = null)
     {
         if (Resolve(ent, ref ent.Comp) && CanBeLocked(ent!))
@@ -89,7 +89,7 @@ public abstract partial class SharedIPCSystem
                 });
     }
     public void DelayedUnlock(Entity<IPCLockComponent> ent, EntityUid user)
-    {   
+    {
         if (!IsLocked(ent))
             return;
 
@@ -119,9 +119,9 @@ public abstract partial class SharedIPCSystem
             Lock((ent, ent.Comp), args.User);
     }
 
-    private void DuringLock(Entity<IPCLockComponent> ent, ref DoAfterAttemptEvent<IPCLockDoAfter> args) => 
+    private void DuringLock(Entity<IPCLockComponent> ent, ref DoAfterAttemptEvent<IPCLockDoAfter> args) =>
         HandleSounds(ent, args.Event.User);
-    private void DuringUnlock(Entity<IPCLockComponent> ent, ref DoAfterAttemptEvent<IPCUnlockDoAfter> args) => 
+    private void DuringUnlock(Entity<IPCLockComponent> ent, ref DoAfterAttemptEvent<IPCUnlockDoAfter> args) =>
         HandleSounds(ent, args.Event.User);
 
     private void HandleSounds(Entity<IPCLockComponent> ent, EntityUid user)
@@ -129,7 +129,7 @@ public abstract partial class SharedIPCSystem
         if (!ent.Comp.LockSoundsEnabled ||
             _timing.CurTime < ent.Comp.NextSound)
             return;
-        
+
         ent.Comp.NextSound = _timing.CurTime + ent.Comp.LockSoundsCooldown;
         PlayRandomSound(ent, user);
     }

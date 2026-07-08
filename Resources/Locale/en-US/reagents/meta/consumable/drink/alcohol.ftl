@@ -175,8 +175,8 @@ reagent-desc-hooch = Either someone's failure at cocktail making or attempt in a
 reagent-name-iced-beer = iced beer
 reagent-desc-iced-beer = A beer which is so cold the air around it freezes.
 
-reagent-name-irish-car-bomb = Irish car bomb 
-reagent-desc-irish-car-bomb = What's black and white and red all over? 
+reagent-name-irish-car-bomb = Irish car bomb
+reagent-desc-irish-car-bomb = What's black and white and red all over?
 #Starlight Change Above
 
 reagent-name-irish-cream = Irish cream
@@ -207,7 +207,8 @@ reagent-name-manhattan-project = Manhattan Project
 reagent-desc-manhattan-project = A scientist's drink of choice, for pondering ways to blow up the ship.
 
 reagent-name-manly-dorf = Manly Dorf
-reagent-desc-manly-dorf = Beer and Ale, brought together in a delicious mix. Intended for stout dwarves only.
+# Starlight: localize Dwarf name
+reagent-desc-manly-dorf = Beer and Ale, brought together in a delicious mix. Intended for stout dawi only.
 
 reagent-name-margarita = margarita
 reagent-desc-margarita = On the rocks with salt on the rim. Arriba~!

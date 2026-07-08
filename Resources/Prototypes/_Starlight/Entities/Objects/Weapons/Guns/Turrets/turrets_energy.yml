@@ -15,7 +15,7 @@
   - type: DeviceNetwork
     receiveFrequencyId: TurretControlSilicon
     transmitFrequencyId: TurretSilicon
-  
+
 
 - type: entity
   parent: WeaponEnergyTurretStationBase

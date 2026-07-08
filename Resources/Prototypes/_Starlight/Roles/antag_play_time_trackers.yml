@@ -105,3 +105,11 @@
 - type: playTimeTracker
   id: AntagBrighteye
   name: roles-antag-brighteye-name
+
+- type: playTimeTracker
+  id: AntagTerrorPrincess
+  name: roles-antag-terror-princess-name
+
+- type: playTimeTracker
+  id: AntagDevil
+  name: roles-antag-devil-name

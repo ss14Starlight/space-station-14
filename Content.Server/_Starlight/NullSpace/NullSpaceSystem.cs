@@ -1,13 +1,11 @@
 using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Content.Server.Atmos.Components;
-using Content.Shared.Temperature.Components;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using System.Linq;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
-using Content.Shared._Starlight.NullSpace;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -16,29 +14,29 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Hands;
-using Robust.Server.Player;
-using Robust.Shared.Player;
-using Robust.Shared.Enums;
 using Content.Server._Starlight.Bluespace;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Gravity;
-using Content.Server._ST.CosmicCult;
+using Content.Server._Starlight.CosmicCult;
+using Content.Shared._Starlight.NullSpace.Systems;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 
 public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 {
-    [Dependency] private readonly SharedStealthSystem _stealth = default!;
-    [Dependency] private readonly EyeSystem _eye = default!;
-    [Dependency] private readonly NpcFactionSystem _factions = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly NullSpacePhaseSystem _phaseSystem = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly CosmicCultRuleSystem _cosmicCult = default!;
+    [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private EyeSystem _eye = default!;
+    [Dependency] private NpcFactionSystem _factions = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private NullSpacePhaseSystem _phaseSystem = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] private CosmicCultRuleSystem _cosmicCult = default!;
+    [Dependency] private VisibilitySystem _visibility = default!;
 
     public override void Initialize()
     {
@@ -50,31 +48,18 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
         SubscribeLocalEvent<NullSpaceComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
         SubscribeLocalEvent<NullSpaceComponent, NullSpaceShuntEvent>(NullSpaceShunt);
         SubscribeLocalEvent<NullSpaceComponent, GetVisMaskEvent>(OnGetVisMask);
-
-        _player.PlayerStatusChanged += OnPlayerStatusChanged;
     }
 
     private void OnGetVisMask(Entity<NullSpaceComponent> uid, ref GetVisMaskEvent args) =>
         args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
 
-    // We do this to prevent a SoftLock... due to visibilitySystem.
-    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
-    {
-        if (args.NewStatus != SessionStatus.Disconnected)
-            return;
-
-        if (TryComp<NullSpaceComponent>(args.Session.AttachedEntity, out var nullspacecomp))
-        {
-            SpawnAtPosition(_shadekinShadow, Transform(args.Session.AttachedEntity.Value).Coordinates);
-            RemComp(args.Session.AttachedEntity.Value, nullspacecomp);
-
-            if (TryComp<PullableComponent>(args.Session.AttachedEntity, out var pullable) && pullable.BeingPulled)
-                _pulling.TryStopPull(args.Session.AttachedEntity.Value, pullable);
-        }
-    }
-
     public void OnStartup(EntityUid uid, NullSpaceComponent component, MapInitEvent args)
     {
+        var visibility = EnsureComp<VisibilityComponent>(uid);
+        _visibility.RemoveLayer((uid, visibility), (int)VisibilityFlags.Normal, false);
+        _visibility.AddLayer((uid, visibility), (int)VisibilityFlags.NullSpace, false);
+        _visibility.RefreshVisibility(uid, visibility);
+
         _eye.RefreshVisibilityMask(uid);
 
         var stealth = EnsureComp<StealthComponent>(uid);
@@ -127,6 +112,13 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 
     public void OnShutdown(EntityUid uid, NullSpaceComponent component, ComponentShutdown args)
     {
+        if (TryComp<VisibilityComponent>(uid, out var visibility))
+        {
+            _visibility.RemoveLayer((uid, visibility), (int)VisibilityFlags.NullSpace, false);
+            _visibility.AddLayer((uid, visibility), (int)VisibilityFlags.Normal, false);
+            _visibility.RefreshVisibility(uid, visibility);
+        }
+
         SuppressFactions(uid, component, false);
 
         RemComp<StealthComponent>(uid);

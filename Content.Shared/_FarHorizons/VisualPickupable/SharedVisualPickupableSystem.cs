@@ -4,9 +4,9 @@ namespace Content.Shared._FarHorizons.VisualPickupable;
 
 public abstract class SharedVisualPickupableSystem : EntitySystem
 {
-    public override void Initialize() => 
+    public override void Initialize() =>
         SubscribeLocalEvent<PickupableVisualsComponent, ExamineAttemptEvent>(OnExamineAttempt);
 
-    private void OnExamineAttempt(Entity<PickupableVisualsComponent> ent, ref ExamineAttemptEvent args) => 
+    private void OnExamineAttempt(Entity<PickupableVisualsComponent> ent, ref ExamineAttemptEvent args) =>
         args.Cancel();
 }

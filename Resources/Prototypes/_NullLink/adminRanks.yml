@@ -1,4 +1,4 @@
-# It is strongly recommended to select only roles protected by Role Assignment Protection here. 
+# It is strongly recommended to select only roles protected by Role Assignment Protection here.
 # More details: https://docs.starlight.network/doc/discord-bot-hUzyWBGmsB#h-role-assignment-protection
 
 - type: adminRankBuilder
@@ -8,12 +8,12 @@
       roles:
         - 1305376794823753904 # Host
       flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR, DANGER, HOST]
-   
+
     - name: Staff Manager
       roles:
         - 1305029511838175262 # SLN Manager
       flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR]
-    
+
     - name: Staff Supervisor
       roles:
         - 1305375624613068800 # Staff Supervisor
@@ -74,12 +74,12 @@
       roles:
         - 1305376794823753904 # Host
       flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR, DANGER, HOST]
-   
+
     - name: Staff Manager
       roles:
         - 1305029511838175262 # SLN Manager
       flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR]
-    
+
     - name: Staff Supervisor
       roles:
         - 1305375624613068800 # Staff Supervisor

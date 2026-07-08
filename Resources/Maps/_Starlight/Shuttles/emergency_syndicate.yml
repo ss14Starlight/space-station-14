@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/13/2026 02:44:04
+  time: 04/08/2026 05:27:53
   entityCount: 656
 maps: []
 grids:
@@ -622,49 +622,49 @@ entities:
   - uid: 39
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
       pos: 7.5,-17.5
       parent: 1
   - uid: 425
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -6.5,-7.5
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-17.5
       parent: 1
   - uid: 426
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -6.5,-9.5
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-15.5
       parent: 1
   - uid: 427
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -6.5,-15.5
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-9.5
       parent: 1
   - uid: 428
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -6.5,-17.5
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-7.5
       parent: 1
   - uid: 429
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
       pos: 7.5,-15.5
       parent: 1
   - uid: 430
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
       pos: 7.5,-9.5
       parent: 1
   - uid: 431
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
       pos: 7.5,-7.5
       parent: 1
 - proto: AtmosFixAirMarker
@@ -2052,6 +2052,16 @@ entities:
     - type: Transform
       pos: 5.5,-0.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerCrewMonitoring
   entities:
   - uid: 611
@@ -2060,6 +2070,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-1.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerEmergencyShuttle
   entities:
   - uid: 125
@@ -2067,6 +2087,16 @@ entities:
     - type: Transform
       pos: 4.5,-0.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerRadar
   entities:
   - uid: 531
@@ -2074,6 +2104,16 @@ entities:
     - type: Transform
       pos: 3.5,-0.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: CrateFilledSpawner
   entities:
   - uid: 141
@@ -3552,16 +3592,31 @@ entities:
     - type: Transform
       pos: -2.675538,-21.273096
       parent: 1
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 609
     components:
     - type: Transform
       pos: -2.691163,-21.491846
       parent: 1
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 610
     components:
     - type: Transform
       pos: -2.316163,-21.335596
       parent: 1
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: StasisBed
   entities:
   - uid: 137

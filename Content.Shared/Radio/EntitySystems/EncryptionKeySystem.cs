@@ -10,10 +10,8 @@ using Content.Shared.Tools.Components;
 using Content.Shared.Wires;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Timing;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
 
 #region Starlight
@@ -28,13 +26,13 @@ namespace Content.Shared.Radio.EntitySystems;
 /// </summary>
 public sealed partial class EncryptionKeySystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly SharedToolSystem _tool = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedWiresSystem _wires = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedWiresSystem _wires = default!;
 
     public override void Initialize()
     {
@@ -47,7 +45,33 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EntInsertedIntoContainerMessage>(OnContainerModified);
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EntRemovedFromContainerMessage>(OnContainerModified);
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EncryptionRemovalFinishedEvent>(OnKeyRemoval);
+
+        SubscribeLocalEvent<EncryptionKeyHolderComponent, EncryptionKeyToggleMessage>(OnEncryptionKeyToggle);
     }
+
+    // Starlight
+    private void OnEncryptionKeyToggle(EntityUid uid, EncryptionKeyHolderComponent comp, ref EncryptionKeyToggleMessage args)
+    {
+        foreach (var key in comp.KeyContainer.ContainedEntities)
+        {
+            if (!TryComp<EncryptionKeyComponent>(key, out var keyComp))
+                continue;
+
+            if (keyComp.Channels.Contains(args.ProtoId))
+            {
+                keyComp.Channels.Remove(args.ProtoId);
+                keyComp.MutedChannels.Add(args.ProtoId);
+                UpdateChannels(uid, comp);
+            }
+            else if (keyComp.MutedChannels.Contains(args.ProtoId))
+            {
+                keyComp.MutedChannels.Remove(args.ProtoId);
+                keyComp.Channels.Add(args.ProtoId);
+                UpdateChannels(uid, comp);
+            }
+        }
+    }
+    // Starlight End
 
     private void OnKeyRemoval(EntityUid uid, EncryptionKeyHolderComponent component, EncryptionRemovalFinishedEvent args)
     {
@@ -170,8 +194,8 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
         // 🌟Starlight🌟 start
-        if (!component.CanBeExamined)   
-            return;                     
+        if (!component.CanBeExamined)
+            return;
         // 🌟Starlight🌟 end
         if (component.KeyContainer.ContainedEntities.Count == 0)
         {
@@ -237,7 +261,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
                 ("id", proto.LocalizedName),
                 ("freq", proto.Frequency / 10f)));
         }
-        
+
         //Starlight begin
         foreach (var id in customChannels)
         {

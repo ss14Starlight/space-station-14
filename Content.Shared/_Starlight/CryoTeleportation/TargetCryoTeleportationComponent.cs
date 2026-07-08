@@ -1,6 +1,6 @@
 using Robust.Shared.Network;
 
-namespace Content.Shared.Starlight.CryoTeleportation;
+namespace Content.Shared._Starlight.CryoTeleportation;
 
 [RegisterComponent]
 public sealed partial class TargetCryoTeleportationComponent : Component
@@ -16,7 +16,7 @@ public sealed partial class TargetCryoTeleportationComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan? ExitTime;
-    
+
     [DataField]
     public NetUserId? UserId;
 

@@ -15,7 +15,7 @@
   hidden: true
   name: job-name-assistant
   description: job-description-assistant
-  playTimeTracker: JobAssistant 
+  playTimeTracker: JobAssistant
   startingGear: AssistantGear
   icon: "JobIconAssistant"
   supervisors: job-supervisors-everyone
@@ -34,17 +34,6 @@
 - type: chameleonOutfit
   id: PassengerChameleonOutfit
   job: Passenger
-  equipment:
-    head: ClothingHeadHatWelding
-    eyes: ClothingEyesGlassesCheapSunglasses
-    mask: ClothingMaskGas
-    neck: ClothingNeckMantle
-    outerClothing: ClothingOuterWinterCoat
-    gloves: ClothingHandsGlovesColorYellowBudget
-
-- type: chameleonOutfit
-  id: AssistantChameleonOutfit
-  job: Assistant
   equipment:
     head: ClothingHeadHatWelding
     eyes: ClothingEyesGlassesCheapSunglasses

@@ -1,0 +1,83 @@
+﻿- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakBoat
+  name: captain's boat cloak
+  description: A regal blue durathread boat cloak with a red felt lining and gold trim. Somehow, it's even more expensive than it looks.
+  components:
+    - type: Sprite
+      sprite: DeltaV/Clothing/Neck/Cloaks/boatcloak.rsi
+    - type: StealTarget
+      stealGroup: HeadCloak
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakBoatCC
+  name: central command boat cloak
+  description: A emerald green durathread boat cloak with a red felt lining and gold trim. Somehow, it's even more expensive than it looks.
+  components:
+    - type: Sprite
+      sprite: DeltaV/Clothing/Neck/Cloaks/boatcloakcc.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakBoatHos
+  name: head of security's boat cloak
+  description: A light gray durathread boat cloak with a red felt lining and gold trim. Somehow, it's even more expensive than it looks.
+  components:
+    - type: Sprite
+      sprite: DeltaV/Clothing/Neck/Cloaks/boatcloakhos.rsi
+    - type: StealTarget
+      stealGroup: HeadCloak
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakNtr
+  name: nt representative's cloak
+  description: A hefty cloak adorned with a modest insignia and grand fur trim.
+  components:
+    - type: Sprite
+      sprite: DeltaV/Clothing/Neck/Cloaks/cjcloak.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckHosRobe
+  name: head of security's decadent robe
+  description: A comfy formal robe given to veteran heads of security
+  components:
+    - type: Sprite
+      sprite: DeltaV/Clothing/Neck/Cloaks/hosrobe.rsi
+    - type: StealTarget
+      stealGroup: HeadCloak
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCmoOverShoulder
+  name: cmo's over the shoulder coat
+  description: A coat for chief medical officers who know how to wear a coat but choose to otherwise as a power move.
+  components:
+    - type: Sprite
+      sprite: DeltaV/Clothing/Neck/Cloaks/cmo_over_shoulder.rsi
+    - type: StealTarget
+      stealGroup: HeadCloak
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCmoShawl
+  name: chief medical officer's shawl
+  description: A shawl with a shoulder epaulette fitting of a chief medical officer who wants to stay warm yet professional.
+  components:
+    - type: Sprite
+      sprite: DeltaV/Clothing/Neck/Cloaks/cmo_shawl.rsi
+    - type: StealTarget
+      stealGroup: HeadCloak
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakHopFormal
+  name: head of personnel's formal cloak
+  description: A fancier looking version of the regular cloak, bound to marginally increase the crew's admiration towards you.
+  components:
+    - type: Sprite
+      sprite: DeltaV/Clothing/Neck/Cloaks/hop.rsi
+    - type: StealTarget
+      stealGroup: HeadCloak

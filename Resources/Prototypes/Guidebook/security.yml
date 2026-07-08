@@ -1,4 +1,4 @@
-﻿- type: guideEntry
+- type: guideEntry
   id: Security
   name: guide-entry-security
   text: "/ServerInfo/Guidebook/Security/Security.xml"
@@ -29,16 +29,10 @@
   text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SpaceLaw.xml"
   children:
   - SpaceLawCrimeList
-  - ChangelingClause #Starlight
+  - SupernaturalEntities #Starlight
 
-# Starlight Start
 - type: guideEntry
   id: SpaceLawCrimeList
   name: guide-entry-rules-sl-crime-list
   text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SLCrimeList.xml"
 
-- type: guideEntry
-  id: ChangelingClause
-  name: guide-entry-rules-changeling-clause
-  text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/ChangelingClause.xml"
-#Starlight End

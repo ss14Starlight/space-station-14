@@ -13,7 +13,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 1.5
-      - ReagentId: AmmoniaBlood
+      - ReagentId: AvaliBlood
         Quantity: 5
 
 - type: entity
@@ -28,7 +28,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 5
-      - ReagentId: AmmoniaBlood
+      - ReagentId: AvaliBlood
         Quantity: 10
 
 - type: entity
@@ -43,7 +43,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 5
-      - ReagentId: AmmoniaBlood
+      - ReagentId: AvaliBlood
         Quantity: 10
 
 - type: entity

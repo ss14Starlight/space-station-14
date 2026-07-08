@@ -1,7 +1,6 @@
-using Content.Shared.Administration;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight;
+namespace Content.Shared._Starlight;
 
 /// <summary>
 ///     Represents data for a single player.
@@ -13,9 +12,9 @@ public sealed class PlayerData
     ///     The player's title.
     /// </summary>
     public string? Title;
-    
+
     public string? GhostTheme;
-    
+
     public Color GhostThemeColor = Color.White;
 
     [Obsolete("Use ISharedNullLinkPlayerResourcesManager to access this field")]

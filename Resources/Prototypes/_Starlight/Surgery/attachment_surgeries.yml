@@ -1,6 +1,6 @@
 - type: entity
   parent: SurgeryBase
-  id: SurgeryLimbAttachmentHead 
+  id: SurgeryLimbAttachmentHead
   name: Limb Attachment Head
   description: Surgical attachment of a limb.
   components:
@@ -17,6 +17,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryLimbSlotCondition
     slot: head
@@ -45,7 +46,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentHead
-  id: SurgeryLimbAttachmentLeftHand 
+  id: SurgeryLimbAttachmentLeftHand
   name: Limb Attachment Left Hand
   description: Surgical attachment of a limb.
   components:
@@ -54,7 +55,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentHead
-  id: SurgeryLimbAttachmentRightArm 
+  id: SurgeryLimbAttachmentRightArm
   name: Limb Attachment Right Arm
   description: Surgical attachment of a limb.
   components:
@@ -73,7 +74,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentHead
-  id: SurgeryLimbAttachmentRightHand 
+  id: SurgeryLimbAttachmentRightHand
   name: Limb Attachment Right Hand
   description: Surgical attachment of a limb.
   components:
@@ -100,7 +101,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentHead
-  id: SurgeryLimbAttachmentRightLeg 
+  id: SurgeryLimbAttachmentRightLeg
   name: Limb Attachment Right Leg
   description: Surgical attachment of a limb.
   components:
@@ -109,7 +110,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentHead
-  id: SurgeryLimbAttachmentRightFoot 
+  id: SurgeryLimbAttachmentRightFoot
   name: Limb Attachment Right Foot
   description: Surgical attachment of a limb.
   components:
@@ -118,16 +119,16 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentHead
-  id: SurgeryLimbAttachmentTail 
+  id: SurgeryLimbAttachmentTail
   name: Limb Attachment Tail
   description: Surgical attachment of a limb.
   components:
   - type: SurgeryLimbSlotCondition
     slot: tail
-    
+
 - type: entity
   parent: SurgeryLimbAttachmentHead
-  id: SurgeryLimbAttachmentOther 
+  id: SurgeryLimbAttachmentOther
   name: Limb Attachment Other
   description: Surgical attachment of a limb.
   components:
@@ -135,7 +136,7 @@
     slot: other
 
 #SlimePerson
-    
+
 - type: entity
   parent: SurgeryLimbAttachmentHead
   id: SurgeryLimbAttachmentSlimeHead
@@ -151,6 +152,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
 
 
 - type: entity
@@ -171,7 +173,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentSlimeHead
-  id: SurgeryLimbAttachmentSlimeLeftHand 
+  id: SurgeryLimbAttachmentSlimeLeftHand
   name: Limb Attachment Left Hand
   description: Surgical attachment of a limb.
   components:
@@ -180,7 +182,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentSlimeHead
-  id: SurgeryLimbAttachmentSlimeRightArm 
+  id: SurgeryLimbAttachmentSlimeRightArm
   name: Limb Attachment Right Arm
   description: Surgical attachment of a limb.
   components:
@@ -196,7 +198,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentSlimeHead
-  id: SurgeryLimbAttachmentSlimeRightHand 
+  id: SurgeryLimbAttachmentSlimeRightHand
   name: Limb Attachment Right Hand
   description: Surgical attachment of a limb.
   components:
@@ -223,7 +225,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentSlimeHead
-  id: SurgeryLimbAttachmentSlimeRightLeg 
+  id: SurgeryLimbAttachmentSlimeRightLeg
   name: Limb Attachment Right Leg
   description: Surgical attachment of a limb.
   components:
@@ -232,7 +234,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentSlimeHead
-  id: SurgeryLimbAttachmentSlimeRightFoot 
+  id: SurgeryLimbAttachmentSlimeRightFoot
   name: Limb Attachment Right Foot
   description: Surgical attachment of a limb.
   components:
@@ -241,16 +243,16 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentSlimeHead
-  id: SurgeryLimbAttachmentSlimeTail 
+  id: SurgeryLimbAttachmentSlimeTail
   name: Limb Attachment Tail
   description: Surgical attachment of a limb.
   components:
   - type: SurgeryLimbSlotCondition
     slot: tail
-    
+
 - type: entity
   parent: SurgeryLimbAttachmentSlimeHead
-  id: SurgeryLimbAttachmentSlimeOther 
+  id: SurgeryLimbAttachmentSlimeOther
   name: Limb Attachment Other
   description: Surgical attachment of a limb.
   components:

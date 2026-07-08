@@ -19,7 +19,7 @@ public sealed partial class HumanoidCharacterProfile
     [DataField]
     public RoleLoadout? SpeciesLoadout = null;
 
-    public HumanoidCharacterProfile WithSpeciesLoadout(RoleLoadout? speciesLoadout) => 
+    public HumanoidCharacterProfile WithSpeciesLoadout(RoleLoadout? speciesLoadout) =>
     new(this) { SpeciesLoadout = speciesLoadout, };
 
     public RoleLoadout? GetSpeciesLoadoutOrDefault(ICommonSession? session, IPrototypeManager protoManager)
@@ -47,10 +47,10 @@ public sealed partial class HumanoidCharacterProfile
             return false;
 
         if (A != null && B != null)
-        {   
+        {
             if (A.SelectedLoadouts.Count != B.SelectedLoadouts.Count)
                 return false;
-            
+
             foreach (var (k, v) in A.SelectedLoadouts)
                 if (!B.SelectedLoadouts.TryGetValue(k, out var bValue) || !bValue.SequenceEqual(v))
                     return false;

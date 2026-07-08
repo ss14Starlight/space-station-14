@@ -1,7 +1,7 @@
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 
-namespace Content.Shared._Starlight.Scaling.Components;
+namespace Content.Shared._Starlight.Scaling;
 
 [RegisterComponent]
 public sealed partial class AntagMonsterScalingComponent : Component

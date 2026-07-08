@@ -1,16 +1,13 @@
-﻿using System;
-using Content.Shared.Actions;
-using Content.Shared.Clothing.Components;
-using Content.Shared.Clothing.EntitySystems;
-using Content.Shared.Starlight.Overlay;
+﻿using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
-using static Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.Overlay.Events;
 
-namespace Content.Shared.Eye.Blinding.Components;
+namespace Content.Shared._Starlight.Overlay.Systems;
 
-public abstract class SharedThermalVisionSystem : EntitySystem
+public abstract partial class SharedThermalVisionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
 
     protected virtual bool IsPredict() => false;
     public EntProtoId Action = "ActionToggleThermal";
@@ -21,24 +18,24 @@ public abstract class SharedThermalVisionSystem : EntitySystem
         SubscribeLocalEvent<ThermalVisionComponent, ComponentShutdown>(OnVisionShutdown);
         SubscribeLocalEvent<ThermalVisionComponent, ToggleThermalVisionEvent>(OnToggleThermalVision);
     }
-    
+
     private void OnVisionInit(Entity<ThermalVisionComponent> ent, ref MapInitEvent args)
     {
         _actionsSystem.AddAction(ent.Owner, ref ent.Comp.ActionEntity, Action);
     }
 
-    private void OnVisionShutdown(Entity<ThermalVisionComponent> ent, ref ComponentShutdown args) 
+    private void OnVisionShutdown(Entity<ThermalVisionComponent> ent, ref ComponentShutdown args)
     {
         _actionsSystem.RemoveAction(ent.Comp.ActionEntity);
         //force turn off
-        ToggleOff(ent); 
+        ToggleOff(ent);
     }
 
     private void OnToggleThermalVision(Entity<ThermalVisionComponent> ent, ref ToggleThermalVisionEvent args)
     {
         if(args.Handled || IsPredict()) return;
         args.Handled = true;
-        
+
         ent.Comp.Active = !ent.Comp.Active;
 
         if(ent.Comp.Active)
@@ -48,7 +45,7 @@ public abstract class SharedThermalVisionSystem : EntitySystem
     }
     protected virtual void ToggleOn(Entity<ThermalVisionComponent> ent)
     {
-        
+
     }
     protected virtual void ToggleOff(Entity<ThermalVisionComponent> ent)
     {

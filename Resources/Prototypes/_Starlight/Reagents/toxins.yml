@@ -1,0 +1,27 @@
+﻿- type: reagent
+  id: DevilJuice
+  name: reagent-name-devil-juice
+  group: Toxins
+  desc: reagent-desc-devil-juice
+  color: "#66181A"
+  physicalDesc: reagent-physical-desc-devil-juice
+  allowedDepartments:
+    - Medical
+  flavor: perfid
+  metabolisms:
+    Poison:
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Poison: 1.5
+              Cellular: 1
+        - !type:AdjustReagent
+          conditions:
+            - !type:ReagentCondition
+              reagent: DevilJuice
+              min: 0.26
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: DevilJuice
+          amount: 0.25

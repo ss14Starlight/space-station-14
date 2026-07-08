@@ -2,7 +2,7 @@
 # Keep this file as it is when merging upstream, we dont want anything from the upstream version
 # Maintainer is needed on each as the latest rule takes precedence
 * @ss14Starlight/maintainer
-/Content.*/ @ss14Starlight/maintainer @ss14Starlight/dev 
+/Content.*/ @ss14Starlight/maintainer @ss14Starlight/dev
 /Resources/Textures/ @ss14Starlight/maintainer @ss14Starlight/spriters
 /Resources/Maps/ @ss14Starlight/maintainer @ss14Starlight/mappers
 /Resources/Prototypes/ @ss14Starlight/maintainer @ss14Starlight/prototypers

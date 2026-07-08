@@ -1,5 +1,5 @@
-﻿using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
+﻿using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
@@ -12,7 +12,7 @@ namespace Content.Shared.EntityEffects.Effects.Body;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class ModifyBloodLevelEntityEffectSystem : EntityEffectSystem<BloodstreamComponent, ModifyBloodLevel>
 {
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
 
     protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<ModifyBloodLevel> args)
     {
@@ -29,6 +29,6 @@ public sealed partial class ModifyBloodLevel : EntityEffectBase<ModifyBloodLevel
     [DataField]
     public FixedPoint2 Amount = 1.0f;
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-modify-blood-level", ("chance", Probability), ("deltasign", MathF.Sign(Amount.Float())));
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
+        => loc.GetString("entity-effect-guidebook-modify-blood-level", ("chance", Probability), ("deltasign", MathF.Sign(Amount.Float())));
 }

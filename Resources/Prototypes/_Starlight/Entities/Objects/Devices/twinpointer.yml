@@ -62,7 +62,7 @@
     - type: Icon
       sprite: _Starlight/Objects/Devices/pinpointer.rsi
       state: twinpointer-left
-        
+
 - type: entity
   name: right twinpointer
   description: The right half of a pair of twinpointers. Perfect when you have nothing left.

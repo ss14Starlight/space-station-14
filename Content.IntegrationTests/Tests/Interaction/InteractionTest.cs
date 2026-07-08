@@ -275,12 +275,12 @@ public abstract partial class InteractionTest
     public async Task TearDownInternal()
     {
         // Starlight edit Start
-        if (Pair.Server != null)
-        {
-            await Server.WaitPost(() => MapSystem.DeleteMap(MapId));
-        }
         if (Pair != null!)
         {
+            // Ensure the base Cleanup() handles map deletion properly inside CleanReturnAsync.
+            // LoadTestMap does not set Pair.TestMap, so we set it here for both code paths.
+            // Do NOT call MapSystem.DeleteMap before CleanReturnAsync — it corrupts game state.
+            Pair.TestMap ??= MapData;
             await Pair.CleanReturnAsync();
         }
         // Starlight edit End

@@ -10,7 +10,7 @@ namespace Content.Shared.EntityEffects.Effects.StatusEffects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class ModifyStatusEffectEntityEffectSystem : EntityEffectSystem<MetaDataComponent, ModifyStatusEffect>
 {
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<ModifyStatusEffect> args)
     {
@@ -47,19 +47,22 @@ public sealed partial class ModifyStatusEffect : BaseStatusEntityEffect<ModifySt
     [DataField(required: true)]
     public EntProtoId EffectProto;
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
-        Time == null
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
+    {
+        var reagentName = loc.GetEntityData(EffectProto).Name; // Starlight
+        return Time == null
             ? Loc.GetString(
                 "entity-effect-guidebook-status-effect-indef",
                 ("chance", Probability),
                 ("type", Type),
-                ("key", prototype.Index(EffectProto).Name),
+                ("key", reagentName), // Starlight  Fix the cause of the localization warnings.
                 ("delay", Delay.TotalSeconds))
             : Loc.GetString(
                 "entity-effect-guidebook-status-effect",
                 ("chance", Probability),
                 ("type", Type),
                 ("time", Time.Value.TotalSeconds),
-                ("key", prototype.Index(EffectProto).Name),
+                ("key", reagentName), // Starlight  Fix the cause of the localization warnings.
                 ("delay", Delay.TotalSeconds));
+    }
 }

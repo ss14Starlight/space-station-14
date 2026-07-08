@@ -1,4 +1,3 @@
-using Content.Server.Body.Systems;
 using Content.Server._FarHorizons.Silicons.Glitching;
 using Content.Server.Hands.Systems;
 using Content.Server.Stunnable;
@@ -8,19 +7,20 @@ using Content.Shared.Emp;
 using Content.Shared.Movement.Systems;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Timing;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server._FarHorizons.Silicons.HumanoidEMP;
 
 public sealed partial class HumanoidEMPSystem : EntitySystem
 {
-    [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly GlitchingSystem _glitching = default!;
+    [Dependency] private BodySystem _body = default!;
+    [Dependency] private StunSystem _stunSystem = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private GlitchingSystem _glitching = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -32,7 +32,7 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
     {
         if (args.Disabled || _timing.CurTime < ent.Comp.NextEffect)
             return;
-        
+
         ent.Comp.NextEffect = _timing.CurTime + ent.Comp.EffectCooldown;
 
         var effect = ent.Comp.Effect;
@@ -52,7 +52,7 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
         foreach (var part in _body.GetBodyChildren(ent))
             if(TryComp<HumanoidEMPCompositeElementComponent>(part.Id, out var compositeElement))
                 composite += compositeElement.Effect;
-        
+
         foreach (var organ in _body.GetBodyOrgans(ent))
             if(TryComp<HumanoidEMPCompositeElementComponent>(organ.Id, out var compositeElement))
                 composite += compositeElement.Effect;
@@ -67,7 +67,7 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
         _damageable.TryChangeDamage(ent, effect.DamageAmount);
         foreach (var statusEffect in effect.AdditionalEffects)
             _status.TryAddStatusEffectDuration(ent, statusEffect.Key, out _, statusEffect.Value);
-        
+
         _movementMod.TryAddMovementSpeedModDuration(ent, MovementModStatusSystem.FlashSlowdown, effect.SlowdownAmount, effect.WalkSpeedModifier, effect.SprintSpeedModifier);
         foreach (var hand in effect.DropItemsFrom)
             _hands.DoDrop(ent, hand);

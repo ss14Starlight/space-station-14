@@ -44,7 +44,7 @@ public sealed partial class EncryptionKeyHolderComponent : Component, ISupportsC
     /// </summary>
     [ViewVariables, AutoNetworkedField] // Starlight edit
     public HashSet<ProtoId<RadioChannelPrototype>> Channels = new();
-    
+
     //Starlight begin
     /// <summary>
     /// Combined set of custom channels provided by all contained keys.

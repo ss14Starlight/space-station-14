@@ -4,7 +4,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
-namespace Content.Shared.Starlight.Medical.Surgery.Effects.Step;
+namespace Content.Shared._Starlight.Medical.Surgery.Components;
 
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(SharedSurgerySystem))]
@@ -13,7 +13,7 @@ public sealed partial class SurgeryToolComponent : Component
     /*
     [DataField, AutoNetworkedField]
     public float Speed = 1;
-    
+
     [DataField, AutoNetworkedField]
     public float SuccessRate = 1f;
 

@@ -3,7 +3,9 @@
 
 <GuideEntityEmbed Entity="ToyFigurineSecurity" Caption="Security Officer"/>
 
-1 . Standard [color=#00a933]Code Green[/color] equipment is:
+-1.\n
+Standard [color=#00a933]Code Green[/color] equipment is:
+
 <Box>
 	<GuideEntityEmbed Entity="WeaponDisabler"/>
 	<GuideEntityEmbed Entity="Stunbaton"/>
@@ -21,7 +23,6 @@
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="GrenadeFlashBang"/>
-	or
 	<GuideEntityEmbed Entity="TearGasGrenade"/>
 </Box>
 <Box>
@@ -30,9 +31,14 @@
 	<GuideEntityEmbed Entity="Zipties"/>
 </Box>
 
-2. Security Officers are to patrol the station unless an active threat has been recognized.
-
-3. Security Officers are responsible for assigning sentences up to 20 minutes, but should inform the Warden of the accusation and sentencing if timing exceeds 10 minutes. Sentences over 20 minutes must be approved by the warden or Head of Security. 
-
-4. It is advised on [color=#2a6099]Code Blue[/color] or above that Security Officers patrol the station in pairs.
+- 2.\n
+Security Officers should make themselves readily available to the crew, either by patrolling actively or by guarding departments.
+- 3.\n
+Security Officers are cleared to confine sentenced criminals in the brig for up to [bold]10 minutes[/bold].\n\n
+3.1\n
+For a sentence to be valid, it must be read aloud to the Warden or Head of Security. If done over radio, an audible confirmation must be received.\n\n
+3.2\n
+Security officers are responsible for ensuring that any sentences they themselves were involved in are properly documented in the Criminal Records System.
+- 4.\n
+When practical, Security Officers should patrol in pairs.
 </Document>

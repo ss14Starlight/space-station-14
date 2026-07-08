@@ -8,6 +8,15 @@
 
 - type: entity
   parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostCentCommAligned
+  name: Ghost Role (CentComm Aligned)
+  components:
+    - type: MindRole
+      roleType: CentCommAligned
+      subtype: role-subtype-CentComm
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
   id: MindRoleGhostTSFAligned
   name: Ghost Role (TSF Aligned)
   components:
@@ -91,7 +100,7 @@
   - type: MindRole
     roleType: Neutral
     sortWeight: 0
-    fallbackPlayTimeTracker: GhostSkeleton    
+    fallbackPlayTimeTracker: GhostSkeleton
 
 # Downstream antagonists
 
@@ -147,6 +156,28 @@
     roleType: SoloAntagonist
     subtype: role-subtype-vampire
   - type: VampireRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleThrall
+  name: Thrall Role
+  components:
+  - type: MindRole
+    antagPrototype: Thrall
+    roleType: TeamAntagonist
+    subtype: role-subtype-thrall
+  - type: VampireThrall
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleMindControlled
+  name: Mind Controlled Role
+  components:
+  - type: MindRole
+    antagPrototype: MindControlled
+    roleType: TeamAntagonist
+    subtype: role-subtype-mind-controlled
+  - type: MindControl
 
 - type: entity
   parent: BaseMindRoleAntag

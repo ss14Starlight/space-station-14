@@ -75,7 +75,7 @@
       coefficients:
         Blunt: 0.2
         Slash: 0.2
-        Piercing: 0.1 
+        Piercing: 0.1
         Heat: 1.2 # It's a flag, it should burn. This gives it an obvious weakness/counterplay that makes sense.
     activeBlockModifier:
       coefficients:

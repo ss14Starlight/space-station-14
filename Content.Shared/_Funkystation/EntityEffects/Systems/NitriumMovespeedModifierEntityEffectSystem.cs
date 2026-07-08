@@ -13,8 +13,8 @@ namespace Content.Shared._Funkystation.EntityEffects.Effects.StatusEffects;
 /// </summary>
 public sealed partial class NitriumMovementSpeedModifierSystem : EntityEffectSystem<MovementSpeedModifierComponent, NitriumMovementSpeedModifier>
 {
-    [Dependency] private readonly StatusEffectNew.StatusEffectsSystem _status = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementModStatus = default!;
+    [Dependency] private StatusEffectNew.StatusEffectsSystem _status = default!;
+    [Dependency] private MovementModStatusSystem _movementModStatus = default!;
 
     protected override void Effect(Entity<MovementSpeedModifierComponent> entity, ref EntityEffectEvent<NitriumMovementSpeedModifier> args)
     {
@@ -56,8 +56,8 @@ public sealed partial class NitriumMovementSpeedModifier : BaseStatusEntityEffec
     [DataField]
     public EntProtoId EffectProto = MovementModStatusSystem.ReagentSpeed;
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
-        Loc.GetString("entity-effect-guidebook-movespeed-modifier",
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
+        loc.GetString("entity-effect-guidebook-movespeed-modifier",
             ("chance", Probability),
             ("sprintspeed", SprintSpeedModifier),
             ("time", 6));

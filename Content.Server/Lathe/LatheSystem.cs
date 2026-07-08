@@ -32,24 +32,24 @@ using Robust.Shared.Timing;
 namespace Content.Server.Lathe
 {
     [UsedImplicitly]
-    public sealed class LatheSystem : SharedLatheSystem
+    public sealed partial class LatheSystem : SharedLatheSystem
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IPrototypeManager _proto = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly ContainerSystem _container = default!;
-        [Dependency] private readonly EmagSystem _emag = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSys = default!;
-        [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly PuddleSystem _puddle = default!;
-        [Dependency] private readonly ReagentSpeedSystem _reagentSpeed = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-        [Dependency] private readonly StackSystem _stack = default!;
-        [Dependency] private readonly TransformSystem _transform = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IPrototypeManager _proto = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private AtmosphereSystem _atmosphere = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private ContainerSystem _container = default!;
+        [Dependency] private EmagSystem _emag = default!;
+        [Dependency] private UserInterfaceSystem _uiSys = default!;
+        [Dependency] private MaterialStorageSystem _materialStorage = default!;
+        [Dependency] private PopupSystem _popup = default!;
+        [Dependency] private PuddleSystem _puddle = default!;
+        [Dependency] private ReagentSpeedSystem _reagentSpeed = default!;
+        [Dependency] private SharedSolutionContainerSystem _solution = default!;
+        [Dependency] private StackSystem _stack = default!;
+        [Dependency] private TransformSystem _transform = default!;
 
         /// <summary>
         /// Per-tick cache
@@ -200,6 +200,10 @@ namespace Content.Server.Lathe
             var recipe = _proto.Index(batch.Recipe);
 
             var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
+            // Starlight Begin
+            // Ensure the production time is at least one tick to avoid issue with multiple recipes completing at once causing lag.
+           time = MathHelper.Max(time, _timing.TickPeriod);
+            // Starlight End
 
             var lathe = EnsureComp<LatheProducingComponent>(uid);
             lathe.StartTime = _timing.CurTime;
@@ -213,10 +217,12 @@ namespace Content.Server.Lathe
             UpdateRunningAppearance(uid, true);
             UpdateUserInterfaceState(uid, component);
 
-            if (time == TimeSpan.Zero)
-            {
-                FinishProducing(uid, component, lathe);
-            }
+            // Starlight Begin
+            // if (time == TimeSpan.Zero)
+            // {
+            //     FinishProducing(uid, component, lathe);
+            // }
+            // Starlight End
             return true;
         }
 

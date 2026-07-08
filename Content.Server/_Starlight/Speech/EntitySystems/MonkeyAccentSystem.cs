@@ -5,9 +5,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Speech.EntitySystems;
 
-public sealed class MonkeyAccentSystem : EntitySystem
+public sealed partial class MonkeyAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize() => SubscribeLocalEvent<MonkeyAccentComponent, AccentGetEvent>(OnAccent);
 
@@ -55,6 +55,6 @@ public sealed class MonkeyAccentSystem : EntitySystem
         return accentedMessage.ToString();
     }
 
-    private void OnAccent(EntityUid uid, MonkeyAccentComponent component, AccentGetEvent args) 
+    private void OnAccent(EntityUid uid, MonkeyAccentComponent component, AccentGetEvent args)
         => args.Message.Text = args.Message.Tts = Accentuate(args.Message.Text);
 }

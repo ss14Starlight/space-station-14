@@ -13,7 +13,7 @@ namespace Content.Shared.EntityEffects.Effects.Solution;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class AdjustReagentEntityEffectSystem : EntityEffectSystem<SolutionComponent, AdjustReagent>
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     protected override void Effect(Entity<SolutionComponent> entity, ref EntityEffectEvent<AdjustReagent> args)
     {
@@ -39,10 +39,10 @@ public sealed partial class AdjustReagent : EntityEffectBase<AdjustReagent>
     [DataField(required: true)]
     public FixedPoint2 Amount;
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
     {
         return prototype.Resolve(Reagent, out ReagentPrototype? proto)
-            ? Loc.GetString("entity-effect-guidebook-adjust-reagent-reagent",
+            ? loc.GetString("entity-effect-guidebook-adjust-reagent-reagent",
                 ("chance", Probability),
                 ("deltasign", MathF.Sign(Amount.Float())),
                 ("reagent", proto.LocalizedName),

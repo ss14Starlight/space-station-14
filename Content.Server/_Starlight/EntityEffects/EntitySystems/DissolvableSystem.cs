@@ -2,52 +2,46 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Temperature.Systems;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
-using Content.Shared.IgnitionSource;
 using Content.Shared.Interaction;
-using Content.Shared.Inventory;
 using Content.Shared.Popups;
-using Content.Shared.Starlight.EntityEffects.Components;
-using Content.Shared.Starlight.EntityEffects.EntitySystems;
-using Content.Shared.Starlight.EntityEffects;
+using Content.Shared._Starlight.EntityEffects.Components;
+using Content.Shared._Starlight.EntityEffects.EntitySystems;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Temperature;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Starlight.EntityEffects.EntitySystems;
+namespace Content.Server._Starlight.EntityEffects.EntitySystems;
 
-public sealed class DissolvableSystem : SharedDissolvableSystem
+public sealed partial class DissolvableSystem : SharedDissolvableSystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly TemperatureSystem _temperatureSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookupSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private SharedStunSystem _stunSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private TemperatureSystem _temperatureSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookupSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
 
     private readonly Dictionary<Entity<DissolvableComponent>, float> _dissolveEvets = new();
 
     public override void Initialize()
     {
         UpdatesAfter.Add(typeof(AtmosphereSystem));
-        
+
         SubscribeLocalEvent<ThermiteComponent, InteractUsingEvent>(OnInteractUsing);
-        
+
         SubscribeLocalEvent<DissolvableComponent, DestructionEventArgs>(OnDestruction);
     }
-    
+
     private void OnInteractUsing(EntityUid uid, ThermiteComponent thermite, InteractUsingEvent args)
     {
         if (args.Handled)
@@ -58,19 +52,19 @@ public sealed class DissolvableSystem : SharedDissolvableSystem
 
         if (!isHotEvent.IsHot || (thermite.requiredTag != null && !_tagSystem.HasTag(args.Used, thermite.requiredTag!)))
             return;
-        
+
         foreach (var dissolvable in _lookupSystem.GetEntitiesInRange<DissolvableComponent>(_transform.GetMapCoordinates(uid), 1f))
         {
             if (dissolvable.Comp.DissolveStacks > 0 && !dissolvable.Comp.OnDissolve)
                 Dissolve(dissolvable.Owner, args.Used, dissolvable.Comp, args.User);
         }
-        
+
         foreach (var thermiteEnt in _lookupSystem.GetEntitiesInRange<ThermiteComponent>(_transform.GetMapCoordinates(uid), 1f))
             EntityManager.QueueDeleteEntity(thermiteEnt.Owner);
-        
+
         args.Handled = true;
     }
-    
+
     private void OnDestruction(EntityUid uid, DissolvableComponent dissolvable, DestructionEventArgs args)
     {
         Extinguish(uid, dissolvable);
@@ -91,7 +85,7 @@ public sealed class DissolvableSystem : SharedDissolvableSystem
             else
                 _adminLogger.Add(LogType.Flammable, $"{ToPrettyString(uid):target} set on dissolve by {ToPrettyString(dissolveSource):actor}");
             dissolvable.OnDissolve = true;
-            
+
             dissolvable.Effect = Spawn("ThermiteFire", _transform.GetMapCoordinates(uid));
 
             var extinguished = new IgnitedEvent();
@@ -131,7 +125,7 @@ public sealed class DissolvableSystem : SharedDissolvableSystem
             Dissolve(dissolveableEntity, dissolveableEntity, dissolvable);
         }
         _dissolveEvets.Clear();
-        
+
         var toProcess = new List<EntityUid>();
 
         var query = EntityQueryEnumerator<DissolvableComponent, TransformComponent>();

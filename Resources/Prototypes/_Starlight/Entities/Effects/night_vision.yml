@@ -4,7 +4,7 @@
   name: night vision
   components:
   - type: PointLight
-    color: "#D6E4FF" 
+    color: "#D6E4FF"
     energy: 0.8
     radius: 20
     softness: 20
@@ -16,7 +16,7 @@
   name: thermal vision
   components:
   - type: PointLight
-    color: "#FFE4D6" 
+    color: "#FFE4D6"
     energy: 1.8
     radius: 20
     softness: 20

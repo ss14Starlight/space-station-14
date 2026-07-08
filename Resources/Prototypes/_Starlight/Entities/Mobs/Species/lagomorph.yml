@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge]
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge, BaseInventoryLagomorph]
   id: BaseMobLagomorph
   name: Urist McBnuuy
   abstract: true
@@ -49,6 +49,8 @@
     speechSounds: ALLagomorph
     speechVerb: Lagomorph
     allowedEmotes: ['Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore', 'LagomorphStomp']
+  - type: BodyEmotes
+    soundsId: LagomorphBodyEmotes
   - type: ChatListenerRange # way better at hearing, +2 to all
     voiceRange: 12
     whisperClearRange: 4
@@ -71,6 +73,14 @@
     damage:
       types:
         Slash: 5
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - NotLabelable # Starlight, no more labeling people.
+    - Lagomorph
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -116,23 +126,5 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobLagomorphDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: Lagomorph
-  - type: Body
-    prototype: Lagomorph
-  - type: Inventory
-    speciesId: lagomorph
-
 # for fragile electronics like consoles or shuttle engines.
-- type: damageModifierSet
-  id: Lagomorph
-  coefficients:
-    Blunt: 0.9
-    Cold: 0.75
-    Heat: 1.25
+

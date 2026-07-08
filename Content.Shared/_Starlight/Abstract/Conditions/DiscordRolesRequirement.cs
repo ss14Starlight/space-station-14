@@ -6,8 +6,8 @@ namespace Content.Shared._Starlight.Abstract.Conditions;
 
 public sealed partial class DiscordRolesRequirement : BaseRequirement
 {
-    [Dependency] public readonly IPrototypeManager _protos = default!;
-    [Dependency] public readonly ISharedNullLinkPlayerRolesReqManager _nulllinkPlayerRoles = default!;
+    [Dependency] public IPrototypeManager _protos = default!;
+    [Dependency] public ISharedNullLinkPlayerRolesReqManager _nulllinkPlayerRoles = default!;
 
     [DataField(required: true)]
     public ProtoId<RoleRequirementPrototype>? Requirement;
@@ -31,7 +31,7 @@ public sealed partial class DiscordRolesRequirement : BaseRequirement
         base.Handle(user);
 
         return Requirement is not null
-            && _protos.TryIndex(Requirement, out var roleReq) 
+            && _protos.TryIndex(Requirement, out var roleReq)
             && _nulllinkPlayerRoles.IsAnyRole(user, roleReq.Roles);
     }
 }

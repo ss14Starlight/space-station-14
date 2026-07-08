@@ -62,3 +62,12 @@
   components:
   - type: Flatpack
     entity: FloraTreeChristmas02
+
+- type: entity
+  parent: [BaseFlatpack, BaseMinorContraband]
+  id: SyndieDrobeFlatpack
+  name: SyndieDrobe flatpack
+  description: Looks like Syndieland's back in business.
+  components:
+  - type: Flatpack
+    entity: VendingMachineSyndieDrobe

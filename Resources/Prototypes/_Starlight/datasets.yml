@@ -8,7 +8,10 @@
     - Security
     - Medical
     - Cargo
-    
+    - Law # Starlight
+    - NanoTrasen Personnel # Starlight
+    - Command # Starlight
+
 - type: dataset
   id: Pets
   values:
@@ -75,7 +78,7 @@
     - Figurines
     - Toys
     - Lockers
-    
+
 - type: dataset
   id: Edibles
   values:
@@ -1234,3 +1237,26 @@
   values:
   - Singularity
   - Tesla
+
+- type: dataset
+  id: Disasters
+  values:
+  - The captain's midlife crisis
+  - The heat death of the universe
+  - Pun Pun's last shift
+  - The new ice age
+  - The gray tide
+  - The great corgi uprising
+  - The final curtain call
+  - The introduction of a new NanoTrasen policy
+
+- type: dataset
+  id: AppearanceAspects
+  values:
+  - Height
+  - Hair
+  - Skin
+  - Tail or lack thereof
+  - Voice
+  - Clothes
+  - Job

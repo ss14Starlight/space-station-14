@@ -1,14 +1,19 @@
 - type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  parent: [ BaseCircuitboardRecipeHigh, BaseResearchMachineRecipeCategory ]
   id: SlimeProcessorMachineCircuitboard
   result: SlimeProcessorMachineCircuitboard
 
 - type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  parent: [ BaseCircuitboardRecipeHigh, BaseGeneralMachineRecipeCategory ]
   id: MassDriverCircuitboard
   result: MassDriverCircuitboard
 
 - type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  parent: [ BaseCircuitboardRecipeHigh, BaseResearchMachineRecipeCategory ]
   id: XenobiologyConsoleCircuitboard
   result: XenobiologyConsoleCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipeHigh, BaseEngineeringMachineRecipeCategory ]
+  id: SMESHyperAdvancedMachineCircuitboard
+  result: SMESHyperAdvancedMachineCircuitboard

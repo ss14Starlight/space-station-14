@@ -1,0 +1,46 @@
+{
+    "version": 2,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "icon, inhand-left, inhand-right, equipped-INNERCLOTHING, equipped-INNERCLOTHING-monkey and folded-equipped-INNERCLOTHING sprited by whiffets (Discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+			"copyright": "whiffets",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4,
+			"copyright": "whiffets",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4,
+			"copyright": "whiffets",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "equipped-INNERCLOTHING",
+            "directions": 4,
+			"copyright": "whiffets",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "equipped-INNERCLOTHING-monkey",
+            "directions": 4,
+			"copyright": "whiffets",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "folded-equipped-INNERCLOTHING",
+            "directions": 4,
+			"copyright": "whiffets",
+			"license": "CC-BY-SA-4.0"
+        }
+    ]
+}

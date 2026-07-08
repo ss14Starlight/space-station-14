@@ -1,12 +1,13 @@
 using System.Text.RegularExpressions;
-using Content.Server.Speech.Components;
+using Content.Server._Starlight.Speech.Components;
 using Content.Shared.Speech;
+using Content.Server.Speech.EntitySystems;
 
-namespace Content.Server.Speech.EntitySystems;
+namespace Content.Server._Starlight.Speech.EntitySystems;
 
 public sealed partial class ScottishAccentSystem : EntitySystem
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     [GeneratedRegex(@"ing\b", RegexOptions.IgnoreCase)]
     private static partial Regex RegexIng();
@@ -36,10 +37,10 @@ public sealed partial class ScottishAccentSystem : EntitySystem
         if (char.IsUpper(original[0]))
         {
             if (original.Length > 1 && char.IsUpper(original[1]))
-                return replacement.ToUpperInvariant(); 
+                return replacement.ToUpperInvariant();
             return char.ToUpperInvariant(replacement[0]) + replacement[1..];
         }
 
-        return replacement; 
+        return replacement;
     }
 }

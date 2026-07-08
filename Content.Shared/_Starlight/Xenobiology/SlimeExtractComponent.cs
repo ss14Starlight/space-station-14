@@ -1,6 +1,5 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Xenobiology;
 
@@ -37,7 +36,7 @@ public sealed partial class SlimeExtractActiveReactionComponent : Component
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public bool CurrentlyPaused = false;
-    
+
     /// <summary>
     /// The reactions currently active on this reagent, along with the timestamps of their activation.
     /// </summary>

@@ -14,19 +14,19 @@ using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class MeteorSwarmSystem : StationEventSystem<MeteorSwarmComponent> // Starlight-edit: Use station event system
+public sealed partial class MeteorSwarmSystem : StationEventSystem<MeteorSwarmComponent> // Starlight-edit: Use station event system
 {
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private StationSystem _station = default!;
 
     protected override void Added(EntityUid uid, MeteorSwarmComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
         base.Added(uid, component, gameRule, args);
 
         component.WaveCounter = component.Waves.Next(RobustRandom);
-        
+
         //Starlight begin
         if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
         if (component.Announcement is { } locId)
@@ -43,7 +43,7 @@ public sealed class MeteorSwarmSystem : StationEventSystem<MeteorSwarmComponent>
 
         //Starlight begin
         if(!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
-        
+
         if (stationEvent.TargetStation is null) return;
         if (_station.GetLargestGrid(stationEvent.TargetStation.Value) is not { } grid)
             return;

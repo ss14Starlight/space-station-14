@@ -74,3 +74,32 @@
   - type: InstantAction
     event: !type:OpenStorageOrganEvent
       key: RightLeg
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleCoolingUnit
+  name: Toggle Cooling Unit
+  description: Toggle the portable cooling unit.
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Interface/Alerts/temperature.rsi
+      state: cold1
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+
+- type: entity
+  parent: BaseAction
+  id: VentCrawlExitAction
+  name: Exit vents
+  description: leave these old, decrepit pipes.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    useDelay: 1
+    icon: _Starlight/Interface/Actions/exit_vent.png
+  - type: InstantAction
+    event: !type:ExitVentActionEvent

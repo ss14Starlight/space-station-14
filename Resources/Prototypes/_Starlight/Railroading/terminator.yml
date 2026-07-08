@@ -6,7 +6,7 @@
   - type: RailroadCard
     title: rr-terminate
     icon: ""
-    iconColor: "#500f0f"
+    iconColor: "#fd3f3f" # Antag
     color: "#6c15ae"
     image: /Textures/_Starlight/Railroading/terminate.png
     description: rr-terminate-desc

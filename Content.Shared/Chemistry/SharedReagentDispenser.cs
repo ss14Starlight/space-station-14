@@ -171,7 +171,7 @@ namespace Content.Shared.Chemistry
             ValveOpen = valveOpen; // Starlight-edit: Plumbing valve
         }
     }
-    
+
     // Starlight-start: Generatable reagents
     [Serializable, NetSerializable]
     public sealed class ReagentDispenseData(ItemStorageLocation? storageLocation, ProtoId<ReagentPrototype>? reagentID)

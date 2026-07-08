@@ -58,6 +58,7 @@
   - type: Examiner
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter #Starlight pAI comms rework, see PR #3299
+    channels: [] # Starlight
   - type: ActiveRadio
   - type: ContainerContainer #Starlight pAI comms rework, see PR #3299
     containers:

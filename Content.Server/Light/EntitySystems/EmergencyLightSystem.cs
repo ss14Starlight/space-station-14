@@ -15,13 +15,13 @@ using Color = Robust.Shared.Maths.Color;
 
 namespace Content.Server.Light.EntitySystems;
 
-public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
+public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem
 {
-    [Dependency] private readonly AmbientSoundSystem _ambient = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly PointLightSystem _pointLight = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private AmbientSoundSystem _ambient = default!;
+    [Dependency] private BatterySystem _battery = default!;
+    [Dependency] private PointLightSystem _pointLight = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private StationSystem _station = default!;
 
     public override void Initialize()
     {
@@ -132,7 +132,8 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
         RaiseLocalEvent(uid, new EmergencyLightEvent(state));
     }
 
-    public override void Update(float frameTime)
+    //Starlight: -5 seconds from each integration test with a large map.
+    protected override void AccUpdate(float frameTime)
     {
         var query = EntityQueryEnumerator<ActiveEmergencyLightComponent, EmergencyLightComponent, BatteryComponent>();
         while (query.MoveNext(out var uid, out _, out var emergencyLight, out var battery))

@@ -6,6 +6,12 @@
                 <BoxContainer Orientation="Horizontal" Margin ="0 0 0 2">
                     <Button Name="CCopySettings" Text="{Loc 'air-alarm-ui-thresholds-copy'}" ToolTip="{Loc 'air-alarm-ui-thresholds-copy-tooltip'}" />
                 </BoxContainer>
+                <!-- Starlight-start: Air alarm buttons for enabling/disabling all thresholds -->
+                <GridContainer Columns="2" Margin="0 5 0 0">
+                    <Button Name="CEnableAll" Text="{Loc 'air-alarm-ui-thresholds-enable-all-label'}" ToolTip="{Loc 'air-alarm-ui-thresholds-enable-all-tooltip'}" />
+                    <Button Name="CDisableAll" Text="{Loc 'air-alarm-ui-thresholds-disable-all-label'}" ToolTip="{Loc 'air-alarm-ui-thresholds-disable-all-tooltip'}" />
+                </GridContainer>
+                <!-- Starlight-end -->
                 <BoxContainer Orientation="Vertical" Margin="0 0 2 0" HorizontalExpand="True">
                     <RichTextLabel Name="AlarmStateLabel" />
                     <RichTextLabel Name="PressureLabel" />

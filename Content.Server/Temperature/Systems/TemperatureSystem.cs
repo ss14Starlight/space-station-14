@@ -12,7 +12,7 @@ namespace Content.Server.Temperature.Systems;
 
 public sealed partial class TemperatureSystem : SharedTemperatureSystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
 
     public override void Initialize()
     {
@@ -142,7 +142,7 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
     /// <param name="component">The temperature component to modify.</param>
     /// <param name="coefficient">The new heat protection coefficient.</param>
     public void SetHeatProtection(TemperatureProtectionComponent component, float coefficient) => component.HeatingCoefficient = coefficient;
-    
+
     /// <summary>
     /// Sets the cold protection of the provided component.
     /// </summary>

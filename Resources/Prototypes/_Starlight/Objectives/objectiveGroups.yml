@@ -34,6 +34,7 @@
     MaintsBarObjective: 1
     PanicObjective: 1
     RumorObjective: 1
+    SyndielandObjective: 1
 
 # Vampire
 - type: weightedRandom
@@ -42,6 +43,16 @@
     VampireObjectiveGroupSteal: 1
     VampireObjectiveGroupKill: 1
     VampireObjectiveGroupDrain: 1
+    VampireObjectiveGroupState: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupsStealOnly
+  weights:
+    VampireObjectiveGroupSteal: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupsStateOnly
+  weights:
     VampireObjectiveGroupState: 1
 
 - type: weightedRandom
@@ -83,3 +94,19 @@
     VampireEscapeObjective: 1
     ReputationObjective: 0.5
     FalseOutbreakObjective: 0.75
+
+# Thieves
+- type: weightedRandom
+  id: ThiefObjectiveGroupOuter # We use this to roll for thief objectives, similar to how traitors do it. Technically, we lose some control over it doing it this way (maxPicks), but I think the long term benefits of being able to add more variants to objectives without having to make 2 whole layers of objectives is worth the tradeoff.
+  weights:
+    ThiefObjectiveGroupCollection: 1
+    ThiefObjectiveGroupItem: 1
+    ThiefObjectiveGroupStructure: 0.7 # Inheriting from the old "big" group.
+    ThiefObjectiveGroupAnimal: 0.7 # Inheriting from the old "big" group.
+    ThiefObjectiveGroupEscapeForced: 10 # High weight to basically force you to get it.
+
+- type: weightedRandom
+  id: ThiefObjectiveGroupEscapeForced
+  weights:
+    EscapeThiefShuttleObjective: 1
+    EscapeMasterThiefObjective: 0.33

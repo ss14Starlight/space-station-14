@@ -24,18 +24,20 @@ using Content.Shared.Tag;
 using System.Reflection;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
+using Content.Shared._Starlight.NullSpace.Components;
 #endregion Starlight
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanBasicRaycastSystem : EntitySystem
+public sealed partial class HitscanBasicRaycastSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly ISharedAdminLogManager _log = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TagSystem _tag = default!; //Starlight -- arming distance
-    [Dependency] private readonly IRobustRandom _rand = default!; // Starlight-edit
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ISharedAdminLogManager _log = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TagSystem _tag = default!; //Starlight -- arming distance
+    [Dependency] private IRobustRandom _rand = default!; // Starlight-edit
 
     private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery;
 
@@ -114,7 +116,7 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
         // Do visuals without an event. They should always happen and putting it on the attempt event is weird!
         // If more stuff gets added here, it should probably be turned into an event.
         // FireEffects(args.FromCoordinates, distanceTried, args.ShotDirection.ToAngle(), ent.Owner); // Starlight - comment out, as we want to aggregate these
-        
+
         args.OutputTrace.Add(GenerateTraceStep(args.FromCoordinates, distanceTried, args.ShotDirection.ToAngle(), result?.HitEntity)); // Starlight - add the visuals for this particular leg of the hitscan into the trace
 
         // Admin logging

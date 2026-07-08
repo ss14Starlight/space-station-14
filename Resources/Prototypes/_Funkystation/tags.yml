@@ -9,3 +9,6 @@
 
 - type: Tag # Funky atmos - /tg/ gases
   id: SheetPlasma # Starlight Edit: PlasmaSheet -> SheetPlasma
+
+- type: Tag
+  id: DAGDUplink # Starlight, For the DAGD uplink... pretty self-explantory...

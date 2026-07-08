@@ -9,7 +9,7 @@
   - !type:ListingLimitedStockCondition
     stock: 2
   - !type:BuyerAccessCondition
-  
+
 - type: listing
   id: VendorPurpleStunbaton
   productEntity: PurpleStunbaton

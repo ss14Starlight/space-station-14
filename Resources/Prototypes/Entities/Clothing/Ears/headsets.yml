@@ -26,6 +26,15 @@
   - type: GuideHelp
     guides:
     - Radio
+  # Starlight, channel muting
+  - type: UserInterface
+    interfaces:
+      enum.EncryptionKeyHolderUiKey.Key:
+        type: EncryptionKeyHolderBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: false
+    key: enum.EncryptionKeyHolderUiKey.Key
+  # Starlight End
 
 - type: entity
   parent: ClothingHeadset
@@ -86,7 +95,7 @@
   parent: [ ClothingHeadset, BaseCentcommContraband ]
   id: ClothingHeadsetCentCom
   name: CentComm headset
-  description: A headset used by the upper echelons of Nanotrasen.
+  description: A headset used by the upper echelons of Central Command. # SL
   components:
   - type: ContainerFill
     containers:
@@ -248,7 +257,7 @@
       path: /Audio/_Starlight/Effects/Radio/rd.ogg
 
 - type: entity
-  parent: [ClothingHeadset, BaseSecurityLawyerContraband]
+  parent: [ClothingHeadset, BaseSecurityContraband]
   id: ClothingHeadsetSecurity
   name: security headset
   description: This is used by your elite security force.
@@ -326,7 +335,7 @@
     - type: ContainerFill
       containers:
         key_slots:
-        - EncryptionKeyStationMaster
+        - EncryptionKeyWizardMasterUnremovable # Starlight
     - type: Sprite
       sprite: Clothing/Ears/Headsets/wizard.rsi
     - type: Clothing

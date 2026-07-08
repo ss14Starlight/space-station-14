@@ -33,7 +33,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - IPC
-  
+
 - type: entity
   parent: SurgeryBase
   id: SurgeryAmputationRobot
@@ -53,7 +53,7 @@
     speciesWhitelist:
     - IPC
   - type: SurgeryPartCondition
-    parts: 
+    parts:
     - Arm
     - Hand
     - Leg
@@ -78,7 +78,7 @@
     - SurgeryStepExposeCoolantChannels
     - SurgeryStepUnweldSkull
   - type: SurgeryPartCondition
-    parts: 
+    parts:
     - Head
   - type: SurgerySpeciesCondition
     speciesBlacklist: []
@@ -122,7 +122,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentHeadRobot
-  id: SurgeryLimbAttachmentLeftHandRobot 
+  id: SurgeryLimbAttachmentLeftHandRobot
   name: Limb Attachment Left Hand
   description: Surgical attachment of a limb.
   components:
@@ -131,7 +131,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentHeadRobot
-  id: SurgeryLimbAttachmentRightArmRobot 
+  id: SurgeryLimbAttachmentRightArmRobot
   name: Limb Attachment Right Arm
   description: Surgical attachment of a limb.
   components:
@@ -167,7 +167,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentHeadRobot
-  id: SurgeryLimbAttachmentRightLegRobot 
+  id: SurgeryLimbAttachmentRightLegRobot
   name: Limb Attachment Right Leg
   description: Surgical attachment of a limb.
   components:
@@ -176,7 +176,7 @@
 
 - type: entity
   parent: SurgeryLimbAttachmentHeadRobot
-  id: SurgeryLimbAttachmentRightFootRobot 
+  id: SurgeryLimbAttachmentRightFootRobot
   name: Limb Attachment Right Foot
   description: Surgical attachment of a limb.
   components:
@@ -234,7 +234,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
-    
+
 - type: entity
   parent: SurgeryBase
   id: SurgeryExtractEyeImplantRobot

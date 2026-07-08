@@ -1,7 +1,7 @@
 {
    "$schema":"http://json-schema.org/draft-07/schema",
    "default":{
-      
+
    },
    "description":"JSON Schema for SS14 RSI validation.",
    "examples":[
@@ -107,7 +107,7 @@
       "size":{
          "$id":"#/properties/size",
          "default":{
-            
+
          },
          "description":"The dimensions of the sprites inside the RSI.  This is not the size of the PNG files that store the sprite sheet.",
          "examples":[
@@ -148,7 +148,7 @@
          "title":"Icon States",
          "description":"Metadata for icon states. Includes name, directions, delays, etc.",
          "default":[
-            
+
          ],
          "examples":[
             [

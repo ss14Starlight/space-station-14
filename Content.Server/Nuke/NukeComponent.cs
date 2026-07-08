@@ -200,5 +200,12 @@ namespace Content.Server.Nuke
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("requiredFloorRadius")]
         public float RequiredFloorRadius = 5;
+        #region Starlight
+        /// <summary>
+        ///     If the detonation should end the current round if on the main grid.
+        /// </summary>
+        [DataField("endRound")]
+        public bool EndRound = true;
+        #endregion
     }
 }

@@ -16,19 +16,19 @@ public sealed partial class SlimeComponent : Component
     /// </summary>
     [DataField("damageOnEat", required: true), AutoNetworkedField]
     public DamageSpecifier DamageOnEat;
-    
+
     /// <summary>
     /// The amount of nutrition the slime gains on each eat.
     /// </summary>
     [DataField("nutritionOnHit", required: true), AutoNetworkedField]
     public FixedPoint2 NutritionOnHit;
-    
+
     /// <summary>
     /// What this slime splits into if not mutating.
     /// </summary>
     [DataField("splitInto", required: true), AutoNetworkedField]
     public EntProtoId SplitInto;
-    
+
     /// <summary>
     /// The extract this slime provides when processed in the Slime Processor.
     /// </summary>
@@ -40,7 +40,7 @@ public sealed partial class SlimeComponent : Component
     /// </summary>
     [DataField("mutationChance", required: true), AutoNetworkedField]
     public FixedPoint2 MutationChance;
-    
+
     /// <summary>
     /// If mutating, the list of possible slimes to become.
     /// If blank, will not mutate at all.

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Chat;
 using Content.Shared.CCVar;
 using Robust.Shared.Utility;
@@ -8,14 +9,20 @@ using Robust.Client.UserInterface.XAML;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
+#region Starlight
 using Content.Client._Starlight.TextToSpeech;
-using Content.Client._Starlight.TTS;
+#endregion
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
 [GenerateTypedNameReferences]
 public sealed partial class ChannelFilterPopup : Popup
 {
+    // Starlight begin
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    // Starlight end
     // order in which the available channel filters show up when available
     private static readonly ChatChannel[] ChannelFilterOrder =
     {
@@ -23,7 +30,6 @@ public sealed partial class ChannelFilterPopup : Popup
         ChatChannel.Whisper,
         ChatChannel.Emotes,
         ChatChannel.Radio,
-        ChatChannel.CollectiveMind,
         ChatChannel.Notifications,
         ChatChannel.LOOC,
         ChatChannel.OOC,
@@ -48,14 +54,14 @@ public sealed partial class ChannelFilterPopup : Popup
     public ChannelFilterPopup()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this); // Starlight
 
         HighlightButton.OnPressed += HighlightsEntered;
         // Add a placeholder text to the highlights TextEdit.
         HighlightEdit.Placeholder = new Rope.Leaf(Loc.GetString("hud-chatbox-highlights-placeholder"));
 
         // Load highlights if any were saved.
-        var cfg = IoCManager.Resolve<IConfigurationManager>();
-        string highlights = cfg.GetCVar(CCVars.ChatHighlights);
+        string highlights = _cfg.GetCVar(CCVars.ChatHighlights); // Starlight
 
         if (!string.IsNullOrEmpty(highlights))
         {
@@ -65,6 +71,7 @@ public sealed partial class ChannelFilterPopup : Popup
         // Starlight start
         InitializeTTSMuteChannels();
         TTSClearQueueButton.OnPressed += _ => ClearQueue();
+        TTSToggleAllButton.OnPressed += _ => ToggleAllTTSMuteCheckboxes();
         // Starlight end
     }
     // Starlight start
@@ -73,17 +80,16 @@ public sealed partial class ChannelFilterPopup : Popup
     {
         if (_tts == null)
         {
-            var entManager = IoCManager.Resolve<IEntityManager>();
-            _tts = entManager.System<TextToSpeechSystem>();
+            _tts = _entityManager.System<TextToSpeechSystem>();
         }
         _tts?.ClearQueue();
     }
 
+    // Creates checkbox toggle mute buttons for each defined Radio channel prototype
     private void InitializeTTSMuteChannels()
     {
-        var protoManager = IoCManager.Resolve<IPrototypeManager>();
-
-        foreach (var channel in protoManager.EnumeratePrototypes<RadioChannelPrototype>())
+        foreach (var channel in _protoManager.EnumeratePrototypes<RadioChannelPrototype>()
+                     .OrderBy(channel => Loc.GetString(channel.Name)))
         {
             var checkbox = new CheckBox
             {
@@ -92,21 +98,31 @@ public sealed partial class ChannelFilterPopup : Popup
             };
 
             var channelId = channel.ID;
-            checkbox.OnToggled += args => SetChanelMuted(args, channelId);
+            checkbox.OnToggled += args => SetChannelMuteState(channelId, args.Pressed);
 
             _ttsMuteStates[channel.ID] = checkbox;
             TTSChannelsVBox.AddChild(checkbox);
         }
     }
 
-    private void SetChanelMuted(ButtonToggledEventArgs args, string channelId)
+    // Toggles all mute buttons on, then off, and so on
+    private void ToggleAllTTSMuteCheckboxes()
     {
-        if (_ttsStream == null)
+        bool allChecked = _ttsMuteStates.Values.All(checkbox => checkbox.Pressed);
+        bool newState = !allChecked;
+
+        foreach (var (channelId, checkbox) in _ttsMuteStates)
         {
-            var entManager = IoCManager.Resolve<IEntityManager>();
-            _ttsStream = entManager.System<TextToSpeechStreamSystem>();
+            checkbox.Pressed = newState;
+            SetChannelMuteState(channelId, newState);
         }
-        _ttsStream?.SetChannelMuted(channelId, args.Pressed);
+    }
+
+    // Function to apply the mute state from the UI to the TTS system for a specific channel
+    private void SetChannelMuteState(ProtoId<RadioChannelPrototype> channelId, bool muted)
+    {
+        _ttsStream ??= _entityManager.System<TextToSpeechStreamSystem>();
+        _ttsStream.SetChannelMuted(channelId, muted);
     }
 
     // Starlight end

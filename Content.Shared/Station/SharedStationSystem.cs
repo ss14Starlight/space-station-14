@@ -8,8 +8,8 @@ namespace Content.Shared.Station;
 
 public abstract partial class SharedStationSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<StationMemberComponent> _stationMemberQuery;
@@ -92,10 +92,11 @@ public abstract partial class SharedStationSystem : EntitySystem
         if (!Resolve(entity, ref xform))
             throw new ArgumentException("Tried to use an abstract entity!", nameof(entity));
 
-        if (TryComp<StationTrackerComponent>(entity, out var stationTracker))
+        if (TryComp<StationTrackerComponent>(entity, out var stationTracker)
+            && (stationTracker.Station ?? stationTracker.LastStation) is { } station) // Starlight
         {
             // We have a specific station we are tracking and are tethered to.
-            return stationTracker.Station;
+            return station; // Starlight
         }
 
         if (HasComp<StationDataComponent>(entity))

@@ -11,8 +11,8 @@ namespace Content.Shared.EntityEffects.Effects.StatusEffects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class ModifyParalysisEntityEffectSystem : EntityEffectSystem<MetaDataComponent, ModifyParalysis>
 {
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<ModifyParalysis> args)
     {
@@ -39,10 +39,10 @@ public sealed partial class ModifyParalysisEntityEffectSystem : EntityEffectSyst
 /// <inheritdoc cref="EntityEffect"/>
 public sealed partial class ModifyParalysis : BaseStatusEntityEffect<ModifyParalysis>
 {
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
         Time == null
             ? null // Not gonna make a whole new looc for something that shouldn't ever exist.
-            : Loc.GetString(
+            : loc.GetString(
             "entity-effect-guidebook-paralyze",
             ("chance", Probability),
             ("time", Time.Value.TotalSeconds)

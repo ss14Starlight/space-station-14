@@ -34,6 +34,18 @@ stack-metal-blue-floor = blue metal floor
 stack-metal-purple-floor = purple metal floor
 stack-metal-red-floor = red metal floor
 stack-metal-green-floor = green metal floor
+stack-astro-dirt-floor = astro-dirt floor
+stack-3x3black-floor = 3x3 black floor
+stack-3x3brown-floor = 3x3 brown floor
+stack-3x3steel-floor = 3x3 steel floor
+stack-3x3white-floor = 3x3 white floor
+stack-old-concrete-bricks-floor = old concrete brick floor
+stack-old-concrete-tile-floor = old concrete tile floor
+stack-ornate-floor = ornate floor
+stack-rough-metal-floor = rough metal floor
+stack-rusty-metal-floor = rusty metal floor
+stack-steel-grate-floor = steel grate floor
+stack-tech-greeb-floor = tech maints greeb floor
 
 stack-bluespacecrystal = {$amount ->
     [1] bluespace
@@ -72,6 +84,22 @@ stack-interdynebrutepack = {$amount ->
     [1] interdynebrutepack
     *[other] interdynebrutepacks
 }
+stack-deforestointment = {$amount ->
+    [1] deforestointment
+    *[other] deforestointments
+}
+stack-deforestbrutepack = {$amount ->
+    [1] deforestbrutepack
+    *[other] deforestbrutepacks
+}
+stack-goldointment = {$amount ->
+    [1] goldointment
+    *[other] goldointments
+}
+stack-goldbrutepack = {$amount ->
+    [1] goldbrutepack
+    *[other] goldbrutepacks
+}
 stack-redpunctpack = {$amount ->
     [1] redpunctpack
     *[other] redpunctpacks
@@ -83,6 +111,11 @@ stack-redlacepack = {$amount ->
 stack-redbruizpack = {$amount ->
     [1] redbruizpack
     *[other] redbruizpacks
+}
+
+stack-empty-oilpack = {$amount ->
+    [1] emptyoilpack
+    *[other] emptyoilpacks
 }
 
 stack-credit = {$amount ->

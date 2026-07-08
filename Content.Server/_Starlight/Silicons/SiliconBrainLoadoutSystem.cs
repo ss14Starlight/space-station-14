@@ -1,7 +1,6 @@
+using Content.Shared._Starlight.Roles;
 using Content.Shared._Starlight.Silicons;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Prototypes;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
@@ -15,9 +14,9 @@ namespace Content.Server._Starlight.Silicons;
 
 public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly IComponentFactory _compFactory = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private IComponentFactory _compFactory = default!;
 
     public override void Initialize()
     {
@@ -29,7 +28,7 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
     {
         if (!TryComp<AppliedRoleLoadoutComponent>(ent, out var loadoutComp))
             return;
-        
+
         if (loadoutComp.Loadout == null)
             return;
 
@@ -65,11 +64,11 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
 
         // If no specific brain is specified, try to get the character's species brain
         if (brainProto == null && profile != null &&
-            _proto.TryIndex<SpeciesPrototype>(profile.Species, out var species) &&
+            _proto.TryIndex(profile.Species, out var species) &&
             _proto.TryIndex<EntityPrototype>(species.Prototype, out var entityProto) &&
             entityProto.TryGetComponent<BodyComponent>(out var bodyComp, _compFactory) &&
             bodyComp.Prototype != null &&
-            _proto.TryIndex<BodyPrototype>(bodyComp.Prototype.Value, out var body))
+            _proto.TryIndex(bodyComp.Prototype.Value, out var body))
         {
             foreach (var (_, slot) in body.Slots)
             {

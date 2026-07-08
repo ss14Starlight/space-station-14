@@ -28,29 +28,19 @@ public sealed class PlumbingReactorBoundUserInterface : BoundUserInterface
     }
 
     private void OnToggle(bool enabled)
-    {
-        SendMessage(new PlumbingReactorToggleMessage(enabled));
-    }
+        => SendMessage(new PlumbingReactorToggleMessage(enabled));
 
     private void OnSetTarget(string reagentId, FixedPoint2 quantity)
-    {
-        SendMessage(new PlumbingReactorSetTargetMessage(reagentId, quantity));
-    }
+        => SendMessage(new PlumbingReactorSetTargetMessage(reagentId, quantity));
 
     private void OnRemoveTarget(string reagentId)
-    {
-        SendMessage(new PlumbingReactorRemoveTargetMessage(reagentId));
-    }
+        => SendMessage(new PlumbingReactorRemoveTargetMessage(reagentId));
 
     private void OnClearTargets()
-    {
-        SendMessage(new PlumbingReactorClearTargetsMessage());
-    }
+        => SendMessage(new PlumbingReactorClearTargetsMessage());
 
     private void OnSetTemperature(float temperature)
-    {
-        SendMessage(new PlumbingReactorSetTemperatureMessage(temperature));
-    }
+        => SendMessage(new PlumbingReactorSetTemperatureMessage(temperature));
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {

@@ -22,6 +22,7 @@ using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Mapping;
+using Content.Shared._Starlight.Shuttles.Components;
 // Starlight End
 
 namespace Content.Server.Station.Systems;
@@ -34,15 +35,15 @@ namespace Content.Server.Station.Systems;
 [PublicAPI]
 public sealed partial class StationSystem : SharedStationSystem
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly PvsOverrideSystem _pvsOverride = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!; // Starlight
-    [Dependency] private readonly IPrototypeManager _prototype = default!; // Starlight
-    [Dependency] private readonly IComponentFactory _factory = default!; // Starlight
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private PvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!; // Starlight
+    [Dependency] private IPrototypeManager _prototype = default!; // Starlight
+    [Dependency] private IComponentFactory _factory = default!; // Starlight
 
     private ISawmill _sawmill = default!;
 
@@ -335,7 +336,7 @@ public sealed partial class StationSystem : SharedStationSystem
     //SL start
     // public EntityUid InitializeNewStationMidRound(EntityUid gridId, EntProtoId stationProtoId,
     //     BecomesStationMidRoundComponent? comp = null) => InitializeNewStationMidRound(gridId, [stationProtoId], comp);
-    
+
     public EntityUid InitializeNewStationMidRound(EntityUid gridId, List<EntProtoId> stationProtoIds, BecomesStationMidRoundComponent? comp = null)
     {
         if (!Resolve(gridId, ref comp)) return EntityUid.Invalid;
@@ -360,7 +361,7 @@ public sealed partial class StationSystem : SharedStationSystem
             };
             registry.Add("StationEmergencyShuttle", new EntityPrototype.ComponentRegistryEntry(shuttle, new MappingDataNode()));
         }
-        
+
         var station = CreateCustomStation(stationProtoIds, MapCoordinates.Nullspace, registry, comp);
         var data = EnsureComp<StationDataComponent>(station);
         RenameStation(station, MetaData(gridId).EntityName, false);
@@ -378,7 +379,7 @@ public sealed partial class StationSystem : SharedStationSystem
         var ent = EntityManager.CreateEntityUninitialized(null); // dummy entity
 
         var regTypes = registry is not null ? registry.Values.Select(c => _factory.GetRegistration(c.Component).Name).ToHashSet() : [];
-        
+
         // do parents first
         foreach (var protoId in protoIds)
         {
@@ -406,7 +407,7 @@ public sealed partial class StationSystem : SharedStationSystem
     public void MarkMidRoundStationForInitialization(EntityUid uid, BecomesStationMidRoundComponent comp) =>
         comp.Initialize = true;
     //SL end
-    
+
     /// <summary>
     /// Initializes a new station with the given information.
     /// </summary>
@@ -498,11 +499,11 @@ public sealed partial class StationSystem : SharedStationSystem
     {
         if (!Resolve(mapGrid, ref gridComponent)) throw new ArgumentException("Tried to use a non-grid entity.", nameof(mapGrid));
         if (!Resolve(station, ref stationData)) throw new ArgumentException("Tried to use a non-station entity as a station.", nameof(station));
-        
+
         stationData.MainGrids.Add(mapGrid);
         AddGridToStation(station, mapGrid, gridComponent, stationData, name);
     }
-    
+
     public void RemoveMainGridFromStation(EntityUid station, EntityUid mapGrid, MapGridComponent? gridComponent = null,
         StationDataComponent? stationData = null)
     {
@@ -513,7 +514,7 @@ public sealed partial class StationSystem : SharedStationSystem
         RemoveGridFromStation(station, mapGrid, gridComponent, stationData);
     }
     //Starlight end
-    
+
     /// <summary>
     /// Renames the given station.
     /// </summary>
@@ -559,7 +560,7 @@ public sealed partial class StationSystem : SharedStationSystem
         // Starlight End
         QueueDel(station);
     }
-    
+
     //Starlight begin
     /// <summary>
     /// Gets the closest station grid

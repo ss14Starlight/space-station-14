@@ -24,14 +24,10 @@ public sealed class PlumbingSynthesizerBoundUserInterface : BoundUserInterface
     }
 
     private void OnToggle(bool enabled)
-    {
-        SendMessage(new PlumbingSynthesizerToggleMessage(enabled));
-    }
+        => SendMessage(new PlumbingSynthesizerToggleMessage(enabled));
 
     private void OnSelectReagent(string? reagentId)
-    {
-        SendMessage(new PlumbingSynthesizerSelectReagentMessage(reagentId));
-    }
+        => SendMessage(new PlumbingSynthesizerSelectReagentMessage(reagentId));
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {

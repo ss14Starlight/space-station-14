@@ -25,10 +25,10 @@ namespace Content.Client.Silicons.Borgs;
 [GenerateTypedNameReferences]
 public sealed partial class BorgSelectTypeMenu : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!; // Starlight-edit
-    [Dependency] private readonly IPlayerManager _playerManager = default!; // Starlight-edit
-    [Dependency] private readonly JobRequirementsManager _requirementsManager = default!; // Starlight-edit
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entManager = default!; // Starlight-edit
+    [Dependency] private IPlayerManager _playerManager = default!; // Starlight-edit
+    [Dependency] private JobRequirementsManager _requirementsManager = default!; // Starlight-edit
 
     private BorgTypePrototype? _selectedBorgType;
 
@@ -51,7 +51,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         ChassisSpriteSelection.SubtypeSelected += () => ConfirmTypeButton.Disabled = false;
         // Afterlight end
     }
-    
+
     // Starlight-start: Move from BorgSelectTypeMenu to method
     public void SetupMenu(EntityUid owner)
     {

@@ -3,17 +3,17 @@ using Content.Shared.Popups;
 
 namespace Content.Shared._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeExtractEnhancerPotionSystem : EntitySystem
+public sealed partial class SlimeExtractEnhancerPotionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
-    
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedPopupSystem _sharedPopupSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<SlimeExtractEnhancerPotionComponent, AfterInteractEvent>(OnAfterInteract);
     }
-    
+
     private void OnAfterInteract(Entity<SlimeExtractEnhancerPotionComponent> ent, ref AfterInteractEvent args)
     {
         if (!args.Target.HasValue || !args.CanReach) return;

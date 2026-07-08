@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Localizations;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
 using JetBrains.Annotations;
@@ -41,7 +41,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         var overallTime = playTimes.GetValueOrDefault(PlayTimeTrackingShared.TrackerOverall);
         var overallDiffSpan = Time - overallTime;
         var overallDiff = overallDiffSpan.TotalMinutes;
-        
+
         // Starlight BEGIN
         var formattedCurrent = ContentLocalizationManager.FormatPlaytime(overallTime);
         var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time);

@@ -1,0 +1,36 @@
+- type: entity
+  parent: [NuclearBomb]
+  id: NuclearBombSafe
+  name: nuclear fission explosive
+  description: You probably shouldn't stick around to see if this is armed.
+  suffix: Non-round ending
+  components:
+  - type: Nuke
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 5
+    totalIntensity: 5000000
+    diskSlot:
+      name: nuke-slot-component-slot-name-disk
+      insertSound:
+        path: /Audio/Machines/terminal_insert_disc.ogg
+      ejectSound:
+        path: /Audio/Machines/terminal_insert_disc.ogg
+      whitelist:
+        components:
+        - NukeDisk
+    alertLevelOnActivate: delta
+    alertLevelOnDeactivate: green
+    endRound: false
+
+- type: entity
+  parent: NuclearBombSafe
+  id: NuclearBombSafeUnanchored
+  suffix: Non-round ending, unanchored
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: NukeLabel
+    prefix: "nuke-label-syndicate"

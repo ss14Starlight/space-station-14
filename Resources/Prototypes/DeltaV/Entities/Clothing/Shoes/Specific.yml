@@ -1,0 +1,14 @@
+﻿- type: entity
+  parent: ClothingShoesClownBase
+  id: ClothingShoesSpecificMoffers
+  name: moffers
+  description: No moths were harmed in the making of these slippers.
+  components:
+    - type: Sprite
+      sprite: DeltaV/Clothing/Shoes/Specific/moffers.rsi
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: Moffers
+        params:
+          variation: 0.1
+          volume: -12

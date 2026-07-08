@@ -21,7 +21,7 @@
   - type: ActivatableUI
     key: enum.DigitalLockUiKey.Key
   - type: GenericVisualizer
-    visuals: 
+    visuals:
       enum.DigitalLockVisuals.Spark:
         spark:
           False: { visible: false }
@@ -30,9 +30,9 @@
   - type: AmbientSound
     enabled: false
     range: 20
-    sound: 
+    sound:
       collection: "sparks"
-    
+
 
 - type: entity
   parent: BriefcaseBaseSecure
@@ -41,7 +41,7 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Storage/Briefcases/briefcase_secure.rsi
-    layers: 
+    layers:
       - state: icon
       - state: open
         shader: unshaded

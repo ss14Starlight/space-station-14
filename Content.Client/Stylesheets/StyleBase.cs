@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.Client._Starlight.UserInterface; // Starlight
 using Content.Client.Resources;
 using Content.Client.UserInterface.Controls;
 using Robust.Client.Graphics;
@@ -15,6 +16,9 @@ namespace Content.Client.Stylesheets
     {
         public const string ClassCardHeader = "CardHeader"; // 🌟Starlight🌟
         public const string ClassCardBorder = "CardBorder"; // 🌟Starlight🌟
+        public const string ClassCardBanner = "CardBanner"; // 🌟Starlight🌟
+        public const string ClassCardBody = "CardBody"; // 🌟Starlight🌟
+        public const string ClassMenuBar = "MenuBar"; // 🌟Starlight🌟
 
         public abstract Stylesheet Stylesheet { get; }
 
@@ -28,6 +32,9 @@ namespace Content.Client.Stylesheets
 
         protected StyleBoxTexture BaseAngleRect { get; }
         protected StyleBoxTexture BaseHeaderRect { get; } // 🌟Starlight🌟
+        protected StyleBoxTexture BaseBannerRect { get; } // 🌟Starlight🌟
+        protected StyleBoxTexture BaseBodyRect { get; } // 🌟Starlight🌟
+        protected StyleBoxTexture MenuBarRect { get; } // 🌟Starlight🌟
         protected StyleBoxTexture AngleBorderRect { get; }
 
         protected StyleBase(IResourceCache resCache)
@@ -53,6 +60,7 @@ namespace Content.Client.Stylesheets
                 12
             );
             var textureCloseButton = resCache.GetTexture("/Textures/Interface/Nano/cross.svg.png");
+            var texturePopOutButton = resCache.GetTexture("/Textures/_Starlight/Interface/Nano/pop_out.svg.png"); // Starlight
 
             // Button styles.
             var buttonTex = resCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png");
@@ -110,7 +118,33 @@ namespace Content.Client.Stylesheets
             {
                 Texture = resCache.GetTexture("/Textures/_Starlight/Interface/Nano/card_header.png"),
             };
-            BaseHeaderRect.SetPatchMargin(StyleBox.Margin.All, 10);
+            BaseHeaderRect.SetPatchMargin(StyleBox.Margin.Top, 2);
+            BaseHeaderRect.SetPatchMargin(StyleBox.Margin.Bottom, 10);
+            BaseHeaderRect.SetPatchMargin(StyleBox.Margin.Left, 10);
+            BaseHeaderRect.SetPatchMargin(StyleBox.Margin.Right, 7);
+
+            BaseBannerRect = new StyleBoxTexture
+            {
+                Texture = resCache.GetTexture("/Textures/_Starlight/Interface/Nano/card_banner.png"),
+            };
+            BaseBannerRect.SetPatchMargin(StyleBox.Margin.Top, 8);
+            BaseBannerRect.SetPatchMargin(StyleBox.Margin.Bottom, 13);
+            BaseBannerRect.SetPatchMargin(StyleBox.Margin.Left, 10);
+            BaseBannerRect.SetPatchMargin(StyleBox.Margin.Right, 18);
+
+            BaseBodyRect = new StyleBoxTexture
+            {
+                Texture = resCache.GetTexture("/Textures/_Starlight/Interface/Nano/card_body.png"),
+            };
+            BaseBodyRect.SetPatchMargin(StyleBox.Margin.All, 3);
+            MenuBarRect = new StyleBoxTexture
+            {
+                Texture = resCache.GetTexture("/Textures/_Starlight/Interface/Nano/menu.png"),
+            };
+            MenuBarRect.SetPatchMargin(StyleBox.Margin.Top, 5);
+            MenuBarRect.SetPatchMargin(StyleBox.Margin.Bottom, 5);
+            MenuBarRect.SetPatchMargin(StyleBox.Margin.Left, 4);
+            MenuBarRect.SetPatchMargin(StyleBox.Margin.Right, 8);
             // 🌟Starlight🌟 end
 
             AngleBorderRect = new StyleBoxTexture
@@ -118,7 +152,6 @@ namespace Content.Client.Stylesheets
                 Texture = resCache.GetTexture("/Textures/Interface/Nano/geometric_panel_border.svg.96dpi.png"),
             };
             AngleBorderRect.SetPatchMargin(StyleBox.Margin.All, 10);
-
 
             BaseRules = new[]
             {
@@ -163,6 +196,33 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#753131")),
                     }),
+                // Starlight begin
+                // popout button base texture.
+                new StyleRule(
+                    new SelectorElement(typeof(TextureButton), new[] {PopOutExtensions.PopOutButtonStyleClass}, null,
+                        null),
+                    new[]
+                    {
+                        new StyleProperty(TextureButton.StylePropertyTexture, texturePopOutButton),
+                        new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#4B596A")),
+                    }),
+                // popout button hover.
+                new StyleRule(
+                    new SelectorElement(typeof(TextureButton), new[] {PopOutExtensions.PopOutButtonStyleClass}, null,
+                        new[] {TextureButton.StylePseudoClassHover}),
+                    new[]
+                    {
+                        new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#A0A0A0")),
+                    }),
+                // popout button pressed.
+                new StyleRule(
+                    new SelectorElement(typeof(TextureButton), new[] {PopOutExtensions.PopOutButtonStyleClass}, null,
+                        new[] {TextureButton.StylePseudoClassPressed}),
+                    new[]
+                    {
+                        new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#FFFFFF")),
+                    }),
+                // Starlight end
             };
         }
     }

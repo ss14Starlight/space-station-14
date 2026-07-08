@@ -8,6 +8,6 @@ namespace Content.Shared.Radio.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState] // Starlight edit
 public sealed partial class WearingHeadsetComponent : Component
 {
-    [DataField, AutoNetworkedField] // Starlight edit 
+    [DataField, AutoNetworkedField] // Starlight edit
     public EntityUid Headset;
 }

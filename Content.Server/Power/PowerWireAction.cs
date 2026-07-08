@@ -29,7 +29,7 @@ public sealed partial class PowerWireAction : BaseWireAction
         if (WiresSystem.TryGetData<int>(wire.Owner, PowerWireActionKey.MainWire, out var main)
             && main != wire.Id)
             return null;
-        
+
         if (AllWiresCut(wire.Owner)) // Starlight-edit
             return StatusLightState.Off; // Starlight-edit
         else if (!AllWiresMended(wire.Owner) // Starlight-edit
@@ -82,13 +82,13 @@ public sealed partial class PowerWireAction : BaseWireAction
         else if (EntityManager.TryGetComponent(owner, out PoweredLockerComponent? poweredLocker))
         {
             var lockerSys = EntityManager.System<PoweredLockerSystem>();
-            
+
             if (pulsed)
             {
                 lockerSys.TogglePower(owner, poweredLocker, false);
                 return;
             }
-            
+
             if (AllWiresCut(owner))
                 lockerSys.TogglePower(owner, poweredLocker, false);
             else

@@ -14,6 +14,7 @@
 
 - type: entity
   id: LockerWardenFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerWarden
   components:
@@ -35,12 +36,12 @@
     - id: ClothingBeltSecurityFilled
     - id: Flash
     - id: ClothingEyesGlassesSecurity
-    - id: ClothingHandsGlovesCombat
+#    - id: ClothingHandsGlovesCombat # Starlight, they spawn with these now.
     - id: ClothingShoesBootsJack
     - id: ClothingOuterCoatWarden
     - id: ClothingOuterWinterWarden
-    - id: RubberStampWarden
     - id: DoorRemoteArmory
+    - id: BoxWardenStamps #Starlight
     - id: HoloprojectorSecurity
     - id: BookSpaceLaw
     - id: ClothingBackpackElectropack
@@ -58,6 +59,7 @@
     - id: ClothingOuterHardsuitWarden
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingMaskBreath
 
 - type: entity
@@ -120,6 +122,8 @@
     - id: ClothingHeadHatBeretCorpsman #Starlight
     - id: ClothingBeltCorpsmanFilled #Starlight
     - id: ClothingHandsGlovesBlackNitrile #Starlight
+    - id: BottleCaseSecurityFilled # Starlight
+    - id: PenPackSecurityFilled # Starlight
 #    - id: ClothingEyesGlassesSecurity #Starlight, replacing with brigmed glasses.
     - id: WeaponTaser
     - id: WeaponDisabler
@@ -163,6 +167,7 @@
 
 - type: entity
   id: LockerDetectiveFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerDetective
   components:
@@ -252,16 +257,12 @@
       amount: 2
     - id: WeaponPistolEnforcer
       amount: 1
-    #- id: WeaponMachinePistolMk64
-      #amount: 1
     - id: MagazinePistolSP
       amount: 4
     - id: MagazinePistolHP
       amount: 2
     - id: MagazinePistolFMJ
       amount: 2
-    #- id: MagazinePistolHighCapacitySP
-      #amount: 2
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
@@ -276,16 +277,24 @@
 - type: entityTable
   id: FillGunSafeRifleLecter
   table: !type:AllSelector
+# Starlight-start
     children:
     - id: BoxFiringPin # Starlight, firing pins
     - id: WeaponRifleLecter
-      amount: 2 # Starlight
+      amount: 2
     - id: WeaponRifleLeikha
       amount: 1
+    - id: WeaponRifleLawbringer
+      amount: 1
     - id: MagazineRifleHP
-      amount: 4 # Starlight
+      amount: 4
     - id: MagazineRifleSP
-      amount: 4 # Starlight
+      amount: 4
+    - id: MagazineLightRifleSP
+      amount: 1
+    - id: MagazineLightRifleHP
+      amount: 1
+# Starlight-end
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]

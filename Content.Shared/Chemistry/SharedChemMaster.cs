@@ -70,7 +70,7 @@ namespace Content.Shared.Chemistry
             Label = label;
         }
     }
-    
+
     //Starlight-start
     [Serializable, NetSerializable]
     public sealed class ChemMasterCreatePatchesMessage : BoundUserInterfaceMessage
@@ -189,7 +189,7 @@ namespace Content.Shared.Chemistry
         /// STARLIGHT: Edited to only be pills and not both pills and patches.
         /// </summary>
         public List<(string Id, FixedPoint2 Quantity)>? PillEntities { get; init; }
-        
+
         /// <summary>
         /// A list of the patch entities and their sizes within the container
         /// STARLIGHT: Added specifically for patches
@@ -225,7 +225,7 @@ namespace Content.Shared.Chemistry
         public readonly uint SelectedPillType;
 
         public readonly uint PillDosageLimit;
-        
+
         public readonly uint PatchDosageLimit; //Starlight-edit
 
         public readonly bool UpdateLabel;

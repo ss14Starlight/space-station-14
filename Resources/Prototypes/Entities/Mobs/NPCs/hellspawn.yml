@@ -4,6 +4,7 @@
   - BaseSimpleMob
   - MobCombat
   - MobBloodstream
+  # - BaseMobAnimal # Starlight Edit: Reverted NuBody
   id: MobHellspawn
   description: An unstoppable force of carnage.
   components:
@@ -28,8 +29,10 @@
   - type: NpcFactionMember
     factions:
       - SimpleHostile
+  # Starlight - start
   - type: Body
     prototype: Animal
+  # Starlight - end
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: HellSpawn

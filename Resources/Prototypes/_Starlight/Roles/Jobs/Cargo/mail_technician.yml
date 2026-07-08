@@ -6,6 +6,7 @@
   startingGear: MailTechGear
   icon: "JobIconMailTech"
   supervisors: job-supervisors-qm
+  displayWeight: 2
   access:
   - Cargo
   - Mail
@@ -25,7 +26,7 @@
     pocket1: MailCompanion
   storage:
     back: # literally just comment to update folder
-    - Multitool #maybe not a good idea? idk makes unpacking it quick 
+    - Multitool #maybe not a good idea? idk makes unpacking it quick
 
 - type: chameleonOutfit
   id: MailTechChameleonOutfit

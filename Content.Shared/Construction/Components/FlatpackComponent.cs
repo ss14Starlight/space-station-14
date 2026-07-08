@@ -18,7 +18,7 @@ public sealed partial class FlatpackComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public ProtoId<ToolQualityPrototype> QualityNeeded = "Pulsing";
-    
+
     /// <summary>
     /// Is Flatpack allowed to unpuck on tables? (For microwaves, etc.)
     /// </summary>
@@ -30,7 +30,7 @@ public sealed partial class FlatpackComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public EntProtoId? Entity;
-    
+
     [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public List<EntProtoId>? RandomEntities;
 

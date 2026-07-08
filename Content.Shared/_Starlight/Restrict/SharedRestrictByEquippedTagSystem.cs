@@ -15,10 +15,10 @@ namespace Content.Shared._Starlight.Restrict;
 /// </summary>
 public abstract partial class SharedRestrictByEquippedTagSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -38,7 +38,7 @@ public abstract partial class SharedRestrictByEquippedTagSystem : EntitySystem
 
         // Get all equipped items (excluding pockets and hands)
         var equippedItems = _inventorySystem.GetHandOrInventoryEntities(
-            (user, null, null), 
+            (user, null, null),
             SlotFlags.WITHOUT_POCKET);
 
         // Check if any equipped item has the required tag
@@ -74,7 +74,7 @@ public abstract partial class SharedRestrictByEquippedTagSystem : EntitySystem
         PopupClient(Loc.GetString(ent.Comp.DenialMessage), args.Uid);
         PlayDenialSound(ent.Comp.DenialSound, ent);
     }
-    
+
     private void OnShotAttempt(Entity<RestrictByEquippedTagComponent> ent, ref AttemptShootEvent args)
     {
         if (!Exists(ent) || !Exists(args.User))
@@ -100,4 +100,4 @@ public abstract partial class SharedRestrictByEquippedTagSystem : EntitySystem
         args.Message = Loc.GetString(ent.Comp.DenialMessage);
         PlayDenialSound(ent.Comp.DenialSound, ent);
     }
-} 
+}

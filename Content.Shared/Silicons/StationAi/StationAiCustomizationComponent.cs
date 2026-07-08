@@ -21,7 +21,7 @@ public sealed partial class StationAiCustomizationComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public StationAiState State = StationAiState.Occupied;
-    
+
     //Starlight begin
     [DataField, AutoNetworkedField] public bool RenameAvailable = false;
     //Starlight end

@@ -7,7 +7,7 @@ public sealed partial class ActionSetCharges : OnSignAction
     /// </summary>
     [DataField]
     public int Charges = 1;
-    
+
     public override bool Action(EntityUid paper, ActionsOnSignComponent component, EntityUid target)
     {
         component.Charges = Charges;

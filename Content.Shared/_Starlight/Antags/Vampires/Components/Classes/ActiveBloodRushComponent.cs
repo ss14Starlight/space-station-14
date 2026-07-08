@@ -10,4 +10,7 @@ public sealed partial class ActiveBloodRushComponent : Component
 {
     [DataField, AutoNetworkedField]
     public TimeSpan EndTime;
+
+    [DataField, AutoNetworkedField]
+    public float SpeedMultiplier = 1.5f;
 }

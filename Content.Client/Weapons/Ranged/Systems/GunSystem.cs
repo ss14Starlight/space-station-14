@@ -32,13 +32,14 @@ using Content.Shared.CCVar; // Starlight | ES Screenshake
 using Content.Client.DisplacementMap;
 using Content.Shared._Starlight.Effects;
 using Content.Shared.Mech.Components;
-using Content.Shared.Starlight.Utility;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.Utility;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Weapons.Hitscan.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Combat.Ranged.Pierce;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
 #endregion Starlight
 
 namespace Content.Client.Weapons.Ranged.Systems;
@@ -46,24 +47,24 @@ namespace Content.Client.Weapons.Ranged.Systems;
 // There’ve been so many radical changes here that you can basically consider the entire file as being under the Starlight folder now.
 public sealed partial class GunSystem : SharedGunSystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animPlayer = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly InputSystem _inputSystem = default!;
-    [Dependency] private readonly IOverlayManager _overlayManager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IStateManager _state = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
-    [Dependency] private readonly SharedMapSystem _maps = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private AnimationPlayerSystem _animPlayer = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
+    [Dependency] private InputSystem _inputSystem = default!;
+    [Dependency] private IOverlayManager _overlayManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IStateManager _state = default!;
+    [Dependency] private SharedCameraRecoilSystem _recoil = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
 #region Starlight
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly DisplacementMapSystem _displacement = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IComponentFactory _factory = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private DisplacementMapSystem _displacement = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public static readonly EntProtoId HitscanProto = "HitscanEffect";
     public const string ImpactProto = "ImpactEffect";

@@ -18,66 +18,66 @@ server-time-ban-string =
     > **Offender**
     > **Login:** ``{ $targetName }``
     > **Discord:** { $targetLink }
-    
+
     > **Administrator**
     > **Login:** ``{ $adminName }``
     > **Discord:** { $adminLink }
-    
+
     > **Time**
     > **Extended:** { $TimeNow }
     > **Expires:** { $expiresString }
-    
+
     > **Reason:** { $reason }
-    
+
     > **Severity Level:** { $severity }
 server-ban-footer = { $server } | Round: #{ $round }
 server-perma-ban-string =
     > **Offender**
     > **Login:** ``{ $targetName }``
     > **Discord:** { $targetLink }
-    
+
     > **Administrator**
     > **Login:** ``{ $adminName }``
     > **Discord:** { $adminLink }
-    
+
     > **Time**
     > **Extended:** { $TimeNow }
-    
+
     > **Reason:** { $reason }
-    
+
     > **Severity Level:** { $severity }
 server-role-ban-string =
     > **Offender**
     > **Login:** ``{ $targetName }``
     > **Discord:** { $targetLink }
-    
+
     > **Administrator**
     > **Login:** ``{ $adminName }``
     > **Discord:** { $adminLink }
-    
+
     > **Time**
     > **Extended:** { $TimeNow }
     > **Expires:** { $expiresString }
-    
+
     > **Roles:** { $roles }
-    
+
     > **Reason:** { $reason }
-    
+
     > **Severity Level:** { $severity }
 server-perma-role-ban-string =
     > **Offender**
     > **Login:** ``{ $targetName }``
     > **Discord:** ``{ $targetLink }``
-    
+
     > **Administrator**
     > **Login:** ``{ $adminName }``
     > **Discord:** { $adminLink }
-    
+
     > **Time**
     > **Extended:** { $TimeNow }
-    
+
     > **Roles:** { $roles }
-    
+
     > **Reason:** { $reason }
-    
+
     > **Severity Level:** { $severity }

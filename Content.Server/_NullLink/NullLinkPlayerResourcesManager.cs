@@ -1,17 +1,17 @@
 using Content.Server._NullLink.Core;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 
 namespace Content.Server._NullLink;
 
-public sealed class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourcesManager
+public sealed partial class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourcesManager
 {
-    [Dependency] private readonly ISharedPlayersRoleManager _sharedPlayers = default!;
-    [Dependency] private readonly IActorRouter _actors = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private ISharedPlayersRoleManager _sharedPlayers = default!;
+    [Dependency] private IActorRouter _actors = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private bool _resourcesEnabled = false;
 
@@ -22,13 +22,13 @@ public sealed class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourc
         _cfg.OnValueChanged(NullLinkCCVars.ResourcesEnabled, UpdateResources, true);
     }
 
-    private void UpdateResources(bool obj) 
+    private void UpdateResources(bool obj)
         => _resourcesEnabled = obj;
 
     public override bool TryUpdateResource(ICommonSession session, string id, double value, bool skipNullLink = false)
     {
 
-        if (_sharedPlayers.GetPlayerData(session) is not { } data 
+        if (_sharedPlayers.GetPlayerData(session) is not { } data
             || value == 0) // If we don't have any difference - we don't need to call null link.
             return false;
 
@@ -67,7 +67,7 @@ public sealed class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourc
 
         data.Resources[id] = value;
 
-        if (!_resourcesEnabled 
+        if (!_resourcesEnabled
             || skipNullLink
             || !_actors.Enabled
             || !_actors.TryGetServerGrain(out var serverGrain) )

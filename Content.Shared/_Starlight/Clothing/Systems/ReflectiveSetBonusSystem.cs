@@ -3,7 +3,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Reflect;
-using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Starlight.Clothing.Systems;
 
@@ -12,15 +11,15 @@ namespace Content.Shared._Starlight.Clothing.Systems;
 /// This system grants 100% reflection to the vest and helmet only when both are equipped.
 /// Uses component tags to detect matching items and listens to global equip/unequip events.
 /// </summary>
-public sealed class ReflectiveSetBonusSystem : EntitySystem
+public sealed partial class ReflectiveSetBonusSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<ReflectiveSetBonusComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<DidEquipEvent>(OnDidEquip);
         SubscribeLocalEvent<DidUnequipEvent>(OnDidUnequip);
@@ -40,21 +39,21 @@ public sealed class ReflectiveSetBonusSystem : EntitySystem
         // Check if the equipped item is part of the reflective set
         if (HasComp<ReflectiveSetBonusComponent>(args.Equipment))
         {
-            CheckAllReflectiveSets(args.Equipee);
+            CheckAllReflectiveSets(args.EquipTarget);
         }
     }
 
     private void OnDidUnequip(DidUnequipEvent args)
     {
         // Restore original reflection probability for unequipped item (only if it has the component)
-        if (TryComp<ReflectiveSetBonusComponent>(args.Equipment, out var bonus) && 
+        if (TryComp<ReflectiveSetBonusComponent>(args.Equipment, out var bonus) &&
             TryComp<ReflectComponent>(args.Equipment, out var reflect))
         {
             reflect.ReflectProb = bonus.OriginalReflectProb;
             Dirty(args.Equipment, reflect);
-            
+
             // Update remaining equipped items
-            CheckAllReflectiveSets(args.Equipee);
+            CheckAllReflectiveSets(args.EquipTarget);
         }
     }
 
@@ -117,15 +116,15 @@ public sealed class ReflectiveSetBonusSystem : EntitySystem
         else
         {
             // Restore original reflection values when set is incomplete
-            if (vestEntity.HasValue && 
+            if (vestEntity.HasValue &&
                 TryComp<ReflectiveSetBonusComponent>(vestEntity.Value, out var vestBonus) &&
                 TryComp<ReflectComponent>(vestEntity.Value, out var vestReflect))
             {
                 vestReflect.ReflectProb = vestBonus.OriginalReflectProb;
                 Dirty(vestEntity.Value, vestReflect);
             }
-            
-            if (helmetEntity.HasValue && 
+
+            if (helmetEntity.HasValue &&
                 TryComp<ReflectiveSetBonusComponent>(helmetEntity.Value, out var helmetBonus) &&
                 TryComp<ReflectComponent>(helmetEntity.Value, out var helmetReflect))
             {

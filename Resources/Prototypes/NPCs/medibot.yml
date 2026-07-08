@@ -22,7 +22,7 @@
         - !type:HTNPrimitiveTask
           operator: !type:MoveToOperator
             pathfindInPlanning: false
-        
+
         - !type:HTNPrimitiveTask
           operator: !type:SpeakOperator
             speech: !type:SingleSpeakOperatorSpeech

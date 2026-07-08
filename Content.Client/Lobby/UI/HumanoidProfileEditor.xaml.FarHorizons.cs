@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
+using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Lobby.UI;
@@ -32,7 +33,7 @@ public sealed partial class HumanoidProfileEditor
             subspecies.Add(species);
             subspecies.AddRange(allSubspecies);
         }
-        else if (species.SubspeciesOf != null) 
+        else if (species.SubspeciesOf != null)
         {
             List<SpeciesPrototype> allSubspecies = [.. _prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(p => p.SubspeciesOf == species.SubspeciesOf)];
             allSubspecies.Sort((a, b) => string.Compare(a.SubspeciesName ?? a.Name, b.SubspeciesName ?? b.Name, StringComparison.OrdinalIgnoreCase));
@@ -53,7 +54,7 @@ public sealed partial class HumanoidProfileEditor
             var name = Loc.GetString(subspecies[i].SubspeciesName == null ? subspecies[i].Name : subspecies[i].SubspeciesName!.Value);
             SubspeciesButton.AddItem(name, i);
         }
-        
+
 
         SubspeciesButton.SelectId(selected);
         CSubspecies.Visible = true;
@@ -62,30 +63,39 @@ public sealed partial class HumanoidProfileEditor
     private void UpdateSpeciesLoadout()
     {
         CSpeciesLoadout.Visible = false;
+        SpeciesLoadout.OnPressed -= SpeciesLoadoutPressed;
 
-        if (Profile == null || 
-            !_prototypeManager.TryIndex(Profile.Species, out var species) || 
+        if (Profile == null ||
+            !_prototypeManager.TryIndex(Profile.Species, out var species) ||
             species.Loadout == null ||
             !_prototypeManager.TryIndex(species.Loadout, out var loadoutProto))
             return;
-        
+
 
         CSpeciesLoadout.Visible = true;
-        SpeciesLoadout.OnPressed += args =>
+        SpeciesLoadout.OnPressed += SpeciesLoadoutPressed;
+    }
+
+    private void SpeciesLoadoutPressed(BaseButton.ButtonEventArgs args)
+    {
+         if (Profile == null ||
+            !_prototypeManager.TryIndex(Profile.Species, out var species) ||
+            species.Loadout == null ||
+            !_prototypeManager.TryIndex(species.Loadout, out var loadoutProto))
+            return;
+
+        RoleLoadout? loadout = null;
+
+        if (Profile!.SpeciesLoadout == null)
         {
-            RoleLoadout? loadout = null;
+            loadout = Profile.GetSpeciesLoadoutOrDefault(_playerManager.LocalSession, _prototypeManager);
+            loadout!.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager);
+        } else {
+            loadout = Profile.SpeciesLoadout!.Clone();
+            loadout!.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager);
+        }
 
-            if (Profile.SpeciesLoadout == null)
-            {
-                loadout = Profile.GetSpeciesLoadoutOrDefault(_playerManager.LocalSession, _prototypeManager);
-                loadout!.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager);
-            } else {
-                loadout = Profile.SpeciesLoadout!.Clone();
-                loadout!.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager);
-            }
-
-            OpenSpeciesLoadout(species, loadout, loadoutProto);
-        };
+        OpenSpeciesLoadout(species, loadout, loadoutProto);
     }
 
     private void OpenSpeciesLoadout(SpeciesPrototype species, RoleLoadout speciesLoadout, RoleLoadoutPrototype speciesLoadoutProto)
@@ -123,7 +133,7 @@ public sealed partial class HumanoidProfileEditor
             Profile = Profile?.WithSpeciesLoadout(speciesLoadout);
             ReloadPreview();
         };
-        
+
         ReloadPreview();
 
         _loadoutWindow.OnClose += () =>

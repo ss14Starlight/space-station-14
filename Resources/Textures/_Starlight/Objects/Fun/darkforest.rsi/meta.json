@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by Fire3Dox",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "darkforest",
+	  "copyright": "Fire3Dox",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "darkforest-inhand-right",
+      "directions": 4,
+	  "copyright": "Fire3Dox",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "darkforest-inhand-left",
+      "directions": 4,
+	  "copyright": "Fire3Dox",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "darkforest-equipped-HELMET",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ],
+	  "copyright": "Fire3Dox",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "darkforest-equipped-NECK",
+      "directions": 4,
+	  "copyright": "Fire3Dox",
+	  "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

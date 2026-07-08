@@ -11,10 +11,10 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Mobs.Systems;
 
-public sealed class MobThresholdSystem : EntitySystem
+public sealed partial class MobThresholdSystem : EntitySystem
 {
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
 
     public override void Initialize()
     {
@@ -278,8 +278,8 @@ public sealed class MobThresholdSystem : EntitySystem
     /// Set a MobState Threshold or create a new one if it doesn't exist
     /// </summary>
     /// <param name="target">Target Entity</param>
-    /// <param name="damage">Damageable Component owned by the target</param>
-    /// <param name="mobState">MobState Component owned by the target</param>
+    /// <param name="damage">Damage level for the new threshold</param> // Starlight
+    /// <param name="mobState">MobState of the threshold to set</param> // Starlight
     /// <param name="threshold">MobThreshold Component owned by the target</param>
     public void SetMobStateThreshold(EntityUid target, FixedPoint2 damage, MobState mobState,
         MobThresholdsComponent? threshold = null)

@@ -15,14 +15,14 @@ namespace Content.Shared._Starlight.Xenobiology;
 /// <summary>
 /// Handles the general behavior of slimes.
 /// </summary>
-public sealed class SlimeSystem : EntitySystem
+public sealed partial class SlimeSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly HungerSystem _hungerSystem = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private HungerSystem _hungerSystem = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
 
     public List<SlimeSplitRecord> SlimeSplitRecords = new();
 
@@ -31,7 +31,7 @@ public sealed class SlimeSystem : EntitySystem
         public Entity<SlimeComponent?> Slime = slime;
         public int SplitAmount = splitAmount;
     }
-    
+
     /// <inheritdoc />
     public override void Update(float frameTime)
     {
@@ -43,7 +43,7 @@ public sealed class SlimeSystem : EntitySystem
         }
         SlimeSplitRecords.Clear();
     }
-    
+
     /// <summary>
     /// Attempts to eat a target.
     /// </summary>
@@ -53,10 +53,10 @@ public sealed class SlimeSystem : EntitySystem
     public bool TryEat(Entity<SlimeComponent?> slime, EntityUid target)
     {
         if (!Resolve(slime, ref slime.Comp, false)) return false;
-        
+
         if (!_interaction.InRangeUnobstructed(slime.Owner, target, range: 0.75f)) return false;
         if (!TryComp<DamageableComponent>(target, out var damage)) return false;
-        
+
         if (!_damageableSystem.TryChangeDamage(target, slime.Comp.DamageOnEat, out var returnDamage, ignoreResistances: true)) return false;
         _audioSystem.PlayPredicted(new SoundPathSpecifier("/Audio/Effects/bite.ogg"), slime.Owner, null, AudioParams.Default.WithVariation(0.05F));
 
@@ -71,7 +71,7 @@ public sealed class SlimeSystem : EntitySystem
         {
             _hungerSystem.ModifyHunger(slime, slime.Comp.NutritionOnHit.Float());
         }
-        
+
         return true;
     }
 

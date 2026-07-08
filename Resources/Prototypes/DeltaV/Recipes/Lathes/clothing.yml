@@ -1,0 +1,70 @@
+﻿#CMO
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpsuitCmoFormal
+  result: ClothingUniformJumpsuitCmoFormal
+
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpskirtCmoFormal
+  result: ClothingUniformJumpskirtCmoFormal
+
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpsuitCmoVest
+  result: ClothingUniformJumpsuitCmoVest
+
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpskirtCmoVest
+  result: ClothingUniformJumpskirtCmoVest
+
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpsuitCmoSummer
+  result: ClothingUniformJumpsuitCmoSummer
+
+#Quartermaster
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpskirtQmFormal
+  result: ClothingUniformJumpskirtQmFormal
+
+#Head of Personnel
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpsuitHopFormal
+  result: ClothingUniformJumpsuitHopFormal
+
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpskirtHopFormal
+  result: ClothingUniformJumpskirtHopFormal
+
+- type: latheRecipe
+  parent: BaseCommandHatRecipe
+  id: ClothingHeadHatHopCapFormal
+  result: ClothingHeadHatHopCapFormal
+
+#Duty officer
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitDutyOfficerOrange
+  result: ClothingUniformJumpsuitDutyOfficerOrange
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtDutyOfficerOrange
+  result: ClothingUniformJumpskirtDutyOfficerOrange
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatDutyOfficerOrange
+  result: ClothingHeadHatDutyOfficerOrange
+
+#Cargo Technician
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitCargoInformal
+  result: ClothingUniformJumpsuitCargoInformal
+

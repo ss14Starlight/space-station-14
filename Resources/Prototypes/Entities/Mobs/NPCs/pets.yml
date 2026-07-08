@@ -780,6 +780,7 @@
     understands:
     - Mouse
     - GalacticCommon
+    - Squeakish # Rodentia
   # Starlight-end
   - type: Sprite
     drawdepth: SmallMobs
@@ -875,7 +876,7 @@
       base:
         - options: Default
           data:
-            drawdepth: Mobs   
+            drawdepth: Mobs
             sprite: Mobs/Pets/shiva.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: shiva
@@ -1062,8 +1063,9 @@
 
 - type: entity
   name: Pun Pun
-  parent: MobMonkey
+  parent: MobMonkeyAdvanced # Starlight, he's smarter than the average monkey.
   id: MobMonkeyPunpun
+  suffix: AI
   description: A prominent representative of monkeys with unlimited access to alcohol.
   components:
   # Starlight-start: Languages

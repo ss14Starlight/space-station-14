@@ -21,7 +21,7 @@ public sealed partial class FlashImmunityComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool ShowInExamine = true;
-    
+
     //starlight
     /// <summary>
     /// If true, will affect night vision, thermal vision, and cyclorite vision.

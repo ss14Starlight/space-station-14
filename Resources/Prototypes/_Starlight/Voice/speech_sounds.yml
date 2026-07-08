@@ -42,7 +42,7 @@
     collection: PhoneSpeak
   exclaimSound:
     collection: PhoneSpeak
-  
+
 - type: speechSounds
   id: UnisexMoth
   saySound:

@@ -14,6 +14,15 @@ uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded 
 uplink-stechkin-bundle-name = Solid Operative Bundle
 uplink-stechkin-bundle-desc = A mysterious cardboard box containing a slew of equipment for only the most solid of operatives.
 
+uplink-pistol-high-capacity-magazine-name = Extended Pistol Magazine (.35 auto)
+uplink-pistol-high-capacity-magazine-desc = Pistol magazine with 16 cartridges. Compatible with the Viper.
+
+uplink-pistol-hp-magazine-name = Pistol Magazine (.35 auto HP)
+uplink-pistol-hp-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Viper.
+
+uplink-pistol-fmj-magazine-name = Pistol Magazine (.35 auto FMJ)
+uplink-pistol-fmj-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Viper.
+
 uplink-pistol-magnum-magazine-name = Pistol Magazine (.45 magnum)
 uplink-pistol-magnum-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Desert Eagle.
 
@@ -48,24 +57,24 @@ uplink-uzi-bundle-desc = Contains the Type U3 Uzi, with two additional magazines
 uplink-uzi-magazine-name = Uzi Magazine (.35 auto)
 uplink-uzi-magazine-desc = Submachine gun magazine with 32 cartridges. Compatible with the Type U3 Uzi
 
-uplink-breaching-magazine-name = Shotgun Magazine (.50 breaching)
+uplink-breaching-magazine-name = Shotgun Magazine (12 gauge breaching)
 uplink-breaching-magazine-desc = A magazine loaded with breaching shells, for breaking down airlocks, windows and walls. Less effective on people.
 
 uplink-syndicate-borgi-name = Syndicate Borgi
-uplink-syndicate-borgi-desc = A basic syndicate borgi
+uplink-syndicate-borgi-desc = A basic syndicate borgi.
 
 uplink-syndicate-borgi-kitted-name = Kitted Syndicate Borgi
 uplink-syndicate-borgi-kitted-desc = A syndicate borgi, outfitted with an L6 module, operative module and E-sword module.
 
 uplink-syndicate-borgi-speed-name = Speed Syndicate Borgi
-uplink-syndicate-borgi-speed-desc = A syndicate borgi, with dagger modules and additional speed
+uplink-syndicate-borgi-speed-desc = A syndicate borgi, with dagger modules and additional speed.
 
 
 uplink-reinforcement-radio-medical-cyborg-name = Syndicate Medical Cyborg Teleporter
 uplink-reinforcement-radio-medical-cyborg-desc = A medical borg, with syndicate variants of items where applicable. Comes with basic weapons.
 
 uplink-reinforcement-radio-saboteur-cyborg-name = Syndicate Saboteur Cyborg Teleporter
-uplink-reinforcement-radio-saboteur-cyborg-desc = A saboteur cyborg, complete with syndicate advanced tools, standard hacking equipment and basic weapons
+uplink-reinforcement-radio-saboteur-cyborg-desc = A saboteur cyborg, complete with syndicate advanced tools, standard hacking equipment and basic weapons.
 
 uplink-reinforcement-radio-stealth-cyborg-name = Syndicate Stealth Cyborg Teleporter
 uplink-reinforcement-radio-stealth-cyborg-desc = A stealth cyborg. Whilst it is incapable of fighting, it has the ability to disguise, go invisible and move through vents. Comes with standard hacking tools.
@@ -87,7 +96,7 @@ uplink-hydra-name = Hydra
 uplink-hydra-desc = A modified Hydra capable of taking both cleanades and standard grenades. Excellent for when you need to clean up the security department. Comes pre-filled with special syndicate cleanades.
 
 uplink-pizza-bomb-name = Nefarious Pizza bomb
-uplink-pizza-bomb-desc = Originally developed by covertly by DONK Co to disuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened. 
+uplink-pizza-bomb-desc = Originally developed by covertly by DONK Co to disuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened.
 
 uplink-shuttle-board-name = Syndicate Shuttle Console Board
 uplink-shuttle-board-desc = A computer printed circuit board for a syndicate shuttle console.
@@ -104,8 +113,47 @@ uplink-breaching-hammer-desc = A heavy-duty powered breaching tool disguised as 
 uplink-explosive-collar-name = Explosive Collar
 uplink-explosive-collar-desc = The legally distinct reverse beartrap from a certin movie franchise.
 
-uplink-syndie-elegant-raid-name = Syndicate Elegant Raid Suit
-uplink-syndie-elegant-raid-desc = Even contract, nuclear killers have the right to remain fabulous.
+uplink-satchel-syndicate-name = Syndicate Satchel
+uplink-satchel-syndicate-desc = Ask not what the syndicate satchel can do for you, but rather, what can't it do.
 
-uplink-clothing-murder-socks-name = MURDER socks !!11!!!1
-uplink-clothing-murder-socks-desc = lets KILL people sisters!1!!! comes with noslip.
+uplink-duffel-syndicate-name = Syndicate Duffel Bag
+uplink-duffel-syndicate-desc = A large duffel bag for holding various traitor goods.
+
+uplink-trunk-syndicate-name = Syndicate Trunk
+uplink-trunk-syndicate-desc = Huge, metal, reflective, and stylish. All the other syndicates will want to get their hands on this trunk.
+
+uplink-syndiedrobe-name = SyndieDrobe flatpack
+uplink-syndiedrobe-desc = Looks like Syndieland's back in business.
+
+uplink-noslip-clown-shoes-name = No-Slip Clown Shoes
+uplink-noslip-clown-shoes-desc = For the clowns who want that extra edge against security.
+
+uplink-banana-esword-name = Banana Energy Sword
+uplink-banana-esword-desc = A bananium-modified energy sword that slips whoever it slices. Does minimal damage.
+
+uplink-mimana-stealthy-name = Stealthy Mimana
+uplink-mimana-stealthy-desc = A mutated mimana that seems to fade into the background. Don't lose it!
+
+uplink-hushpup-ammo-name = Buckshot box (12 gauge)
+uplink-hushpup-ammo-desc = A box of 16 buckshot shotgun shells. Compatible with the Hushpup.
+
+uplink-reinforcement-radio-assault-cyborg-bundle-name = Syndicate Assault Cyborg Teleporter bundle
+uplink-reinforcement-radio-assault-cyborg-bundle-desc = Radio in a syndicate assault cyborg, equipped with a modified L6, a double esword, and basic hacking tools. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
+
+uplink-reinforcement-radio-medical-cyborg-bundle-name = Syndicate Medical Cyborg Teleporter bundle
+uplink-reinforcement-radio-medical-cyborg-bundle-desc = A medical borg, with syndicate variants of items where applicable. Comes with basic weapons. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
+
+uplink-reinforcement-radio-saboteur-cyborg-bundle-name = Syndicate Saboteur Cyborg Teleporter bundle
+uplink-reinforcement-radio-saboteur-cyborg-bundle-desc = A saboteur cyborg, complete with syndicate advanced tools, standard hacking equipment, and basic weapons. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
+
+uplink-reinforcement-radio-stealth-cyborg-bundle-name = Syndicate Stealth Cyborg Teleporter bundle
+uplink-reinforcement-radio-stealth-cyborg-bundle-desc = A stealth cyborg. Whilst it is incapable of fighting, it has the ability to disguise, go invisible and move through vents. Comes with standard hacking tools. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
+
+uplink-syndicate-borgi-bundle-name = Syndicate Borgi bundle
+uplink-syndicate-borgi-bundle-desc = A basic syndicate borgi. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're the Borgi's best friends.
+
+uplink-syndicate-borgi-kitted-bundle-name = Kitted Syndicate Borgi bundle
+uplink-syndicate-borgi-kitted-bundle-desc = A syndicate borgi, outfitted with an L6 module, operative module and E-sword module. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're the Borgi's best friends.
+
+uplink-syndicate-borgi-speed-bundle-name = Speed Syndicate Borgi bundle
+uplink-syndicate-borgi-speed-bundle-desc = A syndicate borgi, with dagger modules and additional speed. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're the Borgi's best friends.

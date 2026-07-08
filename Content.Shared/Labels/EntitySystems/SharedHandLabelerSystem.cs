@@ -13,14 +13,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Labels.EntitySystems;
 
-public abstract class SharedHandLabelerSystem : EntitySystem
+public abstract partial class SharedHandLabelerSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedUserInterfaceSystem UserInterfaceSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly LabelSystem _labelSystem = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] protected SharedUserInterfaceSystem UserInterfaceSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private LabelSystem _labelSystem = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     public override void Initialize()
     {
@@ -95,7 +95,7 @@ public abstract class SharedHandLabelerSystem : EntitySystem
     {
         // Starlight BEGIN
         // Split out to reduce boolean vomit.
-        if (args.Target is not { Valid: true } target|| !args.CanAccess) 
+        if (args.Target is not { Valid: true } target|| !args.CanAccess)
             return;
         if (_whitelistSystem.IsWhitelistPass(ent.Comp.Blacklist, target)) // If it hits the blacklist, abort
             return;
@@ -137,7 +137,7 @@ public abstract class SharedHandLabelerSystem : EntitySystem
     {
         // Starlight BEGIN
         // Split out to reduce boolean vomit.
-        if (args.Target is not { Valid: true } target|| !args.CanReach) 
+        if (args.Target is not { Valid: true } target|| !args.CanReach)
             return;
         if (_whitelistSystem.IsWhitelistPass(ent.Comp.Blacklist, target)) // If it hits the blacklist, abort
             return;

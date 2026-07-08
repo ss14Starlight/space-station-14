@@ -87,7 +87,7 @@ public sealed class SolutionCommand : ToolshedCommand
     public SolutionRef AdjTemperature([PipedArgument] SolutionRef input, float temp)
     {
         _solutionContainer ??= GetSys<SharedSolutionContainerSystem>();
-        
+
         _solutionContainer.SetTemperature(input.Solution, temp);
         return input;
     }
@@ -100,7 +100,7 @@ public sealed class SolutionCommand : ToolshedCommand
     public SolutionRef AdjThermalEnergy([PipedArgument] SolutionRef input, float energy)
     {
         _solutionContainer ??= GetSys<SharedSolutionContainerSystem>();
-        
+
         _solutionContainer.SetThermalEnergy(input.Solution, energy);
         return input;
     }
@@ -135,7 +135,7 @@ public sealed class SolutionCommand : ToolshedCommand
     [CommandImplementation("delete")]
     public IEnumerable<EntityUid> Delete([PipedArgument] IEnumerable<EntityUid> uid, string name) =>
         uid.Select(x => Delete(x, name));
-    
+
     [CommandImplementation("delete")]
     public EntityUid? Delete([PipedArgument] SolutionRef solution)
     {

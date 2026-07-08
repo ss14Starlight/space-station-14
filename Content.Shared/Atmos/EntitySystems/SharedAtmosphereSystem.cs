@@ -1,6 +1,6 @@
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Atmos.Prototypes;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
@@ -8,9 +8,9 @@ namespace Content.Shared.Atmos.EntitySystems
 {
     public abstract partial class SharedAtmosphereSystem : EntitySystem
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly SharedInternalsSystem _internals = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private SharedInternalsSystem _internals = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
 
         private EntityQuery<InternalsComponent> _internalsQuery;
 

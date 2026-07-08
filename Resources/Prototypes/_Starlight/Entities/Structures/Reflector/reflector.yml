@@ -33,7 +33,7 @@
       - Energy
   - type: RCDDeconstructable
     deconstructable: false
-  - type: Sprite 
+  - type: Sprite
     sprite: _Starlight/Structures/Reflector/reflector.rsi
     layers:
     - state: reflector_box

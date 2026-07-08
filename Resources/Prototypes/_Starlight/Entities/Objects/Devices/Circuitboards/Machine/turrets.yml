@@ -21,7 +21,7 @@
       PowerCell:
         amount: 1
         defaultPrototype: PowerCellMedium
-        examineName: construction-insert-info-examine-name-power-cell 
+        examineName: construction-insert-info-examine-name-power-cell
 
 - type: entity
   parent: WeaponEnergyTurretStationMachineCircuitboardBase

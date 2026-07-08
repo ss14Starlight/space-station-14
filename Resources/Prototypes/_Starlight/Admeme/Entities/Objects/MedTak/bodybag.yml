@@ -1,0 +1,28 @@
+- type: entity
+  id: BodyBagMedTak
+  parent: [ BodyBagLockable, BaseMedTakContraband ]
+  name: secure body bag
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Objects/MedTak/bodybag.rsi
+  - type: Icon
+    sprite: _Starlight/Admeme/Objects/MedTak/bodybag.rsi
+    state: bag
+  - type: AccessReader
+    access: [["MedTak"]]
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: BodyBagMedTakFolded
+  parent: BodyBagMedTak
+  suffix: folded
+  components:
+  - type: Foldable
+    folded: true

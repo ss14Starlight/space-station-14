@@ -28,18 +28,18 @@ namespace Content.Server.Voting.Managers
 {
     public sealed partial class VoteManager : IVoteManager
     {
-        [Dependency] private readonly IServerNetManager _netManager = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IChatManager _chatManager = default!;
-        [Dependency] private readonly IAdminManager _adminMgr = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IGameMapManager _gameMapManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly ISharedPlaytimeManager _playtimeManager = default!;
+        [Dependency] private IServerNetManager _netManager = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IAdminManager _adminMgr = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IGameMapManager _gameMapManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private ISharedPlaytimeManager _playtimeManager = default!;
 
         private int _nextVoteId = 1;
 
@@ -453,15 +453,15 @@ namespace Content.Server.Voting.Managers
                     return false;
             }
 
-            // Begin Stellar - Cosmic Cult
+            // Begin Starlight - Cosmic Cult
             if (eligibility == VoterEligibility.CosmicCult)
             {
-                var evt = new Content.Server._ST.CosmicCult.CosmicCultVoterEligibilityEvent(player, false);
+                var evt = new Content.Server._Starlight.CosmicCult.CosmicCultVoterEligibilityEvent(player, false);
                 _entityManager.EventBus.RaiseEvent(EventSource.Local, ref evt);
                 if (!evt.Eligible)
                     return false;
             }
-            // End Stellar - Cosmic Cult
+            // End Starlight - Cosmic Cult
 
             return true;
         }
@@ -561,7 +561,7 @@ namespace Content.Server.Voting.Managers
             Ghost, // Player needs to be a ghost
             GhostMinimumPlaytime, // Player needs to be a ghost, with a minimum playtime and deathtime as defined by votekick CCvars.
             MinimumPlaytime, //Player needs to have a minimum playtime and deathtime as defined by votekick CCvars.
-            CosmicCult, // Stellar - Cosmic Cult
+            CosmicCult, // Starlight - Cosmic Cult
         }
 
         #endregion

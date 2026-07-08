@@ -14,3 +14,4 @@ entity-effect-status-effect-StaminaModifier = modified stamina
 entity-effect-status-effect-RadiationProtection = radiation protection
 entity-effect-status-effect-Drowsiness = drowsiness
 entity-effect-status-effect-Adrenaline = adrenaline
+entity-effect-status-effect-PoliteLanguage = polite language

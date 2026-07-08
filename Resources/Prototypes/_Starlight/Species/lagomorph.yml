@@ -5,19 +5,19 @@
   prototype: MobLagomorph
   sprites: MobLagomorphSprites
   markingLimits: MobLagomorphMarkingLimits
-  dollPrototype: MobLagomorphDummy
+  dollPrototype: AppearanceLagomorph
   skinColoration: Hues
   customName: true
   minAge: 22
   youngAge: 25
   oldAge: 70
   maxAge: 80
-  minWidth: 0.9
+  minWidth: 0.8
   defaultWidth: 1
   maxWidth: 1.2
-  minHeight: 0.9
+  minHeight: 0.8
   defaultHeight: 1
-  maxHeight: 1.3
+  maxHeight: 1.2
   standardSize: 150
   standardWeight: 40
   standardDensity: 17
@@ -32,7 +32,7 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Chest: MobLagomorphTorso
-    Eyes: MobHumanoidEyes
+    Eyes: MobLagomorphEyes
     HeadTop: MobHumanoidAnyMarking
     LArm: MobLagomorphLArm
     RArm: MobLagomorphRArm
@@ -45,6 +45,7 @@
 
 - type: markingPoints
   id: MobLagomorphMarkingLimits
+  onlyWhitelisted: true
   points:
     Hair:
       points: 1
@@ -75,6 +76,12 @@
     Legs:
       points: 3
       required: false
+
+- type: humanoidBaseSprite
+  id: MobLagomorphEyes
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: eyes
 
 - type: humanoidBaseSprite
   id: MobLagomorphHead

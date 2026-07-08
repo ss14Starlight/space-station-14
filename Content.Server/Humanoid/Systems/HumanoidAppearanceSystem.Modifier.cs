@@ -5,16 +5,16 @@ using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Server.Body.Systems; // Starlight
-using Content.Shared.Body.Components; // Starlight
+using Content.Shared.Body.Components;
+using Content.Server._Starlight.Medical.Body.Systems; // Starlight
 
 namespace Content.Server.Humanoid;
 
 public sealed partial class HumanoidAppearanceSystem
 {
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly BodySystem _body = default!; //Starlight
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private BodySystem _body = default!; //Starlight
 
     private void OnVerbsRequest(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<Verb> args)
     {
@@ -56,7 +56,7 @@ public sealed partial class HumanoidAppearanceSystem
 
         foreach (var part in _body.GetBodyChildren(args.Target))
             RaiseLocalEvent(part.Id, args);
-        
+
         foreach (var organ in _body.GetBodyOrgans(args.Target))
             RaiseLocalEvent(organ.Id, args);
     }

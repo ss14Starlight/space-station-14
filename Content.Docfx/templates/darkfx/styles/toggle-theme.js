@@ -20,7 +20,7 @@ if (b) {
 
     sw.addEventListener("change", switchEventListener);
     sw_mobile.addEventListener("change", switchEventListener);
-    
+
     // sync state between switches
     sw.addEventListener("change", function() {
       sw_mobile.checked = this.checked;

@@ -1,7 +1,7 @@
 - type: entity
   id: BoxFolderNanoTrasenClipboard
   parent: BoxFolderClipboard
-  name: nanotrasen clipboard
+  name: NanoTrasen clipboard
   description: A stylish clipboard in NanoTrasen colors.
   components:
     - type: Sprite
@@ -116,6 +116,8 @@
       - Medical
       - Service
       - Engineering
+      - Law
+      - NanoTrasen
       privilegedIdSlot:
         name: id-card-clipboard-priviliged-id
         ejectSound: /Audio/Machines/id_swipe.ogg
@@ -161,7 +163,7 @@
             - DoorBumpOpener
         hop_clipboard_target_id:
           minCount: 2
-          whitelist: 
+          whitelist:
             tags:
             - DoorBumpOpener
     - type: MeleeWeapon
@@ -235,6 +237,11 @@
   suffix: White, Product Orders
 
 - type: entity
+  parent: [BoxFolderBlackEmpty, BoxFolderFillMorgueReport]
+  id: BoxFolderBlackMorgue
+  suffix: Black, Morgue DNR Reports
+
+- type: entity
   abstract: true
   id: BoxFolderFillProductOrder # For cargo locker folders
   suffix: Product Orders
@@ -245,3 +252,27 @@
         children:
         - id: PrintedDocumentProductOrder
           amount: 18
+
+- type: entity
+  abstract: true
+  id: BoxFolderFillMorgueReport # For morgue locker folders
+  suffix: Morgue DNR Reports
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PrintedDocumentReportMorgue
+          amount: 18
+
+- type: entity
+  parent: BoxFolderNuclearCodes
+  id: BoxFolderAllNuclearCodes
+  name: nuclear code folder
+  suffix: All Nukes
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: NukeCodePaperAllNukes
+    sound:
+      path: /Audio/Effects/packetrip.ogg

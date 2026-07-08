@@ -16,12 +16,12 @@ public sealed class LockVisualizerSystem : VisualizerSystem<LockVisualsComponent
         // Lock state for the entity.
         if (!AppearanceSystem.TryGetData<bool>(uid, LockVisuals.Locked, out var locked, args.Component))
             locked = true;
-        
+
         if (!AppearanceSystem.TryGetData<bool>(uid, PowerDeviceVisuals.Powered, out var powered, args.Component)) // Starlight-edit
             powered = true;
 
         var unlockedStateExist = args.Sprite.BaseRSI?.TryGetState(comp.StateUnlocked, out _);
-            
+
         if (AppearanceSystem.TryGetData<bool>(uid, StorageVisuals.Open, out var open, args.Component))
         {
             var visible = open == true ? !open : powered; // Starlight-edit

@@ -18,7 +18,7 @@ public sealed partial class RandomSpriteComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("available")]
     public List<Dictionary<string, Dictionary<string, string?>>> Available = new();
-    
+
     /// <summary>
     /// Avaible HeldPrefixes
     /// </summary>

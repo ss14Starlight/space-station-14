@@ -36,7 +36,11 @@ public sealed partial class SlotDefinition
     [DataField("dependsOn")] public string? DependsOn { get; private set; }
 
     [DataField("dependsOnComponents")] public ComponentRegistry? DependsOnComponents { get; private set; }
-
+    #region Starlight
+    // List of slots that this slot depends on (at least one must be occupied), used in place of dependsOn.
+    [DataField("dependsOnAny")]
+    public List<string> DependsOnAny = new();
+    #endregion
     [DataField("displayName", required: true)]
     public string DisplayName { get; private set; } = string.Empty;
 
@@ -45,6 +49,13 @@ public sealed partial class SlotDefinition
     ///     <seealso cref="SharedStrippableSystem.IsStripHidden"/>
     /// </summary>
     [DataField("stripHidden")] public bool StripHidden { get; private set; }
+
+    // Starlight start
+    /// <summary>
+    ///     Whether or not this slot is completely hidden from the strip menu for other players.
+    /// </summary>
+    [DataField("hideFromStrip")] public bool HideFromStrip { get; private set; }
+    // Starlight end
 
     /// <summary>
     ///     Offset for the clothing sprites.

@@ -10,6 +10,20 @@
           - id: Paper
           - id: Pen
           - id: RubberStampIAA
+          - id: Flash
+
+- type: entity
+  id: BriefcaseLawyerFilled
+  parent: BriefcaseBrown
+  suffix: Lawyer
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: Paper
+          - id: Pen
+          - id: RubberStampLawyer
 
 # Syndicate dead drop
 - type: entity
@@ -72,3 +86,13 @@
         - id: BalloonOperative
         - id: LubeGrenade
         - id: GatfruitSeeds
+
+- type: entity
+  id: BriefcaseWeaponDMRFilled
+  parent: BriefcaseWeapon
+  name: secure estoc case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: WeaponRifleEstoc

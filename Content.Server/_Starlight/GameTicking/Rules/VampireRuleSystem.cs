@@ -9,16 +9,16 @@ using Content.Shared._Starlight.Antags.Vampires.Components;
 using System.Text;
 using Robust.Shared.Audio;
 using Content.Server.GameTicking.Rules;
-using Robust.Shared.Random;
+using Content.Shared._Starlight.Roles.Components;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
 public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleComponent>
 {
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
-    [Dependency] private readonly ObjectivesSystem _objective = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private SharedRoleSystem _role = default!;
+    [Dependency] private ObjectivesSystem _objective = default!;
 
     public readonly SoundSpecifier BriefingSound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/vampire_start.ogg");
 
@@ -44,7 +44,7 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
             _role.MindRemoveRole((mindId, mind), "MindRoleVampire");
             return false;
         }
-        
+
         var meta = MetaData(target);
         var name = meta?.EntityName ?? "Unknown";
         var briefing = Loc.GetString("vampire-role-greeting", ("name", name));
@@ -62,22 +62,6 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         EnsureComp<VampireComponent>(target);
 
         rule.VampireMinds.Add(mindId);
-
-        foreach (var objective in rule.BaseObjectives)
-            _mind.TryAddObjective(mindId, mind, objective);
-
-        var rng = new Random();
-        if (rule.EscapeObjectives.Count > 0)
-        {
-            var obj = rng.Pick(rule.EscapeObjectives);
-            _mind.TryAddObjective(mindId, mind, obj);
-        }
-
-        if (rule.StealObjectives.Count > 0)
-        {
-            var obj = rng.Pick(rule.StealObjectives);
-            _mind.TryAddObjective(mindId, mind, obj);
-        }
 
         return true;
     }

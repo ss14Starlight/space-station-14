@@ -173,7 +173,7 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#E7EEEE"
-        
+
 - type: entity
   id: MagazineRiflePractice
   name: "magazine (.20 rifle practice)"
@@ -264,7 +264,7 @@
     magState: mag
     steps: 7
     zeroVisible: false
-    
+
 - type: entity
   id: MagazineRifleM52SP
   name: "magazine (.20 rifle SP)"

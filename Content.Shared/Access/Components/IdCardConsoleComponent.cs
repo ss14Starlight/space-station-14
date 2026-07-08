@@ -26,9 +26,9 @@ public sealed partial class IdCardConsoleComponent : Component
         public readonly string FullName;
         public readonly string JobTitle;
         public readonly List<ProtoId<AccessLevelPrototype>> AccessList;
-        public readonly ProtoId<JobPrototype> JobPrototype;
+        public readonly ProtoId<JobPrototype>? JobPrototype; // Starlight: Nullable
 
-        public WriteToTargetIdMessage(string fullName, string jobTitle, List<ProtoId<AccessLevelPrototype>> accessList, ProtoId<JobPrototype> jobPrototype)
+        public WriteToTargetIdMessage(string fullName, string jobTitle, List<ProtoId<AccessLevelPrototype>> accessList, ProtoId<JobPrototype>? jobPrototype) // Starlight: Nullable jobPrototype
         {
             FullName = fullName;
             JobTitle = jobTitle;
@@ -103,7 +103,7 @@ public sealed partial class IdCardConsoleComponent : Component
             TargetIdName = targetIdName;
             // Starlight-edit: Start
             CurrentAccessGroup = currentAccessGroup;
-            AvailableAccessGroups = availableAccessGroups; 
+            AvailableAccessGroups = availableAccessGroups;
             // Starlight-edit: End
         }
     }

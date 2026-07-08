@@ -6,6 +6,7 @@ using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Zombies;
+using Content.Server._Starlight.Language; // Starlight-start: zombie language
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
@@ -21,19 +22,20 @@ using System.Globalization;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
+public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly ZombieSystem _zombie = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private ZombieSystem _zombie = default!;
+    [Dependency] private LanguageSystem _language = default!; // Starlight-start: zombie language
 
     public override void Initialize()
     {
@@ -42,7 +44,16 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
         SubscribeLocalEvent<InitialInfectedRoleComponent, GetBriefingEvent>(OnGetBriefing);
         SubscribeLocalEvent<ZombieRoleComponent, GetBriefingEvent>(OnGetBriefing);
         SubscribeLocalEvent<IncurableZombieComponent, ZombifySelfActionEvent>(OnZombifySelf);
+        SubscribeLocalEvent<ZombieRuleComponent, AfterAntagEntitySelectedEvent>(OnInitialInfectedSelected); // Starlight-start: zombie language
     }
+
+    // Starlight-start: zombie language
+    /// <summary>
+    /// Gives initial infected the ability to understand (but not speak) zombie language.
+    /// </summary>
+    private void OnInitialInfectedSelected(EntityUid uid, ZombieRuleComponent comp, ref AfterAntagEntitySelectedEvent args) =>
+        _language.AddLanguage(args.EntityUid, "Zombie", addSpoken: false, addUnderstood: true);
+    // Starlight-end
 
     private void OnGetBriefing(Entity<InitialInfectedRoleComponent> role, ref GetBriefingEvent args)
     {

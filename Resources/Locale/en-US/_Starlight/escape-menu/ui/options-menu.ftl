@@ -49,3 +49,29 @@ ui-options-ranged-sight-scale = Sights Scale
 ui-options-ranged-sight-offset = Sights Basic Offset
 ui-options-sight-main-color = Sight Main Color
 ui-options-sight-second-color = Sight Second Color
+
+## Admin
+
+ui-options-admin-ghost-hud = Admin Ghost HUD
+
+ui-options-admin-ghost-hud-setting-job = Job icons
+ui-options-admin-ghost-hud-setting-job-off = Off
+ui-options-admin-ghost-hud-setting-job-job = Job only
+ui-options-admin-ghost-hud-setting-job-jobandmindshield = Job and mindshield
+
+ui-options-admin-ghost-hud-show-criminal-record-icons = Show criminal record icons
+
+ui-options-admin-ghost-hud-setting-health = Health indicators
+ui-options-admin-ghost-hud-setting-health-off = Off
+ui-options-admin-ghost-hud-setting-health-icons = Icons
+ui-options-admin-ghost-hud-setting-health-bars = Bars
+ui-options-admin-ghost-hud-setting-health-iconsandbars = Icons and bars
+
+ui-options-admin-ghost-hud-show-faction-icons = Show faction icons
+ui-options-admin-ghost-hud-show-satiation-icons = Show satiation icons
+
+ui-options-admin-ghost = Admin Ghost Config
+ui-options-admin-ghost-script-label = aghost Script
+ui-options-admin-ghost-script-tooltip =
+    The name of the script you want to automatically run when becoming admin ghost, either by command or by observing from lobby.
+    Path is relative to your launcher's data directory, typically inside AppData on Windows or .local/share on Linux.
