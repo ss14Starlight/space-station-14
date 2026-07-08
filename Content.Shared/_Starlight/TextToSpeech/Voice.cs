@@ -31,8 +31,16 @@ public sealed partial class VoicePrototype : IPrototype
     public string? License { get; private set; }
 
     [DataField("pitch")]
-    public string? Pitch { get; private set; } = null;
+    public VoicePitch? Pitch { get; private set; } = null;
 
     [DataField("tags")]
-    public List<string> Tags { get; private set; } = new();
+    public List<ProtoId<VoiceTagPrototype>> Tags { get; private set; } = new();
 }
+
+public enum VoicePitch : byte
+{
+    Low,
+    Medium,
+    High
+}
+

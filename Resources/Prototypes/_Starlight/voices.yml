@@ -4883,14 +4883,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
-
-# -----------------------------------------------------------------------------
   pitch: Medium
   tags:
   - american
   - clear
   - serious
 
+# -----------------------------------------------------------------------------
 - type: voice
   id: borgColorfingert
   voice: 1000
