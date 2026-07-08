@@ -92,7 +92,7 @@ public sealed partial class CustomSpawnerComponent : Component
     [DataField, AutoNetworkedField] public bool LightVisible = true;
 
     /// When <see langword="false"/>, skips trying to update spawnpad sprites.
-    [DataField] public bool UpdatePadSprites = true;
+    [DataField, AutoNetworkedField] public bool UpdatePadSprites = true;
 
     /// Prototype ID for the hologram entity.
     [DataField] public EntProtoId? HologramProtoId;
