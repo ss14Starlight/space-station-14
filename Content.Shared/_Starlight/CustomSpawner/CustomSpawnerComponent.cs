@@ -77,6 +77,10 @@ public sealed partial class CustomSpawnerComponent : Component
 
     /// Sprite specifier for the hologram to display at the spawner's position. Does nothing if <see langword="null"/>.
     [DataField, AutoNetworkedField] public SpriteSpecifier.Rsi? HologramSprite;
+    /// Prototype ID to use for hologram instead of a set sprite. Requires <see cref="UseProtoSprite"/> to be <see langword="true"/>.
+    [DataField, AutoNetworkedField] public EntProtoId? HologramProtoSprite;
+    /// Determines if <see cref="HologramProtoSprite"/> will be used instead of <see cref="HologramSprite"/>.
+    [DataField, AutoNetworkedField] public bool UseProtoSprite;
     /// Determines if the hologram is visible or not.
     [DataField, AutoNetworkedField] public bool HologramVisible;
     /// Also affects light color if light component is present.
@@ -86,6 +90,9 @@ public sealed partial class CustomSpawnerComponent : Component
     /// Reference to the hologram entity so that it can be updated.
     [ViewVariables, AutoNetworkedField] public EntityUid? HologramEntity;
     [DataField, AutoNetworkedField] public bool LightVisible = true;
+
+    /// When <see langword="false"/>, skips trying to update spawnpad sprites.
+    [DataField] public bool UpdatePadSprites = true;
 
     /// Prototype ID for the hologram entity.
     [DataField] public EntProtoId? HologramProtoId;

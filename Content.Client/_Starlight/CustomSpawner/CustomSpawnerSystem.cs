@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Shared._Starlight.CustomSpawner;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -32,7 +33,7 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
     {
         base.UpdateHologram(spawner, sComp, hologram, hComp);
         // update sprite layers for pad
-        if (TryComp<SpriteComponent>(spawner, out var padSprite))
+        if (TryComp<SpriteComponent>(spawner, out var padSprite) && sComp.UpdatePadSprites)
         {
             _sprite.LayerSetVisible((spawner, padSprite), "enabled", sComp.Enabled);
             var color = Color.InterpolateBetween(sComp.HologramColor1, sComp.HologramColor2, Lambda);
@@ -73,14 +74,30 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
         for (var i = sprite.AllLayers.Count() - 1; i >= 0; i--)
             _sprite.RemoveLayer((uid, sprite), i);
 
-        var hologramLayer = new PrototypeLayerData
+        if (comp is { UseProtoSprite: true, ProtoSprite: not null })
         {
-            RsiPath = comp.Rsi,
-            State = comp.State,
-        };
-        _sprite.AddLayer((uid, sprite), hologramLayer, null);
+            var spriteEntity = Spawn(comp.ProtoSprite, MapCoordinates.Nullspace);
+            if (!TryComp<SpriteComponent>(spriteEntity, out var spriteComp))
+            {
+                QueueDel(spriteEntity);
+                Log.Warning($"Prototype specified for custom spawner hologram {ToPrettyString(uid)} lacks a sprite component.");
+                return;
+            }
+            _sprite.CopySprite((spriteEntity, spriteComp), (uid, sprite));
+            QueueDel(spriteEntity);
+        }
+        else
+        {
+            var hologramLayer = new PrototypeLayerData { RsiPath = comp.Rsi, State = comp.State, };
+            _sprite.AddLayer((uid, sprite), hologramLayer, null);
+        }
+
         _sprite.SetColor((uid, sprite), Color.White);
+        _sprite.SetOffset((uid, sprite), comp.Offset);
         _sprite.SetDrawDepth((uid, sprite), 1);
+        sprite.NoRotation = true;
+        sprite.DirectionOverride = Direction.South;
+        sprite.EnableDirectionOverride = true;
 
         for (var i = 0; i < sprite.AllLayers.Count(); i++)
             if (_sprite.TryGetLayer((uid, sprite), i, out var layer, false) && layer.ShaderPrototype != "DisplacedDraw")

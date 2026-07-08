@@ -51,6 +51,7 @@
       hologramColor2: "#3a6981"
       hologramOffset: 0.01, 0.2
     - type: Sprite
+      snapCardinals: true
       sprite: _Starlight/Objects/Devices/custom_spawner.rsi
       layers:
         - state: pad
@@ -90,6 +91,7 @@
     - type: CustomSpawner
       isMarker: false
       hologramVisible: true
+      updatePadSprites: false
       hologramSprite:
         sprite: _Starlight/Objects/Devices/custom_spawner.rsi
         state: default-holo

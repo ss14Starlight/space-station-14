@@ -1,4 +1,5 @@
 using System.Numerics;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.CustomSpawner;
 
@@ -14,4 +15,7 @@ public sealed partial class CustomSpawnerHologramComponent : Component
     [DataField] public float Alpha = 1;
     [DataField] public float Intensity = 2;
     [DataField] public float ScrollRate = 0.125f;
+    [DataField] public Vector2 Offset = Vector2.Zero;
+    [DataField] public EntProtoId? ProtoSprite;
+    [DataField] public bool UseProtoSprite;
 }

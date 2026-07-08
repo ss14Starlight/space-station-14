@@ -185,7 +185,6 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
         if (comp.HologramProtoId is null) return;
         comp.HologramEntity = PredictedSpawnAttachedTo(comp.HologramProtoId, Transform(uid).Coordinates);
         _xform.SetParent(comp.HologramEntity.Value, uid); // PredictedSpawnAttachedTo seems to just not work for this??? so here we are i guess
-        _xform.SetLocalPosition(comp.HologramEntity.Value, comp.HologramOffset);
         UpdateHologram(uid, comp, comp.HologramEntity.Value,
             Comp<CustomSpawnerHologramComponent>(comp.HologramEntity.Value));
     }
@@ -220,6 +219,8 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
             hComp.Rsi = sComp.HologramSprite.RsiPath.ToString();
             hComp.State = sComp.HologramSprite.RsiState;
         }
-        _xform.SetLocalPosition(hologram, sComp.HologramOffset);
+        hComp.Offset = sComp.HologramOffset;
+        hComp.ProtoSprite = sComp.HologramProtoSprite;
+        hComp.UseProtoSprite = sComp.UseProtoSprite;
     }
 }
