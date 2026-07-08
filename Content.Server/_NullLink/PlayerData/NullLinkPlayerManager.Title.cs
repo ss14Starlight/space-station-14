@@ -34,7 +34,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
                     continue;
                 if (title.Color != null)
                     result.Add($"[color={title.Color.Value.ToHex()}]{title.Text}[/color]");
-                else if (player.Channel.UserData.PatronTier is { } patron && ChatManager.PatronOocColors.TryGetValue(patron, out var patronColor))
+                else if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) && player.Channel.UserData.PatronTier is { } patron && ChatManager.PatronOocColors.TryGetValue(patron, out var patronColor))
                     result.Add($"[color={patronColor}]{title.Text}[/color]");
                 else
                     result.Add(title.Text);
