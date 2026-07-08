@@ -21,11 +21,11 @@
                    HorizontalAlignment="Center"
                    Text="{Loc 'guidebook-category-search-no-results'}"
                    Margin="0 6 0 0"/>
-            <!-- Starlight end -->
             <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
                 <fancyTree:FancyTree Name="Tree" VerticalExpand="True" HorizontalExpand="True" Access="Public"/>
                 <cc:VSeparator StyleClasses="LowDivider" Margin="0 -2"/>
             </BoxContainer>
+            <!-- Starlight end -->
         </BoxContainer>
         <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
             <BoxContainer Name="SearchContainer" Visible="False" HorizontalExpand="True">
