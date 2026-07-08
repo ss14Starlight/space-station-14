@@ -32,3 +32,8 @@
   id: Eeeplet
   announcement: terror-eeep
   rule: EeepEvent
+
+- type: ninjaHackingThreat
+  id: Colossus
+  announcement: terror-colossus
+  rule: ColossusSpawn
