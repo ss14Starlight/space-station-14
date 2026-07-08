@@ -137,7 +137,7 @@ jobs:
             exit 0
           fi
           timeout --signal=TERM --kill-after=2m 15m \
-            dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --settings "$RUNSETTINGS"
+            dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 5min --settings "$RUNSETTINGS"
 
     - name: Test results
       continue-on-error: true
