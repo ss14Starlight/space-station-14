@@ -997,14 +997,6 @@
       nameFormat: name-format-ert
 
 ## Centcomm
-- type: randomHumanoidSettings
-  id: CCStaffCivilian
-  parent: EventHumanoid
-  components:
-    - type: GhostRole
-      rules: ghost-role-information-cc-aligned-rules
-      raffle:
-        settings: short
 
 - type: entity
   id: RandomHumanoidCCServiceWorker
@@ -1074,9 +1066,6 @@
   id: RandomHumanoidCCBartender
   name: centcomm bartender ghost role
   components:
-    - type: GhostRole
-      name: ghost-role-information-cc-bartender-name
-      description: ghost-role-information-cc-bartender-description
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: bartender
@@ -1087,9 +1076,6 @@
   id: RandomHumanoidCCJanitor
   name: centcomm janitor ghost role
   components:
-    - type: GhostRole
-      name: ghost-role-information-cc-janitor-name
-      description: ghost-role-information-cc-janitor-description
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: janitor
