@@ -10,8 +10,10 @@ public sealed partial class VoiceTagFilterConfigPrototype : IPrototype
     [IdDataField]
     public string ID { get; private set; } = default!;
 
+    public const int DefaultMaxPresentedTags = 25;
+
     [DataField]
-    public int MaxPresentedTags { get; private set; } = 25;
+    public int MaxPresentedTags { get; private set; } = DefaultMaxPresentedTags;
 
     [DataField]
     public HashSet<ProtoId<VoiceTagPrototype>> ExplicitlyIncludedTags { get; private set; } = new();

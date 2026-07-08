@@ -31,7 +31,7 @@ public sealed partial class VoiceSelectorWindow : DefaultWindow
 
     private Sex? _sexFilter = null;
     private VoicePitch? _pitchFilter = null;
-    private string? _tagFilter = null;
+    private VoiceTag? _tagFilter = null;
 
     public VoiceSelectorWindow(List<VoicePrototype> voices)
     {
@@ -45,11 +45,17 @@ public sealed partial class VoiceSelectorWindow : DefaultWindow
         UpdateVoices(voices);
 
         // Populate GenderFilter
-        GenderFilter.AddItem(Loc.GetString("voice-selector-filter-all"));
+        GenderFilter.AddItem(Loc.GetString("voice-selector-gender-all"));
         int genderIndex = 1;
         foreach (var sex in Enum.GetValues<Sex>())
         {
-            GenderFilter.AddItem(sex.ToString(), genderIndex);
+            var locKey = sex switch
+            {
+                Sex.Male => "voice-selector-gender-masculine",
+                Sex.Female => "voice-selector-gender-feminine",
+                _ => "voice-selector-gender-neutral"
+            };
+            GenderFilter.AddItem(Loc.GetString(locKey), genderIndex);
             GenderFilter.SetItemMetadata(genderIndex, sex);
             genderIndex++;
         }
@@ -71,11 +77,11 @@ public sealed partial class VoiceSelectorWindow : DefaultWindow
         int tagIndex = 1;
         foreach (var tag in _taxonomy.CachedTags)
         {
-            TagFilter.AddItem(_taxonomy.FormatTag(tag), tagIndex);
+            TagFilter.AddItem(tag.ToDisplayName(), tagIndex);
             TagFilter.SetItemMetadata(tagIndex, tag);
             tagIndex++;
         }
-        TagFilter.OnItemSelected += args => OnFilterSelected<string>(TagFilter, args.Id, v => _tagFilter = v);
+        TagFilter.OnItemSelected += args => OnFilterSelectedNullable<VoiceTag>(TagFilter, args.Id, v => _tagFilter = v);
 
         SearchLine.OnTextChanged += _ => FilterAndUpdateVoices();
         PreviewButton.OnPressed += _ => OnPreviewRequested?.Invoke();
@@ -121,10 +127,10 @@ public sealed partial class VoiceSelectorWindow : DefaultWindow
             var mappedTags = _taxonomy.ResolvePresentingTags(v);
             return (_sexFilter == null || v.Sex == _sexFilter) &&
                    (_pitchFilter == null || v.Pitch == _pitchFilter) &&
-                   (_tagFilter == null || mappedTags.Contains(_tagFilter)) &&
+                   (_tagFilter == null || mappedTags.Contains(_tagFilter.Value)) &&
                    (!hasSearch ||
                     Loc.GetString(v.Name).Contains(searchText, StringComparison.InvariantCultureIgnoreCase) ||
-                    mappedTags.Any(t => t.Contains(searchLower)));
+                    mappedTags.Any(t => t.Value.Contains(searchLower)));
         }).ToList();
         UpdateVoices(voices, updateList: false);
     }
@@ -142,7 +148,13 @@ public sealed partial class VoiceSelectorWindow : DefaultWindow
         VoiceList.Clear();
         foreach (var voice in displayVoices)
         {
-            VoiceList.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", metadata: voice);
+            var sexLoc = voice.Sex switch
+            {
+                Sex.Male => Loc.GetString("voice-selector-gender-masculine"),
+                Sex.Female => Loc.GetString("voice-selector-gender-feminine"),
+                _ => Loc.GetString("voice-selector-gender-neutral")
+            };
+            VoiceList.AddItem($"[{sexLoc}] {Loc.GetString(voice.Name)}", metadata: voice);
         }
 
         if (updateVoice && CurrentVoice != null)

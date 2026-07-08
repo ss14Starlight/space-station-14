@@ -17,7 +17,7 @@
   parents: [european]
 
 - type: voiceTag
-  id: southeast asian
+  id: southeast-asian
   parents: [asian]
 
 - type: voiceTag

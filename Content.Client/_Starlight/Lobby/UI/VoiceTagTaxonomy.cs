@@ -12,9 +12,13 @@ public sealed class VoiceTagTaxonomy
     private readonly IPrototypeManager _prototypeManager;
     private readonly VoiceTagFilterConfigPrototype _config;
 
-    private readonly HashSet<string> _presentingTags;
-    private readonly List<string> _cachedTags;
+    private readonly HashSet<VoiceTag> _excludedTags;
+    private readonly HashSet<VoiceTag> _explicitlyIncludedTags;
 
+    private readonly HashSet<VoiceTag> _presentingTags;
+    private readonly List<VoiceTag> _cachedTags;
+
+    private const int MaxRecursionDepth = 10;
     private static readonly ProtoId<VoiceTagFilterConfigPrototype> DefaultConfigId = "default";
 
     public VoiceTagTaxonomy(List<VoicePrototype> voices, IPrototypeManager prototypeManager)
@@ -22,35 +26,38 @@ public sealed class VoiceTagTaxonomy
         _prototypeManager = prototypeManager;
         _config = prototypeManager.Index(DefaultConfigId);
 
+        _excludedTags = _config.ExcludedTags.Select(t => new VoiceTag(t.Id)).ToHashSet();
+        _explicitlyIncludedTags = _config.ExplicitlyIncludedTags.Select(t => new VoiceTag(t.Id)).ToHashSet();
+
         _presentingTags = ComputePresentingTags(voices);
-        _cachedTags = voices.SelectMany(ResolvePresentingTags).Distinct().OrderBy(t => t).ToList();
+        _cachedTags = voices.SelectMany(ResolvePresentingTags).Distinct().OrderBy(t => t.Value).ToList();
     }
 
-    public List<string> CachedTags => _cachedTags;
+    public List<VoiceTag> CachedTags => _cachedTags;
 
-    public HashSet<string> ResolvePresentingTags(VoicePrototype v)
+    public HashSet<VoiceTag> ResolvePresentingTags(VoicePrototype v)
     {
-        var result = new HashSet<string>();
-        var visited = new HashSet<string>();
+        var result = new HashSet<VoiceTag>();
+        var visited = new HashSet<VoiceTag>();
 
         foreach (var protoId in v.Tags)
         {
-            ResolveAncestors(protoId.Id.Trim().ToLowerInvariant(), result, visited);
+            ResolveAncestors(new VoiceTag(protoId.Id), result, visited);
         }
 
         return result;
     }
 
-    private void ResolveAncestors(string tag, HashSet<string> resolved, HashSet<string> visited, int depth = 0)
+    private void ResolveAncestors(VoiceTag tag, HashSet<VoiceTag> resolved, HashSet<VoiceTag> visited, int depth = 0)
     {
         // Safety guard against infinite recursion from malformed/cyclic tag prototype configurations
-        if (depth > 10)
+        if (depth > MaxRecursionDepth)
             return;
 
         if (!visited.Add(tag))
             return;
 
-        if (_config.ExcludedTags.Contains(tag))
+        if (_excludedTags.Contains(tag))
             return;
 
         if (_presentingTags.Contains(tag))
@@ -62,21 +69,21 @@ public sealed class VoiceTagTaxonomy
         {
             foreach (var parentProtoId in tagProto.Parents)
             {
-                ResolveAncestors(parentProtoId.Id.Trim().ToLowerInvariant(), resolved, visited, depth + 1);
+                ResolveAncestors(new VoiceTag(parentProtoId.Id), resolved, visited, depth + 1);
             }
         }
     }
 
-    private HashSet<string> ComputePresentingTags(List<VoicePrototype> voices)
+    private HashSet<VoiceTag> ComputePresentingTags(List<VoicePrototype> voices)
     {
-        var rawCounts = new Dictionary<string, int>();
+        var rawCounts = new Dictionary<VoiceTag, int>();
         foreach (var v in voices)
         {
-            var processed = new HashSet<string>();
+            var processed = new HashSet<VoiceTag>();
             foreach (var protoId in v.Tags)
             {
-                var tag = protoId.Id.Trim().ToLowerInvariant();
-                if (_config.ExcludedTags.Contains(tag))
+                var tag = new VoiceTag(protoId.Id);
+                if (_excludedTags.Contains(tag))
                     continue;
 
                 processed.Add(tag);
@@ -87,17 +94,17 @@ public sealed class VoiceTagTaxonomy
             }
         }
 
-        var presenting = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var presenting = new HashSet<VoiceTag>();
 
         // Always include explicitly configured tags
         foreach (var protoId in _config.ExplicitlyIncludedTags)
         {
-            presenting.Add(protoId.Id);
+            presenting.Add(new VoiceTag(protoId.Id));
         }
 
         // Fill remaining slots with highest frequency tags
         var candidates = rawCounts.Keys
-            .Where(t => !_config.ExplicitlyIncludedTags.Contains(t) && !_config.ExcludedTags.Contains(t))
+            .Where(t => !_explicitlyIncludedTags.Contains(t) && !_excludedTags.Contains(t))
             .OrderByDescending(t => rawCounts[t])
             .ToList();
 
@@ -108,33 +115,5 @@ public sealed class VoiceTagTaxonomy
         }
 
         return presenting;
-    }
-
-    public string FormatTag(string tag)
-    {
-        // Check for custom localization key first
-        var locKey = $"tts-tag-{tag.Replace(" ", "-")}";
-        if (Loc.TryGetString(locKey, out var localized))
-            return localized;
-
-        // Fallback to title casing
-        if (string.IsNullOrEmpty(tag))
-            return tag;
-
-        var chars = tag.ToCharArray();
-        bool capitalizeNext = true;
-        for (int i = 0; i < chars.Length; i++)
-        {
-            if (chars[i] == '-' || chars[i] == ' ')
-            {
-                capitalizeNext = true;
-            }
-            else if (capitalizeNext)
-            {
-                chars[i] = char.ToUpper(chars[i]);
-                capitalizeNext = false;
-            }
-        }
-        return new string(chars);
     }
 }
