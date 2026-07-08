@@ -15,11 +15,9 @@ namespace Content.Client._Starlight.UI.Kitchen
     [UsedImplicitly]
     public sealed class IceCreamMakerBoundUserInterface : BoundUserInterface
     {
-        // Starlight-start
 
         [ViewVariables]
         private EntityUid? _owner;
-        // Starlight-end
 
         [ViewVariables]
         private IceCreamMakerMenu? _menu;
@@ -32,10 +30,8 @@ namespace Content.Client._Starlight.UI.Kitchen
 
         public IceCreamMakerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
-            // Starlight-start
             _owner = owner;
             IoCManager.InjectDependencies(this);
-            // Starlight-end
         }
 
         protected override void Open()
@@ -43,14 +39,11 @@ namespace Content.Client._Starlight.UI.Kitchen
             base.Open();
             _menu = this.CreateWindow<IceCreamMakerMenu>();
 
-            // Starlight-start
             if (!EntMan.TryGetComponent<CookingDeviceComponent>(_owner, out var cookingDevice))
                 return;
 
             _menu.StopButton.OnPressed += _ => SendPredictedMessage(new MicrowaveStopCookMessage());
             _menu.StopButton.Visible = false;
-
-            // Starlight-end
 
             _menu.StartButton.OnPressed += _ =>
             {
@@ -78,30 +71,25 @@ namespace Content.Client._Starlight.UI.Kitchen
             }
 
             _menu.IsBusy = cState.IsMicrowaveBusy;
-            _menu.IsSafe = cState.IsMicrowaveSafe; // Starlight-edit
+            _menu.IsSafe = cState.IsMicrowaveSafe;
             _menu.CurrentCooktimeEnd = cState.CurrentCookTimeEnd;
 
             _menu.ToggleBusyDisableOverlayPanel(cState.IsMicrowaveBusy || cState.ContainedSolids.Length == 0);
             // TODO move this to a component state and ensure the net ids.
             RefreshContentsDisplay(EntMan.GetEntityArray(cState.ContainedSolids));
 
-            // Starlight-end
             _menu.StartButton.Disabled = cState.IsMicrowaveBusy || cState.ContainedSolids.Length == 0;
-            _menu.StartButton.Visible = !cState.IsMicrowaveBusy; // Starlight-edit
-            _menu.StopButton.Visible = cState.IsMicrowaveBusy; // Starlight-edit
-            _menu.StopButton.Disabled = !cState.IsMicrowaveBusy; // Starlight-edit
+            _menu.StartButton.Visible = !cState.IsMicrowaveBusy;
+            _menu.StopButton.Visible = cState.IsMicrowaveBusy;
+            _menu.StopButton.Disabled = !cState.IsMicrowaveBusy;
             _menu.EjectButton.Disabled = cState.IsMicrowaveBusy || cState.ContainedSolids.Length == 0;
 
-            // Starlight-start
             _menu.StartedCooktime = cState.StartedCookTime;
 
             if (cState.StartedCookTime != TimeSpan.Zero)
                 _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", (cState.CurrentCookTimeEnd - cState.StartedCookTime).ToString(@"mm\:ss")));
             else
                 _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", cState.StartedCookTime.ToString(@"mm\:ss")));
-
-            // Starlight-end
-
 
             //Set the correct button active button
             if (cState.ActiveButtonIndex == 0)
@@ -114,13 +102,10 @@ namespace Content.Client._Starlight.UI.Kitchen
                 currentlySelectedTimeButton.Pressed = true;
             }
 
-            // Starlight-start
             foreach (Button children in _menu.CookTimeButtonVbox.Children)
             {
                 children.Disabled = cState.IsMicrowaveBusy;
             }
-
-            // Starlight-end
 
             //Set the "micowave light" ui color to indicate if the microwave is busy or not
             if (cState.IsMicrowaveBusy && cState.ContainedSolids.Length > 0)
@@ -147,8 +132,6 @@ namespace Content.Client._Starlight.UI.Kitchen
                 {
                     return;
                 }
-
-                // TODO just use sprite view
 
                 Texture? texture;
                 if (EntMan.TryGetComponent<IconComponent>(entity, out var iconComponent))

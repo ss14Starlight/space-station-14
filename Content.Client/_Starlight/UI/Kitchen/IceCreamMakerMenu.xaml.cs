@@ -19,9 +19,9 @@ namespace Content.Client._Starlight.UI.Kitchen
         public ButtonGroup CookTimeButtonGroup { get; }
 
         public bool IsBusy;
-        public bool IsSafe; // Starlight-edit
+        public bool IsSafe;
         public TimeSpan CurrentCooktimeEnd;
-        public TimeSpan StartedCooktime = TimeSpan.FromSeconds(10); // Starlight-edit
+        public TimeSpan StartedCooktime = TimeSpan.FromSeconds(10);
 
         public IceCreamMakerMenu()
         {

@@ -154,7 +154,7 @@
   maturation: 10
   production: 3
   yield: 3
-  potency: 5
+  potency: 3
   growthStages: 5
   waterConsumption: 0.3
   nutrientConsumption: 0.4

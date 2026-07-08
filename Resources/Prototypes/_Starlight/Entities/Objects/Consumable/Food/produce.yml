@@ -177,8 +177,9 @@
   id: CinnaflareStick
   description: Dried bark rolled into a stick, ready to ignite and light the way.
   components:
+    - type: PotencyVisuals
     - type: Extractable
-      grindableSolutionName: flare
+      grindableSolutionName: food
     - type: SolutionContainerManager
       solutions:
         flare:
@@ -187,8 +188,9 @@
             - ReagentId: Oil
               Quantity: 5
     - type: ExpendableLight
-      glowDuration: 225
+      glowDuration: 145
       fadeOutDuration: 15
+      plantBurnTimeModifier: 3
       iconStateOn: flare_unlit
       iconStateSpent: flare_spent
       turnOnBehaviourID: turn_on

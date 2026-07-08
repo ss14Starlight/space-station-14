@@ -2,7 +2,7 @@
   id: IceCreamMaker
   parent: [BaseMachinePowered, SmallConstructibleMachine]
   name: ice cream maker
-  description: "Morale boosting deserts coming up."
+  description: "Morale-boosting deserts, coming up."
   components:
   - type: CookingDevice
     capacity: 10
@@ -52,6 +52,8 @@
         - TabletopMachineLayer
   - type: Sprite
     sprite: _Starlight/Structures/Machines/ice_cream_maker.rsi
+    offset: "0.0,0.2"
+    snapCardinals: true
     layers:
     - state: idle
       map: ["enum.MicrowaveVisualizerLayers.Base"]

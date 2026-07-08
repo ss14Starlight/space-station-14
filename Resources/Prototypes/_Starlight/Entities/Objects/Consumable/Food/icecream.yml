@@ -53,9 +53,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - vanillaicecream
+    - vanillaIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -66,10 +66,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: chocolate ice cream
@@ -79,9 +81,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - chocolateicecream
+    - chocolateIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -92,24 +94,26 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20
+          Quantity: 5
         - ReagentId: Theobromine
+          Quantity: 5
+        - ReagentId: Cream
           Quantity: 10
 
 - type: entity
   name: strawberry ice cream
   parent: FoodIceCreamBase
   id: FoodStrawberryIceCream
-  description: Pink strawberry ice cream with real strawberrys!
+  description: Pink strawberry ice cream with real strawberries!
   components:
   - type: FlavorProfile
     flavors:
-    - strawberryicecream
+    - strawberryIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -120,10 +124,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: mint chocolate ice cream
@@ -133,9 +139,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - mintchocolateicecream
+    - mintChocolateIcecream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -146,12 +152,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20
+          Quantity: 5
         - ReagentId: Theobromine
-          Quantity: 10
+          Quantity: 2
+        - ReagentId: Cream
+          Quantity: 13
 
 - type: entity
   name: coffee ice cream
@@ -161,9 +169,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - coffeeicecream
+    - coffeeIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -174,24 +182,26 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20
+          Quantity: 5
         - ReagentId: Coffee
           Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
 
 - type: entity
   name: snowcream special ice cream
   parent: FoodIceCreamBase
   id: FoodSnowcreamIceCream
-  description: Vanilla icecream with wafer cookies in a familiar shape.
+  description: Vanilla ice cream with wafer cookies in a familiar shape.
   components:
   - type: FlavorProfile
     flavors:
-    - snowcreamicecream
+    - snowcreamIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -202,10 +212,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: sherbet ice cream
@@ -215,9 +227,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - sherbeticecream
+    - sherbetIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -228,10 +240,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: banana split ice cream
@@ -241,9 +255,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - bananaspliticecream
+    - bananaSplitIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -254,12 +268,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 25
-        - ReagentId: Theobromine
           Quantity: 5
+        - ReagentId: Theobromine
+          Quantity: 2
+        - ReagentId: Cream
+          Quantity: 13
 
 
 - type: entity
@@ -270,9 +286,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - orangeswirlicecream
+    - orangeSwirlIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -283,10 +299,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: blueberry ice cream
@@ -296,9 +314,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - blueberryicecream
+    - blueberryIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -309,22 +327,24 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: neapolitan ice cream
   parent: FoodIceCreamBase
   id: FoodNeapolitanIceCream
-  description: Vanilla, strawbery, and chocolate stacked together.
+  description: Vanilla, strawberry, and chocolate stacked together.
   components:
   - type: FlavorProfile
     flavors:
-    - neapolitanicecream
+    - neapolitanIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -335,12 +355,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 25
+          Quantity: 5
         - ReagentId: Theobromine
           Quantity: 5
+        - ReagentId: Cream
+          Quantity: 10
 
 - type: entity
   name: salted caramel ice cream
@@ -350,9 +372,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - saltedcaramelicecream
+    - saltedCaramelIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -363,22 +385,24 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: rocky road ice cream
   parent: FoodIceCreamBase
   id: FoodRockyRoadIceCream
-  description: Chocolate ice cream with marshmellos and almonds.
+  description: Chocolate ice cream with marshmallows and almonds.
   components:
   - type: FlavorProfile
     flavors:
-    - rockyroadicecream
+    - rockyRoadIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -389,12 +413,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 25
+          Quantity: 5
         - ReagentId: Theobromine
           Quantity: 5
+        - ReagentId: Cream
+          Quantity: 10
 
 - type: entity
   name: matcha ice cream
@@ -404,9 +430,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - matchaicecream
+    - matchaIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -417,12 +443,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20
+          Quantity: 5
         - ReagentId: GreenTea
           Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
 
 - type: entity
   name: pistachio ice cream
@@ -432,9 +460,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - pistachioicecream
+    - pistachioIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -445,10 +473,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: peanut butter ice cream
@@ -458,9 +488,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - peanutbuttericecream
+    - peanutButterIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -471,12 +501,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 25
-        - ReagentId: Theobromine
           Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: cherry ice cream
@@ -486,9 +516,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - cherryicecream
+    - cherryIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -499,12 +529,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 25
-        - ReagentId: Theobromine
           Quantity: 5
+        - ReagentId: Theobromine
+          Quantity: 2
+        - ReagentId: Cream
+          Quantity: 13
 
 - type: entity
   name: apple cinnamon ice cream
@@ -514,9 +546,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - applecinnamonicecream
+    - appleCinnamonIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -527,10 +559,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: gold apple cinnamon ice cream
@@ -540,9 +574,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - goldapplecinnamonicecream
+    - goldAppleCinnamonIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -553,12 +587,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 10
+          Quantity: 5
         - ReagentId: DoctorsDelight
-          Quantity: 20
+          Quantity: 15
 
 - type: entity
   name: holy melon ice cream
@@ -568,9 +602,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - holymelonicecream
+    - holyMelonIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -581,12 +615,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 10
+          Quantity: 5
         - ReagentId: Holywater
-          Quantity: 20
+          Quantity: 15
 
 - type: entity
   name: rainbow high ice cream
@@ -596,9 +630,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - rainbowhighicecream
+    - rainbowHighIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -609,14 +643,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: MindbreakerToxin
-          Quantity: 10
+          Quantity: 7
         - ReagentId: SpaceDrugs
-          Quantity: 10
+          Quantity: 7
         - ReagentId: Happiness
-          Quantity: 10
+          Quantity: 6
 
 - type: entity
   name: meat ice cream
@@ -626,9 +660,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - meaticecream
+    - meatIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -639,12 +673,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 10
+          Quantity: 5
         - ReagentId: UncookedAnimalProteins
-          Quantity: 20
+          Quantity: 15
 
 - type: entity
   name: weh ice cream
@@ -654,9 +688,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - wehicecream
+    - wehIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -667,24 +701,26 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 5
         - ReagentId: JuiceThatMakesYouWeh
-          Quantity: 15
+          Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
 
 - type: entity
-  name: space carp ice cream
+  name: space dragon ice cream
   parent: FoodIceCreamBase
-  id: FoodSpaceCarpIceCream
-  description: Blueberry ice cream with... space carp in it.
+  id: FoodSpaceDragonIceCream
+  description: Blueberry ice cream with... space dragon carp meat in it.
   components:
   - type: FlavorProfile
     flavors:
-    - spacecarpicecream
+    - spaceDragonIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -695,12 +731,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 25
+          Quantity: 5
         - ReagentId: Ichor
           Quantity: 5
+        - ReagentId: Cream
+          Quantity: 10
 
 - type: entity
   name: silk thread ice cream
@@ -710,9 +748,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - silkthreadicecream
+    - silkThreadIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -723,12 +761,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20
+          Quantity: 5
         - ReagentId: Fiber
           Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
 
 - type: entity
   name: interdimensional napoleon ice cream
@@ -738,9 +778,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - dimensionalicecream
+    - dimensionalIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -751,14 +791,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 10
+          Quantity: 7
         - ReagentId: SpaceDrugs
-          Quantity: 10
+          Quantity: 7
         - ReagentId: Happiness
-          Quantity: 10
+          Quantity: 6
 
 - type: entity
   name: omnizine ice cream
@@ -768,9 +808,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - omnizineicecream
+    - omnizineIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -781,12 +821,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 22.5
+          Quantity: 5
         - ReagentId: Omnizine
-          Quantity: 7.5
+          Quantity: 7
+        - ReagentId: Cream
+          Quantity: 8
 
 - type: entity
   name: mean girl ice cream
@@ -796,9 +838,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - meangirlicecream
+    - meanGirlIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -809,10 +851,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: hew ice cream
@@ -822,9 +866,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - hewicecream
+    - hewIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -835,12 +879,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 5
         - ReagentId: JuiceThatMakesYouHew
-          Quantity: 15
+          Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
 
 - type: entity
   name: fluffy boy ice cream
@@ -850,9 +896,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - fluffyboyicecream
+    - fluffyBoyIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -863,10 +909,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: leader ice cream
@@ -876,9 +924,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - leadericecream
+    - leaderIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -889,10 +937,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
 
 - type: entity
   name: tesla ice cream
@@ -902,9 +952,9 @@
   components:
   - type: FlavorProfile
     flavors:
-    - teslaicecream
+    - teslaIceCream
   - type: Edible
-    transferAmount: 5
+    transferAmount: 4
     trash:
     - DrinkGlass
   - type: Sprite
@@ -915,9 +965,11 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20
+          Quantity: 5
         - ReagentId: Tazinide
           Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
