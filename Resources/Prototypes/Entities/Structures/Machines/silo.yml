@@ -61,3 +61,25 @@
   - type: WiresPanel
   - type: StaticPrice
     price: 1500
+# Starlight Edit, Added a Magnet to material silo for easier material collection
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
+    verbToggleOn: verb-toggle-magnet-activate
+    verbToggleOff: verb-toggle-magnet-deactivate
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+      soundDeactivate:
+        collection: sparks
+        params:
+          variation: 0.250
+  - type: AltUseToggle
+  - type: ComponentToggler
+    components:
+      - type: MagnetPickup
+        range: 2
+        requiresEquipping: false
+        slotFlags: 0
+# Starlight Edit End
