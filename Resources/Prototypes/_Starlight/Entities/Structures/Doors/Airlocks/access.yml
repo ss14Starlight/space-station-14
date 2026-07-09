@@ -978,6 +978,33 @@
     - type: Wires
       layoutId: AirlockMedTak
 
+# NTNC
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockNTNCGlassLocked
+  suffix: NTNC, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
+  parent: AirlockCommand
+  id: AirlockNTNCLocked
+  suffix: NTNC, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockGlassShuttleNTNCLocked
+  suffix: Glass, Docking, NTNC, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentralCommand ]
 
 # Escape Pods (gridfills)
 - type: entity

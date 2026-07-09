@@ -1,0 +1,75 @@
+- type: rcd
+  id: PlastitaniumWall
+  category: WallsAndFlooring
+  sprite: /Textures/Structures/Walls/plastitanium.rsi/full.png
+  mode: ConstructObject
+  prototype: WallPlastitanium
+  cost: 40
+  delay: 2
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: PlastitaniumWindow
+  category: WindowsAndGrilles
+  sprite: /Textures/Structures/Windows/plastitanium_window.rsi/full.png
+  mode: ConstructObject
+  prototype: PlastitaniumWindow
+  cost: 25
+  delay: 2
+  collisionMask: Impassable
+  rules:
+    - IsWindow
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: ShuttleWall
+  category: WallsAndFlooring
+  sprite: /Textures/Structures/Walls/shuttle.rsi/full.png
+  mode: ConstructObject
+  prototype: WallShuttle
+  cost: 30
+  delay: 2
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: ShuttleWindow
+  category: WindowsAndGrilles
+  sprite: /Textures/Structures/Windows/shuttle_window.rsi/full.png
+  mode: ConstructObject
+  prototype: ShuttleWindow
+  cost: 15
+  delay: 2
+  collisionMask: Impassable
+  rules:
+    - IsWindow
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: AirlockDocking
+  category: Airlocks
+  sprite: /Textures/Structures/Doors/Airlocks/Standard/shuttle.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockShuttle
+  cost: 6
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: AirlockDockingGlass
+  category: Airlocks
+  sprite: /Textures/Structures/Doors/Airlocks/Glass/shuttle.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockGlassShuttle
+  cost: 6
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4

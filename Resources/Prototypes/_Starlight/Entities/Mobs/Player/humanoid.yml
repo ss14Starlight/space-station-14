@@ -35,6 +35,17 @@
     - type: AutoImplant
       implants:
         - DeathRattleImplantCentcomm
+        - FreedomImplant
+        - RadioImplantCentcomm
+        - MindShieldImplant
+
+- type: randomHumanoidSettings
+  id: EventHumanoidNTSF
+  parent: EventHumanoidNTNC
+  components:
+    - type: AutoImplant
+      implants:
+        - DeathRattleImplantCentcomm
         - RadioImplantCentcomm
         - DeathAcidifierImplant
         - FreedomImplant
@@ -170,7 +181,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-name
@@ -210,7 +221,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFPrimusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-primus
@@ -250,7 +261,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFSecundusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-secundus
@@ -290,7 +301,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFTertiusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-tertius
@@ -331,7 +342,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFQuartusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-quartus
@@ -371,7 +382,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFQuintusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-quintus
@@ -411,7 +422,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFSextusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-sextus
@@ -455,7 +466,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFSeptimusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-septimus
@@ -496,7 +507,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFOctaviusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-octavius
@@ -536,7 +547,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFNonusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-ntsf-nonus
@@ -577,7 +588,7 @@
 
 - type: randomHumanoidSettings
   id: Decimusoperative
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidNTSF
   components:
     - type: GhostRole
       name: ghost-role-information-decimus-name

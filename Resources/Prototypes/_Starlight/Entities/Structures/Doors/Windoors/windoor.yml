@@ -171,3 +171,14 @@
         board: [ DoorElectronicsMedTak ]
     - type: Wires
       layoutId: AirlockMedTak
+
+
+#NTNC
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureNTNCLocked
+  suffix: NTNC, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentralCommand ]

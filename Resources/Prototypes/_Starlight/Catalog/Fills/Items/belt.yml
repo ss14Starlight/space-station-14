@@ -135,22 +135,40 @@
 - type: entity
   id: ClothingBeltNTNCRigFilled
   parent: ClothingBeltNTNCRig
-  suffix: Filled
+  suffix: Filled, Marine
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: Handcuffs
-        - id: Handcuffs
+        - id: WeaponPistolBlueguard
         - id: Stunbaton
-        - id: GrenadeFlashBang
+        - id: Handcuffs
+        - id: Handcuffs
         - id: TearGasGrenade
+        - id: GrenadeFlashBang
         - id: MedkitCombatFilled
+        - id: MagazinePistol40SP
+        - id: AdvancedMedipen
 
 - type: entity
   id: ClothingBeltNTNCRigFilledMed
   parent: ClothingBeltNTNCRig
+  suffix: Filled, Medical
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolBlueguard
+        - id: MagazinePistol40SP
+        - id: MedkitCombatFilled
+        - id: JugGoldenBicaridine
+        - id: JugGoldenDermaline
+        - id: Hypospray
+        - id: AdvancedMedipen
+        - id: AdvancedMedipen
+        - id: CombatMedipen
 
 # GMN webbings
 - type: entity

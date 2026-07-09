@@ -1124,3 +1124,32 @@
   - type: ActivatableUI
     inHandsOnly: true
     key: enum.RcdUiKey.Key
+
+- type: entity
+  id: RCDShipHull
+  parent: [ BaseItem, BaseEngineeringContraband ]
+  name: Ship RCD
+  description: something-mounted Rapid Construction Device which uses bluespace tech to store large amounts of compressed matter for rapid construction.
+  components:
+  - type: RCD
+    availablePrototypes:
+    - PlastitaniumWall
+    - PlastitaniumWindow
+    - ShuttleWall
+    - ShuttleWindow
+  - type: LimitedCharges
+    maxCharges: 200
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/xenoborg_rcd.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: StaticPrice
+    price: 2000
+  - type: UserInterface
+    interfaces:
+      enum.RcdUiKey.Key:
+        type: RCDMenuBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: true
+    key: enum.RcdUiKey.Key
