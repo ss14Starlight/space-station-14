@@ -9,7 +9,7 @@ using Robust.Shared.Configuration;
 
 #region Starlight
 using Content.Shared._Starlight.CombatMode;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Prototypes;
 #endregion
 
