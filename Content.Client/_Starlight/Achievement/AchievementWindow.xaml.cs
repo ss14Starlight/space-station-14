@@ -17,7 +17,7 @@ namespace Content.Client._Starlight.Achievement;
 [GenerateTypedNameReferences]
 public sealed partial class AchievementWindow : DefaultWindow
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystems = default!;
+    [Dependency] private IEntitySystemManager _entitySystems = default!;
     private const string AllCategoryId = "__all";
     // probably should move this to own style
     private static readonly Color _frameBackgroundColor = Color.FromHex("#1B1712");

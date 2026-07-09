@@ -204,6 +204,17 @@
     accentVColor: "#949137"
   - type: Icon
     state: pda-interntech
+    # Starlight BEGIN
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+    # Starlight END
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1473,33 +1484,6 @@
     - WhitelistChameleonPDA
     - BibleThwackRemovable
   #endregion Starlight
-
-- type: entity
-  parent: ClownPDA
-  id: CluwneBeastPDA
-  name: cluwne PDA
-  suffix: Unremoveable
-  description: Cursed cluwne PDA.
-  components:
-  - type: Pda
-    id: CluwneBeastIDCard
-    penSlot:
-      startingItem: CrayonGreen
-      ejectSound: /Audio/Items/bikehorn.ogg
-      priority: -1
-      whitelist:
-        tags:
-        - Write
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-cluwne
-  - type: PdaBorderColor
-    borderColor: "#1c8f4d"
-  - type: Icon
-    state: pda-cluwne
-  - type: Unremoveable
 
 - type: entity
   parent: BasePDA

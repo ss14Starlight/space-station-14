@@ -8,9 +8,9 @@ using Robust.Shared.Input;
 namespace Content.Client._Moffstation.BladeServer.UI;
 
 [UsedImplicitly]
-public sealed class BladeServerRackBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed partial class BladeServerRackBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
-    [Dependency] private readonly IEntityManager _entityMan = default!;
+    [Dependency] private IEntityManager _entityMan = default!;
 
     private BladeServerRackWindow? _window;
 

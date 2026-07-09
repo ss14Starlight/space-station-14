@@ -4,9 +4,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Moffstation.Cards;
 
-public sealed class PlayingCardsSystem : SharedPlayingCardsSystem
+public sealed partial class PlayingCardsSystem : SharedPlayingCardsSystem
 {
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
 
     // Starlight edit Start: Expression body
     protected override void ForceAppearanceUpdate(Entity<PlayingCardComponent> card) =>

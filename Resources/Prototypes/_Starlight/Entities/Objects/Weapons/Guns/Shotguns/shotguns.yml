@@ -1,25 +1,54 @@
 - type: entity
   name: riot shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunRiot
-  description: A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control.
+  description: A sturdy shotgun with a longer magazine and a fixed tactical grip designed for non-lethal riot control.
   components:
   - type: Item
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot_inhands_64x.rsi
-  - type: Gun
-    spread: 20
-    pump: true
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    spread: 35
+    fireRate: .7
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/riot.rsi
   - type: GunRequiresWield
-  - type: BallisticAmmoProvider
-    capacity: 7
-  - type: Construction
-    graph: ShotgunRiotSawn
-    node: start
-    deconstructionTarget: null
+# - type: Construction
+#   graph: ShotgunRiotSawn
+#   node: start
+#   deconstructionTarget: null
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShotgun
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
+  - type: ChamberMagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
 
 - type: entity
   name: sawn-off riot shotgun
@@ -39,10 +68,10 @@
     pump: true
   - type: BallisticAmmoProvider
     capacity: 4
-  - type: Construction
-    graph: ShotgunRiotSawn
-    node: shotgunsawn
-    deconstructionTarget: null
+# - type: Construction
+#   graph: ShotgunRiotSawn
+#   node: shotgunsawn
+#   deconstructionTarget: null
 
 - type: entity
   parent: [WeaponShotgunRiotSawn, BaseSecurityContraband]
@@ -51,10 +80,11 @@
   components:
   - type: BallisticAmmoProvider
     proto: null
-  - type: Construction
-    graph: ShotgunRiotSawn
-    node: shotgunsawn
-    deconstructionTarget: null
+# - type: Construction
+#   graph: ShotgunRiotSawn
+#   node: shotgunsawn
+#   deconstructionTarget: null
+
 
 - type: entity
   name: combat shotgun
@@ -456,3 +486,17 @@
   - type: Appearance
   - type: StaticPrice
     price: 1
+
+- type: entity
+  parent: BaseWeaponShotgunAny
+  id: BaseWeaponShotgun
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 7
+    proto: ShellShotgun
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg

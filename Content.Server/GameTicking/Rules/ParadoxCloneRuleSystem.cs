@@ -17,20 +17,22 @@ using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
 using Robust.Shared.Prototypes;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Server._Starlight.Objectives.Components;
+using Content.Shared._Starlight.Overlay.Components;
 // Starlight end
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComponent>
+public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComponent>
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly CloningSystem _cloning = default!;
-    [Dependency] private readonly SuitSensorSystem _sensor = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!; // SL add
-    [Dependency] private readonly IPrototypeManager _proto = default!; // SL add
-    [Dependency] private readonly IComponentFactory _componentFactory = default!; // SL add
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private CloningSystem _cloning = default!;
+    [Dependency] private SuitSensorSystem _sensor = default!;
+    [Dependency] private IChatManager _chatManager = default!; // SL add
+    [Dependency] private IPrototypeManager _proto = default!; // SL add
+    [Dependency] private IComponentFactory _componentFactory = default!; // SL add
 
     public override void Initialize()
     {

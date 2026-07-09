@@ -19,16 +19,17 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.Systems.Guidebook;
 
-public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyState>, IOnStateEntered<GameplayState>, IOnStateExited<LobbyState>, IOnStateExited<GameplayState>, IOnSystemChanged<GuidebookSystem>
+public sealed partial class GuidebookUIController : UIController, IOnStateEntered<LobbyState>, IOnStateEntered<GameplayState>, IOnStateExited<LobbyState>, IOnStateExited<GameplayState>, IOnSystemChanged<GuidebookSystem>
 {
     [UISystemDependency] private readonly GuidebookSystem _guidebookSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private JobRequirementsManager _jobRequirements = default!;
 
     private const int PlaytimeOpenGuidebook = 60;
 
     private GuidebookWindow? _guideWindow;
+    private bool _poppedOut; // Starlight: true while the guidebook is open as a desktop window instead of in-game
     private Controls.MenuButton? GuidebookButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.GuidebookButton;
     private ProtoId<GuideEntryPrototype>? _lastEntry;
 
@@ -47,15 +48,13 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         DebugTools.Assert(_guideWindow == null);
 
         // setup window
-        _guideWindow = UIManager.CreateWindow<GuidebookWindow>();
-        _guideWindow.OnClose += OnWindowClosed;
-        _guideWindow.OnOpen += OnWindowOpen;
+        SetupGuidebookWindow(); // Starlight: factored out so a fresh window can be respawned after a popout
 
         if (state is LobbyState &&
             _jobRequirements.FetchOverallPlaytime() < TimeSpan.FromMinutes(PlaytimeOpenGuidebook))
         {
             OpenGuidebook();
-            _guideWindow.RecenterWindow(new(0.5f, 0.5f));
+            _guideWindow!.RecenterWindow(new(0.5f, 0.5f)); // Starlight
             _guideWindow.SetPositionFirst();
         }
 
@@ -83,10 +82,14 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
 
         _guideWindow.OnClose -= OnWindowClosed;
         _guideWindow.OnOpen -= OnWindowOpen;
+        _guideWindow.OnPopout -= OnWindowPopout; // Starlight
+        _guideWindow.OnFinalClose -= OnWindowFinalClose; // Starlight
 
         // shutdown
+        _guideWindow.DisposePopOut(); // Starlight: close the popout if exists
         _guideWindow.Dispose();
         _guideWindow = null;
+        _poppedOut = false; // Starlight
         CommandBinds.Unregister<GuidebookUIController>();
     }
 
@@ -126,6 +129,10 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         if (_guideWindow == null)
             return;
 
+        // Starlight: dont open multiple instances
+        if (_poppedOut)
+            return;
+
         if (_guideWindow.IsOpen)
         {
             UIManager.ClickSound();
@@ -149,11 +156,33 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         }
     }
 
-    private void OnWindowOpen()
+    // Starlight start
+    private void OnWindowOpen() => GuidebookButton?.Pressed = true;
+
+    private void SetupGuidebookWindow()
     {
-        if (GuidebookButton != null)
-            GuidebookButton.Pressed = true;
+        _guideWindow = UIManager.CreateWindow<GuidebookWindow>();
+        _guideWindow.OnClose += OnWindowClosed;
+        _guideWindow.OnOpen += OnWindowOpen;
+        _guideWindow.OnPopout += OnWindowPopout;
+        _guideWindow.OnFinalClose += OnWindowFinalClose;
     }
+
+    /// <summary>
+    /// Prevent the creation of multiple guidebook instances.
+    /// </summary>
+    private void OnWindowPopout()
+    {
+        _poppedOut = true;
+
+        GuidebookButton?.Pressed = false;
+    }
+
+    /// <summary>
+    /// Track where the contents of the window exist so we don't lose them.
+    /// </summary>
+    private void OnWindowFinalClose() => _poppedOut = false;
+    // Starlight end
 
     /// <summary>
     ///     Opens or closes the guidebook.
@@ -175,6 +204,10 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         ProtoId<GuideEntryPrototype>? selected = null)
     {
         if (_guideWindow == null)
+            return;
+
+        // Starlight: already open as a desktop window dont open again
+        if (_poppedOut)
             return;
 
         if (GuidebookButton != null)

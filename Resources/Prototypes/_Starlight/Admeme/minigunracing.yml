@@ -10,14 +10,17 @@
       Skating:
         knockback: 0.2
         staminaMultiplier: 0.0
+      Rodentia:
+        knockback: 0.2
+        staminaMultiplier: 0.0
       Resomi:
-        knockback: 0.02
+        knockback: 0.2
         staminaMultiplier: 0.0
       Avali:
-        knockback: 0.01
+        knockback: 0.1
         staminaMultiplier: 0.0
       Felionoid:
-        knockback: 0.01
+        knockback: 0.1
         staminaMultiplier: 0.0
   - type: MultiHandedItem
   - type: HeldSpeedModifier

@@ -1,0 +1,19 @@
+- type: entity
+  id: OrganProtoArachnidHeart
+  parent: [BaseProtogenOrgan, OrganProtogenHeart]
+  name: arachnid cybernetic heart
+  suffix: Proto-Arachnid
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Item
+    size: Small
+    heldPrefix: heart
+  - type: Metabolizer
+    updateInterval: 1.5
+    maxReagents: 2
+    metabolizerTypes: [ Arachnid, Protogen ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic

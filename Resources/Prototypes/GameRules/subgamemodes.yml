@@ -111,7 +111,7 @@
       playerRatio: 55 # Starlight, ensures Beta only has 1 wizard. Also less egregious.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
-      - RoleSurvivalExtended
+      - AntagWizard # Starlight
       briefing:
         text: wizard-role-greeting
         color: Turquoise
@@ -136,6 +136,8 @@
         - Wizard
       allowNonHumans: true
       # Starlight-end
+  - type: DynamicRuleCost
+    cost: 100
 
 - type: entity
   parent: BaseGameRule

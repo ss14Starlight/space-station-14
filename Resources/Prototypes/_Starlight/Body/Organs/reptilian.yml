@@ -1,7 +1,8 @@
 ﻿- type: entity
   id: OrganReptilianStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
-  categories: [ HideSpawnMenu ]
+  name: reptilian stomach
+  suffix: Reptilian
   components:
   - type: Stomach
     specialDigestible:

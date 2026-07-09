@@ -10,7 +10,7 @@
       organs:
         brain: OrganVoxBrain # starlight
         eyes: OrganVoxEyes
-        tongue: OrganHumanTongue
+        tongue: OrganVoxTongue
         eye_implant: null
         brain_implant: null # 🌟Starlight🌟
     torso:

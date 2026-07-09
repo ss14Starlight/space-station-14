@@ -1,8 +1,6 @@
 using Content.Shared._Starlight.Magic.Components;
 using Content.Shared.StatusEffectNew;
-using Content.Shared.Damage;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Item;
 
 namespace Content.Shared._Starlight.Magic.Systems;
 

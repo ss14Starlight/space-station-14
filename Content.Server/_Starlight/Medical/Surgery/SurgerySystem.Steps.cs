@@ -1,8 +1,6 @@
 ﻿using System.Linq;
-using Content.Shared.Starlight.Medical.Surgery;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+using Content.Shared._Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
@@ -11,10 +9,11 @@ using Content.Shared.Humanoid;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Bed.Sleep;
 using Content.Server._Starlight.Medical.Limbs;
-using Content.Server.Administration.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
 namespace Content.Server._Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -25,10 +24,10 @@ namespace Content.Server._Starlight.Medical.Surgery;
 //However, I don’t want to touch the official systems, so I need to come up with extensions for them.
 public sealed partial class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly LimbSystem _limbSystem = default!;
-    [Dependency] private readonly StarlightEntitySystem _entity = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private LimbSystem _limbSystem = default!;
+    [Dependency] private StarlightEntitySystem _entity = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
 
     public void InitializeSteps()
     {

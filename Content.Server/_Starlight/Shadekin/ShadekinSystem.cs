@@ -2,15 +2,12 @@ using Content.Shared.Humanoid;
 using Content.Shared.Alert;
 using System.Linq;
 using Content.Shared.Examine;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Movement.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Damage;
 using Robust.Shared.Timing;
-using Content.Shared._Starlight.NullSpace;
 using Robust.Shared.Prototypes;
 using Content.Shared.Actions;
 using Content.Shared.Station;
@@ -36,35 +33,39 @@ using Content.Shared._Starlight.Medical.Body.Events;
 using Robust.Shared.Containers;
 using Content.Server.Examine;
 using Robust.Server.GameObjects;
+using Content.Shared._Starlight.Shadekin.Components;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Server._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.Shadekin;
 
 public sealed partial class ShadekinSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly NullSpacePhaseSystem _nullspace = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedEnsnareableSystem _ensnareable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly ExamineSystem _examine = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MovementSpeedModifierSystem _speed = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private NullSpacePhaseSystem _nullspace = default!;
+    [Dependency] private StunSystem _stunSystem = default!;
+    [Dependency] private DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedEnsnareableSystem _ensnareable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ExamineSystem _examine = default!;
+    [Dependency] private LanguageSystem _language = default!;
 
     private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
     private static readonly ProtoId<TagPrototype> _coreTag = "ShadekinCore";
@@ -291,10 +292,18 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void ToggleNightVision(EntityUid uid, ShadekinState shadekinState)
     {
-        if (shadekinState == ShadekinState.Dark)
-            EnsureComp<NightVisionComponent>(uid);
-        else if (TryComp<NightVisionComponent>(uid, out var nightvision) && !nightvision.Clothes)
-            RemComp<NightVisionComponent>(uid);
+        var nightVision = EnsureComp<NightVisionComponent>(uid);
+        var shouldBeActive = shadekinState == ShadekinState.Dark;
+
+        // avoid dirtying if we don't need to
+        if(nightVision.Active == shouldBeActive)
+            return;
+
+        // update whether or not nightVision should be active based on light level
+        nightVision.Active = shouldBeActive;
+
+        // ensure nightVision updates to reflect the new state
+        Dirty(uid, nightVision);
     }
 
     private void CheckThresholds(EntityUid uid, ShadekinComponent component, float lightExposure)

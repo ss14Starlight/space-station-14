@@ -93,6 +93,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineHugDispenser
+  categories: [ ShouldMapStation ]
   name: hug dispenser
   components:
   - type: Sprite
@@ -108,6 +109,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineFashion
+  categories: [ ShouldMapStation ]
   name: Fashion-o-Mat
   description: Happiness should be expensive.
   components:
@@ -126,6 +128,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineMedical
+  categories: [ ShouldMapStation ]
   name: medical dispenser
   components:
   - type: AccessReader
@@ -143,6 +146,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineEngi
+  categories: [ ShouldMapStation ]
   name: engi dispenser
   components:
   - type: AccessReader
@@ -158,6 +162,7 @@
 - type: entity
   parent: SLVendingMachine
   id: VendingMachineClown
+  categories: [ ShouldMapStation ]
   name: HohohonkersVend
   description: Get your honk fix here! Surprise the station with HohohonkersVend — the ultimate machine for hilarious pranks. Hack it, and you'll unlock something special!
   components:
@@ -174,6 +179,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSecurity
+  categories: [ ShouldMapStation ]
   name: security dispenser
   components:
   - type: AccessReader
@@ -190,6 +196,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSalvage
+  categories: [ ShouldMapStation ]
   name: salvage ticket machine
   components:
   - type: AccessReader
@@ -211,6 +218,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineMining
+  categories: [ ShouldMapStation ]
   name: mining ticket machine
   components:
     - type: AccessReader
@@ -355,11 +363,39 @@
   - type: AccessReader
     access: [["Lawyer"]] # Starlight
 
+# NanoMed Security
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedicalSecurity
+  name: NanoMed Security
+  suffix: Security
+  description: It's a medical drug dispenser. Natural chemicals only!
+  components:
+  - type: VendingMachine
+    pack: NanoMedSecurityInventory
+    offState: off
+    showPrices: false  # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/medical_sec.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Security"]]
+
 # Syndicate stuff for Serpentcrest and any other uses
 - type: entity
   parent: VendingMachineMedicalBase
   id: VendingMachineMedicalBaseSyndicate
   name: Interdyne Commercial
+  suffix: Civilian
   description: It's a medical drug dispenser by Interdyne Pharmaceutics. For the Health of Humankind.
   components:
   - type: VendingMachine
@@ -392,6 +428,7 @@
   parent: VendingMachineMedicalBaseSyndicate
   id: VendingMachineMedicalSyndicate
   name: Interdyne Enterprise
+  suffix: Departmental
   components:
   - type: VendingMachine
     pack: InterdyneEnterpriseInventory
@@ -411,36 +448,12 @@
   - type: AccessReader
     access: [["Medical"], ["SyndicateAgent"]]
 
-- type: entity
-  parent: VendingMachineMedicalBase
-  id: VendingMachineMedicalSecurity
-  name: NanoMed Security
-  description: It's a medical drug dispenser. Natural chemicals only!
-  components:
-  - type: VendingMachine
-    pack: NanoMedSecurityInventory
-    offState: off
-    showPrices: false  # Starlight-edit: Vending Machines Prices
-  - type: Machine # Starlight-edit: Vending Machine boards
-    board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
-  - type: Sprite
-    sprite: _Starlight/Structures/Machines/VendingMachines/medical_sec.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: AccessReader
-    access: [["Medical"], ["Security"]]
-
 # Wallmounts
 - type: entity
   parent: VendingMachineWallmount
   id: VendingMachineWallMedicalCivilianSyndicate
   name: Interdyne life-aid commercial
+  suffix: Civilian, Wallmount
   description: It's a wall-mounted medical equipment dispenser by Interdyne Pharmaceutics. For the Health of Humankind.
   components:
   - type: VendingMachine
@@ -471,6 +484,7 @@
   parent: VendingMachineWallMedicalCivilianSyndicate
   id: VendingMachineWallMedicalSyndicate
   name: Interdyne life-aid enterprise
+  suffix: Departmental, Wallmount
   components:
   - type: VendingMachine
     pack: InterdyneEnterpriseWallInventory
@@ -489,6 +503,234 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Medical"], ["SyndicateAgent"]]
+
+# DeForest Medical Vending machines
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedicalBaseDeforest
+  name: DeForest Planetary
+  suffix: Civilian
+  description: It's a medical drug dispenser by DeForest Medical. Health that Touches the Sky.
+  components:
+  - type: VendingMachine
+    pack: DeforestPlanetaryInventory
+    offState: off-civilian
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 0.6
+    showPrices: True
+  - type: DatasetVocalizer
+    dataset: DeforestAds
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/deforest_medical.rsi
+    layers:
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#9dc5c9" # TODO: Change color
+
+- type: entity
+  parent: VendingMachineMedicalBaseDeforest
+  id: VendingMachineMedicalDeforest
+  name: DeForest Interstellar
+  suffix: Departmental
+  components:
+  - type: VendingMachine
+    pack: DeforestInterstellarInventory
+    offState: off
+    showPrices: false  # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Service"]] # They all have a gimmick; this one is service access.
+
+# Wallmounts
+- type: entity
+  parent: VendingMachineWallmount
+  id: VendingMachineWallMedicalCivilianDeforest
+  name: DeForest health-aid planetary
+  suffix: Civilian, Wallmount
+  description: It's a wall-mounted medical equipment dispenser by DeForest Medical. Health that Touches the Sky.
+  components:
+  - type: VendingMachine
+    pack: DeforestPlanetaryWallInventory
+    offState: off-civilian
+    showPrices: True # Starlight-edit: Vending Machines Prices
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCivilianCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/deforest_wallmed.rsi
+    layers:
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.3
+    energy: 3.0
+    color: "#43ccb5"
+
+- type: entity
+  parent: VendingMachineWallMedicalCivilianDeforest
+  id: VendingMachineWallMedicalDeforest
+  name: DeForest health-aid interstellar
+  suffix: Departmental, Wallmount
+  components:
+  - type: VendingMachine
+    pack: DeforestInterstellarWallInventory
+    offState: off
+    showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Service"]] # They all have a gimmick; this one is service access.
+
+# NanoMed GOLD Vending machines
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedicalBaseGold
+  name: NanoMed Civilian GOLD
+  suffix: Civilian
+  description: The fact that you've arrived here-rather, to this NanoMed GOLD- at this moment in your life is nothing short of a miracle. It delights me to no end.
+  components:
+  - type: VendingMachine
+    pack: GoldNanoMedCivilianInventory
+    offState: off-civilian
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 0.6
+    showPrices: True
+  - type: DatasetVocalizer
+    dataset: NanoMedGoldAds
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/gold_medical.rsi
+    layers:
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#ccac43" # TODO: Change color
+
+- type: entity
+  parent: VendingMachineMedicalBaseGold
+  id: VendingMachineMedicalGold
+  name: NanoMed Plus GOLD
+  suffix: Departmental
+  components:
+  - type: VendingMachine
+    pack: GoldNanoMedPlusInventory
+    offState: off
+    showPrices: false  # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Command"]] # They all have a gimmick; this one is service access.
+
+# Wallmounts
+- type: entity
+  parent: VendingMachineWallmount
+  id: VendingMachineWallMedicalCivilianGold
+  name: NanoMed band-aid GOLD
+  suffix: Civilian, Wallmount
+  description: It's a luxury wall-mounted medical equipment dispenser.  It delights you to no end.
+  components:
+  - type: VendingMachine
+    pack: GoldNanoMedCivilianWallInventory
+    offState: off-civilian
+    showPrices: True # Starlight-edit: Vending Machines Prices
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCivilianCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/gold_wallmed.rsi
+    layers:
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.3
+    energy: 3.0
+    color: "#cca143"
+
+- type: entity
+  parent: VendingMachineWallMedicalCivilianGold
+  id: VendingMachineWallMedicalGold
+  name: NanoMed GOLD
+  suffix: Departmental, Wallmount
+  components:
+  - type: VendingMachine
+    pack: GoldNanoMedInventory
+    offState: off
+    showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Command"]] # They all have a gimmick; this one is command access.
 
 - type: entity
   parent: VendingMachine
@@ -691,28 +933,56 @@
 - type: entity
   parent: VendingMachineMedicalBase
   id: VendingMachineMedicalBaseEmpty
-  suffix: Empty
+  suffix: Empty, Civilian
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineMedical
   id: VendingMachineMedicalEmpty
-  suffix: Empty
+  suffix: Empty, Departmental
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineMedicalBaseSyndicate
   id: VendingMachineMedicalBaseSyndicateEmpty
-  suffix: Empty
+  suffix: Empty, Civilian
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineMedicalSyndicate
   id: VendingMachineMedicalSyndicateEmpty
-  suffix: Empty
+  suffix: Empty, Departmental
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalBaseDeforest
+  id: VendingMachineMedicalBaseDeforestEmpty
+  suffix: Empty, Civilian
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalDeforest
+  id: VendingMachineMedicalDeforestEmpty
+  suffix: Empty, Departmental
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalBaseGold
+  id: VendingMachineMedicalBaseGoldEmpty
+  suffix: Empty, Civilian
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalGold
+  id: VendingMachineMedicalGoldEmpty
+  suffix: Empty, Departmental
   components:
     - type: EmptyVendingMachine
 
@@ -1034,28 +1304,56 @@
 - type: entity
   parent: VendingMachineWallMedicalCivilian
   id: VendingMachineWallMedicalCivilianEmpty
-  suffix: Empty
+  suffix: Empty, Civilian, Wallmount
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineWallMedical
   id: VendingMachineWallMedicalEmpty
-  suffix: Empty
+  suffix: Empty, Departmental, Wallmount
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineWallMedicalCivilianSyndicate
   id: VendingMachineWallMedicalCivilianSyndicateEmpty
-  suffix: Empty
+  suffix: Empty, Civilian, Wallmount
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineWallMedicalSyndicate
   id: VendingMachineWallMedicalSyndicateEmpty
-  suffix: Empty
+  suffix: Empty, Departmental, Wallmount
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineWallMedicalCivilianDeforest
+  id: VendingMachineWallMedicalCivilianDeforestEmpty
+  suffix: Empty, Civilian, Wallmount
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineWallMedicalDeforest
+  id: VendingMachineWallMedicalDeforestEmpty
+  suffix: Empty, Departmental, Wallmount
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineWallMedicalCivilianGold
+  id: VendingMachineWallMedicalCivilianGoldEmpty
+  suffix: Empty, Civilian, Wallmount
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineWallMedicalGold
+  id: VendingMachineWallMedicalGoldEmpty
+  suffix: Empty, Departmental, Wallmount
   components:
     - type: EmptyVendingMachine
 
@@ -1083,7 +1381,7 @@
 - type: entity
   parent: VendingMachineMedicalSecurity
   id: VendingMachineMedicalSecurityEmpty
-  suffix: Empty
+  suffix: Empty, Security
   components:
     - type: EmptyVendingMachine
 
