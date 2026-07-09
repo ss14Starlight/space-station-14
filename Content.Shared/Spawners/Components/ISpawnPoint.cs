@@ -1,4 +1,4 @@
-namespace Content.Server.Spawners.Components;
+namespace Content.Shared.Spawners.Components;
 
 public interface ISpawnPoint
 {

@@ -1,6 +1,8 @@
-namespace Content.Server._Starlight.NullSpace;
+using Robust.Shared.GameStates;
 
-[RegisterComponent]
+namespace Content.Shared._Starlight.NullSpace.Components;
+
+[RegisterComponent, NetworkedComponent]
 public sealed partial class NullSpaceDrainerComponent : Component
 {
     [DataField]

@@ -1,4 +1,3 @@
-using Content.Server._Starlight.NullSpace;
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.DoAfter;
@@ -9,9 +8,9 @@ using Content.Shared.Teleportation.Components;
 using Content.Shared.Trigger;
 using Robust.Shared.Map.Components;
 
-namespace Content.Server._Starlight.Shadekin;
+namespace Content.Shared._Starlight.Shadekin;
 
-public sealed partial class ShadekinSystem : EntitySystem
+public sealed partial class ShadekinSystem
 {
     public void InitializeAbilities()
     {
@@ -27,73 +26,74 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     #region  Shadeskip
 
-    private void OnShadeskipAction(EntityUid uid, BrighteyeComponent component, BrighteyeShadeSkipActionEvent args)
+    private void OnShadeskipAction(Entity<BrighteyeComponent> ent, ref BrighteyeShadeSkipActionEvent args)
     {
-        int cost = component.ShadeSkipCost;
-        if (HasComp<NullSpaceComponent>(uid))
+        var cost = ent.Comp.ShadeSkipCost;
+        if (HasComp<NullSpaceComponent>(ent))
             return;
 
-        if (TryComp<ShadekinComponent>(uid, out var shadekin))
+        if (TryComp<ShadekinComponent>(ent, out var shadekin))
         {
             if (shadekin.CurrentState == ShadekinState.Extreme)
                 return;
-            else if (shadekin.CurrentState == ShadekinState.High)
-                cost = component.MaxEnergy;
+
+            if (shadekin.CurrentState == ShadekinState.High)
+                cost = ent.Comp.MaxEnergy;
             else if (shadekin.CurrentState == ShadekinState.Annoying)
                 cost *= 3;
             else if (shadekin.CurrentState == ShadekinState.Low)
                 cost *= 2;
         }
 
-        if (OnAttemptEnergyUse(uid, component, cost))
-        {
-            _stunSystem.TryUpdateStunDuration(args.Target, component.ShadeSkipStunAmount);
-            _stunSystem.TryKnockdown(args.Target, component.ShadeSkipStunAmount, force: true);
-            _status.TryAddStatusEffectDuration(args.Target, "StatusEffectTemporaryBlindness", component.ShadeSkipStunAmount);
-            _status.TryAddStatusEffectDuration(args.Target, "StatusEffectTheDark", TimeSpan.FromSeconds(70));
+        if (!OnAttemptEnergyUse(ent, ent.Comp, cost))
+            return;
 
-            args.Handled = true;
-        }
+        _stunSystem.TryUpdateStunDuration(args.Target, ent.Comp.ShadeSkipStunAmount);
+        _stunSystem.TryKnockdown(args.Target, ent.Comp.ShadeSkipStunAmount, force: true);
+        _status.TryAddStatusEffectDuration(args.Target, "StatusEffectTemporaryBlindness", ent.Comp.ShadeSkipStunAmount);
+        _status.TryAddStatusEffectDuration(args.Target, "StatusEffectTheDark", TimeSpan.FromSeconds(70));
+
+        args.Handled = true;
     }
 
     #endregion
 
     #region Create Shade
 
-    private void OnCreateShadeAction(EntityUid uid, BrighteyeComponent component, BrighteyeCreateShadeActionEvent args)
+    private void OnCreateShadeAction(Entity<BrighteyeComponent> ent, ref BrighteyeCreateShadeActionEvent args)
     {
-        if (OnAttemptEnergyUse(uid, component, component.CreateShadeCost))
-        {
-            var shadegen = SpawnAttachedTo("ShadekinShadegen", Transform(uid).Coordinates);
-            _transform.SetParent(shadegen, uid);
+        if (!OnAttemptEnergyUse(ent, ent.Comp, ent.Comp.CreateShadeCost))
+            return;
 
-            args.Handled = true;
-        }
+        var shadegen = PredictedSpawnAttachedTo("ShadekinShadegen", Transform(ent).Coordinates);
+        _transform.SetParent(shadegen, ent);
+
+        args.Handled = true;
     }
 
     #endregion
 
     #region DarkTrap
 
-    private void OnDarkTrapAction(EntityUid uid, BrighteyeComponent component, BrighteyeDarkTrapActionEvent args)
+    private void OnDarkTrapAction(Entity<BrighteyeComponent> ent, ref BrighteyeDarkTrapActionEvent args)
     {
-        if (HasComp<NullSpaceComponent>(uid))
+        if (HasComp<NullSpaceComponent>(ent))
             return;
 
-        if (!HasComp<MapGridComponent>(Transform(uid).GridUid)) // Trap need to be on a grid! duh!
+        if (!HasComp<MapGridComponent>(Transform(ent).GridUid)) // Trap need to be on a grid! duh!
             return;
 
         // DarkTraps can only be spawned in the dark!
-        if (TryComp<ShadekinComponent>(uid, out var shadekin))
+        if (TryComp<ShadekinComponent>(ent, out var shadekin))
             if (shadekin.CurrentState != ShadekinState.Dark)
             {
-                _popup.PopupEntity(Loc.GetString("shadekin-too-bright"), uid, uid, PopupType.MediumCaution);
+                _popup.PopupEntity(Loc.GetString("shadekin-too-bright"), ent, ent, PopupType.MediumCaution);
                 return;
             }
 
-        if (OnAttemptEnergyUse(uid, component, component.DarkTrapCost))
+        if (OnAttemptEnergyUse(ent, ent.Comp, ent.Comp.DarkTrapCost))
         {
-            SpawnAtPosition(component.ShadekinTrap, Transform(uid).Coordinates);
+            PredictedSpawnAtPosition(ent.Comp.ShadekinTrap, Transform(ent).Coordinates);
             args.Handled = true;
         }
     }
@@ -103,7 +103,7 @@ public sealed partial class ShadekinSystem : EntitySystem
         if (args.User is null)
             return;
 
-        var darknet = Spawn(ent.Comp.DarkNet);
+        var darknet = EntityManager.PredictedSpawn(ent.Comp.DarkNet);
         if (TryComp<EnsnaringComponent>(darknet, out var ensnaringComp) && _ensnareable.TryEnsnare(args.User.Value, darknet, ensnaringComp))
         {
             _popup.PopupEntity(Loc.GetString("shadekinTrap-trigger", ("user", args.User.Value)), args.User.Value, PopupType.LargeCaution);
@@ -119,22 +119,22 @@ public sealed partial class ShadekinSystem : EntitySystem
         else
         {
             _popup.PopupEntity(Loc.GetString("shadekinTrap-trigger-fail"), args.User.Value, PopupType.MediumCaution);
-            QueueDel(darknet);
+            PredictedQueueDel(darknet);
         }
     }
 
     #endregion
     #region Portal
 
-    private void OnPortalAction(EntityUid uid, BrighteyeComponent component, BrighteyePortalActionEvent args)
+    private void OnPortalAction(Entity<BrighteyeComponent> ent, ref BrighteyePortalActionEvent args)
     {
-        if (HasComp<NullSpaceComponent>(uid)) // No making portals while in nullspace!
+        if (HasComp<NullSpaceComponent>(ent)) // No making portals while in nullspace!
         {
             args.Handled = true;
             return;
         }
 
-        if (component.PortalNeedStation)
+        if (ent.Comp.PortalNeedStation)
         {
             bool onStation = false;
             foreach (var station in _station.GetStations()) // Lets make sure the Portal **IS ON STATION!**
@@ -142,7 +142,7 @@ public sealed partial class ShadekinSystem : EntitySystem
                 if (_station.GetLargestGrid(station) is not { } grid)
                     continue;
 
-                if (Transform(uid).GridUid != grid)
+                if (Transform(ent).GridUid != grid)
                     continue;
 
                 onStation = true;
@@ -155,21 +155,21 @@ public sealed partial class ShadekinSystem : EntitySystem
             }
         }
 
-        if (OnAttemptEnergyUse(uid, component, component.PortalCost))
+        if (OnAttemptEnergyUse(ent, ent.Comp, ent.Comp.PortalCost))
         {
             SpawnTheDark();
 
-            _actionsSystem.RemoveAction(uid, component.PortalAction);
+            _actionsSystem.RemoveAction(ent.Owner, ent.Comp.PortalAction);
 
-            EnsureComp<PortalTimeoutComponent>(uid); // Lets not teleport as soon we put down the portal, duh.
+            EnsureComp<PortalTimeoutComponent>(ent); // Lets not teleport as soon we put down the portal, duh.
 
-            var newportal = SpawnAtPosition(component.PortalShadekin, Transform(uid).Coordinates);
-            if (TryComp<DarkPortalComponent>(newportal, out var portal))
-                portal.Brighteye = uid;
+            var newPortal = PredictedSpawnAtPosition(ent.Comp.PortalShadekin, Transform(ent).Coordinates);
+            if (TryComp<DarkPortalComponent>(newPortal, out var portal))
+                portal.Brighteye = ent;
 
-            component.Portal = newportal;
+            ent.Comp.Portal = newPortal;
 
-            _alerts.ClearAlert(uid, component.PortalAlert);
+            _alerts.ClearAlert(ent.Owner, ent.Comp.PortalAlert);
         }
 
         args.Handled = true;
@@ -178,60 +178,61 @@ public sealed partial class ShadekinSystem : EntitySystem
     #endregion
     #region  Phase
 
-    private void OnPhaseAction(EntityUid uid, BrighteyeComponent component, BrighteyePhaseActionEvent args)
+    private void OnPhaseAction(Entity<BrighteyeComponent> ent, ref BrighteyePhaseActionEvent args)
     {
-        int cost = component.PhaseCost;
-        if (HasComp<NullSpaceComponent>(uid))
+        var cost = ent.Comp.PhaseCost;
+        if (HasComp<NullSpaceComponent>(ent))
         {
-            if (_nullspace.CanPhase(uid) && OnAttemptEnergyUse(uid, component))
-                _nullspace.Phase(uid);
+            if (_nullspace.CanPhase(ent) && OnAttemptEnergyUse(ent, ent.Comp))
+                _nullspace.Phase(ent);
 
             args.Handled = true;
             return;
         }
 
-        if (TryComp<ShadekinComponent>(uid, out var shadekin))
+        if (TryComp<ShadekinComponent>(ent, out var shadekin))
         {
             if (shadekin.CurrentState == ShadekinState.Extreme)
                 return;
-            else if (shadekin.CurrentState == ShadekinState.High)
-                cost = component.MaxEnergy;
+
+            if (shadekin.CurrentState == ShadekinState.High)
+                cost = ent.Comp.MaxEnergy;
             else if (shadekin.CurrentState == ShadekinState.Annoying)
                 cost *= 3;
             else if (shadekin.CurrentState == ShadekinState.Low)
                 cost *= 2;
         }
 
-        if (TryComp<PullerComponent>(uid, out var puller) && puller.Pulling is not null)
+        if (TryComp<PullerComponent>(ent, out var puller) && puller.Pulling is not null)
         {
-            var doAfter = new PhaseDoAfterEvent()
+            var doAfter = new PhaseDoAfterEvent
             {
                 Cost = cost,
             };
 
-            _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(10), doAfter, uid, puller.Pulling)
+            _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(10), doAfter, ent, puller.Pulling)
             {
                 BreakOnDamage = true,
                 BreakOnMove = true,
                 BlockDuplicate = true
             });
         }
-        else if (_nullspace.CanPhase(uid) && OnAttemptEnergyUse(uid, component, cost))
-            _nullspace.Phase(uid);
+        else if (_nullspace.CanPhase(ent) && OnAttemptEnergyUse(ent, ent.Comp, cost))
+            _nullspace.Phase(ent);
 
         args.Handled = true;
     }
 
-    private void OnPhaseDoAfter(EntityUid uid, BrighteyeComponent component, PhaseDoAfterEvent args)
+    private void OnPhaseDoAfter(Entity<BrighteyeComponent> ent, ref PhaseDoAfterEvent args)
     {
         if (!args.Args.Target.HasValue || args.Handled || args.Cancelled)
             return;
 
-        if (!_nullspace.CanPhase(uid) || !OnAttemptEnergyUse(uid, component, args.Cost))
+        if (!_nullspace.CanPhase(ent) || !OnAttemptEnergyUse(ent, ent.Comp, args.Cost))
             return;
 
         EnsureComp<NullSpacePulledComponent>(args.Args.Target.Value);
-        _nullspace.Phase(uid);
+        _nullspace.Phase(ent);
 
         args.Handled = true;
     }
