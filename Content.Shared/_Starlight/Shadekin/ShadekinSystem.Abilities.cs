@@ -87,7 +87,7 @@ public sealed partial class ShadekinSystem
         if (TryComp<ShadekinComponent>(ent, out var shadekin))
             if (shadekin.CurrentState != ShadekinState.Dark)
             {
-                _popup.PopupEntity(Loc.GetString("shadekin-too-bright"), ent, ent, PopupType.MediumCaution);
+                _popup.PopupClient(Loc.GetString("shadekin-too-bright"), ent, ent, PopupType.MediumCaution);
                 return;
             }
 
@@ -106,7 +106,7 @@ public sealed partial class ShadekinSystem
         var darknet = EntityManager.PredictedSpawn(ent.Comp.DarkNet);
         if (TryComp<EnsnaringComponent>(darknet, out var ensnaringComp) && _ensnareable.TryEnsnare(args.User.Value, darknet, ensnaringComp))
         {
-            _popup.PopupEntity(Loc.GetString("shadekinTrap-trigger", ("user", args.User.Value)), args.User.Value, PopupType.LargeCaution);
+            _popup.PopupPredicted(Loc.GetString("shadekinTrap-trigger", ("user", args.User.Value)), args.User.Value, args.User.Value, PopupType.LargeCaution);
             if (TryComp<DarkTrapComponent>(darknet, out var darktrapcomp))
             {
                 _stunSystem.TryUpdateStunDuration(args.User.Value, darktrapcomp.StunAmount);
@@ -118,7 +118,7 @@ public sealed partial class ShadekinSystem
         }
         else
         {
-            _popup.PopupEntity(Loc.GetString("shadekinTrap-trigger-fail"), args.User.Value, PopupType.MediumCaution);
+            _popup.PopupPredicted(Loc.GetString("shadekinTrap-trigger-fail"), args.User.Value, args.User.Value, PopupType.MediumCaution);
             PredictedQueueDel(darknet);
         }
     }
