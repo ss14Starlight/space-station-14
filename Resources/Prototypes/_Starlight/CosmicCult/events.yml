@@ -3,7 +3,7 @@
   id: ColossusSpawn
   components:
   - type: StationEvent
-    weight: 4.5
+    weight: 3
     earliestStart: 30
     reoccurrenceDelay: 20
     minimumPlayers: 25
