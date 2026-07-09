@@ -10,9 +10,22 @@
                 Title="{Loc 'guidebook-window-title'}">
     <SplitContainer Orientation="Horizontal" HorizontalExpand="True" Name="Split" Margin="0 0 7 0">
         <!-- Guide select -->
-        <BoxContainer Orientation="Horizontal" Name="TreeBox">
-            <fancyTree:FancyTree Name="Tree" VerticalExpand="True" HorizontalExpand="True" Access="Public"/>
-            <cc:VSeparator StyleClasses="LowDivider" Margin="0 -2"/>
+        <!-- Starlight start -->
+        <BoxContainer Orientation="Vertical" Name="TreeBox" VerticalExpand="True" MinWidth="160">
+            <LineEdit Name="CategorySearchBar"
+                      PlaceHolder="{Loc 'guidebook-category-search-placeholder'}"
+                      HorizontalExpand="True"
+                      Margin="5 5 5 2"/>
+            <Label Name="CategoryNoResultsLabel"
+                   Visible="False"
+                   HorizontalAlignment="Center"
+                   Text="{Loc 'guidebook-category-search-no-results'}"
+                   Margin="0 6 0 0"/>
+            <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
+                <fancyTree:FancyTree Name="Tree" VerticalExpand="True" HorizontalExpand="True" Access="Public"/>
+                <cc:VSeparator StyleClasses="LowDivider" Margin="0 -2"/>
+            </BoxContainer>
+            <!-- Starlight end -->
         </BoxContainer>
         <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
             <BoxContainer Name="SearchContainer" Visible="False" HorizontalExpand="True">

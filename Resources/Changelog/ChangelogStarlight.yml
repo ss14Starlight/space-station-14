@@ -1,39 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Fixed roboticist and chem having wrong facing fuel dispensers.
-    type: Fix
-  id: 406092
-  time: '2026-06-17T08:31:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4824
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Fixed gen pop mining pickaxes to actually be security access.
-    type: Fix
-  id: 406093
-  time: '2026-06-17T08:31:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4824
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Removed crew monitor server located on gen pop island.
-    type: Fix
-  id: 406094
-  time: '2026-06-17T08:31:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4824
-- author: Toxyams
-  changes:
-  - message: Craftable toilets no longer generate infinite water.
-    type: Fix
-  id: 406095
-  time: '2026-06-17T09:05:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4755
-- author: Cringe_Cursed
-  changes:
-  - message: Added View counts and Like/Dislike buttons to news articles in the “News Reader” PDA app.
-    type: Add
-  id: 406096
-  time: '2026-06-17T09:58:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4822
 - author: CrazyPhantom
   changes:
   - message: Removed the Following access from Cyborgs, Captain, HoP, ER, CMO, HoS, RD, QM, Armory, NTR, BSO and Magistrate.
@@ -2799,4 +2764,39 @@ Entries:
   id: 406491
   time: '2026-07-08T16:11:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5019
+- author: Conflee
+  changes:
+  - message: Fixed ERROR when holding Goliath Steaks.
+    type: Fix
+  id: 406492
+  time: '2026-07-08T20:11:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5046
+- author: Mack
+  changes:
+  - message: Fixed issues with usernames and ghost themes not aligning.
+    type: Fix
+  id: 406493
+  time: '2026-07-08T21:13:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5024
+- author: Conflee
+  changes:
+  - message: Changed Wreck Swarms to only occur at most once every 5 minutes instead of once every 1 minute. Earliest occurrence is also now 15 minutes instead of 12. This should reduce the frequency of rounds where there are 20-30 wrecks surrounding the station by shift end.
+    type: Tweak
+  id: 406494
+  time: '2026-07-08T21:32:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5026
+- author: Scarlet Lightweaver
+  changes:
+  - message: Added a search bar to the guidebook.
+    type: Add
+  id: 406495
+  time: '2026-07-08T21:52:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5044
+- author: Scarlet Lightweaver
+  changes:
+  - message: Changed the content warning to include mindcontrol.
+    type: Tweak
+  id: 406496
+  time: '2026-07-08T21:52:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5044
 Order: -1
