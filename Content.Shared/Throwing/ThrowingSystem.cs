@@ -240,7 +240,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         if (user == null)
             return;
 
-        if (recoil && _gameTiming.IsFirstTimePredicted && (_net.IsClient || !predicted))
+        if (recoil && _gameTiming.IsFirstTimePredicted && (_net.IsClient || !predicted)) // Starlight edit
             _recoil.KickCamera(user.Value, -direction * 0.04f);
 
         // Give thrower an impulse in the other direction
