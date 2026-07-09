@@ -5,6 +5,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared._Starlight.Hands.EntitySystems; // Starlight
 
 namespace Content.Shared.Hands.Components;
 
@@ -71,6 +72,7 @@ public sealed partial class HandsComponent : Component
     ///     The time at which throws will be allowed again.
     /// </summary>
     [DataField, AutoPausedField]
+    [Access(typeof(SharedHandsSystem), typeof(PredictedHandsSystem))] // Starlight
     public TimeSpan NextThrowTime;
 
     /// <summary>
