@@ -1,17 +1,12 @@
-using Content.Shared.ActionBlocker;
+using Content.Shared._Starlight.Execution;
 using Content.Shared.Chat;
 using Content.Shared.Clumsy;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
-using Content.Shared.Database;
-using Content.Shared.DoAfter;
 using Content.Shared.Execution;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
-using Content.Shared.Verbs;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
@@ -30,19 +25,17 @@ using Content.Shared.Damage.Components;
 namespace Content.Server._Starlight.Execution;
 
 /// <summary>
-///     Verb for violently murdering cuffed creatures.
+///     Completes executions started by the predicted verbs in
+///     <see cref="SharedExecutionSystem"/>.
 /// </summary>
 public sealed partial class ExecutionSystem : EntitySystem
 {
-    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedCombatModeSystem _combat = default!;
-    [Dependency] private SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private SharedGunSystem _gunSystem = default!;
+    [Dependency] private SharedExecutionSystem _execution = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedSuicideSystem _suicide = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
@@ -53,187 +46,8 @@ public sealed partial class ExecutionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SharpComponent, GetVerbsEvent<UtilityVerb>>(OnGetInteractionVerbsMelee);
         SubscribeLocalEvent<SharpComponent, ExecutionDoAfterEvent>(OnExecutionDoAfterMelee);
-
-        SubscribeLocalEvent<GunComponent, GetVerbsEvent<UtilityVerb>>(OnGetInteractionVerbsGun);
         SubscribeLocalEvent<GunComponent, ExecutionDoAfterEvent>(OnExecutionDoAfterGun);
-    }
-
-    private void OnGetInteractionVerbsMelee(EntityUid uid, SharpComponent comp, GetVerbsEvent<UtilityVerb> args)
-    {
-        if (args.Hands == null || args.Using == null || !args.CanAccess || !args.CanInteract)
-            return;
-
-        var attacker = args.User;
-        var weapon = args.Using!.Value;
-        var victim = args.Target;
-
-        if (!CanBeExecutedWithMelee(weapon, victim, attacker)
-            || !CanBeExecutedWithAny(victim, attacker))
-            return;
-
-        UtilityVerb verb = new()
-        {
-            Act = () => TryStartExecutionDoAfter(weapon, victim, attacker),
-            Impact = LogImpact.High,
-            Text = attacker == victim ? Loc.GetString("suicide-verb-name") : Loc.GetString("execution-verb-name"),
-            Message = attacker == victim ? Loc.GetString("suicide-verb-message") : Loc.GetString("execution-verb-message"),
-        };
-
-        args.Verbs.Add(verb);
-    }
-
-    private void OnGetInteractionVerbsGun(EntityUid uid, GunComponent comp, GetVerbsEvent<UtilityVerb> args)
-    {
-        if (args.Hands == null || args.Using == null || !args.CanAccess || !args.CanInteract)
-            return;
-
-        var attacker = args.User;
-        var weapon = args.Using!.Value;
-        var victim = args.Target;
-
-        if (!CanBeExecutedWithGun(weapon, victim, attacker)
-            || !CanBeExecutedWithAny(victim, attacker))
-            return;
-
-        UtilityVerb verb = new()
-        {
-            Act = () =>
-            {
-                TryStartGunExecutionDoafter(weapon, victim, attacker);
-            },
-            Impact = LogImpact.High,
-            Text = attacker == victim ? Loc.GetString("suicide-verb-name") : Loc.GetString("execution-verb-name"),
-            Message = attacker == victim ? Loc.GetString("suicide-verb-message") : Loc.GetString("execution-verb-message"),
-        };
-
-        args.Verbs.Add(verb);
-    }
-
-    private void TryStartExecutionDoAfter(EntityUid weapon, EntityUid victim, EntityUid attacker)
-    {
-        if (!CanBeExecutedWithMelee(weapon, victim, attacker))
-            return;
-
-        if (attacker == victim)
-        {
-            ShowExecutionInternalPopup(ExecutionComponent.InternalSelfMeleeExecutionMessage, attacker, victim, weapon);
-            ShowExecutionExternalPopup(ExecutionComponent.ExternalSelfMeleeExecutionMessage, attacker, victim, weapon);
-        }
-        else
-        {
-            ShowExecutionInternalPopup(ExecutionComponent.ExternalSelfMeleeExecutionMessage, attacker, victim, weapon);
-            ShowExecutionExternalPopup(ExecutionComponent.ExternalMeleeExecutionMessage, attacker, victim, weapon);
-        }
-
-        var doAfter =
-            new DoAfterArgs(EntityManager, attacker, ExecutionComponent.MeleeDoAfterDuration, new ExecutionDoAfterEvent(), weapon, target: victim, used: weapon)
-            {
-                BreakOnMove = true,
-                BreakOnDamage = true,
-                NeedHand = true
-            };
-
-        _doAfter.TryStartDoAfter(doAfter);
-
-    }
-
-    private void TryStartGunExecutionDoafter(EntityUid weapon, EntityUid victim, EntityUid attacker)
-    {
-        if (!CanBeExecutedWithGun(weapon, victim, attacker))
-            return;
-
-        if (!TryComp<GunComponent>(weapon, out var gunComponent))
-            return;
-
-        var shotAttempted = new ShotAttemptedEvent
-        {
-            User = attacker,
-            Used = (weapon, gunComponent),
-        };
-        RaiseLocalEvent(weapon, ref shotAttempted);
-        if (shotAttempted.Cancelled)
-        {
-            if (shotAttempted.Message != null)
-                _popup.PopupEntity(shotAttempted.Message, weapon, attacker);
-            return;
-        }
-
-        if (attacker == victim)
-        {
-            ShowExecutionInternalPopup(ExecutionComponent.InternalSelfGunExecutionMessage, attacker, victim, weapon);
-            ShowExecutionExternalPopup(ExecutionComponent.ExternalSelfGunExecutionMessage, attacker, victim, weapon);
-        }
-        else
-        {
-            ShowExecutionInternalPopup(ExecutionComponent.InternalGunExecutionMessage, attacker, victim, weapon);
-            ShowExecutionExternalPopup(ExecutionComponent.ExternalGunExecutionMessage, attacker, victim, weapon);
-        }
-
-        var doAfter =
-            new DoAfterArgs(EntityManager, attacker, ExecutionComponent.GunDoAfterDuration, new ExecutionDoAfterEvent(), weapon, target: victim, used: weapon)
-            {
-                BreakOnMove = true,
-                BreakOnDamage = true,
-                NeedHand = true
-            };
-
-        _doAfter.TryStartDoAfter(doAfter);
-    }
-
-    public bool CanBeExecutedWithAny(EntityUid victim, EntityUid attacker)
-    {
-        // No point executing someone if they can't take damage
-        if (!HasComp<DamageableComponent>(victim))
-            return false;
-
-        // You can't execute something that cannot die
-        if (!TryComp<MobStateComponent>(victim, out var mobState))
-            return false;
-
-        // You're not allowed to execute dead people (no fun allowed)
-        if (_mobState.IsDead(victim, mobState))
-            return false;
-
-        // You must be able to attack people to execute
-        if (!_actionBlocker.CanAttack(attacker, victim))
-            return false;
-
-        // The victim must be incapacitated to be executed
-        if (victim != attacker && _actionBlocker.CanInteract(victim, null))
-            return false;
-
-        // All checks passed
-        return true;
-    }
-
-    private bool CanBeExecutedWithMelee(EntityUid weapon, EntityUid victim, EntityUid user)
-    {
-        if (!CanBeExecutedWithAny(victim, user))
-            return false;
-
-        // We must be able to actually hurt people with the weapon
-        if (!TryComp<MeleeWeaponComponent>(weapon, out var melee) && melee!.Damage.GetTotal() > 0.0f)
-            return false;
-
-        return true;
-    }
-
-    private bool CanBeExecutedWithGun(EntityUid weapon, EntityUid victim, EntityUid user)
-    {
-        if (!CanBeExecutedWithAny(victim, user))
-            return false;
-
-        // We must be able to actually fire the gun
-        if (!TryComp<GunComponent>(weapon, out var gun) && _gunSystem.CanShoot(gun!))
-            return false;
-
-        if (_appearanceSystem.TryGetData(weapon, AmmoVisuals.BoltClosed, out bool boltClosed))
-            if (!boltClosed)
-                return false;
-
-        return true;
     }
 
     private void ShowExecutionInternalPopup(string locString, EntityUid attacker, EntityUid victim, EntityUid weapon, bool predict = true)
@@ -268,7 +82,7 @@ public sealed partial class ExecutionSystem : EntitySystem
         var victim = args.Target.Value;
         var weapon = args.Used.Value;
 
-        if (!CanBeExecutedWithMelee(weapon, victim, attacker))
+        if (!_execution.CanBeExecutedWithMelee(weapon, victim, attacker))
             return;
 
         // This is needed so the melee system does not stop it.
@@ -316,7 +130,7 @@ public sealed partial class ExecutionSystem : EntitySystem
         var weapon = args.Used.Value;
         var victim = args.Target.Value;
 
-        if (!CanBeExecutedWithGun(weapon, victim, attacker))
+        if (!_execution.CanBeExecutedWithGun(weapon, victim, attacker))
             return;
 
         // Check if any systems want to block our shot
