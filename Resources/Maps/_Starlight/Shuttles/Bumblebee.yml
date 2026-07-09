@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/07/2026 18:46:26
+  time: 07/09/2026 02:30:06
   entityCount: 800
 maps: []
 grids:
@@ -117,6 +117,11 @@ entities:
             43: -35,-10
             44: -35,-9
         - node:
+            color: '#FFFFFFFF'
+            id: BrickTileSteelLineN
+          decals:
+            79: -32,-13
+        - node:
             zIndex: 1
             color: '#FFFFFFFF'
             id: BrickTileSteelLineN
@@ -155,6 +160,16 @@ entities:
             id: BrickTileSteelLineW
           decals:
             45: -27,-9
+        - node:
+            color: '#FFFFFFFF'
+            id: Grassa1
+          decals:
+            81: -27.33359,-14.796692
+        - node:
+            color: '#FFFFFFFF'
+            id: Grassb4
+          decals:
+            80: -28.482027,-14.515442
         - node:
             color: '#FFFFFFFF'
             id: LoadingArea
@@ -1768,7 +1783,7 @@ entities:
       pos: -24.5,2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -13216.635
+      secondsUntilStateChange: -13395.313
       state: Opening
 - proto: DresserFilled
   entities:
