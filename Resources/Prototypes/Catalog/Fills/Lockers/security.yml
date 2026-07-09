@@ -51,6 +51,7 @@
     - id: NetworkConfigurator
     - id: Binoculars
     - id: NeuralLinkDisruptor # Starlight
+    - id: TicketPad # Starlight
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -78,6 +79,7 @@
     children:
     - id: ClothingHandsGlovesSecurityRed #Starlight
     - id: ClothingEyesHudSecurity #Starlight
+    - id: TicketPad # Starlight
     - id: FlashlightSeclite
       prob: 0.8
     - id: WeaponDisabler
