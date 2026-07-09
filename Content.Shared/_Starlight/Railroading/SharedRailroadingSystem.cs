@@ -7,7 +7,7 @@ namespace Content.Shared._Starlight.Railroading;
 
 public abstract partial class SharedRailroadingSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
 
     public void InvalidateProgress(Entity<RailroadableComponent> ent)
     {
