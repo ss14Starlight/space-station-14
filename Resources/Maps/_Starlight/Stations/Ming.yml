@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/09/2026 22:56:30
-  entityCount: 29863
+  time: 07/09/2026 23:05:47
+  entityCount: 29867
 maps:
 - 1
 grids:
@@ -10618,7 +10618,7 @@ entities:
       pos: -63.5,-31.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -208006.62
+      secondsUntilStateChange: -208562.47
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10643,7 +10643,7 @@ entities:
       pos: -58.5,-45.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -206404.12
+      secondsUntilStateChange: -206959.97
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10716,7 +10716,7 @@ entities:
       pos: 1.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -21550.307
+      secondsUntilStateChange: -22106.145
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10800,7 +10800,7 @@ entities:
       pos: -32.5,-52.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -213659.16
+      secondsUntilStateChange: -214215
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11268,7 +11268,7 @@ entities:
       pos: -71.5,-38.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -208516.95
+      secondsUntilStateChange: -209072.8
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -11463,7 +11463,7 @@ entities:
       pos: -83.5,-42.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -33078.227
+      secondsUntilStateChange: -33634.066
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11475,7 +11475,7 @@ entities:
       pos: -83.5,-46.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -33078.83
+      secondsUntilStateChange: -33634.664
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11487,7 +11487,7 @@ entities:
       pos: -83.5,-50.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -33079.594
+      secondsUntilStateChange: -33635.434
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11499,7 +11499,7 @@ entities:
       pos: -83.5,-32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -33076.83
+      secondsUntilStateChange: -33632.664
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11511,7 +11511,7 @@ entities:
       pos: -83.5,-28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -33076.26
+      secondsUntilStateChange: -33632.098
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11523,7 +11523,7 @@ entities:
       pos: -83.5,-24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -33075.76
+      secondsUntilStateChange: -33631.598
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11535,7 +11535,7 @@ entities:
       pos: 47.5,53.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -33101.062
+      secondsUntilStateChange: -33656.9
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11547,7 +11547,7 @@ entities:
       pos: 47.5,57.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -33100.426
+      secondsUntilStateChange: -33656.266
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11561,7 +11561,7 @@ entities:
       addComponents: []
       path: /Maps/_Starlight/Shuttles/Security/pursuit.yml
     - type: Door
-      secondsUntilStateChange: -88888.336
+      secondsUntilStateChange: -89444.18
       state: Opening
 - proto: AirlockExternalGlassShuttleLocked
   entities:
@@ -12880,7 +12880,7 @@ entities:
       pos: 34.5,43.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -286864.7
+      secondsUntilStateChange: -287420.5
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -70159,6 +70159,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 14.5,28.5
+      parent: 2
+  - uid: 29867
+    components:
+    - type: Transform
+      pos: 18.5,46.5
       parent: 2
 - proto: ChairOfficeDark
   entities:
@@ -135147,6 +135152,11 @@ entities:
     - type: Transform
       pos: 11.5,28.5
       parent: 2
+  - uid: 29866
+    components:
+    - type: Transform
+      pos: 19.5,46.5
+      parent: 2
 - proto: PaperBin20
   entities:
   - uid: 21081
@@ -140082,6 +140092,18 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-62.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
+  - uid: 29865
+    components:
+    - type: Transform
+      pos: 20.5,46.5
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
@@ -159366,6 +159388,11 @@ entities:
     components:
     - type: Transform
       pos: 29.5,39.5
+      parent: 2
+  - uid: 29864
+    components:
+    - type: Transform
+      pos: 19.5,46.5
       parent: 2
 - proto: TablePlasmaGlass
   entities:
