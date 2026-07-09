@@ -100,6 +100,15 @@ namespace Content.Shared.Ghost
             entity.Comp.CanGhostInteract = value;
             Dirty(entity);
         }
+
+        // Starlight
+        public bool DoGhostBooEvent(EntityUid target)
+        {
+            var ghostBoo = new GhostBooEvent();
+            RaiseLocalEvent(target, ghostBoo, true);
+
+            return ghostBoo.Handled;
+        }
     }
 
     /// <summary>

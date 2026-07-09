@@ -1,4 +1,5 @@
 using Content.Server.Ghost;
+using Content.Shared.Ghost;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using AlertLevelDimmedLightComponent = Content.Shared._Starlight.Light.AlertLevelDimmedLightComponent;

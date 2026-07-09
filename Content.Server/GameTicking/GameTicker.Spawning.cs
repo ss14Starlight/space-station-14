@@ -33,6 +33,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server._NullLink.PlayerData;
 using Content.Server._Starlight.NewLife;
+using Content.Shared.Spawners.Components;
 
 namespace Content.Server.GameTicking
 {

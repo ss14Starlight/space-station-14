@@ -2,12 +2,9 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Actions;
 using Content.Shared.Maps;
-using Robust.Server.GameObjects;
 using Content.Shared.Popups;
 using Content.Shared.Physics;
 using System.Linq;
-using Content.Server.Ghost;
-using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 using Content.Shared.Light.Components;
 using Robust.Shared.Containers;
@@ -15,17 +12,19 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Inventory;
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Shadekin.Components;
+using Content.Shared.Ghost;
+using Robust.Shared.Physics.Systems;
 
-namespace Content.Server._Starlight.NullSpace;
+namespace Content.Shared._Starlight.NullSpace.Systems;
 
 public sealed partial class NullSpacePhaseSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private PhysicsSystem _physics = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private GhostSystem _ghost = default!;
-    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private SharedGhostSystem _ghost = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private TurfSystem _turf = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
 

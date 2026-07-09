@@ -58,6 +58,12 @@ namespace Content.Shared.GameTicking
         {
             return _gameTiming.CurTime.Subtract(RoundStartTimeSpan);
         }
+
+        // Starlight
+        public virtual bool StartGameRule(string ruleId)
+        {
+            return false;
+        }
     }
 
     [Serializable, NetSerializable]

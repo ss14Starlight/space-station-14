@@ -1,15 +1,16 @@
-using Content.Server._Starlight.Objectives.Events;
+using Content.Shared._Starlight.Objectives.Events;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Railroading.Components.Watchers;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Objectives;
 
-namespace Content.Server._Starlight.Railroading.TaskSystems;
+namespace Content.Shared._Starlight.Railroading;
 
 public sealed partial class RailroadingSupercritPortalSystem : EntitySystem
 {
-    [Dependency] private RailroadingSystem _railroading = default!;
+    [Dependency] private SharedRailroadingSystem _railroading = default!;
+
     public override void Initialize()
     {
         base.Initialize();
