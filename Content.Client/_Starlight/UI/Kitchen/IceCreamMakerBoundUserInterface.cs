@@ -91,17 +91,6 @@ namespace Content.Client._Starlight.UI.Kitchen
             else
                 _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", cState.StartedCookTime.ToString(@"mm\:ss")));
 
-            //Set the correct button active button
-            if (cState.ActiveButtonIndex == 0)
-            {
-                // _menu.InstantCookButton.Pressed = true;
-            }
-            else
-            {
-                var currentlySelectedTimeButton = (Button) _menu.CookTimeButtonVbox.GetChild(cState.ActiveButtonIndex - 1);
-                currentlySelectedTimeButton.Pressed = true;
-            }
-
             foreach (Button children in _menu.CookTimeButtonVbox.Children)
             {
                 children.Disabled = cState.IsMicrowaveBusy;

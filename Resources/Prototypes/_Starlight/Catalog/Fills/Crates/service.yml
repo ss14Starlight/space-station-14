@@ -14,13 +14,15 @@
   id: CrateServiceIceCreamMakerStarter
   parent: CrateFreezer
   name: ice cream maker starter crate
-  description: Contains a flatpack of an ice cream maker, a jug of ice cream, cocoa powder, berries, pistachios, and glasses.
+  description: Contains a flatpack of an ice cream maker, a jug of ice cream, cream, cocoa powder, berries, pistachios, and glasses.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
         children:
         - id: JugIceCream
+          amount: 1
+        - id: DrinkCreamCarton
           amount: 1
         - id: JugCocoaPowder
           amount: 1

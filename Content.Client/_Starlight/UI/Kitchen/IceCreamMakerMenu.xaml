@@ -29,14 +29,12 @@
                     <!-- Ingredients are added here by code -->
                 </ItemList>
             </PanelContainer>
-            <!-- Starlight-start: moved to add working stop button -->
             <PanelContainer Name="DisableCookingPanelOverlay"
                             MouseFilter="Stop">
                 <PanelContainer.PanelOverride>
                     <gfx:StyleBoxFlat BackgroundColor="#1B1B1E66"/>
                 </PanelContainer.PanelOverride>
             </PanelContainer>
-            <!-- Starlight-end -->
             <BoxContainer
                 Orientation="Vertical"
                 MinSize="170, 200"
@@ -51,14 +49,12 @@
                         ModulateSelfOverride="#FF0000"
                         MinSize="100 128">
                         <BoxContainer Orientation="Vertical">
-                            <!-- Starlight-start -->
                             <Label
                                 Name="CurrentCookTimeInfoLabel"
                                 Access="Public"
                                 Align="Center"
                                 Modulate="#FFFFFF"
                                 VAlign="Center"/>
-                            <!-- Starlight-end -->
                             <BoxContainer  Orientation="Vertical">
                                 <GridContainer
                                     Name="CookTimeButtonVbox"
@@ -75,7 +71,6 @@
                                     Align="Center"
                                     SizeFlagsStretchRatio="3">
                                     <Control MinSize="0 15"/>
-                                    <!-- Starlight-start -->
                                     <BoxContainer Orientation="Horizontal"
                                                   Align="Center"
                                                   SeparationOverride="4">
@@ -104,7 +99,6 @@
                                             TextAlign="Center"
                                             SizeFlagsStretchRatio="1"/>
                                     </BoxContainer>
-                                    <!-- Starlight-end -->
                                 </BoxContainer>
                             </BoxContainer>
                         </BoxContainer>

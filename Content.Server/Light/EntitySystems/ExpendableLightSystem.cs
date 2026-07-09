@@ -110,13 +110,11 @@ namespace Content.Server.Light.EntitySystems
 
                 // Starlight Edit Start
                 // For botany grown cinnaflares, add the to the burn time by adding modifier * plant potency.
-                if (TryComp<ProduceComponent>(ent, out var produceComp))
-                {
-                    if (_botanySystem.TryGetSeed(produceComp, out var seedData))
+                if (TryComp<ProduceComponent>(ent, out var produceComp) &&
+                    _botanySystem.TryGetSeed(produceComp, out var seedData))
                     {
                         ent.Comp.StateExpiryTime +=  ent.Comp.PlantBurnTimeModifier * seedData.Potency;
                     }
-                }
                 // Starlight Edit Stop
 
                 var ignite = new IgnitionEvent(true);
