@@ -283,7 +283,7 @@ public sealed partial class ShadekinSystem
         }
         else
         {
-            _popup.PopupEntity(Loc.GetString("shadekin-noenergy"), uid, uid, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("shadekin-noenergy"), uid, uid, PopupType.LargeCaution);
             return false;
         }
 
@@ -295,7 +295,7 @@ public sealed partial class ShadekinSystem
         if (brighteye.Rejuvenating && brighteye.Energy >= brighteye.MaxEnergy)
         {
             brighteye.Rejuvenating = false;
-            _popup.PopupEntity(Loc.GetString("shadekin-rejuvenate-compleated"), uid, uid, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("shadekin-rejuvenate-compleated"), uid, uid, PopupType.LargeCaution);
             _alerts.ClearAlert(uid, brighteye.RejuvenationAlert);
         }
 
