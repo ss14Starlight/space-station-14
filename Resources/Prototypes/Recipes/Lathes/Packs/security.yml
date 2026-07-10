@@ -92,7 +92,6 @@
   - ExplosivePayload
   - GrenadeBlast
   - GrenadeEMP
-  - GrenadeFlash
   - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe
