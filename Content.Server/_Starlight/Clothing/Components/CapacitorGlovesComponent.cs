@@ -7,6 +7,13 @@ namespace Content.Server._Starlight.Clothing.Components;
 public sealed partial class CapacitorGlovesComponent : Component
 {
     /// <summary>
+    /// Whether the gloves are currently draining power or injecting it.
+    /// Toggled by activating (E) the gloves in hand.
+    /// </summary>
+    [DataField]
+    public Content.Shared._Starlight.Clothing.CapacitorGlovesMode Mode = Content.Shared._Starlight.Clothing.CapacitorGlovesMode.Drain;
+
+    /// <summary>
     /// The entity to which we added a BatteryDrainerComponent on equip.
     /// Null when the wearer already had a drainer (IPC / ninja).
     /// </summary>

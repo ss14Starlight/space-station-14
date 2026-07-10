@@ -201,7 +201,7 @@
     fiberMaterial: fibers-grey
 
 - type: entity
-  parent: [ ClothingHandsBase, BaseEngineeringContraband ]
+  parent: [ ClothingHandsBaseInedible, BaseEngineeringContraband ] # Starlight: ClothingHandsBaseInedible so moths cannot eat these
   id: ClothingHandsGlovesCapacitor
   name: capacitor gloves
   description: A pair of insulated engineering gloves with a miniaturized bluespace power storage woven into the knuckle-plate. Slot in a power cell, then hand-interact with any APC, substation, or SMES to flood the cell with charge. Rated for punishment. Do not lick.

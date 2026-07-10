@@ -4,6 +4,8 @@ using Content.Server.Power.Components;
 using Content.Shared._Starlight.Clothing;
 using Content.Shared.DoAfter;
 using Content.Shared.Emp;
+using Content.Shared.Examine;
+using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Ninja.Components;
@@ -43,11 +45,41 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
         SubscribeLocalEvent<CapacitorGlovesComponent, GotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<CapacitorGlovesComponent, GotUnequippedEvent>(OnUnequipped);
         SubscribeLocalEvent<CapacitorGlovesComponent, PowerCellChangedEvent>(OnPowerCellChanged);
+        SubscribeLocalEvent<CapacitorGlovesComponent, ActivateInWorldEvent>(OnActivate);
+        SubscribeLocalEvent<CapacitorGlovesComponent, ExaminedEvent>(OnExamined);
 
         SubscribeLocalEvent<PowerNetworkBatteryComponent, GetVerbsEvent<AlternativeVerb>>(OnGetInjectVerb);
         SubscribeLocalEvent<CapacitorGlovesComponent, CapacitorInjectDoAfterEvent>(OnInjectDoAfter);
 
         SubscribeLocalEvent<WornCapacitorGlovesComponent, EmpPulseEvent>(OnWearerEmp);
+    }
+
+    // ─────────────────────────── Mode toggle ───────────────────────────────
+
+    private void OnActivate(Entity<CapacitorGlovesComponent> ent, ref ActivateInWorldEvent args)
+    {
+        args.Handled = true;
+        var comp = ent.Comp;
+        comp.Mode = comp.Mode == CapacitorGlovesMode.Drain
+            ? CapacitorGlovesMode.Inject
+            : CapacitorGlovesMode.Drain;
+
+        // Enable / disable the battery drainer to match the new mode.
+        if (comp.DrainerTarget is { } drainer)
+            _drainer.SetHandInteractionEnabled(drainer, comp.Mode == CapacitorGlovesMode.Drain);
+
+        var modeStr = comp.Mode == CapacitorGlovesMode.Drain
+            ? Loc.GetString("capacitor-gloves-mode-drain")
+            : Loc.GetString("capacitor-gloves-mode-inject");
+        _popup.PopupEntity(Loc.GetString("capacitor-gloves-mode-switched", ("mode", modeStr)), ent.Owner, args.User);
+    }
+
+    private void OnExamined(Entity<CapacitorGlovesComponent> ent, ref ExaminedEvent args)
+    {
+        var modeStr = ent.Comp.Mode == CapacitorGlovesMode.Drain
+            ? Loc.GetString("capacitor-gloves-mode-drain")
+            : Loc.GetString("capacitor-gloves-mode-inject");
+        args.PushMarkup(Loc.GetString("capacitor-gloves-examine-mode", ("mode", modeStr)));
     }
 
     // ───────────────────────────── Equip / Unequip ─────────────────────────────
@@ -68,6 +100,10 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
             _drainer.SetDrainConfig(wearer, comp.DrainEfficiency, comp.DrainTime, comp.MaxDrainPerTick);
             comp.DrainerTarget = wearer;
         }
+
+        // Honour whichever mode was saved on the component.
+        if (comp.DrainerTarget is { } drainer)
+            _drainer.SetHandInteractionEnabled(drainer, comp.Mode == CapacitorGlovesMode.Drain);
 
         UpdateBattery(ent, wearer);
     }
@@ -112,6 +148,10 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
 
         if (!_inventory.TryGetSlotEntity(args.User, "gloves", out var glovesEnt) ||
             !TryComp<CapacitorGlovesComponent>(glovesEnt, out var comp))
+            return;
+
+        // Only expose inject verbs when the gloves are in inject mode.
+        if (comp.Mode != CapacitorGlovesMode.Inject)
             return;
 
         var glovesRef = glovesEnt.Value;

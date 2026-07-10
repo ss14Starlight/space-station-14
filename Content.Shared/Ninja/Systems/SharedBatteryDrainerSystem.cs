@@ -76,6 +76,18 @@ public abstract class SharedBatteryDrainerSystem : EntitySystem
         ent.Comp.MaxDrainPerTick = maxDrainPerTick;
         Dirty(ent, ent.Comp);
     }
+
+    /// <summary>
+    /// Enables or disables hand-interaction draining. Used by capacitor gloves mode toggle.
+    /// </summary>
+    public void SetHandInteractionEnabled(Entity<BatteryDrainerComponent?> ent, bool enabled)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        ent.Comp.DisableHandInteraction = !enabled;
+        Dirty(ent, ent.Comp);
+    }
     // Starlight end
 }
 
