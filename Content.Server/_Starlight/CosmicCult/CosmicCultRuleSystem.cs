@@ -970,8 +970,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             _mind.TryRemoveObjective(mindId, mind, conversionObjective.Value);
         if (_mind.TryFindObjective((mindId, mind), "CosmicEntropyObjective", out var entropyObjective) && entropyObjective != null)
             _mind.TryRemoveObjective(mindId, mind, entropyObjective.Value);
-        if (_mind.TryFindObjective((mindId, mind), "CosmicChaplainObjective", out var chaplainObjective) && entropyObjective != null)
-            _mind.TryRemoveObjective(mindId, mind, entropyObjective.Value);
+        if (_mind.TryFindObjective((mindId, mind), "CosmicChaplainObjective", out var chaplainObjective) && chaplainObjective != null)
+            _mind.TryRemoveObjective(mindId, mind, chaplainObjective.Value);
 
         _role.MindRemoveRole<CosmicCultRoleComponent>(mindId);
         _role.MindRemoveRole<RoleBriefingComponent>(mindId);
