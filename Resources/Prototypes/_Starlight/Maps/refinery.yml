@@ -1,7 +1,7 @@
 - type: gameMap
   id: StarlightRefinery
-  mapName: 'Space Mall'
-  mapPath: /Maps/_Starlight/Stations/SpaceMall.yml
+  mapName: 'NT-17 Refinery Starport'
+  mapPath: /Maps/_Starlight/Stations/Refinery.yml
   minPlayers: 60
   maxPlayers: 350
   stations:
@@ -9,10 +9,10 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Space Mall {1}'
+          mapNameTemplate: '{0} Refinery {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'ST'
+            prefixCreator: 'RF'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_spacemall.yml
         - type: StationJobs
