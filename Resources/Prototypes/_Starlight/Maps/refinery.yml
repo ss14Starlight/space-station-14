@@ -1,6 +1,6 @@
 - type: gameMap
   id: StarlightRefinery
-  mapName: 'NT-17 Refinery Starport'
+  mapName: 'Refinery Starport'
   mapPath: /Maps/_Starlight/Stations/Refinery.yml
   minPlayers: 60
   maxPlayers: 350
