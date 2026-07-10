@@ -31,6 +31,7 @@ using Content.Shared._Starlight.Camera;
 using Content.Shared.Station.Components;
 using Robust.Server.Player;
 using Content.Shared.Body.Components;
+using Content.Shared.Atmos.Components;
 #endregion
 
 namespace Content.Server.Shuttles.Systems;
@@ -775,11 +776,14 @@ public sealed partial class ShuttleSystem
 
     /// <summary>
     /// Puts everyone unbuckled on the floor, paralyzed.
+    /// #Starlight  Added check for MovedByPressureComponent to see if the entity is disabled, if so, toss them if spaced and skip stun.
     /// </summary>
     private void DoTheDinosaur(TransformComponent xform)
     {
         // Get enumeration exceptions from people dropping things if we just paralyze as we go
         var toKnock = new ValueList<EntityUid>();
+        // Get a query for MovedByPressureComponent to check if the entity is disabled
+        var movedByPressureQuery = GetEntityQuery<MovedByPressureComponent>();
         KnockOverKids(xform, ref toKnock);
         TryComp<MapGridComponent>(xform.GridUid, out var grid);
 
@@ -787,11 +791,21 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
+                // If the entity has a MovedByPressureComponent and it's disabled, try tossing if spaced and skip stun
+                if (movedByPressureQuery.TryComp(child, out var moved) && !moved.Enabled)
+                {
+                    if (grid != null)
+                        TossIfSpaced((xform.GridUid.Value, grid, shuttleBody), child);
+                    continue;
+                }
+                // Otherwise, paralyze the entity
                 _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
 
                 // If the guy we knocked down is on a spaced tile, throw them too
                 if (grid != null)
+
                     TossIfSpaced((xform.GridUid.Value, grid, shuttleBody), child);
+
             }
         }
     }
