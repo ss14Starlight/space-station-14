@@ -145,8 +145,8 @@
   rules:
   - SLDynamicRule # Starlight, we have a modified scheduler.
 #  - DummyNonAntag # Starlight, remove DummyNonAntag
-#  - DynamicStationEventScheduler # Starlight, we're adding this to Dynamic itself, so we can make it compete with Dynamic Survival, Kessler, and ShitStation.
-#  - MeteorSwarmScheduler # Starlight, also moving this to Dynamic's modes, mainly because we don't want double meteors with Kessler.
+  - DynamicStationEventScheduler
+  - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - RailroadingMinor # Starlight, railroading

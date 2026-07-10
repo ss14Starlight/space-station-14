@@ -12,38 +12,6 @@
     minRuleInterval: 750
     table: !type:AllSelector
       children:
-      # Event Schedulers, we roll these first so we're guaranteed to get one of them. Weird combinations of them will also eat away at our normal budget for other rules, so that's a good thing to restrict chaos.
-      - !type:GroupSelector
-        conditions:
-        - !type:RoundDurationCondition
-          max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
-        children:
-        - id: Dynamic
-          weight: 88
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 15
-        - id: Survival
-          weight: 6
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 10
-        - id: KesslerSyndrome
-          weight: 2
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 10
-        - id: ShitStation
-          weight: 4
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
       # Major Rules
       - !type:GroupSelector
         conditions:
