@@ -387,10 +387,6 @@
           shader: unshaded
     - type: Clothing
       sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550g.rsi
-    - type: ItemSlots
-      slots:
-        gun_magazine:
-          startingItem: MagazinePistolSubMachineGunTopMounted
     - type: Contraband
       allowedDepartments: [ CentralCommand ]
       allowedJobs: []
