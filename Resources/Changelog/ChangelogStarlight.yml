@@ -1,27 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Conflee
   changes:
-  - message: Added random medical vending machine spawners.
-    type: Add
-  id: 406114
-  time: '2026-06-19T08:19:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4856
-- author: wonderfulnewworld, Conflee
-  changes:
-  - message: Added weird pills and golden (random) pills.
-    type: Add
-  id: 406115
-  time: '2026-06-19T08:19:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4856
-- author: wonderfulnewworld, Conflee
-  changes:
-  - message: Standardizes items in medical vendors, then specializes them based on vendor type.
-    type: Tweak
-  id: 406116
-  time: '2026-06-19T08:19:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4856
-- author: wonderfulnewworld, Conflee
-  changes:
   - message: Medical vendors have clearer suffixes now.
     type: Tweak
   id: 406117
@@ -2799,4 +2778,25 @@ Entries:
   id: 406513
   time: '2026-07-10T10:54:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5048
+- author: Caws
+  changes:
+  - message: Thief's undetermined toolbox & thief's undetermined satchel are no longer contraband. New antags rejoice.
+    type: Tweak
+  id: 406514
+  time: '2026-07-10T12:36:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5063
+- author: Caws
+  changes:
+  - message: (Geiger Complex) Added a soft drinks vendor and some drink machine restocks by the syndicate Bruise-O-Mat. Dwarf brewers rejoice.
+    type: Add
+  id: 406515
+  time: '2026-07-10T12:36:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5060
+- author: Caws
+  changes:
+  - message: A thruster that was stuck permanently turned off on the NukeOps "GX-86 Omen" shuttle has been fixed.
+    type: Fix
+  id: 406516
+  time: '2026-07-10T13:40:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5067
 Order: -1
