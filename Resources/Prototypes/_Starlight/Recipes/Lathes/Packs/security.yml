@@ -118,6 +118,11 @@
   - SpeedLoaderShotgunBeanbag
 # Battery
   - MagazineBatteryLr30
+# Peacemaker
+  - BoxPeacekeeperGas
+  - BoxPeacekeeperStinger
+  - BoxPeacekeeperFlash
+  - BoxPeacekeeperBaton
 ####################################################
 
 - type: latheRecipePack
