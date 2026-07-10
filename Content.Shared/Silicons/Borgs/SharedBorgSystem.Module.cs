@@ -6,7 +6,6 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Localizations;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Storage.Components; // Starlight-edit
-using Content.Shared.Storage.EntitySystems; // Starlight-edit
 using Robust.Shared.Containers;
 #region Starlight
 using Content.Shared.Tag;
@@ -23,7 +22,6 @@ public abstract partial class SharedBorgSystem
 {
     private EntityQuery<BorgModuleComponent> _moduleQuery;
     [Dependency] private SharedToolSystem _tool = default!; //Starlight
-    [Dependency] private readonly SharedEntityStorageSystem _entityStorage = default!; // Starlight
 
     public void InitializeModule()
     {
