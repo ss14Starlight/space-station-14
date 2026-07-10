@@ -103,9 +103,10 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
 
         // Honour whichever mode was saved on the component.
         if (comp.DrainerTarget is { } drainer)
+        {
             _drainer.SetHandInteractionEnabled(drainer, comp.Mode == CapacitorGlovesMode.Drain);
-
-        UpdateBattery(ent, wearer);
+            UpdateBattery(ent, drainer);
+        }
     }
 
     private void OnUnequipped(Entity<CapacitorGlovesComponent> ent, ref GotUnequippedEvent args)
