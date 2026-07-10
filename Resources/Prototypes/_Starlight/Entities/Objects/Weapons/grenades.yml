@@ -59,3 +59,58 @@
   - type: StaticPrice
     price: 500
   - type: EorgPreventTrigger # Starlight
+
+- type: entity # Starlight Grenade spawn the Peacekeeper stinger round
+  id: Grenade20mmStinger
+  parent: ProjectileGrenadeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: armedstinger
+  - type: GenericVisualizer
+    visuals: {}
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 1.5
+  - type: ProjectileGrenade
+    triggerKey: timer
+    fillPrototype: PelletClusterRubber
+    capacity: 15
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: /Audio/Effects/flash_bang.ogg
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+
+- type: entity # Starlight Grenades spawns for the sec grenade launcher
+  id: Grenade20mmGas
+  parent: ProjectileGrenadeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: armedgas
+  - type: GenericVisualizer
+    visuals: {}
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 1.5
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 15
+    smokePrototype: TearGasSmokeWhite
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 20
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
