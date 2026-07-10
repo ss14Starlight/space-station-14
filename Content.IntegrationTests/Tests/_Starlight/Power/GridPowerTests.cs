@@ -109,8 +109,8 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml"),
         new("/Maps/_Starlight/Shuttles/ss_ana.yml"),
         new("/Maps/_Starlight/Test/SL_admin_test_arena.yml"),
-        new("/Maps/_Starlight/Shuttles/MedTak-AV-40.yml"),
-        new("/Maps/_Starlight/EventMaps/MedTakPointAlpha.yml")
+        new("/Maps/_Starlight/MedTak/MedTak-AV-40.yml"),
+        new("/Maps/_Starlight/MedTak/MedTakPointAlpha.yml")
     ];
 
     [Test, TestCaseSource(nameof(GridPaths))]
