@@ -115,3 +115,31 @@
         enabled:
           True: { state: active }
           False: { state: spent }
+
+- type: entity # Starlight Grenades spawns for the sec grenade launcher
+  id: Grenade20mmGas
+  parent: ProjectileGrenadeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: armedgas
+  - type: GenericVisualizer
+    visuals: {}
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 1.5
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 10
+    spreadAmount: 15
+    smokePrototype: TearGasSmokeWhite
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 20
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
