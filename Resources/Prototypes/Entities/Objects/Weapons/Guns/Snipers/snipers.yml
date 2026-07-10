@@ -91,8 +91,9 @@
   components:
   # Starlight-start
   - type: GunWieldBonus
-    maxAngle: -10
-    minAngle: -10
+    angleIncreaseDivider: 1
+    minAngleDivider: 2.2
+    maxAngleDivider: 2.2
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 2
@@ -124,6 +125,11 @@
         variation: 0.246
     pump: true
     fireRate: 1
+    # Starlight-start
+    minAngle: 2
+    maxAngle: 6
+    spread: 4
+    # Starlight-end
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
     layers:
@@ -177,8 +183,9 @@
   components:
   # Starlight-start
   - type: GunWieldBonus
-    maxAngle: -10
-    minAngle: -10
+    angleIncreaseDivider: 1
+    minAngleDivider: 2.5
+    maxAngleDivider: 2.5
   # Starlight-end
   - type: Item
     size: Huge
@@ -193,6 +200,11 @@
     pump: true
     fireRate: 0.5
     selectedMode: SemiAuto
+    # Starlight-start
+    minAngle: 1
+    maxAngle: 4
+    spread: 5
+    # Starlight-end
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -259,8 +271,12 @@
   description: A pirate's companion. Yarrr! Uses .45 magnum ammo.
   components:
   - type: Gun
-    minAngle: 0
-    maxAngle: 30 #miss him entirely because the barrel is smoothbore
+    # Starlight-start
+    minAngle: 8
+    maxAngle: 34
+    angleIncrease: 13
+    angleDecay: 26
+    # Starlight-end
   - type: Item
     size: Small
     shape:
@@ -282,6 +298,12 @@
     proto: CartridgeMagnumSP
   - type: StaticPrice
     price: 0
+  # Starlight-start
+  - type: GunWieldBonus
+    angleIncreaseDivider: 1.5
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.4
+  # Starlight-end
 
 - type: entity
   parent: WeaponPistolFlintlock

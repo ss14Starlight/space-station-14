@@ -35,10 +35,10 @@
     - Belt
   - type: Gun
     # Starlight-start
-    minAngle: 5
-    maxAngle: 20
-    angleDecay: 22.5
-    angleIncrease: 15
+    minAngle: 13
+    maxAngle: 24
+    angleDecay: 26
+    angleIncrease: 5
     # Starlight-end
     fireRate: 6
     selectedMode: SemiAuto
@@ -87,7 +87,7 @@
   - type: GunWieldBonus
     angleIncreaseDivider: 1.5
     minAngleDivider: 1.5
-    maxAngleDivider: 1.5
+    maxAngleDivider: 1.6
   - type: ContainerFill
     containers:
       firing_pin:
@@ -206,6 +206,12 @@
     boltClosed: null
   - type: Gun
     fireRate: 4
+    # Starlight-start
+    minAngle: 10
+    maxAngle: 26
+    angleIncrease: 8
+    angleDecay: 24
+    # Starlight-end
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
       params:
@@ -237,6 +243,12 @@
       firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 1500
+  # Starligth-start
+  - type: GunWieldBonus
+    angleIncreaseDivider: 1.5
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.5
+  # Starlight-end
 
 - type: entity
   name: mk 58
@@ -281,10 +293,10 @@
     sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
   - type: Gun
     # Starlight-start
-    minAngle: 10
-    maxAngle: 30
-    angleIncrease: 20
-    angleDecay: 30
+    minAngle: 8
+    maxAngle: 34
+    angleIncrease: 13
+    angleDecay: 26
     # Starlight-end
     fireRate: 4
     availableModes:
@@ -309,3 +321,9 @@
         whitelist:
           tags:
             - CartridgeMagnum
+  # Starlight-start
+  - type: GunWieldBonus
+    angleIncreaseDivider: 1.5
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.4
+  # Starlight-end

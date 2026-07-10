@@ -281,9 +281,7 @@
     children:
     - id: BoxFiringPin # Starlight, firing pins
     - id: WeaponRifleLecter
-      amount: 2
-    - id: WeaponRifleLeikha
-      amount: 1
+      amount: 3
     - id: WeaponRifleLawbringer
       amount: 1
     - id: MagazineRifleHP

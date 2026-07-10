@@ -14,7 +14,7 @@
     outerClothing: ClothingOuterSovietCoat
     id: SovietIdCard
     ears: ClothingHeadsetAltSoviet
-    belt: WeaponPistolAPS
+    belt: WeaponPistolStechkinAPS
     pocket1: SovietDeskFlag
     pocket2: ClothingSovietMedals
 

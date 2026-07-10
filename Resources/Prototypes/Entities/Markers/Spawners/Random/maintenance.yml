@@ -379,8 +379,6 @@
       - id: MakeshiftShield
       - id: SwordImprovised
       - id: ImprovisedShield
-      - id: WeaponSniperMakeshift
-        weight: .8
       - id: WeaponShotgunMakeshift
         weight: .8
       - id: WeaponLaserSvalinn # Starlight- The svalinn's 14 dps... I think it's maints loot worthy.

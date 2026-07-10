@@ -30,7 +30,7 @@
     id: SovietIdCard
     ears: ClothingHeadsetAltSoviet
     belt: ClothingBeltSheathFilled
-    pocket1: WeaponPistolAPS
+    pocket1: WeaponPistolStechkinAPS
     pocket2: SovietDeskFlag
   inhand:
   - d6Dice

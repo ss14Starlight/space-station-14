@@ -62,13 +62,20 @@
     containers:
       gun_magazine: !type:ContainerSlot
   - type: Gun
-    fireRate: 5
+    fireRate: 10
     selectedMode: FullAuto
     availableModes:
       - SemiAuto
       - FullAuto
+    minAngle: 11
+    maxAngle: 20
+    spread: 1.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: GunWieldBonus
+    angleIncreaseDivider: 2
+    minAngleDivider: 2.2
+    maxAngleDivider: 2
   - type: MagazineVisuals
     magState: mag
     steps: 6
@@ -123,65 +130,18 @@
       - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    minAngle: 11
+    maxAngle: 20
+    spread: 1.5
+  - type: GunWieldBonus
+    angleIncreaseDivider: 2
+    minAngleDivider: 2.2
+    maxAngleDivider: 2
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
-
-- type: entity
-  name: ARG
-  parent: [BaseTSFContraband, BaseWeaponRifle]
-  id: WeaponRifleARG
-  description: An old galactic standard assault rifle, used by various paramilitary groups and former SVS militias ever since. Uses .30 rifle ammo.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
-    layers:
-    - state: base
-      map: [ "enum.GunVisualLayers.Base" ]
-    - state: mag-0
-      map: [ "enum.GunVisualLayers.Mag" ]
-  - type: Item
-    sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
-  - type: Gun
-    fireRate: 6
-    soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineLightRifleFMJ
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MagazineLightRifle
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeLightRifleFMJ
-        priority: 1
-        whitelist:
-          tags:
-          - CartridgeLightRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot ""
-      gun_chamber: !type:ContainerSlot ""
-      firing_pin: !type:Container
-  - type: Appearance
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
 
 - type: entity
   name: Aussec Armory M-52
@@ -197,8 +157,15 @@
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/m-52_wielded_x64.rsi
   - type: Gun
     fireRate: 8
+    minAngle: 11
+    maxAngle: 20
+    spread: 1.5
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/aussec.ogg
+  - type: GunWieldBonus
+    angleIncreaseDivider: 2
+    minAngleDivider: 2.2
+    maxAngleDivider: 2
   - type: MagazineVisuals
     magState: mag
     steps: 3
@@ -224,73 +191,11 @@
             - CartridgeRifle
 
 - type: entity
-  name: Leikha
-  parent: [ BaseWeaponRifle, BaseSecurityContraband ]
-  id: WeaponRifleLeikha
-  description: A high end military grade assault rifle. This one has been retrofitted with a scope and a burst reciever. Uses .20 rifle ammo.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16a4.rsi
-    layers:
-    - state: base
-      map: [ "enum.GunVisualLayers.Base" ]
-    - state: mag-0
-      map: [ "enum.GunVisualLayers.Mag" ]
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16a4.rsi
-  - type: Gun
-    burstFireRate: 12
-    shotsPerBurst: 3
-    burstCooldown: 0.55
-    selectedMode: Burst
-    availableModes:
-    - Burst
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineRifleSP
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MagazineRifle
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeRifleSP
-        priority: 1
-        whitelist:
-          tags:
-          - CartridgeRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot ""
-      gun_chamber: !type:ContainerSlot ""
-      firing_pin: !type:Container
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: Appearance
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 1.5
-    pvsIncrease: 0.15
-
-- type: entity
   name: L10 DMR
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRifleL10
   description: "A scoped marksman rifle for medium range engagements, built on the Lecter platform.\nChambered in .45 magnum."
   components:
-  - type: GunWieldBonus
-    maxAngle: -10
-    minAngle: -10
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
     layers:
@@ -306,8 +211,15 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+    minAngle: 3
+    maxAngle: 8
+    spread: 3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+  - type: GunWieldBonus
+    angleIncreaseDivider: 2
+    minAngleDivider: 2
+    maxAngleDivider: 2
   - type: SpeedModifiedOnWield
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -366,8 +278,15 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+    minAngle: 3
+    maxAngle: 8
+    spread: 3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: GunWieldBonus
+    angleIncreaseDivider: 2
+    minAngleDivider: 2
+    maxAngleDivider: 2
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -409,11 +328,13 @@
   - type: Gun
     fireRate: 7
     burstFireRate: 14
-    selectedMode: FullAuto
+    burstShotsCount: 3
+    selectedMode: Burst
     availableModes:
-    - FullAuto
-    - SemiAuto
     - Burst
+    minAngle: 3
+    maxAngle: 8
+    spread: 3
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
       params:
@@ -436,66 +357,6 @@
         priority: 1
         whitelist:
           tags:
-
-- type: entity
-  name: M18-Militant
-  parent: [BaseWeaponRifle, BaseSalvageContraband]
-  id: WeaponRifleM18
-  description: Aged yet dependable, this old-world assault rifle is chambered in .20 rifle ammunition. Renowned for its reliability and ease of maintenance even in the harshest environments, it remains a staple among your station's merce- salvage forces.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16.rsi
-      layers:
-        - state: base
-          map: ["enum.GunVisualLayers.Base"]
-        - state: mag-0
-          map: ["enum.GunVisualLayers.Mag"]
-    - type: Clothing
-      sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16.rsi
-    - type: Wieldable
-      unwieldOnUse: false
-    - type: GunWieldBonus
-    - type: Gun
-      minAngle: 21
-      maxAngle: 32
-      fireRate: 2.7
-      burstFireRate: 18
-      soundGunshot:
-        path: /Audio/_Starlight/Weapons/Guns/Gunshots/m16.ogg
-      selectedMode: Burst
-      availableModes:
-      - Burst
-      - SemiAuto
-      shotsPerBurst: 2
-      burstCooldown: 0.45
-    - type: ItemSlots
-      slots:
-        gun_magazine:
-          name: Magazine
-          startingItem: MagazineRifleSP
-          insertSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-          ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-          priority: 2
-          whitelist:
-            tags:
-              - MagazineRifle
-          whitelistFailPopup: gun-magazine-whitelist-fail
-        gun_chamber:
-          name: Chamber
-          startingItem: CartridgeRifleSP
-          priority: 1
-          whitelist:
-            tags:
-              - CartridgeRifle
-    - type: MagazineVisuals
-      magState: mag
-      steps: 1
-      zeroVisible: true
-    - type: Appearance
-    - type: CursorOffsetRequiresWield
-    - type: EyeCursorOffset
-      maxOffset: 0.5
-      pvsIncrease: 1.4
 
 - type: entity
   name: ForceableFollow AKMS

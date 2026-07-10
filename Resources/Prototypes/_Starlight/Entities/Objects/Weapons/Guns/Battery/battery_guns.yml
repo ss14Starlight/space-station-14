@@ -641,15 +641,17 @@
     slots:
     - Back
   - type: Gun
-    minAngle: 30
-    maxAngle: 50
+    minAngle: 12
+    maxAngle: 22
+    spread: 5
     fireRate: 0.5
   - type: BatteryAmmoProvider
     proto: SniperBolt
     fireCost: 100
   - type: GunWieldBonus
-    maxAngle: -30
-    minAngle: -20
+    angleIncreaseDivider: 1
+    minAngleDivider: 3.3
+    maxAngleDivider: 3.3
   - type: MagazineVisuals
     magState: mag
     steps: 5

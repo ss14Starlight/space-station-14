@@ -1,8 +1,8 @@
 # Self-recharging PDW-9 taser integrated into security borg
 - type: entity
-  id: WeaponPDW9TaserBorg
+  id: WeaponPistolPDW9TaserBorg
   name: PDW-9 integrated taser
-  parent: WeaponPDW9
+  parent: WeaponPistolPDW9
   description: A self-recharging PDW-9 taser integrated directly into a security cyborg's chassis. Lethal mode requires Code Red or higher.
   components:
   - type: StationGridMemory

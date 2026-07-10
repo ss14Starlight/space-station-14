@@ -23,7 +23,6 @@ PosterContrabandGreyTide: null
 
 # 2025-06-28
 SyndicateWhistle: CommanderWhistle
-WeaponPistolAPS: WeaponPistolStechkin
 
 #2025-08-02
 ClothingHeadHelmetHardsuitNTCCConsortium: ClothingHeadHelmetHardsuitNTNCConsortium
@@ -78,7 +77,7 @@ ShuttleGunNTSFCyerxa120mm: ShuttleGunCyerxa120mm
 WeaponRevolverSnubRevolver: null
 
 #2026-03-21
-#WeaponRifleLionhunter: WeaponSniperLionhunter Re-enable when Shooting 3.0 is back
+WeaponRifleLionhunter: null
 
 #2026-04-15 - Lawyer | Internal Affairs split
 DoorElectronicsLawyer: DoorElectronicsInternalAffairs
@@ -126,3 +125,11 @@ WeaponRifleM90GrenadeLauncher : WeaponRifleLawbringer
 
 #2026-07-03 - Migrated the M-90gl bundle to a new rifle grenade bundle
 ClothingBackpackDuffelSyndicateFilledCarbine: ClothingBackpackDuffelSyndicateFilledRifleGrenade
+
+#2026-07-09
+WeaponPistolStechkin: WeaponPistolStechkinAPS
+WeaponPistolAPS: WeaponPistolStechkinAPS
+WeaponSniperMakeshift: null
+WeaponPistolMakeshiftCrafted: null
+WeaponSniperImprovised: null
+WeaponPistolImprovised: null

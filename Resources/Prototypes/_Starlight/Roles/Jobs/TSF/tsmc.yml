@@ -90,8 +90,8 @@
     ears: ClothingHudTSF
     belt: ClothingBeltTSFMarineWebbing
     pocket1: FlashlightSeclite
-    pocket2: WeaponPistolTSFModel17
-    suitstorage: WeaponRifleARG
+    pocket2: WeaponPistolMk58
+    suitstorage: WeaponRifleAk
   storage:
     back:
       - CrowbarRed
@@ -174,7 +174,7 @@
     ears: ClothingHudTSF
     belt: ClothingBeltTSFMarineWebbing
     pocket1: EnergyShield
-    pocket2: WeaponPistolTSFModel17
+    pocket2: WeaponPistolMk58
     suitstorage: WeaponSubMachineGunAtreides
   storage:
     back:
@@ -208,7 +208,7 @@
     ears: ClothingHudTSF
     belt: ClothingBeltTSFMarineWebbing
     pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPistolTSFModel17
+    pocket2: WeaponPistolMk58
     suitstorage: WeaponRifleM52
   storage:
     back:

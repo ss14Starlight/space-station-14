@@ -9,11 +9,12 @@
     maxAngle: 0
     minAngle: 0
     angleIncreaseDivider: 2
-    minAngleDivider: 2
+    minAngleDivider: 2.2
     maxAngleDivider: 2
   - type: Gun
-    minAngle: 20
-    maxAngle: 30
+    minAngle: 9
+    maxAngle: 16
+    spread: 2
   # starlight start
   - type: MeleeWeapon
     wideAnimationRotation: 90
