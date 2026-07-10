@@ -36,6 +36,7 @@
     magState: disable
     steps: 5
     zeroVisible: true
+  - type: PacifismAllowedGun
   - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
