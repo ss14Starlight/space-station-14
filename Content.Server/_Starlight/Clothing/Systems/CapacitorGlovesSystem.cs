@@ -1,5 +1,6 @@
 using Content.Server._Starlight.Clothing.Components;
 using Content.Server.DoAfter;
+using Content.Server.Ninja.Systems;
 using Content.Server.Power.Components;
 using Content.Shared._Starlight.Clothing;
 using Content.Shared.DoAfter;
@@ -31,6 +32,7 @@ namespace Content.Server._Starlight.Clothing.Systems;
 public sealed partial class CapacitorGlovesSystem : EntitySystem
 {
     [Dependency] private SharedBatteryDrainerSystem _drainer = default!;
+    [Dependency] private BatteryDrainerSystem _drainerServer = default!;
     [Dependency] private PowerCellSystem _powerCell = default!;
     [Dependency] private SharedBatterySystem _battery = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
@@ -48,7 +50,7 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
         SubscribeLocalEvent<CapacitorGlovesComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<CapacitorGlovesComponent, ExaminedEvent>(OnExamined);
 
-        SubscribeLocalEvent<PowerNetworkBatteryComponent, GetVerbsEvent<AlternativeVerb>>(OnGetInjectVerb);
+        SubscribeLocalEvent<PowerNetworkBatteryComponent, GetVerbsEvent<AlternativeVerb>>(OnGetGlovesVerbs);
         SubscribeLocalEvent<CapacitorGlovesComponent, CapacitorInjectDoAfterEvent>(OnInjectDoAfter);
 
         SubscribeLocalEvent<WornCapacitorGlovesComponent, EmpPulseEvent>(OnWearerEmp);
@@ -66,7 +68,7 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
 
         // Enable / disable the battery drainer to match the new mode.
         if (comp.DrainerTarget is { } drainer)
-            _drainer.SetHandInteractionEnabled(drainer, comp.Mode == CapacitorGlovesMode.Drain);
+            _drainer.SetHandInteractionEnabled(drainer, false);
 
         var modeStr = comp.Mode == CapacitorGlovesMode.Drain
             ? Loc.GetString("capacitor-gloves-mode-drain")
@@ -104,7 +106,7 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
         // Honour whichever mode was saved on the component.
         if (comp.DrainerTarget is { } drainer)
         {
-            _drainer.SetHandInteractionEnabled(drainer, comp.Mode == CapacitorGlovesMode.Drain);
+            _drainer.SetHandInteractionEnabled(drainer, false);
             UpdateBattery(ent, drainer);
         }
     }
@@ -140,9 +142,9 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
             _drainer.SetBattery(drainerTarget, null);
     }
 
-    // ─────────────────────────── Power injection (verb) ────────────────────────
+    // ─────────────────────────── Power verbs (drain & inject) ────────────────────
 
-    private void OnGetInjectVerb(Entity<PowerNetworkBatteryComponent> target, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetGlovesVerbs(Entity<PowerNetworkBatteryComponent> target, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
@@ -151,58 +153,72 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
             !TryComp<CapacitorGlovesComponent>(glovesEnt, out var comp))
             return;
 
-        // Only expose inject verbs when the gloves are in inject mode.
-        if (comp.Mode != CapacitorGlovesMode.Inject)
-            return;
-
         var glovesRef = glovesEnt.Value;
         var targetRef = target.Owner;
         var user = args.User;
 
-        // Block injection while on post-inject cooldown.
-        if (_timing.CurTime < comp.InjectAvailableAt)
-            return;
-
-        // If auto-inject is already running on this exact target, offer to stop it.
-        if (comp.AutoInjectTarget == targetRef)
+        if (comp.Mode == CapacitorGlovesMode.Drain)
         {
+            if (comp.DrainerTarget is not {} drainerUid)
+                return;
+
+            if (!TryComp<BatteryDrainerComponent>(drainerUid, out var drainerComp))
+                return;
+
             args.Verbs.Add(new AlternativeVerb
             {
-                Text = Loc.GetString("capacitor-gloves-inject-verb-stop"),
+                Text = Loc.GetString("capacitor-gloves-drain-verb"),
+                Priority = 100,
+                Act = () => _drainerServer.TryStartDrain((drainerUid, drainerComp), targetRef)
+            });
+        }
+        else // Inject mode
+        {
+            // Block injection while on post-inject cooldown.
+            if (_timing.CurTime < comp.InjectAvailableAt)
+                return;
+
+            // If auto-inject is already running on this exact target, offer to stop it.
+            if (comp.AutoInjectTarget == targetRef)
+            {
+                args.Verbs.Add(new AlternativeVerb
+                {
+                    Text = Loc.GetString("capacitor-gloves-inject-verb-stop"),
+                    Priority = 100,
+                    Act = () =>
+                    {
+                        if (TryComp<CapacitorGlovesComponent>(glovesRef, out var c))
+                            c.AutoInjectTarget = null;
+                        _popup.PopupEntity(Loc.GetString("capacitor-gloves-inject-stop"), glovesRef, user);
+                    }
+                });
+                return;
+            }
+
+            if (!_powerCell.TryGetBatteryFromSlot(glovesRef, out var cellEnt))
+                return;
+
+            if (_battery.GetCharge(cellEnt.Value.AsNullable()) <= 0)
+                return;
+
+            if (TryComp<BatteryComponent>(targetRef, out var targetBat) &&
+                _battery.IsFull(new Entity<BatteryComponent?>(targetRef, targetBat)))
+                return;
+
+            args.Verbs.Add(new AlternativeVerb
+            {
+                Text = Loc.GetString("capacitor-gloves-inject-verb"),
                 Priority = 100,
                 Act = () =>
                 {
-                    if (TryComp<CapacitorGlovesComponent>(glovesRef, out var c))
-                        c.AutoInjectTarget = null;
-                    _popup.PopupEntity(Loc.GetString("capacitor-gloves-inject-stop"), glovesRef, user);
+                    if (!TryComp<CapacitorGlovesComponent>(glovesRef, out var c))
+                        return;
+                    c.AutoInjectTarget = targetRef;
+                    _popup.PopupEntity(Loc.GetString("capacitor-gloves-inject-start", ("target", targetRef)), glovesRef, user);
+                    StartInjectDoAfter(user, glovesRef, targetRef);
                 }
             });
-            return;
         }
-
-        if (!_powerCell.TryGetBatteryFromSlot(glovesRef, out var cellEnt))
-            return;
-
-        if (_battery.GetCharge(cellEnt.Value.AsNullable()) <= 0)
-            return;
-
-        if (TryComp<BatteryComponent>(targetRef, out var targetBat) &&
-            _battery.IsFull(new Entity<BatteryComponent?>(targetRef, targetBat)))
-            return;
-
-        args.Verbs.Add(new AlternativeVerb
-        {
-            Text = Loc.GetString("capacitor-gloves-inject-verb"),
-            Priority = 100,
-            Act = () =>
-            {
-                if (!TryComp<CapacitorGlovesComponent>(glovesRef, out var c))
-                    return;
-                c.AutoInjectTarget = targetRef;
-                _popup.PopupEntity(Loc.GetString("capacitor-gloves-inject-start", ("target", targetRef)), glovesRef, user);
-                StartInjectDoAfter(user, glovesRef, targetRef);
-            }
-        });
     }
 
     /// <summary>

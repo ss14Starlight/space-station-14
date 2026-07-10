@@ -1,4 +1,5 @@
 capacitor-gloves-inject-verb = Inject power
+capacitor-gloves-drain-verb = Drain power
 capacitor-gloves-inject-verb-stop = Stop injecting
 capacitor-gloves-inject-start = You begin steadily injecting power into {THE($target)}.
 capacitor-gloves-inject-stop = You stop injecting power.

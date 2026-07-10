@@ -77,6 +77,36 @@ public sealed partial class BatteryDrainerSystem : SharedBatteryDrainerSystem
         SetBattery((ent, ent.Comp), args.Battery);
     }
 
+    // Starlight begin
+    /// <summary>
+    /// Initiates a drain do-after from an external caller (e.g. a verb).
+    /// Returns false if the drainer has no battery, the target has no PNBC, or the battery is already full.
+    /// </summary>
+    public bool TryStartDrain(Entity<BatteryDrainerComponent> ent, EntityUid target)
+    {
+        var (uid, comp) = ent;
+        if (comp.BatteryUid is not {} battery || !HasComp<PowerNetworkBatteryComponent>(target))
+            return false;
+
+        if (_battery.IsFull(battery))
+        {
+            _popup.PopupEntity(Loc.GetString("battery-drainer-full"), uid, uid, PopupType.Medium);
+            return false;
+        }
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, uid, comp.DrainTime, new DrainDoAfterEvent(), target: target, eventTarget: uid)
+        {
+            MovementThreshold = 0.5f,
+            BreakOnMove = true,
+            CancelDuplicate = false,
+            AttemptFrequency = AttemptFrequency.StartAndEnd
+        };
+
+        _doAfter.TryStartDoAfter(doAfterArgs);
+        return true;
+    }
+    // Starlight end
+
     /// <inheritdoc/>
     protected override void OnDoAfterAttempt(Entity<BatteryDrainerComponent> ent, ref DoAfterAttemptEvent<DrainDoAfterEvent> args)
     {
