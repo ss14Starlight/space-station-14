@@ -113,3 +113,13 @@ LockerWardenLargeFilled: LockerWardenFilled
 
 #2026-06-18 - Renaming a confusingly named M1911 pulse pistol
 WeaponM1911: WeaponPulseM1911
+
+#2026-06-26 - M90GL Reworked into Lawbringer
+WeaponRifleM90GrenadeLauncher : WeaponRifleLawbringer
+
+#2026-07-03 - Migrated the M-90gl bundle to a new rifle grenade bundle
+ClothingBackpackDuffelSyndicateFilledCarbine: ClothingBackpackDuffelSyndicateFilledRifleGrenade
+
+#2026-07-09 - PR #2597 removed the ability to toggle Thrusters, meaning Thruster [Off] can never be turned on again
+ThrusterOff: Thruster
+GyroscopeOff: Gyroscope

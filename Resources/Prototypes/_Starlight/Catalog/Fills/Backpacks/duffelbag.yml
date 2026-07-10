@@ -139,3 +139,23 @@
         - id: ClothingHeadsetChameleon
         - id: ClothingShoesChameleon
         - id: ClothingMiscChameleon
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundleDeluxe
+  id: ClothingBackpackDuffelSyndicateFilledRifleGrenade
+  name: firepower support bundle
+  suffix: Estoc, China Lake
+  description: "A marksman rifle and a grenade launcher, bundled with 4 magazines and 9 grenades of various capabilities."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLauncherChinaLake
+        - id: GrenadeFlash
+          amount: 3
+        - id: GrenadeBlast
+          amount: 3
+        - id: WeaponRifleEstoc
+        - id: MagazineRifleFMJ
+          amount: 3

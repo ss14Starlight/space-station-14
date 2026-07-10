@@ -55,7 +55,8 @@ namespace Content.Server.Zombies
             SlotFlags.MASK |
             SlotFlags.NECK |
             SlotFlags.INNERCLOTHING |
-            SlotFlags.OUTERCLOTHING;
+            SlotFlags.OUTERCLOTHING | // Starlight
+            SlotFlags.OUTERCLOTHING2; // Starlight
 
         public override void Initialize()
         {

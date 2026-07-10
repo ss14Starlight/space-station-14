@@ -32,6 +32,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconCCGreenShield
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CCGreenShield
+  jobName: job-name-greenshield
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconSurgeon
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
