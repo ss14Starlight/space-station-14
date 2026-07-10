@@ -5,6 +5,8 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Localizations;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Storage.Components; // Starlight-edit
+using Content.Shared.Storage.EntitySystems; // Starlight-edit
 using Robust.Shared.Containers;
 #region Starlight
 using Content.Shared.Tag;
@@ -21,6 +23,7 @@ public abstract partial class SharedBorgSystem
 {
     private EntityQuery<BorgModuleComponent> _moduleQuery;
     [Dependency] private SharedToolSystem _tool = default!; //Starlight
+    [Dependency] private readonly SharedEntityStorageSystem _entityStorage = default!; // Starlight
 
     public void InitializeModule()
     {
@@ -408,6 +411,28 @@ public abstract partial class SharedBorgSystem
     #endregion
 
     #region Starlight
+    private void EmptyNestedStorage(EntityUid item)
+    {
+        if (TryComp<EntityStorageComponent>(item, out var storage))
+        {
+            var dest = Transform(item).Coordinates;
+            foreach (var ent in storage.Contents.ContainedEntities.ToList())
+            {
+                _container.Remove(ent, storage.Contents, force: true, destination: dest);
+            }
+        }
+
+        if (!TryComp<ContainerManagerComponent>(item, out var manager))
+            return;
+
+        foreach (var nested in _container.GetAllContainers(item, manager))
+        {
+            if (nested is ContainerSlot)
+                continue;
+            _container.EmptyContainer(nested, force: true, destination: Transform(item).Coordinates);
+        }
+    }
+
     private void OnInteractUsing(EntityUid uid, ItemBorgModuleComponent component, ref AfterInteractUsingEvent args)
     {
         if (args.Handled)
@@ -420,7 +445,12 @@ public abstract partial class SharedBorgSystem
             if (!_container.TryGetContainer(uid, component.HoldingContainer, out var container, manager)) return;
             foreach (var item in container.ContainedEntities.ToList())
             {
-                if (_tag.HasTag(item, component.ModuleItemTag)) continue;
+                if (_tag.HasTag(item, component.ModuleItemTag))
+                {
+                    EmptyNestedStorage(item);
+                    continue;
+                }
+
                 while (_container.TryGetContainingContainer(item, out var containing))
                     if (!_container.Remove(item, containing)) break;
             }
