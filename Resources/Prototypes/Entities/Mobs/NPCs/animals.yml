@@ -442,7 +442,7 @@
     solution:
       reagents:
       - ReagentId: Slime
-        Quantity: 5
+        Quantity: 10
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
@@ -615,6 +615,11 @@
       types:
         Asphyxiation: -0.5
   - type: CombatMode
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Slime
+        Quantity: 20
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
