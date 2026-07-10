@@ -58,7 +58,7 @@ public sealed partial class DrunkOverlay : Overlay
         _drunkShader = _prototypeManager.Index(Shader).InstanceUnique();
         // Starlight-start: cache status effect system and register cvar listener
         _statusEffects = _sysMan.GetEntitySystem<StatusEffectsSystem>();
-        _cfg.OnValueChanged(git.DrunkRenderFix, OnDrunkRenderFixChanged, invokeImmediately: true);
+        _cfg.OnValueChanged(StarlightCCVars.DrunkRenderFix, OnDrunkRenderFixChanged, invokeImmediately: true);
         // Starlight-end
     }
 
