@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Proto-Resomi eyes now have night vision and flash vulnerability like their non-protogen counterparts.
-    type: Fix
-  id: 406147
-  time: '2026-06-22T08:18:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4892
 - author: Conflee
   changes:
   - message: Added Security, Armory, and Syndicate Turnstile Prototypes for mapping.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406546
   time: '2026-07-10T18:32:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5066
+- author: Caws
+  changes:
+  - message: The Hybrid Taser can now be fired when pacified.
+    type: Fix
+  id: 406547
+  time: '2026-07-10T19:10:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5051
 Order: -1
