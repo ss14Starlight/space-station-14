@@ -51,27 +51,27 @@
           max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
         children:
         - id: Traitor
-          weight: 35
+          weight: 42.5
           prob: 0.85 # Give traitor a chance to fail, since it's so common. In essence, this means we have a chance at getting Extended.
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
         - id: Nukeops
-          weight: 10
+          weight: 12.5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 20
         - id: Revolutionary
-          weight: 10
+          weight: 12.5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 15
         - id: CosmicCult
-          weight: 10
+          weight: 12.5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -85,7 +85,7 @@
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
-          weight: 5
+          weight: 10
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -94,20 +94,20 @@
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 35
-        - id: Xenoborgs
-          weight: 10
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 20
-        - id: TerrorSpidersSpawn
-          weight: 10
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 50
+        #- id: Xenoborgs
+        #  weight: 10
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #  - !type:PlayerCountCondition
+        #    min: 20
+        #- id: TerrorSpidersSpawn
+        #  weight: 10
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #  - !type:PlayerCountCondition
+        #    min: 50
       # Minor Rules
       - !type:GroupSelector
         conditions:
@@ -199,22 +199,22 @@
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 35
-        - id: SubXenoborgs
-          weight: 5
-          prob: 0.50
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 20
-        - id: TerrorSpidersSpawn
-          weight: 5
-          prob: 0.50
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 50
+        #- id: SubXenoborgs
+        #  weight: 5
+        #  prob: 0.50
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #  - !type:PlayerCountCondition
+        #    min: 20
+        #- id: TerrorSpidersSpawn
+        #  weight: 5
+        #  prob: 0.50
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #  - !type:PlayerCountCondition
+        #    min: 50
         - id: ThiefLess
           weight: 8
           prob: 0.50
