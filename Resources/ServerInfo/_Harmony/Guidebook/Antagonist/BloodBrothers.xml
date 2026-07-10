@@ -1,10 +1,10 @@
 <Document>
-  # Blood Brothers
+  # Blood Bound
 
   <Box>
-    [color=#999999][italic]"I must help my brother, no matter the cost."[/italic][/color]
+    [color=#999999][italic]"I must help my blood bound, no matter the cost."[/italic][/color]
   </Box>
-  Blood Brothers are a team of two people working together to complete a list of objectives. These objectives are mostly equal to the objectives given to [textlink="Traitors" link="Traitors"].
+  The Blood Bound are a team of two people working together to complete a list of objectives. These objectives are mostly equal to the objectives given to [textlink="Traitors" link="Traitors"].
 
   ## What to do
 
@@ -16,7 +16,7 @@
 
   This action will quietly check and tell you if someone is possible to convert or not.
 
-  You will not be able to convert anyone who is mindshielded or anyone who has blood brothers turned off in their character creation panel.
+  You will not be able to convert anyone who is mindshielded or anyone who has blood bound turned off in their character creation panel.
 
   ### Converting a crewmember
 
@@ -24,5 +24,5 @@
 
   To do so, you must first bring them to a hidden location where no one will see and then use the "Convert" action. This action is [bold]very visible[/bold], do not use it in public.
 
-  The crewmember will then become your blood brother, with the objective to help you with your objectives.
+  The crewmember will then become your blood bound, with the objective to help you with your objectives.
 </Document>

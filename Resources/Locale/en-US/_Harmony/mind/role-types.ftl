@@ -1,1 +1,1 @@
-role-subtype-blood-brother = Blood Brother
+role-subtype-blood-brother = Blood Bound
