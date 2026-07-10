@@ -224,7 +224,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 22; // Funkystation Edit: 9 -> 20 // Starlight Edit: 20 -> 22
+        public const int TotalNumberOfGases = 22; // Starlight Edit: 9 -> 22
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
