@@ -95,8 +95,8 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary # Same as lings, would be too strong.
-    - type: DynamicRuleCost
-      cost: 125
+  - type: DynamicRuleCost
+    cost: 125
     # Starlight-end
 
 # Needs testing
