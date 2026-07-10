@@ -1,4 +1,4 @@
-using Content.Shared.CCVar; // Starlight-edit
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Drunk;
 using Content.Shared.StatusEffectNew;
 using Robust.Client.Graphics;
@@ -58,7 +58,7 @@ public sealed partial class DrunkOverlay : Overlay
         _drunkShader = _prototypeManager.Index(Shader).InstanceUnique();
         // Starlight-start: cache status effect system and register cvar listener
         _statusEffects = _sysMan.GetEntitySystem<StatusEffectsSystem>();
-        _cfg.OnValueChanged(CCVars.DrunkRenderFix, OnDrunkRenderFixChanged, invokeImmediately: true);
+        _cfg.OnValueChanged(git.DrunkRenderFix, OnDrunkRenderFixChanged, invokeImmediately: true);
         // Starlight-end
     }
 
