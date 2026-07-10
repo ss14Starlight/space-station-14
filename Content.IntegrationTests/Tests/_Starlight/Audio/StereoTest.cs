@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Shared.Audio;
 using Robust.Client.Audio;
 using Robust.Shared.Audio;
@@ -10,7 +11,7 @@ using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests._Starlight.Audio;
 
 [TestFixture]
-public sealed class StereoTest
+public sealed class StereoTest : GameTest
 {
     // Mark specific files as ignored if they not using positioning, for example: Ambience, Announcements.
     public List<ResPath> IgnoredFiles = [
@@ -63,7 +64,7 @@ public sealed class StereoTest
     [Test]
     public async Task TestAudioFiles()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var client = pair.Client;
 
         var resMan = client.ResolveDependency<IResourceManager>();
@@ -124,7 +125,5 @@ public sealed class StereoTest
 
         Assert.That(badFiles, Is.Empty, "Some audio is invalid:\n" + string.Join('\n', badFiles.Select(p => $"{p.Key}: {p.Value}"))
         );
-
-        await pair.CleanReturnAsync();
     }
 }

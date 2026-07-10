@@ -1,0 +1,46 @@
+- type: entity
+  name: MedTak handheld monitor
+  parent: [ PowerCellSlotHighItem, BaseHandheldComputer, BaseMedTakContraband ]
+  id: HandheldMedTakMonitor
+  description: The Interdyne M7 monitor can track the vital signs and coordinates of any implants on its secure frequency, to ensure rapid location of your clients.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/monitor.rsi
+    layers:
+      - state: frame
+        map: ["enum.CrewMonitorLayers.Frame"]
+      - state: powered
+        map: [ "enum.CrewMonitorLayers.Powered" ]
+        visible: true
+      - state: alert
+        map: ["enum.CrewMonitorLayers.Alert"]
+        visible: false
+  - type: Appearance
+  - type: BatteryVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.CrewMonitorLayers.Powered:
+          Full: { visible: true, shader: unshaded }
+          Neither: { visible: true, shader: unshaded }
+          Empty: { visible: false }
+      enum.CrewMonitorVisuals.Alert:
+        enum.CrewMonitorLayers.Alert:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+  - type: ActivatableUI
+    key: enum.CrewMonitoringUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+  - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter
+    shownFactions:
+    - MedTak
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: StationLimitedNetwork
+  - type: WirelessNetworkConnection
+    range: 1000
