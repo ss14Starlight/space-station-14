@@ -140,7 +140,7 @@
     - Traitor
     - Revolutionary
     - WizardDuel
-    - Xenoborgs
+    #- Xenoborgs
     - RampingStationEventScheduler
     - SLChangeling
     - SpaceTrafficControlEventScheduler
@@ -171,7 +171,7 @@
     - Revolutionary
     - SubWizard # Well, you did say *Aller* at once.
     - WizardDuel # Well, you did say *Aller* at once.
-    - Xenoborgs
+    #- Xenoborgs
     - BasicStationEventScheduler
     - BasicStationEventScheduler
     - ShitStationEventScheduler

@@ -43,7 +43,7 @@
     - Revolutionary
     - Zombie
     - WizardDuel # Starlight
-    - Xenoborgs
+    #- Xenoborgs # Starlight
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
     - SLChangeling #Starlight
@@ -56,7 +56,7 @@
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
     - CosmicCult #Starlight
-    - TerrorSpidersSpawn # Starlight
+    #- TerrorSpidersSpawn # Starlight
     - Devil # Starlight
 
 - type: gamePreset
@@ -77,7 +77,7 @@
     - Zombie
     - SubWizard # Starlight. Well, you did say *Aller* at once.
     - WizardDuel # Starlight. Well, you did say *Aller* at once.
-    - Xenoborgs
+    #- Xenoborgs # Starlight
     - BasicStationEventScheduler
     - BasicStationEventScheduler # Starlight, ShitStation
     - ShitStationEventScheduler # Starlight, ShitStation
@@ -101,7 +101,7 @@
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
     - CosmicCult # Starlight
-    - TerrorSpidersSpawn # Starlight
+    #- TerrorSpidersSpawn # Starlight
     - Devil # Starlight
 
 - type: gamePreset

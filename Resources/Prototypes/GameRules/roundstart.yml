@@ -28,8 +28,8 @@
       prob: 0.20 # Starlight
     - id: SubWizard
       prob: 0.05 # Starlight. We can go back down to 0.05, since they scale now.
-    - id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Starlight start, Equalizing subgamemodes
+    #- id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
+    #  prob: 0.05 # Starlight start, Equalizing subgamemodes
     - id: Brighteye
       prob: 0.05
     - id: SiliconLiberation
@@ -47,8 +47,8 @@
       prob: 0.20 #0.4 -> 0.25 to account for more subgamemodes existing now
     - id: VampireLess # Reworked
       prob: 0.20
-    - id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Equalizing subgamemodes
+    #- id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
+    #  prob: 0.05
     - id: Brighteye
       prob: 0.05
     - id: SiliconLiberation
