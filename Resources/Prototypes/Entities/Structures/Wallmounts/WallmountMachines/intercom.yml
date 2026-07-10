@@ -39,7 +39,7 @@
   - type: Sprite
     noRot: false
     drawdepth: SmallObjects
-    sprite: Structures/Wallmounts/intercom.rsi
+    sprite: _Starlight/Structures/Wallmounts/intercom.rsi # Starlight
     layers:
     - state: base
     - state: unshaded
@@ -121,7 +121,7 @@
   components:
   - type: Sprite
     drawdepth: SmallObjects
-    sprite: Structures/Wallmounts/intercom.rsi
+    sprite: _Starlight/Structures/Wallmounts/intercom.rsi # Starlight
     layers:
     - state: build
     - state: panel
@@ -137,6 +137,8 @@
   - type: Construction
     graph: Intercom
     node: assembly
+  - type: InteractionOutline # SL Edit
+  - type: Clickable # SL Edit
 
 # this weird inheritance BS exists for construction shitcode
 - type: entity
