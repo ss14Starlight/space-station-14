@@ -8,11 +8,10 @@ using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Storage.Components; // Starlight-edit
 using Robust.Shared.Containers;
 #region Starlight
-using Content.Shared.Tag;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
-using System.Linq;
 using Content.Shared._Starlight.Silicons;
 #endregion Starlight
 
@@ -37,7 +36,11 @@ public abstract partial class SharedBorgSystem
         SubscribeLocalEvent<ItemBorgModuleComponent, ComponentStartup>(OnProvideItemStartup);
         SubscribeLocalEvent<ItemBorgModuleComponent, BorgModuleSelectedEvent>(OnItemModuleSelected);
         SubscribeLocalEvent<ItemBorgModuleComponent, BorgModuleUnselectedEvent>(OnItemModuleUnselected);
-        SubscribeLocalEvent<ItemBorgModuleComponent, AfterInteractUsingEvent>(OnInteractUsing);//Starlight
+        // Starlight begin
+        SubscribeLocalEvent<ItemBorgModuleComponent, ExaminedEvent>(OnItemModuleExamine);
+        SubscribeLocalEvent<ItemBorgModuleComponent, AfterInteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<ItemBorgModuleComponent, BorgModuleItemExtractionDoAfterEvent>(OnItemExtractionFinished);
+        // Starlight end
 
         SubscribeLocalEvent<ComponentBorgModuleComponent, BorgModuleInstalledEvent>(OnComponentModuleInstalled);
         SubscribeLocalEvent<ComponentBorgModuleComponent, BorgModuleUninstalledEvent>(OnComponentModuleUninstalled);
@@ -409,15 +412,108 @@ public abstract partial class SharedBorgSystem
     #endregion
 
     #region Starlight
-    private void EmptyNestedStorage(EntityUid item)
+    private void OnItemModuleExamine(Entity<ItemBorgModuleComponent> ent, ref ExaminedEvent args)
+    {
+        var items = new List<EntityUid>();
+        CollectExtractableItems(ent, items);
+        if (items.Count == 0)
+            return;
+
+        using (args.PushGroup(nameof(ItemBorgModuleComponent)))
+        {
+            var names = ContentLocalizationManager.FormatList(
+                items.Select(i => Identity.Name(i, EntityManager)).ToList());
+            args.PushMarkup(Loc.GetString("borg-module-item-contents", ("items", names)));
+        }
+    }
+
+    private void OnInteractUsing(Entity<ItemBorgModuleComponent> ent, ref AfterInteractUsingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryComp<ToolComponent>(args.Used, out var tool)
+            || !_tool.HasQuality(args.Used, ent.Comp.ItemExtractionMethod, tool))
+            return;
+
+        args.Handled = true;
+
+        if (!args.CanReach)
+        {
+            if (_timing.IsFirstTimePredicted)
+                _popup.PopupClient(Loc.GetString("interaction-system-user-interaction-cannot-reach"), args.User, args.User);
+            return;
+        }
+
+        var extractable = new List<EntityUid>();
+        CollectExtractableItems(ent, extractable);
+        if (extractable.Count == 0)
+        {
+            _popup.PopupClient(Loc.GetString("borg-module-item-extract-empty", ("module", ent.Owner)), ent.Owner, args.User);
+            return;
+        }
+
+        _tool.UseTool(args.Used,
+            args.User,
+            ent.Owner,
+            ent.Comp.ItemExtractionDelay,
+            ent.Comp.ItemExtractionMethod,
+            new BorgModuleItemExtractionDoAfterEvent(),
+            toolComponent: tool);
+    }
+
+    private void OnItemExtractionFinished(Entity<ItemBorgModuleComponent> ent, ref BorgModuleItemExtractionDoAfterEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (!TryExtractItems(ent))
+        {
+            _popup.PopupClient(Loc.GetString("borg-module-item-extract-empty", ("module", ent.Owner)), ent.Owner, args.User);
+            return;
+        }
+
+        _popup.PopupClient(Loc.GetString("borg-module-item-extract-success", ("module", ent.Owner)), ent.Owner, args.User);
+        _audio.PlayPredicted(ent.Comp.ItemExtractionSound, ent.Owner, args.User);
+    }
+
+    private void CollectExtractableItems(Entity<ItemBorgModuleComponent> module, List<EntityUid> into)
+    {
+        if (_container.TryGetContainer(module, module.Comp.HoldingContainer, out var container))
+        {
+            foreach (var item in container.ContainedEntities)
+            {
+                if (_tag.HasTag(item, module.Comp.ModuleItemTag))
+                    CollectNestedContents(item, into);
+                else
+                    into.Add(item);
+            }
+        }
+
+        if (!TryComp<BorgModuleComponent>(module, out var borgModule)
+            || borgModule.InstalledEntity is not { } chassis
+            || !TryComp<HandsComponent>(chassis, out var hands))
+            return;
+
+        for (var i = 0; i < module.Comp.Hands.Count; i++)
+        {
+            var handId = $"{GetNetEntity(module.Owner)}-hand-{i}";
+            if (!_hands.TryGetHeldItem((chassis, hands), handId, out var held))
+                continue;
+
+            if (_tag.HasTag(held.Value, module.Comp.ModuleItemTag))
+                CollectNestedContents(held.Value, into);
+            else
+                into.Add(held.Value);
+        }
+    }
+
+    private void CollectNestedContents(EntityUid item, List<EntityUid> into)
     {
         if (TryComp<EntityStorageComponent>(item, out var storage))
         {
-            var dest = Transform(item).Coordinates;
-            foreach (var ent in storage.Contents.ContainedEntities.ToList())
-            {
-                _container.Remove(ent, storage.Contents, force: true, destination: dest);
-            }
+            into.AddRange(storage.Contents.ContainedEntities);
+            return;
         }
 
         if (!TryComp<ContainerManagerComponent>(item, out var manager))
@@ -427,32 +523,90 @@ public abstract partial class SharedBorgSystem
         {
             if (nested is ContainerSlot)
                 continue;
-            _container.EmptyContainer(nested, force: true, destination: Transform(item).Coordinates);
+
+            into.AddRange(nested.ContainedEntities);
         }
     }
 
-    private void OnInteractUsing(EntityUid uid, ItemBorgModuleComponent component, ref AfterInteractUsingEvent args)
+    private bool TryExtractItems(Entity<ItemBorgModuleComponent> module)
     {
-        if (args.Handled)
-            return;
+        var extracted = false;
+        var dropCoords = Transform(module).Coordinates;
 
-        if (TryComp<ToolComponent>(args.Used, out var tool)
-                 && _tool.HasQuality(args.Used, component.ItemExtractionMethod, tool))
+        if (_container.TryGetContainer(module, module.Comp.HoldingContainer, out var container))
         {
-            if (!TryComp<ContainerManagerComponent>(uid, out var manager)) return;
-            if (!_container.TryGetContainer(uid, component.HoldingContainer, out var container, manager)) return;
             foreach (var item in container.ContainedEntities.ToList())
             {
-                if (_tag.HasTag(item, component.ModuleItemTag))
+                if (_tag.HasTag(item, module.Comp.ModuleItemTag))
                 {
-                    EmptyNestedStorage(item);
+                    if (EmptyNestedStorage(item))
+                        extracted = true;
                     continue;
                 }
 
-                while (_container.TryGetContainingContainer(item, out var containing))
-                    if (!_container.Remove(item, containing)) break;
+                if (_container.Remove(item, container, force: true, destination: dropCoords))
+                    extracted = true;
             }
         }
+
+        if (!TryComp<BorgModuleComponent>(module, out var borgModule)
+            || borgModule.InstalledEntity is not { } chassis
+            || !TryComp<HandsComponent>(chassis, out var hands))
+            return extracted;
+
+        for (var i = 0; i < module.Comp.Hands.Count; i++)
+        {
+            var handId = $"{GetNetEntity(module.Owner)}-hand-{i}";
+            if (!_hands.TryGetHeldItem((chassis, hands), handId, out var held))
+                continue;
+
+            if (_tag.HasTag(held.Value, module.Comp.ModuleItemTag))
+            {
+                if (EmptyNestedStorage(held.Value))
+                    extracted = true;
+                continue;
+            }
+
+            RemComp<UnremoveableComponent>(held.Value);
+            if (_hands.TryDrop((chassis, hands), held.Value, checkActionBlocker: false))
+                extracted = true;
+        }
+
+        return extracted;
+    }
+
+    private bool EmptyNestedStorage(EntityUid item)
+    {
+        var emptied = false;
+        var dest = Transform(item).Coordinates;
+
+        if (TryComp<EntityStorageComponent>(item, out var storage))
+        {
+            foreach (var ent in storage.Contents.ContainedEntities.ToList())
+            {
+                if (_container.Remove(ent, storage.Contents, force: true, destination: dest))
+                    emptied = true;
+            }
+
+            return emptied;
+        }
+
+        if (!TryComp<ContainerManagerComponent>(item, out var manager))
+            return false;
+
+        foreach (var nested in _container.GetAllContainers(item, manager))
+        {
+            if (nested is ContainerSlot)
+                continue;
+
+            if (nested.ContainedEntities.Count == 0)
+                continue;
+
+            _container.EmptyContainer(nested, force: true, destination: dest);
+            emptied = true;
+        }
+
+        return emptied;
     }
     #endregion Starlight
 }

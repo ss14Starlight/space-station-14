@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Hands.Components;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -51,6 +52,18 @@ public sealed partial class ItemBorgModuleComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<TagPrototype> ModuleItemTag = "BorgItem";
+
+    /// <summary>
+    /// How long it takes to pry stored items out of the module with a screwdriver.
+    /// </summary>
+    [DataField]
+    public float ItemExtractionDelay = 0.5f;
+
+    /// <summary>
+    /// Sound played when items are successfully pried out of the module.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier ItemExtractionSound = new SoundCollectionSpecifier("storageRustle");
     #endregion Starlight
 }
 
