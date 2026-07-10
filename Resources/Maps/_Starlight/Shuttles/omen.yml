@@ -3411,8 +3411,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 14.5,0.5
       parent: 1
-    - type: Thruster
-      enabled: False
   - uid: 476
     components:
     - type: Transform
