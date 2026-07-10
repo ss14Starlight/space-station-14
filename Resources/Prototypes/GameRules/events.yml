@@ -61,11 +61,10 @@
     - id: LoneOpsSpawn
     - id: WizardSpawn
     - id: AbductorsSpawn # Starlight start
-    - id: SubXenoborgs
-    - id: BrighteyeSpawn # Starlight
-    - id: TerrorSpidersSpawn
+    #- id: SubXenoborgs
+    - id: BrighteyeSpawn
+    #- id: TerrorSpidersSpawn
     - id: RailroadingTerminator
-    - id: Brighteye
     - id: ColossusSpawn # Starlight end
     - id: EeepEvent # imp
     - !type:NestedSelector

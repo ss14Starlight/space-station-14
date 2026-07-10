@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bag",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "bag-inhand-left",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "bag-inhand-right",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "bag_folded",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "paper",
+      "copyright": "Vermidia"
+    },
+    {
+      "name": "open_overlay",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "bounty",
+      "copyright": "Vermidia"
+    },
+    {
+      "name": "captains_paper",
+      "copyright": "Vermidia"
+    },
+    {
+      "name": "invoice",
+      "copyright": "Vermidia"
+    },
+    {
+      "name": "locked",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "unlocked",
+      "copyright": "SevenShades"
+    }
+  ]
+}
