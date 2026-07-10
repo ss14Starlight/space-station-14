@@ -310,6 +310,7 @@
     - id: ClothingShoesSkatesCool # Starlight
     - id: CrazyGlue
     - id: CrazyLube
+    - id: JailFree # Starlight
     - !type:NestedSelector
       tableId: AllBoardGamesTable
     - !type:GroupSelector # Where there's Chips there's Dips
