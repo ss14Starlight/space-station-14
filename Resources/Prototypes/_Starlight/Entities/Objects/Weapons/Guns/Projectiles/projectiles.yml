@@ -263,7 +263,7 @@
 
 - type: entity # Starlight Peacekeeper
   id: BulletGrenadeStinger
-  name: stinger grenade
+  name: Armed stinger grenade
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
@@ -277,7 +277,7 @@
 
 - type: entity # Starlight Peacekeeper
   id: BulletGrenadeGas
-  name: stinger grenade
+  name: Armed gas grenade
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
