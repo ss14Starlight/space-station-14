@@ -55,7 +55,7 @@
     size: Small
   - type: Sprite
 
-- type: entity # Used for peacekeeper
+- type: entity #Starlight Used for peacekeeper
   id: GrenadeBaton
   name: Baton grenade
   description: Crack Skulls, break jaws.
@@ -90,7 +90,7 @@
     state: blast
     suffix: false
 
-- type: entity #Used for Peacekeeper and Paddy
+- type: entity #Starlight Used for Peacekeeper and Paddy
   id: GrenadeFlash
   name: Flash grenade
   description: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
@@ -106,42 +106,6 @@
   - type: Appearance
   - type: SpentAmmoVisuals
     state: flash
-    suffix: false
-
-- type: entity # Starlight Grenades for the Peacekeeper
-  id: GrenadeGaslauncher
-  name: Gas grenade
-  description: Able to choke a room or several of your friends.
-  parent: [ BaseGrenade, BaseSecurityContraband]
-  components:
-  - type: CartridgeAmmo
-    proto: BulletGrenadeGas
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    layers:
-    - state: gas
-      map: ["enum.AmmoVisualLayers.Base"]
-  - type: Appearance
-  - type: SpentAmmoVisuals
-    state: blast
-    suffix: false
-
-- type: entity # Starlight Grenades for the sec Peacekeeper
-  id: GrenadeStingerlauncher
-  name: Stinger grenade
-  description: An unruly crowd's favourite.
-  parent: [ BaseGrenade, BaseSecurityContraband]
-  components:
-  - type: CartridgeAmmo
-    proto: BulletGrenadeStinger
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    layers:
-    - state: stinger
-      map: ["enum.AmmoVisualLayers.Base"]
-  - type: Appearance
-  - type: SpentAmmoVisuals
-    state: blast
     suffix: false
 
 - type: entity

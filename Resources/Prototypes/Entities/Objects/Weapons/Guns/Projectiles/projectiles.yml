@@ -947,34 +947,6 @@
     proto: GrenadeFlashEffect
   - type: DeleteOnTrigger
 
-- type: entity # Starlight Peacekeeper
-  id: BulletGrenadeStinger
-  name: stinger grenade
-  parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-      - state: grenade
-  - type: SpawnOnTrigger
-    proto: Grenade20mmStinger
-  - type: DeleteOnTrigger
-
-- type: entity # Starlight Peacekeeper
-  id: BulletGrenadeGas
-  name: stinger grenade
-  parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-      - state: grenade
-  - type: SpawnOnTrigger
-    proto: Grenade20mmGas
-  - type: DeleteOnTrigger
-
 - type: entity
   id: BulletGrenadeFrag
   name: frag grenade
