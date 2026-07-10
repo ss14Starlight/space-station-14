@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Added Security, Armory, and Syndicate Turnstile Prototypes for mapping.
-    type: Add
-  id: 406148
-  time: '2026-06-22T08:47:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4889
-- author: Conflee
-  changes:
   - message: Fixed Prisoners being able to walk out of Genpop on Cog.
     type: Fix
   id: 406149
@@ -2799,4 +2792,11 @@ Entries:
   id: 406547
   time: '2026-07-10T19:10:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5051
+- author: AprilCatStreams
+  changes:
+  - message: Fixed divide by zero in Biomass Reclaimer allowing bloodless bodies to be processed again.
+    type: Fix
+  id: 406548
+  time: '2026-07-10T20:02:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5071
 Order: -1
