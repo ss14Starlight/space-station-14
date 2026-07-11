@@ -7,8 +7,9 @@
   - type: DynamicRule
     startingBudgetMin: 250 # 200's a bit too low, can't even roll most minor antags alongside anything but traitor.
     startingBudgetMax: 550
+    variantBudgetThreshold: 350 # When the budget reaches this threshold, the variant budget per second will be used instead of the normal budget per second. Aka, stop hoarding your budget!!!
     maxRuleInterval: 1500
-    minRuleInterval: 900
+    minRuleInterval: 750
     table: !type:AllSelector
       children:
       # Major Rules
@@ -19,6 +20,7 @@
         children:
         - id: Traitor
           weight: 42.5
+          prob: 0.85 # Give traitor a chance to fail, since it's so common. In essence, this means we have a chance at getting Extended.
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -55,6 +57,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 35
         #- id: Xenoborgs
@@ -101,9 +106,12 @@
           prob: 0.05
           conditions:
           - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 40
-          - !type:MaxRuleOccurenceCondition
         - id: Devil
           prob: 0.05
           conditions:
@@ -118,12 +126,18 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        - id: Nukeops
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Traitor # This is the most likely scenario; we don't want 24 traitors.
+        - id: NukeopsLate
           weight: 9
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Nukeops # Just... don't roll double Nukies.
           - !type:PlayerCountCondition
             min: 20
         - id: Revolutionary
@@ -148,6 +162,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 35
         #- id: SubXenoborgs
@@ -172,6 +189,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Thief # Don't double thieves
         - id: VampireLess
           weight: 6
           prob: 0.50
@@ -184,6 +204,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - SLChangeling # Don't double changelings
         - id: SiliconLiberation
           weight: 8
           prob: 0.50
@@ -195,9 +218,12 @@
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 40
-          - !type:MaxRuleOccurenceCondition
         - id: Devil
           weight: 5
           prob: 0.50
@@ -230,6 +256,7 @@
             min: 1800 # 30 minutes
         - id: ParadoxCloneSpawn
           weight: 20
+          prob: 0.85 # Give it a small chance to fail, since it'll basically happen every round if I don't do this...
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -256,18 +283,22 @@
           weight: 1
           conditions:
           - !type:HasBudgetCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 40
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: AbductorsSpawn
           weight: 15
+          prob: 0.85 # Give it a small chance to fail, since it'll basically happen every round if I don't do this...
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
             min: 10
           - !type:RoundDurationCondition
-            min: 900 # 15 minutes
+            min: 1200 # 20 minutes
         - id: Brighteye
           weight: 1
           conditions:
@@ -275,7 +306,7 @@
           - !type:PlayerCountCondition
             min: 20
           - !type:RoundDurationCondition
-            min: 900 # 15 minutes
+            min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
           conditions:
@@ -284,3 +315,11 @@
             min: 30
           - !type:RoundDurationCondition
             min: 1200 # 20 minutes
+        - id: ColossusSpawn
+          weight: 4.5
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 25
+          - !type:RoundDurationCondition
+            min: 1500 # 25 minutes

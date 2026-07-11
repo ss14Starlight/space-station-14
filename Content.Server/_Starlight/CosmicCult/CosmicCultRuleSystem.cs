@@ -573,6 +573,13 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             conversionComp.Converted += value;
         }
     }
+
+    public void AdjustCultObjectiveChaplain(int value)
+    {
+        var query = EntityQueryEnumerator<CosmicChaplainConditionComponent>();
+        while (query.MoveNext(out _, out var chaplainConditionComp))
+            chaplainConditionComp.Converted += value;
+    }
     #endregion
 
     public void OnStartMonument(Entity<MonumentComponent> ent)
@@ -804,11 +811,17 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _mind.TryAddObjective(mindId, mind, "CosmicFinalityObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicMonumentObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicConversionObjective");
+        _mind.TryAddObjective(mindId, mind, "CosmicChaplainObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicEntropyObjective");
 
         _euiMan.OpenEui(new CosmicConvertedEui(), session);
 
-        RemComp<BibleUserComponent>(uid);
+
+        if (TryComp<BibleUserComponent>(uid, out var _))
+        {
+            AdjustCultObjectiveChaplain(1);
+            RemComp<BibleUserComponent>(uid);
+        }
 
         // Bright-eye Nerf - Yeah im not gona let them be immortal!
         if (TryComp<BrighteyeComponent>(uid, out var brighteye))
@@ -825,6 +838,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
         cult.Comp.TotalCult++;
         cult.Comp.Cultists.Add(uid);
+
 
         AdjustCultObjectiveConversion(1);
         UpdateCultData(cult.Comp.MonumentInGame);
@@ -956,6 +970,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             _mind.TryRemoveObjective(mindId, mind, conversionObjective.Value);
         if (_mind.TryFindObjective((mindId, mind), "CosmicEntropyObjective", out var entropyObjective) && entropyObjective != null)
             _mind.TryRemoveObjective(mindId, mind, entropyObjective.Value);
+        if (_mind.TryFindObjective((mindId, mind), "CosmicChaplainObjective", out var chaplainObjective) && chaplainObjective != null)
+            _mind.TryRemoveObjective(mindId, mind, chaplainObjective.Value);
 
         _role.MindRemoveRole<CosmicCultRoleComponent>(mindId);
         _role.MindRemoveRole<RoleBriefingComponent>(mindId);
