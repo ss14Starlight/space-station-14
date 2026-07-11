@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (CC-SC17) Added point defense cause of cool factor (not like they are gonna be used).
-    type: Add
-  id: 406168
-  time: '2026-06-23T08:34:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4893
-- author: Johnny
-  changes:
   - message: (CC-SC17) Added a maintenance tunnel connecting the disposals area to the left side of the CC.
     type: Add
   id: 406169
@@ -2799,4 +2792,11 @@ Entries:
   id: 406567
   time: '2026-07-11T12:45:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5090
+- author: Forrestgod
+  changes:
+  - message: Broken Cryopods can now be deconstructed via a welder just like broken machine frames.
+    type: Tweak
+  id: 406568
+  time: '2026-07-11T13:14:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5097
 Order: -1
