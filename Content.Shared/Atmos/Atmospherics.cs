@@ -190,6 +190,11 @@ namespace Content.Shared.Atmos
             [Gas.Helium] = Loc.GetString("gas-helium-abbreviation"),
             [Gas.AntiNoblium] = Loc.GetString("gas-anti-noblium-abbreviation"),
             // Funkystation End: Funky atmos - /tg/ gases
+            #region Starlight
+            // Starlight gases!
+            [Gas.Ulnitranium] = Loc.GetString("gas-ulnitranium-abbreviation"),
+            [Gas.ZXA] = Loc.GetString("gas-zxa-abbreviation"),
+            #endregion
         };
 
         #region Excited Groups
@@ -219,7 +224,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 20; // Funkystation Edit: 9 -> 20
+        public const int TotalNumberOfGases = 22; // Starlight Edit: 9 -> 22
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -394,6 +399,12 @@ namespace Content.Shared.Atmos
         public const float ProtoNitrateBZConversionEnergy = -10000f;
 
         /// <summary>
+        ///     Starlight, based on Funky Atmos
+        ///     The amount of energy 1 mol of Ulnitranium forming releases.
+        /// </summary>
+        public const float UlnitraniumProductionEnergy = 350;
+
+        /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
         /// </summary>
         public const float HazardHighPressure = 550f;
@@ -492,5 +503,10 @@ namespace Content.Shared.Atmos
         Helium = 18,
         AntiNoblium = 19,
         // Funkystation End: Funky atmos - /tg/ gases
+        #region Starlight
+        // Starlight gases!
+        Ulnitranium = 20,
+        ZXA = 21,
+        #endregion
     }
 }
