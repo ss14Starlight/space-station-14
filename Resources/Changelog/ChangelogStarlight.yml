@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ORWELL) Added roboticist locker to roboticist.
-    type: Add
-  id: 406185
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
   - message: (ORWELL) Added a filled virologist locker to virology entrance.
     type: Add
   id: 406186
@@ -2799,4 +2792,11 @@ Entries:
   id: 406584
   time: '2026-07-11T14:21:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Home
+  changes:
+  - message: Added the song Burn Chamber by Home to Starlight.
+    type: Add
+  id: 406585
+  time: '2026-07-11T14:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5080
 Order: -1
