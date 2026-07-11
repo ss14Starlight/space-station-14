@@ -186,10 +186,8 @@ namespace Content.Client.Access.UI
             var allowedJobAccess = allJobAccess
                 .Where(x => _allowedAccessLevels.Contains(x) && allConsoleGroupTags.Contains(x))
                 .ToHashSet();
-            _pendingPressedAccessLevels.RemoveWhere(a => _allowedAccessLevels.Contains(a));
-            _pendingPressedAccessLevels.UnionWith(allowedJobAccess);
 
-            _pendingAccessOverride = true;
+            _pendingPressedAccessLevels.UnionWith(allowedJobAccess);
 
             // Update visible buttons to match pending pressed state
             foreach (var (access, button) in _accessButtons.ButtonsList)
