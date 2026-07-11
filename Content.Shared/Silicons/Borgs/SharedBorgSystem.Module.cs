@@ -5,13 +5,13 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Localizations;
 using Content.Shared.Silicons.Borgs.Components;
-using Content.Shared.Storage; // Starlight-edit
-using Content.Shared.Storage.Components; // Starlight-edit
 using Robust.Shared.Containers;
 #region Starlight
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Stacks;
+using Content.Shared.Storage;
+using Content.Shared.Storage.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared._Starlight.Silicons;
@@ -580,9 +580,9 @@ public abstract partial class SharedBorgSystem
             if (nested is ContainerSlot)
                 continue;
 
-            if (TryComp<EntityStorageComponent>(item, out var es) && ReferenceEquals(nested, es.Contents))
+            if (entityStorage != null && ReferenceEquals(nested, entityStorage.Contents))
                 continue;
-            if (TryComp<StorageComponent>(item, out var st) && st.Container != null && ReferenceEquals(nested, st.Container))
+            if (storage != null && storage.Container != null && ReferenceEquals(nested, storage.Container))
                 continue;
             into.AddRange(nested.ContainedEntities);
         }
@@ -613,9 +613,9 @@ public abstract partial class SharedBorgSystem
         {
             if (nested is ContainerSlot || nested.ContainedEntities.Count == 0)
                 continue;
-            if (TryComp<EntityStorageComponent>(item, out var es) && ReferenceEquals(nested, es.Contents))
+            if (entityStorage != null && ReferenceEquals(nested, entityStorage.Contents))
                 continue;
-            if (TryComp<StorageComponent>(item, out var st) && st.Container != null && ReferenceEquals(nested, st.Container))
+            if (storage != null && storage.Container != null && ReferenceEquals(nested, storage.Container))
                 continue;
             _container.EmptyContainer(nested, force: true, destination: dest);
             emptied = true;
