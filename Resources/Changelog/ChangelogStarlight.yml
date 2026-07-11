@@ -1,25 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Fixed Prisoners being able to walk out of Genpop on Cog.
-    type: Fix
-  id: 406149
-  time: '2026-06-22T08:47:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4889
-- author: Sparlight
-  changes:
-  - message: Critters no longer go permanently blind from unexpected sources.
-    type: Fix
-  id: 406150
-  time: '2026-06-22T09:40:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4888
-- author: redmushie
-  changes:
-  - message: Tamper-sealed cargo orders! Only the department that ordered something can open it without incurring a penalty.
-    type: Add
-  id: 406151
-  time: '2026-06-22T10:12:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4764
 - author: redmushie
   changes:
   - message: Opening a tamper-sealed order rewards Cargo with 10% of the order price.
@@ -2799,4 +2778,25 @@ Entries:
   id: 406548
   time: '2026-07-10T20:02:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5071
+- author: SevenShades
+  changes:
+  - message: New system for adding status icons with implants.
+    type: Add
+  id: 406549
+  time: '2026-07-10T21:35:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4439
+- author: SevenShades
+  changes:
+  - message: MedTak client system rework.
+    type: Add
+  id: 406550
+  time: '2026-07-10T21:35:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4439
+- author: SevenShades
+  changes:
+  - message: Two new suits and weapons for MedTak, along with some other content.
+    type: Add
+  id: 406551
+  time: '2026-07-10T21:35:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4439
 Order: -1
