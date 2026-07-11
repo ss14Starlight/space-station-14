@@ -619,6 +619,16 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterLegitChipIn
+  name: "Chip In!"
+  description: "A reminder to thank those who spend long hours to make your sectors a better place to work. Contribute where you can!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/chip_in.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
   id: PosterContrabandHereticalExomorph
   name: "Heretic Exomorph"
   description: "They come out at night."
@@ -636,3 +646,26 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/beep100.rsi
     state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitMedTak
+  name: "MedTak: Live to See Tomorrow"
+  description: "An advertisment poster for a MedTak insurance plan."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/MedTak.rsi
+    state: medtak
+
+- type: entity
+  parent: PosterBase
+  id: PosterContraband300Hotdogs
+  name: "Watch Me Eat 300 Mini Cocktail Hotdogs"
+  description: "A hastily taped-up poster proclaiming that some blue resomi is going to attempt to eat three hundred cocktail hotdogs in one sitting on March 16th."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/300_hotdogs.rsi
+    layers:
+      - state: poster
+      - state: poster-unshaded
+        shader: unshaded

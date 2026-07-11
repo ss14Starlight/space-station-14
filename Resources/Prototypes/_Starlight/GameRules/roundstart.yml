@@ -1,20 +1,4 @@
 # event schedulers
-
-- type: entityTable
-  id: BasicGameRulesTableNoRoundenders
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-      - !type:NestedSelector
-        tableId: BasicCalmEventsTable
-      - !type:NestedSelector
-        tableId: BasicAntagEventsTableNoRoundenders
-      - !type:NestedSelector
-        tableId: CargoGiftsTable
-      - !type:NestedSelector
-        tableId: CalmPestEventsTable
-      - !type:NestedSelector
-        tableId: SpicyPestEventsTable
-
 - type: entity
   parent: BaseGameRule
   id: SubGamemodesRuleNoChangelings
@@ -29,8 +13,8 @@
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: Devil
       prob: 0.05 # rare
-    - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Equalizing subgamemodes.
+    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
+    #  prob: 0.05
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
@@ -50,8 +34,8 @@
       prob: 0.175
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
-    - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Equalizing subgamemodes.
+    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
+    #      prob: 0.05
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     # No SELF Agents in rev games because of the FREEmag.
@@ -71,8 +55,8 @@
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: Devil
       prob: 0.05 # rare
-    - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Equalizing subgamemodes.
+    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
+    #  prob: 0.05
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
@@ -90,8 +74,8 @@
       prob: 0.05
     - id: Devil
       prob: 0.05
-    - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Equalizing subgamemodes.
+    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
+    #      prob: 0.05
     - id: Brighteye
       prob: 0.05
     - id: SiliconLiberation
@@ -111,8 +95,8 @@
       prob: 0.20
     - id: SLChangelingLess # I have managed to make changelings lose their abilities when they turn into zombies, so the concern with them is gone.
       prob: 0.20
-    - id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
-      prob: 0.05
+    #- id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
+    #  prob: 0.05
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation # I mean technically there's nothing inherently wrong with them showing up.
@@ -132,8 +116,8 @@
       prob: 0.15
     - id: SubWizard
       prob: 0.05
-    - id: SubXenoborgs
-      prob: 0.05
+    #- id: SubXenoborgs
+    #  prob: 0.05
     # No SELF Agents in Nukie games because of the FREEmag = free guns!!!
 
 - type: entity

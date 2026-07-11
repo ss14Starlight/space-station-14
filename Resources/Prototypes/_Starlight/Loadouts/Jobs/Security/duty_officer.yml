@@ -55,11 +55,17 @@
 
 - type: loadout
   id: DutyOfficerSeniorJumpsuitFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorDutyOfficer
   equipment:
     jumpsuit: ClothingUniformJumpsuitFormalSeniorSecoff
 
 - type: loadout
   id: DutyOfficerSeniorJumpskirtFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorDutyOfficer
   equipment:
     jumpsuit: ClothingUniformJumpskirtFormalSeniorSecoff
 

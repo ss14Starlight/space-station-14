@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/07/2026 01:34:27
-  entityCount: 15035
+  time: 06/29/2026 14:29:55
+  entityCount: 15037
 maps:
 - 1
 grids:
@@ -35375,11 +35375,6 @@ entities:
     - type: Transform
       pos: -5.5,14.5
       parent: 2
-  - uid: 5497
-    components:
-    - type: Transform
-      pos: -6.5,24.5
-      parent: 2
   - uid: 5498
     components:
     - type: Transform
@@ -36704,6 +36699,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 12.5,-27.5
       parent: 2
+- proto: ComputerShipyard
+  entities:
+  - uid: 5497
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -6.5,24.5
+      parent: 2
 - proto: ComputerShuttleCargo
   entities:
   - uid: 5706
@@ -37329,8 +37332,6 @@ entities:
     - type: Transform
       pos: -2.5,-32.5
       parent: 2
-- proto: CryogenicSleepUnitSpawnerLateJoin
-  entities:
   - uid: 5803
     components:
     - type: Transform
@@ -42435,99 +42436,6 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: FaxMachineBase
-  entities:
-  - uid: 6658
-    components:
-    - type: Transform
-      pos: 3.5,4.5
-      parent: 2
-    - type: FaxMachine
-      name: Bar
-  - uid: 6659
-    components:
-    - type: Transform
-      pos: -23.5,8.5
-      parent: 2
-    - type: FaxMachine
-      name: Medbay
-  - uid: 6660
-    components:
-    - type: Transform
-      pos: 26.5,7.5
-      parent: 2
-    - type: FaxMachine
-      name: Security
-  - uid: 6661
-    components:
-    - type: Transform
-      pos: 10.5,-15.5
-      parent: 2
-    - type: FaxMachine
-      name: Engineering
-  - uid: 6662
-    components:
-    - type: Transform
-      pos: 10.5,-20.5
-      parent: 2
-    - type: FaxMachine
-      name: Cargo Bay
-  - uid: 6663
-    components:
-    - type: Transform
-      pos: -38.5,-7.5
-      parent: 2
-    - type: FaxMachine
-      name: Library
-  - uid: 6664
-    components:
-    - type: Transform
-      pos: -17.5,-6.5
-      parent: 2
-    - type: FaxMachine
-      name: Science
-  - uid: 6665
-    components:
-    - type: Transform
-      pos: -9.5,28.5
-      parent: 2
-    - type: FaxMachine
-      name: Conference Room
-  - uid: 6666
-    components:
-    - type: Transform
-      pos: -1.5,18.5
-      parent: 2
-    - type: FaxMachine
-      name: HOP
-  - uid: 6667
-    components:
-    - type: Transform
-      pos: 40.5,30.5
-      parent: 2
-    - type: FaxMachine
-      name: Courtroom
-  - uid: 6668
-    components:
-    - type: Transform
-      pos: -11.5,47.5
-      parent: 2
-    - type: FaxMachine
-      name: AI Core
-  - uid: 6669
-    components:
-    - type: Transform
-      pos: -4.5,29.5
-      parent: 2
-    - type: FaxMachine
-      name: Bridge
-  - uid: 6670
-    components:
-    - type: Transform
-      pos: -45.5,6.5
-      parent: 2
-    - type: FaxMachine
-      name: NCT
 - proto: FaxMachineCaptain
   entities:
   - uid: 6671
@@ -42535,8 +42443,104 @@ entities:
     - type: Transform
       pos: 4.5,24.5
       parent: 2
-    - type: FaxMachine
-      name: Captain
+- proto: FaxMachineCargo
+  entities:
+  - uid: 6662
+    components:
+    - type: Transform
+      pos: 10.5,-20.5
+      parent: 2
+- proto: FaxMachineCommandAICore
+  entities:
+  - uid: 6668
+    components:
+    - type: Transform
+      pos: -11.5,47.5
+      parent: 2
+- proto: FaxMachineCommandBridge
+  entities:
+  - uid: 6669
+    components:
+    - type: Transform
+      pos: -4.5,29.5
+      parent: 2
+- proto: FaxMachineCommandConference
+  entities:
+  - uid: 6665
+    components:
+    - type: Transform
+      pos: -9.5,28.5
+      parent: 2
+- proto: FaxMachineEngineering
+  entities:
+  - uid: 6661
+    components:
+    - type: Transform
+      pos: 10.5,-15.5
+      parent: 2
+- proto: FaxMachineMedical
+  entities:
+  - uid: 6659
+    components:
+    - type: Transform
+      pos: -23.5,8.5
+      parent: 2
+- proto: FaxMachineNTCareerTrainer
+  entities:
+  - uid: 6670
+    components:
+    - type: Transform
+      pos: -45.5,6.5
+      parent: 2
+- proto: FaxMachineNTMagiInternalAffairs
+  entities:
+  - uid: 6667
+    components:
+    - type: Transform
+      pos: 40.5,30.5
+      parent: 2
+- proto: FaxMachineScience
+  entities:
+  - uid: 6664
+    components:
+    - type: Transform
+      pos: -17.5,-6.5
+      parent: 2
+- proto: FaxMachineSecurity
+  entities:
+  - uid: 6660
+    components:
+    - type: Transform
+      pos: 26.5,7.5
+      parent: 2
+- proto: FaxMachineServiceBar
+  entities:
+  - uid: 6658
+    components:
+    - type: Transform
+      pos: 3.5,4.5
+      parent: 2
+- proto: FaxMachineServiceChaplain
+  entities:
+  - uid: 15036
+    components:
+    - type: Transform
+      pos: -32.5,11.5
+      parent: 2
+- proto: FaxMachineServiceHoP
+  entities:
+  - uid: 6666
+    components:
+    - type: Transform
+      pos: -1.5,18.5
+      parent: 2
+- proto: FaxMachineServiceLibrary
+  entities:
+  - uid: 6663
+    components:
+    - type: Transform
+      pos: -38.5,-7.5
+      parent: 2
 - proto: filingCabinetRandom
   entities:
   - uid: 6672
@@ -83405,6 +83409,13 @@ entities:
     - type: Transform
       pos: -41.5,-22.5
       parent: 2
+- proto: SpawnMobKoboldKiki
+  entities:
+  - uid: 15037
+    components:
+    - type: Transform
+      pos: -3.5,-4.5
+      parent: 2
 - proto: SpawnMobMcGriff
   entities:
   - uid: 12406
@@ -97965,7 +97976,7 @@ entities:
       pos: -38.5,9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -102401.42
+      secondsUntilStateChange: -103452.79
       state: Opening
   - uid: 15007
     components:
@@ -97973,7 +97984,7 @@ entities:
       pos: -35.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -102401.92
+      secondsUntilStateChange: -103453.29
       state: Opening
 - proto: Wrench
   entities:
