@@ -6,6 +6,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Maps;
 using Content.Shared.Preferences;
 using Content.Server.Preferences.Managers; // Starlight
+using Content.Server.Database; // Starlight
 using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
@@ -107,14 +108,17 @@ public sealed class StationJobsTest : GameTest
             }
         });
 
-        var prefMan = server.ResolveDependency<IServerPreferencesManager>(); // Starlight
+        var prefMan = server.ResolveDependency<IServerPreferencesManager>(); // Starlight start
+        var dbMan = server.ResolveDependency<UserDbDataManager>();
         var dummies = await server.AddDummySessions(TotalPlayers);
+        await pair.RunTicksSync(5); // Starlight end, give the DB manager a chance to register the sessions
         #region Starlight
         await server.WaitAssertion(() =>
         {
             var i = 0;
             foreach (var dummy in dummies)
             {
+                dbMan.WaitLoadComplete(dummy).Wait(); // Starlight, ensures _cachedPlayerPrefs has an entry
                 Dictionary<ProtoId<JobPrototype>, JobPriority> priorities; // Starlight
                 if (i < PlayerCount)
                 {
