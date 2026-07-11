@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (CC-SC17) Added an arcade to the chill out area to play some games.
-    type: Add
-  id: 406167
-  time: '2026-06-23T08:34:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4893
-- author: Johnny
-  changes:
   - message: (CC-SC17) Added point defense cause of cool factor (not like they are gonna be used).
     type: Add
   id: 406168
@@ -2799,4 +2792,11 @@ Entries:
   id: 406566
   time: '2026-07-11T11:26:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5028
+- author: wonderfulnewworld
+  changes:
+  - message: You can now find Ulnitranium and ZXA tanks on expeds.
+    type: Add
+  id: 406567
+  time: '2026-07-11T12:45:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5090
 Order: -1
