@@ -69,7 +69,6 @@
     - SingularityTeslaEngine
     - SingularityEngine
     - Power
-  - type: AdminNotifyOnDamage # Starlight
 
 
 - type: entity
