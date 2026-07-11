@@ -36,7 +36,7 @@ public sealed partial class LoadoutComponent : Component
     public List<ProtoId<StartingGearPrototype>>? PostSpawnGear;
 
     /// <summary>
-    /// A flag to determine whether to apply
+    /// A flag to determine whether to apply <see cref="PostSpawnGear"/>.
     /// </summary>
     [DataField]
     [AutoNetworkedField]

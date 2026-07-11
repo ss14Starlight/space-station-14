@@ -137,9 +137,6 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
     /// <param name="raiseEvent">Should we raise the event for equipped. Set to false if you will call this manually</param>
     public void EquipStartingGear(EntityUid entity, IEquipmentLoadout? startingGear, bool raiseEvent = true)
     {
-        var test = InventorySystem.TryGetSlotEntity(entity, "back", out var testEnt);
-        Log.Info($"{test} : {testEnt}");
-
         if (startingGear == null)
             return;
 
