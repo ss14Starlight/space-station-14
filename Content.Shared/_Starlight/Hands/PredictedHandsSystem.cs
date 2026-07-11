@@ -53,7 +53,7 @@ public sealed partial class PredictedHandsSystem : EntitySystem
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ThrowItemInHand, new PointerInputCmdHandler(HandleThrowItem))
-            .Register<SharedHandsSystem>();
+            .Register<PredictedHandsSystem>();
 
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
     }
