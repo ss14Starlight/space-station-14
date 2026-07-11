@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (CC-SC17) Added a maintenance tunnel connecting the disposals area to the left side of the CC.
-    type: Add
-  id: 406169
-  time: '2026-06-23T08:34:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4893
-- author: Johnny
-  changes:
   - message: (CC-SC17) Added a nitrogen canister for people to refuel their nitrogen at (vox rejoice).
     type: Add
   id: 406170
@@ -2799,4 +2792,11 @@ Entries:
   id: 406568
   time: '2026-07-11T13:14:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5097
+- author: AprilCatStreams
+  changes:
+  - message: Users can no longer use their PDAs while dead/crit.
+    type: Fix
+  id: 406569
+  time: '2026-07-11T13:14:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5088
 Order: -1
