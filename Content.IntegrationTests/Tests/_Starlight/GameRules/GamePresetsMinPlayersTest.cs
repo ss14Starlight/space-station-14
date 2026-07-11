@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking.Presets;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.GameObjects;
@@ -8,14 +9,14 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests._Starlight.GameRules;
 
 [TestFixture]
-public sealed class GamePresetsMinPlayersTest
+public sealed class GamePresetsMinPlayersTest : GameTest
 {
     private const string TestPreset = "TestPresetTenPlayers";
 
     [Test]
     public async Task TestMinPlayers()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var protoMan = server.ResolveDependency<IPrototypeManager>();
@@ -41,8 +42,6 @@ public sealed class GamePresetsMinPlayersTest
             errorPresets.Count,
             Is.Zero,
             $"Found invalid preset/rule min-player configuration(s):{Environment.NewLine}{string.Join(Environment.NewLine, errorPresets)}");
-
-        await pair.CleanReturnAsync();
     }
 
     private int GetBiggestMinPlayers(GamePresetPrototype preset, IPrototypeManager manager, IComponentFactory factory, List<string> errors)

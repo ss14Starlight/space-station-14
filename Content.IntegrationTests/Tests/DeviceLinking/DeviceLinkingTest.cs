@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Utility;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Prototypes;
@@ -10,7 +12,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.DeviceLinking;
 
-public sealed class DeviceLinkingTest
+public sealed class DeviceLinkingTest : GameTest
 {
     private const string PortTesterProtoId = "DeviceLinkingSinkPortTester";
 
@@ -31,7 +33,7 @@ public sealed class DeviceLinkingTest
     [Test]
     public async Task AllDeviceLinkSinksWorkTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
         var compFact = server.ResolveDependency<IComponentFactory>();
         var mapMan = server.ResolveDependency<IMapManager>();
@@ -88,7 +90,5 @@ public sealed class DeviceLinkingTest
                 }
             });
         });
-
-        await pair.CleanReturnAsync();
     }
 }
