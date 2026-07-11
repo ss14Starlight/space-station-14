@@ -200,6 +200,7 @@ public abstract partial class InteractionTest
         SUiSys = SEntMan.System<SharedUserInterfaceSystem>();
         SCombatMode = SEntMan.System<SharedCombatModeSystem>();
         SGun = SEntMan.System<SharedGunSystem>();
+        PredictedHandSys = SEntMan.System<PredictedHandsSystem>(); // Starlight
 
         // client dependencies
         CEntMan = Client.ResolveDependency<IEntityManager>();
