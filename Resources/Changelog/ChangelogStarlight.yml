@@ -1,95 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: (CC-SC17) Changed the solar area because nobody uses it anyway and the maints needed more space.
-    type: Tweak
-  id: 406172
-  time: '2026-06-23T08:34:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4893
-- author: Johnny
-  changes:
-  - message: (CC-SC17) Moved cryopods and its sitting area to an unused evac pod area.
-    type: Tweak
-  id: 406173
-  time: '2026-06-23T08:34:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4893
-- author: Johnny
-  changes:
-  - message: (CC-SC17) The checkpoint office wasnt getting gassed before, now it will.
-    type: Fix
-  id: 406174
-  time: '2026-06-23T08:34:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4893
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Added reporter to orwell.
-    type: Add
-  id: 406175
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL)  Added support for round start singularity.
-    type: Add
-  id: 406176
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL)  Added some uranium to the shuttle construction bay to build gravity generators.
-    type: Add
-  id: 406177
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL)  Added a connector port at shuttle construction bay to refill canisters with distro air mixture.
-    type: Add
-  id: 406178
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL)  Added fog machine to the chapel. (Check button on walls).
-    type: Add
-  id: 406179
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Added black lights and light switches to chapel to toggle which lights you want. (More wall buttons).
-    type: Add
-  id: 406180
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL)  Added a botany holopad to botany.
-    type: Add
-  id: 406181
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL)  Added a maints entrance into chapel maints.
-    type: Add
-  id: 406182
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Added a disposal pipe to trans recon.
-    type: Add
-  id: 406183
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL)  Added a firelock under papers please office door.
-    type: Add
-  id: 406184
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
 - author: Cvlancer
   changes:
   - message: (ORWELL) Added roboticist locker to roboticist.
@@ -2799,4 +2708,95 @@ Entries:
   id: 406571
   time: '2026-07-11T14:21:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5082
+- author: Caws
+  changes:
+  - message: (Space Mall) Added the Ticket Machine to HOP and generally tweaked HOP's line up.
+    type: Add
+  id: 406572
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: '(Space Mall) The mail system now works like other stations! Currently limited to just the following: Botany, Chemistry, Drug Store, and Kitchen.'
+    type: Add
+  id: 406573
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) Added 2 more space heaters to Atmos.
+    type: Add
+  id: 406574
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) Added a charger and cell recharger to Bridge.
+    type: Add
+  id: 406575
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) Added an EOD closet to Security's locker room.
+    type: Add
+  id: 406576
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) Added a Guidebooks crate to Library.
+    type: Add
+  id: 406577
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) Added a document printer to Library.
+    type: Add
+  id: 406578
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) Drug Store's beacon now uses the same color as Chemistry.
+    type: Tweak
+  id: 406579
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) Prisoners can no longer get themselves stuck by exiting the wrong turnstile from GenPop.
+    type: Fix
+  id: 406580
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) BSO's Room corrected to be NT access only.
+    type: Fix
+  id: 406581
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) Fixed a bunch where the Evac shuttle would always announce it was "near Command" because there was a station beacon mapped *on* the evac shuttle herself.
+    type: Fix
+  id: 406582
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) Removed some firelocks under doors in Atmospherics that didn't really need them.
+    type: Remove
+  id: 406583
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
+- author: Caws
+  changes:
+  - message: (Space Mall) Duplicate Cryonics station beacon from Medical's cryo pods.
+    type: Remove
+  id: 406584
+  time: '2026-07-11T14:21:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5084
 Order: -1
