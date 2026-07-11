@@ -32,7 +32,9 @@
     mode: SnapgridCenter
   components:
     - type: Physics
-      bodyType: Dynamic
+      bodyType: Static
+    - type: Transform
+      anchored: true
     - type: Fixtures
       fixtures:
         fix1:
