@@ -345,7 +345,7 @@
         Blunt: 0.85
         Slash: 0.75
         Piercing: 0.90
-        Heat: 0.75
+        Heat: 0.70
         Cold: 0.80 # Sec can get a little more
   - type: ExplosionResistance
     damageCoefficient: 0.60 # Incredibly niche explosion resist armor; it's half a joke about having "bomb" in the name, but also gives it something...
