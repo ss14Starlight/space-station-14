@@ -236691,7 +236691,7 @@ entities:
       pos: 33.454838,6.6845493
       parent: 2
     - type: ActivatedElectrified
-- proto: TicketMachineFilled
+- proto: TicketMachineHOP
   entities:
   - uid: 36914
     components:
