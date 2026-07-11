@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ORWELL) Added a filled virologist locker to virology entrance.
-    type: Add
-  id: 406186
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
   - message: (ORWELL) Added a empty geneticist locker to old virology.
     type: Add
   id: 406187
@@ -2799,4 +2792,11 @@ Entries:
   id: 406585
   time: '2026-07-11T14:21:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5080
+- author: Trosling
+  changes:
+  - message: Added Cosmic Cultist objective demanding them to convert chaplains to address issues with round-removal of chaplains.
+    type: Add
+  id: 406586
+  time: '2026-07-11T14:42:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5075
 Order: -1
