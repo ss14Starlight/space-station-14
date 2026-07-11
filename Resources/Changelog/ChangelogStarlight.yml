@@ -1,46 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Opening a tamper-sealed order rewards Cargo with 10% of the order price.
-    type: Add
-  id: 406152
-  time: '2026-06-22T10:12:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4764
-- author: redmushie
-  changes:
-  - message: Destroying a tamper-sealed order penalizes Cargo for 10% of the order price, and refunds the ordering department 50% at Cargo's expense.
-    type: Add
-  id: 406153
-  time: '2026-06-22T10:12:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4764
-- author: redmushie
-  changes:
-  - message: Cyborgs can open tamper-sealed orders belonging to their departments.
-    type: Add
-  id: 406154
-  time: '2026-06-22T10:12:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4764
-- author: redmushie
-  changes:
-  - message: The Interstellar Trade Guild will warn the station if a lot of tamper seals are destroyed.
-    type: Add
-  id: 406155
-  time: '2026-06-22T10:12:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4764
-- author: Johnny
-  changes:
-  - message: Recipe to grind a NORMAL stick of butter for liquid butter.
-    type: Add
-  id: 406156
-  time: '2026-06-22T10:35:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4825
-- author: Johnny
-  changes:
-  - message: Recipe to grind a slice of butter for liquid butter.
-    type: Add
-  id: 406157
-  time: '2026-06-22T10:35:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4825
 - author: Johnny
   changes:
   - message: Cannabis butter had... Less butter than a normal stick of butter? Yeah it has same amount of butter now.
@@ -2799,4 +2757,46 @@ Entries:
   id: 406551
   time: '2026-07-10T21:35:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4439
+- author: wonderfulnewworld
+  changes:
+  - message: Added Ulnitranium, a new gas, equivalent to Pluoxium for Nitrogen breathers. It's made the same way as Pluoxium, but with Nitrogen + Nitrous instead of Oxygen + CO2. It can also be made with radiation, and can be used in place of Pluoxium to make Proto-Nitrate.
+    type: Add
+  id: 406552
+  time: '2026-07-11T05:47:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4891
+- author: wonderfulnewworld
+  changes:
+  - message: Added ZXA, a new anesthetic gas that works on any species with lungs. It's made by combining BZ, Nitrous Oxide, and Water Vapor, although it only consumes half of the water vapor it requires.
+    type: Add
+  id: 406553
+  time: '2026-07-11T05:47:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4891
+- author: wonderfulnewworld
+  changes:
+  - message: Surgeon lockers now have a ZXA tank instead of Nitrous Oxide and Healium.
+    type: Tweak
+  id: 406554
+  time: '2026-07-11T05:47:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4891
+- author: wonderfulnewworld
+  changes:
+  - message: Roboticist lockers no longer have Healium, and have a chance for their Nitrous Oxide tank replaced with a ZXA tank.
+    type: Tweak
+  id: 406555
+  time: '2026-07-11T05:47:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4891
+- author: wonderfulnewworld
+  changes:
+  - message: Tweaked the Roboticist surgical kit and bottle case sprites.
+    type: Tweak
+  id: 406556
+  time: '2026-07-11T05:47:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4891
+- author: xxhotgirl69
+  changes:
+  - message: Adds new witch hat in Autodrobe and random maint loot.
+    type: Add
+  id: 406557
+  time: '2026-07-11T06:18:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4997
 Order: -1
