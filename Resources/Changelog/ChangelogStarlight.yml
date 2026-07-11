@@ -1,69 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: Cannabis butter had... Less butter than a normal stick of butter? Yeah it has same amount of butter now.
-    type: Fix
-  id: 406158
-  time: '2026-06-22T10:35:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4825
-- author: Johnny
-  changes:
-  - message: Terror spiders already ate their breakfast, so no hungy or thirsty anymore!
-    type: Remove
-  id: 406159
-  time: '2026-06-22T15:31:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4870
-- author: Johnny
-  changes:
-  - message: Terror spiders barotrauma values have been heavily modified, and they are actually pretty resistant to spacing (overpressure still does a decent bit).
-    type: Tweak
-  id: 406160
-  time: '2026-06-22T15:31:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4870
-- author: Johnny
-  changes:
-  - message: Terror spiders... Didnt have the terror spider component? So yeah I added that and now they dont barf or get toxicated from ammonia.
-    type: Fix
-  id: 406161
-  time: '2026-06-22T15:31:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4870
-- author: Kasern
-  changes:
-  - message: Deep-frying a penguin cutlet now makes a nugget.
-    type: Add
-  id: 406162
-  time: '2026-06-22T15:53:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4854
-- author: Johnny
-  changes:
-  - message: The end parts of benches FINALLY connect to other benches. Bench enjoyers rejoice.
-    type: Fix
-  id: 406163
-  time: '2026-06-23T07:53:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4909
-- author: Caws
-  changes:
-  - message: Restored the raid suit to 1.0 walk speed / 1.1 sprint speed. These bonuses buffs were lost in an upstream merge.
-    type: Fix
-  id: 406164
-  time: '2026-06-23T07:53:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4896
-- author: STARLIGHT TEAM
-  changes:
-  - message: Tweaked Laspi water damage.
-    type: Tweak
-  id: 406165
-  time: '2026-06-23T07:53:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4906
-- author: Johnny
-  changes:
-  - message: (CC-SC17) Added the science department, no more crying in changelogs for it!
-    type: Add
-  id: 406166
-  time: '2026-06-23T08:34:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4893
-- author: Johnny
-  changes:
   - message: (CC-SC17) Added an arcade to the chill out area to play some games.
     type: Add
   id: 406167
@@ -2799,4 +2736,67 @@ Entries:
   id: 406557
   time: '2026-07-11T06:18:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4997
+- author: wonderfulnewworld
+  changes:
+  - message: Added ColossusSpawn to Dynamic.
+    type: Add
+  id: 406558
+  time: '2026-07-11T11:26:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5028
+- author: wonderfulnewworld
+  changes:
+  - message: Traitor, Thief, and SLChangeling will no longer roll together with their -Less versions in Dynamic, unless they both happen to be roundstart spawns.
+    type: Remove
+  id: 406559
+  time: '2026-07-11T11:26:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5028
+- author: wonderfulnewworld
+  changes:
+  - message: WizardDuel, SubWizard, and WizardSpawn will no longer roll together with Zombie in Dynamic, unless they both happen to to be roundstart spawns.
+    type: Remove
+  id: 406560
+  time: '2026-07-11T11:26:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5028
+- author: wonderfulnewworld
+  changes:
+  - message: Dynamic will gain budget 50% slower after gaining too much budget without spending it.
+    type: Tweak
+  id: 406561
+  time: '2026-07-11T11:26:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5028
+- author: wonderfulnewworld
+  changes:
+  - message: Traitor has a chance to fail to roll in Dynamic. In essence, this is a chance at getting Extended.
+    type: Tweak
+  id: 406562
+  time: '2026-07-11T11:26:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5028
+- author: wonderfulnewworld
+  changes:
+  - message: Rolling midround Nukeops and LoneOpsSpawn in Dynamic now has a higher cost.
+    type: Tweak
+  id: 406563
+  time: '2026-07-11T11:26:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5028
+- author: wonderfulnewworld
+  changes:
+  - message: Decreased minimum time between events by 2.5 minutes. Hopefully this will make it horde less.
+    type: Tweak
+  id: 406564
+  time: '2026-07-11T11:26:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5028
+- author: wonderfulnewworld
+  changes:
+  - message: Decreased AbductorsSpawn Dynamic cost. They're not that intrusive, all things considered.
+    type: Tweak
+  id: 406565
+  time: '2026-07-11T11:26:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5028
+- author: wonderfulnewworld
+  changes:
+  - message: ParadoxCloneSpawn and AbductorsSpawn now have a small chance to fail, and roll 5 minutes later now. This is to prevent them from rolling every single round...
+    type: Tweak
+  id: 406566
+  time: '2026-07-11T11:26:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5028
 Order: -1
