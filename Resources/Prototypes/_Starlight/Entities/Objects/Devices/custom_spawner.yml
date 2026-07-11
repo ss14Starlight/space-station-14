@@ -26,7 +26,7 @@
       range: 200
 
 - type: entity
-  id: CustomSpawner
+  id: CustomSpawnerStatic
   parent: BaseCustomSpawner
   placement:
     mode: SnapgridCenter
@@ -44,8 +44,6 @@
           density: 100
           mask:
             - TableMask
-    - type: Pullable
-    - type: Anchorable
     - type: CustomSpawner
       hologramVisible: true
       hologramSprite:
@@ -73,6 +71,14 @@
       radius: 3
       curveFactor: 5
       falloff: 3
+
+- type: entity
+  id: CustomSpawner
+  parent: CustomSpawnerStatic
+  suffix: Anchorable
+  components:
+    - type: Pullable
+    - type: Anchorable
 
 - type: entity
   id: CustomSpawnerMarker
