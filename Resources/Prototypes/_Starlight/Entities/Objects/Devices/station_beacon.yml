@@ -117,3 +117,20 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-lawyer
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconJanitorCleaningCloset
+  suffix: Cleaning Closet
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-janitor-cleaning-closet
+
+ # Common Areas
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconWashrooms
+  suffix: Washrooms
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-washrooms
