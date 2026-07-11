@@ -235,7 +235,8 @@ public sealed partial class ThrowingSystem : EntitySystem
             _physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
         }
 
-        if (predicted) EnsureComp<PredictedThrownItemComponent>(uid); // Starlight
+        if (predicted)
+            EnsureComp<PredictedThrownItemComponent>(uid); // Starlight
 
         if (user == null)
             return;

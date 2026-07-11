@@ -22,7 +22,10 @@ public sealed partial class PredictedThrownItemSystem : EntitySystem
         _phys.UpdateIsPredicted(ent.Owner);
 
     private void OnShutdown(Entity<PredictedThrownItemComponent> ent, ref ComponentShutdown args) =>
-        Timer.Spawn(3000, () => _phys.UpdateIsPredicted(ent.Owner));
+        Timer.Spawn(3000, () =>
+        {
+            _phys.UpdateIsPredicted(ent.Owner);
+        });
 
     private void OnUpdatePredicted(Entity<PredictedThrownItemComponent> ent, ref UpdateIsPredictedEvent args) =>
         args.IsPredicted = true;

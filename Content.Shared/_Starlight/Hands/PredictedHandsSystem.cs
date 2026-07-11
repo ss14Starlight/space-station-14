@@ -21,7 +21,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._Starlight.Hands.EntitySystems;
+namespace Content.Shared._Starlight.Hands;
 
 public sealed partial class PredictedHandsSystem : EntitySystem
 {
