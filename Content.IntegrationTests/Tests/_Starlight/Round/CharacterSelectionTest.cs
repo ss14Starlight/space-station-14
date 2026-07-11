@@ -20,7 +20,6 @@ public sealed class CharacterSelectionTest : GameTest
 {
     public override PoolSettings PoolSettings => new()
         {
-            Dirty = true,
             DummyTicker = false,
             Connected = true,
             InLobby = true,
@@ -407,7 +406,6 @@ public sealed class CharacterSelectionTest : GameTest
         }
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.CleanReturnAsync();
     }
 
     // Run multiple round starts with the same set of characters, all of which are valid to select,
@@ -473,8 +471,6 @@ public sealed class CharacterSelectionTest : GameTest
             }
         }
         Assert.That(selectedCharacterSlots, Has.Count.EqualTo(cPref.Preferences.Characters.Count));
-
-        await pair.CleanReturnAsync();
     }
 
 }

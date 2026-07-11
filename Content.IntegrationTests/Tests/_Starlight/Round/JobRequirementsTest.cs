@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Content.IntegrationTests.Fixtures;
 using Content.Client.Lobby;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Server.GameTicking;
@@ -10,12 +11,19 @@ using Content.Shared.Roles;
 using Content.Shared.Humanoid;
 using Robust.Shared.Prototypes;
 
-namespace Content.IntegrationTests.Tests.Round;
+namespace Content.IntegrationTests.Tests._Starlight.Round;
 
 [TestFixture]
 [TestOf(typeof(JobRequirementsManager))]
-public sealed class JobRequirementsTest
+public sealed class JobRequirementsTest : GameTest
 {
+    public override PoolSettings PoolSettings => new()
+        {
+            DummyTicker = false,
+            Connected = true,
+            InLobby = true,
+        };
+
     private static string _map = "JobRequirementsTestMap";
 
     [TestPrototypes]
@@ -113,12 +121,7 @@ public sealed class JobRequirementsTest
     [TestCase(30, "Twenties", false)]
     public async Task AgeRequirementsTest(int age, string wantedJob, bool expectedJob = true)
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true,
-        });
+        var pair = Pair;
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
 
         var ticker = pair.Server.System<GameTicker>();
@@ -159,7 +162,6 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(10);
         await pair.ReallyBeIdle(); // ensure round shutdown completes before disposing the pool
-        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -172,12 +174,7 @@ public sealed class JobRequirementsTest
     [TestCase]
     public async Task AgeRequirementsTestMultipleCharacters()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true,
-        });
+        var pair = Pair;
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
 
         var ticker = pair.Server.System<GameTicker>();
@@ -223,7 +220,6 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(10);
         await pair.ReallyBeIdle(); // allow restart to finish so lingering logs don't fire post-disposal
-        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -240,12 +236,7 @@ public sealed class JobRequirementsTest
     [TestCase("Moth", "FreezerHead")]
     public async Task SpeciesRequirementsTest(string species, string wantedJob, bool expectedJob = true)
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true,
-        });
+        var pair = Pair;
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
         var ticker = pair.Server.System<GameTicker>();
         var cPref = pair.Client.ResolveDependency<IClientPreferencesManager>();
@@ -284,6 +275,5 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(10);
         await pair.ReallyBeIdle();
-        await pair.CleanReturnAsync();
     }
 }
