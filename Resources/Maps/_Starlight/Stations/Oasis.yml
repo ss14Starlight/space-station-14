@@ -102137,8 +102137,6 @@ entities:
     - type: Transform
       pos: -37.5,-5.5
       parent: 2
-    - type: NavMapBeacon
-      color: '#9FED58FF'
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 11530
