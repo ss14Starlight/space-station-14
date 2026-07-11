@@ -16,7 +16,7 @@
     - /Audio/Lobby/every_light_is_blinking_at_once.ogg
     - /Audio/Lobby/atomicamnesiammx.ogg
     - /Audio/Lobby/skubstep.ogg
-    # Starlight
+    # Starlight start
     - /Audio/_Starlight/Lobby/cosmonaut.ogg
     - /Audio/_Starlight/Lobby/breacher.ogg
     - /Audio/_Starlight/Lobby/Resistance.ogg
@@ -29,3 +29,5 @@
     - /Audio/_Starlight/Lobby/Bluespace.ogg
     - /Audio/_Starlight/Lobby/thestation.ogg
     - /Audio/_Starlight/Lobby/RedefiningLines.ogg
+    - /Audio/_Starlight/Lobby/HOME_Burn_Chamber_Starlight.ogg
+    # Starlight end
