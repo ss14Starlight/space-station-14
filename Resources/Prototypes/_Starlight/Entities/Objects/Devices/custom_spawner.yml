@@ -28,6 +28,8 @@
 - type: entity
   id: CustomSpawner
   parent: BaseCustomSpawner
+  placement:
+    mode: SnapgridCenter
   components:
     - type: Physics
       bodyType: Dynamic
