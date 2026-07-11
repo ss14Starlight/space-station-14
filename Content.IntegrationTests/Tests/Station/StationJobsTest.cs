@@ -5,6 +5,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Maps;
 using Content.Shared.Preferences;
+using Content.Server.Preferences.Managers; // Starlight
 using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
@@ -106,30 +107,38 @@ public sealed class StationJobsTest : GameTest
             }
         });
 
+        var prefMan = server.ResolveDependency<IServerPreferencesManager>(); // Starlight
         var dummies = await server.AddDummySessions(TotalPlayers);
+        #region Starlight
         await server.WaitAssertion(() =>
         {
-            var fakePlayers = new Dictionary<NetUserId, HumanoidCharacterProfile>(TotalPlayers);
             var i = 0;
             foreach (var dummy in dummies)
             {
+                Dictionary<ProtoId<JobPrototype>, JobPriority> priorities; // Starlight
                 if (i < PlayerCount)
                 {
-                    fakePlayers.AddJob(dummy, "TAssistant", JobPriority.Medium)
-                        .AddPreference("TClown", JobPriority.Low)
-                        .AddPreference("TMime", JobPriority.High);
+                    priorities = new()
+                    {
+                        { "TAssistant", JobPriority.Medium },
+                        { "TClown", JobPriority.Low },
+                        { "TMime", JobPriority.High },
+                    };
                     i++;
                 }
                 else
                 {
-                    fakePlayers.AddJob(dummy, "TCaptain", JobPriority.High);
+                    priorities = new() { { "TCaptain", JobPriority.High } };
                 }
+
+                prefMan.SetJobPriorities(dummy.UserId, priorities).Wait();
+                prefMan.SetProfile(dummy.UserId, 0, HumanoidCharacterProfile.Random().WithJobPreferences(priorities.Keys)).Wait();
             }
-            Assert.That(fakePlayers, Is.Not.Empty);
+            #endregion
 
             var start = new Stopwatch();
             start.Start();
-            var assigned = stationJobs.AssignJobs(fakePlayers.Keys.ToHashSet(), stations); // Starlight
+            var assigned = stationJobs.AssignJobs(dummies.Select(x => x.UserId).ToHashSet(), stations); // Starlight
             Assert.That(assigned, Is.Not.Empty);
             var time = start.Elapsed.TotalMilliseconds;
             logmill.Info($"Took {time} ms to distribute {TotalPlayers} players.");
