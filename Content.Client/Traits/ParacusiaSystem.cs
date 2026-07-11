@@ -1,10 +1,11 @@
+using System.ComponentModel;
 using System.Numerics;
 using Content.Shared.Traits.Assorted;
-using Robust.Shared.Random;
 using Robust.Client.Player;
-using Robust.Shared.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Traits;
@@ -70,6 +71,13 @@ public sealed partial class ParacusiaSystem : SharedParacusiaSystem
 
         // Play the sound
         paracusia.Stream = _audio.PlayStatic(paracusia.Sounds, uid, newCoords)?.Entity;
+    }
+    private void ResetParacusiaTimer(EntityUid uid)
+    {
+        if (!TryComp<ParacusiaComponent>(uid, out var paracusia))
+            return;
+        //Set new time.
+        paracusia.NextIncidentTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(paracusia.MinTimeBetweenIncidents, paracusia.MaxTimeBetweenIncidents));
     }
 
 }
