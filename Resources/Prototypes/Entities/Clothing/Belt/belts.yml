@@ -31,6 +31,12 @@
           tags:
           - CaptainSabre
   - type: Appearance
+  - type: MeleeWeapon # Starlight start
+    damage:
+      types:
+        Blunt: 9
+    soundHit:
+      collection: MetalThud # Starlight end
 
 - type: entity
   parent: ClothingBeltStorageBase
