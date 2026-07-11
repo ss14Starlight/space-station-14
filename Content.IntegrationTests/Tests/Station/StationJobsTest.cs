@@ -108,41 +108,32 @@ public sealed class StationJobsTest : GameTest
             }
         });
 
-        var prefMan = server.ResolveDependency<IServerPreferencesManager>(); // Starlight start
-        var dbMan = server.ResolveDependency<UserDbDataManager>();
-        var dummies = await server.AddDummySessions(TotalPlayers);
-        await pair.RunTicksSync(5); // Starlight end, give the DB manager a chance to register the sessions
+        var jobPrioritiesA = new Dictionary<ProtoId<JobPrototype>, JobPriority>
+        {
+            { "TAssistant", JobPriority.Medium },
+            { "TClown", JobPriority.Low },
+            { "TMime", JobPriority.High },
+        };
+        var jobPrioritiesB = new Dictionary<ProtoId<JobPrototype>, JobPriority>
+        {
+            { "TCaptain", JobPriority.High },
+        };
+
         #region Starlight
+        // Revert to old behavior for assigning dummy players with job priorities, since we have multislot
+        var tideSessions = await pair.AddDummyPlayers(jobPrioritiesA, PlayerCount);
+        var capSessions = await pair.AddDummyPlayers(jobPrioritiesB, CaptainCount);
+        var allSessions = tideSessions.Concat(capSessions).ToList();
+        var allNetIds = allSessions.Select(s => s.UserId).ToHashSet();
+
         await server.WaitAssertion(() =>
         {
-            var i = 0;
-            foreach (var dummy in dummies)
-            {
-                dbMan.WaitLoadComplete(dummy).Wait(); // Starlight, ensures _cachedPlayerPrefs has an entry
-                Dictionary<ProtoId<JobPrototype>, JobPriority> priorities; // Starlight
-                if (i < PlayerCount)
-                {
-                    priorities = new()
-                    {
-                        { "TAssistant", JobPriority.Medium },
-                        { "TClown", JobPriority.Low },
-                        { "TMime", JobPriority.High },
-                    };
-                    i++;
-                }
-                else
-                {
-                    priorities = new() { { "TCaptain", JobPriority.High } };
-                }
-
-                prefMan.SetJobPriorities(dummy.UserId, priorities).Wait();
-                prefMan.SetProfile(dummy.UserId, 0, HumanoidCharacterProfile.Random().WithJobPreferences(priorities.Keys)).Wait();
-            }
+            Assert.That(allSessions, Is.Not.Empty);
             #endregion
 
             var start = new Stopwatch();
             start.Start();
-            var assigned = stationJobs.AssignJobs(dummies.Select(x => x.UserId).ToHashSet(), stations); // Starlight
+            var assigned = stationJobs.AssignJobs(allNetIds, stations); // Starlight
             Assert.That(assigned, Is.Not.Empty);
             var time = start.Elapsed.TotalMilliseconds;
             logmill.Info($"Took {time} ms to distribute {TotalPlayers} players.");
