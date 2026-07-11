@@ -343,7 +343,7 @@
     modifiers:
       coefficients:
         Blunt: 0.85
-        Slash: 0.70
+        Slash: 0.75
         Piercing: 0.90
         Heat: 0.75
         Cold: 0.80 # Sec can get a little more
