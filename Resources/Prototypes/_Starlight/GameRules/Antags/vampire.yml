@@ -22,7 +22,7 @@
       maxPicks: 1
     maxDifficulty: 10
   - type: DynamicRuleCost
-    cost: 150
+    cost: 125
 
 #Full gamemode variant of vamps. Only shows up in Vampire and Dynamic.
 - type: entity

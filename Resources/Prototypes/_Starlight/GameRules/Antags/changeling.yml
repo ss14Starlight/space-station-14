@@ -15,6 +15,8 @@
       range:
         min: 1
         max: 6
+  - type: DynamicRuleCost
+    cost: 125
 
 # Subgamemode scaling, shows up in VampTraitorLing and Dynamic.
 - type: entity

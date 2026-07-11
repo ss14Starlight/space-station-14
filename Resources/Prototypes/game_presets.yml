@@ -140,7 +140,8 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
-  minPlayers: 50 # 🌟Starlight🌟
+  minPlayers: 15 # 🌟Starlight🌟
+  voteCooldown: 0 # Starlight, this one actually can roll back to back.
   rules:
   - SLDynamicRule # Starlight, we have a modified scheduler.
 #  - DummyNonAntag # Starlight, remove DummyNonAntag

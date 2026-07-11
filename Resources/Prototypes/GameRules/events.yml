@@ -554,7 +554,7 @@
     - !type:FixedAntagCount
       proto: LoneOp
   - type: DynamicRuleCost
-    cost: 75
+    cost: 100 # Starlight
 
 - type: entity
   parent: BaseTraitorRule
