@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Client.Lobby;
 using Content.Server.Antag;
 using Content.Server.GameTicking;
@@ -15,8 +16,15 @@ using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests._Starlight.Round;
 
 [TestFixture]
-public sealed class CharacterSelectionTest
+public sealed class CharacterSelectionTest : GameTest
 {
+    public override PoolSettings PoolSettings => new()
+        {
+            Dirty = true,
+            DummyTicker = false,
+            Connected = true,
+            InLobby = true,
+        };
     // this map has slots for captain, mime, unlimited passengers, and no clowns
     private const string Map = "CharacterSelectionTestMap";
 
@@ -323,12 +331,7 @@ public sealed class CharacterSelectionTest
     [TestCaseSource(nameof(SelectionTestCases))]
     public async Task SelectionTest(SelectionTestData data)
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true,
-        });
+        var pair = Pair;
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, Map);
 
         var ticker = pair.Server.System<GameTicker>();
@@ -417,12 +420,7 @@ public sealed class CharacterSelectionTest
     [Test]
     public async Task VarietyTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true,
-        });
+        var pair = Pair;
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, Map);
 
         var ticker = pair.Server.System<GameTicker>();
