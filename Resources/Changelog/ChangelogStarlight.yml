@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (CC-SC17) Removed the RPGs from the ERT area because 90% of the time they dont need it (also blame lizard they told me to).
-    type: Remove
-  id: 406171
-  time: '2026-06-23T08:34:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4893
-- author: Johnny
-  changes:
   - message: (CC-SC17) Changed the solar area because nobody uses it anyway and the maints needed more space.
     type: Tweak
   id: 406172
@@ -2799,4 +2792,11 @@ Entries:
   id: 406570
   time: '2026-07-11T13:55:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5086
+- author: AprilCatStreams
+  changes:
+  - message: UI misalignment in job selection screen of character editor due to long job names.
+    type: Fix
+  id: 406571
+  time: '2026-07-11T14:21:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5082
 Order: -1
