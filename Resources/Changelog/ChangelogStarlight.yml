@@ -1,20 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ORWELL) Added a empty geneticist locker to old virology.
-    type: Add
-  id: 406187
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Added a filled surgeon locker to surgery.
-    type: Add
-  id: 406188
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
   - message: (ORWELL) Added a filled coroner locker to morgue.
     type: Add
   id: 406189
@@ -2799,4 +2785,18 @@ Entries:
   id: 406586
   time: '2026-07-11T14:42:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5075
+- author: wonderfulnewworld
+  changes:
+  - message: Added DynamicLP, for Beta. Needs to be tested, not in rotation yet. It has a lower min and max starting cost than Alpha's version, and has longer time between rules.
+    type: Add
+  id: 406587
+  time: '2026-07-11T17:13:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5076
+- author: wonderfulnewworld
+  changes:
+  - message: Increased SLChangeling's Dynamic Rule Cost to 125, like Vampire.
+    type: Tweak
+  id: 406588
+  time: '2026-07-11T17:13:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5076
 Order: -1
