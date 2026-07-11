@@ -22,3 +22,7 @@ spray-painter-style-locker-salvagelead = Salvage Lead
 spray-painter-style-locker-mining = Mining
 spray-painter-style-locker-mail = Mail
 spray-painter-style-locker-warden = Warden
+
+# Canisters
+spray-painter-style-canisters-ulnitranium = Ulnitranium
+spray-painter-style-canisters-zxa = ZXA

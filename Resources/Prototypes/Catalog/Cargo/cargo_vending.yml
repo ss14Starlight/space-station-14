@@ -42,7 +42,7 @@
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
   product: CrateVendingMachineRestockAutoDrobeFilled
-  cost: 4000 # Starlight-edit
+  cost: 4200 # Starlight-edit
   category: cargoproduct-category-name-service
   group: market
 
@@ -265,3 +265,4 @@
   cost: 1000 #SL EDIT
   category: cargoproduct-category-name-service
   group: market
+
