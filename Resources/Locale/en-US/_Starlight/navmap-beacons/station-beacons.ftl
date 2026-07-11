@@ -13,3 +13,4 @@ station-beacon-breakroom-security = Security Break Room
 station-beacon-breakroom-service = Service Break Room
 station-beacon-lawyer = Lawyer
 station-beacon-janitor-cleaning-closet = Cleaning Closet
+station-beacon-washrooms = Washrooms
