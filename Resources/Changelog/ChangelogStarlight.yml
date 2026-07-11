@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (CC-SC17) Added a nitrogen canister for people to refuel their nitrogen at (vox rejoice).
-    type: Add
-  id: 406170
-  time: '2026-06-23T08:34:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4893
-- author: Johnny
-  changes:
   - message: (CC-SC17) Removed the RPGs from the ERT area because 90% of the time they dont need it (also blame lizard they told me to).
     type: Remove
   id: 406171
@@ -2799,4 +2792,11 @@ Entries:
   id: 406569
   time: '2026-07-11T13:14:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5088
+- author: AprilCatStreams
+  changes:
+  - message: Surgically removed limbs no longer cause the holder to bleed.
+    type: Fix
+  id: 406570
+  time: '2026-07-11T13:55:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5086
 Order: -1
