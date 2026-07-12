@@ -1781,6 +1781,34 @@
         sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
         state: heavylaser
 
+# Beam Emitter
+- type: entity
+  id: LaserBeamEmitter
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 20000
+  - type: HitscanPierce
+    chance: 1.00
+    deviation: 0.00
+    pierceLevel: Rock
+  - type: HitscanBasicRaycast
+    collisionMask: BulletImpassable # its a laser, but like, uh, window dont survive
+    maxDistance: 100
+  - type: HitscanReflect
+    maxReflections: 20
+    reflectiveType: None
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_beam_heavy2
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_heavy2
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_beam_heavy2
 # Starlight
-
-

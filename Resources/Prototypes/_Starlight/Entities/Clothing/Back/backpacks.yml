@@ -106,3 +106,9 @@
     - type: Storage
       grid:
       - 0,0,1,15 #its a part of the joke of the inventory being sword shaped and inconvient.
+    - type: MeleeWeapon # Technically a sheathe; it's the same damage as the mail trunk, worse than a toolbox, mainly just a gimmick so you can swing the sheathe.
+      damage:
+        types:
+          Blunt: 9
+      soundHit:
+        collection: MetalThud

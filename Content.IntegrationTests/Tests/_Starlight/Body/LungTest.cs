@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
@@ -15,7 +16,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
 {
     [TestFixture]
     [TestOf(typeof(LungSystem))]
-    public sealed class LungTest
+    public sealed class LungTest : GameTest
     {
         [TestPrototypes]
         private const string Prototypes = @"
@@ -51,7 +52,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
         public async Task AirConsistencyTest()
         {
             // --- Setup
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             await server.WaitIdleAsync();
@@ -122,14 +123,12 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                     "Did not exhale as much gas as was inhaled"
                 );
             }
-
-            await pair.CleanReturnAsync();
         }
 
         [Test]
         public async Task NoSuffocationTest()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var mapManager = server.ResolveDependency<IMapManager>();
@@ -183,8 +182,6 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                         $"Entity {entityManager.GetComponent<MetaDataComponent>(human).EntityName} is suffocating on tick {tick}");
                 });
             }
-
-            await pair.CleanReturnAsync();
         }
     }
 }

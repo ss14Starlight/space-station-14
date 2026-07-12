@@ -649,6 +649,16 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterLegitMedTak
+  name: "MedTak: Live to See Tomorrow"
+  description: "An advertisment poster for a MedTak insurance plan."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/MedTak.rsi
+    state: medtak
+
+- type: entity
+  parent: PosterBase
   id: PosterContraband300Hotdogs
   name: "Watch Me Eat 300 Mini Cocktail Hotdogs"
   description: "A hastily taped-up poster proclaiming that some blue resomi is going to attempt to eat three hundred cocktail hotdogs in one sitting on March 16th."
