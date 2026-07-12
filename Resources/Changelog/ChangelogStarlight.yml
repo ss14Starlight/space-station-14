@@ -1,11 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Ripleys with hydraulic clamps can actually pick up tamper-sealed crates.
-    type: Fix
-  id: 406199
-  time: '2026-06-23T16:18:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4911
 - author: Ohelig
   changes:
   - message: 'Cog: Add Science Material Silo.'
@@ -2799,4 +2792,11 @@ Entries:
   id: 406598
   time: '2026-07-12T22:32:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5101
+- author: wonderfulnewworld
+  changes:
+  - message: You can now swing vibroblade sheathes, the captain's sheathe, the cane sheathe, and the bunny gang backpack.
+    type: Add
+  id: 406599
+  time: '2026-07-12T22:32:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5095
 Order: -1
