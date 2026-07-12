@@ -698,25 +698,23 @@ public sealed partial class AntagSelectionSystem
     /// Returns the antag specifier prototypes this session has been preselected for.
     /// </summary>
     [PublicAPI]
-    public IEnumerable<AntagSpecifierPrototype> GetPreSelectedAntagSpecifiers(ICommonSession session)
+    public HashSet<ProtoId<AntagSpecifierPrototype>> GetPreSelectedAntagSpecifiers(ICommonSession session)
     {
+        var result = new HashSet<ProtoId<AntagSpecifierPrototype>>();
         var query = QueryAllRules();
         while (query.MoveNext(out var uid, out var comp, out _))
         {
             if (HasComp<EndedGameRuleComponent>(uid))
                 continue;
 
-            foreach (var (protoId, sessions) in comp.PreSelectedSessions)
+            foreach (var antag in comp.Antags)
             {
-                if (!sessions.Contains(session))
-                    continue;
-
-                if (!Proto.Resolve(protoId, out var proto))
-                    continue;
-
-                yield return proto;
+                if (comp.PreSelectedSessions.TryGetValue(antag, out var set) && set.Contains(session))
+                    result.Add(antag);
             }
         }
+
+        return result;
     }
     #endregion
 }

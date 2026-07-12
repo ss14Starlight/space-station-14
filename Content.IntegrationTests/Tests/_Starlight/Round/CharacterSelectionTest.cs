@@ -9,6 +9,7 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Content.Shared.Antag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -33,7 +34,7 @@ public sealed class CharacterSelectionTest : GameTest
     [TestPrototypes]
     private static readonly string Prototypes = $@"
 - type: entity
-  parent: BaseTraitorRule
+  parent: [ BaseTraitorRule, BaseRoundstartAntagRule ]
   id: {TraitorsMode}
   components:
   - type: GameRule
@@ -81,6 +82,7 @@ public sealed class CharacterSelectionTest : GameTest
     private static readonly ProtoId<JobPrototype> Mime = "Mime";
     private static readonly ProtoId<JobPrototype> Clown = "Clown";
     private static readonly ProtoId<AntagPrototype> Traitor = "Traitor";
+    private static readonly ProtoId<AntagSpecifierPrototype> TraitorSpecifier = "Traitor";
 
     // helper structs for test case definition readability
     public sealed class TestCharacter
@@ -383,22 +385,20 @@ public sealed class CharacterSelectionTest : GameTest
         {
             Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.JoinedGame));
             pair.AssertJob(data.ExpectedJob.ToString(), pair.Player!);
+
             var antagSystem = pair.Server.System<AntagSelectionSystem>();
-            var antags = antagSystem.GetPreSelectedAntagSpecifiers(pair.Player).ToArray();
+            var antags = antagSystem.GetPreSelectedAntagSpecifiers(pair.Player).ToList();
+
             if (data.ExpectTraitor)
             {
-                Assert.That(antags.Length, Is.EqualTo(1));
-
-                var antag = antags.First();
-
-                Assert.That(antag.MindRoles, Is.Not.Null);
-                Assert.That(antag.MindRoles!.Count, Is.EqualTo(1));
-                Assert.That(antag.MindRoles.First(), Is.EqualTo("MindRoleTraitor"));
+                Assert.That(antags, Has.Count.EqualTo(1));
+                Assert.That(antags[0], Is.EqualTo(TraitorSpecifier));
             }
             else
             {
-                Assert.That(antags.Length, Is.EqualTo(0));
+                Assert.That(antags, Has.Count.Zero);
             }
+
             var humanoidAppearanceSystem = pair.Server.System<HumanoidAppearanceSystem>();
             var spawnedProfile = humanoidAppearanceSystem.GetBaseProfile(pair.Player!.AttachedEntity.Value);
             spawnedProfile.AssertEquals(expectedCharacterProfile); //Starlight FUCK IT WE ASSERT.
