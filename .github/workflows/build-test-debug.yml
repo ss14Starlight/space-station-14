@@ -123,6 +123,7 @@ jobs:
       run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
 
     - name: Run Content.IntegrationTests
+      id: run-integration-tests
       uses: nick-fields/retry@v3
       env:
         DOTNET_gcServer: "1"
@@ -150,7 +151,7 @@ jobs:
     - name: Upload crash dumps
       id: upload-dumps
       uses: actions/upload-artifact@v4
-      if: always()
+      if: ${{ always() && steps.run-integration-tests.outcome == 'failure' }}
       with:
         name: blame-dump-shard-${{ matrix.shard }}
         path: |
