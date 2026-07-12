@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Modified from IntegerTempest's syndicate visor by SevenShades"
+    },
+    {
+      "name": "equipped-EYES",
+      "directions": 4,
+      "copyright": "Modified from IntegerTempest's syndicate visor by SevenShades"
+    },
+    {
+      "name": "equipped-EYES-dog",
+      "directions": 4,
+      "copyright": "SevenShades"
+    }
+  ]
+}
