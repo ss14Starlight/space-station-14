@@ -89,6 +89,9 @@
 - type: Tag
   id: BypassUserTagChecks
 
+  - type: Tag
+  id: BluespaceCell
+
 - type: Tag
   id: CantInteract
 
@@ -698,6 +701,3 @@
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground
-
-- type: Tag
-  id: BluespaceCell # Starlight: used for the capacitor gloves bluespace power cell
