@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Roles;
@@ -15,21 +16,23 @@ using Content.Server._Starlight.GameTicking.Rules.Components;
 
 namespace Content.IntegrationTests.Tests._Starlight.Antags;
 [TestFixture]
-public sealed class VampireRuleTest
+public sealed class VampireRuleTest : GameTest
 {
+    public override PoolSettings PoolSettings => new()
+    {
+        Dirty = true,
+        DummyTicker = false,
+        Connected = true,
+        InLobby = true,
+    };
+
     private const string VampireGameRuleProtoId = "Vampire";
     private const string VampireAntagRoleName = "Vampire";
 
     [Test]
     public async Task TestVampireRuleAssignsAntagAndObjectives()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings()
-        {
-            Dirty = true,
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true,
-        });
+        var pair = Pair;
 
         var server = pair.Server;
         var client = pair.Client;
@@ -108,7 +111,5 @@ public sealed class VampireRuleTest
         Assert.That(mindComp.Objectives, Is.Not.Empty, "No objectives assigned to vampire!");
         var totalDifficulty = mindComp.Objectives.Sum(o => entMan.GetComponent<ObjectiveComponent>(o).Difficulty);
         Assert.That(totalDifficulty, Is.GreaterThan(0));
-
-        await pair.CleanReturnAsync();
     }
 }
