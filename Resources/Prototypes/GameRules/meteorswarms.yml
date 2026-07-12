@@ -220,7 +220,7 @@
   - type: ImmovableRodRule
     rodPrototypes:
     - id: ImmovableRodKeepTilesStill
-      prob: 0.89
+      prob: 0.94
       orGroup: rodProto
     - id: ImmovableRodMop
       prob: 0.0075
