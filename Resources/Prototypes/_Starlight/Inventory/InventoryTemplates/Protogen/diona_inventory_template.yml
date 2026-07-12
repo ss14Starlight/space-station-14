@@ -20,7 +20,7 @@
       - ProtogenCybernetics
   - name: outerClothing2
     slotTexture: suit
-    slotFlags: OUTERCLOTHING
+    slotFlags: OUTERCLOTHING2
     uiWindowPos: 1,1
     strippingWindowPos: 0,3
     displayName: Protogen Cybernetics

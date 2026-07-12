@@ -231,19 +231,11 @@
 
 - type: entity
   parent: BaseGameRule
-  id: SecurityShuttleSpawn_KillerTamashi
+  id: SecurityShuttleSpawn
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml
-
-- type: entity
-  parent: BaseGameRule
-  id: SecurityShuttleSpawn_SP-4C3
-  components:
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/Security/SP-4C3.yml
+      gridPath: /Maps/_Starlight/Shuttles/Security/pursuit.yml
 
 # Solgov/TSF
 - type: entity

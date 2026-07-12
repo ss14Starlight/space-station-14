@@ -78,6 +78,7 @@
     sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
     state: BrigKube
   - type: Storage
+    maxItemSize: Small
     whitelist:
       tags:
         - Bottle
@@ -87,9 +88,11 @@
         - Hypospray
         - Ointment
         - PillCanister
+        - PatchPack
       components:
         - Injector
         - Pill
+        - ConditionalHealing
     grid:
     - 0,0,3,2
   - type: Item

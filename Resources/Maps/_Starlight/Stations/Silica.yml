@@ -14589,7 +14589,7 @@ entities:
       parent: 2
     - type: GridFill
       addComponents: []
-      path: /Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml
+      path: /Maps/_Starlight/Shuttles/Security/pursuit.yml
 - proto: AirlockExternalLocked
   entities:
   - uid: 281

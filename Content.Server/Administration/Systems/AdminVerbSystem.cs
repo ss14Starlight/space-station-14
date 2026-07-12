@@ -2,7 +2,7 @@ using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.UI;
-using Content.Server.Disposal.Tube;
+using Content.Shared.Disposal.Tube;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles;
 using Content.Server.Mind;
@@ -596,7 +596,7 @@ namespace Content.Server.Administration.Systems
                     Text = Loc.GetString("tube-direction-verb-get-data-text"),
                     Category = VerbCategory.Debug,
                     Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/information.svg.192dpi.png")),
-                    Act = () => _disposalTubes.PopupDirections(args.Target, tube, args.User)
+                    Act = () => _disposalTubes.PopupDirections((args.Target, tube), args.User)
                 };
                 args.Verbs.Add(verb);
             }
