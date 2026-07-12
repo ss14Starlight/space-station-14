@@ -8,9 +8,6 @@ id-card-console-window-insert-button = Insert
 id-card-console-window-job-selection-label = Job preset (sets department and job icon):
 id-card-console-window-select-all-button = Grant all
 id-card-console-window-deselect-all-button = Revoke all
-# Starlight-start
-id-card-console-window-missing-privileges-warning = Notice: Target ID has access levels the current privileged ID cannot modify.
-# Starlight-end
 access-id-card-console-component-no-hands-error = You have no hands.
 id-card-console-privileged-id = Privileged ID
 id-card-console-target-id = Target ID
