@@ -6,7 +6,6 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Localizations;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
-#region Starlight
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Stacks;
@@ -15,7 +14,6 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared._Starlight.Silicons;
-#endregion Starlight
 
 namespace Content.Shared.Silicons.Borgs;
 
@@ -42,7 +40,7 @@ public abstract partial class SharedBorgSystem
         // Starlight begin
         SubscribeLocalEvent<ItemBorgModuleComponent, ExaminedEvent>(OnItemModuleExamine);
         SubscribeLocalEvent<ItemBorgModuleComponent, AfterInteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<ItemBorgModuleComponent, BorgModuleItemExtractionDoAfterEvent>(OnItemExtractionFinished);
+        SubscribeLocalEvent<ItemBorgModuleComponent, _Starlight.Silicons.Borgs.BorgModuleItemExtractionDoAfterEvent>(OnItemExtractionFinished);
         // Starlight end
 
         SubscribeLocalEvent<ComponentBorgModuleComponent, BorgModuleInstalledEvent>(OnComponentModuleInstalled);
@@ -485,11 +483,11 @@ public abstract partial class SharedBorgSystem
             ent.Owner,
             ent.Comp.ItemExtractionDelay,
             ent.Comp.ItemExtractionMethod,
-            new BorgModuleItemExtractionDoAfterEvent(),
+            new _Starlight.Silicons.Borgs.BorgModuleItemExtractionDoAfterEvent(),
             toolComponent: tool);
     }
 
-    private void OnItemExtractionFinished(Entity<ItemBorgModuleComponent> ent, ref BorgModuleItemExtractionDoAfterEvent args)
+    private void OnItemExtractionFinished(Entity<ItemBorgModuleComponent> ent, ref _Starlight.Silicons.Borgs.BorgModuleItemExtractionDoAfterEvent args)
     {
         if (args.Cancelled)
             return;
