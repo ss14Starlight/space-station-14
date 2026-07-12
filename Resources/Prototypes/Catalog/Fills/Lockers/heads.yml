@@ -2,7 +2,6 @@
   id: LockerFillQuarterMaster
   table: !type:AllSelector
     children:
-    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakQmElite
     - id: BoxEncryptionKeyCargo
     - id: BoxFolderQmClipboard
@@ -20,6 +19,7 @@
     - id: SalvageShuttleConsoleCircuitboard #starlight
     - id: MiningShuttleConsoleCircuitboard #starlight
     - id: EncryptionKeySalvage #starlight
+    - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
@@ -73,7 +73,6 @@
   id: LockerFillCaptainNoLaser
   table: !type:AllSelector
     children:
-    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakCapElite
     - id: CaptainIDCard
     - id: CigarGoldCase
@@ -96,6 +95,7 @@
     - id: EncryptionKeyExpedition #starlight
     - id: SpyglassCaptain #Starlight
     - id: CommunicationTablet #Starlight
+    - id: BookSecureTerminalManual # Starlight
     - id: HeadSkeleton # A skull to accompany your skeleton crew # Starlight Edit: OrganSkeletonPersonHead -> HeadSkeleton
       conditions:
       - !type:PlayerCountCondition
@@ -179,7 +179,6 @@
   id: LockerFillHeadOfPersonnel
   table: !type:AllSelector
     children:
-    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakHopElite
     - id: AccessConfigurator
     - id: BoxEncryptionKeyAssistant
@@ -203,6 +202,7 @@
     - id: ClothingEyesHudCommand
     - id: BoxFolderHoPClipboard #Starlight Change
     # Starlight Start
+    - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert
       conditions:
       - !type:GamemodeCondition
@@ -231,7 +231,6 @@
   id: LockerFillChiefEngineerNoHardsuit
   table: !type:AllSelector
     children:
-    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakCeElite
     - id: AccessConfigurator
     - id: BoxEncryptionKeyEngineering
@@ -255,6 +254,7 @@
     - id: RubberStampCE
     - id: MetalFoamGrenade
     - id: PlushieMatthew #starlight
+    - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
@@ -307,7 +307,6 @@
   id: LockerFillChiefMedicalOfficerNoHardsuit
   table: !type:AllSelector
     children:
-    - id: BookSecureTerminalManual # Starlight
     - id: ClothingEyesHudMedical
     - id: ClothingBeltMedicalFilled
     - id: HandheldCrewMonitor
@@ -320,6 +319,7 @@
     - id: BoxEncryptionKeyMedical
     - id: BoxCMOCircuitboards
     - id: AutoMenderBurnFilled # Starlight start
+    - id: BookSecureTerminalManual # Starlight
     - id: AutoMenderBruteFilled
     - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingMaskSterile
@@ -380,7 +380,6 @@
   id: LockerFillResearchDirectorNoHardsuit
   table: !type:AllSelector
     children:
-    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakRdElite
     - id: Intellicard
     - id: BoxEncryptionKeyScience
@@ -401,6 +400,7 @@
     #region Starlight
     - id: RDDiploma
     - id: XenobiologyConsoleCameraTagger
+    - id: BookSecureTerminalManual # Starlight
     #- id: PaperIonstormBorgs
     #  prob: 0.10 #1/10 rounds will have this paper that can be signed repeatedly for no discernable effect!
     #endregion Starlight
@@ -448,7 +448,6 @@
   id: LockerFillHeadOfSecurityNoHardsuit
   table: !type:AllSelector
     children:
-    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakHosElite # Starlight
     - id: WeaponEnergySMG # Starlight
     # - id: WeaponEnergyMagnum # Starlight - Removed, given to det
@@ -472,6 +471,7 @@
     - id: WantedListCartridge
     - id: DrinkHosFlask
     - id: SecurityShuttleConsoleCircuitboard # Starlight start
+    - id: BookSecureTerminalManual # Starlight
     - id: ClothingOuterWinterHoS
 #    - id: ClothingHandsGlovesCombat # Starlight, they spawn with them now.
     - id: SecureBriefings

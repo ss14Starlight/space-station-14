@@ -50,11 +50,9 @@
     - type: ItemSlots
       slots:
         book_slot:
-          name: comp-comms-book-slot-name
           startingItem: BookSecureTerminalManual
           ejectOnInteract: false
           insertOnInteract: true
-          ejectVerbText: comp-comms-book-slot-eject-verb
           whitelist:
             tags:
               - Book
