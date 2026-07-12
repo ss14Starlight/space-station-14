@@ -265,7 +265,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         //
         //args.InRange = _vision.IsAccessible((targetXform.GridUid.Value, broadphase, grid), targetTile);
 
-        args.InRange = !_vision.IsOutsideCameraViewCached(args.Target);
+        args.InRange = !_vision.IsOutsideCameraViewCached(target);
         // STARLIGHT END
     }
 
