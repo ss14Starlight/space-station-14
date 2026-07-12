@@ -1,5 +1,4 @@
 name: Diff RSIs
-name: Diff RSIs
 
 on:
   pull_request_target:
