@@ -18,28 +18,28 @@
         - !type:RoundDurationCondition
           max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
         children:
-        - id: Dynamic
+        - id: BaseDynamicEventScheduler
           weight: 91
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 15
-        - id: Survival
+        - id: DynamicSurvivalEventScheduler
           weight: 5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 10
-        - id: KesslerSyndrome
+        - id: DynamicKesslerSyndromeEventScheduler
           weight: 1
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 10
-        - id: ShitStation
+        - id: DynamicShitStationEventScheduler
           weight: 3
           conditions:
           - !type:HasBudgetCondition
@@ -346,28 +346,28 @@
         - !type:RoundDurationCondition
           max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
         children:
-        - id: Dynamic
+        - id: BaseDynamicEventScheduler
           weight: 94
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 15
-        - id: Survival
+        - id: DynamicSurvivalEventScheduler
           weight: 3
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 10
-        - id: KesslerSyndrome
+        - id: DynamicKesslerSyndromeEventScheduler
           weight: 1
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 10
-        - id: ShitStation
+        - id: DynamicShitStationEventScheduler
           weight: 2
           conditions:
           - !type:HasBudgetCondition
