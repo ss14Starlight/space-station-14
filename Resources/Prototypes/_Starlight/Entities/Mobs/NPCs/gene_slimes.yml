@@ -31,9 +31,16 @@
     - type: Hunger
       baseDecayRate: 1
     - type: Genes
+      genes:
+        - traits:
+            traits:
+              waterToMonkeyCube: 1.0
+          technicalName: SLmE1
+          name: Base Slime Gene
       classes:
         - Slime
       availableTraits:
+        - waterToMonkeyCube
         - Text0
         - Text1
         - Text2
@@ -46,10 +53,21 @@
     - type: PassiveTraits
     - type: OnceTraits
     - type: GeneticSlime
-    - type: TemperatureDamage
-      coldDamage:
+    - type: MeleeWeapon
+      altDisarm: false
+      angle: 0
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      damage:
         types:
-          Cold: 10.0
+          Cellular: 10
+          Structural: 5
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
     - type: Tag
       tags:
         - XenobiologyClawGrabbable
