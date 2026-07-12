@@ -11,6 +11,6 @@ public sealed partial class ShowImplantedIconsComponent : Component
     /// <summary>
     /// The 'type' of icon that this can show, needs to match with <see cref="IconImplantComponent"/> to work
     /// </summary>
-    [DataField(required: true), AutoNetworkedField]
-    public List<string> ShownIcons = default!;
+    [DataField, AutoNetworkedField]
+    public List<string> ShownIcons = new List<string> {"default"};
 }
