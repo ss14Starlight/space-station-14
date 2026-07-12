@@ -2,6 +2,7 @@
   id: LockerFillQuarterMaster
   table: !type:AllSelector
     children:
+    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakQmElite
     - id: BoxEncryptionKeyCargo
     - id: BoxFolderQmClipboard
@@ -72,6 +73,7 @@
   id: LockerFillCaptainNoLaser
   table: !type:AllSelector
     children:
+    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakCapElite
     - id: CaptainIDCard
     - id: CigarGoldCase
@@ -177,6 +179,7 @@
   id: LockerFillHeadOfPersonnel
   table: !type:AllSelector
     children:
+    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakHopElite
     - id: AccessConfigurator
     - id: BoxEncryptionKeyAssistant
@@ -228,6 +231,7 @@
   id: LockerFillChiefEngineerNoHardsuit
   table: !type:AllSelector
     children:
+    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakCeElite
     - id: AccessConfigurator
     - id: BoxEncryptionKeyEngineering
@@ -303,6 +307,7 @@
   id: LockerFillChiefMedicalOfficerNoHardsuit
   table: !type:AllSelector
     children:
+    - id: BookSecureTerminalManual # Starlight
     - id: ClothingEyesHudMedical
     - id: ClothingBeltMedicalFilled
     - id: HandheldCrewMonitor
@@ -375,6 +380,7 @@
   id: LockerFillResearchDirectorNoHardsuit
   table: !type:AllSelector
     children:
+    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakRdElite
     - id: Intellicard
     - id: BoxEncryptionKeyScience
@@ -442,6 +448,7 @@
   id: LockerFillHeadOfSecurityNoHardsuit
   table: !type:AllSelector
     children:
+    - id: BookSecureTerminalManual # Starlight
     - id: ClothingNeckCloakHosElite # Starlight
     - id: WeaponEnergySMG # Starlight
     # - id: WeaponEnergyMagnum # Starlight - Removed, given to det

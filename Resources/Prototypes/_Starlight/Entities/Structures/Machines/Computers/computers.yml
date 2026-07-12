@@ -1,80 +1,5 @@
 - type: entity
   parent: BaseComputerAiAccess
-  id: BaseComputerComms
-  abstract: true
-  name: communications console # Starlight
-  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      sprite: _Starlight/Structures/Machines/computers.rsi # Starlight: Visual cohesion w/ departmental consoles
-      state: comm
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: AccessReader
-    access: [[ "Command" ]]
-  - type: CommunicationsConsole
-    title: comms-console-announcement-title-command # Starlight
-    sound: /Audio/_Starlight/Announcements/announce2.ogg #Starlight
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    transmitFrequencyId: ShuttleTimer
-  - type: ActivatableUI
-    key: enum.CommunicationsConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.CommunicationsConsoleUiKey.Key:
-        type: CommunicationsConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-      # Starlight Start: Secure Command Terminal
-      enum.SecureCommandTerminalUiKey.Key:
-        type: SecureCommandTerminalBui
-  - type: SecureCommandTerminalConsole
-      # Starlight End
-  - type: Computer
-    board: CommsComputerCircuitboard
-  # Starlight Start - Immersive Lighting PR
-  - type: PointLight
-    radius: 2.5
-    energy: 1.5
-    color: "#387dc7"
-  # Starlight End
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-
-- type: entity
-  parent: BaseComputerComms
-  id: ComputerComms
-  categories: [ ShouldMapStation ] # Starlight
-  # Starlight Start - Book slot for Secure Terminal Manual
-  components:
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
-        ents: []
-      pai_slot: !type:ContainerSlot {}
-      book_slot: !type:ContainerSlot {}
-  - type: ItemSlots
-    slots:
-      book_slot:
-        name: comp-comms-book-slot-name
-        startingItem: BookSecureTerminalManual
-        whitelist:
-          tags:
-            - Book
-  # Starlight End
-
-- type: entity
-  parent: BaseComputerAiAccess
   id: RecruitmentComputer
   name: recruitment computer
   description: A computer for managing crew hiring.
@@ -152,7 +77,7 @@
     color: "#FC0097"
 
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: CentCommSectoralConsole
   name: CentComm sectoral console
   description: Use this to annoy captains of all stations at once.
@@ -541,7 +466,7 @@
       board: SecurityShuttleConsoleCircuitboard
 
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: SolgovComputerComms
   name: solgov communications computer
   components:
@@ -577,7 +502,7 @@
 
 # Engineering
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: ComputerCommsEngineering
   categories: [ ShouldMapStation ]
   name: engineering communications console
@@ -619,7 +544,7 @@
 
 # Medical
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: ComputerCommsMedical
   categories: [ ShouldMapStation ]
   name: medical communications console
@@ -658,7 +583,7 @@
 
 # Science
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: ComputerCommsScience
   categories: [ ShouldMapStation ]
   name: science communications console
@@ -697,7 +622,7 @@
 
 # Security
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: ComputerCommsSecurity
   categories: [ ShouldMapStation ]
   name: security communications console
@@ -739,7 +664,7 @@
 
 # Service
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: ComputerCommsService
   categories: [ ShouldMapStation ]
   name: service communications console
@@ -778,7 +703,7 @@
 
 # Cargo
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: ComputerCommsCargo
   categories: [ ShouldMapStation ]
   name: cargo communications console
@@ -817,7 +742,7 @@
 
 # Law
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: ComputerCommsLaw
   categories: [ ShouldMapStation ]
   name: law communications console

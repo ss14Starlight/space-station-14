@@ -10,3 +10,4 @@ comms-console-announcement-title-sup = Cargo
 comms-console-announcement-title-law = Law
 
 comp-comms-book-slot-name = Secure Terminal Manual
+comp-comms-book-slot-eject-verb = Take Secure Terminal Manual

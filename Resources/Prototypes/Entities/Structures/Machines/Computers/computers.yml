@@ -812,7 +812,60 @@
       - BodyScannerSender
 
 - type: entity
-  parent: BaseComputerComms
+  parent: BaseComputerAiAccess
+  id: ComputerComms
+  categories: [ ShouldMapStation ] # Starlight
+  name: communications console # Starlight
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi # Starlight: Visual cohesion w/ departmental consoles
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Command" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-command # Starlight
+    sound: /Audio/_Starlight/Announcements/announce2.ogg #Starlight
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    transmitFrequencyId: ShuttleTimer
+  - type: ActivatableUI
+    key: enum.CommunicationsConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+      # Starlight Start: Secure Command Terminal
+      enum.SecureCommandTerminalUiKey.Key:
+        type: SecureCommandTerminalBui
+  - type: SecureCommandTerminalConsole
+      # Starlight End
+  - type: Computer
+    board: CommsComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#387dc7"
+  # Starlight End
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+
+- type: entity
+  parent: ComputerComms
   id: SyndicateComputerComms
   name: syndicate communications computer
   description: A computer capable of remotely hacking into the station's communications systems. Using this to make an announcement will alert the station to your presence.
@@ -848,7 +901,7 @@
     color: "#f71713"
 
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: WizardComputerComms
   name: wizard communications computer
   description: A computer capable of magically projecting your speech to the station. Using this to make an announcement will alert the station to your presence.
@@ -884,7 +937,7 @@
     color: "#F317F3"
 
 - type: entity
-  parent: BaseComputerComms
+  parent: ComputerComms
   id: CentcommComputerComms
   name: central command communications computer
   description: A computer used to make world wide announcements via keyboard. The superior cousin of the regular communications computer.
