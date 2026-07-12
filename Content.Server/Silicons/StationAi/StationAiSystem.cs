@@ -247,7 +247,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             }
 
             // Don't show crew members outside of camera view
-            if (_aiVision.IsOutsideCameraViewCached(ownerUid, forceCacheGen: true)) // starlight, force new result for time-relevant thing
+            if (_aiVision.IsOutsideCameraViewCached(ownerUid)) // starlight
                 continue;
 
             var display = string.IsNullOrWhiteSpace(status.Job)
