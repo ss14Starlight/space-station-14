@@ -16,7 +16,7 @@ public sealed class ClawpackSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -36,10 +36,10 @@ public sealed class ClawpackSystem : EntitySystem
         Dirty(entity.Comp.ItemUid.Value, attachedClaw);
         _containerSystem.Insert(entity.Comp.ItemUid.Value, entity.Comp.ClawContainer, containerXform: xform);
         Dirty(entity.Owner, entity.Comp);
-        
+
         _actionsSystem.AddAction(entity.Owner, ref entity.Comp.ActionEntity, out _, entity.Comp.Action);
     }
-    
+
     private void OnGetActions(Entity<ClawpackComponent> entity,
         ref GetItemActionsEvent args)
     {
@@ -75,13 +75,13 @@ public sealed class ClawpackSystem : EntitySystem
         }
         Dirty(entity.Owner, entity.Comp);
     }
-    
+
     private void OnToggleableUnequip(Entity<ClawpackComponent> entity,
         ref GotUnequippedEvent args)
     {
         if (entity.Comp.ClawContainer == null || entity.Comp.ItemUid == null) return;
         RemComp<UnremoveableComponent>(entity.Comp.ItemUid.Value);
-        _hands.TryDropIntoContainer(args.Equipee, entity.Comp.ItemUid.Value, entity.Comp.ClawContainer);
+        _hands.TryDropIntoContainer(args.EquipTarget, entity.Comp.ItemUid.Value, entity.Comp.ClawContainer);
     }
 }
 
