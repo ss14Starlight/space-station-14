@@ -1098,3 +1098,27 @@
     fireRate: 2
     minAngle: 1
     maxAngle: 2
+
+- type: entity
+  id: WeaponLaser
+  parent: BaseWeaponBatterySmall
+  name: beam emitter
+  suffix: Debug
+  description: It looks old and weathered, what use is this?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/beamemitter.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/beamemitter.rsi
+  - type: Gun
+    fireRate: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/magnetic_shot.ogg
+  - type: BatteryAmmoProvider
+    proto: LaserBeamEmitter
+    fireCost: 250
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
