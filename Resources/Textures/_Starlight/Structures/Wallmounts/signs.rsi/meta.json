@@ -1,57 +1,72 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from /tg/station and Burgerstation. Brigmed, Disposals, Youtoolpia, IAA, Law, Lawyer, Magistrate, and NTR by Conflee. Heat by Sevenshades.",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "brigmed"
+            "name": "brigmed",
+            "copyright": "By Conflee."
         },
         {
-            "name": "disposals_proper"
+            "name": "disposals_proper",
+            "copyright": "By Conflee."
         },
         {
-            "name": "nosmoking"
+            "name": "nosmoking",
+            "copyright": "Taken from /tg/station and Burgerstation."
         },
         {
-            "name": "secureareasmall"
+            "name": "secureareasmall",
+            "copyright": "Taken from /tg/station and Burgerstation."
         },
         {
-            "name": "wall_biohazard"
+            "name": "wall_biohazard",
+            "copyright": "Taken from /tg/station and Burgerstation."
         },
         {
-            "name": "wall_extremeheat"
+            "name": "wall_extremeheat",
+            "copyright": "Taken from /tg/station and Burgerstation."
         },
         {
-            "name": "yessmoking"
+            "name": "yessmoking",
+            "copyright": "Taken from /tg/station and Burgerstation."
         },
         {
             "name": "direction_mining",
+            "copyright": "By mikeysaurus.",
             "directions": 4
         },
         {
-            "name": "mining"
+            "name": "mining",
+            "copyright": "By mikeysaurus."
         },
         {
-            "name": "iaa"
+            "name": "iaa",
+            "copyright": "By Conflee."
         },
         {
-            "name": "law"
+            "name": "law",
+            "copyright": "By Conflee."
         },
         {
-            "name": "lawyer"
+            "name": "lawyer",
+            "copyright": "By Conflee."
         },
         {
-            "name": "magistrate"
+            "name": "magistrate",
+            "copyright": "By Conflee."
         },
         {
-            "name": "ntr"
+            "name": "ntr",
+            "copyright": "By Conflee."
         },
         {
-            "name": "heat"
+            "name": "heat",
+            "copyright": "By Sevenshades."
         }
     ]
 }
