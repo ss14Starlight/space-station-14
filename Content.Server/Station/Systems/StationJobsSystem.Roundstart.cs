@@ -341,9 +341,39 @@ public sealed partial class StationJobsSystem
 
             var (whitelist, blacklist) = antags.GetValueOrDefault(session);
 
+            #region Starlight
+            // If a player has already been selected as antag, they should only roll jobs from
+            // enabled profiles that also opted into one of their pre-selected antag roles.
+            HashSet<ProtoId<JobPrototype>>? antagCharacterJobs = null;
+            var selectedAntags = _antag.GetPreSelectedAntagSpecifiers(session);
+            if (selectedAntags.Count > 0)
+            {
+                var selectedAntagPrefs = new HashSet<ProtoId<AntagPrototype>>();
+                foreach (var antag in selectedAntags)
+                {
+                    if (!_prototypeManager.Resolve(antag, out var antagProto))
+                        continue;
+
+                    selectedAntagPrefs.UnionWith(antagProto.PrefRoles);
+                }
+
+                antagCharacterJobs = new HashSet<ProtoId<JobPrototype>>();
+                foreach (var character in profile.Characters.Values)
+                {
+                    if (character is not HumanoidCharacterProfile { Enabled: true } humanoid)
+                        continue;
+
+                    if (!humanoid.AntagPreferences.Overlaps(selectedAntagPrefs))
+                        continue;
+
+                    antagCharacterJobs.UnionWith(humanoid.JobPreferences);
+                }
+            }
+            #endregion
+
             List<string>? availableJobs = null;
 
-            foreach (var jobId in profileJobs)
+            foreach (var jobId in filteredPlayerJobs) // Starlight
             {
                 var priority = playerJobs[jobId];
 
@@ -358,6 +388,9 @@ public sealed partial class StationJobsSystem
 
                 if (blacklist != null && blacklist.Contains(jobId))
                                         continue;
+
+                if (antagCharacterJobs != null && !antagCharacterJobs.Contains(jobId)) // Starlight
+                    continue; // Starlight
 
                 if (weight is not null && job.Weight != weight.Value)
                     continue;
