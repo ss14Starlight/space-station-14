@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Arachnids now have arachnid tongues instead of human tongues.
-    type: Fix
-  id: 406197
-  time: '2026-06-23T09:28:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4894
-- author: Caws
-  changes:
   - message: Vox now have vox tongues instead of human tongues.
     type: Fix
   id: 406198
@@ -2799,4 +2792,11 @@ Entries:
   id: 406596
   time: '2026-07-12T21:23:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5105
+- author: Conflee
+  changes:
+  - message: Resprited the Post Light to be in 3/4ths perspective instead of Flat perspective, so it looks more like a real object that is in the world instead of a PNG. (only walls, windows, and airlocks should be in Flat perspective).
+    type: Tweak
+  id: 406597
+  time: '2026-07-12T22:04:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5106
 Order: -1
