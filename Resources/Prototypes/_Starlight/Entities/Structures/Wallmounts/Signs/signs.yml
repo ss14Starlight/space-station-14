@@ -90,6 +90,16 @@
 
 - type: entity
   parent: BaseSign
+  id: SignRoboSurgery
+  name: robo surgery sign
+  description: A sign indicating the presence of borgifcation and IPC repair.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/signs.rsi
+      state: robo_surgery
+
+- type: entity
+  parent: BaseSign
   id: SignHeat
   name: heating sign
   description: A sign indicating the presence of heating equipment.
