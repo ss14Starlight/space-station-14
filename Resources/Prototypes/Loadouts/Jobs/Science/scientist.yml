@@ -103,11 +103,6 @@
     outerClothing: ClothingOuterCoatRnd
 
 - type: loadout
-  id: WindbreakerScience
-  equipment:
-    outerClothing: ClothingOuterWindbreakerScience
-
-- type: loadout
   id: ScienceWintercoat
   equipment:
     outerClothing: ClothingOuterWinterSci
@@ -140,17 +135,6 @@
   id: RobohandsGloves
   equipment:
     gloves: ClothingHandsGlovesRobohands
-
-# Goggles
-- type: loadout
-  id: RoboticistWeldingGoggles
-  equipment:
-    eyes: ClothingEyesWeldingGoggles
-
-- type: loadout
-  id: RoboticistDiagnosticsHud
-  equipment:
-    eyes: ClothingEyesHudDiagnostic
 
 # Shoes
 - type: loadout

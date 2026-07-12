@@ -51,3 +51,90 @@
       amount: 1
   products:
     Infernaline: 2
+
+- type: reaction
+  id: Briomadine
+  impact: Medium
+  reactants:
+    Bruizine:
+      amount: 1
+    Razorium:
+      amount: 1
+    Acrileni:
+      amount: 1
+  products:
+    Briomadine: 2
+
+- type: reaction
+  id: BrioLacerinol
+  impact: Medium
+  reactants:
+    Briomadine:
+      amount: 1
+    Lacerinol:
+      amount: 1
+  products:
+    Ipecac: 1
+
+- type: reaction
+  id: BrioPuncturase
+  impact: Medium
+  reactants:
+    Briomadine:
+      amount: 1
+    Puncturase:
+      amount: 1
+  products:
+    Ipecac: 1
+
+- type: reaction
+  id: BrioBruizine
+  impact: Medium
+  reactants:
+    Briomadine:
+      amount: 1
+    Bruizine:
+      amount: 1
+  products:
+    Ipecac: 1
+
+- type: reaction
+  id: BrioBicaridine
+  impact: Medium
+  reactants:
+    Briomadine:
+      amount: 1
+    Bicaridine:
+      amount: 1
+  products:
+    Ipecac: 1
+
+- type: reaction
+  id: Iceialin
+  impact: Medium
+  reactants:
+    Aloxadone:
+      amount: 10
+    Leporazine:
+      amount: 10
+    Arcryox:
+      amount: 10
+  products:
+    Iceialin: 2
+
+- type: reaction
+  id: Necrosol
+  impact: Medium
+  minTemp: 370
+  reactants:
+    Blood:
+      amount: 1
+    Diphenhydramine:
+      amount: 1
+    Desoxyephedrine:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+  products:
+    Necrosol: 2
+

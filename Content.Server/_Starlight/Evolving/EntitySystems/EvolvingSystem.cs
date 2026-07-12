@@ -9,10 +9,10 @@ using Content.Server.Objectives.Components;
 
 namespace Content.Server._Starlight.Evolving.EntitySystems;
 
-public sealed class EvolvingSystem : SharedEvolvingSystem
+public sealed partial class EvolvingSystem : SharedEvolvingSystem
 {
-    [Dependency] private readonly SharedObjectivesSystem _objectivesSystem = default!;
-    [Dependency] private readonly NumberObjectiveSystem _numberObjectiveSystem = default!;
+    [Dependency] private SharedObjectivesSystem _objectivesSystem = default!;
+    [Dependency] private NumberObjectiveSystem _numberObjectiveSystem = default!;
 
     public override void Initialize()
     {

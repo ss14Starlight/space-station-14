@@ -1,4 +1,16 @@
 - type: entity
+  parent: Acidifier
+  id: XenoborgAcidifier
+  name: acid
+  description: Dissolves a xenoborg chassis into a puddle of acid.
+  components:
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/Fluids/splat.ogg
+      params:
+        variation: 0.1
+
+- type: entity
   id: GearAcidifier
   name: acid
   description: Melts your gear into a puddle of yuck!

@@ -9,15 +9,16 @@ using Content.Shared._Starlight.Antags.Vampires.Components;
 using System.Text;
 using Robust.Shared.Audio;
 using Content.Server.GameTicking.Rules;
+using Content.Shared._Starlight.Roles.Components;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
 public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleComponent>
 {
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
-    [Dependency] private readonly ObjectivesSystem _objective = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private SharedRoleSystem _role = default!;
+    [Dependency] private ObjectivesSystem _objective = default!;
 
     public readonly SoundSpecifier BriefingSound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/vampire_start.ogg");
 

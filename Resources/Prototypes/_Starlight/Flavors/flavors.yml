@@ -57,3 +57,13 @@
   id: perfid
   flavorType: Base
   description: flavor-base-perfid
+
+- type: flavor
+  id: stringy
+  flavorType: Base
+  description: flavor-base-stringy
+
+- type: flavor
+  id: stinky
+  flavorType: Base
+  description: flavor-base-stinky

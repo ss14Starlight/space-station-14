@@ -1,18 +1,16 @@
 ﻿#Long coat
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterCoatLab # Starlight
   id: ClothingOuterCoatLabLong
   name: long lab coat
-  description: A Nanotrasen standard labcoat for medical personnel but long.
+  description: A NanoTrasen standard labcoat for medical personnel but long.
   components:
     - type: Sprite
       sprite: DeltaV/Clothing/OuterClothing/Coats/long_lab.rsi
-    - type: Pierceable
-      level: Metal
-    - type: Armor
-      modifiers:
-        coefficients:
-          Caustic: 0.75
+      # Starlight Start
+    - type: Clothing
+      sprite: DeltaV/Clothing/OuterClothing/Coats/long_lab.rsi
+      # Starlight End
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabLong]
@@ -21,19 +19,17 @@
 
 #Chemist long coat
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterCoatLabChem # Starlight
   id: ClothingOuterCoatLabChemistLong
   name: long chemist lab coat
-  description: A Nanotrasen standard labcoat for medical personnel but long with bright orange accents.
+  description: A NanoTrasen standard labcoat for medical personnel but long with bright orange accents.
   components:
     - type: Sprite
       sprite: DeltaV/Clothing/OuterClothing/Coats/chemistry_long_lab.rsi
-    - type: Pierceable
-      level: Metal
-    - type: Armor
-      modifiers:
-        coefficients:
-          Caustic: 0.75
+      # Starlight Start
+    - type: Clothing
+      sprite: DeltaV/Clothing/OuterClothing/Coats/chemistry_long_lab.rsi
+      # Starlight End
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabChemistLong]
@@ -42,19 +38,17 @@
 
 #CMO long coat
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterCoatLabCmo # Starlight
   id: ClothingOuterCoatLabCmoLong
   name: long chief medical officer lab coat
-  description: A Nanotrasen blue long lab coat with green accents, designed for chief medical officers.
+  description: A NanoTrasen blue long lab coat with green accents, designed for chief medical officers.
   components:
     - type: Sprite
       sprite: DeltaV/Clothing/OuterClothing/Coats/cmo_long_lab.rsi
-    - type: Pierceable
-      level: Metal
-    - type: Armor
-      modifiers:
-        coefficients:
-          Caustic: 0.75
+        # Starlight Start
+    - type: Clothing
+      sprite: DeltaV/Clothing/OuterClothing/Coats/cmo_long_lab.rsi
+        # Starlight End
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCmoLong]
@@ -63,19 +57,17 @@
 
 #Geneticist long coat
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterCoatLabGene # Starlight
   id: ClothingOuterCoatLabGeneLong
   name: long geneticist lab coat
-  description: A Nanotrasen standard labcoat for medical personnel but long with light blue accents.
+  description: A NanoTrasen standard labcoat for medical personnel but long with light blue accents.
   components:
     - type: Sprite
       sprite: DeltaV/Clothing/OuterClothing/Coats/medical_long_lab.rsi
-    - type: Pierceable
-      level: Metal
-    - type: Armor
-      modifiers:
-        coefficients:
-          Caustic: 0.75
+      # Starlight Start
+    - type: Clothing
+      sprite: DeltaV/Clothing/OuterClothing/Coats/medical_long_lab.rsi
+      # Starlight End
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabGeneLong]
@@ -84,7 +76,7 @@
 
 #Paramedic jacket
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase] # Starlight
   id: ClothingOuterCoatParamedicJacket
   name: paramedic jacket
   description: A stylish dark blue jacket decorated with white stripes and cross. Nine out of ten paramedic recommend "Do Not Revive."
@@ -99,7 +91,7 @@
 
 #Rugged duster
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterColdBase] # Starlight
   id: ClothingOuterCoatDuster
   name: rugged duster
   description: A rugged duster with a bandana scarf made for keeping off the ash and dust. Not much of that up in space though.

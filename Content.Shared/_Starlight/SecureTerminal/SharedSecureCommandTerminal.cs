@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.SecureTerminal;
+namespace Content.Shared._Starlight.SecureTerminal;
 
 /// <summary>
 /// Marker component added to communications consoles that have the Secure Command Terminal feature.

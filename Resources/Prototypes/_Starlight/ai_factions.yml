@@ -19,7 +19,7 @@
     - AllHostile
     - Gorilla
     - Abductor
-    - Pirate # starlight
+    - Pirate
 
 - type: npcFaction
   id: DungeonSoviet
@@ -39,7 +39,7 @@
     - AllHostile
     - Gorilla
     - Abductor
-    - Pirate # starlight
+    - Pirate
 
 - type: npcFaction
   id: DungeonSyndicate
@@ -60,7 +60,7 @@
     - AllHostile
     - Gorilla
     - Abductor
-    - Pirate # starlight
+    - Pirate
 
 - type: npcFaction
   id: Gorilla
@@ -84,7 +84,7 @@
     - DungeonSoviet
     - DungeonSyndicate
     - Abductor
-    - Pirate # starlight
+    - Pirate
 
 - type: npcFaction
   id: NanoTrasenSilicon # purely making this so zombies STOP ATTACKING FUCKING SILICONS
@@ -126,15 +126,15 @@
     - Dragon
     - Gorilla
     - Abductor
-    - Pirate # starlight
+    - Pirate
 
 - type: npcFaction
   id: Abductor
   hostile: # SimpleHostile with additions so that it gets attacked by mobs
   - NanoTrasen
-  - NanoTrasenSilicon # starlight
+  - NanoTrasenSilicon
   - Syndicate
-  - SyndicateSilicon # starlight
+  - SyndicateSilicon
   - DungeonSyndicate
   - DungeonSoviet
   - Passive
@@ -153,7 +153,7 @@
   # New
   - Dragon
   - SimpleHostile
-  - Pirate # starlight
+  - Pirate
 
 - type: npcFaction
   id: Pirate
@@ -177,3 +177,62 @@
   - Dragon
   - Gorilla
   - Abductor
+
+- type: npcFaction
+  id: Floral # It's so plant anom creatures don't attack diona.
+
+- type: npcFaction
+  id: Changeling
+  hostile:
+  - NanoTrasen
+  - NanoTrasenSilicon
+  - Syndicate
+  - SyndicateSilicon
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  - Gorilla
+  - Pirate
+
+- type: npcFaction
+  id: Vampire
+  hostile:
+  - NanoTrasen
+  - NanoTrasenSilicon
+  - Syndicate
+  - SyndicateSilicon
+  - Zombie
+  - Revolutionary
+  - Xeno
+  - Changeling
+  - AllHostile
+  - Gorilla
+  - Pirate
+
+- type: npcFaction
+  id: HonkHostile
+  hostile:
+  - NanoTrasen
+  - NanoTrasenSilicon
+  - Syndicate
+  - SyndicateSilicon
+  - Passive
+  - PetsNT
+  - Zombie
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - Gorilla
+  - Pirate
+
+- type: npcFaction
+  id: HonkNeutral
+  hostile:
+    - SimpleHostile
+    - Syndicate
+    - SyndicateSilicon
+    - Xeno
+    - Zombie
+    - AllHostile
+    - Gorilla
+    - Abductor

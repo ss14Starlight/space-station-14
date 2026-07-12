@@ -35,6 +35,7 @@
     - id: NightShift
     - id: SyndicateDeadDrop
     # Starlight End
+    - id: MalignRiftSpawn # Funky
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -54,12 +55,18 @@
     - id: DragonSpawn
     - id: NinjaSpawn
     - id: ParadoxCloneSpawn
+    - id: ParadoxCrisisSpawn # Starlight
     - id: SleeperAgents
  #   - id: ZombieOutbreak starlight - no more midround zeds
     - id: LoneOpsSpawn
     - id: WizardSpawn
-    - id: AbductorsSpawn # Starlight
-    - id: TerrorSpidersSpawn # Starlight
+    - id: AbductorsSpawn # Starlight start
+    #- id: SubXenoborgs
+    #- id: TerrorSpidersSpawn
+    - id: RailroadingTerminator
+    - id: Brighteye
+    - id: ColossusSpawn # Starlight end
+    - id: EeepEvent # imp
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -278,7 +285,7 @@
       pickPlayer: false
       startingGear: SpaceNinjaGear
       roleLoadout:
-      - RoleSurvivalSpaceNinja
+      - AntagSpaceNinja # Starlight
       briefing:
         text: ninja-role-greeting
         color: Green
@@ -377,7 +384,7 @@
       pickPlayer: false
       startingGear: WizardBlueGear
       roleLoadout:
-      - RoleSurvivalExtended
+      - AntagWizard # Starlight
       briefing:
         text: wizard-role-greeting
         color: Turquoise
@@ -400,6 +407,8 @@
         - CantBecomeRevolutionary
         - Wizard
       # Starlight-end
+  - type: DynamicRuleCost
+    cost: 75
 
 # disabled until event is rewritten to be more interesting
 #- type: entity
@@ -635,7 +644,7 @@
       pickPlayer: false
       startingGear: SyndicateLoneOperativeGearFull
       roleLoadout:
-      - RoleSurvivalNukie
+      - AntagNukeops # Starlight
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -653,7 +662,7 @@
         - CantBecomeRevolutionary
       # Starlight-end
   - type: DynamicRuleCost
-    cost: 75
+    cost: 100 # Starlight
 
 - type: entity
   parent: BaseTraitorRule

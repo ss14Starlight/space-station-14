@@ -224,6 +224,21 @@
         - RandomHumanoidSpawnerCBURNUnit
 
 - type: entity
+  id: SpawnPointGhostERTCBURNCorpsman
+  parent: MarkerBase
+  name: ERT spawn point
+  suffix: CBURN, Medical
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: cburn
+    - type: ConditionalSpawner
+      prototypes:
+        - RandomHumanoidSpawnerCBURNCorpsman
+
+- type: entity
   categories: [HideSpawnMenu, Spawner]
   parent: BaseAntagSpawner
   id: SpawnPointGhostERTChaplain

@@ -1,19 +1,20 @@
+using System.Numerics;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Robust.Shared.Audio;
+using Content.Shared.Atmos.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.VentCrawl.Components;
+namespace Content.Shared._Starlight.VentCrawl.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class VentCrawlHolderComponent : Component
 {
-    [ViewVariables]
-    public float StartingTime { get; set; }
+    #region State
 
     [ViewVariables]
-    public float TimeLeft { get; set; }
+    [AutoNetworkedField]
+    public EntityUid ContainedEntity { get; set; }
 
     [AutoNetworkedField]
     public bool IsMoving = false;
@@ -28,61 +29,80 @@ public sealed partial class VentCrawlHolderComponent : Component
 
     [ViewVariables]
     [AutoNetworkedField]
-    public Direction PreviousDirection { get; set; } = Direction.Invalid;
-
-    [ViewVariables]
-    [AutoNetworkedField]
     public EntityUid? CurrentTube { get; set; }
-
-    [ViewVariables]
-    [AutoNetworkedField]
-    public bool HasExitAction { get; set; }
 
     [ViewVariables]
     [AutoNetworkedField]
     public Direction CurrentDirection { get; set; } = Direction.Invalid;
 
     [ViewVariables]
-    public bool IsExitingVentCrawls { get; set; }
-
-    public static readonly TimeSpan CrawlDelay = TimeSpan.FromSeconds(0.5);
+    [AutoNetworkedField]
+    public Direction PreviousDirection { get; set; } = Direction.Invalid;
 
     [ViewVariables]
-    [AutoNetworkedField]
+    public bool IsExitingVentCrawls { get; set; }
+
+    #endregion
+
+    #region CrawlInfo
+
+    [ViewVariables]
     public TimeSpan LastCrawl;
 
-    [DataField("crawlSound")]
-    public SoundCollectionSpecifier CrawlSound { get; set; } = new ("VentClaw", AudioParams.Default.WithVolume(5f));
+    [ViewVariables]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan MoveStartTime;
 
-    [DataField("travelDuration")]
-    public float TravelDuration = 0.15f;
+    [ViewVariables]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan MoveEndTime;
 
-    [DataField]
+    /// <summary>
+    /// World-space position at the start of the current move. Used for seamless interpolation.
+    /// </summary>
+    [AutoNetworkedField]
+    public Vector2 MoveFromWorldPos;
+
+    /// <summary>
+    /// World-space position at the end of the current move. Used for seamless interpolation.
+    /// </summary>
+    [AutoNetworkedField]
+    public Vector2 MoveToWorldPos;
+
+    #endregion
+
+    #region Action
+
     public EntProtoId<ActionComponent> ActionProto = "VentCrawlExitAction";
 
     [AutoNetworkedField]
-    public List<EntityUid> ProvidedActions = new();
+    public EntityUid? ProvidedAction;
+
+    #endregion
+
+    #region Manifold
 
     /// <summary>
     /// Current layer in manifold. Null if not in manifold.
     /// </summary>
-    [AutoNetworkedField]
     [ViewVariables]
-    public int? ManifoldLayer;
+    [AutoNetworkedField]
+    public AtmosPipeLayer? ManifoldLayer;
 
     /// <summary>
     /// Previous layer in manifold.
     /// </summary>
     [ViewVariables]
     [AutoNetworkedField]
-    public int? PreviousManifoldLayer;
+    public AtmosPipeLayer? PreviousManifoldLayer;
 
-    /// <summary>
-    /// Current progress of transition in manifold between layers.
-    /// </summary>
     [ViewVariables]
-    [AutoNetworkedField]
-    public float ManifoldTransitionProgress = 1f;
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan ManifoldTransitionStart;
+
+    [ViewVariables]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan ManifoldTransitionEnd;
 
     /// <summary>
     /// Duration of transition in manifold between layers.
@@ -95,6 +115,8 @@ public sealed partial class VentCrawlHolderComponent : Component
 
     [AutoNetworkedField, AutoPausedField]
     public TimeSpan ManifoldLastLayerSelection;
+
+    #endregion
 }
 
 public sealed partial class ExitVentActionEvent : InstantActionEvent

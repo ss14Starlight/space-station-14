@@ -1,3 +1,4 @@
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Humanoid;
 
 public static class EyeColor

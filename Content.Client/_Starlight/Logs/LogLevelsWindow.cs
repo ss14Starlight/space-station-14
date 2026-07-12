@@ -1,15 +1,15 @@
 using System.Linq;
 using System.Text;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Configuration;
 namespace Content.Client._Starlight.Logs;
 
-public sealed class LogLevelsWindow : DefaultWindow
+public sealed partial class LogLevelsWindow : DefaultWindow
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private static readonly string[] _levelNames = ["(inherit)", "Verbose", "Debug", "Info", "Warning", "Error", "Fatal"];
     private static readonly LogLevel?[] _levelValues = [null, LogLevel.Verbose, LogLevel.Debug, LogLevel.Info, LogLevel.Warning, LogLevel.Error, LogLevel.Fatal];

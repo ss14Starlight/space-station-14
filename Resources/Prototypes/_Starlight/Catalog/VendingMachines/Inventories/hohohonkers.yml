@@ -141,3 +141,33 @@
   - !type:ListingLimitedStockCondition
     stock: 1
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorChonoLokeFakeBlastShell
+  productEntity: ChonoLokeFakeBlastShell
+  cost:
+    NTCredit: 50
+  categories:
+  - SLClown
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorChonoLokeFakeFragShell
+  productEntity: ChonoLokeFakeFragShell
+  cost:
+    NTCredit: 50
+  categories:
+  - SLClown
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorChonoLokeCreamPieShell
+  productEntity: ChonoLokeCreamPieShell
+  cost:
+    NTCredit: 75
+  categories:
+  - SLClown
+  conditions:
+  - !type:BuyerAccessCondition

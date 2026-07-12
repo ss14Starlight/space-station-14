@@ -1357,6 +1357,16 @@
     heldPrefix: produce
   - type: Produce
     seedId: chanterelle
+  # BEGIN STARLIGHT - DWARF SPAM
+  - type: TriggerOnPointedAt
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      tags:
+      - Dwarf
+  - type: SpeakOnTrigger
+    text: dwarf-callout-mushroom
+    targetUser: true
+  #END STARLIGHT
   - type: Tag
     tags:
     - Vegetable
@@ -1672,6 +1682,16 @@
     entries:
       Taco: Lingzhi
       Burger: Lingzhi
+  # BEGIN STARLIGHT - DWARF SPAM
+  - type: TriggerOnPointedAt
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      tags:
+      - Dwarf
+  - type: SpeakOnTrigger
+    text: dwarf-callout-mushroom
+    targetUser: true
+  #END STARLIGHT
   - type: Tag
     tags:
     - Mushroom
@@ -1894,6 +1914,16 @@
     entries:
       Taco: FlyAmanita
       Burger: FlyAmanita
+  # BEGIN STARLIGHT - DWARF SPAM
+  - type: TriggerOnPointedAt
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      tags:
+      - Dwarf
+  - type: SpeakOnTrigger
+    text: dwarf-callout-mushroom
+    targetUser: true
+  #END STARLIGHT
   - type: Tag
     tags:
     - Mushroom

@@ -1,34 +1,6 @@
 # Shuttle Game Rule Tables -- If you dont add your rules to these they wont be used by the games schedulers.
 
 - type: entityTable
-  id: UnknownShuttlesFriendlyTable
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-    - id: UnknownShuttleCargoLost
-    - id: UnknownShuttleTravelingCuisine
-    - id: UnknownShuttleDisasterEvacPod
-    - id: UnknownShuttleHonki
-    - id: UnknownShuttleNTQuark
-    - id: UnknownShuttleCruiser
-    - id: UnknownShuttleCryptid
-    - id: UnknownShuttleEternal
-    - id: UnknownShuttleFlatline
-    - id: UnknownShuttleGym
-    - id: UnknownShuttleNTIncorporation
-    - id: UnknownShuttleJoe
-    - id: UnknownShuttleLambordeere
-    - id: UnknownShuttleMeatZone
-    - id: UnknownShuttleMicroshuttle
-    - id: UnknownShuttleSpacebus
-    - id: UnknownShuttleFireResponse #Starlight
-
-- type: entityTable
-  id: UnknownShuttlesFreelanceTable
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-    - id: UnknownShuttleSyndieEvacPod
-
-- type: entityTable
   id: UnknownShuttlesHostileTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:

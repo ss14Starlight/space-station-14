@@ -22,11 +22,8 @@
   - AllAccess
   access:
   - CentralCommand
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
-- type: startingGear
+- type: startingGear # Starlight. Loadouts and their contents have been changed.
   id: CBURNGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBrown
@@ -38,24 +35,29 @@
     outerClothing: ClothingOuterSoftsuitCBURN #Starlight
     shoes: ClothingShoesBootsCombatFilled
     id: CBURNPDA
-    pocket1: RadioHandheld
-    pocket2: WeaponLaserGun
-    belt: ClothingBeltBandolier
+    pocket1: FlashlightSeclite
+    pocket2: WeaponPDW9
+    belt: PrototypeVibrobladeSheathFilled
     head: ClothingHeadSoftsuitCBURN # Starlight
+    suitstorage: WeaponRiflePrometheus
   storage:
     back:
-#    - WeaponShotgunDoubleBarreled Starlight: Replaced with starlight weaponry
-#    - BoxShotgunIncendiary
-    # Starlight-start: Starlight incendiary weaponry
-    - WeaponIK60
-    - MagazineBatteryLr30
-    - MagazineBatteryLr30
-    - MagazineBatteryLr30
-    - MagazineBatteryLr30
-    # Starlight-end
-    - GrenadeFlashBang
-    - PillAmbuzolPlus
-    - PillAmbuzol
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - MagazineRifleIncendiary
+    - MagazineRifleHP
+    - InflatableDoorStack
+    - InflatableWallStack
+    - HoloprojectorSecurity
+    - HoloprojectorField
+    - PowerCellHigh
+    - PowerCellHigh
+    - MedkitCombatFilled
+    - BeakerSmallLace
+    - ChemistryBottleAmbuzol
+    - Syringe
 
 - type: chameleonOutfit
   id: CBURNChameleonOutfit

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using Content.Shared.Teleportation.Systems;
 using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;

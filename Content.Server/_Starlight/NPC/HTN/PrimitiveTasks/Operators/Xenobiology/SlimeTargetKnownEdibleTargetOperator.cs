@@ -11,7 +11,7 @@ namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Xenobiology
 
 public sealed partial class SlimeTargetKnownEdibleTargetOperator : HTNOperator
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     private SlimeBrainSystem _slimeBrainSystem = default!;
     private EntityLookupSystem _lookup = default!;

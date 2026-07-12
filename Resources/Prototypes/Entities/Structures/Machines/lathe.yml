@@ -233,6 +233,7 @@
     - Equipment
     - StarlightProtolatheLootable # Starlight start
     - StarlightScienceWeapons
+    - WirelessCameraHandheld # MOFFSTATION CHANGE - Adds wireless handheld camera
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -306,6 +307,7 @@
     - StarlightLawboards
     - StarlightCircuitImprinterLootable
     - ReactorCircuitboards # FH edit
+    - OublietteCircuitBoard # Starlight
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
@@ -417,6 +419,7 @@
 
 - type: entity
   id: SecurityTechFab
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLatheLube
   name: security techfab
   description: Prints equipment for use by security crew.
@@ -512,6 +515,7 @@
 
 - type: entity
   id: MedicalTechFab
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLatheLube
   name: medical techfab
   description: Prints equipment for use by the medbay.
@@ -559,6 +563,7 @@
 - type: entity
   parent: BaseLathe
   id: UniformPrinter
+  categories: [ ShouldMapStation ] # Starlight
   name: uniform printer
   description: Prints new or replacement uniforms.
   components:
@@ -603,6 +608,7 @@
 
 - type: entity
   id: Biogenerator
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLathe
   name: biogenerator
   description: Converts plants into biomass, which can be used to construct useful items.
@@ -689,8 +695,8 @@
     - type: ItemToggle
       onUse: false
       onActivate: false
-      verbToggleOn: "Activate Magnet"
-      verbToggleOff: "Deactivate Magnet"
+      verbToggleOn: verb-toggle-magnet-activate
+      verbToggleOff: verb-toggle-magnet-deactivate
       soundActivate:
         collection: sparks
         params:

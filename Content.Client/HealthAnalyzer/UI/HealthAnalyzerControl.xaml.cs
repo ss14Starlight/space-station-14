@@ -17,6 +17,7 @@ using Content.Shared.Chemistry.Reagent; // Starlight
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Medical;
 namespace Content.Client.HealthAnalyzer.UI;
 
 // Health analyzer UI is split from its window because it's used by both the

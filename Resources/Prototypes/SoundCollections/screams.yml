@@ -32,11 +32,6 @@
     - /Audio/Voice/Cluwne/cluwnelaugh3.ogg
 
 - type: soundCollection
-  id: CluwneBeastScreams
-  files:
-    - /Audio/Voice/Cluwne/cluwnebeastlaugh1.ogg
-
-- type: soundCollection
   id: PlantScreams
   files:
     # Male.

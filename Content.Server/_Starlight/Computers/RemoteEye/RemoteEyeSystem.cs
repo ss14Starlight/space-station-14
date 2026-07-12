@@ -19,22 +19,25 @@ using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Player;
+using Content.Shared._Starlight.Computers.RemoteEye.Components;
+using Content.Shared._Starlight.Computers.RemoteEye.Events;
+using Content.Shared._Starlight.Computers.RemoteEye.UI;
 
 namespace Content.Server._Starlight.Computers.RemoteEye;
 
 public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
 {
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly StarlightActionsSystem _slActions = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedMoverController _mover = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private StarlightActionsSystem _slActions = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
 
     public override void Initialize()
     {

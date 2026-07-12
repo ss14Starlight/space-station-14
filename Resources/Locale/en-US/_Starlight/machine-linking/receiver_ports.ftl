@@ -15,3 +15,6 @@ signal-port-description-ticket-machine-nextnumber = Changes ticket number to nex
 
 signal-port-name-ticket-machine-burntickets = Burn Tickets
 signal-port-description-ticket-machine-burntickets = Burns all served tickets when triggered.
+
+signal-port-name-set-particle-lambda = Set particle type: lambda
+signal-port-description-set-particle-lambda = Sets the type of particle this device emits to lambda.

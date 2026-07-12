@@ -3,9 +3,9 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Starlight.Xenobiology.MiscItems;
 
-public sealed class SlimeScannerSoundSystem : EntitySystem
+public sealed partial class SlimeScannerSoundSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
 
     private static readonly SoundPathSpecifier _scannerSound = new("/Audio/Items/Medical/healthscanner.ogg");
 

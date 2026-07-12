@@ -21,16 +21,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Crayon;
 
-public sealed class CrayonSystem : SharedCrayonSystem
+public sealed partial class CrayonSystem : SharedCrayonSystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly DecalSystem _decals = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!; // Starlight
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private DecalSystem _decals = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!; // Starlight
 
     public override void Initialize()
     {
@@ -178,7 +178,7 @@ public sealed class CrayonSystem : SharedCrayonSystem
 
     private void OnGotEquipped(EntityUid uid, CrayonComponent component, ref GotEquippedEvent args)
     {
-        if (_handsSystem.GetActiveItem(args.Equipee) != uid)
+        if (_handsSystem.GetActiveItem(args.EquipTarget) != uid)
             return;
         SetPreviewVisible(uid, component, true);
     }

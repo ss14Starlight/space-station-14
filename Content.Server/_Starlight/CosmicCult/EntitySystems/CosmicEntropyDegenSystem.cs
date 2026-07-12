@@ -12,8 +12,8 @@ namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 /// </summary>
 public sealed partial class CosmicEntropyDegenSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Initialize()
         => SubscribeLocalEvent<CosmicEntropyDebuffStatusEffectComponent, StatusEffectAppliedEvent>(OnInit);

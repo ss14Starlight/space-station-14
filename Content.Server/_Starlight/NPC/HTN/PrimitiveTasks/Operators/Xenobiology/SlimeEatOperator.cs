@@ -8,7 +8,7 @@ namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Xenobiology
 
 public sealed partial class SlimeEatOperator : HTNOperator
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
     private SlimeSystem _slimeSystem = default!;
     private SlimeBrainSystem _slimeBrainSystem = default!;
 

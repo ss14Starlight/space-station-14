@@ -9,7 +9,6 @@ using Content.Shared.Damage;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Station.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Warps;
 using Robust.Server.GameObjects;
@@ -21,20 +20,20 @@ using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
-public sealed class CosmicColossusSystem : EntitySystem
+public sealed partial class CosmicColossusSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MobThresholdSystem _threshold = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ThrowingSystem _throw = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MobThresholdSystem _threshold = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambientSound = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ThrowingSystem _throw = default!;
 
     public override void Initialize()
     {
@@ -86,13 +85,13 @@ public sealed class CosmicColossusSystem : EntitySystem
         var station = _station.GetStationInMap(Transform(ent).MapID);
         if (station is { } stationUid)
         {
-            var stationGrid = _station.GetLargestGrid((stationUid, (StationDataComponent?) null));
-            if (stationGrid is null)
-                return;
-            _throw.TryThrow(ent, Transform(stationGrid!.Value).Coordinates, baseThrowSpeed: 30, null, 0, 0, false, false, false, false, false);
+            var stationGrid = _station.GetLargestGrid((stationUid, null));
+            if (stationGrid is not null)
+                _throw.TryThrow(ent, Transform(stationGrid.Value).Coordinates, baseThrowSpeed: 30, null, 0, 0, false, false, false, false, false);
         }
         if (ent.Comp.Timed)
             _actions.AddAction(ent, ref ent.Comp.EffigyPlaceActionEntity, ent.Comp.EffigyPlaceAction, ent);
+        _actions.AddAction(ent, ref ent.Comp.HibernateActionEntity, ent.Comp.HibernateAction, ent);
     }
 
     private void OnMobStateChanged(Entity<CosmicColossusComponent> ent, ref MobStateChangedEvent args)

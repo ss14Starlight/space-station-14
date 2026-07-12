@@ -570,3 +570,93 @@
           32:
             sprite: _Starlight/Mobs/Species/Lagomorph/displacement.rsi
             state: jumpsuit
+
+- type: entity
+  abstract: true
+  save: false
+  id: BaseInventoryRodentia
+  components:
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+          state: inHand
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+          state: inHand
+  - type: Inventory
+    speciesId: rodentia
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: hands
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: ears
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: mask
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: outerclothing
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: shoes
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: neck
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: belt
+      misc:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: misc
+      id:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: suitStorage
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: suitStorage

@@ -162,3 +162,21 @@
   - type: Item
     size: Small
     heldPrefix: kidneys
+
+- type: entity
+  id: OrganAnimalEyes
+  parent: [BaseAnimalOrgan, BaseOrganEyes]
+  name: animal eyes
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      layers:
+        - state: eyeball-l
+        - state: eyeball-r
+    - type: Item
+      size: Small
+      heldPrefix: animal eyeballs
+    - type: OrganVisualization
+      layer: Eyes
+      prototypes:
+        Default: MobHumanoidEyes

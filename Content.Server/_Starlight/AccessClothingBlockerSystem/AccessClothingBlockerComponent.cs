@@ -1,6 +1,6 @@
 using Robust.Shared.Audio;
 
-namespace Content.Server._Starlight.FactionClothingBlockerSystem;
+namespace Content.Server._Starlight.AccessClothingBlockerSystem;
 
 [RegisterComponent]
 public sealed partial class AccessClothingBlockerComponent : Component

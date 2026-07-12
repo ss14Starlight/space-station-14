@@ -3,9 +3,9 @@ using Robust.Shared.Configuration;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 
-public abstract class SharedReactorPartSystem : EntitySystem
+public abstract partial class SharedReactorPartSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     // Put CVars in shared space just so that the guidebook can update live
 

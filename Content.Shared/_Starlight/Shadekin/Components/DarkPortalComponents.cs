@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Shadekin;
+namespace Content.Shared._Starlight.Shadekin.Components;
 
 /// <summary>
 /// Will Autolink to a DarkHubComponent, This comp also has custom anomaly code for the pulse and shadekin link.

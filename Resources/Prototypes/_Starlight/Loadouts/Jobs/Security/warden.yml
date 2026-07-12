@@ -4,3 +4,15 @@
   id: ClothingNeckWarden
   equipment:
     neck: ClothingNeckCloakwarden
+
+# Formal Jumpsuits
+
+- type: loadout
+  id: ClothingUniformJumpsuitFormalWarden
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalWarden
+
+- type: loadout
+  id: ClothingUniformJumpskirtFormalWarden
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalWarden

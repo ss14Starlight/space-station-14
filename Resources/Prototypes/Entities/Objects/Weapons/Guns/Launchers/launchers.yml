@@ -15,6 +15,9 @@
       Skating:
         knockback: 5
         staminaMultiplier: 20
+      Rodentia:
+        knockback: 10
+        staminaMultiplier: 8
       Resomi:
         knockback: 10
         staminaMultiplier: 8
@@ -140,6 +143,8 @@
     doestContain:
       Skating:
         knockback: -2.5
+      Rodentia:
+        knockback: -10
       Resomi:
         knockback: -5
       Avali:
@@ -182,6 +187,9 @@
   - type: KnockbackByUserTag # Starlight
     doestContain:
       Resomi:
+        knockback: 10
+        staminaMultiplier: 8
+      Rodentia:
         knockback: 10
         staminaMultiplier: 8
       Avali:

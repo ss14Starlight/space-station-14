@@ -19,10 +19,10 @@ public interface IClientAchievementManager
     double GetProgress(string key);
 }
 
-public sealed class ClientAchievementManager : IClientAchievementManager, IAchievementRewardManager
+public sealed partial class ClientAchievementManager : IClientAchievementManager, IAchievementRewardManager
 {
-    [Dependency] private readonly IClientNetManager _netMgr = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IClientNetManager _netMgr = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public HashSet<string> UnlockedAchievements { get; private set; } = [];
     public Dictionary<string, double> Progress { get; private set; } = [];

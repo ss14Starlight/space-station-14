@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Bible.Components;
 using Content.Server.Flash;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Stunnable;
@@ -13,23 +12,25 @@ using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Content.Shared.Light.Components;
-using Content.Shared._Starlight.NullSpace;
+using Content.Server.Bible.Components;
+using Content.Shared.Mindshield.Components;
 using Content.Server.Popups;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicGlareSystem : EntitySystem
+public sealed partial class CosmicGlareSystem : EntitySystem
 {
-    [Dependency] private readonly CosmicCultSystem _cult = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly FlashSystem _flash = default!;
-    [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
-    [Dependency] private readonly StunSystem _stun = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedCosmicCultSystem _cosmicCult = default!;
-    [Dependency] private readonly SharedInteractionSystem _interact = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private FlashSystem _flash = default!;
+    [Dependency] private PoweredLightSystem _poweredLight = default!;
+    [Dependency] private StunSystem _stun = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
+    [Dependency] private SharedInteractionSystem _interact = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     private readonly HashSet<Entity<PoweredLightComponent>> _lights = [];
 
@@ -66,7 +67,7 @@ public sealed class CosmicGlareSystem : EntitySystem
                 return true;
 
             var ent = player.AttachedEntity.Value;
-            if (!HasComp<MobStateComponent>(ent) || _cosmicCult.EntityIsCultist(ent) || HasComp<BibleUserComponent>(ent))
+            if (!HasComp<MobStateComponent>(ent) || _cosmicCult.EntityIsCultist(ent) || HasComp<BibleUserComponent>(ent) || HasComp<MindShieldComponent>(ent))
                 return true;
 
             return !_interact.InRangeUnobstructed((uid, Transform(uid)), (ent, Transform(ent)), range: 0, collisionMask: CollisionGroup.Impassable);

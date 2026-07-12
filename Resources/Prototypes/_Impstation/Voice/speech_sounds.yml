@@ -1,0 +1,8 @@
+- type: speechSounds
+  id: Pop
+  saySound:
+    path: /Audio/Effects/pop.ogg
+  askSound:
+    path: /Audio/Effects/pop_high.ogg
+  exclaimSound:
+    path: /Audio/Effects/pop_high.ogg

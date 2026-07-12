@@ -6,11 +6,11 @@ using Robust.Shared.Enums;
 
 namespace Content.Shared._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeGenderChangePotionSystem : EntitySystem
+public sealed partial class SlimeGenderChangePotionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _sharedHumanoidAppearanceSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _sharedHumanoidAppearanceSystem = default!;
+    [Dependency] private SharedPopupSystem _sharedPopupSystem = default!;
 
     public override void Initialize()
     {

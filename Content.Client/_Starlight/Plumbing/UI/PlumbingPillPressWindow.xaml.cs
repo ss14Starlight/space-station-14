@@ -13,7 +13,7 @@ namespace Content.Client._Starlight.Plumbing.UI;
 [GenerateTypedNameReferences]
 public sealed partial class PlumbingPillPressWindow : DefaultWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     public event Action<bool>? OnToggle;
     public event Action<uint>? OnSetDosage;

@@ -1,4 +1,3 @@
-using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Roles;
@@ -10,13 +9,13 @@ using Content.Server.Station.Systems;
 
 namespace Content.Server._Starlight.CosmicCult;
 
-public sealed class CosmicCultObjectiveSystem : EntitySystem
+public sealed partial class CosmicCultObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly NumberObjectiveSystem _number = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private NumberObjectiveSystem _number = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private StationSystem _station = default!;
 
     public override void Initialize()
     {
@@ -29,6 +28,7 @@ public sealed class CosmicCultObjectiveSystem : EntitySystem
         SubscribeLocalEvent<CosmicConversionConditionComponent, ObjectiveGetProgressEvent>(OnGetConversionProgress);
         SubscribeLocalEvent<CosmicTierConditionComponent, ObjectiveGetProgressEvent>(OnGetTierProgress);
         SubscribeLocalEvent<CosmicVictoryConditionComponent, ObjectiveGetProgressEvent>(OnGetVictoryProgress);
+        SubscribeLocalEvent<CosmicChaplainConditionComponent, ObjectiveGetProgressEvent>(OnGetChaplainProgress);
     }
 
     private void OnEffigyRequirementCheck(EntityUid uid, CosmicEffigyConditionComponent comp, ref RequirementCheckEvent args)
@@ -92,6 +92,9 @@ public sealed class CosmicCultObjectiveSystem : EntitySystem
 
     private void OnGetVictoryProgress(Entity<CosmicVictoryConditionComponent> ent, ref ObjectiveGetProgressEvent args)
         => args.Progress = ent.Comp.Victory ? 1f : 0f;
+
+    private void OnGetChaplainProgress(Entity<CosmicChaplainConditionComponent> ent, ref ObjectiveGetProgressEvent args)
+        => args.Progress = Progress(ent.Comp.Converted, _number.GetTarget(ent.Owner));
 
     private static float Progress(int recruited, int target)
     {

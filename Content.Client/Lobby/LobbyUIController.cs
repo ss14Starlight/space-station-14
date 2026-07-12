@@ -14,7 +14,6 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Starlight.CCVar; // Starlight-edit
 using Content.Shared.Traits;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
@@ -26,19 +25,28 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
+#region Starlight
+using Content.Client._Starlight.Lobby.UI;
+using Content.Client._Starlight.Humanoid;
+using Content.Client._Starlight.UserInterface; // Starlight: popout support
+using Content.Shared._Starlight.CCVar;
+using Robust.Client.UserInterface.CustomControls;
+using System.Numerics;
+#endregion
+
 namespace Content.Client.Lobby;
 
-public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
+public sealed partial class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
 {
-    [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IFileDialogManager _dialogManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IStateManager _stateManager = default!;
-    [Dependency] private readonly JobRequirementsManager _requirements = default!;
-    [Dependency] private readonly MarkingManager _markings = default!;
+    [Dependency] private IClientPreferencesManager _preferencesManager = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IFileDialogManager _dialogManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IStateManager _stateManager = default!;
+    [Dependency] private JobRequirementsManager _requirements = default!;
+    [Dependency] private MarkingManager _markings = default!;
     [UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
@@ -48,6 +56,14 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     private HumanoidProfileEditor? _profileEditor;
     private JobPriorityEditor? _jobPriorityEditor;
     private CharacterSetupGuiSavePanel? _savePanel;
+
+    /// begin starlight
+    /// <summary>
+    /// character editor window, see OpenCharacterSetupWindow()
+    /// </summary>
+    private PopOutWindow? _characterSetupWindow; // Starlight: PopOutWindow so teardown can close the popped-out desktop window
+    private bool _characterSetupPoppedOut; // Starlight: true while the editor lives in a pop out
+    //end starlight
 
     /// <summary>
     /// Event invoked when any character or job selection or job priority is changed.
@@ -255,8 +271,76 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         {
             lobbyGui.SwitchState(LobbyGui.LobbyGuiState.Default);
         }
+
+        // make sure the window is closed.
+        _characterSetupWindow?.DisposePopOut(); // Starlight: also close the popped-out desktop window if any
+        _characterSetupWindow?.Close(); // starlight
+
         RefreshLobbyPreview();
     }
+    ///begin starlight
+    /// <summary>
+    /// Opens the character editor in its own window, we reuse the one from the lobby for the sake of simplicity.
+    /// </summary>
+    public void OpenCharacterSetupWindow()
+    {
+        // don't open it more than once.
+        if (_characterSetupWindow is { IsOpen: true } || _characterSetupPoppedOut) // Starlight: also block while popped out
+        {
+            _characterSetupWindow?.MoveToFront(); // Starlight
+            return;
+        }
+
+        var (characterGui, _) = EnsureGui();
+
+        // reload these, the lobby button does this so we do it aswell
+        characterGui.ReloadCharacterPickers();
+        _profileEditor?.ResetToDefault();
+        _jobPriorityEditor?.LoadJobPriorities();
+
+        // detach the gui from it's parent (Most of the time the lobby)
+        characterGui.Orphan();
+
+        var window = new CharacterSetupWindow(characterGui) // Starlight: pass the borrowed gui so it can be popped out
+        {
+            Title = Loc.GetString("ghost-gui-character-editor-button"),
+        };
+        window.MinSize = window.SetSize = new Vector2(1400, 700); // Might need adjusting but felt good to me
+
+        window.Contents.AddChild(characterGui);
+
+        // when the window closes, detach the gui from it so the gui isn't cleaned up with the window.
+        window.OnFinalClose += () =>
+        {
+            // Rescue the borrowed gui from being disposed with the window
+            var lobbyContainer = (_stateManager.CurrentState as LobbyState)?.Lobby?.CharacterSetupState;
+            if (characterGui.Parent != lobbyContainer)
+                characterGui.Orphan();
+
+            _characterSetupWindow = null;
+            _characterSetupPoppedOut = false;
+        };
+
+        // Starlight: once popped out the in-game window is gone, but keep the window ref so
+        // we can still teardown the window.
+        window.OnPopout += () => _characterSetupPoppedOut = true;
+
+        _characterSetupWindow = window;
+        window.OpenCentered();
+    }
+
+    // Starlight: Reworked to PopOutWindow for popout support
+    private sealed class CharacterSetupWindow : PopOutWindow
+    {
+        protected override Control Control { get; } // Starlight: content that moves into the desktop window on popout
+
+        public CharacterSetupWindow(Control content) // Starlight: take the content to pop out
+        {
+            Control = content; // Starlight
+            CloseButton.Visible = false;
+        }
+    }
+    // end starlight
 
     private void OpenSavePanel(Action saveAction)
     {
@@ -290,6 +374,19 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         {
             _characterSetup.Visible = true;
             _profileEditor.Visible = true;
+            // begin starlight
+            // we borrow the gui from the lobby, so we need to make sure we return it aswell.
+            if (_stateManager.CurrentState is LobbyState lobbyState
+                && lobbyState.Lobby?.CharacterSetupState is { } container
+                && _characterSetup.Parent != container)
+            {
+                // if the ghost window is open return it.
+                _characterSetupWindow?.DisposePopOut(); // Starlight: close the popout
+                _characterSetupWindow?.Close();
+                _characterSetup.Orphan();
+                container.AddChild(_characterSetup);
+            }
+            // end starlight
             return (_characterSetup, _profileEditor);
         }
 

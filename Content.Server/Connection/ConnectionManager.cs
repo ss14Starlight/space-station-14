@@ -27,8 +27,8 @@ using Content.Server._Starlight.Connection;
 using Content.Server.Discord.DiscordLink;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using Content.Shared.Starlight;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Utility;
 #endregion Starlight
 
@@ -70,22 +70,22 @@ namespace Content.Server.Connection
     /// </summary>
     public sealed partial class ConnectionManager : IConnectionManager
     {
-        [Dependency] private readonly IActorRouter _actors = default!; // NullLink
-        [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!; // NullLink
-        [Dependency] private readonly IBanManager _banManager = default!; // NullLink-edit: move to general method at Manager
-        [Dependency] private readonly IPlayerManager _plyMgr = default!;
-        [Dependency] private readonly IServerNetManager _netMgr = default!;
-        [Dependency] private readonly IServerDbManager _db = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly ILocalizationManager _loc = default!;
-        [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
-        [Dependency] private readonly IChatManager _chatManager = default!;
-        [Dependency] private readonly IHttpClientHolder _http = default!;
-        [Dependency] private readonly IAdminManager _adminManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private IActorRouter _actors = default!; // NullLink
+        [Dependency] private INullLinkPlayerManager _nullLinkPlayerManager = default!; // NullLink
+        [Dependency] private IBanManager _banManager = default!; // NullLink-edit: move to general method at Manager
+        [Dependency] private IPlayerManager _plyMgr = default!;
+        [Dependency] private IServerNetManager _netMgr = default!;
+        [Dependency] private IServerDbManager _db = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private ILocalizationManager _loc = default!;
+        [Dependency] private ServerDbEntryManager _serverDbEntry = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private ILogManager _logManager = default!;
+        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IHttpClientHolder _http = default!;
+        [Dependency] private IAdminManager _adminManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
 
         private GameTicker? _ticker;
 
@@ -178,9 +178,50 @@ namespace Content.Server.Connection
 
         private async Task NetMgrOnConnecting(NetConnectingArgs e)
         {
-            // Starlight: resolve real client IP via conntrack-agent (SNAT bypass)
-            var addr = await _conntrack.ResolveRealIp(e.IP) ?? e.IP.Address;
+            // starlight start
+            var rateExempt = HasTemporaryBypass(e.UserId) || IPAddress.IsLoopback(e.IP.Address);
 
+            if (!rateExempt && GlobalRateLimitDeny() is { } globalReason)
+            {
+                e.Deny(new NetDenyReason(globalReason, new Dictionary<string, object>()));
+                return;
+            }
+
+            var (ctStatus, ctIp) = await _conntrack.ResolveRealIp(e.IP);
+            IPAddress addr;
+            switch (ctStatus)
+            {
+                case ConntrackStatus.Resolved:
+                    addr = ctIp!;
+                    break;
+                case ConntrackStatus.NotApplicable:
+                    addr = e.IP.Address;
+                    break;
+                default:
+                    var lastKnown = (await _db.GetPlayerRecordByUserId(e.UserId))?.LastSeenAddress;
+                    if (lastKnown != null && !_conntrack.IsSnatAddress(lastKnown))
+                    {
+                        addr = lastKnown;
+                        _sawmill.Warning("Conntrack failed for {User}; using last known real IP {Address}", e.UserId, addr);
+                    }
+                    else
+                    {
+                        _sawmill.Warning("Conntrack failed for {User} with no known real IP; asking to reconnect later", e.UserId);
+                        e.Deny(new NetDenyReason(
+                            Loc.GetString("conntrack-resolve-failed-retry"),
+                            new Dictionary<string, object> { ["delay"] = _cfg.GetCVar(CCVars.GameServerFullReconnectDelay) }));
+                        return;
+                    }
+                    break;
+            }
+
+            if (!rateExempt && !_conntrack.IsSnatAddress(addr) && PerIpRateLimitDeny(addr) is { } ipReason)
+            {
+                e.Deny(new NetDenyReason(ipReason, new Dictionary<string, object>()));
+                return;
+            }
+
+            // starlight end
             var deny = await ShouldDeny(e, addr); // Starlight
             var userId = e.UserId;
 

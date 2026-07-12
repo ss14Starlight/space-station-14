@@ -1,8 +1,7 @@
 using Content.Shared.Access;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.SecureTerminal;
+namespace Content.Shared._Starlight.SecureTerminal;
 
 /// <summary>
 /// Defines one requestable action in the Secure Command Terminal.
@@ -50,8 +49,7 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     public int ActivationDelaySecs = 600;
 
     /// <summary>
-    /// Credits charged from EACH authorizer when the countdown begins.
-    /// They pay whether they originally requested OR co-signed.
+    /// Credits charged from the requester once it is fully approved and the countdown begins.
     /// </summary>
     [DataField]
     public int Fee = 5000;

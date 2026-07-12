@@ -73,8 +73,8 @@ crafting-menu-text-IMGR = Organization is not the strong suit of any tider. Hold
 crafting-menu-name-IMGM = improvised ammo box (.45 magnum)
 crafting-menu-text-IMGM = Organization is not the strong suit of any tider. Holds 40 improvised .45 magnum rounds.
 
-crafting-menu-name-IMGS = improvised ammo box (.50 shotgun)
-crafting-menu-text-IMGS = Organization is not the strong suit of any tider. Holds 40 improvised .50 shotgun shells.
+crafting-menu-name-IMGS = improvised ammo box (12 gauge)
+crafting-menu-text-IMGS = Organization is not the strong suit of any tider. Holds 40 improvised 12 gauge shells.
 
 crafting-menu-name-phosphorus = crushed phosphorus
 crafting-menu-text-phosphorus = Crushing the tips off of matches yields this bright red, exceedingly volatile compound.

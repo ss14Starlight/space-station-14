@@ -261,3 +261,13 @@ command-description-markup-cleardesc =
     Clears all additional lines of markup text from the piped entity's description.
 command-description-markup-listdesc =
     Lists all description markup texts on the piped entity and their IDs.
+command-description-atmos-add =
+    Adds an atmosphere to a piped grid.
+command-description-atmos-fix =
+    Fix the atmosphere of a piped grid.
+command-description-atmos-rejoin =
+    Attempt to make a piped atmospherics device rejoin an atmosphere.
+command-description-jobs-makeunlimited =
+    Make a job slot unlimited.
+command-description-jobs-makelimited =
+    Make a job slot limited. Allows resetting to 0, or to whatever the midround count would be.

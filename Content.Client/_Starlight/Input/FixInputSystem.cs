@@ -3,9 +3,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Starlight.Input;
 
-public sealed class FixInputSystem : EntitySystem
+public sealed partial class FixInputSystem : EntitySystem
 {
-    [Dependency] private readonly InputSystem _input = default!;
+    [Dependency] private InputSystem _input = default!;
 
     public override void Initialize()
     {

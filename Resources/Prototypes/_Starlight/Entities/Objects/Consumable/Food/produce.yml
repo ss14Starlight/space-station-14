@@ -67,3 +67,29 @@
     - type: Tag
       tags:
         - Fruit
+
+- type: entity
+  name: resinfera
+  parent: FoodProduceBase
+  id: FoodResinfera
+  description: A plant used to nurse minor bruises, careful of the spines.
+  components:
+    - type: FlavorProfile
+      flavors:
+        - bitter
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 20
+          reagents:
+            - ReagentId: Acrileni
+              Quantity: 5
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/resinfera.rsi
+    - type: Item
+      heldPrefix: produce
+    - type: Produce
+      seedId: resinfera
+    - type: Tag
+      tags:
+        - Fruit

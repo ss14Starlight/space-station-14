@@ -14,6 +14,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Preferences;
 
 namespace Content.Server.Preferences.Managers
 {
@@ -22,16 +23,16 @@ namespace Content.Server.Preferences.Managers
     /// Receives <see cref="MsgSetCharacterEnable"/>, <see cref="MsgUpdateCharacter"/>,
     /// <see cref="MsgDeleteCharacter"/>, and <see cref="MsgUpdateJobPriorities"/> at any time.
     /// </summary>
-    public sealed class ServerPreferencesManager : IServerPreferencesManager, IPostInjectInit
+    public sealed partial class ServerPreferencesManager : IServerPreferencesManager, IPostInjectInit
     {
-        [Dependency] private readonly IServerNetManager _netManager = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IServerDbManager _db = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IDependencyCollection _dependencies = default!;
-        [Dependency] private readonly ILogManager _log = default!;
-        [Dependency] private readonly UserDbDataManager _userDb = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IServerNetManager _netManager = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IServerDbManager _db = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IDependencyCollection _dependencies = default!;
+        [Dependency] private ILogManager _log = default!;
+        [Dependency] private UserDbDataManager _userDb = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
 
         // Cache player prefs on the server so we don't need as much async hell related to them.
         private readonly Dictionary<NetUserId, PlayerPrefData> _cachedPlayerPrefs =

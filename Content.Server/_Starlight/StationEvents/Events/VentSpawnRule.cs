@@ -2,9 +2,11 @@ using Content.Server._Starlight.StationEvents.Components;
 using Content.Server.Antag;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
-using Content.Shared.VentCrawl;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
+using Content.Shared._Starlight.VentCrawl.EntitySystems;
+using Content.Shared._Starlight.VentCrawl.Components;
+using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.StationEvents.Events;
 
@@ -14,7 +16,7 @@ namespace Content.Server._Starlight.StationEvents.Events;
 public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComponent>
 {
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedVentCrawlTubeSystem _ventCrawl = default!;
+    [Dependency] private SharedVentCrawlSystem _ventCrawl = default!;
 
     public override void Initialize()
     {
@@ -39,6 +41,13 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
         var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
         while (locations.MoveNext(out var loc, out _, out var transform))
         {
+            if (!transform.Anchored || !HasComp<VentCrawlEntryComponent>(loc) ||
+                !TryComp<VentCrawlTubeComponent>(loc, out var tube) ||
+                !tube.Connected)
+            {
+                continue;
+            }
+
             if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
                 comp.ValidLocations.Add((_transform.GetMapCoordinates(transform), loc));
         }
@@ -61,9 +70,38 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
     private void OnAfterSelection(Entity<VentSpawnRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
         if (!ent.Comp.InsertInVent) return;
-        if (!ent.Comp.Vent.TryGetValue(args.EntityUid, out var vent)) return;
+        if (!ent.Comp.Vent.TryGetValue(args.EntityUid, out var vent))
+            return;
 
-        if (!_ventCrawl.TryInsert(vent.Uid, args.EntityUid))
-            Log.Warning($"VentSpawnRule: failed to insert {ToPrettyString(args.EntityUid)} into vent {ToPrettyString(vent.Uid)}");
+        if (TryInsertInVent(args.EntityUid, vent))
+            return;
+
+        ent.Comp.ValidLocations.Remove(vent);
+
+        while (ent.Comp.ValidLocations.Count > 0)
+        {
+            vent = ent.Comp.ValidLocations[RobustRandom.Next(ent.Comp.ValidLocations.Count)];
+            ent.Comp.Vent[args.EntityUid] = vent;
+            _transform.SetMapCoordinates(args.EntityUid, vent.Coords);
+
+            if (TryInsertInVent(args.EntityUid, vent))
+                return;
+
+            ent.Comp.ValidLocations.Remove(vent);
+        }
+
+        Log.Warning($"VentSpawnRule: failed to insert {ToPrettyString(args.EntityUid)}. Last tried vent: {ToPrettyString(vent.Uid)}; rule: {ToPrettyString(ent.Owner)}");
+    }
+
+    private bool TryInsertInVent(EntityUid uid, (MapCoordinates Coords, EntityUid Uid) vent)
+    {
+        if (!HasComp<VentCrawlEntryComponent>(vent.Uid) ||
+            !TryComp<VentCrawlTubeComponent>(vent.Uid, out var tube) ||
+            !tube.Connected)
+        {
+            return false;
+        }
+
+        return _ventCrawl.TryInsert(vent.Uid, uid);
     }
 }

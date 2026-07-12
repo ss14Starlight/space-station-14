@@ -1,5 +1,4 @@
 using Content.Shared.Teleportation.Systems;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Anomaly.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Shared.Verbs;
@@ -11,26 +10,27 @@ using Content.Shared.Teleportation.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Examine;
 using Content.Server.Anomaly;
-using Content.Shared._Starlight.Railroading;
-using Content.Server._Starlight.Railroading;
 using Content.Shared.Light.Components;
 using Content.Shared.Throwing;
 using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Server._Starlight.Railroading.TaskSystems;
+using Content.Shared._Starlight.Shadekin.Components;
+using Content.Shared._Starlight.Railroading.Components.Watchers;
 
 namespace Content.Server._Starlight.Shadekin;
 
-public sealed class DarkPortalSystem : EntitySystem
+public sealed partial class DarkPortalSystem : EntitySystem
 {
-    [Dependency] private readonly LinkedEntitySystem _link = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PoweredLightSystem _light = default!;
-    [Dependency] private readonly ShadekinSystem _shadekin = default!;
-    [Dependency] private readonly SharedAnomalySystem _sharedAnomalySystem = default!;
-    [Dependency] private readonly AnomalySystem _anomalySystem = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly RailroadingSupercritPortalSystem _railroadingSupercritPortal = default!;
+    [Dependency] private LinkedEntitySystem _link = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PoweredLightSystem _light = default!;
+    [Dependency] private ShadekinSystem _shadekin = default!;
+    [Dependency] private SharedAnomalySystem _sharedAnomalySystem = default!;
+    [Dependency] private AnomalySystem _anomalySystem = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private RailroadingSupercritPortalSystem _railroadingSupercritPortal = default!;
 
     public override void Initialize()
     {

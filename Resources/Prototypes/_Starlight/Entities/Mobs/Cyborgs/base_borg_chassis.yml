@@ -180,6 +180,7 @@
     - Biological
     - Inorganic
     - Silicon
+    - Hybrid # Protogens
   - type: ShowHealthIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons

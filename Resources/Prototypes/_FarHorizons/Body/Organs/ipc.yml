@@ -19,6 +19,7 @@
   id: OrganIPCEyes
   parent: [BaseIPCOrganUnGibbable, BaseOrganEyes]
   name: robotic eyes
+  suffix: IPC
   description: "Decidedly not squishy. Kinda sharp, actually."
   components:
   - type: Sprite
@@ -45,6 +46,7 @@
   id: OrganIPCTongue
   parent: [BaseIPCOrganUnGibbable, BaseOrganTongue]
   name: vocal modulator
+  suffix: IPC
   description: "A vocal modulator, typically used for lying."
   components:
   - type: Sprite
@@ -54,6 +56,7 @@
   id: OrganIPCEars
   parent: [BaseIPCOrganUnGibbable, BaseOrganEars]
   name: robotic ears
+  suffix: IPC
   description: "Process audio at the same quality of station-side cyborgs"
   components:
   - type: Sprite
@@ -63,6 +66,7 @@
   id: OrganIPCHeart
   parent: [BaseIPCOrganUnGibbable, BaseOrganHeart]
   name: micro pump
+  suffix: IPC
   description: "Circulates coolant in a sickingly familiar way."
   components:
   - type: Sprite

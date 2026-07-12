@@ -2,6 +2,7 @@
   parent: OrganHumanBrain
   id: OrganVoxBrain
   name: vox cortical stack
+  suffix: Vox
   description: "A cortical stack from a vox, time to find a new sleeve."
   components:
   - type: BorgBrain
@@ -30,8 +31,9 @@
 - type: entity
   id: OrganVoxLungs
   parent: OrganHumanLungs
+  name: vox lungs
   description: "The blue, anaerobic lungs of a vox, they intake nitrogen to breathe. Any form of gaseous oxygen is lethally toxic if breathed in."
-  suffix: "vox"
+  suffix: Vox
   components:
   - type: Sprite
     sprite: Mobs/Species/Vox/organs.rsi
@@ -46,7 +48,8 @@
 - type: entity
   parent: OrganHumanStomach
   id: OrganVoxStomach
-  name: stomach
+  name: vox stomach
+  suffix: Vox
   description: "A stomach that smells of ammonia."
   components:
   - type: Metabolizer #Skreeeee!
@@ -63,7 +66,8 @@
 - type: entity
   parent: OrganHumanLiver
   id: OrganVoxLiver
-  name: liver
+  name: vox liver
+  suffix: Vox
   description: "Smells flammable."
   components:
   - type: Metabolizer
@@ -84,7 +88,8 @@
 - type: entity
   parent: OrganHumanHeart
   id: OrganVoxHeart
-  name: heart
+  name: vox heart
+  suffix: Vox
   description: "The strange heart of a vox."
   components:
   - type: Metabolizer
@@ -95,7 +100,8 @@
 - type: entity
   parent: OrganHumanKidneys
   id: OrganVoxKidneys
-  name: kidney
+  name: vox kidneys
+  suffix: Vox
   description: "Smells flammable."
   components:
   - type: Metabolizer
@@ -106,7 +112,8 @@
 - type: entity
   id: OrganVoxEyes
   parent: OrganHumanEyes
-  name: eyes
+  name: vox eyes
+  suffix: Vox
   components:
   - type: Sprite
     sprite: Mobs/Species/Vox/organs.rsi
@@ -122,20 +129,10 @@
 # Starlight End
 
 - type: entity
-  id: OrganVoxTongueA
+  id: OrganVoxTongue
   parent: OrganHumanTongue
-  name: tongue
-  description: "A fleshy muscle mostly used for screaming."
-  components:
-  - type: Sprite
-    sprite: Mobs/Species/Vox/organs.rsi
-  - type: Item
-    size: Small
-
-- type: entity
-  id: OrganVoxTongueB
-  parent: OrganHumanTongue
-  name: tongue
+  name: vox tongue
+  suffix: Vox
   description: "A fleshy muscle mostly used for screaming."
   components:
   - type: Sprite

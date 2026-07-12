@@ -5,11 +5,11 @@ using Content.Shared.Timing;
 
 namespace Content.Server._Starlight.EventSelector;
 
-public sealed class EventSelectorSystem : SharedEventSelectorSystem
+public sealed partial class EventSelectorSystem : SharedEventSelectorSystem
 {
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
 
     public override void Initialize()
     {

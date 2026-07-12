@@ -25,9 +25,9 @@ public sealed partial class NullLinkEventBusManager : IEventBusObserver, INullLi
     private Timer? _resubscribeTimer;
     private int _resubscribeFailures;
 
-    [Dependency] private readonly IActorRouter _actors = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly INullLinkPlayerManager _players = default!;
+    [Dependency] private IActorRouter _actors = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private INullLinkPlayerManager _players = default!;
 
     private ISawmill _sawmill = default!;
     private readonly ConcurrentQueue<BaseEvent> _eventQueue = [];

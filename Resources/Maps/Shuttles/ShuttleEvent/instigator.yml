@@ -778,7 +778,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: BoxFolderNuclearCodes
+- proto: BoxFolderAllNuclearCodes
   entities:
   - uid: 526
     components:

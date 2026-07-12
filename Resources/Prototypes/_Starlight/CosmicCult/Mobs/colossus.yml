@@ -194,7 +194,6 @@
     - ActionViewLaws
     - ActionCosmicColossusSunder
     - ActionCosmicColossusIngress
-    - ActionCosmicColossusHibernate
   - type: MeleeWeapon
     altDisarm: false
     animation: WeaponArcCosmic
@@ -282,6 +281,10 @@
       0: Alive
       400: Dead
   - type: CosmicColossus
+  - type: CosmicCorrupting
+    mobile: true
+    autoDisable: false
+    corruptionReduction: 0
 
 - type: speechSounds
   id: ColossusSpeech
@@ -291,6 +294,7 @@
     path: /Audio/_Starlight/CosmicCult/colossus_ask.ogg
   exclaimSound:
     path: /Audio/_Starlight/CosmicCult/colossus_exclaim.ogg
+
 
 - type: entity
   categories: [ HideSpawnMenu ]

@@ -52,35 +52,36 @@ using Robust.Shared.Localization;
 using Robust.Shared.Log;
 using Robust.Shared.Map;
 using System.Collections.Generic;
+using Content.Shared._Starlight.StationAi;
 #endregion Starlight
 
 namespace Content.Server.Silicons.StationAi;
 
-public sealed class StationAiSystem : SharedStationAiSystem
+public sealed partial class StationAiSystem : SharedStationAiSystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedTransformSystem _xforms = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly RoleSystem _roles = default!;
-    [Dependency] private readonly ItemSlotsSystem _slots = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly ToggleableGhostRoleSystem _ghostrole = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly DestructibleSystem _destructible = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedPopupSystem _popups = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _xforms = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private RoleSystem _roles = default!;
+    [Dependency] private ItemSlotsSystem _slots = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private ToggleableGhostRoleSystem _ghostrole = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private DestructibleSystem _destructible = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedPopupSystem _popups = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private StationJobsSystem _stationJobs = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     // Starlight Start
-    [Dependency] private readonly IMapManager _map = default!;
-    [Dependency] private readonly SuitSensorSystem _suitSensors = default!;
-    [Dependency] private readonly FollowerSystem _followerSystem = default!;
-    [Dependency] private readonly StationAiVisionSystem _aiVision = default!;
+    [Dependency] private IMapManager _map = default!;
+    [Dependency] private SuitSensorSystem _suitSensors = default!;
+    [Dependency] private FollowerSystem _followerSystem = default!;
+    [Dependency] private StationAiVisionSystem _aiVision = default!;
     // Starlight End
 
     private readonly HashSet<Entity<StationAiCoreComponent>> _stationAiCores = new();

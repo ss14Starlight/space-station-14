@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Weapons.Hitscan.Components;
+namespace Content.Shared._Starlight.Weapons.Hitscan.Components;
 
 /// <summary>
 /// Hitscan entities that have this will be able to ricochet off of things like walls which have RicochetableComponent.

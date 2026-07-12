@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared._Starlight.IoC;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Advertise.Components;
@@ -20,28 +19,32 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+#region Starlight
+using Content.Shared._Starlight.IoC;
+using Content.Shared._Starlight.VendingMachines;
+#endregion
 
 namespace Content.Shared.VendingMachines;
 
 public abstract partial class SharedVendingMachineSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] private   readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private   readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] private   readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] protected readonly SharedPointLightSystem Light = default!;
-    [Dependency] private   readonly SharedPowerReceiverSystem _receiver = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
-    [Dependency] private   readonly SharedSpeakOnUIClosedSystem _speakOn = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UISystem = default!;
-    [Dependency] protected readonly IRobustRandom Randomizer = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] private   AccessReaderSystem _accessReader = default!;
+    [Dependency] private   SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] private   SharedDoAfterSystem _doAfter = default!;
+    [Dependency] protected SharedPointLightSystem Light = default!;
+    [Dependency] private   SharedPowerReceiverSystem _receiver = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
+    [Dependency] private   SharedSpeakOnUIClosedSystem _speakOn = default!;
+    [Dependency] protected SharedUserInterfaceSystem UISystem = default!;
+    [Dependency] protected IRobustRandom Randomizer = default!;
+    [Dependency] private EmagSystem _emag = default!;
 
     // Starlight
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedSLIoCSystem _slIoc = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedSLIoCSystem _slIoc = default!;
 
     public override void Initialize()
     {

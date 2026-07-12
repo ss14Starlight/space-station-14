@@ -12,7 +12,7 @@ public sealed partial class ScrambledAccentSystem : EntitySystem
     [GeneratedRegex(@"(?<=\ )i(?=[\ \.\?]|$)")]
     private static partial Regex RegexLoneI();
 
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

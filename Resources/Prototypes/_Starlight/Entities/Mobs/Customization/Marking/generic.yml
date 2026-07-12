@@ -3,7 +3,7 @@
   id: HeadHeavyTattoos
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Elf, Protogen]
   coloring:
     default:
       type:
@@ -15,12 +15,32 @@
   - sprite: _Starlight/Mobs/Customization/Generic/head.rsi
     state: head_heavy2
 
+- type: marking
+  id: HeadScarLeft
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf, Reptilian, SlimePerson]
+  followSkinColor: true
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+    state: scar-head-l
+
+- type: marking
+  id: HeadScarRight
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf, Reptilian, SlimePerson]
+  followSkinColor: true
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+    state: scar-head-r
+
 # Head Top
 - type: marking
   id: HeadEarrings
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, Dwarf, SlimePerson]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, SlimePerson, ProtoSlimePerson, Protogen]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -38,7 +58,7 @@
   id: HeadEarringsDrop
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, Dwarf, SlimePerson]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, SlimePerson, ProtoSlimePerson, Protogen]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -56,7 +76,7 @@
   id: HeadEarringsWeights
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, Dwarf, SlimePerson]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, SlimePerson, ProtoSlimePerson, Protogen]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -75,7 +95,7 @@
   id: HeadSeptum
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Human, Dwarf, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Elf, Protogen]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -92,7 +112,7 @@
   id: ChestNecklace
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Thaven, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Thaven, Elf, Protogen]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -108,7 +128,7 @@
   id: ChestCutHere
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Thaven, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Thaven, Elf, Protogen]
   coloring:
     default:
       type:
@@ -122,7 +142,7 @@
   id: ChestHeavyTattoos
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Elf, Protogen]
   coloring:
     default:
       type:
@@ -140,7 +160,7 @@
   id: BodyHairChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Elf, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_chest
@@ -149,7 +169,7 @@
   id: BodyHairBack
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_back
@@ -159,7 +179,7 @@
   id: HandBraceletLeft
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -175,7 +195,7 @@
   id: HandBraceletRight
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -191,7 +211,7 @@
   id: HandRingsLeft
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -209,7 +229,7 @@
   id: HandRingsRight
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -227,7 +247,7 @@
   id: ArmDollJointsTattooLeft
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   coloring:
     default:
       type:
@@ -241,7 +261,7 @@
   id: ArmDollJointsTattooRight
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   coloring:
     default:
       type:
@@ -255,7 +275,7 @@
   id: HandDollJointsTattooLeft
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   coloring:
     default:
       type:
@@ -269,7 +289,7 @@
   id: HandDollJointsTattooRight
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   coloring:
     default:
       type:
@@ -283,7 +303,7 @@
   id: ArmHeavyTattoosLeft
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   coloring:
     default:
       type:
@@ -299,7 +319,7 @@
   id: ArmHeavyTattoosRight
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   coloring:
     default:
       type:
@@ -315,7 +335,7 @@
   id: HandHeavyTattoosLeft
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   coloring:
     default:
       type:
@@ -331,7 +351,7 @@
   id: HandHeavyTattoosRight
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Vulpkanin, ProtoVulp, Elf, Protogen]
   coloring:
     default:
       type:
@@ -347,7 +367,7 @@
   id: BodyHairLeftArm
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_left_arm
@@ -356,17 +376,35 @@
   id: BodyHairRightArm
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_right_arm
+
+- type: marking
+  id: ScarLeftArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+      state: scar-arm-l
+
+- type: marking
+  id: ScarRightArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+      state: scar-arm-r
 
 # Legs
 - type: marking
   id: LegDollJointsTattooLeft
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Elf, Protogen]
   coloring:
     default:
       type:
@@ -380,7 +418,7 @@
   id: LegDollJointsTattooRight
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Elf, Protogen]
   coloring:
     default:
       type:
@@ -394,7 +432,7 @@
   id: FootDollJointsTattooLeft
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Elf, Protogen]
   coloring:
     default:
       type:
@@ -408,7 +446,7 @@
   id: FootDollJointsTattooRight
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Elf, Protogen]
   coloring:
     default:
       type:
@@ -422,7 +460,7 @@
   id: LegHeavyTattoosLeft
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Elf, Protogen]
   coloring:
     default:
       type:
@@ -438,7 +476,7 @@
   id: LegHeavyTattoosRight
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Reptilian, ProtoReptilian, Elf, Protogen]
   coloring:
     default:
       type:
@@ -454,7 +492,7 @@
   id: FootHeavyTattoosLeft
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Elf, Protogen]
   coloring:
     default:
       type:
@@ -470,7 +508,7 @@
   id: FootHeavyTattoosRight
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Elf]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Elf, Protogen]
   coloring:
     default:
       type:
@@ -486,7 +524,7 @@
   id: BodyHairLeftLeg
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_left_leg
@@ -495,7 +533,25 @@
   id: BodyHairRightLeg
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  speciesRestriction: [Human, ProtoHuman, Dwarf, ProtoDwarf, Arachnid, ProtoArachnid, SlimePerson, ProtoSlimePerson, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_right_leg
+
+- type: marking
+  id: LegScarLeft
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+      state: scar-leg-l
+
+- type: marking
+  id: LegScarRight
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+      state: scar-leg-r

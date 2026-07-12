@@ -10,9 +10,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
-public sealed class CosmicCorruptingSystem : EntitySystem
+public sealed partial class CosmicCorruptingSystem : EntitySystem
 {
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private MapSystem _map = default!;
 
     private readonly HashSet<Vector2i> _neighbourPositions =
     [
@@ -27,11 +27,11 @@ public sealed class CosmicCorruptingSystem : EntitySystem
         new(1, -1),
     ];
 
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly TurfSystem _turfs = default!;
+    [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private TileSystem _tile = default!;
+    [Dependency] private ITileDefinitionManager _tileDefinition = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private TurfSystem _turfs = default!;
 
     /// <remarks>
     ///     this system is a mostly generic way of replacing tiles around an entity. the only hardcoded behaviour is secret
@@ -135,7 +135,7 @@ public sealed class CosmicCorruptingSystem : EntitySystem
 
     #region API
 
-    public void SetCorruptionTime(Entity<CosmicCorruptingComponent> ent, TimeSpan time)
+    public static void SetCorruptionTime(Entity<CosmicCorruptingComponent> ent, TimeSpan time)
         => ent.Comp.CorruptionSpeed = time;
 
     public void Enable(Entity<CosmicCorruptingComponent> ent, bool recalculate = true)

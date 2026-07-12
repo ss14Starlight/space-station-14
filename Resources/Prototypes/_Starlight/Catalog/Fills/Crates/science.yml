@@ -1,5 +1,6 @@
 - type: entity
   id: CrateLawboards
+  categories: [ ShouldMapStation ]
   parent: CrateRDSecure
   name: AI lawboard crate
   description: A crate filled with various AI lawboards.

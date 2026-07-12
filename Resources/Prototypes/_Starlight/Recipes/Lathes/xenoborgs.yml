@@ -1,10 +1,10 @@
 - type: latheRecipe
   parent: BaseXenoborgRecipe
-  id: XenoborgiRecipe
-  result: XenoBorgiPrinted
+  id: XenoroachRecipe
+  result: MobXenoroach
   materials:
-    Steel: 2000
-    Biomass: 10
+    Steel: 750
+    Glass: 250
 
 ## Heavy Xenoborg Modules
 - type: latheRecipe

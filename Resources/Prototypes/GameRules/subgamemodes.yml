@@ -61,7 +61,7 @@
       tags:
         - CantBecomeRevolutionary
   - type: DynamicRuleCost
-    cost: 75
+    cost: 125
       # Starlight-end
 
 - type: entity
@@ -95,6 +95,8 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary # Same as lings, would be too strong.
+  - type: DynamicRuleCost
+    cost: 125
     # Starlight-end
 
 # Needs testing
@@ -111,7 +113,7 @@
       playerRatio: 55 # Starlight, ensures Beta only has 1 wizard. Also less egregious.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
-      - RoleSurvivalExtended
+      - AntagWizard # Starlight
       briefing:
         text: wizard-role-greeting
         color: Turquoise
@@ -136,6 +138,8 @@
         - Wizard
       allowNonHumans: true
       # Starlight-end
+  - type: DynamicRuleCost
+    cost: 100
 
 - type: entity
   parent: BaseGameRule

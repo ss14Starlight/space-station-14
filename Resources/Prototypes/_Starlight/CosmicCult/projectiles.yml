@@ -131,7 +131,7 @@
       state: arc_cosmic
   - type: EffectVisuals
   - type: PointLight
-    color: "#42a4ae"
+    color: "#9f5ee9"
     radius: 1.5
     energy: 6
     castShadows: false
@@ -149,3 +149,25 @@
   - type: Tag
     tags:
       - HideContextMenu
+
+- type: entity
+  id: CosmicLambdaBeam
+  parent: BasicHitscan
+  name: Nullspace Stabilizer Beam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 30
+        Structural: 10
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: muzzle_beam_heavy2
+    travelFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: beam_heavy2
+    impactFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: impact_beam_heavy2

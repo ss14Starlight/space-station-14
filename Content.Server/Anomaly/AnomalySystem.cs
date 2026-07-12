@@ -18,6 +18,14 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+#region Starlight
+using Content.Shared.DoAfter;
+using Content.Shared.Projectiles;
+using Content.Shared.Singularity.Components;
+using Content.Server.Singularity.EntitySystems;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared._Starlight.CosmicCult.Components;
+#endregion
 
 namespace Content.Server.Anomaly;
 
@@ -26,19 +34,24 @@ namespace Content.Server.Anomaly;
 /// </summary>
 public sealed partial class AnomalySystem : SharedAnomalySystem
 {
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly AmbientSoundSystem _ambient = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly MaterialStorageSystem _material = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly RadiationSystem _radiation = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private AmbientSoundSystem _ambient = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private MaterialStorageSystem _material = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private RadiationSystem _radiation = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    #region Starlight
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private EmitterSystem _emitter = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
+    #endregion
 
     public const float MinParticleVariation = 0.8f;
     public const float MaxParticleVariation = 1.2f;
@@ -53,6 +66,9 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         SubscribeLocalEvent<AnomalyComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<AnomalyComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<AnomalyStabilityChangedEvent>(OnVesselAnomalyStabilityChanged);
+        #region Starlight
+        SubscribeLocalEvent<AnomalyComponent, AnomalyParticleInteractionDoAfterEvent>(OnParticleInteractionDoAfter);
+        #endregion
 
         InitializeGenerator();
         InitializeVessel();
@@ -61,13 +77,22 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
     private void OnMapInit(Entity<AnomalyComponent> anomaly, ref MapInitEvent args)
     {
-        anomaly.Comp.NextPulseTime = Timing.CurTime + GetPulseLength(anomaly.Comp) * 3; // longer the first time
+        // Starlight edit Start
+        if (anomaly.Comp.CanPulse)
+            anomaly.Comp.NextPulseTime = Timing.CurTime + GetPulseLength(anomaly.Comp) * 3; // longer the first time
+        // Starlight edit End
         ChangeAnomalyStability(anomaly, Random.NextFloat(anomaly.Comp.InitialStabilityRange.Item1 , anomaly.Comp.InitialStabilityRange.Item2), anomaly.Comp);
         ChangeAnomalySeverity(anomaly, Random.NextFloat(anomaly.Comp.InitialSeverityRange.Item1, anomaly.Comp.InitialSeverityRange.Item2), anomaly.Comp);
 
-        ShuffleParticlesEffect(anomaly);
+        // Starlight edit Start
+        if (anomaly.Comp.ShuffleParticlesOnMapInit)
+            ShuffleParticlesEffect(anomaly);
+
         anomaly.Comp.Continuity = _random.NextFloat(anomaly.Comp.MinContituty, anomaly.Comp.MaxContituty);
-        SetBehavior(anomaly, GetRandomBehavior());
+
+        if (anomaly.Comp.RandomBehaviorOnMapInit)
+            SetBehavior(anomaly, GetRandomBehavior());
+        // Starlight edit End
     }
 
     public void ShuffleParticlesEffect(Entity<AnomalyComponent> anomaly)
@@ -112,25 +137,37 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         // small function to randomize because it's easier to read like this
         float VaryValue(float v) => v * behaviorMod * Random.NextFloat(MinParticleVariation, MaxParticleVariation);
 
-        if (particle.ParticleType == anomaly.Comp.DestabilizingParticleType || particle.DestabilzingOverride)
+        #region Starlight Edit
+        if (anomaly.Comp.UseNormalUnstableParticle &&
+            (particle.ParticleType == anomaly.Comp.DestabilizingParticleType || particle.DestabilzingOverride))
         {
             ChangeAnomalyStability(anomaly, VaryValue(particle.StabilityPerDestabilizingHit), anomaly.Comp);
         }
-        if (particle.ParticleType == anomaly.Comp.SeverityParticleType || particle.SeverityOverride)
+
+        if (anomaly.Comp.UseNormalDangerParticle &&
+            (particle.ParticleType == anomaly.Comp.SeverityParticleType || particle.SeverityOverride))
         {
             ChangeAnomalySeverity(anomaly, VaryValue(particle.SeverityPerSeverityHit), anomaly.Comp);
         }
-        if (particle.ParticleType == anomaly.Comp.WeakeningParticleType || particle.WeakeningOverride)
+
+        if (anomaly.Comp.UseNormalContainmentParticle &&
+            (particle.ParticleType == anomaly.Comp.WeakeningParticleType || particle.WeakeningOverride))
         {
             ChangeAnomalyHealth(anomaly, VaryValue(particle.HealthPerWeakeningeHit), anomaly.Comp);
             ChangeAnomalyStability(anomaly, VaryValue(particle.StabilityPerWeakeningeHit), anomaly.Comp);
         }
-        if (particle.ParticleType == anomaly.Comp.TransformationParticleType || particle.TransmutationOverride)
+
+        if (anomaly.Comp.UseNormalTransformationParticle &&
+            (particle.ParticleType == anomaly.Comp.TransformationParticleType || particle.TransmutationOverride))
         {
             ChangeAnomalySeverity(anomaly, VaryValue(particle.SeverityPerSeverityHit), anomaly.Comp);
+
             if (_random.Prob(anomaly.Comp.Continuity))
                 SetBehavior(anomaly, GetRandomBehavior());
         }
+
+        TryStartParticleInteraction(anomaly, particle, args.OtherEntity);
+        #endregion
 
         var ev = new AnomalyAffectedByParticleEvent(anomaly, args.OtherEntity);
         RaiseLocalEvent(anomaly, ref ev);
@@ -223,6 +260,165 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
         EntityManager.RemoveComponents(anomaly, behavior.Components);
     }
+
+    #region Starlight
+    private void TryStartParticleInteraction(
+        Entity<AnomalyComponent> anomaly,
+        AnomalousParticleComponent particle,
+        EntityUid particleUid)
+    {
+        if (anomaly.Comp.ParticleInteractions.Count == 0)
+            return;
+
+        if (_doAfter.IsRunning(anomaly.Comp.ParticleInteractionDoAfter))
+            return;
+
+        var interactionIndex = GetMatchingParticleInteraction(anomaly.Comp, particle);
+
+        if (interactionIndex == null)
+            return;
+
+        var interaction = anomaly.Comp.ParticleInteractions[interactionIndex.Value];
+
+        if (!TryComp<ProjectileComponent>(particleUid, out var projectile) ||
+            projectile.Shooter is not { } shooter)
+            return;
+
+        var source = GetPoweredNullspaceStabilizerSource(shooter);
+        if (source == null)
+            return;
+
+        if (interaction.Delay <= TimeSpan.Zero)
+        {
+            ApplyParticleInteraction(anomaly, interaction, shooter);
+            return;
+        }
+
+        var doAfterArgs = new DoAfterArgs(
+            EntityManager,
+            shooter,
+            interaction.Delay,
+            new AnomalyParticleInteractionDoAfterEvent(),
+            anomaly,
+            anomaly)
+        {
+            NeedHand = false,
+            BreakOnWeightlessMove = true,
+            BreakOnMove = true,
+            BreakOnHandChange = false,
+            BreakOnDropItem = false,
+            BreakOnDamage = false,
+            RequireCanInteract = false,
+            DistanceThreshold = interaction.DistanceThreshold,
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfterArgs, out var doAfterId))
+            return;
+
+        anomaly.Comp.ParticleInteractionDoAfter = doAfterId;
+        anomaly.Comp.ActiveParticleInteraction = interactionIndex;
+        anomaly.Comp.ActiveParticleInteractionSource = shooter;
+
+        source.DoAfterId = doAfterId;
+    }
+
+    private static int? GetMatchingParticleInteraction(
+        AnomalyComponent anomaly,
+        AnomalousParticleComponent particle)
+    {
+        for (var i = 0; i < anomaly.ParticleInteractions.Count; i++)
+        {
+            var interaction = anomaly.ParticleInteractions[i];
+
+            if (interaction.InteractionKey != null &&
+                interaction.InteractionKey == particle.InteractionKey)
+                return i;
+
+            if (interaction.ParticleType != null &&
+                interaction.ParticleType == particle.ParticleType)
+                return i;
+        }
+
+        return null;
+    }
+
+    private void OnParticleInteractionDoAfter(
+        Entity<AnomalyComponent> anomaly,
+        ref AnomalyParticleInteractionDoAfterEvent args)
+    {
+        var source = anomaly.Comp.ActiveParticleInteractionSource;
+
+        anomaly.Comp.ParticleInteractionDoAfter = null;
+        anomaly.Comp.ActiveParticleInteractionSource = null;
+
+        if (source is { } sourceUid &&
+            TryComp<CosmicLambdaParticleSourceComponent>(sourceUid, out var sourceComp))
+        {
+            sourceComp.DoAfterId = null;
+        }
+
+        if (args.Cancelled || args.Handled)
+        {
+            anomaly.Comp.ActiveParticleInteraction = null;
+            return;
+        }
+
+        args.Handled = true;
+
+        if (anomaly.Comp.ActiveParticleInteraction is not { } index ||
+            index < 0 ||
+            index >= anomaly.Comp.ParticleInteractions.Count)
+        {
+            anomaly.Comp.ActiveParticleInteraction = null;
+            return;
+        }
+
+        var interaction = anomaly.Comp.ParticleInteractions[index];
+
+        anomaly.Comp.ActiveParticleInteraction = null;
+
+        ApplyParticleInteraction(anomaly, interaction, args.User);
+    }
+
+    private void ApplyParticleInteraction(
+        Entity<AnomalyComponent> anomaly,
+        AnomalyParticleInteraction interaction,
+        EntityUid user)
+    {
+        var coords = Transform(anomaly).Coordinates;
+
+        if (TryComp<EmitterComponent>(user, out var emitter))
+            _emitter.PowerOff(user, emitter);
+
+        if (interaction.VisualEffect is { } effectProto)
+            Spawn(effectProto, coords);
+
+        if (interaction.Sound is { } sound)
+            _audio.PlayPvs(sound, coords);
+
+        switch (interaction.Effect)
+        {
+            case AnomalyParticleInteractionEffect.EndAnomaly:
+                EndAnomaly(anomaly, anomaly.Comp, spawnCore: interaction.SpawnCore);
+
+                if (interaction.DeleteEntityAfterEnd && !TerminatingOrDeleted(anomaly.Owner))
+                    QueueDel(anomaly.Owner);
+
+                break;
+
+            case AnomalyParticleInteractionEffect.DeleteEntity:
+                QueueDel(anomaly);
+                break;
+        }
+    }
+
+    private CosmicLambdaParticleSourceComponent? GetPoweredNullspaceStabilizerSource(EntityUid uid)
+        => !TryComp<CosmicLambdaParticleSourceComponent>(uid, out var source)
+        ? null : !_powerReceiver.IsPowered(uid)
+        ? null : source;
+
+    #endregion
+
     #endregion
 
     #region Information
@@ -318,7 +514,13 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-particle-containment-unknown"));
         else
         {
-            var text = Loc.GetString("anomaly-scanner-particle-containment", ("type", GetParticleLocale(anomalyComp.WeakeningParticleType)));
+            // Starlight edit Start
+            var particleName = anomalyComp.ScannerContainmentParticleReadout is { } containmentReadout
+                ? Loc.GetString(containmentReadout)
+                : GetParticleLocale(anomalyComp.WeakeningParticleType);
+
+            var text = Loc.GetString("anomaly-scanner-particle-containment", ("type", particleName));
+            // Starlight edit End
             if (secret != null && secret.Secret.Contains(AnomalySecretData.ParticleContainment))
                 text += " " + Loc.GetString("anomaly-secret-admin");
             msg.AddMarkupOrThrow(text);

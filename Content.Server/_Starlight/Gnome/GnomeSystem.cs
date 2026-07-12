@@ -14,11 +14,11 @@ namespace Content.Server._Starlight.Gnome;
 
 public sealed partial class GnomeSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly OutfitSystem _outfit = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private OutfitSystem _outfit = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private AutoEmoteSystem _autoEmote = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     public override void Initialize()
     {

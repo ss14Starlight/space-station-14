@@ -7,19 +7,22 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Abilities.Mime; // Starlight
+using Content.Server.Popups; // Starlight
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
 /// <summary>
 ///     Server-side class implementing the core UI logic of NanoTask
 /// </summary>
-public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
+public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private PopupSystem _popupSystem = default!; // Starlight
 
     public override void Initialize()
     {
@@ -129,6 +132,25 @@ public sealed class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
                     return;
                 if (_timing.CurTime < ent.Comp.NextPrintAllowedAfter)
                     return;
+
+                #region Starlight
+                // allow mimes to print blank NanoTasks (because it's funny)
+                if(TryComp<MimePowersComponent>(args.Actor, out var mime) && !mime.VowBroken)
+                {
+                    // check that the NanoTask is blank
+                    var isBlankNanoTask
+                    = string.IsNullOrWhiteSpace(task.Item.Description)
+                    && string.IsNullOrWhiteSpace(task.Item.TaskIsFor);
+
+                    // if it's not blank, tell the mime they can't do that while their vow is active
+                    if(!isBlankNanoTask)
+                    {
+                        _popupSystem.PopupEntity(Loc.GetString("mime-cant-speak"), args.Actor, args.Actor);
+                        return;
+                    }
+
+                }
+                #endregion Starlight
 
                 ent.Comp.NextPrintAllowedAfter = _timing.CurTime + ent.Comp.PrintDelay;
                 var printed = Spawn("PaperNanoTaskItem", Transform(message.Actor).Coordinates);

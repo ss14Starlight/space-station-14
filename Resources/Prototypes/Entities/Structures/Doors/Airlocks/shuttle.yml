@@ -79,7 +79,6 @@
   - type: Tag
     tags:
       - ForceNoFixRotations
-      - ExternalAirlock # Starlight
   - type: Construction
     graph: AirlockShuttle
     node: airlock

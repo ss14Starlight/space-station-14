@@ -1,7 +1,8 @@
 using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared.Interaction.Events;
 
-namespace Content.Shared._Starlight.NullSpace;
+namespace Content.Shared._Starlight.NullSpace.Systems;
 
 public abstract partial class SharedShowNullSpaceSystem : EntitySystem
 {

@@ -5,9 +5,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Starlight.Xenobiology;
 
-public sealed class SlimeAnimationSystem : EntitySystem
+public sealed partial class SlimeAnimationSystem : EntitySystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
 
     private const string SlimeEatAnimationKey = "slime-eat";
 

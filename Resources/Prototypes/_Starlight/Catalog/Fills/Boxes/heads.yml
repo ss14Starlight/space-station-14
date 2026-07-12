@@ -8,3 +8,16 @@
         storagebase: !type:AllSelector
           children:
             - id: LawCommsComputerCircuitboard # Starlight
+
+- type: entity
+  parent: BoxStamps
+  id: BoxWardenStamps
+  name: warden's stamp box
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: RubberStampWarden

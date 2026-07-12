@@ -1,0 +1,53 @@
+# Group
+- type: faxGroup
+  id: FaxGroupCommand
+  name: fax-group-command
+  order: 2000
+  color: "#fcdf03"
+
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineCommandBase
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#fcdf03"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineCommandBase
+  id: FaxMachineCommandBridge
+  suffix: "CMD: Bridge"
+  components:
+    - type: FaxMachine
+      group: FaxGroupCommand
+      name: "Bridge"
+      order: 100
+
+# Captain's Office: order=200
+
+# Fax machines
+- type: entity
+  parent: FaxMachineCommandBase
+  id: FaxMachineCommandConference
+  suffix: "CMD: Conference"
+  components:
+    - type: FaxMachine
+      group: FaxGroupCommand
+      name: "Conference"
+      order: 300
+
+# Fax machines
+- type: entity
+  parent: FaxMachineCommandBase
+  id: FaxMachineCommandAICore
+  suffix: "CMD: AI Core"
+  components:
+    - type: FaxMachine
+      group: FaxGroupCommand
+      name: "AI Core"
+      order: 400

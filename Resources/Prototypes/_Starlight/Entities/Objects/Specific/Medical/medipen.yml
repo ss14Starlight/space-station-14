@@ -1,0 +1,36 @@
+- type: entity
+  parent: [ChemicalMedipen]
+  id: AdvancedMedipen
+  name: advanced medipen
+  description: A single-dose, non-refillable medipen containing a large quantity of polypyrylium for long term stabilization.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#9423FF"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#9423FF"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Specific/Medical/medical.rsi
+    layers:
+    - state: polypen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: polypen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+        reagents:
+        - ReagentId: PolypyryliumOligomers
+          Quantity: 30
+  - type: StaticPrice
+    price: 1000

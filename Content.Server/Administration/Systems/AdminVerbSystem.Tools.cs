@@ -42,7 +42,6 @@ using Content.Server._Starlight.Medical.Limbs;
 using Content.Server._Starlight.Thaven;
 using Content.Server.Administration.Components;
 using Content.Server.Power.Components;
-using Content.Shared._Starlight.Thaven.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Contraband;
@@ -50,29 +49,31 @@ using Content.Shared.Electrocution;
 using Content.Shared.Humanoid;
 using Content.Shared.Overlays;
 using Content.Shared._Starlight.Medical.Body.Part;
+using Content.Shared._Starlight;
+using Content.Shared._Starlight.Thaven;
 #endregion Starlight
 
 namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    [Dependency] private readonly DoorSystem _door = default!;
-    [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
-    [Dependency] private readonly AirlockSystem _airlockSystem = default!;
-    [Dependency] private readonly StackSystem _stackSystem = default!;
-    [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly AdminTestArenaSystem _adminTestArenaSystem = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
-    [Dependency] private readonly JointSystem _jointSystem = default!;
-    [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private DoorSystem _door = default!;
+    [Dependency] private SharedElectrocutionSystem _electrocution = default!;
+    [Dependency] private AirlockSystem _airlockSystem = default!;
+    [Dependency] private StackSystem _stackSystem = default!;
+    [Dependency] private SharedAccessSystem _accessSystem = default!;
+    [Dependency] private HandsSystem _handsSystem = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private AdminTestArenaSystem _adminTestArenaSystem = default!;
+    [Dependency] private StationJobsSystem _stationJobsSystem = default!;
+    [Dependency] private JointSystem _jointSystem = default!;
+    [Dependency] private SharedBatterySystem _batterySystem = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private GunSystem _gun = default!;
 
     #region Starlight
-    [Dependency] private readonly LimbSystem _limbSystem = default!;
-    [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
+    [Dependency] private LimbSystem _limbSystem = default!;
+    [Dependency] private StarlightEntitySystem _entitySystem = default!;
     #endregion
 
     private void AddTricksVerbs(GetVerbsEvent<Verb> args)
@@ -1127,5 +1128,6 @@ public sealed partial class AdminVerbSystem
         AddRandomMood = -32, //Starlight Thaven
         AddCustomMood = -33, //Starlight Thaven
         BlockObjectiveTargeting = -44, // Starlight
+        RejoinAtmosDevice = -45 // Starlight
     }
 }

@@ -1,0 +1,21 @@
+<Document>
+  # Proto-Human
+<!-- Starlight, renamed back to Human.-->
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoHuman" Caption=""/>
+  </Box>
+
+  Interestingly, the term "Protogen" originates from a Human-created fictional species that shares the same appearance as what are refered to as simply "Protogens"- those without a distinct species.
+
+  One could argue humanity invented the Protogen species at large by extension, but, the term was only coined after other races started undergoing the same proceedure.
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoVulp" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceProtogen" Caption=""/>
+  </Box>
+ In fact, it was the advent of Protogen-Vulpkanins in particular that really popularized the name "Protogen" due to the striking resemblance to the fictional race.
+
+  ## Resistances
+  - Receive [color=#ffa500]10% more heat damage[/color], [color=#8147ff]25% more shock damage[/color], and [color=#FF3636]10% more blunt damage[/color].
+  - Receive [color=#1e90ff]30% less cold damage[/color].
+</Document>

@@ -59,7 +59,7 @@
         Cold: 0.85
 
 - type: entity
-  parent: [ClothingOuterBase, BaseNanoTrasenContraband]
+  parent: [ ClothingOuterBase, BaseNanoTrasenContraband, AllowSuitStorageClothingGasTanks ]
   id: ClothingOuterRobesMagistrate
   name: magistrate robes
   description: This robe commands authority. Much more dense than the commoner variants.
@@ -82,7 +82,7 @@
         Cold: 0.85
 
 - type: entity
-  parent: [ ClothingOuterStorageFoldableBase, BaseNanoTrasenContraband ]
+  parent: [ ClothingOuterStorageFoldableBase, BaseNanoTrasenContraband, AllowSuitStorageClothingGasTanks ]
   id: ClothingOuterCoatNtrep
   name: nt representative jacket
   description: A fancy black jacket, standard issue to NanoTrasen Representatives.
@@ -447,6 +447,77 @@
   id: ClothingOuterWindbreakerMedicalOpened
   name: medical windbreaker
 
+# Senior Chemist long coat
+- type: entity
+  parent: ClothingOuterCoatLabSeniorChemist
+  id: ClothingOuterCoatLabSeniorChemistLong
+  name: long senior chemist lab coat
+  description: A NanoTrasen standard labcoat for medical personnel but long with bright orange and purple accents.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/senior_chemistry_long_lab.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/senior_chemistry_long_lab.rsi
+
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorChemistLong ]
+  id: ClothingOuterCoatLabSeniorChemistLongOpened
+  name: long senior chemist lab coat
+
+# Virologist long coat
+- type: entity
+  parent: ClothingOuterCoatLab
+  id: ClothingOuterCoatLabVirologyLong
+  name: long virologist lab coat
+  description: A NanoTrasen standard labcoat for medical personnel but with bright green accents.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/virology_long_lab.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/virology_long_lab.rsi
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabVirologyLong ]
+  id: ClothingOuterCoatLabVirologyLongOpened
+  name: long virologist lab coat
+
+# Black long coat
+- type: entity
+  parent: ClothingOuterCoatLab
+  id: ClothingOuterCoatLabBlackLong
+  name: long black lab coat
+  description: A NanoTrasen standard labcoat for medical personnel but in black.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/black_long_lab.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/black_long_lab.rsi
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabBlackLong ]
+  id: ClothingOuterCoatLabBlackLongOpened
+  name: long black lab coat
+
+# Coroner long coat
+- type: entity
+  parent: ClothingOuterCoatLab
+  id: ClothingOuterCoatLabCoronerLong
+  name: long coroner lab coat
+  description: A NanoTrasen standard labcoat for medical personnel but in black with white accents.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/coroner_long_lab.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/coroner_long_lab.rsi
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCoronerLong ]
+  id: ClothingOuterCoatLabCoronerLongOpened
+  name: long coroner lab coat
+# Starlight End
+
+
 #Science Windbreaker
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing]
@@ -491,7 +562,7 @@
   - type: Item
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCommandContraband ]
+  parent: [ ClothingOuterStorageBase, BaseCommandContraband, AllowSuitStorageClothingGasTanks ]
   id: ClothingOuterCoatNCT
   name: nt career trainer's jacket
   description: A sharp black coat with beige trim around the cuffs and collar, offering a mix of professionalism and approachability.
@@ -542,3 +613,14 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/field_jacket.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/field_jacket.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatChefSenior
+  name: senior chef's jacket
+  description: A pristine black jacket worn by the head of the kitchen. Tasteful, with a hint of authority.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/chef-senior.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/chef-senior.rsi

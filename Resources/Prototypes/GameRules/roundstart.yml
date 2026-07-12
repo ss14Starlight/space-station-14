@@ -28,8 +28,8 @@
       prob: 0.20 # Starlight
     - id: SubWizard
       prob: 0.05 # Starlight. We can go back down to 0.05, since they scale now.
-    - id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Starlight start, Equalizing subgamemodes
+    #- id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
+    #  prob: 0.05 # Starlight start, Equalizing subgamemodes
     - id: Brighteye
       prob: 0.05
     - id: SiliconLiberation
@@ -47,8 +47,8 @@
       prob: 0.20 #0.4 -> 0.25 to account for more subgamemodes existing now
     - id: VampireLess # Reworked
       prob: 0.20
-    - id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Equalizing subgamemodes
+    #- id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
+    #  prob: 0.05
     - id: Brighteye
       prob: 0.05
     - id: SiliconLiberation
@@ -192,7 +192,7 @@
       spawnerPrototype: SpawnPointNukeopsCommander
       startingGear: SyndicateCommanderGearFull
       roleLoadout:
-      - RoleSurvivalNukie
+      - AntagNukeopsCommander # Starlight
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -214,7 +214,7 @@
       spawnerPrototype: SpawnPointNukeopsMedic
       startingGear: SyndicateOperativeMedicFull
       roleLoadout:
-      - RoleSurvivalNukie
+      - AntagNukeopsMedic # Starlight
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -238,7 +238,7 @@
       playerRatio: 16
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
-      - RoleSurvivalNukie
+      - AntagNukeops # Starlight
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -445,7 +445,7 @@
       playerRatio: 40 # Starlight, ensures Beta only has 1 wizard.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
-       - RoleSurvivalExtended
+       - AntagWizard # Starlight
       briefing:
         text: wizard-role-greeting
         color: Turquoise
@@ -591,7 +591,7 @@
   components:
   - type: RampingStationEventScheduler
     scheduledGameRules: !type:NestedSelector
-      tableId: BasicGameRulesTableNoRoundenders # 🌟Starlight🌟
+      tableId: BasicGameRulesTable
 
 - type: entity
   id: SpaceTrafficControlEventScheduler # iff we make a selector for EntityTables that can respect StationEventComp restrictions, or somehow impliment them otherwise in said tables,

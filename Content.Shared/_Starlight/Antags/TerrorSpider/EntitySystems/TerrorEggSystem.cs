@@ -1,18 +1,16 @@
-﻿using Content.Shared.Abilities.Goliath;
-using Content.Shared.Damage.Prototypes;
+﻿using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.UserInterface;
-using Robust.Shared.Player;
 using Content.Shared.Damage.Systems;
+using Content.Shared._Starlight.Abstract;
 
-namespace Content.Shared._Starlight.Antags.TerrorSpider;
-public sealed class TerrorEggSystem : AccUpdateEntitySystem
+namespace Content.Shared._Starlight.Antags.TerrorSpider.EntitySystems;
+public sealed partial class TerrorEggSystem : AccUpdateEntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     private readonly Dictionary<EntityUid, Entity<EggHolderComponent>> _eggs = [];
     private readonly EntProtoId[] _terrorSpiders = ["MobTerrorGray", "MobTerrorGreen", "MobTerrorRed"];

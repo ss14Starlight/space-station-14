@@ -19,18 +19,18 @@ using Content.Shared.Body.Components;
 
 namespace Content.Server.ImmovableRod;
 
-public sealed class ImmovableRodSystem : EntitySystem
+public sealed partial class ImmovableRodSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DestructibleSystem _destructible = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private DestructibleSystem _destructible = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
     public override void Update(float frameTime)
     {

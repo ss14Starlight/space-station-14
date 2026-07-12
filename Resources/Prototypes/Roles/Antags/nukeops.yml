@@ -4,6 +4,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-nuclear-operative-objective
+  roleLoadout: [ AntagNukeops ] # Starlight
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 48h # Starlight start
@@ -29,6 +30,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-nuclear-operative-agent-objective
+  roleLoadout: [ AntagNukeopsMedic ] # Starlight
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 48h # Starlight start
@@ -54,6 +56,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-nuclear-operative-commander-objective
+  roleLoadout: [ AntagNukeopsCommander ] # Starlight
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 72h # Starlight start. You need to have experience.

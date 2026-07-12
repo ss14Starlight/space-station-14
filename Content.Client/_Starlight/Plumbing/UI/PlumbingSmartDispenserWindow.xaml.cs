@@ -20,8 +20,8 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
     private static readonly Vector2 _compactWindowSize = new(440, 560);
     private static readonly Vector2 _fullWindowSize = new(760, 560);
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     private PlumbingSmartDispenserBuiState? _sharedState;
     private bool _showDispensePane;

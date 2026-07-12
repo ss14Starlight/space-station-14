@@ -21,19 +21,21 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.CustomObjectiveSummary; // Starlight
-using Content.Shared._Starlight.Station; // Starlight
+using Content.Shared._Starlight.Station;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Abstract; // Starlight
 
 namespace Content.Server.Objectives;
 
-public sealed class ObjectivesSystem : SharedObjectivesSystem
+public sealed partial class ObjectivesSystem : SharedObjectivesSystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
-    [Dependency] private readonly SharedJobSystem _job = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EmergencyShuttleSystem _emergencyShuttle = default!;
+    [Dependency] private SharedJobSystem _job = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private IEnumerable<string>? _objectives;
 

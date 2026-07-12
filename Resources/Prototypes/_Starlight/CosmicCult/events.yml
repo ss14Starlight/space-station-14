@@ -3,7 +3,7 @@
   id: ColossusSpawn
   components:
   - type: StationEvent
-    weight: 4.5
+    weight: 3
     earliestStart: 30
     reoccurrenceDelay: 20
     minimumPlayers: 25
@@ -31,3 +31,19 @@
       components:
       - type: CosmicColossus
         timed: true
+  - type: DynamicRuleCost
+    cost: 100
+
+- type: entity
+  id: MalignRiftSpawn
+  parent: BaseStationEvent
+  components:
+  - type: StationEvent
+    weight: 1.5
+    earliestStart: 45
+    # reoccurrenceDelay: 90
+    # minimumPlayers: 40
+    # maxOccurrences: 1
+    duration: 20
+    occursDuringRoundEnd: false
+  - type: MalignRiftSpawnRule

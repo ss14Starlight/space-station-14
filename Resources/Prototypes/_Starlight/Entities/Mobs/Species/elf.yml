@@ -16,13 +16,13 @@
 #    - Sylvan
   - type: Absorbable
   - type: Hunger
+  - type: Thirst
   - type: Icon
     sprite: _Starlight/Mobs/Species/Elf/parts.rsi
     state: full
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Elf
-  - type: Thirst
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -35,3 +35,11 @@
     hideLayersOnEquip:
     - Hair
     - Snout
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - NotLabelable # Starlight, no more labeling people.
+    - Elf

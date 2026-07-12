@@ -1,14 +1,14 @@
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules;
-using Content.Server._Starlight.Railroading;
 using Content.Server.Objectives;
 using System.Text;
+using Content.Server._Starlight.Railroading.TaskSystems;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
-public sealed class BrighteyeRuleSystem : GameRuleSystem<BrighteyeRuleComponent>
+public sealed partial class BrighteyeRuleSystem : GameRuleSystem<BrighteyeRuleComponent>
 {
-    [Dependency] private readonly RailroadDarkTaskSystem _railroadDarkTaskSystem = default!;
+    [Dependency] private RailroadDarkTaskSystem _railroadDarkTaskSystem = default!;
 
     public override void Initialize()
     {

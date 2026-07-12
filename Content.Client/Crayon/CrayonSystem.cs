@@ -25,20 +25,20 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Crayon;
 
-public sealed class CrayonSystem : SharedCrayonSystem
+public sealed partial class CrayonSystem : SharedCrayonSystem
 {
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
+    [Dependency] private EntityManager _entityManager = default!;
 
     // Starlight-start
-    [Dependency] private readonly IOverlayManager _overlay = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly DecalPlacementSystem _placement = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private DecalPlacementSystem _placement = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private IPlayerManager _player = default!;
     // Starlight-end
 
     public override void Initialize()

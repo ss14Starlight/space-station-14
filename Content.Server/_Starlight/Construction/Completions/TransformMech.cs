@@ -1,3 +1,4 @@
+using Content.Server.Construction;
 using Content.Server.Mech.Systems;
 using Content.Shared.Construction;
 using Content.Shared.Mech.Components;
@@ -8,7 +9,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Construction.Completions;
+namespace Content.Server._Starlight.Construction.Completions;
 
 /// <summary>
 /// Transforms a mech to a different type, this is used for upgrading mechs.
@@ -17,7 +18,7 @@ namespace Content.Server.Construction.Completions;
 [UsedImplicitly, DataDefinition]
 public sealed partial class TransformMech : IGraphAction
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
     private ISawmill _log { get => field ??= _logManager.GetSawmill("construction.mech"); } = default!;
 

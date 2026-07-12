@@ -1,11 +1,10 @@
 using Content.Shared.GameTicking;
-using Robust.Shared.Configuration;
 
-namespace Content.Server.Economy
+namespace Content.Server._Starlight.Economy
 {
-    public sealed class PriceRandomizationSystem : EntitySystem
+    public sealed partial class PriceRandomizationSystem : EntitySystem
     {
-        [Dependency] private readonly ItemPriceManager _priceManager = default!;
+        [Dependency] private ItemPriceManager _priceManager = default!;
 
         public override void Initialize()
         {

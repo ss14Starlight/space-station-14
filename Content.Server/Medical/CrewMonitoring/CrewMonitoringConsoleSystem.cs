@@ -19,19 +19,20 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using System.ComponentModel.DataAnnotations;
+using Content.Shared._Starlight.Medical.CrewMonitoring;
 #endregion
 
 namespace Content.Server.Medical.CrewMonitoring;
 
-public sealed class CrewMonitoringConsoleSystem : EntitySystem
+public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly PowerCellSystem _cell = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly StationAiSystem _stationAiSystem = default!; // Starlight
-    [Dependency] private readonly IGameTiming _gameTiming = default!; // Starlight
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Starlight
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!; // Starlight
-    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!; // Starlight
+    [Dependency] private PowerCellSystem _cell = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private StationAiSystem _stationAiSystem = default!; // Starlight
+    [Dependency] private IGameTiming _gameTiming = default!; // Starlight
+    [Dependency] private SharedAudioSystem _audioSystem = default!; // Starlight
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!; // Starlight
+    [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!; // Starlight
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
 

@@ -1,22 +1,36 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                       Title="{Loc 'devil-damnations-ui-menu-title'}"
                       MinSize="200 100"
                       SetSize="500 600">
     <BoxContainer Orientation="Vertical"
-                  VerticalExpand="True">
-        <PanelContainer VerticalExpand="True" Margin="10 10 10 10">
-            <ScrollContainer HScrollEnabled="False"
-                             VerticalExpand="True">
-                <BoxContainer Name="DamnationsDisplayContainer"
-                              Orientation="Vertical"
-                              VerticalExpand="True"
-                              Margin="10 10 10 0">
-                    <RichTextLabel Text="{Loc 'devil-damnations-ui-menu-text'}"
-                                   Name="DamnationsDisplayText"/>
-                </BoxContainer>
-            </ScrollContainer>
-        </PanelContainer>
+                  VerticalExpand="True"
+                  Margin="10 10 10 10">
+        <TabContainer Name="DamnationCategories" VerticalExpand="True">
+            <BoxContainer Name="DamnationsInfoBox"
+                          Orientation="Vertical"
+                          VerticalExpand="True">
+                <ScrollContainer HScrollEnabled="False"
+                                 VerticalExpand="True"
+                                 Margin="10 10 10 10">
+                    <BoxContainer Orientation="Vertical">
+                        <RichTextLabel Text="{Loc 'devil-damnations-ui-menu-text'}"
+                                       VerticalAlignment="Top"/>
+                        <Control MinHeight="10"/>
+                        <Label Text="{Loc 'devil-damnations-ui-damned-crew'}"
+                               StyleClasses="LabelBig"/>
+                        <BoxContainer Orientation="Vertical"
+                                      HorizontalExpand="True">
+                            <GridContainer Name="DamnedCrewList"
+                                           VerticalExpand="True"
+                                           HorizontalAlignment="Center"
+                                           Columns="3"
+                                           Margin="5 5 5 5">
+                            </GridContainer>
+                        </BoxContainer>
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
+        </TabContainer>
     </BoxContainer>
 </controls:FancyWindow>

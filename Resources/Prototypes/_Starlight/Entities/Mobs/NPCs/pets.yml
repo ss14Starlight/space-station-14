@@ -28,6 +28,56 @@
     - VimPilot
 
 - type: entity
+  name: Kiki
+  parent: MobKoboldAdvanced
+  id: MobKoboldKiki
+  suffix: AI
+  description: A prominent representative of kobolds with unlimited access to that which she doesn't want to eat.
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    - Draconic
+    understands:
+    - Ancestor
+    - GalacticCommon
+    - Draconic
+  - type: RandomSprite # Using random sprite since we need to overwrite the parent's random sprite, even if we're actually giving her a fixed appearance.
+    getAllGroups: true
+    available:
+      - horns:
+          horns_floppy_kobold_ears: Inherit
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-kiki-name
+    description: ghost-role-information-kiki-description
+    rules: ghost-role-information-nonantagonist-rules
+    job: Botanist
+  - type: GhostTakeoverAvailable
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 3
+    - id: ChemistryBottleUnstableMutagen
+      amount: 1
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+    - AnomalyHost
+  - type: Loadout
+    prototypes: [ MobKoboldGear ]
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: female
+
+- type: entity
   parent: MobMouse
   id: MobMouseRemy
   name: Remy

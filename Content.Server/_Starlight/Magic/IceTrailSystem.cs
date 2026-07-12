@@ -8,15 +8,15 @@ namespace Content.Server._Starlight.Magic;
 /// System that spawns IceCrust debris while projectiles with IceTrailComponent are flying.
 /// Creates a trail of frozen debris behind the projectile at regular intervals.
 /// </summary>
-public sealed class IceTrailSystem : EntitySystem
+public sealed partial class IceTrailSystem : EntitySystem
 {
     // System dependencies
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ITileDefinitionManager _tileDefManager = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

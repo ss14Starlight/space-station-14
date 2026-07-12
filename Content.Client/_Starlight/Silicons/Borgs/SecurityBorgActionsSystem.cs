@@ -5,9 +5,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Silicons.Borgs;
 
-public sealed class SecurityBorgActionsSystem : EntitySystem
+public sealed partial class SecurityBorgActionsSystem : EntitySystem
 {
-    [Dependency] private readonly GuidebookSystem _guidebook = default!;
+    [Dependency] private GuidebookSystem _guidebook = default!;
 
     public override void Initialize()
     {

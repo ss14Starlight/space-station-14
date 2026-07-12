@@ -1,6 +1,6 @@
-using Content.Shared.Starlight.Weapon.Systems;
+using Content.Shared._Starlight.Weapons;
 
-namespace Content.Client.Starlight.Weapon.Systems;
+namespace Content.Client._Starlight.Weapon;
 public sealed partial class WeaponDismantleOnShootSystem : SharedWeaponDismantleOnShootSystem
 {
 }

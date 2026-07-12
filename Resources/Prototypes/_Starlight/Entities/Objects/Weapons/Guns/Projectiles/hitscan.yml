@@ -1408,7 +1408,7 @@
   - type: HitscanStaminaDamage
     staminaDamage: 100
     #knockdownAmount: 0.5
-    #maxLength: 5
+    # maxLength: 5
   - type: HitscanBasicVisuals
     bullet:
       sprite:

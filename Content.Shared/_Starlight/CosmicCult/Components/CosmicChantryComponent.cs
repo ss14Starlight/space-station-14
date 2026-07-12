@@ -21,7 +21,7 @@ public sealed partial class CosmicChantryComponent : Component
 
     [DataField] public TimeSpan SpawningTime = TimeSpan.FromSeconds(2.4);
 
-    [DataField] public TimeSpan EventTime = TimeSpan.FromSeconds(150);
+    [DataField] public TimeSpan EventTime = TimeSpan.FromSeconds(125);
 
     [DataField] public bool Spawned;
 
@@ -35,7 +35,10 @@ public sealed partial class CosmicChantryComponent : Component
 
     [DataField] public EntProtoId Colossus = "MobCosmicColossus";
 
+    [DataField] public EntProtoId FallbackBrain = "CosmicCultMindSink";
+
     [DataField] public EntProtoId SpawnVFX = "CosmicGlareAbilityVFX";
+    [DataField] public EntProtoId FallbackVFX = "CosmicGenericVFX";
 }
 
 [Serializable, NetSerializable]

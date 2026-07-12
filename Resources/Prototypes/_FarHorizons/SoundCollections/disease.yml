@@ -1,0 +1,96 @@
+- type: soundCollection
+  id: ProtoHumanMSneezes
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Human/male_sneeze_1.ogg
+
+- type: soundCollection
+  id: ProtoHumanFSneezes
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Human/female_sneeze_1.ogg
+
+- type: soundCollection
+  id: ProtoVoxSneezes
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Vox/vox_sneeze.ogg
+
+- type: soundCollection
+  id: ProtoHumanMCoughs
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Human/male_cough_1.ogg
+  - /Audio/_FarHorizons/Voice/Proto/Human/male_cough_2.ogg
+
+- type: soundCollection
+  id: ProtoHumanFCoughs
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Human/female_cough_1.ogg
+  - /Audio/_FarHorizons/Voice/Proto/Human/female_cough_2.ogg
+
+- type: soundCollection
+  id: ProtoArachnidCoughs
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Arachnid/arachnid_cough.ogg
+
+- type: soundCollection
+  id: ProtoCycloriteCoughs
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Cyclorite/cough_1.ogg
+  - /Audio/_FarHorizons/Voice/Proto/Cyclorite/cough_2.ogg
+
+- type: soundCollection
+  id: ProtoMothCoughs
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Moth/moth_cough.ogg
+
+- type: soundCollection
+  id: ProtoVoxCoughs
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Vox/vox_cough.ogg
+
+- type: soundCollection
+  id: ProtoHumanMYawn
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Human/male_yawn_1.ogg
+
+- type: soundCollection
+  id: ProtoHumanFYawn
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Human/female_yawn_1.ogg
+
+- type: soundCollection
+  id: ProtoArachnidYawn
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Arachnid/arachnid_yawn.ogg
+
+- type: soundCollection
+  id: ProtoCycloriteYawn
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Cyclorite/yawn.ogg
+
+- type: soundCollection
+  id: ProtoMothYawn
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Moth/moth_yawn.ogg
+
+- type: soundCollection
+  id: ProtoHumanSnores
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Human/snore1.ogg
+  - /Audio/_FarHorizons/Voice/Proto/Human/snore2.ogg
+  - /Audio/_FarHorizons/Voice/Proto/Human/snore3.ogg
+
+- type: soundCollection
+  id: ProtoVulpYawns
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_yawn1.ogg
+  - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_yawn2.ogg
+
+- type: soundCollection
+  id: ProtoVoxSneeze
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Vox/vox_sneeze.ogg
+
+- type: soundCollection
+  id: ProtoVulpSneeze
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_sneeze.ogg
+

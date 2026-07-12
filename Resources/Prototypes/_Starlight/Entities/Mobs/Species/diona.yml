@@ -129,9 +129,20 @@
   - type: IgnoreKudzu
   - type: IgniteOnHeatDamage
     fireStacks: 1
-    threshold: 12
+    maxFireStacks: 5
+    threshold: 20
   - type: GibAction
     actionPrototype: DionaGibAction
     allowedStates:
     - Dead
   - type: Rootable
+    speedModifier: 0.85
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+    - Floral
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Critical
+      250: Dead

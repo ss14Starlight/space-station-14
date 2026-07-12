@@ -10,7 +10,7 @@
     roleType: TeamAntagonist
   - type: CosmicCultRole
   - type: RoleBriefing
-    briefing: objective-cosmiccult-charactermenu
+    briefing: cosmiccult-role-short-briefing
 
 - type: entity
   parent: BaseMindRoleAntag

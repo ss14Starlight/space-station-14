@@ -1,7 +1,6 @@
-using Content.Shared._Starlight.Medical.Body.Prototypes;
+using Content.Shared._Starlight.Roles;
 using Content.Shared._Starlight.Silicons;
 using Content.Shared.Body.Components;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
@@ -15,9 +14,9 @@ namespace Content.Server._Starlight.Silicons;
 
 public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly IComponentFactory _compFactory = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private IComponentFactory _compFactory = default!;
 
     public override void Initialize()
     {

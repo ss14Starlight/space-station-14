@@ -3,6 +3,7 @@ using Content.Server.Antag;
 using Content.Server.Popups;
 using Content.Shared.DoAfter;
 using Content.Shared.Mind;
+using Content.Shared.Actions;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Content.Shared.Silicons.Borgs.Components;
@@ -13,23 +14,25 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language;
-using Content.Shared._Starlight.NullSpace;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
+using Content.Shared.Mobs;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicFragmentationSystem : EntitySystem
+public sealed partial class CosmicFragmentationSystem : EntitySystem
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly CosmicCultSystem _cult = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly LanguageSystem _languageSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private LanguageSystem _languageSystem = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
@@ -40,14 +43,14 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         SubscribeLocalEvent<AILawUpdatedEvent>(OnLawInserted);
 
         SubscribeLocalEvent<BorgChassisComponent, MalignFragmentationEvent>(OnFragmentBorg);
-        SubscribeLocalEvent<IPCBrainComponent, MalignFragmentationEvent>(OnFragmentBorg);
+        SubscribeLocalEvent<IPCBrainHolderComponent, MalignFragmentationEvent>(OnFragmentIPC);
         SubscribeLocalEvent<SiliconLawUpdaterComponent, MalignFragmentationEvent>(OnFragmentAi);
 
         SubscribeLocalEvent<CosmicCultComponent, EventCosmicFragmentation>(OnCosmicFragmentation);
         SubscribeLocalEvent<CosmicCultComponent, EventCosmicFragmentationDoAfter>(OnCosmicFragmentationDoAfter);
     }
 
-    private void UnEmpower(Entity<CosmicCultComponent> ent)
+    private static void UnEmpower(Entity<CosmicCultComponent> ent)
     {
         var comp = ent.Comp;
         comp.CosmicEmpowered = false; // empowerment spent! Now we set all the values back to their default.
@@ -107,52 +110,63 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         }
 
         UnEmpower(ent);
+        _actions.RemoveAction(ent.Owner, ent.Comp.CosmicFragmentationActionEntity);
+        ent.Comp.ActionEntities.Remove(ent.Comp.CosmicFragmentationActionEntity);
+        ent.Comp.CosmicFragmentationActionEntity = null;
     }
 
-    private void OnFragmentBorg(Entity<BorgChassisComponent> ent, ref MalignFragmentationEvent args)
+    private void OnFragmentBorg(Entity<BorgChassisComponent> ent, ref MalignFragmentationEvent args) =>
+        HandleFragmentSilicon(ent.Owner, ref args);
+
+    private void OnFragmentIPC(Entity<IPCBrainHolderComponent> ent, ref MalignFragmentationEvent args) =>
+        HandleFragmentSilicon(ent.Owner, ref args);
+
+    private void HandleFragmentSilicon(EntityUid ent, ref MalignFragmentationEvent args)
     {
         if (!_mind.TryGetMind(ent, out var mindId, out var mind))
             return;
+
         var wisp = Spawn("CosmicChantryWisp", Transform(ent).Coordinates);
         var chantry = Spawn("CosmicBorgChantry", Transform(ent).Coordinates);
+
         EnsureComp<CosmicChantryComponent>(chantry, out var chantryComponent);
         chantryComponent.InternalVictim = wisp;
         chantryComponent.VictimBody = ent;
-        _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}"); //Starlight name fix
+
+        _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}");
         _mind.TransferTo(mindId, wisp, mind: mind);
+
+        _mobStateSystem.ChangeMobState(ent, MobState.Critical);
 
         var mins = chantryComponent.EventTime.Minutes;
         var secs = chantryComponent.EventTime.Seconds;
-        _antag.SendBriefing(wisp, Loc.GetString("cosmiccult-silicon-chantry-briefing", ("minutesandseconds", $"{mins} minutes and {secs} seconds")), Color.FromHex("#4cabb3"), null);
-        args.Succeeded = true;
-    }
 
-    private void OnFragmentBorg(Entity<IPCBrainComponent> ent, ref MalignFragmentationEvent args)
-    {
-        if (!_mind.TryGetMind(ent, out var mindId, out var mind))
-            return;
-        var wisp = Spawn("CosmicChantryWisp", Transform(ent).Coordinates);
-        var chantry = Spawn("CosmicBorgChantry", Transform(ent).Coordinates);
-        EnsureComp<CosmicChantryComponent>(chantry, out var chantryComponent);
-        chantryComponent.InternalVictim = wisp;
-        chantryComponent.VictimBody = ent;
-        _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}"); //Starlight name fix
-        _mind.TransferTo(mindId, wisp, mind: mind);
+        _antag.SendBriefing(
+            wisp,
+            Loc.GetString("cosmiccult-silicon-chantry-briefing",
+                ("minutesandseconds", $"{mins} minutes and {secs} seconds")),
+            Color.FromHex("#4cabb3"),
+            null
+        );
 
-        var mins = chantryComponent.EventTime.Minutes;
-        var secs = chantryComponent.EventTime.Seconds;
-        _antag.SendBriefing(wisp, Loc.GetString("cosmiccult-silicon-chantry-briefing", ("minutesandseconds", $"{mins} minutes and {secs} seconds")), Color.FromHex("#4cabb3"), null);
         args.Succeeded = true;
     }
 
     private void OnFragmentAi(Entity<SiliconLawUpdaterComponent> ent, ref MalignFragmentationEvent args)
     {
-        var lawboard = Spawn("CosmicCultLawBoard", Transform(args.Target).Coordinates);
         _container.TryGetContainer(args.Target, "circuit_holder", out var container);
         if (container == null)
             return;
+
+        var lawboard = Spawn("CosmicCultLawBoard", Transform(args.Target).Coordinates);
+
         _container.EmptyContainer(container, true);
-        _container.Insert(lawboard, container, Transform(args.Target), true);
+        if (!_container.Insert(lawboard, container, Transform(args.Target), true))
+        {
+            Del(lawboard);
+            return;
+        }
+
         args.Succeeded = true;
     }
 
@@ -161,10 +175,15 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         if (args.Lawset.Id == "CosmicCultLaws")
         {
             _languageSystem.AddLanguage(args.Target, _cultLanguage);
-            _antag.SendBriefing(args.Target, Loc.GetString("cosmiccult-silicon-subverted-briefing"), Color.FromHex("#4cabb3"), null);
+
+            _antag.SendBriefing(args.Target,
+                Loc.GetString("cosmiccult-silicon-subverted-briefing"),
+                Color.FromHex("#4cabb3"), null);
         }
         else
+        {
             _languageSystem.RemoveLanguage(args.Target, _cultLanguage);
+        }
     }
 }
 

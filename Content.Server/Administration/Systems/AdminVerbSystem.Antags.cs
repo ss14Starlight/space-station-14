@@ -22,17 +22,18 @@ using Robust.Shared.Utility;
 using Content.Shared.Roles.Components;
 using Content.Shared._Starlight.Shadekin;
 using Content.Server.Speech.Components; // Starlight
-using Robust.Shared.Audio; // Starlight
+using Robust.Shared.Audio;
+using Content.Shared._Starlight.Shadekin.Components; // Starlight
 
 namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly ZombieSystem _zombie = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly OutfitSystem _outfit = default!;
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; //Starlight
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private ZombieSystem _zombie = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private OutfitSystem _outfit = default!;
+    [Dependency] private AutoDiscordLogSystem _autolog = default!; //Starlight
 
     private static readonly EntProtoId DefaultTraitorRule = "Traitor";
     private static readonly EntProtoId DefaultInitialInfectedRule = "Zombie";

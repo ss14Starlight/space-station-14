@@ -4,7 +4,7 @@ using Content.Shared.Localizations;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles.Jobs;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -60,16 +60,20 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
         // Starlight start
         // Handle non-job role time requirements
+        var roleName = protoManager.TryIndex<PlayTimeTrackerPrototype>(proto, out var tracker)
+            ? tracker.LocalizedName
+            : Loc.GetString(proto);
+
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-not-too-high" : "role-timer-role-sufficient",
             ("current", formattedCurrent),
             ("required", formattedRequired),
-            ("job", Loc.GetString(proto)),
+            ("job", roleName),
             ("departmentColor", departmentColor.ToHex())));
 
         if (jobProto is null)
         {
-            if (!protoManager.TryIndex<PlayTimeTrackerPrototype>(proto, out var tracker))
+            if (tracker is null)
                 return false;
 
             if (!Inverted)
