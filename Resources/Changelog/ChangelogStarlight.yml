@@ -1,11 +1,4 @@
 Entries:
-- author: BlythT
-  changes:
-  - message: Fixed butcher verb popping in by adding client-side verb prediction.
-    type: Fix
-  id: 406205
-  time: '2026-06-24T06:30:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4900
 - author: Johnny
   changes:
   - message: Added a circuitboard in the captains locker for the shipyard console so that it is more accessible no matter what map it is.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406604
   time: '2026-07-12T23:16:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5068
+- author: Pastres
+  changes:
+  - message: Adds sprite for Vox space hazard hardsuit.
+    type: Tweak
+  id: 406605
+  time: '2026-07-12T23:57:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5112
 Order: -1
