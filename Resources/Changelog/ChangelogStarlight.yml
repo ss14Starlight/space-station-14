@@ -1,13 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: 'Cog: Add Science Material Silo.'
-    type: Add
-  id: 406200
-  time: '2026-06-23T17:37:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4904
-- author: Ohelig
-  changes:
   - message: 'Cog: Add spare Intellicard to AI Core.'
     type: Add
   id: 406201
@@ -2799,4 +2792,11 @@ Entries:
   id: 406599
   time: '2026-07-12T22:32:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5095
+- author: wonderfulnewworld
+  changes:
+  - message: Senior security officer, duty officer, brigmedic, and warden clothes now use the correct senior time.
+    type: Fix
+  id: 406600
+  time: '2026-07-12T22:32:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5098
 Order: -1
