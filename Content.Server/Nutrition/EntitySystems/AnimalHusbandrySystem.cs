@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Popups;
 using Content.Shared.Database;
@@ -72,6 +73,9 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
 
         var partners = new HashSet<Entity<ReproductivePartnerComponent>>();
         _entityLookup.GetEntitiesInRange(xform.Coordinates, component.BreedRange, partners);
+
+        // Starlight - Exclude any breeding partners that aren't breedable partners anyway
+        partners.RemoveWhere(partner => !_whitelistSystem.IsWhitelistPass(component.PartnerWhitelist, partner) || _mobState.IsIncapacitated(partner));
 
         if (partners.Count >= component.Capacity)
             return false;
