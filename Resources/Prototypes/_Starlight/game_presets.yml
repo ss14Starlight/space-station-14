@@ -214,3 +214,22 @@
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - RailroadingMinor # 🌟Starlight🌟
+
+- type: gamePreset
+  id: DynamicLP
+  alias:
+  - dynamiclp
+  - multiantaglp
+  - directorlp
+  name: dynamic-title
+  showInVote: false # admin-only for now until we fix some bugs
+  description: dynamic-description
+  minPlayers: 15
+  voteCooldown: 0 # This one actually can roll back to back.
+  rules:
+  - SLDynamicRuleLP
+  - DynamicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+  - RailroadingMinor
