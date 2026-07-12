@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ORWELL) Removed one surgery bag in robotics.
-    type: Remove
-  id: 406190
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
   - message: (ORWELL) Removed one body bag box from morgue.
     type: Remove
   id: 406191
@@ -2799,4 +2792,11 @@ Entries:
   id: 406589
   time: '2026-07-12T11:22:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5100
+- author: neomoth
+  changes:
+  - message: Added highly customizable spawner entities.
+    type: Add
+  id: 406590
+  time: '2026-07-12T12:08:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4973
 Order: -1
