@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "states": [
+        {
+            "name": "base",
+			"copyright": "TGstation at https://github.com/tgstation/tgstation/commit/6bfe3b2e4fcbcdac9159dc4f0327a82ddf05ba7bi, resprite by FancyPlanks (Github), edited by Conflee for Starlight",
+            "directions": 4
+        },
+        {
+            "name": "broadcasting",
+			"copyright": "TGstation at https://github.com/tgstation/tgstation/commit/6bfe3b2e4fcbcdac9159dc4f0327a82ddf05ba7bi, resprite by FancyPlanks (Github), edited by Conflee for Starlight",
+            "directions": 4
+        },
+        {
+            "name": "build",
+			"copyright": "TGstation at https://github.com/tgstation/tgstation/commit/6bfe3b2e4fcbcdac9159dc4f0327a82ddf05ba7bi, resprite by FancyPlanks (Github), edited by Conflee for Starlight",
+            "directions": 4
+        },
+        {
+            "name": "speaker",
+			"copyright": "TGstation at https://github.com/tgstation/tgstation/commit/6bfe3b2e4fcbcdac9159dc4f0327a82ddf05ba7bi, resprite by FancyPlanks (Github), edited by Conflee for Starlight",
+            "directions": 4
+        },
+        {
+            "name": "unshaded",
+			"copyright": "TGstation at https://github.com/tgstation/tgstation/commit/6bfe3b2e4fcbcdac9159dc4f0327a82ddf05ba7bi, resprite by FancyPlanks (Github), edited by Conflee for Starlight",
+            "directions": 4
+        },
+        {
+            "name": "panel",
+			"copyright": "TGstation at https://github.com/tgstation/tgstation/commit/6bfe3b2e4fcbcdac9159dc4f0327a82ddf05ba7bi, resprite by FancyPlanks (Github), edited by Conflee for Starlight",
+            "directions": 4
+        }
+    ]
+}

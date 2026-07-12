@@ -1,3 +1,4 @@
+using Content.Server.RoundEnd;
 namespace Content.Server._Starlight.GameTicking.Rules.Components;
 
 /// <summary>
@@ -6,6 +7,48 @@ namespace Content.Server._Starlight.GameTicking.Rules.Components;
 [RegisterComponent, Access(typeof(TerrorSpiderRuleSystem))]
 public sealed partial class TerrorSpiderRuleComponent : Component
 {
+    /// <summary>
+    /// What happens if all of the terror spiders die.
+    /// </summary>
+    [DataField]
+    public RoundEndBehavior RoundEndBehavior = RoundEndBehavior.ShuttleCall;
+
+    /// <summary>
+    /// Time for emergency shuttle arrival.
+    /// </summary>
+    [DataField]
+    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(8);
+
+    /// <summary>
+    /// Sender for shuttle call.
+    /// </summary>
+    [DataField]
+    public LocId RoundEndTextSender = "comms-console-announcement-title-centcom";
+
+    /// <summary>
+    /// Text for shuttle call if Terror Spiders lose.
+    /// </summary>
+    [DataField]
+    public LocId RoundEndTextShuttleCallLose = "terror-spiders-crew-victory-announcement";
+
+    /// <summary>
+    /// Text for announcement if Terror Spiders are defeated while Evac is already on its way.
+    /// </summary>
+    [DataField]
+    public LocId RoundEndTextAnnouncementLose = "terror-spiders-elimination-announcement";
+
+    /// <summary>
+    /// Text for shuttle call if Terror Spiders win.
+    /// </summary>
+    [DataField]
+    public LocId RoundEndTextShuttleCallWin = "terror-spiders-spider-victory-announcement";
+
+    /// <summary>
+    /// Text for announcement if Terror Spiders are victorious while Evac is already on its way.
+    /// </summary>
+    [DataField]
+    public LocId RoundEndTextAnnouncementWin = "terror-spiders-domination-announcement";
+
     /// <summary>
     /// The amount of time between each check for players check.
     /// </summary>

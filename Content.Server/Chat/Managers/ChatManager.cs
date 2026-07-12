@@ -299,7 +299,7 @@ internal sealed partial class ChatManager : IChatManager
         var messageColor = Color.LightSkyBlue;
         var titleColor = Color.LightSkyBlue;
 
-        var playerName = player.Name;
+        var playerName = FormattedMessage.EscapeText(player.Name); // Starlight
         var playerTitle = "";
 
         if(_playerRoles.TryGetPlayerData(player.UserId, out var playerData))
@@ -337,7 +337,7 @@ internal sealed partial class ChatManager : IChatManager
         var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
         var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
                                         ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
-                                        ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+                                        ("playerName", FormattedMessage.EscapeText(player.Name)), ("message", FormattedMessage.EscapeText(message))); // Starlight
 
         foreach (var client in clients)
         {

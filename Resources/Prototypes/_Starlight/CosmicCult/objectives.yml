@@ -41,6 +41,21 @@
 
 - type: entity
   parent: BaseCosmicCultObjective
+  id: CosmicChaplainObjective
+  components:
+  - type: Objective
+    icon:
+      sprite: _Starlight/CosmicCult/Icons/objectives.rsi
+      state: infection
+  - type: NumberObjective
+    min: 1
+    max: 1
+    title: objective-condition-chaplain-title
+    description: objective-condition-chaplain-desc
+  - type: CosmicChaplainCondition
+
+- type: entity
+  parent: BaseCosmicCultObjective
   id: CosmicEntropyObjective
   components:
   - type: Objective
