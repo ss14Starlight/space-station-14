@@ -398,6 +398,24 @@ public sealed partial class StationJobsSystem
                 if (!(roleBans == null || !roleBans.Contains(jobId))) //TODO: Replace with IsRoleBanned
                     continue;
 
+                #region Starlight
+                // Multislot stuff, again
+                var validProfiles = profile.GetAllEnabledProfilesForJob(jobId);
+                if (validProfiles.Count == 0)
+                    continue;
+
+                if (!validProfiles.Values.Any(humanoid =>
+                        JobRequirements.TryRequirementsMet(
+                            jobId,
+                            session,
+                            null,
+                            out _,
+                            EntityManager,
+                            _prototypeManager,
+                            humanoid)))
+                    continue;
+                #endregion
+
                 availableJobs ??= new List<string>(playerJobs.Count);
                 availableJobs.Add(jobId);
             }

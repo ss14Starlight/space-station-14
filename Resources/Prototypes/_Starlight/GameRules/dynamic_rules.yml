@@ -320,6 +320,8 @@
           weight: 1
           conditions:
           - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+            max: 1 # it lags the game when making more maps
           - !type:PlayerCountCondition
             min: 20
           - !type:RoundDurationCondition
@@ -466,6 +468,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+            max: 1 # it lags the game when making more maps
+          - !type:PlayerCountCondition
+            min: 20
       # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky! Beta edition.
       - !type:GroupSelector
         children:
@@ -588,6 +593,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+            max: 1 # it lags the game when making more maps
+          - !type:PlayerCountCondition
+            min: 20
       # Midround rules, same as Alpha, because Beta has no differences on these normally anyways
       - !type:GroupSelector
         conditions:
