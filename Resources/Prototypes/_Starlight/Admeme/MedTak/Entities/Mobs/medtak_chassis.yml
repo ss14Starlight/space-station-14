@@ -40,6 +40,9 @@
       - Maintenance
     - type: AccessReader
       access: [["MedTak"]]
+    - type: ShowImplantedIcons
+      shownIcons:
+      - MedTak
     - type: ShowHealthBars
       damageContainers:
       - Biological

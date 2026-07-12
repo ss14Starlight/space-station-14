@@ -1,27 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ORWELL) Added a filled coroner locker to morgue.
-    type: Add
-  id: 406189
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Removed one surgery bag in robotics.
-    type: Remove
-  id: 406190
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Removed one body bag box from morgue.
-    type: Remove
-  id: 406191
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
   - message: (ORWELL) Changed mail tech locker to the double variant.
     type: Tweak
   id: 406192
@@ -2799,4 +2778,25 @@ Entries:
   id: 406588
   time: '2026-07-11T17:13:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5076
+- author: SevenShades
+  changes:
+  - message: MedTak silicons not seeing client icons.
+    type: Fix
+  id: 406589
+  time: '2026-07-12T11:22:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5100
+- author: neomoth
+  changes:
+  - message: Added highly customizable spawner entities.
+    type: Add
+  id: 406590
+  time: '2026-07-12T12:08:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4973
+- author: Conflee
+  changes:
+  - message: Added Security Tickets. Tickets can be found in Ticket Pads, within Security Officer Lockers or the SecTech. A new line in Corporate Law under 'Normal Punishments' outlines their use as a step up from an informal warning, and how to fill out a ticket.
+    type: Add
+  id: 406591
+  time: '2026-07-12T17:12:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5050
 Order: -1
