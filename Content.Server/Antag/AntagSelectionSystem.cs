@@ -518,7 +518,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (def.StartingGear is not null)
             gear.Add(def.StartingGear.Value);
 
-        // Starlight edit Start: Antag Loadouts
+        // Starlight edit Start: Antag Loadouts, post spawn gear
         var selectedLoadout = GetSelectedLoadout(session, player, def.RoleLoadout, out var selectedLoadoutProto);
         _loadout.Equip(player, gear, def.RoleLoadout, selectedLoadout, selectedLoadoutProto);
         // Starlight edit End
