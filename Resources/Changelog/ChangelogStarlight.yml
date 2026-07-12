@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Most species organs are now consistently labelled as "(species name) (organ name)", e.g. "vox eyes" "resomi stomach" "vulpkanin heart", etc. Surgeons rejoice.
-    type: Tweak
-  id: 406196
-  time: '2026-06-23T09:28:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4894
-- author: Caws
-  changes:
   - message: Arachnids now have arachnid tongues instead of human tongues.
     type: Fix
   id: 406197
@@ -2799,4 +2792,11 @@ Entries:
   id: 406595
   time: '2026-07-12T21:23:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5113
+- author: mikeysaurus
+  changes:
+  - message: Animal Kidneys can now be used in Surgery to replace kidneys.
+    type: Fix
+  id: 406596
+  time: '2026-07-12T21:23:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5105
 Order: -1
