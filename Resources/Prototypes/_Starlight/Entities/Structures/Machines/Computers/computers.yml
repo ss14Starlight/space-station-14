@@ -328,7 +328,7 @@
     - Silicon
     - Xenoborg
     privilegedIdSlot:
-      name: UniversalIdConsole-privilegedId
+      name: id-card-universal-console-privileged-id
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       ejectOnBreak: true
@@ -337,7 +337,7 @@
         components:
         - IdCard
     targetIdSlot:
-      name: UniversalIdConsole-targetId
+      name: id-card-universal-console-target-id
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       ejectOnBreak: true
