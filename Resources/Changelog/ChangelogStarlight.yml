@@ -1,32 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Changed mail tech locker to the double variant.
-    type: Tweak
-  id: 406192
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Changed showroom to reporter moving its content nearby.
-    type: Tweak
-  id: 406193
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Fixed robotics windoor not being robotics access.
-    type: Fix
-  id: 406194
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added Iceialin, a freezing chem that can rapidly cool superheated bodies.
-    type: Add
-  id: 406195
-  time: '2026-06-23T09:28:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4808
 - author: Caws
   changes:
   - message: Most species organs are now consistently labelled as "(species name) (organ name)", e.g. "vox eyes" "resomi stomach" "vulpkanin heart", etc. Surgeons rejoice.
@@ -2799,4 +2771,32 @@ Entries:
   id: 406591
   time: '2026-07-12T17:12:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5050
+- author: Arkanic
+  changes:
+  - message: Improved projectile performance.
+    type: Tweak
+  id: 406592
+  time: '2026-07-12T21:23:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5113
+- author: Arkanic
+  changes:
+  - message: Fixed the infamous "shooting at wall or person close by you makes you shoot yourself" bug that we all love and will dearly miss.
+    type: Fix
+  id: 406593
+  time: '2026-07-12T21:23:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5113
+- author: Arkanic
+  changes:
+  - message: Hitscan projectiles can now properly overpenetrate through walls, and aren't broken by two walls adjacent to each other.
+    type: Fix
+  id: 406594
+  time: '2026-07-12T21:23:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5113
+- author: Arkanic
+  changes:
+  - message: A dinky pistol that definitely has no relation whatsoever to any of the above changes.
+    type: Add
+  id: 406595
+  time: '2026-07-12T21:23:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5113
 Order: -1
