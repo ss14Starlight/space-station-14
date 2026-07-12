@@ -1,4 +1,4 @@
-﻿# Crewsimov
+# Crewsimov
 # Starlight Start: Crewsimov Law 0
 - type: siliconLaw
   id: Crewsimov0
@@ -610,7 +610,6 @@
   - MothershipCore5
   obeysTo: laws-owner-xenoborgs
 
-
 # ion storm random lawsets
 - type: weightedRandom
   id: IonStormLawsets
@@ -637,4 +636,4 @@
     GenieLawset: 0.5 # Starlight
     ReporterLawset: 0.25 # Starlight
     JermovLawset: 0.25 # Starlight
-    FreeLawset: 0.10 #Starlight 
+    FreeLawset: 0.10 #Starlight

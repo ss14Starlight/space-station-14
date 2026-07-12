@@ -6,14 +6,14 @@ on:
       - Starlight
       - starlight-dev
 
-      
+
 permissions:
   contents: write
   pull-requests: read
   actions: read
 
 env:
- BRANCH_NAME: ${{ github.ref_name	 }} 
+ BRANCH_NAME: ${{ github.ref_name	 }}
 
 jobs:
   wait-for-que:
@@ -65,14 +65,14 @@ jobs:
             }
             console.log(`PR Number: ${pr.data[0].number}`);
             return pr.data[0].number;
-        
+
       #re checkout
       - name: Re-checkout repository
         if: steps.get_pr.outputs.result != ''
         uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
-          
+
       - name: Set up Python
         if: steps.get_pr.outputs.result != ''
         uses: actions/setup-python@v2
@@ -83,7 +83,7 @@ jobs:
         if: steps.get_pr.outputs.result != ''
         run: |
           pip install pyyaml PyGithub
-    
+
       - name: Parse PR and Update Changelog
         if: steps.get_pr.outputs.result != ''
         env:
@@ -118,4 +118,4 @@ jobs:
             git commit -m "Update changelog for PR #${{ steps.get_pr.outputs.result }} [skip ci]"
             git push
           fi
-          
+

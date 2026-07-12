@@ -13,7 +13,11 @@
   - !type:DepartmentTimeRequirement
     department: Science
     time: 20h # Starlight
-
+  - !type:TraitsRequirement # Starlight
+    traits:
+      - Iterator
+      - Muted
+    inverted: true
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
@@ -27,6 +31,7 @@
   - Brig
   - Cryogenics
   - Robotics # Starlight
+  - Debrief # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

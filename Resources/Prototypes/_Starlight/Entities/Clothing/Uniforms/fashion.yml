@@ -10,6 +10,17 @@
     sprite: _Starlight/Clothing/Uniforms/bodysuit_jeans.rsi
 
 - type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: DarkTurtleneckSuit
+  name: dark turtleneck
+  description: The look of an innovator, or a killer, depending on the context.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/dark_turtleneck.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/dark_turtleneck.rsi
+
+- type: entity
   parent: ClothingUniformBase
   id: CamoUniformSuit
   name: camo jumpsuit
@@ -146,6 +157,17 @@
     sprite: _Starlight/Clothing/Uniforms/mechanic_overalls.rsi
 
 - type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: TrendyTopSuit
+  name: trendy top
+  description: A trendy top. What determines a trend, anyways?
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/trendy_top.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/trendy_top.rsi
+
+- type: entity
   parent: ClothingUniformBase
   id: MessyDressShirtUniformSuit
   name: messy dress shirt
@@ -247,6 +269,17 @@
     sprite: _Starlight/Clothing/Uniforms/tattered_clothes.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/tattered_clothes.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: RuggedClothesUniformSuit
+  name: rugged clothes
+  description: Don't ask me how my day's going.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/rugged_shirt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/rugged_shirt.rsi
 
 - type: entity
   parent: ClothingUniformBase

@@ -13,6 +13,7 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Content.Server.NPC.HTN;
+using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server.Salvage;
 
@@ -22,7 +23,7 @@ public sealed partial class SalvageSystem
      * Handles actively running a salvage expedition.
      */
 
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     private void InitializeRunner()
     {

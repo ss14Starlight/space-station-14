@@ -3,14 +3,11 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Starlight/Effects/aurora.rsi/aurora.png"
-      sprite: true
-      rsi:
-        sprite: /Textures/_Starlight/Effects/aurora.rsi
-        state: aurora
+        path: "/Textures/_Starlight/Parallaxes/aurora.png"
       slowness: 1
       scale: "1.6, 1.6"
       tiled: true
+# TODO: Give this an RGB Shader or Pulsing Color Shader.
 
 - type: parallax
   id: SpaceWhale
@@ -22,16 +19,3 @@
       scale: "1, 1"
       tiled: false
 
-- type: parallax
-  id: SpaceDog
-  layers:
-    - texture:
-        !type:ImageParallaxTextureSource
-        path: "/Textures/_Starlight/Effects/spacedog.rsi/space_dog.png"
-      sprite: true
-      rsi:
-        sprite: /Textures/_Starlight/Effects/spacedog.rsi
-        state: space_dog
-      slowness: 0.995
-      scale: "1, 1"
-      tiled: false

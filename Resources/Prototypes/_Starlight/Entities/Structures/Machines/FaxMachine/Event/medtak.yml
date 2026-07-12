@@ -1,0 +1,26 @@
+# Group
+- type: faxGroup
+  id: FaxGroupMedTak
+  name: fax-group-medtak
+  color: "#ffffff"
+  order: 1500 # All events: 1500
+  selectable: false
+
+# Single fax -- can be edited for mapping/event purposes.
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineMedTak
+  suffix: "MedTak"
+  categories: [ DoNotMap ]
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#ffffff"
+    - type: FaxMachine
+      group: FaxGroupMedTak
+      intrinsicGroup: FaxGroupMedTak
+      intrinsicLocked: true # No impersonating unless emagged
+      name: "MedTak"
+      order: 500

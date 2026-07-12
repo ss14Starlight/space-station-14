@@ -1,9 +1,7 @@
 using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared._NullLink;
 using Robust.Shared.Player;
 using Starlight.NullLink.Event;
-using Content.Shared.NullLink.CCVar;
 
 namespace Content.Server._NullLink.PlayerData;
 
@@ -23,7 +21,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         _playerResourcesManager.TrySetResources(playerData.Session, playerData.Resources);
         return ValueTask.CompletedTask;
     }
-    
+
     public ValueTask UpdateResource(ResourceChangedEvent ev)
     {
         if (!_resourcesEnabled

@@ -68,4 +68,8 @@ public sealed record GeneralStationRecord
     /// </summary>
     [DataField]
     public string? DNA;
+
+    // Starlight
+    [DataField]
+    public NetEntity? Entity;
 }

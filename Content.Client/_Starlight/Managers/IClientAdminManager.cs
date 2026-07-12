@@ -1,5 +1,4 @@
-using Content.Shared.Starlight;
-using Content.Shared.Administration;
+using Content.Shared._Starlight;
 
 namespace Content.Client._Starlight.Managers;
 

@@ -26,6 +26,7 @@
   - AnomalyLocator
   - AnomalyLocatorWide
   - APECircuitboard
+  - OublietteCircuitBoard # Starlight ## REMINDER for anyone reading this: Oubliette and APE recipes shouldn't be hard to obtain. Keep this in mind when balancing science.
   - AnomalyVesselCircuitboard
 
 - type: technology
@@ -78,6 +79,18 @@
   cost: 10000
   recipeUnlocks:
   - WeaponGauntletGorilla
+
+- type: technology
+  id: MechBorgUplink
+  name: research-technology-mech-borg-uplink
+  icon:
+    sprite: _Starlight/Objects/Specific/Mechs/equipment.rsi
+    state: exosuit_beacon
+  discipline: Experimental
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - MechEquipmentBorgBeacon
 
 # Tier 2
 

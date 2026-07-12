@@ -1,6 +1,5 @@
 using Content.Shared.NPC.Prototypes;
 using Content.Server.Actions;
-using Content.Server.Body.Systems;
 using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Emoting.Systems;
@@ -27,23 +26,24 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared._Starlight.Language.Components;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Zombies
 {
     public sealed partial class ZombieSystem : SharedZombieSystem
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IPrototypeManager _protoManager = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-        [Dependency] private readonly DamageableSystem _damageable = default!;
-        [Dependency] private readonly ChatSystem _chat = default!;
-        [Dependency] private readonly ActionsSystem _actions = default!;
-        [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
-        [Dependency] private readonly EmoteOnDamageSystem _emoteOnDamage = default!;
-        [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly SharedRoleSystem _role = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IPrototypeManager _protoManager = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private BloodstreamSystem _bloodstream = default!;
+        [Dependency] private DamageableSystem _damageable = default!;
+        [Dependency] private ChatSystem _chat = default!;
+        [Dependency] private ActionsSystem _actions = default!;
+        [Dependency] private AutoEmoteSystem _autoEmote = default!;
+        [Dependency] private EmoteOnDamageSystem _emoteOnDamage = default!;
+        [Dependency] private MobStateSystem _mobState = default!;
+        [Dependency] private SharedPopupSystem _popup = default!;
+        [Dependency] private SharedRoleSystem _role = default!;
 
         public readonly ProtoId<NpcFactionPrototype> Faction = "Zombie";
 
@@ -55,7 +55,8 @@ namespace Content.Server.Zombies
             SlotFlags.MASK |
             SlotFlags.NECK |
             SlotFlags.INNERCLOTHING |
-            SlotFlags.OUTERCLOTHING;
+            SlotFlags.OUTERCLOTHING | // Starlight
+            SlotFlags.OUTERCLOTHING2; // Starlight
 
         public override void Initialize()
         {
@@ -282,7 +283,8 @@ namespace Content.Server.Zombies
                 }
                 else
                 {
-                    if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread)
+                    if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread
+                    || !_random.Prob(GetZombieInfectionChance(uid, entity.Comp))) //Starlight fix: Infection-proof suits don't just lose their resistance on death.
                         continue;
 
                     // If the target is dead and can be infected, infect.

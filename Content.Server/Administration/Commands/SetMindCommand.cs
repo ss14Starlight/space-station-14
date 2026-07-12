@@ -12,11 +12,11 @@ using Robust.Shared.Containers;// Starlight
 namespace Content.Server.Administration.Commands
 {
     [AdminCommand(AdminFlags.Admin)]
-    public sealed class SetMindCommand : LocalizedEntityCommands
+    public sealed partial class SetMindCommand : LocalizedEntityCommands
     {
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-        [Dependency] private readonly SharedContainerSystem _containers = default!;// Starlight
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private SharedMindSystem _mindSystem = default!;
+        [Dependency] private SharedContainerSystem _containers = default!;// Starlight
 
         public override string Command => "setmind";
 

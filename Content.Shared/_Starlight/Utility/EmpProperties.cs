@@ -1,17 +1,15 @@
-using Robust.Shared.Utility;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.Manager.Attributes;
 
-namespace Content.Shared.Starlight.Utility;
+namespace Content.Shared._Starlight.Utility;
 
 [Serializable, NetSerializable]
 [DataDefinition]
 public sealed partial class EmpProperties
 {
-    
+
     [DataField("range"), ViewVariables(VVAccess.ReadWrite)]
     public float Range = 1.0f;
-    
+
     /// <summary>
     /// How much energy will be consumed per battery in range
     /// </summary>

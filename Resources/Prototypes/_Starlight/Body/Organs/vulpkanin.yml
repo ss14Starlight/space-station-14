@@ -1,8 +1,40 @@
 ﻿- type: entity
   id: OrganVulpkaninHeart
   parent: OrganAnimalHeart
-  name: heart
+  name: vulpkanin heart
+  suffix: Vulpkanin
   description: "A disgustingly hyperactive pump designed to keep things animate."
   components:
     - type: Metabolizer
       updateInterval: 0.8
+
+- type: entity
+  id: OrganVulpkaninStomach
+  parent: [OrganAnimalStomach, BaseOrganStomach] # Starlight - add BaseOrganStomach
+  name: vulpkanin stomach # Starlight
+  suffix: Vulpkanin
+  description: "A nearly bottomless caloric pit." # Starlight
+  components:
+    # Starlight start
+    - type: Sprite
+      sprite: Mobs/Species/Human/organs.rsi
+      state: stomach
+    - type: Item
+      size: Small
+      heldPrefix: stomach
+    - type: Stomach
+      updateInterval: 1.5
+    # Starlight end
+    - type: SolutionContainerManager
+      solutions:
+        stomach:
+          maxVol: 50
+        food:
+          maxVol: 5
+          reagents:
+          - ReagentId: UncookedAnimalProteins
+            Quantity: 5
+    # Starlight start
+    - type: Metabolizer
+      updateInterval: 1.5
+    # Starlight end

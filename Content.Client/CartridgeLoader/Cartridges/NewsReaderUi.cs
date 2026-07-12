@@ -30,6 +30,10 @@ public sealed partial class NewsReaderUi : UIFragment
         {
             SendNewsReaderMessage(NewsReaderUiAction.NotificationSwitch, userInterface);
         };
+        // Starlight-edit: start
+        _fragment.OnLikeButtonPressed += () => SendNewsReaderMessage(NewsReaderUiAction.Like, userInterface);
+        _fragment.OnDislikeButtonPressed += () => SendNewsReaderMessage(NewsReaderUiAction.Dislike, userInterface);
+        // Starlight-edit: end
     }
 
     public override void UpdateState(BoundUserInterfaceState state)
@@ -37,7 +41,7 @@ public sealed partial class NewsReaderUi : UIFragment
         switch (state)
         {
             case NewsReaderBoundUserInterfaceState cast:
-                _fragment?.UpdateState(cast.Article, cast.TargetNum, cast.TotalNum, cast.NotificationOn);
+                _fragment?.UpdateState(cast.Article, cast.TargetNum, cast.TotalNum, cast.NotificationOn, cast.HasReacted); // Starlight
                 break;
             case NewsReaderEmptyBoundUserInterfaceState empty:
                 _fragment?.UpdateEmptyState(empty.NotificationOn);

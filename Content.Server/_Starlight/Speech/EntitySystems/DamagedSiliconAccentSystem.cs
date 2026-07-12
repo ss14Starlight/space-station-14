@@ -11,12 +11,12 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Speech.EntitySystems;
 
-public sealed class DamagedSiliconAccentSystem : EntitySystem
+public sealed partial class DamagedSiliconAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private DestructibleSystem _destructibleSystem = default!;
 
     public override void Initialize()
     {
@@ -65,7 +65,7 @@ public sealed class DamagedSiliconAccentSystem : EntitySystem
 
         var outMsg = new StringBuilder();
 
-        var maxDropProb = comp.MaxDropProbFromPower * (1.0f - chargeLevel / comp.ChargeThresholdForPowerCorruption);
+        var maxDropProb = comp.MaxDropProbFromPower * (1.0f - (chargeLevel / comp.ChargeThresholdForPowerCorruption));
 
         var idx = -1;
         foreach (var letter in message)

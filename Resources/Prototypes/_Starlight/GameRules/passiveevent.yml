@@ -51,9 +51,7 @@
       duration: 90
       reoccurrenceDelay: 20
       maxOccurrences: 2
-    - type: DoorRunetimeRule
-      blacklist:
-      - External
+    - type: DoorRuntimeRule
 
 - type: entity
   parent: BaseGameRule

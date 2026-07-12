@@ -19,7 +19,7 @@ namespace Content.Client._FarHorizons.Power.UI;
 public sealed partial class GasTurbineWindow : FancyWindow
 {
     // Dependencies
-    [Dependency] private readonly IEntityManager _entityManager = null!;
+    [Dependency] private IEntityManager _entityManager = null!;
     private readonly LockSystem _lock;
 
     #region Variables
@@ -225,7 +225,7 @@ public sealed partial class GasTurbineWindow : FancyWindow
         {
             BladeEntityView.SetEntity(msg.Blade!.Value);
             BladeInfoName.Text = Identity.Name(_entityManager.GetEntity(msg.Blade!.Value), _entityManager);
-        }  
+        }
 
         BladeInfo.Visible = bladeExists;
         BladeInfoIntegrity.Text = Math.Round(msg.Health * 100 / msg.HealthMax).ToString() + "%";

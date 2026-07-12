@@ -1,54 +1,4 @@
 - type: entity
-  id: DebugMechEquipment
-  abstract: true
-  suffix: DEBUG
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Tag
-    tags:
-    - CombatMech
-    - IndustrialMech
-    - SpecialMech
-    - SmallMech
-
-- type: entity
-  id: CombatMechEquipment
-  abstract: true
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Tag
-    tags:
-    - CombatMech
-
-- type: entity
-  id: IndustrialMechEquipment
-  abstract: true
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Tag
-    tags:
-    - IndustrialMech
-
-- type: entity
-  id: SpecialMechEquipment
-  abstract: true
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Tag
-    tags:
-    - SpecialMech
-
-- type: entity
-  id: SmallMechEquipment
-  abstract: true
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Tag
-    tags:
-    - SmallMech
-# TODO: Make medical mech with equipment.
-
-- type: entity
   parent: BaseItem
   id: BaseMechEquipment
   abstract: true
@@ -85,8 +35,8 @@
     containers:
       item-container: !type:Container
   # 🌟Starlight-start🌟
-  - type: Retractor
   - type: SurgeryTool
+  - type: Retractor
     successRate: 0.05 # they are very much too large
     speed: 1.5
     startSound:
@@ -122,8 +72,8 @@
     - IndustrialMech
     - SmallMech
   # 🌟Starlight-start🌟
-  - type: Retractor
   - type: SurgeryTool
+  - type: Retractor
     successRate: 0.1 # they are very much too large
     speed: 1.5
     startSound:
@@ -157,17 +107,3 @@
     ui: !type:MechSoundboardUi
   - type: UseDelay
     delay: 0.5
-    
-- type: entity
-  id: MechEquipmentCamera
-  parent: [ BaseMechEquipment, CombatMechEquipment ]
-  name: mech night vision camera
-  description: night vision camera, allows you to switch the visor to night vision for increased visibility in poorly lit areas.
-  components:
-  - type: MechEquipment
-    equipmentType: Passive
-  - type: Sprite
-    state: mecha_camera
-  - type: MechEquipmentAction
-    actionId: ActionMechToggleNightVision
-  - type: MechNightVision

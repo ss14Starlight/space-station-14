@@ -1,25 +1,19 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using Content.Server._Starlight.Objectives.Events;
-using Content.Server.Administration.Managers;
-using Content.Server.Administration.Systems;
-using Content.Server.EUI;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
+using Content.Shared._Starlight.Railroading.Components.Watchers;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared.Administration.Logs;
-using Content.Shared.Alert;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Nutrition;
 using Content.Shared.Objectives;
-using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.TaskSystems;
 
 public sealed partial class RailroadingMetabolizeTaskSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -76,6 +70,6 @@ public sealed partial class RailroadingMetabolizeTaskSystem : EntitySystem
         args.IsCompleted = ent.Comp.Reagents.All(x => ent.Comp.MetabolizedReagents.TryGetValue(x.Reagent.Prototype, out var quantity) && quantity >= x.Quantity);
     }
 
-    private void OnConsumeTaskPicked(Entity<RailroadMetabolizeTaskComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnConsumeTaskPicked(Entity<RailroadMetabolizeTaskComponent> ent, ref RailroadingCardChosenEvent args)
         => EnsureComp<RailroadMetabolizerWatcherComponent>(args.Subject.Owner);
 }

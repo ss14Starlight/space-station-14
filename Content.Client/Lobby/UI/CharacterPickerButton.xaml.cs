@@ -56,7 +56,7 @@ public sealed partial class CharacterPickerButton : ContainerButton
         Group = group;
 
         Profile = profile;
-        
+
         View.Initialize(prefMan, protoMan, playerMan);
         View.LoadPreview(profile);
 

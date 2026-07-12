@@ -22,7 +22,7 @@
     slots:
       fryer_slots:
         ejectOnInteract: true
-        insertSound: /Audio/Effects/Fluids/watersplash.ogg 
+        insertSound: /Audio/Effects/Fluids/watersplash.ogg
         blacklist:
           components:
             - DrainableSolution
@@ -67,7 +67,7 @@
   suffix: Service
   name: table-top deep fryer
   components:
-#removed the SolutionContainerManager from here because it was redundant as it gets it from the parent 
+#removed the SolutionContainerManager from here because it was redundant as it gets it from the parent
   - type: Sprite
     sprite: _TP/Structures/Machines/deepfryer.rsi
     layers:

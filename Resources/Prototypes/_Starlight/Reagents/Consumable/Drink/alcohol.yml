@@ -102,3 +102,82 @@
         component: SeeingRainbows
         type: Add
         time: 120
+
+- type: reagent
+  id: Highlander
+  name: reagent-name-highlander
+  parent: BaseAlcohol
+  desc: reagent-desc-highlander
+  physicalDesc: reagent-physical-desc-highlander
+  flavor: highlander
+  color: "#95530f"
+  metamorphicSprite:
+    sprite: _Starlight/Objects/Consumable/Drinks/highlander.rsi
+    state: empty
+  metamorphicMaxFillLevels: 1
+  metamorphicFillBaseName: full-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
+      - !type:ModifyStatusEffect
+        effectProto: MobThresholdsTheHighlander # raise crit to 219
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+      - !type:SpawnAttachedTo
+        entity: EffectDwarfCourage
+        number: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+
+- type: reagent
+  id: TheLastCall
+  name: reagent-name-the-last-call
+  parent: BaseAlcohol
+  desc: reagent-desc-the-last-call
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: thelastcall
+  color: "#9450c7"
+  metamorphicSprite:
+    sprite: _Starlight/Objects/Consumable/Drinks/thelastcall.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: TheLastCall
+          min: 6
+        - !type:MetabolizerTypeCondition
+          type: [Animal]
+          inverted: true
+        damage:
+          types:
+            Poison: 0.04
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: TheLastCall
+          min: 6
+        - !type:MetabolizerTypeCondition
+          type: [Animal]
+        damage:
+          types:
+            Poison: 0.02

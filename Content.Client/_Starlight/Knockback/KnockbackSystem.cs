@@ -1,12 +1,6 @@
-using System.Numerics;
-using Content.Shared.Starlight.Knockback;
-using Content.Shared.Tag;
-using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
+using Content.Shared._Starlight.Knockback;
 
-namespace Content.Client.Starlight.Knockback;
+namespace Content.Client._Starlight.Knockback;
 public sealed partial class KnockbackSystem : SharedKnockbackSystem
 {
 }

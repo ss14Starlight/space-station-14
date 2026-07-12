@@ -19,55 +19,21 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 #region Starlight
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Components;
-using Content.Server.Decals;
-using Content.Server.Emp;
-using Content.Server.IgnitionSource;
-using Content.Server.Interaction;
-using Content.Server.Mech.Equipment.Components;
-using Content.Server.Power.EntitySystems;
-using Content.Server.Stunnable.Components;
-using Content.Server.Stunnable;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Damage.Components;
-using Content.Shared.Decals;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Mech.Components;
-using Content.Shared.Mech.Equipment.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Pinpointer;
-using Content.Shared.Standing;
-using Content.Shared.StatusEffect;
-using Content.Shared.Stunnable;
-using Content.Shared.Weapons.Reflect;
-using Content.Shared._Starlight.Weapon.Components;
-using Content.Shared._Starlight.Weapon;
 using Robust.Server.GameObjects;
-using Robust.Shared.Containers;
-using Robust.Shared.Maths;
-using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 #endregion Starlight
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem : SharedGunSystem
 {
-    [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private PricingSystem _pricing = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
 #region Starlight
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _rand = default!;
 #endregion Starlight
 
     private const float DamagePitchVariation = 0.05f;

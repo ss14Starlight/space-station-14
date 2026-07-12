@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Preferences;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
@@ -6,8 +5,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using Content.Shared._NullLink;
+using Content.Shared.Roles;
 
-namespace Content.Shared.Roles;
+namespace Content.Shared._Starlight.Roles;
 
 [UsedImplicitly]
 [Serializable, NetSerializable]
@@ -21,17 +21,18 @@ public sealed partial class RolesRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason)
     {
         var requirement = protoManager.Index(Proto);
         reason = new FormattedMessage();
-        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAnyRole(player, requirement.Roles))
-            return true;
+
+        var success = player is not null &&
+                  IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAnyRole(player, requirement.Roles);
 
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
-            "roles-req-any-role-required",
+            success ? "roles-req-any-role-required-pass" : "roles-req-any-role-required-fail",
             ("discord", Loc.GetString(requirement.Discord)),
             ("roles", Loc.GetString(requirement.RolesLoc))));
-        return false;
+        return success;
     }
 }

@@ -6,9 +6,13 @@
   sprites: MobSlimeSprites
   defaultSkinTone: "#b8b8b8"
   markingLimits: MobSlimeMarkingLimits
-  dollPrototype: MobSlimePersonDummy
+  dollPrototype: AppearanceSlimePerson
   skinColoration: Hues
-  customName: true # Starlight
+  customName: true # Starlight Start
+  minAge: 20
+  youngAge: 40
+  oldAge: 100
+  maxAge: 130 # Starlight end
 
 - type: speciesBaseSprites
   id: MobSlimeSprites

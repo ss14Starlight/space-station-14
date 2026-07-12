@@ -5,7 +5,13 @@
   description: A folded membrane which rapidly expands into a large cubical shape on activation.
   suffix: Full
   components:
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
+  # Starlight end
     stackType: InflatableWall
     count: 10
   - type: Sprite
@@ -34,7 +40,13 @@
   description: A folded membrane which rapidly expands into a large cubical shape on activation.
   suffix: Full
   components:
+    # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
+  # Starlight end
     stackType: InflatableDoor
     count: 4
   - type: Sprite

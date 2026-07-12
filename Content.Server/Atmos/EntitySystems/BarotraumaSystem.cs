@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq; // Starlight
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Shared.Alert;
@@ -13,14 +14,14 @@ using Robust.Shared.Containers;
 
 namespace Content.Server.Atmos.EntitySystems
 {
-    public sealed class BarotraumaSystem : EntitySystem
+    public sealed partial class BarotraumaSystem : EntitySystem
     {
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger= default!;
-        [Dependency] private readonly InventorySystem _inventorySystem = default!;
-        [Dependency] private readonly SharedTransformSystem _sharedTransformSystem = default!; // Starlight
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private DamageableSystem _damageableSystem = default!;
+        [Dependency] private AlertsSystem _alertsSystem = default!;
+        [Dependency] private IAdminLogManager _adminLogger= default!;
+        [Dependency] private InventorySystem _inventorySystem = default!;
+        [Dependency] private SharedTransformSystem _sharedTransformSystem = default!; // Starlight
 
         private const float UpdateTimer = 1f;
         private float _timer;
@@ -65,18 +66,33 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void OnPressureProtectionEquipped(EntityUid uid, PressureProtectionComponent pressureProtection, GotEquippedEvent args)
         {
-            if (TryComp<BarotraumaComponent>(args.Equipee, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
-            {
-                UpdateCachedResistances(args.Equipee, barotrauma);
-            }
+            #region Starlight
+            //if (TryComp<BarotraumaComponent>(args.Equipee, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
+            //{
+            //    UpdateCachedResistances(args.Equipee, barotrauma);
+            //}
+            if (!TryComp<BarotraumaComponent>(args.EquipTarget, out var barotrauma))
+                return;
+
+            // Check for alternative slots too, since we're supporting that now.
+            if (!barotrauma.ProtectionSlots.Contains(args.Slot) &&
+                !barotrauma.AlternativeProtectionSlots.Any(group => group.Contains(args.Slot)))
+                return;
+
+            UpdateCachedResistances(args.EquipTarget, barotrauma);
+            #endregion
         }
 
         private void OnPressureProtectionUnequipped(EntityUid uid, PressureProtectionComponent pressureProtection, GotUnequippedEvent args)
         {
-            if (TryComp<BarotraumaComponent>(args.Equipee, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
-            {
-                UpdateCachedResistances(args.Equipee, barotrauma);
-            }
+            if (!TryComp<BarotraumaComponent>(args.EquipTarget, out var barotrauma))
+                return;
+
+            if (!barotrauma.ProtectionSlots.Contains(args.Slot) &&
+                !barotrauma.AlternativeProtectionSlots.Any(group => group.Contains(args.Slot)))
+                return;
+
+            UpdateCachedResistances(args.EquipTarget, barotrauma);
         }
 
         /// <summary>
@@ -99,8 +115,7 @@ namespace Content.Server.Atmos.EntitySystems
 
                 foreach (var slot in barotrauma.ProtectionSlots)
                 {
-                    if (!_inventorySystem.TryGetSlotEntity(uid, slot, out var equipment, inv, contMan)
-                        || !TryGetPressureProtectionValues(equipment.Value,
+                    if (!TryGetProtectionFromSlot(uid, slot, inv, contMan, // Starlight
                             out var itemHighMultiplier,
                             out var itemHighModifier,
                             out var itemLowMultiplier,
@@ -120,6 +135,49 @@ namespace Content.Server.Atmos.EntitySystems
                     lPModifier = Math.Min(lPModifier, itemLowModifier.Value);
                     lPMultiplier = Math.Min(lPMultiplier, itemLowMultiplier.Value);
                 }
+                #region Starlight
+                // Alternative slot stuff here
+                foreach (var group in barotrauma.AlternativeProtectionSlots)
+                {
+                    var found = false;
+
+                    var groupHPModifier = float.MinValue;
+                    var groupHPMultiplier = float.MinValue;
+                    var groupLPModifier = float.MaxValue;
+                    var groupLPMultiplier = float.MaxValue;
+
+                    foreach (var slot in group)
+                    {
+                        if (!TryGetProtectionFromSlot(uid, slot, inv, contMan,
+                                out var itemHighMultiplier,
+                                out var itemHighModifier,
+                                out var itemLowMultiplier,
+                                out var itemLowModifier))
+                            continue;
+
+                        found = true;
+
+                        groupHPModifier = Math.Max(groupHPModifier, itemHighModifier.Value);
+                        groupHPMultiplier = Math.Max(groupHPMultiplier, itemHighMultiplier.Value);
+                        groupLPModifier = Math.Min(groupLPModifier, itemLowModifier.Value);
+                        groupLPMultiplier = Math.Min(groupLPMultiplier, itemLowMultiplier.Value);
+                    }
+
+                    if (!found)
+                    {
+                        hPModifier = 0f;
+                        hPMultiplier = 1f;
+                        lPModifier = 0f;
+                        lPMultiplier = 1f;
+                        break;
+                    }
+
+                    hPModifier = Math.Max(hPModifier, groupHPModifier);
+                    hPMultiplier = Math.Max(hPMultiplier, groupHPMultiplier);
+                    lPModifier = Math.Min(lPModifier, groupLPModifier);
+                    lPMultiplier = Math.Min(lPMultiplier, groupLPMultiplier);
+                }
+                #endregion
 
                 barotrauma.HighPressureModifier = hPModifier;
                 barotrauma.HighPressureMultiplier = hPMultiplier;
@@ -293,5 +351,29 @@ namespace Content.Server.Atmos.EntitySystems
                 }
             }
         }
+        #region Starlight
+        private bool TryGetProtectionFromSlot(
+                    EntityUid uid,
+                    string slot,
+                    InventoryComponent inv,
+                    ContainerManagerComponent contMan,
+                    [NotNullWhen(true)] out float? highMultiplier,
+                    [NotNullWhen(true)] out float? highModifier,
+                    [NotNullWhen(true)] out float? lowMultiplier,
+                    [NotNullWhen(true)] out float? lowModifier)
+        {
+            highMultiplier = null;
+            highModifier = null;
+            lowMultiplier = null;
+            lowModifier = null;
+
+            return _inventorySystem.TryGetSlotEntity(uid, slot, out var equipment, inv, contMan)
+                && TryGetPressureProtectionValues(equipment.Value,
+                    out highMultiplier,
+                    out highModifier,
+                    out lowMultiplier,
+                    out lowModifier);
+        }
+        #endregion
     }
 }

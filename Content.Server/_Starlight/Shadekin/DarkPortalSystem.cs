@@ -1,9 +1,7 @@
 using Content.Shared.Teleportation.Systems;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Anomaly.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Shared.Verbs;
-using Robust.Shared.Prototypes;
 using Content.Shared.Anomaly;
 using Content.Shared.Alert;
 using Content.Shared.Actions;
@@ -12,25 +10,27 @@ using Content.Shared.Teleportation.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Examine;
 using Content.Server.Anomaly;
-using Content.Shared._Starlight.Railroading;
-using Content.Server._Starlight.Railroading;
 using Content.Shared.Light.Components;
 using Content.Shared.Throwing;
+using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Server._Starlight.Railroading.TaskSystems;
+using Content.Shared._Starlight.Shadekin.Components;
+using Content.Shared._Starlight.Railroading.Components.Watchers;
 
 namespace Content.Server._Starlight.Shadekin;
 
-public sealed class DarkPortalSystem : EntitySystem
+public sealed partial class DarkPortalSystem : EntitySystem
 {
-    [Dependency] private readonly LinkedEntitySystem _link = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PoweredLightSystem _light = default!;
-    [Dependency] private readonly ShadekinSystem _shadekin = default!;
-    [Dependency] private readonly SharedAnomalySystem _sharedAnomalySystem = default!;
-    [Dependency] private readonly AnomalySystem _anomalySystem = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly RailroadingSupercritPortalSystem _railroadingSupercritPortal = default!;
+    [Dependency] private LinkedEntitySystem _link = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PoweredLightSystem _light = default!;
+    [Dependency] private ShadekinSystem _shadekin = default!;
+    [Dependency] private SharedAnomalySystem _sharedAnomalySystem = default!;
+    [Dependency] private AnomalySystem _anomalySystem = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private RailroadingSupercritPortalSystem _railroadingSupercritPortal = default!;
 
     public override void Initialize()
     {
@@ -108,6 +108,10 @@ public sealed class DarkPortalSystem : EntitySystem
     {
         component.Portal = null;
         _alerts.ShowAlert(uid, component.PortalAlert);
+
+        if (HasComp<CosmicCultComponent>(uid))
+            return;
+
         _actionsSystem.AddAction(uid, ref component.PortalAction, component.BrighteyePortalAction, uid);
         _actionsSystem.SetCooldown(component.PortalAction, TimeSpan.FromSeconds(300));
     }
@@ -149,7 +153,7 @@ public sealed class DarkPortalSystem : EntitySystem
 
         args.Cancel();
     }
-    
+
     private void OnGetInteractionVerbs(EntityUid uid, DarkPortalComponent component, ref GetVerbsEvent<InteractionVerb> args)
     {
         if (!args.CanAccess || component.Brighteye != args.User || !TryComp<AnomalyComponent>(uid, out var anomaly))

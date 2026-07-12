@@ -27,12 +27,12 @@
           Quantity: 5
         - ReagentId: Nicotine
           Quantity: 10
-          
+
 - type: entity
   name: spicy smokesicle
   parent: FoodFrozenBase
   id: FoodFrozenPopsicleNicotineSpicy
-  description: A nitrogen-chilled popsicle infused with nicotine and capsaicin. 
+  description: A nitrogen-chilled popsicle infused with nicotine and capsaicin.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
@@ -83,7 +83,7 @@
           Quantity: 2
         - ReagentId: THC
           Quantity: 20 # a joint has 20 thc
-          
+
 # Packaged ice-cream
 # Look, if I had an unpackaged popsicle fall out a vending machine I wouldn't touch that with a mile long stick. Or maybe I would, as long as it didn't crack.
 
@@ -102,7 +102,7 @@
       - id: FoodFrozenPopsicleNicotine
     sound:
       path: /Audio/Effects/unwrap.ogg
-      
+
 - type: entity
   parent: BaseItem
   id: FoodFrozenPopsicleNicotineSpicyPackaged
@@ -118,7 +118,7 @@
       - id: FoodFrozenPopsicleNicotineSpicy
     sound:
       path: /Audio/Effects/unwrap.ogg
-          
+
 - type: entity
   parent: BaseItem
   id: FoodFrozenPopsicleNicotineLegendPackaged
@@ -134,7 +134,7 @@
       - id: FoodFrozenPopsicleNicotineLegend
     sound:
       path: /Audio/Effects/unwrap.ogg
-      
+
 - type: entity
   parent: BaseItem
   id: FoodFrozenPopsicleOrangePackaged
@@ -150,7 +150,7 @@
       - id: FoodFrozenPopsicleOrange
     sound:
       path: /Audio/Effects/unwrap.ogg
-      
+
 - type: entity
   parent: BaseItem
   id: FoodFrozenPopsicleBerryPackaged
@@ -199,7 +199,7 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
 
-# Trash 
+# Trash
 
 - type: entity
   categories: [ HideSpawnMenu ]

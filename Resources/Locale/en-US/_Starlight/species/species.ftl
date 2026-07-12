@@ -1,4 +1,4 @@
-species-name-abductor = Abductor
+﻿species-name-abductor = Abductor
 species-name-avali = Avali
 species-name-cyclorite = Cyclorite
 species-name-elf = Aielith
@@ -7,3 +7,4 @@ species-name-lagomorph = Lagomorph
 species-name-resomi = Resomi
 species-name-shadekin = Shadekin
 species-name-thaven = Thaven
+species-name-rodentia = Rodentia

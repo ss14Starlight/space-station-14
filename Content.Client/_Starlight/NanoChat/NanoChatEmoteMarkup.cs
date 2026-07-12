@@ -14,10 +14,10 @@ namespace Content.Client._Starlight.NanoChat;
 /// Rich text markup handler for inline emote rendering in NanoChat messages.
 /// Usage: [emote="emotename"] or [emote name="emotename"]
 /// </summary>
-public sealed class NanoChatEmoteMarkup : IMarkupTagHandler
+public sealed partial class NanoChatEmoteMarkup : IMarkupTagHandler
 {
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
 
     private SpriteSystem? _spriteSystem;
 
@@ -26,9 +26,7 @@ public sealed class NanoChatEmoteMarkup : IMarkupTagHandler
     private const float TopMargin = -8f; // Alignment adjustment
 
     public NanoChatEmoteMarkup()
-    {
-        IoCManager.InjectDependencies(this);
-    }
+        => IoCManager.InjectDependencies(this);
 
     public string Name => "emote";
 
@@ -51,8 +49,8 @@ public sealed class NanoChatEmoteMarkup : IMarkupTagHandler
 
         // Parse optional size attribute
         var emoteSize = DefaultEmoteSize;
-        if (node.Attributes.TryGetValue("size", out var sizeParam) && 
-            sizeParam.TryGetLong(out var customSizeLong) && 
+        if (node.Attributes.TryGetValue("size", out var sizeParam) &&
+            sizeParam.TryGetLong(out var customSizeLong) &&
             customSizeLong > 0 && customSizeLong <= 64)
         {
             emoteSize = (int)customSizeLong.Value;
@@ -75,7 +73,7 @@ public sealed class NanoChatEmoteMarkup : IMarkupTagHandler
         }
 
         // Fall back to "name" attribute
-        if (node.Attributes.TryGetValue("name", out var nameParam) && 
+        if (node.Attributes.TryGetValue("name", out var nameParam) &&
             nameParam.TryGetString(out var nameValue))
         {
             emoteId = nameValue!;
@@ -118,7 +116,7 @@ public sealed class NanoChatEmoteMarkup : IMarkupTagHandler
     private Control CreateEmoteControl(Texture texture, float size, string tooltipText)
     {
         var sizeVector = new Vector2(size, size);
-        
+
         return new TextureRect
         {
             Texture = texture,

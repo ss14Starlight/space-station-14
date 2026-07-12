@@ -21,7 +21,7 @@
                         <Label Name="ThrowDistanceCurrentValue" Margin="5 0 0 0" />
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalAlignment="Center">
-                        <Label Name="ThrowDistanceMinValue" Margin="0 0 5 0" StyleClasses="StatusFieldTitle" />          
+                        <Label Name="ThrowDistanceMinValue" Margin="0 0 5 0" StyleClasses="StatusFieldTitle" />
                         <Slider Name="ThrowDistanceSlider" HorizontalExpand="True" />
                         <Label Name="ThrowDistanceMaxValue" Margin="5 0 0 0" StyleClasses="StatusFieldTitle" />
                     </BoxContainer>
@@ -33,7 +33,7 @@
                         <Label Name="ThrowSpeedCurrentValue" Margin="5 0 0 0" />
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalAlignment="Center">
-                        <Label Name="ThrowSpeedMinValue" Margin="0 0 5 0" StyleClasses="StatusFieldTitle" />          
+                        <Label Name="ThrowSpeedMinValue" Margin="0 0 5 0" StyleClasses="StatusFieldTitle" />
                         <Slider Name="ThrowSpeedSlider" HorizontalExpand="True" />
                         <Label Name="ThrowSpeedMaxValue" Margin="5 0 0 0" StyleClasses="StatusFieldTitle" />
                     </BoxContainer>

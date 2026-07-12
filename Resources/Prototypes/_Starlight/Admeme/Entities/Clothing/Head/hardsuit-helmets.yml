@@ -1,7 +1,7 @@
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseNanoTrasenContraband, ClothingHeadLightParamsProfessional, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitNTNCConsortium
-  name: nanotrasen navy marine hardsuit helmet
+  name: NanoTrasen navy marine hardsuit helmet
   description: A protective hardsuit helmet worn by NanoTrasen Navy Marines.
   components:
   - type: Sprite
@@ -23,9 +23,9 @@
         Heat: 0.9
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseNanoTrasenContraband, ClothingHeadLightParamsAdvanced, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitNTNCConsortiumMedic
-  name: nanotrasen navy marine medic hardsuit helmet
+  name: NanoTrasen navy marine medic hardsuit helmet
   description: A protective hardsuit helmet worn by NanoTrasen Navy Marine medical personnel.
   components:
   - type: Sprite

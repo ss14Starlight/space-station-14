@@ -15,14 +15,14 @@ namespace Content.Shared.RetractableItemAction;
 /// <summary>
 /// System for handling retractable items, such as armblades.
 /// </summary>
-public sealed class RetractableItemActionSystem : EntitySystem
+public sealed partial class RetractableItemActionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!; // 🌟Starlight🌟
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedPopupSystem _popups = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private InventorySystem _inventory = default!; // 🌟Starlight🌟
+    [Dependency] private SharedContainerSystem _containers = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedPopupSystem _popups = default!;
 
     public override void Initialize()
     {
@@ -84,7 +84,7 @@ public sealed class RetractableItemActionSystem : EntitySystem
             {
                 // Don't allow summoning an item if it's from a cybernetic and the user is currently disrupted.
                 if (ent.Comp.IsCybernetic && TryComp(args.Performer, out CyberneticDisruptionComponent? _))
-                { 
+                {
                     _popups.PopupClient(Loc.GetString("retractable-item-cybernetics-disrupted"), args.Performer, args.Performer);
                     return;
                 }
@@ -102,7 +102,7 @@ public sealed class RetractableItemActionSystem : EntitySystem
             {
                 // Don't allow summoning an item if it's from a cybernetic and the user is currently disrupted.
                 if (ent.Comp.IsCybernetic && TryComp(args.Performer, out CyberneticDisruptionComponent? _))
-                { 
+                {
                     _popups.PopupClient(Loc.GetString("retractable-item-cybernetics-disrupted"), args.Performer, args.Performer);
                     return;
                 }

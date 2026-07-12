@@ -12,9 +12,9 @@ namespace Content.Shared.Labels.EntitySystems;
 
 public sealed partial class LabelSystem : EntitySystem
 {
-    [Dependency] private readonly NameModifierSystem _nameModifier = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private NameModifierSystem _nameModifier = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public const string ContainerName = "paper_label";
 
@@ -122,8 +122,8 @@ public sealed partial class LabelSystem : EntitySystem
 
             args.PushMarkup(Loc.GetString("comp-paper-label-has-label"));
             var text = paper.Content;
-            // STARLIGHT: Remove all markup for the examine text.
-            var message = FormattedMessage.FromMarkupPermissive(text.TrimEnd()).ToString();
+            // STARLIGHT: Remove MOST markup for the examine text.
+            var message = FormattedMessage.FromMarkupPermissive(text.TrimEnd()).SanitizeWhitelist(FormattedMessageSanitizer.PaperLabelTags).ToMarkup();
             args.PushMarkup(message);
         }
     }

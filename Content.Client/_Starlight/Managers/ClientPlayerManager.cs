@@ -1,21 +1,18 @@
-using Content.Client._Starlight.Managers;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Client.Console;
 using Robust.Client.Player;
-using Robust.Client.UserInterface;
-using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Client._NullLink;
 
-namespace Content.Client.Administration.Managers;
+namespace Content.Client._Starlight.Managers;
 
-public sealed class ClientPlayerManager : IClientPlayerRolesManager, IPostInjectInit, ISharedPlayersRoleManager
+public sealed partial class ClientPlayerManager : IClientPlayerRolesManager, IPostInjectInit, ISharedPlayersRoleManager
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IClientNetManager _netMgr = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly INullLinkPlayerResourcesManager _nullLinkResourcesManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IClientNetManager _netMgr = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private INullLinkPlayerResourcesManager _nullLinkResourcesManager = default!;
 
     private PlayerData? _playerData;
     private ISawmill _sawmill = default!;
@@ -31,7 +28,7 @@ public sealed class ClientPlayerManager : IClientPlayerRolesManager, IPostInject
 
     private void OnPlayerResourcesUpdated()
     {
-        if (!_nullLinkResourcesManager.TryGetResources(out var resources) 
+        if (!_nullLinkResourcesManager.TryGetResources(out var resources)
             || _player.LocalSession == null || _playerData == null)
             return;
 

@@ -11,10 +11,10 @@ namespace Content.Server.Silicons.Borgs;
 /// <summary>
 /// Server-side logic for borg type switching. Handles more heavyweight and server-specific switching logic.
 /// </summary>
-public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
+public sealed partial class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
 {
-    [Dependency] private readonly BorgSystem _borgSystem = default!;
-    [Dependency] private readonly ServerInventorySystem _inventorySystem = default!;
+    [Dependency] private BorgSystem _borgSystem = default!;
+    [Dependency] private ServerInventorySystem _inventorySystem = default!;
 
     protected override void SelectBorgModule(Entity<BorgSwitchableTypeComponent> ent, ProtoId<BorgTypePrototype> borgType)
     {
@@ -22,14 +22,20 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
 
         // Assign radio channels
         //Starlight begin
-        string[] radioChannels = [.. ent.Comp.InherentRadioChannels, .. prototype.RadioChannels];
-        if (TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter))
+        TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter);
+        TryComp(ent, out ActiveRadioComponent? activeRadio);
+
+        string[] radioChannels = [.. ent.Comp.InherentRadioChannels, .. prototype.RadioChannels,
+            .. (transmitter != null && transmitter.Channels.Contains("Syndicate")) || (activeRadio != null && activeRadio.Channels.Contains("Syndicate"))
+                ? new[] { "Syndicate" } : []]; //If the borg has the Syndicate channel already (emagged before picking a chassis), they should not lose it when picking a chassis.
+
+        if (transmitter != null)
         {
             transmitter.Channels = [.. radioChannels];
             Dirty(ent.Owner, transmitter);
         }
 
-        if (TryComp(ent, out ActiveRadioComponent? activeRadio))
+        if (activeRadio != null)
         {
             activeRadio.Channels = [.. radioChannels];
             Dirty(ent.Owner, activeRadio);

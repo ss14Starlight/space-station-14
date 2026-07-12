@@ -1,9 +1,7 @@
-using Content.Client._Starlight.MHelp;
 using Content.Client.Administration.Managers;
-using Content.Shared.Starlight.MHelp;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.MHelp;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Administration;
-using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Audio;
 using Robust.Client.Graphics;
@@ -16,21 +14,20 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Shared._NullLink;
-using Content.Client.Stylesheets;
-
-namespace Content.Client.UserInterface.Systems.Bwoink;
+using Content.Client.UserInterface.Systems.Bwoink;
+namespace Content.Client._Starlight.MHelp;
 
 [UsedImplicitly]
-public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>
+public sealed partial class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>
 {
-    [Dependency] private readonly INullLinkPlayerRolesManager _playerRoles = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRolesReq = default!;
-    [Dependency] private readonly IClientAdminManager _adminManager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly StaffHelpUIController _staffhelp = default!;
-    [Dependency] private readonly AHelpUIController _aHelp = default!;
+    [Dependency] private INullLinkPlayerRolesManager _playerRoles = default!;
+    [Dependency] private ISharedNullLinkPlayerRolesReqManager _playerRolesReq = default!;
+    [Dependency] private IClientAdminManager _adminManager = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IClyde _clyde = default!;
+    [Dependency] private StaffHelpUIController _staffhelp = default!;
+    [Dependency] private AHelpUIController _aHelp = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
 
     private MentorSystem? _mentorSystem;
@@ -93,9 +90,7 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
     }
 
     private void OnTypingUpdated(MHelpTypingUpdated args, EntitySessionEventArgs session)
-    {
-        UIHelper?.PeopleTypingUpdated(args);
-    }
+        => UIHelper?.PeopleTypingUpdated(args);
 
     public void EnsureUIHelper()
     {

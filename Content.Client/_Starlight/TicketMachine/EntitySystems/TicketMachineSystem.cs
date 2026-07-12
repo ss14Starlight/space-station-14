@@ -5,10 +5,10 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Starlight.TicketMachine.EntitySystems;
 
-public sealed class TicketMachineSystem : SharedTicketMachineSystem
+public sealed partial class TicketMachineSystem : SharedTicketMachineSystem
 {
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SpriteSystem _spriteSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -69,7 +69,7 @@ public sealed class TicketMachineSystem : SharedTicketMachineSystem
                     _spriteSystem.LayerSetVisible(uid, display2, true);
                     _spriteSystem.LayerSetRsiState(uid, display2, component.displayStateTag + $"{ticketNumber / 10 % 10}");
                 }
-                else 
+                else
                     _spriteSystem.LayerSetVisible(uid, display2, false);
             }
             if (_spriteSystem.LayerMapTryGet(uid, TicketMachineVisualLayers.Display1, out var display1, true))

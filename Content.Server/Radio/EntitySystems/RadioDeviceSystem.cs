@@ -23,14 +23,14 @@ namespace Content.Server.Radio.EntitySystems;
 /// <summary>
 ///     This system handles radio speakers and microphones (which together form a hand-held radio).
 /// </summary>
-public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
+public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private InteractionSystem _interaction = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid, string)> _recentlySent = new(); // Starlight edit
@@ -175,7 +175,7 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
         if (_protoMan.TryIndex<RadioChannelPrototype>(component.BroadcastChannel, out var channel) &&
             _recentlySent.Add((args.Message, args.Source, channel.ID)))
             _radio.SendRadioMessage(args.Source, args.Message, channel, uid);
-        else if (_chat.TryGetCustomChannel(uid, component.BroadcastChannel, out var customChannel) && 
+        else if (_chat.TryGetCustomChannel(uid, component.BroadcastChannel, out var customChannel) &&
                  _recentlySent.Add((args.Message, args.Source, customChannel.Id)))
             _radio.SendCustomRadioMessage(args.Source, args.Message, customChannel, uid);
         //Starlight end

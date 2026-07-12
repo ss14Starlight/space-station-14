@@ -303,7 +303,7 @@
   cost:
     NTCredit: 10
   categories:
-    - SLPlushies
+    - SLCrew
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
@@ -355,6 +355,17 @@
 - type: listing
   id: VendorPlushieShadekin
   productEntity: PlushieShadekin
+  cost:
+    NTCredit: 10
+  categories:
+  - SLSpecies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VendorPlushieExperiment
+  productEntity: PlushieExperiment
   cost:
     NTCredit: 10
   categories:
@@ -574,7 +585,7 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
- 
+
 - type: listing
   id: VendorPlushieDoxesTheCaptain
   productEntity: PlushieDoxesTheCaptain

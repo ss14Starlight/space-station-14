@@ -1,13 +1,12 @@
 using Content.Shared._Starlight.TapeRecorder.Components;
 using Content.Shared._Starlight.TapeRecorder.Events;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.TapeRecorder.Ui;
 
-public sealed class TapeRecorderBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed partial class TapeRecorderBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     [ViewVariables]
     private TapeRecorderWindow? _window;
@@ -27,9 +26,7 @@ public sealed class TapeRecorderBoundUserInterface(EntityUid owner, Enum uiKey) 
     }
 
     private void ChangeMode(TapeRecorderMode mode)
-    {
-        SendMessage(new ChangeModeTapeRecorderMessage(mode));
-    }
+        => SendMessage(new ChangeModeTapeRecorderMessage(mode));
 
     private void PrintTranscript()
     {
@@ -37,10 +34,8 @@ public sealed class TapeRecorderBoundUserInterface(EntityUid owner, Enum uiKey) 
 
         _window?.UpdatePrint(true);
 
-        Timer.Spawn(_printCooldown, () =>
-        {
-            _window?.UpdatePrint(false);
-        });
+        Timer.Spawn(_printCooldown, ()
+            => _window?.UpdatePrint(false));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

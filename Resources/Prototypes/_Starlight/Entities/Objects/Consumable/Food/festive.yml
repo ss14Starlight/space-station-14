@@ -34,7 +34,7 @@
               Quantity: 200
             - ReagentId: Protein
               Quantity: 100
-            
+
     - type: Tag
       tags:
         - Meat

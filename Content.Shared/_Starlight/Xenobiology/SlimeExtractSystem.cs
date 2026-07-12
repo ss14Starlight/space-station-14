@@ -12,13 +12,13 @@ namespace Content.Shared._Starlight.Xenobiology;
 /// <summary>
 /// Handles the general behavior of slime extracts
 /// </summary>
-public sealed class SlimeExtractSystem : EntitySystem
+public sealed partial class SlimeExtractSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedEntityEffectsSystem _entityEffectsSystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedEntityEffectsSystem _entityEffectsSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -29,7 +29,7 @@ public sealed class SlimeExtractSystem : EntitySystem
         SubscribeLocalEvent<SlimeExtractActiveReactionComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<SlimeExtractComponent, ExaminedEvent>(OnExamined);
     }
-    
+
     public bool IsSolutionRequirementFulfilled(Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> requiredSolution, Solution currentSolution)
     {
         foreach (var req in requiredSolution)
@@ -37,7 +37,7 @@ public sealed class SlimeExtractSystem : EntitySystem
             var amount = currentSolution.GetTotalPrototypeQuantity(req.Key);
             if (amount < req.Value) return false;
         }
-        
+
         return true;
     }
 
@@ -127,7 +127,7 @@ public sealed class SlimeExtractSystem : EntitySystem
             entity.Comp.ActiveReactions[activeReaction] += args.PausedTime;
         }
     }
-    
+
     private void OnExamined(Entity<SlimeExtractComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)

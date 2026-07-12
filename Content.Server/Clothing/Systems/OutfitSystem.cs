@@ -17,14 +17,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Clothing.Systems;
 
-public sealed class OutfitSystem : EntitySystem
+public sealed partial class OutfitSystem : EntitySystem
 {
     //[Dependency] private readonly IServerPreferencesManager _preferenceManager = default!; // Starlight-removed - we removed the only upstream reference to this
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly HandsSystem _handSystem = default!;
-    [Dependency] private readonly InventorySystem _invSystem = default!;
-    [Dependency] private readonly SharedStationSpawningSystem _spawningSystem = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!; //Starlight
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private HandsSystem _handSystem = default!;
+    [Dependency] private InventorySystem _invSystem = default!;
+    [Dependency] private SharedStationSpawningSystem _spawningSystem = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _appearance = default!; //Starlight
 
     public bool SetOutfit(EntityUid target, string gear, Action<EntityUid, EntityUid>? onEquipped = null, bool unremovable = false)
     {

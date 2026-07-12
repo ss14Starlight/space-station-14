@@ -20,13 +20,14 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 [Virtual]
 public partial class ChatBox : UIWidget
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private readonly ISawmill _sawmill;
     private readonly ChatUIController _controller;
 
     public bool Main { get; set; }
+    public ChatSelectChannel? MainChannel { get; set; } // Starlight
 
     public ChatSelectChannel SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
     public RichTextLabel SelectedLanguage => LanguageNotifier; // Starlight
@@ -86,7 +87,7 @@ public partial class ChatBox : UIWidget
     public void Repopulate()
     {
         Contents.Clear();
-        
+
         foreach (var child in Contents.Children.ToArray())
         {
             if (child.Name != "_v_scroll")
@@ -104,7 +105,7 @@ public partial class ChatBox : UIWidget
     private void OnChannelFilter(ChatChannel channel, bool active)
     {
         Contents.Clear();
-        
+
         foreach (var child in Contents.Children.ToArray())
         {
             if (child.Name != "_v_scroll")
@@ -203,7 +204,7 @@ public partial class ChatBox : UIWidget
     {
         // Update channel select button to correct channel if we have a prefix.
         _controller.UpdateSelectedChannel(this);
-        
+
         _controller.UpdateLanguageNotifier(this); // Starlight
 
         // Warn typing indicator about change

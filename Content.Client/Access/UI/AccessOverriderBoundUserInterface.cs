@@ -8,9 +8,9 @@ using static Content.Shared.Access.Components.AccessOverriderComponent;
 
 namespace Content.Client.Access.UI
 {
-    public sealed class AccessOverriderBoundUserInterface : BoundUserInterface
+    public sealed partial class AccessOverriderBoundUserInterface : BoundUserInterface
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
         private readonly SharedAccessOverriderSystem _accessOverriderSystem = default!;
 
         private AccessOverriderWindow? _window;
@@ -49,8 +49,8 @@ namespace Content.Client.Access.UI
         {
             List<ProtoId<AccessLevelPrototype>> accessLevels;
             // Starlight-edit: Start
-            List<ProtoId<AccessGroupPrototype>> accessGroups; 
-            ProtoId<AccessGroupPrototype>? currentGroup = null; 
+            List<ProtoId<AccessGroupPrototype>> accessGroups;
+            ProtoId<AccessGroupPrototype>? currentGroup = null;
             // Starlight-edit: End
 
             if (EntMan.TryGetComponent<AccessOverriderComponent>(Owner, out var accessOverrider))

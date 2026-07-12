@@ -93,8 +93,8 @@
   - type: ItemToggle
     onUse: false
     onActivate: false
-    verbToggleOn: "Activate Magnet"
-    verbToggleOff: "Deactivate Magnet"
+    verbToggleOn: verb-toggle-magnet-activate
+    verbToggleOff: verb-toggle-magnet-deactivate
     soundActivate:
       collection: sparks
       params:
@@ -105,7 +105,7 @@
         variation: 0.250
   - type: AltUseToggle
   - type: ComponentToggler
-    components: 
+    components:
     - type: MagnetPickup
       range: 2
       requiresEquipping: false

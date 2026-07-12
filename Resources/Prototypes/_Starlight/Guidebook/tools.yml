@@ -1,4 +1,5 @@
 - type: guideEntry
   id: CombinationLocks
-  name: CombinationLocks
-  text: "/ServerInfo/_StarLight/Guidebook/Tools/CombinationLocks.xml"
+  name: guide-entry-tools-combination-locks
+  text: "/ServerInfo/_Starlight/Guidebook/Tools/CombinationLocks.xml"
+  priority: 1

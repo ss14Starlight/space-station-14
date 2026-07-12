@@ -10,7 +10,7 @@ namespace Content.Shared.EntityEffects.Effects.StatusEffects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class DrunkEntityEffectSystem : EntityEffectSystem<MetaDataComponent, Drunk>
 {
-    [Dependency] private readonly SharedDrunkSystem _drunk = default!;
+    [Dependency] private SharedDrunkSystem _drunk = default!;
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<Drunk> args)
     {
@@ -29,6 +29,6 @@ public sealed partial class Drunk : EntityEffectBase<Drunk>
     [DataField]
     public TimeSpan BoozePower = TimeSpan.FromSeconds(3f);
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-drunk", ("chance", Probability));
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
+        loc.GetString("entity-effect-guidebook-drunk", ("chance", Probability));
 }

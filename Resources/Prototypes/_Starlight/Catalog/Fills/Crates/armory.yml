@@ -29,7 +29,7 @@
         children:
         - id: MagazineBatteryLr30
           amount: 6
-        
+
 - type: entity
   id: CrateArmoryCombatShotgun
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
@@ -61,5 +61,5 @@
         - id: ClothingOuterStraightjacket
         - id: ClothingMaskBreath
         - id: ClothingMaskBreath
-        - id: NitrousOxideTank
-        - id: NitrousOxideTank
+        - id: NitrousOxideTankFilled
+        - id: NitrousOxideTankFilled

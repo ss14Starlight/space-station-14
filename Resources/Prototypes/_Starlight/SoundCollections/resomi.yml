@@ -21,7 +21,7 @@
     - /Audio/_Starlight/Voice/Resomi/resomi_laugh1.ogg
     - /Audio/_Starlight/Voice/Resomi/resomi_laugh2.ogg
     - /Audio/_Starlight/Voice/Resomi/resomi_laugh3.ogg
-  
+
 - type: soundCollection
   id: ResomiChirp
   files:

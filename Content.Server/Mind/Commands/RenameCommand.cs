@@ -10,13 +10,13 @@ using Content.Server._CD.Records; // Cosmatic Drift Record System
 namespace Content.Server.Mind.Commands;
 
 [AdminCommand(AdminFlags.VarEdit)]
-public sealed class RenameCommand : LocalizedEntityCommands
+public sealed partial class RenameCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly CharacterRecordsSystem _characterRecords = default!; // Cosmatic Drift Record System
+    [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private CharacterRecordsSystem _characterRecords = default!; // Cosmatic Drift Record System
 
     public override string Command => "rename";
 

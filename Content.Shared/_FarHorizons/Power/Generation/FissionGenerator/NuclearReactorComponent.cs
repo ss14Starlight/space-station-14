@@ -9,6 +9,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Timing;
 using System.Numerics;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
@@ -60,6 +61,11 @@ public sealed partial class NuclearReactorComponent : Component
     /// 2D grid of lists of neutrons in each grid slot of the component grid
     /// </summary>
     public List<ReactorNeutron>[,] FluxGrid;
+
+    /// <summary>
+    /// Scratch buffer for neutron movement. Avoids List.Remove and flux snapshot allocs.
+    /// </summary>
+    public List<ReactorNeutron>[,] FluxGridScratch;
 
     /// <summary>
     /// Number of neutrons that hit the edge of the reactor grid last tick
@@ -334,6 +340,13 @@ public sealed partial class NuclearReactorComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public SignalState InsertPortState = SignalState.Low;
     #endregion
+
+    /// <summary>
+    /// Stopwatch that keeps track of how long the reactor is taking to process
+    /// </summary>
+    /// <remarks>This is so the reactor will delete itself if it starts hogging too many resources</remarks>
+    [ViewVariables]
+    public readonly Stopwatch SimTime = new();
 }
 
 [Serializable, NetSerializable, DataDefinition]

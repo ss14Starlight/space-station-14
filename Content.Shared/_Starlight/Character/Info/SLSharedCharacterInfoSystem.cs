@@ -11,12 +11,11 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Players;
 using Content.Shared.Preferences; //Starlight
 using Content.Shared.Roles;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Trigger.Components.Effects;
 using Content.Shared.Verbs;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
-using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Character.Info;
@@ -24,12 +23,12 @@ namespace Content.Shared._Starlight.Character.Info;
 /// <summary>
 /// Handles reading/writing character info (like custom descriptions, secrets, etc.)
 /// </summary>
-public abstract class SLSharedCharacterInfoSystem : EntitySystem
+public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
 {
-    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
-    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
+    [Dependency] private SharedRoleSystem _roleSystem = default!;
+    [Dependency] private ExamineSystemShared _examineSystem = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
 
     private bool _characterWindowEnabled = false;
     private bool _flavorTextEnabled = false;
@@ -160,7 +159,7 @@ public abstract class SLSharedCharacterInfoSystem : EntitySystem
                 Disabled = !detailsRange,
                 Message = detailsRange ? null : Loc.GetString("detail-examine-verb-disabled"),
                 Text = Loc.GetString("character-info-inspect-prompt"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/examine.svg.192dpi.png"))
+                Icon = new SpriteSpecifier.Texture(new("/Textures/_Starlight/Interface/VerbIcons/examine-character-menu.png"))
             });
         }
 
@@ -221,7 +220,7 @@ public abstract class SLSharedCharacterInfoSystem : EntitySystem
                 Category = VerbCategory.Examine,
                 Disabled = !detailsRange,
                 Message = detailsRange ? null : Loc.GetString("exploitable-examine-verb-disabled"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/examine.svg.192dpi.png"))
+                Icon = new SpriteSpecifier.Texture(new("/Textures/_Starlight/Interface/VerbIcons/examine-exploitable.png"))
             });
         }
     }

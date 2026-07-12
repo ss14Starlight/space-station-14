@@ -1,0 +1,49 @@
+- type: entity
+  parent: BaseGameRule
+  id: ColossusSpawn
+  components:
+  - type: StationEvent
+    weight: 3
+    earliestStart: 30
+    reoccurrenceDelay: 20
+    minimumPlayers: 25
+    duration: null
+  - type: SpaceSpawnRule
+  - type: AntagSpawner
+    prototype: MobCosmicColossusLone
+  - type: AntagObjectives
+    objectives:
+    - ColossusSurviveObjective
+    - ColossusEffigyObjective
+  - type: AntagSelection
+    agentName: role-subtype-colossus
+    definitions:
+    - spawnerPrototype: SpawnPointCosmicColossus
+      min: 1
+      max: 1
+      pickPlayer: false
+      mindRoles:
+      - MindRoleCosmicColossus
+      briefing:
+        text: ghost-role-colossus-briefing
+        color: CadetBlue
+        sound: /Audio/_Starlight/CosmicCult/antag_cosmic_briefing.ogg
+      components:
+      - type: CosmicColossus
+        timed: true
+  - type: DynamicRuleCost
+    cost: 100
+
+- type: entity
+  id: MalignRiftSpawn
+  parent: BaseStationEvent
+  components:
+  - type: StationEvent
+    weight: 1.5
+    earliestStart: 45
+    # reoccurrenceDelay: 90
+    # minimumPlayers: 40
+    # maxOccurrences: 1
+    duration: 20
+    occursDuringRoundEnd: false
+  - type: MalignRiftSpawnRule

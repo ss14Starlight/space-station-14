@@ -19,7 +19,6 @@
           nodeGroupID: Pipe
           pipeDirection: South
     - type: CollideOnAnchor
-    - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
@@ -33,10 +32,8 @@
       time: 3
     # Starlight start
     - type: VentCrawlTube
+      blocksVision: false
     - type: VentCrawlEntry
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
@@ -104,6 +101,13 @@
   placement:
     mode: AlignAtmosPipeLayers # starlight
   components:
+    # Starlight start
+    - type: Weldable
+      time: 3
+    - type: VentCrawlTube
+      blocksVision: false
+    - type: VentCrawlEntry
+    # Starlight end
     - type: SubFloorHide
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
@@ -149,10 +153,8 @@
       time: 3
     # Starlight start
     - type: VentCrawlTube
+      blocksVision: false
     - type: VentCrawlEntry
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
@@ -266,9 +268,6 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:
@@ -332,6 +331,12 @@
     - type: GuideHelp
       guides:
       - Thermomachines
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+    # Starlight end
 
 - type: entity
   parent: BaseGasThermoMachine
@@ -368,6 +373,12 @@
       prefix: device-address-prefix-freezer
     - type: StealTarget
       stealGroup: FreezerHeater
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+    # Starlight end
 
 - type: entity
   parent: GasThermoMachineFreezer
@@ -413,6 +424,12 @@
       prefix: device-address-prefix-heater
     - type: StealTarget
       stealGroup: FreezerHeater
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+    # Starlight end
 
 - type: entity
   parent: GasThermoMachineHeater
@@ -456,6 +473,7 @@
 - type: entity
   parent: [ BaseMachinePowered, SmallConstructibleMachine ]
   id: BaseGasCondenser
+  categories: [ ShouldMapStation ] # Starlight
   name: condenser
   description: Condenses gases into liquids. Now we just need some plumbing.
   placement:
@@ -552,4 +570,9 @@
   - type: GuideHelp
     guides:
     - GasCondensing
-
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlJunction
+    degrees:
+      - 0
+  # Starlight end

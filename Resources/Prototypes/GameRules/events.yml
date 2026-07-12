@@ -24,14 +24,18 @@
     - id: SpiderClownSpawn
     - id: SpiderSpawn
     - id: VentClog
-    - id: PsychicScreach # SL
-    - id: SecurityDrill # SL
-    - id: DoorRuntime # SL
-    - id: RadStorm # SL
-    - id: AuroraCaelus # SL
-    - id: SpaceWhale # SL
-    - id: CommunicationBlackout # SL
-    - id: NightShift # SL
+    # Starlight Start
+    - id: PsychicScreach
+    - id: SecurityDrill
+    - id: DoorRuntime
+    - id: RadStorm
+    - id: AuroraCaelus
+    - id: SpaceWhale
+    - id: CommunicationBlackout
+    - id: NightShift
+    - id: SyndicateDeadDrop
+    # Starlight End
+    - id: MalignRiftSpawn # Funky
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -51,11 +55,18 @@
     - id: DragonSpawn
     - id: NinjaSpawn
     - id: ParadoxCloneSpawn
+    - id: ParadoxCrisisSpawn # Starlight
     - id: SleeperAgents
  #   - id: ZombieOutbreak starlight - no more midround zeds
     - id: LoneOpsSpawn
     - id: WizardSpawn
-    - id: AbductorsSpawn # Starlight
+    - id: AbductorsSpawn # Starlight start
+    #- id: SubXenoborgs
+    #- id: TerrorSpidersSpawn
+    - id: RailroadingTerminator
+    - id: Brighteye
+    - id: ColossusSpawn # Starlight end
+    - id: EeepEvent # imp
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -64,20 +75,28 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector # Standard NT Borgs
-      weight: 85
+      weight: 80 # Starlight
       children:
         - id: DerelictEngineerCyborgSpawn
         - id: DerelictGenericCyborgSpawn
         - id: DerelictJanitorCyborgSpawn
         - id: DerelictMedicalCyborgSpawn
         - id: DerelictMiningCyborgSpawn
-        - id: DerelictBorgiSpawn # Starlight
-        - id: DerelictPurrfusCyborgSpawn #Starlight
+        - id: DerelictPurrfusCyborgSpawn # Starlight
     - !type:GroupSelector # Other Borgs
       weight: 15
       children:
-        - id: DerelictSyndicateAssaultCyborgSpawn
-    
+        - id: DerelictBorgiSpawn # Starlight start
+    - !type:GroupSelector # Derelict Xenoborgs
+      weight: 5
+      children:
+        - id: XenoBorgHeavyDerelictSpawn
+        - id: XenoBorgEngiDerelictSpawn
+        - id: XenoBorgScoutDerelictSpawn
+        - id: XenoBorgStealthDerelictSpawn
+        - id: XenoBorgiDerelictSpawn
+   #     - id: DerelictSyndicateAssaultCyborgSpawn # Starlight end - no more derelict Syndicate borgs
+
 - type: entity
   id: BaseStationEvent
   parent: BaseGameRule
@@ -266,7 +285,7 @@
       pickPlayer: false
       startingGear: SpaceNinjaGear
       roleLoadout:
-      - RoleSurvivalSpaceNinja
+      - AntagSpaceNinja # Starlight
       briefing:
         text: ninja-role-greeting
         color: Green
@@ -299,7 +318,7 @@
   id: ParadoxCloneSpawn
   components:
   - type: StationEvent
-    weight: 5
+    weight: 4 # Starlight
     duration: null
     earliestStart: 20
     reoccurrenceDelay: 20
@@ -359,13 +378,13 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostWizard
       min: 1
-      max: 1
+      max: 3 # Starlight
       prefRoles: [ Wizard ] #starlight
-      playerRatio: 1
+      playerRatio: 60 # Starlight, you know, could be neat for multiple wizards to late spawn.
       pickPlayer: false
       startingGear: WizardBlueGear
       roleLoadout:
-      - RoleSurvivalExtended
+      - AntagWizard # Starlight
       briefing:
         text: wizard-role-greeting
         color: Turquoise
@@ -386,7 +405,10 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+        - Wizard
       # Starlight-end
+  - type: DynamicRuleCost
+    cost: 75
 
 # disabled until event is rewritten to be more interesting
 #- type: entity
@@ -622,7 +644,7 @@
       pickPlayer: false
       startingGear: SyndicateLoneOperativeGearFull
       roleLoadout:
-      - RoleSurvivalNukie
+      - AntagNukeops # Starlight
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -640,7 +662,7 @@
         - CantBecomeRevolutionary
       # Starlight-end
   - type: DynamicRuleCost
-    cost: 75
+    cost: 100 # Starlight
 
 - type: entity
   parent: BaseTraitorRule
@@ -663,8 +685,8 @@
     - prefRoles: [ TraitorSleeper ]
       fallbackRoles: [ Traitor ]
       min: 1
-      max: 2
-      playerRatio: 10
+      max: 10 # Starlight, scaling and futureproofing.
+      playerRatio: 32  # Starlight. Beta will never get more than 2, same as before, but Alpha can actually gain a decent amount.
       blacklist:
         components:
         - AntagImmune
@@ -741,7 +763,7 @@
     weight: 2
     minimumPlayers: 25
     reoccurrenceDelay: 20
-    maxOccurrences: 2 
+    maxOccurrences: 2
   - type: GreytideVirusRule
     accessGroups:
     - Cargo
@@ -785,7 +807,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictEngineeringCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -807,7 +830,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -829,7 +853,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictJanitorCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -873,12 +898,13 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictMiningCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
   parent: BaseGameRule
-  id: DerelictSyndicateAssaultCyborgSpawn
+  id: DerelictSyndicateAssaultCyborgSpawn # Starlight - admeme only, not rollable
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight
@@ -895,5 +921,6 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictSyndicateAssaultCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false

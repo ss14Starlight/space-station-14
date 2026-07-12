@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Client._Starlight.MHelp.UI;
-using Content.Client.UserInterface.Systems.Bwoink;
-using Content.Shared.Starlight.MHelp;
+using Content.Shared._Starlight.MHelp;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Network;
@@ -77,7 +76,7 @@ public sealed class MentorMHelpUIHandler(NetUserId owner) : IMHelpUIHandler
             OpenWindow();
     }
 
-    public void DiscordRelayChanged(bool active)
+    public void DiscordRelayChanged(bool _)
     {
     }
 
@@ -94,9 +93,7 @@ public sealed class MentorMHelpUIHandler(NetUserId owner) : IMHelpUIHandler
     }
 
     public void OnRequestClosed(WindowRequestClosedEventArgs args)
-    {
-        Close();
-    }
+        => Close();
 
     private void EnsureControl()
     {

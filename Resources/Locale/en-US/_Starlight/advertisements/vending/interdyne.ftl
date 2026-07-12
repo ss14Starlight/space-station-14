@@ -1,0 +1,9 @@
+advertisement-interdyne-1 = Go save some lives!
+advertisement-interdyne-2 = The best stuff for your trauma bay.
+advertisement-interdyne-3 = Only the sharpest tools.
+advertisement-interdyne-4 = Natural herbals!
+advertisement-interdyne-5 = This stuff kills!
+advertisement-interdyne-6 = Don't you want more?
+advertisement-interdyne-7 = Pong!
+advertisement-interdyne-8 = Make sure not to overdose people!
+advertisement-interdyne-9 = Go overdose people!

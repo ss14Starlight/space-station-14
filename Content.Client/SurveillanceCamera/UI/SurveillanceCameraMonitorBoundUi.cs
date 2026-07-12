@@ -1,3 +1,4 @@
+using Content.Client._Starlight.UserInterface; // Starlight
 using Content.Client.Eye;
 using Content.Shared.SurveillanceCamera;
 using Robust.Client.GameObjects;
@@ -26,7 +27,7 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
     {
         base.Open();
 
-        _window = this.CreateWindow<SurveillanceCameraMonitorWindow>();
+        _window = this.CreatePopOutableWindow<SurveillanceCameraMonitorWindow>(EntMan); // Starlight: popout
 
         _window.CameraSelected += OnCameraSelected;
         _window.SubnetOpened += OnSubnetRequest;
@@ -34,11 +35,17 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
         _window.SubnetRefresh += OnSubnetRefresh;
         _window.CameraSwitchTimer += OnCameraSwitchTimer;
         _window.CameraDisconnect += OnCameraDisconnect;
+
+        var xform = EntMan.GetComponent<TransformComponent>(Owner);
+        var gridUid = xform.GridUid ?? xform.MapUid;
+
+        if (gridUid is not null)
+            _window?.SetMap(gridUid.Value);
     }
 
-    private void OnCameraSelected(string address)
+    private void OnCameraSelected(string address, string? subnet)
     {
-        SendMessage(new SurveillanceCameraMonitorSwitchMessage(address));
+        SendMessage(new SurveillanceCameraMonitorSwitchMessage(address, subnet));
     }
 
     private void OnSubnetRequest(string subnet)
@@ -119,7 +126,8 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
 
         if (disposing)
         {
-            _window?.Dispose();
+            _window?.DisposePopOut(); // Starlight: close popout
+            _window = null;
         }
     }
 }

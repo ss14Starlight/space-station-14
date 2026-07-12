@@ -34,17 +34,17 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 {
     public static readonly EntProtoId StaminaLow = "StatusEffectStaminaLow";
 
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] protected readonly SharedStunSystem StunSystem = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] protected SharedStunSystem StunSystem = default!;
 
     /// <summary>
     /// How much of a buffer is there between the stun duration and when stuns can be re-applied.
@@ -287,7 +287,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         // Have we already reached the point of max stamina damage?
         if (component.Critical)
             return;
-        
+
         var staminaModifyEvent = new StaminaModifyEvent(value);
         RaiseLocalEvent(uid, staminaModifyEvent);
 
@@ -394,7 +394,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
             var totalDecayMod =
                 comp.DecayModifiers.Aggregate<(NetEntity, float, TimeSpan), float>(1,
                     (current, modifier) => current * modifier.Item2);
-            
+
             TakeStaminaDamage(
                 uid,
                 comp.AfterCritical ? -comp.Decay * comp.AfterCritDecayMultiplier * totalDecayMod : -comp.Decay * totalDecayMod, // Recover faster after crit
@@ -481,10 +481,10 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 public sealed class StaminaModifyEvent: EntityEventArgs, IInventoryRelayEvent
 {
     public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
-    
+
     public float Damage;
     public float Modifier;
-    
+
     public StaminaModifyEvent(float damage, float modifier = 1.0f)
     {
         Damage = damage;

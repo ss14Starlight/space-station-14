@@ -334,6 +334,7 @@
     butcheringType: Knife
     spawned:
     - id: ClothingHandsGlovesFingerlessInsulated
+    - id: InsulatedFabric # Starlight
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-insulative
@@ -371,7 +372,8 @@
   - type: Butcherable #SL start
     butcheringType: Knife
     spawned:
-      - id: CheapInsulatedFabric #SL end
+      - id: CheapInsulatedFabric
+      - id: ClothingHandsGlovesFingerlessBudget #SL end
 
 # Conductive Insulated Gloves
 - type: entity

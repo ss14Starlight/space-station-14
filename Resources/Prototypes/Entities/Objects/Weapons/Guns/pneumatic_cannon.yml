@@ -104,6 +104,7 @@
     containers:
       storagebase: !type:Container
         ents: []
+  - type: PacifismAllowedGun # Starlight
 
 - type: entity
   name: experimental pie cannon

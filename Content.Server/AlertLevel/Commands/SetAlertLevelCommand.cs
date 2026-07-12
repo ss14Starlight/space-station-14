@@ -8,11 +8,11 @@ using Robust.Shared.Console;
 namespace Content.Server.AlertLevel.Commands
 {
     [AdminCommand(AdminFlags.Fun)]
-    public sealed class SetAlertLevelCommand : LocalizedEntityCommands
+    public sealed partial class SetAlertLevelCommand : LocalizedEntityCommands
     {
-        [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
-        [Dependency] private readonly StationSystem _stationSystem = default!;
-        [Dependency] private readonly AutoDiscordLogSystem _autoLog = default!; //Starlight
+        [Dependency] private AlertLevelSystem _alertLevelSystem = default!;
+        [Dependency] private StationSystem _stationSystem = default!;
+        [Dependency] private AutoDiscordLogSystem _autoLog = default!; //Starlight
 
         public override string Command => "setalertlevel";
 
@@ -77,7 +77,7 @@ namespace Content.Server.AlertLevel.Commands
             _alertLevelSystem.SetLevel(stationUid.Value, level, true, true, true, locked);
             if (IsAdmemeAlert(stationUid.Value, level)) //Starlight
                 _autoLog.LogToDiscord(Loc.GetString("autolog-setalertlevel", ("level", level), ("locked", locked), ("admin", player.Name)), player.Name); //Starlight
-            
+
         }
 
         private string[] GetStationLevelNames(EntityUid station)
@@ -90,7 +90,7 @@ namespace Content.Server.AlertLevel.Commands
 
             return alertLevelComp.AlertLevels.Levels.Keys.ToArray();
         }
-        
+
         #region Starlight
         private bool IsAdmemeAlert(EntityUid station, string level)
         {

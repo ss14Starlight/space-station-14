@@ -9,7 +9,7 @@ namespace Content.Shared.EntityEffects.Effects.Body;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class VomitEntityEffectSystem : EntityEffectSystem<MetaDataComponent, Vomit>
 {
-    [Dependency] private readonly VomitSystem _vomit = default!;
+    [Dependency] private VomitSystem _vomit = default!;
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<Vomit> args)
     {
@@ -32,6 +32,6 @@ public sealed partial class Vomit : EntityEffectBase<Vomit>
     [DataField]
     public float HungerAmount = -8f;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-vomit", ("chance", Probability));
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
+        loc.GetString("entity-effect-guidebook-vomit", ("chance", Probability));
 }

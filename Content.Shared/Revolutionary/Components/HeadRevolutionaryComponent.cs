@@ -36,6 +36,6 @@ public sealed partial class HeadRevolutionaryComponent : Component
 
     [DataField]
     public EntityWhitelist? Blacklist;
-    
+
     #endregion
 }

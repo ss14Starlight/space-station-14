@@ -14,9 +14,13 @@
     - type: ShowHealthBars
       damageContainers:
         - Biological
+        - IPC
+        - Hybrid
     - type: ShowHealthIcons
       damageContainers:
         - Biological
+        - IPC
+        - Hybrid
     - type: Tag
       tags:
         - HudMedical
@@ -102,6 +106,9 @@
     - type: EyeProtection
       protectionTime: 5
     - type: ShowHealthBars
+      damageContainers:
+        - Biological
+        - Hybrid # Protogens
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -170,7 +177,7 @@
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
   id: ClothingEyesHudCentComm
-  name: centcomm officer's hud
+  name: CentComm officer's hud
   description: A Innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
   components:
     - type: Sprite
@@ -183,9 +190,11 @@
     - type: ShowHealthBars
       damageContainers:
         - Biological
+        - Hybrid
     - type: ShowHealthIcons
       damageContainers:
         - Biological
+        - Hybrid
     - type: Tag
       tags:
         - HudMedical
@@ -195,7 +204,7 @@
 - type: entity
   parent: [ClothingEyesBase, BaseCommandContraband]
   id: ClothingEyesNTRMonocle
-  name: nanotrasen representative monocle
+  name: NanoTrasen representative monocle
   description: A fancy monocle that also functions as a HUD to make sure no functionality is lost for style.
   components:
     - type: Sprite

@@ -1,5 +1,4 @@
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Forensics;
 using Content.Shared.Body.Components;
@@ -17,23 +16,24 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Content.Shared.Atmos;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Nutrition.EntitySystems
 {
     public sealed partial class SmokingSystem : EntitySystem
     {
-        [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-        [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-        [Dependency] private readonly AtmosphereSystem _atmos = default!;
-        [Dependency] private readonly TransformSystem _transformSystem = default!;
-        [Dependency] private readonly InventorySystem _inventorySystem = default!;
-        [Dependency] private readonly ClothingSystem _clothing = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedItemSystem _items = default!;
-        [Dependency] private readonly SharedContainerSystem _container = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly ForensicsSystem _forensics = default!;
+        [Dependency] private ReactiveSystem _reactiveSystem = default!;
+        [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
+        [Dependency] private AtmosphereSystem _atmos = default!;
+        [Dependency] private TransformSystem _transformSystem = default!;
+        [Dependency] private InventorySystem _inventorySystem = default!;
+        [Dependency] private ClothingSystem _clothing = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private SharedItemSystem _items = default!;
+        [Dependency] private SharedContainerSystem _container = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private ForensicsSystem _forensics = default!;
 
         private const float UpdateTimer = 3f;
 
@@ -106,7 +106,7 @@ namespace Content.Server.Nutrition.EntitySystems
         {
             if (args.Slot == "mask")
             {
-                _forensics.TransferDna(entity.Owner, args.Equipee, false);
+                _forensics.TransferDna(entity.Owner, args.EquipTarget, false);
             }
         }
 

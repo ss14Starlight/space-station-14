@@ -2,29 +2,28 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Content.Server._Starlight.Language;
 using Content.Server._Starlight.Radio.Systems;
-using Content.Server._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Speech;
 using Content.Shared.Chat;
 using Content.Shared.Radio;
-using Content.Shared.Starlight.CCVar;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.TextToSpeech;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.Starlight.TTS;
+namespace Content.Server._Starlight.TextToSpeech;
 
 public sealed partial class TTSSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _xforms = default!;
-    [Dependency] private readonly RadioChimeSystem _chime = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ITTSClient _client = default!;
-    [Dependency] private readonly IRobustRandom _rng = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private SharedTransformSystem _xforms = default!;
+    [Dependency] private RadioChimeSystem _chime = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ITTSClient _client = default!;
+    [Dependency] private IRobustRandom _rng = default!;
+    [Dependency] private LanguageSystem _language = default!;
 
     private readonly List<string> _sampleText =
     [
@@ -51,7 +50,6 @@ public sealed partial class TTSSystem : EntitySystem
 
         SubscribeLocalEvent<TextToSpeechComponent, EntitySpokeEvent>(OnEntitySpoke);
         SubscribeLocalEvent<RadioSpokeEvent>(OnRadioReceiveEvent);
-        SubscribeLocalEvent<CollectiveMindSpokeEvent>(OnCollectiveMindReceiveEvent);
         SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke);
     }
 
@@ -96,11 +94,14 @@ public sealed partial class TTSSystem : EntitySystem
             var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients)
                 .RemoveWhere(x => x.AttachedEntity.HasValue
                     && x.AttachedEntity != args.Source
-                    && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID));
+                    && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID, false));
             var voice = GetOrAssignVoice(args.Source);
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
+            var languageradio = args.Channel == args.Language.Speech.RadioChannel;
+            var type = languageradio ? TTSType.Mind : TTSType.Radio;
+            var effect = languageradio ? TTSEffect.Underwater : TTSEffect.Radio;
 
-            await GenerateAndStream(TTSType.Radio, voice, text, filter, TTSEffect.Walkie, chime, null, channel);
+            await GenerateAndStream(type, voice, text, filter, effect, chime, null, channel);
         }
         catch (TaskCanceledException ex)
         {
@@ -109,31 +110,6 @@ public sealed partial class TTSSystem : EntitySystem
         catch (Exception ex)
         {
             _sawmill.Error($"TTS Radio error: {ex.Message}");
-        }
-    }
-
-    private async void OnCollectiveMindReceiveEvent(CollectiveMindSpokeEvent args)
-    {
-        if (!_isEnabled
-            || args.Message.Length > MaxChars)
-            return;
-
-        await Task.Yield();
-        try
-        {
-            var text = CleanText(args.Message);
-            var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients);
-            var voice = GetOrAssignVoice(args.Source);
-
-            await GenerateAndStream(TTSType.Mind, voice, text, filter, TTSEffect.Underwater);
-        }
-        catch (TaskCanceledException ex)
-        {
-            _sawmill.Info($"TTS Mind was cancelled: {ex.Message}");
-        }
-        catch (Exception ex)
-        {
-            _sawmill.Error($"TTS Mind error: {ex.Message}");
         }
     }
 
@@ -169,7 +145,7 @@ public sealed partial class TTSSystem : EntitySystem
         args.Message.Tts ??= args.Message.Text;
         if (!_isEnabled
             || args.Message.Tts.Length > MaxChars
-            || (!args.Language.SpeechOverride.RequireSpeech && !args.Language.SpeechOverride.RequireSound)
+            || (!args.Language.Speech.RequireSpeech && !args.Language.Speech.RequireSound)
             )
             return;
 
@@ -254,16 +230,26 @@ public sealed partial class TTSSystem : EntitySystem
             _ignoredRecipients.Add(args.SenderSession);
     }
 
-    private static string CleanText(string text)
+    /// <summary>
+    /// Cleans and normalizes text for TTS output, preserving apostrophes, normalizing smart quotes,
+    /// stripping formatting tags, and converting numbers to word representations.
+    /// </summary>
+    /// <param name="text">The raw text to be cleaned.</param>
+    /// <returns>The cleaned and normalized text.</returns>
+    internal static string CleanText(string text)
     {
         text = TagStripperRegex().Replace(text, "");
+        text = SmartQuotes().Replace(text, "'");
         text = CharFilter().Replace(text, "");
         text = NumberConverter.NumberPattern().Replace(text, match => NumberConverter.Convert(match.Value));
         return text;
     }
 
-    [GeneratedRegex(@"[^a-zA-Z0-9,.\-?! ]")]
+    [GeneratedRegex(@"[^a-zA-Z0-9,.\-?!' ]")]
     private static partial Regex CharFilter();
+
+    [GeneratedRegex(@"[\u2018\u2019]")]
+    private static partial Regex SmartQuotes();
 
     [GeneratedRegex(@"\[[^\]]*\]")]
     private static partial Regex TagStripperRegex();

@@ -1,0 +1,103 @@
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseMedTakContraband ]
+  id: ClothingOuterHardsuitMedTak
+  name: MedTak operator hardsuit
+  description: An armoured hardsuit worn by MedTak operators.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/standard.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/standard.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitMedTak
+    - type: PressureProtection
+      highPressureMultiplier: 0.05
+      lowPressureMultiplier: 1000
+    - type: ZombificationResistance
+      zombificationResistanceCoefficient: 0.0
+    - type: StaminaResistance
+      damageCoefficient: 0.75
+    - type: ExplosionResistance
+      damageCoefficient: 0.5
+    - type: Armor # ERT sec values
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.5
+          Radiation: 0.5
+          Caustic: 0.5
+      staminaModifier: 0.3
+    - type: ClothingSpeedModifier
+      walkModifier: 0.95
+      sprintModifier: 0.95
+    - type: HeldSpeedModifier
+    - type: Tag
+      tags:
+        - Hardsuit
+        - CorgiWearable
+
+# Medic
+- type: entity
+  parent: ClothingOuterHardsuitMedTak
+  id: ClothingOuterHardsuitMedTakMedic
+  name: MedTak medic hardsuit
+  description: An armoured hardsuit worn by MedTak medics, with a defibrillator system built into it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/medic.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/medic.rsi
+    - type: Defibrillator
+      zapHeal:
+        types:
+          Asphyxiation: -40
+    - type: WearableDefibrillator
+      requiredSlot: OUTERCLOTHING
+    - type: UseDelay
+    - type: PowerCellDraw
+      drawRate: 0
+      useCharge: 75
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
+
+# Pilot
+- type: entity
+  parent: ClothingOuterHardsuitMedTak
+  id: ClothingOuterHardsuitMedTakPilot
+  name: MedTak pilot hardsuit
+  components:
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitMedTakPilot
+
+# Heavy
+- type: entity
+  parent: ClothingOuterHardsuitMedTak
+  id: ClothingOuterHardsuitMedTakHeavy
+  name: MedTak heavy hardsuit
+  description: A heavily armoured hardsuit worn by MedTak heavy security.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/heavy.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/heavy.rsi
+    - type: ClothingSpeedModifier
+      walkModifier: 0.9
+      sprintModifier: 0.9
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+          Piercing: 0.4
+          Heat: 0.4
+          Radiation: 0.5
+          Caustic: 0.5
+      staminaModifier: 0.3

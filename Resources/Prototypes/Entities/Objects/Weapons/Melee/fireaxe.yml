@@ -51,8 +51,8 @@
   - type: IgniteOnMeleeHit
     fireStacks: -4
   # 🌟Starlight-start🌟
-  - type: BoneSaw
   - type: SurgeryTool
+  - type: BoneSaw
     successRate: 0.6
     speed: 0.6
     startSound:

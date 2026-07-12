@@ -10,11 +10,11 @@ namespace Content.Server.Roles.Jobs;
 /// <summary>
 ///     Handles the job data on mind entities.
 /// </summary>
-public sealed class JobSystem : SharedJobSystem
+public sealed partial class JobSystem : SharedJobSystem
 {
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly RoleSystem _roles = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private RoleSystem _roles = default!;
 
     public override void Initialize()
     {
@@ -55,7 +55,7 @@ public sealed class JobSystem : SharedJobSystem
             _chat.DispatchServerMessage(session, Loc.GetString("job-greet-important-disconnect-admin-notify"));
 
         _chat.DispatchServerMessage(session, Loc.GetString("job-greet-supervisors-warning", ("jobName", prototype.LocalizedName), ("supervisors", Loc.GetString(prototype.Supervisors))));
-        
+
         // Starlight start
         if (prototype.JobRules is not null)
             _chat.DispatchServerMessage(session, Loc.GetString("job-greet-information-rules", ("jobRules", Loc.GetString(prototype.JobRules))));

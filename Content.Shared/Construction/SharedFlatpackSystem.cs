@@ -1,4 +1,4 @@
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Construction.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
@@ -15,26 +15,29 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+#region Starlight
+using System.Linq;
+#endregion
 
 namespace Content.Shared.Construction;
 
-public abstract class SharedFlatpackSystem : EntitySystem
+public abstract partial class SharedFlatpackSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] protected readonly MachinePartSystem MachinePart = default!;
-    [Dependency] protected readonly SharedMaterialStorageSystem MaterialStorage = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedToolSystem _tool = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] protected MachinePartSystem MachinePart = default!;
+    [Dependency] protected SharedMaterialStorageSystem MaterialStorage = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -103,7 +106,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("flatpack-unpack-no-room"), uid, args.User);
             return;
         }
-        
+
         if (comp.RandomEntities != null)
             comp.Entity = _random.Pick(comp.RandomEntities);
 
@@ -142,14 +145,34 @@ public abstract class SharedFlatpackSystem : EntitySystem
         Appearance.SetData(ent, FlatpackVisuals.Machine, MetaData(board).EntityPrototype?.ID ?? string.Empty);
     }
 
-    /// <param name="machineBoard">The machine board to pack. If null, this implies we are packing a computer board</param>
-    public Dictionary<string, int> GetFlatpackCreationCost(Entity<FlatpackCreatorComponent> entity, Entity<MachineBoardComponent>? machineBoard)
+    /// <summary>
+    /// Returns the prototype from a board that the flatpacker will create.
+    /// </summary>
+    public bool TryGetFlatpackResultPrototype(EntityUid board, [NotNullWhen(true)] out EntProtoId? prototype)
     {
-        Dictionary<string, int> cost = new();
+        prototype = null;
+
+        if (TryComp<MachineBoardComponent>(board, out var machine))
+            prototype = machine.Prototype;
+        else if (TryComp<ComputerBoardComponent>(board, out var computer))
+            prototype = computer.Prototype;
+        return prototype is not null;
+    }
+
+    /// <summary>
+    /// Tries to get the cost to produce an item, fails if unable to produce it.
+    /// </summary>
+    /// <param name="entity">The flatpacking machine</param>
+    /// <param name="machineBoard">The machine board to pack. If null, this implies we are packing a computer board</param>
+    /// <param name="cost">Cost to produce</param>
+    public bool TryGetFlatpackCreationCost(Entity<FlatpackCreatorComponent> entity, EntityUid machineBoard, out Dictionary<string, int> cost)
+    {
+        cost = new();
         Dictionary<ProtoId<MaterialPrototype>, int> baseCost;
-        if (machineBoard is not null)
+        if (TryComp<MachineBoardComponent>(machineBoard, out var machineBoardComp))
         {
-            cost = MachinePart.GetMachineBoardMaterialCost(machineBoard.Value, -1);
+            if (!MachinePart.TryGetMachineBoardMaterialCost((machineBoard, machineBoardComp), out cost, -1))
+                return false;
             baseCost = entity.Comp.BaseMachineCost;
         }
         else
@@ -161,6 +184,6 @@ public abstract class SharedFlatpackSystem : EntitySystem
             cost[mat] -= amount;
         }
 
-        return cost;
+        return true;
     }
 }

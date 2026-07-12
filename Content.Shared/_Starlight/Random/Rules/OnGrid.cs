@@ -7,6 +7,6 @@ namespace Content.Shared._Starlight.Random.Rules;
 /// </summary>
 public sealed partial class OnGridRule : RulesRule
 {
-    public override bool Check(EntityManager entManager, EntityUid uid) 
+    public override bool Check(EntityManager entManager, EntityUid uid)
         => !entManager.TryGetComponent(uid, out TransformComponent? xform) || xform.GridUid == null ? Inverted : !Inverted;
 }

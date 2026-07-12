@@ -7,3 +7,6 @@ rail-sanctuary-task = Build a shadekin sanctuary in maintenance and keep it main
 objective-condition-keep-inthedark-title = Ensure {$targetName}, {CAPITALIZE($job)} stays in The Dark.
 objective-impersonate-brighteye = Impersonate a member of {$department} this shift and learn!
 rr-brighteye-breaklight = Break {$Amount} lights.
+
+rail-crew-retention-task = Ensure that at least {$threshold}% of the crew evacuates from the station by the end of the shift.
+rail-desertion-task = Remain on the station at the end of the shift. Do not evacuate.

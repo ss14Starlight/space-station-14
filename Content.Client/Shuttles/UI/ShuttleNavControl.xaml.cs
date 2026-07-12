@@ -1,4 +1,6 @@
 using System.Numerics;
+using Content.Shared._Starlight.Shuttles.BUIStates;
+using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
@@ -20,7 +22,7 @@ namespace Content.Client.Shuttles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShuttleNavControl : BaseShuttleControl
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private IMapManager _mapManager = default!;
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _transform;
 
@@ -106,7 +108,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         return coords;
     }
 
-    public void UpdateState(NavInterfaceState state)
+    public void UpdateState(NavInterfaceState state, DockingPortStates dockingPortStates) // Starlight: +dockingPortStates
     {
         SetMatrix(EntManager.GetCoordinates(state.Coordinates), state.Angle);
 
@@ -124,9 +126,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         RotateWithEntity = state.RotateWithEntity;
 
-        _docks = state.Docks;
-        _blips = state.Blips; // _Starlight
-        _lasers = state.Lasers; // _Starlight
+        _docks = dockingPortStates.Docks; // Starlight
+        _blips = state.Blips; // Starlight
+        _lasers = state.Lasers; // Starlight
     }
 
     protected override void Draw(DrawingHandleScreen handle)

@@ -260,9 +260,9 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// <summary>
     /// Returns whether a loadout is valid or not.
     /// </summary>
-    public bool IsValid(HumanoidCharacterProfile profile, ICommonSession? session, ProtoId<LoadoutPrototype> loadout, IDependencyCollection collection, [NotNullWhen(false)] out FormattedMessage? reason)
+    public bool IsValid(HumanoidCharacterProfile profile, ICommonSession? session, ProtoId<LoadoutPrototype> loadout, IDependencyCollection collection, out FormattedMessage reason) // Starlight: Always return reason
     {
-        reason = null;
+        reason = FormattedMessage.Empty; // Starlight
 
         var protoManager = collection.Resolve<IPrototypeManager>();
 
@@ -283,7 +283,13 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
 
         foreach (var effect in loadoutProto.Effects)
         {
-            valid = valid && effect.Validate(profile, this, session, collection, out reason);
+            // Staright BEGIN
+            if (!effect.Validate(profile, this, session, collection, out var effectReason))
+                valid = false;
+            if (!reason.IsEmpty)
+                reason.PushNewline();
+            reason.AddMessage(effectReason);
+            // Starlight END
         }
 
         return valid;

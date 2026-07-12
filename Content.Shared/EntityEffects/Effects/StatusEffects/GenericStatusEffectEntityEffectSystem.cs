@@ -11,7 +11,7 @@ namespace Content.Shared.EntityEffects.Effects.StatusEffects;
 [Obsolete("Use ModifyStatusEffect instead")]
 public sealed partial class GenericStatusEffectEntityEffectSystem : EntityEffectSystem<MetaDataComponent, GenericStatusEffect>
 {
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<GenericStatusEffect> args)
     {
@@ -55,7 +55,7 @@ public sealed partial class GenericStatusEffect : EntityEffectBase<GenericStatus
     [DataField]
     public StatusEffectMetabolismType Type = StatusEffectMetabolismType.Update;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => Loc.GetString(
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc)  => loc.GetString(  // Starlight
         "entity-effect-guidebook-status-effect-old",
         ("chance", Probability),
         ("type", Type),

@@ -93,7 +93,7 @@ public sealed partial class NpcFactionSystem
             IgnoreEntity(ent, ignore);
         }
     }
-    
+
     //Starlight begin
     /// <summary>
     /// Removes ignore exception from an entity to the target entity.

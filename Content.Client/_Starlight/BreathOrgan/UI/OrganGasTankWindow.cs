@@ -18,11 +18,11 @@ namespace Content.Client._Starlight.BreathOrgan.UI;
 /// <summary>
 /// A copy of a gas tank window, made to change the behaviour in case of organ gas tanks
 /// </summary>
-public sealed class OrganGasTankWindow
+public sealed partial class OrganGasTankWindow
     : BaseWindow
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IResourceCache _cache = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IResourceCache _cache = default!;
 
     private readonly RichTextLabel _lblPressure;
     private readonly RichTextLabel _lblInternals;
@@ -74,7 +74,6 @@ public sealed class OrganGasTankWindow
 
         LayoutContainer.SetAnchorPreset(bottomWrap, LayoutContainer.LayoutPreset.VerticalCenterWide);
         LayoutContainer.SetGrowHorizontal(bottomWrap, LayoutContainer.GrowDirection.Both);
-
 
         var topContainerWrap = new BoxContainer
         {
@@ -146,7 +145,6 @@ public sealed class OrganGasTankWindow
             PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#525252ff") }
         });
 
-
         _lblPressure = new RichTextLabel();
         contentContainer.AddChild(_lblPressure);
 
@@ -169,36 +167,28 @@ public sealed class OrganGasTankWindow
             MinSize = new Vector2(0, 10)
         });
 
-        _btnEmptyOrgan = new Button 
-        { 
+        _btnEmptyOrgan = new Button
+        {
             Text = Loc.GetString("organ-gas-tank-window-empty-organ-button"),
             Margin = new Thickness(25, 0, 25, 7)
         };
         contentContainer.AddChild(_btnEmptyOrgan);
 
         // Handlers
-        _btnInternals.OnPressed += args =>
-        {
-            OnToggleInternals?.Invoke();
-        };
+        _btnInternals.OnPressed += args
+            => OnToggleInternals?.Invoke();
 
-        _btnEmptyOrgan.OnPressed += args =>
-        {
-            OnEmptyOrgan?.Invoke();
-        };
+        _btnEmptyOrgan.OnPressed += args
+            => OnEmptyOrgan?.Invoke();
 
         btnClose.OnPressed += _ => Close();
     }
 
     public void SetTitle(string name)
-    {
-        _topLabel.Text = name;
-    }
+        => _topLabel.Text = name;
 
     public void UpdateState(GasTankBoundUserInterfaceState state)
-    {
-        _lblPressure.SetMarkup(Loc.GetString("gas-tank-window-tank-pressure-text", ("tankPressure", $"{state.TankPressure:0.##}")));
-    }
+        => _lblPressure.SetMarkup(Loc.GetString("gas-tank-window-tank-pressure-text", ("tankPressure", $"{state.TankPressure:0.##}")));
 
     public void Update(bool canConnectInternals, bool internalsConnected, float _)
     {
@@ -225,13 +215,9 @@ public sealed class OrganGasTankWindow
     }
 
     protected override DragMode GetDragModeFor(Vector2 relativeMousePos)
-    {
-        return DragMode.Move;
-    }
+        => DragMode.Move;
 
     protected override bool HasPoint(Vector2 point)
-    {
-        return false;
-    }
+        => false;
 }
 

@@ -12,7 +12,7 @@ public sealed partial class ScrambledAccentSystem : EntitySystem
     [GeneratedRegex(@"(?<=\ )i(?=[\ \.\?]|$)")]
     private static partial Regex RegexLoneI();
 
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -42,6 +42,6 @@ public sealed partial class ScrambledAccentSystem : EntitySystem
     private void OnAccent(Entity<ScrambledAccentComponent> entity, ref AccentGetEvent args)
         => args.Message.Text = args.Message.Tts = Accentuate(args.Message.Text);
 
-    private void OnAccentRelayed(Entity<ScrambledAccentComponent> entity, ref StatusEffectRelayedEvent<AccentGetEvent> args) 
+    private void OnAccentRelayed(Entity<ScrambledAccentComponent> entity, ref StatusEffectRelayedEvent<AccentGetEvent> args)
         => args.Args.Message.Text = args.Args.Message.Tts = Accentuate(args.Args.Message.Text);
 }

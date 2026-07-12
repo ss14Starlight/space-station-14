@@ -251,7 +251,8 @@ flavor-complex-syndie-bomb = like bitter whiskey
 flavor-complex-tequila-sunrise = like a mexican morning
 flavor-complex-irish-coffee = like an alcoholic wakeup call
 flavor-complex-iced-beer = like ice cold piss
-flavor-complex-gargle-blaster = like somebody smashed your head with a lemon-covered brick of gold
+# Starlight (make it actually be the quote):
+flavor-complex-gargle-blaster = like having your brains smashed out by a slice of lemon wrapped round a large gold brick
 flavor-complex-bloody-mary = like a bad hangover
 flavor-complex-beepsky = like oil and whiskey
 flavor-complex-banana-honk = like a banana milkshake
@@ -272,7 +273,7 @@ flavor-complex-xeno-basher = like killing bugs
 flavor-complex-budget-insuls-drink = like door hacking
 flavor-complex-watermelon-wakeup = like a sweet wakeup call
 flavor-complex-rubberneck = like synthetics
-flavor-complex-irish-car-bomb = like a spiked cola float 
+flavor-complex-irish-car-bomb = like a spiked cola float
 # Irish car bomb starlight change
 flavor-complex-alien-brain-hemorrhage = like an extraterrestrial injury
 flavor-complex-themartinez = like violets and lemon vodka
@@ -302,7 +303,8 @@ flavor-complex-b52 = like an Irish pub
 flavor-complex-bahama-mama = like sunbathing in the Caribbean
 flavor-complex-barefoot = like a cassis milkshake
 flavor-complex-booger = like snot
-flavor-complex-brave-bull = like being ran over by a truck
+# Starlight: fix grammar
+flavor-complex-brave-bull = like being run over by a truck
 flavor-complex-demons-blood = like the seventh circle of Hell
 flavor-complex-devils-kiss = like cannibalism
 flavor-complex-driest-martini = like a drunk mimic

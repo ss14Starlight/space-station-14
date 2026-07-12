@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by JustAdler for https://github.com/ss14Starlight/space-station-14 | expedition_label by mikeysaurus | secmed_label by Killer Tamashi (Discord) [renamed to medsec_label]",
+    "copyright": "Created by JustAdler for https://github.com/ss14Starlight/space-station-14 | expedition_label by mikeysaurus | secmed_label by Killer Tamashi (Discord) [renamed to medsec_label], wizard label taken from ScarKy0's (github) job icon at https://github.com/space-wizards/space-station-14/commit/7c6028bc8037306536dca68f3c2cdd5edec56d14",
     "size":
     {
         "x": 32,
@@ -37,6 +37,11 @@
         },
         {
             "name": "merchant_label"
+        },
+        {
+            "name": "wizard_label",
+			"copyright": "ScarKy0",
+			"license": "CC-BY-SA-3.0"
         },
         {
             "name": "admeme_label"

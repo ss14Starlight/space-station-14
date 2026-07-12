@@ -19,7 +19,7 @@
       definitions:
         - spawnerPrototype: AbductorScientistSpawner
           min: 1
-          max: 1
+          playerRatio: 80 # The Scientist is more important than the Agent, but also can't do anything without them, so...
           pickPlayer: false
           startingGear: AbductorScientistGear
           briefing:
@@ -49,7 +49,7 @@
           # Starlight-end
         - spawnerPrototype: AbductorAgentSpawner
           min: 1
-          max: 1
+          playerRatio: 65 # Abductors are so weak man, throw them a bone.
           pickPlayer: false
           startingGear: AbductorAgentGear
           briefing:
@@ -76,30 +76,8 @@
           tags:
             - CantBecomeRevolutionary
           # Starlight-end
-
-# Roundender-less events table for survival
-- type: entityTable
-  id: BasicAntagEventsTableNoRoundenders
-  table:
-    !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-      - id: ClosetSkeleton
-      - id: DragonSpawn
-      - id: KingRatMigration
-      - id: NinjaSpawn
-      - id: ParadoxCloneSpawn
-      - id: RevenantSpawn
-      - id: SleeperAgents
-      #    - id: ZombieOutbreak
-      - id: LoneOpsSpawn
-      - !type:NestedSelector
-        tableId: DerelictBorgEventTable
-      - id: WizardSpawn
-      - id: Xenoborgs
-      # Starlight gamerules:
-      - id: AbductorsSpawn
-      - id: RailroadingTerminator
-      - id: Brighteye
+    - type: DynamicRuleCost
+      cost: 100 # They're not that special.
 
 - type: entity
   parent: BaseGameRule
@@ -120,7 +98,8 @@
       definitions:
         - spawnerPrototype: SpawnPointGhostDerelictBorgi
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
           pickPlayer: false
 
 # Brighteye
@@ -138,9 +117,11 @@
     - type: GameRule
       minPlayers: 20
     - type: BrighteyeRule
-    - type: LoadMapRule
-      mapPath: /Maps/_Starlight/TheDark/Hideout.yml
-      mapTag: TheDark
+    - type: SubRule
+      table: !type:GroupSelector
+        children:
+          - id: TheDarkHideoutSpawn
+          - id: TheDarkGardenSpawn
     - type: AntagLoadProfileRule
       speciesHardOverride: Shadekin
       applyCharacterProfile: true
@@ -153,7 +134,9 @@
       selectionTime: PrePlayerSpawn
       definitions:
         - prefRoles: [Brighteye]
-          playerRatio: 1
+          min: 1
+          max: 3
+          playerRatio: 70 # Starlight. They don't do much, positive or negative. They pretty much are just RP currently.
           spawnerPrototype: SpawnPointGhostBrighteye
           roleLoadout:
             - AntagBrighteye
@@ -188,8 +171,27 @@
   id: TheDarkMap
   components:
     - type: StationEvent
+    - type: SubRule
+      table: !type:GroupSelector
+        children:
+          - id: TheDarkHideoutSpawn
+          - id: TheDarkGardenSpawn
+
+# Dark Maps
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkHideoutSpawn
+  components:
     - type: LoadMapRule
       mapPath: /Maps/_Starlight/TheDark/Hideout.yml
+      mapTag: TheDark
+
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkGardenSpawn
+  components:
+    - type: LoadMapRule
+      mapPath: /Maps/_Starlight/TheDark/Garden.yml
       mapTag: TheDark
 
 # Derelict Cyborgs
@@ -213,16 +215,17 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
       min: 1
-      max: 1
+      max: 2
+      playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
-      
+
 - type: entity
   parent: BaseGameRule
   id: XenoBorgHeavyDerelictSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
-      weight: 2.5
+      weight: 1
       earliestStart: 15
       reoccurrenceDelay: 20
       minimumPlayers: 15
@@ -235,16 +238,17 @@
       definitions:
         - spawnerPrototype: SpawnPointGhostXenoBorgHeavyDerelict
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
           pickPlayer: false
-          
+
 - type: entity
   parent: BaseGameRule
   id: XenoBorgEngiDerelictSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
-      weight: 2.5
+      weight: 1
       earliestStart: 15
       reoccurrenceDelay: 20
       minimumPlayers: 15
@@ -257,16 +261,17 @@
       definitions:
         - spawnerPrototype: SpawnPointGhostXenoborgEngiDerelict
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
           pickPlayer: false
 
 - type: entity
   parent: BaseGameRule
-  id: XenoborgScoutDerelictSpawn
+  id: XenoBorgScoutDerelictSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
-      weight: 2.5
+      weight: 1
       earliestStart: 15
       reoccurrenceDelay: 20
       minimumPlayers: 15
@@ -279,16 +284,17 @@
       definitions:
         - spawnerPrototype: SpawnPointGhostXenoborgScoutDerelict
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
           pickPlayer: false
-          
+
 - type: entity
   parent: BaseGameRule
   id: XenoBorgStealthDerelictSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
-      weight: 2.5
+      weight: 1
       earliestStart: 15
       reoccurrenceDelay: 20
       minimumPlayers: 15
@@ -301,6 +307,113 @@
       definitions:
         - spawnerPrototype: SpawnPointGhostXenoborgStealthDerelict
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
           pickPlayer: false
- 
+
+- type: entity
+  parent: BaseGameRule
+  id: XenoBorgiDerelictSpawn
+  components:
+    - type: StationEvent
+      globalAnnouncement: false # Starlight
+      weight: 1
+      earliestStart: 15
+      reoccurrenceDelay: 20
+      minimumPlayers: 15
+      duration: null
+    - type: SpaceSpawnRule
+      spawnDistance: 0
+    - type: AntagSpawner
+      prototype: PlayerXenoBorgiDerelictGhostRole
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostXenoBorgiDerelict
+          min: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
+          pickPlayer: false
+
+# Syndicate dead drop
+- type: entity
+  parent: BaseGameRule
+  id: SyndicateDeadDrop
+  components:
+  - type: StationEvent
+    startAnnouncement: station-syndicate-dead-drop-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 15
+    duration: 1
+    minimumPlayers: 10
+    maxOccurrences: 2
+    weight: 10
+  - type: RandomSpawnRule
+    prototype: SyndieDeadDropSpawner
+    radioMessage: {channel: Syndicate, message: "syndicate-dead-drop-announcement"}
+
+# Shitstation
+- type: entityTable
+  id: ShitEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: BreakerFlip
+    - id: CockroachMigration
+    - id: MoproachMigration # They can clean. This is the lucky pull of this pool.
+    - id: MouseMigration
+    - id: GasLeak
+    - id: KudzuGrowth
+    - id: PowerGridCheck
+    - id: VentClog
+    - id: IonStormPlus # I think it's funny to have the double chance to get this.
+
+- type: entity
+  parent: BaseGameRule
+  id: IonStormPlus # It's a more frequent Ion Storm, for ShitStation.
+  components:
+  - type: StationEvent
+    globalAnnouncement: false # Starlight
+    weight: 10
+    reoccurrenceDelay: 15
+    duration: 1
+  - type: IonStormRule
+
+# Multi Paradoxes
+- type: entity
+  parent: BaseGameRule
+  id: ParadoxCrisisSpawn
+  components:
+  - type: StationEvent
+    weight: 2
+    duration: null
+    earliestStart: 35
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+  - type: ParadoxCloneRule
+    objectiveBlacklist:
+      tags:
+      - ParadoxCloneObjectiveBlacklist
+  - type: AntagObjectives
+    objectives:
+    - ParadoxCloneKillObjective
+    - ParadoxCloneLivingObjective
+  - type: AntagRandomSpawn # TODO: improve spawning so they only start in maints
+  - type: AntagSelection
+    agentName: paradox-clone-round-end-agent-name
+    definitions:
+    - spawnerPrototype: SpawnPointGhostParadoxClone
+      min: 1
+      max: 4 # Starlight. Future proofing.
+      playerRatio: 70 # Starlight. Paradoxes really aren't that impactful
+      pickPlayer: false
+      startingGear: ParadoxCloneGear
+      roleLoadout:
+      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
+      briefing:
+        text: paradox-clone-role-greeting
+        color: lightblue
+        sound: /Audio/Misc/paradox_clone_greeting.ogg
+      mindRoles:
+      - MindRoleParadoxClone
+  - type: DynamicRuleCost
+    cost: 125

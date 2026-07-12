@@ -14,13 +14,13 @@ namespace Content.Server._CD.Records.Consoles;
 /// <summary>
 /// Drives the BUI for the Cosmatic Drift record consoles.
 /// </summary>
-public sealed class CharacterRecordConsoleSystem : EntitySystem
+public sealed partial class CharacterRecordConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly CharacterRecordsSystem _characterRecords = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly StationRecordsSystem _records = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private CharacterRecordsSystem _characterRecords = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private StationRecordsSystem _records = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

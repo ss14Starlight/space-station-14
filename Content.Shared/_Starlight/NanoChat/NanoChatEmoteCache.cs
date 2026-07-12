@@ -91,7 +91,7 @@ public static class NanoChatEmoteCache
             return AllEmotes.Values.ToList();
 
         EnsureCacheLoaded();
-        
+
         var lowerQuery = query.ToLowerInvariant();
         var results = new List<EmoteData>();
 
@@ -121,8 +121,8 @@ public static class NanoChatEmoteCache
     public static List<EmoteData> GetEmotesInCategory(string category)
     {
         EnsureCacheLoaded();
-        return _categoryCache!.TryGetValue(category, out var emotes) 
-            ? new List<EmoteData>(emotes) 
+        return _categoryCache!.TryGetValue(category, out var emotes)
+            ? new List<EmoteData>(emotes)
             : new List<EmoteData>();
     }
 
@@ -151,7 +151,7 @@ public static class NanoChatEmoteCache
         {
             var displayName = proto.DisplayName ?? proto.ID;
             var searchTags = new List<string>(proto.SearchTags);
-            
+
             // Build comprehensive search string
             var searchParts = new List<string> { proto.ID, displayName, proto.Category };
             searchParts.AddRange(searchTags);
@@ -173,7 +173,7 @@ public static class NanoChatEmoteCache
 
             if (!_categoryCache.ContainsKey(proto.Category))
                 _categoryCache[proto.Category] = new List<EmoteData>();
-            
+
             _categoryCache[proto.Category].Add(emoteData);
         }
 

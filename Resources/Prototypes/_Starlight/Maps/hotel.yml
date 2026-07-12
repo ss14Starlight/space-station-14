@@ -24,6 +24,7 @@
             Botanist: [ 2, 2 ]
             Chef: [ 2, 2 ]
             Janitor: [ 2, 2 ]
+            Lawyer: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
             ServiceWorker: [ 2, 4 ]
             #engineering
@@ -47,22 +48,23 @@
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
-            SecurityOfficer: [ 4, 7 ]
-            Detective: [ 1, 1 ]
-            SecurityCadet: [ 4, 5 ]
+            SecurityOfficer: [ 4, 6 ]
+            SecurityCadet: [ 2, 3 ]
             Brigmedic: [ 1, 1 ]
+            Detective: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 6, 6 ]
+            SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 6, 8 ]
             MailTech: [ 1, 2 ]
-            MiningSpecialist: [ 2, 2 ]
-            SalvageLead: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
+            Performer: [ 2, 2 ]
             Reporter: [ 1, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
@@ -70,7 +72,7 @@
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 1, 1 ]
-            #Representives
+            #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

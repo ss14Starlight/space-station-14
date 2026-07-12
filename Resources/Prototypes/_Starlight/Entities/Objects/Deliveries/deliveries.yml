@@ -67,7 +67,7 @@
     speechVerb: Robotic
   - type: SimpleToolUsage
     doAfter: 6
-      
+
 - type: entity
   parent: BasePackageDeliveryReward
   id: PackageDeliveryRewardPlush

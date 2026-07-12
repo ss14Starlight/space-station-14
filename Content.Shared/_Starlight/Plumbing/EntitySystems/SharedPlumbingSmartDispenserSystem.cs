@@ -5,9 +5,9 @@ using Robust.Shared.Network;
 
 namespace Content.Shared._Starlight.Plumbing.EntitySystems;
 //This file currently exists just to block injector popups when you use them on a smart dispenser.
-public sealed class SharedPlumbingSmartDispenserSystem : EntitySystem
+public sealed partial class SharedPlumbingSmartDispenserSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

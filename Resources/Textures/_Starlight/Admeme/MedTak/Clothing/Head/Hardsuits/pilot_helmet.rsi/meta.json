@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "icon-flash",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "off-equipped-HELMET",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "on-equipped-HELMET",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "off-equipped-HELMET-avali",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "on-equipped-HELMET-avali",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "off-equipped-HELMET-dog",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "on-equipped-HELMET-dog",
+      "directions": 4,
+      "copyright": "SevenShades"
+    }
+  ]
+}

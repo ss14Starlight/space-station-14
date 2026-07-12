@@ -9,7 +9,7 @@
   "states": [
     {
         "name": "otherthing",
-        "copyright": "Paradise Station RU",  
+        "copyright": "Paradise Station RU",
         "delays":[
             [0.25,0.25,0.25,0.25],
             [0.25,0.25,0.25,0.25],

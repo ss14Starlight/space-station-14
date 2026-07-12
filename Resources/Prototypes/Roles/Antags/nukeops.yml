@@ -4,6 +4,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-nuclear-operative-objective
+  roleLoadout: [ AntagNukeops ] # Starlight
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 48h # Starlight start
@@ -16,7 +17,7 @@
   - !type:DepartmentTimeRequirement # At the very least please know basic med.
     department: Medical
     time: 4h
-  - !type:RoleTimeRequirement # Tradeoff for not having too high Sec time; You should know how to use your uplink. 
+  - !type:RoleTimeRequirement # Tradeoff for not having too high Sec time; You should know how to use your uplink.
     role: AntagTraitor
     time: 1h # 1 shift, to teach you how to use an uplink. Starlight end
   guides: [ NuclearOperatives ]
@@ -29,6 +30,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-nuclear-operative-agent-objective
+  roleLoadout: [ AntagNukeopsMedic ] # Starlight
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 48h # Starlight start
@@ -54,6 +56,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-nuclear-operative-commander-objective
+  roleLoadout: [ AntagNukeopsCommander ] # Starlight
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 72h # Starlight start. You need to have experience.

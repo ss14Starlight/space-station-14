@@ -1,0 +1,28 @@
+- type: entity
+  id: OrganRatLungs
+  parent: OrganHumanLungs
+  name: rat lungs
+  description: "It ain't easy to stay breathing in these tunnels."
+  suffix: Rat
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Rat ]
+
+- type: entity
+  id: OrganRatStomach
+  parent: OrganAnimalStomach
+  name: rat stomach
+  description: "Yearns for cheese."
+  suffix: Rat
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Sprite
+    state: stomach

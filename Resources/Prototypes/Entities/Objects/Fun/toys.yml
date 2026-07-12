@@ -122,8 +122,8 @@
   - type: TrashOnSolutionEmpty
     solution: drink
   # 🌟Starlight-start🌟
-  - type: BoneGel
   - type: SurgeryTool
+  - type: BoneGel
     successRate: 0.4 # really not ideal, but in a pinch...
     speed: 1.5
     startSound:

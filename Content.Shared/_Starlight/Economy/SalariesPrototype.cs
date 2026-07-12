@@ -1,7 +1,7 @@
 ﻿using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Starlight.Economy;
+namespace Content.Shared._Starlight.Economy;
 
 [Prototype("Salaries")]
 public sealed partial class SalariesPrototype : IPrototype

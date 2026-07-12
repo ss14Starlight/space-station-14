@@ -7,9 +7,9 @@ namespace Content.Shared._Starlight.EntityEffects.Effects.Xenobiology;
 
 public sealed partial class MutateIntoEntityEntityEffectSystem : EntityEffectSystem<MindContainerComponent, MutateIntoEntity>
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedMindSystem _sharedMindSystem = default!;
-    
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedMindSystem _sharedMindSystem = default!;
+
     protected override void Effect(Entity<MindContainerComponent> entity, ref EntityEffectEvent<MutateIntoEntity> args)
     {
         var proto = args.Effect.Entity;

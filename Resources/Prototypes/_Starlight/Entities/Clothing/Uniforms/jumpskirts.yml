@@ -1,7 +1,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrep
-  name: nt representive skirt
+  name: nt representative skirt
   description: That skirt that is better not to see.
   components:
   - type: Sprite
@@ -12,18 +12,18 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepTurtleneck
-  name: nt representive's turtleneck jumpskirt
+  name: nt representative's turtleneck jumpskirt
   description: For a more casual look while on the job.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrepturtleneckskirt.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrepturtleneckskirt.rsi
-    
+
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtBlueShield
-  name: blue shield skirt
+  name: blueshield skirt
   description: The skirt of a glorified bodyguard.
   components:
   - type: Sprite
@@ -34,14 +34,14 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtEliteBlueShield
-  name: elite blue shield skirt
+  name: elite blueshield skirt
   description: The skirt of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
-    
+
 - type: entity
   parent: [ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtBlueShieldSkirt
@@ -75,6 +75,11 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
 
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseSecurityContraband ]
@@ -86,6 +91,43 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman_trauma.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman_trauma.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtFormalBrigmedic
+  name: formal brigmedic jumpskirt
+  description: A formal suit for the brigmedic.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/brigmedic_alt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/brigmedic_alt.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtSeniorBrigmedic
+  name: senior formal brigmedic jumpskirt
+  description: A formal suit for the seasoned brigmedic.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/brigmedic_senior.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/brigmedic_senior.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
 
 - type: entity
   parent: ClothingUniformBase
@@ -97,6 +139,50 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/security_blue.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/security_blue.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtFormalDeputy
+  name: deputy's jumpskirt
+  description: An attire for one who feels destined for the desert.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/deputy.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/deputy.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtFormalSecoff
+  name: formal security jumpskirt
+  description: A formal attire for the security officer.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/secoff_formal.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/secoff_formal.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtFormalSeniorSecoff
+  name: formal senior security jumpskirt
+  description: A formal attire for the senior security officer.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/secoff_formal_senior.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/secoff_formal_senior.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtFormalWarden
+  name: warden's formal jumpskirt
+  description: A formal attire for the warden, missing a holster for the truncheon sadly...
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/warden_formal.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/warden_formal.rsi
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
@@ -185,6 +271,61 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/clown_distinguished.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/clown_distinguished.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtLawyerService
+  name: green lawyer suitskirt
+  description: A flashy green suitskirt worn by lawyers and show-offs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/service_lawyer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/service_lawyer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtLawyerGray
+  name: gray lawyer suitskirt
+  description: A plain gray suitskirt worn by lawyers and show-offs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyergray.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyergray.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtLawyerPink
+  name: pink lawyer suitskirt
+  description: A bright pink suitskirt worn by lawyers that you should call.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerpink.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerpink.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtLawyerBlackTwo
+  name: show lawyer suitskirt
+  description: A stylish black piece worn by lawyers and show people.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerblacktwo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerblacktwo.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtLawyerBad
+  name: bad lawyer's suitskirt
+  description: A bold suitskirt. Perfect for finding your one way, going wherever you want to go.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerbad.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerbad.rsi
 
 # Fashion-O-Mat-Start, not obtainable any other way, unless mapped
 # All CC/Synd stuff in Fashion-O-Mat is replica
@@ -291,7 +432,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtPencilTan
-  name: beige "pencil" style skirt 
+  name: beige "pencil" style skirt
   description: The beige "pencil" style skirt exudes softness and elegance. The fitted blazer and straight skirt create a refined silhouette, making it suitable for various occasions, from business meetings to evening dinners.
   components:
   - type: Sprite
@@ -302,18 +443,18 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtPencilCentcomOfficial
-  name: centcomm "pencil" style skirt 
+  name: CentComm "pencil" style skirt
   description: A strict green "pencil" skirt exudes authority and poise. The fitted blazer and straight skirt form an elegant silhouette, suitable for various occasions, from business meetings to a captain's dismissal.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/pencil_centcom_official.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/pencil_centcom_official.rsi
-  
+
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtPencilSpecialOperationsOfficer
-  name: SOC officer "pencil" skirt 
+  name: SOC officer "pencil" skirt
   description: A formal black Special Operations Corps officer's "pencil" skirt embodies authority and sophistication. The tailored blazer and straight skirt create a refined silhouette, suitable for various occasions, from strategic meetings to... well, less conventional operations.
   components:
   - type: Sprite
@@ -360,7 +501,6 @@
   name: mining specialist's jumpskirt
   description: A suit passed down through many generations. a fine layer of dust trails behind it.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/mining.rsi
   - type: Clothing
@@ -431,7 +571,7 @@
       sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcom_official.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcom_official.rsi
-  
+
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCentcomOfficer
@@ -442,7 +582,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcom_officer.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcom_officer.rsi
-  
+
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtElegantMaid
@@ -453,7 +593,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/elegantmaid.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/elegantmaid.rsi
-  
+
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformColorJumpskirtRainbow
@@ -464,7 +604,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/rainbow.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/rainbow.rsi
-  
+
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtSchool
@@ -475,7 +615,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/schoolskirt.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/schoolskirt.rsi
-  
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtCapTurtleneck
@@ -486,7 +626,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/cap_turtleneck.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/cap_turtleneck.rsi
-  
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtHoPTurtleneck
@@ -497,7 +637,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/hop_turtleneck.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/hop_turtleneck.rsi
-  
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtHoSBlack
@@ -508,7 +648,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/hos_black.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/hos_black.rsi
-  
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtRDClassical
@@ -533,6 +673,17 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtBartenderBlackAlt
+  name: fancy bartender uniform
+  description: A nice and tidy uniform, with leggings to match.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/alt_blackbartender.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/alt_blackbartender.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformElegantLadyDress
   name: elegant lady's dress
   description: "A voluminous white blouse with a black skirt-perfect for highlighting your beauty, darling!"
@@ -552,6 +703,28 @@
       sprite: _Starlight/Clothing/Uniforms/Jumpskirt/pastry.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Uniforms/Jumpskirt/pastry.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTimelessSkirt
+  name: timeless skirt
+  description: A luxury skirt with a timeless design.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/timeless_skirt.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/timeless_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtPunkSkirt
+  name: punk skirt and socks
+  description: Slightly metal, very goth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/punk_skirt_socks.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/punk_skirt_socks.rsi
 
 # Fashion-O-Mat-End
 
@@ -657,7 +830,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: MagistrateUniformSkirt
-  name: Magistrate's Jumpskirt
+  name: magistrate's jumpskirt
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi
@@ -678,10 +851,40 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNCT
-  name: NT career trainer's skirt
+  name: nt career trainer's skirt
   description: A neatly pressed olive green shirt paired with a sleek black skirt, worn by those committed to mentoring the next generation.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/nct.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/nct.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtAssistant
+  name: assistant jumpskirt
+  description: A tasteful green jumpskirt that reminds you of the good old days.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+    layers:
+    - state: icon
+      color: "#639137"
+    - state: trinkets-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#639137"
+      - state: trinkets-inhand-left
+      right:
+      - state: inhand-right
+        color: "#639137"
+      - state: trinkets-inhand-right
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#639137"
+      - state: trinkets-equipped-INNERCLOTHING

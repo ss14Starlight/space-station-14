@@ -53,13 +53,25 @@
       collection: MetalThud
   # 🌟Starlight-start🌟
   - type: SurgeryTool
+  - type: BoneSaw
     successRate: 0.8
     speed: 0.8
     startSound:
       path: /Audio/Items/jaws_cut.ogg
     endSound:
       path: /Audio/Items/change_jaws.ogg
-  - type: BoneSaw
+  - type: WirecutterSurgery
+    speed: 0.6
+    startSound:
+      path: /Audio/Items/jaws_cut.ogg
+    endSound:
+      path: /Audio/Items/change_jaws.ogg
+  - type: CrowbarSurgery
+    speed: 0.6
+    startSound:
+      path: /Audio/Items/jaws_cut.ogg
+    endSound:
+      path: /Audio/Items/change_jaws.ogg
   # 🌟Starlight-end🌟
 
 - type: entity

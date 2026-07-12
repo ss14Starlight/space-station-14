@@ -23,7 +23,7 @@ namespace Content.Server.Chemistry.Components
 
         [DataField("pillDosageLimit", required: true), ViewVariables(VVAccess.ReadWrite)]
         public uint PillDosageLimit;
-        
+
         //Starlight-start
         [DataField("patchDosageLimit", required: true), ViewVariables(VVAccess.ReadWrite)]
         public uint PatchDosageLimit;

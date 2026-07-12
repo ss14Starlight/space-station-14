@@ -1,0 +1,40 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d90c7e5de6f6d94596c164da78dbc8d3cd35bb99, modified by Flareguy and further modified by SlamBamActionman and Vincolan for SS14"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING",
+      "directions": 4,
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d90c7e5de6f6d94596c164da78dbc8d3cd35bb99, modified by Flareguy and further modified by SlamBamActionman for SS14"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-vox",
+      "directions": 4,
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d90c7e5de6f6d94596c164da78dbc8d3cd35bb99, modified by Flareguy and further modified by SlamBamActionman for SS14"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-resomi",
+      "directions": 4,
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d90c7e5de6f6d94596c164da78dbc8d3cd35bb99, modified by Flareguy and further modified by Vincolan for SS14 Starlight"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d90c7e5de6f6d94596c164da78dbc8d3cd35bb99, modified by Flareguy and further modified by SlamBamActionman for SS14"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d90c7e5de6f6d94596c164da78dbc8d3cd35bb99, modified by Flareguy and further modified by SlamBamActionman for SS14"
+    }
+  ]
+}

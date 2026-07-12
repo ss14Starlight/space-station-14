@@ -6,10 +6,10 @@ namespace Content.Server._Starlight.Speech.EntitySystems;
 
 public sealed class BackwardsAccentSystem : EntitySystem
 {
-    public override void Initialize() 
+    public override void Initialize()
         => SubscribeLocalEvent<BackwardsAccentComponent, AccentGetEvent>(OnAccent);
 
-    public string Accentuate(string message)
+    public static string Accentuate(string message)
     {
         var arr = message.ToCharArray();
         Array.Reverse(arr);

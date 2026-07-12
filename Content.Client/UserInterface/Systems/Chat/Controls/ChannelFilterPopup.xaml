@@ -24,6 +24,7 @@
                     <BoxContainer Name="TTSChannelsVBox" Orientation="Vertical" SeparationOverride="2"/>
                 </ScrollContainer>
                 <Button Name="TTSClearQueueButton" Text="{Loc 'hud-chatbox-tts-clear-queue'}"/>
+                <Button Name="TTSToggleAllButton" Text="{Loc 'hud-chatbox-tts-toggle-all'}"/>
             </BoxContainer>
             <!-- Starlight end -->
         </BoxContainer>

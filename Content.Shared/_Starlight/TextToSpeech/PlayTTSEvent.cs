@@ -1,11 +1,9 @@
-using System.ComponentModel;
-using Content.Shared.Damage.Components;
 using Content.Shared.Radio;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.TextToSpeech;
+namespace Content.Shared._Starlight.TextToSpeech;
 
 [Serializable, NetSerializable]
 public sealed class TTSHeaderEvent : EntityEventArgs
@@ -14,7 +12,7 @@ public sealed class TTSHeaderEvent : EntityEventArgs
     public Guid Id { get; set; }
     public TTSType Type { get; set; }
     public SoundSpecifier? Chime { get; set; }
-    public NetEntity? SourceUid { get; set; }                               
+    public NetEntity? SourceUid { get; set; }
     public float VolumeModifier { get; set; } = 1;
 }
 

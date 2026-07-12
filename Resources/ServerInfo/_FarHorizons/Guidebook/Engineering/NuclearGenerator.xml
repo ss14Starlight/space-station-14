@@ -6,7 +6,7 @@
     </Box>
 
 	The Nuclear Generator generates power by heating a gas through fission reactions in a [textlink="Nuclear Reactor" link="NuclearReactor"], which then spins a [textlink="Gas Turbine" link="GasTurbine"].
-    
+
     ## Starting the Nuclear Generator
 	To start the Nuclear Generator, engineers must follow these steps:
 	- Fill the coolant loop with a gas.

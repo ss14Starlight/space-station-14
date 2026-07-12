@@ -1,0 +1,13 @@
+- type: shader
+  id: GlitchingEffect
+  kind: source
+  path: "/Textures/_FarHorizons/Shaders/glitching_effect.swsl"
+  params:
+    sortPower: 0.03
+    threshold: 0.005
+    maxSteps: 30
+    waveFrequency: 5.0
+    waveSpeed: 4.0
+    waveAmplitude: 0.001
+    vignettePower: 1.3
+    vignetteFalloff: 1.5

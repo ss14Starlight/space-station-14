@@ -4,10 +4,13 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Shared._Starlight.Weapons.Ranged.Systems;
+#endregion
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), Access(typeof(SharedGunSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), Access(typeof(SharedGunSystem), typeof(RandomAmmoFillSystem), typeof(MixedAmmoFillSystem))]
 public sealed partial class BallisticAmmoProviderComponent : Component
 {
     [DataField]

@@ -1,6 +1,191 @@
+# Just copypasta of some human basic body parts for interaction,
+# only differences for now is that limbs work in pairs,
+# they are unextractable and can't be spawned (no surgery on Animals!?).
+
 - type: entity
-  id: OrganCorgiLungs
-  parent: OrganAnimalLungs
+  id: PartAnimal
+  parent: BaseItem
+  name: "animal body part"
+  abstract: true
   components:
-  - type: Lung
-    alert: CorgiLowOxygen
+  # yes these sprites dont make sense i dont care its better than them being invisible
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+  - type: Damageable
+    damageContainer: Biological
+  - type: BodyPart
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 50
+  - type: Tag
+    tags:
+      - Trash
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: HandsAnimal
+  categories: [ HideSpawnMenu ]
+  name: animal hands
+  parent: PartAnimal
+  components:
+  - type: Sprite
+    layers:
+    - state: l_hand
+    - state: r_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  parent: PartAnimal
+  id: LeftHandAnimal
+  categories: [ HideSpawnMenu ]
+  name: left animal hand
+  components:
+  - type: Sprite
+    layers:
+    - state: l_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  parent: PartAnimal
+  id: RightHandAnimal
+  categories: [ HideSpawnMenu ]
+  name: right animal hand
+  components:
+  - type: Sprite
+    layers:
+    - state: r_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+- type: entity
+  id: LegsAnimal
+  categories: [ HideSpawnMenu ]
+  name: animal legs
+  parent: PartAnimal
+  components:
+  - type: Sprite
+    layers:
+    - state: l_leg
+    - state: r_leg
+  - type: BodyPart
+    partType: Leg
+  - type: MovementBodyPart
+
+- type: entity
+  id: FeetAnimal
+  categories: [ HideSpawnMenu ]
+  name: animal feet
+  parent: PartAnimal
+  components:
+  - type: Sprite
+    layers:
+    - state: r_foot
+    - state: l_foot
+  - type: BodyPart
+    partType: Foot
+
+- type: entity
+  id: TorsoAnimal
+  categories: [ HideSpawnMenu ]
+  name: animal torso
+  parent: PartAnimal
+  components:
+  - type: Sprite
+    layers:
+    - state: torso_m
+  - type: BodyPart
+    partType: Torso
+  - type: Damageable
+    damageContainer: Biological
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: HeadAnimal
+  categories: [ HideSpawnMenu ]
+  name: animal head
+  parent: PartAnimal
+  components:
+    - type: Sprite
+      layers:
+        - state: head_m
+    - type: BodyPart
+      partType: Head
+
+- type: entity
+  parent: PartAnimal
+  id: LeftHandSmartCorgi
+  categories: [ HideSpawnMenu ]
+  name: corgi hand
+  components:
+  - type: Sprite
+    layers:
+    - state: l_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  parent: PartAnimal
+  id: RightHandSmartCorgi
+  categories: [ HideSpawnMenu ]
+  name: corgi hand
+  components:
+  - type: Sprite
+    layers:
+    - state: r_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+# Borgi Animal Body
+
+- type: entity
+  parent: PartAnimal
+  id: LeftHandAdmemeCorgi
+  categories: [ HideSpawnMenu ]
+  name: corgi hand
+  suffix: Corgi
+  components:
+  - type: Sprite
+    layers:
+    - state: l_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  parent: PartAnimal
+  id: RightHandAdmemeCorgi
+  categories: [ HideSpawnMenu ]
+  name: corgi hand
+  suffix: Corgi
+  components:
+  - type: Sprite
+    layers:
+    - state: r_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+
+

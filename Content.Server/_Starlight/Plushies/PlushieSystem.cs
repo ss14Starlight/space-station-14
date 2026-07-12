@@ -1,18 +1,15 @@
-// Plushie interaction system - handles cuddle messages for plushies
 using Content.Shared._Starlight.Plushies;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Plushies;
 
 /// <summary>
 /// Server-side system that handles cuddle messages when using plushies in hand.
 /// </summary>
-public sealed class PlushieSystem : EntitySystem
+public sealed partial class PlushieSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -30,9 +27,9 @@ public sealed class PlushieSystem : EntitySystem
             return;
 
         var message = Loc.GetString(entity.Comp.LocalizedMessageKey, ("user", args.User));
-        
+
         _popup.PopupEntity(message, entity, args.User);
-        
+
         args.Handled = true;
     }
 }

@@ -120,9 +120,11 @@
   name: A.P.E.
   description: An Anomalous Particle Emitter, capable of shooting out unstable particles which can interface with anomalies.
   components:
+  - type: CosmicLambdaParticleSource # Starlight
+  - type: DoAfter # Starlight
   - type: Sprite
     noRot: true
-    sprite: Structures/Machines/Anomaly/ape.rsi
+    sprite: Structures/Machines/Anomaly/ape.rsi # Starlight
     layers:
     - state: base
     - state: unshaded
@@ -170,11 +172,13 @@
     - AnomalousParticleEpsilon
     - AnomalousParticleZeta
     - AnomalousParticleSigma
+    - CosmicLambdaParticle # Starlight
     setTypePorts:
       SetParticleDelta: AnomalousParticleDelta
       SetParticleEpsilon: AnomalousParticleEpsilon
       SetParticleZeta: AnomalousParticleZeta
       SetParticleSigma: AnomalousParticleSigma
+      SetParticleLambda: CosmicLambdaParticle # Starlight
     fireBurstSize: 1
     fireBurstDelayMin: 2
     fireBurstDelayMax: 6
@@ -217,6 +221,7 @@
       - SetParticleEpsilon
       - SetParticleZeta
       - SetParticleSigma
+      - SetParticleLambda # Starlight
 
 - type: entity
   id: MachineAnomalyGenerator
@@ -329,3 +334,11 @@
   - type: GuideHelp
     guides:
     - AnomalousResearch
+# SL Start: Lighting Update
+  - type: PointLight
+    autoRot: true
+    color: "#9933c4"
+    radius: 5
+    energy: 0.5
+    castShadows: true
+# SL End

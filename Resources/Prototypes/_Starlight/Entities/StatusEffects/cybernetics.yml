@@ -1,7 +1,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectCyberneticDisruption
-  name: status-effect-cybernetics-cybernetics-disrupted
+  name: cybernetics disrupted
   components:
   - type: StatusEffect
     whitelist:

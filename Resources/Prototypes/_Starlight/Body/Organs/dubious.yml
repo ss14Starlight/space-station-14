@@ -33,7 +33,7 @@
     state: slime
   - type: AbductorOrgan
     organ: Gravity
-    
+
 - type: entity
   id: OrganDubiousEgg
   parent: [OrganHumanHeart]
@@ -45,7 +45,7 @@
     state: egg
   - type: AbductorOrgan
     organ: Egg
-    
+
 - type: entity
   id: OrganDubiousSpider
   parent: [OrganHumanHeart]
@@ -57,7 +57,7 @@
     state: spider
   - type: AbductorOrgan
     organ: Spider
-    
+
 - type: entity
   id: OrganDubiousVent
   parent: [OrganHumanHeart]
@@ -82,7 +82,7 @@
       deleteSpawnerAfterSpawn: true
       table: !type:NestedSelector
         tableId: LootTableAbductorGland
-        
+
 - type: entityTable
   id: LootTableAbductorGland
   table: !type:GroupSelector

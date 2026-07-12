@@ -8,7 +8,7 @@ public sealed partial class AmputatateOnTriggerComponent : BaseXOnTriggerCompone
 {
     [DataField, AutoNetworkedField]
     public bool TargetContainer;
-    
+
     [DataField, AutoNetworkedField]
     public List<string> Parts;
 }

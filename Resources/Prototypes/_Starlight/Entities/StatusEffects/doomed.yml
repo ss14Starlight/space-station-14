@@ -1,0 +1,11 @@
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectDoomedIcon
+  name: doomed
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+  - type: StatusEffectAlert
+    alert: Doomed

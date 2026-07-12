@@ -1,7 +1,7 @@
 - type: entity
   name: rat king
   id: MobRatKing
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobRat
   description: He's da rat. He make da roolz.
   components:
   # Starlight-start: Languages
@@ -9,9 +9,11 @@
     speaks:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
     understands:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
   # Starlight-end
   - type: ThermalVision # Starlight-edit: Thermal Vision
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -70,9 +72,11 @@
       types:
         Slash: 12
         Piercing: 8
+  # Starlight - start
   - type: Body
     prototype: Rat
     requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
+  # Starlight - end
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 200
@@ -180,7 +184,7 @@
 - type: entity
   name: rat servant
   id: MobRatServant
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobRat
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
@@ -191,6 +195,7 @@
     understands:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
@@ -273,9 +278,11 @@
       types:
         Slash: 5
         Piercing: 3
+  # Starlight - start
   - type: Body
     prototype: Rat
     requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
+  # Starlight - end
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 200
@@ -337,11 +344,13 @@
 - type: entityTable
   id: RatKingLoot
   table: !type:GroupSelector
-    children:
+    children: # Starlight - Food table update
     - id: RandomSpawner100
-      weight: 66
+      weight: 70
     - id: FoodCheese
-      weight: 28
+      weight: 15
+    - id: FoodCheese
+      weight: 10
     - id: IngotGold1
       weight: 5
 

@@ -23,30 +23,36 @@ public sealed partial class AgeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason) // Starlight: Always return reason
     {
         reason = new FormattedMessage();
 
         if (profile is null) //the profile could be null if the player is a ghost. In this case we don't need to block the role selection for ghostrole
             return true;
 
+        // Starlight BEGIN: Reason is successful by default
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            Inverted ? "role-timer-age-young-enough" : "role-timer-age-old-enough",
+            ("age", RequiredAge)));
+        // Starlight END
+
         if (!Inverted)
         {
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-age-too-young",
-                ("age", RequiredAge)));
+            if (profile.Age >= RequiredAge) // Starlight BEGIN
+                return true;
 
-            if (profile.Age < RequiredAge)
-                return false;
+            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-age-not-old-enough",
+                ("age", RequiredAge)));
+            return false; // Starlight END
         }
         else
         {
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-age-too-old",
+            if (profile.Age <= RequiredAge) // Starlight BEGIN
+                return true;
+
+            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-age-not-young-enough",
                 ("age", RequiredAge)));
-
-            if (profile.Age > RequiredAge)
-                return false;
+            return false; // Starlight END
         }
-
-        return true;
     }
 }

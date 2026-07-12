@@ -2,17 +2,17 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Atmos;
 using Content.Shared.Database;
 using Content.Shared.IgnitionSource;
-using Content.Shared.Starlight.EntityEffects.Components;
+using Content.Shared._Starlight.EntityEffects.Components;
 
-namespace Content.Shared.Starlight.EntityEffects.EntitySystems;
+namespace Content.Shared._Starlight.EntityEffects.EntitySystems;
 
-public abstract class SharedDissolvableSystem : EntitySystem
+public abstract partial class SharedDissolvableSystem : EntitySystem
 {
-    [Dependency] private readonly SharedIgnitionSourceSystem _ignitionSourceSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    
-    
+    [Dependency] private SharedIgnitionSourceSystem _ignitionSourceSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+
+
     public void UpdateAppearance(EntityUid uid, DissolvableComponent? dissolvable = null, AppearanceComponent? appearance = null)
     {
         if (!Resolve(uid, ref dissolvable, ref appearance))
@@ -58,7 +58,7 @@ public abstract class SharedDissolvableSystem : EntitySystem
         _adminLogger.Add(LogType.Flammable, $"{ToPrettyString(uid):entity} stopped being on dissolve damage");
         dissolvable.OnDissolve = false;
         dissolvable.DissolveStacks = 0;
-        
+
         if (dissolvable.Effect != null)
         {
             EntityManager.QueueDeleteEntity(dissolvable.Effect);

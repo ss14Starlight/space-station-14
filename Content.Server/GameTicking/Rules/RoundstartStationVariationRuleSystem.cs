@@ -6,13 +6,14 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Random;
+using Content.Server._Starlight.Station; // Starlight
 
 namespace Content.Server.GameTicking.Rules;
 
 /// <inheritdoc cref="RoundstartStationVariationRuleComponent"/>
-public sealed class RoundstartStationVariationRuleSystem : GameRuleSystem<RoundstartStationVariationRuleComponent>
+public sealed partial class RoundstartStationVariationRuleSystem : GameRuleSystem<RoundstartStationVariationRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -32,6 +33,17 @@ public sealed class RoundstartStationVariationRuleSystem : GameRuleSystem<Rounds
 
     private void OnStationPostInit(ref StationPostInitEvent ev)
     {
+        //Starlight start
+        if (TryComp<StationDataComponent>(ev.Station, out var station))
+            foreach (var grid in station.Grids)
+            {
+                if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                if (!becomesStation.DoRoundstartVariationPass)
+                    return;
+                break; // can break, we already found the grid that created this station
+            }
+        //Starlight end
+
         // as long as one is running
         if (!GameTicker.IsGameRuleAdded<RoundstartStationVariationRuleComponent>())
             return;

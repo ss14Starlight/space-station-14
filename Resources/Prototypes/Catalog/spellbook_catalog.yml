@@ -191,7 +191,7 @@
 - type: listing
   id: SpellbookMindSwap
   name: spellbook-mind-swap-name
-  description: spellbook-mind-swap-description
+  description: spellbook-mind-swap-description-starlight # Starlight
   productAction: ActionMindSwap
   cost:
     WizCoin: 2
@@ -300,7 +300,7 @@
   description: spellbook-event-summon-guns-description
   productAction: ActionSummonGuns
   cost:
-    WizCoin: 11 #Starlight edit. just out of reach
+    WizCoin: 25 #Starlight edit. This allows WizCoin to be mapped.
   categories:
   - SpellbookEvents
   conditions:
@@ -314,7 +314,7 @@
   description: spellbook-event-summon-magic-description
   productAction: ActionSummonMagic
   cost:
-    WizCoin: 11 #Starlight edit. just out of reach.
+    WizCoin: 25 #Starlight edit. This allows WizCoin to be mapped.
   categories:
   - SpellbookEvents
   conditions:

@@ -316,7 +316,7 @@ public sealed class ActionButton : Control, IEntityControl
     {
         _controller ??= UserInterfaceManager.GetUIController<ActionUIController>();
         if ((Action != null ||
-            _controller.IsDragging && GetPositionInParent() == Parent?.ChildCount - 1) 
+            _controller.IsDragging && GetPositionInParent() == Parent?.ChildCount - 1)
             && _buttonBackgroundTexture != null) // Starlight-edit: Animated Actions
         {
             Button.SetFromSpriteSpecifier(_buttonBackgroundTexture); // Starlight-edit: Animated Actions

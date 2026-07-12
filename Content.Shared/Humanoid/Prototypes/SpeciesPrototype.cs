@@ -1,7 +1,11 @@
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+#region Starlight
+using Content.Shared.Humanoid;
+#endregion
 
 namespace Content.Shared.Humanoid.Prototypes;
 
@@ -202,6 +206,19 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField]
     public int RoundstartCyberwareCapacity = 3;
 
+    // Far Horizons subspecies start
+    [DataField]
+    public ProtoId<SpeciesPrototype>? SubspeciesOf = null;
+    [DataField]
+    public LocId? SubspeciesName = null;
+    [DataField]
+    public bool HasSubspecies = false;
+    // Far Horizons subspecies end
+
+    // Far Horizons species loadout
+    [DataField]
+    public ProtoId<RoleLoadoutPrototype>? Loadout = null;
+
 }
 
 public enum SpeciesNaming : byte
@@ -210,4 +227,6 @@ public enum SpeciesNaming : byte
     FirstLast,
     FirstDashFirst,
     TheFirstofLast,
+    PrefixSuffix, // Starlight
+    LastFirst,        // Starlight Rodentia
 }

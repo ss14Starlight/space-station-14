@@ -23,3 +23,16 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: CarpGamesReq
+
+- type: ghostTheme
+  id: FirstWritingContest
+  name: Skeleton Mage
+  description: Do not cite the deep magics to me, witch. I was there when it was written.
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-mage
+    color: "#ffffff"
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: FirstWritingContestReq

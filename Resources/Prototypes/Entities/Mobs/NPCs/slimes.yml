@@ -1,7 +1,7 @@
 ﻿- type: entity
   name: basic slime
   id: BaseMobAdultSlimes
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobSlimes
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
   components:
@@ -11,6 +11,7 @@
     speaks:
     - Bubblish
     understands:
+    - GalacticCommon
     - Bubblish
   # Starlight - End
   - type: VentCrawler
@@ -103,9 +104,11 @@
         type: Local
         messages: [ "slime-hurt-by-water-popup" ]
         probability: 0.25
+  # Starlight - start
   - type: Body
     prototype: Slimes
     requiredLegs: 1
+  # Starlight - end
   - type: MeleeWeapon
     altDisarm: false
     soundHit:

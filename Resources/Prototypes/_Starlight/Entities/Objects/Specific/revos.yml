@@ -11,9 +11,15 @@
   - type: Item
     sprite: _Starlight/Objects/Specific/USSP/telebond.rsi
     size: Tiny
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
-    count: 20
     stackType: Telebond
+    count: 20
+  # Starlight end
   - type: StaticPrice
     price: 0
   - type: StackPrice

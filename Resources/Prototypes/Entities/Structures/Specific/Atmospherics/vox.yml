@@ -28,6 +28,10 @@
       Helium: stationHelium
       AntiNoblium: danger
       # Funkystation End: Funky atmos - /tg/ gases
+      # Starlight start, Starlight gases
+      Ulnitranium: stationUlnitranium
+      ZXA: stationZXA
+      # Starlight end
 
 - type: entity
   parent: [AirSensorVoxBase, AirSensor]
@@ -43,6 +47,8 @@
       Primary: GasVentPumpVox
       Secondary: GasVentPumpVoxAlt1
       Tertiary: GasVentPumpVoxAlt2
+      Quaternary: GasVentPumpVoxAlt3
+      Quinary: GasVentPumpVoxAlt4
   # Starlight End
 
 - type: entity
@@ -55,6 +61,8 @@
       Primary: GasVentScrubberVox
       Secondary: GasVentScrubberVoxAlt1
       Tertiary: GasVentScrubberVoxAlt2
+      Quaternary: GasVentScrubberVoxAlt3
+      Quinary: GasVentScrubberVoxAlt4
   # Starlight End
   - type: GasVentScrubber
     wideNet: true # Air alarm with auto mode overrides filters with hardcoded defaults so default to widenet
@@ -79,6 +87,10 @@
     - Helium
     - AntiNoblium
     # Funkystation End: Funky atmos - /tg/ gases
+    # Starlight start, Starlight gases
+    - Ulnitranium
+    - ZXA
+    # Starlight end
 
 # use this to prevent overriding filters with hardcoded defaults
 - type: entity

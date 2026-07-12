@@ -2,7 +2,7 @@
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.Antags.Abductor;
+namespace Content.Shared._Starlight.Antags.Abductor.Components;
 
 [Serializable, NetSerializable]
 public sealed partial class AbductorReturnDoAfterEvent : SimpleDoAfterEvent
@@ -40,10 +40,10 @@ public sealed partial class AbductorAttractDoAfterEvent : SimpleDoAfterEvent
 
     [DataField("victim", required: true)]
     public NetEntity Victim;
-    
+
     [DataField("dispencer", required: true)]
     public NetEntity Dispencer;
-    
+
     private AbductorAttractDoAfterEvent()
     {
     }

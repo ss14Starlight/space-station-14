@@ -2,7 +2,7 @@
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Administration.Systems;
+namespace Content.Shared._Starlight;
 
 public sealed partial class StarlightEntitySystem : EntitySystem
 {
@@ -16,7 +16,7 @@ public sealed partial class StarlightEntitySystem : EntitySystem
 
         if (!_prototypes.HasIndex(surgeryOrStep))
         {
-            _sawmill.Error("Prototype '{PrototypeId}' is not registered. Cannot retrieve or spawn a singleton entity.", surgeryOrStep); 
+            _sawmill.Error("Prototype '{PrototypeId}' is not registered. Cannot retrieve or spawn a singleton entity.", surgeryOrStep);
             return false;
         }
 

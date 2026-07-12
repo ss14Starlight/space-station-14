@@ -1,0 +1,125 @@
+# Air Sensor
+
+- type: entity
+  abstract: true
+  parent: AirSensorBase
+  id: AirSensorNoLowerBoundBase
+  suffix: NoLowerBounds
+  components:
+  - type: AtmosMonitor
+    temperatureThresholdId: stationTemperatureNoLowerBound
+    pressureThresholdId: stationPressureNoLowerBound
+    gasThresholdPrototypes:
+      Oxygen: stationOxygenNoLowerBound
+      Nitrogen: ignore # Because nitrogen has no upper bound already
+      CarbonDioxide: stationCO2
+      Plasma: stationPlasma
+      Tritium: stationTritium
+      WaterVapor: stationWaterVapor
+      Ammonia: stationAmmonia
+      NitrousOxide: stationNO
+      Frezon: danger
+      # Funkystation Start: Funky atmos - /tg/ gases
+      BZ: stationBZ
+      Healium: stationHealium
+      Nitrium: voxNitrium
+      Pluoxium: stationPluoxium
+      Hydrogen: danger
+      HyperNoblium: stationHyperNoblium
+      ProtoNitrate: danger
+      Zauker: danger
+      Halon: voxHalon
+      Helium: stationHelium
+      AntiNoblium: danger
+      # Funkystation End: Funky atmos - /tg/ gases
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, AirSensor]
+  id: AirSensorNoLowerBound
+
+# Air Alarm
+
+- type: entity
+  parent: AirAlarm
+  id: AirAlarmNoLowerBound
+  suffix: NoLowerBounds
+  components:
+  - type: AirAlarm
+
+# Gas Vent
+
+- type: entity
+  abstract: true
+  id: GasVentPumpNoLowerBoundBase
+  suffix: NoLowerBounds
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentPumpNoLowerBound
+      Secondary: GasVentPumpNoLowerBoundAlt1
+      Tertiary: GasVentPumpNoLowerBoundAlt2
+      Quaternary: GasVentPumpNoLowerBoundAlt3
+      Quinary: GasVentPumpNoLowerBoundAlt4
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPumpAlt1]
+  id: GasVentPumpNoLowerBoundAlt1
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPumpAlt2]
+  id: GasVentPumpNoLowerBoundAlt2
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPumpAlt3]
+  id: GasVentPumpNoLowerBoundAlt3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPumpAlt4]
+  id: GasVentPumpNoLowerBoundAlt4
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPump]
+  id: GasVentPumpNoLowerBound
+
+# Gas Scrubber
+
+- type: entity
+  abstract: true
+  id: GasVentScrubberNoLowerBoundBase
+  suffix: NoLowerBounds
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentScrubberNoLowerBound
+      Secondary: GasVentScrubberNoLowerBoundAlt1
+      Tertiary: GasVentScrubberNoLowerBoundAlt2
+      Quaternary: GasVentScrubberNoLowerBoundAlt3
+      Quinary: GasVentScrubberNoLowerBoundAlt4
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubberAlt1]
+  id: GasVentScrubberNoLowerBoundAlt1
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubberAlt2]
+  id: GasVentScrubberNoLowerBoundAlt2
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubberAlt3]
+  id: GasVentScrubberNoLowerBoundAlt3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubberAlt4]
+  id: GasVentScrubberNoLowerBoundAlt4
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubber]
+  id: GasVentScrubberNoLowerBound

@@ -4,7 +4,6 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
-using Content.Shared.Starlight;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem
@@ -21,7 +20,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
             layers.Add(layer.Value);
 
             if (TryComp<BaseLayerIdComponent>(partLimbId, out var baseLayerStorage)
-                && (baseLayerStorage.Layers.TryGetValue(body.Comp.Species, out var baseLayer) 
+                && (baseLayerStorage.Layers.TryGetValue(body.Comp.Species, out var baseLayer)
                 || baseLayerStorage.Layers.TryGetValue("Default", out baseLayer))
                 && baseLayer.HasValue)
             {
@@ -76,11 +75,11 @@ public sealed partial class LimbSystem : SharedLimbSystem
         var layer = limb.Comp3.ToHumanoidLayers();
         if (layer is null) return;
 
-        _humanoidAppearanceSystem.SetBaseLayerId(body, layer.Value, toggled ? 
+        _humanoidAppearanceSystem.SetBaseLayerId(body, layer.Value, toggled ?
         !limb.Comp2.Layers.TryGetValue(body.Comp.Species, out var baseLayerToggled)? // Get layer value by species
             !limb.Comp2.Layers.TryGetValue("Default", out baseLayerToggled)? null : baseLayerToggled : baseLayerToggled : // Fall back to default, if it exists and species is undefined
-        !limb.Comp1.Layers.TryGetValue(body.Comp.Species, out var baseLayer)? 
-            !limb.Comp1.Layers.TryGetValue("Default", out baseLayer)? null : baseLayer : baseLayer 
+        !limb.Comp1.Layers.TryGetValue(body.Comp.Species, out var baseLayer)?
+            !limb.Comp1.Layers.TryGetValue("Default", out baseLayer)? null : baseLayer : baseLayer
         , true, body.Comp);
     }
 }

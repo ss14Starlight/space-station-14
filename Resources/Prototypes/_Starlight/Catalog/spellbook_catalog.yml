@@ -63,4 +63,4 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
-    
+

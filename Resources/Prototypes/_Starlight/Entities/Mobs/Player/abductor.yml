@@ -3,7 +3,6 @@
   parent: BaseMobAbductor
   id: MobAbductor
   components:
-  - type: UniversalLanguageSpeaker
   - type: Abductor
   - type: Tag
     tags:
@@ -11,7 +10,8 @@
       - AbductorScientist
       - CanPilot
       - CantBecomeRevolutionary
-      
+      - NotLabelable
+
 - type: entity
   name: abductor scientist
   parent: MobAbductor
@@ -36,7 +36,7 @@
   - type: Loadout
     prototypes:
       - AbductorScientistGear
-      
+
 - type: entity
   name: abductor agent
   parent: MobAbductor
@@ -61,7 +61,7 @@
   - type: Loadout
     prototypes:
       - AbductorAgentGear
-  
+
 - type: startingGear
   id: AbductorScientistGear
   equipment:
@@ -70,7 +70,7 @@
     gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesBootsCombat
     pocket1: AbductorGizmo
-    
+
 - type: startingGear
   id: AbductorAgentGear
   equipment:
@@ -85,7 +85,7 @@
     outerClothing: ClothingOuterArmorAbductor
   inhand:
   - Wonderprod
-        
+
 - type: entity
   name: abductor agent spawner
   id: SpawnPointAbductorAgent
@@ -98,7 +98,7 @@
       - state: green
       - sprite: Structures/Wallmounts/signs.rsi
         state: radiation
-        
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: BaseAntagSpawner
@@ -117,7 +117,7 @@
       - state: green
       - sprite: Structures/Wallmounts/signs.rsi
         state: radiation
-        
+
 - type: entity
   name: abductor scientist spawner
   id: SpawnPointAbductorScientist
@@ -130,7 +130,7 @@
       - state: green
       - sprite: Structures/Wallmounts/signs.rsi
         state: radiation
-        
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: BaseAntagSpawner

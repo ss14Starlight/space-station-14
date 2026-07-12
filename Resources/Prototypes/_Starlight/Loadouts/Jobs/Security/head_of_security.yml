@@ -37,3 +37,19 @@
         !type:RoleTimeRequirement
         role: JobHeadOfSecurity
         time: 180000 #50 hrs
+
+- type: loadout
+  id: HeadofSecurityBlueJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSBlue
+  groupBy: "jumpsuit"
+
+- type: loadout
+  id: HeadofSecurityGreyJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSGrey
+
+- type: loadout
+  id: HeadofSecuritySheriff
+  equipment:
+    head: ClothingHeadHatSheriffHat

@@ -2,11 +2,8 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Audio;
 using Content.Shared.Administration;
-using Robust.Server.Player;
 using Robust.Shared.Audio;
-using Robust.Shared.ContentPack;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 
 namespace Content.Server._Starlight.Administration.Systems.Commands;
@@ -15,10 +12,6 @@ namespace Content.Server._Starlight.Administration.Systems.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class GlobalSoundCommand : ToolshedCommand
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly IResourceManager _res = default!;
-
     [CommandImplementation("play")]
     public EntityUid Play([PipedArgument] EntityUid uid, string path, int volume, bool saveToReplay)
     {
@@ -28,7 +21,7 @@ public sealed class GlobalSoundCommand : ToolshedCommand
             path, audio, saveToReplay);
         return uid;
     }
-    
+
     [CommandImplementation("play")]
     public ICommonSession Play([PipedArgument] ICommonSession session, string path, int volume, bool saveToReplay)
     {

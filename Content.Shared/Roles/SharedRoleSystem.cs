@@ -18,20 +18,20 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Roles;
 
-public abstract class SharedRoleSystem : EntitySystem
+public abstract partial class SharedRoleSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] protected readonly ISharedPlayerManager Player = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly SharedMindSystem _minds = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] protected ISharedPlayerManager Player = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedMindSystem _minds = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     private JobRequirementOverridePrototype? _requirementOverride;
 
     // Starlight
-    [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
     // Starlight
 
     public override void Initialize()
@@ -170,7 +170,7 @@ public abstract class SharedRoleSystem : EntitySystem
             DebugTools.Assert(!mindRoleComp.Antag);
             DebugTools.Assert(!mindRoleComp.ExclusiveAntag);
         }
-        
+
         //starlight start
         if (TryComp(mind.CurrentEntity, out ActorComponent? actor))
             _pvsOverride.AddSessionOverride(mind.CurrentEntity.Value, actor.PlayerSession);
@@ -609,7 +609,7 @@ public abstract class SharedRoleSystem : EntitySystem
             {
                 Log.Error($" Mind Role Prototype '{role.Id}' contains both Job and Antagonist prototypes");
             }
-            
+
             // Starlight start
             if (!valid && comp.FallbackPlayTimeTracker is not null)
             {
@@ -618,7 +618,7 @@ public abstract class SharedRoleSystem : EntitySystem
                     Log.Error($" Fallback Playtime Tracker '{comp.FallbackPlayTimeTracker}' not found");
                     continue;
                 }
-                
+
                 playTimeTracker = fallback.ID;
                 prototype = fallback.ID;
                 name = fallback.Name;

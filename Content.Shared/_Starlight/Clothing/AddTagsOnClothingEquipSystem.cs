@@ -1,11 +1,11 @@
-using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing;
 using Content.Shared.Tag;
 
-namespace Content.Shared.Clothing.EntitySystems;
+namespace Content.Shared._Starlight.Clothing;
 
-public sealed class AddTagsOnClothingEquipSystem : EntitySystem
+public sealed partial class AddTagsOnClothingEquipSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     public override void Initialize()
     {
@@ -14,7 +14,7 @@ public sealed class AddTagsOnClothingEquipSystem : EntitySystem
         SubscribeLocalEvent<AddTagsOnClothingEquipComponent, ClothingGotEquippedEvent>(OnClothingEquip);
         SubscribeLocalEvent<AddTagsOnClothingEquipComponent, ClothingGotUnequippedEvent>(OnClothingUnequip);
     }
-    
+
     private void OnClothingEquip(Entity<AddTagsOnClothingEquipComponent> ent, ref ClothingGotEquippedEvent args)
     {
         // This is not perfect, if the tag already exists but is temporary this will skip it.
@@ -26,7 +26,7 @@ public sealed class AddTagsOnClothingEquipSystem : EntitySystem
 
         Dirty(ent);
     }
-    
+
     private void OnClothingUnequip(Entity<AddTagsOnClothingEquipComponent> ent, ref ClothingGotUnequippedEvent args)
     {
         if (ent.Comp.AddedTags.Count == 0 || !ent.Comp.RemoveTagsOnUnequip)

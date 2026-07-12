@@ -1,7 +1,8 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server.Shuttles.Components;
+using Content.Server._Starlight.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Weapons.Gunnery;
 using Content.Shared.Physics;
 using Content.Shared.Power.EntitySystems;
@@ -24,18 +25,26 @@ namespace Content.Server._Starlight.Weapons.Gunnery;
 /// containing the standard radar data, cannon blip positions, and guided-projectile
 /// tracking info. Also handles fire and guidance BUI messages from the client.
 /// </summary>
-public sealed class GunneryConsoleSystem : EntitySystem
+public sealed partial class GunneryConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private ShuttleConsoleSystem _console = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 
-    private const float UpdateInterval = 0.25f;
-    private float _updateTimer;
+    /// <summary>
+    /// How often to transmit UI updates when a player is actively looking at a console.
+    /// </summary>
+    private static readonly TimeSpan _activeUpdateInterval = TimeSpan.FromMilliseconds(250);
+
+    /// <summary>
+    /// How often to transmit UI updates when nobody is actively looking at a console. This makes it so that the
+    /// consoles show a slightly outdated state initially when opened, rather than just a blank screen.
+    /// </summary>
+    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(5);
 
     public override void Initialize()
     {
@@ -59,12 +68,6 @@ public sealed class GunneryConsoleSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        _updateTimer += frameTime;
-        if (_updateTimer < UpdateInterval)
-            return;
-
-        _updateTimer = 0f;
-
         var query = AllEntityQuery<GunneryConsoleComponent>();
         while (query.MoveNext(out var uid, out var comp))
             UpdateState(uid, comp);
@@ -73,9 +76,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
     // ── Event handlers ─────────────────────────────────────────────────────
 
     private void OnStartup(EntityUid uid, GunneryConsoleComponent comp, ComponentStartup args)
-    {
-        UpdateState(uid, comp);
-    }
+        => UpdateState(uid, comp);
 
     /// <summary>
     /// When a new guided projectile spawns, claim it for the console that most
@@ -196,6 +197,13 @@ public sealed class GunneryConsoleSystem : EntitySystem
         if (!_ui.HasUi(uid, GunneryConsoleUiKey.Key))
             return;
 
+        var shouldIdleUpdate = comp.LastInterfaceUpdateTime + _idleUpdateInterval  < _timing.CurTime;
+        var shouldActiveUpdate = comp.LastInterfaceUpdateTime + _activeUpdateInterval < _timing.CurTime &&
+                                 _ui.IsUiOpen(uid, GunneryConsoleUiKey.Key);
+        if (!shouldIdleUpdate && !shouldActiveUpdate)
+            return;
+        comp.LastInterfaceUpdateTime = _timing.CurTime;
+
         var xform = Transform(uid);
 
         // Check for Server.
@@ -226,7 +234,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
         if (!serverfound)
         {
             _ui.SetUiState(uid, GunneryConsoleUiKey.Key,
-                new GunneryConsoleBoundUserInterfaceState(_console.GetNavState(uid, _console.GetAllDocks()), new List<CannonBlipData>(), null, false));
+                new GunneryConsoleBoundUserInterfaceState(_console.GetNavState(uid), _console.GetDockingPortStates(), new List<CannonBlipData>(), null, false));
 
             return;
         }
@@ -240,13 +248,13 @@ public sealed class GunneryConsoleSystem : EntitySystem
             angle = xform.LocalRotation;
         }
 
-        var docks = _console.GetAllDocks();
+        var dockingPortStates = _console.GetDockingPortStates();
         NavInterfaceState navState;
 
         if (coordinates != null && angle != null)
-            navState = _console.GetNavState(uid, docks, coordinates.Value, angle.Value);
+            navState = _console.GetNavState(uid, coordinates.Value, angle.Value);
         else
-            navState = _console.GetNavState(uid, docks);
+            navState = _console.GetNavState(uid);
 
         // Populate standard radar blips (rockets, shells, etc.)
         var maxRangeSq = navState.MaxRange * navState.MaxRange;
@@ -324,7 +332,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
             : (NetEntity?)null;
 
         _ui.SetUiState(uid, GunneryConsoleUiKey.Key,
-            new GunneryConsoleBoundUserInterfaceState(navState, cannons, trackedNet));
+            new GunneryConsoleBoundUserInterfaceState(navState, dockingPortStates, cannons, trackedNet));
     }
 
     // ── Helpers ────────────────────────────────────────────────────────────

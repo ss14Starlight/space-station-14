@@ -1,4 +1,4 @@
-namespace Content.Shared._Starlight.Shadekin;
+namespace Content.Shared._Starlight.Shadekin.Components;
 
 /// <summary>
 /// Protect the Ent or Wearer of the Ent from suffering from "The Dark" effect.

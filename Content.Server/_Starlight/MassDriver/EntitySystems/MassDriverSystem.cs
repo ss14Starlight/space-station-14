@@ -9,10 +9,10 @@ using Robust.Shared.GameStates;
 
 namespace Content.Server._Starlight.MassDriver.EntitySystems;
 
-public sealed class MassDriverSystem : SharedMassDriverSystem
+public sealed partial class MassDriverSystem : SharedMassDriverSystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private PowerReceiverSystem _powerReceiver = default!;
 
     public override void Initialize()
     {
@@ -106,20 +106,18 @@ public sealed class MassDriverSystem : SharedMassDriverSystem
     /// Handles the component state being requested from the server.
     /// </summary>
     private void OnGetState(EntityUid uid, MassDriverComponent component, ref ComponentGetState args)
-    {
-        args.State = new MassDriverComponentState()
+    => args.State = new MassDriverComponentState()
         {
-            MaxThrowSpeed = component.MaxThrowSpeed,
-            MaxThrowDistance = component.MaxThrowDistance,
-            MinThrowSpeed = component.MinThrowSpeed,
-            MinThrowDistance = component.MinThrowDistance,
-            CurrentThrowSpeed = component.CurrentThrowSpeed,
-            CurrentThrowDistance = component.CurrentThrowDistance,
-            CurrentMassDriverMode = component.Mode,
-            Console = GetNetEntity(component.Console),
-            Hacked = component.Hacked
-        };
-    }
+        MaxThrowSpeed = component.MaxThrowSpeed,
+        MaxThrowDistance = component.MaxThrowDistance,
+        MinThrowSpeed = component.MinThrowSpeed,
+        MinThrowDistance = component.MinThrowDistance,
+        CurrentThrowSpeed = component.CurrentThrowSpeed,
+        CurrentThrowDistance = component.CurrentThrowDistance,
+        CurrentMassDriverMode = component.Mode,
+        Console = GetNetEntity(component.Console),
+        Hacked = component.Hacked
+    };
 
     /// <summary>
     /// Handle mode changing
@@ -202,6 +200,6 @@ public sealed class MassDriverSystem : SharedMassDriverSystem
 
         _ui.ServerSendUiMessage(uid, MassDriverConsoleUiKey.Key, new MassDriverUpdateUIMessage(state)); // Update UI on Open
     }
-    
+
     #endregion
 }

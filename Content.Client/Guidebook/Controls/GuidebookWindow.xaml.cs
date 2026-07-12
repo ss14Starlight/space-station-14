@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using System.Linq;
+using Content.Client._Starlight.UserInterface; // Starlight
+using Content.Client._Starlight.Guidebook.Richtext;
 using Content.Client.Guidebook.RichText;
 using Content.Client.UserInterface.ControlExtensions;
 using Content.Client.UserInterface.Controls;
@@ -16,10 +18,12 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.Guidebook.Controls;
 
 [GenerateTypedNameReferences]
-public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IAnchorClickHandler
+public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandler, IAnchorClickHandler // Starlight: PopOutFancyWindow for popout support
 {
-    [Dependency] private readonly DocumentParsingManager _parsingMan = default!;
-    [Dependency] private readonly IResourceManager _resourceManager = default!;
+    [Dependency] private DocumentParsingManager _parsingMan = default!;
+    [Dependency] private IResourceManager _resourceManager = default!;
+
+    protected override Control Control => Split; // Starlight: pop out support
 
     private Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry> _entries = new();
 
@@ -39,6 +43,10 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         {
             HandleFilter();
         };
+
+        #region Starlight
+        CategorySearchBar.OnTextChanged += _ => HandleCategorySearch();
+        #endregion
     }
 
     public void HandleClick(string link)
@@ -129,22 +137,41 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
         LastEntry = entry.Id;
 
-        var (linkableControls, linkControls) = GetLinkableControlsAndLinks(EntryContainer);
-
-        HashSet<IPrototype> availablePrototypeLinks = new();
-        foreach (var linkableControl in linkableControls)
+        #region Starlight
+        void RefreshLinks()
         {
-            var prototype = linkableControl.RepresentedPrototype;
-            if (prototype != null)
-                availablePrototypeLinks.Add(prototype);
+            var (linkableControls, linkControls) = GetLinkableControlsAndLinks(EntryContainer);
+
+            HashSet<IPrototype> availablePrototypeLinks = new();
+            foreach (var linkableControl in linkableControls)
+            {
+                var prototype = linkableControl.RepresentedPrototype;
+                if (prototype != null)
+                    availablePrototypeLinks.Add(prototype);
+            }
+
+            foreach (var linkControl in linkControls)
+            {
+                var prototype = linkControl.LinkedPrototype;
+                if (prototype != null && availablePrototypeLinks.Contains(prototype))
+                    linkControl.EnablePrototypeLink();
+            }
         }
 
-        foreach (var linkControl in linkControls)
+        foreach (var doc in EntryContainer.Children)
         {
-            var prototype = linkControl.LinkedPrototype;
-            if (prototype != null && availablePrototypeLinks.Contains(prototype))
-                linkControl.EnablePrototypeLink();
+            foreach (var docChild in doc.Children)
+            {
+                if (docChild is IDocumentTagOnLoaded onLoaded)
+                {
+                    onLoaded.OnLoaded -= RefreshLinks;
+                    onLoaded.OnLoaded += RefreshLinks;
+                }
+            }
         }
+
+        RefreshLinks();
+        #endregion
     }
 
     public void UpdateGuides(
@@ -245,6 +272,58 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
         return item;
     }
+
+    #region Starlight
+    private void HandleCategorySearch()
+    {
+        var query = CategorySearchBar.Text.Trim();
+
+        if (query.Length == 0)
+        {
+            CategoryNoResultsLabel.Visible = false;
+            foreach (var topLevel in Tree.Body.Children.ToList())
+                topLevel.Visible = true;
+            return;
+        }
+
+        var anyVisible = false;
+        foreach (var topLevel in Tree.Body.Children.ToList())
+        {
+            if (topLevel is not TreeItem item)
+                continue;
+
+            // Show root if it or any descendant matches
+            var matches = SubtreeContainsMatch(item, query);
+            item.Visible = matches;
+            if (matches)
+                anyVisible = true;
+        }
+
+        CategoryNoResultsLabel.Visible = !anyVisible;
+    }
+
+    private static bool SubtreeContainsMatch(TreeItem item, string query)
+    {
+        if (MatchesCategoryQuery(item.Label.Text ?? string.Empty, query))
+            return true;
+
+        foreach (var child in item.Body.Children)
+        {
+            if (child is TreeItem childItem && SubtreeContainsMatch(childItem, query))
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool MatchesCategoryQuery(string name, string query)
+    {
+        var words = query.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (words.Length == 0)
+            return true;
+        return words.All(word => name.Contains(word, StringComparison.OrdinalIgnoreCase));
+    }
+    #endregion
 
     private void HandleFilter()
     {

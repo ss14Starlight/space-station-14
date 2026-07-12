@@ -4,7 +4,6 @@ using Content.Shared.Preferences.Loadouts.Effects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared._Starlight.Silicons;
 
@@ -25,9 +24,9 @@ public sealed partial class SiliconBrainLoadoutEffect : LoadoutEffect
     [DataField]
     public bool UseMMI = false;
 
-    public override bool Validate(HumanoidCharacterProfile profile, RoleLoadout loadout, ICommonSession? session, IDependencyCollection collection, [NotNullWhen(false)] out FormattedMessage? reason)
+    public override bool Validate(HumanoidCharacterProfile profile, RoleLoadout loadout, ICommonSession? session, IDependencyCollection collection, out FormattedMessage reason) // Starlight: Always return reason
     {
-        reason = null;
+        reason = FormattedMessage.Empty; // Starlight
         return true;
     }
 }

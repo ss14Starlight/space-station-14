@@ -12,7 +12,7 @@ public abstract partial class EvolvingCondition
     public abstract EvolveType Type { get; }
     /// <summary>
     /// Determines whether or not a certain entity can evolve.
-    /// </summary> 
+    /// </summary>
     /// <returns>Whether or not the entity can evolve</returns>
     public abstract bool Condition(EvolvingConditionArgs args);
 

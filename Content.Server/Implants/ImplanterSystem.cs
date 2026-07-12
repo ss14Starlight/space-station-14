@@ -12,9 +12,9 @@ namespace Content.Server.Implants;
 
 public sealed partial class ImplanterSystem : SharedImplanterSystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -63,7 +63,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
             if (args.User == target)
             {
                 Implant(target, target, uid, component);
-                
+
                 // STARLIGHT: Check if this implanter should dissolve on use
                 if (component.DissolveOnUse)
                 {
@@ -90,7 +90,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
         // STARLIGHT: Check if the implantation is allowed before starting the doafter
         if (!CanImplant(user, target, implanter, component, out var implant, out _))
             return;
-            
+
         var args = new DoAfterArgs(EntityManager, user, component.ImplantTime, new ImplantEvent(), implanter, target: target, used: implanter)
         {
             BreakOnDamage = true,

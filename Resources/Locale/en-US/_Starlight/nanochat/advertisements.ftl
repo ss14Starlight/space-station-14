@@ -117,5 +117,5 @@ nanochat-ad-webuyyourstation = Would you like to know what {$station} is worth? 
 
 nanochat-ad-hugbot-initiative = Maybe you should go and give {$randomname} a hug!
     Do it right now! You might not be able to later!
-    
+
     This message is brought to you by the Hugbot Initiative.

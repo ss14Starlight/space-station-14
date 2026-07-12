@@ -1,0 +1,194 @@
+using Content.Server._Starlight.Silicons;
+using Content.Server.Antag;
+using Content.Server.Popups;
+using Content.Shared.DoAfter;
+using Content.Shared.Mind;
+using Content.Shared.Actions;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Silicons.Laws.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.CosmicCult;
+using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
+using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Language;
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
+using Content.Shared.Mobs;
+using Content.Shared._Starlight.NullSpace.Components;
+
+namespace Content.Server._Starlight.CosmicCult.Abilities;
+
+public sealed partial class CosmicFragmentationSystem : EntitySystem
+{
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private LanguageSystem _languageSystem = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+
+    private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<AILawUpdatedEvent>(OnLawInserted);
+
+        SubscribeLocalEvent<BorgChassisComponent, MalignFragmentationEvent>(OnFragmentBorg);
+        SubscribeLocalEvent<IPCBrainHolderComponent, MalignFragmentationEvent>(OnFragmentIPC);
+        SubscribeLocalEvent<SiliconLawUpdaterComponent, MalignFragmentationEvent>(OnFragmentAi);
+
+        SubscribeLocalEvent<CosmicCultComponent, EventCosmicFragmentation>(OnCosmicFragmentation);
+        SubscribeLocalEvent<CosmicCultComponent, EventCosmicFragmentationDoAfter>(OnCosmicFragmentationDoAfter);
+    }
+
+    private static void UnEmpower(Entity<CosmicCultComponent> ent)
+    {
+        var comp = ent.Comp;
+        comp.CosmicEmpowered = false; // empowerment spent! Now we set all the values back to their default.
+        comp.CosmicSiphonQuantity = CosmicCultComponent.DefaultCosmicSiphonQuantity;
+        comp.CosmicGlareRange = CosmicCultComponent.DefaultCosmicGlareRange;
+        comp.CosmicGlareDuration = CosmicCultComponent.DefaultCosmicGlareDuration;
+        comp.CosmicGlareStun = CosmicCultComponent.DefaultCosmicGlareStun;
+        comp.CosmicImpositionDuration = CosmicCultComponent.DefaultCosmicImpositionDuration;
+        comp.CosmicBlankDuration = CosmicCultComponent.DefaultCosmicBlankDuration;
+        comp.CosmicBlankDelay = CosmicCultComponent.DefaultCosmicBlankDelay;
+    }
+
+    private void OnCosmicFragmentation(Entity<CosmicCultComponent> ent, ref EventCosmicFragmentation args)
+    {
+        if (args.Handled || !ent.Comp.CosmicEmpowered || HasComp<ActiveNPCComponent>(args.Target) || _mobStateSystem.IsIncapacitated(args.Target))
+        {
+            _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), ent, ent);
+            return;
+        }
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(ent).Coordinates))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), ent, ent);
+                return;
+            }
+
+        var doargs = new DoAfterArgs(EntityManager, ent, ent.Comp.CosmicSiphonDelay, new EventCosmicFragmentationDoAfter(), ent, args.Target)
+        {
+            DistanceThreshold = 2f,
+            Hidden = false,
+            BreakOnHandChange = true,
+            BreakOnDamage = true,
+            BreakOnMove = true,
+            BreakOnDropItem = true,
+        };
+        args.Handled = true;
+        _doAfter.TryStartDoAfter(doargs);
+        _cult.MalignEcho(ent);
+    }
+
+    private void OnCosmicFragmentationDoAfter(Entity<CosmicCultComponent> ent, ref EventCosmicFragmentationDoAfter args)
+    {
+        if (args.Args.Target is not { } target)
+            return;
+        if (args.Cancelled || args.Handled)
+            return;
+        args.Handled = true;
+
+        var evt = new MalignFragmentationEvent(ent, target);
+        RaiseLocalEvent(target, ref evt);
+
+        if (!evt.Succeeded)
+        {
+            _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), ent, ent);
+            return;
+        }
+
+        UnEmpower(ent);
+        _actions.RemoveAction(ent.Owner, ent.Comp.CosmicFragmentationActionEntity);
+        ent.Comp.ActionEntities.Remove(ent.Comp.CosmicFragmentationActionEntity);
+        ent.Comp.CosmicFragmentationActionEntity = null;
+    }
+
+    private void OnFragmentBorg(Entity<BorgChassisComponent> ent, ref MalignFragmentationEvent args) =>
+        HandleFragmentSilicon(ent.Owner, ref args);
+
+    private void OnFragmentIPC(Entity<IPCBrainHolderComponent> ent, ref MalignFragmentationEvent args) =>
+        HandleFragmentSilicon(ent.Owner, ref args);
+
+    private void HandleFragmentSilicon(EntityUid ent, ref MalignFragmentationEvent args)
+    {
+        if (!_mind.TryGetMind(ent, out var mindId, out var mind))
+            return;
+
+        var wisp = Spawn("CosmicChantryWisp", Transform(ent).Coordinates);
+        var chantry = Spawn("CosmicBorgChantry", Transform(ent).Coordinates);
+
+        EnsureComp<CosmicChantryComponent>(chantry, out var chantryComponent);
+        chantryComponent.InternalVictim = wisp;
+        chantryComponent.VictimBody = ent;
+
+        _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}");
+        _mind.TransferTo(mindId, wisp, mind: mind);
+
+        _mobStateSystem.ChangeMobState(ent, MobState.Critical);
+
+        var mins = chantryComponent.EventTime.Minutes;
+        var secs = chantryComponent.EventTime.Seconds;
+
+        _antag.SendBriefing(
+            wisp,
+            Loc.GetString("cosmiccult-silicon-chantry-briefing",
+                ("minutesandseconds", $"{mins} minutes and {secs} seconds")),
+            Color.FromHex("#4cabb3"),
+            null
+        );
+
+        args.Succeeded = true;
+    }
+
+    private void OnFragmentAi(Entity<SiliconLawUpdaterComponent> ent, ref MalignFragmentationEvent args)
+    {
+        _container.TryGetContainer(args.Target, "circuit_holder", out var container);
+        if (container == null)
+            return;
+
+        var lawboard = Spawn("CosmicCultLawBoard", Transform(args.Target).Coordinates);
+
+        _container.EmptyContainer(container, true);
+        if (!_container.Insert(lawboard, container, Transform(args.Target), true))
+        {
+            Del(lawboard);
+            return;
+        }
+
+        args.Succeeded = true;
+    }
+
+    private void OnLawInserted(ref AILawUpdatedEvent args)
+    {
+        if (args.Lawset.Id == "CosmicCultLaws")
+        {
+            _languageSystem.AddLanguage(args.Target, _cultLanguage);
+
+            _antag.SendBriefing(args.Target,
+                Loc.GetString("cosmiccult-silicon-subverted-briefing"),
+                Color.FromHex("#4cabb3"), null);
+        }
+        else
+        {
+            _languageSystem.RemoveLanguage(args.Target, _cultLanguage);
+        }
+    }
+}
+
+[ByRefEvent]
+public record struct MalignFragmentationEvent(Entity<CosmicCultComponent> User, EntityUid Target)
+{
+    public bool Succeeded;
+}

@@ -20,7 +20,7 @@ public struct ParallaxLayerPrepared
     /// Starlight
     /// Sprite used for this layer.
     /// </summary>
-    public SpriteSpecifier Sprite { get; set; }
+    public SpriteSpecifier? Sprite { get; set; }
 
     /// <summary>
     /// The configuration for this layer.

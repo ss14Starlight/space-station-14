@@ -1,6 +1,5 @@
 using Content.Server.Actions;
 using Content.Server.Station.Systems;
-using Content.Shared.Eye;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Pinpointer;
@@ -20,23 +19,25 @@ using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Player;
+using Content.Shared._Starlight.Computers.RemoteEye.Components;
+using Content.Shared._Starlight.Computers.RemoteEye.Events;
+using Content.Shared._Starlight.Computers.RemoteEye.UI;
 
 namespace Content.Server._Starlight.Computers.RemoteEye;
 
 public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
 {
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly StarlightActionsSystem _slActions = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedMoverController _mover = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private StarlightActionsSystem _slActions = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
 
     public override void Initialize()
     {
@@ -45,7 +46,7 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
         SubscribeLocalEvent<RemoteEyeActorComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<RemoteEyeActorComponent, GetVisMaskEvent>(OnGetVisMask);
         SubscribeLocalEvent<ExitConsoleEvent>(OnExit);
-    
+
         Subs.BuiEvents<RemoteEyeConsoleComponent>(RemoteEyeUIKey.Key, subs => subs.Event<BeaconChosenBuiMsg>(OnBeaconChosenBuiMsg));
         SubscribeLocalEvent<RemoteEyeConsoleComponent, ActivateInWorldEvent>(OnActivateInWorld);
         SubscribeLocalEvent<RemoteEyeConsoleComponent, PowerChangedEvent>(OnCompPowerChange);
@@ -54,7 +55,7 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
 
     public void CameraExit(EntityUid actor)
     {
-        if (!TryComp<RelayInputMoverComponent>(actor, out var comp)) 
+        if (!TryComp<RelayInputMoverComponent>(actor, out var comp))
             return;
 
         var relay = comp.RelayEntity;
@@ -187,15 +188,15 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
             args.Handled = true;
             var viewer = args.User;
             CameraExit(viewer);
-            
+
             var eye = SpawnAtPosition(ent.Comp.RemoteEntityProto, Transform(ent).Coordinates);
             ent.Comp.RemoteEntity = eye;
 
             SetupRemoteView(ent, viewer, eye);
         }
     }
-    
-    private void OnPlayerAttached(Entity<RemoteEyeActorComponent> ent, ref PlayerAttachedEvent args) 
+
+    private void OnPlayerAttached(Entity<RemoteEyeActorComponent> ent, ref PlayerAttachedEvent args)
         => _eye.RefreshVisibilityMask((ent.Owner, null));
 
     private void OnGetVisMask(Entity<RemoteEyeActorComponent> ent, ref GetVisMaskEvent args)

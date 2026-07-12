@@ -22,8 +22,21 @@
     - Back
     - suitStorage
   - type: AmmoCounter
+  # starlight start
   - type: CanDualWield # 🌟Starlight🌟
     dualWieldInaccuracyPenalty: 68
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Blunt: 7
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    # starlight end
   - type: Gun
     minAngle: 2
     maxAngle: 16
@@ -193,7 +206,7 @@
   name: Drozd
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: WeaponSubMachineGunDrozd
-  description: A modern SMG manufactured by Nanotrasen’s Small Arms Division. It features an exceptional rate of fire in burst mode, useful for holding defensive angles or engaging hostiles at longer ranges. Feeds from .35 SMG magazines.
+  description: A modern SMG manufactured by NanoTrasen’s Small Arms Division. It features an exceptional rate of fire in burst mode, useful for holding defensive angles or engaging hostiles at longer ranges. Feeds from .35 SMG magazines. # SL
   components:
     - type: Sprite
       sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
@@ -251,7 +264,7 @@
   name: WT550
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband] # Starlight
   id: WeaponSubMachineGunWt550
-  description: A truly unique firearm, the WT550 was designed by Nanotrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
+  description: A truly unique firearm, the WT550 was designed by NanoTrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines. # SL
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
@@ -310,7 +323,7 @@
 
 - type: entity
   name: brown briefcase
-  parent: [BaseWeaponSubMachineGun]
+  parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunBriefcase
   description: Useful for carrying items in your hands.
   suffix: Gun
@@ -346,3 +359,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 5000
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8

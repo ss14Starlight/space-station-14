@@ -1,0 +1,178 @@
+# Categories
+- type: alertCategory
+  id: IPCCirculation
+
+- type: alertCategory
+  id: IPCStamina
+
+# Alerts
+- type: alert
+  id: IPCFansOk
+  category: IPCCirculation
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: hot0
+  name: alerts-ipc-fans-ok-name
+  description: alerts-ipc-fans-ok-desc
+
+- type: alert
+  id: IPCFansSpeedMedium
+  category: IPCCirculation
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: hot1
+  name: alerts-ipc-fans-speed-medium-name
+  description: alerts-ipc-fans-speed-medium-desc
+
+- type: alert
+  id: IPCFansSpeedHigh
+  category: IPCCirculation
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: hot2
+  name: alerts-ipc-fans-speed-high-name
+  description: alerts-ipc-fans-speed-high-desc
+
+- type: alert
+  id: IPCFansSpeedExtreme
+  category: IPCCirculation
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: hot3
+  name: alerts-ipc-fans-speed-turbo-name
+  description: alerts-ipc-fans-speed-turbo-desc
+
+- type: alert
+  id: IPCFansEfficiencyLow
+  category: IPCCirculation
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: fanineffective
+  name: alerts-ipc-fans-efficiency-low-name
+  description: alerts-ipc-fans-efficiency-low-desc
+
+- type: alert
+  id: IPCFansOff
+  category: IPCCirculation
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: hot4
+  name: alerts-ipc-fans-off-name
+  description: alerts-ipc-fans-off-desc
+
+- type: alert
+  id: IPCLowCirculation
+  category: IPCCirculation
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: hot0
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: hot1
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: hot2
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: hot3
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: hot4
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcventilation.rsi
+    state: fanineffective
+  maxSeverity: 5
+  name: alerts-low-circulation-name
+  description: alerts-low-circulation-desc
+
+- type: alert
+  id: IPCStamina
+  category: IPCStamina
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcstamina.rsi
+    state: stamina0
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcstamina.rsi
+    state: stamina1
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcstamina.rsi
+    state: stamina2
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcstamina.rsi
+    state: stamina3
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcstamina.rsi
+    state: stamina4
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcstamina.rsi
+    state: stamina5
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcstamina.rsi
+    state: stamina6
+  name: alerts-stamina-name
+  description: alerts-stamina-desc
+  minSeverity: 0
+  maxSeverity: 6
+
+- type: alertCategory
+  id: IPCBattery
+
+- type: alert
+  id: IPCBattery
+  category: IPCBattery
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery0
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery1
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery2
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery3
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery4
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery5
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery6
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery7
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery8
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery9
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery10
+  name: alerts-battery-name
+  description: alerts-battery-desc
+  minSeverity: 0
+  maxSeverity: 10
+  clientHandled: true
+
+- type: alert
+  id: IPCBatteryCrit
+  category: IPCBattery
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery-crit
+  name: alerts-battery-crit-name
+  description: alerts-battery-crit-desc
+  clientHandled: true
+
+- type: alert
+  id: IPCBatteryNone
+  category: IPCBattery
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcbattery.rsi
+    state: battery-none
+  name: alerts-no-battery-name
+  description: alerts-no-battery-desc
+  clientHandled: true
+
+- type: alert
+  id: IPCHealth
+  category: Health
+  icons:
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcalive.rsi
+    state: health0
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcalive.rsi
+    state: health1
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcalive.rsi
+    state: health2
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcalive.rsi
+    state: health3
+  - sprite: /Textures/_FarHorizons/Interface/Alerts/ipcalive.rsi
+    state: health4
+  name: alerts-health-name
+  description: alerts-health-desc
+  minSeverity: 0
+  maxSeverity: 4

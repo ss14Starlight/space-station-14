@@ -35,6 +35,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Silicons; // Starlight: BorgHandcuffComponent
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 using static Content.Shared.Stunnable.SharedStunSystem;
 
@@ -43,20 +44,20 @@ namespace Content.Shared.Cuffs
     // TODO remove all the IsServer() checks.
     public abstract partial class SharedCuffableSystem : EntitySystem
     {
-        [Dependency] private readonly INetManager _net = default!;
-        [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-        [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-        [Dependency] private readonly AlertsSystem _alerts = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedContainerSystem _container = default!;
-        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-        [Dependency] private readonly SharedHandsSystem _hands = default!;
-        [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-        [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly UseDelaySystem _delay = default!;
-        [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
+        [Dependency] private INetManager _net = default!;
+        [Dependency] private ISharedAdminLogManager _adminLog = default!;
+        [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+        [Dependency] private AlertsSystem _alerts = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private SharedContainerSystem _container = default!;
+        [Dependency] private SharedDoAfterSystem _doAfter = default!;
+        [Dependency] private SharedHandsSystem _hands = default!;
+        [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
+        [Dependency] private SharedInteractionSystem _interaction = default!;
+        [Dependency] private SharedPopupSystem _popup = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private UseDelaySystem _delay = default!;
+        [Dependency] private SharedCombatModeSystem _combatMode = default!;
 
         public override void Initialize()
         {
@@ -502,16 +503,50 @@ namespace Content.Shared.Cuffs
             if (TryComp<HandsComponent>(target, out var hands) && hands.Count <= component.CuffedHandCount)
                 return false;
 
+            // Starlight: borg handcuffs carry Unremoveable; strip it so TryDrop + Insert can proceed
+            TryComp<BorgHandcuffComponent>(handcuff, out var borgCuff);
+            if (borgCuff != null)
+                RemComp<UnremoveableComponent>(handcuff);
+
             // Success!
             _hands.TryDrop(user, handcuff);
 
             var result = _container.Insert(handcuff, component.Container);
 
+            // Starlight: if insert failed, restore Unremoveable so the cuff can't be stolen
+            if (!result && borgCuff != null)
+                EnsureComp<UnremoveableComponent>(handcuff);
+
+            // Starlight: spawn a fresh replacement cuff in the borg's hand slot immediately
+            if (result && borgCuff?.OwnerChassis is { } borgChassis &&
+                borgCuff.HandId != null &&
+                Exists(borgChassis) &&
+                TryComp<HandsComponent>(borgChassis, out var chassisHands) &&
+                _net.IsServer)
+            {
+                var proto = MetaData(handcuff).EntityPrototype?.ID;
+                // Only spawn if the slot still exists and is currently empty (module not removed/reassigned)
+                if (proto != null &&
+                    _hands.TryGetHand((borgChassis, chassisHands), borgCuff.HandId, out _) &&
+                    !_hands.TryGetHeldItem((borgChassis, chassisHands), borgCuff.HandId, out _))
+                {
+                    var newCuff = Spawn(proto, Transform(borgChassis).Coordinates);
+                    var newComp = EnsureComp<BorgHandcuffComponent>(newCuff);
+                    newComp.OwnerChassis = borgChassis;
+                    newComp.HandId = borgCuff.HandId;
+                    Dirty(newCuff, newComp);
+                    EnsureComp<UnremoveableComponent>(newCuff);
+                    _hands.DoPickup(borgChassis, borgCuff.HandId, newCuff, chassisHands);
+                    if (!_hands.TryGetHeldItem((borgChassis, chassisHands), borgCuff.HandId, out var pickedUp) || pickedUp != newCuff)
+                        QueueDel(newCuff);
+                }
+            }
+
             var ev = new TargetHandcuffedEvent();
             RaiseLocalEvent(target, ref ev);
 
             UpdateHeldItems(target, handcuff, component);
-            
+
             return result;
         }
 
@@ -730,8 +765,34 @@ namespace Content.Shared.Cuffs
 
             if (_net.IsServer)
             {
+                // Starlight: return borg handcuffs to their source slot, or delete if slot is occupied
+                if (TryComp<BorgHandcuffComponent>(cuffsToRemove, out var borgCuff) &&
+                    borgCuff.OwnerChassis is { } borgChassis &&
+                    borgCuff.HandId != null &&
+                    Exists(borgChassis) &&
+                    TryComp<HandsComponent>(borgChassis, out var chassisHands))
+                {
+                    if (_hands.TryGetHeldItem((borgChassis, chassisHands), borgCuff.HandId, out _) ||
+                        !_hands.TryGetHand((borgChassis, chassisHands), borgCuff.HandId, out _))
+                    {
+                        // Replacement already in slot, or slot no longer exists — discard the returned cuffs
+                        QueueDel(cuffsToRemove);
+                    }
+                    else
+                    {
+                        EnsureComp<UnremoveableComponent>(cuffsToRemove);
+                        _hands.DoPickup(borgChassis, borgCuff.HandId, cuffsToRemove, chassisHands);
+                        if (!_hands.TryGetHeldItem((borgChassis, chassisHands), borgCuff.HandId, out var pickedUp) || pickedUp != cuffsToRemove)
+                            QueueDel(cuffsToRemove);
+                    }
+                }
+                // Starlight: borg cuff whose owner is gone/invalid — always delete to avoid leaking into gameplay
+                else if (HasComp<BorgHandcuffComponent>(cuffsToRemove))
+                {
+                    QueueDel(cuffsToRemove);
+                }
                 // Handles spawning broken cuffs on server to avoid client misprediction
-                if (cuff.BreakOnRemove)
+                else if (cuff.BreakOnRemove)
                 {
                     QueueDel(cuffsToRemove);
                     var trash = Spawn(cuff.BrokenPrototype, Transform(cuffsToRemove).Coordinates);
@@ -814,14 +875,14 @@ namespace Content.Shared.Cuffs
         private void OnEquipAttempt(EntityUid uid, CuffableComponent component, IsEquippingAttemptEvent args)
         {
             // is this a self-equip, or are they being stripped?
-            if (args.Equipee == uid)
+            if (args.User == uid)
                 CheckAct(uid, component, args);
         }
 
         private void OnUnequipAttempt(EntityUid uid, CuffableComponent component, IsUnequippingAttemptEvent args)
         {
             // is this a self-equip, or are they being stripped?
-            if (args.Unequipee == uid)
+            if (args.User == uid)
                 CheckAct(uid, component, args);
         }
 

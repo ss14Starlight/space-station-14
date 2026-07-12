@@ -3,9 +3,9 @@ using Robust.Shared.Configuration;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 
-public abstract class SharedReactorPartSystem : EntitySystem
+public abstract partial class SharedReactorPartSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     // Put CVars in shared space just so that the guidebook can update live
 
@@ -22,7 +22,7 @@ public abstract class SharedReactorPartSystem : EntitySystem
     /// <summary>
     /// Ratio of product to reactant for reactions
     /// </summary>
-    public float ReactionRatio => ReactionProduct / ReactionReactant;
+    public float ReactionRatio => ReactionReactant != 0 ? (ReactionProduct / ReactionReactant) : 0;
 
     public override void Initialize()
     {

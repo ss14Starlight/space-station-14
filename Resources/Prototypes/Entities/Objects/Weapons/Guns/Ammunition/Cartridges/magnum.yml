@@ -2,7 +2,7 @@
   abstract: true
   parent: [ BaseCartridge, BaseSecuritySalvageContraband ] # Starlight-edit - Security -> SecuritySalvage
   id: BaseCartridgeMagnum
-  name: cartridge (.45 magnum) 
+  name: cartridge (.45 magnum)
   components:
   - type: Tag
     tags:
@@ -32,38 +32,6 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#3F47DB"
-
-- type: entity
-  id: CartridgeMagnumHP
-  name: cartridge (.45 magnum HP)
-  parent: BaseCartridgeMagnum
-  description: Heavy magnum cartridge mostly used by revolvers. Chalk ammunition is generally non-harmful, used for practice.
-  components:
-  - type: CartridgeAmmo
-    proto: BulletMagnumTraceHP
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#000000"
-
-- type: entity
-  id: CartridgeMagnumFMJ
-  name: cartridge (.45 magnum FMJ)
-  parent: BaseCartridgeMagnum
-  description: Heavy magnum cartridge mostly used by revolvers. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
-  components:
-  - type: CartridgeAmmo
-    proto: BulletMagnumTraceFMJ
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#B68F0E"
 
 - type: entity
   parent: BaseCartridgeMagnum

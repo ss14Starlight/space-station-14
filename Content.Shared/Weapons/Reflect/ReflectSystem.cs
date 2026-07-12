@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared._Starlight.Weapon;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Hands;
@@ -11,7 +10,6 @@ using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Weapons.Melee; //STARLIGHT
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
@@ -20,21 +18,33 @@ using Robust.Shared.Random;
 using Content.Shared.Examine;
 using Content.Shared.Localizations;
 
+#region Starlight
+using Content.Shared.PowerCell;
+using Content.Shared.PowerCell.Components;
+using Content.Shared._Starlight.Abstract.Extensions;
+using Robust.Shared.Timing;
+#endregion
+
 namespace Content.Shared.Weapons.Reflect;
 
 /// <summary>
 /// This handles reflecting projectiles and hitscan shots.
 /// </summary>
-public sealed class ReflectSystem : EntitySystem
+public sealed partial class ReflectSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+
+    #region Starlight
+    [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    #endregion
 
     public override void Initialize()
     {
@@ -110,7 +120,15 @@ public sealed class ReflectSystem : EntitySystem
             return false;
         }
 
-        // 🌟Starlight🌟 start
+        #region 🌟Starlight🌟
+        var availableEnergy = 0;
+        if (HasComp<PowerCellSlotComponent>(reflector.Owner)) //if the shield has a battery slot, then we consume charge to perform the reflection
+        {
+            availableEnergy = _powerCell.GetRemainingUses(reflector.Owner, reflector.Comp.ReflectEnergyDraw);
+            if (availableEnergy <= 0)
+                return false;
+        }
+
         var reflectionChance = reflector.Comp.ReflectProb;
 
         // Check for enhanced reflection against specific projectile types
@@ -129,6 +147,8 @@ public sealed class ReflectSystem : EntitySystem
             return false;
         }
 
+        if (availableEnergy > 0 && !_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.ReflectEnergyDraw, user: user))
+            return false; // if no battery or no charge, doesn't work and reflect fails
 
         if (reflector.Comp.OverrideAngle is not null)
         {
@@ -160,7 +180,7 @@ public sealed class ReflectSystem : EntitySystem
             var newRot = rotation.RotateVec(locRot.ToVec());
             _transform.SetLocalRotation(projectile, newRot.ToAngle());
         }
-        // 🌟Starlight🌟 end
+        #endregion
 
         PlayAudioAndPopup(reflector.Comp, user);
 
@@ -190,27 +210,31 @@ public sealed class ReflectSystem : EntitySystem
         string? hitscanId,
         [NotNullWhen(true)] out Vector2? newDirection)
     {
+        newDirection = null; //Starlight
         if ((reflector.Comp.Reflects & hitscanReflectType) == 0x0 ||
             !_toggle.IsActivated(reflector.Owner))
-        {
-            newDirection = null;
             return false;
-        }
 
         // Get reflection probability - check for enhanced reflection against specific bullet types
         var reflectionChance = reflector.Comp.ReflectProb;
 
         // Check for enhanced reflection against specific bullet types
         if (hitscanId != null && reflector.Comp.EnhancedReflection.TryGetValue(hitscanId, out var enhancedChance))
-        {
             reflectionChance = enhancedChance;
+
+        var availableEnergy = 0;
+        if (HasComp<PowerCellSlotComponent>(reflector.Owner)) //if the shield has a battery slot, then we consume charge to perform the reflection
+        {
+            availableEnergy = _powerCell.GetRemainingUses(reflector.Owner, reflector.Comp.ReflectEnergyDraw);
+            if (availableEnergy <= 0)
+                return false;
         }
 
-        if (!_random.Prob(reflectionChance))
-        {
-            newDirection = null;
+        if (!_random.ProbPredicted(_timing, reflectionChance))
             return false;
-        }
+
+        if (availableEnergy > 0 && !_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.ReflectEnergyDraw, user: user))
+            return false; // if no battery or no charge, doesn't work and reflect fails
 
         PlayAudioAndPopup(reflector.Comp, user);
 

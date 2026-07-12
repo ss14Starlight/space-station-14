@@ -27,19 +27,19 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.Silicons.Laws;
 
 /// <inheritdoc/>
-public sealed class SiliconLawSystem : SharedSiliconLawSystem
+public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!; // Starlight
-    [Dependency] private readonly TagSystem _tag = default!; // Starlight
-    [Dependency] private readonly SharedPopupSystem _popup = default!; // Starlight
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private IEntityManager _entMan = default!; // Starlight
+    [Dependency] private TagSystem _tag = default!; // Starlight
+    [Dependency] private SharedPopupSystem _popup = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -129,15 +129,15 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     {
         if (args.Handled)
             return;
-        
+
         // Starlight-start: AI upload console linking
-        if (!component.Subverted 
-            && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore) 
+        if (!component.Subverted
+            && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore)
             && aiCore.LawConsole != null
-            && _container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container) 
-            && container.ContainedEntities.Count != 0 
-            && TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider) 
-            && provider != null 
+            && _container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container)
+            && container.ContainedEntities.Count != 0
+            && TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider)
+            && provider != null
             && component.Laws != provider.Laws)
         {
             component.Laws = provider.Laws;
@@ -364,10 +364,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             // Components on lawboards TODO remove components provided by the old board when it is removed.
             if (provider.Components != null)
                 _entMan.AddComponents(update, provider.Components);
-            // Start Stellar - AILawUpdatedEvent
-            var evt = new Content.Server._ST.Silicons.AILawUpdatedEvent(update, provider.Laws);
+            // AILawUpdatedEvent
+            var evt = new Content.Server._Starlight.Silicons.AILawUpdatedEvent(update, provider.Laws);
             RaiseLocalEvent(ref evt);
-            // End Stellar - AILawUpdatedEvent
         }
         // Starlight-end
 
@@ -405,7 +404,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             return;
         }
         _popup.PopupEntity(Loc.GetString("lawboard-emag-popup"), ent);
-        
+
         args.Repeatable = true;
         args.Handled = true;
     }

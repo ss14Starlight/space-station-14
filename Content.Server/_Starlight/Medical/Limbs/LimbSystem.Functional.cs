@@ -1,11 +1,12 @@
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Limbs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
-using Content.Shared.Starlight.Medical.Surgery.Events;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem

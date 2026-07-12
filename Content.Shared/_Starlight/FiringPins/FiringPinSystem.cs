@@ -14,11 +14,11 @@ namespace Content.Shared._Starlight.FiringPins;
 
 public sealed partial class FiringPinSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedToolSystem _tool = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -36,7 +36,7 @@ public sealed partial class FiringPinSystem : EntitySystem
 
     public EntityUid[] FiringPins(Entity<FiringPinHolderComponent> ent) => ent.Comp.PinContainer.ContainedEntities.ToArray();
 
-    private void OnStartup(Entity<FiringPinHolderComponent> ent, ref ComponentStartup args) 
+    private void OnStartup(Entity<FiringPinHolderComponent> ent, ref ComponentStartup args)
         => ent.Comp.PinContainer = _container.EnsureContainer<Container>(ent.Owner, FiringPinHolderComponent.PinContainerName);
 
     private void OnInteractUsing(Entity<FiringPinHolderComponent> ent, ref InteractUsingEvent args)

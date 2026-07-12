@@ -11,23 +11,20 @@ using Robust.Shared.Map;
 using Content.Shared.Stunnable;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
-using Content.Shared.Popups;
-using Content.Shared._Starlight.Shoelaces.Components;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 
 //idea taked from VigersRay
-public abstract class SharedJumpSystem : EntitySystem
+public abstract partial class SharedJumpSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _action = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedChargesSystem _chargesSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedActionsSystem _action = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IMapManager _mapMan = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedChargesSystem _chargesSystem = default!;
 
     public override void Initialize()
     {
@@ -85,42 +82,35 @@ public abstract class SharedJumpSystem : EntitySystem
 
     private void OnJump(Entity<JumpComponent> ent, ref JetJumpActionEvent args)
     {
-        if (args.Handled)
+        if (args.Handled
+            || !TryReleaseGas(ent, ref args))
             return;
 
-        args.Handled = CanJump(ent) && TryReleaseGas(ent, ref args) && TryJump(ent, args.Performer, args.Target, args);
+        Jump(ent, args.Performer, args.Target, args);
+        args.Handled = true;
     }
 
     private void OnJump(JumpActionEvent args)
     {
-        if (args.Handled)
-            return;
+        if (args.Handled) return;
 
-        args.Handled = TryJump(args.Performer, args.Performer, args.Target, args);
+        Jump(args.Performer, args.Performer, args.Target, args);
+        args.Handled = true;
     }
 
-    private bool CanJump(EntityUid performer)
-    {
-        if (!HasComp<ShoelaceTiedComponent>(performer))
-            return true;
-
-        _popup.PopupClient(Loc.GetString("shoelaces-popup-jump-blocked"), performer, performer);
-        return false;
-    }
-
-    private bool TryJump(EntityUid performer, EntityUid target, EntityCoordinates targetCoords, JumpActionEvent args)
+    private void Jump(EntityUid performer, EntityUid target, EntityCoordinates targetCoords, JumpActionEvent args)
     {
         var userTransform = Transform(target);
         var userMapCoords = _transform.GetMapCoordinates(userTransform);
 
-        if (args.FromGrid && !_mapMan.TryFindGridAt(userMapCoords, out _, out _)) return false;
+        if (args.FromGrid && !_mapMan.TryFindGridAt(userMapCoords, out _, out _)) return;
 
-        return TryJump(performer, targetCoords, args, target, 15f, args.ToPointer, args.Sound, args.Distance);
+        TryJump(performer, targetCoords, args, target, 15f, args.ToPointer, args.Sound, args.Distance);
     }
 
     public bool TryJump(EntityUid performer, EntityCoordinates targetCoords, JumpActionEvent args, EntityUid? target = null, float speed = 15f, bool toPointer = false, SoundSpecifier? sound = null, float? distance = null, bool decreaseCharges = false)
     {
-        if (args.Action == null || _action.IsCooldownActive(args.Action) || !CanJump(performer))
+        if (args.Action == null || _action.IsCooldownActive(args.Action))
             return false;
 
         if (target == null)

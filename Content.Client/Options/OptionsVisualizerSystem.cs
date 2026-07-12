@@ -8,7 +8,7 @@ namespace Content.Client.Options;
 /// <summary>
 /// Implements <see cref="OptionsVisualizerComponent"/>.
 /// </summary>
-public sealed class OptionsVisualizerSystem : EntitySystem
+public sealed partial class OptionsVisualizerSystem : EntitySystem
 {
     private static readonly (OptionVisualizerOptions, CVarDef<bool>)[] OptionVars =
     {
@@ -17,9 +17,9 @@ public sealed class OptionsVisualizerSystem : EntitySystem
         (OptionVisualizerOptions.Arachnophobia, CCVars.AccessibilityArachnophobia),// 🌟Starlight🌟
     };
 
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IReflectionManager _reflection = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IReflectionManager _reflection = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private OptionVisualizerOptions _currentOptions;
 
@@ -96,18 +96,18 @@ public sealed class OptionsVisualizerSystem : EntitySystem
                 || _sprite.LayerExists((uid, sprite), @enum))
                     layerIndex = _sprite.LayerMapReserve((uid, sprite), @enum);
             }
-            else 
+            else
             {
                 if(layerKeyRaw == "base"
                 || _sprite.LayerExists((uid, sprite), layerKeyRaw))
                     layerIndex = _sprite.LayerMapReserve((uid, sprite), layerKeyRaw);
             }
 
-            if(layerKeyRaw == "base" 
+            if(layerKeyRaw == "base"
             || layerIndex >= 0)
             //Starlight End
                 _sprite.LayerSetData((uid, sprite), layerIndex, matchedDatum.Data);
-        }     
+        }
     }
 }
 

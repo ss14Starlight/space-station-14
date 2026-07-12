@@ -9,7 +9,7 @@
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
 [![GitHub](https://img.shields.io/github/stars/ss14Starlight/space-station-14?style=social)]([https://github.com/ss14Starlight/space-station-14])
 
-# STARLIGHT  
+# STARLIGHT
 <sub>Space-Station 14</sub>
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/ss14Starlight/space-station-14)
@@ -18,7 +18,7 @@
 
 </div>
 
-STARLIGHT is an open source project aimed at creating unique mechanics and a pleasant game atmosphere in the game Space Station 14, 
+STARLIGHT is an open source project aimed at creating unique mechanics and a pleasant game atmosphere in the game Space Station 14,
 
 a game about survival on a space station where there are constant confrontations between the crew and antagonists created to prevent the crew from achieving their goals.
 

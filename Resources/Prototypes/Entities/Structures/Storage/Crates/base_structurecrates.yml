@@ -22,6 +22,12 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+      # Starlight BEGIN
+    - state: crate_ribbon_sealed
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       map: ["enum.PaperLabelVisuals.Layer"]
@@ -70,9 +76,22 @@
     containers:
       - entity_storage
   - type: RequireProjectileTarget
-  # Starlight-start: Blinding from containers
-  - type: ChildBlockVision
-  # Starlight-end
+  # Starlight BEGIN
+  - type: ChildBlockVision # Blinding from containers
+  - type: TamperSealable
+    destroyToolQualities: [ Cutting, Slicing ]
+  - type: PaperLabel # Overrides parent
+    labelSlot:
+      priority: 100 # <-- Only change relative to BasePaperLabelable.
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+          - Paper
+      blacklist:
+        tags:
+          - Book
+  # Starlight END
 
 - type: entity
   parent: CrateGeneric
@@ -128,7 +147,11 @@
       shader: unshaded
       visible: false
       map: ["enum.ElectrifiedLayers.Sparks"]
-    # Starlight End
+    - state: crate_ribbon_sealed # Tamper seal
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic

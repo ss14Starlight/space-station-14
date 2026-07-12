@@ -43,6 +43,7 @@
     modifier: Spell
   - type: Magic
     requiresClothes: true
+  - type: EorgPreventAction # Starlight
 
 # For the Snail
 - type: entity
@@ -75,6 +76,7 @@
     modifier: Spell
   - type: Magic
     requiresClothes: true
+  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: BaseSmiteAction
@@ -101,3 +103,4 @@
     modifier: Spell
   - type: Magic
     requiresClothes: false
+  - type: EorgPreventAction # Starlight

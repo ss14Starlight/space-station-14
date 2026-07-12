@@ -1,0 +1,31 @@
+- type: entity
+  parent: Holoprojector
+  id: HoloprojectorEngineering
+  name: engineering caution holo-projector
+  description: Creates a non-solid warning projection, meant for marking hazards.
+  components:
+    - type: HolosignProjector
+      signProto: HolosignEngineeringWarning
+      chargeUse: 60
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/Holoprojectors/engineering.rsi
+      state: icon
+    - type: Tag
+      tags:
+        - HolofanProjector
+        - SecBeltEquip
+    - type: StaticPrice
+      price: 40
+
+- type: entity
+  parent: HoloprojectorEngineering
+  id: HoloprojectorEngineeringEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        blacklist:
+          tags:
+          - MechReactor

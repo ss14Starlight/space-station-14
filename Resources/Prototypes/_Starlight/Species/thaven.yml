@@ -6,7 +6,7 @@
   sprites: MobThavenSprites
   defaultSkinTone: "#ffffff"
   markingLimits: MobThavenMarkingLimits
-  dollPrototype: MobThavenDummy
+  dollPrototype: AppearanceThaven
   skinColoration: Hues
   maleFirstNames: NamesThaven
   femaleFirstNames: NamesThaven

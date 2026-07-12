@@ -5,7 +5,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Preferences;
 
 namespace Content.Client._Starlight.Traits.UI;
@@ -13,8 +13,8 @@ namespace Content.Client._Starlight.Traits.UI;
 [GenerateTypedNameReferences]
 public sealed partial class TraitsTab : BoxContainer
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     /// <summary>
     /// Event fired when trait selection changes.
@@ -310,7 +310,7 @@ public sealed partial class TraitsTab : BoxContainer
     /// <summary>
     /// Sets the currently selected traits (e.g., when loading a profile).
     /// </summary>
-    public void SetSelectedTraits(IEnumerable<ProtoId<TraitPrototype>> traits, HumanoidCharacterProfile? profile)
+    public void SetSelectedTraits(IEnumerable<ProtoId<TraitPrototype>> traits, HumanoidCharacterProfile? _)
     {
         // Clear current selection
         foreach (var (_, categoryUi) in _categoryUis)

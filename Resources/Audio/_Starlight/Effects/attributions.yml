@@ -39,3 +39,8 @@
   copyright: "Created by fujiwaranao"
   license: "CC-BY-NC-SA-4.0"
   source: "https://github.com/space-wizards/space-station-14/pull/27578"
+
+- files: ["redspace_thunderclap.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "Lightning and Thunder Clap by akelley6 (freesound.org), edited by Nyxilath for Moffstation"
+  source: "https://freesound.org/s/551425/"

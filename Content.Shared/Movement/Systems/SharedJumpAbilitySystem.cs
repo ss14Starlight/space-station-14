@@ -7,7 +7,6 @@ using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
-using Content.Shared._Starlight.Shoelaces.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 
@@ -15,13 +14,13 @@ namespace Content.Shared.Movement.Systems;
 
 public sealed partial class SharedJumpAbilitySystem : EntitySystem
 {
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -70,7 +69,7 @@ public sealed partial class SharedJumpAbilitySystem : EntitySystem
 
     private void OnGravityJump(Entity<JumpAbilityComponent> entity, ref GravityJumpEvent args)
     {
-        if (_gravity.IsWeightless(args.Performer) || _standing.IsDown(args.Performer) || HasComp<ShoelaceTiedComponent>(args.Performer)) // Starlight-edit
+        if (_gravity.IsWeightless(args.Performer) || _standing.IsDown(args.Performer))
         {
             if (entity.Comp.JumpFailedPopup != null)
                 _popup.PopupClient(Loc.GetString(entity.Comp.JumpFailedPopup.Value), args.Performer, args.Performer);

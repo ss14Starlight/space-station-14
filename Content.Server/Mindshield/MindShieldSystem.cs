@@ -12,6 +12,7 @@ using Content.Shared.Roles.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Shared.Popups;
+using Content.Server._Starlight.Achievement;
 #endregion
 
 
@@ -21,17 +22,18 @@ namespace Content.Server.Mindshield;
 /// System used for adding or removing components with a mindshield implant
 /// as well as checking if the implanted is a Rev or Head Rev.
 /// </summary>
-public sealed class MindShieldSystem : EntitySystem
+public sealed partial class MindShieldSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
-    [Dependency] private readonly RoleSystem _roleSystem = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private AchievementSystem _achievements = default!; // Starlight: Achievements
+    [Dependency] private IAdminLogManager _adminLogManager = default!;
+    [Dependency] private RoleSystem _roleSystem = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<MindShieldImplantComponent, AddImplantAttemptEvent>(OnAttemptImplant); // Starlight edit
         SubscribeLocalEvent<MindShieldImplantComponent, ImplantImplantedEvent>(OnImplantImplanted);
         SubscribeLocalEvent<MindShieldImplantComponent, ImplantRemovedEvent>(OnImplantRemoved);
@@ -40,11 +42,14 @@ public sealed class MindShieldSystem : EntitySystem
     // Starlight-edit start
     private void OnAttemptImplant(EntityUid uid, MindShieldImplantComponent comp, AddImplantAttemptEvent args)
     {
+        if (HasComp<HeadRevolutionaryComponent>(args.Target))
+            _achievements.QueueUnlockAchievement(args.User, "beyond_reasonable_doubt");
+
         if (HasComp<MindControlComponent>(args.Target)) // this SHOULD just be a yml blacklist on the implanter, but it refuses to work T-T
         {
             _popupSystem.PopupEntity(Loc.GetString("mind-control-prevents-mindshield"), args.User, args.User, PopupType.Small);
             args.Cancel();
-        } 
+        }
     }
     // Starlight-edit end
 
@@ -52,12 +57,7 @@ public sealed class MindShieldSystem : EntitySystem
     {
         var mindshield = EnsureComp<MindShieldComponent>(ev.Implanted);
         mindshield.MindShieldStatusIcon = ent.Comp.MindShieldStatusIcon;
-        // Starlight-edit start
-        if (HasComp<VampireThrallComponent>(ev.Implanted))
-            RemComp<VampireThrallComponent>(ev.Implanted);
-        // Starlight-edit end
         MindShieldRemovalCheck(ev.Implanted, ev.Implant);
-
         Dirty(ev.Implanted, mindshield);
     }
 

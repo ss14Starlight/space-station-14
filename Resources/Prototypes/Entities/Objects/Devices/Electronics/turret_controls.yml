@@ -1,7 +1,7 @@
 - type: entity
   abstract: true
   parent: BaseElectronics
-  id: WeaponEnergyTurretStationControlPanelElectronicsBase 
+  id: WeaponEnergyTurretStationControlPanelElectronicsBase
   name: sentry turret control panel electronics
   description: An electronics board used in a sentry turret control panel.
   components:
@@ -13,6 +13,7 @@
   - type: Tag
     tags:
     - TurretControlElectronics
+    - RamChip #Protogen joke, makes them able to eat them. - FH
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelElectronicsBase
@@ -29,7 +30,7 @@
     state: science
   - type: ElectronicsBoard
     prototype: WeaponEnergyTurretAIControlPanel
-    
+
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelElectronicsBase
   id: WeaponEnergyTurretCommandControlPanelElectronics

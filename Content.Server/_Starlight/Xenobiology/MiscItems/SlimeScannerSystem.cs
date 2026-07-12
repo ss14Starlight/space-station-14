@@ -10,11 +10,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Xenobiology.MiscItems;
 
-public sealed class SlimeScannerSystem : EntitySystem
+public sealed partial class SlimeScannerSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly HungerSystem _hungerSystem = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private HungerSystem _hungerSystem = default!;
 
     public override void Initialize()
     {
@@ -22,14 +22,14 @@ public sealed class SlimeScannerSystem : EntitySystem
         SubscribeLocalEvent<SlimeScannerComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<XenobiologyConsoleComponent, ConsoleMsgToScannerEvent>(OnConsoleMsgToScanner);
     }
-    
+
     private void OnAfterInteract(Entity<SlimeScannerComponent> entity, ref AfterInteractEvent args)
     {
         if (!_entityManager.TryGetComponent<ActorComponent>(args.User, out var actor)) return;
         if (!_entityManager.TryGetComponent<SlimeComponent>(args.Target, out var slime)) return;
         var metaData = MetaData(args.Target.Value);
         if (!_entityManager.TryGetComponent<HungerComponent>(args.Target, out var hunger)) return;
-        
+
         SendInformation(actor, slime, metaData, hunger);
         RaiseNetworkEvent(new SlimeScannerSoundMessage()
         {
@@ -44,7 +44,7 @@ public sealed class SlimeScannerSystem : EntitySystem
         if (!_entityManager.TryGetComponent<SlimeComponent>(args.Target, out var slime)) return;
         var metaData = MetaData(args.Target);
         if (!_entityManager.TryGetComponent<HungerComponent>(args.Target, out var hunger)) return;
-        
+
         SendInformation(actor, slime, metaData, hunger);
 
         args.Handled = true;

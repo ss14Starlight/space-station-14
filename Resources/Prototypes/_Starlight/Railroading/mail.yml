@@ -1,12 +1,8 @@
 - type: entity
   id: RRCardMailOpen
+  parent: CrewCondition
   categories: [HideSpawnMenu]
   components:
-  - type: Conditions
-    conditions:
-    - !type:SubjectMindAntagCondition
-      blacklist:
-      - Brighteye
   - type: RailroadSpawnFlow
     count:
       min: 1
@@ -23,6 +19,6 @@
       sprite: Objects/Specific/Cargo/mail.rsi
       state: icon
   - type: RailroadDonationReward
-    amount: 
+    amount:
       min: 5
       max: 15

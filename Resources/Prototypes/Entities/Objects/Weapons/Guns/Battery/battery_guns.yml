@@ -59,7 +59,7 @@
     availableModes:
     - SemiAuto
     - FullAuto #Just allows people to hold down left click
-  - type: Battery 
+  - type: Battery
     maxCharge: 1500 # ~1:30 minutes for recharge
     startingCharge: 1500
   - type: BatteryAmmoProvider
@@ -126,7 +126,19 @@
   parent: BaseWeaponBattery
   abstract: true
   components:
+  #starlight start
   - type: CanDualWield # 🌟Starlight🌟
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 6
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
+  # starlight end
   - type: Item
     size: Small
     shape:
@@ -299,7 +311,7 @@
   name: laser carbine
   parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponLaserCarbine
-  description: Favoured by Nanotrasen Security for being cheap and easy to use.
+  description: Favoured by NanoTrasen Security for being cheap and easy to use. # SL
 
 - type: entity
   name: practice laser carbine
@@ -613,8 +625,21 @@
   id: WeaponDisablerSMG
   description: Advanced weapon that exhausts organic targets, weakening them until they collapse.
   components:
+    # starlight start
   - type: CanDualWield # 🌟Starlight🌟
     dualWieldInaccuracyPenalty: 25
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Blunt: 7
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    # starlight end
   - type: Item
     size: Large
     shape:
@@ -902,20 +927,20 @@
   description: A one-of-a-kind prototype energy weapon that uses various shotgun configurations. It offers the possibility of both lethal and non-lethal shots, making it a versatile weapon.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Shotgun.rsi # Starlight, sprite changed (Objects/Weapons/Guns/Battery/energy_shotgun.rsi)
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-unshaded-4
+      - state: energy-unshaded-4
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
   - type: MagazineVisuals
-    magState: mag
+    magState: energy #Starlight
     steps: 5
     zeroVisible: false
   - type: Appearance
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+    sprite:  _Starlight/Objects/Weapons/Guns/Battery/Energy_Shotgun.rsi # Starlight, sprite changed (Objects/Weapons/Guns/Battery/energy_shotgun.rsi)
   - type: Tag
     tags:
     - HighRiskItem
@@ -932,13 +957,15 @@
     fireModes:
     - proto: BulletLaserSpreadNarrow
       fireCost: 48 #Starlight
+      magState: energy #Starlight
     - proto: BulletDisablerSmgSpread
       fireCost: 30 #Starlight
       pacifismAllowedMode: true
+      magState: disable #Starlight
   - type: Item
     size: Large
-    sprite: Objects/Weapons/Guns/Battery/inhands_64x.rsi
-    heldPrefix: energy
+    sprite:  _Starlight/Objects/Weapons/Guns/Battery/Energy_Shotgun_inhands-x64.rsi # Starlight, sprite changed (Objects\Weapons\Guns\Battery\inhands_64x.rsi)
+    heldPrefix: empty #starlight
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Battery
     maxCharge: 480

@@ -1,11 +1,41 @@
 - type: entity
   id: OrganMothEyes
   parent: OrganHumanEyes
-  name: eyes
+  name: moth eyes
   suffix: Moth
-  description: "Moth eyes are very big, to catch the light"
+  description: "Large compound eyes used to catch light."
   components:
   - type: OrganVisualization
     layer: Eyes
     prototypes:
       Default: MobMothEyes
+
+- type: entity
+  id: OrganMothStomach
+  parent: [OrganAnimalStomach, OrganHumanStomach]
+  name: moth stomach
+  description: "A stomach specialized for digesting normally inedible cloth."
+  suffix: Moth
+  components:
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - ClothMade
+      - Paper
+      - Pill
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [ Moth ]
+    removeEmpty: true
+    groups:
+      - id: Food
+      - id: Drink

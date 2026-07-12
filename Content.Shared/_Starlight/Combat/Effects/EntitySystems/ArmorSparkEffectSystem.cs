@@ -1,16 +1,12 @@
 using System.Numerics;
 using Content.Shared._Starlight.Combat.Effects.Components;
 using Content.Shared.Armor;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Materials;
-using Content.Shared.Silicons.Borgs;
-using Content.Shared.Weapons.Ranged;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Combat.Effects.EntitySystems;
 
@@ -18,10 +14,10 @@ namespace Content.Shared._Starlight.Combat.Effects.EntitySystems;
 /// Handles spawning spark visual effects when armor with high pierce resistance
 /// or Rock material is hit by SP or HP hitscan bullets.
 /// </summary>
-public abstract class SharedArmorSparkEffectSystem : EntitySystem
+public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -81,7 +77,7 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
             var coeffQuery = new CoefficientQueryEvent(SlotFlags.OUTERCLOTHING);
             var relayedEvent = new InventoryRelayedEvent<CoefficientQueryEvent>(coeffQuery, armorUid);
             RaiseLocalEvent(armorUid, relayedEvent);
-            
+
             if (coeffQuery.DamageModifiers.Coefficients.TryGetValue("Piercing", out var pierceCoeff))
             {
                 // Coefficient of 0.2 or less means 80%+ damage reduction
@@ -97,20 +93,20 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         // Find the entity wearing the armor (the target of the damage)
         var armorTransform = Transform(armorUid);
         var wearer = armorTransform.ParentUid;
-        
+
         if (!Exists(wearer))
             return;
 
         var wearerTransform = Transform(wearer);
-        
+
         // Calculate random offset within the tile
         var offsetX = _random.NextFloat(-component.MaxOffset, component.MaxOffset);
         var offsetY = _random.NextFloat(-component.MaxOffset, component.MaxOffset);
         var offset = new Vector2(offsetX, offsetY);
-        
+
         // Spawn the effect at the wearer's position with offset
         var effectCoords = wearerTransform.Coordinates.Offset(offset);
-        
+
         SparkEffectAt(effectCoords, component.SparkEffectPrototype, component.RicochetSoundCollection);
     }
 
@@ -131,15 +127,15 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
     private void SpawnCyborgSparkEffect(EntityUid cyborgUid, CyborgSparkEffectComponent component)
     {
         var cyborgTransform = Transform(cyborgUid);
-        
+
         // Calculate random offset within the tile
         var offsetX = _random.NextFloat(-component.MaxOffset, component.MaxOffset);
         var offsetY = _random.NextFloat(-component.MaxOffset, component.MaxOffset);
         var offset = new Vector2(offsetX, offsetY);
-        
+
         // Spawn the effect at the cyborg's position with offset
         var effectCoords = cyborgTransform.Coordinates.Offset(offset);
-        
+
         SparkEffectAt(effectCoords, component.SparkEffectPrototype, component.RicochetSoundCollection);
     }
 

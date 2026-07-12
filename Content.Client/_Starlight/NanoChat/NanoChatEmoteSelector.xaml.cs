@@ -19,11 +19,11 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
     private const int EmoteButtonSize = 48;
     private const int EmoteIconSize = 36;
     private const int MaxRecentEmotes = 14;
-    
+
     private List<NanoChatEmoteCache.EmoteData> _displayedEmotes = new();
     private readonly Queue<string> _recentlyUsedEmotes = new();
     private string _currentCategory = "All";
-    private SpriteSystem? _spriteSystem;
+    private readonly SpriteSystem? _spriteSystem;
 
     public event Action<string>? OnEmoteSelected;
 
@@ -91,11 +91,11 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
         foreach (var child in CategoryTabs.Children.OfType<Button>())
         {
             var buttonText = child.Text;
-            var isCurrentCategory = 
+            var isCurrentCategory =
                 (buttonText == Loc.GetString("nano-chat-all-categories") && _currentCategory == "All") ||
                 (buttonText == Loc.GetString("nano-chat-recent-emotes") && _currentCategory == "Recent") ||
                 (buttonText == _currentCategory);
-            
+
             child.Pressed = isCurrentCategory;
         }
     }
@@ -108,9 +108,7 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
     }
 
     private void ClearSearch()
-    {
-        SearchInput.Text = string.Empty;
-    }
+        => SearchInput.Text = string.Empty;
 
     private void OnSearchChanged(LineEdit.LineEditEventArgs args)
     {
@@ -138,8 +136,8 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
         };
 
         // Update recently used section visibility
-        RecentlyUsedSection.Visible = _currentCategory == "All" && 
-                                       _recentlyUsedEmotes.Count > 0 && 
+        RecentlyUsedSection.Visible = _currentCategory == "All" &&
+                                       _recentlyUsedEmotes.Count > 0 &&
                                        string.IsNullOrWhiteSpace(SearchInput.Text);
     }
 
@@ -280,7 +278,7 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
         tempQueue.Enqueue(emoteId);
         foreach (var id in _recentlyUsedEmotes)
             tempQueue.Enqueue(id);
-        
+
         _recentlyUsedEmotes.Clear();
         foreach (var id in tempQueue.Take(MaxRecentEmotes))
             _recentlyUsedEmotes.Enqueue(id);
@@ -288,8 +286,8 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
 
     private void UpdateGridLayout()
     {
-        const int scrollbarWidth = 12;
-        var availableWidth = EmoteScrollContainer.PixelSize.X - scrollbarWidth;
+        const int ScrollbarWidth = 12;
+        var availableWidth = EmoteScrollContainer.PixelSize.X - ScrollbarWidth;
 
         if (availableWidth <= 0)
             return;
@@ -315,9 +313,7 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
     }
 
     private void UpdateRecentEmotes()
-    {
-        RecentlyUsedSection.Visible = _recentlyUsedEmotes.Count > 0 && 
-                                       _currentCategory == "All" &&
-                                       string.IsNullOrWhiteSpace(SearchInput.Text);
-    }
+        => RecentlyUsedSection.Visible = _recentlyUsedEmotes.Count > 0 &&
+            _currentCategory == "All" &&
+            string.IsNullOrWhiteSpace(SearchInput.Text);
 }

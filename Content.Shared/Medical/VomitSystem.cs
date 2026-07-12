@@ -1,3 +1,4 @@
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
@@ -15,30 +16,33 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Shared._Starlight.Medical.Body.Systems;
+#endregion
 
 namespace Content.Shared.Medical;
 
-public sealed class VomitSystem : EntitySystem
+public sealed partial class VomitSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
-    [Dependency] private readonly ThirstSystem _thirst = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly SharedForensicsSystem _forensics = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
+    [Dependency] private ThirstSystem _thirst = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private SharedBodySystem _body = default!; // Starlight
+    [Dependency] private SharedForensicsSystem _forensics = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BodyComponent, TryVomitEvent>(TryBodyVomitSolution);
+        SubscribeLocalEvent<BodyComponent, TryVomitEvent>(TryBodyVomitSolution); // Starlight Edit: StomachComponent -> BodyComponent, Removed BodyRelayedEvent, TryVomitSolution -> TryBodyVomitSolution
     }
 
     private const float ChemMultiplier = 0.1f;
@@ -50,8 +54,10 @@ public sealed class VomitSystem : EntitySystem
     private readonly SoundSpecifier _vomitSound = new SoundCollectionSpecifier(VomitCollection,
         AudioParams.Default.WithVariation(0.2f).WithVolume(-4f));
 
+    // Starlight edit Start: Reverted NuBody
     private void TryBodyVomitSolution(Entity<BodyComponent> ent, ref TryVomitEvent args)
     {
+        // Starlight start
         if (args.Handled)
             return;
 
@@ -68,6 +74,7 @@ public sealed class VomitSystem : EntitySystem
         }
 
         args.Handled = true;
+    // Starlight edit End: Reverted NuBody
     }
 
     /// <summary>

@@ -1,13 +1,11 @@
 using Content.Server.Objectives.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction.Components;
-using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mind;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Objectives.Components;
-using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.ItemSwitch;
+using Content.Shared._Starlight.ItemSwitch;
 using Content.Shared.UserInterface;
 using Robust.Shared.Spawners;
 using Robust.Shared.Prototypes;
@@ -15,15 +13,19 @@ using System.Linq;
 using Content.Server.VendingMachines;
 using Content.Shared.VendingMachines;
 using Robust.Shared.Audio;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
+using Content.Shared._Starlight.Antags.Abductor.Components;
+using Content.Shared._Starlight.Antags.Abductor.UI;
+using Content.Shared._Starlight.ItemSwitch.Components;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
-    [Dependency] private readonly NumberObjectiveSystem _number = default!;
-    [Dependency] private readonly SharedItemSwitchSystem _itemSwitch = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly VendingMachineSystem _vending = default!;
+    [Dependency] private NumberObjectiveSystem _number = default!;
+    [Dependency] private SharedItemSwitchSystem _itemSwitch = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private VendingMachineSystem _vending = default!;
 
     private readonly SoundSpecifier _sendSound = new SoundPathSpecifier("/Audio/Voice/Human/wilhelm_scream.ogg");
     private readonly SoundSpecifier _alienTeleport = new SoundPathSpecifier("/Audio/_Starlight/Misc/alien_teleport.ogg");
@@ -44,7 +46,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         SubscribeLocalEvent<AbductorComponent, AbductorAttractDoAfterEvent>(OnDoAfterAttract);
     }
-    private void OnAbductGetProgress(Entity<AbductConditionComponent> ent, ref ObjectiveGetProgressEvent args) 
+    private void OnAbductGetProgress(Entity<AbductConditionComponent> ent, ref ObjectiveGetProgressEvent args)
         => args.Progress = AbductProgress(ent, _number.GetTarget(ent.Owner));
 
     private float AbductProgress(Entity<AbductConditionComponent> ent, int target)
@@ -128,14 +130,14 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void TryUpdateObjectiveProgress(EntityUid actor, EntityUid victim, AbductorVictimComponent victimComp, AbductorConsoleComponent component)
     {
-        if (victimComp.Organ == AbductorOrganType.None 
-            || !TryComp<MindContainerComponent>(actor, out var mindContainer) 
+        if (victimComp.Organ == AbductorOrganType.None
+            || !TryComp<MindContainerComponent>(actor, out var mindContainer)
             || mindContainer.Mind is not { } mindId
             || !TryComp<MindComponent>(mindId, out var mind))
             return;
 
         var objId = mind.Objectives.FirstOrDefault(HasComp<AbductConditionComponent>);
-        if (objId == default 
+        if (objId == default
             || !TryComp<AbductConditionComponent>(objId, out var condition))
             return;
 
@@ -216,7 +218,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         }
         else if (_mobState.IsDead(victim)) //The console can grab em if crit. but nothing less.
             return;
-        
+
         _xformSys.SetCoordinates(victim, GetCoordinates(args.TargetCoordinates));
     }
 
@@ -285,7 +287,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         {
             if (HasComp<UnremoveableComponent>(GetEntity(computer.Comp.Armor.Value)))
                 armorLock = true;
-            
+
             if (TryComp<ItemSwitchComponent>(GetEntity(computer.Comp.Armor.Value), out var switchVest)
                 && Enum.TryParse<AbductorArmorModeType>(switchVest.State, ignoreCase: true, out var state))
                 armorMode = state;

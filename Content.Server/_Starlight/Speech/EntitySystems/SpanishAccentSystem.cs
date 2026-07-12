@@ -8,7 +8,7 @@ namespace Content.Server._Starlight.Speech.EntitySystems;
 
 public sealed class SpanishAccentSystem : EntitySystem
 {
-    public override void Initialize() 
+    public override void Initialize()
         => SubscribeLocalEvent<SpanishAccentComponent, AccentGetEvent>(OnAccent);
 
     public SpeechMessage Accentuate(SpeechMessage message)
@@ -59,6 +59,6 @@ public sealed class SpanishAccentSystem : EntitySystem
         return msg.ToString();
     }
 
-    private void OnAccent(EntityUid uid, SpanishAccentComponent component, AccentGetEvent args) 
+    private void OnAccent(EntityUid uid, SpanishAccentComponent component, AccentGetEvent args)
         => args.Message = Accentuate(args.Message);
 }

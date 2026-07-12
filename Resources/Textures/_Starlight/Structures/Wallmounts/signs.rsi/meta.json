@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from /tg/station and Burgerstation. Brigmed, Disposals and Youtoolpia by Conflee",
+    "copyright": "Taken from /tg/station and Burgerstation. Brigmed, Disposals, Youtoolpia, IAA, Law, Lawyer, Magistrate, and NTR by Conflee",
     "size": {
         "x": 32,
         "y": 32
@@ -34,6 +34,21 @@
         },
         {
             "name": "mining"
+        },
+        {
+            "name": "iaa"
+        },
+        {
+            "name": "law"
+        },
+        {
+            "name": "lawyer"
+        },
+        {
+            "name": "magistrate"
+        },
+        {
+            "name": "ntr"
         }
     ]
 }

@@ -1,0 +1,53 @@
+﻿- type: quickConstructionCategory
+  id: Glass
+  constructionEntries:
+    - SheetRGlass # SL
+    - SheetUGlass # SL
+    - SheetPGlass # SL
+    - Window
+    - WindowDiagonal
+    - WindowDirectional
+
+- type: quickConstructionCategory
+  id: ReinforcedGlass
+  constructionEntries:
+    - SheetRUGlass1 # SL
+    - SheetRPGlass1 # SL
+    - ReinforcedWindow
+    - ReinforcedWindowDiagonal
+    - WindowReinforcedDirectional
+
+- type: quickConstructionCategory
+  id: UraniumGlass
+  constructionEntries:
+    - SheetRUGlass0 # SL
+    - UraniumWindow
+    - UraniumWindowDiagonal
+
+- type: quickConstructionCategory
+  id: ReinforcedUraniumGlass
+  constructionEntries:
+    - ReinforcedUraniumWindow
+    - ReinforcedUraniumWindowDiagonal
+
+- type: quickConstructionCategory
+  id: PlasmaGlass
+  constructionEntries:
+    - SheetRPGlass0 # SL
+    - PlasmaWindow
+    - PlasmaWindowDiagonal
+    - PlasmaWindowDirectional
+
+- type: quickConstructionCategory
+  id: ReinforcedPlasmaGlass
+  constructionEntries:
+    - ReinforcedPlasmaWindow
+    - ReinforcedPlasmaWindowDiagonal
+    - PlasmaReinforcedWindowDirectional
+
+- type: quickConstructionCategory
+  id: ClockworkGlass
+  constructionEntries:
+    - ClockworkWindow
+    - ClockworkWindowDiagonal
+    - WindowClockworkDirectional

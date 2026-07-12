@@ -18,18 +18,18 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Silicons.Borgs;
 
-public sealed class StationAIShuntSystem : EntitySystem
+public sealed partial class StationAIShuntSystem : EntitySystem
 {
 
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actionSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedSiliconLawSystem _siliconLaw = default!;
-    [Dependency] private readonly FollowerSystem _follower = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly StationAiVisionSystem _vision = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private SharedActionsSystem _actionSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedSiliconLawSystem _siliconLaw = default!;
+    [Dependency] private FollowerSystem _follower = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private StationAiVisionSystem _vision = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
 
     public override void Initialize()
     {
@@ -58,13 +58,13 @@ public sealed class StationAIShuntSystem : EntitySystem
         {
             var findEv = new FindShuntTargetEvent();
             RaiseLocalEvent(target, ref findEv);
-            
+
             if (findEv.Target == null)
                 return; // No valid target found
 
             target = findEv.Target.Value;
         }
-        
+
         if (!TryComp<StationAIShuntComponent>(target, out var shunt))
             return;
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var _))
@@ -132,7 +132,7 @@ public sealed class StationAIShuntSystem : EntitySystem
 
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var _))
             return;
-        
+
         var shuntActionUid = shunt.ReturnAction;
         var shuntReturnUid = shunt.Return;
 
@@ -149,9 +149,9 @@ public sealed class StationAIShuntSystem : EntitySystem
                 return; //Chassis has no brain... how is the AI controlling it???
             if (!TryComp<StationAIShuntComponent>(brain, out var brainShunt))
                 return; //Chassis brain is not able to be shunted into so how is AI controlling it???
-            
+
             var brainActionUid = brainShunt.ReturnAction;
-            
+
             if (!TryComp<ActionComponent>(brainActionUid, out var brainAct))
                 return; //Somehow the action does not have action component? invalid perhaps?
             _actionSystem.RemoveAction(new Entity<ActionComponent?>(brainActionUid.Value, brainAct));
@@ -231,7 +231,7 @@ public sealed class StationAIShuntSystem : EntitySystem
             // Check if there's a valid shunt target inside
             var findEv = new FindShuntTargetEvent();
             RaiseLocalEvent(uid, ref findEv);
-            
+
             if (findEv.Target == null)
                 return; // No valid target found inside
         }
@@ -284,7 +284,7 @@ public sealed class StationAIShuntSystem : EntitySystem
                     ev.Target = containedEntity;
                     return;
                 }
-                
+
                 // Check if it's a borg chassis with shuntable brain
                 if (TryComp<BorgChassisComponent>(containedEntity, out var chassis))
                 {
@@ -295,7 +295,7 @@ public sealed class StationAIShuntSystem : EntitySystem
                         return;
                     }
                 }
-                
+
                 // Send event to nested containers
                 RaiseLocalEvent(containedEntity, ref ev);
                 if (ev.Target != null)

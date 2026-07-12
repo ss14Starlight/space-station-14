@@ -8,6 +8,24 @@
       role: JobSecurityOfficer
       time: 18000 # 5 hrs
 
+- type: loadoutEffectGroup
+  id: SkilledOfficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 54000 # 15 hrs
+
+- type: loadoutEffectGroup
+  id: EliteOfficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 360000 # 100 hrs!!!
+
 # Non-Lethal Weapons
 - type: loadout
   id: SecurityDominator
@@ -22,11 +40,31 @@
 # Sidearm Options
 - type: loadout
   id: SecurityMk58
-  dummyEntity: WeaponPistolMk58
+  dummyEntity: WeaponPistolMk58HighCapacity
   storage:
     back:
-      - WeaponPistolMk58
-      - MagazinePistolSP
+      - WeaponPistolMk58HighCapacity
+      - MagazinePistolHighCapacitySP
+
+- type: loadout
+  id: SecurityPistolEnforcer
+  dummyEntity: WeaponPistolEnforcer
+  storage:
+    back:
+    - WeaponPistolEnforcer
+    - MagazinePistolSP
+
+- type: loadout
+  id: SecurityRevolverDispatcher
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SkilledOfficer
+  dummyEntity: WeaponRevolverDispatcher
+  storage:
+    back:
+      - WeaponRevolverDispatcher
+      - SpeedLoaderMagnumSP
+      - SpeedLoaderMagnumSP
 
 - type: loadout
   id: SecurityPistolDP
@@ -40,12 +78,15 @@
       - MagazinePistol40SP
 
 - type: loadout
-  id: SecurityPistolEnforcer
-  dummyEntity: WeaponPistolEnforcer
+  id: SecurityMk58Gold
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: EliteOfficer
+  dummyEntity: WeaponPistolGoldenMk58HighCapacity
   storage:
     back:
-    - WeaponPistolEnforcer
-    - MagazinePistolSP
+      - WeaponPistolGoldenMk58HighCapacity
+      - MagazinePistolHighCapacitySPGolden
 
 # Jumpsuit
 - type: loadout
@@ -58,6 +99,48 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecBlue
 
+- type: loadout
+  id: FormalOfficerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSecoff
+
+- type: loadout
+  id: FormalOfficerJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSecoff
+
+- type: loadout
+  id: FormalSeniorOfficerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSeniorSecoff
+
+- type: loadout
+  id: FormalSeniorOfficerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSeniorSecoff
+
+- type: loadout
+  id: DeputyFormalJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalDeputy
+
+- type: loadout
+  id: DeputyFormalJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalDeputy
+
 #Outerclothes
 - type: loadout
   id: SecurityBomber
@@ -69,3 +152,80 @@
   id: SecurityGlassesPrescription
   equipment:
     eyes: ClothingEyeGlassesSecurityPrescription
+
+# Gloves
+- type: loadout
+  id: SecGloves
+  equipment:
+    gloves: ClothingHandsGlovesSecurityRed
+
+- type: loadout
+  id: SecGlovesFingerless
+  equipment:
+    gloves: ClothingHandsGlovesSecurityFingerlessRed
+
+- type: loadout
+  id: SecMittens
+  equipment:
+    gloves: ClothingHandsMittensSecurityRed
+
+- type: loadout
+  id: SecurityJumpsuitBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecBlue
+
+- type: loadout
+  id: SecurityHelmetPlate
+  equipment:
+    head: ClothingHeadHelmetPlate
+
+- type: loadout
+  id: SecurityHelmetStabproof
+  equipment:
+    head: ClothingHeadHelmetStabproof
+
+- type: loadout
+  id: SecurityHelmetHeatAbsorbent
+  equipment:
+    head: ClothingHeadHelmetHeatAbsorbent
+
+- type: loadout
+  id: ArmorVestPlate
+  equipment:
+    outerClothing: ClothingOuterArmorPlate
+
+- type: loadout
+  id: ArmorVestStab
+  equipment:
+    outerClothing: ClothingOuterArmorStab
+
+- type: loadout
+  id: ArmorVestHeatAbsorb
+  equipment:
+    outerClothing: ClothingOuterArmorHeatAbsorb
+
+- type: loadout
+  id: WindbreakerSecurity
+  equipment:
+    outerClothing: ClothingOuterWindbreakerSecurity
+
+# Hats
+
+- type: loadout
+  id: DeputyHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    head: ClothingHeadDeputyHat
+
+# Misc
+- type: loadout
+  id: SecurityGlasses
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+
+- type: loadout
+  id: SecurityHud
+  equipment:
+    eyes: ClothingEyesHudSecurity

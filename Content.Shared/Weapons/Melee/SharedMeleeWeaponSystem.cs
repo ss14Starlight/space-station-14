@@ -48,29 +48,29 @@ using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
 
 namespace Content.Shared.Weapons.Melee;
 
-public abstract class SharedMeleeWeaponSystem : EntitySystem
+public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly IMapManager MapManager = default!;
-    [Dependency] private   readonly INetManager _netMan = default!;
-    [Dependency] private   readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private   readonly IRobustRandom _random = default!;
-    [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
-    [Dependency] protected readonly ActionBlockerSystem Blocker = default!;
-    [Dependency] protected readonly DamageableSystem Damageable = default!;
-    [Dependency] private   readonly SharedHandsSystem _hands = default!;
-    [Dependency] private   readonly InventorySystem _inventory = default!;
-    [Dependency] private   readonly MeleeSoundSystem _meleeSound = default!;
-    [Dependency] protected readonly MobStateSystem MobState = default!;
-    [Dependency] private   readonly SharedAudioSystem _audio = default!;
-    [Dependency] protected readonly SharedCombatModeSystem CombatMode = default!;
-    [Dependency] protected readonly SharedInteractionSystem Interaction = default!;
-    [Dependency] private   readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] protected readonly SharedPopupSystem PopupSystem = default!;
-    [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
-    [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
-    [Dependency] private   readonly DamageExamineSystem _damageExamine = default!;
-    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected IMapManager MapManager = default!;
+    [Dependency] private   INetManager _netMan = default!;
+    [Dependency] private   IPrototypeManager _protoManager = default!;
+    [Dependency] private   IRobustRandom _random = default!;
+    [Dependency] protected ISharedAdminLogManager AdminLogger = default!;
+    [Dependency] protected ActionBlockerSystem Blocker = default!;
+    [Dependency] protected DamageableSystem Damageable = default!;
+    [Dependency] private   SharedHandsSystem _hands = default!;
+    [Dependency] private   InventorySystem _inventory = default!;
+    [Dependency] private   MeleeSoundSystem _meleeSound = default!;
+    [Dependency] protected MobStateSystem MobState = default!;
+    [Dependency] private   SharedAudioSystem _audio = default!;
+    [Dependency] protected SharedCombatModeSystem CombatMode = default!;
+    [Dependency] protected SharedInteractionSystem Interaction = default!;
+    [Dependency] private   SharedPhysicsSystem _physics = default!;
+    [Dependency] protected SharedPopupSystem PopupSystem = default!;
+    [Dependency] protected SharedTransformSystem TransformSystem = default!;
+    [Dependency] private   SharedStaminaSystem _stamina = default!;
+    [Dependency] private   DamageExamineSystem _damageExamine = default!;
+    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
 
     private static readonly string BluntDamageName = "Blunt"; // Starlight
     private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
@@ -255,6 +255,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         var ev = new GetMeleeDamageEvent(uid, new(component.Damage * Damageable.UniversalMeleeDamageModifier), new(), user, component.ResistanceBypass);
         RaiseLocalEvent(uid, ref ev);
+        if (uid != user) RaiseLocalEvent(user, ref ev); // STARLIGHT - also check wielder of weapon for bonuses
 
         return DamageSpecifier.ApplyModifierSets(ev.Damage, ev.Modifiers);
     }
@@ -266,6 +267,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         var ev = new GetMeleeAttackRateEvent(uid, component.AttackRate, 1, user);
         RaiseLocalEvent(uid, ref ev);
+        if (uid != user) RaiseLocalEvent(user, ref ev); // STARLIGHT - also check wielder of weapon for bonuses
 
         return ev.Rate * ev.Multipliers;
     }
@@ -863,7 +865,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             chance += malus.Malus;
         }
-        
+
         //Starlight begin
         if (TryComp<WieldableComponent>(inTargetHand, out var wieldable))
             if (wieldable.Wielded)
@@ -894,7 +896,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             return false;
         }
-        
+
         if (HasComp<NoDisarmComponent>(target)) return false; // Starlight
 
         // Need hands or to be able to be shoved over.
@@ -994,9 +996,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     private void DoLungeAnimation(EntityUid user, EntityUid weapon, Angle angle, MapCoordinates coordinates, float length, string? animation)
     {
+        // Starlight Begin - mech wideswing handling
+        var originEntity = GetOriginEntity(user);
+
         // TODO: Assert that offset eyes are still okay.
-        if (!TryComp(user, out TransformComponent? userXform))
+        if (!TryComp(originEntity, out TransformComponent? userXform))
             return;
+        // Starlight End
 
         var invMatrix = TransformSystem.GetInvWorldMatrix(userXform);
         var localPos = Vector2.Transform(coordinates.Position, invMatrix);
@@ -1092,7 +1098,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             }
         }
     }
-    
+
     //Starlight begin | ES Screenshake
     private void DoScreenshake(EntityUid weapon, DamageSpecifier damage, EntityUid attacker, List<EntityUid> targets)
     {
@@ -1107,7 +1113,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             foreach(var target in targets)
                 _shake.Screenshake(target, otherTranslation, null);
         }
-        
+
         // only show to attacker if they put real oompf into it, or the weapon is just THAT strong
         var bluntRequirement = damage.DamageDict.TryGetValue(BluntDamageName, out var blunt) && blunt >= 20;
         var wieldRequirement = TryComp<WieldableComponent>(weapon, out var wieldable) && wieldable.Wielded;
@@ -1123,4 +1129,20 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         _shake.Screenshake(attacker, null, userRotation);
     }
     //Starlight end
+
+    // Starlight begin - mech wideswing
+    /// <summary>
+    /// Get the apparent origin entity for transforms (e.g. when the entity is piloting a mech)
+    /// returns the user if none are found
+    /// </summary>
+    protected EntityUid GetOriginEntity(EntityUid user)
+    {
+        var originEntity = user;
+        var originEv = new GetMeleeOriginEvent();
+        RaiseLocalEvent(user, originEv);
+        if (originEv.Handled && originEv.OriginEntity.HasValue)
+            originEntity = originEv.OriginEntity.Value;
+        return originEntity;
+    }
+    // Starlight end
 }

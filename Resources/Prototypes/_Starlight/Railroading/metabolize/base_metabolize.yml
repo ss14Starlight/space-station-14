@@ -11,10 +11,12 @@
       blacklist:
       - Abductor
       - Skeleton
+      - IPC
+      - Terminator
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye
-      
+
 - type: entity
   id: MetabolizeDrinkCondition # With bartender blacklist
   categories: [ HideSpawnMenu ]
@@ -30,6 +32,8 @@
       blacklist:
       - Abductor
       - Skeleton
+      - IPC
+      - Terminator
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye
@@ -42,7 +46,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RailroadSpawnFlow
-    count: 
+    count:
       min: 1
       max: 5
   - type: RailroadCard
@@ -60,6 +64,6 @@
       sprite: Objects/Consumable/Smokeables/Cigars/cigar-gold.rsi
       state: lit-icon
   - type: RailroadDonationReward
-    amount: 
+    amount:
       min: 10
       max: 25

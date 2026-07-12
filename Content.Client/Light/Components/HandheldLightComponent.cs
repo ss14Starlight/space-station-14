@@ -31,7 +31,7 @@ public sealed class HandheldLightStatus : Control
     public HandheldLightStatus(HandheldLightComponent parent)
     {
         _parent = parent;
-        
+
         if (!_parent.NeedsCharge)
             return;
 
@@ -60,7 +60,7 @@ public sealed class HandheldLightStatus : Control
         _timer %= TimerCycle;
 
         var level = _parent.Level;
-        
+
         if (!_parent.NeedsCharge)
             return;
 

@@ -32,33 +32,33 @@
 - type: entity
   parent: StatusEffectSpeed
   id: ReagentSpeedStatusEffect
-  name: status-effect-movement-reagent-speed # Starlight: Localize
+  name: reagent speed
 
 - type: entity
   parent: StatusEffectSlowdown
   id: VomitingSlowdownStatusEffect
-  name: status-effect-movement-vomiting-slowdown # Starlight: Localize
+  name: vomiting slowdown
 
 - type: entity
   parent: StatusEffectSlowdown
   id: TaserSlowdownStatusEffect
-  name: status-effect-movement-taser-slowdown # Starlight: Localize
+  name: shot by taser slowdown
 
 - type: entity
   parent: StatusEffectSlowdown
   id: FlashSlowdownStatusEffect
-  name: status-effect-movement-flash-slowdown # Starlight: Localize
+  name: affected by flash slowdown
 
 - type: entity
   parent: StatusEffectSlowdown
   id: StatusEffectStaminaLow
-  name: status-effect-movement-stamina-low # STarlight: Localize
+  name: stamina low
 
 # Makes you more slippery, or perhaps less slippery.
 - type: entity
   parent: MobStatusEffectDebuff # Debatable if this should be MobStatusEffectBase or not
   id: StatusEffectFriction
-  name: status-effect-movement-friction # Starlight: Localize
+  name: friction
   components:
   - type: FrictionStatusEffect
 
@@ -67,7 +67,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectStunned
-  name: status-effect-movement-stunned # Starlight: Localize
+  name: stunned
   components:
   - type: StatusEffect
     whitelist:

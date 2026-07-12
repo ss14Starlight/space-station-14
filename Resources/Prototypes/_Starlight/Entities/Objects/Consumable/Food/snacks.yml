@@ -64,3 +64,175 @@
   - type: Tag
     tags:
     - Trash
+
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodLollipopPlain
+  name: lollipop
+  description: A sugary treat on a stick. Make sure to add some flavoring!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/lollipop.rsi
+    layers:
+    - state: white_lollipop
+    - state: white_lollipop_fill_1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Consumable/Food/lollipop.rsi
+    size: Small
+    storedRotation: -45
+    storedOffset: 0,-1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+          - ReagentId: Sugar
+            Quantity: 10
+  - type: RefillableSolution
+    solution: food
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: white_lollipop_fill_
+    solutionName: food
+    changeColor: true
+    inHandsMaxFillLevels: 2
+    inHandsFillBaseName: _fill_
+  - type: Appearance
+  - type: Tag
+    tags:
+    - FoodSnack
+  - type: Clothing
+    sprite: _Starlight/Objects/Consumable/Food/lollipop.rsi
+    equippedPrefix: white_lollipop
+    slots: [ mask ]
+
+# Rodentia Cheese Box
+- type: entity
+  id: FoodPacketCheeseBox
+  parent: FoodSnackNutribrick
+  name: cheese box
+  description: A randomly selected piece of cheese from the NanoTrasen galactic cheese vault. Calorie dense and irresistible to rodents!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/cheese.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodPacketCheeseBoxTrash
+      - id: FoodNutriCheeseEdam
+        orGroup: Cheese
+      - id: FoodNutriCheeseBrie
+        orGroup: Cheese
+      - id: FoodNutriCheeseMozzarellaSticks
+        orGroup: Cheese
+      - id: FoodNutriCheeseGorgonzola
+        orGroup: Cheese
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+    requireHands: false
+
+- type: entity
+  id: FoodRodentiaCheeseBase
+  parent: FoodSnackNutribrickOpen
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/cheese.rsi
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+
+- type: entity
+  id: FoodPacketCheeseBoxTrash
+  parent: FoodPacketMRETrash
+  name: cheese box
+  description: A box that once held delicious cheese, is now a crumbled mess.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/cheese.rsi
+    state: box-trash
+
+- type: entity
+  id: FoodNutriCheeseEdam
+  parent: FoodRodentiaCheeseBase
+  name: edam
+  description: A delicate and nutty cheese, wrapped in a thin red wax for it's protection.
+  components:
+  - type: Sprite
+    state: edam
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - nutty
+
+- type: entity
+  id: FoodNutriCheeseBrie
+  parent: FoodRodentiaCheeseBase
+  name: brie
+  description: Soft and creamy, like butter.
+  components:
+  - type: Sprite
+    state: brie
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - creamy
+
+- type: entity
+  id: FoodNutriCheeseMozzarellaSticks
+  parent: FoodRodentiaCheeseBase
+  name: mozzarella sticks
+  description: Stringy cheese sticks! Yum!
+  components:
+  - type: Sprite
+    state: mozzarella-sticks
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - stringy
+
+- type: entity
+  id: FoodNutriCheeseGorgonzola
+  parent: FoodRodentiaCheeseBase
+  name: gorgonzola
+  description: The stinkiest cheese for the stinkiest of mice!
+  components:
+  - type: Sprite
+    state: gorgonzola
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - stinky
+
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackCandyApple
+  name: toffee apple
+  description: A crisp apple encased in a hard shell of sugar. A carnival classic.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Food/candy.rsi
+    state: apple
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - FoodSnack
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 10
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - apple

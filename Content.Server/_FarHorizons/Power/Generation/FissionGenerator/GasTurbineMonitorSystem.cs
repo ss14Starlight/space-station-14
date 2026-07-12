@@ -13,13 +13,13 @@ namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
 public sealed partial class GasTurbineMonitorSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly GasTurbineSystem _turbineSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly DeviceLinkSystem _signal = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private GasTurbineSystem _turbineSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private DeviceLinkSystem _signal = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = null!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     private readonly float _threshold = 0.5f;
     private float _accumulator = 0f;
@@ -163,7 +163,7 @@ public sealed partial class GasTurbineMonitorSystem : EntitySystem
             else
                 value.SetFlowRate = turbine.FlowRate;
         }
-            
+
         _turbineSystem.UpdateUI(uid, turbine);
 
         return;
@@ -176,7 +176,7 @@ public sealed partial class GasTurbineMonitorSystem : EntitySystem
                 turbine.FlowRate = newSet;
                 return true;
             }
-            return false; 
+            return false;
         }
     }
 
@@ -184,7 +184,7 @@ public sealed partial class GasTurbineMonitorSystem : EntitySystem
     {
         if (!TryGetTurbineComp(comp, out var turbine))
             return;
-        
+
         if (TrySetStatorLoad())
         {
             // Data is sent to a log queue to avoid spamming the admin log when adjusting values rapidly
@@ -212,7 +212,7 @@ public sealed partial class GasTurbineMonitorSystem : EntitySystem
                 turbine.StatorLoad = newSet;
                 return true;
             }
-            return false; 
+            return false;
         }
     }
     #endregion

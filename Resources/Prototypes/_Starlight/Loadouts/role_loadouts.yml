@@ -1,25 +1,10 @@
-- type: roleLoadout
-  id: JobRoboticist
-  groups:
-  - RoboticistHead
-  - RoboticistGoggles
-  - RoboticistJumpsuit
-  - RoboticistGloves
-  - RoboticistOuterClothing
-  - RoboticistBackpack
-  - RoboticistShoes
-  - Survival
-  - Trinkets
-  - Scarves
-  - Pins
-  - Pens
-  - GroupSpeciesBreathTool
-
+# NanoTrasen
 - type: roleLoadout
   id: JobMagistrate
   groups:
   - MagistrateJumpsuit
   - MagistrateEyewear
+  - MagistrateNeck
   - MagistrateHands
   - MagistrateHead
   - MagistrateOuterclothing
@@ -32,31 +17,11 @@
   - LuxuryPens
   - GroupSpeciesBreathTool
 
-
-- type: roleLoadout
-  id: JobSurgeon
-  groups:
-  - GroupTankHarness
-  - MedicalDoctorHead
-  - MedicalMask
-  - MedicalDoctorJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - MedicalDoctorOuterClothing
-  - MedicalShoes
-  - MedicalDoctorPDA
-  - MedicalEyewear
-  - SurvivalMedical
-  - Trinkets
-  - Scarves
-  - Pins
-  - Pens
-  - GroupSpeciesBreathToolMedical
-
 - type: roleLoadout
   id: JobNanoTrasenRepresentative
   groups:
   - NanoTrasenRepresentativeHead
+  - NanoTrasenRepresentativeNeck
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeEyewear
   - CommonBackpack
@@ -71,14 +36,16 @@
 - type: roleLoadout
   id: JobIAA
   groups:
-  - LawyerNeck
-  - LawyerJumpsuit
+  - GroupTankHarness # for Vox
+  - IAANeck
+  - IAAJumpsuit
   - CommonBackpack
-  - LawyerShoes
+  - IAAShoes
   - Trinkets
   - Scarves
   - Pins
   - LuxuryPens
+  - LawyerJobTrinkets
   - Survival
   - GroupSpeciesBreathTool
 
@@ -99,13 +66,29 @@
   - Scarves
   - Pins
   - Pens
-  - SurvivalSecurity
+  - SurvivalExtended
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
+  id: JobNanotrasenCareerTrainer
+  groups:
+  - NanotrasenCareerTrainerJumpsuit
+  - NanotrasenCareerTrainerHat
+  - NanotrasenCareerTrainerEyewear
+  - NanotrasenCareerTrainerShoes
+  - CommonBackpack
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - Survival
+  - GroupSpeciesBreathTool
+
+# Cargo
+- type: roleLoadout
   id: JobMiningSpecialist
   groups:
-  - GroupTankHarness
+  - GroupTankHarness # for Vox
   - SalvageSpecialistBackpack
   - MiningSpecialistJumpsuit
   - SalvageSpecialistOuterClothing
@@ -122,7 +105,7 @@
 - type: roleLoadout
   id: JobMailTech
   groups:
-  - GroupTankHarness
+  - GroupTankHarness # for Vox
   - MailTechnicianHead
   - MailTechnicianJumpsuit
   - MailTechnicianBackpack
@@ -140,6 +123,25 @@
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
+  id: JobSalvageLead
+  groups:
+  - GroupTankHarness # for Vox
+  - SalvageSpecialistBackpack
+  - SalvageLeadJumpsuit
+  - SalvageLeadNeck
+  - SalvageSpecialistOuterClothing
+  - SalvageSpecialistShoes
+  - SalvageLeadPDA
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathTool
+
+# Security
+- type: roleLoadout
   id: JobBrigmedic
   groups:
   - BrigmedicHead
@@ -156,7 +158,7 @@
   - SecurityShoes
   - SecurityNonLethalWeapon
   - SecuritySidearm
-  - SurvivalSecurity
+  - SurvivalExtended
   - Trinkets
   - Scarves
   - Pins
@@ -168,6 +170,7 @@
   id: JobDutyOfficer
   groups:
   - DutyOfficerHead
+  - SecurityMask
   - DutyOfficerJumpsuit
   - SecurityBackpack
   - SecurityEyewear
@@ -177,7 +180,7 @@
   - SecurityShoes
   - SecurityGloves
   - SecurityNonLethalWeapon
-  - SurvivalSecurity
+  - SurvivalExtended
   - Trinkets
   - Scarves
   - Pins
@@ -185,28 +188,51 @@
   - SecurityJobTrinkets
   - GroupSpeciesBreathToolSecurity
 
+# Science
 - type: roleLoadout
-  id: JobSalvageLead
+  id: JobRoboticist
   groups:
-    - GroupTankHarness
-    - SalvageSpecialistBackpack
-    - SalvageLeadJumpsuit
-    - SalvageLeadNeck
-    - SalvageSpecialistOuterClothing
-    - SalvageSpecialistShoes
-    - SalvageLeadPDA
-    - Glasses
-    - Survival
-    - Trinkets
-    - Scarves
-    - Pins
-    - Pens
-    - GroupSpeciesBreathTool
+  - GroupTankHarness # for Vox
+  - RoboticistHead
+  - RoboticistGoggles
+  - RoboticistJumpsuit
+  - RoboticistGloves
+  - RoboticistOuterClothing
+  - RoboticistBackpack
+  - RoboticistShoes
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathTool
 
+# Medical
+- type: roleLoadout
+  id: JobSurgeon
+  groups:
+  - GroupTankHarness # for Vox
+  - MedicalDoctorHead
+  - MedicalMask
+  - MedicalDoctorJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - MedicalDoctorOuterClothing
+  - MedicalShoes
+  - MedicalDoctorPDA
+  - MedicalEyewear
+  - SurvivalMedical
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathToolMedical
+
+# Civilians
 - type: roleLoadout
   id: JobPerformer
   groups:
-  - GroupTankHarness
+  - GroupTankHarness # for Vox
   - PerformerHead
   - PerformerJumpsuit
   - CommonBackpack
@@ -224,6 +250,7 @@
 - type: roleLoadout
   id: JobZookeeper
   groups:
+  - GroupTankHarness # for Vox
   - CommonBackpack
   - CivilianShoes
   - Glasses
@@ -238,6 +265,7 @@
 - type: roleLoadout
   id: JobBoxer
   groups:
+  - GroupTankHarness # for Vox
   - BoxerJumpsuit
   - BoxerGloves
   - CommonBackpack
@@ -273,14 +301,57 @@
   - Scarves
   - Pins
 
+# Antag loadouts (Only has species stuff right now)
 - type: roleLoadout
-  id: JobNanotrasenCareerTrainer
+  id: AntagNukeops
   groups:
-  - NanotrasenCareerTrainerJumpsuit
-  - NanotrasenCareerTrainerHat
-  - NanotrasenCareerTrainerEyewear
-  - NanotrasenCareerTrainerShoes
-  - CommonBackpack
-  - Trinkets
-  - Survival
+  - ProtogenCybernetics
+  - SurvivalSyndicate
   - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
+
+- type: roleLoadout
+  id: AntagNukeopsCommander
+  groups:
+  - ProtogenCybernetics
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
+
+- type: roleLoadout
+  id: AntagNukeopsMedic
+  groups:
+  - ProtogenCybernetics
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
+
+- type: roleLoadout
+  id: AntagSpaceNinja
+  groups:
+  - ProtogenCybernetics
+  - GroupEVATank
+
+- type: roleLoadout
+  id: AntagWizard
+  groups:
+  - ProtogenCybernetics
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: AntagWizardDuelist
+  groups:
+  - ProtogenCybernetics
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+# Wizard duelist from Moff Station. Placed here instead of in Moff's files since they're not a free agent here.
+- type: roleLoadout
+  id: RoleSurvivalWizardDuelist
+  groups:
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness

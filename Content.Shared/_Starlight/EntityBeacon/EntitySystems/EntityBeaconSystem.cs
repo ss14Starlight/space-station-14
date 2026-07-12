@@ -2,7 +2,6 @@ using System.Numerics;
 using System.Linq;
 using Content.Shared._Starlight.EntityBeacon.Components;
 using Content.Shared.Maps;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
 using Robust.Shared.Map;
@@ -12,15 +11,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.EntityBeacon.EntitySystems;
 
-public sealed class EntityBeaconSystem : EntitySystem
+public sealed partial class EntityBeaconSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly ITileDefinitionManager _tiledef = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private TileSystem _tile = default!;
+    [Dependency] private ITileDefinitionManager _tiledef = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     public override void Update(float frameTime)
     {
@@ -51,9 +50,9 @@ public sealed class EntityBeaconSystem : EntitySystem
                 if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
                     return;
 
-                var enumerator = new FreeSpaceEnumerator(_map, _turf, true, true, null, xform.GridUid.Value, grid, 
+                var enumerator = new FreeSpaceEnumerator(_map, _turf, true, true, null, xform.GridUid.Value, grid,
                     new Box2(centerCoords.Position + new Vector2(-component.Range, -component.Range), centerCoords.Position + new Vector2(component.Range, component.Range)), true);
-                
+
                 while (enumerator.MoveNext(out var coordinates))
                 {
                     var entities = _lookup.GetEntitiesIntersecting(coordinates);

@@ -7,18 +7,26 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using Content.Shared._Starlight.Spider.Events; // Starlight-edit
-using Content.Shared.Weapons.Melee.Events; // Starlight-edit
+
+#region Starlight
+using Content.Shared._Starlight.Spider.Events;
+using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Containers;
+using System.Diagnostics.CodeAnalysis;
+#endregion
 
 namespace Content.Server.Spider;
 
-public sealed class SpiderSystem : SharedSpiderSystem
+public sealed partial class SpiderSystem : SharedSpiderSystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    //[Dependency] private readonly TurfSystem _turf = default!; // Starlight-removed - we dropped the one use of this system
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!; // Starlight-edit
+    [Dependency] private PopupSystem _popup = default!;
+    //[Dependency] private TurfSystem _turf = default!; // Starlight-removed - we dropped the one use of this system
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    #region Starlight
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    #endregion
 
     /// <summary>
     ///     A recycled hashset used to check turfs for spiderwebs.
@@ -69,6 +77,14 @@ public sealed class SpiderSystem : SharedSpiderSystem
         if (args.Handled)
             return;
 
+        // Starlight-start
+        if (_container.IsEntityInContainer(uid))
+        {
+            _popup.PopupEntity(Loc.GetString("spider-web-action-incontainer"), args.Performer, args.Performer);
+            return;
+        }
+        // Starlight-end
+
         var transform = Transform(uid);
 
         if (transform.GridUid == null)
@@ -94,12 +110,25 @@ public sealed class SpiderSystem : SharedSpiderSystem
     {
         var result = false;
 
+        // Starlight-edit
+        var shouldRunEvent = true;
+
         // Spawn web in center
-        if (!IsTileBlockedByWeb(coords))
+        if (!IsTileBlockedByWeb(coords, out var web))
         {
             Spawn(ent.Comp.WebPrototype, coords);
             result = true;
         }
+        // Starlight-start
+        else if (ent.Comp.ReplacementAllowed)
+        {
+            QueueDel(web);
+            Spawn(ent.Comp.WebPrototype, coords);
+            // Don't run spawn event because it's replacement. So we don't add it to progress in evolution system. If you reading this and anyway want to process replacement - create another event and raise it if it replaces web.
+            shouldRunEvent = false;
+            result = true;
+        }
+        // Starlight-end
 
         // Starlight-start: we spawn only one web in center
         if (!ent.Comp.OneWebSpawn)
@@ -111,17 +140,27 @@ public sealed class SpiderSystem : SharedSpiderSystem
                 var direction = (DirectionFlag)(1 << i);
                 var outerSpawnCoordinates = coords.Offset(direction.AsDir().ToVec());
 
-                if (IsTileBlockedByWeb(outerSpawnCoordinates))
-                    continue;
-
-                Spawn(ent.Comp.WebPrototype, outerSpawnCoordinates);
-                result = true;
+                if (IsTileBlockedByWeb(outerSpawnCoordinates, out var web1))
+                {
+                    if (ent.Comp.ReplacementAllowed)
+                    {
+                        QueueDel(web1);
+                        Spawn(ent.Comp.WebPrototype, outerSpawnCoordinates);
+                        shouldRunEvent = false;
+                        result = true;
+                    }
+                }
+                else
+                {
+                    Spawn(ent.Comp.WebPrototype, outerSpawnCoordinates);
+                    result = true;
+                }
             }
         }
         // Starlight-end
 
         // Starlight-start
-        if (result)
+        if (result && shouldRunEvent)
         {
             var ev = new SpiderWebSpawnedEvent();
             RaiseLocalEvent(ent.Owner, ev);
@@ -131,15 +170,21 @@ public sealed class SpiderSystem : SharedSpiderSystem
         return result;
     }
 
-    private bool IsTileBlockedByWeb(EntityCoordinates coords)
+    #region Starlight
+    private bool IsTileBlockedByWeb(EntityCoordinates coords, [NotNullWhen(true)] out EntityUid? web)
     {
+        web = null;
         _webs.Clear();
-        _webs.UnionWith(_lookup.GetEntitiesIntersecting(coords)); // Starlight-edit
+        _webs.UnionWith(_lookup.GetEntitiesIntersecting(coords));
         foreach (var entity in _webs)
         {
             if (HasComp<SpiderWebObjectComponent>(entity))
+            {
+                web = entity;
                 return true;
+            }
         }
         return false;
     }
+    #endregion
 }

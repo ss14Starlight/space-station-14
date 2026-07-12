@@ -55,6 +55,8 @@
         type: SolarControlConsoleBoundUserInterface
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
+      enum.SecureCommandTerminalUiKey.Key: # STARLIGHT
+        type: SecureCommandTerminalBui
       enum.RadarConsoleUiKey.Key:
         type: RadarConsoleBoundUserInterface
       enum.CargoConsoleUiKey.Orders:
@@ -70,22 +72,12 @@
         type: GeneralStationRecordConsoleBoundUserInterface
   - type: IntrinsicUI
     uis:
-      enum.SolarControlConsoleUiKey.Key:
-        toggleAction: ActionAGhostShowSolar
       enum.CommunicationsConsoleUiKey.Key:
         toggleAction: ActionAGhostShowCommunications
       enum.RadarConsoleUiKey.Key:
         toggleAction: ActionAGhostShowRadar
-      enum.CargoConsoleUiKey.Orders:
-        toggleAction: ActionAGhostShowCargo
       enum.CrewMonitoringUIKey.Key:
         toggleAction: ActionAGhostShowCrewMonitoring
-      # Cosmatic Drift Record System-start
-      enum.CharacterRecordConsoleKey.Key:
-        toggleAction: ActionAGhostShowCharacterRecords
-      # Cosmatic Drift Record System-end
-      enum.GeneralStationRecordConsoleKey.Key:
-        toggleAction: ActionAGhostShowStationRecords
   - type: SolarControlConsole # look ma i AM the computer!
   - type: CommunicationsConsole
     title: comms-console-announcement-title-centcom
@@ -93,6 +85,8 @@
     delay: 10
     initialDelay: 0
     global: true
+  - type: SecureCommandTerminalConsole
+    admin: true
   - type: RadarConsole
     followEntity: true
   - type: CargoOrderConsole
@@ -119,6 +113,27 @@
   - type: SolutionScanner
   - type: IgnoreUIRange
   - type: ShowAntagIcons
+  - type: AdminGhostHud # Starlight BEGIN
+  - type: ShowCriminalRecordIcons
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowSyndicateIcons
+  - type: ShowHealthBars
+    damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - IPC
+      - Hybrid
+  - type: ShowHealthIcons
+    damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - IPC
+      - Hybrid
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons # Starlight END
   - type: ShowContrabandDetails
   - type: Inventory
     templateId: aghost
@@ -127,6 +142,7 @@
   - type: BypassInteractionChecks
   - type: ExplosionResistance
     damageCoefficient: 0
+  - type: AdminGhost # Starlight
 
 - type: entity
   abstract: true

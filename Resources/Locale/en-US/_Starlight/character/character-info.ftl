@@ -9,3 +9,5 @@ character-info-ic = IC Info
 character-info-ooc = OOC Info
 character-info-objectives = Overview
 character-info-background = Background
+character-info-background-label = Background:
+character-info-background-none = No background.

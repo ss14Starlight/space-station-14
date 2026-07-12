@@ -9,17 +9,20 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
+#region Starlight
+using Content.Shared._Starlight.Abstract;
+#endregion
 
 namespace Content.Shared.Abilities.Goliath;
 
-public sealed class GoliathTentacleSystem : DelayableEntitySystem
+public sealed partial class GoliathTentacleSystem : DelayableEntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
     protected override float Threshold { get; set; } = 0.30f;
 
     /// <inheritdoc/>
@@ -51,6 +54,9 @@ public sealed class GoliathTentacleSystem : DelayableEntitySystem
             return;
         void action(EntityCoordinates pos)
         {
+            if (TerminatingOrDeleted(grid) || TerminatingOrDeleted(pos.EntityId))
+                return;
+
             if (!_map.TryGetTileRef(grid, gridComp, pos, out var tileRef) ||
                 _turf.IsSpace(tileRef) ||
                 _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))

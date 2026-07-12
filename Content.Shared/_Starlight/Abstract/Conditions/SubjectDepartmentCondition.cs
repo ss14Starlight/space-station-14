@@ -1,21 +1,16 @@
 using System.Linq;
-using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Mind;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
-using Content.Shared.Roles.Jobs;
-using Content.Shared.Store;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
 
 namespace Content.Shared._Starlight.Abstract.Conditions;
 
 public sealed partial class SubjectDepartmentCondition : BaseCondition
 {
-    [Dependency] public readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] public IPrototypeManager PrototypeManager = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
 
     [DataField]
     public HashSet<ProtoId<DepartmentPrototype>>? Whitelist;

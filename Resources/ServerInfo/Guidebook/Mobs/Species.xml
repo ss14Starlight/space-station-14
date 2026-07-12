@@ -3,29 +3,34 @@
 
   NanoTrasen employs a variety of sapient species.
 
+<!-- Starlight start, reorganizing all of this alphabetically-->
   <Box>
-  <GuideEntityEmbed Entity="MobElf" Caption="Aelithii"/>
-  <GuideEntityEmbed Entity="MobArachnid" Caption="Arachnid"/>
-  <GuideEntityEmbed Entity="MobCyclorite" Caption="Cyclorite"/>
-  <GuideEntityEmbed Entity="MobDiona" Caption="Diona"/>
-  <GuideEntityEmbed Entity="MobDwarf" Caption="Dwarf"/>
-  <GuideEntityEmbed Entity="MobHuman" Caption="Human"/>
+  <GuideEntityEmbed Entity="AppearanceElf" Caption="Aelithii"/>
+  <GuideEntityEmbed Entity="AppearanceArachnid" Caption="Arachnid"/>
+  <GuideEntityEmbed Entity="AppearanceAvali" Caption="Avali"/>
+  <GuideEntityEmbed Entity="AppearanceCyclorite" Caption="Cyclorite"/>
+  <GuideEntityEmbed Entity="AppearanceDiona" Caption="Diona"/>
+  <GuideEntityEmbed Entity="AppearanceDwarf" Caption="Dwarf"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="MobMoth" Caption="Moth Person"/>
-  <GuideEntityEmbed Entity="MobReptilian" Caption="Reptilian"/>
-  <GuideEntityEmbed Entity="MobSlimePerson" Caption="Laspi"/>
-  <GuideEntityEmbed Entity="MobVox" Caption="Vox"/>
-  <GuideEntityEmbed Entity="MobVulpkanin" Caption="Vulpkanin"/>
-  <GuideEntityEmbed Entity="MobCyclorite" Caption="Cyclorite"/>
+  <GuideEntityEmbed Entity="AppearanceFelionoid" Caption="Felionoid"/>
+  <GuideEntityEmbed Entity="AppearanceHuman" Caption="Human"/>
+  <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>
+  <GuideEntityEmbed Entity="AppearanceSlimePerson" Caption="Laspi"/>
+  <GuideEntityEmbed Entity="AppearanceMoth" Caption="Moth Person"/>
+  <GuideEntityEmbed Entity="AppearanceResomi" Caption="Resomi"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="MobThaven" Caption="Thaven"/>
-  <GuideEntityEmbed Entity="MobResomi" Caption="Resomi"/>
-  <GuideEntityEmbed Entity="MobFelionoid" Caption="Felionoid"/>
-  <GuideEntityEmbed Entity="MobAvali" Caption="Avali"/>
-  <GuideEntityEmbed Entity="MobShadekin" Caption="Shadekin"/>
-  <GuideEntityEmbed Entity="MobLagomorph" Caption="Lagomorph"/>
+  <GuideEntityEmbed Entity="AppearanceReptilian" Caption="Reptilian"/>
+  <GuideEntityEmbed Entity="AppearanceRodentia" Caption="Rodentia"/>
+  <GuideEntityEmbed Entity="AppearanceShadekin" Caption="Shadekin"/>
+  <GuideEntityEmbed Entity="AppearanceThaven" Caption="Thaven"/>
+  <GuideEntityEmbed Entity="AppearanceVox" Caption="Vox"/>
+  <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption="Vulpkanin"/>
   </Box>
-
+  <Box>
+  <GuideEntityEmbed Entity="AppearanceProtogen" Caption="Protogen"/> <!--FH-->
+  <GuideEntityEmbed Entity="AppearanceIPC" Caption="IPC"/> <!--FH-->
+  </Box>
+<!-- Starlight end, reorganizing all of this alphabetically-->
 </Document>

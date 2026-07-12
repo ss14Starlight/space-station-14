@@ -25,21 +25,21 @@ using Robust.Shared.Timing;
 namespace Content.Server._TP.Kitchen.Systems;
 
 
-public sealed class DeepFryerSystem : EntitySystem
+public sealed partial class DeepFryerSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -73,7 +73,7 @@ public sealed class DeepFryerSystem : EntitySystem
             }
         }
     }
-	
+
 
     /// <summary>
     ///     AfterInteractUsing event for the deep fryer.
@@ -279,7 +279,7 @@ public sealed class DeepFryerSystem : EntitySystem
             // If the fryer is enabled and powered, play the looping frying sound and update visuals.
 			if (!_power.IsPowered(uid))
 				//sets active state to off visusally when power is removed, also removed continue; that causing the visual active state to be stuck
-				_appearance.SetData(uid, DeepFryerVisuals.Active, false); 
+				_appearance.SetData(uid, DeepFryerVisuals.Active, false);
 
             if (!deepFryerComp.IsEnabled)
                 continue;
@@ -381,7 +381,7 @@ public sealed class DeepFryerSystem : EntitySystem
         // Once removed, we spawn the recipe result and insert it into the container. Seamless!
         _container.Remove(friedEntUid, container);
         QueueDel(friedEntUid);
-		
+
 		//consume oil per fry for food
 		if (_solutionContainer.TryGetSolution(fryerEntUid, deepFryerComp.SolutionContainerId, out var solutionEnt, out _))
 		{
@@ -469,7 +469,7 @@ public sealed class DeepFryerSystem : EntitySystem
             _metaData.SetEntityName(friedEntUid, itemMeta.EntityName.Insert(0, "lightly-fried "));
             deepFriedComp.CurrentFriedLevel = SharedDeepFriedComponent.FriedLevel.LightlyFried;
         }
-		
+
 		//consumes fry oil per fry for nonfood
 		if (_solutionContainer.TryGetSolution(fryerEntUid, deepFryerComp.SolutionContainerId, out var solutionEnt, out _))
 		{

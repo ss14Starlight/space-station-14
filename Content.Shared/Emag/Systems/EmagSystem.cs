@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.GameTicking.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
@@ -9,6 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Serialization;
+using PreventEorgComponent = Content.Shared._Starlight.EndOfRoundGriefing.Components.PreventEorgComponent;
 
 namespace Content.Shared.Emag.Systems;
 
@@ -18,13 +20,13 @@ namespace Content.Shared.Emag.Systems;
 /// 3. Have some check for if this actually needs to be emagged or is already emagged (to stop charge waste)
 /// 4. Past the check, add all the effects you desire and HANDLE THE EVENT ARGUMENT so a charge is spent
 /// 5. Optionally, set Repeatable on the event to true if you don't want the emagged component to be added
-public sealed class EmagSystem : EntitySystem
+public sealed partial class EmagSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedChargesSystem _sharedCharges = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -61,6 +63,12 @@ public sealed class EmagSystem : EntitySystem
         if (_tag.HasTag(target, ent.Comp.EmagImmuneTag))
             return false;
 
+        if (HasComp<PreventEorgComponent>(user)) // Starlight BEGIN
+        {
+            _popup.PopupClient(Loc.GetString("eorg-action"), user, PopupType.LargeCaution);
+            return false;
+        } // Starlight END
+
         Entity<LimitedChargesComponent?> chargesEnt = ent.Owner;
         if (_sharedCharges.IsEmpty(chargesEnt))
         {
@@ -89,7 +97,7 @@ public sealed class EmagSystem : EntitySystem
         EnsureComp<EmaggedComponent>(target, out var emaggedComp);
         emaggedComp.OwningFaction = ent.Comp.OwningFaction;
         Dirty(target, emaggedComp);
-        
+
         if (!emaggedEvent.Repeatable)
         {
             emaggedComp.EmagType |= typeToUse;

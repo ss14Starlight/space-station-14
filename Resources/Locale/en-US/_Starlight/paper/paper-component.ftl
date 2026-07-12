@@ -10,6 +10,7 @@ paper-component-examine-detail-signed-by = {CAPITALIZE(THE($paper))} {CONJUGATE-
 # Form and signature buttons
 paper-form-fill-button = Fill
 paper-signature-sign-button = Sign
+paper-datetime-button = Date & Time
 paper-form-dialog-ok = OK
 paper-form-dialog-cancel = Cancel
 paper-signature-unknown = Unknown

@@ -1,4 +1,4 @@
-status = [ 
+status = [
   "Build & Test Debug",
   "Build & Test Release",
   "Test Packaging",

@@ -36,16 +36,15 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Server.Body.Systems;
-using Content.Server.Body.Components;
 using Content.Server.Bible.Components;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Shared.Body.Components;
 using Content.Shared.Tag;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Prometheus;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics;
+using Content.Shared.Hands.Components;
 // Starlight End
 
 namespace Content.Server.Antag;
@@ -62,27 +61,27 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     #endregion
     // Starlight edit end
 
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IBanManager _ban = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly GhostRoleSystem _ghostRole = default!;
-    [Dependency] private readonly JobSystem _jobs = default!;
-    [Dependency] private readonly LoadoutSystem _loadout = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly PlayTimeTrackingSystem _playTime = default!;
-    [Dependency] private readonly IServerPreferencesManager _pref = default!;
-    [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ArrivalsSystem _arrivals = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private IBanManager _ban = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private GhostRoleSystem _ghostRole = default!;
+    [Dependency] private JobSystem _jobs = default!;
+    [Dependency] private LoadoutSystem _loadout = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private PlayTimeTrackingSystem _playTime = default!;
+    [Dependency] private IServerPreferencesManager _pref = default!;
+    [Dependency] private RoleSystem _role = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private ArrivalsSystem _arrivals = default!;
 
 #region Starlight
-    [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _appearance = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 #endregion Starlight
 
     // arbitrary random number to give late joining some mild interest.
@@ -386,10 +385,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         _adminLogger.Add(LogType.AntagSelection, $"Start trying to make {session} become the antagonist: {ToPrettyString(ent)}");
 
-        /* Starlight start - disable upstream antag check logic
-        if (checkPref && !ValidAntagPreference(session, def.PrefRoles))
+        if (checkPref && !ValidAntagPreference(session, def.PrefRoles, ent.Comp.SelectionTime))
             return false;
-        */// Starlight end of disable
 
         if (!IsSessionValid(ent, session, def) || !IsEntityValid(session?.AttachedEntity, def))
             return false;
@@ -483,6 +480,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             var playerXform = Transform(player);
             var pos = RobustRandom.Pick(getPosEv.Coordinates);
             _transform.SetMapCoordinates((player, playerXform), pos);
+
+            RefreshSpawnedAntagPhysics(player); // Starlight
         }
 
         // If we want to just do a ghost role spawner, set up data here and then return early.
@@ -577,16 +576,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         HumanoidCharacterProfile? profile = null;
 
-        if (TryComp<HumanoidAppearanceComponent>(player, out var humanoid))
-        {
-            profile = _appearance.GetBaseProfile((player, humanoid));
-        }
-
-        if (profile == null && _pref.TryGetCachedPreferences(session.UserId, out var pref))
+        if (_pref.TryGetCachedPreferences(session.UserId, out var pref))
         {
             profile = pref.Characters.Values
                 .OfType<HumanoidCharacterProfile>()
                 .FirstOrDefault(p => p.Enabled);
+        }
+
+        if (profile == null && TryComp<HumanoidAppearanceComponent>(player, out var humanoid))
+        {
+            profile = _appearance.GetBaseProfile((player, humanoid));
         }
 
         if (profile == null)
@@ -688,6 +687,12 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(entity))
             return false;
 
+        // Starlight-begin
+        // If non-humanoid, check for hands.  We don't want Hamlet as a traitor if he can't really manipulate tools.
+        if (def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<HandsComponent>(entity))
+            return false;
+        // Starlight-end
+
         // Ensure that the profile has the antag preference set, if this is a late join this hasn't been checked!
         var baseProfile = _appearance.GetBaseProfile(entity.Value);
         if (baseProfile is not null)
@@ -724,6 +729,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         args.Minds = ent.Comp.AssignedMinds;
         args.AgentName = Loc.GetString(name);
     }
+
+    // Starlight Start: Refresh physics after antag spawn relocation.
+    private void RefreshSpawnedAntagPhysics(EntityUid uid)
+    {
+        if (!TryComp(uid, out PhysicsComponent? physics))
+            return;
+
+        _physics.WakeBody(uid, body: physics);
+    }
+    // Starlight End
 }
 
 /// <summary>

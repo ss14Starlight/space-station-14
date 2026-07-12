@@ -5,7 +5,7 @@
   prototype: MobDwarf
   sprites: MobHumanSprites
   markingLimits: MobHumanMarkingLimits
-  dollPrototype: MobDwarfDummy
+  dollPrototype: AppearanceDwarf
   skinColoration: HumanToned
   customName: true # Starlight start
   minWidth: 1.25
@@ -13,4 +13,8 @@
   maxWidth: 1.5
   minHeight: 0.8
   defaultHeight: 0.8
-  maxHeight: 0.85 # Starlight end
+  maxHeight: 0.85
+  minAge: 30
+  youngAge: 50
+  oldAge: 130
+  maxAge: 200 # Starlight end

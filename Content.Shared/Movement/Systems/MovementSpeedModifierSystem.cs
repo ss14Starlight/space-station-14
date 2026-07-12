@@ -11,10 +11,10 @@ using Content.Shared._Starlight.Movement.Events;
 
 namespace Content.Shared.Movement.Systems
 {
-    public sealed class MovementSpeedModifierSystem : EntitySystem
+    public sealed partial class MovementSpeedModifierSystem : EntitySystem
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IConfigurationManager _configManager = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IConfigurationManager _configManager = default!;
 
         private float _frictionModifier;
         private float _airDamping;
@@ -116,10 +116,10 @@ namespace Content.Shared.Movement.Systems
 
             if (_timing.ApplyingState)
                 return;
-            
+
             var ev = new RefreshMovementSpeedModifiersEvent();
             RaiseLocalEvent(uid, ev);
-            
+
             if (MathHelper.CloseTo(ev.WalkSpeedModifier, move.WalkSpeedModifier) &&
                 MathHelper.CloseTo(ev.SprintSpeedModifier, move.SprintSpeedModifier))
                 return;

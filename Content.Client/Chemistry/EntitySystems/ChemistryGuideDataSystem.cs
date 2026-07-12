@@ -14,9 +14,9 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.Chemistry.EntitySystems;
 
 /// <inheritdoc/>
-public sealed class ChemistryGuideDataSystem : SharedChemistryGuideDataSystem
+public sealed partial class ChemistryGuideDataSystem : SharedChemistryGuideDataSystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     private static readonly ProtoId<MixingCategoryPrototype> DefaultMixingCategory = "DummyMix";
     private static readonly ProtoId<MixingCategoryPrototype> DefaultGrindCategory = "DummyGrind";
@@ -94,7 +94,7 @@ public sealed class ChemistryGuideDataSystem : SharedChemistryGuideDataSystem
                 continue;
 
             //these bloat the hell out of blood/fat
-            if (entProto.HasComponent<BodyPartComponent>())
+            if (entProto.HasComponent<BodyPartComponent>()) // Starlight Edit: OrganComponent -> BodyPartComponent
                 continue;
 
             //these feel obvious...

@@ -10,6 +10,7 @@ using Content.Server.Polymorph.Components;
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._Starlight.Administration.Systems.Commands;
 using Robust.Shared.Audio;
+using Content.Shared._Starlight.Polymorph.Components;
 //Starlight end
 
 namespace Content.Server.Polymorph.Toolshed;
@@ -18,11 +19,11 @@ namespace Content.Server.Polymorph.Toolshed;
 ///     Polymorphs the given entity(s) into the target morph.
 /// </summary>
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
-public sealed class PolymorphCommand : ToolshedCommand
+public sealed partial class PolymorphCommand : ToolshedCommand
 {
     private PolymorphSystem? _system;
     [Dependency] private IPrototypeManager _proto = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!; // Starlight
+    [Dependency] private IComponentFactory _factory = default!; // Starlight
 
     [CommandImplementation("proto")] // Starlight-edit
     public EntityUid? Polymorph(
@@ -43,7 +44,7 @@ public sealed class PolymorphCommand : ToolshedCommand
             ProtoId<PolymorphPrototype> protoId
         )
         => input.Select(x => Polymorph(x, protoId)).Where(x => x is not null).Select(x => (EntityUid)x!);
-    
+
     //Starlight begin
     #region Single Entity
     /// <summary>
@@ -110,7 +111,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.Forced = forced;
         return uid;
     }
-    
+
     /// <summary>
     /// Set to transfer the damage from the current entity to the polymorphed entity.
     /// </summary>
@@ -121,7 +122,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.TransferDamage = transfer;
         return uid;
     }
-    
+
     /// <summary>
     /// Set to make the polymorphed entity inherit the name of the original.
     /// </summary>
@@ -132,7 +133,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.TransferName = transfer;
         return uid;
     }
-    
+
     /// <summary>
     /// Set whether to transfer things like hair, skin color, height, etc. to the polymorphed entity.
     /// </summary>
@@ -143,7 +144,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.TransferHumanoidAppearance = transfer;
         return uid;
     }
-    
+
     /// <summary>
     /// Set to determine how the entity's inventory will transfer to the polymorphed entity.
     /// </summary>
@@ -154,7 +155,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.Inventory = transferType;
         return uid;
     }
-    
+
     /// <summary>
     /// Set whether to revert the polymorph when the entity enters a critical state or not.
     /// </summary>
@@ -165,7 +166,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.RevertOnCrit = revert;
         return uid;
     }
-    
+
     /// <summary>
     /// Set whether to revert the polymorph when the entity is killed or not.
     /// </summary>
@@ -176,7 +177,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.RevertOnDeath = revert;
         return uid;
     }
-    
+
     /// <summary>
     /// Set whether to revert the polymorph when the entity is deleted or not.
     /// </summary>
@@ -187,7 +188,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.RevertOnDelete = revert;
         return uid;
     }
-    
+
     /// <summary>
     /// Set whether to revert the polymorph when the entity is eaten or not.
     /// </summary>
@@ -198,7 +199,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.RevertOnEat = revert;
         return uid;
     }
-    
+
     /// <summary>
     /// Set whether to allow repeated polymorphs or not.
     /// </summary>
@@ -209,7 +210,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.AllowRepeatedMorphs = allow;
         return uid;
     }
-    
+
     /// <summary>
     /// Set to allow the polymorph to happen even if AllowRepeatedMorphs is true.
     /// </summary>
@@ -220,7 +221,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.IgnoreAllowRepeatedMorphs = ignore;
         return uid;
     }
-    
+
     /// <summary>
     /// Set the cooldown in seconds before another polymorph can take place.
     /// </summary>
@@ -231,7 +232,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.Cooldown = TimeSpan.FromSeconds(seconds);
         return uid;
     }
-    
+
     /// <summary>
     /// Set the sound that plays when entering the polymorph.
     /// </summary>
@@ -243,7 +244,7 @@ public sealed class PolymorphCommand : ToolshedCommand
             type is SoundType.Path ? new SoundPathSpecifier(path) : new SoundCollectionSpecifier(path);
         return uid;
     }
-    
+
     /// <summary>
     /// Set the sound that plays when exiting the polymorph.
     /// </summary>
@@ -255,7 +256,7 @@ public sealed class PolymorphCommand : ToolshedCommand
             type is SoundType.Path ? new SoundPathSpecifier(path) : new SoundCollectionSpecifier(path);
         return uid;
     }
-    
+
     /// <summary>
     /// Clear the sound that plays when entering the polymorph.
     /// </summary>
@@ -266,7 +267,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.PolymorphSound = null;
         return uid;
     }
-    
+
     /// <summary>
     /// Clear the sound that plays when exiting the polymorph.
     /// </summary>
@@ -277,7 +278,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.ExitPolymorphSound = null;
         return uid;
     }
-    
+
     /// <summary>
     /// Set the popup that appears when entering the polymorph.
     /// </summary>
@@ -288,7 +289,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.PolymorphPopup = popup;
         return uid;
     }
-    
+
     /// <summary>
     /// Set the popup that appears when exiting the polymorph.
     /// </summary>
@@ -299,7 +300,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.ExitPolymorphPopup = popup;
         return uid;
     }
-    
+
     /// <summary>
     /// Clear the list of components to copy to the polymorph.
     /// </summary>
@@ -310,7 +311,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.CopiedComponents.Clear();
         return uid;
     }
-    
+
     /// <summary>
     /// Add an entry to the list of components to copy to the polymorph.
     /// </summary>
@@ -322,7 +323,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.CopiedComponents.Add(reg.Name);
         return uid;
     }
-    
+
     /// <summary>
     /// Remove an entry from the list of components to copy to the polymorph.
     /// </summary>
@@ -334,7 +335,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         config.Config.CopiedComponents.Remove(reg.Name);
         return uid;
     }
-    
+
     /// <summary>
     /// Instantly apply the polymorph and finish.
     /// </summary>
@@ -346,7 +347,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         RemComp<PolymorphSetupComponent>(uid);
         return uid;
     }
-    
+
     /// <summary>
     /// Instantly apply the polymorph and finish, returning the new entity.
     /// </summary>
@@ -406,7 +407,7 @@ public sealed class PolymorphCommand : ToolshedCommand
         _system.RemovePolymorphAction(protoId, (uid, comp));
         return uid;
     }
-    
+
     /// <summary>
     /// Revert to the previous x entity, if possible.
     /// </summary>
@@ -448,104 +449,104 @@ public sealed class PolymorphCommand : ToolshedCommand
         return uid;
     }
     #endregion
-    
+
     #region Multiple Entities
     [CommandImplementation("begin")]
     public IEnumerable<EntityUid> Begin([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(Begin);
-    
+
     [CommandImplementation("setproto")]
     public IEnumerable<EntityUid> SetPrototype([PipedArgument] IEnumerable<EntityUid> uid, ProtoId<EntityPrototype> proto)
         => uid.Select(x=>SetPrototype(x, proto));
-    
+
     [CommandImplementation("seteffect")]
     public IEnumerable<EntityUid> SetEffect([PipedArgument] IEnumerable<EntityUid> uid, ProtoId<EntityPrototype> proto)
         => uid.Select(x=>SetEffect(x, proto));
-    
+
     [CommandImplementation("setdelay")]
     public IEnumerable<EntityUid> SetDelay([PipedArgument] IEnumerable<EntityUid> uid, int delay)
         => uid.Select(x=>SetDelay(x, delay));
-    
+
     [CommandImplementation("setduration")]
     public IEnumerable<EntityUid> SetDuration([PipedArgument] IEnumerable<EntityUid> uid, int duration)
         => uid.Select(x=>SetDuration(x, duration));
-    
+
     [CommandImplementation("setforced")]
     public IEnumerable<EntityUid> SetForced([PipedArgument] IEnumerable<EntityUid> uid, bool forced)
         => uid.Select(x=>SetForced(x, forced));
-    
+
     [CommandImplementation("settransferdamage")]
     public IEnumerable<EntityUid> SetTransferDamage([PipedArgument] IEnumerable<EntityUid> uid, bool transfer)
         => uid.Select(x=>SetTransferDamage(x, transfer));
-    
+
     [CommandImplementation("settransfername")]
     public IEnumerable<EntityUid> SetTransferName([PipedArgument] IEnumerable<EntityUid> uid, bool transfer)
         => uid.Select(x=>SetTransferName(x, transfer));
-    
+
     [CommandImplementation("settransferappearance")]
     public IEnumerable<EntityUid> SetTransferHumanoidAppearance([PipedArgument] IEnumerable<EntityUid> uid, bool transfer)
         => uid.Select(x=>SetTransferHumanoidAppearance(x, transfer));
-    
+
     [CommandImplementation("setinventory")]
     public IEnumerable<EntityUid> SetInventory([PipedArgument] IEnumerable<EntityUid> uid, PolymorphInventoryChange transferType)
         => uid.Select(x=>SetInventory(x, transferType));
-    
+
     [CommandImplementation("setrevertoncrit")]
     public IEnumerable<EntityUid> SetRevertOnCrit([PipedArgument] IEnumerable<EntityUid> uid, bool revert)
         => uid.Select(x=>SetRevertOnCrit(x, revert));
-    
+
     [CommandImplementation("setrevertondeath")]
     public IEnumerable<EntityUid> SetRevertOnDeath([PipedArgument] IEnumerable<EntityUid> uid, bool revert)
         => uid.Select(x=>SetRevertOnDeath(x, revert));
-    
+
     [CommandImplementation("setrevertondelete")]
     public IEnumerable<EntityUid> SetRevertOnDelete([PipedArgument] IEnumerable<EntityUid> uid, bool revert)
         => uid.Select(x=>SetRevertOnDelete(x, revert));
-    
+
     [CommandImplementation("setrevertoneat")]
     public IEnumerable<EntityUid> SetRevertOnEat([PipedArgument] IEnumerable<EntityUid> uid, bool revert)
         => uid.Select(x=>SetRevertOnEat(x, revert));
-    
+
     [CommandImplementation("setallowrepeats")]
     public IEnumerable<EntityUid> SetAllowRepeats([PipedArgument] IEnumerable<EntityUid> uid, bool allow)
         => uid.Select(x=>SetAllowRepeats(x, allow));
-    
+
     [CommandImplementation("setignoreallowrepeats")]
     public IEnumerable<EntityUid> SetIgnoreAllowRepeats([PipedArgument] IEnumerable<EntityUid> uid, bool ignore)
         => uid.Select(x=>SetIgnoreAllowRepeats(x, ignore));
-    
+
     [CommandImplementation("setcooldown")]
     public IEnumerable<EntityUid> SetCooldown([PipedArgument] IEnumerable<EntityUid> uid, float seconds)
         => uid.Select(x=>SetCooldown(x, seconds));
-    
+
     [CommandImplementation("setentersound")]
     public IEnumerable<EntityUid> SetEnterSound([PipedArgument] IEnumerable<EntityUid> uid, SoundType type, string path)
         => uid.Select(x=>SetEnterSound(x, type, path));
-    
+
     [CommandImplementation("setexitsound")]
     public IEnumerable<EntityUid> SetExitSound([PipedArgument] IEnumerable<EntityUid> uid, SoundType type, string path)
         => uid.Select(x=>SetExitSound(x, type, path));
-    
+
     [CommandImplementation("clearentersound")]
     public IEnumerable<EntityUid> ClearEnterSound([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(ClearEnterSound);
-    
+
     [CommandImplementation("clearexitsound")]
     public IEnumerable<EntityUid> ClearExitSound([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(ClearExitSound);
-    
+
     [CommandImplementation("setenterpopup")]
     public IEnumerable<EntityUid> SetEnterPopup([PipedArgument] IEnumerable<EntityUid> uid, string? popup)
         => uid.Select(x=>SetEnterPopup(x, popup));
-    
+
     [CommandImplementation("setexitpopup")]
     public IEnumerable<EntityUid> SetExitPopup([PipedArgument] IEnumerable<EntityUid> uid, string? popup)
         => uid.Select(x=>SetExitPopup(x, popup));
-    
+
     [CommandImplementation("clearcopycomp")]
     public IEnumerable<EntityUid> ClearCopiedComponents([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(ClearCopiedComponents);
-    
+
     [CommandImplementation("addcopycomp")]
     public IEnumerable<EntityUid> AddCopiedComponent([PipedArgument] IEnumerable<EntityUid> uid, string componentName)
         => uid.Select(x=>AddCopiedComponent(x, componentName));
@@ -553,44 +554,44 @@ public sealed class PolymorphCommand : ToolshedCommand
     [CommandImplementation("rmcopycomp")]
     public IEnumerable<EntityUid> RemoveCopiedComponent([PipedArgument] IEnumerable<EntityUid> uid, string componentName)
         => uid.Select(x => RemoveCopiedComponent(x, componentName));
-    
+
     [CommandImplementation("apply")]
     public IEnumerable<EntityUid> Apply([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(Apply);
-    
+
     [CommandImplementation("applyget")]
     public IEnumerable<EntityUid> ApplyGet([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(ApplyGet);
-    
+
     [CommandImplementation("addaction")]
     public IEnumerable<EntityUid> AddAction([PipedArgument] IEnumerable<EntityUid> uid, string instanceId)
         => uid.Select(x=>AddAction(x, instanceId));
-    
+
     [CommandImplementation("addactionproto")]
     public IEnumerable<EntityUid> AddActionPrototype([PipedArgument] IEnumerable<EntityUid> uid, ProtoId<PolymorphPrototype> protoId)
         => uid.Select(x=>AddActionPrototype(x, protoId));
-    
+
     [CommandImplementation("rmaction")]
     public IEnumerable<EntityUid> RemoveAction([PipedArgument] IEnumerable<EntityUid> uid, string instanceId)
         => uid.Select(x=>RemoveAction(x, instanceId));
-    
+
     [CommandImplementation("rmactionproto")]
     public IEnumerable<EntityUid> RemoveActionPrototype([PipedArgument] IEnumerable<EntityUid> uid, ProtoId<PolymorphPrototype> protoId)
         => uid.Select(x=>RemoveActionPrototype(x, protoId));
-    
+
     [CommandImplementation("revert")]
     public IEnumerable<EntityUid> Revert([PipedArgument] IEnumerable<EntityUid> uid, int depth)
         => uid.Select(x=>Revert(x, depth));
-    
+
     [CommandImplementation("reset")]
     public IEnumerable<EntityUid> Reset([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(Reset);
-    
+
     [CommandImplementation("finish")]
     public IEnumerable<EntityUid> Finish([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(Finish);
     #endregion
-    
+
     /// <summary>
     /// Ensures both that a <see cref="PolymorphSetupComponent"/> is on the component, and that the reference to <see cref="PolymorphSystem"/> is valid.
     /// </summary>

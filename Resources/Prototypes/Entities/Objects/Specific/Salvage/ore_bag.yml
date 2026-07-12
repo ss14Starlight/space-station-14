@@ -7,8 +7,8 @@
   - type: ItemToggle  # Starlight Edit - added toggle
     onUse: false
     onActivate: false  # Starlight Edit - move action to altVerb
-    verbToggleOn: "Activate Magnet"
-    verbToggleOff: "Deactivate Magnet"
+    verbToggleOn: verb-toggle-magnet-activate
+    verbToggleOff: verb-toggle-magnet-deactivate
     # Starlight Edit Start - Add activation sounds
     soundActivate:
       collection: sparks
@@ -21,7 +21,7 @@
   - type: AltUseToggle
     # Starlight Edit End
   - type: ComponentToggler
-    components: 
+    components:
     - type: MagnetPickup
       requiresEquipping: false  # Starlight Edit - make it work even without being equipped
   - type: Sprite

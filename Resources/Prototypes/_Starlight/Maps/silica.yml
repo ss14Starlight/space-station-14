@@ -19,7 +19,7 @@
           path: /Maps/_Starlight/Shuttles/cargo_silica.yml
         - type: StationJobs
           availableJobs:
-            #service 
+            #service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]
@@ -29,6 +29,7 @@
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             Reporter: [ 1, 2 ]
+            Lawyer: [ 1, 1 ]
             ServiceWorker: [ 2, 4 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -52,15 +53,15 @@
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
-            SecurityOfficer: [ 6, 10 ]
-            Detective: [ 1, 1 ]
-            SecurityCadet: [ 2, 4 ]
+            SecurityOfficer: [ 6, 8 ]
+            SecurityCadet: [ 3, 4 ]
             Brigmedic: [ 1, 1 ]
+            Detective: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
-            MiningSpecialist: [ 2, 4 ]
+            MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 4, 6 ]
             MailTech: [ 1, 2 ]
             #civilian
@@ -76,7 +77,7 @@
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]
-            #Representives
+            #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

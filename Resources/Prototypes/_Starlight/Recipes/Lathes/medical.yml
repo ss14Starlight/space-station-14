@@ -758,11 +758,11 @@
   result: GoldenJug
   completetime: 2
   materials:
-    Gold: 50
+    Gold: 25
 
 - type: latheRecipe
   id: SilverJug
   result: SilverJug
   completetime: 2
   materials:
-    Silver: 50
+    Silver: 25

@@ -17,6 +17,13 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     }
 }
 
+// Starlight-start: Printable health reports.
+[Serializable, NetSerializable]
+public sealed class HealthAnalyzerPrintReportMessage : BoundUserInterfaceMessage
+{
+}
+// Starlight-end
+
 /// <summary>
 /// Contains the current state of a health analyzer control. Used for the health analyzer and cryo pod.
 /// </summary>
@@ -26,6 +33,7 @@ public struct HealthAnalyzerUiState
     public readonly NetEntity? TargetEntity;
     public float Temperature;
     public float BloodLevel;
+    public bool? CanPrint; // Starlight-edit: Printable health reports.
     public bool? ScanMode;
     public bool? Bleeding;
     public bool? Unrevivable;
@@ -33,11 +41,12 @@ public struct HealthAnalyzerUiState
 
     public HealthAnalyzerUiState() {}
 
-    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, List<(string ReagentId, FixedPoint2 Quantity)>? metabolizingReagents = null) // Starlight - added metabolizingReagents parameter
+    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? canPrint, bool? scanMode, bool? bleeding, bool? unrevivable, List<(string ReagentId, FixedPoint2 Quantity)>? metabolizingReagents = null) // Starlight - added metabolizingReagents parameter
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
         BloodLevel = bloodLevel;
+        CanPrint = canPrint; // Starlight-edit: Printable health reports.
         ScanMode = scanMode;
         Bleeding = bleeding;
         Unrevivable = unrevivable;

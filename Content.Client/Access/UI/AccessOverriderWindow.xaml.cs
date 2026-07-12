@@ -94,8 +94,8 @@ namespace Content.Client.Access.UI
                 foreach (string tag in state.MissingPrivilegesList)
                 {
                 // Starlight edit Start
-                    var canDisplay = state.AccessGroups?.Any(group => 
-                        protoManager.TryIndex(group, out AccessGroupPrototype? groupProto) && 
+                    var canDisplay = state.AccessGroups?.Any(group =>
+                        protoManager.TryIndex(group, out AccessGroupPrototype? groupProto) &&
                         groupProto.Tags.Contains(tag)) ?? false;
 
                     if (canDisplay && protoManager.TryIndex<AccessLevelPrototype>(tag, out var accessProto))

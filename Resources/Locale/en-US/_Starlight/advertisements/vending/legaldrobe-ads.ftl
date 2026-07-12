@@ -1,0 +1,9 @@
+advertisement-legaldrobe-1 = HOLD IT! Get the rule of law for yourself!
+advertisement-legaldrobe-2 = Go pester security until they abide by your own rules!
+advertisement-legaldrobe-3 = A new case just came in? Go get them out of jail!
+advertisement-legaldrobe-4 = I'd like to call the parrot to the stand!
+advertisement-legaldrobe-5 = Go bother the Warden with nonstop plea bargain debates.
+advertisement-legaldrobe-6 = Settle any dispute, no matter how petty!
+advertisement-legaldrobe-7 = We don't sell Magatamas.
+advertisement-legaldrobe-8 = You or a loved one hurt by NanoTrasen? Call a Lawyer!
+advertisement-legaldrobe-9 = A new trial is in session!

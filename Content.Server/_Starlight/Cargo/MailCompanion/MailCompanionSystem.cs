@@ -11,14 +11,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Cargo.MailCompanion;
 
-public sealed class MailCompanionSystem : EntitySystem
+public sealed partial class MailCompanionSystem : EntitySystem
 {
-    private static readonly TimeSpan SensorDataTimeout = TimeSpan.FromSeconds(10);
-
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
@@ -306,7 +304,7 @@ public sealed class MailCompanionSystem : EntitySystem
         if (component.LastSensorDataReceivedAt == TimeSpan.Zero)
             return;
 
-        if (component.LastSensorDataReceivedAt + SensorDataTimeout > _timing.CurTime)
+        if (component.LastSensorDataReceivedAt + component.SensorTimeout > _timing.CurTime)
             return;
 
         component.ConnectedSensors.Clear();
@@ -336,8 +334,7 @@ public sealed class MailCompanionSystem : EntitySystem
     }
 
     private string GetPopupForStatus(MailCompanionStatus status)
-    {
-        return status switch
+    => status switch
         {
             MailCompanionStatus.SensorsOff => Loc.GetString("mail-companion-popup-sensors-off"),
             MailCompanionStatus.TrackingUnavailable => Loc.GetString("mail-companion-popup-tracking-disabled"),
@@ -347,6 +344,5 @@ public sealed class MailCompanionSystem : EntitySystem
             MailCompanionStatus.DeliveryAlreadyOpened => Loc.GetString("mail-companion-popup-delivery-opened-already"),
             MailCompanionStatus.Expired => Loc.GetString("mail-companion-popup-expired"),
             _ => Loc.GetString("mail-companion-popup-recipient-unavailable"),
-        };
-    }
+    };
 }

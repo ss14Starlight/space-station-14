@@ -1,0 +1,132 @@
+
+- type: entity
+  name: MedTak paper
+  parent: Paper
+  id: PaperMedTak
+  description: A piece of paper headed by the MedTak logo. It looks expensive. For you.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Starlight/Admeme/MedTak/Objects/paper.rsi
+      state: paper
+      color: "#ffffff"
+    - sprite: _Starlight/Admeme/MedTak/Objects/paper.rsi
+      state: paper-words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#ffffff"
+      visible: false
+    - sprite: Objects/Misc/bureaucracy.rsi
+      state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: PaperVisuals
+    headerImagePath: "/Textures/_Starlight/Admeme/MedTak/Interface/Paper/paper_heading_medtak_logo.svg.96dpi.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 8.0, 16.0, 8.0, 0.0
+    maxWritableArea: 400.0, 0.0
+
+#region Papers
+# Contract
+- type: entity
+  parent: PaperMedTak
+  id: PrintedDocumentMedTakContract
+  name: MedTak Coverage Contract
+  components:
+    - type: Paper
+    - type: TextFilePaperContent
+      fileName: medtak-contract.txt
+
+# Correspondence
+- type: entity
+  parent: PaperMedTak
+  id: PrintedDocumentMedTakCorrespondence
+  name: MedTak Correspondence
+  components:
+    - type: Paper
+    - type: TextFilePaperContent
+      fileName: medtak-correspondence.txt
+
+# Invoice
+- type: entity
+  parent: PaperMedTak
+  id: PrintedDocumentMedTakInvoice
+  name: MedTak Invoice
+  components:
+    - type: Paper
+    - type: TextFilePaperContent
+      fileName: medtak-invoice.txt
+
+# Report
+- type: entity
+  parent: PaperMedTak
+  id: PrintedDocumentMedTakReport
+  name: MedTak After Action Report
+  components:
+    - type: Paper
+    - type: TextFilePaperContent
+      fileName: medtak-report.txt
+
+#region Recipes
+- type: latheRecipe
+  id: PrintedDocumentMedTakContractRecipe
+  result: PrintedDocumentMedTakContract
+  categories:
+  - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedTakCorrespondenceRecipe
+  result: PrintedDocumentMedTakCorrespondence
+  categories:
+  - Communications
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedTakInvoiceRecipe
+  result: PrintedDocumentMedTakInvoice
+  categories:
+  - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedTakReportRecipe
+  result: PrintedDocumentMedTakReport
+  categories:
+  - Reports
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedTakBlank
+  result: PaperMedTak
+  categories:
+  - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+#region Pack
+- type: latheRecipePack
+  id: MedTakDocs
+  recipes:
+  # Communications
+  - PrintedDocumentMedTakCorrespondenceRecipe
+  # Statements
+  - PrintedDocumentMedTakContractRecipe
+  - PrintedDocumentMedTakInvoiceRecipe
+  - PrintedDocumentMedTakBlank
+  # Reports
+  - PrintedDocumentMedTakReportRecipe

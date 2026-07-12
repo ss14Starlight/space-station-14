@@ -1,4 +1,4 @@
-﻿using Content.Shared.Body.Part;
+﻿using Content.Shared._Starlight.Medical.Body.Part;
 
 namespace Content.Shared._Starlight.Medical.Body;
 

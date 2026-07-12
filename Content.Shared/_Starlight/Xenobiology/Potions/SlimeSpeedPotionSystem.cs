@@ -5,19 +5,19 @@ using Content.Shared.Verbs;
 
 namespace Content.Shared._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeSpeedPotionSystem : EntitySystem
+public sealed partial class SlimeSpeedPotionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly ClothingSpeedModifierSystem _clothingSpeedModifierSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
-    
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private ClothingSpeedModifierSystem _clothingSpeedModifierSystem = default!;
+    [Dependency] private SharedPopupSystem _sharedPopupSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<SlimeSpeedPotionComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<SlimeSpeedPotionComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
     }
-    
+
     private void OnAfterInteract(Entity<SlimeSpeedPotionComponent> ent, ref AfterInteractEvent args)
     {
         if (!args.Target.HasValue || !args.CanReach) return;
@@ -41,7 +41,7 @@ public sealed class SlimeSpeedPotionSystem : EntitySystem
     {
         if (args.Target is not { Valid: true } target || !args.CanAccess)
             return;
-        
+
         var verb = new UtilityVerb()
         {
             Act = () =>

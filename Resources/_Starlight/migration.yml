@@ -37,7 +37,7 @@ NTCCBlueShieldPDA: NTNCBlueShieldPDA
 NTCCBlueShieldIDCard: NTNCBlueShieldIDCard
 
 # 2025-08-31
-PosterContrabandRealExomorph: PosterContrabandLustyExomorph
+#PosterContrabandRealExomorph: PosterContrabandHereticalExomorph # 2026-04-21 L*sty -> Heretical, have to do it this way since it's been migrated once before, reverted puritan pr
 MagazinePistol: MagazinePistolSP
 
 # 2025-09-02
@@ -54,6 +54,10 @@ CartridgeRifle: CartridgeRifleSP
 SpawnGrayXenobiologySlime: null
 CrateStarterXenobiology: null
 
+# 2026-02-04 - The great turbine rename
+Turbine: GasTurbineNormal
+TurbineSmall: GasTurbineSmall
+
 #2026-02-15
 ClothingOuterArmorSovietFlak: ClothingOuterArmorSovietPlate
 
@@ -67,4 +71,55 @@ ShuttleGunNTSFCyerxa120mm: ShuttleGunCyerxa120mm
 WeaponRevolverSnubRevolver: null
 
 #2026-03-21
-WeaponRifleLionhunter: WeaponSniperLionhunter
+#WeaponRifleLionhunter: WeaponSniperLionhunter Re-enable when Shooting 3.0 is back
+
+#2026-04-15 - Lawyer | Internal Affairs split
+DoorElectronicsLawyer: DoorElectronicsInternalAffairs
+DoorElectronicsSecurityLawyer: DoorElectronicsSecurityInternalAffairs
+AirlockLawyerLocked: AirlockInternalAffairsLocked
+AirlockLawyerGlassLocked: AirlockInternalAffairsGlassLocked
+AirlockSecurityLawyerLocked: AirlockSecurityInternalAffairsLocked
+AirlockSecurityLawyerGlassLocked: AirlockSecurityInternalAffairsGlassLocked
+AirlockMaintLawyerLocked: AirlockMaintInternalAffairsLocked
+WindoorSecureSecurityLawyerLocked: WindoorSecureSecurityInternalAffairsLocked
+LockableButtonLawyer: LockableButtonInternalAffairs
+HolopadSecurityLawyer: HolopadSecurityInternalAffairs
+
+#2026-04-17
+WeaponPistolSP8T: WeaponPistolBlueguard
+
+#2026-04-20
+ClothingBackpackSyndicateElegantRaidBundle: null
+ClothingOuterMaidArmorRaid: null
+ClothingUnderSocksMurder: null
+PlushieBBC: PlushieDarkForest
+ClothingUniformJumpsuitMimeSexyWhite: ClothingUniformJumpsuitMimeSuaveWhite
+ClothingUniformJumpsuitMimeSexyBlack: ClothingUniformJumpsuitMimeSuaveBlack
+PosterContrabandWantedMimeSexy: PosterContrabandWantedMime
+#PosterContrabandBustyBackdoorExoBabes6: null #removed migration on 2026-05-05
+
+#2026-05-05
+PosterContrabandRealExomorph: PosterContrabandBustyBackdoorExoBabes6
+
+#2026-05-23 # Removing unused insulated prototypes
+ClothingHandsCatPawsWhiteInsulated: null
+ClothingHandsCatPawsBrownInsulated: null
+ClothingHandsCatPawsBlackInsulated: null
+ClothingHandsCatPawsBlackWhiteInsulated: null
+
+#2026-06-09 - Removing the large warden locker
+LockerWardenLarge: LockerWarden
+LockerWardenLargeFilled: LockerWardenFilled
+
+#2026-06-18 - Renaming a confusingly named M1911 pulse pistol
+WeaponM1911: WeaponPulseM1911
+
+#2026-06-26 - M90GL Reworked into Lawbringer
+WeaponRifleM90GrenadeLauncher : WeaponRifleLawbringer
+
+#2026-07-03 - Migrated the M-90gl bundle to a new rifle grenade bundle
+ClothingBackpackDuffelSyndicateFilledCarbine: ClothingBackpackDuffelSyndicateFilledRifleGrenade
+
+#2026-07-09 - PR #2597 removed the ability to toggle Thrusters, meaning Thruster [Off] can never be turned on again
+ThrusterOff: Thruster
+GyroscopeOff: Gyroscope

@@ -6,15 +6,15 @@ using Content.Server.Atmos.EntitySystems;
 
 namespace Content.Server._Starlight.TicketMachine.EntitySystems;
 
-public sealed class TicketMachineSystem : SharedTicketMachineSystem
+public sealed partial class TicketMachineSystem : SharedTicketMachineSystem
 {
-    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiverSystem = default!;
-    [Dependency] private readonly FlammableSystem _flammableSystem = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiverSystem = default!;
+    [Dependency] private FlammableSystem _flammableSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-    
+
         //Device linking
         SubscribeLocalEvent<TicketMachineComponent, SignalReceivedEvent>(OnSignalReceived);
     }
@@ -23,7 +23,7 @@ public sealed class TicketMachineSystem : SharedTicketMachineSystem
 
     private void OnSignalReceived(EntityUid uid, TicketMachineComponent component, ref SignalReceivedEvent args)
     {
-        if (args.Port == component.NextNumberPort && _powerReceiverSystem.IsPowered(uid) 
+        if (args.Port == component.NextNumberPort && _powerReceiverSystem.IsPowered(uid)
             && component.displayNumber < component.lastIssuedNumber) // You can't go higher than the number of issued tickets
         {
             component.displayNumber++;
@@ -41,10 +41,10 @@ public sealed class TicketMachineSystem : SharedTicketMachineSystem
                     continue;
                 }
 
-                if (TryComp<TicketComponent>(ticket, out var ticketComp) 
+                if (TryComp<TicketComponent>(ticket, out var ticketComp)
                     && ticketComp.Number > component.displayNumber) // Only burn tickets which are already served
                     continue;
-                
+
                 _flammableSystem.Ignite(ticket, uid);
                 burnedTickets.Add(ticket);
             }

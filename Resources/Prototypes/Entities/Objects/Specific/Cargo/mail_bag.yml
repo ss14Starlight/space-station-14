@@ -34,11 +34,11 @@
     - ScurretWearable
     - CorgiWearable
     # Starlight Edit Start - added toggle to activate magnet
-  - type: ItemToggle 
+  - type: ItemToggle
     onUse: false
     onActivate: false
-    verbToggleOn: "Activate Magnet"
-    verbToggleOff: "Deactivate Magnet"
+    verbToggleOn: verb-toggle-magnet-activate
+    verbToggleOff: verb-toggle-magnet-deactivate
     soundActivate:
       collection: sparks
       params:
@@ -50,7 +50,7 @@
   - type: AltUseToggle
   # Starlight Edit End
   - type: ComponentToggler
-    components: 
+    components:
     - type: MagnetPickup
       requiresEquipping: false # Starlight Edit - make it work even without being equipped
   # Starlight Edit Start - added visual indicator for magnet

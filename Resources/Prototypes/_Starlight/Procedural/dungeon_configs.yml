@@ -101,7 +101,7 @@
     - SpaceShip
     - Tall
 
-#========================================================================   
+#========================================================================
 
 # type: dungeonConfig
 # id: NoWallArenaPlanetBase
@@ -109,7 +109,7 @@
 # - !type:PrefabDunGen
 #   presets:
 #   - Arena
-#   
+#
 # - !type:CorridorDunGen
 #   width: 1
 #
@@ -144,7 +144,7 @@
 #  - !type:PrototypeDunGen
 #    proto: NoWallArenaPlanetBase
 
-#========================================================================   
+#========================================================================
 - type: dungeonConfig
   id: SovietDungeon
   layers:
@@ -241,7 +241,7 @@
     - id: PosterLegitWorkForAFuture
 
 
-#========================================================================   
+#========================================================================
 - type: dungeonConfig
   id: SovietDungeonWeh
   layers:

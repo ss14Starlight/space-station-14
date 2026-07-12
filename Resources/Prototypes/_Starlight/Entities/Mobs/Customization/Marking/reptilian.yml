@@ -2,7 +2,7 @@
   id: LizardChestDragonwings
   bodyPart: Tail
   markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, ProtoReptilian, Protogen] # FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/reptilian.rsi
     state: body_dragonwings
@@ -13,7 +13,7 @@
   id: SnakeLargeTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, ProtoReptilian, Protogen]
   sprites:
   - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
     state: snake_large
@@ -24,7 +24,7 @@
   id: SnakeLargeTailAnimated
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, ProtoReptilian, Protogen]
   sprites:
   - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
     state: snake_large_wagging
@@ -36,7 +36,7 @@
   id: LizardSnoutEasternDragon
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, ProtoReptilian, Protogen]
   sprites:
   - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
     state: eastern_dragon
@@ -47,7 +47,7 @@
   id: LizardSnoutEasternDragonUsiki
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, ProtoReptilian, Protogen]
   sprites:
   - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
     state: eastern_dragon
@@ -60,7 +60,7 @@
   id: LizardHeadGuilmon
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, ProtoReptilian, Protogen]
   sprites:
   - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
     state: guilmon

@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using Content.Server.CartridgeLoader;
 using Content.Server._CD.CartridgeLoader.Cartridges;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Station.Systems;
 using Robust.Server.Player;
 using Content.Shared._CD.NanoChat;
@@ -12,19 +11,14 @@ using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.PDA;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Localization;
 using Content.Shared.Humanoid;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Roles.Jobs;
-using Content.Server.Station.Components;
 using Content.Server.Mind;
-using Content.Shared.Preferences;
-using Robust.Shared.GameObjects;
 using Content.Shared._CD.CartridgeLoader.Cartridges;
 using Content.Shared._Starlight.Time;
 using Robust.Server.Containers;
@@ -34,27 +28,27 @@ namespace Content.Server._Starlight.GameTicking.Rules;
 /// <summary>
 /// Game rule that periodically sends spam advertisements via NanoChat.
 /// </summary>
-public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComponent>
+public sealed partial class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly SharedNanoChatSystem _nanoChat = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly TimeSystem _timeSystem = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    
-    private static readonly Regex RandomNumberPattern = new(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled);
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private SharedNanoChatSystem _nanoChat = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private SharedTimeSystem _timeSystem = default!;
+    [Dependency] private ContainerSystem _container = default!;
+
+    private static readonly Regex _randomNumberPattern = new(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled);
 
     protected override void Started(EntityUid uid, NanoChatSpamRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
-        
+
         // Schedule first spam
         component.NextSpamTime = _random.NextFloat(component.MinDelay, component.MaxDelay);
     }
@@ -85,7 +79,7 @@ public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComp
         // Get all PDA users with NanoChat cards
         var potentialRecipients = new List<Entity<NanoChatCardComponent>>();
         var cardQuery = EntityQueryEnumerator<NanoChatCardComponent, IdCardComponent>();
-        
+
         while (cardQuery.MoveNext(out var cardUid, out var card, out _))
         {
             // Skip if no number assigned
@@ -187,7 +181,7 @@ public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComp
                 if (jobProtoId != null && _jobs.MindTryGetJob(mindId, out var jobProto))
                 {
                     job = jobProto.LocalizedName;
-                    
+
                     // Get department from job prototype using the proper system
                     if (_jobs.TryGetDepartment(jobProtoId, out var deptProto))
                     {
@@ -330,7 +324,7 @@ public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComp
 
         return false;
     }
-    
+
     /// <summary>
     /// Generate a consistent sender number for an advertisement ID.
     /// Uses hash to ensure same ad always gets same number.
@@ -347,25 +341,23 @@ public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComp
     /// Each pattern generates a new random number independently.
     /// </summary>
     private string ProcessRandomNumberPatterns(string message)
+    => _randomNumberPattern.Replace(message, match =>
     {
-        return RandomNumberPattern.Replace(message, match =>
-        {
-            if (int.TryParse(match.Groups[1].Value, out var min) && 
-                int.TryParse(match.Groups[2].Value, out var max))
-            {
-                // Ensure min <= max
-                if (min > max)
-                    (min, max) = (max, min);
-                
-                // Generate a fresh random number for each match
-                var randomValue = _random.Next(min, max + 1);
-                return randomValue.ToString();
-            }
-            
-            // If parsing fails, return the original match
-            return match.Value;
-        });
+    if (int.TryParse(match.Groups[1].Value, out var min) &&
+        int.TryParse(match.Groups[2].Value, out var max))
+    {
+        // Ensure min <= max
+        if (min > max)
+            (min, max) = (max, min);
+
+        // Generate a fresh random number for each match
+        var randomValue = _random.Next(min, max + 1);
+        return randomValue.ToString();
     }
+
+    // If parsing fails, return the original match
+    return match.Value;
+    });
 
     /// <summary>
     /// Get a random crew member name from the station manifest.
@@ -376,7 +368,7 @@ public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComp
             return "John Doe";
 
         var allNames = new List<string>();
-        
+
         // Collect all crew names from the station
         var query = EntityQueryEnumerator<IdCardComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var idCard, out var xform))

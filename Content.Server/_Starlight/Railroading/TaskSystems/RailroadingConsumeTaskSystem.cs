@@ -1,23 +1,19 @@
 ﻿using System.Linq;
 using Content.Server._Starlight.Objectives.Events;
-using Content.Server.Administration.Managers;
-using Content.Server.Administration.Systems;
-using Content.Server.EUI;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
+using Content.Shared._Starlight.Railroading.Components.Watchers;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared.Administration.Logs;
-using Content.Shared.Alert;
 using Content.Shared.Nutrition;
 using Content.Shared.Objectives;
-using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.TaskSystems;
 
 public sealed partial class RailroadingConsumeTaskSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -45,9 +41,6 @@ public sealed partial class RailroadingConsumeTaskSystem : EntitySystem
 
     private void OnCollectObjectiveInfo(Entity<RailroadConsumeTaskComponent> ent, ref CollectObjectiveInfoEvent args)
     {
-        if (!TryComp<RailroadCardComponent>(ent.Owner, out var card))
-            return;
-
         var prototype = _proto.Index(ent.Comp.Objects.FirstOrDefault());
         args.Objectives.Add(new ObjectiveInfo
         {
@@ -64,6 +57,6 @@ public sealed partial class RailroadingConsumeTaskSystem : EntitySystem
         args.IsCompleted = ent.Comp.IsCompleted;
     }
 
-    private void OnConsumeTaskPicked(Entity<RailroadConsumeTaskComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnConsumeTaskPicked(Entity<RailroadConsumeTaskComponent> ent, ref RailroadingCardChosenEvent args)
         => EnsureComp<RailroadConsumeWatcherComponent>(args.Subject.Owner);
 }

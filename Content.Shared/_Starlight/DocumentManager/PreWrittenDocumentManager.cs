@@ -9,10 +9,10 @@ namespace Content.Shared._Starlight.DocumentManager;
 ///     Preload text documents that are written from text files.
 ///     This is done because FTL files are really hard to write large documents in.
 /// </summary>
-public sealed class PreWrittenDocumentManager: IEntityEventSubscriber
+public sealed partial class PreWrittenDocumentManager: IEntityEventSubscriber
 {
-    [Dependency] private readonly IResourceManager _resource = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private IResourceManager _resource = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     /// <summary>
     ///     Dictionary of file name -> document contents.
@@ -21,7 +21,7 @@ public sealed class PreWrittenDocumentManager: IEntityEventSubscriber
 
     private const string DocumentsPath = "/Documents/";
     private const string FallbackLocalization = "en-US";
-    
+
     private const string ValidExtension = "txt";
 
     public async void Initialize()

@@ -73,6 +73,7 @@
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot
+        storagebase: !type:Container
     - type: ItemSlots
       slots:
         cell_slot:

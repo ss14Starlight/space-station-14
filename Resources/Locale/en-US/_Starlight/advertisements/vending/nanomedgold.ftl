@@ -1,0 +1,9 @@
+advertisement-nanomedgold-1 = Go save some lives! -DELUXE-
+advertisement-nanomedgold-2 = The best stuff for your luxury medbay.
+advertisement-nanomedgold-3 = Only the most pristine tools.
+advertisement-nanomedgold-4 = Deluxe chemicals!
+advertisement-nanomedgold-5 = This stuff saves lives.
+advertisement-nanomedgold-6 = Don't you want some?
+advertisement-nanomedgold-7 = Bam!
+advertisement-nanomedgold-8 = Make sure not to overdose people!
+advertisement-nanomedgold-9 = Go overdose people!

@@ -111,9 +111,9 @@
       rules: ghost-role-information-freeagent-rules
       allowSpeech: true
       reregister: true
-      raffle: 
+      raffle:
         settings: default
-      mindRoles: 
+      mindRoles:
         - MindRoleGhostRoleFreeAgent
     - type: ShowMindShieldIcons # gotta know your targets.
     - type: Speech
@@ -136,7 +136,7 @@
       instant: false
       charges: 3
       actions: EndOfQHighpop3
-    
+
 - type: entity
   parent: BasePaperQuietChaos
   id: PaperTooQuietNeedChaosFew
@@ -146,7 +146,7 @@
       content: paper-too-quiet-need-chaos-few
     - type: GameruleOnSign
       remaining: 3 # on 15 pop usually there are only about 3 heads I expect
-      whitelist: 
+      whitelist:
         components:
           - MindShield
       rules: #this will DEFINETLY end the "quiet" you so hate

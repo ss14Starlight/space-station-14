@@ -39,9 +39,21 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+        Cold: 0.95
         Caustic: 0.95
   - type: HideLayerClothing
     slots:
     - Hair
     - HeadTop
     - HeadSide
+
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: ClothingHeadHatHoodWinterDutyOfficer
+  categories: [ HideSpawnMenu ]
+  name: duty officer's coat hood
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hoods/Coat/hoodsec.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hoods/Coat/hoodsec.rsi

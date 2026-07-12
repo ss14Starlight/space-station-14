@@ -10,7 +10,7 @@ namespace Content.Shared.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class ResetNarcolepsyEntityEffectSystem : EntityEffectSystem<NarcolepsyComponent, ResetNarcolepsy>
 {
-    [Dependency] private readonly NarcolepsySystem _narcolepsy = default!;
+    [Dependency] private NarcolepsySystem _narcolepsy = default!;
 
     protected override void Effect(Entity<NarcolepsyComponent> entity, ref EntityEffectEvent<ResetNarcolepsy> args)
     {
@@ -29,6 +29,6 @@ public sealed partial class ResetNarcolepsy : EntityEffectBase<ResetNarcolepsy>
     [DataField("TimerReset")]
     public TimeSpan TimerReset = TimeSpan.FromSeconds(600);
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
-        Loc.GetString("entity-effect-guidebook-reset-narcolepsy", ("chance", Probability));
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
+        loc.GetString("entity-effect-guidebook-reset-narcolepsy", ("chance", Probability));
 }

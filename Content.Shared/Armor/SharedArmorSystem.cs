@@ -13,12 +13,14 @@ using Content.Shared.Stunnable;
 
 namespace Content.Shared.Armor;
 
+// STARLIGHT NOTE: Make sure any edits to this are also reflected in Content.Shared/_Starlight/Magic/Systems/SharedArmorModSystem.cs
+
 /// <summary>
 ///     This handles logic relating to <see cref="ArmorComponent" />
 /// </summary>
-public abstract class SharedArmorSystem : EntitySystem
+public abstract partial class SharedArmorSystem : EntitySystem
 {
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
 
     /// <inheritdoc />
     public override void Initialize()

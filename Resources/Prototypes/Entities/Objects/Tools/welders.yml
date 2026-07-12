@@ -111,12 +111,15 @@
     tags:
     - ThermiteIgnitor
   - type: SurgeryTool
+  - type: Cautery
     successRate: 0.75
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
-  - type: Cautery
+  - type: WelderSurgery
+    startSound:
+      /Audio/Items/welder.ogg
   # 🌟Starlight-end🌟
 
 - type: entity
@@ -136,6 +139,9 @@
         - ReagentId: WeldingFuel
           Quantity: 250
         maxVol: 250
+  - type: WelderSurgery # SL
+    startSound:
+      /Audio/Items/welder.ogg
 
 - type: entity
   name: advanced industrial welding tool
@@ -156,6 +162,10 @@
         maxVol: 250
   - type: Tool
     speedModifier: 1.3
+  - type: WelderSurgery # SL
+    startSound:
+      /Audio/Items/welder.ogg
+    speed: 0.8
 
 - type: entity
   name: experimental welding tool
@@ -186,6 +196,10 @@
         Quantity: 1
   - type: RequiresEyeProtection
     statusEffectTime: 5 # less harmful; sunglasses can block it
+  - type: WelderSurgery # SL
+    startSound:
+      /Audio/Items/welder.ogg
+    speed: 0.6
 
 - type: entity
   name: emergency welding tool
@@ -216,6 +230,11 @@
   - type: Tag
     tags:
       - EmergencyWelder #Starlight, distinction needed for use in crafting recipies.
+  - type: SurgeryTool # SL
+  - type: WelderSurgery # SL
+    startSound:
+      /Audio/Items/welder.ogg
+    speed: 1.5
 
 - type: entity
   parent: [ Welder, BaseXenoborgContraband ]

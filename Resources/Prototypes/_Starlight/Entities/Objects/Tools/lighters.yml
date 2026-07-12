@@ -1,0 +1,133 @@
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseBrandedLighter
+  components:
+  - type: ItemToggle
+    predictable: false
+    soundActivate:
+      path: /Audio/Items/Lighters/zippo_open.ogg
+      params:
+        volume: -5
+    soundDeactivate:
+      path: /Audio/Items/Lighters/zippo_close.ogg
+      params:
+        volume: -5
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+        types:
+            Heat: 1
+  - type: ItemToggleSize
+    activatedSize: Small
+  - type: ItemToggleHot
+  - type: Item
+    size: Tiny
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 12
+        maxVol: 12
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "base" ]
+    - state: top
+      map: [ "top" ]
+      visible: false
+    - state: open
+      map: [ "open" ]
+      visible: false
+    - state: flame
+      map: [ "flame" ]
+      visible: false
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        flame:
+          True: { visible: true }
+          False: { visible: false }
+        open:
+          True: { visible: true }
+          False: { visible: false }
+        top:
+          True: { visible: true }
+          False: { visible: false }
+        base:
+          True: { visible: false }
+          False: { visible: true }
+  - type: ToggleableVisuals
+    spriteLayer: lighter_flame
+    inhandVisuals:
+      left:
+      - state: inhand-left-lit
+        shader: unshaded
+      right:
+      - state: inhand-right-lit
+        shader: unshaded
+  - type: ItemTogglePointLight
+  - type: UseDelay
+  - type: IgnitionSource
+    ignited: false
+  - type: Tag
+    tags:
+      - Lighters
+
+- type: entity
+  parent: Lighter
+  id: DiscountDanLighter
+  name: Discount Dan's lighter
+  description: "The worst lighter ever produced, lighterburn is inevitable, do not refuel while lit."
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Lighters/lighters.rsi
+    layers:
+    - state: icon_map
+    - state: discount_icon_base
+      map: [ "skin" ]
+    - state: basic_icon_top
+    - state: lighter_flame
+      visible: false
+      shader: unshaded
+      map: [ "flame" ]
+  - type: Welder # the single worst lighter invented by mankind
+    fuelConsumption: 0.2
+    fuelLitCost: 0.1
+    tankSafe: false
+  - type: Item
+    sprite: Objects/Tools/Lighters/lighters.rsi
+  - type: ToggleableVisuals
+    spriteLayer: lighter_flame
+    inhandVisuals:
+      left:
+      - state: inhand-left-flame
+        shader: unshaded
+      right:
+      - state: inhand-right-flame
+        shader: unshaded
+  - type: RandomSprite
+    available:
+      - skin:
+          discount_icon_base: ""
+  - type: PointLight
+    enabled: false
+    netsync: false
+    radius: 1.5
+    color: yellow
+  - type: ComponentToggler
+    components:
+    - type: DamageOnHolding
+      damage:
+        types:
+          Heat: 2
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 3
+        maxVol: 3

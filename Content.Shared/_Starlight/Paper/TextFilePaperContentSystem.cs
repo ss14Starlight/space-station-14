@@ -3,10 +3,10 @@ using Content.Shared.Paper;
 
 namespace Content.Shared._Starlight.Paper;
 
-public sealed class TextFilePaperContentSystem : EntitySystem
+public sealed partial class TextFilePaperContentSystem : EntitySystem
 {
-    [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly PreWrittenDocumentManager _documentManager = default!;
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private PreWrittenDocumentManager _documentManager = default!;
 
     public override void Initialize()
     {
@@ -14,7 +14,7 @@ public sealed class TextFilePaperContentSystem : EntitySystem
 
         SubscribeLocalEvent<TextFilePaperContentComponent, MapInitEvent>(OnTextFilePaperContentComponentInit, after: [typeof(PaperSystem)]);
     }
-    
+
     private void OnTextFilePaperContentComponentInit(Entity<TextFilePaperContentComponent> ent, ref MapInitEvent args)
     {
         if (!TryComp<PaperComponent>(ent, out var paperComp))

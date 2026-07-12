@@ -50,6 +50,16 @@
   - type: ResearchClient
   - type: TechnologyDatabase
   - type: StationAiWhitelist #Starlight
+# SL Start: Lighting Update
+  - type: LitOnPowered
+  - type: PointLight
+    autoRot: true
+    color: "#2f6b2b"
+    radius: 2
+    energy: 1.5
+    castShadows: false
+# SL End
+
 
 # a lathe that can be sped up with space lube / slowed down with glue
 - type: entity
@@ -144,7 +154,7 @@
     - StarlightSyndicateAmmoStatic
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
-    - StarlightSecurityAmmoEmagStatic 
+    - StarlightSecurityAmmoEmagStatic
     # Starlight end
     #- SecurityAmmoStatic # SL disable in favor of prior three lines
     - SyndicateAmmoStatic
@@ -223,6 +233,7 @@
     - Equipment
     - StarlightProtolatheLootable # Starlight start
     - StarlightScienceWeapons
+    - WirelessCameraHandheld # MOFFSTATION CHANGE - Adds wireless handheld camera
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -296,6 +307,7 @@
     - StarlightLawboards
     - StarlightCircuitImprinterLootable
     - ReactorCircuitboards # FH edit
+    - OublietteCircuitBoard # Starlight
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
@@ -317,17 +329,6 @@
     sprite: Structures/Machines/circuit_imprinter_hypercon.rsi
   - type: Machine
     board: CircuitImprinterHyperConvectionMachineCircuitboard
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-  - type: EmagLatheRecipes
-    emagDynamicPacks:
-    - StarlightSecurityBoards
-    emagStaticPacks: # Starlight
-    - StarlightDangerousLawboards # Starlight
 
 - type: entity
   id: ExosuitFabricator
@@ -364,8 +365,10 @@
     - StarlightMechParts
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - StarlightMechWeapon
     - StarlightSyndicateModules
+    emagDynamicPacks:
+    - StarlightMechWeapon
+
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -416,6 +419,7 @@
 
 - type: entity
   id: SecurityTechFab
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLatheLube
   name: security techfab
   description: Prints equipment for use by security crew.
@@ -511,6 +515,7 @@
 
 - type: entity
   id: MedicalTechFab
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLatheLube
   name: medical techfab
   description: Prints equipment for use by the medbay.
@@ -558,6 +563,7 @@
 - type: entity
   parent: BaseLathe
   id: UniformPrinter
+  categories: [ ShouldMapStation ] # Starlight
   name: uniform printer
   description: Prints new or replacement uniforms.
   components:
@@ -602,6 +608,7 @@
 
 - type: entity
   id: Biogenerator
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLathe
   name: biogenerator
   description: Converts plants into biomass, which can be used to construct useful items.
@@ -688,8 +695,8 @@
     - type: ItemToggle
       onUse: false
       onActivate: false
-      verbToggleOn: "Activate Magnet"
-      verbToggleOff: "Deactivate Magnet"
+      verbToggleOn: verb-toggle-magnet-activate
+      verbToggleOff: verb-toggle-magnet-deactivate
       soundActivate:
         collection: sparks
         params:

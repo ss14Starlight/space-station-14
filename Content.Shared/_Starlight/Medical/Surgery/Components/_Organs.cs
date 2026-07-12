@@ -5,7 +5,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-namespace Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+namespace Content.Shared._Starlight.Medical.Surgery.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class EyeImplantComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class HandImplantComponent : Component;
@@ -49,7 +49,7 @@ public sealed partial class FunctionalOrganComponent : Component
 {
     [DataField]
     public bool IsCybernetic = true;
-    
+
     [DataField("comps")]
     public ComponentRegistry? Components;
 }
@@ -59,14 +59,14 @@ public sealed partial class TaggedOrganComponent : Component
 {
     [DataField]
     public List<ProtoId<TagPrototype>> AddTags = new();
-    
+
     [DataField]
     public List<ProtoId<TagPrototype>> RemoveTags = new();
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class StorageOrganComponent : Component
-{    
+{
     [DataField]
     public EntProtoId? OrganAction { get; set; }
 
@@ -83,7 +83,7 @@ public sealed partial class StorageOrganComponent : Component
 /// <summary>
 /// Used for opening the storage organ via action.
 /// </summary>
-public sealed partial class OpenStorageOrganEvent : InstantActionEvent 
+public sealed partial class OpenStorageOrganEvent : InstantActionEvent
 {
     [DataField]
     public string Key = "InternalStorage";

@@ -25,8 +25,11 @@
             Chef: [ 2, 2 ]
             Janitor: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
+            Reporter: [ 1, 1 ]
             ServiceWorker: [ 4, 5 ]
             Boxer: [ 2, 2 ]
+            Lawyer: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 2 ]
@@ -49,17 +52,17 @@
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 2 ]
-            SecurityOfficer: [ 8, 14 ]
-            Detective: [ 1, 1 ]
-            SecurityCadet: [ 4, 5 ]
+            SecurityOfficer: [ 6, 8 ]
+            SecurityCadet: [ 3, 4 ]
             Brigmedic: [ 1, 1 ]
+            Detective: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 6, 6 ]
+            SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 6, 8 ]
             MailTech: [ 2, 2 ]
-            MiningSpecialist: [ 3, 3 ]
-            SalvageLead: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
@@ -72,7 +75,7 @@
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]
-            #Representives
+            #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

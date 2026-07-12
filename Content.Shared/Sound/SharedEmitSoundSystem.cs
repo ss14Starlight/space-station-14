@@ -19,6 +19,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
+using Robust.Shared.Player; // Starlight
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Sound;
@@ -27,17 +28,17 @@ namespace Content.Shared.Sound;
 /// Will play a sound on various events if the affected entity has a component derived from BaseEmitSoundComponent
 /// </summary>
 [UsedImplicitly]
-public abstract class SharedEmitSoundSystem : EntitySystem
+public abstract partial class SharedEmitSoundSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] protected readonly IRobustRandom Random = default!;
-    [Dependency] private   readonly SharedAmbientSoundSystem _ambient = default!;
-    [Dependency] private   readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] protected IRobustRandom Random = default!;
+    [Dependency] private   SharedAmbientSoundSystem _ambient = default!;
+    [Dependency] private   SharedAudioSystem _audioSystem = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     public override void Initialize()
     {
@@ -145,7 +146,16 @@ public abstract class SharedEmitSoundSystem : EntitySystem
     {
         if (component.Sound == null)
             return;
-
+        #region Starlight
+        if (component.Global)
+        {
+            if (_netMan.IsServer)
+            {
+                _audioSystem.PlayGlobal(_audioSystem.ResolveSound(component.Sound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(component.GlobalSound));
+            }
+            return;
+        }
+        #endregion Starlight
         if (component.Positional)
         {
             var coords = Transform(uid).Coordinates;

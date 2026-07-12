@@ -1,17 +1,15 @@
 using System.Numerics;
 using Content.Server._Starlight.Plumbing.Components;
 using Content.Server._Starlight.Plumbing.Nodes;
-using Content.Shared.Starlight.Medical.Items.Components;
+using Content.Shared._Starlight.Medical.Items.Components;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.NodeContainer;
-using Content.Shared.UserInterface;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -28,18 +26,18 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     Supports optional mixing mode with two ratio-controlled inlets (E/W).
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingPillPressSystem : EntitySystem
+public sealed partial class PlumbingPillPressSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly PlumbingPullSystem _pullSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly LabelSystem _labelSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private PlumbingPullSystem _pullSystem = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private LabelSystem _labelSystem = default!;
 
-    private static readonly EntProtoId PillPrototypeId = "Pill";
-    private static readonly EntProtoId PatchPrototypeId = "Patch";
+    private static readonly EntProtoId _pillPrototypeId = "Pill";
+    private static readonly EntProtoId _patchPrototypeId = "Patch";
     private const int MaxOutputEntitiesOnTile = 30;
 
     /// <summary>Max dosage matches the ChemMaster limit.</summary>
@@ -105,7 +103,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
 
             if (ent.Comp.OutputMode == PillPressOutputMode.Pill)
             {
-                var item = Spawn(PillPrototypeId, spawnCoords);
+                var item = Spawn(_pillPrototypeId, spawnCoords);
                 _labelSystem.Label(item, ent.Comp.Label);
                 _solutionSystem.EnsureSolutionEntity(item,
                     SharedChemMaster.PillSolutionName,
@@ -121,7 +119,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
             }
             else
             {
-                var item = Spawn(PatchPrototypeId, spawnCoords);
+                var item = Spawn(_patchPrototypeId, spawnCoords);
                 _labelSystem.Label(item, ent.Comp.Label);
 
                 _solutionSystem.EnsureSolutionEntity(item,
@@ -293,9 +291,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
     }
 
     private void OnUIOpened(Entity<PlumbingPillPressComponent> ent, ref BoundUIOpenedEvent args)
-    {
-        UpdateUiState(ent);
-    }
+        => UpdateUiState(ent);
 
     private void UpdateUiState(Entity<PlumbingPillPressComponent> ent)
     {

@@ -7,13 +7,13 @@ using Robust.Shared.Toolshed.Syntax;
 using Robust.Shared.Toolshed.TypeParsers;
 using Robust.Shared.Utility;
 
-namespace Content.Server._Starlight.Administration.Commands;
+namespace Content.Server._Starlight.Administration.Systems.Commands;
 
-public sealed class ContainerTypeParser : TypeParser<ContainerRef>
+public sealed partial class ContainerTypeParser : TypeParser<ContainerRef>
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
     private SharedContainerSystem? _container;
-    
+
     public override bool TryParse(ParserContext ctx, out ContainerRef result)
     {
         _container ??= _entMan.System<SharedContainerSystem>();
@@ -53,7 +53,7 @@ public sealed class ContainerTypeParser : TypeParser<ContainerRef>
                 }
             }
         }
-        
+
         result = new ContainerRef(null);
         return false;
     }

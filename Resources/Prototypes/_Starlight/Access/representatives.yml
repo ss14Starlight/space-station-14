@@ -1,0 +1,19 @@
+- type: accessLevel
+  id: Ntrep
+  name: id-card-access-level-ntrep
+
+- type: accessLevel
+  id: Magistrate
+  name: id-card-access-level-magistrate
+
+- type: accessLevel
+  id: BlueShield
+  name: id-card-access-level-blueshield
+
+- type: accessGroup
+  id: NanoTrasen
+  tags:
+  - Ntrep
+  - Magistrate
+  - BlueShield
+  - IAA

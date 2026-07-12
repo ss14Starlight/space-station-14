@@ -92,17 +92,15 @@
             max: 2
           - !type:RoundDurationCondition
             min: 600 # 10 minutes
-        # region starlight - NO MORE MIDROUND ZEDS
-        # - id: ZombieOutbreak
-        #   weight: 2.5
-        #   conditions:
-        #   - !type:HasBudgetCondition
-        #   - !type:MaxRuleOccurenceCondition
-        #   - !type:PlayerCountCondition
-        #     min: 20
-        #   - !type:RoundDurationCondition
-        #     min: 2700 # 45 minutes
-        # end region starlight
+        - id: ZombieOutbreak
+          weight: 2.5
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+          - !type:RoundDurationCondition
+            min: 2700 # 45 minutes
         - id: LoneOpsSpawn
           weight: 5
           conditions:
@@ -112,13 +110,3 @@
             min: 20
           - !type:RoundDurationCondition
             min: 2100 # 35 minutes
-        - id: Brighteye # Starlight
-          weight: 1
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-            max: 2
-          - !type:PlayerCountCondition
-            min: 20
-          - !type:RoundDurationCondition
-            min: 600 # 10 minutes

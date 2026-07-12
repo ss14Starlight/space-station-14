@@ -2,10 +2,825 @@
   # Dwarves
 
   <Box>
-    <GuideEntityEmbed Entity="MobDwarf" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceDwarf" Caption=""/>
   </Box>
 
-  Dwarves are similar to humans in most respect, but tolerate alcohol better and are healed by it.
-  Dwarves are tougher than humans, they have 10% more health.
+  Dwarves or Dwarfs are a stout, mostly hairless species from the planet Abumas, located near the Null Scar. Their convergent evolution toward a Human-like appearance is strong enough to result in frequent misidentification, though there are enough deep cultural and physiological differences to justify treating them as a distinct group, outside the gamut of other near-Human subspecies like half-Felionoids and half-Vulpkanin, in addition to their unique origin as a totally separate clade.
 
+  Most Dwarves are male (around 87%), with the rest being female. Gender-nonconforming Dwarves are rarer than their Humans counterparts. Male Dwarves are often easily identified by their full, shaggy hair and large beards. Dwarves with no hair, including beardless males, are generally considered unusual.
+
+  The average Dwarf is around 110 cm (3' 7") in height at maturity, with no significant difference between the sexes, but exhibits much fuller, denser bones and pronounced cartilaginous features compared to humans such as larger noses and cheekbones. This robustness grants them the ability to endure [color=#40ff40]10% more damage[/color] than humans before succumbing to their injuries. Xenobiologists widely agree that Dwarves evolved this stature to withstand the enhanced gravity of Abumas, which is around 1.3 times Earth standard.
+
+  Dwarf society has many nuances and subdivisions, and no two Dwarf settlements are truly the same, but ethnographers have long noted a general tendency toward certain parallels with the Nordic, Celtic, and Germanic cultures of Earth in terms of their material culture. The primary weapon wielded by Dwarves during their Iron Age was the battle-ax, followed by the war-pick and war-hammer, with relatively little emphasis on spears, bows, and swords; surviving specimens tend to be highly engraved with knot patterns and runes. The major Dwarf ethnic groups are named according to their favored biomes: Subterranean Dwarves, Deepdwarves, Steppedwarves, Oceandwarves, Spiredwarves, Mountain Dwarves, Jungle Dwarves, and Forest Dwarves.
+
+  Dwarves have long been a space-faring race. Their homeworld of Abumas lacks significant rare earth mineral deposits near the surface, resulting in a monopoly on these resources by the Deepdwarves. To break this monopoly, they surface-dwelling Dwarves began mining asteroids and planetoids as a workaround. These space settlements, usually called Citadels, begin their lives as simple mining outposts. As they attract more families and workers, the outposts, homes, and businesses, expand into the shafts and tunnels, eventually forming splendid cities with diverse economies and populations. A fully-developed Citadel is a massive ark that can fly under its own power, though the majority of asteroid mines are abandoned once the minerals run out and never achieve this glory. Particularly impressive or culturally significant Citadels are often landed on planets to serve as museums or palaces, and there is a thriving industry of using grounded Citadels to stake a claim on newly-colonized worlds, as a 'readymade city' that can be deployed in an afternoon.
+
+  Abumas's proximity to the Null Scar inevitably meant that Dwarves would come in contact with NanoTrasen. Several Citadels now have highly profitable relationships with NT, and are under direct contract to provide certain high-demand minerals to the far-flung corners of Starlight Sector, beyond the reach of the Corporation's logistical network.
+
+  ## Dwarf Alchemy
+  To most species, alcohol is a poisonous but highly entertaining beverage valued for its euphoric and sedative effects. This is only partly true for Dwarves, who have a [color=#1e90ff]physiological need for alcohol[/color], much like Humans need dietary fat to remain healthy; it is a critical macronutrient. To a Dwarf, [color=#1e90ff]alcoholic drinks also satiate hunger[/color], and [color=#1e90ff]food is less effective at satiating hunger[/color]. Moreover, [color=#ff901e]pure water is intolerable and causes vomiting[/color].
+
+  More importantly, Dwarves often have odd reactions to certain beverages. Some of these peculiar interactions are described below.
+
+  The following drinks grant benefits directly from the tap, without any further mixing:
+  <Table Columns="3">
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkWaterBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Water
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Ipecac (causes vomiting)
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkAleBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Ale
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        restores thirst; no Ethanol
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkBeerBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Beer
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        restores hunger
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkMeadJug" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Mead
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Tricordazine
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkVodkaBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Vodka
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Hyronalin
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkWhiskeyBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Whiskey
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Blunt damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkRumBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Rum
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Slash damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkAbsintheBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Absinthe
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Piercing damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkTequilaBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Tequila
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Heat damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkCognacBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Cognac
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Cold damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkGinBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Gin
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Caustic damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkVermouthBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Vermouth
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Shock damage taken
+      </Box>
+    </ColorBox>
+  </Table>
+
+### Easy Brew
+  These drinks require a small amount of work to mix.
+  <Table Columns="3">
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkAntifreeze" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Antifreeze
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        20% less Cold damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkManlyDorfGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Manly Dorf
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Bicardine
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkIcedBeerGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Iced Beer
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Dermaline and Kelotane
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkRedMeadGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Red Mead
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Saline and Dexalin
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkWhiteGilgameshGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        White Gilgamesh
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Dylovene
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkMartiniGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Martini
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Potassium Iodide
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkTequilaSunriseGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Tequila Sunrise
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Tranexamic Acid
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkDarkandStormyGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Dark and Stormy
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        heals Shock damage
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkDeathInTheAfternoon" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Death in the Afternoon
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        raises critical threshold to 129;
+        death threshold is reduced to 130
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkManhattanGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Manhattan
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        immune to slippery surfaces
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkBraveBullGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Brave Bull
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        punches deal Structure damage
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkIrishCreamGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Irish Cream
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        attack 25% faster with bare hands
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkBronxGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Bronx
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        50% more damage dealt with bare hands
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkAndalusia" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Andalusia
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Piercing and Shock damage taken;
+		5% more Slash and Heat damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkGrogGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Grog
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Slash and Heat damage taken;
+		5% more Blunt and Cold damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkDaiquiri" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Daiquiri
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Blunt and Cold damage taken;
+		5% more Piercing and Shock damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkMoonshineGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Moonshine
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        heals Caustic damage
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkAmasecGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Amasec
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Arithrazine
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkHoochGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Hooch
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Ephedrine
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkMoscowMule" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Moscow Mule
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Poison and Radiation damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkGargleBlasterGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Pan-Galactic Gargle Blaster
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% less Blunt, Slash, and Piercing damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkErikaSurprise" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Erika Surprise
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        15% less Heat, Cold, and Shock damage taken
+      </Box>
+    </ColorBox>
+  </Table>
+### Hard Brew
+  These drinks require a bit more work to mix.
+  <Table Columns="3">
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="XenoBasherGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Xeno Basher
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% faster attacks with melee weapons
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkIrishCarBomb" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Irish Car Bomb
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        20% more damage dealt with melee weapons
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkDriestMartiniGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Driest Martini
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        15% less Slash, Piercing, and Blunt damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkSyndicatebomb" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Syndicate Bomb
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        25% more interaction (DoAfter) speed
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkRadlerGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Radler
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        heal Slash, Piercing, and Blunt damage while in critical condition
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkAlliesCocktail" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Allies Cocktail
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        heal Caustic, Heat, and Cold damage while in critical condition
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkIrishCoffeeGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Irish Coffee
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        10% increased movement speed
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="BudgetInsulsDrinkGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Budget Insuls
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        insulation from shocks
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkTheSunAlsoRises" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        The Sun Also Rises
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        low-light vision
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkAlienBrainHemorrhage" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Alien Brain Hemorrhage
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        heals Genetic damage
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="RubberneckGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Rubberneck
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Desoxyephedrine
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkElectricSharkGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Electric Shark
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        ignore slowdown
+      </Box>
+    </ColorBox>
+  </Table>
+### Expert Brew
+  Concocting these drinks is best left to the talents of a seasoned Bartender and/or Priest.
+  <Table Columns="3">
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkPainkillerGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Painkiller
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        100% less Bloodloss damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="IrishBoolGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Irish Bool
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        rapidly recover from stun and knockdown; 90% less Stamina damage taken
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkCrushDepthGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Crush Depth
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        no damage from pressure effects
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkB52Glass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        B52
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        25% less damage taken from explosions
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkBacchusBlessing" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Bacchus Blessing
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Omnizine
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        <GuideEntityEmbed Entity="DrinkTheHighlanderGlass" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        The Highlander
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        raises critical threshold to 219 damage
+		(death threshold is still 220)
+      </Box>
+    </ColorBox>
+  </Table>
 </Document>

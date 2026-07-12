@@ -1,0 +1,13 @@
+using Content.Shared.Emp;
+
+namespace Content.Shared._Starlight.Emp;
+
+/// <summary>
+/// The entity with this component is not affected by Emp.
+/// </summary>
+[RegisterComponent]
+[Access(typeof(SharedEmpSystem))]
+public sealed partial class EmpImmuneComponent : Component
+{
+
+}

@@ -20,6 +20,10 @@ public sealed partial class BecomesStationMidRoundComponent : Component
     /// </summary>
     [DataField] public bool Initialize;
     /// <summary>
+    /// If the roundstart variation pass should be allowed to run or not.
+    /// </summary>
+    [DataField] public bool DoRoundstartVariationPass;
+    /// <summary>
     /// Initialized ID of station
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)] public string? InitializedId = null;

@@ -1,7 +1,7 @@
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Organ; // Starlight edit
-using Content.Shared.Body.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Timing;
 using Content.Shared.Toggleable;
@@ -13,14 +13,14 @@ using InternalsComponent = Content.Shared.Body.Components.InternalsComponent;
 
 namespace Content.Shared.Atmos.EntitySystems;
 
-public abstract class SharedGasTankSystem : EntitySystem
+public abstract partial class SharedGasTankSystem : EntitySystem
 {
-    [Dependency] private   readonly SharedActionsSystem _actions = default!;
-    [Dependency] private   readonly SharedAudioSystem _audio = default!;
-    [Dependency] private   readonly SharedContainerSystem _containers = default!;
-    [Dependency] private   readonly SharedInternalsSystem _internals = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
-    [Dependency] private   readonly UseDelaySystem _delay = default!;
+    [Dependency] private   SharedActionsSystem _actions = default!;
+    [Dependency] private   SharedAudioSystem _audio = default!;
+    [Dependency] private   SharedContainerSystem _containers = default!;
+    [Dependency] private   SharedInternalsSystem _internals = default!;
+    [Dependency] protected SharedUserInterfaceSystem UI = default!;
+    [Dependency] private   UseDelaySystem _delay = default!;
 
     public const string GasTankDelay = "gasTank";
 
