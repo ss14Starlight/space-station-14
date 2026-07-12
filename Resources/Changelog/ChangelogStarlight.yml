@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Vox now have vox tongues instead of human tongues.
-    type: Fix
-  id: 406198
-  time: '2026-06-23T09:28:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4894
 - author: redmushie
   changes:
   - message: Ripleys with hydraulic clamps can actually pick up tamper-sealed crates.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406597
   time: '2026-07-12T22:04:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5106
+- author: Sparlight
+  changes:
+  - message: Fixed inconsistent animal husbandry behavior.  Now your chickens won't stop your cows from breeding.
+    type: Fix
+  id: 406598
+  time: '2026-07-12T22:32:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5101
 Order: -1
