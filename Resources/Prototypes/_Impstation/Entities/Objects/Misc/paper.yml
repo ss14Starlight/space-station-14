@@ -41,7 +41,7 @@
   id: TicketPad
   parent: BoxBase
   name: ticket pad
-  description: A small folder of sticky-backed tickets.
+  description: A small folder of sticky-backed tickets. Fill out the receiver's name, crime, the issued fine, and then sign the ticket.
   components:
   - type: Item
     size: Small
