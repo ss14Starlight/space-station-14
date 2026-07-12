@@ -3,7 +3,7 @@ using Content.Shared.Drunk;
 using Content.Shared.StatusEffectNew;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Robust.Shared.Configuration; // Starlight-edit
+using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
