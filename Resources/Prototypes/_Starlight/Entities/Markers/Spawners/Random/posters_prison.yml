@@ -1,0 +1,55 @@
+- type: entity
+  parent: MarkerBase
+  id: RandomPosterPrison
+  name: random prison poster spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Starlight/Structures/Wallmounts/posters/_markers.rsi
+        state: random_prison
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - PosterPrisonAccident
+      - PosterPrisonAlien
+      - PosterPrisonAshwalkers
+      - PosterPrisonCCTV
+      - PosterPrisonCell
+      - PosterPrisonCompromise
+      - PosterPrisonEspionage
+      - PosterPrisonInquisition
+      - PosterPrisonIntensec
+      - PosterPrisonLeviathan
+      - PosterPrisonMicroscope
+      - PosterPrisonObscene
+      - PosterPrisonPinup
+      - PosterPrisonPray
+      - PosterPrisonReligion
+      - PosterPrisonReligious
+      - PosterPrisonSad
+      - PosterPrisonSecure
+      - PosterPrisonSmallBrain
+      - PosterPrisonSubu
+      - PosterPrisonTriangle
+      - PosterPrisonUgly
+      - PosterContrabandDoCauseCancer
+      - PosterContrabandForumPost
+      - PosterContrabandHolyInsuls
+      - PosterlegitLawPoster
+      - PosterContrabandWantedClown
+      - PosterContrabandWantedJohnToe
+      - PosterContrabandWantedMime
+      - PosterContrabandWantedTraitor
+      - PosterContrabandSELF
+      - PosterContrabandComitas
+      - PosterContrabandWaffleCorpTwo
+      - PosterContrabandARFRadio
+      - PosterContrabandGEC
+      - PosterContrabandHereticalExomorph
+      - PosterLegitMidtownPizza
+      - PosterContrabandHackingGuide
+      - PosterContrabandRevolt
+      - PosterContrabandLustyExomorph
+      - PosterContrabandBustyBackdoorExoBabes6
+    chance: 1
