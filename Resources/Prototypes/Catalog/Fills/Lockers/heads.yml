@@ -138,9 +138,9 @@
     - !type:GroupSelector
       children:
       - id: ClothingMaskGasCaptain
-        weight: 70
+        weight: 85
       - id: ClothingMaskGasCaptainPodWars
-        weight: 30
+        weight: 15
     # Starlight End
 
 # No laser locker, used when the antique laser is placed in the special display crate
