@@ -132,7 +132,7 @@
     state: diagonal_steel_large_4
 
 - type: decal
-  id: diagonalsteelcorner1
+  id: diagonalsteelcornerlarge1
   tags: ["station", "markings"]
   sprite:
     sprite: _Starlight/Decals/tiling.rsi
