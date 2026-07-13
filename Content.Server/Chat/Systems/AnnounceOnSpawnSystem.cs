@@ -22,8 +22,8 @@ public sealed partial class AnnounceOnSpawnSystem : EntitySystem
         // Starlight end
         var message = Loc.GetString(comp.Message);
         var sender = comp.Sender != null ? Loc.GetString(comp.Sender) : Loc.GetString("chat-manager-sender-announcement");
-        if (comp.GlobalAnnounce) _chat.DispatchGlobalAnnouncement(message, sender, playSound: true, comp.Sound, comp.Color); // Starlight edit
         // Starlight begin
+        if (comp.GlobalAnnounce) _chat.DispatchGlobalAnnouncement(message, sender, playSound: true, comp.Sound, comp.Color);
         else
         {
             var playersOnMap = Filter.Empty().AddInMap(Transform(uid).MapID);
