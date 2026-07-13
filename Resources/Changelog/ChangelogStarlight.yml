@@ -1,13 +1,6 @@
 Entries:
 - author: Kasern
   changes:
-  - message: Senior Chef Jacket.
-    type: Add
-  id: 406209
-  time: '2026-06-24T16:25:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4912
-- author: Kasern
-  changes:
   - message: Senior Chef Jumpsuit.
     type: Add
   id: 406210
@@ -2799,4 +2792,11 @@ Entries:
   id: 406608
   time: '2026-07-13T08:30:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5120
+- author: ku-mo
+  changes:
+  - message: Role time requirements no longer display as "unknown" for roles you already meet the playtime for.
+    type: Fix
+  id: 406609
+  time: '2026-07-13T08:55:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5107
 Order: -1
