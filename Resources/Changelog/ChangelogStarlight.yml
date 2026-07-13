@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Golub
   changes:
-  - message: Added Cosmic Cult, Wizard Duel, Xenoborgs, Terror Spiders, Vampires, Changelings, SELF, Sub Wizards, and Paradox Crisis to Dynamic.
-    type: Add
-  id: 406214
-  time: '2026-06-24T18:36:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4920
-- author: wonderfulnewworld, Golub
-  changes:
   - message: Added a higher ceiling to Dynamic's roundstart budget.
     type: Add
   id: 406215
@@ -2799,4 +2792,11 @@ Entries:
   id: 406613
   time: '2026-07-13T10:48:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5116
+- author: piepie3.149 , Conflee
+  changes:
+  - message: Added a variant of the Captain's Gas Mask which is a military surplus gas mask from the Pod Wars but repainted in the Captain's colors. Appears instead of their normal Gas Mask 15% of the time.
+    type: Add
+  id: 406614
+  time: '2026-07-13T19:18:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5119
 Order: -1
