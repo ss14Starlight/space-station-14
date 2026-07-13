@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Golub
   changes:
-  - message: Added a higher ceiling to Dynamic's roundstart budget.
-    type: Add
-  id: 406215
-  time: '2026-06-24T18:36:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4920
-- author: wonderfulnewworld, Golub
-  changes:
   - message: Tweaked Dynamic weights.
     type: Tweak
   id: 406216
@@ -2799,4 +2792,11 @@ Entries:
   id: 406614
   time: '2026-07-13T19:18:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5119
+- author: wonderfulnewworld
+  changes:
+  - message: The Security Bomber Jacket now has a little more pierce resist, a moderate less heat resist, and a moderate more explosion resist.
+    type: Tweak
+  id: 406615
+  time: '2026-07-13T19:18:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5093
 Order: -1
