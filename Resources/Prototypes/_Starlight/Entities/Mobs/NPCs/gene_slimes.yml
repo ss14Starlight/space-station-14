@@ -71,3 +71,15 @@
     - type: Tag
       tags:
         - XenobiologyClawGrabbable
+    - type: Damageable
+      damageContainer: Biological
+      damageModifierSet: XenoSlime
+    - type: TemperatureDamage
+      heatDamageThreshold: 325
+      coldDamageThreshold: 260
+      coldDamage:
+        types:
+          Cold: 5 #per second, scales with temperature & other constants
+      heatDamage:
+        types:
+          Heat: 1.5 #per second, scales with temperature & other constants
