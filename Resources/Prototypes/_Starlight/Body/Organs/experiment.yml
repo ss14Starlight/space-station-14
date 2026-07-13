@@ -2,7 +2,7 @@
   id: OrganExperimentStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
   name: stomach
-  description: "Gross. This is hard to stomach." 
+  description: "Gross. This is hard to stomach."
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
@@ -23,14 +23,13 @@
           Quantity: 5
 
 - type: entity
-  id: OrganExperimentHeart
-  parent: OrganHumanHeart
-  categories: [ HideSpawnMenu ]
+  id: OrganExperimentEyes
+  parent: OrganHumanEyes
+  name: eyes
+  suffix: Experiment
+  description: "Couldn't have seen that one coming."
   components:
-  - type: Metabolizer
-    maxReagents: 2
-    metabolizerTypes: [Experiment]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobExperimentEyes

@@ -164,7 +164,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             SkinColorationStrategyInput.Unary => skinColoration.FromUnary(speciesPrototype.DefaultHumanSkinTone),
             SkinColorationStrategyInput.Color => skinColoration.ClosestSkinColor(speciesPrototype.DefaultSkinTone),
             _ => skinColoration.ClosestSkinColor(speciesPrototype.DefaultSkinTone),
-            HumanoidSkinColor.SawianHues => Humanoid.SkinColor.ClosestSawianColor(speciesPrototype.DefaultSkinTone),  //TODO - Experiment: Adjust this to the new style of doing this
+            //HumanoidSkinColor.SawianHues => Humanoid.SkinColor.ClosestSawianColor(speciesPrototype.DefaultSkinTone),//  //TODO - Experiment: Adjust this to the new style of doing this
         };
 
         return new(
@@ -231,9 +231,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             case HumanoidEyeColor.FullWhite:
                 newEyeColor = Humanoid.EyeColor.MakeFullWhiteValid(newEyeColor);
                 break;
-            case HumanoidEyeColor.Sawian:
+            /* case HumanoidEyeColor.Sawian:
                 newEyeColor = Humanoid.EyeColor.ClosestSawianColor(Color.White);
-                break;
+                break; */
             default:
                 break;
 

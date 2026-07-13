@@ -9,9 +9,10 @@
       - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        eyes: OrganExperimentEyes
         tongue: OrganHumanTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoExperiment
       connections:
@@ -20,7 +21,7 @@
       - right leg
       - left leg
       organs:
-        heart: OrganExperimentHeart
+        heart: OrganHumanHeart
         lungs: OrganHumanLungs
         stomach: OrganExperimentStomach
         liver:  OrganHumanLiver
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandExperiment
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandExperiment
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegExperiment
       connections:

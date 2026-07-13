@@ -1563,7 +1563,7 @@ namespace Content.Client.Lobby.UI
 
                         break;
                     }
-                case HumanoidSkinColor.SawianHues:
+                /* case HumanoidSkinColor.SawianHues:
                     {
                         if (!RgbSkinColorContainer.Visible)
                         {
@@ -1576,7 +1576,7 @@ namespace Content.Client.Lobby.UI
                         Markings.CurrentSkinColor = color;
                         Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
                         break;
-                    }
+                    } */
             }
 
             ReloadProfilePreview();

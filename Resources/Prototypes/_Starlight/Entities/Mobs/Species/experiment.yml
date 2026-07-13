@@ -1,0 +1,112 @@
+﻿- type: entity
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable, BaseInventoryExperiment]
+  id: BaseMobExperiment
+  abstract: true
+  components:
+  - type: Absorbable
+  - type: Speech
+    speechVerb: Experiment
+    allowedEmotes: ['Arf']
+  - type: Vocal
+    sounds:
+      Unsexed: Experiment
+      Male: Experiment
+      Female: Experiment
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - SolCommon
+    understands:
+    - GalacticCommon
+    - SolCommon
+  - type: Hunger
+    baseDecayRate: 0.12
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 200
+    damage:
+      groups:
+        Burn: -0.5
+        Brute: -0.5
+  - type: Thirst
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: full
+  - type: Body
+    prototype: Experiment
+    requiredLegs: 2
+  - type:  HumanoidAppearance
+    species: Experiment
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      45: 0.7
+      60: 0.5
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 3
+  - type: Damageable
+    damageContainer: Biological
+  - type: DamageVisuals
+    thresholds: [ 10, 30, 50, 70, 100]
+    targetLayers:
+      - "enum.HumanoidVisualLayers.Chest"
+      - "enum.HumanoidVisualLayers.Head"
+      - "enum.HumanoidVisualLayers.LArm"
+      - "enum.HumanoidVisualLayers.LLeg"
+      - "enum.HumanoidVisualLayers.RArm"
+      - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: _Starlight/Mobs/Effects/Experiment/brute_damage.rsi
+        color: "#ffbb00"
+      Burn:
+        sprite: _Starlight/Mobs/Effects/Experiment/burn_damage.rsi
+  - type: FireVisuals
+    sprite: _Starlight/Mobs/Effects/onfire.rsi
+    normalState: Resomi_minor_burning
+    alternateState: Experiment_burning
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: SawianBlood
+        Quantity: 300
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 2
+    damage:
+      types:
+        Slash: 4
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Experiment
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 110
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer

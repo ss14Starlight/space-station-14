@@ -5,9 +5,9 @@
   prototype: MobExperiment
   sprites: MobExperimentSprites
   markingLimits: MobExperimentMarkingLimits
-  dollPrototype: MobExperimentDummy
-  skinColoration: SawianHues
-  eyeColoration: Sawian
+  dollPrototype: AppearanceExperiment
+  skinColoration: HumanToned
+  #eyeColoration: Sawian
   defaultSkinTone: "#FFFFFF"
   maleFirstNames: names_experiment
   femaleFirstNames: names_experiment
@@ -21,7 +21,7 @@
   standardSize: 145
   standardWeight: 50
   standardDensity: 45
-  minAge: 9
+  minAge: 16
   maxAge: 29
   youngAge: 16
   oldAge: 23

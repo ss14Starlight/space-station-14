@@ -21,18 +21,6 @@
   id: Slime
   name: metabolizer-type-slime
 
-- type: metabolizerType #🌟Starlight🌟
-  id: Cyclorite
-  name: metabolizer-type-cyclorite
-
-- type: metabolizerType #🌟Starlight🌟
-  id: Avali
-  name: metabolizer-type-avali
-
-- type: metabolizerType #🌟Starlight🌟
-  id: Experiment
-  name: metabolizer-type-experiment
-
 - type: metabolizerType
   id: Vox
   name: metabolizer-type-vox

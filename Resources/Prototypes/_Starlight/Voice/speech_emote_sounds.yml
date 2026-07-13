@@ -410,7 +410,8 @@
     variation: 0.05
     pitch: 1.25
 
-- id: Experiment
+- type: emoteSounds
+  id: Experiment
   params:
     variation: 0.125
   sounds:
