@@ -146,7 +146,7 @@
 
 - type: entity
   id: OrganAnimalKidneys
-  parent: BaseAnimalOrgan
+  parent: [ BaseAnimalOrgan, BaseOrganKidneys ]
   name: animal kidneys
   categories: [ HideSpawnMenu ]
   components:
