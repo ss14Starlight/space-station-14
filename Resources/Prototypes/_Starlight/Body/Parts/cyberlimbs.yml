@@ -131,7 +131,7 @@
 - type: entity
   id: LeftLegCyberBase
   name: "left base cyber leg"
-  parent: [PartCyber, BaseLeftLeg]
+  parent: BaseLeftLeg
   abstract: true
   components:
     - type: BaseLayerId
@@ -162,7 +162,7 @@
 - type: entity
   id: LeftLegCyber
   name: "left cyber leg"
-  parent: LeftLegCyberBase
+  parent: [PartCyber, LeftLegCyberBase]
   components:
     - type: MovementBodyPart
       sprintSpeed : 4.725 # +5%
@@ -173,7 +173,7 @@
 - type: entity
   id: LeftLegCyberBudget
   name: "left budget cyber leg"
-  parent: LeftLegCyberBase
+  parent: [PartCyber, LeftLegCyberBase]
   components:
     - type: RoundstartImplantable
       cost: 2
@@ -222,7 +222,7 @@
 - type: entity
   id: RightLegCyber
   name: "right cyber leg"
-  parent: RightLegCyberBase
+  parent: [PartCyber, RightLegCyberBase]
   components:
     - type: MovementBodyPart
       sprintSpeed : 4.725 # +5%
@@ -233,7 +233,7 @@
 - type: entity
   id: RightLegCyberBudget
   name: "right budget cyber leg"
-  parent: RightLegCyberBase
+  parent: [PartCyber, RightLegCyberBase]
   components:
     - type: RoundstartImplantable
       cost: 2
@@ -310,7 +310,7 @@
 - type: entity
   id: LeftLegCyberSpeed
   name: "left speed leg"
-  parent: LeftLegCyberBase
+  parent: [PartCyber, LeftLegCyberBase]
   description: Gotta Go Fast!
   components:
     - type: BaseLayerId
@@ -334,7 +334,7 @@
 - type: entity
   id: RightLegCyberSpeed
   name: "right speed leg"
-  parent: RightLegCyberBase
+  parent: [PartCyber, RightLegCyberBase]
   description: Gotta Go Fast!
   components:
     - type: BaseLayerId
@@ -2173,7 +2173,7 @@
 - type: entity
   id: RightLegCyberHydraulic
   name: "right hydraulic cyber leg"
-  parent: RightLegCyberBase
+  parent: [PartCyber, RightLegCyberBase]
   components:
     - type: BaseLayerId
       layers:
@@ -2199,7 +2199,7 @@
 - type: entity
   id: LeftLegCyberPilebunker
   name: "left pilebunker leg"
-  parent: LeftLegCyberBase
+  parent: [PartCyber, LeftLegCyberBase]
   components:
     - type: BaseLayerId
       layers:
@@ -2221,7 +2221,7 @@
 - type: entity
   id: RightLegCyberPilebunker
   name: "right pilebunker leg"
-  parent: RightLegCyberBase
+  parent: [PartCyber, RightLegCyberBase]
   components:
     - type: BaseLayerId
       layers:
@@ -2244,7 +2244,7 @@
 - type: entity
   id: LeftLegCyberCargo
   name: "left cargo cyber leg"
-  parent: LeftLegCyberBase
+  parent: [PartCyber, LeftLegCyberBase]
   description: Wait a moment... This is just an older model of cyberleg someone strapped a pouch to!
   components:
     - type: BaseLayerId
@@ -2297,7 +2297,7 @@
 - type: entity
   id: RightLegCyberCargo
   name: "right cargo cyber leg"
-  parent: RightLegCyberBase
+  parent: [PartCyber, RightLegCyberBase]
   description: Wait a moment... This is just an older model of cyberleg someone strapped a pouch to!
   components:
     - type: BaseLayerId
