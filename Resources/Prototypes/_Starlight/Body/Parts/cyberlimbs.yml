@@ -172,7 +172,7 @@
 
 - type: entity
   id: LeftLegCyberBudget
-  name: "left basic cyber leg"
+  name: "left budget cyber leg"
   parent: LeftLegCyberBase
   components:
     - type: RoundstartImplantable
@@ -232,7 +232,7 @@
 
 - type: entity
   id: RightLegCyberBudget
-  name: "right basic cyber leg"
+  name: "right budget cyber leg"
   parent: RightLegCyberBase
   components:
     - type: RoundstartImplantable
