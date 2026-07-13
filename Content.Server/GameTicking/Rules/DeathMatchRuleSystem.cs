@@ -1,3 +1,4 @@
+using Content.Server.Actions; // Starlight
 using Content.Server.Clothing.Systems;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.KillTracking;
@@ -30,16 +31,27 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
     [Dependency] private IServerPreferencesManager _preferences = default!; // Starlight
     [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private ActionsSystem _actions = default!; // Starlight
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<DeathmatchComponent, ComponentStartup>(OnStartup); // Starlight
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
         SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
         SubscribeLocalEvent<DeathMatchRuleComponent, PlayerPointChangedEvent>(OnPointChanged);
     }
+
+    #region Starlight
+    private void OnStartup(EntityUid uid, DeathmatchComponent comp, ref ComponentStartup args)
+    {
+        // add actions
+        foreach (var actionId in comp.BaseDeathmatchActions)
+            _actions.AddAction(uid, actionId);
+    }
+    #endregion
 
     private void OnBeforeSpawn(PlayerBeforeSpawnEvent ev)
     {
