@@ -1,18 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: All Service jobs now have Service access. Chaplain, Clown, Mime and Musician did not have it previously.
-    type: Tweak
-  id: 406212
-  time: '2026-06-24T18:15:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4927
-- author: redmushie
-  changes:
-  - message: The service request console now only uses Service access.
-    type: Tweak
-  id: 406213
-  time: '2026-06-24T18:15:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4927
 - author: wonderfulnewworld, Golub
   changes:
   - message: Added Cosmic Cult, Wizard Duel, Xenoborgs, Terror Spiders, Vampires, Changelings, SELF, Sub Wizards, and Paradox Crisis to Dynamic.
@@ -2799,4 +2785,18 @@ Entries:
   id: 406611
   time: '2026-07-13T09:21:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5065
+- author: SevenShades & Ilya246
+  changes:
+  - message: Added logic to allow drawing diagonals on mass scanners.
+    type: Add
+  id: 406612
+  time: '2026-07-13T10:48:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5116
+- author: SevenShades & Ilya246
+  changes:
+  - message: Added diagonal lattices and plating tiles.
+    type: Add
+  id: 406613
+  time: '2026-07-13T10:48:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5116
 Order: -1
