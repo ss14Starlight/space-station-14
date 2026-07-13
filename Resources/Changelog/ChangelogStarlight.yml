@@ -1,32 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Golub
-  changes:
-  - message: Tweaked Dynamic weights.
-    type: Tweak
-  id: 406216
-  time: '2026-06-24T18:36:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4920
-- author: wonderfulnewworld, Golub
-  changes:
-  - message: Dynamic will now actually select roundstart antagonists.
-    type: Fix
-  id: 406217
-  time: '2026-06-24T18:36:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4920
-- author: redmushie
-  changes:
-  - message: Request computers actually check access now.
-    type: Fix
-  id: 406218
-  time: '2026-06-24T21:12:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4928
-- author: Mack
-  changes:
-  - message: 'Popout to: Guidebook, Crew Monitors, Mass Scanners, Shuttle Consoles, Camera Monitors, AI Station records, Ghost Character Editor.'
-    type: Add
-  id: 406219
-  time: '2026-06-25T07:27:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4922
 - author: Mack
   changes:
   - message: ID job names not being escaped.
@@ -2799,4 +2771,32 @@ Entries:
   id: 406615
   time: '2026-07-13T19:18:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5093
+- author: wonderfulnewworld, SnappingOpossum
+  changes:
+  - message: You can now spawn a new Robust Toolbox every 60 seconds in Deathmatch.
+    type: Add
+  id: 406616
+  time: '2026-07-13T20:52:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5027
+- author: wonderfulnewworld, SnappingOpossum
+  changes:
+  - message: Removed the Soap from Deathmatch loot.
+    type: Remove
+  id: 406617
+  time: '2026-07-13T20:52:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5027
+- author: wonderfulnewworld, SnappingOpossum
+  changes:
+  - message: The Robust Toolbox is now deleted when dropped.
+    type: Tweak
+  id: 406618
+  time: '2026-07-13T20:52:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5027
+- author: wonderfulnewworld, SnappingOpossum
+  changes:
+  - message: You will now alternate between all enabled characters in Deathmatch.
+    type: Tweak
+  id: 406619
+  time: '2026-07-13T20:52:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5027
 Order: -1
