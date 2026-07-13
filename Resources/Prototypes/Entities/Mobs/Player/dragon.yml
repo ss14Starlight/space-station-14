@@ -25,6 +25,7 @@
       reagents:
       - ReagentId: Blood
         Quantity: 650
+    maxBleedAmount: 0 # Starlight
   - type: AntagMonsterScaling ## Starlight
   - type: GhostRole
     allowMovement: true
