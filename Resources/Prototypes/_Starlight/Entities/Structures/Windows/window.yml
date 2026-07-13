@@ -5,3 +5,152 @@
   components:
   - type: Occluder
     enabled: false
+
+# Honeypots BEGIN
+# I tried inheritance on these guys, but they really didn't want to, so copy-paste it is :(
+
+# Solid wall
+- type: entity
+  parent: WallSolid
+  id: WallSolidHoneypot
+  description: &honeypotDesc Notifies admins when it gets damaged and is secretly indestructible.
+  suffix: &honeypotSuffix Honeypot, Do Not Map
+  components:
+    - type: ReplaceOnInit
+      proto: WallSolid
+      overrides: &honeypotOverrides
+        - type: AdminNotifyOnDamage
+          subject: "honeypot"
+        - type: Destructible
+          thresholds: []
+    - &honeypotSprite
+      type: Sprite
+      color: "#ffa033"
+
+# Reinforced wall
+- type: entity
+  parent: WallReinforced
+  id: WallReinforcedHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: WallReinforced
+      overrides: *honeypotOverrides
+    - *honeypotSprite
+
+# Reinforced window
+
+## Full size
+- type: entity
+  parent: ReinforcedWindow
+  id: ReinforcedWindowHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedWindow
+      overrides: *honeypotOverrides
+    - *honeypotSprite
+
+## Diagonal
+- type: entity
+  parent: ReinforcedWindowDiagonal
+  id: ReinforcedWindowDiagonalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedWindowDiagonal
+      overrides: *honeypotOverrides
+    - *honeypotSprite
+
+## Directional
+- type: entity
+  parent: WindowReinforcedDirectional
+  id: WindowReinforcedDirectionalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: WindowReinforcedDirectional
+      overrides: *honeypotOverrides
+    - *honeypotSprite
+
+# Plasma window
+
+## Full size
+- type: entity
+  parent: ReinforcedPlasmaWindow
+  id: ReinforcedPlasmaWindowHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedPlasmaWindow
+      overrides: *honeypotOverrides
+    - *honeypotSprite
+
+## Diagonal
+- type: entity
+  parent: ReinforcedPlasmaWindowDiagonal
+  id: ReinforcedPlasmaWindowDiagonalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedPlasmaWindowDiagonal
+      overrides: *honeypotOverrides
+    - *honeypotSprite
+
+## Directional
+- type: entity
+  parent: PlasmaReinforcedWindowDirectional
+  id: PlasmaReinforcedWindowDirectionalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: PlasmaReinforcedWindowDirectional
+      overrides: *honeypotOverrides
+    - *honeypotSprite
+
+# Uranium window
+
+## Full size
+- type: entity
+  parent: ReinforcedUraniumWindow
+  id: ReinforcedUraniumWindowHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedUraniumWindow
+      overrides: *honeypotOverrides
+    - *honeypotSprite
+
+## Diagonal
+- type: entity
+  parent: ReinforcedUraniumWindowDiagonal
+  id: ReinforcedUraniumWindowDiagonalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedUraniumWindowDiagonal
+      overrides: *honeypotOverrides
+    - *honeypotSprite
+
+## Directional
+- type: entity
+  parent: UraniumReinforcedWindowDirectional
+  id: UraniumReinforcedWindowDirectionalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: UraniumReinforcedWindowDirectional
+      overrides: *honeypotOverrides
+    - *honeypotSprite
+
+# Honeypots END
