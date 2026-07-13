@@ -23,4 +23,24 @@ public sealed partial class LoadoutComponent : Component
     [DataField]
     [AutoNetworkedField]
     public List<ProtoId<RoleLoadoutPrototype>>? RoleLoadout;
+
+    #region Starlight
+
+    /// <summary>
+    /// A list of starting gears, of which one will be given, AFTER RoleLoadouts are equipped.
+    /// All elements are weighted the same in the list.
+    /// This is primarily so you can stuff items into containers put onto the entity by either RoleLoadouts or StartingGears.
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public List<ProtoId<StartingGearPrototype>>? PostSpawnGear;
+
+    /// <summary>
+    /// A flag to determine whether to apply <see cref="PostSpawnGear"/>.
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public bool PostStationSpawn;
+
+    #endregion Starlight
 }
