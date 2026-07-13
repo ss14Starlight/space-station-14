@@ -7,11 +7,11 @@ concurrency:
 
 on:
   push:
-    branches: [ master, staging, stable, Starlight, starlight-dev, upstream-devtest, fix/tests ]
+    branches: [ master, staging, stable, Sol, sol-dev, upstream-devtest, fix/tests ]
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
-    branches: [ master, staging, stable, Starlight, starlight-dev, upstream-devtest ]
+    branches: [ master, staging, stable, Sol, sol-dev, upstream-devtest ]
 
 jobs:
   build:

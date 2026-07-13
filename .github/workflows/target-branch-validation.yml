@@ -20,14 +20,12 @@ jobs:
           TARGET_BRANCH="${{ github.event.pull_request.base.ref }}"
           echo "PR from: $SOURCE_BRANCH -> $TARGET_BRANCH"
 
-          # Allow starlight-dev to starlight PRs in both directions
           if [[ ("$SOURCE_BRANCH" == "sol-dev" && "$TARGET_BRANCH" == "Sol") ||
                 ("$SOURCE_BRANCH" == "Sol" && "$TARGET_BRANCH" == "sol-dev") ]]; then
-            echo "Allowed: PR between starlight-dev and starlight branches"
+            echo "Allowed: PR between sol-dev and Sol branches"
             exit 0
           fi
 
-          # For all other PRs, require starlight-dev as target
           if [ "$TARGET_BRANCH" != "sol-dev" ]; then
             echo "Error: PR must target 'sol-dev' branch, but targets '$TARGET_BRANCH'"
             echo "Please change the target branch to 'sol-dev'"
