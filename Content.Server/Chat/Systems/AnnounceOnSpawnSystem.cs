@@ -1,5 +1,5 @@
 using Content.Server.Chat;
-using Robust.Shared.Player; // Starlight
+using Robust.Shared.Player;
 
 namespace Content.Server.Chat.Systems;
 
