@@ -1,18 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: The shipyard console circuitboard is now a thief objective per request.
-    type: Add
-  id: 406207
-  time: '2026-06-24T14:30:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4907
-- author: Scarlet Lightweaver and all the space stations.
-  changes:
-  - message: Added a magnet to the material silo departments hooray.
-    type: Add
-  id: 406208
-  time: '2026-06-24T14:55:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4902
 - author: Kasern
   changes:
   - message: Senior Chef Jacket.
@@ -2799,4 +2785,18 @@ Entries:
   id: 406606
   time: '2026-07-13T07:56:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5123
+- author: SevenShades
+  changes:
+  - message: Added a new set of large diagonal decals.
+    type: Add
+  id: 406607
+  time: '2026-07-13T08:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5120
+- author: SevenShades
+  changes:
+  - message: Edited some existing diagonal decals to improve tiling.
+    type: Tweak
+  id: 406608
+  time: '2026-07-13T08:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5120
 Order: -1
