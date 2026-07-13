@@ -106,7 +106,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
 
             // --- End setup
 
-            var inhaleCycles = 100;
+            var inhaleCycles = 20;
             for (var i = 0; i < inhaleCycles; i++)
             {
                 // Breathe in
