@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: Authenticate as GitHub App for Changelog
         env:
-        APP_ID: ${{ vars.CHANGELOG_APP_ID }}
+          APP_ID: ${{ vars.CHANGELOG_APP_ID }}
           INSTALLATION_ID: ${{ vars.CHANGELOG_APP_INSTALLATION_ID }}
           PRIVATE_KEY: ${{ secrets.CHANGELOG_APP_PRIVATE_KEY }}
         run: |
