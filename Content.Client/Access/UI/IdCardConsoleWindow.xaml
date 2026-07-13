@@ -29,6 +29,14 @@
             <Button Name="JobTitleSaveButton" Text="{Loc 'id-card-console-window-save-button'}" Disabled="True" />
         </GridContainer>
         <Control MinSize="0 8" />
+        <!-- Starlight-start -->
+        <Label Name="MissingPrivilegesWarning"
+               Text="{Loc 'id-card-console-window-missing-privileges-warning'}"
+               FontColorOverride="#FFFF00"
+               Visible="False"
+               HorizontalAlignment="Center"
+               Margin="0 0 0 4" />
+        <!-- Starlight-end -->
         <!-- Job preset selection, grant/revoke all access buttons. -->
         <BoxContainer Margin="0 8 0 4">
             <BoxContainer>
