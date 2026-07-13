@@ -3,8 +3,8 @@ name: Update Changelog
 on:
   push:
     branches:
-      - Starlight
-      - starlight-dev
+      - Sol
+      - sol-dev
 
 
 permissions:
@@ -87,18 +87,18 @@ jobs:
       - name: Parse PR and Update Changelog
         if: steps.get_pr.outputs.result != ''
         env:
-          CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogStarlight.yml'
+          CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogSol.yml'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ steps.get_pr.outputs.result }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          python ./Tools/_Starlight/update_changelog.py
+          python ./Tools/_Sol/update_changelog.py
           echo "Script exited with code $?"
 
       - name: Display changelog after update
         if: steps.get_pr.outputs.result != ''
         run: |
-          cat "Resources/Changelog/ChangelogStarlight.yml"
+          cat "Resources/Changelog/ChangelogSol.yml"
 
       - name: Git status before commit
         if: steps.get_pr.outputs.result != ''
@@ -110,7 +110,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "Resources/Changelog/ChangelogStarlight.yml"
+          git add "Resources/Changelog/ChangelogSol.yml"
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
