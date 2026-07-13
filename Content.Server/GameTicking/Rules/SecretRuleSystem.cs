@@ -21,6 +21,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IChatManager _chatManager = default!; // Starlight
 
     private readonly Dictionary<string, int> _secretPresetCooldown = new();
     private string _ruleCompName = default!;
@@ -44,6 +45,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
         }
 
         Log.Info($"Selected {preset.ID} as the secret preset.");
+        _chatManager.SendAdminAnnouncement($"Round preset selected: Secret ({preset.ID}).");
         _adminLogger.Add(LogType.EventStarted, $"Selected {preset.ID} as the secret preset.");
 
         foreach (var rule in preset.Rules)
