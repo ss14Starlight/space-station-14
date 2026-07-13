@@ -22,10 +22,10 @@ public sealed partial class CargoGasPalletComponent : Component, IGasMixtureHold
     public GasMixture Air { get; set; } = new GasMixture();
 
     /// <summary>
-    /// The maximum pressure to which this will accept gasses
+    /// The maximum pressure to which this will accept and/or output gasses
     /// </summary>
     [DataField("maxPressure")]
-    public float MaxPressure { get; set; } = 4500;
+    public float MaxPressure { get; set; } = Atmospherics.MaxOutputPressure;
 
     /// <summary>
     /// Whether this is a buying, selling, or both type.

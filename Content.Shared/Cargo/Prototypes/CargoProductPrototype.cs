@@ -20,6 +20,7 @@ namespace Content.Shared.Cargo.Prototypes
         public bool Abstract { get; private set; }
 
         [DataField("name")] private string _name = string.Empty;
+        [DataField("nameLoc")] private string _nameLoc = string.Empty;
 
         [DataField("description")] private string _description = string.Empty;
 
@@ -38,16 +39,13 @@ namespace Content.Shared.Cargo.Prototypes
                 if (_name.Trim().Length != 0)
                     return _name;
 
-                var proto = IoCManager.Resolve<IPrototypeManager>();
-                if (proto.Resolve(Product, out var prototype))
+                if (!string.IsNullOrEmpty(_nameLoc)) // Starlight
+                    return _name = Loc.GetString(_nameLoc); // Starlight
+
+                if (!string.IsNullOrEmpty(Product) && // Starlight
+                    IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out EntityPrototype? prototype))
                 {
                     _name = prototype.Name;
-                }
-                if (!string.IsNullOrEmpty(GasType) && proto.Resolve(GasType, out var gasType))
-                {
-                    _name = Loc.GetString("cargo-product-gas",
-                        ("name", Loc.GetString("cargo-product-gas-" + gasType.ID)),
-                        ("moles", GasMoles));
                 }
 
                 return _name;

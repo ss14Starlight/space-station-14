@@ -1,7 +1,7 @@
 - type: entity
   parent: GasUnaryBase
-  id: CargoGasTankSale
-  name: cargo gas sale tank
+  id: CargoGasPalletSell
+  name: cargo gas selling tank
   description: Stores gasses pumped through piping for sale. Made of plastitanium to discourage pesky vandals.
   components:
   - type: Anchorable
@@ -32,8 +32,8 @@
 
 - type: entity
   parent: GasUnaryBase
-  id: CargoGasTankPurchase
-  name: cargo gas purchasing tank
+  id: CargoGasPalletBuy
+  name: cargo gas buying tank
   description: Stores gasses purchased in bulk, ready to be pumped. Made of plastitanium to discourage pesky vandals.
   components:
     - type: Anchorable
