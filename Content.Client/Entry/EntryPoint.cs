@@ -157,6 +157,8 @@ namespace Content.Client.Entry
             //_jobRequirements.Initialize(); //🌟Starlight🌟 - Moved to PostInit
             _playbackMan.Initialize();
             _clientsidePlaytimeManager.Initialize();
+            //🌟Starlight🌟 - Auto-fill chat highlights with character info by default (useful for high player-count rounds)
+            _configManager.OverrideDefault(Content.Shared.CCVar.CCVars.ChatAutoFillHighlights, true);
 
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);
