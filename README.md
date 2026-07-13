@@ -1,5 +1,5 @@
 <div class="header" align="center">
-# Sol's Descendants
+<h1>Sol's Descendants</h1>
 
 [![Discord](https://img.shields.io/discord/1272545509562777621?label=Discord&logo=discord&logoColor=white)](https://nwdak.online/link/sol)
 [![Steam](https://img.shields.io/badge/Steam-SS14%20-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
