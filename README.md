@@ -6,7 +6,6 @@
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
 [![GitHub](https://img.shields.io/github/stars/North-Western-Development/space-station-14?style=social)]([https://github.com/North-Western-Development/space-station-14])
 
-# Sol's Descendants
 <sub>Space-Station 14</sub>
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/ss14Starlight/space-station-14)
