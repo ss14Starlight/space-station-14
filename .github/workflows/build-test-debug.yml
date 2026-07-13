@@ -7,7 +7,7 @@ concurrency:
 
 on:
   push:
-    branches: [ master, staging, stable, Starlight, starlight-dev, upstream-devtest, fix/tests ]
+    branches: [ master, staging, stable, Starlight, upstream-devtest, fix/tests ]
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
