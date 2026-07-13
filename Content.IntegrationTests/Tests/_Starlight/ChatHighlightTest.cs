@@ -24,6 +24,9 @@ public sealed class ChatHighlightTest : GameTest
     {
         var chatController = _uiManager.GetUIController<ChatUIController>();
 
+        // Assert that the CVar defaults to true on Starlight
+        Assert.That(_configManager.GetCVar(CCVars.ChatAutoFillHighlights), Is.True);
+
         // 1. Enable auto-fill highlights
         _configManager.SetCVar(CCVars.ChatAutoFillHighlights, true);
 
@@ -95,6 +98,9 @@ public sealed class ChatHighlightTest : GameTest
     public async Task TestEnablingAutoFillPreservesCustomHighlights()
     {
         var chatController = _uiManager.GetUIController<ChatUIController>();
+
+        // Assert that the CVar defaults to true on Starlight
+        Assert.That(_configManager.GetCVar(CCVars.ChatAutoFillHighlights), Is.True);
 
         // 1. Start with auto-fill disabled
         _configManager.SetCVar(CCVars.ChatAutoFillHighlights, false);
