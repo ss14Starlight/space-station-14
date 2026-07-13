@@ -45,7 +45,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
         }
 
         Log.Info($"Selected {preset.ID} as the secret preset.");
-        _chatManager.SendAdminAnnouncement($"Round preset selected: Secret ({preset.ID}).");
+        _chatManager.SendAdminAnnouncement($"Round preset selected: Secret ({preset.ID})."); // Starlight
         _adminLogger.Add(LogType.EventStarted, $"Selected {preset.ID} as the secret preset.");
 
         foreach (var rule in preset.Rules)
