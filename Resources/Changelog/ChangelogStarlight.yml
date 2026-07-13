@@ -1,179 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Added a filled coroner locker to morgue.
-    type: Add
-  id: 406189
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Removed one surgery bag in robotics.
-    type: Remove
-  id: 406190
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Removed one body bag box from morgue.
-    type: Remove
-  id: 406191
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Changed mail tech locker to the double variant.
-    type: Tweak
-  id: 406192
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Changed showroom to reporter moving its content nearby.
-    type: Tweak
-  id: 406193
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Fixed robotics windoor not being robotics access.
-    type: Fix
-  id: 406194
-  time: '2026-06-23T08:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4890
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added Iceialin, a freezing chem that can rapidly cool superheated bodies.
-    type: Add
-  id: 406195
-  time: '2026-06-23T09:28:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4808
-- author: Caws
-  changes:
-  - message: Most species organs are now consistently labelled as "(species name) (organ name)", e.g. "vox eyes" "resomi stomach" "vulpkanin heart", etc. Surgeons rejoice.
-    type: Tweak
-  id: 406196
-  time: '2026-06-23T09:28:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4894
-- author: Caws
-  changes:
-  - message: Arachnids now have arachnid tongues instead of human tongues.
-    type: Fix
-  id: 406197
-  time: '2026-06-23T09:28:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4894
-- author: Caws
-  changes:
-  - message: Vox now have vox tongues instead of human tongues.
-    type: Fix
-  id: 406198
-  time: '2026-06-23T09:28:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4894
-- author: redmushie
-  changes:
-  - message: Ripleys with hydraulic clamps can actually pick up tamper-sealed crates.
-    type: Fix
-  id: 406199
-  time: '2026-06-23T16:18:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4911
-- author: Ohelig
-  changes:
-  - message: 'Cog: Add Science Material Silo.'
-    type: Add
-  id: 406200
-  time: '2026-06-23T17:37:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4904
-- author: Ohelig
-  changes:
-  - message: 'Cog: Add spare Intellicard to AI Core.'
-    type: Add
-  id: 406201
-  time: '2026-06-23T17:37:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4904
-- author: Ohelig
-  changes:
-  - message: 'Cog: Add a missing distro pipe in Sec.'
-    type: Add
-  id: 406202
-  time: '2026-06-23T17:37:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4904
-- author: Ohelig
-  changes:
-  - message: 'Cog: Fix space-weather in Botany, Bee Room, Lizard Enclosure.'
-    type: Fix
-  id: 406203
-  time: '2026-06-23T17:37:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4904
-- author: Ohelig
-  changes:
-  - message: 'Cog: Remove hidden tech altar inside the wall of the maints south of AI Core.'
-    type: Remove
-  id: 406204
-  time: '2026-06-23T17:37:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4904
-- author: BlythT
-  changes:
-  - message: Fixed butcher verb popping in by adding client-side verb prediction.
-    type: Fix
-  id: 406205
-  time: '2026-06-24T06:30:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4900
-- author: Johnny
-  changes:
-  - message: Added a circuitboard in the captains locker for the shipyard console so that it is more accessible no matter what map it is.
-    type: Add
-  id: 406206
-  time: '2026-06-24T14:30:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4907
-- author: Johnny
-  changes:
-  - message: The shipyard console circuitboard is now a thief objective per request.
-    type: Add
-  id: 406207
-  time: '2026-06-24T14:30:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4907
-- author: Scarlet Lightweaver and all the space stations.
-  changes:
-  - message: Added a magnet to the material silo departments hooray.
-    type: Add
-  id: 406208
-  time: '2026-06-24T14:55:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4902
-- author: Kasern
-  changes:
-  - message: Senior Chef Jacket.
-    type: Add
-  id: 406209
-  time: '2026-06-24T16:25:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4912
-- author: Kasern
-  changes:
-  - message: Senior Chef Jumpsuit.
-    type: Add
-  id: 406210
-  time: '2026-06-24T16:25:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4912
-- author: Kasern
-  changes:
-  - message: Senior Chef loadout options.
-    type: Add
-  id: 406211
-  time: '2026-06-24T16:25:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4912
-- author: redmushie
-  changes:
-  - message: All Service jobs now have Service access. Chaplain, Clown, Mime and Musician did not have it previously.
-    type: Tweak
-  id: 406212
-  time: '2026-06-24T18:15:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4927
-- author: redmushie
-  changes:
-  - message: The service request console now only uses Service access.
-    type: Tweak
-  id: 406213
-  time: '2026-06-24T18:15:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4927
 - author: wonderfulnewworld, Golub
   changes:
   - message: Added Cosmic Cult, Wizard Duel, Xenoborgs, Terror Spiders, Vampires, Changelings, SELF, Sub Wizards, and Paradox Crisis to Dynamic.
@@ -2799,4 +2624,179 @@ Entries:
   id: 406588
   time: '2026-07-11T17:13:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5076
+- author: SevenShades
+  changes:
+  - message: MedTak silicons not seeing client icons.
+    type: Fix
+  id: 406589
+  time: '2026-07-12T11:22:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5100
+- author: neomoth
+  changes:
+  - message: Added highly customizable spawner entities.
+    type: Add
+  id: 406590
+  time: '2026-07-12T12:08:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4973
+- author: Conflee
+  changes:
+  - message: Added Security Tickets. Tickets can be found in Ticket Pads, within Security Officer Lockers or the SecTech. A new line in Corporate Law under 'Normal Punishments' outlines their use as a step up from an informal warning, and how to fill out a ticket.
+    type: Add
+  id: 406591
+  time: '2026-07-12T17:12:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5050
+- author: Arkanic
+  changes:
+  - message: Improved projectile performance.
+    type: Tweak
+  id: 406592
+  time: '2026-07-12T21:23:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5113
+- author: Arkanic
+  changes:
+  - message: Fixed the infamous "shooting at wall or person close by you makes you shoot yourself" bug that we all love and will dearly miss.
+    type: Fix
+  id: 406593
+  time: '2026-07-12T21:23:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5113
+- author: Arkanic
+  changes:
+  - message: Hitscan projectiles can now properly overpenetrate through walls, and aren't broken by two walls adjacent to each other.
+    type: Fix
+  id: 406594
+  time: '2026-07-12T21:23:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5113
+- author: Arkanic
+  changes:
+  - message: A dinky pistol that definitely has no relation whatsoever to any of the above changes.
+    type: Add
+  id: 406595
+  time: '2026-07-12T21:23:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5113
+- author: mikeysaurus
+  changes:
+  - message: Animal Kidneys can now be used in Surgery to replace kidneys.
+    type: Fix
+  id: 406596
+  time: '2026-07-12T21:23:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5105
+- author: Conflee
+  changes:
+  - message: Resprited the Post Light to be in 3/4ths perspective instead of Flat perspective, so it looks more like a real object that is in the world instead of a PNG. (only walls, windows, and airlocks should be in Flat perspective).
+    type: Tweak
+  id: 406597
+  time: '2026-07-12T22:04:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5106
+- author: Sparlight
+  changes:
+  - message: Fixed inconsistent animal husbandry behavior.  Now your chickens won't stop your cows from breeding.
+    type: Fix
+  id: 406598
+  time: '2026-07-12T22:32:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5101
+- author: wonderfulnewworld
+  changes:
+  - message: You can now swing vibroblade sheathes, the captain's sheathe, the cane sheathe, and the bunny gang backpack.
+    type: Add
+  id: 406599
+  time: '2026-07-12T22:32:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5095
+- author: wonderfulnewworld
+  changes:
+  - message: Senior security officer, duty officer, brigmedic, and warden clothes now use the correct senior time.
+    type: Fix
+  id: 406600
+  time: '2026-07-12T22:32:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5098
+- author: Littlemen/Romero
+  changes:
+  - message: The Peacekeeper. A break action single shot grenade launcher for security.
+    type: Add
+  id: 406601
+  time: '2026-07-12T23:16:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5068
+- author: Littlemen/Romero
+  changes:
+  - message: 'Several grenade type for it: Stinger, Flash, Baton, Teargas.'
+    type: Add
+  id: 406602
+  time: '2026-07-12T23:16:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5068
+- author: Littlemen/Romero
+  changes:
+  - message: Loadout option for officers to replace their taser/dominator for the Peacekeeper.
+    type: Add
+  id: 406603
+  time: '2026-07-12T23:16:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5068
+- author: Littlemen/Romero
+  changes:
+  - message: the security flare gun.
+    type: Remove
+  id: 406604
+  time: '2026-07-12T23:16:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5068
+- author: Pastres
+  changes:
+  - message: Adds sprite for Vox space hazard hardsuit.
+    type: Tweak
+  id: 406605
+  time: '2026-07-12T23:57:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5112
+- author: Conflee
+  changes:
+  - message: Added 34 Posters and 14 Signs. 22 of the posters are for the Prison Colony, and have a RandomPosterPrison spawn marker. 7 Locker Room signs and 7 Breakroom signs. Misc other posters added to Contraband and Legit pools. Mugshot background poster for Security decorating.
+    type: Add
+  id: 406606
+  time: '2026-07-13T07:56:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5123
+- author: SevenShades
+  changes:
+  - message: Added a new set of large diagonal decals.
+    type: Add
+  id: 406607
+  time: '2026-07-13T08:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5120
+- author: SevenShades
+  changes:
+  - message: Edited some existing diagonal decals to improve tiling.
+    type: Tweak
+  id: 406608
+  time: '2026-07-13T08:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5120
+- author: ku-mo
+  changes:
+  - message: Role time requirements no longer display as "unknown" for roles you already meet the playtime for.
+    type: Fix
+  id: 406609
+  time: '2026-07-13T08:55:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5107
+- author: Conflee
+  changes:
+  - message: Added Locker Fills for the Clown and Mime's lockers. These can now be mapped into their respective room(s) at mapper's discretion. They contain a spare uniform, some funny items, and a very rare chance for their job lizard plushie.
+    type: Add
+  id: 406610
+  time: '2026-07-13T09:21:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5065
+- author: Conflee
+  changes:
+  - message: Added the 'get out of jail free' card. This is a joke item that can be found 50% of the time in the Clown or Mime's locker, as well as in maints lockers and the toy chest.
+    type: Add
+  id: 406611
+  time: '2026-07-13T09:21:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5065
+- author: SevenShades & Ilya246
+  changes:
+  - message: Added logic to allow drawing diagonals on mass scanners.
+    type: Add
+  id: 406612
+  time: '2026-07-13T10:48:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5116
+- author: SevenShades & Ilya246
+  changes:
+  - message: Added diagonal lattices and plating tiles.
+    type: Add
+  id: 406613
+  time: '2026-07-13T10:48:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5116
 Order: -1
