@@ -51,21 +51,24 @@ jobs:
           INSTALLATION_ID: ${{ vars.CHANGELOG_APP_INSTALLATION_ID }}
           PRIVATE_KEY: ${{ secrets.CHANGELOG_APP_PRIVATE_KEY }}
         run: |
-          python3 -c '
+	  python3 -c '
           import os, time, json, base64, urllib.request
           from cryptography.hazmat.primitives import serialization, hashes
           from cryptography.hazmat.primitives.asymmetric import padding
 
           def b64(p): return base64.urlsafe_b64encode(p if isinstance(p, bytes) else p.encode()).decode().replace("=", "")
-
-          signing_input = f"{b64(json.dumps({\"alg\":\"RS256\",\"typ\":\"JWT\"}))}.{b64(json.dumps({\"iat\":int(time.time())-60,\"exp\":int(time.time())+600,\"iss\":os.environ[\"APP_ID\"]}))}".encode()
-          signature = serialization.load_pem_private_key(os.environ[\"PRIVATE_KEY\"].encode(), password=None).sign(signing_input, padding.PKCS1v15(), hashes.SHA256())
+          
+          header = json.dumps({"alg": "RS256", "typ": "JWT"})
+          payload = json.dumps({"iat": int(time.time()) - 60, "exp": int(time.time()) + 600, "iss": os.environ["APP_ID"]})
+          signing_input = f"{b64(header)}.{b64(payload)}".encode()
+          
+          signature = serialization.load_pem_private_key(os.environ["PRIVATE_KEY"].encode(), password=None).sign(signing_input, padding.PKCS1v15(), hashes.SHA256())
           jwt = f"{signing_input.decode()}.{b64(signature)}"
 
           req = urllib.request.Request(f"https://api.github.com/app/installations/{os.environ[\"INSTALLATION_ID\"]}/access_tokens", method="POST")
           req.add_header("Authorization", f"Bearer {jwt}")
           req.add_header("Accept", "application/vnd.github+json")
-
+          
           with urllib.request.urlopen(req) as r:
               token = json.loads(r.read().decode())["token"]
               with open(os.environ["GITHUB_ENV"], "a") as f: f.write(f"GITHUB_TOKEN={token}\n")
