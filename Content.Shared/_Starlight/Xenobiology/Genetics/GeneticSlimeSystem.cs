@@ -21,7 +21,6 @@ public sealed class GeneticSlimeSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        //SubscribeLocalEvent<GeneticSlimeComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<GeneticSlimeComponent, AfterMeleeHitEvent>(OnAfterMeleeHit);
     }
 
@@ -30,7 +29,11 @@ public sealed class GeneticSlimeSystem : EntitySystem
         if (!_entityManager.TryGetComponent<HungerComponent>(entity.Owner, out var hungerComponent)) return;
         if (!_entityManager.TryGetComponent<GenesComponent>(entity.Owner, out var genesComponent)) return;
 
-        _hungerSystem.ModifyHunger(entity.Owner, entity.Comp.BiteNutritionGain);
+        // Yes this means slimes can get nutrition from eating walls
+        // And that sounds hilarious so I'm keeping it
+        foreach (var target in args.HitEntities)
+            _hungerSystem.ModifyHunger(entity.Owner, entity.Comp.BiteNutritionGain);
+
         if (_hungerSystem.GetHungerThreshold(hungerComponent) > HungerThreshold.Okay)
         {
             var newNutrition = _hungerSystem.GetHunger(hungerComponent) / entity.Comp.SplitAmount;
@@ -74,19 +77,4 @@ public sealed class GeneticSlimeSystem : EntitySystem
             _entityManager.PredictedQueueDeleteEntity(entity.Owner);
         }
     }
-
-    /*
-    private void OnMapInit(Entity<GeneticSlimeComponent> entity, ref MapInitEvent args)
-    {
-        if (_entityManager.TryGetComponent<GenesComponent>(entity, out var genesComponent))
-        {
-            for (var i = 0; i < 5; i++)
-            {
-                var newGene = _genesSystem.GenerateGene((entity.Owner, genesComponent));
-                genesComponent.Genes.Add(newGene);
-            }
-            _genesSystem.UpdateTraits((entity.Owner, genesComponent));
-        }
-    }
-    */
 }
