@@ -51,7 +51,7 @@ jobs:
           INSTALLATION_ID: ${{ vars.CHANGELOG_APP_INSTALLATION_ID }}
           PRIVATE_KEY: ${{ secrets.CHANGELOG_APP_PRIVATE_KEY }}
         run: |
-	  python3 -c '
+          python3 -c '
           import os, time, json, base64, urllib.request
           from cryptography.hazmat.primitives import serialization, hashes
           from cryptography.hazmat.primitives.asymmetric import padding
