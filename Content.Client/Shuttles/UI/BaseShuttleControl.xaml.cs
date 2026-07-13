@@ -142,7 +142,8 @@ public partial class BaseShuttleControl : MapGridControl
             while (rator.MoveNext(out var tileRef))
             {
                 var index = tileRef.Value.GridIndices;
-                // Monolith - drawing logic rewritten
+
+                // Monolith START - drawing logic rewritten
                 var def = (ContentTileDefinition)_tileDef[tileRef.Value.Tile.TypeId];
                 _gridTileList.Add((index, def));
 
@@ -180,14 +181,15 @@ public partial class BaseShuttleControl : MapGridControl
                     prev = vert;
                 }
                 _gridNeighborSet[index] = dirFlag;
+                // Monolith END
             }
 
             gridData.EdgeIndex = gridData.Vertices.Count;
             _edges.Clear();
 
-            foreach (var (index, def) in _gridTileList)
+            foreach (var (index, def) in _gridTileList) // Monolith START - drawing logic rewritten
             {
-                // Monolith - drawing logic rewritten
+                // Monolith START - drawing logic rewritten
                 var bl = Maps.TileToVector(grid, index);
 
                 // start from drawing the end->start line
@@ -219,6 +221,7 @@ public partial class BaseShuttleControl : MapGridControl
 
                     _edges.Add((bl + prev * tileSize, bl + vert * tileSize));
                     prev = vert;
+                    // Monolith END
                 }
             }
 

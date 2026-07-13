@@ -65,7 +65,7 @@ public sealed class FluidSpill : GameTest
             {
                 for (var y = 0; y < 3; y++)
                 {
-                    mapSystem.SetTile(grid, new Vector2i(x, y), platingTile);
+                    mapSystem.SetTile(grid, new Vector2i(x, y), platingTile); // Monolith edit
                 }
             }
 
