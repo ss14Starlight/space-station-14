@@ -50,13 +50,13 @@ jobs:
           python3 Tools/_Starlight/partition_tests.py generate 8 .integration-filters
 
     - name: Archive build output
-      run: tar czf /tmp/build.tar.gz --exclude='.git' .
+      run: tar --use-compress-program='zstd -T0' -cf /tmp/build.tar.zst --exclude='.git' .
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
         name: build-output
-        path: /tmp/build.tar.gz
+        path: /tmp/build.tar.zst
         retention-days: 1
         compression-level: 0
 
@@ -77,7 +77,7 @@ jobs:
         name: build-output
 
     - name: Extract build
-      run: tar xzf build.tar.gz && rm build.tar.gz
+      run: tar --use-compress-program='zstd -d -T0' -xf build.tar.zst && rm build.tar.zst
 
     - name: Restore packages
       run: dotnet restore Content.Tests/Content.Tests.csproj
@@ -117,7 +117,7 @@ jobs:
         name: build-output
 
     - name: Extract build
-      run: tar xzf build.tar.gz && rm build.tar.gz
+      run: tar --use-compress-program='zstd -d -T0' -xf build.tar.zst && rm build.tar.zst
 
     - name: Restore packages
       run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
