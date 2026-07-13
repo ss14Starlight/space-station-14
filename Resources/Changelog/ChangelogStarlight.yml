@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: Added a circuitboard in the captains locker for the shipyard console so that it is more accessible no matter what map it is.
-    type: Add
-  id: 406206
-  time: '2026-06-24T14:30:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4907
-- author: Johnny
-  changes:
   - message: The shipyard console circuitboard is now a thief objective per request.
     type: Add
   id: 406207
@@ -2799,4 +2792,11 @@ Entries:
   id: 406605
   time: '2026-07-12T23:57:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5112
+- author: Conflee
+  changes:
+  - message: Added 34 Posters and 14 Signs. 22 of the posters are for the Prison Colony, and have a RandomPosterPrison spawn marker. 7 Locker Room signs and 7 Breakroom signs. Misc other posters added to Contraband and Legit pools. Mugshot background poster for Security decorating.
+    type: Add
+  id: 406606
+  time: '2026-07-13T07:56:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5123
 Order: -1
