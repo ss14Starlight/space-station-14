@@ -88,7 +88,7 @@ jobs:
         if: steps.get_pr.outputs.result != ''
         env:
           CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogSol.yml'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.APP_TOKEN }}
           PR_NUMBER: ${{ steps.get_pr.outputs.result }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
