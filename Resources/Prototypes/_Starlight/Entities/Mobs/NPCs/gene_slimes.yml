@@ -53,6 +53,8 @@
     - type: PassiveTraits
     - type: OnceTraits
     - type: GeneticSlime
+      splitEntity: GeneticSlime
+      extractEntity: GeneticSlimeExtract
     - type: MeleeWeapon
       altDisarm: false
       angle: 0

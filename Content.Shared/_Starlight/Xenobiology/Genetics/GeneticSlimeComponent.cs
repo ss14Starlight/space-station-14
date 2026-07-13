@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Xenobiology.Genetics;
 
@@ -20,4 +21,18 @@ public sealed partial class GeneticSlimeComponent : Component
     [DataField]
     [AutoNetworkedField]
     public float BiteNutritionGain = 10.0f;
+
+    /// <summary>
+    /// The next entity this slime creates when splitting.
+    /// </summary>
+    [DataField(required: true)]
+    [AutoNetworkedField]
+    public EntProtoId SplitEntity = default;
+
+    /// <summary>
+    /// The extract this slime spawns when processed.
+    /// </summary>
+    [DataField(required: true)]
+    [AutoNetworkedField]
+    public EntProtoId ExtractEntity = default;
 }
