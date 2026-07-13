@@ -191,7 +191,7 @@
 - type: entity
   id: RightLegCyberBase
   name: "right base cyber leg"
-  parent: [PartCyber, BaseRightLeg]
+  parent: BaseRightLeg
   abstract: true
   components:
     - type: BaseLayerId
