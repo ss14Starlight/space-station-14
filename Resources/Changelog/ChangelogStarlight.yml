@@ -1,11 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: ID job names not being escaped.
-    type: Fix
-  id: 406220
-  time: '2026-06-25T08:26:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4925
 - author: Caws
   changes:
   - message: Added new sprites for the Security mini jetpack to make it more obvious it's a mini jetpack (and not a full-size jetpack).
@@ -2799,4 +2792,11 @@ Entries:
   id: 406619
   time: '2026-07-13T20:52:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5027
+- author: STARLIGHT TEAM
+  changes:
+  - message: Removed the Regular Self-Activation artifact trigger until its fixed or made clearer.
+    type: Remove
+  id: 406620
+  time: '2026-07-13T21:43:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5022
 Order: -1
