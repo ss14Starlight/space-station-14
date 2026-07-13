@@ -1,18 +1,4 @@
 Entries:
-- author: Kasern
-  changes:
-  - message: Senior Chef Jumpsuit.
-    type: Add
-  id: 406210
-  time: '2026-06-24T16:25:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4912
-- author: Kasern
-  changes:
-  - message: Senior Chef loadout options.
-    type: Add
-  id: 406211
-  time: '2026-06-24T16:25:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4912
 - author: redmushie
   changes:
   - message: All Service jobs now have Service access. Chaplain, Clown, Mime and Musician did not have it previously.
@@ -2799,4 +2785,18 @@ Entries:
   id: 406609
   time: '2026-07-13T08:55:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5107
+- author: Conflee
+  changes:
+  - message: Added Locker Fills for the Clown and Mime's lockers. These can now be mapped into their respective room(s) at mapper's discretion. They contain a spare uniform, some funny items, and a very rare chance for their job lizard plushie.
+    type: Add
+  id: 406610
+  time: '2026-07-13T09:21:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5065
+- author: Conflee
+  changes:
+  - message: Added the 'get out of jail free' card. This is a joke item that can be found 50% of the time in the Clown or Mime's locker, as well as in maints lockers and the toy chest.
+    type: Add
+  id: 406611
+  time: '2026-07-13T09:21:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5065
 Order: -1
