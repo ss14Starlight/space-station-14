@@ -1,109 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Added new sprites for the Security mini jetpack to make it more obvious it's a mini jetpack (and not a full-size jetpack).
-    type: Add
-  id: 406221
-  time: '2026-06-25T09:27:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4914
-- author: Caws
-  changes:
-  - message: Fixed the name of the security mini jetpack. Previously, it was "security jetpack" if it spawned full of gas and "security mini jetpack" if it spawned empty.
-    type: Fix
-  id: 406222
-  time: '2026-06-25T09:27:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4914
-- author: Johnny
-  changes:
-  - message: (CC-SC17) Added a basketbool ring to an unused area west of science.
-    type: Add
-  id: 406223
-  time: '2026-06-26T08:43:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4942
-- author: Johnny
-  changes:
-  - message: (CC-SC17) Tweaked a few items using VV.
-    type: Tweak
-  id: 406224
-  time: '2026-06-26T08:43:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4942
-- author: Johnny
-  changes:
-  - message: (CC-SC17) Fixed the arcade not having power.
-    type: Fix
-  id: 406225
-  time: '2026-06-26T08:43:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4942
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added nuclear reactor.
-    type: Add
-  id: 406226
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added a new maints location "Crystal Cove" to engie maints.
-    type: Add
-  id: 406227
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added escape pod station beacons.
-    type: Add
-  id: 406228
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added shipyard console.
-    type: Add
-  id: 406229
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added the new fax machines.
-    type: Add
-  id: 406230
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added kiki and two more hydro trays.
-    type: Add
-  id: 406231
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added new maints location below nuclear reactor.
-    type: Add
-  id: 406232
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added a remote signaler to maints shop.
-    type: Add
-  id: 406233
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added several air vents to engie maints.
-    type: Add
-  id: 406234
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added extra room to the secret syndicate room.
-    type: Add
-  id: 406235
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
 - author: Cvlancer
   changes:
   - message: (OASIS) Added robotics locker to robotics.
@@ -2799,4 +2694,109 @@ Entries:
   id: 406620
   time: '2026-07-13T21:43:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5022
+- author: Caws
+  changes:
+  - message: (Oasis) Added a few more space heaters for Atmos.
+    type: Add
+  id: 406621
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Added a Guidebooks crate and personal computer to the Library.
+    type: Add
+  id: 406622
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Added a 'Washroom' station beacon to the washroom.
+    type: Add
+  id: 406623
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Added some emergency wall closets to the washroom.
+    type: Add
+  id: 406624
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Added a missing station beacon to Cryosleep.
+    type: Add
+  id: 406625
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Moved the nearby NanoMed band-aid into the washroom.
+    type: Tweak
+  id: 406626
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Linked all of the AI's turrets to both turret controls to make it less confusing for both AI and Command why not all of the turrets are deployed.
+    type: Tweak
+  id: 406627
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Added way more cryogenic sleep units to Cryosleep.
+    type: Tweak
+  id: 406628
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Replaced one of the double windoors for Science's artifact chambers with a regular door.
+    type: Tweak
+  id: 406629
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Linked the southern artifact analysis console to its artifact analyzer pad.
+    type: Fix
+  id: 406630
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Fixed a bunch of Upside down latejoin spawnpoints by Arrivals.
+    type: Fix
+  id: 406631
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Wiring and distro/waste piping for NTR & NCT offices.
+    type: Fix
+  id: 406632
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Erroneous Vault beacon in Cargo Bay removed.
+    type: Fix
+  id: 406633
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Removed a roundstart turbo charger from NT Career Office, replaced with a regular charger and cell recharger.
+    type: Remove
+  id: 406634
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Caws
+  changes:
+  - message: (Oasis) Removed the cryogenic sleep unit from the Conference room.
+    type: Remove
+  id: 406635
+  time: '2026-07-13T21:43:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5083
 Order: -1
