@@ -764,7 +764,7 @@
   parent: PosterBase
   id: PosterLegitSlogan
   name: "Share Joy!"
-  description: "The Service Departments old solgan."
+  description: "The Service Departments old slogan."
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/slogan.rsi
