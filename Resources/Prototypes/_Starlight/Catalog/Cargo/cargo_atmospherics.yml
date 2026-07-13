@@ -17,3 +17,14 @@
   cost: 8000
   category: cargoproduct-category-name-atmospherics
   group: market
+
+- type: cargoProduct
+  id: AtmosphericsWaterVaporRaw
+  icon:
+    sprite: Effects/atmospherics.rsi
+    state: water_vapor
+  gasType: WaterVapor
+  gasMoles: 1000
+  cost: 500
+  category: cargoproduct-category-name-atmospherics
+  group: market

@@ -2,6 +2,8 @@ using Content.Shared.Cargo.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using System.Text;
+using Content.Shared.Atmos.Prototypes;
+
 namespace Content.Shared.Cargo
 {
     [DataDefinition, NetSerializable, Serializable]
@@ -66,9 +68,16 @@ namespace Content.Shared.Cargo
         /// </summary>
         [DataField]
         public NetEntity StationId;
+
+        [DataField]
+        public ProtoId<GasPrototype> GasType;
+        [DataField]
+        public float GasMoles;
+        [DataField]
+        public float GasTemperature;
         #endregion
 
-        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId) // Starlight: +stationId
+        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<GasPrototype> gasType, float gasMoles, float gasTemperature) // Starlight: +stationId, +gasXYZ
         {
             OrderId = orderId;
             ProductId = productId;
@@ -78,7 +87,10 @@ namespace Content.Shared.Cargo
             Requester = requester;
             Reason = reason;
             Account = account;
-            StationId = stationId; // Starlight
+            StationId = stationId; // Starlight BEGIN
+            GasType = gasType;
+            GasMoles = gasMoles;
+            GasTemperature = gasTemperature; // Starlight END
         }
 
         public void SetApproverData(string? approver)

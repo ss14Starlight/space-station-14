@@ -8,7 +8,10 @@
    "copyright":"Made by Conflee",
    "states":[
       {
-         "name":"cargoGasPallet"
-      }
+         "name":"gas_sell_tank"
+      },
+     {
+       "name": "gas_buy_tank"
+     }
    ]
 }

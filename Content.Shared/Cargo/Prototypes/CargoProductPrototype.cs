@@ -1,3 +1,5 @@
+using Content.Shared.Atmos;
+using Content.Shared.Atmos.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
@@ -36,9 +38,16 @@ namespace Content.Shared.Cargo.Prototypes
                 if (_name.Trim().Length != 0)
                     return _name;
 
-                if (IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out EntityPrototype? prototype))
+                var proto = IoCManager.Resolve<IPrototypeManager>();
+                if (proto.Resolve(Product, out var prototype))
                 {
                     _name = prototype.Name;
+                }
+                if (!string.IsNullOrEmpty(GasType) && proto.Resolve(GasType, out var gasType))
+                {
+                    _name = Loc.GetString("cargo-product-gas",
+                        ("name", Loc.GetString("cargo-product-gas-" + gasType.ID)),
+                        ("moles", GasMoles));
                 }
 
                 return _name;
@@ -56,7 +65,8 @@ namespace Content.Shared.Cargo.Prototypes
                 if (_description.Trim().Length != 0)
                     return _description;
 
-                if (IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out EntityPrototype? prototype))
+                var proto = IoCManager.Resolve<IPrototypeManager>();
+                if (!string.IsNullOrEmpty(Product) && proto.Resolve(Product, out var prototype))
                 {
                     _description = prototype.Description;
                 }
@@ -94,5 +104,24 @@ namespace Content.Shared.Cargo.Prototypes
         /// </summary>
         [DataField]
         public ProtoId<CargoMarketPrototype> Group { get; private set; } = "market";
+
+        #region Starlight
+
+        [DataField]
+        public ProtoId<GasPrototype> GasType { get; private set; } = string.Empty;
+
+        /// <summary>
+        ///     The amount of moles purchased.
+        /// </summary>
+        [DataField]
+        public float GasMoles { get; private set; }
+
+        /// <summary>
+        ///     The temperature the moles will have when spawned.
+        /// </summary>
+        [DataField]
+        public float GasTemperature { get; private set; } = Atmospherics.T20C;
+
+        #endregion
     }
 }

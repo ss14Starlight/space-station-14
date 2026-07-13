@@ -1,3 +1,4 @@
+using Content.Server.Cargo.Components;
 using Content.Shared.Atmos;
 namespace Content.Server._Starlight.Cargo.Components;
 
@@ -25,4 +26,10 @@ public sealed partial class CargoGasPalletComponent : Component, IGasMixtureHold
     /// </summary>
     [DataField("maxPressure")]
     public float MaxPressure { get; set; } = 4500;
+
+    /// <summary>
+    /// Whether this is a buying, selling, or both type.
+    /// </summary>
+    [DataField]
+    public BuySellType PalletType = BuySellType.Sell;
 }
