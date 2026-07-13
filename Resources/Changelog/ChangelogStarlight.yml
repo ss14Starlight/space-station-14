@@ -1,95 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: The shipyard console circuitboard is now a thief objective per request.
-    type: Add
-  id: 406207
-  time: '2026-06-24T14:30:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4907
-- author: Scarlet Lightweaver and all the space stations.
-  changes:
-  - message: Added a magnet to the material silo departments hooray.
-    type: Add
-  id: 406208
-  time: '2026-06-24T14:55:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4902
-- author: Kasern
-  changes:
-  - message: Senior Chef Jacket.
-    type: Add
-  id: 406209
-  time: '2026-06-24T16:25:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4912
-- author: Kasern
-  changes:
-  - message: Senior Chef Jumpsuit.
-    type: Add
-  id: 406210
-  time: '2026-06-24T16:25:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4912
-- author: Kasern
-  changes:
-  - message: Senior Chef loadout options.
-    type: Add
-  id: 406211
-  time: '2026-06-24T16:25:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4912
-- author: redmushie
-  changes:
-  - message: All Service jobs now have Service access. Chaplain, Clown, Mime and Musician did not have it previously.
-    type: Tweak
-  id: 406212
-  time: '2026-06-24T18:15:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4927
-- author: redmushie
-  changes:
-  - message: The service request console now only uses Service access.
-    type: Tweak
-  id: 406213
-  time: '2026-06-24T18:15:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4927
-- author: wonderfulnewworld, Golub
-  changes:
-  - message: Added Cosmic Cult, Wizard Duel, Xenoborgs, Terror Spiders, Vampires, Changelings, SELF, Sub Wizards, and Paradox Crisis to Dynamic.
-    type: Add
-  id: 406214
-  time: '2026-06-24T18:36:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4920
-- author: wonderfulnewworld, Golub
-  changes:
-  - message: Added a higher ceiling to Dynamic's roundstart budget.
-    type: Add
-  id: 406215
-  time: '2026-06-24T18:36:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4920
-- author: wonderfulnewworld, Golub
-  changes:
-  - message: Tweaked Dynamic weights.
-    type: Tweak
-  id: 406216
-  time: '2026-06-24T18:36:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4920
-- author: wonderfulnewworld, Golub
-  changes:
-  - message: Dynamic will now actually select roundstart antagonists.
-    type: Fix
-  id: 406217
-  time: '2026-06-24T18:36:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4920
-- author: redmushie
-  changes:
-  - message: Request computers actually check access now.
-    type: Fix
-  id: 406218
-  time: '2026-06-24T21:12:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4928
-- author: Mack
-  changes:
-  - message: 'Popout to: Guidebook, Crew Monitors, Mass Scanners, Shuttle Consoles, Camera Monitors, AI Station records, Ghost Character Editor.'
-    type: Add
-  id: 406219
-  time: '2026-06-25T07:27:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4922
 - author: Mack
   changes:
   - message: ID job names not being escaped.
@@ -2799,4 +2708,95 @@ Entries:
   id: 406606
   time: '2026-07-13T07:56:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5123
+- author: SevenShades
+  changes:
+  - message: Added a new set of large diagonal decals.
+    type: Add
+  id: 406607
+  time: '2026-07-13T08:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5120
+- author: SevenShades
+  changes:
+  - message: Edited some existing diagonal decals to improve tiling.
+    type: Tweak
+  id: 406608
+  time: '2026-07-13T08:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5120
+- author: ku-mo
+  changes:
+  - message: Role time requirements no longer display as "unknown" for roles you already meet the playtime for.
+    type: Fix
+  id: 406609
+  time: '2026-07-13T08:55:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5107
+- author: Conflee
+  changes:
+  - message: Added Locker Fills for the Clown and Mime's lockers. These can now be mapped into their respective room(s) at mapper's discretion. They contain a spare uniform, some funny items, and a very rare chance for their job lizard plushie.
+    type: Add
+  id: 406610
+  time: '2026-07-13T09:21:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5065
+- author: Conflee
+  changes:
+  - message: Added the 'get out of jail free' card. This is a joke item that can be found 50% of the time in the Clown or Mime's locker, as well as in maints lockers and the toy chest.
+    type: Add
+  id: 406611
+  time: '2026-07-13T09:21:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5065
+- author: SevenShades & Ilya246
+  changes:
+  - message: Added logic to allow drawing diagonals on mass scanners.
+    type: Add
+  id: 406612
+  time: '2026-07-13T10:48:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5116
+- author: SevenShades & Ilya246
+  changes:
+  - message: Added diagonal lattices and plating tiles.
+    type: Add
+  id: 406613
+  time: '2026-07-13T10:48:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5116
+- author: piepie3.149 , Conflee
+  changes:
+  - message: Added a variant of the Captain's Gas Mask which is a military surplus gas mask from the Pod Wars but repainted in the Captain's colors. Appears instead of their normal Gas Mask 15% of the time.
+    type: Add
+  id: 406614
+  time: '2026-07-13T19:18:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5119
+- author: wonderfulnewworld
+  changes:
+  - message: The Security Bomber Jacket now has a little more pierce resist, a moderate less heat resist, and a moderate more explosion resist.
+    type: Tweak
+  id: 406615
+  time: '2026-07-13T19:18:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5093
+- author: wonderfulnewworld, SnappingOpossum
+  changes:
+  - message: You can now spawn a new Robust Toolbox every 60 seconds in Deathmatch.
+    type: Add
+  id: 406616
+  time: '2026-07-13T20:52:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5027
+- author: wonderfulnewworld, SnappingOpossum
+  changes:
+  - message: Removed the Soap from Deathmatch loot.
+    type: Remove
+  id: 406617
+  time: '2026-07-13T20:52:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5027
+- author: wonderfulnewworld, SnappingOpossum
+  changes:
+  - message: The Robust Toolbox is now deleted when dropped.
+    type: Tweak
+  id: 406618
+  time: '2026-07-13T20:52:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5027
+- author: wonderfulnewworld, SnappingOpossum
+  changes:
+  - message: You will now alternate between all enabled characters in Deathmatch.
+    type: Tweak
+  id: 406619
+  time: '2026-07-13T20:52:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5027
 Order: -1
