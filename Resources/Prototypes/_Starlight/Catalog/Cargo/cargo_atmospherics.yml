@@ -43,7 +43,7 @@
   gasType: Oxygen
   gasMoles: 1000
   gasTemperature: &liquidTemp 72.0
-  cost: 156
+  cost: 160
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -70,7 +70,7 @@
   gasType: Nitrogen
   gasMoles: 1000
   gasTemperature: *liquidTemp
-  cost: 133
+  cost: 140
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -97,7 +97,7 @@
   gasType: CarbonDioxide
   gasMoles: 1000
   gasTemperature: *liquidTemp
-  cost: 186
+  cost: 190
   category: cargoproduct-category-name-atmospherics
   group: market
 
