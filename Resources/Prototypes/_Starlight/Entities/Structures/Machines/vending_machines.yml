@@ -179,9 +179,9 @@
 - type: entity
   parent: SLVendingMachine
   id: VendingMachineMime
-  #categories: [ ShouldMapStation ]
+  categories: [ ShouldMapStation ]
   name: vend of silence
-  description: All the gear a mime could need. Go put the captain in an invisble box!
+  description: All the gear a mime could need. Go put the captain in an invisible box!
   components:
   - type: AccessReader
     access: [["Theatre"]]
