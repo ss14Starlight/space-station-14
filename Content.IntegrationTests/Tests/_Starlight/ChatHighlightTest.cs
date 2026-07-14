@@ -18,6 +18,27 @@ public sealed class ChatHighlightTest : GameTest
     [SidedDependency(Side.Client)] private readonly IConfigurationManager _configManager = null!;
     [SidedDependency(Side.Client)] private readonly IUserInterfaceManager _uiManager = null!;
 
+    private void InvokeOnCharacterUpdated(ChatUIController chatController, CharacterInfoSystem.CharacterData characterData)
+    {
+        var method = chatController.GetType().GetMethod(
+            "OnCharacterUpdated",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+
+        Assert.That(method, Is.Not.Null);
+
+        // Set internal state to allow character update processing
+        var attachField = chatController.GetType().GetField(
+            "_charInfoIsAttach",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        Assert.That(attachField, Is.Not.Null);
+        attachField.SetValue(chatController, true);
+
+        // Invoke update
+        method.Invoke(chatController, new object[] { characterData });
+    }
+
     [Test]
     [RunOnSide(Side.Client)]
     public async Task TestCustomHighlightsPreserved()
@@ -46,23 +67,7 @@ public sealed class ChatHighlightTest : GameTest
             "John Doe"
         );
 
-        var method = chatController.GetType().GetMethod(
-            "OnCharacterUpdated",
-            BindingFlags.NonPublic | BindingFlags.Instance
-        );
-
-        Assert.That(method, Is.Not.Null);
-
-        // Set internal state to allow character update processing
-        var attachField = chatController.GetType().GetField(
-            "_charInfoIsAttach",
-            BindingFlags.NonPublic | BindingFlags.Instance
-        );
-        Assert.That(attachField, Is.Not.Null);
-        attachField.SetValue(chatController, true);
-
-        // Invoke update
-        method.Invoke(chatController, new object[] { characterData });
+        InvokeOnCharacterUpdated(chatController, characterData);
 
         // 4. Assertions:
         // - Custom highlights in config must remain unchanged
@@ -91,6 +96,7 @@ public sealed class ChatHighlightTest : GameTest
         Assert.That(activeHighlights, Contains.Item("ling"));
         Assert.That(activeHighlights, Contains.Item("rev"));
         Assert.That(activeHighlights, Is.Not.Contains("Captain"));
+        Assert.That(activeHighlights, Is.Not.Contains("(?<!\\w)Cap(?!\\w)"));
     }
 
     [Test]
@@ -133,22 +139,7 @@ public sealed class ChatHighlightTest : GameTest
             "John Doe"
         );
 
-        var method = chatController.GetType().GetMethod(
-            "OnCharacterUpdated",
-            BindingFlags.NonPublic | BindingFlags.Instance
-        );
-
-        Assert.That(method, Is.Not.Null);
-
-        var attachField = chatController.GetType().GetField(
-            "_charInfoIsAttach",
-            BindingFlags.NonPublic | BindingFlags.Instance
-        );
-        Assert.That(attachField, Is.Not.Null);
-        attachField.SetValue(chatController, true);
-
-        // Invoke character update
-        method.Invoke(chatController, new object[] { characterData });
+        InvokeOnCharacterUpdated(chatController, characterData);
 
         // 5. Assertions:
         // - Config highlights MUST NOT be wiped and remain as custom highlights
