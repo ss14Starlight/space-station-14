@@ -13,4 +13,11 @@ Entries:
   id: 110001
   time: '2026-07-14T00:03:32.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/11
+- author: AprilCatStreams
+  changes:
+  - message: Labeler just checks for reviews, not that they are a team member now.
+    type: Fix
+  id: 120001
+  time: '2026-07-14T00:21:16.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/12
 
