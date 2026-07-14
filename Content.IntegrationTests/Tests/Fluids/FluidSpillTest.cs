@@ -33,7 +33,15 @@ public sealed class FluidSpill : GameTest
 
         return null;
     }
-
+    #region Starlight
+    public override PoolSettings PoolSettings => new()
+    {
+        Dirty = true,
+        DummyTicker = false,
+        Connected = true,
+        InLobby = true
+    };
+    #endregion
     [Test]
     public async Task SpillCorner()
     {

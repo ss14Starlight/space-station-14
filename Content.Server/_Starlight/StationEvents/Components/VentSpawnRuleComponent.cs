@@ -16,6 +16,11 @@ public sealed partial class VentSpawnRuleComponent : Component
     [DataField]
     public bool InsertInVent = true;
 
+    /// <summary>
+    /// Station resolved for this rule instance.
+    /// </summary>
+    public EntityUid? TargetStation;
+
     public List<(MapCoordinates Coords, EntityUid Uid)> ValidLocations = new();
 
     /// <summary>
