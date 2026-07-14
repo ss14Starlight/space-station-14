@@ -87,7 +87,10 @@ public sealed partial class HubSystem : EntitySystem
     private void OnRoundStart()
     {
         _mapName = _gameMapManager.GetSelectedMap()?.MapName ?? "Unknown";
-        _gamemodeName = _gameTicker.CurrentPreset?.ModeTitle ?? "Unknown";
+        var modeTitle = _gameTicker.CurrentPreset?.ModeTitle;
+        _gamemodeName = string.IsNullOrWhiteSpace(modeTitle) || modeTitle == "????"
+            ? "Unknown"
+            : Loc.GetString(modeTitle);
         _serverInfo = _serverInfo with
         {
             CurrentStateStartedAt = DateTime.UtcNow,
@@ -96,6 +99,7 @@ public sealed partial class HubSystem : EntitySystem
             MaxPlayers = _maxPlayers,
             MapName = _mapName,
             GamemodeName = _gamemodeName,
+            RoundId = _gameTicker.RoundId == 0 ? null : _gameTicker.RoundId,
         };
         TryUpdateServerInfo();
     }
@@ -107,6 +111,10 @@ public sealed partial class HubSystem : EntitySystem
             Status = ServerStatus.RoundEnding,
             Players = _playerManager.PlayerCount,
             MaxPlayers = _maxPlayers,
+            // Keep map / localized gamemode / round id from the active round.
+            MapName = _mapName,
+            GamemodeName = _gamemodeName,
+            RoundId = _gameTicker.RoundId == 0 ? _serverInfo.RoundId : _gameTicker.RoundId,
         };
         TryUpdateServerInfo();
     }
@@ -122,6 +130,7 @@ public sealed partial class HubSystem : EntitySystem
             MaxPlayers = _maxPlayers,
             MapName = _mapName,
             GamemodeName = _gamemodeName,
+            RoundId = null,
         };
         TryUpdateServerInfo();
     }

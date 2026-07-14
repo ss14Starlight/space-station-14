@@ -127,3 +127,21 @@
       #- STARLIGHT.delta
       #- STARLIGHT.epsilon
       #- TRIESTEPORT.main
+      #- AFTERLIGHT.main
+
+# Sol / North-Western — prototype id MUST match nulllink.id.project
+- type: serverPlaytimeRecognition
+  id: SOL
+  recognition:
+    main:
+      - SOL.main
+    # add other Sol servers here, e.g. SOL.mrphub
+
+- type: serverBanRecognition
+  id: SOL
+  recognition:
+    main:
+      - SOL.main
+    # servers listed here are ban *sources this server accepts from the network*.
+    # Outbound AddOrUpdateBan to SolLink always runs when NullLink is connected;
+    # recognition only filters inbound RequestBans (and SolLink CLI set-recognition).
