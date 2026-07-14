@@ -307,6 +307,7 @@
       - id: BarberScissors
       - id: TwinPointerKit # Starlight: Added twinpointer to maints loot
       - id: JetpackImprovisedFilled #Starlight
+      - id: JailFree # Starlight
       - id: Flash0Use # Starlight
         weight: 0.6 # Starlight
       - id: Flash1Use # Starlight

@@ -82,14 +82,36 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtCorpsman
 
-# Formal Jumpsuits
+# Skilled Jumpsuits
+- type: loadout
+  id: BrigmedicJumpsuitOfLife
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOfLife
+
+- type: loadout
+  id: BrigmedicJumpskirtOfLife
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtOfLife
+
 - type: loadout
   id: FormalBrigmedicJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledBrigmedic
   equipment:
     jumpsuit: ClothingUniformJumpsuitFormalBrigmedic
 
 - type: loadout
   id: FormalBrigmedicJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledBrigmedic
   equipment:
     jumpsuit: ClothingUniformJumpskirtFormalBrigmedic
 
@@ -110,7 +132,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtCorpsmanTrauma
 
-# Senior Jumpsuits
 - type: loadout
   id: SeniorBrigmedicJumpsuit
   effects:
@@ -126,23 +147,6 @@
         proto: VeteranBrigmedic
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorBrigmedic
-
-# Skilled Jumpsuits
-- type: loadout
-  id: BrigmedicJumpsuitOfLife
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: SkilledBrigmedic
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitOfLife
-
-- type: loadout
-  id: BrigmedicJumpskirtOfLife
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: SkilledBrigmedic
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtOfLife
 
 # Back
 - type: loadout
