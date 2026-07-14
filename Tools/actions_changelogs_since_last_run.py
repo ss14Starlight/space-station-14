@@ -14,15 +14,16 @@ from typing import Any, Iterable
 import requests
 import yaml
 import time
+import sys
 
 DEBUG = False
 DEBUG_CHANGELOG_FILE_OLD = Path("Resources/Changelog/Old.yml")
 GITHUB_API_URL = os.environ.get("GITHUB_API_URL", "https://api.github.com")
 
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
-DISCORD_CHANGELOG_ROLE_ID = int(os.environ.get("DISCORD_CHANGELOG_ROLE_ID", "1308143973684088883"))
+DISCORD_CHANGELOG_ROLE_ID = int(os.environ.get("DISCORD_CHANGELOG_ROLE_ID", "1526063915983831130"))
 
-CHANGELOG_FILE = "Resources/Changelog/ChangelogStarlight.yml"
+CHANGELOG_FILE = "Resources/Changelog/ChangelogSol.yml"
 TYPES_TO_EMOJI = {"Fix": "🐛", "Add": "🆕", "Remove": "❌", "Tweak": "⚒️"}
 ChangelogEntry = dict[str, Any]
 
