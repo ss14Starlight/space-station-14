@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.Genetics;
 using Content.Shared._Starlight.Genetics.Components;
 using Content.Shared._Starlight.Genetics.Systems;
@@ -12,16 +13,30 @@ namespace Content.Shared._Starlight.Xenobiology.Genetics;
 
 public sealed class GeneticSlimeSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly GenesSystem _genesSystem = default!;
-    [Dependency] private readonly HungerSystem _hungerSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private GenesSystem _genesSystem = default!;
+    [Dependency] private IndividualGeneSystem _individualGeneSystem = default!;
+    [Dependency] private HungerSystem _hungerSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<GeneticSlimeComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<GeneticSlimeComponent, AfterMeleeHitEvent>(OnAfterMeleeHit);
+    }
+
+    private void OnMapInit(Entity<GeneticSlimeComponent> entity, ref MapInitEvent args)
+    {
+        if (!entity.Comp.ShouldAddStarters) return;
+        if (!_entityManager.TryGetComponent<GenesComponent>(entity.Owner, out var genesComponent)) return;
+        foreach (var id in entity.Comp.StartingGeneIDs)
+        {
+            var gene = _individualGeneSystem.GeneFromSample(id);
+            genesComponent.Genes.Add(gene);
+        }
+        _genesSystem.UpdateTraits((entity, genesComponent));
     }
 
     private void OnAfterMeleeHit(Entity<GeneticSlimeComponent> entity, ref AfterMeleeHitEvent args)
@@ -48,10 +63,13 @@ public sealed class GeneticSlimeSystem : EntitySystem
             var protoName = entity.Comp.SplitEntity;
             var split = _entityManager.PredictedSpawnAtPosition(protoName, entity.Owner.ToCoordinates());
             _hungerSystem.SetHunger(split, newNutrition);
+            var newGeneticSlimeComponent = _entityManager.EnsureComponent<GeneticSlimeComponent>(split);
+            newGeneticSlimeComponent.ShouldAddStarters = false; // Just in case an attempt to add the starter genes happens after Split
             var newGenesComponent = _entityManager.EnsureComponent<GenesComponent>(split);
 
-            newGenesComponent.Genes = new List<Gene>(genesComponent.Genes); // copy
-            if (_robustRandom.NextDouble() < .25f)
+            newGenesComponent.Genes = new HashSet<EntityUid>(genesComponent.Genes); // shallow copy
+
+            if (_robustRandom.NextDouble() < 0.25d)
             {
                 bool shouldAdd = false;
                 bool shouldRemove = false;
@@ -71,11 +89,12 @@ public sealed class GeneticSlimeSystem : EntitySystem
                 if (shouldRemove)
                 {
                     var indexToRemove = _robustRandom.Next(0, newGenesComponent.Genes.Count - 1);
-                    newGenesComponent.Genes.RemoveAt(indexToRemove);
+                    var geneToRemove = newGenesComponent.Genes.ElementAt(indexToRemove);
+                    newGenesComponent.Genes.Remove(geneToRemove);
                 }
                 if (shouldAdd)
                 {
-                    var newGene = _genesSystem.GenerateGene((split, newGenesComponent));
+                    var newGene = _individualGeneSystem.GenerateGene((split, newGenesComponent));
                     newGenesComponent.Genes.Add(newGene);
                 }
             }

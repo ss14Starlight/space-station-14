@@ -114,6 +114,7 @@ public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private GenesSystem _genesSystem = default!;
+    [Dependency] private IndividualGeneSystem _individualGeneSystem = default!;
 
     public override void Update(float frameTime)
     {
@@ -155,7 +156,7 @@ public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
                     var ec = new EntityCoordinates(uid, uid.ToCoordinates().Position + randomOffset);
                     var extract = _entityManager.PredictedSpawnAtPosition(geneticSlimeComponent.ExtractEntity, ec);
                     _entityManager.EnsureComponent<GenesComponent>(extract, out var extractGenesComponent);
-                    extractGenesComponent.Genes = new List<Gene>(slimeGenesComponent.Genes);
+                    extractGenesComponent.Genes = new HashSet<EntityUid>(slimeGenesComponent.Genes);
                     _genesSystem.UpdateTraits((extract, extractGenesComponent));
 
                     PredictedQueueDel(entity);

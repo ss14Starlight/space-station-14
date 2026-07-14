@@ -5,25 +5,5 @@ namespace Content.Shared._Starlight.Xenobiology.Genetics;
 
 public sealed class GeneticExtractSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly GenesSystem _genesSystem = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<GeneticExtractComponent, MapInitEvent>(OnMapInit);
-    }
-
-    private void OnMapInit(Entity<GeneticExtractComponent> entity, ref MapInitEvent args)
-    {
-        if (_entityManager.TryGetComponent<GenesComponent>(entity, out var genesComponent))
-        {
-            for (var i = 0; i < 5; i++)
-            {
-                var newGene = _genesSystem.GenerateGene((entity.Owner, genesComponent));
-                genesComponent.Genes.Add(newGene);
-            }
-            _genesSystem.UpdateTraits((entity.Owner, genesComponent));
-        }
-    }
 }

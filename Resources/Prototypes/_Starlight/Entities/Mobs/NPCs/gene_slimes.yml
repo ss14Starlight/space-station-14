@@ -31,12 +31,6 @@
     - type: Hunger
       baseDecayRate: 1
     - type: Genes
-      genes:
-        - traits:
-            traits:
-              waterToMonkeyCube: 1.0
-          technicalName: SLmE1
-          name: Base Slime Gene
       classes:
         - Slime
       availableTraits:
@@ -55,6 +49,8 @@
     - type: GeneticSlime
       splitEntity: GeneticSlime
       extractEntity: GeneticSlimeExtract
+      startingGeneIDs:
+        - startingSlimeGene
     - type: MeleeWeapon
       altDisarm: false
       angle: 0
@@ -85,3 +81,11 @@
       heatDamage:
         types:
           Heat: 1.5 #per second, scales with temperature & other constants
+
+- type: sampleGene
+  id: startingSlimeGene
+  traits:
+    traits:
+      waterToMonkeyCube: 1.0
+  technicalName: SLmE1
+  name: Base Slime Gene

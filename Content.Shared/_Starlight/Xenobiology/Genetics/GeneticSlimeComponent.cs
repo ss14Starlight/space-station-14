@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Genetics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -35,4 +36,13 @@ public sealed partial class GeneticSlimeComponent : Component
     [DataField(required: true)]
     [AutoNetworkedField]
     public EntProtoId ExtractEntity = default;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField]
+    [AutoNetworkedField]
+    public HashSet<ProtoId<SampleGenePrototype>> StartingGeneIDs = new();
+
+    [ViewVariables]
+    [AutoNetworkedField]
+    public bool ShouldAddStarters = true;
 }
