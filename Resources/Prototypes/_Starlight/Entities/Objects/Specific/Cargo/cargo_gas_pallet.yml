@@ -13,7 +13,7 @@
   - type: CargoGasPallet
     palletType: Sell
     gasMixture:
-      volume: 15000
+      volume: 12000
   - type: Sprite
     drawdepth: FloorObjects
     sprite: _Starlight/Structures/cargo_gas_pallet.rsi
@@ -31,21 +31,15 @@
     navMapBlip: GasVentOpening
 
 - type: entity
-  parent: GasUnaryBase
+  parent: CargoGasPalletSell
   id: CargoGasPalletBuy
   name: cargo gas buying tank
   description: Stores gasses purchased in bulk, ready to be pumped. Made of plastitanium to discourage pesky vandals.
   components:
-    - type: Anchorable
-      flags:
-        - Anchorable
-    - type: SubFloorHide
-      visibleLayers:
-        - enum.SubfloorLayers.FirstLayer
     - type: CargoGasPallet
       palletType: Buy
       gasMixture:
-        volume: 15000
+        volume: 12000
     - type: Sprite
       drawdepth: FloorObjects
       sprite: _Starlight/Structures/cargo_gas_pallet.rsi
@@ -55,9 +49,3 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: gas_buy_tank
           map: [ "enum.SubfloorLayers.FirstLayer" ]
-    - type: AtmosPipeLayers
-      spriteRsiPaths: {}
-    - type: Appearance
-    - type: PipeColorVisuals
-    - type: AtmosMonitoringConsoleDevice
-      navMapBlip: GasVentOpening

@@ -20,7 +20,7 @@ namespace Content.Shared.Cargo.Prototypes
         public bool Abstract { get; private set; }
 
         [DataField("name")] private string _name = string.Empty;
-        [DataField("nameLoc")] private string _nameLoc = string.Empty;
+        [DataField("nameLoc")] private string _nameLoc = string.Empty; // Starlight
 
         [DataField("description")] private string _description = string.Empty;
 
@@ -43,7 +43,7 @@ namespace Content.Shared.Cargo.Prototypes
                     return _name = Loc.GetString(_nameLoc); // Starlight
 
                 if (!string.IsNullOrEmpty(Product) && // Starlight
-                    IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out EntityPrototype? prototype))
+                    IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out EntityPrototype? prototype)) // Starlight
                 {
                     _name = prototype.Name;
                 }
@@ -63,8 +63,8 @@ namespace Content.Shared.Cargo.Prototypes
                 if (_description.Trim().Length != 0)
                     return _description;
 
-                var proto = IoCManager.Resolve<IPrototypeManager>();
-                if (!string.IsNullOrEmpty(Product) && proto.Resolve(Product, out var prototype))
+                if (!string.IsNullOrEmpty(Product) && // Starlight: Added not-null check
+                    IoCManager.Resolve<IPrototypeManager>().Resolve(Product, out var prototype)) // Starlight
                 {
                     _description = prototype.Description;
                 }
@@ -105,6 +105,9 @@ namespace Content.Shared.Cargo.Prototypes
 
         #region Starlight
 
+        /// <summary>
+        ///     The type of gas purchased, if any.
+        /// </summary>
         [DataField]
         public ProtoId<GasPrototype> GasType { get; private set; } = string.Empty;
 
