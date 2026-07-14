@@ -9,68 +9,124 @@
     "states": [
         {
             "name": "brigmed",
-            "copyright": "By Conflee (Discord)."
+			"copyright": "Conflee"
         },
         {
             "name": "disposals_proper",
-            "copyright": "By Conflee (Discord)."
+			"copyright": "Conflee"
         },
         {
             "name": "nosmoking",
-            "copyright": "Taken from /tg/station and Burgerstation."
+			"copyright": "/tg/station"
         },
         {
             "name": "secureareasmall",
-            "copyright": "Taken from /tg/station and Burgerstation."
+			"copyright": "/tg/station"
         },
         {
             "name": "wall_biohazard",
-            "copyright": "Taken from /tg/station and Burgerstation."
+			"copyright": "/tg/station"
         },
         {
             "name": "wall_extremeheat",
-            "copyright": "Taken from /tg/station and Burgerstation."
+			"copyright": "/tg/station"
         },
         {
             "name": "yessmoking",
-            "copyright": "Taken from /tg/station and Burgerstation."
+			"copyright": "/tg/station"
         },
         {
             "name": "direction_mining",
-            "copyright": "By mikeysaurus (GitHub).",
-            "directions": 4
+            "directions": 4,
+			"copyright": "/tg/station"
         },
         {
             "name": "mining",
-            "copyright": "By mikeysaurus (GitHub)."
+			"copyright": "/tg/station"
         },
         {
             "name": "iaa",
-            "copyright": "By Conflee (Discord)."
+			"copyright": "Conflee"
         },
         {
             "name": "law",
-            "copyright": "By Conflee (Discord)."
+			"copyright": "Conflee"
         },
         {
             "name": "lawyer",
-            "copyright": "By Conflee (Discord)."
+			"copyright": "Conflee"
         },
         {
             "name": "magistrate",
-            "copyright": "By Conflee (Discord)."
+			"copyright": "Conflee"
         },
         {
             "name": "ntr",
-            "copyright": "By Conflee (Discord)."
-        },
-        {
-            "name": "heat",
-            "copyright": "By Sevenshades (GitHub)."
+			"copyright": "Conflee"
         },
         {
             "name": "robo_surgery",
-            "copyright": "By Conflee (Discord)."
+            "copyright": "Conflee"
+        },
+        {
+            "name": "heat",
+            "copyright": "Sevenshades"
+        },
+        {
+            "name": "locker_cargo",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "locker_command",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "locker_engie",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "locker_med",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "locker_sci",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "locker_sec",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "locker_service",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "break_cargo",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "break_command",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "break_engie",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "break_med",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "break_sci",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "break_sec",
+			"copyright": "Conflee"
+        },
+        {
+            "name": "break_service",
+			"copyright": "Conflee"
         }
     ]
 }
