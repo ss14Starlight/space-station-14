@@ -72,7 +72,7 @@
     speedModifier: 0.05
 
 - type: entity
-  name: insivible crowbar
+  name: invisible crowbar
   parent: BaseItem
   id: CrowbarInvisible
   description: Why cry those silent tears when you could pry instead!
