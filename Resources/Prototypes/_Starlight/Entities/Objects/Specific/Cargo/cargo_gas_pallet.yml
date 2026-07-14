@@ -13,7 +13,7 @@
   - type: CargoGasPallet
     palletType: Sell
     gasMixture:
-      volume: 12000
+      volume: 15000
   - type: Sprite
     drawdepth: FloorObjects
     sprite: _Starlight/Structures/cargo_gas_pallet.rsi
@@ -39,7 +39,7 @@
     - type: CargoGasPallet
       palletType: Buy
       gasMixture:
-        volume: 12000
+        volume: 15000
     - type: Sprite
       drawdepth: FloorObjects
       sprite: _Starlight/Structures/cargo_gas_pallet.rsi
