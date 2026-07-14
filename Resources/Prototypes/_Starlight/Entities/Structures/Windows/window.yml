@@ -9,66 +9,6 @@
 # Honeypots BEGIN
 # I tried inheritance on these guys, but ran into various things not inheriting, so YAML anchors it is.
 
-# Solid wall
-
-## Normal
-- type: entity
-  parent: WallSolid
-  id: WallSolidHoneypot
-  description: &honeypotDesc Notifies admins when it gets damaged. Can be destroyed as normal.
-  suffix: &honeypotSuffix Honeypot, Do Not Map
-  components:
-    - type: ReplaceOnInit
-      proto: WallSolid
-      overrides: &honeypotOverrides
-        - type: AdminNotifyOnDamage
-          subject: "honeypot"
-    - &honeypotSprite
-      type: Sprite
-      color: "#999999"
-
-## Indestructible
-- type: entity
-  parent: WallSolid
-  id: WallSolidHoneypotIndestructible
-  description: &honeypotDescIndestructible Notifies admins when it gets damaged and is secretly indestructible.
-  suffix: &honeypotSuffixIndestructible Honeypot, Indestructible, Do Not Map
-  components:
-    - type: ReplaceOnInit
-      proto: WallSolid
-      overrides: &honeypotOverridesIndestructible
-        - type: AdminNotifyOnDamage
-          subject: "honeypot"
-        - type: Destructible
-          thresholds: []
-    - *honeypotSprite
-
-# Reinforced wall
-
-## Normal
-- type: entity
-  parent: WallReinforced
-  id: WallReinforcedHoneypot
-  description: *honeypotDesc
-  suffix: *honeypotSuffix
-  components:
-    - type: ReplaceOnInit
-      proto: WallReinforced
-      overrides: *honeypotOverrides
-    - *honeypotSprite
-
-## Indestructible
-- type: entity
-  parent: WallReinforced
-  id: WallReinforcedHoneypotIndestructible
-  description: *honeypotDescIndestructible
-  suffix: *honeypotSuffixIndestructible
-  components:
-    - type: ReplaceOnInit
-      proto: WallReinforced
-      overrides: *honeypotOverridesIndestructible
-    - *honeypotSprite
-
 # Reinforced window
 
 ## Full size
@@ -77,27 +17,36 @@
 - type: entity
   parent: ReinforcedWindow
   id: ReinforcedWindowHoneypot
-  description: *honeypotDesc
-  suffix: *honeypotSuffix
+  description: &honeypotDesc Notifies admins when it gets damaged. Can be destroyed as normal.
+  suffix: &honeypotSuffix Honeypot, Do Not Map
   components:
     - type: ReplaceOnInit
       proto: ReinforcedWindow
-      overrides: *honeypotOverrides
-    - *honeypotSprite
+      overrides: &honeypotOverrides
+        - type: AdminNotifyOnDamage
+          subject: "honeypot"
+    - &honeypotSprite
+      type: Sprite
+      color: "#999999"
 
 ### Indestructible
 - type: entity
   parent: ReinforcedWindow
   id: ReinforcedWindowHoneypotIndestructible
-  description: *honeypotDescIndestructible
-  suffix: *honeypotSuffixIndestructible
+  description: &honeypotDescIndestructible Notifies admins when it gets damaged and is secretly indestructible.
+  suffix: &honeypotSuffixIndestructible Honeypot, Indestructible, Do Not Map
   components:
     - type: ReplaceOnInit
       proto: ReinforcedWindow
-      overrides: *honeypotOverridesIndestructible
+      overrides: &honeypotOverridesIndestructible
+        - type: AdminNotifyOnDamage
+          subject: "honeypot"
+        - type: Destructible
+          thresholds: []
     - *honeypotSprite
 
 ## Diagonal
+
 ### Normal
 - type: entity
   parent: ReinforcedWindowDiagonal
