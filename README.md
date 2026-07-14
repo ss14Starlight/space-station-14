@@ -1,15 +1,11 @@
-<p align="center">
-  <img alt="Space Station 14" width="600" src="Resources/Textures/Logo/logo.png" />
-</p>
-
 <div class="header" align="center">
+<h1>Sol's Descendants</h1>
 
-[![Discord](https://img.shields.io/discord/1272545509562777621?label=Discord&logo=discord&logoColor=white)](https://discord.gg/ssJTANEa)
+[![Discord](https://img.shields.io/discord/1272545509562777621?label=Discord&logo=discord&logoColor=white)](https://nwdak.online/link/sol)
 [![Steam](https://img.shields.io/badge/Steam-SS14%20-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
-[![GitHub](https://img.shields.io/github/stars/ss14Starlight/space-station-14?style=social)]([https://github.com/ss14Starlight/space-station-14])
+[![GitHub](https://img.shields.io/github/stars/North-Western-Development/space-station-14?style=social)]([https://github.com/North-Western-Development/space-station-14])
 
-# STARLIGHT
 <sub>Space-Station 14</sub>
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/ss14Starlight/space-station-14)
@@ -18,16 +14,12 @@
 
 </div>
 
-STARLIGHT is an open source project aimed at creating unique mechanics and a pleasant game atmosphere in the game Space Station 14,
+Sol's Descendants is an open source project aimed at creating unique mechanics and a pleasant game atmosphere in the game Space Station 14,
 
 a game about survival on a space station where there are constant confrontations between the crew and antagonists created to prevent the crew from achieving their goals.
 
-## Space-Station 14 Documentation/Wiki
-
-Space-Station 14 has [docs site](https://docs.spacestation14.io/) documentation on SS14s content, engine, game design and more. We also have lots of resources for new contributors to the project.
-
-## Project Activity
-![Alt](https://repobeats.axiom.co/api/embed/675a7780b2c40805e5266935fe9329cd0177aba3.svg "Repobeats analytics image")
+# Downstream Notice
+Sol's Descendants is a downstream of [Starlight](https://github.com/ss14Starlight/space-station-14)
 
 ---
 

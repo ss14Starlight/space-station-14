@@ -34,17 +34,17 @@ jobs:
       - name: Find Missing Changelog PRs
         id: find_prs
         env:
-          CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogStarlight.yml'
+          CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogSol.yml'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           COMMITS_COUNT: ${{ inputs.commits_count }}
         run: |
-          python ./Tools/_Starlight/backfill_changelog.py
+          python ./Tools/_Sol/backfill_changelog.py
 
       - name: Process Missing PRs
         if: steps.find_prs.outputs.missing_prs != '[]'
         env:
-          CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogStarlight.yml'
+          CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogSol.yml'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
@@ -55,7 +55,7 @@ jobs:
           echo "$missing_prs" | jq -r '.[]' | while read pr_number; do
             echo "Processing PR #$pr_number"
             export PR_NUMBER=$pr_number
-            python ./Tools/_Starlight/update_changelog.py
+            python ./Tools/_Sol/update_changelog.py
             if [ $? -eq 0 ]; then
               echo "Successfully processed PR #$pr_number"
             else
@@ -65,7 +65,7 @@ jobs:
 
       - name: Display changelog after backfill
         run: |
-          if [ -f "Resources/Changelog/ChangelogStarlight.yml" ]; then
+          if [ -f "Resources/Changelog/ChangelogSol.yml" ]; then
             echo "=== Changelog updated ==="
             git diff --name-only
           else
@@ -76,7 +76,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "Resources/Changelog/ChangelogStarlight.yml"
+          git add "Resources/Changelog/ChangelogSol.yml"
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

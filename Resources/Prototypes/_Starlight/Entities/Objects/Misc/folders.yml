@@ -119,7 +119,7 @@
       - Law
       - NanoTrasen
       privilegedIdSlot:
-        name: id-card-clipboard-priviliged-id
+        name: id-card-console-privileged-id # Starlight-edit: Fix translation key
         ejectSound: /Audio/Machines/id_swipe.ogg
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectOnBreak: true
@@ -128,7 +128,7 @@
           components:
           - IdCard
       targetIdSlot:
-        name: id-card-clipboard-target-id
+        name: id-card-console-target-id # Starlight-edit: Fix translation key
         ejectSound: /Audio/Machines/id_swipe.ogg
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectOnBreak: true

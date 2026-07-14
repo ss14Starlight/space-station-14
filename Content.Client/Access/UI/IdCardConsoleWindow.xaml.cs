@@ -131,10 +131,27 @@ namespace Content.Client.Access.UI
 
         private void SetAllAccess(bool enabled)
         {
-            _pendingPressedAccessLevels.Clear(); // Starlight-edit
-            foreach (var button in _accessButtons.ButtonsList.Values)
-                if (!button.Disabled && button.Pressed != enabled)
-                    button.Pressed = enabled;
+            // Starlight-edit: Start
+            if (enabled)
+            {
+                foreach (var access in _allowedAccessLevels)
+                    _pendingPressedAccessLevels.Add(access);
+            }
+            else
+            {
+                _pendingPressedAccessLevels.RemoveWhere(a => _allowedAccessLevels.Contains(a));
+            }
+
+            foreach (var (access, button) in _accessButtons.ButtonsList)
+            {
+                if (button.Disabled)
+                    continue;
+
+                button.Pressed = _pendingPressedAccessLevels.Contains(access);
+            }
+
+            _pendingAccessOverride = true;
+            // Starlight-edit: End
         }
 
         private void SelectJobPreset(OptionButton.ItemSelectedEventArgs args)
@@ -169,9 +186,8 @@ namespace Content.Client.Access.UI
             var allowedJobAccess = allJobAccess
                 .Where(x => _allowedAccessLevels.Contains(x) && allConsoleGroupTags.Contains(x))
                 .ToHashSet();
-            _pendingPressedAccessLevels = allowedJobAccess;
 
-            _pendingAccessOverride = true;
+            _pendingPressedAccessLevels.UnionWith(allowedJobAccess);
 
             // Update visible buttons to match pending pressed state
             foreach (var (access, button) in _accessButtons.ButtonsList)
@@ -230,6 +246,11 @@ namespace Content.Client.Access.UI
 
             // Track allowed access for filtering on submit
             _allowedAccessLevels = allowedAccess.ToHashSet();
+
+            var targetHasUnmodifiableAccess = interfaceEnabled
+                && state.TargetIdAccessList != null
+                && state.TargetIdAccessList.Any(access => !_allowedAccessLevels.Contains(access));
+            MissingPrivilegesWarning.Visible = targetHasUnmodifiableAccess;
 
             var allPossibleAccess = _prototypeManager.EnumeratePrototypes<AccessLevelPrototype>()
                 .Where(a => a.CanAddToIdCard)

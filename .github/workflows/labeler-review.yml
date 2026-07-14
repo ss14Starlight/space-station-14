@@ -43,28 +43,9 @@ jobs:
           echo "changes_requested=$changes_requested" >> $GITHUB_OUTPUT
           echo "commented=$commented" >> $GITHUB_OUTPUT
 
-  check_approved:
-    needs: collect_reviews
-    if: needs.collect_reviews.outputs.approved != '[]'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        user: ${{ fromJSON(needs.collect_reviews.outputs.approved) }}
-    steps:
-      - uses: tspascoal/get-user-teams-membership@v3
-        id: membership
-        with:
-          username: ${{ matrix.user }}
-          team: "maintainer,dev"
-          GITHUB_TOKEN: ${{ secrets.LABELER_PAT }}
-
-      - name: Mark if approved by team
-        if: steps.membership.outputs.isTeamMember == 'true'
-        run: echo "approved_by_team=true" >> $GITHUB_ENV
-
   add_label_approved:
-    needs: check_approved
-    if: env.approved_by_team == 'true'
+    needs: collect_reviews
+    if: needs.collect_reviews.outputs.approved != '[]' && needs.collect_reviews.outputs.approved != ''
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -73,28 +54,9 @@ jobs:
         with:
           labels: "S: Approved"
 
-  check_changes_requested:
-    needs: collect_reviews
-    if: needs.collect_reviews.outputs.changes_requested != '[]'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        user: ${{ fromJSON(needs.collect_reviews.outputs.changes_requested) }}
-    steps:
-      - uses: tspascoal/get-user-teams-membership@v3
-        id: membership
-        with:
-          username: ${{ matrix.user }}
-          team: "maintainer,dev"
-          GITHUB_TOKEN: ${{ secrets.LABELER_PAT }}
-
-      - name: Mark if changes requested by team
-        if: steps.membership.outputs.isTeamMember == 'true'
-        run: echo "changes_by_team=true" >> $GITHUB_ENV
-
   add_label_changes:
-    needs: check_changes_requested
-    if: env.changes_by_team == 'true'
+    needs: collect_reviews
+    if: needs.collect_reviews.outputs.changes_requested != '[]' && needs.collect_reviews.outputs.changes_requested != ''
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write

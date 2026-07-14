@@ -662,7 +662,7 @@
         - CantBecomeRevolutionary
       # Starlight-end
   - type: DynamicRuleCost
-    cost: 75
+    cost: 100 # Starlight
 
 - type: entity
   parent: BaseTraitorRule

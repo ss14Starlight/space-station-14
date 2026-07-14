@@ -7,7 +7,7 @@ concurrency:
 
 on:
   push:
-    branches: [ master, staging, stable, Starlight ]
+    branches: [ master, staging, stable, Sol ]
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
@@ -18,7 +18,7 @@ jobs:
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v7
     - name: Setup Submodule
       run: git submodule update --init
     - name: Pull engine updates
