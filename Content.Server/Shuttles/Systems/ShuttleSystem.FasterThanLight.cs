@@ -782,7 +782,6 @@ public sealed partial class ShuttleSystem
     {
         // Get enumeration exceptions from people dropping things if we just paralyze as we go
         var toKnock = new ValueList<EntityUid>();
-        // Get a query for MovedByPressureComponent to check if the entity is disabled
         KnockOverKids(xform, ref toKnock);
         TryComp<MapGridComponent>(xform.GridUid, out var grid);
 
