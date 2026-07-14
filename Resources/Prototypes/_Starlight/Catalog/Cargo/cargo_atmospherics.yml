@@ -4,7 +4,7 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: water_vapor
   product: WaterVaporCanister
-  cost: 2000
+  cost: 900
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -14,13 +14,13 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: zxa
   product: ZXACanister
-  cost: 8000
+  cost: 8900
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# Bulk gases
+# Bulk gases BEGIN
 
-# Oxygen
+## Oxygen
 - type: cargoProduct
   id: AtmosphericsOxygenBulk
   nameLoc: cargo-product-gas-oxygen
@@ -29,11 +29,11 @@
     state: oxygen
   gasType: Oxygen
   gasMoles: 1000
-  cost: 125
+  cost: 150
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# Oxygen (Liquid)
+## Oxygen (Liquid)
 - type: cargoProduct
   id: AtmosphericsOxygenLiquidBulk
   nameLoc: cargo-product-gas-oxygen-liquid
@@ -43,11 +43,11 @@
   gasType: Oxygen
   gasMoles: 1000
   gasTemperature: &liquidTemp 72.0
-  cost: 130
+  cost: 156
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# Nitrogen
+## Nitrogen
 - type: cargoProduct
   id: AtmosphericsNitrogenBulk
   nameLoc: cargo-product-gas-nitrogen
@@ -56,11 +56,11 @@
     state: nitrogen
   gasType: Nitrogen
   gasMoles: 1000
-  cost: 100
+  cost: 125
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# Nitrogen (Liquid)
+## Nitrogen (Liquid)
 - type: cargoProduct
   id: AtmosphericsNitrogenLiquidBulk
   nameLoc: cargo-product-gas-nitrogen-liquid
@@ -70,11 +70,11 @@
   gasType: Nitrogen
   gasMoles: 1000
   gasTemperature: *liquidTemp
-  cost: 106
+  cost: 133
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# Carbon Dioxide
+## Carbon Dioxide
 - type: cargoProduct
   id: AtmosphericsCarbonDioxideBulk
   nameLoc: cargo-product-gas-carbon-dioxide
@@ -83,11 +83,11 @@
     state: carbon
   gasType: CarbonDioxide
   gasMoles: 1000
-  cost: 150
+  cost: 175
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# Carbon Dioxide (Liquid)
+## Carbon Dioxide (Liquid)
 - type: cargoProduct
   id: AtmosphericsCarbonDioxideLiquidBulk
   nameLoc: cargo-product-gas-carbon-dioxide-liquid
@@ -97,11 +97,11 @@
   gasType: CarbonDioxide
   gasMoles: 1000
   gasTemperature: *liquidTemp
-  cost: 159
+  cost: 186
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# Water Vapor
+## Water Vapor
 - type: cargoProduct
   id: AtmosphericsWaterVaporBulk
   nameLoc: cargo-product-gas-water-vapor
@@ -110,11 +110,11 @@
     state: water_vapor
   gasType: WaterVapor
   gasMoles: 1000
-  cost: 500
+  cost: 200
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# Plasma
+## Plasma
 - type: cargoProduct
   id: AtmosphericsPlasmaBulk
   nameLoc: cargo-product-gas-plasma
@@ -127,7 +127,7 @@
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# Plasma (Liquid)
+## Plasma (Liquid)
 - type: cargoProduct
   id: AtmosphericsPlasmaLiquidBulk
   nameLoc: cargo-product-gas-plasma-liquid
@@ -141,7 +141,7 @@
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# BZ
+## BZ
 - type: cargoProduct
   id: AtmosphericsBZBulk
   nameLoc: cargo-product-gas-bz
@@ -154,7 +154,7 @@
   category: cargoproduct-category-name-atmospherics
   group: market
 
-# ZXA
+## ZXA
 - type: cargoProduct
   id: AtmosphericsZXABulk
   nameLoc: cargo-product-gas-zxa
@@ -163,6 +163,8 @@
     state: zxa
   gasType: ZXA
   gasMoles: 1000
-  cost: 2605
+  cost: 2800
   category: cargoproduct-category-name-atmospherics
   group: market
+
+# Bulk gases END

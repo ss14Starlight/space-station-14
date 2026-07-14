@@ -294,12 +294,12 @@ namespace Content.Server.Cargo.Systems
             foreach (var trade in _listEnts)
             {
                 // Starlight BEGIN: Gas orders
-                if (order.GasType != string.Empty)
+                if (!string.IsNullOrEmpty(order.GasType))
                 {
                     var gasTanks = GetCargoGasPallets(trade, BuySellType.Buy);
                     var freeTanks = GetFreeCargoGasPallets(gasTanks,
-                        Enum.Parse<Gas>(order.GasType.Id), order.GasMoles, order.GasTemperature);
-                    _random.Shuffle(freeTanks);
+                        Enum.Parse<Gas>(order.GasType.Id), order.GasMoles, order.GasTemperature,
+                        order.OrderQuantity);
 
                     // Not enough room? Fail.
                     if (freeTanks.Count < order.OrderQuantity)

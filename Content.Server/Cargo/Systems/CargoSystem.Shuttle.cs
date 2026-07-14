@@ -165,7 +165,7 @@ public sealed partial class CargoSystem
 
     private List<(EntityUid Entity, CargoGasPalletComponent Component, TransformComponent Transform)>
         GetFreeCargoGasPallets(List<(EntityUid Entity, CargoGasPalletComponent Component, TransformComponent Transform)> pallets,
-            Gas gasType, float gasMoles, float gasTemp)
+            Gas gasType, float gasMoles, float gasTemp, int amountToFind)
     {
         _setEnts.Clear();
 
@@ -181,6 +181,9 @@ public sealed partial class CargoSystem
 
             while (currentMix.Pressure < Atmospherics.MaxOutputPressure)
             {
+                if (amountToFind-- <= 0)
+                    return outList;
+
                 outList.Add(pallet); // Every time we manage to mix in one order without overflowing, add it to outlist.
                 _atmosphereSystem.Merge(currentMix, singleOrder); // currentMix += singleOrder
             }
