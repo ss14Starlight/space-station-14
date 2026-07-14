@@ -50,3 +50,21 @@ Sol's Descendants is a downstream of [Starlight](https://github.com/ss14Starligh
 
 >All other non-code STARLIGHT Assets, including icons and sound files, are licensed under the [Creative Commons 3.0 BY-SA](https://creativecommons.org/licenses/by-sa/3.0/) license unless otherwise noted in the folder or file.
 </details>
+
+<details>
+<summary><a href="#"><img src="https://img.shields.io/badge/licence-CC_BY_4.0-blue?style=for-the-badge" alt="Creative Commons BY 4.0"></a></summary>
+
+>In-game TTS uses **LibriTTS**-based Piper voices. See [Text-to-Speech attribution](#text-to-speech-attribution) below.
+</details>
+
+---
+
+## Text-to-Speech attribution
+
+Sol's Descendants uses server-side text-to-speech powered by [Piper](https://github.com/rhasspy/piper) (MIT) with the multi-speaker voice model **`en_US-libritts-high`** from [rhasspy/piper-voices](https://huggingface.co/rhasspy/piper-voices).
+
+That model was trained on the **[LibriTTS](https://www.openslr.org/60/)** corpus (OpenSLR SLR60), released under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+
+**LibriTTS** — Heiga Zen et al., *LibriTTS: A Corpus Derived from LibriSpeech for Text-to-Speech* (arXiv:1904.02882). Derived from LibriVox audio and Project Gutenberg texts via the LibriSpeech materials.
+
+We use adapted/trained derivatives (Piper ONNX models) to synthesize speech in game. This notice is provided for CC BY attribution; the SolTTS worker that hosts these models may be private.

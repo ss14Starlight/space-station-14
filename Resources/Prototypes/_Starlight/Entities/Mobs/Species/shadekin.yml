@@ -7,10 +7,10 @@
   components:
     - type: LanguageKnowledge
       speaks:
-        - GalacticCommon
+        - SolCommon
         - Marish
       understands:
-        - GalacticCommon
+        - SolCommon
         - Marish
         - Empathy
     - type: Inventory

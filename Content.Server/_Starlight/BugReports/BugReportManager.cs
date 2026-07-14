@@ -95,6 +95,8 @@ public sealed partial class BugReportManager : IBugReportManager, IPostInjectIni
             ["players"] = _player.PlayerCount + "",
             ["build"] = _cfg.GetCVar(CVars.BuildVersion),
             ["engine"] = _cfg.GetCVar(CVars.BuildEngineVersion),
+            // SolLink uses this to resolve Discord OAuth links for pings in forum posts.
+            ["player_id"] = netId.ToString(),
         };
         if (ticker.Preset != null)
         {

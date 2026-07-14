@@ -6,11 +6,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Bubblish
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Bubblish
   - type: HumanoidAppearance

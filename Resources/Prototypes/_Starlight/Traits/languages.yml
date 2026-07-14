@@ -12,6 +12,7 @@
           baseTranslator: TranslatorForeigner
   conflicts:
     - Foreigner
+    - AdoptedOrphan
   requirements:
     - !type:TraitsRequirement
       traits:
@@ -31,6 +32,7 @@
           baseTranslator: TranslatorForeigner
   conflicts:
     - ForeignerLight
+    - AdoptedOrphan
   requirements:
     - !type:TraitsRequirement
       traits:
@@ -241,27 +243,23 @@
       inverted: true
 
 - type: trait
-  id: SolCommon
-  name: trait-language-solcommon-name
-  description: trait-language-solcommon-desc
+  id: GalacticCommon
+  name: trait-language-galacticcommon-name
+  description: trait-language-galacticcommon-desc
   category: LanguageTraits
   cost: 2
   effects:
     - !type:LanguageEffect
       languagesSpoken:
-        - SolCommon
+        - GalacticCommon
       languagesUnderstood:
-        - SolCommon
+        - GalacticCommon
   requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Human
-        - ProtoHuman
-      inverted: true
     - !type:TraitsRequirement
       traits:
         - Iterator
       inverted: true
+
 
 - type: trait
   id: VoxPidgin

@@ -61,7 +61,7 @@ jobs:
 
       - name: Publish changelog (Discord)
         continue-on-error: true
-        run: Tools/actions_changelogs_since_last_run.py
+        run: Tools/_Sol/actions_changelogs_since_last_run.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}

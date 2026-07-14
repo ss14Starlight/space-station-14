@@ -5,11 +5,11 @@
     - type: LanguageSpeaker
     - type: LanguageKnowledge
       speaks:
-      - GalacticCommon
+      - SolCommon
       - Machine
       understands:
-      - GalacticCommon
       - SolCommon
+      - GalacticCommon
       - Machine
       - Canilunzt
       - Sign
@@ -39,12 +39,12 @@
     - type: LanguageSpeaker
     - type: LanguageKnowledge
       speaks:
-      - GalacticCommon
+      - SolCommon
       - Machine
       - Dog
       understands:
-      - GalacticCommon
       - SolCommon
+      - GalacticCommon
       - Machine
       - Canilunzt
       - Sign
@@ -75,10 +75,10 @@
   - type: LanguageSpeaker
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
 
 - type: entity
@@ -88,11 +88,11 @@
     - type: LanguageSpeaker
     - type: LanguageKnowledge
       speaks:
-      - GalacticCommon
+      - SolCommon
       - Machine
       understands:
-      - GalacticCommon
       - SolCommon
+      - GalacticCommon
       - Machine
       - Canilunzt
       - Sign
@@ -124,12 +124,12 @@
     - type: LanguageSpeaker
     - type: LanguageKnowledge
       speaks:
-      - GalacticCommon
+      - SolCommon
       - Machine
       - Dog
       understands:
-      - GalacticCommon
       - SolCommon
+      - GalacticCommon
       - Machine
       - Canilunzt
       - Sign

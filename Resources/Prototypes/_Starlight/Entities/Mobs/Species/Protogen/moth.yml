@@ -7,11 +7,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Moffic
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Moffic
     - Mothroach

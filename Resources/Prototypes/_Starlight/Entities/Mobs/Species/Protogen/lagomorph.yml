@@ -6,11 +6,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Lagomorphian
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Lagomorphian
   - type: StaminaSurge

@@ -42,9 +42,9 @@
     - type: LanguageSpeaker
     - type: LanguageKnowledge
       speaks:
-      - GalacticCommon
+      - SolCommon
       understands:
-      - GalacticCommon
+      - SolCommon
   # Starlight End
     - type: Sprite
       sprite: Mobs/Species/Skeleton/parts.rsi

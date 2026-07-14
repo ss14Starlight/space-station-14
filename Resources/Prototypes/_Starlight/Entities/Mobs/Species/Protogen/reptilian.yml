@@ -7,11 +7,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Draconic
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Draconic
   - type: HumanoidAppearance

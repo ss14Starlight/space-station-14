@@ -6,3 +6,7 @@
 #
 # - /Prototypes/Guidebook
 # - /Prototypes/Catalog/uplink_catalog.yml
+
+# Starlight donated/third-party TTS bank — kept in tree for upstream merges.
+# Sol ships the playable list under /Prototypes/_Sol/Voice/TTS (Piper / SolTTS).
+- /Prototypes/_Starlight/Voice/TTS

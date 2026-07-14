@@ -7,10 +7,10 @@
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Scratch
     understands:
-    - GalacticCommon
+    - SolCommon
     - Scratch
   # Starlight-end
   - type: Absorbable

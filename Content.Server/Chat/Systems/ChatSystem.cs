@@ -51,6 +51,7 @@ using Content.Shared.Popups;
 using Content.Shared._Starlight.Radio;
 using Content.Server.Radio.EntitySystems;
 using Content.Server._Starlight.TextToSpeech;
+using Content.Shared._Starlight.CCVar;
 // Starlight End
 
 namespace Content.Server.Chat.Systems;
@@ -357,9 +358,11 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message.Text))); // Starlight
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message.Text, wrappedMessage, default, false, true, colorOverride); // Starlight
-        if (playSound)
+        var resolvedAnnouncementSound = announcementSound ?? DefaultAnnouncementSound; // Sol
+        // Sol: when TTS is on, only play the tone via TTS chime (avoids double beep).
+        if (playSound && !_configurationManager.GetCVar(StarlightCCVars.TTSEnabled))
         {
-            _audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(resolvedAnnouncementSound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
         }
         // Starlight start
         RaiseLocalEvent(new AnnouncementSpokeEvent
@@ -367,7 +370,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             Message = message,
             Receivers = Filter.Broadcast(),
             SpeakerUid = speaker.HasValue ? GetNetEntity(speaker.Value) : null,
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = resolvedAnnouncementSound,
         });
         // Starlight end
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message.Text}");// Starlight
@@ -388,14 +391,15 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message.Text))); // Starlight
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message.Text, wrappedMessage, source ?? default, false, recordToReplay, colorOverride); // Starlight
-        if (playSound)
+        var resolvedFilteredSound = announcementSound ?? DefaultAnnouncementSound; // Sol
+        if (playSound && !_configurationManager.GetCVar(StarlightCCVars.TTSEnabled))
         {
-            _audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, recordToReplay, AudioParams.Default.WithVolume(-2f)); // Starlight-edit
+            _audio.PlayGlobal(resolvedFilteredSound, filter, recordToReplay, AudioParams.Default.WithVolume(-2f)); // Starlight-edit
         }
         // Starlight start
         RaiseLocalEvent(new AnnouncementSpokeEvent
         {
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = resolvedFilteredSound,
             Message = message,
             Receivers = filter
         });
@@ -429,15 +433,16 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message.Text, wrappedMessage, source, false, true, colorOverride); // Starlight
 
-        if (playDefaultSound)
+        var resolvedStationSound = announcementSound ?? DefaultAnnouncementSound; // Sol
+        if (playDefaultSound && !_configurationManager.GetCVar(StarlightCCVars.TTSEnabled))
         {
-            _audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(resolvedStationSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }
 
         // Starlight start
         RaiseLocalEvent(new AnnouncementSpokeEvent
         {
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = resolvedStationSound,
             Message = message,
             Receivers = filter
         });
@@ -484,16 +489,16 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Custom behavior: For example, change the chat channel or message formatting here if needed
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
 
-        if (playSound)
+        var commsConsoleSound = announcementSound ?? new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce2.ogg");
+        if (playSound && !_configurationManager.GetCVar(StarlightCCVars.TTSEnabled))
         {
-            var commsConsoleSound = announcementSound ?? new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce2.ogg");
             var resolvedSound = _audio.ResolveSound(commsConsoleSound);
             _audio.PlayGlobal(resolvedSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }
 
         RaiseLocalEvent(new AnnouncementSpokeEvent
         {
-            AnnouncementSound = announcementSound,
+            AnnouncementSound = commsConsoleSound,
             Message = message,
             SpeakerUid = speaker.HasValue ? GetNetEntity(speaker.Value) : null,
             Receivers = filter

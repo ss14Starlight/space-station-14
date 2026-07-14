@@ -7,10 +7,10 @@
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Bubblish
     understands:
-    - GalacticCommon
+    - SolCommon
     - Bubblish
   # Starlight-end
   - type: UserInterface

@@ -5,10 +5,10 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Terrum
     understands:
-    - GalacticCommon
+    - SolCommon
     - Terrum
   - type: Absorbable
   - type: Hunger

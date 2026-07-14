@@ -402,8 +402,11 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         //Starlight begin
         if (result.ResultType == ShuttleDockResultType.GoodLuck)
         {
-            SendShuttleAnnouncement(stationShuttleComp.FailureAnnouncement, result.Station,
-                stationShuttleComp.FailureAudio, filter);
+            SendShuttleAnnouncement(
+                Loc.GetString(stationShuttleComp.FailureAnnouncement),
+                result.Station,
+                stationShuttleComp.FailureAudio,
+                filter);
             return;
         }
         //Starlight end
@@ -551,9 +554,16 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
             AnnounceShuttleDock(shuttleDockResult, multiplier > 1, filter);
         }
 
-        //Starlight begin - announce to all stragglers that round will end soon as shuttles have docked.
-        SendShuttleAnnouncement(Loc.GetString(SpaceStragglerAnnouncement, ("time", $"{_consoleAccumulator:0}")), SpaceStragglerAudio, filter);
-        //Starlight end
+        // Starlight/Sol: straggler line is for people who did NOT get a station-specific dock
+        // announce (space, planet, etc.). Skip when nobody remains — otherwise station crew
+        // hear a second "shuttles have docked…" TTS right after the detailed dock message.
+        if (filter.Count > 0)
+        {
+            SendShuttleAnnouncement(
+                Loc.GetString(SpaceStragglerAnnouncement, ("time", $"{_consoleAccumulator:0}")),
+                SpaceStragglerAudio,
+                filter);
+        }
 
         _commsConsole.UpdateCommsConsoleInterface();
     }
@@ -819,27 +829,37 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
     //Starlight begin
     /// <summary>
-    /// Sends shuttle dock announcement to all players on a station, removing all recipients from a filter.
+    /// Sends shuttle dock announcement to all players on a station, removing them from the residual filter.
     /// </summary>
-    private void SendShuttleAnnouncement(LocId announcementText, Entity<StationEmergencyShuttleComponent> station,
-        SoundSpecifier sound, Filter filter)
+    private void SendShuttleAnnouncement(
+        string announcementText,
+        Entity<StationEmergencyShuttleComponent> station,
+        SoundSpecifier sound,
+        Filter residualFilter)
     {
-        var allPlayersOnStation = Filter.Empty().AddWhere(session =>
-        {
-            if (session.AttachedEntity is null) return false;
-            if (!TryComp<StationMemberComponent>(Transform(session.AttachedEntity.Value).GridUid,
-                    out var stationGrid)) return false;
-            return stationGrid.Station == station.Owner;
-        });
-        filter.RemoveWhere(x => allPlayersOnStation.Recipients.Contains(x));
-        _chatSystem.DispatchFilteredAnnouncement(allPlayersOnStation, Loc.GetString(announcementText),
-            announcementSound: sound);
+        var stationUid = station.Owner;
+        // Use GetOwningStation (entity → grid), not GridUid alone — mid-round/nested
+        // entities otherwise miss the station filter and still receive the straggler TTS.
+        var onStation = Filter.Empty().AddWhere(session =>
+            session.AttachedEntity is { } ent &&
+            _station.GetOwningStation(ent) == stationUid);
+
+        residualFilter.RemoveWhere(session =>
+            session.AttachedEntity is { } ent &&
+            _station.GetOwningStation(ent) == stationUid);
+
+        _chatSystem.DispatchFilteredAnnouncement(onStation, announcementText, announcementSound: sound);
     }
 
     /// <summary>
-    /// Sends a separate shuttle dock announcement to all remaining players, so anyone in space, salvie planet, etc.
+    /// Sends a shuttle announcement to whoever remains on the filter (space / planet / etc.).
     /// </summary>
-    private void SendShuttleAnnouncement(LocId announcementText, SoundSpecifier sound, Filter filter) =>
-        _chatSystem.DispatchFilteredAnnouncement(filter, Loc.GetString(announcementText), announcementSound: sound);
+    private void SendShuttleAnnouncement(string announcementText, SoundSpecifier sound, Filter filter)
+    {
+        if (filter.Count == 0)
+            return;
+
+        _chatSystem.DispatchFilteredAnnouncement(filter, announcementText, announcementSound: sound);
+    }
     //Starlight end
 }

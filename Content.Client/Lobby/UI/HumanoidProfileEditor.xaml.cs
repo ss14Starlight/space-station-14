@@ -41,6 +41,7 @@ using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Traits;
 using Content.Client._Starlight.Lobby.UI;
+using Content.Client._Starlight.Lobby.UI.ProfileEditorControls;
 using Content.Client._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Humanoid;
 using Content.Client._Starlight.Humanoid;
@@ -635,6 +636,15 @@ namespace Content.Client.Lobby.UI
             TabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-cybernetics-tab"));
             TabContainer.SetTabTitle(6, Loc.GetString("humanoid-profile-editor-ic-info-tab"));
             TabContainer.SetTabTitle(7, Loc.GetString("humanoid-profile-editor-ooc-info-tab"));
+
+            // Sol: show known languages under the preview while on the traits tab.
+            TabContainer.OnTabChanged += OnEditorTabChanged;
+            Preview.SetKnownLanguagesVisible(TabContainer.CurrentTab == ProfilePreview.TraitsTabIndex);
+        }
+
+        private void OnEditorTabChanged(int tab)
+        {
+            Preview.SetKnownLanguagesVisible(tab == ProfilePreview.TraitsTabIndex);
         }
         // Cosmatic Drift Record System-start: Build the CD record editor tab and hook persistence callbacks
         private RecordEditorGui CreateRecordEditorTab()
@@ -729,6 +739,7 @@ namespace Content.Client.Lobby.UI
                 Profile = Profile.WithTraitPreference(trait.Id, _prototypeManager);
             }
 
+            Preview.UpdateKnownLanguages(); // Sol
             SetDirty();
         }
 
@@ -1109,6 +1120,7 @@ namespace Content.Client.Lobby.UI
             // Cosmatic Drift Record System-end
             RefreshCharacterInfo(); //starlight
             Preview.Initialize(this, _entManager, _preferencesManager, _prototypeManager, _playerManager);
+            Preview.UpdateKnownLanguages(); // Sol
             ReloadPreview();
         }
 
@@ -1666,6 +1678,8 @@ namespace Content.Client.Lobby.UI
             UpdateSpeciesGuidebookIcon();
             UpdateSizeControls(); //starlight
             UpdateSpeciesLoadout(); // Far Horizons
+            Traits.UpdateRequirements(Profile); // Sol: language traits are species-gated
+            Preview.UpdateKnownLanguages(); // Sol
             ReloadPreview();
         }
 

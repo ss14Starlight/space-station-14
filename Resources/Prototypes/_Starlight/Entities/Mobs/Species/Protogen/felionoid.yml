@@ -6,11 +6,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Nekomimetic
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Nekomimetic
     - Cat

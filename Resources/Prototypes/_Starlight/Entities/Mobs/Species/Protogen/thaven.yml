@@ -7,11 +7,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-      - GalacticCommon
+      - SolCommon
       - Machine
       - Thaveyan
     understands:
-      - GalacticCommon
+      - SolCommon
       - Machine
       - Thaveyan
       - Carptongue

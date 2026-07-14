@@ -15,9 +15,9 @@
   - type: SurgeryTarget
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     understands:
-    - GalacticCommon
+    - SolCommon
   # Starlight-end
   - type: Sprite
     layers:

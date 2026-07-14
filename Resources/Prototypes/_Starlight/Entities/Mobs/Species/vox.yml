@@ -6,10 +6,10 @@
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - VoxPidgin
     understands:
-    - GalacticCommon
+    - SolCommon
     - VoxPidgin
   # Starlight-end
   - type: Absorbable

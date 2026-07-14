@@ -1,0 +1,26 @@
+# Sol: optional traits layered on the Starlight language trait set.
+
+- type: trait
+  id: AdoptedOrphan
+  name: trait-language-adopted-orphan-name
+  description: trait-language-adopted-orphan-desc
+  category: LanguageTraits
+  cost: -1
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: AdoptedOrphanTrait
+  conflicts:
+    - Foreigner
+    - ForeignerLight
+    - Iterator
+    - HighElf
+    - WoodElf
+    - DarkElf
+    - CaveElf
+  requirements:
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
+

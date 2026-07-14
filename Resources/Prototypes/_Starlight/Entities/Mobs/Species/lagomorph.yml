@@ -10,10 +10,10 @@
   - type: Absorbable
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Lagomorphian
     understands:
-    - GalacticCommon
+    - SolCommon
     - Lagomorphian
   - type: StaminaSurge
   - type: Zoomies

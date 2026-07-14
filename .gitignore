@@ -156,6 +156,9 @@ PublishScripts/
 
 # NuGet Packages
 *.nupkg
+# Vendored local feed (CI + offline restores for SolLink NullLink fork).
+!vendor/nuget/
+!vendor/nuget/**/*.nupkg
 # The packages folder can be ignored because of Package Restore
 **/packages/*
 # except build/, which is used as an MSBuild target.

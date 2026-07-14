@@ -19,9 +19,9 @@
     components:
     - type: AdditionalLanguageKnowledge # If we just put in LanguageKnowledge, it'd overwrite your ability to e.g. understand mothroaches as a moth
       speaks:
-      - GalacticCommon
-      - Scratch
       - SolCommon
+      - Scratch
+      - GalacticCommon
       - Bubblish
       - Canilunzt
       - Chittin
@@ -41,9 +41,9 @@
       - Lagomorphian
       - Squeakish
       understands:
-      - GalacticCommon
-      - Scratch
       - SolCommon
+      - Scratch
+      - GalacticCommon
       - Bubblish
       - Canilunzt
       - Chittin

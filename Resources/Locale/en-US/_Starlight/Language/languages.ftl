@@ -4,13 +4,14 @@ language-Universal-name = Universal
 language-Universal-description = What are you?
 
 language-GalacticCommon-name = Galactic Common
-language-GalacticCommon-description = The common galactic tongue, engineered for cross-species communication. Every spacer there is knows this!
+language-GalacticCommon-description = An older cross-species trade tongue from beyond Sol space. Still widely spoken among veteran spacers, and often learnt as a second language.
 
 language-Sign-name = Galactic Sign Language
 language-Sign-description = A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments.
 
 language-SolCommon-name = Sol Common
-language-SolCommon-description = An artifical language designed by the Trans-Solar Federation for ease of use and concise communication.
+language-SolCommon-description = The common station tongue engineered by the Trans-Solar Federation for ease of use and concise communication. Every spacer there is knows this!
+
 
 language-Marish-name = Marish
 language-Marish-description = Where shadekin have a language rooted in empathy, there are still subtle tones and syllables that are as delicate as the emotions that shadekin normally communicate with.

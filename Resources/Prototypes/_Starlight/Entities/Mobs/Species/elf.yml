@@ -6,12 +6,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
 #    - Aielic
     understands:
-    - GalacticCommon
+    - SolCommon
 #    - Aielic
-#    - SolCommon
 #    - Darktongue
 #    - Sylvan
   - type: Absorbable

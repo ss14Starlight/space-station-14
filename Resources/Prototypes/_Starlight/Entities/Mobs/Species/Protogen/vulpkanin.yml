@@ -6,12 +6,12 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
 #    - Trinary # Starlight, no Trinary
     - Canilunzt
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
 #    - Trinary # Starlight, no Trinary
     - Canilunzt

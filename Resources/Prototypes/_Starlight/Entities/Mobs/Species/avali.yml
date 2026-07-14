@@ -31,10 +31,10 @@
   components:
     - type: LanguageKnowledge
       speaks:
-      - GalacticCommon
+      - SolCommon
       - Scratch
       understands:
-      - GalacticCommon
+      - SolCommon
       - Scratch
     - type: Tag
       tags:
