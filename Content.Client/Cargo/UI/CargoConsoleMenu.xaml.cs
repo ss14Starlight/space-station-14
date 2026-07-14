@@ -216,7 +216,7 @@ namespace Content.Client.Cargo.UI
                 if (order.Approved)
                     continue;
 
-                var proto = _protoManager.Index(order.ProtoId); // Starlight
+                var proto = _protoManager.Index(order.CargoProductId); // Starlight
                 var account = _protoManager.Index(order.Account);
 
                 var row = new CargoOrderRow

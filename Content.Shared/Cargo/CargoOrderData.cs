@@ -69,7 +69,7 @@ namespace Content.Shared.Cargo
         [DataField]
         public NetEntity StationId;
         [DataField]
-        public ProtoId<CargoProductPrototype> ProtoId;
+        public ProtoId<CargoProductPrototype> CargoProductId;
         [DataField]
         public ProtoId<GasPrototype> GasType;
         [DataField]
@@ -78,7 +78,7 @@ namespace Content.Shared.Cargo
         public float GasTemperature;
         #endregion
 
-        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<CargoProductPrototype> protoId, ProtoId<GasPrototype> gasType, float gasMoles, float gasTemp) // Starlight: +stationId, protoId, gasType, gasMoles, gasTemp
+        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<CargoProductPrototype> cargoProductId, ProtoId<GasPrototype> gasType, float gasMoles, float gasTemp) // Starlight
         {
             OrderId = orderId;
             ProductId = productId;
@@ -89,7 +89,7 @@ namespace Content.Shared.Cargo
             Reason = reason;
             Account = account;
             StationId = stationId; // Starlight BEGIN
-            ProtoId = protoId;
+            CargoProductId = cargoProductId;
             GasType = gasType;
             GasMoles = gasMoles;
             GasTemperature = gasTemp; // Starlight END
