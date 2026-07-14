@@ -26,17 +26,38 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
         SubscribeLocalEvent<VentSpawnRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterSelection);
     }
 
-    protected override void Started(EntityUid uid, VentSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    protected override void Added(EntityUid uid, VentSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        base.Started(uid, comp, gameRule, args);
+        base.Added(uid, comp, gameRule, args);
 
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
+            return;
+
         var station = stationEvent.TargetStation;
         if (station is null && !TryGetRandomStation(out station))
         {
             ForceEndSelf(uid);
             return;
         }
+
+        PopulateValidLocations(comp, station.Value);
+
+        if (comp.ValidLocations.Count == 0)
+            ForceEndSelf(uid);
+    }
+
+    protected override void Started(EntityUid uid, VentSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    {
+        base.Started(uid, comp, gameRule, args);
+
+        // Keep a safety check for cases where map/grid state changed between add and start.
+        if (comp.ValidLocations.Count == 0)
+            ForceEndSelf(uid);
+    }
+
+    private void PopulateValidLocations(VentSpawnRuleComponent comp, EntityUid station)
+    {
+        comp.ValidLocations.Clear();
 
         var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
         while (locations.MoveNext(out var loc, out _, out var transform))
@@ -51,9 +72,6 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
             if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
                 comp.ValidLocations.Add((_transform.GetMapCoordinates(transform), loc));
         }
-
-        if (comp.ValidLocations.Count == 0)
-            ForceEndSelf(uid);
     }
 
     private void OnSelectLocation(Entity<VentSpawnRuleComponent> ent, ref AntagSelectLocationEvent args)
