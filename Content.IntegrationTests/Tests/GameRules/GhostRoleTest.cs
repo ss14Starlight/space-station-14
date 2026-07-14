@@ -44,14 +44,13 @@ public sealed partial class GhostRoleTest : GameTest
     [RunOnSide(Side.Server)]
     public void TestAntagGhostRoles(string ruleId)
     {
-        #region Starlight
         // The vast majority of this is from Wizden, but it's been moved around because we disable load map on tests. Alas...
         // It's really just "Starlight" because of the Try-Finally ccvar stuff.
         var serverCfg = Pair.Server.CfgMan;
         serverCfg.SetCVar(StarlightCCVars.DisableLoadMapRule, false);
 
-        try
-        {
+        try // Starlight
+        { // Starlight
             var rule = SProtoMan.Index<EntityPrototype>(ruleId);
             Assert.That(rule.TryGetComponent<AntagSelectionComponent>(out var antag, SEntMan.ComponentFactory), Is.True);
 
@@ -125,7 +124,8 @@ public sealed partial class GhostRoleTest : GameTest
             // End all rules
             _ticker.ClearGameRules();
             Assert.That(_ticker.GetAddedGameRules(), Is.Empty);
-        }
+        } // Starlight
+        #region Starlight
         finally
         {
             serverCfg.SetCVar(StarlightCCVars.DisableLoadMapRule, true);
