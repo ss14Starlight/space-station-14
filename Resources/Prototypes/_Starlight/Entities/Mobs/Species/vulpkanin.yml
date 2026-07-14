@@ -8,10 +8,10 @@
   #Starlight
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
     understands:
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
     - Fox # "vaguely canidae"
     - Dog # "vaguely canidae"

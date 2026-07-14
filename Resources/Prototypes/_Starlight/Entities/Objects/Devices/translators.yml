@@ -62,6 +62,6 @@
           map: ["translator"]
     - type: HandheldTranslator
       understood:
-        - GalacticCommon
+        - SolCommon
       requires:
         - ScurretSign

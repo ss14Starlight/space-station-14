@@ -7,11 +7,11 @@
   components:
     - type: LanguageKnowledge
       speaks:
-      - GalacticCommon
+      - SolCommon
       - Machine
       - Marish
       understands:
-      - GalacticCommon
+      - SolCommon
       - Machine
       - Marish
       - Empathy

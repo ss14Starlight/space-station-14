@@ -7,10 +7,10 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Squeakish
     understands:
-    - GalacticCommon
+    - SolCommon
     - Squeakish
     - Mouse
   - type: Absorbable

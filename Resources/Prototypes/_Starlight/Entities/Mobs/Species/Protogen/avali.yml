@@ -7,11 +7,11 @@
   components:
     - type: LanguageKnowledge
       speaks:
-      - GalacticCommon
+      - SolCommon
       - Machine
       - Scratch
       understands:
-      - GalacticCommon
+      - SolCommon
       - Machine
       - Scratch
     - type: Vocal

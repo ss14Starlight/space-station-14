@@ -7,10 +7,10 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Chittin
     understands:
-    - GalacticCommon
+    - SolCommon
     - Chittin
   - type: IgnoreSpiderWeb
   - type: Absorbable

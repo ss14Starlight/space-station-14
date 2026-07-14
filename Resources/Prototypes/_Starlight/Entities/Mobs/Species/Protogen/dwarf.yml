@@ -7,11 +7,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Grumbakul
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Grumbakul
   - type: MobThresholds

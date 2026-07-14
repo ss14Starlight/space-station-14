@@ -1,10 +1,10 @@
 trait-category-languages = Languages
 
 trait-language-foreigner-light-name = Foreigner Light
-trait-language-foreigner-light-desc = You understand the common language, but you can't quite speak it yet. You have a translator to help you with your basic understanding of the language. Better keep it charged.
+trait-language-foreigner-light-desc = You understand the common language, but you can't quite speak it yet. You have a translator linking your own tongue to Sol Common. Characters without another language start with Galactic Common as that tongue. Better keep the translator charged.
 
 trait-language-foreigner-name = Foreigner
-trait-language-foreigner-desc = You can't understand the common language, and you require a translator at all times to talk. You have a translator to help you with your understanding and speaking. Make sure to keep it charged.
+trait-language-foreigner-desc = You can't understand Sol Common, and you require a translator at all times to talk. You have a translator linking your own tongue to Sol Common. Characters without another language start with Galactic Common as that tongue. Make sure to keep it charged.
 
 trait-language-signlanguage-name = Sign Language
 trait-language-signlanguage-desc = A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments.
@@ -27,8 +27,9 @@ trait-language-nekomimetic-desc = To most normal people, this is just broken Old
 trait-language-scratch-name = Scratch
 trait-language-scratch-desc = You know how to speak and understand Avali Scratch, the galactic language shared by both Avali and Resomi.
 
-trait-language-solcommon-name = Sol Common
-trait-language-solcommon-desc = You picked up knowledge on Sol Common, Old Earth's current primary language developed by the Trans-Solar Federation.
+trait-language-galacticcommon-name = Galactic Common
+trait-language-galacticcommon-desc = You picked up knowledge of Galactic Common, the older cross-species trade tongue still spoken beyond Sol space.
+
 
 trait-language-sylvan-name = Sylvan
 trait-language-sylvan-desc = You understand Sylvan, spoken by Dionae and plants alike. Most people would probably call you crazy if you said you could talk to plants.

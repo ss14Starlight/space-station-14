@@ -5,10 +5,10 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Nekomimetic
     understands:
-    - GalacticCommon
+    - SolCommon
     - Nekomimetic
     - Cat
   - type: Absorbable

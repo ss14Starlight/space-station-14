@@ -17,4 +17,27 @@
         <Button Name="SpriteRotateRight" Text="▶" StyleClasses="OpenLeft" />
     </BoxContainer>
 
+    <!-- Sol: known languages (traits tab) -->
+    <BoxContainer Name="KnownLanguagesPanel"
+                  Visible="False"
+                  Orientation="Vertical"
+                  HorizontalExpand="True"
+                  Margin="8 12 8 8"
+                  MinWidth="240"
+                  MaxWidth="280">
+        <Label Name="KnownLanguagesHeader"
+               Text="{Loc 'humanoid-profile-editor-known-languages-label'}"
+               HorizontalAlignment="Center"
+               Align="Center"
+               StyleClasses="LabelHeading"
+               Margin="0 0 0 6" />
+        <PanelContainer Name="KnownLanguagesTablePanel"
+                        HorizontalExpand="True">
+            <BoxContainer Name="KnownLanguagesList"
+                          Orientation="Vertical"
+                          HorizontalExpand="True"
+                          SeparationOverride="1" />
+        </PanelContainer>
+    </BoxContainer>
+
 </BoxContainer>

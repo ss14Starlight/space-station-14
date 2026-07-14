@@ -1,5 +1,7 @@
+# The default language for everyone other than Universal.
 - type: language
   id: SolCommon
+
   icon: LanguageIconSolCom
   chatPrefix: sol
   speech:

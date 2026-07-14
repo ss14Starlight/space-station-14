@@ -6,6 +6,7 @@ using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
+using Content.Shared._Starlight.Language.Systems;
 using Content.Shared.Storage;
 using Robust.Shared.Prototypes;
 using HandheldTranslatorComponent = Content.Shared._Starlight.Language.Components.HandheldTranslatorComponent;
@@ -14,6 +15,8 @@ namespace Content.Server._Starlight.Traits.Assorted;
 
 public sealed partial class ForeignerTraitSystem : EntitySystem
 {
+    private static readonly ProtoId<LanguagePrototype> GalacticCommonLanguage = "GalacticCommon";
+
     [Dependency] private EntityManager _entMan = default!;
     [Dependency] private HandsSystem _hands = default!;
     [Dependency] private InventorySystem _inventory = default!;
@@ -34,14 +37,22 @@ public sealed partial class ForeignerTraitSystem : EntitySystem
             return;
         }
 
+        // Sol: if the character only speaks Sol Common, grant Galactic Common as their personal tongue
+        // for the translator to bridge (e.g. humans, or characters without a species language).
         var alternateLanguage = knowledge.Speaks.Find(it => it != entity.Comp.BaseLanguage);
         if (alternateLanguage == default)
         {
-            Log.Warning($"Entity {entity.Owner} does not have an alternative language to choose from (must have at least one non-GC for ForeignerTrait)!");
-            return;
+            _languages.AddLanguage(entity.Owner, GalacticCommonLanguage, true, true);
+            if (!TryComp(entity.Owner, out knowledge))
+            {
+                Log.Warning($"Entity {entity.Owner} lost LanguageKnowledge while applying ForeignerTrait!");
+                return;
+            }
+
+            alternateLanguage = GalacticCommonLanguage;
         }
 
-        if (TryGiveTranslator(entity.Owner, entity.Comp.BaseTranslator, entity.Comp.BaseLanguage, alternateLanguage, out var translator))
+        if (TryGiveTranslator(entity.Owner, entity.Comp.BaseTranslator, entity.Comp.BaseLanguage, alternateLanguage, out _))
         {
             _languages.RemoveLanguage(entity.Owner, entity.Comp.BaseLanguage, entity.Comp.CantSpeak, entity.Comp.CantUnderstand);
         }

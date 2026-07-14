@@ -6,11 +6,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Terrum
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - Terrum
   - type: Icon

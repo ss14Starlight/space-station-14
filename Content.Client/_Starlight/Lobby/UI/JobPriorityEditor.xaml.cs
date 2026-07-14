@@ -175,7 +175,7 @@ public sealed partial class JobPriorityEditor : BoxContainer
                 var description = job.LocalizedDescription != null // Starlight BEGIN
                     ? FormattedMessage.FromUnformatted(job.LocalizedDescription)
                     : FormattedMessage.Empty;
-                selector.Setup(selectorPriorities, job.LocalizedName, 200, description, icon, job.Guides); // Starlight END
+                selector.Setup(selectorPriorities, job.LocalizedName, 300, description, icon, job.Guides); // Sol: wider title so priority buttons align
 
                 // This shouldn't depend on any character specific properties, so pass null
                 if (!_requirements.IsAllowed(job, null, out var reason))

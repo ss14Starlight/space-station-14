@@ -6,11 +6,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - VoxPidgin
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
     - VoxPidgin
   - type: Icon

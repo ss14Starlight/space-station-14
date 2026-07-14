@@ -8,10 +8,10 @@
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Sylvan
     understands:
-    - GalacticCommon
+    - SolCommon
     - Sylvan
   # Starlight-end
   - type: Absorbable

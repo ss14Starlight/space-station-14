@@ -8,10 +8,10 @@
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Moffic
     understands:
-    - GalacticCommon
+    - SolCommon
     - Moffic
     - Mothroach
   # Starlight-end

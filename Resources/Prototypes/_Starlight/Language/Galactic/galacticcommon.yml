@@ -1,6 +1,7 @@
-# The "Default Language" for everyone other than Universal.
+# Optional trade tongue. Station common is SolCommon.
 - type: language
   id: GalacticCommon
+
   icon: LanguageIconGalCom
   iconUnderstood: false
   chatPrefix: g
