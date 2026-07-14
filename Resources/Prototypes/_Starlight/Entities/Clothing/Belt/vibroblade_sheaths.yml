@@ -29,6 +29,12 @@
           tags:
           - CentcommVibroblade
   - type: Appearance
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 9
+    soundHit:
+      collection: MetalThud
 
 - type: entity
   parent: CentcommVibrobladeSheath
@@ -73,6 +79,12 @@
           tags:
           - PrototypeVibroblade
   - type: Appearance
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 9
+    soundHit:
+      collection: MetalThud
 
 - type: entity
   parent: PrototypeVibrobladeSheath
