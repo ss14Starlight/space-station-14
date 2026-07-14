@@ -20,4 +20,11 @@ Entries:
   id: 120001
   time: '2026-07-14T00:21:16.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/12
+- author: AprilCatStreams
+  changes:
+  - message: Switch SL CDN for SolCDN.
+    type: Fix
+  id: 130001
+  time: '2026-07-14T01:17:41.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/13
 
