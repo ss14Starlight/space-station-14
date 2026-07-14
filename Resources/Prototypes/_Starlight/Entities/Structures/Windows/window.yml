@@ -7,13 +7,15 @@
     enabled: false
 
 # Honeypots BEGIN
-# I tried inheritance on these guys, but they really didn't want to, so YAML anchors it is.
+# I tried inheritance on these guys, but ran into various things not inheriting, so YAML anchors it is.
 
 # Solid wall
+
+## Normal
 - type: entity
   parent: WallSolid
   id: WallSolidHoneypot
-  description: &honeypotDesc Notifies admins when it gets damaged and is secretly indestructible.
+  description: &honeypotDesc Notifies admins when it gets damaged. Can be destroyed as normal.
   suffix: &honeypotSuffix Honeypot, Do Not Map
   components:
     - type: ReplaceOnInit
@@ -21,10 +23,29 @@
       overrides: &honeypotOverrides
         - type: AdminNotifyOnDamage
           subject: "honeypot"
+    - &honeypotSprite
+      type: Sprite
+      color: "#999999"
+
+## Indestructible
+- type: entity
+  parent: WallSolid
+  id: WallSolidHoneypotIndestructible
+  description: &honeypotDescIndestructible Notifies admins when it gets damaged and is secretly indestructible.
+  suffix: &honeypotSuffixIndestructible Honeypot, Indestructible, Do Not Map
+  components:
+    - type: ReplaceOnInit
+      proto: WallSolid
+      overrides: &honeypotOverridesIndestructible
+        - type: AdminNotifyOnDamage
+          subject: "honeypot"
         - type: Destructible
           thresholds: []
+    - *honeypotSprite
 
 # Reinforced wall
+
+## Normal
 - type: entity
   parent: WallReinforced
   id: WallReinforcedHoneypot
@@ -34,10 +55,25 @@
     - type: ReplaceOnInit
       proto: WallReinforced
       overrides: *honeypotOverrides
+    - *honeypotSprite
+
+## Indestructible
+- type: entity
+  parent: WallReinforced
+  id: WallReinforcedHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: WallReinforced
+      overrides: *honeypotOverridesIndestructible
+    - *honeypotSprite
 
 # Reinforced window
 
 ## Full size
+
+### Normal
 - type: entity
   parent: ReinforcedWindow
   id: ReinforcedWindowHoneypot
@@ -47,8 +83,22 @@
     - type: ReplaceOnInit
       proto: ReinforcedWindow
       overrides: *honeypotOverrides
+    - *honeypotSprite
+
+### Indestructible
+- type: entity
+  parent: ReinforcedWindow
+  id: ReinforcedWindowHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedWindow
+      overrides: *honeypotOverridesIndestructible
+    - *honeypotSprite
 
 ## Diagonal
+### Normal
 - type: entity
   parent: ReinforcedWindowDiagonal
   id: ReinforcedWindowDiagonalHoneypot
@@ -58,8 +108,23 @@
     - type: ReplaceOnInit
       proto: ReinforcedWindowDiagonal
       overrides: *honeypotOverrides
+    - *honeypotSprite
+
+### Indestructible
+- type: entity
+  parent: ReinforcedWindowDiagonal
+  id: ReinforcedWindowDiagonalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedWindowDiagonal
+      overrides: *honeypotOverridesIndestructible
+    - *honeypotSprite
 
 ## Directional
+
+### Normal
 - type: entity
   parent: WindowReinforcedDirectional
   id: WindowReinforcedDirectionalHoneypot
@@ -69,10 +134,25 @@
     - type: ReplaceOnInit
       proto: WindowReinforcedDirectional
       overrides: *honeypotOverrides
+    - *honeypotSprite
+
+### Indestructible
+- type: entity
+  parent: WindowReinforcedDirectional
+  id: WindowReinforcedDirectionalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: WindowReinforcedDirectional
+      overrides: *honeypotOverridesIndestructible
+    - *honeypotSprite
 
 # Plasma window
 
 ## Full size
+
+### Normal
 - type: entity
   parent: ReinforcedPlasmaWindow
   id: ReinforcedPlasmaWindowHoneypot
@@ -82,8 +162,23 @@
     - type: ReplaceOnInit
       proto: ReinforcedPlasmaWindow
       overrides: *honeypotOverrides
+    - *honeypotSprite
+
+### Indestructible
+- type: entity
+  parent: ReinforcedPlasmaWindow
+  id: ReinforcedPlasmaWindowHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedPlasmaWindow
+      overrides: *honeypotOverridesIndestructible
+    - *honeypotSprite
 
 ## Diagonal
+
+### Normal
 - type: entity
   parent: ReinforcedPlasmaWindowDiagonal
   id: ReinforcedPlasmaWindowDiagonalHoneypot
@@ -93,8 +188,23 @@
     - type: ReplaceOnInit
       proto: ReinforcedPlasmaWindowDiagonal
       overrides: *honeypotOverrides
+    - *honeypotSprite
+
+### Indestructible
+- type: entity
+  parent: ReinforcedPlasmaWindowDiagonal
+  id: ReinforcedPlasmaWindowDiagonalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedPlasmaWindowDiagonal
+      overrides: *honeypotOverridesIndestructible
+    - *honeypotSprite
 
 ## Directional
+
+### Normal
 - type: entity
   parent: PlasmaReinforcedWindowDirectional
   id: PlasmaReinforcedWindowDirectionalHoneypot
@@ -104,10 +214,25 @@
     - type: ReplaceOnInit
       proto: PlasmaReinforcedWindowDirectional
       overrides: *honeypotOverrides
+    - *honeypotSprite
+
+### Indestructible
+- type: entity
+  parent: PlasmaReinforcedWindowDirectional
+  id: PlasmaReinforcedWindowDirectionalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: PlasmaReinforcedWindowDirectional
+      overrides: *honeypotOverridesIndestructible
+    - *honeypotSprite
 
 # Uranium window
 
 ## Full size
+
+### Normal
 - type: entity
   parent: ReinforcedUraniumWindow
   id: ReinforcedUraniumWindowHoneypot
@@ -117,8 +242,23 @@
     - type: ReplaceOnInit
       proto: ReinforcedUraniumWindow
       overrides: *honeypotOverrides
+    - *honeypotSprite
+
+### Indestructible
+- type: entity
+  parent: ReinforcedUraniumWindow
+  id: ReinforcedUraniumWindowHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedUraniumWindow
+      overrides: *honeypotOverridesIndestructible
+    - *honeypotSprite
 
 ## Diagonal
+
+### Normal
 - type: entity
   parent: ReinforcedUraniumWindowDiagonal
   id: ReinforcedUraniumWindowDiagonalHoneypot
@@ -128,8 +268,23 @@
     - type: ReplaceOnInit
       proto: ReinforcedUraniumWindowDiagonal
       overrides: *honeypotOverrides
+    - *honeypotSprite
+
+### Indestructible
+- type: entity
+  parent: ReinforcedUraniumWindowDiagonal
+  id: ReinforcedUraniumWindowDiagonalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedUraniumWindowDiagonal
+      overrides: *honeypotOverridesIndestructible
+    - *honeypotSprite
 
 ## Directional
+
+### Normal
 - type: entity
   parent: UraniumReinforcedWindowDirectional
   id: UraniumReinforcedWindowDirectionalHoneypot
@@ -139,5 +294,18 @@
     - type: ReplaceOnInit
       proto: UraniumReinforcedWindowDirectional
       overrides: *honeypotOverrides
+    - *honeypotSprite
+
+### Indestructible
+- type: entity
+  parent: UraniumReinforcedWindowDirectional
+  id: UraniumReinforcedWindowDirectionalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: UraniumReinforcedWindowDirectional
+      overrides: *honeypotOverridesIndestructible
+    - *honeypotSprite
 
 # Honeypots END
