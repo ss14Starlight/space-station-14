@@ -6,6 +6,7 @@ using Content.Server.Antag;
 using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
+using Content.Server.GameTicking.Rules.Components; // Starlight
 using Content.Server.Shuttles.Components;
 using Content.Shared._Starlight.CCVar; // Starlight
 using Content.Shared.Antag;
@@ -75,6 +76,24 @@ public sealed class AllGamePresetsStartTest : GameTest
             await server.WaitPost(() =>
             {
                 min = ticker.GetMinimumPlayerCount(preset);
+
+                #region Starlight
+                // Secret-like presets can pick any rule at round start. Ensure enough players for the highest
+                // cancel-on-too-few-players rule so starting the round is deterministic in tests.
+                if (preset.Rules.Any(ruleId => protoMan.Resolve(ruleId, out var rule) && rule.TryGetComponent<SecretRuleComponent>(out _, entMan.ComponentFactory)))
+                {
+                    foreach (var ruleProto in ticker.GetAllGameRulePrototypes())
+                    {
+                        if (!ruleProto.TryGetComponent<GameRuleComponent>(out var gameRuleComp, entMan.ComponentFactory))
+                            continue;
+
+                        if (!gameRuleComp.CancelPresetOnTooFewPlayers)
+                            continue;
+
+                        min = Math.Max(min, gameRuleComp.MinPlayers);
+                    }
+                }
+                #endregion
             });
             var expectedPlayers = Math.Max(min, 1); // Starlight, the entire reason this system breaks is because we have gamemodes who have min: 0 and a playerRatio higher than their gamerule requirement.
 

@@ -285,6 +285,20 @@ public sealed partial class FollowerSystem : EntitySystem
         if (!deparent || !TryComp(uid, out TransformComponent? xform))
             return;
 
+        #region Starlight
+        // If the followed entity is already detached from any map/grid (e.g. map deletion teardown),
+        // trying to re-attach the follower will always fail and spam warnings.
+        if (TryComp(target, out TransformComponent? targetXform) && targetXform.MapUid == null)
+        {
+            _transform.DetachEntity(uid, xform);
+
+            if (!_netMan.IsClient)
+                QueueDel(uid);
+
+            return;
+        }
+        #endregion
+
         _transform.AttachToGridOrMap(uid, xform);
         if (xform.MapUid != null)
             return;
