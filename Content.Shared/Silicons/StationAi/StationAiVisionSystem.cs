@@ -221,11 +221,11 @@ public sealed partial class StationAiVisionSystem : EntitySystem
         // Starlight - end
     }
 
+    #region Starlight
     /// <summary>
     /// Returns whether an entity is in fog of war
     /// STARLIGHT - Use IsOutsideViewCached wherever possible! This is an expensive call, and you shouldn't have a reason to use it!
     /// </summary>
-    // Starlight Start
     public bool IsOutsideCameraView(EntityUid entity)
     {
         var xform = Transform(entity);
@@ -241,7 +241,7 @@ public sealed partial class StationAiVisionSystem : EntitySystem
         // Returns true if outside of view
         return !IsAccessible((xform.GridUid.Value, broadphase, grid), tile);
     }
-    // Starlight End
+    #endregion
 
     private bool IsOccluded(Entity<BroadphaseComponent, MapGridComponent> grid, Vector2i tile)
     {
