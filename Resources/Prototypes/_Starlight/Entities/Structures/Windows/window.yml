@@ -7,7 +7,7 @@
     enabled: false
 
 # Honeypots BEGIN
-# I tried inheritance on these guys, but they really didn't want to, so copy-paste it is :(
+# I tried inheritance on these guys, but they really didn't want to, so YAML anchors it is.
 
 # Solid wall
 - type: entity
@@ -23,9 +23,6 @@
           subject: "honeypot"
         - type: Destructible
           thresholds: []
-    - &honeypotSprite
-      type: Sprite
-      color: "#ffa033"
 
 # Reinforced wall
 - type: entity
@@ -37,7 +34,6 @@
     - type: ReplaceOnInit
       proto: WallReinforced
       overrides: *honeypotOverrides
-    - *honeypotSprite
 
 # Reinforced window
 
@@ -51,7 +47,6 @@
     - type: ReplaceOnInit
       proto: ReinforcedWindow
       overrides: *honeypotOverrides
-    - *honeypotSprite
 
 ## Diagonal
 - type: entity
@@ -63,7 +58,6 @@
     - type: ReplaceOnInit
       proto: ReinforcedWindowDiagonal
       overrides: *honeypotOverrides
-    - *honeypotSprite
 
 ## Directional
 - type: entity
@@ -75,7 +69,6 @@
     - type: ReplaceOnInit
       proto: WindowReinforcedDirectional
       overrides: *honeypotOverrides
-    - *honeypotSprite
 
 # Plasma window
 
@@ -89,7 +82,6 @@
     - type: ReplaceOnInit
       proto: ReinforcedPlasmaWindow
       overrides: *honeypotOverrides
-    - *honeypotSprite
 
 ## Diagonal
 - type: entity
@@ -101,7 +93,6 @@
     - type: ReplaceOnInit
       proto: ReinforcedPlasmaWindowDiagonal
       overrides: *honeypotOverrides
-    - *honeypotSprite
 
 ## Directional
 - type: entity
@@ -113,7 +104,6 @@
     - type: ReplaceOnInit
       proto: PlasmaReinforcedWindowDirectional
       overrides: *honeypotOverrides
-    - *honeypotSprite
 
 # Uranium window
 
@@ -127,7 +117,6 @@
     - type: ReplaceOnInit
       proto: ReinforcedUraniumWindow
       overrides: *honeypotOverrides
-    - *honeypotSprite
 
 ## Diagonal
 - type: entity
@@ -139,7 +128,6 @@
     - type: ReplaceOnInit
       proto: ReinforcedUraniumWindowDiagonal
       overrides: *honeypotOverrides
-    - *honeypotSprite
 
 ## Directional
 - type: entity
@@ -151,6 +139,5 @@
     - type: ReplaceOnInit
       proto: UraniumReinforcedWindowDirectional
       overrides: *honeypotOverrides
-    - *honeypotSprite
 
 # Honeypots END
