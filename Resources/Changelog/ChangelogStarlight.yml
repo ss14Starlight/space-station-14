@@ -1,48 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Added robotics locker to robotics.
-    type: Add
-  id: 406236
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added virology locker to viro.
-    type: Add
-  id: 406237
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added surgeon closet to surgery.
-    type: Add
-  id: 406238
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS)  Added coroner locker to morgue.
-    type: Add
-  id: 406239
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added a wrench to drugstore.
-    type: Add
-  id: 406240
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added a ghost to gen pop mine.
-    type: Add
-  id: 406241
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
   - message: (OASIS) Removed one mid round spawn botanist. (Now its 2 at shift start plus kiki).
     type: Remove
   id: 406242
@@ -2799,4 +2757,46 @@ Entries:
   id: 406635
   time: '2026-07-13T21:43:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Rinary
+  changes:
+  - message: Fixed bug when wizden's patreon username decoration overrides Starlight decoration.
+    type: Fix
+  id: 406636
+  time: '2026-07-14T08:24:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5032
+- author: Arkanic
+  changes:
+  - message: Ammunition now shows how much damage it deals again.
+    type: Fix
+  id: 406637
+  time: '2026-07-14T12:53:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5137
+- author: Arkanic
+  changes:
+  - message: Ammunition that has armour penetration characteristics now shows what percentage of armor it ignores or is reduced by.
+    type: Add
+  id: 406638
+  time: '2026-07-14T12:53:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5137
+- author: Rinary
+  changes:
+  - message: Fixed ban sync between all our servers and alpha.
+    type: Fix
+  id: 406639
+  time: '2026-07-14T13:20:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5138
+- author: neomoth
+  changes:
+  - message: Eeep will no longer globally announce their presence, only doing so on the map they spawn in.
+    type: Fix
+  id: 406640
+  time: '2026-07-14T13:37:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5128
+- author: neomoth
+  changes:
+  - message: Nar'sie, Ratvar, and Eeep will no longer announce when an admin decides to spawn them in their admin arena. Rejoice, no more jumpscares, surely.
+    type: Tweak
+  id: 406641
+  time: '2026-07-14T13:37:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5128
 Order: -1
