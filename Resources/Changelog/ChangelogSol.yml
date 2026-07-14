@@ -61,4 +61,11 @@ Entries:
   id: 220001
   time: '2026-07-14T21:12:24.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/22
+- author: AprilCatStreams
+  changes:
+  - message: Fixed some sollink publishing bugs.
+    type: Fix
+  id: 240001
+  time: '2026-07-14T22:24:14.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/24
 
