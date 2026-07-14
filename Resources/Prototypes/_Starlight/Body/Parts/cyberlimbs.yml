@@ -2148,7 +2148,7 @@
 - type: entity
   id: LeftLegCyberHydraulic
   name: "left hydraulic cyber leg"
-  parent: LeftLegCyberBase
+  parent: [PartCyber, LeftLegCyberBase]
   components:
     - type: BaseLayerId
       layers:
