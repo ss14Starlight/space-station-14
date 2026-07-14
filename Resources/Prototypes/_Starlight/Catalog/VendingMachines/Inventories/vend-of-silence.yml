@@ -67,7 +67,7 @@
   - SLMime
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 
+    stock: 2
   - !type:BuyerAccessCondition
 
 - type: listing
