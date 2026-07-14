@@ -354,7 +354,6 @@
 - type: entity
   parent: BaseSign
   id: SignBath
-  suffix: Washrooms # Starlight
   name: bathroom sign
   description: A sign indicating the bathroom.
   components:
@@ -517,7 +516,6 @@
 - type: entity
   parent: BaseSign
   id: SignRestroom
-  suffix: Washrooms # Starlight
   name: restroom sign
   description: A sign indicating where you go to... What do you do here again?
   components:

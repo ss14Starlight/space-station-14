@@ -10,8 +10,6 @@ using Robust.Shared.Physics;
 using Robust.Shared.Threading;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Maps; // Monolith
-using Robust.Shared.Map; // Monolith
 
 namespace Content.Client.Shuttles.UI;
 
@@ -23,9 +21,6 @@ namespace Content.Client.Shuttles.UI;
 public partial class BaseShuttleControl : MapGridControl
 {
     [Dependency] private IParallelManager _parallel = default!;
-
-    [Dependency] private ITileDefinitionManager _tileDef = default!; // Monolith
-
     protected readonly SharedMapSystem Maps;
 
     protected readonly Font Font;
@@ -36,9 +31,8 @@ public partial class BaseShuttleControl : MapGridControl
     public readonly Dictionary<EntityUid, GridDrawData> GridData = new();
 
     // Per-draw caching
-    private readonly List<(Vector2i, ContentTileDefinition)> _gridTileList = new(); // Monolith
-    // stores inward directions of borders
-    private readonly Dictionary<Vector2i, DirectionFlag> _gridNeighborSet = new(); // Monolith
+    private readonly List<Vector2i> _gridTileList = new();
+    private readonly HashSet<Vector2i> _gridNeighborSet = new();
     private readonly List<(Vector2 Start, Vector2 End)> _edges = new();
 
     private Vector2[] _allVertices = Array.Empty<Vector2>();
@@ -142,86 +136,69 @@ public partial class BaseShuttleControl : MapGridControl
             while (rator.MoveNext(out var tileRef))
             {
                 var index = tileRef.Value.GridIndices;
+                _gridNeighborSet.Add(index);
+                _gridTileList.Add(index);
 
-                // Monolith START - drawing logic rewritten
-                var def = (ContentTileDefinition)_tileDef[tileRef.Value.Tile.TypeId];
-                _gridTileList.Add((index, def));
-
-                // since our shape has to be convex, just draw it by taking our first vertex as origin
                 var bl = Maps.TileToVector(grid, index);
-                var origin = bl + def.Vertices[0] * tileSize;
-                var prev = bl + def.Vertices[1] * tileSize;
-                for (var i = 2; i < def.Vertices.Count; i++)
-                {
-                    var vert = bl + def.Vertices[i] * tileSize;
-                    gridData.Vertices.Add(origin);
-                    gridData.Vertices.Add(prev);
-                    gridData.Vertices.Add(vert);
-                    prev = vert;
-                }
+                var br = bl + new Vector2(tileSize, 0f);
+                var tr = bl + new Vector2(tileSize, tileSize);
+                var tl = bl + new Vector2(0f, tileSize);
 
-                // also check our neighbours
-                var dirFlag = DirectionFlag.None;
-                prev = def.Vertices[def.Vertices.Count - 1];
-                for (var i = 0; i < def.Vertices.Count; i++)
-                {
-                    var vert = def.Vertices[i];
+                gridData.Vertices.Add(bl);
+                gridData.Vertices.Add(br);
+                gridData.Vertices.Add(tl);
 
-                    // check if this line is adjacent to any cardinal direction edge
-                    // note that this stores inward directions, so they're inverted here
-                    if (prev.X == 0 && vert.X == 0)
-                        dirFlag |= DirectionFlag.East;
-                    else if (prev.X == 1 && vert.X == 1)
-                        dirFlag |= DirectionFlag.West;
-                    else if (prev.Y == 0 && vert.Y == 0)
-                        dirFlag |= DirectionFlag.North;
-                    else if (prev.Y == 1 && vert.Y == 1)
-                        dirFlag |= DirectionFlag.South;
-
-                    prev = vert;
-                }
-                _gridNeighborSet[index] = dirFlag;
-                // Monolith END
+                gridData.Vertices.Add(br);
+                gridData.Vertices.Add(tl);
+                gridData.Vertices.Add(tr);
             }
 
             gridData.EdgeIndex = gridData.Vertices.Count;
             _edges.Clear();
 
-            foreach (var (index, def) in _gridTileList) // Monolith START - drawing logic rewritten
+            foreach (var index in _gridTileList)
             {
-                // Monolith START - drawing logic rewritten
-                var bl = Maps.TileToVector(grid, index);
-
-                // start from drawing the end->start line
-                var prev = def.Vertices[def.Vertices.Count - 1];
-                for (var i = 0; i < def.Vertices.Count; i++)
+                // We get all of the raw lines up front
+                // then we decompose them into longer lines in a separate step.
+                foreach (var (dir, dirVec) in _neighborDirections)
                 {
-                    var vert = def.Vertices[i];
+                    var neighbor = index + dirVec;
 
-                    // if this line is adjacent to any cardinal direction edge
-                    // and we have a neighbour there,
-                    // then that's not an edge
-                    var dirFlag = DirectionFlag.None;
-                    if (prev.X == 0 && vert.X == 0)
-                        dirFlag = DirectionFlag.West;
-                    else if (prev.X == 1 && vert.X == 1)
-                        dirFlag = DirectionFlag.East;
-                    else if (prev.Y == 0 && vert.Y == 0)
-                        dirFlag = DirectionFlag.South;
-                    else if (prev.Y == 1 && vert.Y == 1)
-                        dirFlag = DirectionFlag.North;
-
-                    if (dirFlag != DirectionFlag.None
-                        && _gridNeighborSet.TryGetValue(index + dirFlag.AsDir().ToIntVec(), out var otherNeighbours)
-                        && (otherNeighbours & dirFlag) != 0)
-                    {
-                        prev = vert;
+                    if (_gridNeighborSet.Contains(neighbor))
                         continue;
+
+                    var bl = Maps.TileToVector(grid, index);
+                    var br = bl + new Vector2(tileSize, 0f);
+                    var tr = bl + new Vector2(tileSize, tileSize);
+                    var tl = bl + new Vector2(0f, tileSize);
+
+                    // Could probably rotate this but this might be faster?
+                    Vector2 actualStart;
+                    Vector2 actualEnd;
+
+                    switch (dir)
+                    {
+                        case DirectionFlag.South:
+                            actualStart = bl;
+                            actualEnd = br;
+                            break;
+                        case DirectionFlag.East:
+                            actualStart = br;
+                            actualEnd = tr;
+                            break;
+                        case DirectionFlag.North:
+                            actualStart = tr;
+                            actualEnd = tl;
+                            break;
+                        case DirectionFlag.West:
+                            actualStart = tl;
+                            actualEnd = bl;
+                            break;
+                        default:
+                            throw new NotImplementedException();
                     }
 
-                    _edges.Add((bl + prev * tileSize, bl + vert * tileSize));
-                    prev = vert;
-                    // Monolith END
+                    _edges.Add((actualStart, actualEnd));
                 }
             }
 

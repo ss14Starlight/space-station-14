@@ -9,8 +9,6 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
-using Robust.Shared.Maths; // Monolith
-using System.Numerics; // Monolith
 
 namespace Content.Shared.Maps
 {
@@ -53,14 +51,6 @@ namespace Content.Shared.Maps
         /// </summary>
         [DataField]
         public float Mass = 800f;
-
-        // <Monolith>
-        /// <summary>
-        /// Vertices for drawing purposes. Has to be a convex shape.
-        /// </summary>
-        [DataField]
-        public List<Vector2> Vertices = new() { Vector2.Zero, new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
-        // </Monolith>
 
         /// <remarks>
         /// Legacy AF but nice to have.

@@ -1,124 +1,54 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "State based copyright",
+    "copyright": "Taken from /tg/station and Burgerstation. Brigmed, Disposals, Youtoolpia, IAA, Law, Lawyer, Magistrate, and NTR by Conflee",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "brigmed",
-			"copyright": "Conflee"
+            "name": "brigmed"
         },
         {
-            "name": "disposals_proper",
-			"copyright": "Conflee"
+            "name": "disposals_proper"
         },
         {
-            "name": "nosmoking",
-			"copyright": "/tg/station"
+            "name": "nosmoking"
         },
         {
-            "name": "secureareasmall",
-			"copyright": "/tg/station"
+            "name": "secureareasmall"
         },
         {
-            "name": "wall_biohazard",
-			"copyright": "/tg/station"
+            "name": "wall_biohazard"
         },
         {
-            "name": "wall_extremeheat",
-			"copyright": "/tg/station"
+            "name": "wall_extremeheat"
         },
         {
-            "name": "yessmoking",
-			"copyright": "/tg/station"
+            "name": "yessmoking"
         },
         {
             "name": "direction_mining",
-            "directions": 4,
-			"copyright": "/tg/station"
+            "directions": 4
         },
         {
-            "name": "mining",
-			"copyright": "/tg/station"
+            "name": "mining"
         },
         {
-            "name": "iaa",
-			"copyright": "Conflee"
+            "name": "iaa"
         },
         {
-            "name": "law",
-			"copyright": "Conflee"
+            "name": "law"
         },
         {
-            "name": "lawyer",
-			"copyright": "Conflee"
+            "name": "lawyer"
         },
         {
-            "name": "magistrate",
-			"copyright": "Conflee"
+            "name": "magistrate"
         },
         {
-            "name": "ntr",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "locker_cargo",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "locker_command",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "locker_engie",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "locker_med",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "locker_sci",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "locker_sec",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "locker_service",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "break_cargo",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "break_command",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "break_engie",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "break_med",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "break_sci",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "break_sec",
-			"copyright": "Conflee"
-        },
-        {
-            "name": "break_service",
-			"copyright": "Conflee"
+            "name": "ntr"
         }
     ]
 }
