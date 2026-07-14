@@ -1,20 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Added virology locker to viro.
-    type: Add
-  id: 406237
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added surgeon closet to surgery.
-    type: Add
-  id: 406238
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
   - message: (OASIS)  Added coroner locker to morgue.
     type: Add
   id: 406239
@@ -2799,4 +2785,18 @@ Entries:
   id: 406636
   time: '2026-07-14T08:24:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5032
+- author: Arkanic
+  changes:
+  - message: Ammunition now shows how much damage it deals again.
+    type: Fix
+  id: 406637
+  time: '2026-07-14T12:53:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5137
+- author: Arkanic
+  changes:
+  - message: Ammunition that has armour penetration characteristics now shows what percentage of armor it ignores or is reduced by.
+    type: Add
+  id: 406638
+  time: '2026-07-14T12:53:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5137
 Order: -1
