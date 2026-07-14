@@ -289,6 +289,7 @@ namespace Content.Server.Cargo.Systems
             _listEnts.Clear();
             GetTradeStations(stationData, ref _listEnts);
             EntityUid? tradeDestination = null;
+            var orderSlipPrinted = new HashSet<EntityUid>();
 
             // Try to fulfill from any station where possible, if the pad is not occupied.
             foreach (var trade in _listEnts)
@@ -317,9 +318,13 @@ namespace Content.Server.Cargo.Systems
                         gas.SetMoles(Enum.Parse<Gas>(order.GasType.Id), order.GasMoles);
                         _atmosphereSystem.Merge(gasTank.Component.Air, gas);
 
-                        CreateOrderSlip(order, account,
-                            new EntityCoordinates(gasTank.Entity, Vector2.Zero),
-                            orderDatabase.PrinterOutput, null, "Gas");
+                        // Print one order slip at this gas tank only if we haven't already.
+                        // This prevents printing 30 slips at once; cargo only needs 1 signed anyways..
+                        if (orderSlipPrinted.Add(gasTank.Entity))
+                            CreateOrderSlip(order, account,
+                                new EntityCoordinates(gasTank.Entity, Vector2.Zero),
+                                orderDatabase.PrinterOutput, null, "Gas");
+
                         order.NumDispatched++;
                     }
 
