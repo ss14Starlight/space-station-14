@@ -10,7 +10,7 @@ cargo-product-gas-plasma-liquid = plasma gas (1000 mol, -200C)
 cargo-product-gas-water-vapor = water vapor (1000 mol, 20C)
 
 # Funky gases
-cargo-product-gas-bz = bz (1000 mol, 20C)
+cargo-product-gas-bz = bz gas (1000 mol, 20C)
 
 # Starlight gases
-cargo-product-gas-zxa = zxa (1000 mol, 20C)
+cargo-product-gas-zxa = zxa gas (1000 mol, 20C)
