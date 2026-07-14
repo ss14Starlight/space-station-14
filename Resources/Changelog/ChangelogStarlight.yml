@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Added robotics locker to robotics.
-    type: Add
-  id: 406236
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
   - message: (OASIS) Added virology locker to viro.
     type: Add
   id: 406237
@@ -2799,4 +2792,11 @@ Entries:
   id: 406635
   time: '2026-07-13T21:43:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5083
+- author: Rinary
+  changes:
+  - message: Fixed bug when wizden's patreon username decoration overrides Starlight decoration.
+    type: Fix
+  id: 406636
+  time: '2026-07-14T08:24:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5032
 Order: -1
