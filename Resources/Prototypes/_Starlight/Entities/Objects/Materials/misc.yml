@@ -7,8 +7,8 @@
     - type: XenoArtifact
       priceMultiplier: 1.5
       nodeCount:
-        min: 24
-        max: 25
+        min: 23
+        max: 24
     - type: Sprite
       sprite: _Starlight/Objects/Materials/abyss.rsi
       state: abyss_core
