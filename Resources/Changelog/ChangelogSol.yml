@@ -54,4 +54,11 @@ Entries:
   id: 230001
   time: '2026-07-14T21:12:10.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/23
+- author: AprilCatStreams
+  changes:
+  - message: Implement Sol's TTS system.
+    type: Tweak
+  id: 220001
+  time: '2026-07-14T21:12:24.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/22
 
