@@ -27,4 +27,11 @@ Entries:
   id: 130001
   time: '2026-07-14T01:17:41.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/13
+- author: AprilCatStreams
+  changes:
+  - message: Fixed upload limit for CDN.
+    type: Fix
+  id: 180001
+  time: '2026-07-14T02:01:43.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/18
 
