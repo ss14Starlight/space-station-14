@@ -298,6 +298,7 @@ namespace Content.Server.Cargo.Systems
                 if (!string.IsNullOrEmpty(order.GasType))
                 {
                     var gasTanks = GetCargoGasPallets(trade, BuySellType.Buy);
+                    _random.Shuffle(gasTanks);
                     var freeTanks = GetFreeCargoGasPallets(gasTanks,
                         Enum.Parse<Gas>(order.GasType.Id), order.GasMoles, order.GasTemperature,
                         order.OrderQuantity);
