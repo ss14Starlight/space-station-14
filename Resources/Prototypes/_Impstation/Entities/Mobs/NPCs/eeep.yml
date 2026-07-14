@@ -256,6 +256,7 @@
   - type: AnnounceOnSpawn
     message: eeep-spawn
     sender: eeep-spawn-sender
+    ignoreASpace: true # Starlight
     sound:
      path: /Audio/Effects/PowerSink/charge_fire.ogg
     color: yellow
