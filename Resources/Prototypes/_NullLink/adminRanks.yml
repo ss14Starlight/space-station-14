@@ -158,3 +158,75 @@
       roles:
         - 1473619558211260539 # Senior Prototyper
       flags: [ADMIN, DEBUG, FUN, SPAWN, VAREDIT, MAPPING, LOGS, VIEWNOTES, ADMINCHAT, ADMINWHO, NAMECOLOR]
+
+
+# Sol / SolLink — protect these Discord roles with Manager role-assignment protection first.
+# First matching entry wins. Owner combos must sit above plain Sun God.
+- type: adminRankBuilder
+  id: SolMRP
+  ranks:
+    # Server owners who are also head of development
+    - name: Sun Dev
+      roles:
+        - 1526062474665660476 # Sun God (owner)
+        - 1526063510008631316 # Sun Dev
+      flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR, DANGER, HOST]
+
+    # Server owners who are also maintainers
+    - name: Sun Maintainer
+      roles:
+        - 1526062474665660476 # Sun God (owner)
+        - 1526572661004832819 # Maint
+      flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR, DANGER, HOST]
+
+    # Remaining server owners
+    - name: Sun God
+      roles:
+        - 1526062474665660476 # Sun God (owner)
+      flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR, DANGER, HOST]
+
+    - name: Head Admin
+      roles:
+        - 1526062699119906826 # Head Admin
+      flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR]
+
+    # Code gatekeepers - mapping/debug oriented, no ban/massban.
+    - name: Maint
+      roles:
+        - 1526572661004832819 # Maint
+      flags: [ADMIN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
+
+    - name: Admin
+      roles:
+        - 1526062747136294963 # Admin
+      flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
+
+    - name: Trialmin
+      roles:
+        - 1526062781147906261 # Trialmin
+      flags: [ADMIN, BAN, DEBUG, SERVER, LOGS, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, ADMINWHO, NAMECOLOR]
+
+    - name: Mod
+      roles:
+        - 1526062845383413910 # Mod
+      flags: [ADMIN, BAN, LOGS, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
+
+    - name: Trialator
+      roles:
+        - 1526062897988501504 # Trialator
+      flags: [ADMINHELP, VIEWNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
+
+    - name: E Coord
+      roles:
+        - 1526063287865970861 # E Coord
+      flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
+
+    - name: Sr Dev
+      roles:
+        - 1526063653151969390 # Sr Dev
+      flags: [ADMIN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, QUERY, ADMINHELP, VIEWNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
+
+    - name: Dev
+      roles:
+        - 1526063729207414875 # Dev
+      flags: [ADMIN, DEBUG, FUN, SPAWN, VAREDIT, MAPPING, LOGS, VIEWNOTES, ADMINCHAT, ADMINWHO, NAMECOLOR]

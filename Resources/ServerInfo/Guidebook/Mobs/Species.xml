@@ -3,7 +3,7 @@
 
   NanoTrasen employs a variety of sapient species.
 
-<!-- Starlight start, reorganizing all of this alphabetically-->
+<!-- Sol start, reorganizing all of this alphabetically-->
   <Box>
   <GuideEntityEmbed Entity="AppearanceElf" Caption="Aelithii"/>
   <GuideEntityEmbed Entity="AppearanceArachnid" Caption="Arachnid"/>
@@ -32,5 +32,5 @@
   <GuideEntityEmbed Entity="AppearanceProtogen" Caption="Protogen"/> <!--FH-->
   <GuideEntityEmbed Entity="AppearanceIPC" Caption="IPC"/> <!--FH-->
   </Box>
-<!-- Starlight end, reorganizing all of this alphabetically-->
+<!-- Sol end, reorganizing all of this alphabetically-->
 </Document>

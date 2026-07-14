@@ -1,0 +1,24 @@
+<Document>
+# Science orders
+
+## Basic materials
+### Only for printers & lathes
+<Box>
+	<GuideEntityEmbed Entity="SheetSteel"/>
+	<GuideEntityEmbed Entity="SheetGlass"/>
+	<GuideEntityEmbed Entity="SheetPlastic"/>
+	<GuideEntityEmbed Entity="MaterialCloth"/>
+</Box>
+
+## Refill Crates
+<Box>
+	<GuideEntityEmbed Entity="CrateVendingMachineRestockRoboticsFilled"/>
+</Box>
+
+## Other
+<Box>
+	<GuideEntityEmbed Entity="SheetPlasma"/>
+	<GuideEntityEmbed Entity="ComplexXenoArtifact"/>
+	<GuideEntityEmbed Entity="CrateArtifactContainer"/>
+</Box>
+</Document>

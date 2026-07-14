@@ -30,8 +30,9 @@
 - type: roleRequirementPrototype
   id: PatronReq
   roles:
-  - 1381351437665308894 # Patron
-  discord: roles-req-discord-starlight
+  - 1526577905885380870 # Sol Supporter
+  - 1381351437665308894 # Starlight Patron (kept for shared Content themes)
+  discord: roles-req-discord-sol
   rolesLoc: roles-req-patron-roles
 
 - type: roleRequirementPrototype

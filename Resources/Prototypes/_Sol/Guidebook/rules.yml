@@ -1,0 +1,134 @@
+# Sol MRP ruleset. Point the server at this with:
+#   server.rules_file = SolRuleset
+- type: guideEntry
+  id: SolRuleset
+  name: guide-entry-rules
+  ruleEntry: true
+  priority: 10
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/SolRules.xml"
+
+- type: guideEntry
+  id: RuleSD0
+  name: guide-entry-sl-rules
+  ruleEntry: true
+  priority: 0
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD0.xml"
+
+- type: guideEntry
+  id: RuleSD1
+  name: guide-entry-sl-rule-1
+  ruleEntry: true
+  priority: 1
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD1.xml"
+
+- type: guideEntry
+  id: RuleSD2
+  name: guide-entry-sl-rule-2
+  ruleEntry: true
+  priority: 2
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD2.xml"
+
+- type: guideEntry
+  id: RuleSD3
+  name: guide-entry-sl-rule-3
+  ruleEntry: true
+  priority: 3
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD3.xml"
+
+- type: guideEntry
+  id: RuleSD4
+  name: guide-entry-sl-rule-4
+  ruleEntry: true
+  priority: 4
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD4.xml"
+
+- type: guideEntry
+  id: RuleSD5
+  name: guide-entry-sl-rule-5
+  ruleEntry: true
+  priority: 5
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD5.xml"
+
+- type: guideEntry
+  id: RuleSD6
+  name: guide-entry-sl-rule-6
+  ruleEntry: true
+  priority: 6
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD6.xml"
+
+- type: guideEntry
+  id: RuleSD7
+  name: guide-entry-sl-rule-7
+  ruleEntry: true
+  priority: 7
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD7.xml"
+
+- type: guideEntry
+  id: RuleSD8
+  name: guide-entry-sl-rule-8
+  ruleEntry: true
+  priority: 8
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD8.xml"
+
+- type: guideEntry
+  id: RuleSD9
+  name: guide-entry-sl-rule-9
+  ruleEntry: true
+  priority: 9
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD9.xml"
+
+- type: guideEntry
+  id: RuleSD10
+  name: guide-entry-sl-rule-10
+  ruleEntry: true
+  priority: 10
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD10.xml"
+
+- type: guideEntry
+  id: RuleSD11
+  name: guide-entry-sl-rule-11
+  ruleEntry: true
+  priority: 11
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD11.xml"
+
+- type: guideEntry
+  id: RuleSD12
+  name: guide-entry-sl-rule-12
+  ruleEntry: true
+  priority: 12
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD12.xml"
+
+- type: guideEntry
+  id: RuleSD13
+  name: guide-entry-sl-rule-13
+  ruleEntry: true
+  priority: 13
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD13.xml"
+
+- type: guideEntry
+  id: RuleSD14
+  name: guide-entry-sl-rule-14
+  ruleEntry: true
+  priority: 14
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD14.xml"
+
+- type: guideEntry
+  id: RuleSD15
+  name: guide-entry-sl-rule-15
+  ruleEntry: true
+  priority: 15
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD15.xml"
+
+- type: guideEntry
+  id: RuleSD16
+  name: guide-entry-sl-rule-16
+  ruleEntry: true
+  priority: 16
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/CoreRules/RuleSD16.xml"
+
+- type: guideEntry
+  id: SolMetashield
+  name: guide-entry-sl-metashield
+  ruleEntry: true
+  priority: 17
+  text: "/ServerInfo/_Sol/Guidebook/ServerRules/RulesSol/Clarifications/Metashield.xml"
