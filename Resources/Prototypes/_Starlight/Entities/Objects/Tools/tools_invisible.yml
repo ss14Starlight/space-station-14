@@ -118,7 +118,7 @@
   name: invisible welding tool
   parent: Welder
   id: WelderInvisible
-  description: Desite being invisible, you still need eye protection. Somehow.
+  description: Despite being invisible, you still need eye protection. Somehow.
   components:
   - type: Sprite
     sprite: /Textures/_Starlight/Objects/Tools/Invisible/welder_invisible.rsi
