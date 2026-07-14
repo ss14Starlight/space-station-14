@@ -49,7 +49,7 @@ public sealed partial class StationAiVisionSystem : EntitySystem
     /// </summary>
     private bool FastPath;
 
-    // STARLIGHT START
+    #region Starlight
     /// <summary>
     /// cache for ai occlusion
     /// </summary>
@@ -65,7 +65,7 @@ public sealed partial class StationAiVisionSystem : EntitySystem
     /// </summary>
     private readonly TimeSpan _isOutsideViewCacheCleanPeriod = TimeSpan.FromMinutes(1);
     private TimeSpan _isOutsideViewCacheNextClean = TimeSpan.Zero;
-    // STARLIGHT END
+    #endregion
 
     public override void Initialize()
     {
@@ -90,7 +90,7 @@ public sealed partial class StationAiVisionSystem : EntitySystem
         };
     }
 
-    // STARLIGHT START
+    #region Starlight
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -111,7 +111,30 @@ public sealed partial class StationAiVisionSystem : EntitySystem
             foreach (var key in toRemove) _isOutsideViewCache.Remove(key);
         }
     }
-    // STARLIGHT END
+
+    /// <summary>
+    /// What say you? an incredibly expensive operation, running every single tick for every single ai for every bui open??
+    /// To check if something is within camera view? a thing that doesn't change frequently????
+    ///
+    /// Use this unless you have a very good reason not to, which you won't
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <returns></returns>
+    public bool IsOutsideCameraViewCached(EntityUid entity, bool forceCacheGen = false)
+    {
+        if (_isOutsideViewCache.TryGetValue(entity, out var cacheHit) && !forceCacheGen)
+        {
+            // if expired we continue which will overwrite old entry
+            if (cacheHit.Item2 >= _timing.CurTime) return cacheHit.Item1;
+        }
+
+        // ok, we need to generate
+        bool result = IsOutsideCameraView(entity);
+        _isOutsideViewCache[entity] = (result, _timing.CurTime + _isOutsideViewCacheLifespan);
+
+        return result;
+    }
+    #endregion
 
     /// <summary>
     /// Returns whether a tile is accessible based on vision.
@@ -195,29 +218,6 @@ public sealed partial class StationAiVisionSystem : EntitySystem
                     return false;
         return true;
         // Starlight - end
-    }
-
-    /// <summary>
-    /// What say you? an incredibly expensive operation, running every single tick for every single ai for every bui open??
-    /// To check if something is within camera view? a thing that doesn't change frequently????
-    ///
-    /// Use this unless you have a very good reason not to, which you won't
-    /// </summary>
-    /// <param name="entity"></param>
-    /// <returns></returns>
-    public bool IsOutsideCameraViewCached(EntityUid entity, bool forceCacheGen = false)
-    {
-        if (_isOutsideViewCache.TryGetValue(entity, out var cacheHit) && !forceCacheGen)
-        {
-            // if expired we continue which will overwrite old entry
-            if (cacheHit.Item2 >= _timing.CurTime) return cacheHit.Item1;
-        }
-
-        // ok, we need to generate
-        bool result = IsOutsideCameraView(entity);
-        _isOutsideViewCache[entity] = (result, _timing.CurTime + _isOutsideViewCacheLifespan);
-
-        return result;
     }
 
     /// <summary>
