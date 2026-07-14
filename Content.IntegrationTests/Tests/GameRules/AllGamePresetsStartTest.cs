@@ -7,6 +7,7 @@ using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Shuttles.Components;
+using Content.Shared._Starlight.CCVar; // Starlight
 using Content.Shared.Antag;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
@@ -59,158 +60,167 @@ public sealed class AllGamePresetsStartTest : GameTest
 
         // Don't start dummy antag game rule because we want our antags to be predictable for the test.
         server.CfgMan.SetCVar(CCVars.GameTickerIgnoredPresets, GameTicker.DummyGameRule);
+        server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
 
-        var preset = protoMan.Index<GamePresetPrototype>(presetId);
+        try // Starlight
+        { // Starlight
+            var preset = protoMan.Index<GamePresetPrototype>(presetId);
 
-        // Spawn the minimum number of players.
-        var players = new List<ICommonSession>();
-        players.Add(client.Session);
-        var min = 0;
-        await server.WaitPost(() =>
-        {
-            min = ticker.GetMinimumPlayerCount(preset);
-        });
-
-        // We should already have one client connected, and we need to check the min
-
-        // If we have antags, make sure that those with the correct preferences can spawn with them!
-        List<(AntagSpecifierPrototype, int)> rules = [];
-
-        var antags = 0;
-        await server.WaitPost(() =>
-        {
-            foreach (var ruleId in preset.Rules)
+            // Spawn the minimum number of players.
+            var players = new List<ICommonSession>();
+            players.Add(client.Session);
+            var min = 0;
+            await server.WaitPost(() =>
             {
-                if (ruleId == GameTicker.DummyGameRule)
-                    continue;
+                min = ticker.GetMinimumPlayerCount(preset);
+            });
 
-                if (!protoMan.Resolve(ruleId, out var rule ))
-                    continue; // Bruh moment
+            // We should already have one client connected, and we need to check the min
 
-                // Ignore non-antag game-rules.
-                if (!rule.TryGetComponent<AntagSelectionComponent>(out var antag, entMan.ComponentFactory))
-                    continue;
+            // If we have antags, make sure that those with the correct preferences can spawn with them!
+            List<(AntagSpecifierPrototype, int)> rules = [];
 
-                var runningCount = 0;
-
-                foreach (var selector in antag.Antags)
+            var antags = 0;
+            await server.WaitPost(() =>
+            {
+                foreach (var ruleId in preset.Rules)
                 {
-                    // Throw on invalid prototypes, skip roundstart ghost roles.
-                    if (!protoMan.Resolve(selector.Proto, out var definition) || definition.PrefRoles.Count == 0)
+                    if (ruleId == GameTicker.DummyGameRule)
                         continue;
 
-                    var count = antagSys.GetTargetAntagCount(selector, min, ref runningCount);
-                    antags += count;
-                    rules.Add((definition, count));
+                    if (!protoMan.Resolve(ruleId, out var rule ))
+                        continue; // Bruh moment
+
+                    // Ignore non-antag game-rules.
+                    if (!rule.TryGetComponent<AntagSelectionComponent>(out var antag, entMan.ComponentFactory))
+                        continue;
+
+                    var runningCount = 0;
+
+                    foreach (var selector in antag.Antags)
+                    {
+                        // Throw on invalid prototypes, skip roundstart ghost roles.
+                        if (!protoMan.Resolve(selector.Proto, out var definition) || definition.PrefRoles.Count == 0)
+                            continue;
+
+                        var count = antagSys.GetTargetAntagCount(selector, min, ref runningCount);
+                        antags += count;
+                        rules.Add((definition, count));
+                    }
                 }
-            }
-        });
+            });
 
-        // No preset should ever try to spawn more antags roundstart than it can spawn players.
-        Assert.That(antags <= min, Is.True);
-        if (min > 1)
-        {
-            var dummies = await server.AddDummySessions(min - 1);
-            // Put our client at the front of the list.
-            players = players.Union(dummies).ToList();
-        }
-
-        await Pair.RunUntilSynced();
-
-        // This also ensures that admin commands work properly :P
-        await server.WaitPost(() =>
-        {
-            ticker.ToggleReadyAll(true);
-        });
-
-        var i = 0;
-        foreach (var (antag, amount) in rules)
-        {
-            for (var count = 0; count < amount; count++)
+            // No preset should ever try to spawn more antags roundstart than it can spawn players.
+            Assert.That(antags <= min, Is.True);
+            if (min > 1)
             {
-                await Pair.SetAntagPreference(antag.PrefRoles.FirstOrDefault(), true, players[i++].UserId);
-                Assert.That(i < min, $"Tried to assign more antags than there were players");
+                var dummies = await server.AddDummySessions(min - 1);
+                // Put our client at the front of the list.
+                players = players.Union(dummies).ToList();
             }
-        }
 
-        await Pair.RunUntilSynced();
-        await Pair.WaitCommand($"setgamepreset {presetId}");
-        await Pair.WaitCommand("startround");
-        await Pair.RunUntilSynced();
+            await Pair.RunUntilSynced();
 
-        // Game should have started
-        Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
-        Assert.That(ticker.PlayerGameStatuses.Values.All(x => x == PlayerGameStatus.JoinedGame));
-        Assert.That(ticker.PlayerGameStatuses.Count == players.Count);
-        Assert.That(client.EntMan.EntityExists(client.AttachedEntity));
+            // This also ensures that admin commands work properly :P
+            await server.WaitPost(() =>
+            {
+                ticker.ToggleReadyAll(true);
+            });
 
-        var player = Pair.Player!.AttachedEntity!.Value;
-        Assert.That(entMan.EntityExists(player));
-
-        // Start all game presets so antags spawn!
-        await server.WaitPost(() =>
-        {
-            ticker.StartGamePresetRules();
-        });
-        await Pair.RunUntilSynced();
-
-        await server.WaitPost(() =>
-        {
-            var j = 0;
+            var i = 0;
             foreach (var (antag, amount) in rules)
             {
                 for (var count = 0; count < amount; count++)
                 {
-                    AssertAntagInitialized(antag, players[j++]);
+                    await Pair.SetAntagPreference(antag.PrefRoles.FirstOrDefault(), true, players[i++].UserId);
+                    Assert.That(i < min, $"Tried to assign more antags than there were players");
                 }
             }
-        });
+            await Pair.RunUntilSynced();
+            await Pair.WaitCommand($"setgamepreset {presetId}");
+            await Pair.WaitCommand("startround");
+            await Pair.RunUntilSynced();
 
-        // Maps now exist
-        Assert.That(entMan.Count<MapComponent>(), Is.GreaterThan(0));
-        Assert.That(entMan.Count<MapGridComponent>(), Is.GreaterThan(0));
-        Assert.That(entMan.Count<StationCentcommComponent>(), Is.EqualTo(1));
+            // Game should have started
+            Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
+            Assert.That(ticker.PlayerGameStatuses.Values.All(x => x == PlayerGameStatus.JoinedGame));
+            Assert.That(ticker.PlayerGameStatuses.Count == players.Count);
+            Assert.That(client.EntMan.EntityExists(client.AttachedEntity));
 
-        await Pair.WaitCommand("golobby");
-        await Pair.RunUntilSynced();
-        void AssertAntagInitialized(AntagSpecifierPrototype antag, ICommonSession session)
-        {
-            Assert.That(mind.TryGetMind(session, out var mindEnt, out var mindComp),
-                $"Session {session} spawned into the game as an antag but had no mind!");
-            Assert.That(entMan.EntityExists(mindComp!.CurrentEntity),
-                $"Session {session} spawned into the game as an antag, but had no entity!");
-            var ent = mindComp.CurrentEntity!.Value;
+            var player = Pair.Player!.AttachedEntity!.Value;
+            Assert.That(entMan.EntityExists(player));
 
-            // We don't necessarily know if an antag should spawn on the station, but we know they shouldn't spawn in nullspace.
-            var xform = SEntMan.GetComponent<TransformComponent>(ent);
-            Assert.That(xform.MapUid, Is.Not.Null);
-            Assert.That(xform.MapID, Is.Not.EqualTo(MapId.Nullspace));
-
-            // Make sure all components were added
-            foreach (var comp in antag.Components)
+            // Start all game presets so antags spawn!
+            await server.WaitPost(() =>
             {
-                Assert.That(entMan.HasComponent(ent, comp.Value.Component.GetType()),
-                    $"Entity {entMan.ToPrettyString(ent)} owned by {session} failed to acquire {comp.Key} component, while becoming {antag.ID}");
-            }
+                ticker.StartGamePresetRules();
+            });
+            await Pair.RunUntilSynced();
 
-            // Make sure all mind components were added
-            foreach (var comp in antag.MindComponents)
+            await server.WaitPost(() =>
             {
-                Assert.That(entMan.HasComponent(mindEnt, comp.Value.Component.GetType()),
-                    $"Mind {entMan.ToPrettyString(mindEnt)} owned by {session} failed to acquire {comp.Key} component, while becoming {antag.ID}");
-            }
-
-            if (antag.MindRoles != null)
-            {
-                Assert.Multiple(() =>
+                var j = 0;
+                foreach (var (antag, amount) in rules)
                 {
-                    foreach (var role in antag.MindRoles)
+                    for (var count = 0; count < amount; count++)
                     {
-                        Assert.That(mindComp!.MindRoleContainer.ContainedEntities.Any(x => entMan.MetaQuery.Comp(x).EntityPrototype?.ID == role),
-                            $"{SToPrettyString(mindEnt)} owned by {session}, failed to acquire role {role} for antagonist {antag}");
+                        AssertAntagInitialized(antag, players[j++]);
                     }
-                });
+                }
+            });
+
+            // Maps now exist
+            Assert.That(entMan.Count<MapComponent>(), Is.GreaterThan(0));
+            Assert.That(entMan.Count<MapGridComponent>(), Is.GreaterThan(0));
+            Assert.That(entMan.Count<StationCentcommComponent>(), Is.EqualTo(1));
+
+            await Pair.WaitCommand("golobby");
+            await Pair.RunUntilSynced();
+            void AssertAntagInitialized(AntagSpecifierPrototype antag, ICommonSession session)
+            {
+                Assert.That(mind.TryGetMind(session, out var mindEnt, out var mindComp),
+                    $"Session {session} spawned into the game as an antag but had no mind!");
+                Assert.That(entMan.EntityExists(mindComp!.CurrentEntity),
+                    $"Session {session} spawned into the game as an antag, but had no entity!");
+                var ent = mindComp.CurrentEntity!.Value;
+
+                // We don't necessarily know if an antag should spawn on the station, but we know they shouldn't spawn in nullspace.
+                var xform = SEntMan.GetComponent<TransformComponent>(ent);
+                Assert.That(xform.MapUid, Is.Not.Null);
+                Assert.That(xform.MapID, Is.Not.EqualTo(MapId.Nullspace));
+
+                // Make sure all components were added
+                foreach (var comp in antag.Components)
+                {
+                    Assert.That(entMan.HasComponent(ent, comp.Value.Component.GetType()),
+                        $"Entity {entMan.ToPrettyString(ent)} owned by {session} failed to acquire {comp.Key} component, while becoming {antag.ID}");
+                }
+
+                // Make sure all mind components were added
+                foreach (var comp in antag.MindComponents)
+                {
+                    Assert.That(entMan.HasComponent(mindEnt, comp.Value.Component.GetType()),
+                        $"Mind {entMan.ToPrettyString(mindEnt)} owned by {session} failed to acquire {comp.Key} component, while becoming {antag.ID}");
+                }
+
+                if (antag.MindRoles != null)
+                {
+                    Assert.Multiple(() =>
+                    {
+                        foreach (var role in antag.MindRoles)
+                        {
+                            Assert.That(mindComp!.MindRoleContainer.ContainedEntities.Any(x => entMan.MetaQuery.Comp(x).EntityPrototype?.ID == role),
+                                $"{SToPrettyString(mindEnt)} owned by {session}, failed to acquire role {role} for antagonist {antag}");
+                        }
+                    });
+                }
             }
         }
+        #region Starlight
+        finally
+        {
+            server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true);
+        }
+        #endregion
     }
 }
