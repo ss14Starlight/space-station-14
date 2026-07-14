@@ -6,4 +6,11 @@ Entries:
   id: 50001
   time: '2026-07-13T06:43:03.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/5
+- author: AprilCatStreams
+  changes:
+  - message: Another changelog fix.
+    type: Fix
+  id: 110001
+  time: '2026-07-14T00:03:32.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/11
 
