@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS)  Added coroner locker to morgue.
-    type: Add
-  id: 406239
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
   - message: (OASIS) Added a wrench to drugstore.
     type: Add
   id: 406240
@@ -2799,4 +2792,11 @@ Entries:
   id: 406638
   time: '2026-07-14T12:53:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5137
+- author: Rinary
+  changes:
+  - message: Fixed ban sync between all our servers and alpha.
+    type: Fix
+  id: 406639
+  time: '2026-07-14T13:20:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5138
 Order: -1
