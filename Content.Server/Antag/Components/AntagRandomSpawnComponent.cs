@@ -13,5 +13,5 @@ public sealed partial class AntagRandomSpawnComponent : Component
     /// Location that was picked.
     /// </summary>
     [DataField]
-    public EntityCoordinates? Coords;
+    public MapCoordinates? Coords; // Starlight, EntityCoordinates -> MapCoordinates
 }

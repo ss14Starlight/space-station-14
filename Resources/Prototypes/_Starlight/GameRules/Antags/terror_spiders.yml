@@ -9,6 +9,7 @@
       min: 240
       max: 420
   - type: VentSpawnRule
+  - type: AntagRandomSpawn
   - type: AntagSpawner
     prototype: MobTerrorPrincess
   - type: TerrorSpiderRule
