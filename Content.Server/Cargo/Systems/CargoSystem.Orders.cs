@@ -100,7 +100,7 @@ namespace Content.Server.Cargo.Systems
                 return;
 
             var orderId = GenerateOrderId(orderDatabase);
-            var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account, GetNetEntity(stationUid.Value), product.GasType, product.GasMoles, product.GasTemperature); // Starlight: +stationUid
+            var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account, GetNetEntity(stationUid.Value), slip.Product, product.GasType, product.GasMoles, product.GasTemperature); // Starlight: +stationUid
 
             if (!TryAddOrder(stationUid.Value, ent.Comp.Account, data, orderDatabase))
             {
@@ -450,7 +450,7 @@ namespace Content.Server.Cargo.Systems
 
             var targetAccount = component.Mode == CargoOrderConsoleMode.SendToPrimary ? bank.PrimaryAccount : component.Account;
 
-            var data = new CargoOrderData(GenerateOrderId(orderDatabase), product.Product, product.Name, product.Cost, args.Amount, args.Requester, args.Reason, component.Account, GetNetEntity(stationUid.Value), product.GasType, product.GasMoles, product.GasTemperature); // Starlight: +stationUid
+            var data = new CargoOrderData(GenerateOrderId(orderDatabase), product.Product, product.Name, product.Cost, args.Amount, args.Requester, args.Reason, component.Account, GetNetEntity(stationUid.Value), args.CargoProductId, product.GasType, product.GasMoles, product.GasTemperature); // Starlight: +stationUid
 
             if (!TryAddOrder(stationUid.Value, targetAccount, data, orderDatabase))
             {
@@ -598,6 +598,7 @@ namespace Content.Server.Cargo.Systems
             StationCargoOrderDatabaseComponent component,
             ProtoId<CargoAccountPrototype> account,
             Entity<StationDataComponent> stationData,
+            ProtoId<CargoProductPrototype> protoId,
             ProtoId<GasPrototype> gasType,
             float gasMoles,
             float gasTemperature)
@@ -605,7 +606,7 @@ namespace Content.Server.Cargo.Systems
             DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(spawnId));
             // Make an order
             var id = GenerateOrderId(component);
-            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account, GetNetEntity(stationData.Owner), gasType, gasMoles, gasTemperature); // Starlight: +stationUid
+            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account, GetNetEntity(stationData.Owner), protoId, gasType, gasMoles, gasTemperature); // Starlight
 
             // Approve it now
             order.SetApproverData(dest, sender);

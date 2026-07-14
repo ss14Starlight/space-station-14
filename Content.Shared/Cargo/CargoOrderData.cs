@@ -68,7 +68,8 @@ namespace Content.Shared.Cargo
         /// </summary>
         [DataField]
         public NetEntity StationId;
-
+        [DataField]
+        public ProtoId<CargoProductPrototype> ProtoId;
         [DataField]
         public ProtoId<GasPrototype> GasType;
         [DataField]
@@ -77,7 +78,7 @@ namespace Content.Shared.Cargo
         public float GasTemperature;
         #endregion
 
-        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<GasPrototype> gasType, float gasMoles, float gasTemperature) // Starlight: +stationId, +gasXYZ
+        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<CargoProductPrototype> protoId, ProtoId<GasPrototype> gasType, float gasMoles, float gasTemp) // Starlight: +stationId, protoId, gasType, gasMoles, gasTemp
         {
             OrderId = orderId;
             ProductId = productId;
@@ -88,9 +89,10 @@ namespace Content.Shared.Cargo
             Reason = reason;
             Account = account;
             StationId = stationId; // Starlight BEGIN
+            ProtoId = protoId;
             GasType = gasType;
             GasMoles = gasMoles;
-            GasTemperature = gasTemperature; // Starlight END
+            GasTemperature = gasTemp; // Starlight END
         }
 
         public void SetApproverData(string? approver)

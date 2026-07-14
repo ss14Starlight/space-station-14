@@ -216,17 +216,18 @@ namespace Content.Client.Cargo.UI
                 if (order.Approved)
                     continue;
 
+                var proto = _protoManager.Index(order.ProtoId); // Starlight
                 var account = _protoManager.Index(order.Account);
 
                 var row = new CargoOrderRow
                 {
                     Order = order,
-                    // Icon = { Texture = _spriteSystem.Frame0(product) },
+                    Icon = { Texture = _spriteSystem.Frame0(proto.Icon) }, // Starlight
                     ProductName =
                     {
                         Text = Loc.GetString(
                             "cargo-console-menu-populate-orders-cargo-order-row-product-name-text",
-                            ("productName", order.ProductName),
+                            ("productName", order.ProductName), // Starlight
                             ("orderAmount", order.OrderQuantity),
                             ("orderRequester", order.Requester),
                             ("accountColor", account.Color),
