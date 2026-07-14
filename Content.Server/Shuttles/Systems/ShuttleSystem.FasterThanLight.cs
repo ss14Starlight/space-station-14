@@ -783,7 +783,6 @@ public sealed partial class ShuttleSystem
         // Get enumeration exceptions from people dropping things if we just paralyze as we go
         var toKnock = new ValueList<EntityUid>();
         // Get a query for MovedByPressureComponent to check if the entity is disabled
-        var movedByPressureQuery = GetEntityQuery<MovedByPressureComponent>();
         KnockOverKids(xform, ref toKnock);
         TryComp<MapGridComponent>(xform.GridUid, out var grid);
 
@@ -791,21 +790,16 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
-                // If the entity has a MovedByPressureComponent and it's disabled, try tossing if spaced and skip stun
-                if (movedByPressureQuery.TryComp(child, out var moved) && !moved.Enabled)
-                {
-                    if (grid != null)
-                        TossIfSpaced((xform.GridUid.Value, grid, shuttleBody), child);
+                // If the entity has a MovedByPressureComponent, check if it's disabled, if so, skip the stun
+                if (TryComp<MovedByPressureComponent>(child, out var moved) && !moved.Enabled)
                     continue;
-                }
+
                 // Otherwise, paralyze the entity
                 _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
 
                 // If the guy we knocked down is on a spaced tile, throw them too
                 if (grid != null)
-
                     TossIfSpaced((xform.GridUid.Value, grid, shuttleBody), child);
-
             }
         }
     }
