@@ -1,0 +1,63 @@
+# Sol in-game titles from Discord roles.
+# Segment 1 = ownership / HoD brand; segment 2 = duty rank; segment 3 = Supporter badge.
+# First match wins within each segment. Colors sampled from Discord role list.
+#
+# Enable: nulllink.roles_req.title_builder = "Sol"
+- type: titleBuilder
+  id: Sol
+  separator: "-"
+  segments:
+  - # ownership / head of development
+    titles:
+    - text: "Sun-Dev"
+      color: "#cc2020"
+      roles:
+      - 1526063510008631316 # Head of Development
+    - text: "Sun-God"
+      color: "#f0c40c"
+      roles:
+      - 1526062474665660476 # Sun Gods
+  - # staff / contributor ranks (admin builder + related)
+    titles:
+    - text: "Head-Admin"
+      color: "#c07c0c"
+      roles:
+      - 1526062699119906826 # Head Admin
+    - text: "Maintainer"
+      color: "#fc786c"
+      roles:
+      - 1526572661004832819 # Maintainer
+    - text: "Admin"
+      color: "#e47c20"
+      roles:
+      - 1526062747136294963 # Admin
+    - text: "Trialmin"
+      color: "#a84000"
+      roles:
+      - 1526062781147906261 # Trialmin
+    - text: "Moderator"
+      color: "#18bc9c"
+      roles:
+      - 1526062845383413910 # Moderator
+    - text: "Trialator"
+      color: "#108068"
+      roles:
+      - 1526062897988501504 # Trialator
+    - text: "Event-C."
+      color: "#9858b4"
+      roles:
+      - 1526063287865970861 # Event Coordinator
+    - text: "Sr-Dev"
+      color: "#a81c1c"
+      roles:
+      - 1526063653151969390 # Senior Developer
+    - text: "Dev"
+      color: "#580000"
+      roles:
+      - 1526063729207414875 # Developer
+  - # patron / supporter badge
+    titles:
+    - text: "[font=\"Icon\"][/font]"
+      color: "#c49c48"
+      roles:
+      - 1526577905885380870 # Supporter

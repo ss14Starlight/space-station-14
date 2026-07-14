@@ -9,15 +9,16 @@ requirements-playtime =
 
 roles-req-discord-starlight = 🌟 STARLIGHT 🌟
 roles-req-discord-wizden = Wizden
+roles-req-discord-sol = Sol
 
 roles-req-mentor-roles = mentor
 roles-req-all-roles = staff or mentor
-roles-req-ext-roles = staff, mentor, or ExtRoles
+roles-req-ext-roles = ExtRoles
 roles-req-tester-roles = alfa or beta tester (It’s no longer possible to retrieve)
 roles-req-gold-event-winner = gold event winner
 roles-req-staff-roles = staff
 roles-req-manager-roles = --Server Leadership--
-roles-req-patron-roles = patron
+roles-req-patron-roles = Supporter
 roles-req-carpgames-roles = Carp Games Winner
 roles-req-ticketsadministrator-roles = Tickets Administrator
 roles-req-first-writing-roles = First Writing Contest Winner

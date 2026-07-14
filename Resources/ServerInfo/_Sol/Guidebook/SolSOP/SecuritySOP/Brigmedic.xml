@@ -1,0 +1,47 @@
+<Document>
+# Brigmedic
+
+<GuideEntityEmbed Entity="ToyFigurineSecurity" Caption="Brigmedic"/>
+
+- 1.\n
+Standard [color=#00a933]Code Green[/color] equipment is:
+
+<Box>
+	<GuideEntityEmbed Entity="MedkitAdvancedFilled"/>
+	<GuideEntityEmbed Entity="DefibrillatorBrigmedical"/>
+	<GuideEntityEmbed Entity="HandheldBrigmedicCrewMonitor"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="WeaponDisabler"/>
+	<GuideEntityEmbed Entity="Stunbaton"/>
+	<GuideEntityEmbed Entity="WeaponPistolMk58"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="FlashlightSeclite"/>
+	<GuideEntityEmbed Entity="RadioHandheldSecurity"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="CombatKnife"/>
+	in
+	<GuideEntityEmbed Entity="ClothingShoesBootsJack"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="Handcuffs"/>
+	<GuideEntityEmbed Entity="Zipties"/>
+</Box>
+
+- 2.\n
+The Brigmedic is not to perform the duties of the Security Officer, but may engage if transgressions occur in their immediate vicinity.
+
+- 3.\n
+The Brigmedic is obligated to lend medical assistance to the following Crew Assets, in order of importance:\n\n
+3.1 Members of Command\n
+3.2 Members of Security\n
+3.3 Prisoners and detainees
+
+- 4.\n
+The Brigmedic is not obligated to lend aid to regular crew, but may do so if they have the time and resources.
+
+- 5.\n
+The Brigmedic is not to put themselves in harm's way unless there is no other choice.
+</Document>

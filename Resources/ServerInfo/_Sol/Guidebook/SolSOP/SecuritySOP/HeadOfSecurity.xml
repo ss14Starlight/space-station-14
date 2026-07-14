@@ -1,0 +1,64 @@
+<Document>
+# Head of Security
+
+<GuideEntityEmbed Entity="ToyFigurineHeadOfSecurity" Caption="Head of Security"/>
+
+### §1\n
+Standard [color=#00a933]Code Green[/color] equipment is:
+
+<Box>
+	<GuideEntityEmbed Entity="WeaponSubMachineGunWt550"/>
+	or
+	<GuideEntityEmbed Entity="WeaponEnergySMG"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="Stunbaton"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="HoloprojectorSecurity"/>
+	<GuideEntityEmbed Entity="FlashlightSeclite"/>
+	<GuideEntityEmbed Entity="RadioHandheldSecurity"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="CombatKnife"/>
+	in
+	<GuideEntityEmbed Entity="ClothingShoesBootsJack"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="GrenadeFlashBang"/>
+	<GuideEntityEmbed Entity="TearGasGrenade"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="Handcuffs"/>
+	<GuideEntityEmbed Entity="Zipties"/>
+</Box>
+
+- 2.\n
+The Head of Security is subject to both Security and Command SOP. If overlapping, Security SOP takes precedence.
+- 3.\n
+The Head of Security is first and foremost the leader of the Security Department.\n\n
+3.1\n
+They are responsible for the proper adherence to SOP and Corporate Law of their entire department.\n\n
+3.2\n
+They are responsible for the coordination of their department, particularly during times of crisis.\n\n
+3.3\n
+They are responsible for staying informed on matters of station safety, and must be able and willing to inform the crew as to the reasons for elevated threat levels.\n\n
+3.4\n
+They are responsible for covering staff shortages in their department, using the following methods in order of preference:\n\n
+3.4.1\n
+Re-assignment of existing security members.\n\n
+3.4.2\n
+Recruitment of new security members.\n\n
+3.4.3\n
+Performing the duties of missing subordinates on their own.
+- 4.\n
+The Head of Security may not engage in regular Security Officer activities if these prevent them from properly upholding §3.
+- 5.\n
+The Head of Security must not have any disabilities or ailments, such as muteness, that overly prohibit them from upholding §3.
+- 6.\n
+The Head of Security should refrain from combat operations unless tactically necessary, instead ensuring the strategic cohesion of their department as per §3.
+- 7.\n
+The Head of Security is cleared to confine sentenced criminals in the Brig for up to 30 minutes.\n\n
+7.1\n
+The Head of Security is furthermore allowed to overrule the sentences of other members of Security as long as the sentence hasn't already been handed out to the detainee.
+</Document>

@@ -1,0 +1,17 @@
+- type: SalaryRoleBonus
+  id: SolSupporterBonus
+  roles:
+  - 1526577905885380870 # Supporter
+  multiplayer: 0.05
+
+- type: SalaryRoleBonus
+  id: SolStaffBonus
+  roles:
+  - 1526062969585139824 # STAFF
+  multiplayer: 0.10
+
+- type: SalaryRoleBonus
+  id: SolContributorBonus
+  roles:
+  - 1526063764221198357 # Contributor
+  multiplayer: 0.15

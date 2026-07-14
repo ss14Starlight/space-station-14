@@ -11,7 +11,7 @@ These are terms you might encounter in-game.
 Arrest on sight.
 
 ## AA
-<!-- Starlight-edit: add "abbreviation for" -->
+<!-- Sol-edit: add "abbreviation for" -->
 Abbreviation for All Access, or an ID which has every access on the station. The captain is the only person who will have this kind of access under normal circumstances.
 
 ## Atmos
@@ -39,35 +39,35 @@ Short for Captain.
 Reference to cargo declaring independence. Against the rules.
 
 ## CE
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Chief Engineer, the head of the Engineering Department.
 
 ## CentComm/Central Command
-<!-- Starlight-edit: fix capitalization of NanoTrasen -->
+<!-- Sol-edit: fix capitalization of NanoTrasen -->
 An administrative agency which oversees the NanoTrasen space station you inhabit.
 
-<!-- Starlight-start -->
+<!-- Sol-start -->
 ## CL
 Abbreviation for Corporate Law. The legal code in force on the station.
-<!-- Starlight-end -->
+<!-- Sol-end -->
 
 ## CMO
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Chief Medical Officer, the head of the Medical Department.
 
 ## Crit/Critical
 Refers to the health state at which you fall unconscious and unable to move. While in critical, your health slowly decays until you die, unless you happen to get outside assistance.
 
 ## Emag
-<!-- Starlight-edit: fix indent (TODO: send upstream!) -->
+<!-- Sol-edit: fix indent (TODO: send upstream!) -->
 Refers to the Syndicate cryptographic sequencer. "Emagged" usually refers to airlocks or lockers that are bolted open, but also any other device hacked into by an Emag.
 
 ## Emergency Access/EA
-<!-- Starlight-edit: indent (TODO: send upstream!) -->
+<!-- Sol-edit: indent (TODO: send upstream!) -->
 An airlock that can be opened by anyone, even without access or an ID at all. Airlocks that are set to emergency access have blinking yellow lights.
 
 ## ERT
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Emergency Response Team. These may be dispatched by Central Command for a number of purposes.
 
 ## Flukie
@@ -77,15 +77,15 @@ A portmanteau of "Fluke" and "Nukie" used to (usually derogatorily) refer to a t
 An IC term representing a Server Administrator. CentComm is also sometimes used in this manner.
 
 ## Greytide/Greyshirt/Tider/Assistant
-<!-- Starlight-edit: "in other sectors" -->
+<!-- Sol-edit: "in other sectors" -->
 Typically utilized to refer to an Assistant due to the color of their standard uniform in other sectors, though this may be used to negatively refer to other crew members (not only assistants) who act unruly or commit various minor crimes.
 
 ## HoP
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Head of Personnel, head of the Service Department. Can also refer to the HoP's office, where IDs are given or changed.
 
 ## HoS
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Head of Security, head of the Security Department.
 
 ## Insuls
@@ -95,15 +95,15 @@ Short for Insulated Gloves. These are the yellow gloves most often worn by Engin
 Short for Janitor.
 
 ## KOS
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Kill On Sight. Someone has commited such a serious crime that they are deemed not even worth arresting.
 
 ## Mats
-<!-- Starlight-edit: "short for" -->
+<!-- Sol-edit: "short for" -->
 Short for Materials. Usually steel, plastic, plasteel, glass, silver and gold.
 
 ## NanoTrasen/NT
-<!-- Starlight-edit: fix capitalization of NanoTrasen -->
+<!-- Sol-edit: fix capitalization of NanoTrasen -->
 NanoTrasen is the company which owns the space station you inhabit.
 
 ## Newkie
@@ -116,11 +116,11 @@ A slang/shorthand term of a Nuclear Operative. May sometimes also appear as "Nuk
 Short for Permanent Brig. This is for the most serious crime and means that a prisoner will never be released. Most stations have a dedicated, separate area of security for the permanent brig.
 
 ## QM
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Quartermaster, the head of the Cargo department.
 
 ## RD
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Research Director, the head of the Science Department.
 
 ## Robust
@@ -147,10 +147,10 @@ A shortening of the Singularity Engine. A Singulo can create infinite power for 
 ## Singuloose
 A Singularity that has grown too much and breached its containment. It will rip through the station causing massive damage.
 
-<!-- Starlight-start -->
+<!-- Sol-start -->
 ## SOP
 Abbreviation for Standard Operating Procedures. The policies and guidelines everyone on the station is expected to follow.
-<!-- Starlight-end -->
+<!-- Sol-end -->
 
 ## Spacing
 An event which causes an area to lose air pressure, i.e. a hull breach.
@@ -159,14 +159,14 @@ An event which causes an area to lose air pressure, i.e. a hull breach.
 An intentional mis-spelling of "Space", sometimes used as a portmanteau of "space" and "mess". May also appear in words such as "Spessmen".
 
 ## SSD
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Sudden Sleep Disorder or Space Sleep Disorder. This is an in-character way to refer to a player who has disconnected and is no longer responding.
 
 ## Syndie/Syndi/Syndicate
 A catch-all reference to anyone employed by the Syndicate. This ranges from (suspected) Syndicate Agents to Nuclear Operatives.
 
 ## TC
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Telecrystal, a currency used by Syndicate Agents to purchase restricted contraband such as weapons and other illegal equipment.
 
 ## Wardenloose
@@ -195,19 +195,19 @@ The noise made when an admin-help is received. Pray this isn't a ban.
 A phrase usually shouted in OOC when somebody reveals IC current round information, or "in-character, out-of-character".
 
 ## LOOC/OOC
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviations for local out-of-character and (global) out-of-character respectively. They are text channels that allow players to talk to other players outside of roleplay. LOOC is enabled during rounds, while OOC is typically only on after the round ends.
 
 ## LRP
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Low Roleplay. Servers marked LRP typically have relaxed roleplaying rules.
 
 ## MRP
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for Medium Roleplay. Servers marked MRP usually have a decent basis of roleplaying rules and generally require players to act as their character would realistically in a given situation. Less leeway is afforded to behavior such as openly defying Security or your boss.
 
 ## HRP
-<!-- Starlight-edit: abbrev -->
+<!-- Sol-edit: abbrev -->
 Abbreviation for High Roleplay. Servers marked HRP generally have extensive rules on what is and is not constituted while playing a character. You are generally required to act as your character would, have a character backstory, and follow protocol on the station. Some HRP servers may create their own lore or settings to further facilitate the type of server they wish to host.
 
 ## Self-Antag
