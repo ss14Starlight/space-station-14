@@ -117,6 +117,7 @@ public sealed partial class StationAiVisionSystem : EntitySystem
     /// To check if something is within camera view? a thing that doesn't change frequently????
     ///
     /// Use this unless you have a very good reason not to, which you won't
+    ///
     /// </summary>
     /// <param name="entity"></param>
     /// <returns></returns>
