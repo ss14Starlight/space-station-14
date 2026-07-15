@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Inspector Fire Rate +0.725, Ammo Slots +3.
-    type: Tweak
-  id: 406254
-  time: '2026-06-27T11:17:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4849
-- author: wonderfulnewworld
-  changes:
   - message: The detective now spawns with an extra speed loader for their inspector.
     type: Tweak
   id: 406255
@@ -2799,4 +2792,11 @@ Entries:
   id: 406653
   time: '2026-07-15T12:20:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5131
+- author: Littlemen/Romero
+  changes:
+  - message: The Eeep now recovers blood quickly.
+    type: Add
+  id: 406654
+  time: '2026-07-15T19:01:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5151
 Order: -1
