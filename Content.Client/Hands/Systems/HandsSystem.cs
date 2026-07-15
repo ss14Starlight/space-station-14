@@ -74,6 +74,7 @@ namespace Content.Client.Hands.Systems
             ent.Comp.SortedHands = new (state.SortedHands);
 
             SetActiveHand(ent.AsNullable(), state.ActiveHandId);
+            ent.Comp.NextThrowTime = state.NextThrowTime; // Starlight, Thanks for not being auto generated component state you made me waste hours. :3
 
             _stripSys.UpdateUi(ent);
         }
