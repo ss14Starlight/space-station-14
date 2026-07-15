@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Lowered the required number of readied players for Cosmic Cult to 20 (down from 30).
-    type: Tweak
-  id: 406249
-  time: '2026-06-27T08:23:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4950
-- author: Caws
-  changes:
   - message: Portable cooling units now take 3x3 inventory slots (down from 4x4).
     type: Tweak
   id: 406250
@@ -2799,4 +2792,11 @@ Entries:
   id: 406648
   time: '2026-07-15T11:40:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5141
+- author: hermitsabee
+  changes:
+  - message: Added the song Stench of Whiskey by hermitsabee to Starlight's lobby music.
+    type: Add
+  id: 406649
+  time: '2026-07-15T11:40:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5133
 Order: -1
