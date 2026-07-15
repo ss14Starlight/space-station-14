@@ -17,7 +17,7 @@ using static Content.Client.Tips.TippyUI;
 using Content.Client.Humanoid; // Starlight
 using Content.Shared.Humanoid;
 using Content.Client._Starlight.Humanoid; // Starlight
-using JetBrains.Annotations; // Starlight
+using JetBrains.Annotations;
 
 namespace Content.Client.Tips;
 
