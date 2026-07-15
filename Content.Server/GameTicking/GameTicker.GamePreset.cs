@@ -9,6 +9,7 @@ using Content.Shared.Maps;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Database; // Starlight
 
 #region Starlight
 using Content.Shared._Starlight.EntityTable;
@@ -222,6 +223,11 @@ public sealed partial class GameTicker
             if (!ignored.Contains(rule))
                 AddGameRule(rule);
         }
+
+        // Starlight begin - Notify admins of preset now that it is locked in.
+        if (Preset.ID != "Secret") _chatManager.SendAdminAnnouncement($"Round preset selected: {Preset.ID}.");
+        _adminLogger.Add(LogType.RoundstartRulesAdded, LogImpact.High, $"Round preset selected: {Preset.ID}.");
+        // Starlight end
 
         return true;
     }

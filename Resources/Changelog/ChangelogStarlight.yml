@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Removed one mid round spawn botanist. (Now its 2 at shift start plus kiki).
-    type: Remove
-  id: 406242
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
   - message: (OASIS) Fixed tiles under maints shop, security.
     type: Fix
   id: 406243
@@ -2799,4 +2792,11 @@ Entries:
   id: 406641
   time: '2026-07-14T13:37:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5128
+- author: TaserTheFox
+  changes:
+  - message: Fixed loc spam with gas analyzers.
+    type: Fix
+  id: 406642
+  time: '2026-07-15T10:01:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5140
 Order: -1
