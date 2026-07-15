@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Portable cooling units now take 3x3 inventory slots (down from 4x4).
-    type: Tweak
-  id: 406250
-  time: '2026-06-27T09:56:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4949
-- author: Caws
-  changes:
   - message: Any outer clothing that accepts a gas tank in its suit storage will now also accept portable cooling units as well.
     type: Tweak
   id: 406251
@@ -2799,4 +2792,11 @@ Entries:
   id: 406649
   time: '2026-07-15T11:40:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5133
+- author: Bigfoot Bravo
+  changes:
+  - message: IPCs can use Hair! NT spared some expense with these hair sets, but NT may invest further later on, upgrading this hair to true holograms at a later date.
+    type: Tweak
+  id: 406650
+  time: '2026-07-15T12:01:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4417
 Order: -1
