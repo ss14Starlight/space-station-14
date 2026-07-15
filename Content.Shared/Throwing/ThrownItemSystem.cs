@@ -10,6 +10,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Throwing; // Starlight
 
 namespace Content.Shared.Throwing
 {
@@ -113,6 +114,7 @@ namespace Content.Shared.Throwing
             var ev = new StopThrowEvent(thrownItemComponent.Thrower);
             RaiseLocalEvent(uid, ref ev);
             RemComp<ThrownItemComponent>(uid);
+            if (_netMan.IsServer) RemComp<PredictedThrownItemComponent>(uid); // Starlight
         }
 
         public void LandComponent(EntityUid uid, ThrownItemComponent thrownItem, PhysicsComponent physics, bool playSound)
