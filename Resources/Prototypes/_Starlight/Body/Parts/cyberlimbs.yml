@@ -129,9 +129,10 @@
             Shock: 5
 
 - type: entity
-  id: LeftLegCyber
-  name: "left cyber leg"
-  parent: [PartCyber, BaseLeftLeg]
+  id: LeftLegCyberBase
+  name: "left base cyber leg"
+  parent: BaseLeftLeg
+  abstract: true
   components:
     - type: BaseLayerId
       layers:
@@ -144,14 +145,69 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg"
-    - type: MovementBodyPart
-      sprintSpeed : 4.725 # +5%
-      maxDensity: 155
     - type: WithAttachedBodyParts
       parts:
         left foot: LeftFootCyber
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        knockdownAmount: 1.0
+        slowdownAmount: 1.0
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        damageAmount:
+          types:
+            Shock: 10
+
+- type: entity
+  id: LeftLegCyber
+  name: "left cyber leg"
+  parent: [PartCyber, LeftLegCyberBase]
+  components:
+    - type: MovementBodyPart
+      sprintSpeed : 4.725 # +5%
+      maxDensity: 155
+    - type: MovementBodyPartHinderedByShoes
+      hinderModifier: 0.1111
+
+- type: entity
+  id: LeftLegCyberBudget
+  name: "left budget cyber leg"
+  parent: [PartCyber, LeftLegCyberBase]
+  components:
     - type: RoundstartImplantable
       cost: 2
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        knockdownAmount: 1.0
+        slowdownAmount: 1.0
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        damageAmount:
+          types:
+            Shock: 5 # Reduced from 10 for budget variant
+
+- type: entity
+  id: RightLegCyberBase
+  name: "right base cyber leg"
+  parent: BaseRightLeg
+  abstract: true
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberRLeg
+        Rodentia: RodentiaCyberRLeg
+        Resomi: ResomiCyberRLeg
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_leg"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_leg"
+    - type: WithAttachedBodyParts
+      parts:
+        right foot: RightFootCyber
     - type: HumanoidEMPCompositeElement
       effect:
         stunAmount: 1.0
@@ -166,25 +222,19 @@
 - type: entity
   id: RightLegCyber
   name: "right cyber leg"
-  parent: [PartCyber, BaseRightLeg]
+  parent: [PartCyber, RightLegCyberBase]
   components:
-    - type: BaseLayerId
-      layers:
-        Default: CyberRLeg
-        Rodentia: RodentiaCyberRLeg
-        Resomi: ResomiCyberRLeg
-    - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_leg"
-    - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "r_leg"
     - type: MovementBodyPart
       sprintSpeed : 4.725 # +5%
       maxDensity: 155
-    - type: WithAttachedBodyParts
-      parts:
-        right foot: RightFootCyber
+    - type: MovementBodyPartHinderedByShoes
+      hinderModifier: 0.1111
+
+- type: entity
+  id: RightLegCyberBudget
+  name: "right budget cyber leg"
+  parent: [PartCyber, RightLegCyberBase]
+  components:
     - type: RoundstartImplantable
       cost: 2
     - type: HumanoidEMPCompositeElement
@@ -196,7 +246,7 @@
         sprintSpeedModifier: 0.6
         damageAmount:
           types:
-            Shock: 10
+            Shock: 5 # Reduced from 10 for budget variant
 
 - type: entity
   id: LeftFootCyber
@@ -260,7 +310,7 @@
 - type: entity
   id: LeftLegCyberSpeed
   name: "left speed leg"
-  parent: [PartCyber, BaseLeftLeg]
+  parent: [PartCyber, LeftLegCyberBase]
   description: Gotta Go Fast!
   components:
     - type: BaseLayerId
@@ -278,16 +328,13 @@
       walkSpeed: 3.75 # 1.5x of base
       sprintSpeed: 6.75 # 1.5x of base
       maxDensity: 155
-    - type: WithAttachedBodyParts
-      parts:
-        left foot: LeftFootCyber
     - type: MovementBodyPartHinderedByShoes
       hinderModifier: 0.1667
 
 - type: entity
   id: RightLegCyberSpeed
   name: "right speed leg"
-  parent: [PartCyber, BaseRightLeg]
+  parent: [PartCyber, RightLegCyberBase]
   description: Gotta Go Fast!
   components:
     - type: BaseLayerId
@@ -305,9 +352,6 @@
       walkSpeed: 3.75 # 1.5x of base
       sprintSpeed: 6.75 # 1.5x of base
       maxDensity: 155
-    - type: WithAttachedBodyParts
-      parts:
-        right foot: RightFootCyber
     - type: MovementBodyPartHinderedByShoes
       hinderModifier: 0.1667
 
@@ -2104,7 +2148,7 @@
 - type: entity
   id: LeftLegCyberHydraulic
   name: "left hydraulic cyber leg"
-  parent: [PartCyber, BaseLeftLeg]
+  parent: [PartCyber, LeftLegCyberBase]
   components:
     - type: BaseLayerId
       layers:
@@ -2122,9 +2166,6 @@
       maxDensity: 10000 #Lift the Planet!
       minSpeedMod: 1.0
       maxSpeedMod: 1.0
-    - type: WithAttachedBodyParts
-      parts:
-        left foot: LeftFootCyber
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -2132,7 +2173,7 @@
 - type: entity
   id: RightLegCyberHydraulic
   name: "right hydraulic cyber leg"
-  parent: [PartCyber, BaseRightLeg]
+  parent: [PartCyber, RightLegCyberBase]
   components:
     - type: BaseLayerId
       layers:
@@ -2150,9 +2191,6 @@
       maxDensity: 10000 #Lift the Planet!
       minSpeedMod: 1.0
       maxSpeedMod: 1.0
-    - type: WithAttachedBodyParts
-      parts:
-        right foot: RightFootCyber
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -2161,7 +2199,7 @@
 - type: entity
   id: LeftLegCyberPilebunker
   name: "left pilebunker leg"
-  parent: [PartCyber, BaseLeftLeg]
+  parent: [PartCyber, LeftLegCyberBase]
   components:
     - type: BaseLayerId
       layers:
@@ -2177,16 +2215,13 @@
     - type: MovementBodyPart
       sprintSpeed : 4.5
       maxDensity: 155
-    - type: WithAttachedBodyParts
-      parts:
-        left foot: LeftFootCyber
     - type: LimbWithAction
       action: JumpPilebunkerLeg
 
 - type: entity
   id: RightLegCyberPilebunker
   name: "right pilebunker leg"
-  parent: [PartCyber, BaseRightLeg]
+  parent: [PartCyber, RightLegCyberBase]
   components:
     - type: BaseLayerId
       layers:
@@ -2202,9 +2237,6 @@
     - type: MovementBodyPart
       sprintSpeed : 4.5
       maxDensity: 155
-    - type: WithAttachedBodyParts
-      parts:
-        right foot: RightFootCyber
     - type: LimbWithAction
       action: JumpPilebunkerLeg
 
@@ -2212,7 +2244,7 @@
 - type: entity
   id: LeftLegCyberCargo
   name: "left cargo cyber leg"
-  parent: [PartCyber, BaseLeftLeg]
+  parent: [PartCyber, LeftLegCyberBase]
   description: Wait a moment... This is just an older model of cyberleg someone strapped a pouch to!
   components:
     - type: BaseLayerId
@@ -2229,9 +2261,6 @@
     - type: MovementBodyPart
       sprintSpeed : 4.05
       maxDensity: 155
-    - type: WithAttachedBodyParts
-      parts:
-        left foot: LeftFootCyber
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -2268,7 +2297,7 @@
 - type: entity
   id: RightLegCyberCargo
   name: "right cargo cyber leg"
-  parent: [PartCyber, BaseRightLeg]
+  parent: [PartCyber, RightLegCyberBase]
   description: Wait a moment... This is just an older model of cyberleg someone strapped a pouch to!
   components:
     - type: BaseLayerId
@@ -2285,9 +2314,6 @@
     - type: MovementBodyPart
       sprintSpeed : 4.05
       maxDensity: 155
-    - type: WithAttachedBodyParts
-      parts:
-        right foot: RightFootCyber
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
