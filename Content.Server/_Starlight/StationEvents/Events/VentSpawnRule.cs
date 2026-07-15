@@ -26,9 +26,9 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
         SubscribeLocalEvent<VentSpawnRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterSelection);
     }
 
-    protected override void Started(EntityUid uid, VentSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    protected override void Added(EntityUid uid, VentSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        base.Started(uid, comp, gameRule, args);
+        base.Added(uid, comp, gameRule, args);
 
         if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
         var station = stationEvent.TargetStation;
@@ -69,7 +69,6 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
 
     private void OnAfterSelection(Entity<VentSpawnRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
-        if (!ent.Comp.InsertInVent) return;
         if (!ent.Comp.Vent.TryGetValue(args.Def.ID, out var vent))
             return;
 

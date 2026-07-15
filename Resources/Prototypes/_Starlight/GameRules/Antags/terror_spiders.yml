@@ -12,6 +12,7 @@
   - type: AntagSpawner
     prototype: MobTerrorPrincess
   - type: TerrorSpiderRule
+  - type: StationEvent
   - type: AntagSelection
     agentName: terror-princess-round-end-agent-name
     antags:
