@@ -84,7 +84,7 @@
   id: MagazineRifleHighCapacityHP
   result: MagazineRifleHighCapacityHP
   materials:
-    Steel: 900
+    Steel: 850
 
 - type: latheRecipe
   parent: BaseAmmoRecipe

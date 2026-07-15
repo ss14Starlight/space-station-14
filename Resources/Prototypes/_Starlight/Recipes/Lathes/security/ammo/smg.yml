@@ -111,7 +111,7 @@
   id: MagazinePistolSubMachineGunHighCapacityUranium
   result: MagazinePistolSubMachineGunHighCapacityUranium
   materials:
-    Plastic: 240
+    Plastic: 320
     Uranium: 620
 
 - type: latheRecipe
