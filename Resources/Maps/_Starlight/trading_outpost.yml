@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/15/2026 12:01:54
+  time: 07/15/2026 12:15:10
   entityCount: 2889
 maps: []
 grids:
@@ -9770,7 +9770,7 @@ entities:
   - uid: 1596
     components:
     - type: MetaData
-      name: gas pipe sensor (gas buying)
+      name: gas pipe sensor (buying)
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,-7.5
@@ -9778,28 +9778,34 @@ entities:
     - type: AtmosPipeColor
       color: '#DAB73AFF'
     - type: Label
-      currentLabel: gas buying
+      currentLabel: buying
     - type: NameModifier
       baseName: gas pipe sensor
   - uid: 2692
     components:
+    - type: MetaData
+      name: gas pipe sensor (buying)
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,8.5
       parent: 1
     - type: AtmosPipeColor
       color: '#DAB73AFF'
+    - type: Label
+      currentLabel: buying
+    - type: NameModifier
+      baseName: gas pipe sensor
   - uid: 2768
     components:
     - type: MetaData
-      name: gas pipe sensor (gas buying)
+      name: gas pipe sensor (buying)
     - type: Transform
       pos: -17.5,0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#DAB73AFF'
     - type: Label
-      currentLabel: gas buying
+      currentLabel: buying
     - type: NameModifier
       baseName: gas pipe sensor
 - proto: GasPipeSensorAlt2
@@ -9807,7 +9813,7 @@ entities:
   - uid: 2678
     components:
     - type: MetaData
-      name: gas pipe sensor (gas selling)
+      name: gas pipe sensor (selling)
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-7.5
@@ -9815,21 +9821,27 @@ entities:
     - type: AtmosPipeColor
       color: '#3FA43FFF'
     - type: Label
-      currentLabel: gas selling
+      currentLabel: selling
     - type: NameModifier
       baseName: gas pipe sensor
   - uid: 2700
     components:
+    - type: MetaData
+      name: gas pipe sensor (selling)
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,8.5
       parent: 1
     - type: AtmosPipeColor
       color: '#3FA43FFF'
+    - type: Label
+      currentLabel: selling
+    - type: NameModifier
+      baseName: gas pipe sensor
   - uid: 2719
     components:
     - type: MetaData
-      name: gas pipe sensor (gas selling)
+      name: gas pipe sensor (selling)
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -17.5,0.5
@@ -9837,7 +9849,7 @@ entities:
     - type: AtmosPipeColor
       color: '#3FA43FFF'
     - type: Label
-      currentLabel: gas selling
+      currentLabel: selling
     - type: NameModifier
       baseName: gas pipe sensor
 - proto: GasPipeSensorDistributionAlt3
@@ -13279,20 +13291,20 @@ entities:
   - uid: 2693
     components:
     - type: MetaData
-      name: gas pump (gas buying)
+      name: gas pump (buying)
     - type: Transform
       pos: -0.5,-6.5
       parent: 1
     - type: AtmosPipeColor
       color: '#DAB73AFF'
     - type: Label
-      currentLabel: gas buying
+      currentLabel: buying
     - type: NameModifier
       baseName: gas pump
   - uid: 2695
     components:
     - type: MetaData
-      name: gas pump (gas buying)
+      name: gas pump (buying)
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -16.5,1.5
@@ -13300,13 +13312,13 @@ entities:
     - type: AtmosPipeColor
       color: '#DAB73AFF'
     - type: Label
-      currentLabel: gas buying
+      currentLabel: buying
     - type: NameModifier
       baseName: gas pump
   - uid: 2785
     components:
     - type: MetaData
-      name: gas pump (gas buying)
+      name: gas pump (buying)
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,7.5
@@ -13314,7 +13326,7 @@ entities:
     - type: AtmosPipeColor
       color: '#DAB73AFF'
     - type: Label
-      currentLabel: gas buying
+      currentLabel: buying
     - type: NameModifier
       baseName: gas pump
 - proto: GasPressurePumpAlt2
@@ -13322,7 +13334,7 @@ entities:
   - uid: 2710
     components:
     - type: MetaData
-      name: gas pump (gas selling)
+      name: gas pump (selling)
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -16.5,-0.5
@@ -13330,26 +13342,26 @@ entities:
     - type: AtmosPipeColor
       color: '#3FA43FFF'
     - type: Label
-      currentLabel: gas selling
+      currentLabel: selling
     - type: NameModifier
       baseName: gas pump
   - uid: 2778
     components:
     - type: MetaData
-      name: gas pump (gas selling)
+      name: gas pump (selling)
     - type: Transform
       pos: -0.5,7.5
       parent: 1
     - type: AtmosPipeColor
       color: '#3FA43FFF'
     - type: Label
-      currentLabel: gas selling
+      currentLabel: selling
     - type: NameModifier
       baseName: gas pump
   - uid: 2780
     components:
     - type: MetaData
-      name: gas pump (gas selling)
+      name: gas pump (selling)
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-6.5
@@ -13357,7 +13369,7 @@ entities:
     - type: AtmosPipeColor
       color: '#3FA43FFF'
     - type: Label
-      currentLabel: gas selling
+      currentLabel: selling
     - type: NameModifier
       baseName: gas pump
 - proto: GasVentPumpAlt3
