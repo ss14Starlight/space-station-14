@@ -35,6 +35,7 @@ using Content.Shared.Zombies;
 using Content.Shared._Starlight.ScanGate;
 using Content.Shared._Starlight.Body.Events;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
+using Content.Shared._Starlight.Overlay.Components;
 #endregion
 
 namespace Content.Shared.Inventory;
@@ -106,6 +107,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowCriminalRecordIconsComponent>>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<BlackAndWhiteOverlayComponent>>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<NoirOverlayComponent>>(RefRelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowImplantedIconsComponent>>(RefRelayInventoryEvent); // Starlight
 
         SubscribeLocalEvent<InventoryComponent, GetVerbsEvent<EquipmentVerb>>(OnGetEquipmentVerbs);
         SubscribeLocalEvent<InventoryComponent, GetVerbsEvent<InnateVerb>>(OnGetInnateVerbs);

@@ -186,23 +186,13 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
                 // Send Central Command announcement
                 if (component.Status == TerrorSpidersWinStatus.Lose)
                 {
-                    _chatSystem.DispatchGlobalAnnouncement(
-                        Loc.GetString("central-command-terror-spiders-announcement-lose"),
-                        Loc.GetString("central-command-sender"),
-                        true,
-                        new SoundPathSpecifier("/Audio/_Starlight/Announcements/callEvac.ogg"),
-                        Color.Green
-                    );
+                    _roundEnd.DoRoundEndBehavior(component.RoundEndBehavior, component.EvacShuttleTime, component.RoundEndTextSender, component.RoundEndTextShuttleCallLose, component.RoundEndTextAnnouncementLose);
+                    component.RoundEndBehavior = RoundEndBehavior.Nothing;
                 }
                 else if (component.Status == TerrorSpidersWinStatus.Win)
                 {
-                    _chatSystem.DispatchGlobalAnnouncement(
-                        Loc.GetString("central-command-terror-spiders-announcement-win"),
-                        Loc.GetString("central-command-sender"),
-                        true,
-                        new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce_broken.ogg"),
-                        Color.Red
-                    );
+                    _roundEnd.DoRoundEndBehavior(component.RoundEndBehavior, component.EvacShuttleTime, component.RoundEndTextSender, component.RoundEndTextShuttleCallWin, component.RoundEndTextAnnouncementWin);
+                    component.RoundEndBehavior = RoundEndBehavior.Nothing;
                 }
 
                 component.AlreadyAnnounced = true;
@@ -216,8 +206,7 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
 
         if (!component.RoundAlreadyEnded && component.EndRoundTime < _timing.CurTime)
         {
-            // Call Evac and end the gamemode
-            _roundEnd.RequestRoundEnd(null, false);
+            // End the gamemode
             component.RoundAlreadyEnded = true;
             _ticker.EndGameRule(uid);
         }
