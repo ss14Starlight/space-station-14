@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: The detective now spawns with an extra speed loader for their inspector.
-    type: Tweak
-  id: 406255
-  time: '2026-06-27T11:17:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4849
-- author: wonderfulnewworld
-  changes:
   - message: The shoulder holster can now be worn on the neck slot, in addition to the existing belt slot.
     type: Tweak
   id: 406256
@@ -2799,4 +2792,11 @@ Entries:
   id: 406654
   time: '2026-07-15T19:01:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5151
+- author: wonderfulnewworld
+  changes:
+  - message: Added Survival, KesslerSyndrome, and ShitStation to Dynamic and DynamicLP.
+    type: Add
+  id: 406655
+  time: '2026-07-15T19:01:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5078
 Order: -1
