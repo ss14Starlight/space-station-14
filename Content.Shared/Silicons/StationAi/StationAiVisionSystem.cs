@@ -135,6 +135,26 @@ public sealed partial class StationAiVisionSystem : EntitySystem
 
         return result;
     }
+
+    /// <summary>
+    /// Returns whether an entity is in fog of war
+    /// STARLIGHT - Use IsOutsideViewCached wherever possible! This is an expensive call, and you shouldn't have a reason to use it!
+    /// </summary>
+    public bool IsOutsideCameraView(EntityUid entity)
+    {
+        var xform = Transform(entity);
+
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
+            return true;
+
+        if (!TryComp<BroadphaseComponent>(xform.GridUid, out var broadphase))
+            return true;
+
+        var tile = _maps.LocalToTile(xform.GridUid.Value, grid, xform.Coordinates);
+
+        // Returns true if outside of view
+        return !IsAccessible((xform.GridUid.Value, broadphase, grid), tile);
+    }
     #endregion
 
     /// <summary>
@@ -220,29 +240,6 @@ public sealed partial class StationAiVisionSystem : EntitySystem
         return true;
         // Starlight - end
     }
-
-    #region Starlight
-    /// <summary>
-    /// Returns whether an entity is in fog of war
-    /// STARLIGHT - Use IsOutsideViewCached wherever possible! This is an expensive call, and you shouldn't have a reason to use it!
-    /// </summary>
-    public bool IsOutsideCameraView(EntityUid entity)
-    {
-        var xform = Transform(entity);
-
-        if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
-            return true;
-
-        if (!TryComp<BroadphaseComponent>(xform.GridUid, out var broadphase))
-            return true;
-
-        var tile = _maps.LocalToTile(xform.GridUid.Value, grid, xform.Coordinates);
-
-        // Returns true if outside of view
-        return !IsAccessible((xform.GridUid.Value, broadphase, grid), tile);
-    }
-    #endregion
-
     private bool IsOccluded(Entity<BroadphaseComponent, MapGridComponent> grid, Vector2i tile)
     {
         var tileBounds = _lookup.GetLocalBounds(tile, grid.Comp2.TileSize).Enlarged(-0.05f);
