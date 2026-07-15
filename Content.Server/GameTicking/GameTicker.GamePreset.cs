@@ -9,7 +9,7 @@ using Content.Shared.Maps;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.Database; // Starlight
+using Content.Shared.Database;
 
 #region Starlight
 using Content.Shared._Starlight.EntityTable;

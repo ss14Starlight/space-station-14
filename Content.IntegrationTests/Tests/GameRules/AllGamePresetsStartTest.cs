@@ -6,19 +6,19 @@ using Content.Server.Antag;
 using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
-using Content.Server.GameTicking.Rules.Components; // Starlight
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Shuttles.Components;
-using Content.Shared._Starlight.CCVar; // Starlight
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Antag;
 using Content.Shared.CCVar;
-using Content.Shared.GameTicking.Components; // Starlight
+using Content.Shared.GameTicking.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes; // Starlight
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.GameRules;
 

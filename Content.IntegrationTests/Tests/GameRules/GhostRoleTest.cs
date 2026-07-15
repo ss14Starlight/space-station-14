@@ -8,8 +8,8 @@ using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Players.PlayTimeTracking; // Starlight
-using Content.Shared._Starlight.CCVar; // Starlight
+using Content.Server.Players.PlayTimeTracking;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Antag;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;

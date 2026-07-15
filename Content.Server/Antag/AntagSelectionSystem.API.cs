@@ -12,7 +12,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.Preferences; // Starlight
+using Content.Shared.Preferences;
 
 namespace Content.Server.Antag;
 
