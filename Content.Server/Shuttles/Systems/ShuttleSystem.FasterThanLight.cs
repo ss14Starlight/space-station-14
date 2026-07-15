@@ -789,11 +789,12 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
-                // If the entity has a MovedByPressureComponent, check if it's disabled, if so, skip the stun
+                // Starlight START
+                // If the entity has a MovedByPressureComponent, check if it's disabled, if so, skip the stun (e.g. magboots).
                 if (TryComp<MovedByPressureComponent>(child, out var moved) && !moved.Enabled)
                     continue;
+                // Starlight END
 
-                // Otherwise, paralyze the entity
                 _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
 
                 // If the guy we knocked down is on a spaced tile, throw them too
