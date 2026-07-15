@@ -1,88 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Removed one mid round spawn botanist. (Now its 2 at shift start plus kiki).
-    type: Remove
-  id: 406242
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Fixed tiles under maints shop, security.
-    type: Fix
-  id: 406243
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Fixed security dispo pipes.
-    type: Fix
-  id: 406244
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Johnny
-  changes:
-  - message: Added vox lungs in med vend cuz people want it.
-    type: Add
-  id: 406245
-  time: '2026-06-26T18:04:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4940
-- author: Psykana, Slarticodefast, Conflee
-  changes:
-  - message: Added T-Ray Scanner Modes, allowing you to toggle between showing All, Pipes, and Wires.
-    type: Add
-  id: 406246
-  time: '2026-06-26T19:11:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4864
-- author: Psykana, Slarticodefast, Conflee
-  changes:
-  - message: Changed event field naming as part of a refactor. All Upstream and current Starlight Repo files are corrected, however Downstreams of SL may need to confirm and swap their use of Equipee to the correct event field names.
-    type: Tweak
-  id: 406247
-  time: '2026-06-26T19:11:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4864
-- author: Toxyams
-  changes:
-  - message: Vampire ability descriptions.
-    type: Tweak
-  id: 406248
-  time: '2026-06-26T19:11:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4875
-- author: Caws
-  changes:
-  - message: Lowered the required number of readied players for Cosmic Cult to 20 (down from 30).
-    type: Tweak
-  id: 406249
-  time: '2026-06-27T08:23:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4950
-- author: Caws
-  changes:
-  - message: Portable cooling units now take 3x3 inventory slots (down from 4x4).
-    type: Tweak
-  id: 406250
-  time: '2026-06-27T09:56:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4949
-- author: Caws
-  changes:
-  - message: Any outer clothing that accepts a gas tank in its suit storage will now also accept portable cooling units as well.
-    type: Tweak
-  id: 406251
-  time: '2026-06-27T10:17:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4948
-- author: wonderfulnewworld
-  changes:
-  - message: Pirate Revolver Fire Rate +0.2.
-    type: Tweak
-  id: 406252
-  time: '2026-06-27T11:17:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4849
-- author: wonderfulnewworld
-  changes:
-  - message: Deckard Fire Rate +0.5, Ammo Slots +1.
-    type: Tweak
-  id: 406253
-  time: '2026-06-27T11:17:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4849
 - author: wonderfulnewworld
   changes:
   - message: Inspector Fire Rate +0.725, Ammo Slots +3.
@@ -2799,4 +2715,88 @@ Entries:
   id: 406641
   time: '2026-07-14T13:37:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5128
+- author: TaserTheFox
+  changes:
+  - message: Fixed loc spam with gas analyzers.
+    type: Fix
+  id: 406642
+  time: '2026-07-15T10:01:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5140
+- author: joshujo
+  changes:
+  - message: Ulnitranium is no longer scrubbed by scrubbers by default.
+    type: Tweak
+  id: 406643
+  time: '2026-07-15T10:36:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5145
+- author: neomoth
+  changes:
+  - message: Throwing items is now predicted on the client, meaning throwing items should feel faster and smoother.
+    type: Add
+  id: 406644
+  time: '2026-07-15T11:04:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5049
+- author: neomoth
+  changes:
+  - message: Splitting item stacks is now predicted as a result of making throwing items predicted. Should also now feel more responsive just like throwing things.
+    type: Add
+  id: 406645
+  time: '2026-07-15T11:04:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5049
+- author: SpaghettiBit
+  changes:
+  - message: Added Avali guidebook entry regarding large caliber weapon knockback.
+    type: Add
+  id: 406646
+  time: '2026-07-15T11:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5141
+- author: SpaghettiBit
+  changes:
+  - message: 'Tweaked Avali guidebook: Nexus information blurb.'
+    type: Tweak
+  id: 406647
+  time: '2026-07-15T11:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5141
+- author: SpaghettiBit
+  changes:
+  - message: 'Tweaked Avali guidebook: Sound blurb.'
+    type: Tweak
+  id: 406648
+  time: '2026-07-15T11:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5141
+- author: hermitsabee
+  changes:
+  - message: Added the song Stench of Whiskey by hermitsabee to Starlight's lobby music.
+    type: Add
+  id: 406649
+  time: '2026-07-15T11:40:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5133
+- author: Bigfoot Bravo
+  changes:
+  - message: IPCs can use Hair! NT spared some expense with these hair sets, but NT may invest further later on, upgrading this hair to true holograms at a later date.
+    type: Tweak
+  id: 406650
+  time: '2026-07-15T12:01:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4417
+- author: wonderfulnewworld
+  changes:
+  - message: Added Budget cyber legs, which provide no speed bonus at all, but take less damage on EMPs vs their normal counterpart.
+    type: Add
+  id: 406651
+  time: '2026-07-15T12:20:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5131
+- author: wonderfulnewworld
+  changes:
+  - message: Loadout cyber legs are now their budget variants instead. You'll need to replace them if you currently have them equipped on your character.
+    type: Tweak
+  id: 406652
+  time: '2026-07-15T12:20:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5131
+- author: wonderfulnewworld
+  changes:
+  - message: Fixed other cyberlegs not taking damage on EMP.
+    type: Fix
+  id: 406653
+  time: '2026-07-15T12:20:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5131
 Order: -1
