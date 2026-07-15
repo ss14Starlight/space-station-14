@@ -295,12 +295,12 @@ namespace Content.Server.Cargo.Systems
             foreach (var trade in _listEnts)
             {
                 // Starlight BEGIN: Gas orders
-                if (!string.IsNullOrEmpty(order.GasType))
+                if (order.GasType != null)
                 {
                     var gasTanks = GetCargoGasPallets(trade, BuySellType.Buy);
                     _random.Shuffle(gasTanks);
                     var freeTanks = GetFreeCargoGasPallets(gasTanks,
-                        Enum.Parse<Gas>(order.GasType.Id), order.GasMoles, order.GasTemperature,
+                        Enum.Parse<Gas>(order.GasType.Value.Id), order.GasMoles, order.GasTemperature,
                         order.OrderQuantity);
 
                     // Not enough room? Fail.
@@ -316,7 +316,7 @@ namespace Content.Server.Cargo.Systems
                         // Dispatch to this tank ONCE. It is already repeated in the "freeTanks" list if the order will
                         // fit multiple times.
                         var gas = new GasMixture(gasTank.Component.Air.Volume) { Temperature = order.GasTemperature };
-                        gas.SetMoles(Enum.Parse<Gas>(order.GasType.Id), order.GasMoles);
+                        gas.SetMoles(Enum.Parse<Gas>(order.GasType.Value.Id), order.GasMoles);
                         _atmosphereSystem.Merge(gasTank.Component.Air, gas);
 
                         // Print one order slip at this gas tank only if we haven't already.
@@ -599,7 +599,7 @@ namespace Content.Server.Cargo.Systems
             ProtoId<CargoAccountPrototype> account,
             Entity<StationDataComponent> stationData,
             ProtoId<CargoProductPrototype> cargoProductId, // Starlight
-            ProtoId<GasPrototype> gasType, // Starlight
+            ProtoId<GasPrototype>? gasType, // Starlight
             float gasMoles, // Starlight
             float gasTemperature) // Starlight
         {

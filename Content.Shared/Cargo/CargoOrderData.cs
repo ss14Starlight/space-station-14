@@ -71,14 +71,14 @@ namespace Content.Shared.Cargo
         [DataField]
         public ProtoId<CargoProductPrototype> CargoProductId;
         [DataField]
-        public ProtoId<GasPrototype> GasType;
+        public ProtoId<GasPrototype>? GasType;
         [DataField]
         public float GasMoles;
         [DataField]
         public float GasTemperature;
         #endregion
 
-        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<CargoProductPrototype> cargoProductId, ProtoId<GasPrototype> gasType, float gasMoles, float gasTemp) // Starlight
+        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<CargoProductPrototype> cargoProductId, ProtoId<GasPrototype>? gasType, float gasMoles, float gasTemp) // Starlight
         {
             OrderId = orderId;
             ProductId = productId;

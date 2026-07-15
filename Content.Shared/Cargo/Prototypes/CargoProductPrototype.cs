@@ -109,7 +109,7 @@ namespace Content.Shared.Cargo.Prototypes
         ///     The type of gas purchased, if any.
         /// </summary>
         [DataField]
-        public ProtoId<GasPrototype> GasType { get; private set; } = string.Empty;
+        public ProtoId<GasPrototype>? GasType { get; private set; }
 
         /// <summary>
         ///     The amount of moles purchased.
