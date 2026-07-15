@@ -109,6 +109,7 @@
       state: heat
 
 - type: entity
+  parent: BaseSign
   id: SignBreakCargo
   name: cargo breakroom sign
   description: A sign indicating where the breakroom is.
