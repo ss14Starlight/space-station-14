@@ -207,6 +207,8 @@ namespace Content.Shared.Chemistry
         /// </summary>
         public string? ContainerLabel { get; init;  } // Starlight
 
+        public NetEntity? Uid; // Starlight
+
         public List<ReagentQuantity>? Reagents { get; init; }
 
         public ContainerInfo(string displayName, FixedPoint2 currentVolume, FixedPoint2 maxVolume)

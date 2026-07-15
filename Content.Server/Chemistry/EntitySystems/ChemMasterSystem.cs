@@ -490,14 +490,16 @@ namespace Content.Server.Chemistry.EntitySystems
                 return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)), storage.Grid.GetArea())
                 {
                     PatchEntities = items,
-                    ContainerLabel = existingLabel
+                    ContainerLabel = existingLabel,
+                    Uid = GetNetEntity(container.Value)
                 };
             }
 
             return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)), storage.Grid.GetArea())
             {
                 PillEntities = items,
-                ContainerLabel = existingLabel
+                ContainerLabel = existingLabel,
+                Uid = GetNetEntity(container.Value)
             };
             //Starlight-end
         }

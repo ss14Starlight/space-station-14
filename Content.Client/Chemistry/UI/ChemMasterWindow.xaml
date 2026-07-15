@@ -109,7 +109,7 @@
 					<!-- Starlight Container Label end-->
 					
                     <BoxContainer Orientation="Horizontal">
-                        <Label Text="{Loc 'chem-master-current-text-label'}" />
+                        <Label Text="{Loc 'chem-master-pillpatch-text-label'}" />
                         <Control HorizontalExpand="True" MinSize="50 0"/>
                         <LineEdit Name="LabelLineEdit" SetWidth="455"/>
                     </BoxContainer>
