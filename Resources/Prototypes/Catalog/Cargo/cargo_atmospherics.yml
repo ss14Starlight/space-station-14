@@ -94,7 +94,7 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
     state: plasma #SL Edit
   product: PlasmaCanister
-  cost: 5200 # Starlight, PR #5127
+  cost: 4900 # Starlight, PR #5127
   category: cargoproduct-category-name-atmospherics
   group: market
 
