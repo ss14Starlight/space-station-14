@@ -32,46 +32,11 @@
     zeroVisible: false
   - type: Appearance
 
-- type: entity
-  id: BaseMagazineRifleHighCapacity
-  name: "Extended Magazine (.20 rifle)"
-  parent: [ BaseItem, BaseSecurityContraband ]
-  abstract: true
-  components:
-  - type: Tag
-    tags:
-      - MagazineRifle
-  - type: Item
-    size: Small
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-        - CartridgeRifle
-    capacity: 50
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
-
-
 # Magazines
 - type: entity
   id: MagazineRifleSP
-  name: "Rifle Magazine (.20 rifle SP)"
+  name: "magazine (.20 rifle SP)"
   parent: BaseMagazineRifle
-  description: "A magazine designed for .20 Rifles, holds soft point ammunition."
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleSP
@@ -94,9 +59,8 @@
 
 - type: entity
   id: MagazineRifleHP
-  name: "Rifle Magazine (.20 rifle HP)"
+  name: "magazine (.20 rifle HP)"
   parent: BaseMagazineRifle
-  description: "A magazine designed for .20 Rifles, holds hollow point ammunition."
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleHP
@@ -119,9 +83,8 @@
 
 - type: entity
   id: MagazineRifleFMJ
-  name: "Rifle Magazine (.20 rifle FMJ)"
+  name: "magazine (.20 rifle FMJ)"
   parent: BaseMagazineRifle
-  description: "A magazine designed for .20 Rifles, holds full metal jacket ammunition."
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleFMJ
@@ -144,9 +107,8 @@
 
 - type: entity
   id: MagazineRifleAP
-  name: "Rifle Magazine (.20 rifle AP)"
+  name: "magazine (.20 rifle AP)"
   parent: BaseMagazineRifle
-  description: "A magazine designed for .20 Rifles, holds armor-piercing ammunition."
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleAP
@@ -169,7 +131,7 @@
 
 - type: entity
   id: MagazineRifleEmpty
-  name: "Rifle Magazine (.20 rifle any)"
+  name: "magazine (.20 rifle any)"
   suffix: empty
   parent: MagazineRifleSP
   components:
@@ -190,9 +152,8 @@
 
 - type: entity
   id: MagazineRifleIncendiary
-  name: "Rifle Magazine (.20 rifle incendiary)"
+  name: "magazine (.20 rifle incendiary)"
   parent: MagazineRifleSP
-  description: "A magazine designed for .20 Rifles, holds self-igniting incendiary ammunition."
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleIncendiary
@@ -215,8 +176,7 @@
 
 - type: entity
   id: MagazineRiflePractice
-  name: "Rifle Magazine (.20 rifle practice)"
-  description: "A magazine designed for .20 Rifles, holds practice ammunition."
+  name: "magazine (.20 rifle practice)"
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
@@ -240,9 +200,8 @@
 
 - type: entity
   id: MagazineRifleUranium
-  name: "Rifle Magazine (.20 rifle uranium)"
+  name: "magazine (.20 rifle uranium)"
   parent: BaseMagazineRifle
-  description: "A magazine designed for .20 Rifles, holds exotic uranium core ammunition."
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleUranium
@@ -265,9 +224,8 @@
 
 - type: entity
   id: MagazineRifleRubber
-  name: "Rifle Magazine (.20 rifle rubber)"
+  name: "magazine (.20 rifle rubber)"
   parent: BaseMagazineRifle
-  description: "A magazine designed for .20 Rifles, holds rubber ammunition."
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleRubber
@@ -491,155 +449,3 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#40F57A"
-
-##################################################### extendo mag area lmao
-
-- type: entity
-  id: MagazineRifleHighCapacitySP
-  name: "Extended Rifle Magazine (.20 rifle SP)"
-  parent: BaseMagazineRifleHighCapacity
-  description: "An extended magazine designed for .20 Rifles, holds soft point ammunition."
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifleSP
-  - type: Sprite
-    layers:
-    - state: sp
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#575EF5"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#575EF5"
-
-- type: entity
-  id: MagazineRifleHighCapacityHP
-  name: "Extended Rifle Magazine (.20 rifle HP)"
-  parent: BaseMagazineRifleHighCapacity
-  description: "An extended magazine designed for .20 Rifles, holds hollow point ammunition."
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifleHP
-  - type: Sprite
-    layers:
-    - state: red
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F5514C"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F5514C"
-
-- type: entity
-  id: MagazineRifleHighCapacityFMJ
-  name: "Extended Rifle Magazine (.20 rifle FMJ)"
-  parent: BaseMagazineRifleHighCapacity
-  description: "An extended magazine designed for .20 Rifles, holds full metal jacket ammunition."
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifleFMJ
-  - type: Sprite
-    layers:
-    - state: fmj
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#080706"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#080706"
-
-- type: entity
-  id: MagazineRifleHighCapacityUranium
-  name: "Extended Rifle Magazine (.20 rifle uranium)"
-  parent: BaseMagazineRifleHighCapacity
-  description: "An extended magazine designed for .20 Rifles, holds exotic uranium core ammunition."
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifleUranium
-  - type: Sprite
-    layers:
-    - state: uranium
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#40F57A"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#40F57A"
-
-- type: entity
-  id: MagazineRifleHighCapacityIncendiary
-  name: "Extended Rifle Magazine (.20 rifle incendiary)"
-  parent: BaseMagazineRifleHighCapacity
-  description: "An extended magazine designed for .20 Rifles, holds self-igniting incendiary ammunition."
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifleIncendiary
-  - type: Sprite
-    layers:
-    - state: incendiary
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#E7EEEE"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#E7EEEE"
-
-- type: entity
-  id: MagazineRifleHighCapacityAP
-  name: "Extended Rifle Magazine (.20 rifle AP)"
-  parent: BaseMagazineRifleHighCapacity
-  description: "An extended magazine designed for .20 Rifles, holds armor-piercing ammunition."
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifleAP
-  - type: Sprite
-    layers:
-    - state: ap
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#72E374"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#72E374"

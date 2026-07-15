@@ -25,9 +25,6 @@ research-technology-thermalvision-eyes = Thermal Vision Cyber Eyes
 research-technology-ion-weaponry = Ion Weaponry
 research-technology-declone-technology = Declone Technology
 research-technology-scan-gate = Scan Gates Technology
-research-technology-extended-ammunition = Extended Magazines
-research-technology-extended-advanced-ammunition = Extended Advanced Magazines
-research-technology-extended-pierce-ammunition = Extended AP Magazines
 
 research-technology-lawboards = AI Lawboards
 research-technology-lawboards-description = Advanced AI lawboard circuitry for programming silicon entities with various behavioral directives.

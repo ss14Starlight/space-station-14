@@ -72,54 +72,6 @@
     Steel: 300
     Uranium: 300
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleHighCapacitySP
-  result: MagazineRifleHighCapacitySP
-  materials:
-    Steel: 910
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleHighCapacityHP
-  result: MagazineRifleHighCapacityHP
-  materials:
-    Steel: 850
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleHighCapacityFMJ
-  result: MagazineRifleHighCapacityFMJ
-  materials:
-    Steel: 1110
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleHighCapacityUranium
-  result: MagazineRifleHighCapacityUranium
-  materials:
-    Steel: 50
-    Plastic: 600
-    Uranium: 600
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleHighCapacityIncendiary
-  result: MagazineRifleHighCapacityIncendiary
-  materials:
-    Steel: 100
-    Plastic: 200
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleHighCapacityAP
-  result: MagazineRifleHighCapacityAP
-  materials:
-    Plastic: 200
-    Steel: 600
-    Uranium: 600
-
-
 ############ BOXES ############
 
 - type: latheRecipe
