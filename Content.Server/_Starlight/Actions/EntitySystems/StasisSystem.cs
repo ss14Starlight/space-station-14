@@ -48,7 +48,7 @@ public sealed partial class StasisSystem : SharedStasisSystem
                 continue;
 
             if (!TryComp<DamageableComponent>(uid, out var damageComponent))
-                return;
+                continue;
 
             // Negative because your healing
             var modifier = _mobState.IsCritical(uid) ? -comp.CritHealingModifier : -1.0f;
