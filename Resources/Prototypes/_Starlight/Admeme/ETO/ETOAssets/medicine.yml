@@ -1,0 +1,88 @@
+- type: reagent
+  id: ETODrugs
+  name: reagent-name-etodrug
+  group: Medicine
+  desc: reagent-desc-etodrug
+  physicalDesc: reagent-physical-desc-energizing
+  contrabandSeverity: ETO
+  flavor: sharp
+  color: "#3b2905"
+  boilingPoint: 212.0
+  meltingPoint: 170.0
+  metabolisms:
+    Narcotic:
+      effects:
+      # Main effects
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.25
+        sprintSpeedModifier: 1.25
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina # You are on meth. You keep going.
+        time: 3
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 3.5
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 3.5
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 3
+        type: Remove
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 3
+      # Side effects
+      - !type:Jitter
+      # OD
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: ETODrugs
+          min: 45
+        damage:
+          types:
+            Poison: 3
+      # Interactions
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Haloperidol
+          max: 0.01
+        effectProto: StatusEffectDrowsiness
+        time: 10
+        type: Remove
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChloralHydrate
+          min: 1
+        reagent: ChloralHydrate
+        amount: -10
+    Medicine:
+      effects:
+      # Main effects
+      - !type:ModifyBleed
+        amount: -1.5
+      - !type:EvenHealthChange
+        conditions:
+        - !type:TotalDamageCondition
+          min: 0 # only heals when you're more dead than alive
+        damage: # Doesn't heal poison because if you OD'd I'm not giving you a safety net
+          Burn: -0.5
+          Brute: -0.5
+      - !type:HealthChange
+        conditions:
+        - !type:TotalDamageCondition
+          min: 0 # Just to bring you back from the brink of death
+        damage:
+          types:
+            Asphyxiation: -2
+      # Side effects
+      - !type:ResetNarcolepsy
+      - !type:SatiateHunger
+        factor: 1
+      - !type:SatiateThirst
+        factor: 1

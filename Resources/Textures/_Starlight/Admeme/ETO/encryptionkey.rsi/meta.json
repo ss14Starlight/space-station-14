@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by JustAdler for https://github.com/ss14Starlight/space-station-14 | Edited by The Purple Screen",
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "states":
+    [
+ 	{
+            "name": "base_eto",
+			"copyright": "The Purple Screen"
+        },
+        {
+            "name": "eto_icon",
+			"copyright": "The Purple Screen"
+        }
+    ]
+}
