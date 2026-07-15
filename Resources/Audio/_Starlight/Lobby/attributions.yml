@@ -67,3 +67,8 @@
   license: "CC-BY-ND-4.0"
   copyright: "Created by Randy Goffe (HOME) for Starlight SS14"
   source: "https://github.com/ss14Starlight/space-station-14/tree/Starlight/Resources/Audio/_Starlight/Lobby/HOME_Burn_Chamber_Starlight.ogg"
+
+- files: ["stenchOfWhiskey.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Stench of Whiskey, by hermitsabee"
+  source: "https://www.youtube.com/watch?v=DEnavbxRlf8"
