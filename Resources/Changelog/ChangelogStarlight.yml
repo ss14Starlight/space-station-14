@@ -1,25 +1,4 @@
 Entries:
-- author: Psykana, Slarticodefast, Conflee
-  changes:
-  - message: Added T-Ray Scanner Modes, allowing you to toggle between showing All, Pipes, and Wires.
-    type: Add
-  id: 406246
-  time: '2026-06-26T19:11:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4864
-- author: Psykana, Slarticodefast, Conflee
-  changes:
-  - message: Changed event field naming as part of a refactor. All Upstream and current Starlight Repo files are corrected, however Downstreams of SL may need to confirm and swap their use of Equipee to the correct event field names.
-    type: Tweak
-  id: 406247
-  time: '2026-06-26T19:11:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4864
-- author: Toxyams
-  changes:
-  - message: Vampire ability descriptions.
-    type: Tweak
-  id: 406248
-  time: '2026-06-26T19:11:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4875
 - author: Caws
   changes:
   - message: Lowered the required number of readied players for Cosmic Cult to 20 (down from 30).
@@ -2799,4 +2778,25 @@ Entries:
   id: 406645
   time: '2026-07-15T11:04:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5049
+- author: SpaghettiBit
+  changes:
+  - message: Added Avali guidebook entry regarding large caliber weapon knockback.
+    type: Add
+  id: 406646
+  time: '2026-07-15T11:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5141
+- author: SpaghettiBit
+  changes:
+  - message: 'Tweaked Avali guidebook: Nexus information blurb.'
+    type: Tweak
+  id: 406647
+  time: '2026-07-15T11:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5141
+- author: SpaghettiBit
+  changes:
+  - message: 'Tweaked Avali guidebook: Sound blurb.'
+    type: Tweak
+  id: 406648
+  time: '2026-07-15T11:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5141
 Order: -1
