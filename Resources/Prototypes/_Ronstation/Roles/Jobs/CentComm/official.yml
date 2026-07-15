@@ -1,0 +1,57 @@
+- type: startingGear
+  id: CentcomFormalGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomFormal
+    back: ClothingBackpackSatchelHoldingCentcomFormalFilled
+    shoes: ClothingShoesBootsCombatFilled
+    mask: ClothingMaskGasCentcom
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    id: CentcomPDA
+    ears: ClothingHeadsetCentCom
+    belt: BoxFolderCentComClipboardThreePapers
+    pocket1: WeaponDisablerAdvanced
+    pocket2: WeaponRevolverMateba
+  inhand:
+  - MindShieldImplanter
+  - DeathRattleImplanterCentcomm
+
+- type: startingGear
+  id: CentcomInspectorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcomFormalDress
+    shoes: ClothingShoesBootsJackFilled
+    mask: ClothingMaskGasCentcom
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    id: CentcomPDA
+    ears: ClothingHeadsetCentCom
+    pocket1: WeaponDisablerAdvanced
+    pocket2: FlashlightSeclite
+    suitstorage: OxygenTankFilled
+  inhand:
+  - BriefcaseCentcomInspector
+- type: startingGear
+# This loadout is meant for very specific circumstances, or if the relevant character will remain on CentComm.
+# Due to the items inside, any character ON STATION with this loadout should have ERT Sec guards.
+# Example usage: In-character investigations ordeals with corrupt command (in-character, not OOC rulebreaks.)
+  id: CentcomOfficerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcomFormalDress
+    back: ClothingBackpackSatchelHoldingCentcomOfficerFilled
+    shoes: ClothingShoesBootsJackFilled
+    head: ClothingHeadHatCentcomcap
+    mask: ClothingMaskGasCentcom
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    gloves: ClothingHandsGlovesCombat
+    eyes: ClothingEyesGlassesCentComm
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingBeltSheathFilled
+    pocket1: WeaponDisablerAdvanced
+    pocket2: WeaponRevolverMateba
+  inhand:
+  - MindShieldImplanter
+  - DeathRattleImplanterCentcomm

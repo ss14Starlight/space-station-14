@@ -74,6 +74,19 @@
       forceEnableEmergencyLights: true
       shuttleTime: 1200
       dimmedLightMultiplier: 0 # Starlight
+    phnxdown: # Begin Phoenix Station
+      announcement: alert-level-phnxdown-announcement
+      selectable: false
+      sound:
+        path: /Audio/Misc/epsilon.ogg
+        params:
+          volume: -2
+      disableSelection: true
+      color: DarkViolet #This is a soft replacement for code Epsilon, hence using the same colors.
+      emergencyLightColor: "#938aff" #Starlight
+      forceEnableEmergencyLights: true
+      shuttleTime: 1200
+    # End Phoenix Station
     omega: # begin starlight
       announcement: alert-level-omega-announcement
       selectable: false
