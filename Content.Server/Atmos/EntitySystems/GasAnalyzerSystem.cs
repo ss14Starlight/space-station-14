@@ -265,7 +265,7 @@ public sealed partial class GasAnalyzerSystem : EntitySystem
 
             if (mixture != null)
             {
-                var gasName = Loc.GetString(gas.Name);
+                var gasName = gas.Name; //starlight
                 gases.Add(new GasEntry(gasName, mixture[i], gas.Color));
             }
         }
