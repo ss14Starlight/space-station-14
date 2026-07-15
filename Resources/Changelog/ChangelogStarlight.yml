@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Fixed tiles under maints shop, security.
-    type: Fix
-  id: 406243
-  time: '2026-06-26T13:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4921
-- author: Cvlancer
-  changes:
   - message: (OASIS) Fixed security dispo pipes.
     type: Fix
   id: 406244
@@ -2799,4 +2792,11 @@ Entries:
   id: 406642
   time: '2026-07-15T10:01:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5140
+- author: joshujo
+  changes:
+  - message: Ulnitranium is no longer scrubbed by scrubbers by default.
+    type: Tweak
+  id: 406643
+  time: '2026-07-15T10:36:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5145
 Order: -1
