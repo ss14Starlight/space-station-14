@@ -3,6 +3,8 @@
   id: ShitStationEventScheduler
   parent: BaseGameRule
   components:
+  - type: GameRule
+    minPlayers: 15
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
       tableId: ShitGameRulesTable

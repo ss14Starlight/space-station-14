@@ -355,6 +355,12 @@ public sealed partial class GameTicker
         var query = EntityQueryEnumerator<GameRuleComponent>();
         while (query.MoveNext(out var uid, out var gameRule))
         {
+            #region Starlight
+            // Only rules that are currently added to this round can gate round start.
+            if (!IsGameRuleAdded(uid, gameRule))
+                continue;
+            #endregion
+
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 
