@@ -1,6 +1,5 @@
 using Content.Server._Starlight.StationEvents.Components;
 using Content.Server.Antag;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
@@ -31,14 +30,14 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
     {
         base.Added(uid, comp, gameRule, args);
 
-        comp.TargetStation = ResolveTargetStation(uid);
-        if (comp.TargetStation == null)
+        var station = CompOrNull<StationEventComponent>(uid)?.TargetStation;
+        if (station is null && !TryGetRandomStation(out station))
         {
             ForceEndSelf(uid);
             return;
         }
 
-        PopulateValidLocations(comp, comp.TargetStation.Value);
+        PopulateValidLocations(comp, station.Value);
 
         if (comp.ValidLocations.Count == 0)
             ForceEndSelf(uid);
@@ -51,30 +50,6 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
         // Keep a safety check for cases where map/grid state changed between add and start.
         if (comp.ValidLocations.Count == 0)
             ForceEndSelf(uid);
-    }
-
-    private EntityUid? ResolveTargetStation(EntityUid uid)
-    {
-        if (CompOrNull<StationEventComponent>(uid)?.TargetStation is { } station)
-            return station;
-
-        if (TryComp<RuleGridsComponent>(uid, out var grids))
-        {
-            if (grids.Map != null && StationSystem.GetStationInMap(grids.Map.Value) is { } mapStation)
-                return mapStation;
-
-            foreach (var grid in grids.MapGrids)
-            {
-                if (TryComp<StationMemberComponent>(grid, out var member))
-                    return member.Station;
-            }
-        }
-
-        if (StationSystem.GetStationInMap(GameTicker.DefaultMap) is { } defaultStation)
-            return defaultStation;
-
-        var stations = StationSystem.GetStations();
-        return stations.Count > 0 ? stations[0] : null;
     }
 
     private void PopulateValidLocations(VentSpawnRuleComponent comp, EntityUid station)
@@ -91,27 +66,13 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
                 continue;
             }
 
-            var member = CompOrNull<StationMemberComponent>(transform.GridUid);
-            if (member == null)
-                continue;
-
-            if (member.Station != station)
-                continue;
-
-            comp.ValidLocations.Add((_transform.GetMapCoordinates(transform), loc));
+            if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
+                comp.ValidLocations.Add((_transform.GetMapCoordinates(transform), loc));
         }
     }
 
     private void OnSelectLocation(Entity<VentSpawnRuleComponent> ent, ref AntagSelectLocationEvent args)
     {
-        if (ent.Comp.ValidLocations.Count == 0)
-        {
-            // If selection happens before vents were fully available, refresh locations now.
-            ent.Comp.TargetStation ??= ResolveTargetStation(ent.Owner);
-            if (ent.Comp.TargetStation != null)
-                PopulateValidLocations(ent.Comp, ent.Comp.TargetStation.Value);
-        }
-
         if (ent.Comp.ValidLocations.Count == 0) return;
 
         var pair = ent.Comp.ValidLocations[RobustRandom.Next(ent.Comp.ValidLocations.Count)];
