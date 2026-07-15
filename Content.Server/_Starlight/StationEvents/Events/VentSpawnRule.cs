@@ -30,7 +30,10 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
     {
         base.Added(uid, comp, gameRule, args);
 
-        var station = CompOrNull<StationEventComponent>(uid)?.TargetStation;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
+            return;
+
+        var station = stationEvent.TargetStation;
         if (station is null && !TryGetRandomStation(out station))
         {
             ForceEndSelf(uid);
