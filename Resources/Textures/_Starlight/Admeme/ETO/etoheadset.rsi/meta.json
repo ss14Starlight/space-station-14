@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by The Purple Screen",
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "states":
+    [
+        {
+            "name": "icon_alt"
+        },
+        {
+            "name": "alt-equipped-EARS",
+            "directions": 4
+        },
+        {
+            "name": "icon"
+        },
+        {
+            "name": "equipped-EARS",
+            "directions": 4
+        }
+    ]
+}

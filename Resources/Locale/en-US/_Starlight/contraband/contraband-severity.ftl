@@ -2,3 +2,4 @@
 contraband-examine-text-advancedcyberlimbs = [color=gray]This item is highly illegal Cybernetic contraband![/color]
 contraband-examine-text-tsf = [color=cyan]This item is Trans-Solar Federation property![/color]
 contraband-examine-text-medtak = [color=white]This item is restricted to MedTak operators.[/color]
+contraband-examine-text-eto = [color=#c5be14]This item is illegal E.T.O Contraband! [/color]

@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "All PDA's here made by The Purple Screen.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pda"
+    },
+    {
+      "name": "id_overlay"
+    },
+    {
+      "name": "equipped-BELT",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "insert_overlay"
+    },
+    {
+      "name": "light_overlay"
+    },
+    {
+      "name": "equipped-IDCARD",
+      "directions": 4
+    },
+    {
+      "name": "pda-ETO",
+      "copyright": "Made by The Purple Screen for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+    {
+      "name": "pda-ETOCorpsman",
+      "copyright": "Made by The Purple Screen for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+    {
+      "name": "pda-ETODemo",
+      "copyright": "Made by The Purple Screen for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+    {
+      "name": "pda-ETOLead",
+      "copyright": "Made by The Purple Screen for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+    {
+      "name": "pda-ETOMartyr",
+      "copyright": "Made by The Purple Screen for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+    {
+      "name": "pda-ETOTEMPLATE",
+      "copyright": "Made by The Purple Screen for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+    {
+      "name": "pda-ETOCombatTech",
+      "copyright": "Made by The Purple Screen for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    }
+  ]
+}
