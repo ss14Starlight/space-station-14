@@ -46,7 +46,7 @@
   id: DynamicSurvivalEventScheduler
   components:
   - type: GameRule
-    minPlayers: 10
+    minPlayers: 15
   - type: SubGamemodes
     rules:
     - id: DynamicRampingEventScheduler
@@ -62,7 +62,7 @@
   id: DynamicKesslerSyndromeEventScheduler
   components:
   - type: GameRule
-    minPlayers: 10
+    minPlayers: 15
   - type: SubGamemodes
     rules:
     - id: KesslerSyndromeScheduler
@@ -78,7 +78,7 @@
   id: DynamicShitStationEventScheduler
   components:
   - type: GameRule
-    minPlayers: 0
+    minPlayers: 15
   - type: SubGamemodes
     rules:
     - id: ShitStationEventScheduler

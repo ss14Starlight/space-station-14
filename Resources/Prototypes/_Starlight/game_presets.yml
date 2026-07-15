@@ -37,10 +37,11 @@
   alias:
     - shitstation
     - trashstation
+    - shittersafari2
   name: shitstation-title
   description: shitstation-description
   showInVote: true
-  minPlayers: 0
+  minPlayers: 15
   rules:
     - ShitStationEventScheduler # It's all trash/shit/ion/derelict/minor critter event spawns. Should make the station feel sufficiently shitty.
     - BasicStationEventScheduler
@@ -225,7 +226,7 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
-  minPlayers: 15
+  minPlayers: 40
   voteCooldown: 0 # This one actually can roll back to back.
   rules:
   - SLDynamicRuleLP

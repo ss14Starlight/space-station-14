@@ -3,7 +3,7 @@
   id: SLDynamicRule
   components:
   - type: GameRule
-    minPlayers: 15 # Realistically you won't get many good gamemodes rolling with less than 15 players.
+    minPlayers: 40 # Min for Wizard
   - type: DynamicRule
     startingBudgetMin: 250 # 200's a bit too low, can't even roll most minor antags alongside anything but traitor.
     startingBudgetMax: 550
@@ -31,19 +31,21 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 10
+            min: 15
         - id: DynamicKesslerSyndromeEventScheduler
           weight: 1
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 10
+            min: 15
         - id: DynamicShitStationEventScheduler
           weight: 3
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
       # Major Rules
       - !type:GroupSelector
         conditions:
@@ -350,7 +352,7 @@
   id: SLDynamicRuleLP
   components:
   - type: GameRule
-    minPlayers: 15
+    minPlayers: 40
   - type: DynamicRule
     startingBudgetMin: 200 # Beta can have a lower threshold.
     startingBudgetMax: 400
@@ -378,19 +380,21 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 10
+            min: 15
         - id: DynamicKesslerSyndromeEventScheduler
           weight: 1
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 10
+            min: 15
         - id: DynamicShitStationEventScheduler
           weight: 2
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
       # Major Rules, Beta
       - !type:GroupSelector
         conditions:
