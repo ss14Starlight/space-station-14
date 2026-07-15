@@ -94,6 +94,7 @@ namespace Content.Client.Chemistry.UI
             BottleDosage.InitDefaultButtons();
 
             // Ensure label length is within the character limit.
+            ContainerLabelLineEdit.IsValid = s => s.Length <= SharedChemMaster.LabelMaxLength; // Starlight
             LabelLineEdit.IsValid = s => s.Length <= SharedChemMaster.LabelMaxLength;
 
             Tabs.SetTabTitle(0, Loc.GetString("chem-master-window-input-tab"));
@@ -155,6 +156,11 @@ namespace Content.Client.Chemistry.UI
 
             if (castState.UpdateLabel)
                 LabelLine = GenerateLabel(castState);
+
+            // Starlight-start
+            if (string.IsNullOrEmpty(ContainerLabelLine))
+                ContainerLabelLine = castState.OutputContainerInfo?.ContainerLabel ?? "";
+            // Starlight-end
 
             // Ensure the Panel Info is updated, including UI elements for Buffer Volume, Output Container and so on
             UpdatePanelInfo(castState);
@@ -478,6 +484,13 @@ namespace Content.Client.Chemistry.UI
             get => LabelLineEdit.Text;
             set => LabelLineEdit.Text = value;
         }
+        // Starlight Start
+        public string ContainerLabelLine
+        {
+            get => ContainerLabelLineEdit.Text;
+            set => ContainerLabelLineEdit.Text = value;
+        }
+        // Starlight end
 
         private void SetBufferText(FixedPoint2? volume, string text)
         {
