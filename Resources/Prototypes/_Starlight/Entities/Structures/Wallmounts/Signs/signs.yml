@@ -108,6 +108,7 @@
       sprite: _Starlight/Structures/Wallmounts/signs.rsi
       state: heat
 
+- type: entity
   id: SignBreakCargo
   name: cargo breakroom sign
   description: A sign indicating where the breakroom is.
