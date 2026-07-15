@@ -38,7 +38,8 @@ public sealed class AllGamePresetsStartTest : GameTest
         Dirty = true,
         DummyTicker = false,
         Connected = true,
-        InLobby = true
+        InLobby = true,
+        Map = PoolManager.TestStation // Starlight
     };
 
     // Tests that all game modes can start given ideal circumstances.
