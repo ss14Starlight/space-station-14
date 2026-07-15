@@ -229,8 +229,6 @@
   voteCooldown: 0 # This one actually can roll back to back.
   rules:
   - SLDynamicRuleLP
-  - DynamicStationEventScheduler
-  - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
+  - SpaceTrafficControlEventScheduler # No event/meteor schedulers, since we handle that in dynamic too.
   - BasicRoundstartVariation
   - RailroadingMinor
