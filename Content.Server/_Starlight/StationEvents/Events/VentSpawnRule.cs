@@ -32,12 +32,26 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
         base.Added(uid, comp, gameRule, args);
 
         comp.TargetStation = ResolveTargetStation(uid);
-        if (comp.TargetStation != null)
-            PopulateValidLocations(comp, comp.TargetStation.Value);
+        if (comp.TargetStation == null)
+        {
+            ForceEndSelf(uid);
+            return;
+        }
+
+        PopulateValidLocations(comp, comp.TargetStation.Value);
+
+        if (comp.ValidLocations.Count == 0)
+            ForceEndSelf(uid);
     }
 
     protected override void Started(EntityUid uid, VentSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
-        => base.Started(uid, comp, gameRule, args);
+    {
+        base.Started(uid, comp, gameRule, args);
+
+        // Keep a safety check for cases where map/grid state changed between add and start.
+        if (comp.ValidLocations.Count == 0)
+            ForceEndSelf(uid);
+    }
 
     private EntityUid? ResolveTargetStation(EntityUid uid)
     {
