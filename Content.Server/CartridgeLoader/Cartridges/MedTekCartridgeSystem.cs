@@ -1,12 +1,8 @@
 using Content.Server.Medical.Components;
 using Content.Shared.CartridgeLoader;
 //FarHorizons Start
-using Content.Shared.Verbs;
-using Content.Shared.Inventory;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Actions;
-using Content.Shared.Damage.Components;
 using Content.Shared._Starlight.CartridgeLoader.Cartridges;
 //FarHorizons End
 
@@ -25,13 +21,13 @@ public sealed partial class MedTekCartridgeSystem : EntitySystem
         //FarHorizons Start
         SubscribeLocalEvent<HealthAnalyzerComponent, MedTekActionEvent>(OnMedTekAction);
         SubscribeLocalEvent<HealthAnalyzerComponent, GetItemActionsEvent>(OnGetActions);
-        SubscribeLocalEvent<HealthAnalyzerComponent, InventoryRelayedEvent<GetVerbsEvent<InnateVerb>>>(AddVerbAnalyzer);
         //FarHorizons End
     }
 
     private void OnCartridgeAdded(Entity<MedTekCartridgeComponent> ent, ref CartridgeAddedEvent args)
     {
         var healthAnalyzer = EnsureComp<HealthAnalyzerComponent>(args.Loader);
+        EnsureComp<MedTekAnalyzerComponent>(args.Loader); // Starlight
     }
 
     private void OnCartridgeRemoved(Entity<MedTekCartridgeComponent> ent, ref CartridgeRemovedEvent args)
@@ -40,34 +36,11 @@ public sealed partial class MedTekCartridgeSystem : EntitySystem
         if (!_cartridgeLoaderSystem.HasProgram<MedTekCartridgeComponent>(args.Loader))
         {
             RemComp<HealthAnalyzerComponent>(args.Loader);
+            RemComp<MedTekAnalyzerComponent>(args.Loader); // Starlight
         }
     }
 
     //FarHorizons Start
-    private void AddVerbAnalyzer(Entity<HealthAnalyzerComponent> ent, ref InventoryRelayedEvent<GetVerbsEvent<InnateVerb>> args)
-    {
-        if (!args.Args.CanInteract || !args.Args.CanAccess)
-            return;
-        if (!HasComp<DamageableComponent>(args.Args.Target) || !HasComp<MobStateComponent>(args.Args.Target))
-            return;
-
-        var user = args.Args.User;
-        var target = args.Args.Target;
-
-        if (TryComp(target, out TransformComponent? targetTransform))
-        {
-            var patientCoordinates = targetTransform.Coordinates;
-            InnateVerb verb = new()
-            {
-                Act = () => _interactionSystem.InteractDoAfter(user, ent.Owner, target, patientCoordinates, true), // Setting canReach to true, because if it's false - args.Args.CanAccess will be false and this code won't run
-                Text = "Analyze Patient",
-                IconEntity = GetNetEntity(ent),
-                Priority = 2,
-            };
-            args.Args.Verbs.Add(verb);
-        }
-    }
-
     private void OnGetActions(Entity<HealthAnalyzerComponent> ent, ref GetItemActionsEvent args)
     {
         if (_cartridgeLoaderSystem.HasProgram<MedTekCartridgeComponent>(ent.Owner))

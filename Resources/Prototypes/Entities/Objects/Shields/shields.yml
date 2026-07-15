@@ -59,13 +59,15 @@
                 SheetGlass:
                   min: 2
                   max: 2
+    - type: StaticPrice
+      price: 100
     # Starlight-start
+    - type: Pierceable
+      level: Flesh
     - type: Tag
       tags:
         - Shield
-    # Starlight-end
-    - type: StaticPrice
-      price: 100
+    #Starlight-end
 
 - type: entity
   name: base repairable shield
@@ -83,6 +85,10 @@
     fuelCost: 10 # 1/2 of a Welder for a full repair
     doAfterDelay: 5
     allowSelfRepair: false
+  #Starlight-start
+  - type: Pierceable
+    level: Metal
+  # Starlight-end
 
 #Security Shields
 
@@ -203,6 +209,8 @@
                   max: 5
     - type: StaticPrice
       price: 150
+    - type: Pierceable #Starlight
+      level: Wood
 
 #Starlight Changes Start
 
@@ -318,6 +326,8 @@
                 SheetSteel:
                   min: 1
                   max: 2
+    - type: Pierceable #Starlight
+      level: Wood
 
 #Starlight Changes End
 
@@ -373,6 +383,8 @@
             - !type:PlaySoundBehavior
               sound:
                 collection: WoodDestroy
+    - type: Pierceable #Starlight
+      level: Wood
 
 #Magic/Cult Shields (give these to wizard for now)
 
@@ -554,6 +566,13 @@
                   max: 1
     - type: StaticPrice
       price: 350
+    # Starlight-start
+    - type: Tag
+      tags:
+        - Shield
+    - type: Pierceable
+      level: HardenedMetal
+    # Starlight-end
 
 - type: entity
   name: broken energy shield

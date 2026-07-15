@@ -201,29 +201,6 @@
         factor: 1
 
 - type: reagent
-  id: Mortucussus
-  name: reagent-name-mortucussus
-  group: Biological
-  desc: reagent-desc-mortucussus
-  physicalDesc: reagent-physical-desc-necrotic
-  flavor: bitter
-  color: "#2b0700"
-  metabolisms:
-    Drink:
-      # Disgusting!
-      effects:
-      - !type:SatiateThirst
-        factor: -0.5
-    Poison:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 4
-      - !type:Vomit
-        probability: 0.25
-
-- type: reagent
   parent: Blood
   id: BloodChangeling
 

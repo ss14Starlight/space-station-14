@@ -22,7 +22,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
     {
         base.Added(uid, component, gameRule, args);
 
-        component.Budget = _random.Next(component.StartingBudgetMin, component.StartingBudgetMax);;
+        component.Budget = _random.Next(component.StartingBudgetMin, component.StartingBudgetMax);
         component.NextRuleTime = Timing.CurTime + _random.Next(component.MinRuleInterval, component.MaxRuleInterval);
     }
 
@@ -75,15 +75,24 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
         return _entityTable.GetSpawns(entity.Comp.Table, ctx: ctx);
     }
 
+    // Starlight, added variant budget
     /// <summary>
     /// Updates the budget of the provided dynamic rule component based on the amount of time since the last update
     /// multiplied by the <see cref="DynamicRuleComponent.BudgetPerSecond"/> value.
+    /// After the budget has reached <see cref="DynamicRuleComponent.VariantBudgetThreshold"/> value,
+    /// the budget will increase at the rate specified by <see cref="DynamicRuleComponent.VariantBudgetPerSecond"/> instead.
     /// </summary>
     private void UpdateBudget(Entity<DynamicRuleComponent> entity)
     {
-        var duration = (float) (Timing.CurTime - entity.Comp.LastBudgetUpdate).TotalSeconds;
+        var duration = (float)(Timing.CurTime - entity.Comp.LastBudgetUpdate).TotalSeconds;
 
-        entity.Comp.Budget += duration * entity.Comp.BudgetPerSecond;
+        #region Starlight
+        // If the budget has reached or exceeded the variant threshold, we use the variant budget per second, otherwise we use the normal budget per second.
+        if (entity.Comp.Budget >= entity.Comp.VariantBudgetThreshold)
+            entity.Comp.Budget += duration * entity.Comp.VariantBudgetPerSecond;
+        else
+            entity.Comp.Budget += duration * entity.Comp.BudgetPerSecond;
+        #endregion
         entity.Comp.LastBudgetUpdate = Timing.CurTime;
     }
 

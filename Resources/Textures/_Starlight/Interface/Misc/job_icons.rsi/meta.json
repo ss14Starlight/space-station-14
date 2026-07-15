@@ -17,17 +17,17 @@
         },
         {
             "name": "BlueShield",
-			"copyright": "Modified by wonderfulnewworld"
+            "copyright": "Modified by wonderfulnewworld"
         },
-		{
+        {
             "name": "NanoTrasenRepresentative",
-			"copyright": "TG Station, wonderfulnewworld"
+            "copyright": "TG Station, wonderfulnewworld"
         },
-		{
+        {
             "name": "StationAi",
             "copyright": "TG Station, lunarcomets, wonderfulnewworld"
         },
-		{
+        {
             "name": "NanoTrasenCareerTrainer",
             "copyright": "TG Station, K-Dynamic, wonderfulnewworld"
         },
@@ -39,7 +39,20 @@
         },
         {
             "name": "MailTech",
-            "delays": [ [ 10, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ] ],
+            "delays": [
+                [
+                    10,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
             "copyright": "Happyrobot33, fqqf"
         },
         {
@@ -47,12 +60,19 @@
             "copyright": "BORT"
         },
         {
-	        "name": "Performer",
-	        "copyright": "wonderfulnewworld"
+            "name": "Performer",
+            "copyright": "wonderfulnewworld"
         },
         {
             "name": "LawyerSL",
-            "delays": [[10, 0.2, 0.2, 0.2]]
+            "delays": [
+                [
+                    10,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
         },
         {
             "name": "CentComm",
@@ -121,7 +141,11 @@
         },
         {
             "name": "NTNCBlueShield",
-            "copyright": "Conflee"
+            "copyright": "Conflee Modified by Tjmaxmillion"
+        },
+        {
+            "name": "CCGreenShield",
+            "copyright": "Conflee Modified by Tjmaxmillion"
         },
         {
             "name": "SalvageLead",
@@ -194,7 +218,24 @@
         {
             "name": "TSF_Mindshield",
             "copyright": "Taken from commit: https://github.com/Monolith-Station/Monolith/commit/87c200ff42a1987117105d49d885df82c5912bd9",
-            "delays": [ [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ] ]
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
         },
         {
             "name": "Blackstar",
@@ -227,7 +268,23 @@
         {
             "name": "MedTak_Mindshield",
             "copyright": "SevenShades",
-            "delays": [ [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ] ]
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
         }
     ]
 }

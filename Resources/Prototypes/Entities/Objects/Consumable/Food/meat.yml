@@ -403,6 +403,7 @@
   description: A slab of goliath meat. It's not very edible now, but it cooks great in lava.
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/meat.rsi #SL Edit
     state: goliath
   - type: SolutionContainerManager
     solutions:
@@ -1347,6 +1348,7 @@
     - Meat
     - Steak
   - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/meat.rsi #SL Edit
     layers:
     - state: goliath-cooked
   - type: SolutionContainerManager

@@ -17,22 +17,26 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
+#region Starlight
+using Content.Client._Starlight.UserInterface;
+#endregion
 
 namespace Content.Client.Medical.CrewMonitoring;
 
 [GenerateTypedNameReferences]
-public sealed partial class CrewMonitoringWindow : FancyWindow
+public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starlight: popout support
 {
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     private readonly SharedTransformSystem _transformSystem;
     private readonly SpriteSystem _spriteSystem;
 
+    protected override Control Control => RootContainer; // Starlight: pop-out support
+
     private NetEntity? _trackedEntity;
     private bool _tryToScrollToListFocus;
     private Texture? _blipTexture;
     public event Action<EntityCoordinates>? MapClicked; // Starlight
-
 
     public CrewMonitoringWindow()
     {

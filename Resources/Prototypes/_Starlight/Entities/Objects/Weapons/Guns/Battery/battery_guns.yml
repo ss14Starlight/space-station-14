@@ -36,6 +36,7 @@
     magState: disable
     steps: 5
     zeroVisible: true
+  - type: PacifismAllowedGun
   - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
@@ -456,7 +457,8 @@
 - type: entity
   name: m1911
   parent: [BaseWeaponBatterySmall, BaseSecurityContraband ]
-  id: WeaponM1911
+  id: WeaponPulseM1911
+  suffix: Pulse
   description: A compact pulse core in a classic NanoTrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
   - type: Appearance
@@ -1112,6 +1114,10 @@
           fireCost: 40
           magState: disable
           visualState: disable-unshaded
+        - proto: TaserBolt # same as X-01
+          fireCost: 100
+          magState: stun
+          visualState: stun-unshaded
         - proto: RedHeavyLaser # Does more damage but costs more energy. 8 shots per full charge
           fireCost: 200
           magState: kill

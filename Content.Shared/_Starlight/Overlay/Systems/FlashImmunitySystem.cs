@@ -55,14 +55,14 @@ public sealed partial class FlashImmunitySystem : EntitySystem
 
     private void OnFlashImmunityEquipped(EntityUid uid, FlashImmunityComponent component, GotEquippedEvent args)
     {
-        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.Equipee));
-        RaiseLocalEvent(args.Equipee, flashImmunityChangedEvent);
+        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.EquipTarget));
+        RaiseLocalEvent(args.EquipTarget, flashImmunityChangedEvent);
     }
 
     private void OnFlashImmunityUnEquipped(EntityUid uid, FlashImmunityComponent component, GotUnequippedEvent args)
     {
-        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.Equipee));
-        RaiseLocalEvent(args.Equipee, flashImmunityChangedEvent);
+        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.EquipTarget));
+        RaiseLocalEvent(args.EquipTarget, flashImmunityChangedEvent);
     }
 
     private EntityUid GetPossibleWearer(EntityUid uid)

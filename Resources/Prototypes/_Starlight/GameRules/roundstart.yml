@@ -1,20 +1,4 @@
 # event schedulers
-
-- type: entityTable
-  id: BasicGameRulesTableNoRoundenders
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-      - !type:NestedSelector
-        tableId: BasicCalmEventsTable
-      - !type:NestedSelector
-        tableId: BasicAntagEventsTableNoRoundenders
-      - !type:NestedSelector
-        tableId: CargoGiftsTable
-      - !type:NestedSelector
-        tableId: CalmPestEventsTable
-      - !type:NestedSelector
-        tableId: SpicyPestEventsTable
-
 - type: entity
   parent: BaseGameRule
   id: SubGamemodesRuleNoChangelings
@@ -22,17 +6,19 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.50 # Starlight. Adds up to 1.
+      prob: 0.48 # Starlight. Adds up to 1.
     - id: VampireLess # Starlight. The rework is here.
       prob: 0.25
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
-    - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Equalizing subgamemodes.
+    - id: Devil
+      prob: 0.05 # rare
+    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
+    #  prob: 0.05
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
-      prob: 0.20
+      prob: 0.17
 
 - type: entity
   parent: BaseGameRule
@@ -48,11 +34,12 @@
       prob: 0.175
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
-    - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Equalizing subgamemodes.
+    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
+    #      prob: 0.05
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     # No SELF Agents in rev games because of the FREEmag.
+    # no devil because this is the secret set used for conversion antags i guess? either way dont want revs spamming devil
 
 - type: entity
   parent: BaseGameRule
@@ -61,13 +48,15 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.60 # Same as NoChangelings
+      prob: 0.55
     - id: SLChangeling #Starlight lings
       prob: 0.20 # Can be a little higher now, since lings don't have their standalone anymore.
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
-    - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Equalizing subgamemodes.
+    - id: Devil
+      prob: 0.05 # rare
+    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
+    #  prob: 0.05
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
@@ -80,15 +69,17 @@
   - type: SubGamemodes
     rules:
     - id: ThiefLess # So that only 3 thieves max spawn in rev games.
-      prob: 0.30 # Starlight, to account for Wizard and Xenoborgs
+      prob: 0.28 # Starlight, to account for Wizard and Xenoborgs
     - id: SubWizard
       prob: 0.05
-    - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-      prob: 0.05 # Equalizing subgamemodes.
+    - id: Devil
+      prob: 0.05
+    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
+    #      prob: 0.05
     - id: Brighteye
       prob: 0.05
     - id: SiliconLiberation
-      prob: 0.15
+      prob: 0.12
 
 - type: entity
   parent: BaseGameRule
@@ -104,8 +95,8 @@
       prob: 0.20
     - id: SLChangelingLess # I have managed to make changelings lose their abilities when they turn into zombies, so the concern with them is gone.
       prob: 0.20
-    - id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
-      prob: 0.05
+    #- id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
+    #  prob: 0.05
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation # I mean technically there's nothing inherently wrong with them showing up.
@@ -125,8 +116,8 @@
       prob: 0.15
     - id: SubWizard
       prob: 0.05
-    - id: SubXenoborgs
-      prob: 0.05
+    #- id: SubXenoborgs
+    #  prob: 0.05
     # No SELF Agents in Nukie games because of the FREEmag = free guns!!!
 
 - type: entity
@@ -214,3 +205,10 @@
       - MindRoleTerrorPrincess
   - type: DynamicRuleCost
     cost: 200
+
+- type: entity
+  parent: Nukeops
+  id: NukeopsLate
+  components:
+  - type: DynamicRuleCost
+    cost: 300

@@ -24,3 +24,5 @@
       pickPlayer: false
       mindRoles:
       - MindRoleGhostRoleTeamAntagonist
+  - type: DynamicRuleCost # Starlight
+    cost: 75 # Starlight

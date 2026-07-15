@@ -313,6 +313,9 @@
       sprite: _Starlight/Clothing/Head/Helmets/greenshield_helmet.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Head/Helmets/greenshield_helmet.rsi
+    - type: Tag
+      tags:
+        - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase

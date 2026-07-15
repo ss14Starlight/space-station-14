@@ -135,6 +135,7 @@
     ClothingNeckMantleDecoratedSalvagerStealObjective: 1 # Salvage Lead's mantle. They're usually always wearing it...
     SalvageShuttleCircuitboardStealObjective: 1 # technically qm
     MiningShuttleCircuitboardStealObjective: 1 # ditto
+    ShipyardCircuitboardStealObjective: 1 # bridge/caps locker
     SpyglassCaptainStealObjective: 0.7 #Cappy
     # Starlight-end
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med

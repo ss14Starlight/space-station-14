@@ -63,6 +63,7 @@
 - type: entity
   parent: SurveillanceCameraRouterBase
   id: SurveillanceCameraRouterEngineering
+  categories: [ ShouldMapStation ] # Starlight
   name: engineering camera router
   suffix: Engineering
   components:
@@ -72,6 +73,7 @@
 - type: entity
   parent: SurveillanceCameraRouterBase
   id: SurveillanceCameraRouterSecurity
+  categories: [ ShouldMapStation ] # Starlight
   name: security camera router
   suffix: Security
   components:
@@ -81,6 +83,7 @@
 - type: entity
   parent: SurveillanceCameraRouterBase
   id: SurveillanceCameraRouterScience
+  categories: [ ShouldMapStation ] # Starlight
   name: science camera router
   suffix: Science
   components:
@@ -90,6 +93,7 @@
 - type: entity
   parent: SurveillanceCameraRouterBase
   id: SurveillanceCameraRouterSupply
+  categories: [ ShouldMapStation ] # Starlight
   name: supply camera router
   suffix: Supply
   components:
@@ -99,6 +103,7 @@
 - type: entity
   parent: SurveillanceCameraRouterBase
   id: SurveillanceCameraRouterCommand
+  categories: [ ShouldMapStation ] # Starlight
   name: command camera router
   suffix: Command
   components:
@@ -108,6 +113,7 @@
 - type: entity
   parent: SurveillanceCameraRouterBase
   id: SurveillanceCameraRouterService
+  categories: [ ShouldMapStation ] # Starlight
   name: service camera router
   suffix: Service
   components:
@@ -117,6 +123,7 @@
 - type: entity
   parent: SurveillanceCameraRouterBase
   id: SurveillanceCameraRouterMedical
+  categories: [ ShouldMapStation ] # Starlight
   name: medical camera router
   suffix: Medical
   components:
@@ -126,6 +133,7 @@
 - type: entity
   parent: SurveillanceCameraRouterBase
   id: SurveillanceCameraRouterGeneral
+  categories: [ ShouldMapStation ] # Starlight
   name: general camera router
   suffix: General
   components:
@@ -190,6 +198,7 @@
 - type: entity
   parent: SurveillanceCameraWirelessRouterBase
   id: SurveillanceCameraWirelessRouterEntertainment
+  categories: [ ShouldMapStation ] # Starlight
   name: entertainment camera router
   suffix: Entertainment
   components:

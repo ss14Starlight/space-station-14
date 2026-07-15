@@ -93,6 +93,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineHugDispenser
+  categories: [ ShouldMapStation ]
   name: hug dispenser
   components:
   - type: Sprite
@@ -108,6 +109,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineFashion
+  categories: [ ShouldMapStation ]
   name: Fashion-o-Mat
   description: Happiness should be expensive.
   components:
@@ -126,6 +128,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineMedical
+  categories: [ ShouldMapStation ]
   name: medical dispenser
   components:
   - type: AccessReader
@@ -143,6 +146,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineEngi
+  categories: [ ShouldMapStation ]
   name: engi dispenser
   components:
   - type: AccessReader
@@ -158,6 +162,7 @@
 - type: entity
   parent: SLVendingMachine
   id: VendingMachineClown
+  categories: [ ShouldMapStation ]
   name: HohohonkersVend
   description: Get your honk fix here! Surprise the station with HohohonkersVend — the ultimate machine for hilarious pranks. Hack it, and you'll unlock something special!
   components:
@@ -174,6 +179,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSecurity
+  categories: [ ShouldMapStation ]
   name: security dispenser
   components:
   - type: AccessReader
@@ -190,6 +196,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSalvage
+  categories: [ ShouldMapStation ]
   name: salvage ticket machine
   components:
   - type: AccessReader
@@ -211,6 +218,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineMining
+  categories: [ ShouldMapStation ]
   name: mining ticket machine
   components:
     - type: AccessReader

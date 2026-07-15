@@ -66,7 +66,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 
     private void GotEquippedEvent(EntityUid uid, ShowNullSpaceComponent component, GotEquippedEvent args)
     {
-        if (args.Equipee != _playerMan.LocalEntity
+        if (args.EquipTarget != _playerMan.LocalEntity
             || !component.ShowShader
             || !TryComp<ClothingComponent>(uid, out var clothing)
             || !clothing.Slots.HasFlag(args.SlotFlags))

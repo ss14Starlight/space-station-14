@@ -8,6 +8,30 @@
   - type: AccessReader
     access: [["Command"]]
 
+- type: entity
+  id: TurnstileSecurity
+  parent: Turnstile
+  suffix: Security
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: TurnstileArmory
+  parent: Turnstile
+  suffix: Armory
+  components:
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: entity
+  id: TurnstileSyndicate
+  parent: Turnstile
+  suffix: Syndicate
+  components:
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+
 # CentComm turnstiles
 
 - type: entity

@@ -27,12 +27,12 @@
 
 - type: vessel
   id: Ingeniator
-  name: NTS 'Kickstart' Ingeniator
-  description: The NTS Ingeniator is a state-of-the-art mobile engineering platform designed to provide rapid infrastructure support to remote stations, outposts, and civilian installations. Equipped with a one-of-a-kind compact nuclear reactor, onboard atmospherics systems, and a fully stocked engineering workshop. If your station has completely lost air, power, and hope, this is the shuttle you need.
-  price: 100000
+  name: NTS 'Jumpstart' Mini-Ingeniator
+  description: A large engineering vessel designed to "Jumpstart" a station without a working Engineering Department.
+  price: 85000
   category: Large
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/ingeniator.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Mini_Ingeniator.yml
 
 - type: vessel
   id: Comet

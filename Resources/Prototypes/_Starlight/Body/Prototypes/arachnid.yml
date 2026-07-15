@@ -10,7 +10,7 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganArachnidEyes
-        tongue: OrganHumanTongue
+        tongue: OrganArachnidTongue
         eye_implant: null
         brain_implant: null # 🌟Starlight🌟
     torso:

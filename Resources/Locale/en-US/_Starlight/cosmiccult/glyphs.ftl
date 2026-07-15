@@ -7,6 +7,7 @@ cult-glyph-target-chaplain = A spark of divine power prevents the glyph's influe
 cult-glyph-target-brighteye = Nullspace energy prevents the glyph's influence from taking hold!
 cult-glyph-target-wizard = Mental insanity prevents the glyph's influence from taking hold!
 cult-glyph-target-otherantag = The target's mind is too twisted for the glyph's effects to take hold.
+cult-glyph-target-devil = Cold banality prevents the glyph's influence from taking hold!
 
 cult-glyph-name-knowledge = Pact of Knowledge
 cult-glyph-description-knowledge = Knowledge. Instills the spark of indelible knowledge. Able to convert most to join our ranks.

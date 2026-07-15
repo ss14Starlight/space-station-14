@@ -102,13 +102,13 @@ public sealed partial class DamageOnEquipSystem : EntitySystem
     {
         if (ev.SlotFlags != comp.TargetSlots) return;
         if (comp.EquipDamage is null) return;
-        DoDamage(uid, comp, ev.Equipee, comp.EquipDamage);
+        DoDamage(uid, comp, ev.EquipTarget, comp.EquipDamage);
     }
 
     private void OnGotUnequipped(EntityUid uid, DamageOnEquipComponent comp, GotUnequippedEvent ev)
     {
         if (ev.SlotFlags != comp.TargetSlots) return;
         if (comp.UnequipDamage is null) return;
-        DoDamage(uid, comp, ev.Equipee, comp.UnequipDamage);
+        DoDamage(uid, comp, ev.EquipTarget, comp.UnequipDamage);
     }
 }

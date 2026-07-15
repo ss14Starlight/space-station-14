@@ -35,12 +35,12 @@ public sealed partial class AccessClothingBlockerSystem : EntitySystem
 
         if (component.Access != null)
         {
-            var accesses = _accessReader.FindAccessTags(args.Equipee);
+            var accesses = _accessReader.FindAccessTags(args.EquipTarget);
             if (accesses.Any(a => a.ToString() == component.Access))
                 canUse = true;
         }
 
-        else if (_accessReader.IsAllowed(args.Equipee, uid, accessReader) )
+        else if (_accessReader.IsAllowed(args.EquipTarget, uid, accessReader) )
                 canUse = true;
 
         if (canUse)
@@ -48,7 +48,7 @@ public sealed partial class AccessClothingBlockerSystem : EntitySystem
 
         EntityManager.EnsureComponent<UnremoveableComponent>(uid);
         await PopupWithDelays(uid, component);
-        _gibSystem.Gib(args.Equipee, true);
+        _gibSystem.Gib(args.EquipTarget, true);
         _explosionSystem.QueueExplosion(uid, "Default", 50, 5, 30, canCreateVacuum: false);
     }
 

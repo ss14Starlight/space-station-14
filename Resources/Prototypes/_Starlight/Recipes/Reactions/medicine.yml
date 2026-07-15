@@ -110,6 +110,19 @@
     Ipecac: 1
 
 - type: reaction
+  id: Iceialin
+  impact: Medium
+  reactants:
+    Aloxadone:
+      amount: 10
+    Leporazine:
+      amount: 10
+    Arcryox:
+      amount: 10
+  products:
+    Iceialin: 2
+
+- type: reaction
   id: Necrosol
   impact: Medium
   minTemp: 370
@@ -124,3 +137,4 @@
       amount: 1
   products:
     Necrosol: 2
+

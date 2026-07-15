@@ -1,5 +1,7 @@
 using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Administration.Systems;
+using Content.Server.Atmos.Piping.Components;
+using Content.Server.Atmos.Piping.EntitySystems;
 using Content.Server.Chat.Managers;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
@@ -13,10 +15,11 @@ using static Content.Server.Administration.Systems.AdminVerbSystem;
 namespace Content.Server._Starlight.Administration.Systems;
 public sealed partial class AdminVerbSystem : EntitySystem
 {
-    [Dependency] private AdminTestArenaSystem _adminTestArenaSystem = default!;
-    [Dependency] private ISharedAdminManager _adminManager = default!;
-    [Dependency] private IEntityManager _entities = default!;
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private readonly AdminTestArenaSystem _adminTestArenaSystem = default!;
+    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
+    [Dependency] private readonly IEntityManager _entities = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private readonly IEntitySystemManager _sys = default!;
     public override void Initialize()
         => SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddVerbs);
     private void AddVerbs(GetVerbsEvent<Verb> args)
@@ -77,6 +80,25 @@ public sealed partial class AdminVerbSystem : EntitySystem
                 Priority = (int)TricksVerbPriorities.BlockObjectiveTargeting
             };
             if (HasComp<ActorComponent>(args.Target)) args.Verbs.Add(preventObjectiveTargeting);
+
+            Verb rejoinAtmosDevice = new()
+            {
+                Text = "Rejoin atmos device",
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/AdminActions/rejuvenate.png")),
+                Act = () =>
+                {
+                    if(!_entities.TryGetComponent<AtmosDeviceComponent>(args.Target, out var device))
+                        return;
+                    var sys = _sys.GetEntitySystem<AtmosDeviceSystem>();
+                    sys.RejoinAtmosphere((args.Target, device));
+                },
+                Impact = LogImpact.Low,
+                Message =
+                    "Causes this atmospherics device to rejoin the atmosphere of whatever grid this is on. Useful if you turned something into an atmos device since it won't update on its own.",
+                Priority = (int)TricksVerbPriorities.RejoinAtmosDevice
+            };
+            if (HasComp<AtmosDeviceComponent>(args.Target)) args.Verbs.Add(rejoinAtmosDevice);
         }
     }
 }
