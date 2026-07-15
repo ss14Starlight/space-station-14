@@ -242,30 +242,6 @@
             "copyright": "Captain icon from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolored to Blackstar colors by @redmushie (github)"
         },
         {
-            "name": "ETO",
-            "copyright": "The Purple Screen"
-        },
-        {
-            "name": "ETO_Corpsman",
-            "copyright": "The Purple Screen"
-        },
-        {
-            "name": "ETO_Demo",
-            "copyright": "The Purple Screen"
-        },
-        {
-            "name": "ETO_Leader",
-            "copyright": "The Purple Screen"
-        },
-        {
-            "name": "ETO_Martyr",
-            "copyright": "The Purple Screen"
-        },
-        {
-            "name": "ETO_CombatTech",
-            "copyright": "The Purple Screen"
-        },
-        {
             "name": "MedTakLeader",
             "copyright": "SevenShades"
         },

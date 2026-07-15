@@ -13,7 +13,3 @@
 - type: contrabandSeverity
   id: MedTak
   examineText: contraband-examine-text-medtak
-
-- type: contrabandSeverity
-  id: ETO
-  examineText: contraband-examine-text-eto
