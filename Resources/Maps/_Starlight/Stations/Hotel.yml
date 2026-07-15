@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/15/2026 14:14:54
-  entityCount: 22311
+  time: 07/15/2026 14:33:38
+  entityCount: 22310
 maps:
 - 1
 grids:
@@ -7803,7 +7803,7 @@ entities:
       pos: 8.5,6.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -235580.03
+      secondsUntilStateChange: -235613.6
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9508,7 +9508,7 @@ entities:
       pos: 2.5,-7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -197704.1
+      secondsUntilStateChange: -197737.66
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9674,7 +9674,7 @@ entities:
       pos: -38.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249755.52
+      secondsUntilStateChange: -249789.08
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9690,7 +9690,7 @@ entities:
       pos: -36.5,-10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249654.58
+      secondsUntilStateChange: -249688.14
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -53162,12 +53162,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.44315,-28.375786
-      parent: 2
-  - uid: 8560
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -23.485844,-13.357788
       parent: 2
   - uid: 8561
     components:
