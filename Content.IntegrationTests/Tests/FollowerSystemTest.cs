@@ -10,6 +10,12 @@ namespace Content.IntegrationTests.Tests;
 [TestFixture, TestOf(typeof(FollowerSystem))]
 public sealed class FollowerSystemTest : GameTest
 {
+    #region Starlight
+    public override PoolSettings PoolSettings => new()
+        {
+            Dirty = true,
+        };
+    #endregion
     /// <summary>
     ///     This test ensures that deleting a map while an entity follows another doesn't throw any exceptions.
     /// </summary>
