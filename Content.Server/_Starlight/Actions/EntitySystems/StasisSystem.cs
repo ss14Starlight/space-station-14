@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Robust.Shared.Timing;
 using Content.Shared.Mobs;
 using Content.Shared.FixedPoint;
@@ -46,15 +47,24 @@ public sealed partial class StasisSystem : SharedStasisSystem
             if (comp.NextHeal > curTime || !comp.IsInStasis)
                 continue;
 
+            if (!TryComp<DamageableComponent>(uid, out var damageComponent))
+                return;
+
             // Negative because your healing
             var modifier = _mobState.IsCritical(uid) ? -comp.CritHealingModifier : -1.0f;
+            var oldDamageCompTotal = damageComponent.TotalDamage;
 
             _damageable.TryChangeDamage(uid, modifier * comp.HealingPerUpdate, true, origin: uid);
 
             _bloodstream.TryModifyBleedAmount(uid, modifier * comp.BleedHealPerUpdate);
+            
+            var amountHealed = oldDamageCompTotal - damageComponent.TotalDamage;
+            if(amountHealed > 0)
+            {
+                comp.DamageHealed += amountHealed;
+            }
 
             // Stasis has healed all that it can, only accounts for damage, not blood healing.
-            comp.DamageHealed -= modifier; // Negative because it's healing.
             if(comp.DamageHealed >= comp.HealingThreshold)
             {
                 RaiseLocalEvent(uid, new ExitStasisActionEvent());
@@ -75,7 +85,7 @@ public sealed partial class StasisSystem : SharedStasisSystem
 
     private void OnMobStateChanged(Entity<StasisComponent> ent, ref MobStateChangedEvent args)
     {
-        if ((args.NewMobState == MobState.Dead || args.NewMobState == MobState.Critical) && ent.Comp.IsInStasis)
+        if (args.NewMobState == MobState.Dead && ent.Comp.IsInStasis)
             RaiseLocalEvent(args.Target, new ExitStasisActionEvent());
     }
 
@@ -138,7 +148,7 @@ public sealed partial class StasisSystem : SharedStasisSystem
         comp.IsInStasis = true;
         comp.NextHeal = _timing.CurTime;
         comp.IsVisible = false; // Entity becomes invisible when entering stasis to better show the effect
-        comp.DamageTaken = 0f;
+        comp.DamageTaken = FixedPoint2.Zero;
         comp.DamageHealed = 0f;
 
         Dirty(uid, comp);
@@ -152,7 +162,7 @@ public sealed partial class StasisSystem : SharedStasisSystem
     {
         comp.IsInStasis = false;
         comp.IsVisible = true; // Entity becomes visible when exiting stasis
-        comp.DamageTaken = 0f;
+        comp.DamageTaken = FixedPoint2.Zero;
         comp.DamageHealed = 0f;
 
         Dirty(uid, comp);

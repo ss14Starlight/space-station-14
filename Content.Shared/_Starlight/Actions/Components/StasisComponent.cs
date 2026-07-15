@@ -30,7 +30,7 @@ public sealed partial class StasisComponent : Component
     /// How much healing the stasis has done.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DamageHealed;
+    public FixedPoint2 DamageHealed;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoNetworkedField, AutoPausedField]
