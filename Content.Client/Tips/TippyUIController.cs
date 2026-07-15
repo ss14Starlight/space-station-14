@@ -16,7 +16,7 @@ using Robust.Shared.Timing;
 using static Content.Client.Tips.TippyUI;
 using Content.Client.Humanoid; // Starlight
 using Content.Shared.Humanoid;
-using Content.Client._Starlight.Humanoid; // Starlight
+using Content.Client._Starlight.Humanoid;
 using JetBrains.Annotations;
 
 namespace Content.Client.Tips;
