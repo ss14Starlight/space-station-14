@@ -1,25 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Any outer clothing that accepts a gas tank in its suit storage will now also accept portable cooling units as well.
-    type: Tweak
-  id: 406251
-  time: '2026-06-27T10:17:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4948
-- author: wonderfulnewworld
-  changes:
-  - message: Pirate Revolver Fire Rate +0.2.
-    type: Tweak
-  id: 406252
-  time: '2026-06-27T11:17:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4849
-- author: wonderfulnewworld
-  changes:
-  - message: Deckard Fire Rate +0.5, Ammo Slots +1.
-    type: Tweak
-  id: 406253
-  time: '2026-06-27T11:17:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4849
 - author: wonderfulnewworld
   changes:
   - message: Inspector Fire Rate +0.725, Ammo Slots +3.
@@ -2799,4 +2778,25 @@ Entries:
   id: 406650
   time: '2026-07-15T12:01:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4417
+- author: wonderfulnewworld
+  changes:
+  - message: Added Budget cyber legs, which provide no speed bonus at all, but take less damage on EMPs vs their normal counterpart.
+    type: Add
+  id: 406651
+  time: '2026-07-15T12:20:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5131
+- author: wonderfulnewworld
+  changes:
+  - message: Loadout cyber legs are now their budget variants instead. You'll need to replace them if you currently have them equipped on your character.
+    type: Tweak
+  id: 406652
+  time: '2026-07-15T12:20:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5131
+- author: wonderfulnewworld
+  changes:
+  - message: Fixed other cyberlegs not taking damage on EMP.
+    type: Fix
+  id: 406653
+  time: '2026-07-15T12:20:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5131
 Order: -1
