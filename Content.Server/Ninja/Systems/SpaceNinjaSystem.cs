@@ -15,6 +15,9 @@ using Content.Shared.PowerCell;
 using Content.Shared.Popups;
 using Content.Shared.Rounding;
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._Starlight.Ninja; // Starlight
+using Content.Shared._Starlight.Ninja; // Starlight
+
 
 namespace Content.Server.Ninja.Systems;
 
@@ -37,6 +40,7 @@ public sealed partial class SpaceNinjaSystem : SharedSpaceNinjaSystem
         SubscribeLocalEvent<SpaceNinjaComponent, ResearchStolenEvent>(OnResearchStolen);
         SubscribeLocalEvent<SpaceNinjaComponent, ThreatCalledInEvent>(OnThreatCalledIn);
         SubscribeLocalEvent<SpaceNinjaComponent, CriminalRecordsHackedEvent>(OnCriminalRecordsHacked);
+        SubscribeLocalEvent<SpaceNinjaComponent, PodCalledInEvent>(OnPodCalledIn); // Starlight
     }
 
     // TODO: Make this charge rate based instead of updating it every single tick.
@@ -159,5 +163,13 @@ public sealed partial class SpaceNinjaSystem : SharedSpaceNinjaSystem
     public void DetonatedSpiderCharge(Entity<SpaceNinjaComponent> ent)
     {
         _codeCondition.SetCompleted(ent.Owner, ent.Comp.SpiderChargeObjective);
+    }
+
+    /// <summary>
+    /// Starlight Ninja Extraction.
+    /// </summary>
+    private void OnPodCalledIn(Entity<SpaceNinjaComponent> ent, ref PodCalledInEvent args)
+    {
+        _codeCondition.SetCompleted(ent.Owner, ent.Comp.ExtractObjective);
     }
 }

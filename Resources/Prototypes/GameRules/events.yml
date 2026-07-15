@@ -274,7 +274,8 @@
     - SpiderChargeObjective
     - TerrorObjective
     - MassArrestObjective
-    - NinjaSurviveObjective
+#    - NinjaSurviveObjective
+    - ExtractObjective # 🌟Starlight🌟
   - type: AntagSelection
     agentName: ninja-round-end-agent-name
     definitions:
