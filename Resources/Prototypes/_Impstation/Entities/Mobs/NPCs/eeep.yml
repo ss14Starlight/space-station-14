@@ -113,8 +113,6 @@
       reagents:
       - ReagentId: ChloralHydrate
         Quantity: 200
-    bleedReductionAmount: 1
-    bloodRefreshAmount: 2
   - type: Sprite
     sprite: _Impstation/Mobs/Aliens/eeeplet.rsi
     noRot: true
@@ -196,9 +194,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ChloralHydrate
-        Quantity: 400
-    bleedReductionAmount: 1
-    bloodRefreshAmount: 4
+        Quantity: 200
   - type: Electrified
     requirePower: false
     shockDamage: 4
