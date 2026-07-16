@@ -2,7 +2,7 @@
   name: stun prod
   parent: [BaseItem, BaseMinorContraband]
   id: Stunprod
-  description: A stun prod for illegal incapacitation.
+  description: A stun prod for illegal incapacitation. Due to its makeshift nature only lower-end powercells can be used as powersources.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/stunprod.rsi
@@ -42,6 +42,8 @@
         blacklist:
           tags:
           - MechReactor
+          - PowerCellHyper
+          - PowerCellMicroreactor
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: ContainerContainer
