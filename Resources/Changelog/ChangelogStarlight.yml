@@ -1,13 +1,6 @@
 Entries:
 - author: BornStellar
   changes:
-  - message: removed two combat medipens from GSO belt and replaced with an extra set of cuffs.
-    type: Tweak
-  id: 406284
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
   - message: Taser fire mode on the MT-7G.
     type: Add
   id: 406285
@@ -2799,4 +2792,11 @@ Entries:
   id: 406683
   time: '2026-07-16T12:50:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: Arkanic
+  changes:
+  - message: Massive reduction in serverside AI lag, something like 150x time reduction in certain scenarios.
+    type: Fix
+  id: 406684
+  time: '2026-07-16T12:50:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5117
 Order: -1
