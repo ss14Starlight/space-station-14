@@ -15,8 +15,8 @@ using Content.Shared.PowerCell;
 using Content.Shared.Popups;
 using Content.Shared.Rounding;
 using System.Diagnostics.CodeAnalysis;
-using Content.Server._Starlight.Ninja; // Starlight
-using Content.Shared._Starlight.Ninja; // Starlight
+using Content.Server._Starlight.Ninja;
+using Content.Shared._Starlight.Ninja;
 
 
 namespace Content.Server.Ninja.Systems;
