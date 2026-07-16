@@ -309,6 +309,9 @@
   id: GygaxTargetingControlModule
 
 - type: Tag
+  id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
+
+- type: Tag
   id: HiltPlasteel
 
 - type: Tag
