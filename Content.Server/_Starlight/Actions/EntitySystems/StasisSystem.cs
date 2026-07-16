@@ -57,7 +57,7 @@ public sealed partial class StasisSystem : SharedStasisSystem
             _damageable.TryChangeDamage(uid, modifier * comp.HealingPerUpdate, true, origin: uid);
 
             _bloodstream.TryModifyBleedAmount(uid, modifier * comp.BleedHealPerUpdate);
-            
+
             var amountHealed = oldDamageCompTotal - damageComponent.TotalDamage;
             if(amountHealed > 0)
             {
