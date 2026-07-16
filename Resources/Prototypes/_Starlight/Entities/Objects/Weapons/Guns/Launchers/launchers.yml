@@ -93,6 +93,23 @@
     slots:
     - Back
     - suitStorage
+  - type: KnockbackByUserTag # Fun for everyone
+    doestContain:
+      Skating:
+        knockback: 0
+        staminaMultiplier: 0
+      Rodentia:
+        knockback: 0
+        staminaMultiplier: 0
+      Resomi:
+        knockback: 0
+        staminaMultiplier: 0
+      Avali:
+        knockback: 0
+        staminaMultiplier: 0
+      Felionoid:
+        knockback: 0
+        staminaMultiplier: 0
   - type: Item
     size: Large
     shape:
@@ -127,3 +144,4 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
