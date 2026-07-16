@@ -3,7 +3,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Stunbaton;
 
 /// <summary>
-/// Appearance keys for the turbine.
+/// Appearance keys for the stunbaton.
 /// </summary>
 [Serializable, NetSerializable]
 public enum StunbatonVisuals
@@ -14,7 +14,7 @@ public enum StunbatonVisuals
 }
 
 /// <summary>
-/// Visual sprite layers for the turbine.
+/// Visual sprite layers for the stunbaton.
 /// </summary>
 [Serializable, NetSerializable]
 public enum StunbatonVisualLayers

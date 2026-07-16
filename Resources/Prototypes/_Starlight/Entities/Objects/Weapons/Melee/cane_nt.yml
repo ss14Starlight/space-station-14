@@ -40,6 +40,7 @@
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMicroreactor # A little treat for our hard working paperwork jockies.
         disableEject: true # No ejects little one.
+        swap: false
         blacklist:
           tags:
           - MechReactor

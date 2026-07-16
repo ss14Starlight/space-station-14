@@ -173,6 +173,8 @@ namespace Content.Server.Stunnable.Systems
         protected override void TryTurnOff(Entity<StunbatonComponent> ent, ref ItemToggleDeactivateAttemptEvent args)
         {
             base.TryTurnOff(ent, ref args);
+            if(args.Cancelled)
+                return;
             UpdateAppearance(ent);
         }
         private void OnChargeChanged(Entity<StunbatonComponent> entity, ref ChargeChangedEvent args)
