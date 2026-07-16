@@ -1284,3 +1284,19 @@
       PowerCell:
         amount: 4
         defaultPrototype: PowerCellHigh
+
+- type: entity
+  id: IceCreamMakerMachineCircuitBoard
+  parent: BaseMachineCircuitboard
+  name: ice cream maker machine board
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: IceCreamMaker
+      stackRequirements:
+        Steel: 5
+      tagRequirements:
+        GlassBeaker:
+          amount: 1
+          defaultPrototype: Beaker

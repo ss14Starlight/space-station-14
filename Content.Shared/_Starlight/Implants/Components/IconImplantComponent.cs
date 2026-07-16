@@ -19,6 +19,6 @@ public sealed partial class IconImplantComponent : Component
     /// <summary>
     /// The 'type' of icon that this is - needs to match a string in <see cref="ShowImplantedIconsComponent"/>
     /// </summary>
-    [DataField(required: true)]
-    public string IconType = default!;
+    [DataField]
+    public string IconType = "default";
 }
