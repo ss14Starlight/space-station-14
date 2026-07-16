@@ -327,7 +327,7 @@
   - type: IdentityBlocker
   - type: Tag
     tags:
-    - MimeMask
+    - MimeMask #Starlight
     - HamsterWearable
     - WhitelistChameleon
   - type: HideLayerClothing
