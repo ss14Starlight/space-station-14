@@ -34,13 +34,13 @@ spray-painter-style-locker-cargo = Cargo
 spray-painter-style-locker-coroner = Coroner
 spray-painter-style-locker-geneticist = Geneticist
 spray-painter-style-locker-roboticist = Roboticist
-spray-painter-style-locker-surgeron = Surgeon
+spray-painter-style-locker-surgeon = Surgeon
 spray-painter-style-locker-virologist = Virologist
 
 # Canisters
 spray-painter-style-canisters-ulnitranium = Ulnitranium
 spray-painter-style-canisters-zxa = ZXA
 spray-painter-style-canisters-liquid-carbon-dioxide = Liquid Carbon Dioxide
-spray-painter-style-canisters-liquiid-nitrogen = Liquid Nitrogen
+spray-painter-style-canisters-liquid-nitrogen = Liquid Nitrogen
 spray-painter-style-canisters-liquid-oxygen = Liquid Oxygen
 spray-painter-style-canisters-rainbow = Rainbow
