@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Master
-      uses: actions/checkout@v4.2.2
+      uses: actions/checkout@v7
 
     - name: Setup Submodule
       run: |
@@ -34,7 +34,7 @@ jobs:
         git submodule update --init --recursive
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 10.0.x
 
@@ -50,13 +50,13 @@ jobs:
           python3 Tools/_Starlight/partition_tests.py generate 8 .integration-filters
 
     - name: Archive build output
-      run: tar czf /tmp/build.tar.gz --exclude='.git' .
+      run: tar --use-compress-program='zstd -T0' -cf /tmp/build.tar.zst --exclude='.git' .
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
         name: build-output
-        path: /tmp/build.tar.gz
+        path: /tmp/build.tar.zst
         retention-days: 1
         compression-level: 0
 
@@ -67,23 +67,23 @@ jobs:
     timeout-minutes: 15
     steps:
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 10.0.x
 
     - name: Download build artifact
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: build-output
 
     - name: Extract build
-      run: tar xzf build.tar.gz && rm build.tar.gz
+      run: tar --use-compress-program='zstd -d -T0' -xf build.tar.zst && rm build.tar.zst
 
     - name: Restore packages
       run: dotnet restore Content.Tests/Content.Tests.csproj
 
     - name: Run Content.Tests
-      uses: nick-fields/retry@v3
+      uses: nick-fields/retry@v4
       with:
         timeout_minutes: 15
         max_attempts: 2
@@ -107,24 +107,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 10.0.x
 
     - name: Download build artifact
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: build-output
 
     - name: Extract build
-      run: tar xzf build.tar.gz && rm build.tar.gz
+      run: tar --use-compress-program='zstd -d -T0' -xf build.tar.zst && rm build.tar.zst
 
     - name: Restore packages
       run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
 
     - name: Run Content.IntegrationTests
       id: run-integration-tests
-      uses: nick-fields/retry@v3
+      uses: nick-fields/retry@v4
       env:
         DOTNET_gcServer: "1"
       with:

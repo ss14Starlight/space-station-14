@@ -76,3 +76,54 @@
   - type: GunRequiresWield
   - type: StaticPrice
     price: 750
+
+- type: entity
+  parent: [ BaseWeaponLauncher,  BaseSecurityContraband ]
+  id: WeaponLauncherPeacekeeper
+  name: Peacekeeper
+  description: A multi purpose single-shot grenade launcher with a break-open action.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Launchers/peacekeeper.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Launchers/peacekeeper.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - Grenade
+        startingItem: GrenadeBaton
+  - type: ContainerContainer
+    containers:
+      gun_chamber: !type:ContainerSlot
+  - type: ChamberMagazineAmmoProvider
+    autoCycle: false
+    boltClosed: false
+    canRack: false
+    soundBoltClosed: /Audio/Weapons/Guns/Cock/revolver_cock.ogg
+    soundBoltOpened: /Audio/Weapons/Guns/Cock/revolver_cock.ogg
+    soundRack: /Audio/Weapons/Guns/Cock/revolver_cock.ogg
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: Appearance
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 35
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
