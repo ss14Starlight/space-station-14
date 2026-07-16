@@ -1,25 +1,4 @@
 Entries:
-- author: Kasern-ss14
-  changes:
-  - message: recipes for donuts, jelly donuts, boiled egg, lollipops and hard candy.
-    type: Add
-  id: 406271
-  time: '2026-06-28T10:01:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4923
-- author: mikeysaurus
-  changes:
-  - message: The "Toggle All" button in the "Mute TTS Channels" UI now properly mutes all TTS Streams.
-    type: Fix
-  id: 406272
-  time: '2026-06-28T15:55:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4939
-- author: mikeysaurus
-  changes:
-  - message: Alphabetically organizes the list of radio channels in the "Mute TTS Channels" UI.
-    type: Tweak
-  id: 406273
-  time: '2026-06-28T15:55:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4939
 - author: BornStellat
   changes:
   - message: Pierceable comp to hand held shields.
@@ -2799,4 +2778,25 @@ Entries:
   id: 406670
   time: '2026-07-16T08:27:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5061
+- author: Sparlight
+  changes:
+  - message: Patch packs and pills can now be named separately from their contents in the chemmaster UI.
+    type: Add
+  id: 406671
+  time: '2026-07-16T10:45:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5144
+- author: Sparlight
+  changes:
+  - message: Patch packs now show the correct number of patches in them in the chemmaster UI.
+    type: Fix
+  id: 406672
+  time: '2026-07-16T10:45:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5144
+- author: Sparlight
+  changes:
+  - message: Patch packs now make the correct number of patches when patches are already in the pack.
+    type: Fix
+  id: 406673
+  time: '2026-07-16T10:45:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5144
 Order: -1
