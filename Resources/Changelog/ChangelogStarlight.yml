@@ -1,13 +1,6 @@
 Entries:
 - author: BornStellat
   changes:
-  - message: Pierceable comp to hand held shields.
-    type: Add
-  id: 406274
-  time: '2026-06-28T17:52:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4953
-- author: BornStellat
-  changes:
   - message: Worn armor and handheld items with the shield tag will now stop bullets from piercing the entity if the bullet pierce level is lower than the armor value.
     type: Fix
   id: 406275
@@ -2799,4 +2792,11 @@ Entries:
   id: 406673
   time: '2026-07-16T10:45:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5144
+- author: STARLIGHT TEAM
+  changes:
+  - message: Locale comment formatting.
+    type: Fix
+  id: 406674
+  time: '2026-07-16T11:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5153
 Order: -1
