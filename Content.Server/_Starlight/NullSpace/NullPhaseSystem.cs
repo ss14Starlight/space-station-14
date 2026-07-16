@@ -1,12 +1,10 @@
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Actions;
-using Content.Shared._Starlight.NullSpace;
 using Content.Shared.Maps;
 using Robust.Server.GameObjects;
 using Content.Shared.Popups;
 using Content.Shared.Physics;
-using Content.Shared._Starlight.Shadekin;
 using System.Linq;
 using Content.Server.Ghost;
 using Robust.Server.Containers;
@@ -15,6 +13,8 @@ using Content.Shared.Light.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Inventory;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 
@@ -55,9 +55,9 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EnsureComp<NullPhaseComponent>(args.Equipee);
+        EnsureComp<NullPhaseComponent>(args.EquipTarget);
         if (!component.PreventLightFlicker
-            || !TryComp<ShadekinComponent>(args.Equipee, out var shadekin))
+            || !TryComp<ShadekinComponent>(args.EquipTarget, out var shadekin))
             return;
         component.OriginalFlickerFlagState = shadekin.DoLightFlicker;
         shadekin.DoLightFlicker = false;
@@ -65,9 +65,9 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
 
     private void OnUnequipped(EntityUid uid, NullPhaseComponent component, GotUnequippedEvent args)
     {
-        RemComp<NullPhaseComponent>(args.Equipee);
+        RemComp<NullPhaseComponent>(args.EquipTarget);
         if (!component.PreventLightFlicker
-            || !TryComp<ShadekinComponent>(args.Equipee, out var shadekin))
+            || !TryComp<ShadekinComponent>(args.EquipTarget, out var shadekin))
             return;
         shadekin.DoLightFlicker = component.OriginalFlickerFlagState;
     }

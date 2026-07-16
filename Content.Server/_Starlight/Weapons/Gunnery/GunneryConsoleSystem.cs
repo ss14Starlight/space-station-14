@@ -1,7 +1,8 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server.Shuttles.Components;
+using Content.Server._Starlight.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Weapons.Gunnery;
 using Content.Shared.Physics;
 using Content.Shared.Power.EntitySystems;

@@ -34,7 +34,7 @@ using Content.Server.Discord;
 using Content.Server.Connection;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.Helpers;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared;
 using CCVars = Content.Shared.CCVar.CCVars;
 using Starlight.NullLink;

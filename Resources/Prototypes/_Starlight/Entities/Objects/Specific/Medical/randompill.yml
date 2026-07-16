@@ -106,3 +106,192 @@
     solution: food
     weightedRandomId: RandomFillOminousPill
 
+# It's technically safer/more reliable than Strange Pills, but as a result, you don't get as much. You also barely get any syndicate chems.
+- type: weightedRandomFillSolution
+  id: RandomFillWeirdPill
+  fills:
+  # 5 groups for a total weight of 100
+  # Very Good - weight: 20
+    - quantity: 10
+      weight: 4
+      reagents:
+      - Stimulants
+    - quantity: 10
+      weight: 10
+      reagents:
+      - Ichor
+      - Necrosol
+    - quantity: 4
+      weight: 5
+      reagents:
+      - Cognizine
+    - quantity: 4
+      weight: 1
+      reagents:
+      - Vestine
+  # Good - weight: 30
+    - quantity: 15
+      weight: 30
+      reagents:
+      - Desoxyephedrine
+      - Ephedrine
+      - Omnizine
+      - Tricordrazine
+      - Vitamin
+      - PolypyryliumOligomers
+      - Charcoal
+  # Neutral - weight: 15
+    - quantity: 15
+      weight: 12.5
+      reagents:
+      - Ipecac
+      - SodiumPolyacrylate
+      - SpaceDrugs
+      - SpaceGlue
+      - Laughter
+      - JuiceThatMakesYouWeh
+      - Lipozine
+      - Carpetium
+      - Bananadine
+      - THC
+      - MindbreakerToxin
+      - Mustard
+      - HorseradishSauce
+    - quantity: 5
+      weight: 2.5
+      reagents:
+      - Honk
+  # Bad - weight: 20
+    - quantity: 15
+      weight: 8.5
+      reagents:
+      - MuteToxin
+      - Pax
+      - Fresium
+      - Cryptobiolin
+    - quantity: 5
+      weight: 8.5
+      reagents:
+      - Uranium
+      - Licoxide
+      - Razorium
+      - Potassium
+      - Phlogiston
+    - quantity: 4
+      weight: 3
+      reagents:
+      - Toxin
+  # Very Bad - weight: 15
+    - quantity: 10
+      weight: 2.5
+      reagents:
+      - Nocturine
+    - quantity: 7
+      weight: 10
+      reagents:
+      - Bleach
+      - CarpoToxin
+      - BuzzochloricBees
+      - Amatoxin
+      - Tazinide
+    - quantity: 3
+      weight: 2.5
+      reagents:
+      - Lexorin
+      - Lead
+
+- type: entity
+  name: weird pill
+  parent: Pill
+  id: WeirdPill
+  description: This unusual pill bears no markings. It's probably not deadly. Probably.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15 # Technically safer
+  - type: RandomFillSolution
+    solution: food
+    weightedRandomId: RandomFillWeirdPill
+
+# It has an equal chance of everything, with quantities better than the Ominous Pill. Truly, a legendary mains pull.
+- type: weightedRandomFillSolution
+  id: RandomFillGoldenPill
+  fills:
+  # 4 equal groups for a total weight of 100
+    - quantity: 30
+      weight: 25
+      reagents:
+      - Desoxyephedrine
+      - Ephedrine
+      - Omnizine
+      - Tricordrazine
+      - Vitamin
+      - PolypyryliumOligomers
+      - Charcoal
+      - Ipecac
+      - SodiumPolyacrylate
+      - SpaceDrugs
+      - SpaceGlue
+      - Laughter
+      - JuiceThatMakesYouWeh
+      - Lipozine
+      - Carpetium
+      - Bananadine
+      - THC
+      - MindbreakerToxin
+      - Mustard
+      - HorseradishSauce
+      - Honk
+      - MuteToxin
+      - Pax
+      - Fresium
+      - Cryptobiolin
+      - Nocturine
+    - quantity: 25
+      weight: 25
+      reagents:
+      - Stimulants
+    - quantity: 20
+      weight: 25
+      reagents:
+      - Ichor
+      - Necrosol
+      - Vestine
+      - Uranium
+      - Licoxide
+      - Razorium
+      - Potassium
+      - Phlogiston
+      - Bleach
+      - CarpoToxin
+      - BuzzochloricBees
+      - Amatoxin
+      - Tazinide
+    - quantity: 15
+      weight: 25
+      reagents:
+      - Cognizine
+      - Toxin
+      - Lexorin
+      - Lead
+
+- type: entity
+  name: golden pill
+  parent: Pill
+  id: GoldenPill
+  description: Jackpot! Golden unmarked pill! There could be anything in here!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/pills.rsi
+    state: goldenpill
+  - type: Item
+    size: Tiny
+    sprite: _Starlight/Objects/Specific/Chemistry/pills.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+  - type: RandomFillSolution
+    solution: food
+    weightedRandomId: RandomFillGoldenPill

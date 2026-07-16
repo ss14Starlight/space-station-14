@@ -2,15 +2,12 @@ using Content.Shared.Humanoid;
 using Content.Shared.Alert;
 using System.Linq;
 using Content.Shared.Examine;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Movement.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Damage;
 using Robust.Shared.Timing;
-using Content.Shared._Starlight.NullSpace;
 using Robust.Shared.Prototypes;
 using Content.Shared.Actions;
 using Content.Shared.Station;
@@ -36,6 +33,10 @@ using Content.Shared._Starlight.Medical.Body.Events;
 using Robust.Shared.Containers;
 using Content.Server.Examine;
 using Robust.Server.GameObjects;
+using Content.Shared._Starlight.Shadekin.Components;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Server._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.Shadekin;
 

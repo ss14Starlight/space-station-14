@@ -4,7 +4,6 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Events;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Shared._Starlight.Magic.Components;
-using Content.Shared.Destructible;
 using Content.Shared.Popups;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;

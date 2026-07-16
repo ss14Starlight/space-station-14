@@ -8,6 +8,7 @@ using System.Linq;
 using Content.Shared.Mind.Filters;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
 
 namespace Content.Server.Objectives.Systems;
 

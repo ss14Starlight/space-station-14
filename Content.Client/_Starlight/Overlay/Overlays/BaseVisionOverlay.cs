@@ -2,7 +2,7 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 
-namespace Content.Client._Starlight.Overlay;
+namespace Content.Client._Starlight.Overlay.Overlays;
 
 /*
 Time to mini rant here. this NEEDs to be a abstract because if its not, then

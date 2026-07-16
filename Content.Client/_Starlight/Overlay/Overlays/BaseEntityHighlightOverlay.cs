@@ -2,7 +2,7 @@ using Robust.Client.Graphics;
 using Robust.Client.GameObjects;
 using Content.Shared.Body.Components;
 
-namespace Content.Client._Starlight.Overlay;
+namespace Content.Client._Starlight.Overlay.Overlays;
 
 public abstract partial class BaseEntityHighlightOverlay : BaseVisionOverlay
 {

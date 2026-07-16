@@ -9,7 +9,6 @@ using Content.Shared.Maps;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using System;
 
 namespace Content.Server._Starlight.Plumbing.EntitySystems;
 

@@ -20,9 +20,6 @@
   - AllAccess
   access:
   - CentralCommand
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantNanoTrasen ]
 
 - type: startingGear
   id: DecimusGear
@@ -30,29 +27,42 @@
     jumpsuit: ClothingUniformNTNCFatigues
     back: ClothingBackpackDeathSquad
     mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesBlueShield
+    eyes: ClothingEyesGlassesNanotrasen
     ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitDecimus
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagERT
     id: DecimusPDA
-    pocket1: AccessOveriderUnlimited
-    pocket2: EnergyShield
-    belt: PrototypeVibrobladeSheath
+    pocket1: EnergySword
+    pocket2: EnergyShieldUnbreakable
+    belt: ClothingBeltMilitaryWebbingERT
     suitstorage: WeaponPulseRifle
   storage:
     back:
-    - WeaponPulsePistol
+    - WelderExperimental
+    - ToolDebug
+    - AccessOveriderUnlimited
+    - MagazinePistolSubMachineGunAP
+    - MagazinePistolSubMachineGunAP
+    - MagazinePistolSubMachineGunAP
+    - WeaponSubMachineGunDrozd
+    - PortableRecharger
+    - MedkitCombatFilled
+    - JugPunctTranex
+    - Hypospray
+    - WhiteholeGrenade
+    - ToxicGasGrenade
+    - ClusterGrenade
+    - PowerCellMicroreactor
+    - SingularityGrenade
+    belt:
     - WeaponRevolverMatebaAP
     - SpeedLoaderMagnumAP
     - SpeedLoaderMagnumAP
-    - BoxFlashbang
-    - ToolDebug # spanish army knife
-    - WelderExperimental
-    - Hypospray
-    - DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
-    - FreedomImplanter
-  inhand:
-  - PrototypeVibroblade
-
-
+    - GrenadeShrapnel
+    - GrenadeIncendiary
+    - DefibrillatorCompact
+    - MedkitCombatFilled
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen

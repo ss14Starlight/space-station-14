@@ -1,13 +1,12 @@
 using System.Linq;
 using Content.Server._Starlight.Mentor;
-using Content.Server.Access.Components;
 using Content.Server.Popups;
 using Content.Shared.Access.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 
-namespace Content.Server._Starlight.Access.Systems;
+namespace Content.Server._Starlight.Access;
 
 public sealed partial class NCTDataChipSystem : EntitySystem
 {

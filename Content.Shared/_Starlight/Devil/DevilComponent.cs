@@ -23,7 +23,7 @@ public sealed partial class DevilComponent : Component
     /// <summary>
     /// What damnations can the devil use in their contracts?
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public List<ProtoId<DamnationPrototype>> AvailableDamnations = new()
     {
         "Soul",
@@ -41,7 +41,9 @@ public sealed partial class DevilComponent : Component
         "Gun",
         "Electricity",
         "Noslip",
-        "Mute"
+        "Mute",
+        "Stink",
+        "Terminator"
     };
 
     /// <summary>
@@ -54,6 +56,12 @@ public sealed partial class DevilComponent : Component
     /// list of people who have been evil'd
     /// </summary>
     public List<EntityUid> DamnedSouls = new();
+
+    /// <summary>
+    /// How much has the devil used each damnation?
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<ProtoId<DamnationPrototype>, int> DamnationUsage = new();
 
     // todo make actual devil names
     public List<ProtoId<LocalizedDatasetPrototype>> NameSegments = new()

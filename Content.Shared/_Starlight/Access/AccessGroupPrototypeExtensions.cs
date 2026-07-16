@@ -1,6 +1,6 @@
-using Robust.Shared.Localization;
+using Content.Shared.Access;
 
-namespace Content.Shared.Access;
+namespace Content.Shared._Starlight.Access;
 
 public static class AccessGroupPrototypeExtensions
 {

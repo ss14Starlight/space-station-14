@@ -193,3 +193,133 @@
   - type: Sprite
     layers:
     - state: dwarfemergencytank
+
+# Rodentia Survival Boxes
+- type: entity
+  parent: BoxSurvival
+  id: BoxSurvivalCheese
+  name: cheesy survival box
+  description: It's a box with basic internals inside... and CHEESE!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodPacketCheeseBox
+        - id: DrinkWaterBottleFull
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: cheese
+
+- type: entity
+  parent: BoxSurvivalCheese
+  id: BoxSurvivalMedicalCheese
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodPacketCheeseBox
+        - id: DrinkWaterBottleFull
+
+- type: entity
+  parent: BoxSurvivalCheese
+  id: BoxSurvivalExtendedCheese
+  name: extended-capacity cheesy survival box
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank... and CHEESE!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodPacketCheeseBox
+        - id: DrinkWaterBottleFull
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: cheese
+    - state: extendedtank
+
+- type: entity
+  parent: BoxSurvivalExtendedCheese
+  id: BoxSurvivalSecurityCheese
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSecurity
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodPacketCheeseBox
+        - id: DrinkWaterBottleFull
+
+- type: entity
+  parent: BoxSurvivalCheese
+  id: BoxSurvivalMimeCheese
+  name: survival box
+  description: It's a box with basic internals inside.
+  components:
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: emergencytank
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodBreadNutriBatard # Mime Rodentias still get bread. They're under contract with the French.
+        - id: DrinkWaterBottleFull
+
+- type: entity
+  parent: BoxHug
+  id: BoxSurvivalClownCheese
+  name: box of cheesy hugs
+  description: A special box for sensitive people who also love cheese.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyFunnyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodPacketCheeseBox
+        - id: DrinkWaterBottleFull
+  - type: Sprite
+    layers:
+    - state: box_hug
+    - state: cheese
+
+- type: entity
+  parent: BoxSurvivalCheese
+  id: BoxSurvivalSyndicateCheese
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodPacketCheeseBox

@@ -4,7 +4,7 @@ using Content.Server.Speech.Components;
 using Content.Shared.Chat;
 using Content.Shared.Paper;
 using Content.Shared.Speech;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared._Starlight.TapeRecorder;
 using Content.Shared._Starlight.TapeRecorder.Components;
 using Content.Shared._Starlight.TapeRecorder.Events;

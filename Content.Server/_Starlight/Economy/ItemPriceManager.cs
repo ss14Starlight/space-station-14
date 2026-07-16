@@ -1,9 +1,9 @@
-using Content.Shared.Economy;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Content.Shared.Destructible.Thresholds;
+using Content.Shared._Starlight.Economy;
 
-namespace Content.Server.Economy;
+namespace Content.Server._Starlight.Economy;
 
 public sealed partial class ItemPriceManager : EntitySystem
 {

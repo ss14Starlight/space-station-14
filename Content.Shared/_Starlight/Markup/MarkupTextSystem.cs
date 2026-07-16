@@ -1,7 +1,8 @@
 using System.Linq;
+using Content.Shared._Starlight.Markup.Components;
 using Content.Shared.Examine;
 
-namespace Content.Shared._Starlight.Markup.Components;
+namespace Content.Shared._Starlight.Markup;
 
 public sealed class MarkupTextSystem : EntitySystem
 {

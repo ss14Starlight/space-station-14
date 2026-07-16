@@ -143,3 +143,28 @@
     - state: large
   - type: Flatpack
     entity: GasTurbineSmallEmpty
+
+- type: entity
+  parent: BaseFlatpack
+  id: MicrowaveFlatpack
+  name: microwave flatpack
+  description: A flatpack used for constructing a microwave.
+  components:
+  - type: Sprite
+    layers:
+    - state: microwave
+  - type: Flatpack
+    allowUnpackOnTables: true
+    entity: KitchenMicrowave
+
+- type: entity
+  parent: BaseFlatpack
+  id: SyndicateMicrowaveFlatpack
+  name: microwave flatpack
+  description: A flatpack used for constructing a microwave.
+  components:
+  - type: Sprite
+    layers:
+    - state: microwave
+  - type: Flatpack
+    allowUnpackOnTables: true

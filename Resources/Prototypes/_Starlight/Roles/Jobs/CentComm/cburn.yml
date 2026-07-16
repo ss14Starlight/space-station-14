@@ -1,0 +1,31 @@
+- type: startingGear
+  parent: CBURNGear
+  id: CBURNCorpsman
+  equipment:
+    belt: ClothingBeltMilitaryWebbingERT
+    suitstorage: WeaponLr30
+  storage:
+    back:
+    - JugGoldenBicaridine
+    - AutoMenderBruteFilled
+    - JugLacer
+    - JugDexPlusSaline
+    - Hypospray
+    - JugGoldenDermaline
+    - AutoMenderBurnFilled
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - BodyBagLockableFolded
+    belt:
+    - AdvancedMedipen
+    - AdvancedMedipen
+    - DefibrillatorCompact
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - AdvancedMedipen
+    - CombatMedipen
+    - MagazinePistolSP
+    - WeaponPistolEnforcer
+    - AntiPoisonMedipen

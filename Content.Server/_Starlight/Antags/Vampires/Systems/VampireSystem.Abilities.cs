@@ -26,7 +26,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
@@ -39,11 +38,10 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mindshield.Components;
-using Content.Shared.Starlight.Overlay;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
-
+using Content.Shared._Starlight.Overlay.Systems;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 

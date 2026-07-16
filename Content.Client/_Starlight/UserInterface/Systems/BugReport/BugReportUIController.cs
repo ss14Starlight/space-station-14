@@ -4,7 +4,7 @@ using Content.Client.Resources;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared._Starlight.BugReport;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using JetBrains.Annotations;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controllers;

@@ -10,7 +10,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Events;
 
-namespace Content.Server.PAI;
+namespace Content.Server._Starlight.PAI;
 
 /// <summary>
 /// Ejects a PAI from the shuttle console when the shuttle rams another grid hard enough.

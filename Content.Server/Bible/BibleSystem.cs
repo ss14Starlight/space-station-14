@@ -32,9 +32,9 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
-using Content.Shared.Vampire.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Vampire.Components;
 #endregion Starlight
 
 namespace Content.Server.Bible

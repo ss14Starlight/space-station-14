@@ -7,7 +7,6 @@ using Content.Shared.Dataset;
 using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared._Starlight.Thaven;
-using Content.Shared._Starlight.Thaven.Components;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Server.GameObjects;

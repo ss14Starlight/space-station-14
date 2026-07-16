@@ -1,5 +1,4 @@
 using Content.Server.EUI;
-using Content.Server.Ghost.Roles.UI;
 using Content.Shared.Administration;
 using Content.Shared.Ghost;
 using JetBrains.Annotations;
@@ -9,9 +8,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Network;
 using Content.Server.RoundEnd;
 using Content.Server.GameTicking;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 
-namespace Content.Server.Ghost.Roles;
+namespace Content.Server._Starlight.NewLife;
 
 [UsedImplicitly]
 public sealed partial class NewLifeSystem : EntitySystem

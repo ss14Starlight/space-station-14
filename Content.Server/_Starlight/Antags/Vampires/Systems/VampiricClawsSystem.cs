@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Interaction.Events;

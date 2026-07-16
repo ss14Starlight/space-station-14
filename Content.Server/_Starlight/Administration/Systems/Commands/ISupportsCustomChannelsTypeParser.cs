@@ -10,7 +10,7 @@ using Robust.Shared.Toolshed.Syntax;
 using Robust.Shared.Toolshed.TypeParsers;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Administration.Commands;
+namespace Content.Server._Starlight.Administration.Systems.Commands;
 
 public sealed partial class ISupportsCustomChannelsTypeParser : CustomTypeParser<Type>
 {

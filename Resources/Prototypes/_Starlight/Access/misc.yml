@@ -98,7 +98,3 @@
   id: Pirate
   tags:
   - Pirate
-
-- type: accessLevel
-  id: MedTak
-  name: id-card-access-level-medtak

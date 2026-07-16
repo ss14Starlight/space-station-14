@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Prometheus;
 using Robust.Shared.Configuration;
 using StackExchange.Redis;

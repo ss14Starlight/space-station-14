@@ -37,3 +37,8 @@
   id: Lagomorph
   name: species-name-lagomorph
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/Lagomorph.xml"
+
+- type: guideEntry
+  id: Rodentia
+  name: species-name-rodentia
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Rodentia.xml"

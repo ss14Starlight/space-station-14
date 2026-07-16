@@ -1,10 +1,12 @@
 using System.Linq;
-using Content.Server._Starlight.Cybernetics.Components; // Starlight
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Nutrition.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Shared._Starlight.Cybernetics.Components;
+#endregion
 
 namespace Content.Shared.Nutrition.EntitySystems;
 

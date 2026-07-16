@@ -7,7 +7,7 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Shared._Starlight.BugReport;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Server.Player;
 using Robust.Shared;
 using Robust.Shared.Configuration;

@@ -1,9 +1,7 @@
 ﻿using Content.Server._Starlight.Objectives.Events;
 using Content.Server._Starlight.Achievement;
 using Content.Server.Administration.Managers;
-using Content.Server.Administration.Systems;
 using Content.Server.EUI;
-using Content.Server.Ghost.Roles.UI;
 using Content.Server.Revolutionary.Components;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
@@ -11,11 +9,15 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Database;
 using Content.Shared.Examine;
-using Content.Shared.Roles.Components;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Starlight;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Visual;
+using Content.Shared._Starlight.Railroading.Components.Reward;
+using Content.Shared._Starlight.Abstract;
 
 namespace Content.Server._Starlight.Railroading;
 

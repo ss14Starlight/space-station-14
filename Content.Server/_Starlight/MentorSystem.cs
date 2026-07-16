@@ -7,8 +7,8 @@ using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Players.RateLimiting;
-using Content.Shared.Starlight.CCVar;
-using Content.Shared.Starlight.MHelp;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.MHelp;
 using Content.Shared._NullLink;
 using JetBrains.Annotations;
 using Robust.Server.Player;
@@ -19,7 +19,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
 
-namespace Content.Server.Administration.Systems;
+namespace Content.Server._Starlight;
 
 [UsedImplicitly]
 public sealed partial class MentorSystem : SharedMentorSystem

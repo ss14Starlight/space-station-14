@@ -3,7 +3,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Reflect;
-using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Starlight.Clothing.Systems;
 
@@ -40,7 +39,7 @@ public sealed partial class ReflectiveSetBonusSystem : EntitySystem
         // Check if the equipped item is part of the reflective set
         if (HasComp<ReflectiveSetBonusComponent>(args.Equipment))
         {
-            CheckAllReflectiveSets(args.Equipee);
+            CheckAllReflectiveSets(args.EquipTarget);
         }
     }
 
@@ -54,7 +53,7 @@ public sealed partial class ReflectiveSetBonusSystem : EntitySystem
             Dirty(args.Equipment, reflect);
 
             // Update remaining equipped items
-            CheckAllReflectiveSets(args.Equipee);
+            CheckAllReflectiveSets(args.EquipTarget);
         }
     }
 

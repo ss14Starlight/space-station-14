@@ -22,6 +22,7 @@ using Content.Shared._Starlight.Antags.Traitor;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mindshield.Components;
+using Content.Shared._Starlight.Revolutionary.Components;
 #endregion
 
 namespace Content.Shared.Implants;

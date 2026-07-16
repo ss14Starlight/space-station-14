@@ -177,3 +177,30 @@
 - type: storeCategory
   id: SLSecret
   name: store-category-secret
+
+- type: storeCategory # funkystation start
+  id: UplinkDAGD
+  name: store-category-dagd
+  priority: 11 # funkystation end
+
+- type: storeCategory
+  id: SecondHandItems
+  name: store-second-hand-items
+  priority: 201
+
+# changeling
+
+- type: storeCategory
+  id: ChangelingAbilityCombat
+  name: store-ling-category-combat
+  priority: 0
+
+- type: storeCategory
+  id: ChangelingAbilitySting
+  name: store-ling-category-sting
+  priority: 1
+
+- type: storeCategory
+  id: ChangelingAbilityUtility
+  name: store-ling-category-utility
+  priority: 2

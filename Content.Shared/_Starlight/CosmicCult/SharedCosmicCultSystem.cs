@@ -6,7 +6,7 @@ using Content.Shared.Roles;
 using Content.Shared._Starlight.CosmicCult.Roles;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
-using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Shared._Starlight.CosmicCult;
 

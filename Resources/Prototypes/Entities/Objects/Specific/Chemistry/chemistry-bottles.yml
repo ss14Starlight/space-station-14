@@ -1395,6 +1395,21 @@
         - ReagentId: Sulfur
           Quantity: 30
 
+- type: entity
+  id: ChemistryBottleIceialin
+  suffix: iceialin
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-iceialin
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Iceialin
+          Quantity: 30
+
 # Entity tables
 - type: entityTable
   id: BasicReagentBottlesTable
@@ -1476,6 +1491,7 @@
     - id: ChemistryBottleHaloperidol
     - id: ChemistryBottleHolywater
     - id: ChemistryBottleHyronalin
+    - id: ChemistryBottleIceialin
     - id: ChemistryBottleInaprovaline
     - id: ChemistryBottleInsuzine
     - id: ChemistryBottleIpecac
@@ -1505,25 +1521,3 @@
     - id: ChemistryBottleUltravasculine
     - id: ChemistryBottleCharcoal
     - id: ChemistryBottleLaughter
-
-#TODO: Move to _Starlight
-- type: entity
-  parent: BaseChemistryBottleFilled
-  id: CorgiJuiceChemistryBottle
-  suffix: essence of corgi
-  components:
-  - type: Label
-    currentLabel: reagent-name-corgi-endless # Starlight
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: CorgiJuice
-          Quantity: 30
-  - type: SolutionRegeneration
-    solution: drink
-    generated:
-      reagents:
-      - ReagentId: CorgiJuice
-        Quantity: 0.075

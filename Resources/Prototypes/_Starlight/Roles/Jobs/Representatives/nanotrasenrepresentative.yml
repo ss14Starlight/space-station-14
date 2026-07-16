@@ -9,6 +9,11 @@
       time: 30h # Still less than Magistrate. You should be experienced with Command before you tell them how to do their jobs.
     - !type:RolesRequirement
       proto: ExtRolesReq
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+        - Muted
+      inverted: true
   startingGear: NanoTrasenRepresentativeGear
   icon: JobIconNanoTrasenRepresentative
   rules: job-rules-corporate-aligned

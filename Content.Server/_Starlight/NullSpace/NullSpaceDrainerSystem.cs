@@ -1,5 +1,4 @@
-using Content.Server._Starlight.Shadekin;
-using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
@@ -32,13 +31,13 @@ public sealed partial class NullSpaceDrainerSystem : EntitySystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EnsureComp<NullSpaceDrainerComponent>(args.Equipee);
-        component.Target = args.Equipee;
+        EnsureComp<NullSpaceDrainerComponent>(args.EquipTarget);
+        component.Target = args.EquipTarget;
     }
 
     private void OnUnequipped(EntityUid uid, NullSpaceDrainerComponent component, GotUnequippedEvent args)
     {
-        RemComp<NullSpaceDrainerComponent>(args.Equipee);
+        RemComp<NullSpaceDrainerComponent>(args.EquipTarget);
         component.Target = null;
     }
 

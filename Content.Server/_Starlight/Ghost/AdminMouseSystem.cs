@@ -5,7 +5,6 @@ using Content.Shared._NullLink;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Verbs;
-using Robust.Server.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Ghost;

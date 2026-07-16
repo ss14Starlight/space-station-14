@@ -619,6 +619,16 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterLegitChipIn
+  name: "Chip In!"
+  description: "A reminder to thank those who spend long hours to make your sectors a better place to work. Contribute where you can!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/chip_in.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
   id: PosterContrabandHereticalExomorph
   name: "Heretic Exomorph"
   description: "They come out at night."
@@ -636,3 +646,371 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/beep100.rsi
     state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitMedTak
+  name: "MedTak: Live to See Tomorrow"
+  description: "An advertisment poster for a MedTak insurance plan."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/MedTak.rsi
+    state: medtak
+
+- type: entity
+  parent: PosterBase
+  id: PosterContraband300Hotdogs
+  name: "Watch Me Eat 300 Mini Cocktail Hotdogs"
+  description: "A hastily taped-up poster proclaiming that some blue resomi is going to attempt to eat three hundred cocktail hotdogs in one sitting on March 16th."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/300_hotdogs.rsi
+    layers:
+      - state: poster
+      - state: poster-unshaded
+        shader: unshaded
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitAndromedaBitters
+  name: "Andromeda Bitters"
+  description: "Hits like a bitch and might make you cry."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/andromeda_bitters.rsi
+    state: andromeda_bitters_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitBlasto
+  name: "Blasto"
+  description: "Detergent so strong you will think you just got shot."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/blasto_detergent.rsi
+    state: blasto_detergent_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandBuyLeft
+  name: "Buy"
+  description: "Now! Do it!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/buy_left.rsi
+    state: buy_left_civ13
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandBuyRight
+  name: "Buy"
+  description: "Now! Why are you hesitating!?"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/buy_right.rsi
+    state: buy_right_civ13
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitMenu
+  name: "Menu"
+  description: "Lists a lot of things, and their costs."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/menu.rsi
+    state: menu_civ13
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitMidtownPizza
+  name: "Midtown Pizza"
+  description: "Authentic Chicago style deep dish pizza. What the hell is a Chicago?"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/midtown.rsi
+    state: midtown_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitMoffuchis
+  name: "Moffucis Pizza"
+  description: "He cant taste it for himself, but Moffuchi is sure it tastes great!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/moffuchis_pizza.rsi
+    state: moffuchis_pizza_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitPizzaImperator
+  name: "Pizza Imperator"
+  description: "Authentic Italian pizza, like the Romans used to eat."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/pizza_imperator.rsi
+    state: pizza_imperator_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitQuirks
+  name: "Quirks Festival"
+  description: "Celebrate what makes you unique!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/quirk_festive.rsi
+    state: quirk_festive_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSlogan
+  name: "Share Joy!"
+  description: "The Service Departments old slogan."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/slogan.rsi
+    state: slogan_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitTipperCreamSoda
+  name: "Tipper Cream Soda"
+  description: "Foamy goodness, now with 175% of your daily sugar contents!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/tipper_cream_soda.rsi
+    state: tipper_cream_soda_tg
+
+# Prison Colony
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonAccident
+  name: "Days Since Last Accident"
+  description: "It has never hit double digits."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/accident.rsi
+    state: accident_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonAlien
+  name: "Beware: Hostile Aliens"
+  description: "It warns of alien creatures that latch onto your head and eat your brain."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/alien.rsi
+    state: alien_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonAshwalkers
+  name: "Wild Ashwalkers"
+  description: "Warns of wild Ashwalkers down on the planet. May be armed and hungry."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/ashwalkers.rsi
+    state: ashwalkers_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonCCTV
+  name: "CCTV"
+  description: "You are always being observed. Behave."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/cctv.rsi
+    state: cctv_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonCell
+  name: "Future"
+  description: "You should not expect to ever get out."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/cell.rsi
+    state: cell_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonCompromise
+  name: "Compromise"
+  description: "For a less painful tomorrow."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/compromise.rsi
+    state: compromise_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonEspionage
+  name: "Espionage"
+  description: "Beware infiltration."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/espionage.rsi
+    state: espionage_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonInquisition
+  name: "Inquisition"
+  description: "We will find out. Expect us."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/inquisition.rsi
+    state: inquisition_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonIntensec
+  name: "Intensec"
+  description: "Quality equipment, robust enough to outlast every riot."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/intensec.rsi
+    state: intensec_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonLeviathan
+  name: "Leviathan"
+  description: "Wandering the cosmos."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/leviathan.rsi
+    state: leviathan_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonMicroscope
+  name: "Blood Tests"
+  description: "Report for routine blood tests. Ash may carry bacteria and parasites."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/microscope.rsi
+    state: microscope_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonObscene
+  name: "Obscene"
+  description: "Nobody controls her, she is free."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/obscene.rsi
+    state: obscene_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonPinup
+  name: "Pin Up"
+  description: "She would drive a pickaxe through your skull in a heartbeat."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/pinup.rsi
+    state: pinup_cmss13
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonPray
+  name: "Pray"
+  description: "There might be salvation yet, even for you."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/pray.rsi
+    state: pray_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonReligion
+  name: "Saint"
+  description: "May you make it home at the end of today."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/religion.rsi
+    state: religion_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonReligious
+  name: "Stand and Live"
+  description: "They guide you to the path home."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/religious.rsi
+    state: religious_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonSad
+  name: "Red Tears"
+  description: "Makes many cry."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/sad.rsi
+    state: sad_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonSecure
+  name: "Secure"
+  description: "Under our gaze."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/secure.rsi
+    state: secure_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonSmallBrain
+  name: "Brain Rot"
+  description: "Report any signs of cognitive degredation to the nearest Physician. Ash may carry diseases or parasites that cause Brain Rot."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/small_brain.rsi
+    state: small_brain_tg
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonSubu
+  name: "Subu"
+  description: "You could always go for a sandwich."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/subu.rsi
+    state: subu_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonTriangle
+  name: "Delta"
+  description: "Observe its ascent."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/triangle.rsi
+    state: triangle_f19
+
+- type: entity
+  parent: PosterBase
+  id: PosterPrisonUgly
+  name: "Ugly"
+  description: "It leers from the shadows, fearful of the light."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/ugly.rsi
+    state: ugly_f19
+
+# Wide Signs
+- type: entity
+  parent: BaseWallmount
+  id: PosterLegitMugshot
+  name: "Mugshot"
+  description: "Line up and hold still."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/mugshot.rsi
+    state: mugshot_civ13
+  - type: WallMount
+    arc: 360

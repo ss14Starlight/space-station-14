@@ -467,22 +467,6 @@
     state: Zombie
   jobName: job-name-zombie
 
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconXenoborg
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
-    state: Xenoborg
-  jobName: chat-radio-xenoborg
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconXenoborgMothership
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
-    state: Mothership
-  jobName: chat-radio-mothership
-
 # Admin
 
 - type: jobIcon
