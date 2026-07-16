@@ -729,7 +729,7 @@
     IceCream: 15
 
 - type: microwaveMealRecipe
-  id: RecipeMeatIceream
+  id: RecipeMeatIceCream
   name: meat ice cream
   result: FoodMeatIceCream
   deviceType: IceCreamMaker
@@ -742,7 +742,7 @@
     IceCream: 15
 
 - type: microwaveMealRecipe
-  id: RecipeWehIceream
+  id: RecipeWehIceCream
   name: weh ice cream
   result: FoodWehIceCream
   deviceType: IceCreamMaker
@@ -756,7 +756,7 @@
     JuiceThatMakesYouWeh: 10
 
 - type: microwaveMealRecipe
-  id: RecipeSpaceDragonIceream
+  id: RecipeSpaceDragonIceCream
   name: space dragon ice cream
   result: FoodSpaceDragonIceCream
   deviceType: IceCreamMaker
@@ -770,7 +770,7 @@
     IceCream: 10
 
 - type: microwaveMealRecipe
-  id: RecipeSilkThreadIceream
+  id: RecipeSilkThreadIceCream
   name: silk thread ice cream
   result: FoodMothSilkIceCream
   deviceType: IceCreamMaker
@@ -783,7 +783,7 @@
     Fiber: 10
 
 - type: microwaveMealRecipe
-  id: RecipeInterdimensionalIceream
+  id: RecipeInterdimensionalIceCream
   name: interdimensional napoleon ice cream
   result: FoodDimensionalIceCream
   deviceType: IceCreamMaker
