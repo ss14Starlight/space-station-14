@@ -75,4 +75,23 @@ Entries:
   id: 260001
   time: '2026-07-16T05:33:37.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/26
+- author: AprilCatStreams
+  changes:
+  - message: Digi-board added to Dept Head's lockers.
+    type: Add
+  - message: More ghost theme mappings.
+    type: Add
+  - message: Mentor role now mapped to mentor help.
+    type: Tweak
+  - message: Arachnids can have hair now.
+    type: Tweak
+  - message: Quick options panel for separated view mode.
+    type: Add
+  - message: TTS voice IDs.
+    type: Fix
+  - message: The ID Card Computer finally works correctly.
+    type: Fix
+  id: 270001
+  time: '2026-07-16T09:27:49.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/27
 
