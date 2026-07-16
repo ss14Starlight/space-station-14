@@ -80,6 +80,15 @@
   shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml
 
 - type: vessel
+  id: Reach
+  name: SS-Reach III
+  description: A large station vessel made for skeleton crews that we decided to allow stations to buy.
+  price: 1500000
+  category: Humongous
+  group: Command
+  shuttlePath: /Maps/_Starlight/Shuttles/ReachButShipyard.yml
+
+- type: vessel
   id: Bumblebee
   name: NTS "Bumblebee" Flores
   description: A medium sized botany shuttle made for advance farming operations, comes with two mutation rooms.

@@ -427,7 +427,6 @@
   loadouts:
   - SecurityTaser
   - SecurityDominator
-  - SecurityPeacekeeper
 
 - type: loadoutGroup
   id: SecuritySidearm

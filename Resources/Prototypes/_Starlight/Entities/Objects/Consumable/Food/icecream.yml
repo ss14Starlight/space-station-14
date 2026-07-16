@@ -1,0 +1,851 @@
+- type: entity
+  parent: Jug
+  suffix: Ice cream
+  id: JugIceCream
+  components:
+  - type: Label
+    currentLabel: reagent-name-ice-cream
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: IceCream
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: Cocoa powder
+  id: JugCocoaPowder
+  components:
+  - type: Label
+    currentLabel: reagent-name-cocoapowder
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: CocoaPowder
+          Quantity: 200
+
+- type: entity
+  abstract: true
+  parent: FoodMealBase
+  id: FoodIceCreamBase
+  components:
+  - type: Appearance
+  - type: Edible
+    transferAmount: 4
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    layers:
+    - state: icon_empty
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: fill-1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: SolutionContainerVisuals
+    changeColor: false
+    solutionName: food
+    maxFillLevels: 5
+    fillBaseName: fill-
+
+- type: entity
+  name: vanilla ice cream
+  parent: FoodIceCreamBase
+  id: FoodVanillaIceCream
+  description: A bowl of vanilla ice cream every spacer knows.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - vanillaIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/vanilla_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/vanilla_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: chocolate ice cream
+  parent: FoodIceCreamBase
+  id: FoodChocolateIceCream
+  description: A bowl of rich chocolate with dark chocolate chips and a cinnamon stick.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - chocolateIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/chocolate_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/chocolate_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Theobromine
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 10
+
+- type: entity
+  name: strawberry ice cream
+  parent: FoodIceCreamBase
+  id: FoodStrawberryIceCream
+  description: Pink strawberry ice cream with real strawberries!
+  components:
+  - type: FlavorProfile
+    flavors:
+    - strawberryIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/strawberry_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/strawberry_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: mint chocolate ice cream
+  parent: FoodIceCreamBase
+  id: FoodMintChocolateIceCream
+  description: Crisp mint ice cream with crunchy chocolate chips.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - mintChocolateIcecream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/mint_icecream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/mint_icecream_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Theobromine
+          Quantity: 2
+        - ReagentId: Cream
+          Quantity: 13
+
+- type: entity
+  name: coffee ice cream
+  parent: FoodIceCreamBase
+  id: FoodCoffeeIceCream
+  description: Coffee flavored ice cream with a few toasted coffee beans.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - coffeeIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/coffee_icecream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/coffee_icecream_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Coffee
+          Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
+
+- type: entity
+  name: snowcream special ice cream
+  parent: FoodIceCreamBase
+  id: FoodSnowcreamIceCream
+  description: Vanilla ice cream with wafer cookies in a familiar shape.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - snowcreamIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/snowcream_special.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/snowcream_special.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: sherbet ice cream
+  parent: FoodIceCreamBase
+  id: FoodSherbetIceCream
+  description: Lemon, Lime, Orange, and Strawberry in a fruity tangy blend.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - sherbetIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/rainbow_sherbet_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/rainbow_sherbet_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: banana split ice cream
+  parent: FoodIceCreamBase
+  id: FoodBananaSplitIceCream
+  description: The holy trio of ice cream.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - bananaSplitIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/banana_split_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/banana_split_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Theobromine
+          Quantity: 2
+        - ReagentId: Cream
+          Quantity: 13
+
+
+- type: entity
+  name: orange swirl ice cream
+  parent: FoodIceCreamBase
+  id: FoodOrangeSwirlIceCream
+  description: Vanilla ice cream with orange sherbet swirled together.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - orangeSwirlIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/orange_swirl_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/orange_swirl_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: blueberry ice cream
+  parent: FoodIceCreamBase
+  id: FoodBlueberryIceCream
+  description: Ice cream mixed with blue berries.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - blueberryIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/blueberry_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/blueberry_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: neapolitan ice cream
+  parent: FoodIceCreamBase
+  id: FoodNeapolitanIceCream
+  description: Vanilla, strawberry, and chocolate stacked together.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - neapolitanIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/napoleon_icecream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/napoleon_icecream_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Theobromine
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 10
+
+- type: entity
+  name: salted caramel ice cream
+  parent: FoodIceCreamBase
+  id: FoodSaltedCaramelIceCream
+  description: Vanilla with a small amount of salt and caramel glaze.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - saltedCaramelIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/caramel_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/caramel_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: rocky road ice cream
+  parent: FoodIceCreamBase
+  id: FoodRockyRoadIceCream
+  description: Chocolate ice cream with marshmallows and almonds.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - rockyRoadIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/rockyroad_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/rockyroad_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Theobromine
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 10
+
+- type: entity
+  name: matcha ice cream
+  parent: FoodIceCreamBase
+  id: FoodMatchaIceCream
+  description: Earthy ice cream infused with matcha powder.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - matchaIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/matcha_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/matcha_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: GreenTea
+          Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
+
+- type: entity
+  name: pistachio ice cream
+  parent: FoodIceCreamBase
+  id: FoodPistachioIceCream
+  description: Ice cream infused with pistachios.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - pistachioIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/pistachio_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/pistachio_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: peanut butter ice cream
+  parent: FoodIceCreamBase
+  id: FoodPeanutButterIceCream
+  description: Peanut butter and ice cream together to raise your calories
+  components:
+  - type: FlavorProfile
+    flavors:
+    - peanutButterIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/peanut_butter_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/peanut_butter_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: cherry ice cream
+  parent: FoodIceCreamBase
+  id: FoodCherryIceCream
+  description: Rich cherry ice cream with some crunchy chocolate chips.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - cherryIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/cherry_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/cherry_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Theobromine
+          Quantity: 2
+        - ReagentId: Cream
+          Quantity: 13
+
+- type: entity
+  name: apple cinnamon ice cream
+  parent: FoodIceCreamBase
+  id: FoodAppleCinnamonIceCream
+  description: Vanilla ice cream with apple slices and cinnamon toppings.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - appleCinnamonIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/apple_cinnamon_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/apple_cinnamon_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: gold apple cinnamon ice cream
+  parent: FoodIceCreamBase
+  id: FoodGoldAppleCinnamonIceCream
+  description: Ice cream that radiates health.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - goldAppleCinnamonIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/gold_apple_cinna_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/gold_apple_cinna_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: DoctorsDelight
+          Quantity: 13
+
+- type: entity
+  name: holy melon ice cream
+  parent: FoodIceCreamBase
+  id: FoodHolyMelonIceCream
+  description: Holy Melon Sorbet that cleanses your soul.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - holyMelonIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/holy_melon_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/holy_melon_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Holywater
+          Quantity: 15
+
+- type: entity
+  name: rainbow high ice cream
+  parent: FoodIceCreamBase
+  id: FoodRainbowHighIceCream
+  description: This ice cream is way out there...
+  components:
+  - type: FlavorProfile
+    flavors:
+    - rainbowHighIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/rainbow_high_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/rainbow_high_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: MindbreakerToxin
+          Quantity: 7
+        - ReagentId: SpaceDrugs
+          Quantity: 7
+        - ReagentId: Happiness
+          Quantity: 6
+
+- type: entity
+  name: meat ice cream
+  parent: FoodIceCreamBase
+  id: FoodMeatIceCream
+  description: A raw T-bone steak with ice cream on it.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meatIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/meat_icecream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/meat_icecream_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 15
+
+- type: entity
+  name: weh ice cream
+  parent: FoodIceCreamBase
+  id: FoodWehIceCream
+  description: Lime ice cream in the shape of a beloved plush.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - wehIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/weh_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/weh_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
+
+- type: entity
+  name: space dragon ice cream
+  parent: FoodIceCreamBase
+  id: FoodSpaceDragonIceCream
+  description: Blueberry ice cream with... space dragon meat in it.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - spaceDragonIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/carp_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/carp_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Ichor
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 10
+
+- type: entity
+  name: silk thread ice cream
+  parent: FoodIceCreamBase
+  id: FoodMothSilkIceCream
+  description: Silk threads flavored like vanilla ice cream for moths.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - silkThreadIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/silk_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/silk_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
+
+- type: entity
+  name: interdimensional napoleon ice cream
+  parent: FoodIceCreamBase
+  id: FoodDimensionalIceCream
+  description: An ice cream that will make you feel different dimensions.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - dimensionalIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/interdimension_napoleon.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/interdimension_napoleon.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: SpaceDrugs
+          Quantity: 7
+        - ReagentId: Happiness
+          Quantity: 6
+
+- type: entity
+  name: omnizine ice cream
+  parent: FoodIceCreamBase
+  id: FoodOmnizineIceCream
+  description: An incredibly soothing ice cream that mends your wounds.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - omnizineIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/omni_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/omni_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Omnizine
+          Quantity: 7
+        - ReagentId: Cream
+          Quantity: 8
+
+- type: entity
+  name: mean girl ice cream
+  parent: FoodIceCreamBase
+  id: FoodMeanGirlIceCream
+  description: The power of mean girls shines in this ice cream.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meanGirlIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/mean_girl_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/mean_girl_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: hew ice cream
+  parent: FoodIceCreamBase
+  id: FoodHewIceCream
+  description: Blueberry ice cream in the shape of a lovable inverted weh.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - hewIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/hew_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/hew_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: JuiceThatMakesYouHew
+          Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
+
+- type: entity
+  name: fluffy boy ice cream
+  parent: FoodIceCreamBase
+  id: FoodFluffyBoyIceCream
+  description: The power of fluffy boys shines in this ice cream.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - fluffyBoyIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/fluffy_boy_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/fluffy_boy_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: leader ice cream
+  parent: FoodIceCreamBase
+  id: FoodLeaderIceCream
+  description: The power of this ice cream shines with you.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - leaderIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/leader_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/leader_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Cream
+          Quantity: 15
+
+- type: entity
+  name: tesla ice cream
+  parent: FoodIceCreamBase
+  id: FoodTeslaIceCream
+  description: Ice cream to give you a good zap in your step!
+  components:
+  - type: FlavorProfile
+    flavors:
+    - teslaIceCream
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/IceCream/tesla_cream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/IceCream/tesla_cream_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Tazinide
+          Quantity: 10
+        - ReagentId: Cream
+          Quantity: 5
