@@ -1,104 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: The shoulder holster can now be worn on the neck slot, in addition to the existing belt slot.
-    type: Tweak
-  id: 406256
-  time: '2026-06-27T11:17:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4849
-- author: wonderfulnewworld
-  changes:
-  - message: Most revolvers and anvil guns now use proper capitalization.
-    type: Fix
-  id: 406257
-  time: '2026-06-27T11:17:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4849
-- author: wonderfulnewworld
-  changes:
-  - message: You can no longer roll the sleeves up on the mining specialist jumpskirt, since it doesn't actually have a sprite for that.
-    type: Remove
-  id: 406258
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: Welders consume less welding fuel when welding Protogens.
-    type: Tweak
-  id: 406259
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: It is now slower for Protogens to weld themselves.
-    type: Tweak
-  id: 406260
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: It is now faster for others to heal IPCs.
-    type: Tweak
-  id: 406261
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: Protogen now have access to the Thaven, Lagomorph, and Laspi vocal emotes they didn't have.
-    type: Tweak
-  id: 406262
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Lagomorphs can now stomp.
-    type: Tweak
-  id: 406263
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Lagomorphs now have the extended hearing of normal Lagomorphs.
-    type: Fix
-  id: 406264
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Vulps now have the same temperature protection as normal Vulps.
-    type: Fix
-  id: 406265
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Vulp sprites are now consistent across male and female, and no longer clip their shoes.
-    type: Fix
-  id: 406266
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Avali now use their correct clothing sprites.
-    type: Fix
-  id: 406267
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Reptilians can now actually thump their tails.
-    type: Fix
-  id: 406268
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Reptilians can now have hair.
-    type: Fix
-  id: 406269
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
-- author: wonderfulnewworld
-  changes:
   - message: Fixed some Protogen markings not disappearing under helmets.
     type: Fix
   id: 406270
@@ -2799,4 +2701,102 @@ Entries:
   id: 406655
   time: '2026-07-15T19:01:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5078
+- author: Johnny
+  changes:
+  - message: Added reach into the shipyard (no it wont duplicate items or whatever).
+    type: Add
+  id: 406656
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) Nuclear fabricator in atmospherics.
+    type: Add
+  id: 406657
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) A way to deal with anomalies has been added.
+    type: Add
+  id: 406658
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) Ticket machines for mining and salvage were added.
+    type: Add
+  id: 406659
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) Medical has a dispenser and a techfab now.
+    type: Add
+  id: 406660
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) HV Cables have been added to all docks so they can use the dock connection ports.
+    type: Add
+  id: 406661
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) Something something biogenerator in botany.
+    type: Add
+  id: 406662
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) I wont tell you what i removed but I removed something...
+    type: Remove
+  id: 406663
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) Made AI Core command locked.
+    type: Tweak
+  id: 406664
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) Moved telecomms to CE office.
+    type: Tweak
+  id: 406665
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) Science can finally print circuitboards.
+    type: Tweak
+  id: 406666
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) Replaced the magnet with a salvage vendor.
+    type: Tweak
+  id: 406667
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) Science spawns with artifact now.
+    type: Fix
+  id: 406668
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Johnny
+  changes:
+  - message: (Reach) SMES arent looped anymore so power issues wont suddenly arise.
+    type: Fix
+  id: 406669
+  time: '2026-07-16T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5109
 Order: -1
