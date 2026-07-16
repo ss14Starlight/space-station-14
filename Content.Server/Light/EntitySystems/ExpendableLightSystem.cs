@@ -1,3 +1,5 @@
+using Content.Server.Botany.Components; // Starlight Edit
+using Content.Server.Botany.Systems;   // Starlight Edit
 using Content.Server.Light.Components;
 using Content.Server.Stack;
 using Content.Shared.Clothing.Components;
@@ -29,6 +31,7 @@ namespace Content.Server.Light.EntitySystems
         [Dependency] private SharedAppearanceSystem _appearance = default!;
         [Dependency] private StackSystem _stackSystem = default!;
         [Dependency] private NameModifierSystem _nameModifier = default!;
+        [Dependency] private BotanySystem _botanySystem = default!; // Starlight Edit
 
         private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
 
@@ -104,6 +107,15 @@ namespace Content.Server.Light.EntitySystems
                 {
                     _item.SetHeldPrefix(ent, "lit", component: item);
                 }
+
+                // Starlight Edit Start
+                // For botany grown cinnaflares, add the to the burn time by adding modifier * plant potency.
+                if (TryComp<ProduceComponent>(ent, out var produceComp) &&
+                    _botanySystem.TryGetSeed(produceComp, out var seedData))
+                    {
+                        ent.Comp.StateExpiryTime +=  ent.Comp.PlantBurnTimeModifier * seedData.Potency;
+                    }
+                // Starlight Edit Stop
 
                 var ignite = new IgnitionEvent(true);
                 RaiseLocalEvent(ent, ref ignite);
