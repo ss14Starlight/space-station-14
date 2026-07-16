@@ -1,11 +1,4 @@
 Entries:
-- author: BornStellat
-  changes:
-  - message: Worn armor and handheld items with the shield tag will now stop bullets from piercing the entity if the bullet pierce level is lower than the armor value.
-    type: Fix
-  id: 406275
-  time: '2026-06-28T17:52:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4953
 - author: BornStellar
   changes:
   - message: greenlight shield renamed to X-03 green phase shield.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406674
   time: '2026-07-16T11:22:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5153
+- author: Swonki
+  changes:
+  - message: derelict salvage cyborg is now whitelisted for its mining module.
+    type: Fix
+  id: 406675
+  time: '2026-07-16T11:22:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5152
 Order: -1
