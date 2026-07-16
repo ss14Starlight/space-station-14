@@ -1,319 +1,241 @@
 {
     "version": 1,
     "license": "CC0-1.0",
-    "copyright": "State based copyright",
+    "copyright": "Created by EmoGarbage404 (github) for Space Station 14. icon-construction.png created by deltanedas (github). syndicateborgbomb.png created by Mangohydra (github). icon-chem.png & icon-mining-adv.png created by mubururu_ (github) icon-inflatable.png made by FungiFellow (GitHub), Xenoborg modules sprites by Samuka-C (github), icon-artistry by Kittygyat",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "cargo",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "cargo"
         },
         {
-            "name": "engineering",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "engineering"
         },
         {
-            "name": "generic",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "generic"
         },
         {
-            "name": "icon-anomalies",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-anomalies"
         },
         {
-            "name": "icon-appraisal",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-appraisal"
         },
         {
-            "name": "icon-artifacts",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-artifacts"
         },
         {
-            "name": "icon-cables",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-cables"
         },
         {
-            "name": "icon-inflatable",
-            "copyright": "FungiFellow (GitHub)"
+            "name": "icon-inflatable"
         },
         {
-            "name": "icon-chemist",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-chemist"
         },
         {
-            "name": "icon-chem",
-            "copyright": "mubururu_ (github)"
+            "name": "icon-chem"
         },
         {
-            "name": "icon-clown",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-clown"
         },
         {
-            "name": "icon-clown-adv",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-clown-adv"
         },
         {
-            "name": "icon-construction",
-            "copyright": "deltanedas (github)"
+            "name": "icon-construction"
         },
         {
-            "name": "icon-defib",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-defib"
         },
         {
-            "name": "icon-diagnosis",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-diagnosis"
         },
         {
-            "name": "icon-fire-extinguisher",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-fire-extinguisher"
         },
         {
-            "name": "icon-artistry",
-            "copyright": "Kittygyat"
+            "name": "icon-artistry"
         },
         {
-            "name": "icon-gardening",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-gardening"
         },
         {
-            "name": "icon-gas-analyzer",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-gas-analyzer"
         },
         {
-            "name": "icon-gps",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-gps"
         },
         {
-            "name": "icon-grappling-gun",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-grappling-gun"
         },
         {
-            "name": "icon-harvesting",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-harvesting"
         },
         {
-            "name": "icon-light-replacer",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-light-replacer"
         },
         {
-            "name": "icon-mining",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-mining"
         },
         {
-            "name": "icon-mining-adv",
-            "copyright": "mubururu_ (github)"
+            "name": "icon-mining-adv"
         },
         {
-            "name": "icon-mop",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-mop"
         },
         {
-            "name": "icon-mop-adv",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-mop-adv"
         },
         {
-            "name": "icon-musique",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-musique"
         },
         {
-            "name": "icon-pen",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-pen"
         },
         {
-            "name": "icon-radiation",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-radiation"
         },
         {
-            "name": "icon-rcd",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-rcd"
         },
         {
-            "name": "icon-template",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-template"
         },
         {
-            "name": "icon-tools-adv",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-tools-adv"
         },
         {
-            "name": "icon-tools",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-tools"
         },
         {
-            "name": "icon-trash-bag",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-trash-bag"
         },
         {
-            "name": "icon-treatment",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-treatment"
         },
         {
-            "name": "icon-xenoborg-access-breaker",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-access-breaker"
         },
         {
-            "name": "icon-xenoborg-basic",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-basic"
         },
         {
-            "name": "icon-xenoborg-cloak",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-cloak"
         },
         {
-            "name": "icon-xenoborg-jump",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-jump"
         },
         {
-            "name": "icon-xenoborg-cloak2",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-cloak2"
         },
         {
-            "name": "icon-xenoborg-fire-extinguisher",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-fire-extinguisher"
         },
         {
-            "name": "icon-xenoborg-hypo",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-hypo"
         },
         {
-            "name": "icon-xenoborg-jammer",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-jammer"
         },
         {
-            "name": "icon-xenoborg-laser",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-laser"
         },
         {
-            "name": "icon-xenoborg-laser2",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-laser2"
         },
         {
-            "name": "icon-xenoborg-projector",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-projector"
         },
         {
-            "name": "icon-xenoborg-space-movement",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-space-movement"
         },
         {
-            "name": "icon-xenoborg-sword",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-sword"
         },
         {
-            "name": "icon-xenoborg-sword2",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-sword2"
         },
         {
-            "name": "icon-xenoborg-tile",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-tile"
         },
         {
-            "name": "icon-xenoborg-tools",
-            "copyright": "Samuka-C (github)"
+            "name": "icon-xenoborg-tools"
         },
         {
-            "name": "icon-syndicate",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-syndicate"
         },
         {
-            "name": "janitor",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "janitor"
         },
         {
-            "name": "icon-bomb",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "icon-bomb"
         },
         {
-            "name": "icon-nt",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "medical"
         },
         {
-            "name": "medical",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "science"
         },
         {
-            "name": "science",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "security"
         },
         {
-            "name": "security",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "service"
         },
         {
-            "name": "service",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "syndicateborgbomb"
         },
         {
-            "name": "syndicateborgbomb",
-            "copyright": "Mangohydra (github)"
+            "name": "syndicate"
         },
         {
-            "name": "syndicate",
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "name": "xenoborg_engi"
         },
         {
-            "name": "xenoborg_engi",
-            "copyright": "Samuka-C (github)"
+            "name": "xenoborg_generic"
         },
         {
-            "name": "xenoborg_generic",
-            "copyright": "Samuka-C (github)"
+            "name": "xenoborg_heavy"
         },
         {
-            "name": "xenoborg_heavy",
-            "copyright": "Samuka-C (github)"
+            "name": "xenoborg_scout"
         },
         {
-            "name": "xenoborg_scout",
-            "copyright": "Samuka-C (github)"
-        },
-        {
-            "name": "xenoborg_stealth",
-            "copyright": "Samuka-C (github)"
+            "name": "xenoborg_stealth"
         },
         {
             "name": "base-icon-inhand-left",
-            "directions": 4,
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "directions": 4
         },
         {
             "name": "base-icon-inhand-right",
-            "directions": 4,
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "directions": 4
         },
         {
             "name": "base-module-inhand-left",
-            "directions": 4,
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "directions": 4
         },
         {
             "name": "base-module-inhand-right",
-            "directions": 4,
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "directions": 4
         },
         {
             "name": "base-part-inhand-left",
-            "directions": 4,
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "directions": 4
         },
         {
             "name": "base-part-inhand-right",
-            "directions": 4,
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "directions": 4
         },
         {
             "name": "base-stripes-inhand-left",
-            "directions": 4,
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "directions": 4
         },
         {
             "name": "base-stripes-inhand-right",
-            "directions": 4,
-            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
+            "directions": 4
         }
     ]
 }

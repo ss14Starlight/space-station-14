@@ -212,7 +212,8 @@
   - type: Sprite
     layers:
     - state: security
-    - state: icon-nt
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-nt
   - type: ItemBorgModule
     hands:
     - item: WeaponPDW9TaserBorg
@@ -235,7 +236,8 @@
   - type: Sprite
     layers:
     - state: security
-    - state: icon-nt
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-nt
   - type: ItemBorgModule
     hands:
     - item: BorgContrabandBag
