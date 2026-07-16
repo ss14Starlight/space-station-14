@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+        "name": "spear",
+		"copyright": "Created by DreadfulTaco on Starlight Discord."
+    },
+    {
+         "name": "spear1",
+		 "copyright": "Created by DreadfulTaco on Starlight Discord."
+    },
+    {
+        "name": "inhand-left",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "inhand-left-fill-1",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "inhand-right",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "inhand-right-fill-1",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "wielded-inhand-left",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "wielded-inhand-left-fill-1",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "wielded-inhand-right",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "wielded-inhand-right-fill-1",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "equipped-BACKPACK",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "equipped-back-fill-1",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "equipped-SUITSTORAGE",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    },
+    {
+        "name": "equipped-suitstorage-fill-1",
+		"copyright": "Created by DreadfulTaco on Starlight Discord.",
+        "directions": 4
+    }
+  ]
+}

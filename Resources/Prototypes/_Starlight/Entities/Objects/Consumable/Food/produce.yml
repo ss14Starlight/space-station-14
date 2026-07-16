@@ -93,3 +93,119 @@
     - type: Tag
       tags:
         - Fruit
+
+- type: entity
+  name: mint leaf
+  parent: FoodProduceBase
+  id: FoodMintLeaf
+  description: A mint leaf to be made into mint extract, great for tea.
+  components:
+    - type: FlavorProfile
+      flavors:
+        - minty
+    - type: Extractable
+      juiceSolution:
+        reagents:
+        - ReagentId: MintExtract
+          Quantity: 10
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 20
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 5
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/mint.rsi
+    - type: Item
+      heldPrefix: produce
+    - type: Produce
+      seedId: mint
+    - type: Tag
+      tags:
+        - Vegetable
+
+- type: entity
+  name: spearmint
+  parent: Spear
+  id: SpearMint
+  description: A spear cut from a mutated mint plant.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/spearmint.rsi
+  - type: Produce
+    seedId: spearMint
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 12
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 12
+
+- type: entity
+  name: cinnamon stick
+  parent: FoodProduceBase
+  id: FoodCinnamonStick
+  description: Dried bark rolled into a cinnamon stick, ready to bring the spice.
+  components:
+    - type: FlavorProfile
+      flavors:
+        - cinnamon
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 20
+          reagents:
+            - ReagentId: Cinnamon
+              Quantity: 5
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/cinnamon.rsi
+    - type: Item
+      heldPrefix: produce
+    - type: Produce
+      seedId: cinnamon
+    - type: Tag
+      tags:
+        - Vegetable
+
+- type: entity
+  name: cinnaflare stick
+  parent: Flare
+  id: CinnaflareStick
+  description: Dried bark rolled into a stick, ready to ignite and light the way.
+  components:
+    - type: PotencyVisuals
+    - type: Extractable
+      grindableSolutionName: food
+    - type: SolutionContainerManager
+      solutions:
+        flare:
+          maxVol: 5
+          reagents:
+            - ReagentId: Oil
+              Quantity: 5
+    - type: ExpendableLight
+      glowDuration: 145
+      fadeOutDuration: 15
+      plantBurnTimeModifier: 3
+      iconStateOn: flare_unlit
+      iconStateSpent: flare_spent
+      turnOnBehaviourID: turn_on
+      fadeOutBehaviourID: fade_out
+      litSound:
+        path: /Audio/Items/Flare/flare_on.ogg
+      loopedSound:
+        path: /Audio/Items/Flare/flare_burn.ogg
+        params:
+          loop: true
+          volume: -10
+          maxDistance: 5
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cinnaflare.rsi
+    - type: Item
+      heldPrefix: unlit
+    - type: Produce
+      seedId: cinnaflare
