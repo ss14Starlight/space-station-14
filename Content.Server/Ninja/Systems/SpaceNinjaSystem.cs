@@ -166,7 +166,7 @@ public sealed partial class SpaceNinjaSystem : SharedSpaceNinjaSystem
     }
 
     #region Starlight
-    private void OnPodCalledIn(Entity<SpaceNinjaComponent> ent, ref PodCalledInEvent args) 
+    private void OnPodCalledIn(Entity<SpaceNinjaComponent> ent, ref PodCalledInEvent args)
         => _codeCondition.SetCompleted(ent.Owner, ent.Comp.ExtractObjective);
     #endregion
 }
