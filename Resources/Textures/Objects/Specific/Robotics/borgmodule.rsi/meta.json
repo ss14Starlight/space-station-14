@@ -32,16 +32,8 @@
             "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
         {
-            "name": "icon-bartending",
-            "copyright": "SevenShades"
-        },
-        {
             "name": "icon-cables",
             "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
-        },
-        {
-            "name": "icon-cooking",
-            "copyright": "SevenShades"
         },
         {
             "name": "icon-inflatable",
@@ -138,10 +130,6 @@
         {
             "name": "icon-rcd",
             "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
-        },
-        {
-            "name": "icon-surgery",
-            "copyright": "SevenShades"
         },
         {
             "name": "icon-template",
@@ -244,10 +232,6 @@
             "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
         {
-            "name": "icon-hands",
-            "copyright": "Citrea"
-        },
-        {
             "name": "medical",
             "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
@@ -292,38 +276,6 @@
             "copyright": "Samuka-C (github)"
         },
         {
-            "name": "command",
-            "copyright": "SevenShades"
-        },
-        {
-            "name": "hauling",
-            "copyright": "SevenShades"
-        },
-        {
-            "name": "mining",
-            "copyright": "SevenShades"
-        },
-        {
-            "name": "icon-mats",
-            "copyright": "SevenShades"
-        },
-        {
-            "name": "icon-mail",
-            "copyright": "SevenShades"
-        },
-        {
-            "name": "icon-paperwork",
-            "copyright": "SevenShades"
-        },
-        {
-            "name": "icon-loading",
-            "copyright": "SevenShades"
-        },
-        {
-            "name": "icon-plumbing",
-            "copyright": "AegisShieldDev (github)"
-        },
-        {
             "name": "base-icon-inhand-left",
             "directions": 4,
             "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
@@ -362,19 +314,6 @@
             "name": "base-stripes-inhand-right",
             "directions": 4,
             "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
-        },
-        {
-            "name": "makeshift",
-            "copyright": "Conflee"
-        },
-        {
-            "name": "icon-knife",
-            "copyright": "Conflee"
-        },
-        {
-            "name": "icon-salvage-defense",
-            "copyright": "Ohelig (github)"
         }
     ]
-
 }
