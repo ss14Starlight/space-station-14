@@ -165,11 +165,8 @@ public sealed partial class SpaceNinjaSystem : SharedSpaceNinjaSystem
         _codeCondition.SetCompleted(ent.Owner, ent.Comp.SpiderChargeObjective);
     }
 
-    /// <summary>
-    /// Starlight Ninja Extraction.
-    /// </summary>
-    private void OnPodCalledIn(Entity<SpaceNinjaComponent> ent, ref PodCalledInEvent args)
-    {
-        _codeCondition.SetCompleted(ent.Owner, ent.Comp.ExtractObjective);
-    }
+    #region Starlight
+    private void OnPodCalledIn(Entity<SpaceNinjaComponent> ent, ref PodCalledInEvent args) 
+        => _codeCondition.SetCompleted(ent.Owner, ent.Comp.ExtractObjective);
+    #endregion
 }
