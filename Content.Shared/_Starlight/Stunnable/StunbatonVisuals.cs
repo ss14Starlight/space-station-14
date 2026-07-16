@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.Stunbaton;
+namespace Content.Shared._Starlight.Stunnable;
 
 /// <summary>
 /// Appearance keys for the stunbaton.

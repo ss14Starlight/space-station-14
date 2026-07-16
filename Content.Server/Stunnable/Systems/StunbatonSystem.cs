@@ -21,7 +21,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.PowerCell.Components;
-using Content.Shared._Starlight.Stunbaton;
+using Content.Shared._Starlight.Stunnable;
 #endregion
 
 namespace Content.Server.Stunnable.Systems
