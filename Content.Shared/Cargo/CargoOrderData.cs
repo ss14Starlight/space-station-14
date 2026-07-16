@@ -25,7 +25,7 @@ namespace Content.Shared.Cargo
         /// Prototype Id for the item to be created
         /// </summary>
         [DataField]
-        public EntProtoId? ProductId { get; private set; } // Starlight
+        public EntProtoId? ProductId { get; private set; } // Starlight: possibly empty string => possibly null EntProtoId
 
         /// <summary>
         /// Prototype Name
@@ -66,16 +66,27 @@ namespace Content.Shared.Cargo
         /// <summary>
         /// The ID of the station this order belongs to.
         /// </summary>
-        [DataField]
-        public NetEntity StationId;
-        [DataField]
-        public ProtoId<CargoProductPrototype> CargoProductId;
-        [DataField]
-        public ProtoId<GasPrototype>? GasType;
-        [DataField]
-        public float GasMoles;
-        [DataField]
-        public float GasTemperature;
+        [DataField] public NetEntity StationId;
+
+        /// <summary>
+        /// The prototype ID of the ordered product.
+        /// </summary>
+        [DataField] public ProtoId<CargoProductPrototype> CargoProductId;
+
+        /// <summary>
+        /// The ordered gas, if it was a gas order.
+        /// </summary>
+        [DataField] public ProtoId<GasPrototype>? GasType;
+
+        /// <summary>
+        /// The amount of moles of gas were bought, if it was a gas order.
+        /// </summary>
+        [DataField] public float GasMoles;
+
+        /// <summary>
+        /// The temperature of the gas that was bought, if it was a gas order.
+        /// </summary>
+        [DataField] public float GasTemperature;
         #endregion
 
         public CargoOrderData(int orderId, EntProtoId? productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<CargoProductPrototype> cargoProductId, ProtoId<GasPrototype>? gasType, float gasMoles, float gasTemp) // Starlight

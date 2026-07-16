@@ -291,7 +291,7 @@ namespace Content.Server.Cargo.Systems
             _listEnts.Clear();
             GetTradeStations(stationData, ref _listEnts);
             EntityUid? tradeDestination = null;
-            var orderSlipPrinted = new HashSet<EntityUid>();
+            var orderSlipPrinted = new HashSet<EntityUid>(); // Starlight
 
             // Try to fulfill from any station where possible, if the pad is not occupied.
             foreach (var trade in _listEnts)
@@ -590,7 +590,7 @@ namespace Content.Server.Cargo.Systems
 
         public bool AddAndApproveOrder(
             EntityUid dbUid,
-            EntProtoId? spawnId,
+            EntProtoId? spawnId, // Starlight
             string name,
             int cost,
             int qty,
