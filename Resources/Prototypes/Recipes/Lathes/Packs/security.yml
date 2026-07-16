@@ -27,6 +27,7 @@
   - MagazinePistolPractice
   - SpeedLoaderMagnumPractice
   - MagazinePistolSubMachineGunPractice
+  - WeaponFlareGunSecurity
 
 # Shared between secfab and emagged autolathe
 # - type: latheRecipePack
@@ -91,6 +92,7 @@
   - ExplosivePayload
   - GrenadeBlast
   - GrenadeEMP
+  - GrenadeFlash
   - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe
