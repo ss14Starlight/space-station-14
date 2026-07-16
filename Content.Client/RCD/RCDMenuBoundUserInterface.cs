@@ -164,7 +164,7 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
         }
         else
         {
-            tooltip = Loc.GetString(proto.SetName); //Starlight: nothing changed, just comment: Has name field?
+            tooltip = Loc.GetString(proto.SetName); //Starlight comment: Has name field?
         }
 
         tooltip = OopsConcat(char.ToUpper(tooltip[0]).ToString(), tooltip.Remove(0, 1));
