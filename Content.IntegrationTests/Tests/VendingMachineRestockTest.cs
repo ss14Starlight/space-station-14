@@ -193,6 +193,7 @@ namespace Content.IntegrationTests.Tests
                 // purchaseable entity with an EntityTableContianerFill.
                 foreach (var proto in prototypeManager.EnumeratePrototypes<CargoProductPrototype>())
                 {
+                    if (!proto.Product.HasValue) continue; // Starlight: We have gas orders, proto.Product will be null!
                     if (restockStores.ContainsKey(proto.Product))
                     {
                         foreach (var entry in restockStores[proto.Product])
