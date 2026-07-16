@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Fixed some Protogen markings not disappearing under helmets.
-    type: Fix
-  id: 406270
-  time: '2026-06-27T11:36:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4917
 - author: Kasern-ss14
   changes:
   - message: recipes for donuts, jelly donuts, boiled egg, lollipops and hard candy.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406669
   time: '2026-07-16T08:27:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5109
+- author: Teddiousbear
+  changes:
+  - message: Enabled magboots now prevent FTL knockdown.
+    type: Add
+  id: 406670
+  time: '2026-07-16T08:27:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5061
 Order: -1
