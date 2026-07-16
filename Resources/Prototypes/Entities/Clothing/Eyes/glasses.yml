@@ -144,7 +144,7 @@
     sprite: Clothing/Eyes/Glasses/sunglasses.rsi
   - type: Tag
     tags:
-    - CheapSunglasses
+    - CheapSunglasses #Starlight
     - HamsterWearable
     - PetWearable
     - WhitelistChameleon
