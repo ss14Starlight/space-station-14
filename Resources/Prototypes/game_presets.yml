@@ -25,6 +25,7 @@
   description: kessler-syndrome-description
   rules:
     - KesslerSyndromeScheduler
+    - ResonanceCascadeScheduler
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
