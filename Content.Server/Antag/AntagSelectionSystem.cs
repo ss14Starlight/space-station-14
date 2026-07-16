@@ -163,17 +163,37 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             return;
 
         if (ent.Comp.Rule is not { } rule || ent.Comp.Definition is not { } proto)
+        #region Starlight
+        {
+            Log.Debug($"Failed to get rule or prototype when a player tried to take a ghost role from it.");
             return;
+        }
+        #endregion
 
         if (!Proto.Resolve(proto, out var def))
+        #region Starlight
+        {
+            Log.Debug($"Failed to resolve antag specifier prototype {proto} when a player tried to take a ghost role from it.");
             return;
+        }
+        #endregion
 
         if (!Exists(rule) || !RuleQuery.TryComp(rule, out var select))
+        #region Starlight
+        {
+            Log.Debug($"Game rule {ToPrettyString(rule)} was not valid when a player tried to take a ghost role from it.");
             return;
+        }
+        #endregion
 
         // Ensure the player is allowed to play this antagonist!
         if (IsAntagBanned(args.Player, def) || !_playTime.IsAllowed(args.Player, def.PrefRoles))
+        #region Starlight
+        {
+            Log.Debug($"Player {args.Player.Name} was not allowed to take antag {def.ID} from game rule {ToPrettyString(rule)} due to being banned or not having enough playtime.");
             return;
+        }
+        #endregion
 
         if (!TrySpawnAntagonist((rule, select), def, args.Player, _transform.GetMapCoordinates(ent), out var uid))
         {
