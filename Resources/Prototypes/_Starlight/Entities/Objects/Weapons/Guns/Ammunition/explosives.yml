@@ -211,6 +211,9 @@
   - type: SpentAmmoVisuals
     state: blast
     suffix: false
+  - type: Tag
+    tags:
+    - GrenadeLessLethal
 
 - type: entity # Starlight Grenades for the sec Peacekeeper
   id: GrenadeStingerlauncher
@@ -229,3 +232,6 @@
   - type: SpentAmmoVisuals
     state: blast
     suffix: false
+  - type: Tag
+    tags:
+    - GrenadeLessLethal

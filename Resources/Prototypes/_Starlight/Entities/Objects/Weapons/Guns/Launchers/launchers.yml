@@ -104,7 +104,7 @@
         priority: 1
         whitelist:
           tags:
-          - Grenade
+          - GrenadeLessLethal
         startingItem: GrenadeBaton
   - type: ContainerContainer
     containers:
