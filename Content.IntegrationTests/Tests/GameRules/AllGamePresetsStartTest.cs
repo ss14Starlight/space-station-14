@@ -9,6 +9,7 @@ using Content.Server.GameTicking.Presets;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Antag;
 using Content.Shared.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.GameTicking;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
@@ -34,6 +35,7 @@ public sealed class AllGamePresetsStartTest : AntagTest
     [EnsureCVar(Side.Server, typeof(CCVars), nameof(CCVars.GameTickerIgnoredPresets), GameTicker.DummyGameRule)]
     public async Task TestAllGamemodesCanStart(string presetId)
     {
+        Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
         // Initially in the lobby
         await Server.WaitPost(() =>
         {
@@ -160,5 +162,6 @@ public sealed class AllGamePresetsStartTest : AntagTest
         await Pair.WaitCommand("golobby");
         STicker.SetGamePreset((GamePresetPrototype) null);
         await Pair.RunUntilSynced();
+        Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
     }
 }

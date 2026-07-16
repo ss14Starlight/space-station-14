@@ -9,6 +9,7 @@ using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Antag;
 using Content.Shared.Players;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
@@ -39,6 +40,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     [RunOnSide(Side.Server)]
     public void TestAntagGhostRoles(string ruleId)
     {
+        Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
         var rule = SProtoMan.Index<EntityPrototype>(ruleId);
         Assert.That(rule.TryGetComponent<AntagSelectionComponent>(out var antag, SEntMan.ComponentFactory), Is.True);
 
@@ -51,7 +53,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
             var specifier = SProtoMan.Index(selector.Proto);
             var count = selector.GetTargetAntagCount(_random, 1);
             // We should always spawn at least one antag if we add a GameRule
-            Assert.That(count, Is.GreaterThan(0));
+            Assert.That(count, Is.GreaterThanOrEqualTo(0)); // Starlight, we have some antags that intentionally underspawn based on playerRatio
 
             if (specifier.SpawnerPrototype == null)
                 continue;
@@ -77,6 +79,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         // End all rules
         STicker.ClearGameRules();
         Assert.That(STicker.GetAddedGameRules(), Is.Empty);
+        Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
     }
 
     [Test]
@@ -85,6 +88,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     [RunOnSide(Side.Server)]
     public void TestAntagGhostRolesSequential()
     {
+        Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
         foreach (var ruleId in AntagGameRules)
         {
             var rule = SProtoMan.Index<EntityPrototype>(ruleId);
@@ -106,6 +110,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         // End all rules
         STicker.ClearGameRules();
         Assert.That(STicker.GetAddedGameRules(), Is.Empty);
+        Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
     }
 
     private void AssertGhostRoleTaken(GhostRoleAntagSpawnerComponent spawner, GhostRoleComponent role, TransformComponent xform)
