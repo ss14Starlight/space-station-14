@@ -101,11 +101,11 @@
   - type: LanguageSpeaker
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     understands:
-    - GalacticCommon
     - SolCommon
+    - GalacticCommon
     - Machine
     - Canilunzt
     - Sign

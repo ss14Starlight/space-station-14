@@ -11,10 +11,10 @@
   - type: LanguageSpeaker
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
   # Starlight-end
   - type: ActionGrant

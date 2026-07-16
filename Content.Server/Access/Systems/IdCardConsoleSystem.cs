@@ -250,7 +250,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
         // Starlight-edit: Start
 
-        // Collect all access tags from all groups
+        // Collect all access tags from groups this console is configured to manage.
         var allGroupTags = new HashSet<ProtoId<AccessLevelPrototype>>();
         foreach (var group in component.AccessGroups.ToList())
         {
@@ -258,12 +258,10 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 allGroupTags.UnionWith(groupPrototype.Tags);
         }
 
-        if (!newAccessList.TrueForAll(x => allGroupTags.Contains(x)))
+        // Drop tags outside configured groups (e.g. leftover perms from another console).
+        // Those are preserved on the card below via Except(allGroupTags).
+        newAccessList = newAccessList.Where(x => allGroupTags.Contains(x)).ToList();
         // Starlight-edit: End
-        {
-            _sawmill.Warning($"User {ToPrettyString(uid)} tried to write unknown access tag.");
-            return;
-        }
 
         var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>(); // Starlight - keep oldTags as a hashset instead of a list
         // Starlight-edit: Start

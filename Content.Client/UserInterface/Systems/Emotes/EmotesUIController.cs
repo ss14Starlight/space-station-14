@@ -135,27 +135,10 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
 
     private IEnumerable<RadialMenuOptionBase> ConvertToButtons(IEnumerable<EmotePrototype> emotePrototypes)
     {
-        var whitelistSystem = EntitySystemManager.GetEntitySystem<EntityWhitelistSystem>();
-        var player = _playerManager.LocalSession?.AttachedEntity;
-
         Dictionary<EmoteCategory, List<RadialMenuOptionBase>> emotesByCategory = new();
-        foreach (var emote in emotePrototypes)
+
+        foreach (var emote in EnumerateAvailableEmotes(emotePrototypes))
         {
-            if (emote.Category == EmoteCategory.Invalid)
-                continue;
-
-            // only valid emotes that have ways to be triggered by chat and player have access / no restriction on
-            if (emote.Category == EmoteCategory.Invalid
-                || emote.ChatTriggers.Count == 0
-                || !(player.HasValue && whitelistSystem.IsWhitelistPassOrNull(emote.Whitelist, player.Value))
-                || whitelistSystem.IsWhitelistPass(emote.Blacklist, player.Value))
-                continue;
-
-            if (!emote.Available
-                && EntityManager.TryGetComponent<SpeechComponent>(player.Value, out var speech)
-                && !speech.AllowedEmotes.Contains(emote.ID))
-                continue;
-
             if (!emotesByCategory.TryGetValue(emote.Category, out var list))
             {
                 list = new List<RadialMenuOptionBase>();
@@ -171,8 +154,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
         }
 
         // Starlight - Start
-        var cloudprototypes = _prototypeManager.EnumeratePrototypes<CloudEmotePrototype>();
-        foreach (var emote in cloudprototypes)
+        foreach (var emote in EnumerateAvailableCloudEmotes())
         {
             if (!emotesByCategory.TryGetValue(EmoteCategory.Cloud, out var list))
             {
@@ -206,13 +188,73 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
         return models;
     }
 
+    /// <summary>
+    /// Emotes the local player can use (same filters as the radial menu).
+    /// </summary>
+    // Sol
+    public IEnumerable<EmotePrototype> EnumerateAvailableEmotes()
+    {
+        return EnumerateAvailableEmotes(_prototypeManager.EnumeratePrototypes<EmotePrototype>());
+    }
+
+    // Sol
+    private IEnumerable<EmotePrototype> EnumerateAvailableEmotes(IEnumerable<EmotePrototype> emotePrototypes)
+    {
+        var whitelistSystem = EntitySystemManager.GetEntitySystemOrNull<EntityWhitelistSystem>();
+        var player = _playerManager.LocalSession?.AttachedEntity;
+
+        if (whitelistSystem == null || !player.HasValue)
+            yield break;
+
+        foreach (var emote in emotePrototypes)
+        {
+            // only valid emotes that have ways to be triggered by chat and player have access / no restriction on
+            if (emote.Category == EmoteCategory.Invalid
+                || emote.ChatTriggers.Count == 0
+                || !(player.HasValue && whitelistSystem.IsWhitelistPassOrNull(emote.Whitelist, player.Value))
+                || whitelistSystem.IsWhitelistPass(emote.Blacklist, player.Value))
+                continue;
+
+            if (!emote.Available
+                && EntityManager.TryGetComponent<SpeechComponent>(player.Value, out var speech)
+                && !speech.AllowedEmotes.Contains(emote.ID))
+                continue;
+
+            yield return emote;
+        }
+    }
+
+    // Sol / Starlight
+    public IEnumerable<CloudEmotePrototype> EnumerateAvailableCloudEmotes()
+    {
+        return _prototypeManager.EnumeratePrototypes<CloudEmotePrototype>();
+    }
+
+    // Sol
+    public string GetCategoryTooltip(EmoteCategory category)
+    {
+        return Loc.GetString(EmoteGroupingInfo[category].Tooltip);
+    }
+
     private void HandleRadialButtonClick(EmotePrototype prototype)
+    {
+        PlayEmote(prototype);
+    }
+
+    // Sol
+    public void PlayEmote(EmotePrototype prototype)
     {
         EntityManager.RaisePredictiveEvent(new PlayEmoteMessage(prototype.ID));
     }
 
     // Starlight
     private void HandleCloudRadialButtonClick(CloudEmotePrototype prototype)
+    {
+        PlayCloudEmote(prototype);
+    }
+
+    // Sol / Starlight
+    public void PlayCloudEmote(CloudEmotePrototype prototype)
     {
         _consoleHost.ExecuteCommand($"cloudemote \"{CommandParsing.Escape(prototype.ID)}\"");
     }

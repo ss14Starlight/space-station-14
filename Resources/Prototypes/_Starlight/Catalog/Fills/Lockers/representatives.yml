@@ -113,6 +113,7 @@
         - id: ClothingEyesGlassesCommand
         - id: BookSpaceLaw
         - id: LuxuryPen
+        - id: BoxFolderHoPClipboard #Sol
         - id: BoxFolderNanoTrasenClipboard
         - id: BoxFolderBlue
         - id: BriefcaseBrown # Empty

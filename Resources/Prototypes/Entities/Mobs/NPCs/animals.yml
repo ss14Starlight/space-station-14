@@ -11,7 +11,7 @@
     - Bat
     understands:
     - Bat
-    - GalacticCommon
+    - SolCommon
   # Starlight-end
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
@@ -217,7 +217,7 @@
     speaks:
     - Chicken
     understands:
-    - GalacticCommon
+    - SolCommon
     - Chicken
   - type: MobThresholds
     thresholds:
@@ -524,7 +524,7 @@
     speaks:
     - Mothroach
     understands:
-    - GalacticCommon
+    - SolCommon
     - Moffic
     - Mothroach
   # Starlight-end
@@ -711,7 +711,7 @@
     speaks:
     - Duck
     understands:
-    - GalacticCommon
+    - SolCommon
     - Duck
   - type: MobThresholds
     thresholds:
@@ -1350,7 +1350,7 @@
     speaks:
     - Ancestor
     understands:
-    - GalacticCommon
+    - SolCommon
     - Ancestor
   # Starlight-end
   - type: CombatMode
@@ -1539,7 +1539,7 @@
     - Ancestor
     understands:
     - Ancestor
-    - GalacticCommon
+    - SolCommon
   - type: VentCrawler # Starlight
   # Starlight-End
   - type: NameIdentifier
@@ -1581,7 +1581,7 @@
     - Ancestor
     understands:
     - Ancestor
-    - GalacticCommon
+    - SolCommon
   # Starlight-End
   - type: AutoTraitor
     profile: TraitorReinforcement
@@ -1598,7 +1598,7 @@
     - Ancestor
     understands:
     - Ancestor
-    - GalacticCommon
+    - SolCommon
   # Starlight-End
   - type: NukeOperative
 
@@ -1615,7 +1615,7 @@
     - Ancestor
     - Draconic
     understands:
-    - GalacticCommon
+    - SolCommon
     - Ancestor
     - Draconic
   # Starlight-end
@@ -1766,7 +1766,7 @@
     understands:
     - Ancestor
     - Draconic
-    - GalacticCommon
+    - SolCommon
   - type: VentCrawler
   # Starlight-End
   - type: MobThresholds
@@ -1818,7 +1818,7 @@
     speaks:
     - Mouse
     understands:
-    - GalacticCommon
+    - SolCommon
     - Mouse
     - Squeakish
   - type: VentCrawler
@@ -2610,7 +2610,7 @@
     speaks:
     - Chittin
     understands:
-    - GalacticCommon
+    - SolCommon
     - Chittin
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -2994,7 +2994,7 @@
     speaks:
     - Fox
     understands:
-    - GalacticCommon
+    - SolCommon
     - Fox
     - Canilunzt
   # Starlight-end
@@ -3161,7 +3161,7 @@
     speaks:
     - Dog
     understands:
-    - GalacticCommon
+    - SolCommon
     - Dog
     - Canilunzt
   # Starlight-end
@@ -3197,7 +3197,7 @@
     - Dog
     understands:
     - Dog
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
   # Starlight End
   - type: Sprite
@@ -3298,7 +3298,7 @@
     speaks:
     - Cat
     understands:
-    - GalacticCommon
+    - SolCommon
     - Cat
     - Nekomimetic
   # Starlight-end
@@ -3399,7 +3399,7 @@
     - Cat
     understands:
     - Cat
-    - GalacticCommon
+    - SolCommon
 # Starlight-end
   - type: Sprite
     layers:
@@ -3665,7 +3665,7 @@
     speaks:
     - Mouse
     understands:
-    - GalacticCommon
+    - SolCommon
     - Mouse
     - Squeakish
   # Starlight-end
@@ -3828,7 +3828,7 @@
     speaks:
     - Pig
     understands:
-    - GalacticCommon
+    - SolCommon
     - Pig
   # Starlight-end
   - type: Sprite
@@ -3905,7 +3905,7 @@
     speaks:
     - Sylvan
     understands:
-    - GalacticCommon
+    - SolCommon
     - Sylvan
   # Starlight-end
   - type: Sprite
@@ -3995,7 +3995,7 @@
     speaks:
     - Sylvan
     understands:
-    - GalacticCommon
+    - SolCommon
     - Sylvan
   # Starlight-end
 
@@ -4105,10 +4105,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
-    - GalacticCommon
+    - SolCommon
     understands:
     - Dog
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
   # Starlight-end
   - type: Sprite

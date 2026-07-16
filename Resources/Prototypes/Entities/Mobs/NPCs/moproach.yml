@@ -11,7 +11,7 @@
     understands:
     - Moffic
     - Mothroach
-    - GalacticCommon
+    - SolCommon
   # Starlight-end
   - type: GhostRole
     name: ghost-role-information-moproach-name

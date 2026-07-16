@@ -121,12 +121,12 @@
       speaks:
         - Mothroach
         - Machine
-        - GalacticCommon
+        - SolCommon
       understands:
         - Moffic
         - Mothroach
         - Machine
-        - GalacticCommon
+        - SolCommon
     - type: BodyEmotes
       soundsId: MothroachBodyEmotes
     - type: SpriteMovement

@@ -7,11 +7,11 @@
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Mouse
     - Squeakish # Rodentia language
     understands:
-    - GalacticCommon
+    - SolCommon
     - Mouse
     - Squeakish # Rodentia language
   # Starlight-end
@@ -193,7 +193,7 @@
     speaks:
     - Mouse
     understands:
-    - GalacticCommon
+    - SolCommon
     - Mouse
     - Squeakish # Rodentia language
   # Starlight-end

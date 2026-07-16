@@ -14,7 +14,7 @@
     - Dog
     understands:
     - Dog
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
   # Starlight-end
   - type: Sprite
@@ -75,7 +75,7 @@
     - Dog
     understands:
     - Dog
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
   # Starlight-end
   - type: Sprite
@@ -110,7 +110,7 @@
     - Dog
     understands:
     - Dog
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
   # Starlight-end
   - type: Sprite
@@ -157,7 +157,7 @@
     - Dog
     understands:
     - Dog
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
   # Starlight-end
   - type: Sprite
@@ -190,7 +190,7 @@
     - Dog
     understands:
     - Dog
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
   # Starlight-end
   - type: Grammar
@@ -218,7 +218,7 @@
     - Cat
     understands:
     - Cat
-    - GalacticCommon
+    - SolCommon
     - Nekomimetic
   # Starlight-end
   - type: NpcFactionMember
@@ -256,7 +256,7 @@
     - Cat
     understands:
     - Cat
-    - GalacticCommon
+    - SolCommon
     - Nekomimetic
   # Starlight-end
   - type: NpcFactionMember
@@ -291,7 +291,7 @@
     - Cat
     understands:
     - Cat
-    - GalacticCommon
+    - SolCommon
     - Nekomimetic
   # Starlight-end
   - type: Fixtures
@@ -348,7 +348,7 @@
     - Cat
     understands:
     - Cat
-    - GalacticCommon
+    - SolCommon
     - Nekomimetic
   # Starlight-end
   - type: Sprite
@@ -416,7 +416,7 @@
     - Dog
     understands:
     - Dog
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
   - type: Vocal
     sounds:
@@ -541,7 +541,7 @@
     - Dog
     understands:
     - Dog
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
   - type: Vocal
     sounds:
@@ -708,7 +708,7 @@
     - Pig
     understands:
     - Pig
-    - GalacticCommon
+    - SolCommon
   # Starlight-end
   - type: InteractionPopup
     successChance: 1
@@ -739,7 +739,7 @@
     - Fox
     understands:
     - Fox
-    - GalacticCommon
+    - SolCommon
     - Canilunzt
   # Starlight-end
   - type: InteractionPopup
@@ -779,7 +779,7 @@
     - Mouse
     understands:
     - Mouse
-    - GalacticCommon
+    - SolCommon
     - Squeakish # Rodentia
   # Starlight-end
   - type: Sprite
@@ -858,7 +858,7 @@
     - Chittin
     understands:
     - Chittin
-    - GalacticCommon
+    - SolCommon
   # Starlight-end
   - type: InteractionPopup
     successChance: 0.5 # spider is mean
@@ -983,7 +983,7 @@
     speaks:
     - Bubblish
     understands:
-    - GalacticCommon
+    - SolCommon
     - Bubblish
   # Starlight-end
   - type: Sprite
@@ -1074,7 +1074,7 @@
     - Ancestor
     understands:
     - Ancestor
-    - GalacticCommon
+    - SolCommon
   # Starlight-end
   - type: GhostRole
     prob: 1

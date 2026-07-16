@@ -9,7 +9,7 @@
     understands:
     - Dog
     - Canilunzt
-    - GalacticCommon
+    - SolCommon
 - type: entity
   parent: MobCorgiSmartNoGalcom
   id: MobCorgiSmartGhostrole

@@ -40,7 +40,7 @@
     - Draconic
     understands:
     - Ancestor
-    - GalacticCommon
+    - SolCommon
     - Draconic
   - type: RandomSprite # Using random sprite since we need to overwrite the parent's random sprite, even if we're actually giving her a fixed appearance.
     getAllGroups: true
@@ -86,7 +86,7 @@
     speaks:
     - Mouse
     understands:
-    - GalacticCommon
+    - SolCommon
     - Mouse
   - type: Sprite
     drawdepth: SmallMobs

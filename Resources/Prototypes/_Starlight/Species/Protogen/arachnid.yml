@@ -24,6 +24,7 @@
   sprites:
     Eyes: MobProtogenEyes
     Head: MobArachnidHead
+    Hair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -46,7 +47,7 @@
 
 - type: markingPoints
   id: MobProtoArachnidMarkingLimits
-  onlyWhitelisted: true
+  #onlyWhitelisted: true // Sol-edit
   points:
     FaceCover:
       points: 1
