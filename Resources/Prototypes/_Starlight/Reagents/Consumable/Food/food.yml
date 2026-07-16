@@ -170,3 +170,23 @@
     params:
       volume: 6
 
+- type: reagent
+  id: MintExtract
+  name: reagent-name-juice-mint-extract
+  group: Foods
+  parent: BaseJuice
+  desc: reagent-desc-juice-mint-extract
+  physicalDesc: reagent-physical-desc-mint-extract
+  flavor: minty
+  color: "#b4fbd0"
+  recognizable: true
+
+- type: reagent
+  id: Cinnamon
+  name: reagent-name-cinnamon
+  group: Foods
+  desc: reagent-desc-cinnamon
+  physicalDesc: reagent-physical-desc-cinnamon
+  flavor: cinnamon
+  color: "#7b330c"
+  recognizable: true

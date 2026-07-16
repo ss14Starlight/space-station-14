@@ -140,7 +140,7 @@ marking-LagomorphPanties-panty_bottoms = Panties
 marking-LagomorphTankTop = Tank Top
 marking-LagomorphTankTop-tank_top = Tank Top
 
-#hair
+# hair
 marking-LagomorphHairLongBangs = Long Bangs 2
 marking-LagomorphHairHimecutWithTails = Hime Cut With Tails
 marking-LagomorphHairLowpigtails = Low Pigtails
