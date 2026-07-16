@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
-using Content.Server.Kitchen.Components;
 using Content.Server.NameIdentifier;
 using Content.Shared.Database;
 using Content.Shared.Kitchen;
@@ -17,11 +16,11 @@ namespace Content.Server._CD.NanoChat;
 /// <summary>
 ///     Handles NanoChat features that are specific to the server but not related to the cartridge itself.
 /// </summary>
-public sealed class NanoChatSystem : SharedNanoChatSystem
+public sealed partial class NanoChatSystem : SharedNanoChatSystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly NameIdentifierSystem _name = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private NameIdentifierSystem _name = default!;
 
     private readonly ProtoId<NameIdentifierGroupPrototype> _nameIdentifierGroup = "NanoChat";
 

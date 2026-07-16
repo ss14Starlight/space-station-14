@@ -10,6 +10,7 @@
     stateDoorOpen: secure_open
     stateDoorClosed: secure_door
 
+## Security
 # Security Officer
 - type: entity
   id: LockerSecurityLarge
@@ -38,7 +39,7 @@
   - type: AccessReader
     access: [["Brigmedic"]]
 
-# NanoTrasen Representatives
+## NanoTrasen Representatives
 #BSO
 - type: entity
   id: LockerBlueshield
@@ -111,6 +112,7 @@
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 
+## Cargo
 # Salvage Lead
 - type: entity
   id: LockerSalvageLead
@@ -191,6 +193,21 @@
     - type: AccessReader
       access: [["Cargo"]]
 
+- type: entity
+  id: LockerCargoLarge
+  parent: LockerLargeBaseSecure
+  name: large cargo technician's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: cargo
+    stateDoorOpen: salvage_open
+    stateDoorClosed: cargo_door
+  - type: AccessReader
+    access: [["Cargo"]]
+
 # Mail Technician
 - type: entity
   id: LockerMail
@@ -207,7 +224,105 @@
     - type: AccessReader
       access: [["Mail"]]
 
-# Janitor locker
+- type: entity
+  id: LockerMailLarge
+  parent: LockerLargeBaseSecure
+  name: large mail technician's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: mail
+    stateDoorOpen: salvage_open
+    stateDoorClosed: mail_door
+  - type: AccessReader
+    access: [["Mail"]]
+
+## Medical
+# Surgeon
+- type: entity
+  id: LockerSurgeon
+  name: surgeon's locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: surgeon
+      stateDoorOpen: robosurgeon-black_open
+      stateDoorClosed: surgeon_door
+    - type: AccessReader
+      access: [["Surgery"]]
+
+# Coroner
+- type: entity
+  id: LockerCoroner
+  name: coroner's locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: coroner
+      stateDoorOpen: coroner_open
+      stateDoorClosed: coroner_door
+    - type: AccessReader
+      access: [["Medical"]]
+
+# Virologist
+- type: entity
+  id: LockerVirologist
+  name: virologist's locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: virologist
+      stateDoorOpen: medical_open
+      stateDoorClosed: virologist_door
+    - type: AccessReader
+      access: [["Medical"]]
+
+# Geneticist
+- type: entity
+  id: LockerGeneticist
+  name: geneticist's locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: geneticist
+      stateDoorOpen: medical_open
+      stateDoorClosed: geneticist_door
+    - type: AccessReader
+      access: [["Medical"], ["Research"]] # Genetics is a weird job, it's kinda arbitrarily in medical and science depending on fork, so might as well give both.
+
+## Science
+# Roboticist
+- type: entity
+  id: LockerRoboticist
+  name: roboticist's locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: roboticist
+      stateDoorOpen: robosurgeon-black_open
+      stateDoorClosed: roboticist_door
+    - type: AccessReader
+      access: [["Robotics"]]
+
+## Service
+# Janitor
 - type: entity
   id: LockerJanitor
   name: janitorial locker

@@ -10,13 +10,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.DeltaV.AACTablet;
 
-public sealed class AACTabletSystem : EntitySystem
+public sealed partial class AACTabletSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!; // Starlight Edit: Timing -> _timing. protected -> private
-    [Dependency] private readonly PopupSystem _popupSystem = default!; // Starlight
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IGameTiming _timing = default!; // Starlight Edit: Timing -> _timing. protected -> private
+    [Dependency] private PopupSystem _popupSystem = default!; // Starlight
 
     public override void Initialize()
     {

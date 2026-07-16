@@ -12,14 +12,14 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Clothing.Systems;
 
-public sealed class DamageOnEquipSystem : EntitySystem
+public sealed partial class DamageOnEquipSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly MobStateSystem _state = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private MobStateSystem _state = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -102,13 +102,13 @@ public sealed class DamageOnEquipSystem : EntitySystem
     {
         if (ev.SlotFlags != comp.TargetSlots) return;
         if (comp.EquipDamage is null) return;
-        DoDamage(uid, comp, ev.Equipee, comp.EquipDamage);
+        DoDamage(uid, comp, ev.EquipTarget, comp.EquipDamage);
     }
 
     private void OnGotUnequipped(EntityUid uid, DamageOnEquipComponent comp, GotUnequippedEvent ev)
     {
         if (ev.SlotFlags != comp.TargetSlots) return;
         if (comp.UnequipDamage is null) return;
-        DoDamage(uid, comp, ev.Equipee, comp.UnequipDamage);
+        DoDamage(uid, comp, ev.EquipTarget, comp.UnequipDamage);
     }
 }

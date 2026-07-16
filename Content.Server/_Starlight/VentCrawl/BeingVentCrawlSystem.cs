@@ -9,7 +9,7 @@ using Content.Shared.NodeContainer;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.VentCrawl.Components;
 
-namespace Content.Server.VentCrawl;
+namespace Content.Server._Starlight.VentCrawl;
 
 public sealed partial class BeingVentCrawlSystem : EntitySystem
 {

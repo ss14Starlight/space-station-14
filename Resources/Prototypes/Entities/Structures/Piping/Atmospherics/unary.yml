@@ -473,6 +473,7 @@
 - type: entity
   parent: [ BaseMachinePowered, SmallConstructibleMachine ]
   id: BaseGasCondenser
+  categories: [ ShouldMapStation ] # Starlight
   name: condenser
   description: Condenses gases into liquids. Now we just need some plumbing.
   placement:

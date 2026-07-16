@@ -12,10 +12,10 @@ using Content.Shared.StatusEffectNew; // Starlight
 
 namespace Content.Server.Speech.Muting
 {
-    public sealed class MutingSystem : EntitySystem
+    public sealed partial class MutingSystem : EntitySystem
     {
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly LanguageSystem _languages = default!; // Starlight
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private LanguageSystem _languages = default!; // Starlight
         public override void Initialize()
         {
             base.Initialize();

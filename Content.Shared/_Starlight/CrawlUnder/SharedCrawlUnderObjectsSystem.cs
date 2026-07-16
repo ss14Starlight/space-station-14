@@ -17,14 +17,14 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._Starlight.CrawlUnder;
 
-public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
+public abstract partial class SharedCrawlUnderObjectsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movespeed = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private MovementSpeedModifierSystem _movespeed = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     public override void Initialize()
     {

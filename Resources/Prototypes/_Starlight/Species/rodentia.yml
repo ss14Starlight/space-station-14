@@ -2,6 +2,7 @@
   id: Rodentia
   name: species-name-rodentia
   roundStart: true
+  customName: true
   prototype: MobRodentia
   sprites: MobRodentiaSprites
   defaultSkinTone: "#747474"

@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Server.Database;
 using Content.Shared._NullLink;
-using Content.Shared.NullLink.CCVar;
 using Robust.Shared.Network;
 
 namespace Content.Server._NullLink.PlayerData;

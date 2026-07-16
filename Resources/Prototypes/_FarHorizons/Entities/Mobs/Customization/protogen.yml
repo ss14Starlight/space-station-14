@@ -160,7 +160,7 @@
 - type: marking
   id: ProtoVulpSnoutLong
   bodyPart: Snout
-  markingCategory: Special
+  markingCategory: Snout
   speciesRestriction: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi

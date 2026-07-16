@@ -264,7 +264,8 @@
     damagedThreshold:
       min: 85
   - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
-    doAfterDelay: 2 # A bit slower than conventional topicals, but heals for more.
+    doAfterDelay: 1.5 # Starlight, it's their only source of healing, it should not suck that much.
+    selfRepairPenalty: 1.3 # Starlight, brings their self-repair back to roughly what it was before, so it's faster for them to get healed by others than by themselves.
     allowSelfRepair: true
     fuelCost: 10
     damage:

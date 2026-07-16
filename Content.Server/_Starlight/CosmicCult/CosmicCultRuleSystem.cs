@@ -10,14 +10,13 @@ using Content.Server.EUI;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
-using Content.Server.Objectives.Components;
 using Content.Server.Popups;
 using Content.Server.Revolutionary;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Voting.Managers;
 using Content.Server.Voting;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
@@ -40,7 +39,6 @@ using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Revolutionary.Components;
 using Content.Shared.Stunnable;
-using Content.Shared.Temperature.Components;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -61,9 +59,9 @@ using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language;
 using Content.Server.Weather;
 using Content.Shared.Shuttles.Components;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Radio.Components;
 using Content.Shared.Mind.Components;
+using Content.Shared._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -575,6 +573,13 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             conversionComp.Converted += value;
         }
     }
+
+    public void AdjustCultObjectiveChaplain(int value)
+    {
+        var query = EntityQueryEnumerator<CosmicChaplainConditionComponent>();
+        while (query.MoveNext(out _, out var chaplainConditionComp))
+            chaplainConditionComp.Converted += value;
+    }
     #endregion
 
     public void OnStartMonument(Entity<MonumentComponent> ent)
@@ -806,11 +811,17 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _mind.TryAddObjective(mindId, mind, "CosmicFinalityObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicMonumentObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicConversionObjective");
+        _mind.TryAddObjective(mindId, mind, "CosmicChaplainObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicEntropyObjective");
 
         _euiMan.OpenEui(new CosmicConvertedEui(), session);
 
-        RemComp<BibleUserComponent>(uid);
+
+        if (TryComp<BibleUserComponent>(uid, out var _))
+        {
+            AdjustCultObjectiveChaplain(1);
+            RemComp<BibleUserComponent>(uid);
+        }
 
         // Bright-eye Nerf - Yeah im not gona let them be immortal!
         if (TryComp<BrighteyeComponent>(uid, out var brighteye))
@@ -827,6 +838,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
         cult.Comp.TotalCult++;
         cult.Comp.Cultists.Add(uid);
+
 
         AdjustCultObjectiveConversion(1);
         UpdateCultData(cult.Comp.MonumentInGame);
@@ -958,6 +970,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             _mind.TryRemoveObjective(mindId, mind, conversionObjective.Value);
         if (_mind.TryFindObjective((mindId, mind), "CosmicEntropyObjective", out var entropyObjective) && entropyObjective != null)
             _mind.TryRemoveObjective(mindId, mind, entropyObjective.Value);
+        if (_mind.TryFindObjective((mindId, mind), "CosmicChaplainObjective", out var chaplainObjective) && chaplainObjective != null)
+            _mind.TryRemoveObjective(mindId, mind, chaplainObjective.Value);
 
         _role.MindRemoveRole<CosmicCultRoleComponent>(mindId);
         _role.MindRemoveRole<RoleBriefingComponent>(mindId);

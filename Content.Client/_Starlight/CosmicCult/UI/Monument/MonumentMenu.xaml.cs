@@ -2,7 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
 using Content.Shared._Starlight.CosmicCult;

@@ -28,17 +28,17 @@ namespace Content.Shared.Sound;
 /// Will play a sound on various events if the affected entity has a component derived from BaseEmitSoundComponent
 /// </summary>
 [UsedImplicitly]
-public abstract class SharedEmitSoundSystem : EntitySystem
+public abstract partial class SharedEmitSoundSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] protected readonly IRobustRandom Random = default!;
-    [Dependency] private   readonly SharedAmbientSoundSystem _ambient = default!;
-    [Dependency] private   readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] protected IRobustRandom Random = default!;
+    [Dependency] private   SharedAmbientSoundSystem _ambient = default!;
+    [Dependency] private   SharedAudioSystem _audioSystem = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     public override void Initialize()
     {
@@ -99,7 +99,7 @@ public abstract class SharedEmitSoundSystem : EntitySystem
             return;
 
         // hand throwing not predicted sadly
-        TryEmitSound(uid, component, args.User, false);
+        TryEmitSound(uid, component, args.User); // Starlight edit: Throwing is predicted now, take that comment one line above me!!
     }
 
     private void OnEmitSoundOnUseInHand(EntityUid uid, EmitSoundOnUseComponent component, UseInHandEvent args)
@@ -113,7 +113,7 @@ public abstract class SharedEmitSoundSystem : EntitySystem
 
     private void OnEmitSoundOnThrown(EntityUid uid, BaseEmitSoundComponent component, ref ThrownEvent args)
     {
-        TryEmitSound(uid, component, args.User, false);
+        TryEmitSound(uid, component, args.User); // Starlight edit: Throwing is predicted now
     }
 
     private void OnEmitSoundOnActivateInWorld(EntityUid uid, EmitSoundOnActivateComponent component, ActivateInWorldEvent args)

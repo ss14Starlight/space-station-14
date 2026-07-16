@@ -22,6 +22,7 @@ using Content.Shared.Parallax.Biomes;
 using System.Numerics;
 using Content.Shared.Procedural;
 using Robust.Shared.Map.Components;
+using Content.Shared._Starlight.Shuttles.Components;
 // Starlight End
 
 namespace Content.Server.Shuttles.Systems;

@@ -5,11 +5,11 @@ using Robust.Client.Graphics;
 
 namespace Content.Client._FarHorizons.VisualPickupable;
 
-public sealed class VisualPickupableSystem : SharedVisualPickupableSystem
+public sealed partial class VisualPickupableSystem : SharedVisualPickupableSystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     private HashSet<Entity<PickupableVisualsComponent>> _trackedEntities = new();
 

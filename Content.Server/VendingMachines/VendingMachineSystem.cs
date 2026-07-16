@@ -16,34 +16,34 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-// 🌟Starlight🌟
-using Content.Server.Economy;
-using Content.Shared.Economy;
+#region Starlight
 using Content.Shared.Emag.Components;
 using Content.Shared.Tag;
 using Content.Shared.Cargo.Components;
-using Content.Server.Administration.Managers;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared._NullLink;
 using Robust.Shared.Player;
+using Content.Server._Starlight.Economy;
+using Content.Shared._Starlight.Economy;
+#endregion
 
 namespace Content.Server.VendingMachines
 {
-    public sealed class VendingMachineSystem : SharedVendingMachineSystem
+    public sealed partial class VendingMachineSystem : SharedVendingMachineSystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly PricingSystem _pricing = default!;
-        [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private PricingSystem _pricing = default!;
+        [Dependency] private ThrowingSystem _throwingSystem = default!;
+        [Dependency] private IGameTiming _timing = default!;
         // 🌟Starlight🌟 start
-        [Dependency] private readonly ItemPriceManager _itemPriceManager = default!;
-        [Dependency] private readonly IComponentFactory _componentFactory = default!;
-        [Dependency] private readonly ISharedNullLinkPlayerResourcesManager _playerResources = default!;
-        [Dependency] private readonly TagSystem _tag = default!;
-        [Dependency] private readonly CargoSystem _cargoSystem = default!;
-        [Dependency] private readonly Content.Server.Station.Systems.StationSystem _stationSystem = default!;
-        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private ItemPriceManager _itemPriceManager = default!;
+        [Dependency] private IComponentFactory _componentFactory = default!;
+        [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
+        [Dependency] private TagSystem _tag = default!;
+        [Dependency] private CargoSystem _cargoSystem = default!;
+        [Dependency] private Content.Server.Station.Systems.StationSystem _stationSystem = default!;
+        [Dependency] private ISharedAdminLogManager _adminLogger = default!;
         // 🌟Starlight🌟 end
 
         private const float WallVendEjectDistanceFromWall = 1f;

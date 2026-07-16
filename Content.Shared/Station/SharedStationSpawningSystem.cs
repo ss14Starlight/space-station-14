@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared.Containers.ItemSlots; // Starlight
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -9,24 +8,27 @@ using Content.Shared.Roles;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Robust.Shared.Collections;
-using Robust.Shared.Map; // Starlight
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Shared.Preferences; // Starlight
+#region Starlight
+using Content.Shared.Preferences;
+using Content.Shared._Starlight.Roles;
+using Content.Shared.Containers.ItemSlots;
+#endregion
 
 namespace Content.Shared.Station;
 
-public abstract class SharedStationSpawningSystem : EntitySystem
+public abstract partial class SharedStationSpawningSystem : EntitySystem
 {
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] protected readonly InventorySystem InventorySystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Starlight
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] protected InventorySystem InventorySystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private SharedTransformSystem _xformSystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!; // Starlight
 
     private EntityQuery<HandsComponent> _handsQuery;
     private EntityQuery<InventoryComponent> _inventoryQuery;

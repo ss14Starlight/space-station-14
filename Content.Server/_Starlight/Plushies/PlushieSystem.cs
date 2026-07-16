@@ -7,9 +7,9 @@ namespace Content.Server._Starlight.Plushies;
 /// <summary>
 /// Server-side system that handles cuddle messages when using plushies in hand.
 /// </summary>
-public sealed class PlushieSystem : EntitySystem
+public sealed partial class PlushieSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

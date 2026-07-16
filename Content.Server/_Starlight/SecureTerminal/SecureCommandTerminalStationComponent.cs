@@ -1,6 +1,6 @@
-using Content.Shared.Starlight.SecureTerminal;
+using Content.Shared._Starlight.SecureTerminal;
 
-namespace Content.Server.Starlight.SecureTerminal;
+namespace Content.Server._Starlight.SecureTerminal;
 
 /// <summary>
 /// Tracks all Secure Command Terminal proposals for a station.

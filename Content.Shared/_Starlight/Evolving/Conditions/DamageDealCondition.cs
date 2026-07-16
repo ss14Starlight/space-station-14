@@ -1,5 +1,3 @@
-using Content.Shared._Starlight.Evolving;
-
 namespace Content.Shared._Starlight.Evolving.Conditions;
 
 /// <summary>

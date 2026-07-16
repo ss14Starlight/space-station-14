@@ -1,0 +1,10 @@
+- type: entity
+  id: BaseMedTakContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: MedTak
+
+- type: contrabandSeverity
+  id: MedTak
+  examineText: contraband-examine-text-medtak

@@ -12,13 +12,13 @@ using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server._Starlight.Actions.EntitySystems;
 
-public sealed class StasisSystem : SharedStasisSystem
+public sealed partial class StasisSystem : SharedStasisSystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private BloodstreamSystem _bloodstream = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

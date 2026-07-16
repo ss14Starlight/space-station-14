@@ -11,21 +11,21 @@ using Robust.Shared.Player;
 using Content.Server.Mind;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
-using Content.Server.Administration.Managers;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.Economy.Atm;
 
-namespace Content.Shared.Starlight.Economy.Atm;
+namespace Content.Server._Starlight.Economy.Atm;
 public sealed partial class ATMSystem : SharedATMSystem
 {
-    [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerResourcesManager _playerResources = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly StackSystem _stack = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IPlayerRolesManager _playerRolesManager = default!;
+    [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private StackSystem _stack = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
 
     private static readonly EntProtoId<StackComponent> _cash = "NTCredit";
     private readonly object _transferLock = new();

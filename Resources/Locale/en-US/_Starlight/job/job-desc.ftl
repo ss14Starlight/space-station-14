@@ -9,6 +9,7 @@ job-description-mailtech = Deliver letters and packages to the crew of the stati
 job-description-miningspec = Stay station side and enrich the station with materials using your salvage magnet and ore processors
 job-description-nanotrasen-special-forces = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
 job-description-ntncblueshield = Your primary job is to protect your charged NanoTrasen-Central Command Consortium officials, this overrules anything else.
+job-description-greenshield = Your primary job is to protect your charged Central Command Consortium officials, this overrules anything else.
 job-description-ntrep = You are an auditor sent by Central Command to make sure that all personnel are working efficiently and in the best interest of the corporation.
 job-description-performer = Learn the basics of clowning, miming, and musicking. Perform for the crew, and become a brilliant entertainer.
 job-description-roboticist = A scientist whose purpose is to repair and create mechanoids, cyborgs, and other mechanical creations.

@@ -33,9 +33,9 @@
 
 - type: entity
   id: HandsAnimal
+  categories: [ HideSpawnMenu ]
   name: animal hands
   parent: PartAnimal
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -48,8 +48,8 @@
 - type: entity
   parent: PartAnimal
   id: LeftHandAnimal
-  name: left animal hand
   categories: [ HideSpawnMenu ]
+  name: left animal hand
   components:
   - type: Sprite
     layers:
@@ -61,8 +61,8 @@
 - type: entity
   parent: PartAnimal
   id: RightHandAnimal
-  name: right animal hand
   categories: [ HideSpawnMenu ]
+  name: right animal hand
   components:
   - type: Sprite
     layers:
@@ -73,9 +73,9 @@
 
 - type: entity
   id: LegsAnimal
+  categories: [ HideSpawnMenu ]
   name: animal legs
   parent: PartAnimal
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -87,9 +87,9 @@
 
 - type: entity
   id: FeetAnimal
+  categories: [ HideSpawnMenu ]
   name: animal feet
   parent: PartAnimal
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -100,9 +100,9 @@
 
 - type: entity
   id: TorsoAnimal
+  categories: [ HideSpawnMenu ]
   name: animal torso
   parent: PartAnimal
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -120,10 +120,22 @@
         Quantity: 20
 
 - type: entity
+  id: HeadAnimal
+  categories: [ HideSpawnMenu ]
+  name: animal head
+  parent: PartAnimal
+  components:
+    - type: Sprite
+      layers:
+        - state: head_m
+    - type: BodyPart
+      partType: Head
+
+- type: entity
   parent: PartAnimal
   id: LeftHandSmartCorgi
-  name: corgi hand
   categories: [ HideSpawnMenu ]
+  name: corgi hand
   components:
   - type: Sprite
     layers:
@@ -135,8 +147,8 @@
 - type: entity
   parent: PartAnimal
   id: RightHandSmartCorgi
-  name: corgi hand
   categories: [ HideSpawnMenu ]
+  name: corgi hand
   components:
   - type: Sprite
     layers:
@@ -145,9 +157,35 @@
     partType: Hand
     symmetry: Right
 
+# Borgi Animal Body
+
 - type: entity
-  id: OrganCorgiLungs
-  parent: OrganAnimalLungs
+  parent: PartAnimal
+  id: LeftHandAdmemeCorgi
+  categories: [ HideSpawnMenu ]
+  name: corgi hand
+  suffix: Corgi
   components:
-  - type: Lung
-    alert: CorgiLowOxygen
+  - type: Sprite
+    layers:
+    - state: l_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  parent: PartAnimal
+  id: RightHandAdmemeCorgi
+  categories: [ HideSpawnMenu ]
+  name: corgi hand
+  suffix: Corgi
+  components:
+  - type: Sprite
+    layers:
+    - state: r_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+
+

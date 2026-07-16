@@ -155,14 +155,14 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     #region Equipment Pickup
     private void OnGotEquipped(Entity<CosmicEquipmentComponent> ent, ref GotEquippedEvent args)
     {
-        if (!EntityIsCultist(args.Equipee))
-            _statusEffects.TrySetStatusEffectDuration(args.Equipee, _entropicDegen, out _);
+        if (!EntityIsCultist(args.EquipTarget))
+            _statusEffects.TrySetStatusEffectDuration(args.EquipTarget, _entropicDegen, out _);
     }
 
     private void OnGotUnequipped(Entity<CosmicEquipmentComponent> ent, ref GotUnequippedEvent args)
     {
-        if (!EntityIsCultist(args.Equipee))
-            _statusEffects.TryRemoveStatusEffect(args.Equipee, _entropicDegen);
+        if (!EntityIsCultist(args.EquipTarget))
+            _statusEffects.TryRemoveStatusEffect(args.EquipTarget, _entropicDegen);
     }
     private void OnGotHeld(Entity<CosmicEquipmentComponent> ent, ref GotEquippedHandEvent args)
     {

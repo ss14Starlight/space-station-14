@@ -31,31 +31,9 @@
         Radiation: 10
 
 - type: entity
-  id: OrganProtoDionaStomachNymph
-  parent: OrganProtoDionaStomach
-  categories: [ HideSpawnMenu ]
-  name: stomach
-  description: "Gross. This is hard to stomach."
-  components:
-  - type: Nymph
-    entityPrototype: OrganProtoDionaNymphStomach
-
-- type: entity
-  id: OrganProtoDionaNymphStomach
-  parent: MobDionaNymphAccent
-  categories: [ HideSpawnMenu ]
-  name: proto diona nymph
-  suffix: Stomach
-  description: Contains the stomach of a formerly fully-formed Proto-Diona. It doesn't taste any better for it.
-  components:
-  - type: IsDeadIC
-  - type: Body
-    prototype: AnimalProtoNymphStomach
-
-- type: entity
   id: OrganProtoDionaLungs
   parent: OrganDionaLungs
-  name: augmented lungs
+  name: diona augmented lungs
   suffix: Proto-Diona
   description: "A spongy mess of slimy, leaf-like structures. Capable of breathing both carbon dioxide and oxygen."
   components:
@@ -67,11 +45,36 @@
         Bloodloss: 20
         Radiation: 30
 
+# Organs that turn into nymphs on removal
+- type: entity
+  id: OrganProtoDionaStomachNymph
+  categories: [ HideSpawnMenu ]
+  parent: OrganProtoDionaStomach
+  name: proto-diona nymph stomach
+  suffix: Proto-Diona Nymph
+  description: "Gross. This is hard to stomach."
+  components:
+  - type: Nymph
+    entityPrototype: OrganProtoDionaNymphStomach
+
+- type: entity
+  id: OrganProtoDionaNymphStomach
+  categories: [ HideSpawnMenu ]
+  parent: MobDionaNymphAccent
+  name: proto-diona nymph stomach
+  suffix: Proto-Diona Nymph
+  description: Contains the stomach of a formerly fully-formed Proto-Diona. It doesn't taste any better for it.
+  components:
+  - type: IsDeadIC
+  - type: Body
+    prototype: AnimalProtoNymphStomach
+
 - type: entity
   id: OrganProtoDionaLungsNymph
-  parent: OrganProtoDionaLungs
   categories: [ HideSpawnMenu ]
-  name: lungs
+  parent: OrganProtoDionaLungs
+  name: proto-diona nymph lungs
+  suffix: Proto-Diona Nymph
   description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
   components:
   - type: Nymph
@@ -79,10 +82,10 @@
 
 - type: entity
   id: OrganProtoDionaNymphLungs
-  parent: MobDionaNymphAccent
   categories: [ HideSpawnMenu ]
-  name: proto diona nymph
-  suffix: Lungs
+  parent: MobDionaNymphAccent
+  name: proto-diona nymph lungs
+  suffix: Proto-Diona Nymph
   description: Contains the lungs of a formerly fully-formed Proto-Diona. Breathtaking.
   components:
   - type: IsDeadIC

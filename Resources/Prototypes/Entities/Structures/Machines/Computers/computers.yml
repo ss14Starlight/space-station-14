@@ -251,6 +251,7 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleCargo
+  categories: [ ShouldMapStation ] # Starlight
   name: cargo shuttle console
   description: Used to pilot the cargo shuttle.
   components:
@@ -388,6 +389,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerMedicalRecords
+  categories: [ ShouldMapStation ] # Starlight
   name: medical records computer
   description: This can be used to check medical records.
   components:
@@ -685,6 +687,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerId
+  categories: [ ShouldMapStation ] # Starlight
   name: ID card computer
   description: Terminal for programming NanoTrasen employee ID cards to access parts of the station. # SL
   components:
@@ -811,6 +814,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerComms
+  categories: [ ShouldMapStation ] # Starlight
   name: communications console # Starlight
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
@@ -1075,11 +1079,12 @@
         type: WiresBoundUserInterface
   - type: Computer
     board: CargoRequestComputerCircuitboard
-  # Starlight Start - Immersive Lighting PR
-  - type: PointLight
+  # Starlight Start
+  - type: PointLight # Immersive lighting PR
     radius: 2.5
     energy: 1.5
     color: "#b89f25"
+  - type: ActivatableUIRequiresAccess # Actually check access.
   # Starlight End
   - type: AccessReader
     access: [["Cargo"]]
@@ -1260,7 +1265,7 @@
   - type: PointLight
     color: "#afe837"
   - type: AccessReader
-    access: [["Service"], ["Theatre"]]
+    access: [["Service"]] # Starlight: Service is actually everyone in Service now.
 
 - type: entity
   id: ComputerCargoBounty
@@ -1305,6 +1310,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerFundingAllocation
+  categories: [ ShouldMapStation ] # Starlight
   name: funding allocation computer
   description: Terminal for controlling the distribution of funds and pay to departments.
   components:
@@ -1723,6 +1729,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerRoboticsControl
+  categories: [ ShouldMapStation ] # Starlight
   name: robotics control console
   description: Used to remotely monitor, disable, and destroy the station's cyborgs. # Starlight-edit - add ", disable, and destroy"
   components:
@@ -1819,6 +1826,7 @@
 
 - type: entity
   id: StationAiUploadComputer
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseComputer
   name: AI upload console
   description: Used to update the laws of the station AI.
@@ -1881,6 +1889,7 @@
 
 - type: entity
   id: StationAiFixerComputer
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseComputer
   name: AI restoration console
   description: Used to repair damaged artifical intelligences.

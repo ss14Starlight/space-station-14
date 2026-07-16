@@ -1,9 +1,8 @@
 using Content.Shared.Atmos;
 using Content.Shared.Mobs;
-using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.MedicalScanner;
+namespace Content.Shared._Starlight.Medical;
 
 // Shared analyzer formatting for UI and printable reports.
 public static class HealthAnalyzerFormatting

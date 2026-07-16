@@ -36,14 +36,14 @@ public abstract partial class SharedStunSystem
 {
     private EntityQuery<CrawlerComponent> _crawlerQuery;
 
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!; // 🌟Starlight🌟
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!; // 🌟Starlight🌟
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly StandingStateSystem _standingState = default!;
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SharedGunSystem _gunSystem = default!; // 🌟Starlight🌟
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedItemSystem _item = default!; // 🌟Starlight🌟
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private StandingStateSystem _standingState = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
 
     private static readonly ProtoId<ItemSizePrototype> MaxItemSize = "Small";
 

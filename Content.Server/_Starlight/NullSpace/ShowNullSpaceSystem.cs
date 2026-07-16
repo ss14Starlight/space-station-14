@@ -2,13 +2,14 @@ using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
-using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.NullSpace.Systems;
 
 namespace Content.Server._Starlight.NullSpace;
 
 public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
 {
-    [Dependency] private readonly EyeSystem _eye = default!;
+    [Dependency] private EyeSystem _eye = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -34,9 +35,9 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EntityManager.CopyComponent(uid, args.Equipee, component);
+        EntityManager.CopyComponent(uid, args.EquipTarget, component);
     }
 
     private void OnUnequipped(EntityUid uid, ShowNullSpaceComponent component, GotUnequippedEvent args) =>
-        RemComp<ShowNullSpaceComponent>(args.Equipee);
+        RemComp<ShowNullSpaceComponent>(args.EquipTarget);
 }

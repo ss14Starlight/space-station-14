@@ -6,11 +6,11 @@ using Content.Shared.UserInterface;
 
 namespace Content.Shared._Starlight.EventSelector;
 
-public abstract class SharedEventSelectorSystem : EntitySystem
+public abstract partial class SharedEventSelectorSystem : EntitySystem
 {
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     protected const string _delayId = "EventSelectorId";
 

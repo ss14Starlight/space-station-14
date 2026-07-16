@@ -4,7 +4,7 @@ using Content.Shared.Friction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.Physics;
 using Robust.Client.Player;
 using Robust.Shared.Configuration;
@@ -13,12 +13,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.PhysicsSystem.Controllers;
 
-public sealed class MoverController : SharedMoverController
+public sealed partial class MoverController : SharedMoverController
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     // Starlight start
     // same gating as the server, otherwise we predict per-substep, server does it per-tick and we

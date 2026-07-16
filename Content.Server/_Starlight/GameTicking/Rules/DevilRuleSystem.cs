@@ -9,7 +9,7 @@ namespace Content.Server._Starlight.GameTicking.Rules;
 
 public sealed partial class DevilRuleSystem : GameRuleSystem<DevilRuleComponent>
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
 
     public override void Initialize()
     {

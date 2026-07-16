@@ -5,7 +5,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-namespace Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+namespace Content.Shared._Starlight.Medical.Surgery.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class EyeImplantComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class HandImplantComponent : Component;

@@ -32,6 +32,7 @@
   id: OrganProtogenBrain
   parent: [BaseOrganBrain, BaseProtogenOrgan]
   name: cybernetic brain
+  suffix: Protogen
   description: The source of incredible, unending intelligence. 01201020 02102111 01201210 02121012 20121210
   components:
   - type: Sprite
@@ -41,6 +42,7 @@
   id: OrganProtogenEyes
   parent: [BaseProtogenOrgan, BaseOrganEyes]
   name: cybernetic eyes
+  suffix: Protogen
   description: It's still focusing on you.. Creepy.
   components:
   - type: Sprite
@@ -67,6 +69,7 @@
   id: OrganProtogenTongue
   parent: [BaseProtogenOrgan, BaseOrganTongue]
   name: cybernetic tongue
+  suffix: Protogen
   description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -84,6 +87,7 @@
   id: OrganProtogenTongueForked
   parent: [BaseProtogenOrgan, BaseOrganTongue]
   name: forked cybernetic tongue
+  suffix: Protogen
   description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. Now split in two. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -93,6 +97,7 @@
   id: OrganProtogenEars
   parent: [BaseProtogenOrgan, BaseOrganEars]
   name: cybernetic ears
+  suffix: Protogen
   description: Process audio at a higher quality than most humanoids, allowing for greater appreciation of techno music #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -102,6 +107,7 @@
   id: OrganProtogenLungs
   parent: [BaseProtogenOrgan, BaseOrganLungs]
   name: cybernetic lungs
+  suffix: Protogen
   description: Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -146,6 +152,7 @@
   id: OrganProtogenHeart
   parent: [BaseProtogenOrgan, BaseOrganHeart]
   name: cybernetic heart
+  suffix: Protogen
   description: Doesn't actually need to beat, simply mimics the movement to provide comfort for the user.
   components:
   - type: Sprite
@@ -173,6 +180,7 @@
   id: OrganProtogenStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
   name: biological reactor
+  suffix: Protogen
   description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -208,6 +216,7 @@
   id: OrganProtogenLiver
   parent: [BaseProtogenOrgan, BaseOrganLiver]
   name: cybernetic liver
+  suffix: Protogen
   description: Pairing suggestion, a side of fermented RAM sticks and a nice CPU.
   components:
   - type: Sprite
@@ -233,6 +242,7 @@
   id: OrganProtogenKidneys
   parent: [BaseProtogenOrgan, BaseOrganKidneys]
   name: cybernetic kidneys
+  suffix: Protogen
   description: Pumps toxins out of the bloodstream and serves as a minor biological battery for electrical components #  Starlight, quotation marks removed
   components:
   - type: Sprite

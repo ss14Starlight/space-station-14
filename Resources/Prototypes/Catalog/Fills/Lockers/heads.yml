@@ -58,6 +58,7 @@
 
 - type: entity
   id: LockerQuarterMasterFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerQuarterMaster
   components:
@@ -128,15 +129,24 @@
   table: !type:AllSelector
     children:
     - id: ClothingOuterHardsuitCap
-    - id: ClothingMaskGasCaptain
+    #- id: ClothingMaskGasCaptain # Starlight
     - id: JetpackCaptainFilled
     - id: OxygenTankFilled
-    - id: NitrogenTankFilled # Starlight - vox gang
-    - id: CoolingUnit # Starlight
+    # Starlight Start
+    - id: NitrogenTankFilled
+    - id: CoolingUnit
+    - !type:GroupSelector
+      children:
+      - id: ClothingMaskGasCaptain
+        weight: 85
+      - id: ClothingMaskGasCaptainPodWars
+        weight: 15
+    # Starlight End
 
 # No laser locker, used when the antique laser is placed in the special display crate
 - type: entity
   id: LockerCaptainFilledNoLaser
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerCaptain
   components:
@@ -212,6 +222,7 @@
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerHeadOfPersonnel
   components:
@@ -242,7 +253,7 @@
     - id: AstroNavCartridge #FH
     - id: SheetSteel #FH
     - id: SheetGlass #FH
-    - id: RCD
+    - id: RCDChiefEngineer
     - id: RPD # Starlight: RPD
     - id: RCDAmmo
     - id: RubberStampCE
@@ -271,6 +282,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerChiefEngineerFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerChiefEngineer
   components:
@@ -342,6 +354,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerChiefMedicalOfficerFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerChiefMedicalOfficer
   components:
@@ -408,6 +421,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerResearchDirectorFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerResearchDirector
   components:
@@ -485,6 +499,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerHeadOfSecurityFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerHeadOfSecurity
   components:
@@ -520,6 +535,7 @@
 
 - type: entity
   id: LockerFreezerVaultFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Vault, Filled
   parent: LockerFreezerBase
   components:

@@ -1,7 +1,7 @@
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Content.Shared.Chemistry.Reagent;
 
-namespace Content.Shared.Starlight.Medical.Items.Components;
+namespace Content.Shared._Starlight.Medical.Items.Components;
 
 [RegisterComponent]
 public sealed partial class PatchUserComponent : Component

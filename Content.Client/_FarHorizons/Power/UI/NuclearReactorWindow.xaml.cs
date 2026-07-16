@@ -16,7 +16,7 @@ namespace Content.Client._FarHorizons.Power.UI;
 [GenerateTypedNameReferences]
 public sealed partial class NuclearReactorWindow : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = null!;
+    [Dependency] private IEntityManager _entityManager = null!;
     private readonly LockSystem _lock;
 
     private readonly Dictionary<Vector2i, StyleBoxFlat> _reactorGrid = [];

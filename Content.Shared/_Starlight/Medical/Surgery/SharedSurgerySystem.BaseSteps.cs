@@ -9,20 +9,19 @@ using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Starlight.Medical.Surgery.Steps;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
-namespace Content.Shared.Starlight.Medical.Surgery;
+namespace Content.Shared._Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
 public abstract partial class SharedSurgerySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     // limb attachment blacklist, array because,,, future proofing.
     private static readonly string[] _nonImplantableTags =

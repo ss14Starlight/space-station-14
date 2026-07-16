@@ -2,16 +2,16 @@ using System.Linq;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Medical.Healing;
-using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared.Tag;
 
 namespace Content.Shared._FarHorizons.Medical.ConditionalHealing;
 
-public sealed class ConditionalHealingSystem : EntitySystem
+public sealed partial class ConditionalHealingSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly HealingSystem _healing = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private HealingSystem _healing = default!;
 
     public override void Initialize()
     {

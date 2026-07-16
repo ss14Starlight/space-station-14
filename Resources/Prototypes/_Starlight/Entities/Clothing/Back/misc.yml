@@ -34,3 +34,22 @@
     - type: GuideHelp
       guides:
         - Brighteye
+
+# Greenshield Officer
+- type: entity
+  parent: [ ClothingBackpack, BaseCentcommContraband ]
+  categories: [ DoNotMap ]
+  id: ClothingBackpackGreenshield
+  name: greenshield cloak
+  description: A spacious cloak with lots of pockets, worn by Greenshield officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/thermalcloak.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Back/thermalcloak.rsi
+    - type: Storage
+      grid:
+        - 0,0,2,5
+        - 6,0,8,5
+    - type: ExplosionResistance
+      damageCoefficient: 0.1

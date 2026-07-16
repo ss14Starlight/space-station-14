@@ -2,28 +2,30 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.UI.MapObjects;
-using Content.Shared.Starlight.CCVar; //Starlight-edit
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Configuration; //Starlight-edit
 using Robust.Shared.Physics.Systems;
+#region Starlight
+using Robust.Shared.Configuration;
+using Content.Shared._Starlight.CCVar;
+#endregion
 
 namespace Content.Shared.Shuttles.Systems;
 
 public abstract partial class SharedShuttleSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] protected readonly FixtureSystem Fixtures = default!;
-    [Dependency] protected readonly SharedMapSystem Maps = default!;
-    [Dependency] protected readonly SharedPhysicsSystem Physics = default!;
-    [Dependency] protected readonly SharedTransformSystem XformSystem = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] protected FixtureSystem Fixtures = default!;
+    [Dependency] protected SharedMapSystem Maps = default!;
+    [Dependency] protected SharedPhysicsSystem Physics = default!;
+    [Dependency] protected SharedTransformSystem XformSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
 
     //public const float FTLRange = 256f; //starlight removed
     public const float FTLBufferRange = 8f;

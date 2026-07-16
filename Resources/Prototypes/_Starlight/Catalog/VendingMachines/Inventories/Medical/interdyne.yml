@@ -1,0 +1,104 @@
+# Interdyne Vendor stuff
+# Enterprise = Departmental, Commercial = Civilian
+# Better topicals, worse supplementary pills/bottles
+- type: vendingMachineInventory
+  id: InterdyneEnterpriseWallInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 1
+    ClothingBeltMedical: 2
+    ClothingBeltMedicalEMT: 1
+    Gauze: 3
+    SyndicateBrutePack: 3
+    SyndicateOintment: 3
+    Bloodpack: 3
+    ChemistryBottleEpinephrine: 2
+    Syringe: 3
+    PillCanisterTricordrazine: 1
+  contrabandInventory:
+    PillCanisterRandom: 1
+    PowerCellSmall: 2
+    OminousPill: 1
+  emaggedInventory:
+    StrangePill: 1
+    PillLead5: 1
+
+
+- type: vendingMachineInventory
+  id: InterdyneCommercialWallInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 1
+    Gauze: 3
+    Tourniquet: 3
+    SyndicateBrutePack: 3
+    SyndicateOintment: 3
+    Bloodpack: 3
+    ChemistryBottleEpinephrine: 2
+    Syringe: 3
+    PillTricordrazine: 10
+  contrabandInventory:
+    PillCanisterRandom: 1
+    OminousPill: 1
+    PowerCellSmall: 2
+  emaggedInventory:
+    StrangePill: 1
+    PillDesoxyephedrine5: 1
+
+- type: vendingMachineInventory
+  id: InterdyneEnterpriseInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 3
+    ClothingBeltMedical: 3
+    ClothingBeltMedicalEMT: 2
+    Gauze: 5
+    SyndicateBrutePack: 5
+    SyndicateOintment: 5
+    Bloodpack: 5
+    Tourniquet: 2
+    ChemistryBottleEpinephrine: 2
+    ChemistryBottleBicaridine: 1
+    Syringe: 5
+    JetInjector: 2
+    BoxBottle: 3
+    PillCanisterTricordrazine: 2
+    PillCanisterIron: 1
+    PillCanisterPotassiumIodide: 1
+    SyringeIpecac: 1
+    ClothingEyesHudMedical: 2
+    ClothingEyesEyepatchHudMedical: 2
+    ClothingEyeGlassesMedicalPrescription: 2
+    AutoMenderBruteFilled: 1
+    AutoMenderBurnFilled: 1
+    SpaceMedipen: 1
+  contrabandInventory:
+    PillCanisterRandom: 3
+    PillSpaceDrugs: 3
+    OminousPill: 2
+    FoodOrange: 1
+  emaggedInventory:
+    StrangePill: 2
+    PillLead5: 1
+
+- type: vendingMachineInventory
+  id: InterdyneCommercialInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 3
+    Tourniquet: 5
+    Gauze: 3
+    SyndicateBrutePack: 5
+    SyndicateOintment: 5
+    Bloodpack: 5
+    ChemistryBottleEpinephrine: 2
+    Syringe: 5
+    BoxBottle: 3
+    PillCanisterTricordrazine: 1
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+  contrabandInventory:
+    PillCanisterRandom: 1
+    PillSpaceDrugs: 3
+    OminousPill: 1
+    FoodOrange: 1
+  emaggedInventory:
+    StrangePill: 1
+    PillDesoxyephedrine5: 1

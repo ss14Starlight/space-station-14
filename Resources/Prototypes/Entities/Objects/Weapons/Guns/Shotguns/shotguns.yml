@@ -68,20 +68,6 @@
   # starlight end
 
 - type: entity
-  parent: BaseWeaponShotgunAny
-  id: BaseWeaponShotgun
-  abstract: true
-  components:
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - ShellShotgun
-    capacity: 7
-    proto: ShellShotgun
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
-
-- type: entity
   name: Bulldog
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponShotgunBulldog

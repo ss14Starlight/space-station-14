@@ -23,18 +23,18 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Stunnable.Systems
 {
-    public sealed class StunbatonSystem : SharedStunbatonSystem
+    public sealed partial class StunbatonSystem : SharedStunbatonSystem
     {
-        [Dependency] private readonly RiggableSystem _riggableSystem = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly SharedBatterySystem _battery = default!;
-        [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
+        [Dependency] private RiggableSystem _riggableSystem = default!;
+        [Dependency] private SharedPopupSystem _popup = default!;
+        [Dependency] private SharedBatterySystem _battery = default!;
+        [Dependency] private ItemToggleSystem _itemToggle = default!;
         #region Starlight
-        [Dependency] private readonly PowerCellSystem _powerCell = default!;
-        [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly TagSystem _tagSystem = default!;
+        [Dependency] private PowerCellSystem _powerCell = default!;
+        [Dependency] private SharedCombatModeSystem _combatMode = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private TagSystem _tagSystem = default!;
         #endregion
 
         public override void Initialize()

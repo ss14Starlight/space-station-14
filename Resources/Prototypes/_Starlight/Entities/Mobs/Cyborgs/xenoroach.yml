@@ -72,6 +72,13 @@
   - type: MovementAlwaysTouching
   # Vent crawling
   - type: VentCrawler
+  # Blindable limits vision in pipes, Eye protection prevents eye damage
+  - type: Blindable
+  - type: EyeProtection
+  # Allows the cyborg to be flashed
+  - type: StatusEffects
+    allowed:
+    - Flashed
   # Faction
   - type: NpcFactionMember
     factions:

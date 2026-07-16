@@ -13,11 +13,11 @@ namespace Content.Server._Starlight.Bed.Cryostorage;
 // takes over the job slot they freed up, as long as the items are still around
 public sealed partial class CryoSlotBelongingsSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     // the bag we hand to whoever takes a cryo vacated slot
     private static readonly EntProtoId CryoBelongingsBag = "ClothingBackpackDuffelCryostorageBelongings";

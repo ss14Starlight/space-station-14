@@ -24,7 +24,7 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     stores up to a per-reagent cap, supports held container dispensing and label matching dispensing
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingSmartDispenserSystem : EntitySystem
+public sealed partial class PlumbingSmartDispenserSystem : EntitySystem
 {
     private sealed class ActorUiState
     {
@@ -32,12 +32,12 @@ public sealed class PlumbingSmartDispenserSystem : EntitySystem
         public ReagentDispenserDispenseAmount DispenseAmount = ReagentDispenserDispenseAmount.U10;
     }
 
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly InjectorSystem _injectorSystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private InjectorSystem _injectorSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     /// <summary>
     /// Cached mapping of label prefix (lowercase) → reagent prototype ID.
