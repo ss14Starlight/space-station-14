@@ -1,13 +1,6 @@
 Entries:
 - author: BornStellar
   changes:
-  - message: Taser fire mode on the MT-7G.
-    type: Add
-  id: 406285
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
   - message: department of the GSO job.
     type: Fix
   id: 406286
@@ -2799,4 +2792,11 @@ Entries:
   id: 406684
   time: '2026-07-16T12:50:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5117
+- author: Littlemen/Romero
+  changes:
+  - message: Dragon doesnt feel the bloodloss anymore, he is just built different.
+    type: Tweak
+  id: 406685
+  time: '2026-07-16T16:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5129
 Order: -1
