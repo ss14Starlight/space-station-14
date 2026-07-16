@@ -199,6 +199,9 @@
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
+  - type: Tag
+    tags:
+      - HighTierCell
 
 - type: entity
   id: PowerCellHyperPrinted
@@ -236,6 +239,9 @@
     startingCharge: 720
   - type: BatterySelfRecharger
     autoRechargeRate: 12 # takes 1 minute to charge itself back to full
+  - type: Tag
+    tags:
+      - HighTierCell
 
 - type: entity
   parent: PowerCellMicroreactor

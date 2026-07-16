@@ -739,6 +739,9 @@
                    # Used by EventHorizonSystem to send an admin alert.
 
 - type: Tag
+  id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
+
+- type: Tag
   id: HighSecDoor # Used in ConstructionGraph "Airlock" to navigate between regular, glass, and highsec airlocks.
 
 - type: Tag

@@ -42,8 +42,7 @@
         blacklist:
           tags:
           - MechReactor
-          - PowerCellHyper
-          - PowerCellMicroreactor
+          - HighTierCell
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: ContainerContainer
