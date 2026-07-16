@@ -129,11 +129,19 @@
   table: !type:AllSelector
     children:
     - id: ClothingOuterHardsuitCap
-    - id: ClothingMaskGasCaptain
+    #- id: ClothingMaskGasCaptain # Starlight
     - id: JetpackCaptainFilled
     - id: OxygenTankFilled
-    - id: NitrogenTankFilled # Starlight - vox gang
-    - id: CoolingUnit # Starlight
+    # Starlight Start
+    - id: NitrogenTankFilled
+    - id: CoolingUnit
+    - !type:GroupSelector
+      children:
+      - id: ClothingMaskGasCaptain
+        weight: 85
+      - id: ClothingMaskGasCaptainPodWars
+        weight: 15
+    # Starlight End
 
 # No laser locker, used when the antique laser is placed in the special display crate
 - type: entity

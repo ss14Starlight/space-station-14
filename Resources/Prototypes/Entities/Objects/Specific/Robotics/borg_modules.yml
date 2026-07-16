@@ -627,7 +627,8 @@
   components:
   - type: Sprite
     layers:
-    - state: mining # Starlight
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi # Starlight
+      state: mining
     - state: icon-mining
   - type: ItemBorgModule
     hands:
@@ -653,7 +654,8 @@
   components:
   - type: Sprite
     layers:
-    - state: mining # Starlight
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: mining # Starlight
     - state: icon-mining-adv
   - type: ItemBorgModule
     hands:
@@ -678,7 +680,8 @@
   components:
   - type: Sprite
     layers:
-    - state: mining # Starlight
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi # Starlight
+      state: mining
     - state: icon-grappling-gun
   - type: ItemBorgModule
     hands:
