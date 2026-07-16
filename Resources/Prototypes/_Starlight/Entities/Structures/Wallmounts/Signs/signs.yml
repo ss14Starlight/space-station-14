@@ -88,6 +88,146 @@
       sprite: _Starlight/Structures/Wallmounts/signs.rsi
       state: mining
 
+- type: entity
+  parent: BaseSign
+  id: SignBreakCargo
+  name: cargo breakroom sign
+  description: A sign indicating where the breakroom is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: break_cargo
+
+- type: entity
+  parent: BaseSign
+  id: SignBreakCommand
+  name: command breakroom sign
+  description: A sign indicating where the breakroom is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: break_command
+
+- type: entity
+  parent: BaseSign
+  id: SignBreakEngineering
+  name: engineering breakroom sign
+  description: A sign indicating where the breakroom is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: break_engie
+
+- type: entity
+  parent: BaseSign
+  id: SignBreakMedical
+  name: medical breakroom sign
+  description: A sign indicating where the breakroom is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: break_med
+
+- type: entity
+  parent: BaseSign
+  id: SignBreakScience
+  name: science breakroom sign
+  description: A sign indicating where the breakroom is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: break_sci
+
+- type: entity
+  parent: BaseSign
+  id: SignBreakSecurity
+  name: security breakroom sign
+  description: A sign indicating where the breakroom is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: break_sec
+
+- type: entity
+  parent: BaseSign
+  id: SignBreakService
+  name: service breakroom sign
+  description: A sign indicating where the breakroom is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: break_service
+
+- type: entity
+  parent: BaseSign
+  id: SignLockerCargo
+  name: cargo locker room sign
+  description: A sign indicating where the locker room is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: locker_cargo
+
+- type: entity
+  parent: BaseSign
+  id: SignLockerCommand
+  name: command locker room sign
+  description: A sign indicating where the locker room is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: locker_command
+
+- type: entity
+  parent: BaseSign
+  id: SignLockerEngineering
+  name: engineering locker room sign
+  description: A sign indicating where the locker room is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: locker_engie
+
+- type: entity
+  parent: BaseSign
+  id: SignLockerMedical
+  name: medical locker room sign
+  description: A sign indicating where the locker room is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: locker_med
+
+- type: entity
+  parent: BaseSign
+  id: SignLockerScience
+  name: science locker room sign
+  description: A sign indicating where the locker room is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: locker_sci
+
+- type: entity
+  parent: BaseSign
+  id: SignLockerSecurity
+  name: security locker room sign
+  description: A sign indicating where the locker room is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: locker_sec
+
+- type: entity
+  parent: BaseSign
+  id: SignLockerService
+  name: service locker room sign
+  description: A sign indicating where the locker room is.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: locker_service
+
 # Xenoborg
 
 - type: entity
