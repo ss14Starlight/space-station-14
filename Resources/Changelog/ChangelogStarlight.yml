@@ -1,20 +1,6 @@
 Entries:
 - author: BornStellar
   changes:
-  - message: greenlight shield renamed to X-03 green phase shield.
-    type: Tweak
-  id: 406276
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: X-03 shield HP changed from 36HP to 90HP.
-    type: Tweak
-  id: 406277
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
   - message: X-03 shield Slash resistance changed from 20% to 10%.
     type: Tweak
   id: 406278
@@ -2799,4 +2785,18 @@ Entries:
   id: 406675
   time: '2026-07-16T11:22:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5152
+- author: neomoth
+  changes:
+  - message: Fixes Tippy being killed and never ever showing up again if you disconnect and reconnect without relaunching the game.
+    type: Fix
+  id: 406676
+  time: '2026-07-16T11:59:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5143
+- author: neomoth
+  changes:
+  - message: FINALLY fixes a visual bug with secure crates that made the paper label sprite always visible even when no label is attached.
+    type: Fix
+  id: 406677
+  time: '2026-07-16T11:59:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5143
 Order: -1
