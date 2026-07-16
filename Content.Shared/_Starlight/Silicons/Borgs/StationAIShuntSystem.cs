@@ -50,7 +50,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         if (ev.Handled)
             return;
         var target = ev.Target;
-        if (_vision.IsOutsideCameraView(target))
+        if (_vision.IsOutsideCameraViewCached(target))
             return;
 
         // If target has ShuntThrough component, search for a valid target in containers
