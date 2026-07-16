@@ -14,7 +14,7 @@
     color: "#addbff"
   - type: Pierceable
     level: HardenedMetal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -36,7 +36,7 @@
     color: "#addbff"
   - type: Pierceable
     level: HardenedMetal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Heat: 0.9

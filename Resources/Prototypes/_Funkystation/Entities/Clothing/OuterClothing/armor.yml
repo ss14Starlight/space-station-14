@@ -9,7 +9,7 @@
     sprite: _Funkystation/Clothing/OuterClothing/Armor/metal_hydrogen_armor.rsi
   - type: Clothing
     sprite: _Funkystation/Clothing/OuterClothing/Armor/metal_hydrogen_armor.rsi
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -43,7 +43,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.001
     coolingCoefficient: 0.05
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.75

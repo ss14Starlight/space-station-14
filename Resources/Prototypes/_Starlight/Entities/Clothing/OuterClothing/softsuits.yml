@@ -15,7 +15,7 @@
     unequipDelay: 3 #starlight
   - type: ExplosionResistance
     damageCoefficient: 0.5
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -57,7 +57,7 @@
     lowPressureMultiplier: 1000
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -96,7 +96,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Armor/tsfleader.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Armor/tsfleader.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -118,7 +118,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Suits/wizard.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Suits/wizard.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.95

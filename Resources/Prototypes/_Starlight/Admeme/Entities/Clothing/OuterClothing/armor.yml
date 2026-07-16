@@ -22,7 +22,7 @@
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/ntnc_vest.rsi
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.6
@@ -47,7 +47,7 @@
     sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/casino_vest.rsi
   - type: Clothing
     sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/casino_vest.rsi
-  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
+  - type: AlertAwareArmor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
     modifiers:
       coefficients:
         Blunt: 0.50

@@ -427,7 +427,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -451,13 +451,99 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+            Heat: 0.9
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+            Heat: 0.9
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+    # Starlight edit end
   - type: Tag
     tags:
     - CorgiWearable
@@ -476,7 +562,7 @@
     sprite: Clothing/Head/Hardsuits/brigmedic.rsi
   - type: PointLight
     color: "#80FFFF" # Starlight
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -485,6 +571,116 @@
         Heat: 0.95
         Radiation: 0.90
         Caustic: 0.90
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Radiation: 1
+            Caustic: 1
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Radiation: 1
+            Caustic: 1
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+            Radiation: 0.9
+            Caustic: 0.9
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Radiation: 1
+            Caustic: 1
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+            Radiation: 0.9
+            Caustic: 0.9
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+            Radiation: 0.9
+            Caustic: 0.9
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+            Radiation: 0.9
+            Caustic: 0.9
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+            Radiation: 0.9
+            Caustic: 0.9
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Radiation: 1
+            Caustic: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+            Radiation: 0.9
+            Caustic: 0.9
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+            Radiation: 0.9
+            Caustic: 0.9
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+            Radiation: 0.9
+            Caustic: 0.9
+    # Starlight edit end
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -511,7 +707,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -691,7 +887,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -742,7 +938,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -770,7 +966,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -804,7 +1000,7 @@
     coolingCoefficient: 0.005
   - type: FireProtection
     reduction: 0.2
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -832,7 +1028,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -858,7 +1054,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -888,7 +1084,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.27
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -973,7 +1169,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -995,7 +1191,7 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
   - type: PointLight
     color: "#addbff"
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -1044,7 +1240,7 @@
     reduction: 0.2
   - type: TrayScanner
     enabled: true
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -1091,7 +1287,7 @@
     color: "#ffadc6"
   - type: Pierceable
     level: HardenedMetal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -1162,7 +1358,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.005
     coolingCoefficient: 0.005
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -1192,7 +1388,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.80

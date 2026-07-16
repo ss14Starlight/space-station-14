@@ -18,7 +18,7 @@
     hideOnToggle: true
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -48,10 +48,59 @@
     level: Metal
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.85
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Slash: 0.90
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Slash: 0.97
+      blue:
+        modifiers:
+          coefficients:
+            Slash: 0.95
+      violet:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+      yellow:
+        modifiers:
+          coefficients:
+            Slash: 0.95
+      orange:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+      red:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+      gamma:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+      delta:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+      epsilon:
+        modifiers:
+          coefficients:
+            Slash: 1
+      omega:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+      theta:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+      psi:
+        modifiers:
+          coefficients:
+            Slash: 0.94
 
 - type: entity
   parent: [ClothingMaskGas]
@@ -79,7 +128,7 @@
   - type: EyeProtection
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -94,11 +143,72 @@
   name: budget military-style medical mask
   description: A low-cost medical mask with a small layer of protection against damage and viruses. It's less effective than the standard issue medical mask, but it's better than nothing.
   components:
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Slash: 0.95
         Heat: 0.95
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Slash: 0.97
+            Heat: 0.97
+      blue:
+        modifiers:
+          coefficients:
+            Slash: 0.95
+            Heat: 0.95
+      violet:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+            Heat: 0.94
+      yellow:
+        modifiers:
+          coefficients:
+            Slash: 0.95
+            Heat: 0.95
+      orange:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+            Heat: 0.94
+      red:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+            Heat: 0.94
+      gamma:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+            Heat: 0.94
+      delta:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+            Heat: 0.94
+      epsilon:
+        modifiers:
+          coefficients:
+            Slash: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+            Heat: 0.94
+      theta:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+            Heat: 0.94
+      psi:
+        modifiers:
+          coefficients:
+            Slash: 0.94
+            Heat: 0.94
 
 - type: entity
   parent: ClothingMaskGas
@@ -112,7 +222,7 @@
     sprite: _Starlight/Clothing/Mask/kitsune_mask.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.90

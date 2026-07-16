@@ -11,7 +11,7 @@
   - type: Fiber
     fiberMaterial: fibers-black-nitrile
   - type: FingerprintMask
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Caustic: 0.9

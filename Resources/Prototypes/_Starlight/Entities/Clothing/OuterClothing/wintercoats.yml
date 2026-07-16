@@ -21,7 +21,7 @@
       - state: CHEM-SENIOR-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Slash: 0.95
@@ -55,7 +55,7 @@
       - state: CARGO-SENIOR-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Slash: 0.95
@@ -82,7 +82,7 @@
     clothingPrototype: ClothingHeadHatHoodWinterDutyOfficer
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.70
@@ -91,6 +91,115 @@
         Heat: 0.75
         Cold: 0.70 # Starlight
         Caustic: 0.95
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.82
+            Piercing: 0.9
+            Heat: 0.88
+            Cold: 0.85
+            Caustic: 0.97
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.7
+            Slash: 0.65
+            Piercing: 0.8
+            Heat: 0.75
+            Cold: 0.7
+            Caustic: 0.95
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.8
+            Heat: 0.75
+            Cold: 0.6
+            Caustic: 0.95
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.7
+            Slash: 0.65
+            Piercing: 0.8
+            Heat: 0.75
+            Cold: 0.7
+            Caustic: 0.95
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.8
+            Heat: 0.75
+            Cold: 0.6
+            Caustic: 0.95
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.8
+            Heat: 0.75
+            Cold: 0.6
+            Caustic: 0.95
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.8
+            Heat: 0.75
+            Cold: 0.6
+            Caustic: 0.95
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.8
+            Heat: 0.75
+            Cold: 0.6
+            Caustic: 0.95
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Cold: 1
+            Caustic: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.8
+            Heat: 0.75
+            Cold: 0.6
+            Caustic: 0.95
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.8
+            Heat: 0.75
+            Cold: 0.6
+            Caustic: 0.95
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.8
+            Heat: 0.75
+            Cold: 0.6
+            Caustic: 0.95
   - type: ExplosionResistance
     damageCoefficient: 0.85
   - type: ContainerContainer

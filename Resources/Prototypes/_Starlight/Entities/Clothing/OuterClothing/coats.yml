@@ -3,7 +3,7 @@
   parent: ClothingOuterBase
   id: ClothingOuterColdBase
   components:
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Cold: 0.9
@@ -20,7 +20,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/blueshield_coat.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -50,7 +50,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.35
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -73,7 +73,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.35
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -96,7 +96,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.35
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -121,7 +121,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/labcoat_senior_chemist.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Cold: 0.9
@@ -147,7 +147,7 @@
       - state: equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.80
@@ -156,6 +156,115 @@
         Heat: 0.85
         Cold: 0.90 # It's a jacket
         Caustic: 0.75
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.93
+            Piercing: 0.82
+            Heat: 0.93
+            Cold: 0.95
+            Caustic: 0.88
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.65
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.65
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Cold: 1
+            Caustic: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
   - type: ExplosionResistance
     damageCoefficient: 0.95
   - type: ToggleableClothing
@@ -181,7 +290,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/brigmedic_overcoat.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -190,6 +299,115 @@
         Heat: 0.85
         Cold: 0.90 # It's technically a coat
         Caustic: 0.75
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.93
+            Slash: 0.82
+            Piercing: 0.88
+            Heat: 0.93
+            Cold: 0.95
+            Caustic: 0.88
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.65
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.65
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Cold: 1
+            Caustic: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.65
 
@@ -210,7 +428,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/corpsman_overcoat.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -219,6 +437,115 @@
         Heat: 0.85
         Cold: 0.90 # It's technically a coat
         Caustic: 0.75
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.93
+            Slash: 0.82
+            Piercing: 0.88
+            Heat: 0.93
+            Cold: 0.95
+            Caustic: 0.88
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.65
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.65
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Cold: 1
+            Caustic: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.6
+            Piercing: 0.75
+            Heat: 0.85
+            Cold: 0.9
+            Caustic: 0.75
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.65
 
@@ -243,7 +570,7 @@
     coolingCoefficient: 0.05
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Slash: 0.90
@@ -276,7 +603,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/insp_coat.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/insp_coat.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -302,7 +629,7 @@
     coolingCoefficient: 0.1
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -339,7 +666,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/security_bomber.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/security_bomber.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -347,6 +674,103 @@
         Piercing: 0.90
         Heat: 0.85
         Cold: 0.80 # Sec can get a little more
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.93
+            Slash: 0.88
+            Piercing: 0.95
+            Heat: 0.93
+            Cold: 0.9
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.9
+            Heat: 0.85
+            Cold: 0.8
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.9
+            Heat: 0.85
+            Cold: 0.8
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.9
+            Heat: 0.85
+            Cold: 0.8
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.9
+            Heat: 0.85
+            Cold: 0.8
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.9
+            Heat: 0.85
+            Cold: 0.8
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.9
+            Heat: 0.85
+            Cold: 0.8
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.9
+            Heat: 0.85
+            Cold: 0.8
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Cold: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.9
+            Heat: 0.85
+            Cold: 0.8
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.9
+            Heat: 0.85
+            Cold: 0.8
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.9
+            Heat: 0.85
+            Cold: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.60 # Incredibly niche explosion resist armor; it's half a joke about having "bomb" in the name, but also gives it something...
 
@@ -366,7 +790,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_security
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_security
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -374,6 +798,103 @@
         Piercing: 0.70
         Heat: 0.90
         Cold: 0.90
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.82
+            Slash: 0.9
+            Piercing: 0.85
+            Heat: 0.95
+            Cold: 0.95
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.65
+            Slash: 0.8
+            Piercing: 0.7
+            Heat: 0.9
+            Cold: 0.9
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.8
+            Piercing: 0.6
+            Heat: 0.9
+            Cold: 0.9
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.65
+            Slash: 0.8
+            Piercing: 0.7
+            Heat: 0.9
+            Cold: 0.9
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.8
+            Piercing: 0.6
+            Heat: 0.9
+            Cold: 0.9
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.8
+            Piercing: 0.6
+            Heat: 0.9
+            Cold: 0.9
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.8
+            Piercing: 0.6
+            Heat: 0.9
+            Cold: 0.9
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.8
+            Piercing: 0.6
+            Heat: 0.9
+            Cold: 0.9
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Cold: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.8
+            Piercing: 0.6
+            Heat: 0.9
+            Cold: 0.9
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.8
+            Piercing: 0.6
+            Heat: 0.9
+            Cold: 0.9
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.8
+            Piercing: 0.6
+            Heat: 0.9
+            Cold: 0.9
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75
 
@@ -549,7 +1070,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/Centcomm_coatWarden.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -573,7 +1094,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/nct.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9

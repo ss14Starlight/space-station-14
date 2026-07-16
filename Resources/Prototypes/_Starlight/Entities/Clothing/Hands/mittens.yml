@@ -12,7 +12,7 @@
       flatReductions:
         Heat: 5 # Average lightbulb
         Cold: 5 # I don't know when you're physically going to touch anything cold, but might as well add something for it.
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Cold: 0.90 # Entire reason I added these.

@@ -34,7 +34,7 @@
     damageCoefficient: 0.75
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -76,7 +76,7 @@
     sprite: _Starlight/Admeme/Scarlet/Blackmerc.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -168,7 +168,7 @@
     sprite: _Starlight/Admeme/Scarlet/Blackmerc.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.85

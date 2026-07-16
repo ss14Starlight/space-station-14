@@ -176,7 +176,7 @@
     coolingCoefficient: 0.1
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -277,7 +277,7 @@
     coolingCoefficient: 0.7
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.90
-  - type: Armor # so zombification resistance shows up
+  - type: AlertAwareArmor # so zombification resistance shows up # Starlight-edit
     modifiers:
       coefficients: # Starlight
         Cold: 0.9 # Starlight, I mean, that's literally what they're for

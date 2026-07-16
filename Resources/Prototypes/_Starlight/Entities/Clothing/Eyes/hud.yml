@@ -252,7 +252,7 @@
     - type: IdentityBlocker
       coverage: EYES
     - type: FlashImmunity
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Heat: 0.95

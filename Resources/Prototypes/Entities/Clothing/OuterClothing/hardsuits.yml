@@ -24,7 +24,7 @@
     damageCoefficient: 0.5
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -64,7 +64,7 @@
     damageCoefficient: 0.5
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -101,7 +101,7 @@
     lowPressureMultiplier: 1000
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -140,7 +140,7 @@
     damageCoefficient: 0.5
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
       # region starlight: lowered values
@@ -179,7 +179,7 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.3
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -219,7 +219,7 @@
     lowPressureMultiplier: 1000
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
       # region starlight: maxim lowered values
@@ -288,7 +288,7 @@
     damageCoefficient: 0.4
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -297,6 +297,104 @@
         Heat: 0.7 # Starlight Edit
         Caustic: 0.7
     staminaModifier: 0.7
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Caustic: 1
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.8
+            Piercing: 0.8
+            Heat: 0.85
+            Caustic: 0.85
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.8
+            Piercing: 0.8
+            Heat: 0.85
+            Caustic: 0.85
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Caustic: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+    # Starlight edit end
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
@@ -327,7 +425,7 @@
     damageCoefficient: 0.4
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -336,6 +434,104 @@
         Heat: 0.7 # Starlight Edit
         Caustic: 0.7
     staminaModifier: 0.7
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Caustic: 1
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.8
+            Piercing: 0.8
+            Heat: 0.85
+            Caustic: 0.85
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.8
+            Piercing: 0.8
+            Heat: 0.85
+            Caustic: 0.85
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Caustic: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.6
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.6
+            Caustic: 0.6
+    # Starlight edit end
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.7 # Starlight
   - type: ClothingSpeedModifier
@@ -372,7 +568,7 @@
     damageCoefficient: 0.4
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -413,7 +609,7 @@
     damageCoefficient: 0.5
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -457,7 +653,7 @@
     damageCoefficient: 0.2
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -496,7 +692,7 @@
     lowPressureMultiplier: 1000
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Caustic: 0.1
@@ -532,7 +728,7 @@
     lowPressureMultiplier: 1000
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -583,7 +779,7 @@
     damageCoefficient: 0.5
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -651,7 +847,7 @@
     damageCoefficient: 0.6
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -696,7 +892,7 @@
     damageCoefficient: 0.75
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -770,7 +966,7 @@
     damageCoefficient: 0.6
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.6 #SL EDIT
@@ -816,7 +1012,7 @@
     damageCoefficient: 0.6
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -864,7 +1060,7 @@
   # - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.2
@@ -915,7 +1111,7 @@
     damageCoefficient: 0.5
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -955,7 +1151,7 @@
     damageCoefficient: 0.2
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -988,7 +1184,7 @@
     damageCoefficient: 0.7
   - type: Pierceable
     level: Wood
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -1025,7 +1221,7 @@
     damageCoefficient: 0.5 # Starlight-edit
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
       # Starlight-start
@@ -1060,7 +1256,7 @@
   # Starlight-start
   - type: ExplosionResistance
     damageCoefficient: 0.2
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -1183,7 +1379,7 @@
     damageCoefficient: 0.5 #Starlight edit
   - type: StaminaResistance
     damageCoefficient: 0.75
-  - type: Armor #Starlight edit - all resists are new, ert sec was formerly a copy of elite suit, it should not be.
+  - type: AlertAwareArmor #Starlight edit - all resists are new, ert sec was formerly a copy of elite suit, it should not be. # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -1246,7 +1442,7 @@
     damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.1 #best armor in the game
@@ -1293,7 +1489,7 @@
     damageCoefficient: 0.7
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -1333,7 +1529,7 @@
     damageCoefficient: 0.9
   - type: Pierceable
     level: Wood
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -1386,7 +1582,7 @@
     damageCoefficient: 0.85
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.85

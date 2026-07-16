@@ -121,7 +121,7 @@
   description: This just looks like normal clothing...
   abstract: true
   components:
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
         coefficients:
             Blunt: 1.0

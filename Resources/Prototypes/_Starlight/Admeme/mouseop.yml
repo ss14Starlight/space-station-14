@@ -233,7 +233,7 @@
   components:
   - type: ExplosionResistance
     damageCoefficient: 0.65
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.65

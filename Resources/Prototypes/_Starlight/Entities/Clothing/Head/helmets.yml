@@ -8,7 +8,7 @@
     level: Metal
   - type: FlashImmunity
   - type: EyeProtection
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.80
@@ -64,12 +64,85 @@
   - type: Appearance
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.80
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.8
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.8
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.8
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.8
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.8
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.8
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.8
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.8
   - type: ToggleClothing
     action: ActionToggleWeldingMask
   - type: WeldingMask
@@ -99,13 +172,98 @@
     sprite: _Starlight/Clothing/Head/Helmets/reflect.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Helmets/reflect.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.80
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+            Heat: 0.9
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+            Heat: 0.9
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
   - type: Reflect
     reflectProb: 0.35 # STARLIGHT: Helmet base reflect probability, adds with vest to 100%
     reflects:
@@ -128,13 +286,98 @@
     sprite: _Starlight/Clothing/Head/Helmets/plate.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Helmets/plate.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.93
         Slash: 0.93
         Piercing: 0.87
         Heat: 0.93
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+            Heat: 0.9
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+            Heat: 0.9
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
   - type: Tag
     tags:
     - SecurityHelmet
@@ -149,13 +392,98 @@
     sprite: _Starlight/Clothing/Head/Helmets/stabproof.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Helmets/stabproof.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.87
         Slash: 0.87
         Piercing: 0.93
         Heat: 0.93
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+            Heat: 0.9
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+            Heat: 0.9
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
   - type: Tag
     tags:
     - SecurityHelmet
@@ -170,13 +498,98 @@
     sprite: _Starlight/Clothing/Head/Helmets/heatabsorbent.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Helmets/heatabsorbent.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.93
         Slash: 0.93
         Piercing: 0.93
         Heat: 0.87
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+            Heat: 0.9
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+            Heat: 0.9
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.88
+            Piercing: 0.88
+            Heat: 0.88
   - type: Tag
     tags:
     - SecurityHelmet
@@ -187,7 +600,7 @@
   name: makeshift helmet
   description: Cobbled together steel held together with lv cables in the vauge shape of a helmet. Barely does anything.
   components:
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.97
@@ -208,7 +621,7 @@
   name: improvised helmet
   description: Interlocking steel plates provides some decent protection, but is still barely better than nothing.
   components:
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -226,7 +639,7 @@
   name: forged helmet
   description: A high-quality helmet made by some of the best Tidersmiths, it is finally worthwhile to have it on your head.
   components:
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.92
@@ -244,7 +657,7 @@
   name: paladin helmet
   description: No true paladin can go without their helmet!
   components:
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -280,7 +693,7 @@
     sprite: _Starlight/Clothing/Head/Helmets/riskhelmet.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Helmets/riskhelmet.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -330,7 +743,7 @@
     sprite: Changeling/ling_armor_helmet.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.8 # Starlight start

@@ -97,7 +97,7 @@
     price: 1000
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Heat: 0.95

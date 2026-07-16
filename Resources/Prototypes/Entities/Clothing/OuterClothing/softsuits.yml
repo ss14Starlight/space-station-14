@@ -135,7 +135,7 @@
     coolingCoefficient: 0.1
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Heat: 0.90

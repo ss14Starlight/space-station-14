@@ -13,7 +13,7 @@
     coolingCoefficient: 0.35 # Starlight, 0.1 -> 0.35
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -92,7 +92,7 @@
       - state: BAR-inhand-left
       right:
       - state: BAR-inhand-right
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -127,7 +127,7 @@
       # - state: CAP-inhand-left
       # right:
       # - state: CAP-inhand-right
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.70
@@ -259,7 +259,7 @@
       - state: CHEM-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -292,7 +292,7 @@
       - state: CMO-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -358,7 +358,7 @@
       - state: GENE-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -412,7 +412,7 @@
       toggleable-clothing: !type:ContainerSlot { }
       storagebase: !type:Container
         ents: [ ]
-  - type: Armor # Starlight start
+  - type: AlertAwareArmor # Starlight start # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.7 # Less blunt resist, so it's not just better
@@ -493,7 +493,7 @@
       - state: JANI-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -526,7 +526,7 @@
       - state: MED-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -605,7 +605,7 @@
       - state: PARA-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -662,7 +662,7 @@
       - state: RD-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -719,7 +719,7 @@
       - state: SCI-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -745,7 +745,7 @@
       - state: SEC-inhand-left
       right:
       - state: SEC-inhand-right
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -753,6 +753,104 @@
         Piercing: 0.95
         Heat: 0.65
         Cold: 0.65 # Starlight
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.93
+            Slash: 0.88
+            Piercing: 0.97
+            Heat: 0.82
+            Cold: 0.82
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.95
+            Heat: 0.65
+            Cold: 0.65
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.95
+            Heat: 0.6
+            Cold: 0.6
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.95
+            Heat: 0.65
+            Cold: 0.65
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.95
+            Heat: 0.6
+            Cold: 0.6
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.95
+            Heat: 0.6
+            Cold: 0.6
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.95
+            Heat: 0.6
+            Cold: 0.6
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.95
+            Heat: 0.6
+            Cold: 0.6
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Cold: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.95
+            Heat: 0.6
+            Cold: 0.6
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.95
+            Heat: 0.6
+            Cold: 0.6
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.75
+            Piercing: 0.95
+            Heat: 0.6
+            Cold: 0.6
+    # Starlight edit end
   - type: ExplosionResistance
     damageCoefficient: 0.85
   - type: Clothing
@@ -785,7 +883,7 @@
       - state: VIRO-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -810,7 +908,7 @@
     sprite: Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWarden
-  - type: Armor # Starlight start
+  - type: AlertAwareArmor # Starlight start # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.7 # Less blunt resist, so it's not just better

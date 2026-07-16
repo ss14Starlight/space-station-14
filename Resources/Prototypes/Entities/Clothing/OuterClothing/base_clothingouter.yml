@@ -127,7 +127,7 @@
     size: Ginormous
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -194,7 +194,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
-  - type: Armor # Starlight start
+  - type: AlertAwareArmor # Starlight start # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.85 # Starlight end, I mean, that's literally what they're for...

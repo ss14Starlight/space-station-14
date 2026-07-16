@@ -25,7 +25,7 @@
         children:
         - id: SmokingPipeFilledTobacco
         - id: FlippoEngravedLighter
-  - type: Armor # Starlight start
+  - type: AlertAwareArmor # Starlight start # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.75 # Lose a little blunt to tradeoff cold
@@ -33,7 +33,105 @@
         Piercing: 0.70
         Heat: 0.80
         Cold: 0.85 # Starlight end, here for cold
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.88
+            Slash: 0.85
+            Piercing: 0.85
+            Heat: 0.9
+            Cold: 0.93
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.7
+            Piercing: 0.7
+            Heat: 0.8
+            Cold: 0.85
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.8
+            Cold: 0.85
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.7
+            Piercing: 0.7
+            Heat: 0.8
+            Cold: 0.85
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.8
+            Cold: 0.85
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.8
+            Cold: 0.85
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.8
+            Cold: 0.85
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.8
+            Cold: 0.85
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Cold: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.8
+            Cold: 0.85
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.8
+            Cold: 0.85
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.6
+            Piercing: 0.6
+            Heat: 0.8
+            Cold: 0.85
 
+    # Starlight edit end
 - type: entity
   parent: [ClothingOuterCoatDetectiveLoadout]
   id: ClothingOuterCoatDetectiveLoadoutGrey
@@ -74,7 +172,7 @@
   components:
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -91,7 +189,7 @@
   components:
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -150,7 +248,7 @@
     coolingCoefficient: 0.1
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -177,7 +275,7 @@
     sprite: Clothing/OuterClothing/Coats/labcoat.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.9 # Starlight
@@ -200,7 +298,7 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_chem.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.9 # Starlight
@@ -223,7 +321,7 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_viro.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.9 # Starlight
@@ -246,7 +344,7 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_gene.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.9 # Starlight
@@ -269,7 +367,7 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_cmo.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -294,7 +392,7 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_sci.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.9 # Starlight
@@ -317,7 +415,7 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_robo.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.9 # Starlight
@@ -340,7 +438,7 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_rd.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.8 # Starlight, RD can have a little better protection than normal lab coats
@@ -408,7 +506,7 @@
     sprite: Clothing/OuterClothing/Coats/dogi.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -465,7 +563,7 @@
     sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.80 # Starlight, added the 0
@@ -473,6 +571,104 @@
         Piercing: 0.65
         Heat: 0.85
         Caustic: 0.75
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.93
+            Piercing: 0.82
+            Heat: 0.93
+            Caustic: 0.88
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.65
+            Heat: 0.85
+            Caustic: 0.75
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Caustic: 0.75
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.65
+            Heat: 0.85
+            Caustic: 0.75
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Caustic: 0.75
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Caustic: 0.75
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Caustic: 0.75
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Caustic: 0.75
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+            Caustic: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Caustic: 0.75
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Caustic: 0.75
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.8
+            Slash: 0.85
+            Piercing: 0.6
+            Heat: 0.85
+            Caustic: 0.75
+    # Starlight edit end
   - type: ZombificationResistance #Starlight
     zombificationResistanceCoefficient: 0.75 #Starlight
 
@@ -488,7 +684,7 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.9 # Starlight
@@ -511,7 +707,7 @@
     sprite: Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.9
@@ -532,7 +728,7 @@
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
-  - type: Armor # Starlight start
+  - type: AlertAwareArmor # Starlight start # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.85 # Starlight end

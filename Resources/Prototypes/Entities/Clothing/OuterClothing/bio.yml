@@ -14,7 +14,7 @@
     - Tail
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Caustic: 0.75
@@ -58,7 +58,7 @@
     sprite: Clothing/OuterClothing/Bio/janitor.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/janitor.rsi
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Caustic: 0.4
@@ -96,12 +96,86 @@
     sprite: Clothing/OuterClothing/Bio/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/security.rsi
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Caustic: 0.8
         Slash: 0.6
         Piercing: 0.8
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Slash: 0.9
+            Piercing: 0.95
+            Caustic: 0.95
+      blue:
+        modifiers:
+          coefficients:
+            Slash: 0.8
+            Piercing: 0.9
+            Caustic: 0.9
+      violet:
+        modifiers:
+          coefficients:
+            Slash: 0.6
+            Piercing: 0.8
+            Caustic: 0.8
+      yellow:
+        modifiers:
+          coefficients:
+            Slash: 0.8
+            Piercing: 0.9
+            Caustic: 0.9
+      orange:
+        modifiers:
+          coefficients:
+            Slash: 0.6
+            Piercing: 0.8
+            Caustic: 0.8
+      red:
+        modifiers:
+          coefficients:
+            Slash: 0.6
+            Piercing: 0.8
+            Caustic: 0.8
+      gamma:
+        modifiers:
+          coefficients:
+            Slash: 0.6
+            Piercing: 0.8
+            Caustic: 0.8
+      delta:
+        modifiers:
+          coefficients:
+            Slash: 0.6
+            Piercing: 0.8
+            Caustic: 0.8
+      epsilon:
+        modifiers:
+          coefficients:
+            Slash: 1
+            Piercing: 1
+            Caustic: 1
+      omega:
+        modifiers:
+          coefficients:
+            Slash: 0.6
+            Piercing: 0.8
+            Caustic: 0.8
+      theta:
+        modifiers:
+          coefficients:
+            Slash: 0.6
+            Piercing: 0.8
+            Caustic: 0.8
+      psi:
+        modifiers:
+          coefficients:
+            Slash: 0.6
+            Piercing: 0.8
+            Caustic: 0.8
+    # Starlight edit end
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.1 # Starlight - this used to be inherited from ClothingOuterBioGeneral, which is no longer a parent, and is a downgrade from upstream's 0.4
   - type: GroupExamine

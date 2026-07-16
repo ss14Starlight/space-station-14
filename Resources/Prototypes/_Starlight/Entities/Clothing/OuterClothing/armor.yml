@@ -10,7 +10,7 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/blueshield.rsi
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.6
@@ -51,7 +51,7 @@
           components:
             - type: Pierceable
               level: Metal
-            - type: Armor
+            - type: AlertAwareArmor
               modifiers:
                 coefficients:
                   Blunt: 0.85
@@ -73,7 +73,7 @@
           components:
             - type: Pierceable
               level: Metal
-            - type: Armor
+            - type: AlertAwareArmor
               modifiers:
                 coefficients:
                   Blunt: 0.5
@@ -99,7 +99,7 @@
     sprite: Changeling/ling_armor.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -131,13 +131,98 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/platecarrier.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Armor/platecarrier.rsi
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.85
           Slash: 0.85
           Piercing: 0.55
           Heat: 0.85
+      levels:
+        green:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 1
+              Heat: 1
+        blue:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 0.75
+              Heat: 1
+        violet:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.55
+              Heat: 0.85
+        yellow:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 0.75
+              Heat: 1
+        orange:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.55
+              Heat: 0.85
+        red:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.55
+              Heat: 0.85
+        gamma:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.55
+              Heat: 0.85
+        delta:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.55
+              Heat: 0.85
+        epsilon:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 1
+              Heat: 1
+        omega:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.55
+              Heat: 0.85
+        theta:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.55
+              Heat: 0.85
+        psi:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.55
+              Heat: 0.85
     - type: ExplosionResistance
       damageCoefficient: 0.85
 
@@ -153,13 +238,98 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/stabvest.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Armor/stabvest.rsi
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.55
           Slash: 0.55
           Piercing: 0.85
           Heat: 0.85
+      levels:
+        green:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 1
+              Heat: 1
+        blue:
+          modifiers:
+            coefficients:
+              Blunt: 0.75
+              Slash: 0.75
+              Piercing: 1
+              Heat: 1
+        violet:
+          modifiers:
+            coefficients:
+              Blunt: 0.55
+              Slash: 0.55
+              Piercing: 0.85
+              Heat: 0.85
+        yellow:
+          modifiers:
+            coefficients:
+              Blunt: 0.75
+              Slash: 0.75
+              Piercing: 1
+              Heat: 1
+        orange:
+          modifiers:
+            coefficients:
+              Blunt: 0.55
+              Slash: 0.55
+              Piercing: 0.85
+              Heat: 0.85
+        red:
+          modifiers:
+            coefficients:
+              Blunt: 0.55
+              Slash: 0.55
+              Piercing: 0.85
+              Heat: 0.85
+        gamma:
+          modifiers:
+            coefficients:
+              Blunt: 0.55
+              Slash: 0.55
+              Piercing: 0.85
+              Heat: 0.85
+        delta:
+          modifiers:
+            coefficients:
+              Blunt: 0.55
+              Slash: 0.55
+              Piercing: 0.85
+              Heat: 0.85
+        epsilon:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 1
+              Heat: 1
+        omega:
+          modifiers:
+            coefficients:
+              Blunt: 0.55
+              Slash: 0.55
+              Piercing: 0.85
+              Heat: 0.85
+        theta:
+          modifiers:
+            coefficients:
+              Blunt: 0.55
+              Slash: 0.55
+              Piercing: 0.85
+              Heat: 0.85
+        psi:
+          modifiers:
+            coefficients:
+              Blunt: 0.55
+              Slash: 0.55
+              Piercing: 0.85
+              Heat: 0.85
     - type: Tag
       tags:
       - CorgiWearable
@@ -177,13 +347,98 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/heatabsorbent.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Armor/heatabsorbent.rsi
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.85
           Slash: 0.85
           Piercing: 0.85
           Heat: 0.55
+      levels:
+        green:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 1
+              Heat: 1
+        blue:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 1
+              Heat: 0.75
+        violet:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.85
+              Heat: 0.55
+        yellow:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 1
+              Heat: 0.75
+        orange:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.85
+              Heat: 0.55
+        red:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.85
+              Heat: 0.55
+        gamma:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.85
+              Heat: 0.55
+        delta:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.85
+              Heat: 0.55
+        epsilon:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 1
+              Heat: 1
+        omega:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.85
+              Heat: 0.55
+        theta:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.85
+              Heat: 0.55
+        psi:
+          modifiers:
+            coefficients:
+              Blunt: 0.85
+              Slash: 0.85
+              Piercing: 0.85
+              Heat: 0.55
 
 - type: entity
   parent: [ClothingOuterArmorForged, BaseMinorContraband]
@@ -195,7 +450,7 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/makeshift.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Armor/makeshift.rsi
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.90
@@ -221,7 +476,7 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/improvised.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Armor/improvised.rsi
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.85
@@ -250,7 +505,7 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/forged.rsi
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.75
@@ -273,7 +528,7 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/paladin.rsi
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.70
@@ -300,7 +555,7 @@
     - type: TemperatureProtection
       heatingCoefficient: 0.1
       coolingCoefficient: 0.1
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.5
@@ -327,7 +582,7 @@
       sprite: _Starlight/Clothing/OuterClothing/Vests/salvagevest.rsi
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.7 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
@@ -392,7 +647,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Armor/sovietflak.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Armor/sovietflak.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -415,7 +670,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_vest.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_vest.rsi
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -478,7 +733,7 @@
       sprite: _Starlight/Clothing/OuterClothing/Armor/reportersuit.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Armor/reportersuit.rsi
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.65

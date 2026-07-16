@@ -32,7 +32,7 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
     state: light
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Slash: 0.95
@@ -49,7 +49,7 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
     state: light
-  - type: Armor # Starlight start, no armor
+  - type: AlertAwareArmor # Starlight start, no armor
     modifiers:
       coefficients:
         Slash: 1.15
@@ -83,7 +83,7 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
     state: medium
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Slash: 0.90 # Slash can be higher, it's fine.
@@ -102,7 +102,7 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
     state: medium
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Poison: 0.85 # "Magic" class in terms of it gives you some really odd resistances...
@@ -146,7 +146,7 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
     state: heavy
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Slash: 0.75 # Ever try to tear through metal?
@@ -173,7 +173,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.35 # It's not as good as an EVA for cold/heat though.
     coolingCoefficient: 0.7 # Bad cold coefficient, reason to wear a winter coat in space.
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Heat: 0.9 # You can get a little of this too.
@@ -214,7 +214,7 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
     state: light
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers: {}
   - type: ExplosionResistance
     damageCoefficient: 1.0

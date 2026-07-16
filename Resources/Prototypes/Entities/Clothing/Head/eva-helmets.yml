@@ -106,7 +106,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Heat: 0.90

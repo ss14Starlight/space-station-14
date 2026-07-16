@@ -359,7 +359,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: GroupExamine
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.7

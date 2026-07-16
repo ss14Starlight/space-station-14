@@ -34,13 +34,99 @@
     sprite: Clothing/Mask/gassecurity.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.97
+            Slash: 0.97
+            Piercing: 0.97
+            Heat: 0.97
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+    # Starlight edit end
   - type: Tag
     tags:
     - CorgiWearable #Starlight edit
@@ -60,7 +146,7 @@
   - type: EyeProtection
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -78,7 +164,7 @@
     sprite: Clothing/Mask/gasatmos.rsi
   - type: Clothing
     sprite: Clothing/Mask/gasatmos.rsi
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Heat: 0.80
@@ -119,7 +205,7 @@
     sprite: Clothing/Mask/gasexplorer.rsi
   - type: Clothing
     sprite: Clothing/Mask/gasexplorer.rsi
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -165,13 +251,99 @@
     sprite: Clothing/Mask/medicalsecurity.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.97
+            Slash: 0.97
+            Piercing: 0.97
+            Heat: 0.97
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+    # Starlight edit end
   - type: ZombificationResistance # Starlight
     zombificationResistanceCoefficient: 0.95 #Starlight
 
@@ -281,13 +453,99 @@
     sprite: Clothing/Mask/clown_security.rsi
   - type: Clothing
     sprite: Clothing/Mask/clown_security.rsi
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.97
+            Slash: 0.97
+            Piercing: 0.97
+            Heat: 0.97
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+    # Starlight edit end
   - type: Tag
     tags:
     - ClownMask
@@ -356,7 +614,7 @@
   - type: Tag
     tags:
     - SurgeryCompatibleArmor # Starlight-edit
-  - type: Armor # Starlight start
+  - type: AlertAwareArmor # Starlight start # Starlight-edit
     modifiers:
       coefficients:
         Caustic: 0.95 # I kind of just put this here so that it would show the infection resistance...
@@ -449,14 +707,100 @@
     hideOnToggle: true
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.90
         Slash: 0.90
         Piercing: 0.95
         Heat: 0.95
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.97
+            Slash: 0.97
+            Piercing: 0.97
+            Heat: 0.97
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
 
+    # Starlight edit end
 - type: entity
   parent: ClothingMaskGas
   id: ClothingMaskGasMerc
@@ -469,7 +813,7 @@
     sprite: Clothing/Mask/merc.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -499,7 +843,7 @@
   - type: EyeProtection
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -526,7 +870,7 @@
     level: Rock
   - type: FlashImmunity # Starlight
     blocksSpecialVision: False
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.80
@@ -730,14 +1074,100 @@
     sprite: Clothing/Mask/mime_security.rsi
   - type: Clothing
     sprite: Clothing/Mask/mime_security.rsi
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+    levels: # Starlight edit start
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.97
+            Slash: 0.97
+            Piercing: 0.97
+            Heat: 0.97
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+            Heat: 0.95
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+            Heat: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.94
+            Slash: 0.94
+            Piercing: 0.94
+            Heat: 0.94
 
+    # Starlight edit end
 - type: entity
   parent: ClothingMaskBase
   id: ClothingMaskItalianMoustache

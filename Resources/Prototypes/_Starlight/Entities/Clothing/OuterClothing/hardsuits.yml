@@ -22,7 +22,7 @@
     sprintModifier: 0.8
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.6
@@ -58,7 +58,7 @@
       sprintModifier: 0.95
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.9
@@ -98,7 +98,7 @@
       damageCoefficient: 0.4
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.6
@@ -134,7 +134,7 @@
       sprintModifier: 0.9
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.75
@@ -165,7 +165,7 @@
       lowPressureMultiplier: 1000
     - type: ExplosionResistance
       damageCoefficient: 0.4
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.9
@@ -214,7 +214,7 @@
       sprintModifier: 1
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.6
@@ -283,7 +283,7 @@
       allowedSlots: [MASK, HEAD, OUTERCLOTHING]
     - type: IngestionBlocker
     - type: IdentityBlocker
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.4
@@ -331,7 +331,7 @@
     damageCoefficient: 0.5
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -384,7 +384,7 @@
         - Detective
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.5
@@ -393,6 +393,103 @@
           Heat: 0.6
           Caustic: 0.7
       staminaModifier: 0.6
+      levels:
+        green:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 1
+              Heat: 1
+              Caustic: 1
+        blue:
+          modifiers:
+            coefficients:
+              Blunt: 0.75
+              Slash: 0.75
+              Piercing: 0.75
+              Heat: 0.8
+              Caustic: 0.85
+        violet:
+          modifiers:
+            coefficients:
+              Blunt: 0.5
+              Slash: 0.5
+              Piercing: 0.5
+              Heat: 0.6
+              Caustic: 0.6
+        yellow:
+          modifiers:
+            coefficients:
+              Blunt: 0.75
+              Slash: 0.75
+              Piercing: 0.75
+              Heat: 0.8
+              Caustic: 0.85
+        orange:
+          modifiers:
+            coefficients:
+              Blunt: 0.5
+              Slash: 0.5
+              Piercing: 0.5
+              Heat: 0.6
+              Caustic: 0.6
+        red:
+          modifiers:
+            coefficients:
+              Blunt: 0.5
+              Slash: 0.5
+              Piercing: 0.5
+              Heat: 0.6
+              Caustic: 0.6
+        gamma:
+          modifiers:
+            coefficients:
+              Blunt: 0.5
+              Slash: 0.5
+              Piercing: 0.5
+              Heat: 0.6
+              Caustic: 0.6
+        delta:
+          modifiers:
+            coefficients:
+              Blunt: 0.5
+              Slash: 0.5
+              Piercing: 0.5
+              Heat: 0.6
+              Caustic: 0.6
+        epsilon:
+          modifiers:
+            coefficients:
+              Blunt: 1
+              Slash: 1
+              Piercing: 1
+              Heat: 1
+              Caustic: 1
+        omega:
+          modifiers:
+            coefficients:
+              Blunt: 0.5
+              Slash: 0.5
+              Piercing: 0.5
+              Heat: 0.6
+              Caustic: 0.6
+        theta:
+          modifiers:
+            coefficients:
+              Blunt: 0.5
+              Slash: 0.5
+              Piercing: 0.5
+              Heat: 0.6
+              Caustic: 0.6
+        psi:
+          modifiers:
+            coefficients:
+              Blunt: 0.5
+              Slash: 0.5
+              Piercing: 0.5
+              Heat: 0.6
+              Caustic: 0.6
     - type: ClothingSpeedModifier
       walkModifier: 0.60
       sprintModifier: 0.60
@@ -426,7 +523,7 @@
       lowPressureMultiplier: 1000
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.85
@@ -466,7 +563,7 @@
     damageCoefficient: 0.2
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.65
@@ -533,7 +630,7 @@
       damageCoefficient: 0.4
     - type: Pierceable
       level: Metal
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.7
@@ -608,7 +705,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.35 # 65% resistance
@@ -656,7 +753,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.35 # 65% resistance
@@ -704,7 +801,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.20 # 80% resistance
@@ -752,7 +849,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.35 # 65% resistance
@@ -813,7 +910,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.35 # 65% resistance
@@ -861,7 +958,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.35 # 65% resistance
@@ -909,7 +1006,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.35 # 65% resistance
@@ -957,7 +1054,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.25 # 65% resistance
@@ -1005,7 +1102,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.35 # 65% resistance
@@ -1089,7 +1186,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.35 # 65% resistance
@@ -1137,7 +1234,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.25 # 75% resistance
@@ -1176,7 +1273,7 @@
       zombificationResistanceCoefficient: 0.1
     - type: FireProtection
       reduction: 1
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.3
@@ -1206,7 +1303,7 @@
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/tsf_phantom.rsi
     - type: ZombificationResistance
       zombificationResistanceCoefficient: 0.8
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.35
@@ -1246,7 +1343,7 @@
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
       level: Rock
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.05 # 95% resistance
@@ -1281,7 +1378,7 @@
       sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
     - type: ExplosionResistance
       damageCoefficient: 0.2
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.4
@@ -1330,7 +1427,7 @@
     damageCoefficient: 0.2
   - type: Pierceable
     level: Flesh
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.75

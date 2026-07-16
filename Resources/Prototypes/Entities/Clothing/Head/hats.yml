@@ -726,7 +726,7 @@
   - type: TemperatureProtection # Starlight start
     heatingCoefficient: 1
     coolingCoefficient: 0.75
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Cold: 0.9 # Starlight end
@@ -1068,7 +1068,7 @@
     sprite: Clothing/Head/Hats/melon.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95
@@ -1085,7 +1085,7 @@
     sprite: Clothing/Head/Hats/holyhatmelon.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Caustic: 0.95

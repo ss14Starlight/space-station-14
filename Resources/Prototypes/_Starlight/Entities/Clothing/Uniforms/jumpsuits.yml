@@ -160,7 +160,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman.rsi
-  - type: Armor # so zombification resistance shows up
+  - type: AlertAwareArmor # so zombification resistance shows up
     modifiers:
       coefficients: { }
   - type: ZombificationResistance
@@ -176,7 +176,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman_response.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman_response.rsi
-  - type: Armor # so zombification resistance shows up
+  - type: AlertAwareArmor # so zombification resistance shows up
     modifiers:
       coefficients: { }
   - type: ZombificationResistance
@@ -192,7 +192,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/brigmedic_alt.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/brigmedic_alt.rsi
-  - type: Armor # so zombification resistance shows up
+  - type: AlertAwareArmor # so zombification resistance shows up
     modifiers:
       coefficients: { }
   - type: ZombificationResistance
@@ -208,7 +208,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/brigmedic_senior.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/brigmedic_senior.rsi
-  - type: Armor # so zombification resistance shows up
+  - type: AlertAwareArmor # so zombification resistance shows up
     modifiers:
       coefficients: { }
   - type: ZombificationResistance
@@ -225,7 +225,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suitoflife.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suitoflife.rsi
-  - type: Armor # so zombification resistance shows up
+  - type: AlertAwareArmor # so zombification resistance shows up
     modifiers:
       coefficients: { }
   - type: ZombificationResistance

@@ -150,7 +150,7 @@
     sprite: Clothing/Head/Hardhats/armored.rsi
   - type: Pierceable
     level: HardenedMetal
-  - type: Armor #Copied from the sec helmet, as it's hard to give these sane values without locational damage existing.
+  - type: AlertAwareArmor #Copied from the sec helmet, as it's hard to give these sane values without locational damage existing. # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.8

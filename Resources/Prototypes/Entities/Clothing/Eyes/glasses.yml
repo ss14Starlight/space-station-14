@@ -247,7 +247,7 @@
     sprite: Clothing/Eyes/Glasses/thermal.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/thermal.rsi
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Heat: 0.95

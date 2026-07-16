@@ -19,7 +19,7 @@
       damageCoefficient: 0.75
     - type: ExplosionResistance
       damageCoefficient: 0.5
-    - type: Armor # ERT sec values
+    - type: AlertAwareArmor # ERT sec values
       modifiers:
         coefficients:
           Blunt: 0.6
@@ -91,7 +91,7 @@
     - type: ClothingSpeedModifier
       walkModifier: 0.9
       sprintModifier: 0.9
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.5

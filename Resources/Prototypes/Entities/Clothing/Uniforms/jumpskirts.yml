@@ -297,7 +297,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/brigmedic.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/brigmedic.rsi
-  - type: Armor # Starlight start, so zombification resistance shows up
+  - type: AlertAwareArmor # Starlight start, so zombification resistance shows up # Starlight-edit
     modifiers:
       coefficients: { }
   - type: ZombificationResistance
@@ -664,7 +664,7 @@
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
-    - type: Armor # Starlight start, so zombification resistance shows up
+    - type: AlertAwareArmor # Starlight start, so zombification resistance shows up # Starlight-edit
       modifiers:
         coefficients: { }
     - type: ZombificationResistance

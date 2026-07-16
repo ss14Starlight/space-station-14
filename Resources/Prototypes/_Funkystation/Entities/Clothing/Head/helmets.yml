@@ -12,7 +12,7 @@
   - type: IngestionBlocker
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.95

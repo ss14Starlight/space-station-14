@@ -13,7 +13,7 @@
     sprintModifier: 0.8
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -67,7 +67,7 @@
     reduction: 0.65 # doesnt have a full seal so not as good
   - type: Pierceable
     level: Wood
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.9
@@ -111,7 +111,7 @@
     reduction: 0.8 # atmos firesuit offers best protection, hardsuits are a little vulnerable
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.9
@@ -143,7 +143,7 @@
     sprite: Clothing/OuterClothing/Suits/rad.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Heat: 0.90
@@ -189,7 +189,7 @@
     coolingCoefficient: 0.01
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Blunt: 0.7 # SL start - 30% on all

@@ -224,7 +224,7 @@
     node: jumpsuit
   - type: Pierceable
     level: Flesh
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Radiation: 0.8
@@ -473,7 +473,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/brigmedic.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/brigmedic.rsi
-  - type: Armor # Starlight start, so zombification resistance shows up
+  - type: AlertAwareArmor # Starlight start, so zombification resistance shows up # Starlight-edit
     modifiers:
       coefficients: { }
   - type: ZombificationResistance

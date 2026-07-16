@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Starlight.AlertAwareArmor;
 using Content.Shared._Starlight.Combat.Effects.Components;
 using Content.Shared.Armor;
 using Content.Shared.Damage.Systems;
@@ -72,7 +73,7 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
         }
 
         // Check for 80%+ pierce resistance using CoefficientQueryEvent
-        if (HasComp<ArmorComponent>(armorUid))
+        if (HasComp<ArmorComponent>(armorUid) || HasComp<AlertAwareArmorComponent>(armorUid))
         {
             var coeffQuery = new CoefficientQueryEvent(SlotFlags.OUTERCLOTHING);
             var relayedEvent = new InventoryRelayedEvent<CoefficientQueryEvent>(coeffQuery, armorUid);

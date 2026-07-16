@@ -122,7 +122,7 @@
   - type: Fiber
     fiberMaterial: fibers-durathread
     fiberColor: fibers-black
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Slash: 0.95
@@ -142,7 +142,7 @@
   - type: Fiber
     fiberMaterial: fibers-latex
   - type: FingerprintMask
-  - type: Armor # Starlight start
+  - type: AlertAwareArmor # Starlight start # Starlight-edit
     modifiers:
       coefficients:
         Caustic: 0.9
@@ -162,7 +162,7 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile
   - type: FingerprintMask
-  - type: Armor # Starlight start
+  - type: AlertAwareArmor # Starlight start # Starlight-edit
     modifiers:
       coefficients:
         Caustic: 0.9

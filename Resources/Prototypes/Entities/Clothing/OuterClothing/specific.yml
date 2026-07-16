@@ -17,7 +17,7 @@
     - type: TemperatureProtection # Same as a basic winter coat.
       heatingCoefficient: 1.1
       coolingCoefficient: 0.1
-    - type: Armor
+    - type: AlertAwareArmor # Starlight-edit
       modifiers:
         coefficients:
           Slash: 0.95

@@ -12,7 +12,7 @@
   - type: BreathMask
   - type: IngestionBlocker
   - type: GroupExamine
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers: { }
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.8 # Starlight Edit, also removed the specific coefficients from the security and virology hoods
@@ -183,7 +183,7 @@
     sprite: Clothing/Head/Hoods/rad.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/rad.rsi
-  - type: Armor
+  - type: AlertAwareArmor # Starlight-edit
     modifiers:
       coefficients:
         Heat: 0.95

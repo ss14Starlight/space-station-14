@@ -63,7 +63,7 @@
     lowPressureMultiplier: 10000
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -111,7 +111,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -132,7 +132,7 @@
     - type: PressureProtection
       highPressureMultiplier: 0.45
       lowPressureMultiplier: 10000
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.9
@@ -154,7 +154,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -183,7 +183,7 @@
     lowPressureMultiplier: 10000
   - type: Pierceable
     level: Metal
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.8
@@ -233,7 +233,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -278,12 +278,85 @@
     sprite: _Starlight/Clothing/Head/Hardsuits/experimental_security.rsi
   - type: PointLight
     color: "#ffeead"
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.85
         Slash: 0.85
         Piercing: 0.85
+    levels:
+      green:
+        modifiers:
+          coefficients:
+            Blunt: 0.95
+            Slash: 0.95
+            Piercing: 0.95
+      blue:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+      violet:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.85
+            Piercing: 0.85
+      yellow:
+        modifiers:
+          coefficients:
+            Blunt: 0.9
+            Slash: 0.9
+            Piercing: 0.9
+      orange:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.85
+            Piercing: 0.85
+      red:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.85
+            Piercing: 0.85
+      gamma:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.85
+            Piercing: 0.85
+      delta:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.85
+            Piercing: 0.85
+      epsilon:
+        modifiers:
+          coefficients:
+            Blunt: 1
+            Slash: 1
+            Piercing: 1
+      omega:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.85
+            Piercing: 0.85
+      theta:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.85
+            Piercing: 0.85
+      psi:
+        modifiers:
+          coefficients:
+            Blunt: 0.85
+            Slash: 0.85
+            Piercing: 0.85
   - type: PressureProtection
     highPressureMultiplier: 0.425
     lowPressureMultiplier: 1000
@@ -435,7 +508,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9
@@ -599,7 +672,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -652,7 +725,7 @@
   - type: ClothesNightVision
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -704,7 +777,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.70
@@ -757,7 +830,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -809,7 +882,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -861,7 +934,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -915,7 +988,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -967,7 +1040,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.70
@@ -1019,7 +1092,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -1070,7 +1143,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -1121,7 +1194,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.80
@@ -1165,7 +1238,7 @@
     reduction: 1
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -1207,7 +1280,7 @@
     reduction: 1
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -1235,7 +1308,7 @@
     reduction: 0.2
   - type: Pierceable
     level: Rock
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.80
@@ -1263,7 +1336,7 @@
       sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
     - type: PointLight
       color: "#addbff"
-    - type: Armor
+    - type: AlertAwareArmor
       modifiers:
         coefficients:
           Blunt: 0.9
@@ -1290,7 +1363,7 @@
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000
   - type: Unremoveable
-  - type: Armor
+  - type: AlertAwareArmor
     modifiers:
       coefficients:
         Blunt: 0.9 # It's pretty thick, and should give *something* so you have a reason to use it over a hardsuit.
