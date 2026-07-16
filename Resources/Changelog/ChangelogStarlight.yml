@@ -1,48 +1,6 @@
 Entries:
 - author: BornStellar
   changes:
-  - message: X-03 shield Slash resistance changed from 20% to 10%.
-    type: Tweak
-  id: 406278
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: X-03 shield active block modifiers are now better than their passive modifiers across the board instead of worse.
-    type: Tweak
-  id: 406279
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: X-03 shield reflect chance lowered from 50% to 10%, still only for lasers.
-    type: Tweak
-  id: 406280
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: WT550g, a variant of the WT550r that comes with a green colour scheme.
-    type: Add
-  id: 406281
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: WT550 magazine (.35 FMJ auto top-mounted). A WT550 mag with FMJ instead of SP loaded.
-    type: Add
-  id: 406282
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: WT550 magazine (.35 HP auto top-mounted). A WT550 mag with HP instead of SP loaded.
-    type: Add
-  id: 406283
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
   - message: removed two combat medipens from GSO belt and replaced with an extra set of cuffs.
     type: Tweak
   id: 406284
@@ -2799,4 +2757,46 @@ Entries:
   id: 406677
   time: '2026-07-16T11:59:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5143
+- author: DreadfulTaco
+  changes:
+  - message: Added ice cream maker machine.
+    type: Add
+  id: 406678
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: DreadfulTaco
+  changes:
+  - message: Added an ice cream maker circuit board available at the circuit fabricator.
+    type: Add
+  id: 406679
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: DreadfulTaco
+  changes:
+  - message: Added a new cargo order for the ice cream machine.
+    type: Add
+  id: 406680
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: DreadfulTaco
+  changes:
+  - message: Added 32 flavors of ice cream to make.
+    type: Add
+  id: 406681
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: DreadfulTaco
+  changes:
+  - message: Added two round start plants, cinnamon and mint.
+    type: Add
+  id: 406682
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: DreadfulTaco
+  changes:
+  - message: Added two mutations, cinnaflare and spearmint.
+    type: Add
+  id: 406683
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
 Order: -1
