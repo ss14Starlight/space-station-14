@@ -7,8 +7,10 @@ using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
+using Content.Server.Preferences.Managers;
 using Content.Shared.Antag;
 using Content.Shared.Players;
+using Content.Shared.Preferences;
 using Content.Shared._Starlight.CCVar;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -120,10 +122,13 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Assert.That(xform.MapUid, Is.Not.Null);
         Assert.That(xform.MapID, Is.Not.EqualTo(MapId.Nullspace));
 
+        var antag = SProtoMan.Index(spawner.Definition!.Value); // Starlight
+        EnsureAntagPreferencesEnabled(antag); // Starlight
+
         // Take the ghost role and ensure we take it!
         Assert.That(_ghostRole.Takeover(ServerSession!, role.Identifier), Is.True);
         Assert.That(ServerSession!.AttachedEntity, Is.Not.Null);
-        var antag = SProtoMan.Index(spawner.Definition);
+        // var antag = SProtoMan.Index(spawner.Definition!.Value); // Starlight
         SAssertAntagInitialized(antag, ServerSession);
 
         // Ensure we spawned in the correct location
@@ -138,4 +143,23 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Assert.That(MathHelper.CloseTo(sessionXform.Coordinates.X, xform.Coordinates.X, 0.001f), Is.True);
         Assert.That(MathHelper.CloseTo(sessionXform.Coordinates.Y, xform.Coordinates.Y, 0.001f), Is.True);
     }
+
+    #region Starlight
+    private void EnsureAntagPreferencesEnabled(AntagSpecifierPrototype antag)
+    {
+        if (ServerSession == null || antag.PrefRoles.Count == 0)
+            return;
+
+        var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
+        var prefs = prefMan.GetPreferences(ServerSession.UserId);
+        var profile = (HumanoidCharacterProfile) prefs.Characters[0];
+
+        foreach (var prefRole in antag.PrefRoles)
+        {
+            profile = profile.WithAntagPreference(prefRole, true);
+        }
+
+        Server.WaitPost(() => prefMan.SetProfile(ServerSession.UserId, 0, profile).Wait()).Wait();
+    }
+    #endregion
 }
