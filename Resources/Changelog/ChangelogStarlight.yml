@@ -1,13 +1,6 @@
 Entries:
 - author: BornStellar
   changes:
-  - message: department of the GSO job.
-    type: Fix
-  id: 406286
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
   - message: outfits for use in setting outfits of arbitrary entities (was requested by some admins).
     type: Add
   id: 406287
@@ -2799,4 +2792,11 @@ Entries:
   id: 406685
   time: '2026-07-16T16:52:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5129
+- author: Rinary
+  changes:
+  - message: Removed peacemaker grenade launcher due to broken balance.
+    type: Remove
+  id: 406686
+  time: '2026-07-16T18:23:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5157
 Order: -1
