@@ -55,9 +55,9 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EnsureComp<NullPhaseComponent>(args.Equipee);
+        EnsureComp<NullPhaseComponent>(args.EquipTarget);
         if (!component.PreventLightFlicker
-            || !TryComp<ShadekinComponent>(args.Equipee, out var shadekin))
+            || !TryComp<ShadekinComponent>(args.EquipTarget, out var shadekin))
             return;
         component.OriginalFlickerFlagState = shadekin.DoLightFlicker;
         shadekin.DoLightFlicker = false;
@@ -65,9 +65,9 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
 
     private void OnUnequipped(EntityUid uid, NullPhaseComponent component, GotUnequippedEvent args)
     {
-        RemComp<NullPhaseComponent>(args.Equipee);
+        RemComp<NullPhaseComponent>(args.EquipTarget);
         if (!component.PreventLightFlicker
-            || !TryComp<ShadekinComponent>(args.Equipee, out var shadekin))
+            || !TryComp<ShadekinComponent>(args.EquipTarget, out var shadekin))
             return;
         shadekin.DoLightFlicker = component.OriginalFlickerFlagState;
     }

@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization; // Starlight: UTF-8 encode this file!
 using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.Managers;
@@ -398,14 +398,31 @@ public sealed partial class ChatUIController : UIController
 
     private void FocusChannel(ChatSelectChannel channel)
     {
+        // Starlight BEGIN
+        /*
+            We added the "MainChannel" property to fix the admin chat window not being prioritized
+            when the admin chat hotkey was pressed. This code was altered to prioritize a chat box
+            whose MainChannel == channel. If no such chat box is found, whichever chat box is
+            Main (the 'default' chat box) is used.
+
+            Note, I also tried to use the active chat filters to determine which box to select,
+            but it seems there's several boxes in the background that break this, so I opted
+            for this simpler approach of just having one "MainChannel".
+        */
+        ChatBox? fallback = null;
         foreach (var chat in _chats)
         {
-            if (!chat.Main)
-                continue;
+            if (chat.MainChannel == channel)
+            {
+                chat.Focus(channel);
+                return;
+            }
 
-            chat.Focus(channel);
-            break;
+            if (chat.Main)
+                fallback ??= chat;
         }
+        fallback?.Focus(channel);
+        // Starlight END
     }
 
     private void CycleChatChannel(bool forward)
@@ -793,7 +810,7 @@ public sealed partial class ChatUIController : UIController
 
         if (chatChannel == ChatSelectChannel.Local)
         {
-            if (_ghost?.IsGhost != true && _ghost?.Player?.BypassGhostChat != true) // Starlight edit
+            if (_ghost?.IsGhost != true || _ghost?.Player?.BypassGhostChat == true) // Starlight edit
                 return (chatChannel, text, null, null, language); //Starlight edit
             else
                 chatChannel = ChatSelectChannel.Dead;
@@ -876,8 +893,11 @@ public sealed partial class ChatUIController : UIController
     }
 
     // Starlight begin: dumb event listener for updating channel permissions
-    private void OnCorporealChanged(GhostCorporealEvent ev, EntitySessionEventArgs _) =>
+    private void OnCorporealChanged(GhostCorporealEvent ev, EntitySessionEventArgs _)
+    {
+        if (EntityManager.GetEntity(ev.Uid) != _player.LocalEntity) return;
         UpdateChannelPermissions();
+    }
     // Starlight end
 
     private void OnChatMessage(MsgChatMessage message)

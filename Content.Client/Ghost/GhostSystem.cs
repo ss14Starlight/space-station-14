@@ -9,6 +9,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Configuration;
 using Content.Shared._Starlight.Administration.Events;
 using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.Ghost;
 #endregion
 
 namespace Content.Client.Ghost
@@ -77,6 +78,7 @@ namespace Content.Client.Ghost
             SubscribeLocalEvent<EyeComponent, ToggleLightingActionEvent>(OnToggleLighting);
             SubscribeLocalEvent<EyeComponent, ToggleFoVActionEvent>(OnToggleFoV);
             SubscribeLocalEvent<GhostComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
+            SubscribeNetworkEvent<GhostCorporealEvent>(OnCorporeal); // Starlight
             SubscribeNetworkEvent<AdminGhostEvent>(OnAdminGhost); // Starlight
         }
 
@@ -219,13 +221,24 @@ namespace Content.Client.Ghost
             GhostVisibility = visibility ?? !GhostVisibility;
         }
 
-        // Starlight begin
+        #region Starlight
+
+        private void OnCorporeal(GhostCorporealEvent ev)
+        {
+            var uid = GetEntity(ev.Uid);
+            if (!TryComp<SpriteComponent>(uid, out var comp))
+                return;
+
+            _sprite.SetVisible((uid, comp), ev.IsCorporeal || uid == _playerManager.LocalEntity || GhostVisibility);
+        }
+
         private void OnAdminGhost(AdminGhostEvent ev)
         {
             var value = _cfg.GetCVar(StarlightCCVars.AdminGhostScriptPath);
             if (value == string.Empty) return;
             _console.ExecuteCommand(null, $"exec /{value}");
         }
-        // Starlight end
+
+        #endregion
     }
 }

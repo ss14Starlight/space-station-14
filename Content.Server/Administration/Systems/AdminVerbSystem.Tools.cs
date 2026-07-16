@@ -1128,5 +1128,6 @@ public sealed partial class AdminVerbSystem
         AddRandomMood = -32, //Starlight Thaven
         AddCustomMood = -33, //Starlight Thaven
         BlockObjectiveTargeting = -44, // Starlight
+        RejoinAtmosDevice = -45 // Starlight
     }
 }

@@ -251,3 +251,13 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorMobOrganVoxLungs
+  productEntity: OrganVoxLungs
+  cost:
+    NTCredit: 297
+  categories:
+  - SLSurgery
+  conditions:
+  - !type:BuyerAccessCondition

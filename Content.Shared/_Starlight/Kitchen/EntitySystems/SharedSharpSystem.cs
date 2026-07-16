@@ -9,6 +9,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 
@@ -43,6 +44,10 @@ public abstract partial class SharedSharpSystem : EntitySystem
         if (args.Handled || args.Target is null || !args.CanReach)
             return;
 
+        // Check to see if we can do surgery first.
+        if (HasComp<SurgeryToolComponent>(uid) && HasComp<SurgeryTargetComponent>(args.Target.Value))
+            return;
+
         if (TryStartButcherDoafter(uid, args.Target.Value, args.User))
             args.Handled = true;
     }
@@ -74,7 +79,7 @@ public abstract partial class SharedSharpSystem : EntitySystem
 
         if (butcher.Type != ButcheringType.Knife && target != user)
         {
-            PopupSystem.PopupEntity(Loc.GetString("butcherable-different-tool", ("target", target)), knife, user);
+            PopupSystem.PopupPredicted(Loc.GetString("butcherable-different-tool", ("target", target)), knife, user);
             return false;
         }
 

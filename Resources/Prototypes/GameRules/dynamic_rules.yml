@@ -6,99 +6,57 @@
     minPlayers: 5 # <5 is greenshift hours, buddy.
   - type: DynamicRule
     startingBudgetMin: 200
-    startingBudgetMax: 550 # Starlight, might as well give it a chance to spawn 2 majors, yeah?
+    startingBudgetMax: 350
     table: !type:AllSelector
       children:
       # Roundstart Major Rules
       - !type:GroupSelector
         conditions:
         - !type:RoundDurationCondition
-          max: 2 # Starlight, let's try 2.
+          max: 1
         children:
         - id: Traitor
-          weight: 35 # Starlight, equal to its place in Alpha's normal secret weights.
+          weight: 60
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
         - id: Nukeops
-          weight: 10 # Starlight, roughly equal to its place in Alpha's normal secret weights.
+          weight: 25
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 20
         - id: Revolutionary
-          weight: 10 # Starlight, roughly equal to its place in Alpha's normal secret weights.
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-        - id: CosmicCult
-          weight: 10 # Starlight, roughly equal to its place in Alpha's normal secret weights.
+          weight: 5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
         - id: Zombie
-          weight: 10 # Starlight, roughly equal to its place in Alpha's normal secret weights.
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 20
-        - id: WizardDuel # Starlight, Wizard Duel instead of Wizard
           weight: 5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 30 # Starlight
-        - id: Xenoborgs # Starlight start, they're basically a major now...
-          weight: 10
+            min: 20
+        - id: Wizard
+          weight: 5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 25
-        - id: TerrorSpidersSpawn
-          weight: 10
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 25
-            # Starlight end
+            min: 10
       # Roundstart Minor Rules
       - !type:GroupSelector
         conditions:
         - !type:RoundDurationCondition
-          max: 3 # Starlight, let's try 3.
+          max: 1
         children:
         - id: Thief
-          prob: 0.4
+          prob: 0.5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        # Starlight start
-        - id: VampireLess
-          prob: 0.15
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-        - id: SLChangeling
-          prob: 0.15
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-        - id: SiliconLiberation
-          prob: 0.15
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-        - id: SubWizard
-          prob: 0.05
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          # Starlight end
       # Midround rules
       - !type:GroupSelector
         conditions:
@@ -127,32 +85,22 @@
           - !type:RoundDurationCondition
             min: 900 # 15 minutes
         - id: ParadoxCloneSpawn
-          weight: 20 # Starlight, this doesn't need to be 25, it's not *that* interesting.
+          weight: 25
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
             max: 2
           - !type:RoundDurationCondition
             min: 600 # 10 minutes
-        - id: ParadoxCrisisSpawn # Starlight start
-          weight: 10
+        - id: ZombieOutbreak
+          weight: 2.5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-            max: 2
+          - !type:PlayerCountCondition
+            min: 20
           - !type:RoundDurationCondition
-            min: 1200 # 20 minutes # Starlight end
-        # region starlight - NO MORE MIDROUND ZEDS
-        # - id: ZombieOutbreak
-        #   weight: 2.5
-        #   conditions:
-        #   - !type:HasBudgetCondition
-        #   - !type:MaxRuleOccurenceCondition
-        #   - !type:PlayerCountCondition
-        #     min: 20
-        #   - !type:RoundDurationCondition
-        #     min: 2700 # 45 minutes
-        # end region starlight
+            min: 2700 # 45 minutes
         - id: LoneOpsSpawn
           weight: 5
           conditions:
@@ -162,22 +110,3 @@
             min: 20
           - !type:RoundDurationCondition
             min: 2100 # 35 minutes
-        - id: WizardSpawn
-          weight: 1
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 30
-          - !type:RoundDurationCondition
-            min: 1800 # 30 minutes
-        - id: Brighteye # Starlight start
-          weight: 1
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-            max: 2
-          - !type:PlayerCountCondition
-            min: 20
-          - !type:RoundDurationCondition
-            min: 600 # Starlight end, 10 minutes

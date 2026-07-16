@@ -12,7 +12,7 @@
       patch:
         maxVol: 20
   - type: Item
-    size: Small
+    size: Tiny
   - type: Appearance
   - type: Patch
   - type: Tag
@@ -113,7 +113,7 @@
   description: Stores multiple patches efficiently.
   components:
   - type: Item
-    size: Tiny
+    size: Small
     sprite: _Starlight/Objects/Specific/Chemistry/patch_pack.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Chemistry/patch_pack.rsi
@@ -122,7 +122,7 @@
     tags:
       - PatchPack
   - type: Storage
-    maxItemSize: Small
+    maxItemSize: Tiny
     grid:
     - 0,0,4,1
     quickInsert: true

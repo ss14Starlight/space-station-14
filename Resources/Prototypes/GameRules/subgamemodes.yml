@@ -61,7 +61,7 @@
       tags:
         - CantBecomeRevolutionary
   - type: DynamicRuleCost
-    cost: 75
+    cost: 125
       # Starlight-end
 
 - type: entity
@@ -95,6 +95,8 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary # Same as lings, would be too strong.
+  - type: DynamicRuleCost
+    cost: 125
     # Starlight-end
 
 # Needs testing

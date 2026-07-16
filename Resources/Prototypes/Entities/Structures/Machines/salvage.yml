@@ -1,6 +1,7 @@
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: SalvageMagnet
+  categories: [ ShouldMapStation ] # Starlight
   name: salvage magnet
   description: Pulls in salvage.
   components:

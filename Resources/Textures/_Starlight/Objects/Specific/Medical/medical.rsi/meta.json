@@ -78,6 +78,16 @@
 			"license": "CC-BY-SA-3.0"
 		},
 		{
+			"name": "polypen",
+			"copyright": "Johnny",
+			"license": "CC-BY-SA-3.0"
+		},
+		{
+			"name": "polypen_empty",
+			"copyright": "Johnny",
+			"license": "CC-BY-SA-3.0"
+		},
+		{
 			"name": "redointment3",
 			"copyright": "TG Station, KillerTheFlareon",
 			"license": "CC-BY-SA-3.0"

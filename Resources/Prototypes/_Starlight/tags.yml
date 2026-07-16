@@ -361,6 +361,9 @@
   id: L6Saw
 
 - type: Tag
+  id: Labelable
+
+- type: Tag
   id: LightRifleHeavy
 
 - type: Tag

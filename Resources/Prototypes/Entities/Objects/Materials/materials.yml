@@ -763,7 +763,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: Objects/Materials/hide.rsi
+    sprite: _Starlight/Objects/Materials/hide.rsi #SL Edit
     layers:
     - state: goliath_hide
       map: [ "base" ]
@@ -782,7 +782,7 @@
   - type: Item
     size: Large
     heldPrefix: goliathhide
-    sprite: Objects/Materials/hide.rsi
+    sprite: _Starlight/Objects/Materials/hide.rsi #SL Edit
     shape:
     - 0,0,2,2
   - type: Tag

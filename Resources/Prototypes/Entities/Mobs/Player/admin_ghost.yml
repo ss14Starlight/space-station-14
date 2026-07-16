@@ -142,6 +142,7 @@
   - type: BypassInteractionChecks
   - type: ExplosionResistance
     damageCoefficient: 0
+  - type: AdminGhost # Starlight
 
 - type: entity
   abstract: true
