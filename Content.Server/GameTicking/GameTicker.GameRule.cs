@@ -6,6 +6,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Prototypes;
+using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
@@ -15,6 +16,9 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
+    readonly int _effectivePlayerCutoff = 30; // Starlight, the number of online players at which unready players start counting as effectively ready
+    readonly double _unreadyPlayerMultiplier = 0.60; // Starlight, the fraction of unready players that count as effectively ready when above the cutoff
+
     /// <summary>
     /// Designated game rule that spawns a fake antagonist to discourage metagaming.
     /// Has to be a string since <see cref="EntProtoId"/> cannot be a const.
@@ -23,7 +27,13 @@ public sealed partial class GameTicker
 
     [ViewVariables] private readonly List<(TimeSpan, string)> _allPreviousGameRules = new();
 
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = null!;
+    /// <summary>
+    /// List of ignored game rules, these rules won't be spawned by normal means.
+    /// This list is populated by <see cref="CCVars.GameTickerIgnoredPresets"/>
+    /// </summary>
+    [ViewVariables] private string[] _ignoredRules = [];
+
+    [Dependency] private EntityWhitelistSystem _whitelist = null!;
 
     /// <summary>
     ///     A list storing the start times of all game rules that have been started this round.
@@ -385,12 +395,6 @@ public sealed partial class GameTicker
         var query = EntityQueryEnumerator<GameRuleComponent>();
         while (query.MoveNext(out var uid, out var gameRule))
         {
-            #region Starlight
-            // Only rules that are currently added to this round can gate round start.
-            if (!IsGameRuleAdded(uid, gameRule))
-                continue;
-            #endregion
-
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 
