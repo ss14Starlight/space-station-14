@@ -179,7 +179,7 @@ public sealed partial class CargoSystem
             var currentMix = new GasMixture(pallet.Component.Air);
             _atmosphereSystem.Merge(currentMix, singleOrder);
 
-            while (currentMix.Pressure < Atmospherics.MaxOutputPressure)
+            while (currentMix.Pressure < pallet.Component.MaxPressure)
             {
                 if (amountToFind-- <= 0)
                     return outList;
@@ -268,7 +268,7 @@ public sealed partial class CargoSystem
     {
         gasPallets = new HashSet<CargoGasPalletComponent>();
         gasValues = new HashSet<(EntityUid, double)>();
-        foreach (var (gasPalletUid, gasPalletComponent, _) in GetCargoGasPallets(gridUid))
+        foreach (var (gasPalletUid, gasPalletComponent, _) in GetCargoGasPallets(gridUid, BuySellType.Sell))
         {
             gasPallets.Add(gasPalletComponent);
             gasValues.Add((gasPalletUid, _atmosphereSystem.GetPrice(gasPalletComponent.Air)));
