@@ -1,6 +1,5 @@
 ﻿#nullable enable
 using System.Collections.Generic;
-using System.Linq;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.IntegrationTests.Utility;
 using Content.Server.Antag;
@@ -8,11 +7,8 @@ using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Preferences.Managers;
 using Content.Shared.Antag;
-using Content.Shared.Preferences;
 using Content.Shared.Players;
-using Content.Shared.Roles;
 using Content.Shared._Starlight.CCVar;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -47,7 +43,6 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
         var rule = SProtoMan.Index<EntityPrototype>(ruleId);
         Assert.That(rule.TryGetComponent<AntagSelectionComponent>(out var antag, SEntMan.ComponentFactory), Is.True);
-        EnableAntagPreferences(antag!); // Starlight
 
         STicker.StartGameRule(ruleId, out var gameRule);
 
@@ -94,28 +89,12 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     public void TestAntagGhostRolesSequential()
     {
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
-        var antagPreferences = new HashSet<ProtoId<AntagPrototype>>(); // Starlight
-
         foreach (var ruleId in AntagGameRules)
         {
             var rule = SProtoMan.Index<EntityPrototype>(ruleId);
             Assert.That(rule.TryGetComponent<AntagSelectionComponent>(out var antag, SEntMan.ComponentFactory), Is.True);
-
-            #region Starlight
-            // Enable all antag preferences for the test session so we can take all roles
-            foreach (var selector in antag!.Antags)
-            {
-                if (!SProtoMan.Resolve(selector.Proto, out var definition))
-                    continue;
-
-                antagPreferences.UnionWith(definition.PrefRoles);
-            }
-            #endregion
-
             STicker.StartGameRule(ruleId);
         }
-
-        EnableAntagPreferences(antagPreferences); // Starlight
 
         var mind = ServerSession!.GetMind();
 
@@ -133,47 +112,6 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Assert.That(STicker.GetAddedGameRules(), Is.Empty);
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
     }
-
-    #region Starlight
-    // These methods are used to enable antag preferences for the test session so that the player can take all antag ghost roles without being blocked by preference checks.
-    private void EnableAntagPreferences(AntagSelectionComponent antag)
-    {
-        var antagPreferences = new HashSet<ProtoId<AntagPrototype>>();
-
-        foreach (var selector in antag.Antags)
-        {
-            if (!SProtoMan.Resolve(selector.Proto, out var definition))
-                continue;
-
-            antagPreferences.UnionWith(definition.PrefRoles);
-        }
-
-        EnableAntagPreferences(antagPreferences);
-    }
-
-    private void EnableAntagPreferences(HashSet<ProtoId<AntagPrototype>> antagPreferences)
-    {
-        if (antagPreferences.Count == 0)
-            return;
-
-        var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
-        var prefs = prefMan.GetPreferences(ServerSession!.UserId);
-
-        // Seed the preference on every enabled slot — GetAllEnabledProfilesForAntag and
-        // SelectProfileForAntag both scan all slots, so any enabled character that lacks
-        // the preference would be invisible to the takeover gate.
-        foreach (var (slot, profile) in prefs.Characters)
-        {
-            if (profile is not HumanoidCharacterProfile { Enabled: true } humanoid)
-                continue;
-
-            var merged = humanoid.AntagPreferences.Union(antagPreferences).ToHashSet();
-            var newProfile = humanoid.WithAntagPreferences(merged);
-            Server.WaitPost(() => prefMan.SetProfile(ServerSession.UserId, slot, newProfile).Wait()).Wait();
-        }
-    }
-
-    #endregion
 
     private void AssertGhostRoleTaken(GhostRoleAntagSpawnerComponent spawner, GhostRoleComponent role, TransformComponent xform)
     {
