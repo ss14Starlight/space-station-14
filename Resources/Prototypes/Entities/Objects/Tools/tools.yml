@@ -368,6 +368,7 @@
     - ReinforcedWindow
     - Airlock
     - AirlockGlass
+    - Windoor #Sol-edit: Add windoor to buildables
     - Firelock
     - TubeLight
     - BulbLight

@@ -50,15 +50,15 @@
   - type: ProtectedFromStepTriggers
   - type: NoSlip
   - type: Insulated
-  # Starlight-start: Languages
+  # Sol: station bots use Sol Common as the lingua franca
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Machine
     understands:
-    - GalacticCommon
+    - SolCommon
     - Machine
-  # Starlight-end
+  # Sol-end
 
 # Used for bots
 - type: entity

@@ -68,3 +68,4 @@ That model was trained on the **[LibriTTS](https://www.openslr.org/60/)** corpus
 **LibriTTS** — Heiga Zen et al., *LibriTTS: A Corpus Derived from LibriSpeech for Text-to-Speech* (arXiv:1904.02882). Derived from LibriVox audio and Project Gutenberg texts via the LibriSpeech materials.
 
 We use adapted/trained derivatives (Piper ONNX models) to synthesize speech in game. This notice is provided for CC BY attribution; the SolTTS worker that hosts these models may be private.
+

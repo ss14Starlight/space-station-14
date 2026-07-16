@@ -19,6 +19,7 @@
   id: MobArachnidSprites
   sprites:
     Head: MobArachnidHead
+    Hair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -44,10 +45,10 @@
 
 - type: markingPoints
   id: MobArachnidMarkingLimits
-  onlyWhitelisted: true
+  #onlyWhitelisted: true // Sol-edit
   points:
     Hair:
-      points: 0
+      points: 1
       required: false
     FacialHair:
       points: 0

@@ -7,7 +7,22 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-    if: ${{github.head_ref == 'master' || github.head_ref == 'main' || github.head_ref == 'develop' || github.head_ref == 'Sol' || github.head_ref == 'sol-dev'}}
+    # Close PRs opened from long-lived trunk branches (master/main/develop/Sol/sol-dev),
+    # except promotion PRs between sol-dev and Sol on this repository (not forks).
+    if: >-
+      github.head_ref == 'master' ||
+      github.head_ref == 'main' ||
+      github.head_ref == 'develop' ||
+      (
+        (github.head_ref == 'Sol' || github.head_ref == 'sol-dev') &&
+        !(
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          (
+            (github.head_ref == 'sol-dev' && github.base_ref == 'Sol') ||
+            (github.head_ref == 'Sol' && github.base_ref == 'sol-dev')
+          )
+        )
+      )
     permissions:
       contents: read
       pull-requests: write

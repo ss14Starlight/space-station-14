@@ -13,7 +13,7 @@
     - ScurretSign
     understands:
     - ScurretSign
-    - GalacticCommon
+    - SolCommon
   # Starlight-end
   # Custom names
   - type: Sprite
@@ -207,7 +207,7 @@
       - ScurretSign
       understands:
       - ScurretSign
-      - GalacticCommon
+      - SolCommon
   # Starlight-end
     - type: Loadout
       prototypes: [ EmotionalSupportScurretGear ]

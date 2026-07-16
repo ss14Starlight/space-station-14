@@ -10,7 +10,7 @@
     - Bat
     - Darktongue
     understands:
-    - GalacticCommon
+    - SolCommon
     - Bat
     - Mouse
     - Darktongue
@@ -56,7 +56,7 @@
     - Dog
     - Darktongue
     understands:
-    - GalacticCommon
+    - SolCommon
     - Dog
     - Fox
     - Darktongue

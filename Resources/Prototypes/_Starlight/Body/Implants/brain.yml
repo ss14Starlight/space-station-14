@@ -14,7 +14,7 @@
 - type: entity
   id: BrainImplantTranslator
   name: translator implant
-  description: Translates from your language to galactic common right in your brain!
+  description: Translates from your language to Sol Common right in your brain!
   parent: BaseEntityBrainImplant
   components:
   - type: Sprite
@@ -23,9 +23,9 @@
     comps:
     - type: IntrinsicTranslator
       spoken:
-      - GalacticCommon
+      - SolCommon
       understood:
-      - GalacticCommon
+      - SolCommon
 
 - type: entity
   id: BrainImplantCommsExpedition

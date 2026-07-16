@@ -57,10 +57,10 @@
     - type: NoSlip
     - type: LanguageKnowledge
       speaks:
-        - GalacticCommon
+        - SolCommon
         - Mothroach
       understands:
-        - GalacticCommon
+        - SolCommon
         - Moffic
         - Mothroach
     - type: Access

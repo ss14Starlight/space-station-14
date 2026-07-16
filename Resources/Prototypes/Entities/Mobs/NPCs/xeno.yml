@@ -217,11 +217,11 @@
   - type: LanguageSpeaker
   - type: LanguageKnowledge
     speaks:
-    - GalacticCommon
+    - SolCommon
     - Xeno
     - Xenomind
     understands:
-    - GalacticCommon
+    - SolCommon
     - Xeno
     - Xenomind
   # Starlight-end

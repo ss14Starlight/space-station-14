@@ -45,6 +45,10 @@ namespace Content.Client.Access.UI
         private HashSet<ProtoId<AccessLevelPrototype>> _pendingPressedAccessLevels = new();
         private string? _lastTargetIdName = null;
         private HashSet<ProtoId<AccessLevelPrototype>> _allowedAccessLevels = new();
+        /// <summary>
+        /// Access tags belonging to groups this console is configured to manage.
+        /// </summary>
+        private HashSet<ProtoId<AccessLevelPrototype>> _consoleGroupAccessLevels = new();
 
         private bool _pendingAccessOverride = false;
 
@@ -132,14 +136,19 @@ namespace Content.Client.Access.UI
         private void SetAllAccess(bool enabled)
         {
             // Starlight-edit: Start
+            // Only toggle tags this console's groups cover and the privileged ID can modify.
+            var manageable = _allowedAccessLevels
+                .Where(a => _consoleGroupAccessLevels.Contains(a))
+                .ToHashSet();
+
             if (enabled)
             {
-                foreach (var access in _allowedAccessLevels)
+                foreach (var access in manageable)
                     _pendingPressedAccessLevels.Add(access);
             }
             else
             {
-                _pendingPressedAccessLevels.RemoveWhere(a => _allowedAccessLevels.Contains(a));
+                _pendingPressedAccessLevels.RemoveWhere(a => manageable.Contains(a));
             }
 
             foreach (var (access, button) in _accessButtons.ButtonsList)
@@ -175,16 +184,9 @@ namespace Content.Client.Access.UI
                     allJobAccess.UnionWith(groupPrototype.Tags);
             }
 
-            // Get all tags from all groups in AccessGroups
-            var allConsoleGroupTags = new HashSet<ProtoId<AccessLevelPrototype>>();
-            foreach (var group in _accessGroups.ButtonsList.Keys)
-            {
-                if (_prototypeManager.TryIndex(group, out AccessGroupPrototype? groupProto))
-                    allConsoleGroupTags.UnionWith(groupProto.Tags);
-            }
             // Only allow access levels that are both allowed and present in the console's groups
             var allowedJobAccess = allJobAccess
-                .Where(x => _allowedAccessLevels.Contains(x) && allConsoleGroupTags.Contains(x))
+                .Where(x => _allowedAccessLevels.Contains(x) && _consoleGroupAccessLevels.Contains(x))
                 .ToHashSet();
 
             _pendingPressedAccessLevels.UnionWith(allowedJobAccess);
@@ -247,9 +249,23 @@ namespace Content.Client.Access.UI
             // Track allowed access for filtering on submit
             _allowedAccessLevels = allowedAccess.ToHashSet();
 
+            // Tags covered by groups this console can show / manage.
+            _consoleGroupAccessLevels.Clear();
+            var groupsToCheck = state.AvailableAccessGroups
+                ?? _prototypeManager.EnumeratePrototypes<AccessGroupPrototype>()
+                    .Select(p => (ProtoId<AccessGroupPrototype>)p.ID)
+                    .ToList();
+
+            foreach (var groupId in groupsToCheck)
+            {
+                if (_prototypeManager.TryIndex(groupId, out AccessGroupPrototype? groupProto))
+                    _consoleGroupAccessLevels.UnionWith(groupProto.Tags);
+            }
+
             var targetHasUnmodifiableAccess = interfaceEnabled
                 && state.TargetIdAccessList != null
-                && state.TargetIdAccessList.Any(access => !_allowedAccessLevels.Contains(access));
+                && state.TargetIdAccessList.Any(access =>
+                    !_allowedAccessLevels.Contains(access) || !_consoleGroupAccessLevels.Contains(access));
             MissingPrivilegesWarning.Visible = targetHasUnmodifiableAccess;
 
             var allPossibleAccess = _prototypeManager.EnumeratePrototypes<AccessLevelPrototype>()
@@ -262,18 +278,6 @@ namespace Content.Client.Access.UI
             var groupsWithCoverage = new List<ProtoId<AccessGroupPrototype>>();
             if (allowedAccess.Count > 0)
             {
-                List<ProtoId<AccessGroupPrototype>> groupsToCheck;
-                if (state.AvailableAccessGroups != null)
-                {
-                    groupsToCheck = state.AvailableAccessGroups;
-                }
-                else
-                {
-                    groupsToCheck = _prototypeManager.EnumeratePrototypes<AccessGroupPrototype>()
-                        .Select(p => (ProtoId<AccessGroupPrototype>)p.ID)
-                        .ToList();
-                }
-
                 foreach (var groupId in groupsToCheck)
                 {
                     if (!_prototypeManager.TryIndex(groupId, out var proto))
@@ -388,10 +392,16 @@ namespace Content.Client.Access.UI
                                 _jobPrototypeIds[JobPresetOptionButton.SelectedId] != _lastJobProto;
 
             // Starlight-edit: Start
+            // Only send tags this console's groups cover; server preserves everything else.
+            // Keep unmodifiable-but-still-on-card tags so the server does not strip them.
+            var accessToSubmit = _pendingPressedAccessLevels
+                .Where(a => _consoleGroupAccessLevels.Contains(a))
+                .ToList();
+
             _owner?.SubmitData(
                 FullNameLineEdit.Text,
                 JobTitleLineEdit.Text,
-                _pendingPressedAccessLevels.ToList(),
+                accessToSubmit,
                 jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : null);
 
             // Clear the override after submit so next UpdateState can update pressed state as normal

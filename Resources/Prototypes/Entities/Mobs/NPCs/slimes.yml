@@ -11,7 +11,7 @@
     speaks:
     - Bubblish
     understands:
-    - GalacticCommon
+    - SolCommon
     - Bubblish
   # Starlight - End
   - type: VentCrawler
