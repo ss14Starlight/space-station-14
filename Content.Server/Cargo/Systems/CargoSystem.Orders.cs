@@ -197,7 +197,9 @@ namespace Content.Server.Cargo.Systems
             }
 
             // Invalid order
-            if (!_protoMan.HasIndex<EntityPrototype>(order.ProductId) && !_protoMan.HasIndex(order.GasType)) // Starlight: Check gas too
+            if (!(order.ProductId.HasValue || order.GasType.HasValue) || // Starlight since they are both nullable now
+                (order.ProductId.HasValue && !_protoMan.HasIndex<EntityPrototype>(order.ProductId.Value)) || // Starlight
+                (order.GasType.HasValue && !_protoMan.HasIndex(order.GasType))) // Starlight: Check gas too
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
                 PlayDenySound(uid, component);
@@ -324,7 +326,7 @@ namespace Content.Server.Cargo.Systems
                         if (orderSlipPrinted.Add(gasTank.Entity))
                             CreateOrderSlip(order, account,
                                 new EntityCoordinates(gasTank.Entity, Vector2.Zero),
-                                orderDatabase.PrinterOutput, null, "Gas");
+                                orderDatabase.PrinterOutput, null, order.ProductName);
 
                         order.NumDispatched++;
                     }
@@ -588,7 +590,7 @@ namespace Content.Server.Cargo.Systems
 
         public bool AddAndApproveOrder(
             EntityUid dbUid,
-            string spawnId,
+            EntProtoId? spawnId,
             string name,
             int cost,
             int qty,
@@ -603,7 +605,8 @@ namespace Content.Server.Cargo.Systems
             float gasMoles, // Starlight
             float gasTemperature) // Starlight
         {
-            DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(spawnId));
+            DebugTools.Assert(!spawnId.HasValue || _protoMan.HasIndex<EntityPrototype>(spawnId));
+            DebugTools.Assert(!gasType.HasValue || _protoMan.HasIndex(gasType));
             // Make an order
             var id = GenerateOrderId(component);
             var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account, GetNetEntity(stationData.Owner), cargoProductId, gasType, gasMoles, gasTemperature); // Starlight

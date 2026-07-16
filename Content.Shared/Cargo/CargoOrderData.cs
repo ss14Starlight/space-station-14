@@ -25,7 +25,7 @@ namespace Content.Shared.Cargo
         /// Prototype Id for the item to be created
         /// </summary>
         [DataField]
-        public string ProductId { get; private set; }
+        public EntProtoId? ProductId { get; private set; } // Starlight
 
         /// <summary>
         /// Prototype Name
@@ -78,7 +78,7 @@ namespace Content.Shared.Cargo
         public float GasTemperature;
         #endregion
 
-        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<CargoProductPrototype> cargoProductId, ProtoId<GasPrototype>? gasType, float gasMoles, float gasTemp) // Starlight
+        public CargoOrderData(int orderId, EntProtoId? productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<CargoProductPrototype> cargoProductId, ProtoId<GasPrototype>? gasType, float gasMoles, float gasTemp) // Starlight
         {
             OrderId = orderId;
             ProductId = productId;

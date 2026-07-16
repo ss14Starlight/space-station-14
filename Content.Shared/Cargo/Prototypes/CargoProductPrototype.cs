@@ -83,7 +83,7 @@ namespace Content.Shared.Cargo.Prototypes
         ///     The entity prototype ID of the product.
         /// </summary>
         [DataField]
-        public EntProtoId Product { get; private set; } = string.Empty;
+        public EntProtoId? Product { get; private set; }
 
         /// <summary>
         ///     The point cost of the product.
