@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: Added the advanced medipen as a lesser form of a combat medipen for ERT such as CBURN.
-    type: Add
-  id: 406289
-  time: '2026-06-28T21:56:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4936
-- author: Johnny
-  changes:
   - message: Added a new role, the CBURN Corpsman.
     type: Add
   id: 406290
@@ -2799,4 +2792,11 @@ Entries:
   id: 406688
   time: '2026-07-17T08:48:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5165
+- author: TaserTheFox
+  changes:
+  - message: Fixed missing loc strings in spray painter.
+    type: Fix
+  id: 406689
+  time: '2026-07-17T09:13:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5162
 Order: -1
