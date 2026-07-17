@@ -38,7 +38,7 @@ public sealed class CharacterSelectionTest : GameTest
   id: {TraitorsMode}
   components:
   - type: GameRule
-    minPlayers: 1
+    minPlayers: 0
     delay:
       min: 5
       max: 10
@@ -48,7 +48,7 @@ public sealed class CharacterSelectionTest : GameTest
       proto: Traitor
       playerRatio: 1
       range:
-        min: 1
+        min: 0
         max: 99
 
 - type: gamePreset
