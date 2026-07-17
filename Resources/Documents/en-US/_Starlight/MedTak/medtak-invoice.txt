@@ -1,0 +1,21 @@
+[mono]
+ MedTak Client Invoice
+ ┌────────────────────┐
+ Date and Time: [datetime]
+ Document Compiler: [signature]
+ └────────────────────┘
+ Charges to client:¹
+ ┌────────────────────┐
+ Callout charge:      Free²
+ Ammunition expended: [form]cr
+ Equipment used:      [form]cr
+ Damage healed:       [form]cr
+ Printout attached?   [/mono][check][mono]
+ Total charges:       [form]cr
+ └────────────────────┘
+              (Sign here)
+
+
+[color=#e6e6e6]1: Refer to form 18a for pricing and per plan details.
+2: Conditions apply.[/color]
+[/mono]

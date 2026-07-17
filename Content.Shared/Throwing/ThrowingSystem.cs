@@ -14,6 +14,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Throwing; // Starlight
+using Robust.Shared.Network; // Starlight
 
 namespace Content.Shared.Throwing;
 
@@ -37,6 +39,7 @@ public sealed partial class ThrowingSystem : EntitySystem
     [Dependency] private SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private INetManager _net = default!; // Starlight
 
     private EntityQuery<AnchorableComponent> _anchorableQuery;
 
@@ -62,6 +65,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool animated = true,
         bool playSound = true,
         bool doSpin = true,
+        bool predicted = true, // Starlight
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         var thrownPos = _transform.GetMapCoordinates(uid);
@@ -70,7 +74,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         if (mapPos.MapId != thrownPos.MapId)
             return;
 
-        TryThrow(uid, mapPos.Position - thrownPos.Position, baseThrowSpeed, user, pushbackRatio, friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor);
+        TryThrow(uid, mapPos.Position - thrownPos.Position, baseThrowSpeed, user, pushbackRatio, friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor, predicted: predicted); // Starlight edit
     }
 
     /// <summary>
@@ -95,6 +99,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool animated = true,
         bool playSound = true,
         bool doSpin = true,
+        bool predicted = true, // Starlight
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         var physicsQuery = GetEntityQuery<PhysicsComponent>();
@@ -112,7 +117,7 @@ public sealed partial class ThrowingSystem : EntitySystem
             baseThrowSpeed,
             user,
             pushbackRatio,
-            friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor);
+            friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor, predicted: predicted); // Starlight edit
     }
 
     /// <summary>
@@ -140,6 +145,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool animated = true,
         bool playSound = true,
         bool doSpin = true,
+        bool predicted = true, // Starlight
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         if (baseThrowSpeed <= 0 || direction == Vector2Helpers.Infinity || direction == Vector2Helpers.NaN || direction == Vector2.Zero || friction < 0)
@@ -229,10 +235,13 @@ public sealed partial class ThrowingSystem : EntitySystem
             _physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
         }
 
+        if (predicted)
+            EnsureComp<PredictedThrownItemComponent>(uid); // Starlight
+
         if (user == null)
             return;
 
-        if (recoil)
+        if (recoil && _gameTiming.IsFirstTimePredicted && (_net.IsClient || !predicted)) // Starlight edit
             _recoil.KickCamera(user.Value, -direction * 0.04f);
 
         // Give thrower an impulse in the other direction
