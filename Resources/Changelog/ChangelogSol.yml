@@ -124,4 +124,11 @@ Entries:
   id: 380001
   time: '2026-07-17T11:25:08.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/38
+- author: AprilCatStreams
+  changes:
+  - message: The ID Card Computer still wasn't fixed before, but now it is™.
+    type: Fix
+  id: 400001
+  time: '2026-07-17T12:17:26.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/40
 
