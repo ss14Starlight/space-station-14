@@ -153,4 +153,11 @@ Entries:
   id: 440001
   time: '2026-07-17T14:23:09.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/44
+- author: Beans
+  changes:
+  - message: Added ATM & Station Anchor Terminal.
+    type: Tweak
+  id: 450001
+  time: '2026-07-17T14:41:44.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/45
 
