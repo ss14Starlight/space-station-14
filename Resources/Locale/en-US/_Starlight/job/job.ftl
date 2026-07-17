@@ -32,6 +32,11 @@ job-name-medtak-pilot = MedTak Pilot
 job-name-medtak-security = MedTak Security
 job-name-medtak-borg = MedTak Silicon
 
+job-name-casino-owner = Gamorrah Owner
+job-name-casino-manager = Gamorrah Manager
+job-name-casino-security = Gamorrah Security
+job-name-casino-dealer = Gamorrah Dealer
+
 job-greet-information-rules = {$jobRules}
 
 role-type-corporate-aligned-name = Corporate Aligned

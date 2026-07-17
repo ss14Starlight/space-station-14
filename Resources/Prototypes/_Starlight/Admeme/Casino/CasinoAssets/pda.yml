@@ -1,0 +1,79 @@
+- type: entity
+  parent:  [ BasePDA, BaseMedTakContraband ]
+  id: CasinoPDA
+  abstract: true
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-casino
+  - type: PdaBorderColor
+    accentVColor: "#d7d7d0"
+    borderColor: "#600000"
+  - type: Sprite
+    sprite: Objects/Devices/pda.rsi
+    layers:
+    - sprite: _Starlight/Admeme/Casino/Objects/pda.rsi
+      map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda-medtak"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: _Starlight/Admeme/Casino/Objects/pda.rsi
+    state: pda-casino
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  parent: CasinoPDA
+  id: CasinoPDASecurity
+  name: Gamorrah Owner PDA
+  description: test
+  components:
+  - type: Pda
+    id: CasinoIDCardSecurity
+
+- type: entity
+  parent: CasinoPDA
+  id: CasinoIDCardOwner
+  name: Gamorrah Owner PDA
+  description: test
+  components:
+    - type: Pda
+      id: CasinoIDCardOwner
+
+
+- type: entity
+  parent: CasinoPDA
+  id: CasinoPDAManager
+  name: Gamorrah manager PDA
+  description: test
+  components:
+    - type: Pda
+      id: CasinoIDCardManager
+
+- type: entity
+  parent: CasinoPDA
+  id: CasinoPDADealer
+  name: Gamorrah dealer PDA
+  description: test
+  components:
+    - type: Pda
+      id: MedTakIDCardDealer
