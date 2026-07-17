@@ -566,7 +566,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                     ProjectName = networkBan.ProjectName,
                     ServerName = networkBan.ServerName
                 };
-                await serverGrain.AddOrUpdateBan(networkBan);
+                await serverGrain.AddOrUpdateBan(newBan);
             }
         }
 
