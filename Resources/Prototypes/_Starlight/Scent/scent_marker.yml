@@ -2,8 +2,8 @@
   id: ScentMarker
   categories: [ HideSpawnMenu ]
   components:
-  - type: TimedDespawn
-    lifetime: 30
+  - type: QuantityDespawn
+    category: QuantityDespawnScent
   - type: ScentMarker
   - type: Transform
     gridTraversal: false
