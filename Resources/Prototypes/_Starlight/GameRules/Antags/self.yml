@@ -4,7 +4,7 @@
   id: SiliconLiberation
   components:
   - type: GameRule
-    minPlayers: 0
+    minPlayers: 5
     delay:
       min: 240
       max: 420

@@ -112,7 +112,7 @@
   name: extended-title
   showInVote: true # 🌟Starlight🌟
   description: extended-description
-  minPlayers: 4
+  minPlayers: 5 # Starlight
   rules:
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
@@ -158,7 +158,7 @@
     - sekrit
   name: secret-title
   showInVote: true
-  minPlayers: 4
+  minPlayers: 5 # Starlight
   description: secret-description
   rules:
     - Secret
@@ -182,7 +182,7 @@
     - tator
   name: traitor-title
   description: traitor-description
-  minPlayers: 0 # 🌟Starlight🌟
+  minPlayers: 5 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟

@@ -3,7 +3,7 @@
   id: Thief
   components:
   - type: GameRule # Starlight start
-    minPlayers: 0
+    minPlayers: 5 # Starlight
     delay:
       min: 240 # Delay their start so there can be some calm at the start.
       max: 420 # Starlight end
