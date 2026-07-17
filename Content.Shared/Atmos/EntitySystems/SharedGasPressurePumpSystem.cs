@@ -130,15 +130,11 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
         component.Enabled = value;
         Dirty(uid, component);
         UpdateAppearance(uid, component);
-
-        return;
     }
 
     public void Toggle(EntityUid uid, GasPressurePumpComponent component)
     {
         Set(uid, component, !component.Enabled);
-        Dirty(uid, component);
-        UpdateAppearance(uid, component);
         return;
     }
 }
