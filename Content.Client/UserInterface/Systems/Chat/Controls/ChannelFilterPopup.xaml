@@ -16,6 +16,10 @@
                     <TextEdit Name="HighlightEdit" MinHeight="150" Margin="5 5"/>
                 </PanelContainer>
                 <Button Name="HighlightButton" Text="{Loc 'hud-chatbox-highlights-button'}" ToolTip="{Loc 'hud-chatbox-highlights-tooltip'}"/>
+                <!-- Sol-start -->
+                <CheckBox Name="AutoFillHighlightsCheckBox" Text="{Loc 'hud-chatbox-auto-fill-highlights'}"/>
+                <CheckBox Name="HighlightSoundCheckBox" Text="{Loc 'hud-chatbox-highlight-sound'}"/>
+                <!-- Sol-end -->
             </BoxContainer>
             <!-- Starlight start -->
             <BoxContainer Name="TTSMuteVBox" MinWidth="120" Margin="0 10" Orientation="Vertical" SeparationOverride="4">

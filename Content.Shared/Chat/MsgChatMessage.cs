@@ -46,6 +46,11 @@ namespace Content.Shared.Chat
         [NonSerialized]
         public bool Read;
 
+        // Sol-start: set client-side when keyword highlighting matched (for highlight chime)
+        [NonSerialized]
+        public bool ClientHighlighted;
+        // Sol-end
+
         public ChatMessage(ChatChannel channel, string message, string wrappedMessage, NetEntity source, int? senderKey, bool hideChat = false, Color? colorOverride = null, string? audioPath = null, float audioVolume = 0)
         {
             Channel = channel;

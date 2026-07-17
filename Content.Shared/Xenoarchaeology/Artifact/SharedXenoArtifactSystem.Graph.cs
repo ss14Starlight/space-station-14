@@ -308,7 +308,8 @@ public abstract partial class SharedXenoArtifactSystem
 
         RemoveAllNodeEdges(ent, idx.Value, dirty: false);
 
-        _container.Remove(node.Owner, ent.Comp.NodeContainer);
+        // Artifacts (and their nodes) may live in nullspace; reparenting would warn/fail to attach to a map.
+        _container.Remove(node.Owner, ent.Comp.NodeContainer, reparent: false);
         node.Comp.Attached = null;
         ent.Comp.NodeVertices[idx.Value] = null;
         if (dirty)

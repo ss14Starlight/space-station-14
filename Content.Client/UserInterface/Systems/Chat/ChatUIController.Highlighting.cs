@@ -42,7 +42,14 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
 
     private void InitializeHighlights()
     {
-        _config.OnValueChanged(CCVars.ChatAutoFillHighlights, (value) => { _autoFillHighlightsEnabled = value; }, true);
+        // Sol-edit: refresh keywords when auto-fill is toggled on mid-round (no immediate invoke)
+        _autoFillHighlightsEnabled = _config.GetCVar(CCVars.ChatAutoFillHighlights);
+        _config.OnValueChanged(CCVars.ChatAutoFillHighlights, (value) =>
+        {
+            _autoFillHighlightsEnabled = value;
+            if (value)
+                UpdateAutoFillHighlights();
+        });
 
         _config.OnValueChanged(CCVars.ChatHighlightsColor, (value) => { _highlightsColor = value; }, true);
 

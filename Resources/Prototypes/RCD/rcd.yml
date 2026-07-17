@@ -194,7 +194,7 @@
   collisionMask: FullTileMask
   rotation: Camera
   fx: EffectRCDConstruct3
-  
+
 # Sol Descendants Start
 - type: rcd
   id: Windoor

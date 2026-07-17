@@ -17,4 +17,10 @@ public sealed partial class SolCCVars
     /// </summary>
     public static readonly CVarDef<float> SeparatedChatSideExpandedHeight =
         CVarDef.Create("ui.sol_separated_chat_side_expanded_height", 220f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Play a chime when a chat message matches the client's highlight keywords.
+    /// </summary>
+    public static readonly CVarDef<bool> ChatHighlightSound =
+        CVarDef.Create("chat.sol_highlight_sound", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
