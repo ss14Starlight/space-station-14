@@ -9,6 +9,7 @@
   - type: DeviceNetwork
     deviceNetId: Wired
   - type: DeviceLinkSource
+    range: 256
     ports:
       - StationAnchorTerminalSender
   - type: ActivatableUI
