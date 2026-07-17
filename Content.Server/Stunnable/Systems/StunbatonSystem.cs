@@ -12,8 +12,6 @@ using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Stunnable;
-
-#region Starlight
 using Content.Shared.CombatMode;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
@@ -22,7 +20,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.PowerCell.Components;
 using Content.Shared._Starlight.Stunnable;
-#endregion
 
 namespace Content.Server.Stunnable.Systems
 {
