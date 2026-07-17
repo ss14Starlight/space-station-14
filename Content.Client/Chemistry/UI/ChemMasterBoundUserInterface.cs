@@ -42,15 +42,11 @@ namespace Content.Client.Chemistry.UI
                 new ChemMasterSetModeMessage(ChemMasterMode.Discard));
             _window.CreatePillButton.OnPressed += _ => SendMessage(
                 new ChemMasterCreatePillsMessage(
-                    (uint) _window.PillDosage.Value, (uint) _window.PillNumber.Value, _window.LabelLine,
-                     _window.ContainerLabelLine)); // Starlight - added arg for containerLabel
+                    (uint) _window.PillDosage.Value, (uint) _window.PillNumber.Value, _window.LabelLine));
             // Starlight-start
             _window.CreatePatchButton.OnPressed += _ => SendMessage(
                 new ChemMasterCreatePatchesMessage(
-                    (uint) _window.PatchDosage.Value,
-                    (uint) _window.PatchNumber.Value,
-                    _window.LabelLine,
-                    _window.ContainerLabelLine));
+                    (uint) _window.PatchDosage.Value, (uint) _window.PatchNumber.Value, _window.LabelLine));
             // Starlight-end
             _window.CreateBottleButton.OnPressed += _ => SendMessage(
                 new ChemMasterOutputToBottleMessage(

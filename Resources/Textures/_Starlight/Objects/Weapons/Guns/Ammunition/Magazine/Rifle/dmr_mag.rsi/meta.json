@@ -5,67 +5,53 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "State based copyright",
+    "copyright": "Magazines edited from rifle_mag.rsi by TacoLlama (github)",
     "states": [
         {
-            "name": "base",
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "name": "base"
         },
         {
-            "name": "practice",
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "name": "practice"
         },
         {
-            "name": "red",
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "name": "red"
         },
         {
-            "name": "rubber",
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "name": "rubber"
         },
         {
-            "name": "uranium",
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "name": "uranium"
         },
         {
-            "name": "ap",
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "name": "ap"
         },
         {
-            "name": "sp",
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "name": "sp"
         },
         {
-            "name": "fmj",
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "name": "fmj"
         },
         {
-            "name": "incendiary",
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "name": "incendiary"
         },
         {
-            "name": "mag-1",
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "name": "mag-1"
         },
         {
             "name": "inhand-left-mag",
-            "directions": 4,
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "directions": 4
         },
         {
             "name": "inhand-left-stripe",
-            "directions": 4,
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "directions": 4
         },
         {
             "name": "inhand-right-mag",
-            "directions": 4,
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "directions": 4
         },
         {
             "name": "inhand-right-stripe",
-            "directions": 4,
-            "copyright": "Magazines edited from rifle_mag.rsi by SevenShades"
+            "directions": 4
         }
     ]
 }

@@ -35,9 +35,6 @@ public abstract partial class SharedExpendableLightComponent : Component
     public TimeSpan RefuelMaximumDuration = TimeSpan.FromSeconds(60 * 15f * 2);
 
     [DataField]
-    public int PlantBurnTimeModifier; // Starlight Edit
-
-    [DataField]
     public SoundSpecifier? LitSound;
 
     [DataField]

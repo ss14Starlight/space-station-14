@@ -82,8 +82,3 @@
   parent: BaseGoldCircuitboardRecipe
   id: DarkBreacherMachineCircuitboard
   result: DarkBreacherMachineCircuitboard
-
-- type: latheRecipe
-  parent: BaseCircuitboardRecipe
-  id: IceCreamMakerMachineCircuitBoard
-  result: IceCreamMakerMachineCircuitBoard
