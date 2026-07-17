@@ -404,7 +404,7 @@
 - type: entity
   parent: [ClothingBeltStorageBase, BaseSecurityContraband]
   id: ClothingPouchPeacekeeper
-  name: Less lethal grenade pouch
+  name: less lethal grenade pouch
   description: Tactical storage for less lethal grenades.
   components:
   - type: Sprite

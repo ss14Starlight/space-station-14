@@ -282,6 +282,9 @@
   id: Grenade120mm # Ammo: Magazine120mmGrenadeBlast, ShuttleGunNTSFCyerxa120mm
 
 - type: Tag
+  id: GrenadeLessLethal #Ammo for the peacekeeper
+
+- type: Tag
   id: GygaxArmor
 
 - type: Tag
@@ -698,6 +701,3 @@
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground
-
-- type: Tag
-  id: GrenadeLessLethal

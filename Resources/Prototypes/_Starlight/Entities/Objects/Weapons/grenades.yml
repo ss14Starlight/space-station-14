@@ -121,19 +121,3 @@
   - type: DeleteOnTrigger
     keysIn:
     - timer
-
-- type: entity # Lesser lethal for Peacekeeper
-  parent: BaseBullet
-  id: PelletClusterLesserRubber
-  categories: [ HideSpawnMenu ]
-  name: pellet (ball, rubber)
-  components:
-  - type: Projectile
-    deleteOnCollide: false
-    damage:
-      types:
-       Piercing: 0
-  - type: StaminaDamageOnCollide
-    damage: 15
-  - type: TimedDespawn
-    lifetime: 0.25
