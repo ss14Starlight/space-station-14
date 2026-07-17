@@ -1,3 +1,4 @@
+using Content.Server.Medical;
 using Content.Server.Medical.Components;
 using Content.Shared.CartridgeLoader;
 //FarHorizons Start
@@ -12,6 +13,7 @@ public sealed partial class MedTekCartridgeSystem : EntitySystem
 {
     [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
     [Dependency] private SharedInteractionSystem _interactionSystem = default!; //FarHorizons
+    [Dependency] private HealthAnalyzerSystem _healthAnalyzerSystem = default!; // Sol-edit
     public override void Initialize()
     {
         base.Initialize();
@@ -27,7 +29,12 @@ public sealed partial class MedTekCartridgeSystem : EntitySystem
     private void OnCartridgeAdded(Entity<MedTekCartridgeComponent> ent, ref CartridgeAddedEvent args)
     {
         var healthAnalyzer = EnsureComp<HealthAnalyzerComponent>(args.Loader);
-        EnsureComp<MedTekAnalyzerComponent>(args.Loader); // Starlight
+        // Sol-start: Apply optional damage-container whitelist from the cartridge (null = unrestricted).
+        _healthAnalyzerSystem.SetDamageContainers((args.Loader, healthAnalyzer), ent.Comp.DamageContainers);
+        var medTekAnalyzer = EnsureComp<MedTekAnalyzerComponent>(args.Loader); // Starlight
+        medTekAnalyzer.DamageContainers = ent.Comp.DamageContainers;
+        Dirty(args.Loader, medTekAnalyzer);
+        // Sol-end
     }
 
     private void OnCartridgeRemoved(Entity<MedTekCartridgeComponent> ent, ref CartridgeRemovedEvent args)

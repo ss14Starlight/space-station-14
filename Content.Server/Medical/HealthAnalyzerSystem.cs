@@ -224,6 +224,13 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         UpdateScannedUser(healthAnalyzer, target, true);
     }
 
+    // Sol-start: Allow MedTek cartridges to configure the scan whitelist on install.
+    public void SetDamageContainers(Entity<HealthAnalyzerComponent> healthAnalyzer, List<string>? damageContainers)
+    {
+        healthAnalyzer.Comp.DamageContainers = damageContainers;
+    }
+    // Sol-end
+
     /// <summary>
     /// Remove the analyzer from the active list, and remove the component if it has no active analyzers
     /// </summary>

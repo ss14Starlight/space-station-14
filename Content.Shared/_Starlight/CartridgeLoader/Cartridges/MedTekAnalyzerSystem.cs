@@ -27,6 +27,14 @@ public sealed class MedTekAnalyzerSystem : EntitySystem
         if (!HasComp<DamageableComponent>(args.Args.Target) || !HasComp<MobStateComponent>(args.Args.Target))
             return;
 
+        // Sol-start: Hide Analyze Patient when the cartridge restricts damage containers.
+        if (ent.Comp.DamageContainers is not null
+            && TryComp<DamageableComponent>(args.Args.Target, out var damageable)
+            && damageable.DamageContainerID is not null
+            && !ent.Comp.DamageContainers.Contains(damageable.DamageContainerID))
+            return;
+        // Sol-end
+
         var user = args.Args.User;
         var target = args.Args.Target;
 

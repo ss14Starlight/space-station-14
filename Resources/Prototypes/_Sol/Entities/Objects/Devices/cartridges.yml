@@ -1,0 +1,24 @@
+# Sol: Silicon-restricted MedTek variant for robotics PDAs.
+- type: entity
+  parent: MedTekCartridge
+  id: MachineTekCartridge
+  name: MachineTek cartridge
+  description: A program that provides diagnostic tools for silicons and other machinery.
+  components:
+  - type: Sprite
+    state: cart-rd
+  - type: Icon
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-rd
+  - type: Cartridge
+    programName: machine-tek-program-name
+    icon:
+      sprite: _Starlight/Objects/Specific/Robotics/machineanalyzer.rsi
+      state: icon
+  - type: MedTekCartridge
+    damageContainers:
+    - Silicon
+    - IPC
+    - Hybrid
+  - type: StealTarget
+    stealGroup: MedTekCartridge

@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: BasePDA
+  parent: BaseMedicalPDA
   id: RoboticistPDA
   name: roboticist PDA
   description: Covered in dirt and oil. The screen is covered in something sticky.
@@ -16,13 +16,17 @@
     accentVColor: "#d33725"
   - type: Icon
     state: pda-roboticist
-  - type: HealthAnalyzer
-    scanningEndSound:
-      path: "/Audio/Items/Medical/healthscanner.ogg"
-    damageContainers:
-    - Silicon
-    - IPC
-    - Hybrid
+  # Sol-start: Silicon-only analyzer via MachineTek instead of unrestricted MedTek.
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MachineTekCartridge
+      - NanoChatCartridge # CD
+  # Sol-end
 
 - type: entity
   parent: BaseMedicalPDA
