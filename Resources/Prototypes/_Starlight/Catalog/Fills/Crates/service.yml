@@ -29,7 +29,7 @@
         - id: FoodSnackPistachios
           amount: 5
         - id: FoodBerries
-          amount: 3
+          amount: 9
         - id: IceCreamMakerFlatpack
           amount: 1
         - id: DrinkGlass
