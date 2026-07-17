@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/17/2026 00:56:48
-  entityCount: 3860
+  time: 07/17/2026 14:33:35
+  entityCount: 3907
 maps:
 - 1
 grids:
@@ -2713,12 +2713,15 @@ entities:
       parent: 2
     - type: DeviceList
       devices:
-      - 1959
-      - 1892
       - 1958
-      - 1960
-      - 1957
+      - 1892
+      - 1962
       - 1956
+      - 1957
+      - 1959
+      - 1960
+      - 2597
+      - 2636
     - type: Fixtures
       fixtures: {}
 - proto: AirCanister
@@ -3406,6 +3409,13 @@ entities:
     components:
     - type: Transform
       pos: -13.851943,9.5709095
+      parent: 2
+- proto: ATM
+  entities:
+  - uid: 3863
+    components:
+    - type: Transform
+      pos: -5.5,6.5
       parent: 2
 - proto: AtmosDeviceFanDirectional
   entities:
@@ -7124,6 +7134,36 @@ entities:
     - type: Transform
       pos: -19.5,5.5
       parent: 2
+  - uid: 3827
+    components:
+    - type: Transform
+      pos: 14.5,15.5
+      parent: 2
+  - uid: 3854
+    components:
+    - type: Transform
+      pos: -21.5,5.5
+      parent: 2
+  - uid: 3902
+    components:
+    - type: Transform
+      pos: 14.5,14.5
+      parent: 2
+  - uid: 3903
+    components:
+    - type: Transform
+      pos: 14.5,13.5
+      parent: 2
+  - uid: 3904
+    components:
+    - type: Transform
+      pos: 14.5,12.5
+      parent: 2
+  - uid: 3905
+    components:
+    - type: Transform
+      pos: 14.5,16.5
+      parent: 2
 - proto: CableHV
   entities:
   - uid: 829
@@ -8400,6 +8440,11 @@ entities:
     components:
     - type: Transform
       pos: -19.5,5.5
+      parent: 2
+  - uid: 3840
+    components:
+    - type: Transform
+      pos: -21.5,5.5
       parent: 2
 - proto: CableMV
   entities:
@@ -11317,6 +11362,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,33.5
       parent: 2
+- proto: CompuerShuttleSalvage
+  entities:
+  - uid: 3861
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -20.5,2.5
+      parent: 2
 - proto: ComputerAlert
   entities:
   - uid: 1621
@@ -13189,6 +13242,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -17.5,9.5
       parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 33
 - proto: FirelockEdge
   entities:
   - uid: 1893
@@ -13746,30 +13804,55 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -20.5,9.5
       parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 33
   - uid: 1957
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -20.5,8.5
       parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 33
   - uid: 1958
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -20.5,2.5
       parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 33
   - uid: 1959
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -20.5,5.5
       parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 33
   - uid: 1960
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -20.5,1.5
       parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 33
 - proto: FirelockGlass
   entities:
   - uid: 1961
@@ -13782,6 +13865,11 @@ entities:
     - type: Transform
       pos: -19.5,10.5
       parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 33
   - uid: 1963
     components:
     - type: Transform
@@ -18824,6 +18912,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -20.5,1.5
       parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 33
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubberAlt4
@@ -19237,6 +19330,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -20.5,2.5
       parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 33
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GeneratorRTGDamaged
@@ -20042,6 +20140,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,4.5
       parent: 2
+- proto: JessPlush
+  entities:
+  - uid: 3906
+    components:
+    - type: Transform
+      pos: -9.475491,33.370934
+      parent: 2
 - proto: KitchenElectricGrill
   entities:
   - uid: 2774
@@ -20117,7 +20222,7 @@ entities:
   - uid: 3838
     components:
     - type: Transform
-      pos: -10.5,20.5
+      pos: -10.5341215,20.46638
       parent: 2
 - proto: LockableButtonEngineering
   entities:
@@ -20416,6 +20521,11 @@ entities:
       parent: 2
 - proto: LockerMiningSpecialistLargeFilledHardsuit
   entities:
+  - uid: 3192
+    components:
+    - type: Transform
+      pos: -18.5,2.5
+      parent: 2
   - uid: 3852
     components:
     - type: Transform
@@ -20458,15 +20568,15 @@ entities:
       parent: 2
 - proto: LockerSalvageSpecialistLargeFilledHardsuit
   entities:
-  - uid: 3854
-    components:
-    - type: Transform
-      pos: -18.5,2.5
-      parent: 2
   - uid: 3855
     components:
     - type: Transform
       pos: -18.5,3.5
+      parent: 2
+  - uid: 3858
+    components:
+    - type: Transform
+      pos: -18.5,4.5
       parent: 2
 - proto: LockerScienceFilled
   entities:
@@ -20691,6 +20801,20 @@ entities:
     - type: Transform
       pos: 0.042073727,4.7071433
       parent: 2
+- proto: OreProcessor
+  entities:
+  - uid: 3865
+    components:
+    - type: Transform
+      pos: -18.5,5.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
 - proto: OxygenCanister
   entities:
   - uid: 2835
@@ -20797,33 +20921,274 @@ entities:
     - type: Transform
       pos: -13.5,29.5
       parent: 2
+- proto: PlushieFixes
+  entities:
+  - uid: 3270
+    components:
+    - type: Transform
+      pos: 11.507176,12.538934
+      parent: 2
 - proto: PlushieHolocarp
   entities:
   - uid: 3826
     components:
     - type: Transform
-      pos: 7.5,24.5
+      pos: 11.919899,21.747143
       parent: 2
-- proto: PlushieSaltLampLarge
+- proto: PlushieLizardJobAssistant
   entities:
-  - uid: 3827
+  - uid: 3866
     components:
     - type: Transform
-      pos: 8.5,23.5
+      pos: 8.406805,5.5793657
       parent: 2
-    - type: PointLight
-      color: '#E8F07FFF'
+  - uid: 3867
+    components:
+    - type: Transform
+      pos: 10.500555,5.5949907
+      parent: 2
+  - uid: 3896
+    components:
+    - type: Transform
+      pos: -0.4395826,5.4674706
+      parent: 2
+- proto: PlushieLizardJobAtmospherictechnician
+  entities:
+  - uid: 3891
+    components:
+    - type: Transform
+      pos: 10.137932,15.432838
+      parent: 2
+- proto: PlushieLizardJobBartender
+  entities:
+  - uid: 3868
+    components:
+    - type: Transform
+      pos: -0.43133855,-4.570162
+      parent: 2
+- proto: PlushieLizardJobBotanist
+  entities:
+  - uid: 3893
+    components:
+    - type: Transform
+      pos: -7.522953,-4.536935
+      parent: 2
+- proto: PlushieLizardJobCaptain
+  entities:
+  - uid: 3869
+    components:
+    - type: Transform
+      pos: 0.42065006,33.458595
+      parent: 2
+- proto: PlushieLizardJobCargotechnician
+  entities:
+  - uid: 3895
+    components:
+    - type: Transform
+      pos: -10.4613695,12.587979
+      parent: 2
+- proto: PlushieLizardJobChef
+  entities:
+  - uid: 3892
+    components:
+    - type: Transform
+      pos: -0.5646364,-0.44013155
+      parent: 2
+- proto: PlushieLizardJobChemist
+  entities:
+  - uid: 3871
+    components:
+    - type: Transform
+      pos: 3.0143013,12.504859
+      parent: 2
+- proto: PlushieLizardJobChiefengineer
+  entities:
+  - uid: 3890
+    components:
+    - type: Transform
+      pos: 12.355262,11.443606
+      parent: 2
+- proto: PlushieLizardJobChiefmedicalofficer
+  entities:
+  - uid: 3870
+    components:
+    - type: Transform
+      pos: 3.4176445,21.396719
+      parent: 2
+- proto: PlushieLizardJobHeadofpersonnel
+  entities:
+  - uid: 3894
+    components:
+    - type: Transform
+      pos: -3.3640742,35.47789
+      parent: 2
+- proto: PlushieLizardJobHeadofsecurity
+  entities:
+  - uid: 3872
+    components:
+    - type: Transform
+      pos: 3.5256207,25.755768
+      parent: 2
+- proto: PlushieLizardJobJanitor
+  entities:
+  - uid: 3873
+    components:
+    - type: Transform
+      pos: 3.788579,4.71515
+      parent: 2
+- proto: PlushieLizardJobMedicaldoctor
+  entities:
+  - uid: 3874
+    components:
+    - type: Transform
+      pos: 3.393811,17.43951
+      parent: 2
+  - uid: 3875
+    components:
+    - type: Transform
+      pos: 3.393811,16.423885
+      parent: 2
+- proto: PlushieLizardJobMusician
+  entities:
+  - uid: 3876
+    components:
+    - type: Transform
+      pos: -5.4944453,4.811244
+      parent: 2
+- proto: PlushieLizardJobQuartermaster
+  entities:
+  - uid: 3877
+    components:
+    - type: Transform
+      pos: -18.55894,11.385666
+      parent: 2
+- proto: PlushieLizardJobResearchassistant
+  entities:
+  - uid: 3878
+    components:
+    - type: Transform
+      pos: -12.672079,5.6511974
+      parent: 2
+- proto: PlushieLizardJobResearchdirector
+  entities:
+  - uid: 3879
+    components:
+    - type: Transform
+      pos: -7.587008,-0.639946
+      parent: 2
+- proto: PlushieLizardJobSalvagespecialist
+  entities:
+  - uid: 3880
+    components:
+    - type: Transform
+      pos: -19.274483,4.29846
+      parent: 2
+  - uid: 3881
+    components:
+    - type: Transform
+      pos: -19.290108,2.26721
+      parent: 2
+  - uid: 3899
+    components:
+    - type: Transform
+      pos: 1.3416674,5.3424706
+      parent: 2
+- proto: PlushieLizardJobScientist
+  entities:
+  - uid: 3882
+    components:
+    - type: Transform
+      pos: -10.489898,3.220335
+      parent: 2
+- proto: PlushieLizardJobSecuritycadet
+  entities:
+  - uid: 3883
+    components:
+    - type: Transform
+      pos: -7.527627,28.559303
+      parent: 2
+- proto: PlushieLizardJobSecurityofficer
+  entities:
+  - uid: 3884
+    components:
+    - type: Transform
+      pos: 0.5529803,27.668678
+      parent: 2
+  - uid: 3885
+    components:
+    - type: Transform
+      pos: -3.6657696,26.231178
+      parent: 2
+  - uid: 3900
+    components:
+    - type: Transform
+      pos: 1.4666674,3.3580956
+      parent: 2
+- proto: PlushieLizardJobStationengineer
+  entities:
+  - uid: 3886
+    components:
+    - type: Transform
+      pos: -5.6581345,-12.97261
+      parent: 2
+- proto: PlushieLizardJobTechnicalassistant
+  entities:
+  - uid: 3887
+    components:
+    - type: Transform
+      pos: -5.5487595,-7.4962206
+      parent: 2
+  - uid: 3901
+    components:
+    - type: Transform
+      pos: 1.4354174,4.8424706
+      parent: 2
+- proto: PlushieLizardJobWarden
+  entities:
+  - uid: 3888
+    components:
+    - type: Transform
+      pos: 5.5019636,25.436436
+      parent: 2
+- proto: PlushieLizardJobZookeeper
+  entities:
+  - uid: 3889
+    components:
+    - type: Transform
+      pos: 4.365034,-3.1929526
+      parent: 2
+- proto: PlushieRainbowLizard
+  entities:
+  - uid: 3897
+    components:
+    - type: Transform
+      pos: 0.4510424,5.4518456
+      parent: 2
+- proto: PlushieRatvar
+  entities:
+  - uid: 3907
+    components:
+    - type: Transform
+      pos: 8.504214,23.467777
+      parent: 2
+    - type: Item
+      size: Huge
+    - type: ScaleVisuals
+      scale: 3,3
+    - type: Appearance
 - proto: PlushieShadekin
   entities:
   - uid: 3839
     components:
     - type: Transform
-      pos: 9.5,23.5
+      pos: -6.552945,11.51043
       parent: 2
-  - uid: 3840
+- proto: PlushieSuperLizard
+  entities:
+  - uid: 3898
     components:
     - type: Transform
-      pos: 7.5,23.5
+      pos: 1.4510424,4.3424706
       parent: 2
 - proto: PottedPlantRandom
   entities:
@@ -23048,13 +23413,6 @@ entities:
     - type: Transform
       pos: -9.5,33.5
       parent: 2
-- proto: SpawnMobHonkBot
-  entities:
-  - uid: 3192
-    components:
-    - type: Transform
-      pos: -1.5,4.5
-      parent: 2
 - proto: SpawnMobKoboldKiki
   entities:
   - uid: 3193
@@ -23611,11 +23969,29 @@ entities:
       core: 2842
 - proto: StationAnchor
   entities:
-  - uid: 3270
+  - uid: 3864
     components:
     - type: Transform
       pos: -3.5,-19.5
       parent: 2
+- proto: StationAnchorTerminal
+  entities:
+  - uid: 3862
+    components:
+    - type: Transform
+      rot: 4.71238898038469 rad
+      pos: -1.5,32.5
+      parent: 2
+    - type: StationAnchorTerminal
+      linkedAnchor: 3864
+    - type: DeviceLinkSource
+      range: 128
+      linkedPorts:
+        3864:
+        - - StationAnchorTerminalSender
+          - StationAnchorReceiver
+    - type: Fixtures
+      fixtures: {}
 - proto: StationMap
   entities:
   - uid: 3271
@@ -27113,13 +27489,5 @@ entities:
     components:
     - type: Transform
       pos: 1.3831761,-7.253863
-      parent: 2
-- proto: CompuerShuttleSalvage
-  entities:
-  - uid: 3861
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -20.5,2.5
       parent: 2
 ...
