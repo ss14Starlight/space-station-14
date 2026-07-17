@@ -30,6 +30,28 @@ namespace Content.Shared.Atmos.Piping
     public enum FilterVisuals : byte
     {
         Enabled,
+        Powered,
+
+        Core,
+        Inlet,
+        Outlet,
+        Side,
+    }
+
+    /// <summary>
+    /// The visuals state of *one port* of a mixer or filter.
+    /// </summary>
+    [Serializable, NetSerializable]
+    public enum FilterPortVisualsState : byte
+    {
+        Off,
+        SolidOrange, // Orange
+        SolidGreen, // Solid green
+        SolidYellow, // Solid yellow. Blocked but still nominal, e.g. mixer output is full.
+        BlinkingYellow, // Blinking yellow. Blocked and requires attention
+        SolidRed, // Solid red
+        BlinkingRed, // Blinking red
+        BlinkingRedOrange, // Blinking red/orange
     }
 
     [Serializable, NetSerializable]
