@@ -301,7 +301,7 @@
     damage:
       types:
        Piercing: 0
-       blunt: 1
+       Blunt: 1
   - type: StaminaDamageOnCollide
     damage: 20
   - type: TimedDespawn
