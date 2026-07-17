@@ -160,4 +160,17 @@ Entries:
   id: 450001
   time: '2026-07-17T14:41:44.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/45
+- author: Beans,AprilCatStreams
+  changes:
+  - message: Remove TEG from Cork.
+    type: Remove
+  - message: Adjusted power generation setup on Cork.
+    type: Tweak
+  - message: Moved Station Anchor next to Atmos.
+    type: Tweak
+  - message: Adjusted various engineering layout choices.
+    type: Tweak
+  id: 480001
+  time: '2026-07-17T17:21:32.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/48
 
