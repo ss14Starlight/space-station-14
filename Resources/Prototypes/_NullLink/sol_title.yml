@@ -55,6 +55,10 @@
       color: "#580000"
       roles:
       - 1526063729207414875 # Developer
+    - text: "Mapper"
+      color: "#8ff10f"
+      roles:
+      - 1527445436594651156 # Mapper
   - # patron / supporter badge
     titles:
     - text: "[font=\"Icon\"][/font]"

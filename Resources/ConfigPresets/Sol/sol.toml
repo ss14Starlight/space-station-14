@@ -1,3 +1,0 @@
-# Sol server preset — use with --config-preset Sol (or copy into instance config).
-[server]
-rules_file = "SolRuleset"

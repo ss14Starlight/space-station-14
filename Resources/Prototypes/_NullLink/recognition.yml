@@ -135,13 +135,18 @@
   recognition:
     main:
       - SOL.main
-    # add other Sol servers here, e.g. SOL.mrphub
+      # deliberately omit SOL.mapping — mapping playtime must not count
+    mapping: []
 
 - type: serverBanRecognition
   id: SOL
   recognition:
     main:
       - SOL.main
+      - SOL.mapping
+    mapping:
+      - SOL.main
+      - SOL.mapping
     # servers listed here are ban *sources this server accepts from the network*.
     # Outbound AddOrUpdateBan to SolLink always runs when NullLink is connected;
     # recognition only filters inbound RequestBans (and SolLink CLI set-recognition).

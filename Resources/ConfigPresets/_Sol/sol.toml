@@ -1,0 +1,3 @@
+# Sol server preset — use with: config.presets=_Sol/sol
+[server]
+rules_file = SolRuleset

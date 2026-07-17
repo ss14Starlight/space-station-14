@@ -76,7 +76,7 @@ public sealed partial class PlaytimeStatsWindow : FancyWindow
                 var (serverName, serverRoles) = servers[0];
                 var tab = BuildServerTab(serverRoles);
                 ServerTabs.AddChild(tab);
-                TabContainer.SetTabTitle(tab, serverName);
+                TabContainer.SetTabTitle(tab, LocalizeServerLabel(serverName));
             }
             else
             {
@@ -93,13 +93,23 @@ public sealed partial class PlaytimeStatsWindow : FancyWindow
 
                     var dotIdx = serverName.IndexOf('.');
                     var subTitle = dotIdx >= 0 ? serverName[(dotIdx + 1)..] : serverName;
-                    TabContainer.SetTabTitle(tab, subTitle);
+                    TabContainer.SetTabTitle(tab, LocalizeServerLabel(subTitle));
                 }
 
                 ServerTabs.AddChild(innerTabs);
-                TabContainer.SetTabTitle(innerTabs, group.Key);
+                TabContainer.SetTabTitle(innerTabs, LocalizeServerLabel(group.Key));
             }
         }
+    }
+
+    /// <summary>
+    /// Looks up <c>ui-playtime-server-{name}</c> with '.' replaced by '-'.
+    /// Falls back to the raw NullLink id when no FTL entry exists.
+    /// </summary>
+    private string LocalizeServerLabel(string name)
+    {
+        var locId = $"ui-playtime-server-{name.Replace('.', '-')}";
+        return _loc.TryGetString(locId, out var localized) ? localized : name;
     }
 
     private BoxContainer BuildServerTab(Dictionary<string, TimeSpan> serverRoles)
