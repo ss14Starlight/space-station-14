@@ -131,4 +131,11 @@ Entries:
   id: 400001
   time: '2026-07-17T12:17:26.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/40
+- author: AprilCatStreams
+  changes:
+  - message: TTS should work better on characters with accents.
+    type: Fix
+  id: 410001
+  time: '2026-07-17T12:49:21.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/41
 
