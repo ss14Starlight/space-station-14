@@ -94,4 +94,13 @@ Entries:
   id: 270001
   time: '2026-07-16T09:27:49.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/27
+- author: AprilCatStreams
+  changes:
+  - message: Optional chime on highlighted text.
+    type: Add
+  - message: Move moved auto highlight from accessibility to the filter menu.
+    type: Tweak
+  id: 290001
+  time: '2026-07-17T02:00:08.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/29
 
