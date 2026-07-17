@@ -46,7 +46,20 @@ public sealed class ScentTrackingSystem : EntitySystem
     private void OnMarkerStartup(Entity<ScentMarkerComponent> ent, ref ComponentStartup args)
     {
         PlayFadeAnimation(ent);
+        ApplyFilterForLocalPlayer(ent);
+    }
 
+    private void OnMarkerState(Entity<ScentMarkerComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        PlayFadeAnimation(ent);
+        ApplyFilterForLocalPlayer(ent);
+    }
+
+    // Re-checked on every networked update to this marker, not just the first. SpriteComponent's
+    // own Visible field is itself part of its networked state, and a later resync of it alone can
+    // silently undo our filter without re-firing ScentMarkerComponent's own ComponentStartup.
+    private void ApplyFilterForLocalPlayer(Entity<ScentMarkerComponent> ent)
+    {
         if (_player.LocalSession?.AttachedEntity is not { } local ||
             !TryComp<SmellerComponent>(local, out var smeller))
         {
@@ -54,11 +67,6 @@ public sealed class ScentTrackingSystem : EntitySystem
         }
 
         ApplyFilter(ent, smeller.TrackedScentId);
-    }
-
-    private void OnMarkerState(Entity<ScentMarkerComponent> ent, ref AfterAutoHandleStateEvent args)
-    {
-        PlayFadeAnimation(ent);
     }
 
     private void RefreshAllMarkers(string? trackedScentId)
