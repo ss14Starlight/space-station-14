@@ -167,6 +167,7 @@ namespace Content.Server.Stunnable.Systems
             // 🌟Starlight🌟 end
         }
 
+        #region Starlight
         protected override void TryTurnOff(Entity<StunbatonComponent> ent, ref ItemToggleDeactivateAttemptEvent args)
         {
             base.TryTurnOff(ent, ref args);
@@ -227,5 +228,6 @@ namespace Content.Server.Stunnable.Systems
                 }
             }
         }
+        #endregion
     }
 }

@@ -6,7 +6,6 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/cane_nt.rsi
-  #Starlight Start
     layers:
     - state: cane-nt-active
       visible: true
@@ -49,7 +48,6 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
-  #Starlight End
   - type: ItemToggle
     predictable: false
     soundActivate:
