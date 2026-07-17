@@ -1,18 +1,4 @@
 Entries:
-- author: mikeysaurus
-  changes:
-  - message: Silicon's now understand the Elvish language Felyaic.
-    type: Fix
-  id: 406294
-  time: '2026-06-29T08:21:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4961
-- author: Teddiousbear, Hanz(rButler)
-  changes:
-  - message: Added six new uniforms to secoff.
-    type: Add
-  id: 406295
-  time: '2026-06-29T08:21:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4947
 - author: Teddiousbear, Hanz(rButler)
   changes:
   - message: Added four new uniforms to dutyoff.
@@ -2799,4 +2785,18 @@ Entries:
   id: 406693
   time: '2026-07-17T11:05:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5167
+- author: DreadfulTaco
+  changes:
+  - message: Fixed Avali, Lizards, and Moths to be able to eat ice cream.
+    type: Fix
+  id: 406694
+  time: '2026-07-17T12:12:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5166
+- author: DreadfulTaco
+  changes:
+  - message: Added more ice cream supplies to ChefVends, and to the ice cream starter crate.
+    type: Tweak
+  id: 406695
+  time: '2026-07-17T12:12:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5166
 Order: -1
