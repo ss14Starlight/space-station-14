@@ -48,6 +48,9 @@
     solutionName: food
     maxFillLevels: 5
     fillBaseName: fill-
+  - type: Tag
+    tags:
+      - IceCream
 
 - type: entity
   name: vanilla ice cream
