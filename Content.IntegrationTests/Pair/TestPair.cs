@@ -7,6 +7,7 @@ using Content.IntegrationTests.Tests.DeviceNetwork;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
+using Robust.Shared;
 using Robust.Shared.ContentPack;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
@@ -65,7 +66,11 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
     protected override async Task ApplySettings(IIntegrationInstance instance, PairSettings n)
     {
         var next = (PoolSettings)n;
-        await base.ApplySettings(instance, next);
+
+        // net.interp is CLIENT-only; base ApplySettings sets it on the server too and warns every fast-recycle.
+        if (ReferenceEquals(instance, Client) && instance.CfgMan.IsCVarRegistered(CVars.NetInterp.Name))
+            await instance.WaitPost(() => instance.CfgMan.SetCVar(CVars.NetInterp, !next.DisableInterpolate));
+
         var cfg = instance.CfgMan;
         await instance.WaitPost(() =>
         {

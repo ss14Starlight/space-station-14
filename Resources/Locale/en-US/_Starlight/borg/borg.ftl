@@ -34,6 +34,12 @@ borg-type-cargo-name = Cargo
 borg-type-cargo-desc = Haul cargo, deliver orders, and make the station rich!
 borg-type-cargo-transponder = cargo cyborg
 
+# Item module contents / screwdriver extraction
+borg-module-item-contents = Use a screwdriver on this module to retrieve: [color=yellow]{$items}[/color].
+borg-module-item-contents-entry = {$count}x {$item}
+borg-module-item-extract-empty = There is nothing to remove from {THE($module)}.
+borg-module-item-extract-success = You pry the contents out of {THE($module)}.
+
 # Module incompatibilities
 borg-module-incompatibility-xenoborg-engiweapon = Incompatible with other Engineering Xenoborg weapon modules.
 borg-module-incompatibility-xenoborg-heavyweapon = Incompatible with other Heavy Xenoborg weapon modules.

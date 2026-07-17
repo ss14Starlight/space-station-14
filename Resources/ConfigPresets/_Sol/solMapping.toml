@@ -1,10 +1,10 @@
 # Sol mapping server — use with: config.presets=_Sol/sol,_Sol/solMapping
 [server]
-rules_file = SolRuleset
+rules_file = "SolRuleset"
 
 [nulllink.id]
-server = mapping
+server = "mapping"
 
 [nulllink.roles_req]
-admin_builder = SolMapping
-title_builder = Sol
+admin_builder = "SolMapping"
+title_builder = "Sol"
