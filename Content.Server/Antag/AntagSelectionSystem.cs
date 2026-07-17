@@ -186,8 +186,17 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
         #endregion
 
+        #region Starlight
+        var eligibilityRoles = def.PrefRoles;
+
+        // Some specifiers omit prefRoles even though a same-ID antag exists with requirements.
+        // Fall back to that antag so ghost takeover consistently checks requirements.
+        if (eligibilityRoles.Count == 0 && Proto.HasIndex<AntagPrototype>(def.ID))
+            eligibilityRoles = [def.ID];
+        #endregion
+
         // Ensure the player is allowed to play this antagonist!
-        if (IsAntagBanned(args.Player, def) || !_playTime.IsAllowed(args.Player, def.PrefRoles))
+        if (IsAntagBanned(args.Player, def) || !_playTime.IsAllowed(args.Player, eligibilityRoles)) // Starlight def.PrefRoles -> eligibilityRoles
         #region Starlight
         {
             Log.Debug($"Player {args.Player.Name} was not allowed to take antag {def.ID} from game rule {ToPrettyString(rule)} due to being banned or not having enough playtime.");

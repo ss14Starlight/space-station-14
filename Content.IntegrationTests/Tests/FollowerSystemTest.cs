@@ -1,6 +1,7 @@
 using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking;
 using Content.Shared.Follower;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
 using Robust.Shared.Map;
@@ -24,6 +25,7 @@ public sealed class FollowerSystemTest : GameTest
     {
         var pair = Pair;
         var server = pair.Server;
+        server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
 
         var entMan = server.ResolveDependency<IEntityManager>();
         var mapMan = server.ResolveDependency<IMapManager>();
@@ -51,5 +53,6 @@ public sealed class FollowerSystemTest : GameTest
 
             entMan.DeleteEntity(mapSys.GetMap(map));
         });
+        server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
     }
 }

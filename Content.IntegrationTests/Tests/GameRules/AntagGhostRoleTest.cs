@@ -7,8 +7,10 @@ using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Shared.Antag;
 using Content.Shared.Players;
+using Content.Shared.Roles;
 using Content.Shared._Starlight.CCVar;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -30,6 +32,8 @@ public sealed partial class AntagGhostRoleTest : AntagTest
 
     [SidedDependency(Side.Server)] private IRobustRandom _random = default!;
     [SidedDependency(Side.Server)] private GhostRoleSystem _ghostRole = default!;
+    [SidedDependency(Side.Server)] private AntagSelectionSystem _antagSelection = default!; // Starlight
+    [SidedDependency(Side.Server)] private PlayTimeTrackingSystem _playTime = default!; // Starlight
 
     private static readonly string[] AntagGameRules = GameDataScrounger.EntitiesWithComponent("AntagSelection");
 
@@ -120,11 +124,24 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Assert.That(xform.MapUid, Is.Not.Null);
         Assert.That(xform.MapID, Is.Not.EqualTo(MapId.Nullspace));
 
+        #region Starlight
+        // Takeover should match runtime eligibility checks.
+        var definition = SProtoMan.Index(spawner.Definition!.Value);
+        var eligibilityRoles = definition.PrefRoles;
+        if (eligibilityRoles.Count == 0 && SProtoMan.HasIndex<AntagPrototype>(definition.ID))
+            eligibilityRoles = [definition.ID];
+
+        var expectedAllowed = !_antagSelection.IsAntagBanned(ServerSession!, definition)
+                              && _playTime.IsAllowed(ServerSession!, eligibilityRoles);
+        Assert.That(_ghostRole.Takeover(ServerSession!, role.Identifier), Is.EqualTo(expectedAllowed));
+
+        if (!expectedAllowed)
+            return;
+        #endregion
+
         // Take the ghost role and ensure we take it!
-        Assert.That(_ghostRole.Takeover(ServerSession!, role.Identifier), Is.True);
         Assert.That(ServerSession!.AttachedEntity, Is.Not.Null);
-        var antag = SProtoMan.Index(spawner.Definition);
-        SAssertAntagInitialized(antag, ServerSession);
+        SAssertAntagInitialized(definition, ServerSession); // Starlight antag -> Definition
 
         // Ensure we spawned in the correct location
         var sessionXform = SEntMan.GetComponent<TransformComponent>(ServerSession.AttachedEntity.Value);
