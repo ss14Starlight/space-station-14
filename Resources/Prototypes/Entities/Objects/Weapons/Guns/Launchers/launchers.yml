@@ -14,16 +14,16 @@
     doestContain:
       Skating:
         knockback: 5
-        staminaMultiplier: 20
+        staminaMultiplier: 30
       Rodentia:
         knockback: 10
-        staminaMultiplier: 8
+        staminaMultiplier: 18
       Resomi:
         knockback: 10
-        staminaMultiplier: 8
+        staminaMultiplier: 18
       Felionoid:
         knockback: 5 # half of what resomi take
-        staminaMultiplier: 8
+        staminaMultiplier: 18
   - type: Sprite
   - type: Clothing
     sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
@@ -140,12 +140,16 @@
     doestContain:
       Skating:
         knockback: -2.5
+        staminaMultiplier: 20
       Rodentia:
         knockback: -10
+        staminaMultiplier: 20
       Resomi:
         knockback: -5
+        staminaMultiplier: 20
       Felionoid:
         knockback: -2.5 # half of what resomi take
+        staminaMultiplier: 20
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
     layers:
@@ -183,13 +187,13 @@
     doestContain:
       Resomi:
         knockback: 10
-        staminaMultiplier: 8
+        staminaMultiplier: 18
       Rodentia:
         knockback: 10
-        staminaMultiplier: 8
+        staminaMultiplier: 18
       Felionoid:
         knockback: 5 # half of what resomi take
-        staminaMultiplier: 8
+        staminaMultiplier: 18
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
     layers:

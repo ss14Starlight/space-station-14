@@ -14,16 +14,16 @@
     doestContain:
       Skating:
         knockback: 2
-        staminaMultiplier: 50
+        staminaMultiplier: 60
       Rodentia:
         knockback: 3
-        staminaMultiplier: 20
+        staminaMultiplier: 30
       Resomi:
         knockback: 3
-        staminaMultiplier: 20
+        staminaMultiplier: 30
       Felionoid:
         knockback: 1.5 #half of what resomi take
-        staminaMultiplier: 20
+        staminaMultiplier: 30
   - type: Sprite
     layers:
     - state: icon
