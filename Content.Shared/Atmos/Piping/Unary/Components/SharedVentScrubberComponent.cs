@@ -38,7 +38,6 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             // Funkystation End: Funky atmos - /tg/ gases
             #region Starlight
             // Starlight gases
-            Gas.Ulnitranium,
             Gas.ZXA,
             #endregion
         };
