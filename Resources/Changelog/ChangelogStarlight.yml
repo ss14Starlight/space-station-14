@@ -1,13 +1,6 @@
 Entries:
 - author: BornStellar
   changes:
-  - message: outfits for use in setting outfits of arbitrary entities (was requested by some admins).
-    type: Add
-  id: 406287
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
   - message: names of the file names for the sprites of the X-03 shield to better match other sprite naming conventions.
     type: Tweak
   id: 406288
@@ -2799,4 +2792,11 @@ Entries:
   id: 406686
   time: '2026-07-16T18:23:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5157
+- author: Arkanic
+  changes:
+  - message: Fix disposals deleting people.
+    type: Fix
+  id: 406687
+  time: '2026-07-17T08:48:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5164
 Order: -1
