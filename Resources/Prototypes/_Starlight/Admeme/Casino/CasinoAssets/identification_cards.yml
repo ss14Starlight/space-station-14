@@ -25,8 +25,8 @@
   - type: Sprite
     layers:
       - state: casino
-      - sprite: &starlight-icon-rsi _Starlight/Admeme/Casino/Interface/job_icons.rsi
-        offset: &icon-offset -0.09375, 0.0625
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
         state: owner
   - type: IdCard
     jobTitle: job-name-casino-owner
@@ -40,8 +40,8 @@
     - type: Sprite
       layers:
         - state: casino
-        - sprite: &starlight-icon-rsi _Starlight/Admeme/casino/Interface/job_icons.rsi
-          offset: &icon-offset -0.09375, 0.0625
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
           state: manager
     - type: IdCard
       jobTitle: job-name-casino-manager
@@ -55,8 +55,8 @@
     - type: Sprite
       layers:
         - state: casino
-        - sprite: &starlight-icon-rsi _Starlight/Admeme/casino/Interface/job_icons.rsi
-          offset: &icon-offset -0.09375, 0.0625
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
           state: security
     - type: IdCard
       jobTitle: job-name-casino-security

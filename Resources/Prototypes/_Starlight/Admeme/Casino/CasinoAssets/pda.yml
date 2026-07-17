@@ -16,7 +16,7 @@
     layers:
     - sprite: _Starlight/Admeme/Casino/Objects/pda.rsi
       map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda-medtak"
+      state: "pda-casino"
     - state: "light_overlay"
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
@@ -44,7 +44,7 @@
 - type: entity
   parent: CasinoPDA
   id: CasinoPDASecurity
-  name: Gamorrah Owner PDA
+  name: Gamorrah security PDA
   description: test
   components:
   - type: Pda
@@ -52,8 +52,8 @@
 
 - type: entity
   parent: CasinoPDA
-  id: CasinoIDCardOwner
-  name: Gamorrah Owner PDA
+  id: CasinoPDAOwner
+  name: Gamorrah owner PDA
   description: test
   components:
     - type: Pda
@@ -76,4 +76,4 @@
   description: test
   components:
     - type: Pda
-      id: MedTakIDCardDealer
+      id: CasinoIDCardDealer
