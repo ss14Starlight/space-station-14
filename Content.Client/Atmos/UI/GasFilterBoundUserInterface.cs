@@ -1,4 +1,4 @@
-﻿using Content.Client.Atmos.EntitySystems;
+using Content.Client.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Trinary.Components;
 using Content.Shared.Localizations;
@@ -34,7 +34,8 @@ namespace Content.Client.Atmos.UI
 
             _window.ToggleStatusButtonPressed += OnToggleStatusButtonPressed;
             _window.FilterTransferRateChanged += OnFilterTransferRatePressed;
-            _window.SelectGasPressed += OnSelectGasPressed;
+            _window.GasAdded += OnGasAdded;
+            _window.GasRemoved += OnGasRemoved;
         }
 
         private void OnToggleStatusButtonPressed()
@@ -50,22 +51,14 @@ namespace Content.Client.Atmos.UI
             SendMessage(new GasFilterChangeRateMessage(rate));
         }
 
-        private void OnSelectGasPressed()
+        private void OnGasAdded(Gas gas)
         {
-            if (_window is null)
-                return;
+            SendMessage(new GasFilterAddGasMessage(gas));
+        }
 
-            if (_window.SelectedGas is null)
-            {
-                SendMessage(new GasFilterSelectGasMessage(null));
-            }
-            else
-            {
-                if (!Enum.TryParse<Gas>(_window.SelectedGas, out var gas))
-                    return;
-
-                SendMessage(new GasFilterSelectGasMessage(gas));
-            }
+        private void OnGasRemoved(Gas gas)
+        {
+            SendMessage(new GasFilterRemoveGasMessage(gas));
         }
 
         /// <summary>
@@ -81,17 +74,7 @@ namespace Content.Client.Atmos.UI
             _window.Title = (cast.FilterLabel);
             _window.SetFilterStatus(cast.Enabled);
             _window.SetTransferRate(cast.TransferRate);
-            if (cast.FilteredGas is not null)
-            {
-                var atmos = EntMan.System<AtmosphereSystem>();
-                var gas = atmos.GetGas((Gas) cast.FilteredGas);
-                var gasName = Loc.GetString(gas.Name);
-                _window.SetGasFiltered(gas.ID, gasName);
-            }
-            else
-            {
-                _window.SetGasFiltered(null, Loc.GetString("comp-gas-filter-ui-filter-gas-none"));
-            }
+            _window.SetFilteredGases(cast.FilteredGases);
         }
 
         protected override void Dispose(bool disposing)

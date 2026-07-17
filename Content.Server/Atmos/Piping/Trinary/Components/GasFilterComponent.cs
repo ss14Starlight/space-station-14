@@ -24,6 +24,13 @@ namespace Content.Server.Atmos.Piping.Trinary.Components
         public float MaxTransferRate = Atmospherics.MaxTransferRate;
 
         [DataField]
-        public Gas? FilteredGas;
+        public HashSet<Gas> FilteredGases = new();
+
+        /// <summary>
+        /// If true, filtered gas that doesn't fit in the filter chamber is sent to the outlet
+        /// instead of being left in the inlet.
+        /// </summary>
+        [DataField]
+        public bool Passthrough;
     }
 }

@@ -30,6 +30,8 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
         [Dependency] private SharedPopupSystem _popupSystem = default!;
         [Dependency] private NodeContainerSystem _nodeContainer = default!;
 
+        private const float DeltaMolCutoff = 0.001f;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -42,7 +44,8 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             SubscribeLocalEvent<GasFilterComponent, AnchorStateChangedEvent>(OnAnchorChanged); // Starlight
             // Bound UI subscriptions
             SubscribeLocalEvent<GasFilterComponent, GasFilterChangeRateMessage>(OnTransferRateChangeMessage);
-            SubscribeLocalEvent<GasFilterComponent, GasFilterSelectGasMessage>(OnSelectGasMessage);
+            SubscribeLocalEvent<GasFilterComponent, GasFilterAddGasMessage>(OnAddGasMessage);
+            SubscribeLocalEvent<GasFilterComponent, GasFilterRemoveGasMessage>(OnRemoveGasMessage);
             SubscribeLocalEvent<GasFilterComponent, GasFilterToggleStatusMessage>(OnToggleStatusMessage);
 
         }
@@ -54,91 +57,152 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private void OnFilterUpdated(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args)
         {
-            // STARLIGHT - Disable outlet node pressure check for inline filter
-            if (!filter.Enabled
-                || !_nodeContainer.TryGetNodes(uid, filter.InletName, filter.FilterName, filter.OutletName, out PipeNode? inletNode, out PipeNode? filterNode, out PipeNode? outletNode)
-                || (outletNode != inletNode && outletNode.Air.Pressure >= Atmospherics.MaxOutputPressure)) // No need to transfer if target is full.
-            {
-                _ambientSoundSystem.SetAmbience(uid, false);
+            DoFilterUpdated(uid, filter, ref args,
+                out var core, out var inlet, out var side, out var outlet);
+
+            if (!TryComp<AppearanceComponent>(uid, out var appearance))
                 return;
-            }
 
-            //starlight edit - Moved logic to a new method
-            var transferVol = GetTransferRate(filter, args, inletNode.Air, outletNode); //starlight edit
+            // if (filter.InletName == filter.OutletName)
+            //     inlet = outlet;
 
-            if (transferVol <= 0)
-            {
-                _ambientSoundSystem.SetAmbience(uid, false);
-                return;
-            }
-
-            var removed = inletNode.Air.RemoveVolume(transferVol);
-
-            if (filter.FilteredGas.HasValue)
-            {
-                var wantsToFilter = new GasMixture(removed.Volume) { Temperature = removed.Temperature };
-
-                wantsToFilter.SetMoles(filter.FilteredGas.Value, removed.GetMoles(filter.FilteredGas.Value));
-                removed.SetMoles(filter.FilteredGas.Value, 0f);
-
-                // starlight edit start - fix subtick
-                var filterVolume = GetTransferRate(filter, args, wantsToFilter, filterNode);
-
-                // Remove the filtered volume that actually can fit in the filter
-                var actuallyFiltered = wantsToFilter.RemoveVolume(filterVolume);
-
-                // The remaining gas in wantsToFilter should be returned to inlet
-                var returned = wantsToFilter;
-
-                // Put gases in their respective nodes
-                _atmosphereSystem.Merge(filterNode.Air, actuallyFiltered);
-                _atmosphereSystem.Merge(inletNode.Air, returned);
-                // starlight edit end - fix subtick
-
-                _ambientSoundSystem.SetAmbience(uid, wantsToFilter.TotalMoles > 0f); // starlight edit - fix subtick
-            }
-
-            _atmosphereSystem.Merge(outletNode.Air, removed);
+            if (core != null)
+                _appearanceSystem.SetData(uid, FilterVisuals.Core, core, appearance);
+            if (inlet != null)
+                _appearanceSystem.SetData(uid, FilterVisuals.Inlet, inlet, appearance);
+            if (outlet != null)
+                _appearanceSystem.SetData(uid, FilterVisuals.Outlet, outlet, appearance);
+            if (side != null)
+                _appearanceSystem.SetData(uid, FilterVisuals.Side, side, appearance);
         }
 
-
-        //starlight fix subtick
-        /// <summary>
-        /// Calculates how many moles of gas to transfer from the inlet to the outlet.
-        /// </summary>
-        /// <param name="filter">A filter component</param>
-        /// <param name="args">Arguments of the event</param>
-        /// <param name="inletGasMixture">Gas mixture in the inlet node (simplified for easier use)</param>
-        /// <param name="outletNode">Output for the gas</param>
-        /// <returns>Returns the flow rate in volume(L/s) of how much gas has to be moved to fill the outlet</returns>
-        private float GetTransferRate(GasFilterComponent filter, AtmosDeviceUpdateEvent args, GasMixture inletGasMixture,
-            PipeNode outletNode)
+        private void DoFilterUpdated(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args,
+            out FilterPortVisualsState? coreVisual,
+            out FilterPortVisualsState? inletVisual,
+            out FilterPortVisualsState? filterVisual,
+            out FilterPortVisualsState? outletVisual)
         {
-            float wantToTransfer = filter.TransferRate * _atmosphereSystem.PumpSpeedup() * args.dt;
+            coreVisual = null;
+            inletVisual = null;
+            filterVisual = null;
+            outletVisual = null;
 
-            // Get The Volume to transfer, do not attempt to transfer more than the pipe can hold.
-            float transferVolume = Math.Min(inletGasMixture.Volume, wantToTransfer);
-
-            // Calculate how many moles does this transfer contain
-            float transferMoles =
-                inletGasMixture.Pressure * transferVolume / (inletGasMixture.Temperature * Atmospherics.R);
-
-            // Calculate how many moles can outlet still contain
-            float molesSpaceLeft = (Atmospherics.MaxOutputPressure - outletNode.Air.Pressure) * outletNode.Air.Volume /
-                                   (outletNode.Air.Temperature * Atmospherics.R);
-
-            // Get the lower value of the two, and clamp it to the transfer rate
-            float actualMolesTransfered = Math.Clamp(transferMoles, 0, Math.Max(0, molesSpaceLeft));
-
-            float actualTransferVolume = 0;
-            if (actualMolesTransfered > 0 && inletGasMixture.Pressure > 0)
+            // STARLIGHT - Disable outlet node pressure check for inline filter
+            if (!filter.Enabled)
             {
-                // Calculate how much volume is needed to transfer those moles
-                actualTransferVolume = actualMolesTransfered * inletGasMixture.Temperature * Atmospherics.R /
-                                       inletGasMixture.Pressure;
+                _ambientSoundSystem.SetAmbience(uid, false);
+                return;
             }
 
-            return actualTransferVolume;
+            if (!_nodeContainer.TryGetNodes(uid, filter.InletName, filter.FilterName, filter.OutletName,
+                    out PipeNode? inletNode, out PipeNode? filterNode, out PipeNode? outletNode))
+                return;
+
+            coreVisual = FilterPortVisualsState.Off;
+            inletVisual = FilterPortVisualsState.Off;
+            filterVisual = FilterPortVisualsState.Off;
+            outletVisual = FilterPortVisualsState.Off;
+
+            var inlet = inletNode.Air;
+            var totalMoles = inlet.TotalMoles;
+
+            if (totalMoles <= DeltaMolCutoff)
+            {
+                coreVisual = FilterPortVisualsState.SolidYellow;
+                inletVisual = FilterPortVisualsState.SolidYellow;
+                _ambientSoundSystem.SetAmbience(uid, false);
+                return;
+            }
+
+            var filterableMoles = 0f;
+            foreach (var gas in filter.FilteredGases)
+                filterableMoles += inlet.GetMoles(gas);
+            var nonFilterableMoles = Math.Max(0f, totalMoles - filterableMoles);
+
+            // One shared per-tick pull budget, in moles - same derivation as before, just computed
+            // once for the whole device instead of once per destination.
+            var wantToTransferVolume = filter.TransferRate * _atmosphereSystem.PumpSpeedup() * args.dt;
+            var pulledVolume = Math.Min(inlet.Volume, wantToTransferVolume);
+            var budgetMoles = inlet.Pressure * pulledVolume / (inlet.Temperature * Atmospherics.R);
+
+            // --- Filter/side pass: gets first claim on the budget ---
+            var filterSpaceLeft = MolesSpaceLeft(filterNode);
+            var moveToFilter = Math.Clamp(Math.Min(filterableMoles, budgetMoles), 0f, filterSpaceLeft);
+
+            var toFilter = new GasMixture { Temperature = inlet.Temperature };
+            if (moveToFilter > 0f)
+            {
+                var scale = moveToFilter / filterableMoles;
+                foreach (var gas in filter.FilteredGases)
+                {
+                    var amount = inlet.GetMoles(gas) * scale;
+                    inlet.AdjustMoles(gas, -amount);
+                    toFilter.AdjustMoles(gas, amount);
+                }
+            }
+
+            var leftoverFilterableMoles = Math.Max(0f, filterableMoles - moveToFilter);
+
+            // --- Outlet pass: whatever's left of the budget after the filter pass ---
+            var remainingBudget = Math.Max(0f, budgetMoles - moveToFilter);
+            var outletCandidateMoles = nonFilterableMoles + (filter.Passthrough ? leftoverFilterableMoles : 0f);
+            var outletSpaceLeft = outletNode == inletNode ? float.PositiveInfinity : MolesSpaceLeft(outletNode);
+            var moveToOutlet = Math.Clamp(Math.Min(outletCandidateMoles, remainingBudget), 0f, outletSpaceLeft);
+
+            var toOutlet = new GasMixture { Temperature = inlet.Temperature };
+            if (moveToOutlet > 0f)
+            {
+                var scale = moveToOutlet / outletCandidateMoles;
+                foreach (var (gas, moles) in inlet)
+                {
+                    if (moles <= 0f)
+                        continue;
+                    if (!filter.Passthrough && filter.FilteredGases.Contains(gas))
+                        continue;
+
+                    var amount = moles * scale;
+                    inlet.AdjustMoles(gas, -amount);
+                    toOutlet.AdjustMoles(gas, amount);
+                }
+            }
+
+            _atmosphereSystem.Merge(filterNode.Air, toFilter);
+            _atmosphereSystem.Merge(outletNode.Air, toOutlet);
+
+            // Each port is Green if its pass actually moved gas, BlinkingRed if it had a non-trivial
+            // candidate pool but couldn't move any of it (destination full), else Off (idle).
+            var sideFlowing = moveToFilter > DeltaMolCutoff;
+            var sideBlocked = !sideFlowing && filterableMoles > DeltaMolCutoff;
+            if (sideFlowing)
+                filterVisual = FilterPortVisualsState.SolidGreen;
+            else if (sideBlocked)
+                filterVisual = FilterPortVisualsState.BlinkingRed;
+
+            var outletFlowing = moveToOutlet > DeltaMolCutoff;
+            var outletBlocked = !outletFlowing && outletCandidateMoles > DeltaMolCutoff;
+            if (outletFlowing)
+                outletVisual = FilterPortVisualsState.SolidGreen;
+            else if (outletBlocked)
+                outletVisual = FilterPortVisualsState.BlinkingRed;
+
+            // Core reflects the device overall, not any single port: green if either path is
+            // actually moving gas, red only if something is blocked and nothing else is flowing.
+            if (outletFlowing || sideFlowing)
+                coreVisual = FilterPortVisualsState.SolidGreen;
+            else if (outletBlocked || sideBlocked)
+                coreVisual = FilterPortVisualsState.BlinkingRed;
+
+            _ambientSoundSystem.SetAmbience(uid, sideFlowing || outletFlowing);
+        }
+
+        /// <summary>
+        /// How many more moles a destination node can accept before hitting MaxOutputPressure.
+        /// </summary>
+        private static float MolesSpaceLeft(PipeNode node)
+        {
+            var spaceLeft = (Atmospherics.MaxOutputPressure - node.Air.Pressure) * node.Air.Volume /
+                            (node.Air.Temperature * Atmospherics.R);
+            return Math.Max(0f, spaceLeft);
         }
 
         private void OnAnchorChanged(EntityUid uid, GasFilterComponent filter, ref AnchorStateChangedEvent args)
@@ -191,7 +255,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 return;
 
             _userInterfaceSystem.SetUiState(uid, GasFilterUiKey.Key,
-                new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGas));
+                new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGases));
         }
 
         private void UpdateAppearance(EntityUid uid, GasFilterComponent? filter = null)
@@ -220,29 +284,30 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         }
 
-        private void OnSelectGasMessage(EntityUid uid, GasFilterComponent filter, GasFilterSelectGasMessage args)
+        private void OnAddGasMessage(EntityUid uid, GasFilterComponent filter, GasFilterAddGasMessage args)
         {
-            if (args.Gas.HasValue)
+            if (!Enum.IsDefined(typeof(Gas), args.Gas))
             {
-                if (Enum.IsDefined(typeof(Gas), args.Gas))
-                {
-                    filter.FilteredGas = args.Gas;
-                    _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
-                        $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to {args.Gas.ToString()}");
-                    DirtyUI(uid, filter);
-                }
-                else
-                {
-                    Log.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with an invalid ID: {args.Gas}");
-                }
+                Log.Warning($"{ToPrettyString(uid)} received GasFilterAddGasMessage with an invalid ID: {args.Gas}");
+                return;
             }
-            else
-            {
-                filter.FilteredGas = null;
-                _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
-                    $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to none");
-                DirtyUI(uid, filter);
-            }
+
+            if (!filter.FilteredGases.Add(args.Gas))
+                return;
+
+            _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
+                $"{ToPrettyString(args.Actor):player} added {args.Gas} to the filter on {ToPrettyString(uid):device}");
+            DirtyUI(uid, filter);
+        }
+
+        private void OnRemoveGasMessage(EntityUid uid, GasFilterComponent filter, GasFilterRemoveGasMessage args)
+        {
+            if (!filter.FilteredGases.Remove(args.Gas))
+                return;
+
+            _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
+                $"{ToPrettyString(args.Actor):player} removed {args.Gas} from the filter on {ToPrettyString(uid):device}");
+            DirtyUI(uid, filter);
         }
 
         /// <summary>

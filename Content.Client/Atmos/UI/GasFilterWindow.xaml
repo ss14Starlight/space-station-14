@@ -13,15 +13,10 @@
             <Button Name="SetFilterRate" Text="{Loc comp-gas-filter-ui-filter-set-rate}" Disabled="True"/>
         </BoxContainer>
 
-        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-            <Label Name="CurrentGasLabel" />
-        </BoxContainer>
-
         <BoxContainer Orientation="Vertical" VerticalExpand="True">
             <Label Text="{Loc comp-gas-filter-ui-filter-gas-select}" />
-            <ItemList Name="GasList" SelectMode="Single" VerticalExpand="True"
+            <ItemList Name="GasList" SelectMode="Multiple" VerticalExpand="True"
                       SizeFlagsStretchRatio="0.9" />
-            <Button Name="SelectGasButton" Text="{Loc comp-gas-filter-ui-filter-gas-confirm}" HorizontalExpand="True" Disabled="True" />
         </BoxContainer>
     </BoxContainer>
 </DefaultWindow>

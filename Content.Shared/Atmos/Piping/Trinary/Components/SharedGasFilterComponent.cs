@@ -1,4 +1,4 @@
-﻿using Content.Shared.Atmos.Prototypes;
+using Content.Shared.Atmos.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -16,14 +16,14 @@ namespace Content.Shared.Atmos.Piping.Trinary.Components
         public string FilterLabel { get; }
         public float TransferRate { get; }
         public bool Enabled { get; }
-        public Gas? FilteredGas { get; }
+        public HashSet<Gas> FilteredGases { get; }
 
-        public GasFilterBoundUserInterfaceState(string filterLabel, float transferRate, bool enabled, Gas? filteredGas)
+        public GasFilterBoundUserInterfaceState(string filterLabel, float transferRate, bool enabled, HashSet<Gas> filteredGases)
         {
             FilterLabel = filterLabel;
             TransferRate = transferRate;
             Enabled = enabled;
-            FilteredGas = filteredGas;
+            FilteredGases = filteredGases;
         }
     }
 
@@ -50,8 +50,14 @@ namespace Content.Shared.Atmos.Piping.Trinary.Components
     }
 
     [Serializable, NetSerializable]
-    public sealed class GasFilterSelectGasMessage(Gas? gas) : BoundUserInterfaceMessage
+    public sealed class GasFilterAddGasMessage(Gas gas) : BoundUserInterfaceMessage
     {
-        public readonly Gas? Gas = gas;
+        public readonly Gas Gas = gas;
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class GasFilterRemoveGasMessage(Gas gas) : BoundUserInterfaceMessage
+    {
+        public readonly Gas Gas = gas;
     }
 }
