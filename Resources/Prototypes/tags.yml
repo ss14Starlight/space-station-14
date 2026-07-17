@@ -813,6 +813,9 @@
   id: IntercomElectronics # ConstructionGraph: Intercom
 
 - type: Tag
+  id: StationAnchorTerminalElectronics # ConstructionGraph: StationAnchorTerminal
+
+- type: Tag
   id: InvalidForGlobalSpawnSpell # Used by SharedMagicSystem to skip tagged entity for an all living humans spawn spell.
                                  # Implemented only in server ZombieSystem.
 

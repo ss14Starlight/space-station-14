@@ -1,0 +1,80 @@
+- type: constructionGraph
+  id: StationAnchorTerminal
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: assembly
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2.0
+
+  - node: assembly
+    entity: StationAnchorTerminalAssembly
+    edges:
+    - to: wired
+      steps:
+      - material: Cable
+        amount: 2
+        doAfter: 1
+      completed:
+      - !type:VisualizerDataInt
+        key: "enum.ConstructionVisuals.Layer"
+        data: 1
+    - to: start
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Welding
+        doAfter: 2
+
+  - node: wired
+    entity: StationAnchorTerminalAssembly
+    edges:
+    - to: electronics
+      steps:
+      - tag: StationAnchorTerminalElectronics
+        store: board
+        name: construction-graph-tag-station-anchor-terminal-electronics
+        icon:
+          sprite: Objects/Misc/module.rsi
+          state: generic
+        doAfter: 1
+    - to: assembly
+      completed:
+      - !type:GivePrototype
+        prototype: CableApcStack1
+        amount: 2
+      - !type:VisualizerDataInt
+        key: "enum.ConstructionVisuals.Layer"
+        data: 0
+      steps:
+      - tool: Cutting
+        doAfter: 1
+
+  - node: electronics
+    edges:
+    - to: terminal
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: terminal
+    entity: StationAnchorTerminal
+    doNotReplaceInheritingEntities: true
+    edges:
+    - to: wired
+      conditions:
+      - !type:ContainerNotEmpty
+        container: board
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 1

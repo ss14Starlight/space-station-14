@@ -1,4 +1,5 @@
-﻿using Content.Shared.Power;
+﻿using Content.Shared._Sol.Shuttles.Components;
+using Content.Shared.Power;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.Power.PowerCharge;
@@ -20,11 +21,17 @@ public sealed class PowerChargeBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
-        if (!EntMan.TryGetComponent(Owner, out PowerChargeComponent? component))
+
+        string title;
+        if (EntMan.TryGetComponent(Owner, out PowerChargeComponent? component))
+            title = Loc.GetString(component.WindowTitle);
+        else if (EntMan.TryGetComponent(Owner, out StationAnchorTerminalComponent? terminal))
+            title = Loc.GetString(terminal.WindowTitle);
+        else
             return;
 
         _window = this.CreateWindow<PowerChargeWindow>();
-        _window.UpdateWindow(this, Loc.GetString(component.WindowTitle));
+        _window.UpdateWindow(this, title);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

@@ -5,7 +5,7 @@ namespace Content.Server.Power.Components;
 
 /// <inheritdoc cref="Content.Shared.Power.SharedPowerChargeComponent" />
 [RegisterComponent]
-[Access(typeof(PowerChargeSystem))]
+[Access(typeof(PowerChargeSystem), Other = AccessPermissions.Read)]
 public sealed partial class PowerChargeComponent : SharedPowerChargeComponent
 {
     /// <summary>

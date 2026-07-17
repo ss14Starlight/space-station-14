@@ -61,6 +61,12 @@ signal-port-description-artifact-analyzer-sender = Analysis console signal sende
 signal-port-name-artifact-analyzer-receiver = Pad
 signal-port-description-artifact-analyzer-receiver = Artifact analyzer signal receiver
 
+signal-port-name-station-anchor-terminal-sender = Anchor terminal
+signal-port-description-station-anchor-terminal-sender = Station anchor terminal signal sender
+
+signal-port-name-station-anchor-receiver = Station anchor
+signal-port-description-station-anchor-receiver = Station anchor signal receiver
+
 signal-port-name-set-particle-delta = Set particle type: delta
 signal-port-description-set-particle-delta = Sets the type of particle this device emits to delta.
 

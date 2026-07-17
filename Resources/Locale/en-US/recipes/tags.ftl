@@ -143,6 +143,7 @@ construction-graph-tag-air-alarm-electronics = air alarm electronics
 construction-graph-tag-fire-alarm-electronics = fire alarm electronics
 construction-graph-tag-mailing-unit-electronics = mailing unit electronics
 construction-graph-tag-intercom-electronics = intercom electronics
+construction-graph-tag-station-anchor-terminal-electronics = station anchor terminal machine board
 construction-graph-tag-solar-assembly-parts = solar assembly parts
 construction-graph-tag-solar-tracker-electronics = solar tracker electronics
 construction-graph-tag-station-map-electronics = station map electronics

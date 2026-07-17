@@ -139,6 +139,7 @@
     SalvageMagnetMachineCircuitboard: 0.55
     MiniGravityGeneratorCircuitboard: 0.45
     StationAnchorCircuitboard: 0.45
+    StationAnchorTerminalCircuitboard: 0.45
     ProtolatheHyperConvectionMachineCircuitboard: 0.35
     CircuitImprinterHyperConvectionMachineCircuitboard: 0.35
     AnomalyVesselExperimentalCircuitboard: 0.3

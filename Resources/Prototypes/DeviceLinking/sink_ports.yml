@@ -84,6 +84,11 @@
   description: signal-port-description-artifact-analyzer-receiver
 
 - type: sinkPort
+  id: StationAnchorReceiver
+  name: signal-port-name-station-anchor-receiver
+  description: signal-port-description-station-anchor-receiver
+
+- type: sinkPort
   id: InputA
   name: signal-port-name-logic-input-a
   description: signal-port-description-logic-input-a

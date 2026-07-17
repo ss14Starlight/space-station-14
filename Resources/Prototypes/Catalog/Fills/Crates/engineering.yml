@@ -248,6 +248,7 @@
     - id: FireAlarmElectronics
     - id: DoorElectronics
     - id: FirelockElectronics
+    - id: StationAnchorTerminalCircuitboard
     - id: APCElectronics
     - id: SignalTimerElectronics
     - id: SMESMachineCircuitboard

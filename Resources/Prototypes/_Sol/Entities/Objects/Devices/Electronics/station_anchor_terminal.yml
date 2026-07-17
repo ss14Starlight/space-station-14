@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseElectronics
+  id: StationAnchorTerminalCircuitboard
+  name: station anchor terminal machine board
+  description: A machine printed circuit board for a station anchor terminal.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: generic
+  - type: Tag
+    tags:
+      - StationAnchorTerminalElectronics
+      - RamChip #Protogen joke, makes them able to eat them. - FH
+  - type: StaticPrice
+    price: 100

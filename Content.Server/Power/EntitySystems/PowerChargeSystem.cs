@@ -44,7 +44,7 @@ public sealed partial class PowerChargeSystem : EntitySystem
         if (!TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerReceiver))
             return;
 
-        UpdateUI((uid, component, apcPowerReceiver), component.ChargeRate);
+        UpdateUI((uid, component, apcPowerReceiver), GetChargeRate(component, apcPowerReceiver));
     }
 
     private void OnSwitchGenerator(EntityUid uid, PowerChargeComponent component, SwitchChargingMachineMessage args)
@@ -79,6 +79,35 @@ public sealed partial class PowerChargeSystem : EntitySystem
         UpdateState((ent, ent.Comp, powerReceiver));
     }
 
+    /// <summary>
+    /// Sets whether the charging machine's power switch is on.
+    /// </summary>
+    public void SetSwitchedOn(EntityUid uid, bool on, EntityUid? user = null)
+    {
+        if (!TryComp<PowerChargeComponent>(uid, out var component))
+            return;
+
+        SetSwitchedOn(uid, component, on, user: user);
+    }
+
+    /// <summary>
+    /// Pushes the current PowerCharge UI state from <paramref name="powerEntity"/> onto
+    /// <paramref name="uiEntity"/>'s open UI. Used by remote terminals that proxy the control UI.
+    /// </summary>
+    public bool TrySyncUiState(EntityUid powerEntity, EntityUid uiEntity, Enum uiKey)
+    {
+        if (!TryComp<PowerChargeComponent>(powerEntity, out var component) ||
+            !TryComp<ApcPowerReceiverComponent>(powerEntity, out var powerReceiver))
+            return false;
+
+        if (!_uiSystem.IsUiOpen(uiEntity, uiKey))
+            return false;
+
+        var chargeRate = GetChargeRate(component, powerReceiver);
+        _uiSystem.SetUiState(uiEntity, uiKey, BuildUiState(component, powerReceiver, chargeRate));
+        return true;
+    }
+
     private void SetSwitchedOn(EntityUid uid, PowerChargeComponent component, bool on,
         ApcPowerReceiverComponent? powerReceiver = null, EntityUid? user = null)
     {
@@ -98,6 +127,23 @@ public sealed partial class PowerChargeSystem : EntitySystem
         powerReceiver.Load = component.SwitchedOn ? component.ActivePowerUse : component.IdlePowerUse;
     }
 
+    private static float GetChargeRate(PowerChargeComponent chargingMachine, ApcPowerReceiverComponent powerReceiver)
+    {
+        // Negative charge rate means discharging.
+        if (!chargingMachine.SwitchedOn)
+            return -chargingMachine.ChargeRate;
+
+        if (powerReceiver.Powered)
+            return chargingMachine.ChargeRate;
+
+        // Scale discharge rate such that if we're at 25% active power we discharge at 75% rate.
+        var receiving = powerReceiver.PowerReceived;
+        var mainSystemPower = Math.Max(0, receiving - chargingMachine.IdlePowerUse);
+        var denom = chargingMachine.ActivePowerUse - chargingMachine.IdlePowerUse;
+        var ratio = denom <= 0 ? 1 : 1 - mainSystemPower / denom;
+        return -(ratio * chargingMachine.ChargeRate);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -109,28 +155,7 @@ public sealed partial class PowerChargeSystem : EntitySystem
             if (!chargingMachine.Intact)
                 continue;
 
-            // Calculate charge rate based on power state and such.
-            // Negative charge rate means discharging.
-            float chargeRate;
-            if (chargingMachine.SwitchedOn)
-            {
-                if (powerReceiver.Powered)
-                {
-                    chargeRate = chargingMachine.ChargeRate;
-                }
-                else
-                {
-                    // Scale discharge rate such that if we're at 25% active power we discharge at 75% rate.
-                    var receiving = powerReceiver.PowerReceived;
-                    var mainSystemPower = Math.Max(0, receiving - chargingMachine.IdlePowerUse);
-                    var ratio = 1 - mainSystemPower / (chargingMachine.ActivePowerUse - chargingMachine.IdlePowerUse);
-                    chargeRate = -(ratio * chargingMachine.ChargeRate);
-                }
-            }
-            else
-            {
-                chargeRate = -chargingMachine.ChargeRate;
-            }
+            var chargeRate = GetChargeRate(chargingMachine, powerReceiver);
 
             var active = chargingMachine.Active;
             var lastCharge = chargingMachine.Charge;
@@ -178,12 +203,11 @@ public sealed partial class PowerChargeSystem : EntitySystem
         }
     }
 
-    private void UpdateUI(Entity<PowerChargeComponent, ApcPowerReceiverComponent> ent, float chargeRate)
+    private static PowerChargeState BuildUiState(
+        PowerChargeComponent component,
+        ApcPowerReceiverComponent powerReceiver,
+        float chargeRate)
     {
-        var (_, component, powerReceiver) = ent;
-        if (!_uiSystem.IsUiOpen(ent.Owner, component.UiKey))
-            return;
-
         var chargeTarget = chargeRate < 0 ? 0 : component.MaxCharge;
         short chargeEta;
         var atTarget = false;
@@ -204,10 +228,10 @@ public sealed partial class PowerChargeSystem : EntitySystem
             < 0 when atTarget => PowerChargePowerStatus.Off,
             > 0 => PowerChargePowerStatus.Charging,
             < 0 => PowerChargePowerStatus.Discharging,
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException(nameof(chargeRate))
         };
 
-        var state = new PowerChargeState(
+        return new PowerChargeState(
             component.SwitchedOn,
             (byte) (component.Charge * 255),
             status,
@@ -215,12 +239,15 @@ public sealed partial class PowerChargeSystem : EntitySystem
             (short) Math.Round(powerReceiver.Load),
             chargeEta
         );
+    }
 
-        _uiSystem.SetUiState(
-            ent.Owner,
-            component.UiKey,
-            state);
+    private void UpdateUI(Entity<PowerChargeComponent, ApcPowerReceiverComponent> ent, float chargeRate)
+    {
+        var (_, component, powerReceiver) = ent;
+        if (!_uiSystem.IsUiOpen(ent.Owner, component.UiKey))
+            return;
 
+        _uiSystem.SetUiState(ent.Owner, component.UiKey, BuildUiState(component, powerReceiver, chargeRate));
         component.NeedUIUpdate = false;
     }
 

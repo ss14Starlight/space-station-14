@@ -27,13 +27,20 @@ public sealed class PowerChargeState : BoundUserInterfaceState
     public short PowerDrawMax;
     public short EtaSeconds;
 
+    /// <summary>
+    /// Optional localization ID for a blocking error (e.g. remote terminal with no linked machine).
+    /// When set, the client shows this instead of normal charge controls.
+    /// </summary>
+    public string? Error;
+
     public PowerChargeState(
         bool on,
         byte charge,
         PowerChargePowerStatus powerStatus,
         short powerDraw,
         short powerDrawMax,
-        short etaSeconds)
+        short etaSeconds,
+        string? error = null)
     {
         On = on;
         Charge = charge;
@@ -41,6 +48,19 @@ public sealed class PowerChargeState : BoundUserInterfaceState
         PowerDraw = powerDraw;
         PowerDrawMax = powerDrawMax;
         EtaSeconds = etaSeconds;
+        Error = error;
+    }
+
+    public static PowerChargeState UnlinkedError(string errorLocId)
+    {
+        return new PowerChargeState(
+            on: false,
+            charge: 0,
+            PowerChargePowerStatus.Off,
+            powerDraw: 0,
+            powerDrawMax: 0,
+            etaSeconds: short.MinValue,
+            error: errorLocId);
     }
 }
 

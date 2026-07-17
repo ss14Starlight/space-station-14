@@ -1,0 +1,111 @@
+- type: entity
+  parent: BaseWallmountMachine
+  id: StationAnchorTerminal
+  name: station anchor terminal
+  description: A remote access terminal for the station anchor.
+  components:
+  - type: StationAiWhitelist
+  - type: StationAnchorTerminal
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSource
+    ports:
+      - StationAnchorTerminalSender
+  - type: ActivatableUI
+    key: enum.PowerChargeUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: UserInterface
+    interfaces:
+      enum.PowerChargeUiKey.Key:
+        type: PowerChargeBoundUserInterface
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sol/Structures/Wallmounts/anchor_terminal.rsi
+    layers:
+    - state: base
+    - state: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      shader: unshaded
+    - state: broadcasting
+      map: ["enum.StationAnchorTerminalVisualLayers.Broadcasting"]
+      shader: unshaded
+      visible: false
+    - state: speaker
+      map: ["enum.StationAnchorTerminalVisualLayers.Speaker"]
+      shader: unshaded
+      visible: false
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StationAnchorTerminalVisuals.Broadcasting:
+        enum.StationAnchorTerminalVisualLayers.Broadcasting:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StationAnchorTerminalVisuals.Speaker:
+        enum.StationAnchorTerminalVisualLayers.Speaker:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ContainerFill
+    containers:
+      board: [ StationAnchorTerminalCircuitboard ]
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: Construction
+    graph: StationAnchorTerminal
+    node: terminal
+    containers:
+    - board
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+          params:
+            volume: -4
+
+- type: entity
+  id: StationAnchorTerminalAssembly
+  name: station anchor terminal assembly
+  description: A station anchor terminal. It doesn't seem very helpful right now.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Sol/Structures/Wallmounts/anchor_terminal.rsi
+    layers:
+    - state: build
+    - state: panel
+      visible: false
+      map: [ "wires" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Layer:
+        wires:
+          0: { visible: false }
+          1: { visible: true }
+  - type: Construction
+    graph: StationAnchorTerminal
+    node: assembly
+  - type: InteractionOutline
+  - type: Clickable

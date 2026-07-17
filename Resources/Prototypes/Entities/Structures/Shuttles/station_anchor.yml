@@ -110,6 +110,11 @@
       interfaces:
         enum.PowerChargeUiKey.Key:
           type: PowerChargeBoundUserInterface
+    - type: DeviceNetwork
+      deviceNetId: Wired
+    - type: DeviceLinkSink
+      ports:
+        - StationAnchorReceiver
 
 - type: entity
   parent: StationAnchor

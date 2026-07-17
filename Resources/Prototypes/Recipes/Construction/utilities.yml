@@ -1202,6 +1202,20 @@
   conditions:
   - !type:WallmountCondition {}
 
+# STATION ANCHOR TERMINAL
+- type: construction
+  id: StationAnchorTerminalAssembly
+  graph: StationAnchorTerminal
+  startNode: start
+  targetNode: terminal
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
+
 # TIMERS
 - type: construction
   id: SignalTimer

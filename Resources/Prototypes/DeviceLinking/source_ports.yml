@@ -76,6 +76,12 @@
   defaultLinks: [ ArtifactAnalyzerReceiver ]
 
 - type: sourcePort
+  id: StationAnchorTerminalSender
+  name: signal-port-name-station-anchor-terminal-sender
+  description: signal-port-description-station-anchor-terminal-sender
+  defaultLinks: [ StationAnchorReceiver ]
+
+- type: sourcePort
   id: Timer
   name: signal-port-name-timer-trigger
   description: signal-port-description-timer-trigger

@@ -32,6 +32,33 @@ public sealed partial class PowerChargeWindow : FancyWindow
 
     public void UpdateState(PowerChargeState state)
     {
+        if (state.Error != null)
+        {
+            OnButton.Disabled = true;
+            OffButton.Disabled = true;
+            OnButton.Pressed = false;
+            OffButton.Pressed = false;
+
+            PowerLabel.Text = Loc.GetString(
+                "power-charge-window-power-label",
+                ("draw", 0),
+                ("max", 0));
+            PowerLabel.FontColorOverride = Palettes.Status.Critical;
+
+            ChargeBar.Value = 0;
+            ChargeText.Text = 0f.ToString("P0");
+
+            StatusLabel.Text = Loc.GetString(state.Error);
+            StatusLabel.FontColorOverride = Palettes.Status.Critical;
+
+            EtaLabel.Text = Loc.GetString("power-charge-window-eta-none");
+            EtaLabel.SetOnlyStyleClass("LabelWeak");
+            return;
+        }
+
+        OnButton.Disabled = false;
+        OffButton.Disabled = false;
+
         if (state.On)
             OnButton.Pressed = true;
         else

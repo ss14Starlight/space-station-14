@@ -77,6 +77,11 @@
 
 - type: latheRecipe
   parent: [ BaseElectronicsRecipe, BaseCircuitryRecipeCategory ]
+  id: StationAnchorTerminalElectronics
+  result: StationAnchorTerminalCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseElectronicsRecipe, BaseCircuitryRecipeCategory ]
   id: FireAlarmElectronics
   result: FireAlarmElectronics
 

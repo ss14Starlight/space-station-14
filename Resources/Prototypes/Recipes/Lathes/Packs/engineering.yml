@@ -33,6 +33,7 @@
   id: ElectronicsStatic
   recipes:
   - IntercomElectronics
+  - StationAnchorTerminalElectronics
   - FirelockElectronics
   - DoorElectronics
   - AirAlarmElectronics
@@ -56,6 +57,7 @@
   id: EngineeringBoardsStatic
   recipes:
   - SpaceHeaterMachineCircuitBoard
+  - StationAnchorTerminalElectronics
 
 ## Dynamic
 
