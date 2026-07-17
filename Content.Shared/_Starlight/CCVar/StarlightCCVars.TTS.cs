@@ -27,6 +27,10 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<float> TTSRadioVolume =
         CVarDef.Create("tts.radio_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// When enabled, IG/radio/mind TTS for the same speaker is queued so lines
+    /// do not overlap. Different speakers still play concurrently.
+    /// </summary>
     public static readonly CVarDef<bool> TTSRadioQueueEnabled =
         CVarDef.Create("tts.radio_queue_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 

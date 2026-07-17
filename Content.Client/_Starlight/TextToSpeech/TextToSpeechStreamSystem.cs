@@ -41,7 +41,7 @@ public sealed partial class TextToSpeechStreamSystem : EntitySystem
         if (ev.Channel != null && _mutedChannels.Contains(ev.Channel.Value))
         {
             if (ev.Chime is not null)
-                _tts.TryPlayChime([], AudioParams.Default, null, ev.Chime);
+                _ = _tts.TryPlayChime([], AudioParams.Default, null, ev.Chime);
             return;
         }
 
@@ -81,7 +81,11 @@ public sealed partial class TextToSpeechStreamSystem : EntitySystem
         }
     }
 
-    private void OnReset(RoundRestartCleanupEvent ev) => Reset();
+    private void OnReset(RoundRestartCleanupEvent ev)
+    {
+        Reset();
+        _tts.ClearQueue();
+    }
 
     private void Reset() => _streams.Clear();
 }
