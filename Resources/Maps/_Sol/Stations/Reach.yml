@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/17/2026 14:33:35
+  time: 07/17/2026 16:57:58
   entityCount: 3907
 maps:
 - 1
@@ -2292,7 +2292,6 @@ entities:
       - 1869
       - 2580
       - 2612
-      - 1892
     - type: Fixtures
       fixtures: {}
   - uid: 10
@@ -2705,7 +2704,7 @@ entities:
       devices:
       - 177
       - 3283
-  - uid: 33
+  - uid: 3859
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -2713,9 +2712,14 @@ entities:
       parent: 2
     - type: DeviceList
       devices:
-      - 1958
       - 1892
       - 1962
+      - 2636
+      - 2597
+      - 33
+      - 3860
+      - 1959
+      - 1957
       - 1956
       - 1957
       - 1959
@@ -13236,19 +13240,26 @@ entities:
       deviceLists:
       - 12
       - 27
+- proto: FirelockEdge
+  entities:
+  - uid: 33
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -20.5,9.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 3859
   - uid: 1892
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -17.5,9.5
+      rot: -1.5707963267948966 rad
+      pos: -20.5,1.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 33
-- proto: FirelockEdge
-  entities:
+      - 3859
   - uid: 1893
     components:
     - type: Transform
@@ -13798,78 +13809,49 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 20
-  - uid: 1956
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -20.5,9.5
-      parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 33
-  - uid: 1957
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -20.5,8.5
-      parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 33
-  - uid: 1958
+  - uid: 1962
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -20.5,2.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 33
-  - uid: 1959
+      - 3859
+  - uid: 2597
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -20.5,8.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 3859
+  - uid: 2636
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -20.5,5.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 33
-  - uid: 1960
+      - 3859
+- proto: FirelockGlass
+  entities:
+  - uid: 1959
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -20.5,1.5
+      pos: -17.5,9.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 33
-- proto: FirelockGlass
-  entities:
+      - 3859
   - uid: 1961
     components:
     - type: Transform
       pos: 1.5,20.5
       parent: 2
-  - uid: 1962
-    components:
-    - type: Transform
-      pos: -19.5,10.5
-      parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 33
   - uid: 1963
     components:
     - type: Transform
@@ -14107,6 +14089,15 @@ entities:
       deviceLists:
       - 26
       - 27
+  - uid: 3860
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -19.5,10.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 3859
 - proto: FloorDrain
   entities:
   - uid: 1990
@@ -18504,6 +18495,17 @@ entities:
       storage: 1660
 - proto: GasVentPumpAlt3
   entities:
+  - uid: 1957
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -20.5,1.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 3859
+    - type: AtmosPipeColor
+      color: '#0335FCFF'
   - uid: 2559
     components:
     - type: Transform
@@ -18906,21 +18908,19 @@ entities:
       - 26
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 2597
+- proto: GasVentScrubberAlt4
+  entities:
+  - uid: 1956
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -20.5,1.5
+      pos: -20.5,2.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 33
+      - 3859
     - type: AtmosPipeColor
-      color: '#0055CCFF'
-- proto: GasVentScrubberAlt4
-  entities:
+      color: '#990000FF'
   - uid: 2598
     components:
     - type: Transform
@@ -19322,19 +19322,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 22
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 2636
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -20.5,2.5
-      parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 33
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GeneratorRTGDamaged
@@ -23221,14 +23208,14 @@ entities:
       parent: 2
 - proto: SLVendingMachineMining
   entities:
-  - uid: 3859
+  - uid: 1960
     components:
     - type: Transform
       pos: -20.5,9.5
       parent: 2
 - proto: SLVendingMachineSalvage
   entities:
-  - uid: 3860
+  - uid: 1958
     components:
     - type: Transform
       pos: -20.5,8.5
