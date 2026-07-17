@@ -47,23 +47,17 @@ public sealed partial class MobsterAccentSystem : EntitySystem
     {
         message = _replacement.ApplyReplacements(message, "mobster");
 
+        // Letter mangling is display-only — do not mutate .Tts (hurts Piper pronunciation).
         // thinking -> thinkin'
         message.Text = RegexIng().Replace(message.Text, "$1'");
 
         // or -> uh and ar -> ah
         message.Text = RegexLowerOr().Replace(message.Text, "uh");
-        message.Tts = RegexLowerOr().Replace(message.Tts ?? message.Text, "uh");
-
         message.Text = RegexUpperOr().Replace(message.Text, "UH");
-        message.Tts = RegexUpperOr().Replace(message.Tts ?? message.Text, "UH");
-
         message.Text = RegexLowerAr().Replace(message.Text, "ah");
-        message.Tts = RegexLowerAr().Replace(message.Tts ?? message.Text, "ah");
-
         message.Text = RegexUpperAr().Replace(message.Text, "AH");
-        message.Tts = RegexUpperAr().Replace(message.Tts ?? message.Text, "AH");
 
-        // Prefix
+        // Spoken prefix/suffix stay on both channels (whole-word phrases meant to be heard).
         if (_random.Prob(0.15f))
         {
             var firstWordAllCaps = !RegexFirstWord().Match(message.Text).Value.Any(char.IsLower);
@@ -73,7 +67,8 @@ public sealed partial class MobsterAccentSystem : EntitySystem
             if (!firstWordAllCaps)
             {
                 message.Text = message.Text[0].ToString().ToLower() + message.Text[1..];
-                message.Tts = (message.Tts ?? message.Text)[0].ToString().ToLower() + (message.Tts ?? message.Text)[1..];
+                var tts = message.Tts ?? message.Text;
+                message.Tts = tts[0].ToString().ToLower() + tts[1..];
             }
             else
             {
@@ -85,7 +80,8 @@ public sealed partial class MobsterAccentSystem : EntitySystem
         }
 
         message.Text = message.Text[0].ToString().ToUpper() + message.Text[1..];
-        message.Tts = (message.Tts ?? message.Text)[0].ToString().ToUpper() + (message.Tts ?? message.Text)[1..];
+        var ttsCap = message.Tts ?? message.Text;
+        message.Tts = ttsCap[0].ToString().ToUpper() + ttsCap[1..];
 
         // Suffixes
         if (_random.Prob(0.4f))

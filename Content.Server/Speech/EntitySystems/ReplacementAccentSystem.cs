@@ -127,7 +127,12 @@ namespace Content.Server.Speech.EntitySystems
 
             if (!cache.TryGetValue(prototype.ID, out var replacements))
             {
-                replacements = GenerateCachedReplacements(isTts ? prototype.TTSWordReplacements : prototype.WordReplacements);
+                // Fall back to WordReplacements when no TTS-specific map is defined,
+                // so geek/nerd-style word accents reach Message.Tts.
+                var source = isTts
+                    ? prototype.TTSWordReplacements ?? prototype.WordReplacements
+                    : prototype.WordReplacements;
+                replacements = GenerateCachedReplacements(source);
                 cache.Add(prototype.ID, replacements);
             }
 
@@ -154,6 +159,7 @@ namespace Content.Server.Speech.EntitySystems
         private void OnPrototypesReloaded(PrototypesReloadedEventArgs obj)
         {
             _cachedReplacements.Clear();
+            _cachedTTSReplacements.Clear();
         }
     }
 }

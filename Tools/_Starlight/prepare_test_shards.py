@@ -60,7 +60,7 @@ def main():
     # depending on how it's invoked.
     filter_script = script_dir / "partition_tests.py"
     subprocess.run(
-        [sys.executable, filter_script, "generate", "8", filter_dir],
+        [sys.executable, filter_script, "generate", "9", filter_dir],
         input=list_result.stdout,
         text=True,
         check=True,

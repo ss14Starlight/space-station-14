@@ -29,11 +29,10 @@ public sealed class OwOAccentSystem : EntitySystem
 
     public SpeechMessage Accentuate(SpeechMessage message)
     {
+        // Cat-speak is display-only — do not mutate .Tts (hurts Piper pronunciation).
         foreach (var (word, repl) in _specialWords)
-        {
             message.Text = message.Text.Replace(word, repl);
-            message.Tts = (message.Tts ?? message.Text).Replace(word, repl);
-        }
+
         message.Text = message.Text
             .Replace("r", "w").Replace("R", "W")
             .Replace("l", "w").Replace("L", "W");

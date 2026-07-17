@@ -30,17 +30,13 @@ public sealed partial class BarkAccentSystem : EntitySystem
 
     public SpeechMessage Accentuate(SpeechMessage message)
     {
+        // Bark garbling is display-only — do not mutate .Tts (hurts Piper pronunciation).
         foreach (var (word, repl) in _specialWords)
-        {
             message.Text = message.Text.Replace(word, repl);
-            message.Tts = (message.Tts ?? message.Text).Replace(word, repl);
-        }
 
         message.Text = message.Text.Replace("!", _random.Pick(_barks))
             .Replace("l", "r")
             .Replace("L", "R");
-
-        message.Tts = (message.Tts ?? message.Text).Replace("!", " Woof!");
 
         return message;
     }
