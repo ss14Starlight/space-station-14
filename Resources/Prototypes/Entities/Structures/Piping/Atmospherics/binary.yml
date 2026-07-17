@@ -101,6 +101,21 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+    transmitFrequencyId: AtmosMonitor
+    sendBroadcastAttemptEvent: true
+    examinableAddress: true
+    prefix: device-address-prefix-pressure-pump
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - Open
+      - Close
+      - Toggle
+  - type: SignalControlledValve
   # Starlight end
   - type: GuideHelp
     guides:
@@ -169,19 +184,26 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_pump.ogg
-    - type: DeviceNetwork
-      deviceNetId: AtmosDevices
-      receiveFrequencyId: AtmosMonitor
-      transmitFrequencyId: AtmosMonitor
-      sendBroadcastAttemptEvent: true
-      examinableAddress: true
-      prefix: device-address-prefix-volume-pump
-    - type: WiredNetworkConnection
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlTransit
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      transmitFrequencyId: AtmosMonitor
+      sendBroadcastAttemptEvent: true
+      examinableAddress: true
+      prefix: device-address-prefix-volume-pump
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - Open
+        - Close
+        - Toggle
+    - type: SignalControlledValve
     # Starlight end
     - type: GuideHelp
       guides:

@@ -68,6 +68,15 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
         _appearance.SetData(ent, PumpVisuals.Enabled, pumpOn, ent.Comp2);
     }
 
+    protected void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
+    {
+        if (!Resolve(uid, ref pump, ref appearance, false))
+            return;
+
+        var pumpOn = pump.Enabled && _receiver.IsPowered(uid);
+        _appearance.SetData(uid, PumpVisuals.Enabled, pumpOn, appearance);
+    }
+
     private void OnToggleStatusMessage(Entity<GasPressurePumpComponent> ent, ref GasPressurePumpToggleStatusMessage args)
     {
         ent.Comp.Enabled = args.Enabled;
@@ -114,5 +123,22 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
 
     protected virtual void UpdateUi(Entity<GasPressurePumpComponent> ent)
     {
+    }
+
+    public void Set(EntityUid uid, GasPressurePumpComponent component, bool value)
+    {
+        component.Enabled = value;
+        Dirty(uid, component);
+        UpdateAppearance(uid, component);
+
+        return;
+    }
+
+    public void Toggle(EntityUid uid, GasPressurePumpComponent component)
+    {
+        Set(uid, component, !component.Enabled);
+        Dirty(uid, component);
+        UpdateAppearance(uid, component);
+        return;
     }
 }

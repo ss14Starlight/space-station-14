@@ -5,6 +5,7 @@ using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
+using YamlDotNet.Core.Tokens;
 
 namespace Content.Shared.Atmos.Piping.Binary.Systems;
 
@@ -87,5 +88,20 @@ public abstract partial class SharedGasVolumePumpSystem : EntitySystem
             _appearance.SetData(uid, GasVolumePumpVisuals.State, GasVolumePumpState.Blocked, appearance);
         else
             _appearance.SetData(uid, GasVolumePumpVisuals.State, GasVolumePumpState.On, appearance);
+    }
+
+    public void Set(EntityUid uid, GasVolumePumpComponent component, bool value)
+    {
+        component.Enabled = value;
+        Dirty(uid, component);
+        UpdateAppearance(uid, component);
+    }
+
+    public void Toggle(EntityUid uid, GasVolumePumpComponent component)
+    {
+        Set(uid, component, !component.Enabled);
+        Dirty(uid, component);
+        UpdateAppearance(uid, component);
+        return;
     }
 }
