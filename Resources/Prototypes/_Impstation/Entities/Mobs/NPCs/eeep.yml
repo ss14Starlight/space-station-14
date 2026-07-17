@@ -272,8 +272,8 @@
     rotAfter: 2000
 #region Starlight
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 5
+    baseWalkSpeed: 3
+    baseSprintSpeed: 6
     baseWeightlessModifier: 0.6
   - type: BatteryDrainer
     fullDrain: true
@@ -282,4 +282,10 @@
      path: /Audio/Effects/PowerSink/charge_fire.ogg
     minimumDrain: 1000
   - type: AltFireMelee
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 8
+    useSound:
+      path: /Audio/Effects/tesla_consume.ogg
 #regionend Starlight
