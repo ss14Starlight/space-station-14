@@ -1,116 +1,4 @@
 Entries:
-- author: BornStellat
-  changes:
-  - message: Pierceable comp to hand held shields.
-    type: Add
-  id: 406274
-  time: '2026-06-28T17:52:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4953
-- author: BornStellat
-  changes:
-  - message: Worn armor and handheld items with the shield tag will now stop bullets from piercing the entity if the bullet pierce level is lower than the armor value.
-    type: Fix
-  id: 406275
-  time: '2026-06-28T17:52:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4953
-- author: BornStellar
-  changes:
-  - message: greenlight shield renamed to X-03 green phase shield.
-    type: Tweak
-  id: 406276
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: X-03 shield HP changed from 36HP to 90HP.
-    type: Tweak
-  id: 406277
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: X-03 shield Slash resistance changed from 20% to 10%.
-    type: Tweak
-  id: 406278
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: X-03 shield active block modifiers are now better than their passive modifiers across the board instead of worse.
-    type: Tweak
-  id: 406279
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: X-03 shield reflect chance lowered from 50% to 10%, still only for lasers.
-    type: Tweak
-  id: 406280
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: WT550g, a variant of the WT550r that comes with a green colour scheme.
-    type: Add
-  id: 406281
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: WT550 magazine (.35 FMJ auto top-mounted). A WT550 mag with FMJ instead of SP loaded.
-    type: Add
-  id: 406282
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: WT550 magazine (.35 HP auto top-mounted). A WT550 mag with HP instead of SP loaded.
-    type: Add
-  id: 406283
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: removed two combat medipens from GSO belt and replaced with an extra set of cuffs.
-    type: Tweak
-  id: 406284
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: Taser fire mode on the MT-7G.
-    type: Add
-  id: 406285
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: department of the GSO job.
-    type: Fix
-  id: 406286
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: outfits for use in setting outfits of arbitrary entities (was requested by some admins).
-    type: Add
-  id: 406287
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: names of the file names for the sprites of the X-03 shield to better match other sprite naming conventions.
-    type: Tweak
-  id: 406288
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: Johnny
-  changes:
-  - message: Added the advanced medipen as a lesser form of a combat medipen for ERT such as CBURN.
-    type: Add
-  id: 406289
-  time: '2026-06-28T21:56:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4936
 - author: Johnny
   changes:
   - message: Added a new role, the CBURN Corpsman.
@@ -2799,4 +2687,116 @@ Entries:
   id: 406673
   time: '2026-07-16T10:45:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5144
+- author: STARLIGHT TEAM
+  changes:
+  - message: Locale comment formatting.
+    type: Fix
+  id: 406674
+  time: '2026-07-16T11:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5153
+- author: Swonki
+  changes:
+  - message: derelict salvage cyborg is now whitelisted for its mining module.
+    type: Fix
+  id: 406675
+  time: '2026-07-16T11:22:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5152
+- author: neomoth
+  changes:
+  - message: Fixes Tippy being killed and never ever showing up again if you disconnect and reconnect without relaunching the game.
+    type: Fix
+  id: 406676
+  time: '2026-07-16T11:59:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5143
+- author: neomoth
+  changes:
+  - message: FINALLY fixes a visual bug with secure crates that made the paper label sprite always visible even when no label is attached.
+    type: Fix
+  id: 406677
+  time: '2026-07-16T11:59:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5143
+- author: DreadfulTaco
+  changes:
+  - message: Added ice cream maker machine.
+    type: Add
+  id: 406678
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: DreadfulTaco
+  changes:
+  - message: Added an ice cream maker circuit board available at the circuit fabricator.
+    type: Add
+  id: 406679
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: DreadfulTaco
+  changes:
+  - message: Added a new cargo order for the ice cream machine.
+    type: Add
+  id: 406680
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: DreadfulTaco
+  changes:
+  - message: Added 32 flavors of ice cream to make.
+    type: Add
+  id: 406681
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: DreadfulTaco
+  changes:
+  - message: Added two round start plants, cinnamon and mint.
+    type: Add
+  id: 406682
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: DreadfulTaco
+  changes:
+  - message: Added two mutations, cinnaflare and spearmint.
+    type: Add
+  id: 406683
+  time: '2026-07-16T12:50:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4974
+- author: Arkanic
+  changes:
+  - message: Massive reduction in serverside AI lag, something like 150x time reduction in certain scenarios.
+    type: Fix
+  id: 406684
+  time: '2026-07-16T12:50:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5117
+- author: Littlemen/Romero
+  changes:
+  - message: Dragon doesnt feel the bloodloss anymore, he is just built different.
+    type: Tweak
+  id: 406685
+  time: '2026-07-16T16:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5129
+- author: Rinary
+  changes:
+  - message: Removed peacemaker grenade launcher due to broken balance.
+    type: Remove
+  id: 406686
+  time: '2026-07-16T18:23:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5157
+- author: Arkanic
+  changes:
+  - message: Fix disposals deleting people.
+    type: Fix
+  id: 406687
+  time: '2026-07-17T08:48:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5164
+- author: TaserTheFox
+  changes:
+  - message: Fixed loc spam with the RCD families UI.
+    type: Fix
+  id: 406688
+  time: '2026-07-17T08:48:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5165
+- author: TaserTheFox
+  changes:
+  - message: Fixed missing loc strings in spray painter.
+    type: Fix
+  id: 406689
+  time: '2026-07-17T09:13:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5162
 Order: -1
