@@ -15,6 +15,78 @@
       "name": "gasFilterOn",
       "directions": 4,
       "delays": [ [ 0.2, 0.2, 0.2, 0.2 ], [ 0.2, 0.2, 0.2, 0.2 ], [ 0.2, 0.2, 0.2, 0.2 ], [ 0.2, 0.2, 0.2, 0.2 ] ]
+    },
+    {
+      "name": "inletSolid",
+      "directions": 4
+    },
+    {
+      "name": "inletFSolid",
+      "directions": 4
+    },
+    {
+      "name": "inletBlink",
+      "directions": 4,
+      "delays": [[0.5,0.5],[0.5,0.5],[0.5,0.5],[0.5,0.5]]
+    },
+    {
+      "name": "inletFBlink",
+      "directions": 4,
+      "delays": [[0.5,0.5],[0.5,0.5],[0.5,0.5],[0.5,0.5]]
+    },
+    {
+      "name": "sideSolid",
+      "directions": 4
+    },
+    {
+      "name": "sideFSolid",
+      "directions": 4
+    },
+    {
+      "name": "sideBlink",
+      "directions": 4,
+      "delays": [[0.5,0.5],[0.5,0.5],[0.5,0.5],[0.5,0.5]]
+    },
+    {
+      "name": "sideFBlink",
+      "directions": 4,
+      "delays": [[0.5,0.5],[0.5,0.5],[0.5,0.5],[0.5,0.5]]
+    },
+    {
+      "name": "outletSolid",
+      "directions": 4
+    },
+    {
+      "name": "outletFSolid",
+      "directions": 4
+    },
+    {
+      "name": "outletBlink",
+      "directions": 4,
+      "delays": [[0.5,0.5],[0.5,0.5],[0.5,0.5],[0.5,0.5]]
+    },
+    {
+      "name": "outletFBlink",
+      "directions": 4,
+      "delays": [[0.5,0.5],[0.5,0.5],[0.5,0.5],[0.5,0.5]]
+    },
+    {
+      "name": "coreSolid",
+      "directions": 4
+    },
+    {
+      "name": "coreFSolid",
+      "directions": 4
+    },
+    {
+      "name": "coreBlink",
+      "directions": 4,
+      "delays": [[0.5,0.5],[0.5,0.5],[0.5,0.5],[0.5,0.5]]
+    },
+    {
+      "name": "coreFBlink",
+      "directions": 4,
+      "delays": [[0.5,0.5],[0.5,0.5],[0.5,0.5],[0.5,0.5]]
     }
   ]
 }

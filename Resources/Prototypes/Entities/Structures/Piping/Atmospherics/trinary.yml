@@ -39,13 +39,29 @@
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
-      sprite: Structures/Piping/Atmospherics/gasfilter.rsi
+      sprite: _Starlight/Structures/Piping/Atmospherics/gasfilter.rsi # Starlight
       layers:
         - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
           state: pipeTrinaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: gasFilter
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+        - state: inletSolid
+          map: [ "inlet" ]
+          shader: unshaded
+          color: '#00000000'
+        - state: sideSolid
+          map: [ "side" ]
+          shader: unshaded
+          color: '#00000000'
+        - state: outletSolid
+          map: [ "outlet" ]
+          shader: unshaded
+          color: '#00000000'
+        - state: coreSolid
+          map: [ "core" ]
+          shader: unshaded
+          color: '#00000000'
     # Carpmosia-start - Atmos Alt Prototypes
     - type: AtmosPipeLayers
       alternativePrototypes:
@@ -58,10 +74,41 @@
     - type: Appearance
     - type: GenericVisualizer
       visuals:
-        enum.FilterVisuals.Enabled:
-          enabled:
-            True: { state: gasFilterOn }
-            False: { state: gasFilter }
+        # Starlight BEGIN
+        enum.FilterVisuals.Inlet:
+          inlet:
+            Off: { color: '#00000000' }
+            SolidGreen: { color: '#00FF00', state: inletSolid }
+            SolidYellow: { color: '#FFFF00', state: inletSolid }
+            BlinkingYellow: { color: '#FFFF00', state: inletBlink }
+            SolidRed: { color: '#FF0000', state: inletSolid }
+            BlinkingRed: { color: '#FF0000', state: inletBlink }
+        enum.FilterVisuals.Outlet:
+          outlet:
+            Off: { color: '#00000000' }
+            SolidGreen: { color: '#00FF00', state: outletSolid }
+            SolidYellow: { color: '#FFFF00', state: outletSolid }
+            BlinkingYellow: { color: '#FFFF00', state: outletBlink }
+            SolidRed: { color: '#FF0000', state: outletSolid }
+            BlinkingRed: { color: '#FF0000', state: outletBlink }
+        enum.FilterVisuals.Side:
+          side:
+            Off: { color: '#00000000' }
+            SolidGreen: { color: '#00FF00', state: sideSolid }
+            SolidYellow: {  color: '#FFFF00', state: sideSolid }
+            BlinkingYellow: { color: '#FFFF00', state: sideBlink }
+            SolidRed: { color: '#FF0000', state: sideSolid }
+            BlinkingRed: { color: '#FF0000', state: sideBlink }
+        enum.FilterVisuals.Core:
+          core:
+            Off: { color: '#00000000' }
+            SolidOrange: { color: '#FF8800', state: coreSolid }
+            SolidGreen: { color: '#00FF00', state: coreSolid }
+            SolidYellow: { color: '#FFFF00', state: coreSolid }
+            BlinkingYellow: { color: '#FFFF00', state: coreBlink }
+            SolidRed: { color: '#FF0000', state: coreSolid }
+            BlinkingRed: { color: '#FF0000', state: coreBlink }
+        # Starlight END
     - type: PipeColorVisuals
     - type: UserInterface
       interfaces:
@@ -108,13 +155,31 @@
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
+    sprite: _Starlight/Structures/Piping/Atmospherics/gasfilter.rsi
     layers:
     - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
       state: pipeTrinaryConnectors
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: gasFilterF
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+    # Starlight BEGIN
+    - state: inletFSolid
+      map: [ "inlet" ]
+      shader: unshaded
+      color: '#00000000'
+    - state: sideFSolid
+      map: [ "side" ]
+      shader: unshaded
+      color: '#00000000'
+    - state: outletFSolid
+      map: [ "outlet" ]
+      shader: unshaded
+      color: '#00000000'
+    - state: coreFSolid
+      map: [ "core" ]
+      shader: unshaded
+      color: '#00000000'
+    # Starlight END
   # Carpmosia-start - Atmos Alt Prototypes
   - type: AtmosPipeLayers
     alternativePrototypes:
@@ -129,10 +194,41 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.FilterVisuals.Enabled:
-        enabled:
-          True: { state: gasFilterFOn }
-          False: { state: gasFilterF }
+      # Starlight BEGIN
+      enum.FilterVisuals.Inlet:
+        inlet:
+          Off: { color: '#00000000' }
+          SolidGreen: { color: '#00FF00', state: inletFSolid }
+          SolidYellow: { color: '#FFFF00', state: inletFSolid }
+          BlinkingYellow: { color: '#FFFF00', state: inletFBlink }
+          SolidRed: { color: '#FF0000', state: inletFSolid }
+          BlinkingRed: { color: '#FF0000', state: inletFBlink }
+      enum.FilterVisuals.Outlet:
+        outlet:
+          Off: { color: '#00000000' }
+          SolidGreen: { color: '#00FF00', state: outletFSolid }
+          SolidYellow: { color: '#FFFF00', state: outletFSolid }
+          BlinkingYellow: { color: '#FFFF00', state: outletFBlink }
+          SolidRed: { color: '#FF0000', state: outletFSolid }
+          BlinkingRed: { color: '#FF0000', state: outletFBlink }
+      enum.FilterVisuals.Side:
+        side:
+          Off: { color: '#00000000' }
+          SolidGreen: { color: '#00FF00', state: sideFSolid }
+          SolidYellow: {  color: '#FFFF00', state: sideFSolid }
+          BlinkingYellow: { color: '#FFFF00', state: sideFBlink }
+          SolidRed: { color: '#FF0000', state: sideFSolid }
+          BlinkingRed: { color: '#FF0000', state: sideFBlink }
+      enum.FilterVisuals.Core:
+        core:
+          Off: { color: '#00000000' }
+          SolidOrange: { color: '#FF8800', state: coreFSolid }
+          SolidGreen: { color: '#00FF00', state: coreFSolid }
+          SolidYellow: { color: '#FFFF00', state: coreFSolid }
+          BlinkingYellow: { color: '#FFFF00', state: coreFBlink }
+          SolidRed: { color: '#FF0000', state: coreFSolid }
+          BlinkingRed: { color: '#FF0000', state: coreFBlink }
+      # Starlight END
   - type: Construction
     node: filterflipped
 

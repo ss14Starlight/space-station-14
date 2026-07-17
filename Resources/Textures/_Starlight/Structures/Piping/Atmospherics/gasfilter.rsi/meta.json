@@ -8,22 +8,22 @@
     },
     "states": [
         {
-            "name": "gasMixer",
+            "name": "gasFilter",
             "directions": 4
         },
         {
-            "name": "gasMixerF",
+            "name": "gasFilterF",
             "directions": 4
         },
         {
-            "name": "gasMixerOn",
+            "name": "gasFilterOn",
             "directions": 4,
-            "delays": [[0.5,0.5,0.5,0.5],[0.5,0.5,0.5,0.5],[0.5,0.5,0.5,0.5],[0.5,0.5,0.5,0.5]]
+            "delays": [[0.2,0.2,0.2,0.2],[0.2,0.2,0.2,0.2],[0.2,0.2,0.2,0.2],[0.2,0.2,0.2,0.2]]
         },
         {
-            "name": "gasMixerFOn",
+            "name": "gasFilterFOn",
             "directions": 4,
-            "delays": [[0.5,0.5,0.5,0.5],[0.5,0.5,0.5,0.5],[0.5,0.5,0.5,0.5],[0.5,0.5,0.5,0.5]]
+            "delays": [[0.2,0.2,0.2,0.2],[0.2,0.2,0.2,0.2],[0.2,0.2,0.2,0.2],[0.2,0.2,0.2,0.2]]
         },
         {
             "name": "inletSolid",
@@ -44,12 +44,12 @@
             "delays": [[0.5,0.5],[0.5,0.5],[0.5,0.5],[0.5,0.5]]
         },
         {
-          "name": "sideSolid",
-          "directions": 4
+            "name": "sideSolid",
+            "directions": 4
         },
         {
-          "name": "sideFSolid",
-          "directions": 4
+            "name": "sideFSolid",
+            "directions": 4
         },
         {
             "name": "sideBlink",
