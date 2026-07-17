@@ -12,6 +12,22 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: gasFilter
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+        - state: inletSolid
+          map: [ "inlet" ]
+          shader: unshaded
+          color: '#00000000'
+        - state: sideSolid
+          map: [ "side" ]
+          shader: unshaded
+          color: '#00000000'
+        - state: outletSolid
+          map: [ "outlet" ]
+          shader: unshaded
+          color: '#00000000'
+        - state: coreSolid
+          map: [ "core" ]
+          shader: unshaded
+          color: '#00000000'
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasFilterInline
