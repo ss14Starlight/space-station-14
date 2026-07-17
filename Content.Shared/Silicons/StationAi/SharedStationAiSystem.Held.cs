@@ -189,7 +189,7 @@ public abstract partial class SharedStationAiSystem
         }
 
         // Starlight Start
-        if (_vision.IsOutsideCameraViewCached(args.Target))
+        if (_vision.IsOutsideCameraView(args.Target))
             return;
         // Starlight End
         var user = args.User;

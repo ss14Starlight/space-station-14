@@ -1,57 +1,46 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "State based copyright",
+  "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "bag",
-      "copyright": "SevenShades"
+      "name": "bag"
     },
     {
       "name": "bag-inhand-left",
-      "directions": 4,
-      "copyright": "SevenShades"
+      "directions": 4
     },
     {
       "name": "bag-inhand-right",
-      "directions": 4,
-      "copyright": "SevenShades"
+      "directions": 4
     },
     {
-      "name": "bag_folded",
-      "copyright": "SevenShades"
+      "name": "bag_folded"
     },
     {
-      "name": "paper",
-      "copyright": "Vermidia"
+      "name": "paper"
     },
     {
-      "name": "open_overlay",
-      "copyright": "SevenShades"
+      "name": "open_overlay"
     },
     {
-      "name": "bounty",
-      "copyright": "Vermidia"
+      "name": "bounty"
     },
     {
-      "name": "captains_paper",
-      "copyright": "Vermidia"
+      "name": "captains_paper"
     },
     {
-      "name": "invoice",
-      "copyright": "Vermidia"
+      "name": "invoice"
     },
     {
-      "name": "locked",
-      "copyright": "SevenShades"
+      "name": "locked"
     },
     {
-      "name": "unlocked",
-      "copyright": "SevenShades"
+      "name": "unlocked"
     }
   ]
 }

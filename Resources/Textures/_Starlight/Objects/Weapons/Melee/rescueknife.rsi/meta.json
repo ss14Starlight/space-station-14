@@ -1,23 +1,20 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "State based copyright",
+  "copyright": "Created by TacoLlama (github)",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "folded",
-      "copyright": "SevenShades"
+      "name": "folded"
     },
     {
-      "name": "icon",
-      "copyright": "SevenShades"
+      "name": "icon"
     },
     {
-      "name": "stored",
-      "copyright": "SevenShades"
+      "name": "stored"
     }
   ]
 }

@@ -156,8 +156,7 @@
   - type: Sprite
     layers:
     - state: generic
-    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
-      state: icon-hands
+    - state: icon-hands
   - type: ItemBorgModule
     hands:
     - forceRemovable: true
@@ -212,8 +211,7 @@
   - type: Sprite
     layers:
     - state: security
-    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
-      state: icon-nt
+    - state: icon-nt
   - type: ItemBorgModule
     hands:
     - item: WeaponPDW9TaserBorg
@@ -236,8 +234,7 @@
   - type: Sprite
     layers:
     - state: security
-    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
-      state: icon-nt
+    - state: icon-nt
   - type: ItemBorgModule
     hands:
     - item: BorgContrabandBag
@@ -351,7 +348,6 @@
   name: paperwork cyborg module
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: command
     - state: icon-paperwork
@@ -382,8 +378,7 @@
   - type: Sprite
     layers:
     - state: service
-    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
-      state: icon-bartending
+    - state: icon-bartending
   - type: ItemBorgModule
     hands:
     - item: DrinkGlass
@@ -508,8 +503,7 @@
   - type: Sprite
     layers:
     - state: service
-    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
-      state: icon-cooking
+    - state: icon-cooking
   - type: ItemBorgModule
     hands:
     - item: BorgDropper
@@ -774,8 +768,7 @@
   - type: Sprite
     layers:
     - state: medical
-    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
-      state: icon-surgery
+    - state: icon-surgery
   - type: ItemBorgModule
     hands:
     - item: Scalpel
@@ -898,7 +891,6 @@
   name: hauling cyborg module
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-mats
@@ -939,7 +931,6 @@
   name: mail cyborg module
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-mail
@@ -968,7 +959,6 @@
   description: Advanced module for cargo cyborgs, with specialised hydraulic clamps.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-loading
@@ -987,8 +977,7 @@
   - type: Sprite
     layers:
     - state: generic
-    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
-      state: icon-plumbing
+    - state: icon-plumbing
   - type: ItemBorgModule
     hands:
     - item: RPLDRecharging
@@ -1026,7 +1015,6 @@
   name: makeshift knife cyborg module
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: makeshift
     - state: icon-knife
@@ -1068,7 +1056,6 @@
   description: Enables the borg to provide some measaure of defense. Is Law 1 still intact?
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: mining
     - state: icon-salvage-defense

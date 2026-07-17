@@ -1,33 +1,28 @@
 {
   "version": 1,
   "license": "CC0-1.0",
-  "copyright": "State based copyright",
+  "copyright": "Created by TacoLlama (github) for Starlight",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon",
-      "copyright": "SevenShades"
+      "name": "icon"
     },
     {
       "name": "inhand-left",
-      "directions": 4,
-      "copyright": "SevenShades"
+      "directions": 4
     },
     {
       "name": "inhand-right",
-      "directions": 4,
-      "copyright": "SevenShades"
+      "directions": 4
     },
     {
-      "name": "ready",
-      "copyright": "SevenShades"
+      "name": "ready"
     },
     {
-      "name": "screen",
-      "copyright": "SevenShades"
+      "name": "screen"
     }
   ]
 }

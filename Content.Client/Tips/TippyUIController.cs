@@ -14,14 +14,12 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using static Content.Client.Tips.TippyUI;
-using Content.Client.Humanoid;
+using Content.Client.Humanoid; // Starlight
 using Content.Shared.Humanoid;
-using Content.Client._Starlight.Humanoid;
-using JetBrains.Annotations;
+using Content.Client._Starlight.Humanoid; // Starlight
 
 namespace Content.Client.Tips;
 
-[UsedImplicitly] // Starlight
 public sealed partial class TippyUIController : UIController
 {
     [Dependency] private IConfigurationManager _cfg = default!;
@@ -43,12 +41,13 @@ public sealed partial class TippyUIController : UIController
     {
         base.Initialize();
         UIManager.OnScreenChanged += OnScreenChanged;
-    // Starlight begin - Why the fuck are we even subscribing to an event in here that should be a crime, moved to system.
+        SubscribeNetworkEvent<TippyEvent>(OnTippyEvent);
     }
 
-    public void AddTippyToQueue(TippyEvent msg) =>
+    private void OnTippyEvent(TippyEvent msg, EntitySessionEventArgs args)
+    {
         _queuedMessages.Enqueue(msg);
-    // Starlight end
+    }
 
     public override void FrameUpdate(FrameEventArgs args)
     {

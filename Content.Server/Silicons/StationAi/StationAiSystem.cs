@@ -154,7 +154,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             }
 
             // Check if target is outside AI camera view
-            if (_aiVision.IsOutsideCameraViewCached(target))
+            if (_aiVision.IsOutsideCameraView(target))
             {
                 _followerSystem.StopFollowingEntity(follower, target);
                 _followTargetsToRemove.Add(target);
@@ -247,7 +247,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             }
 
             // Don't show crew members outside of camera view
-            if (_aiVision.IsOutsideCameraViewCached(ownerUid)) // starlight
+            if (_aiVision.IsOutsideCameraView(ownerUid))
                 continue;
 
             var display = string.IsNullOrWhiteSpace(status.Job)
