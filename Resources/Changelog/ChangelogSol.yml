@@ -117,4 +117,11 @@ Entries:
   id: 320001
   time: '2026-07-17T03:03:35.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/32
+- author: AprilCatStreams
+  changes:
+  - message: Allow screwdrivers to remove items from borg modules.
+    type: Add
+  id: 380001
+  time: '2026-07-17T11:25:08.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/38
 
