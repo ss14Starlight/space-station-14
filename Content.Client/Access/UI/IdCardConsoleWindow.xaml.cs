@@ -38,6 +38,11 @@ namespace Content.Client.Access.UI
 
         // The job that will be picked if the ID doesn't have a job on the station.
         private static ProtoId<JobPrototype> _defaultJob = "Assistant";
+        /// <summary>
+        /// True when the job dropdown shows <see cref="_defaultJob"/> only because the
+        /// card's real job is not in the list. Must not be written back as a job change.
+        /// </summary>
+        private bool _jobProtoIsFallback;
         // Starlight-edit: Start
         private ProtoId<AccessGroupPrototype>? _selectedAccessGroup = null;
         public Action<ProtoId<AccessGroupPrototype>>? OnGroupSelected;
@@ -170,6 +175,7 @@ namespace Content.Client.Access.UI
                 return;
             }
 
+            _jobProtoIsFallback = false;
             JobTitleLineEdit.Text = Loc.GetString(job.Name);
             args.Button.SelectId(args.Id);
 
@@ -376,6 +382,11 @@ namespace Content.Client.Access.UI
             if (jobIndex < 0)
             {
                 jobIndex = _jobPrototypeIds.IndexOf(_defaultJob);
+                _jobProtoIsFallback = true;
+            }
+            else
+            {
+                _jobProtoIsFallback = false;
             }
 
             JobPresetOptionButton.SelectId(jobIndex);
@@ -387,8 +398,9 @@ namespace Content.Client.Access.UI
 
         private void SubmitData()
         {
-            // Don't send this if it isn't dirty.
-            var jobProtoDirty = _lastJobProto != null &&
+            // Don't send this if it isn't dirty. A display-only Assistant fallback is not a change.
+            var jobProtoDirty = !_jobProtoIsFallback &&
+                                _lastJobProto != null &&
                                 _jobPrototypeIds[JobPresetOptionButton.SelectedId] != _lastJobProto;
 
             // Starlight-edit: Start
