@@ -138,4 +138,12 @@ Entries:
   id: 410001
   time: '2026-07-17T12:49:21.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/41
+- author: AprilCatStreams
+  changes:
+  - message: Added a remote station anchor terminal for ease of access on some stations
+      like Reach.
+    type: Add
+  id: 430001
+  time: '2026-07-17T13:59:35.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/43
 
