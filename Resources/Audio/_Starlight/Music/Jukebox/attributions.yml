@@ -3,7 +3,7 @@
   copyright: "JAM, https://modarchive.org/index.php?request=view_profile&query=81691"
   source: "https://modarchive.org/index.php?request=view_by_moduleid&query=168639"
 
-- files: ["CC_Interns"] # This audio is AI generated I believe? Whatever suno is, anyway. I was forced to put this here.
+- files: ["cc_interns.ogg"] # This audio is AI generated I believe? Whatever suno is, anyway. I was forced to put this here.
   license: "CC0-1.0"
   copyright: "Karma, Suno"
   source: "https://suno.com/song/1902325b-b4ab-4989-9554-f8dd2c99ea09?sh=rTAE5vmLV4o9nHmQ"
@@ -17,4 +17,3 @@
   license: "CC0-1.0"
   copyright: "Christofori, http://www.christofori.net"
   source: "https://modarchive.org/index.php?request=view_profile&query=69248"
-
