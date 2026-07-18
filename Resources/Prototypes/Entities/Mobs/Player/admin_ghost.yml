@@ -134,7 +134,9 @@
       - Hybrid
   - type: ShowHungerIcons
   - type: ShowThirstIcons
-  - type: ShowAccess # Starlight END
+  - type: ShowAccess
+    seeIdHolder: true
+    itemsOnly: false # Starlight END
   - type: ShowContrabandDetails
   - type: Inventory
     templateId: aghost
