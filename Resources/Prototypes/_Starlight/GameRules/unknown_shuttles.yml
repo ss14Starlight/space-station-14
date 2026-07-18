@@ -182,7 +182,7 @@
     weight: 11 # this is higher because its just a little generic personal shuttle
     maxOccurrences: 4
   - type: LoadMapRule
-    gridPath: /Maps/_Starlight/ShuttleEvent/microshuttle.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/microshuttle.yml
 
 - type: entity
   parent: BaseUnknownShuttleRule
