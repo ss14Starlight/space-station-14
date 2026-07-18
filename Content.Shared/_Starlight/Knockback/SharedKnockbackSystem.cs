@@ -113,7 +113,7 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
             {
                 var tagdata = ent.Comp.DoestContain[tag];
                 totalData.Knockback += tagdata.Knockback;
-                totalData.StaminaMultiplier = tagdata.StaminaMultiplier;
+                totalData.StaminaMultiplier += tagdata.StaminaMultiplier;
                 hadAnyMatches = true;
             }
         }
