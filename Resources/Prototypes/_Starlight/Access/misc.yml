@@ -84,6 +84,7 @@
   - Blackstar
   - MedTak
   - ETO
+  - Visitor
 
 - type: accessGroup
   id: Syndicate
@@ -99,3 +100,7 @@
   id: Pirate
   tags:
   - Pirate
+
+- type: accessLevel
+  id: Visitor
+  name: id-card-access-level-visitor
