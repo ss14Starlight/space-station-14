@@ -14,7 +14,7 @@
     doestContain:
       Skating:
         knockback: 5
-        staminaMultiplier: 30
+        staminaMultiplier: 20
       Rodentia:
         knockback: 10
         staminaMultiplier: 18
@@ -140,7 +140,7 @@
     doestContain:
       Skating:
         knockback: -2.5
-        staminaMultiplier: 20
+        staminaMultiplier: 10
       Rodentia:
         knockback: -10
         staminaMultiplier: 20
