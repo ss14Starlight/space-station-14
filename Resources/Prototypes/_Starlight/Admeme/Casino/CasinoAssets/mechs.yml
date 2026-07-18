@@ -9,7 +9,7 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: _Starlight\Admeme\Casino\Objects\mechs\house.rsi
+      sprite: _Starlight/Admeme/Casino/Objects/mechs/house.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
           state: base
@@ -47,8 +47,20 @@
       pryPowered: true
 
 - type: entity
+  id: MechHouseBattery
+  parent: MechHouse
+  suffix: Battery, Air
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorAntique
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+- type: entity
   id: MechHouseFilled
-  parent: MechSeraphBattery
+  parent: MechHouseBattery
   suffix: Battery, Filled
   components:
     - type: Mech
