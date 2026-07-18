@@ -44,7 +44,8 @@ public sealed partial class ScentSniffMenu : DefaultWindow
             };
 
             var idLabel = new RichTextLabel();
-            idLabel.SetMarkup(Loc.GetString("scent-sniff-window-entry-id", ("id", entry.ScentId[..8]), ("color", color)));
+            var displayId = entry.ScentId.Length >= 8 ? entry.ScentId[..8] : entry.ScentId;
+            idLabel.SetMarkup(Loc.GetString("scent-sniff-window-entry-id", ("id", displayId), ("color", color)));
             content.AddChild(idLabel);
 
             var detailLabel = new RichTextLabel();

@@ -42,6 +42,7 @@ public sealed class ScentSystem : SharedScentSystem
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
 
     private const string ScentMarkerPrototype = "ScentMarker";
+    private const int ScentIdByteLength = 8;
 
     private static readonly SoundSpecifier _sniffObjectSound = new SoundPathSpecifier("/Audio/_Starlight/Scent/dog_sniff.ogg");
     private static readonly TimeSpan _sniffObjectDelay = TimeSpan.FromSeconds(1.5);
@@ -157,6 +158,18 @@ public sealed class ScentSystem : SharedScentSystem
 
     private void OnTrackMessage(EntityUid uid, SmellerComponent component, ScentSniffTrackMessage args)
     {
+        if (component.SniffTarget is not { } target || !Exists(target))
+            return;
+
+        if (!TryComp<TransformComponent>(uid, out var xform) || !TryComp<TransformComponent>(target, out var targetXform))
+            return;
+
+        if (!_transform.InRange(xform.Coordinates, targetXform.Coordinates, component.SniffRange))
+            return;
+
+        if (!TryComp<ScentTraceComponent>(target, out var trace) || !trace.Scents.ContainsKey(args.ScentId))
+            return;
+
         SetTrackedScent((uid, component), args.ScentId);
         _popup.PopupEntity(Loc.GetString("scent-sniff-window-tracking-popup"), uid, uid);
     }
@@ -296,7 +309,7 @@ public sealed class ScentSystem : SharedScentSystem
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
-        var scent = new byte[8];
+        var scent = new byte[ScentIdByteLength];
         _random.NextBytes(scent);
         ent.Comp.ScentId = Convert.ToHexString(scent);
         Dirty(ent.Owner, ent.Comp);
@@ -360,8 +373,8 @@ public sealed class ScentSystem : SharedScentSystem
         base.Update(frameTime);
 
         var now = _timing.CurTime;
-        var query = EntityQueryEnumerator<ScentComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var scent, out var xform))
+        var query = EntityQueryEnumerator<ScentComponent>();
+        while (query.MoveNext(out var uid, out var scent))
         {
             if (scent.ScentId is not { } scentId)
                 continue;
@@ -373,7 +386,9 @@ public sealed class ScentSystem : SharedScentSystem
                 continue;
 
             scent.NextEmitTime = now + RollEmitDelay(scent);
-            EmitScent((uid, scent, xform), scentId);
+
+            if (TryComp<TransformComponent>(uid, out var xform))
+                EmitScent((uid, scent, xform), scentId);
         }
     }
 
