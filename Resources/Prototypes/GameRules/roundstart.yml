@@ -104,24 +104,19 @@
   parent: BaseGameRule
   components:
   - type: DeathMatchRule
-    rewardSpawns:
-    - id: HealingToolbox
-    - id: ClothingOuterArmorBasicSlim
-      orGroup: loot
-    - id: ClothingHeadHelmetBasic
-      orGroup: loot
-    - id: SoapNT
-      orGroup: loot
-    - id: Bola
-      orGroup: loot
-    - id: Spear
-      orGroup: loot
-    - id: ClothingShoesGaloshes
-      orGroup: loot
-    - id: FoodPieBananaCream
-      orGroup: loot
-    - id: Stimpack
-      orGroup: loot
+    rewardSpawns: !type:AllSelector
+      children:
+      - id: HealingToolbox
+      - !type:GroupSelector
+        children:
+        - id: ClothingOuterArmorBasicSlim
+        - id: ClothingHeadHelmetBasic
+#        - id: SoapNT # Starlight, the soap sucks
+        - id: Bola
+        - id: Spear
+        - id: ClothingShoesGaloshes
+        - id: FoodPieBananaCream
+        - id: Stimpack
   - type: KillCalloutRule
   - type: PointManager
   - type: RespawnDeadRule
@@ -557,17 +552,6 @@
       tableId: CalmPestEventsTable
     - !type:NestedSelector
       tableId: SpicyPestEventsTable
-
-- type: entityTable
-  id: SpaceTrafficControlTable
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-      - !type:NestedSelector
-        tableId: UnknownShuttlesFriendlyTable
-      - !type:NestedSelector
-        tableId: UnknownShuttlesFreelanceTable
-      - !type:NestedSelector
-        tableId: UnknownShuttlesHostileTable
 
 - type: entity
   id: BasicStationEventScheduler

@@ -160,11 +160,11 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
             && proto.Prototype != null
             && _prototypeManager.TryIndex(proto.Prototype, out var entProto)) // don't use Resolve because this can be a tile
         {
-            tooltip = Loc.GetString(entProto.Name);
+            tooltip = entProto.Name; //Starlight: no name field?
         }
         else
         {
-            tooltip = Loc.GetString(proto.SetName);
+            tooltip = Loc.GetString(proto.SetName); //Starlight comment: Has name field?
         }
 
         tooltip = OopsConcat(char.ToUpper(tooltip[0]).ToString(), tooltip.Remove(0, 1));
