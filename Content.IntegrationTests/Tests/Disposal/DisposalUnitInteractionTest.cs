@@ -1,7 +1,7 @@
 using Content.IntegrationTests.Tests.Interaction;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Content.Server._Starlight.Containers;
+using Content.Shared._Starlight.Containers;
 
 namespace Content.IntegrationTests.Tests.Disposal;
 

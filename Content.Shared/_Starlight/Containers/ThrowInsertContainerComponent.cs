@@ -1,7 +1,7 @@
 using Content.Shared._Starlight.Containers;
 using Robust.Shared.Audio;
 
-namespace Content.Server._Starlight.Containers;
+namespace Content.Shared._Starlight.Containers;
 
 /// <summary>
 /// Allows objects to fall inside the Container when thrown
