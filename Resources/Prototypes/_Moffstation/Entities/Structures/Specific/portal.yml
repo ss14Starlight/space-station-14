@@ -1,3 +1,4 @@
+# Base
 - type: entity
   id: BaseHostilePortal
   abstract: true
@@ -39,6 +40,12 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
+
+- type: entity
+  parent: BaseHostilePortal
+  id: BaseHostilePortalTriggered
+  abstract: true
+  components:
   - type: TriggerOnSpawn
   - type: RepeatingTrigger
     delay: 30
@@ -48,18 +55,19 @@
     sound:
       collection: RadiationPulse
 
-
+# Hellportal
 - type: entity
   parent: BaseHostilePortal
   id: HellPortal
   name: hell portal
   description: a portal letting loose the worst hell has to offer.
   components:
-  - type: SpawnEntityTableOnTrigger
-    useMapCoords: true
-    table: !type:AllSelector
+  - type: WarpPoint
+    location: Hell Portal
+  - type: Hellportal
+    basicSpawnTable: !type:AllSelector
       children:
-      - !type:GroupSelector # The base foot soliders that spawn every time
+      - !type:GroupSelector
         rolls: !type:RangeNumberSelector
           range: 3, 5
         children:
@@ -68,10 +76,12 @@
         - id: MobFleshClampSmasher
         - id: MobFleshJaredSmasher
         - id: MobAbominationSmasher
-      - !type:GroupSelector # The base foot soliders that spawn every time
+      - !type:GroupSelector
         prob: 0.3
         children:
         - id: MobHellhound
-        - id: MobGoliath
+        - id: MobHellGoliath
         - id: MobHellspawnSmasher
           weight: 0.05
+    sound:
+      collection: RadiationPulse

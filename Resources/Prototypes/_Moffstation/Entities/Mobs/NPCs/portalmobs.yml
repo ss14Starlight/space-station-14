@@ -1,35 +1,50 @@
 - type: entity
-  parent: [ BaseSmasherHostile, MobFleshLover ]
+  abstract: true
+  parent: BaseSmasherHostile
+  id: BaseHellportalMob
+  components:
+  - type: HellportalMob
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: GibOnTrigger
+    deleteItems: true
+  - type: SpawnOnTrigger
+    proto: Ash # TODO: custom demons, add demonic essence
+    predicted: true
+
+- type: entity
+  parent: [ BaseHellportalMob, MobFleshLover ]
   id: MobFleshLoverSmasher
   name: hellhound
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ BaseSmasherHostile, MobFleshGolem ]
+  parent: [ BaseHellportalMob, MobFleshGolem ]
   id: MobFleshGolemSmasher
   name: hellhound
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ BaseSmasherHostile, MobFleshClamp ]
+  parent: [ BaseHellportalMob, MobFleshClamp ]
   id: MobFleshClampSmasher
   name: hellhound
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ BaseSmasherHostile, MobFleshJared ]
+  parent: [ BaseHellportalMob, MobFleshJared ]
   id: MobFleshJaredSmasher
   name: hellhound
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ BaseSmasherHostile, MobAbomination ]
+  parent: [ BaseHellportalMob, MobAbomination ]
   id: MobAbominationSmasher
   name: hellhound
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [ BaseSmasherHostile, MobCorgiNarsi ]
+  parent: [ BaseHellportalMob, MobCorgiNarsi ]
   id: MobHellhound
   name: hellhound
   categories: [ HideSpawnMenu ]
@@ -40,6 +55,11 @@
     - SimpleHostile
 
 - type: entity
-  parent: [ BaseSmasherHostile, MobHellspawn ]
+  parent: [ BaseHellportalMob, MobGoliath ]
+  id: MobHellGoliath
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ BaseHellportalMob, MobHellspawn ]
   id: MobHellspawnSmasher
   name: hellspawn
