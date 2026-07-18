@@ -12,6 +12,7 @@ using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Kitchen.EntitySystems;
+using Content.Shared._Starlight.Access;
 
 namespace Content.Server.Access.Systems;
 
@@ -29,11 +30,43 @@ public sealed partial class IdCardSystem : SharedIdCardSystem
         base.Initialize();
 
         SubscribeLocalEvent<IdCardComponent, BeingMicrowavedEvent>(OnMicrowaved);
+        SubscribeLocalEvent<MakeshiftIdCardComponent, BeingMicrowavedEvent>(OnMakeshiftMicrowaved); // Starlight
     }
 
     private void OnMicrowaved(EntityUid uid, IdCardComponent component, BeingMicrowavedEvent args)
     {
-        if (!component.CanMicrowave || !TryComp<CookingDeviceComponent>(args.Microwave, out var micro) || micro.Broken) // Starlight-edit
+        if (!component.CanMicrowave) // Starlight-edit-edit - Moved to the other function
+            return;
+
+        DoMicrowave(uid, args); // Starlight - Move to separate function to avoid reusing code.
+    }
+
+    public override void ExpireId(Entity<ExpireIdCardComponent> ent)
+    {
+        if (ent.Comp.Expired)
+            return;
+
+        base.ExpireId(ent);
+
+        if (ent.Comp.ExpireMessage != null)
+        {
+            _chat.TrySendInGameICMessage(
+                ent,
+                Loc.GetString(ent.Comp.ExpireMessage),
+                InGameICChatType.Speak,
+                ChatTransmitRange.Normal,
+                true);
+        }
+    }
+
+    #region Starlight
+
+    public void OnMakeshiftMicrowaved(Entity<MakeshiftIdCardComponent> ent, ref BeingMicrowavedEvent args)
+        => DoMicrowave(ent, args);
+
+    private void DoMicrowave(EntityUid uid, BeingMicrowavedEvent args)
+    {
+        if (!TryComp<CookingDeviceComponent>(args.Microwave, out var micro) || micro.Broken)
             return;
 
         if (TryComp<AccessComponent>(uid, out var access))
@@ -93,25 +126,8 @@ public sealed partial class IdCardSystem : SharedIdCardSystem
 
             _adminLogger.Add(LogType.Action, LogImpact.High,
                     $"{ToPrettyString(args.Microwave)} added {random.ID} access to {ToPrettyString(uid):entity}");
-
         }
     }
 
-    public override void ExpireId(Entity<ExpireIdCardComponent> ent)
-    {
-        if (ent.Comp.Expired)
-            return;
-
-        base.ExpireId(ent);
-
-        if (ent.Comp.ExpireMessage != null)
-        {
-            _chat.TrySendInGameICMessage(
-                ent,
-                Loc.GetString(ent.Comp.ExpireMessage),
-                InGameICChatType.Speak,
-                ChatTransmitRange.Normal,
-                true);
-        }
-    }
+    #endregion
 }

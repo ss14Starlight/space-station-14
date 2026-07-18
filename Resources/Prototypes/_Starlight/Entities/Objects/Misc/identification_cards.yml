@@ -663,6 +663,7 @@
   name: makeshift ID card
   description: A set of door electronics rewired to act as an ID card.
   components: # Noteably absent is the ID card component and nanochat component - so borgs will treat you as non crew. It also can't be used in a PDA, and cannot be reprogrammed by an ID card computer.
+  - type: MakeshiftIdCard
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     state: makeshift
