@@ -23,7 +23,6 @@ job-title-borgi = Borgi
 job-title-tsf-Phantom = Phantom Marine
 job-title-tsf-MARSOC = MARSOC Marine
 
-
 job-name-blackstar = Blackstar Mercenary
 
 job-name-medtak-dispatcher = MedTak Dispatcher
