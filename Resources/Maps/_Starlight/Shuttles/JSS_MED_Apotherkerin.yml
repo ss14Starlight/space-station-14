@@ -1829,8 +1829,6 @@ entities:
       pos: 3.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 2
     - type: AtmosPipeColor
@@ -1919,8 +1917,6 @@ entities:
       pos: 3.5,1.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 2
     - type: AtmosPipeColor
@@ -2325,7 +2321,7 @@ entities:
     components:
     - type: MetaData
       desc: Locks and unlocks the access doors in the ship
-      name: Shuttle keys (JSS Apotherkerin)
+      name: Shuttle keys (JSS-MED Apotherkerin)
     - type: Transform
       pos: 2.5639603,1.4121802
       parent: 1
