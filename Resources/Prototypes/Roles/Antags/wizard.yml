@@ -26,8 +26,6 @@
 - type: antagSpecifier
   parent: RestrictedAntag
   id: Wizard
-  prefRoles: # Starlight
-  - Wizard # Starlight
   spawnerPrototype: SpawnPointGhostWizard
   startingGear: WizardBlueGear
   roleLoadout:

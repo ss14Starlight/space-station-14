@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseRoundstartAntagRule # Starlight
+  parent: BaseGameRule
   id: WizardDuel
   components:
   - type: LoadMapRule
