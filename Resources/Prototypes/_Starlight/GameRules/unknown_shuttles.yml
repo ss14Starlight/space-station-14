@@ -19,6 +19,7 @@
     - id: UnknownShuttleMicroshuttle
     - id: UnknownShuttleSpacebus
     - id: UnknownShuttleFireResponse
+    - id: UnknownShuttleQuail
 
 - type: entityTable
   id: UnknownShuttlesFreelanceTable
@@ -181,7 +182,7 @@
     weight: 11 # this is higher because its just a little generic personal shuttle
     maxOccurrences: 4
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/microshuttle.yml
+    gridPath: /Maps/_Starlight/ShuttleEvent/microshuttle.yml
 
 - type: entity
   parent: BaseUnknownShuttleRule
@@ -191,7 +192,7 @@
     startAnnouncement: station-event-unknown-shuttle-incoming
     maxOccurrences: 3
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/disaster_evacpod.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/disaster_evacpod.yml
 
 # The power of 3 clowns proved too strong for the players and may need to be 1984'ed. Replace this with a more engaging clown shuttle. # Ill honour this in a diff PR for whoever put this here beforehand. - Johnny
 - type: entity
@@ -202,4 +203,4 @@
     startAnnouncement: station-event-unknown-shuttle-incoming #!!
     weight: 2
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/honki.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/honki.yml
