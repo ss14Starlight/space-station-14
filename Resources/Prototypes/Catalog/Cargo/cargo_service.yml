@@ -109,16 +109,6 @@
   group: market
 
 - type: cargoProduct
-  id: ServiceDocumentPrinter
-  icon:
-    sprite: _Starlight/Structures/Machines/printer.rsi
-    state: icon
-  product: CrateServiceDocumentPrinter
-  cost: 2000
-  category: cargoproduct-category-name-service
-  group: market
-
-- type: cargoProduct
   id: ServicePersonnel
   icon:
     sprite: Objects/Misc/id_cards.rsi
