@@ -1,0 +1,73 @@
+- type: entity
+  parent: GasTrinaryBase
+  id: GasMolarMixer
+  name: molar gas mixer
+  description: Very useful for mixing gases.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SubFloorHide
+    visibleLayers:
+    - enum.SubfloorLayers.FirstLayer
+  - type: Sprite
+    sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
+    layers:
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeTrinaryConnectors
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: gasMixer
+      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FilterVisuals.Enabled:
+        enabled:
+          True: { state: gasMixerOn }
+          False: { state: gasMixer }
+  - type: PipeColorVisuals
+  - type: UserInterface
+    interfaces:
+      enum.GasMixerUiKey.Key:
+        type: GasMixerBoundUserInterface
+  - type: GasMixerMolar
+    enabled: false
+    inletOne: inlet
+    inletTwo: filter
+  - type: Flippable
+    mirrorEntity: GasMixerFlipped
+  - type: Construction
+    graph: GasTrinary
+    node: mixer
+  - type: AmbientSound
+    enabled: false
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/gas_hiss.ogg
+  - type: AtmosMonitoringConsoleDevice
+    navMapBlip: GasFlowRegulator
+  - type: GuideHelp
+    guides:
+    - MixingAndFiltering
+
+- type: entity
+  parent: GasMixerFlipped
+  id: GasMolarMixerFlipped
+  name: molar gas mixer
+  suffix: Flipped
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
+    layers:
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeTrinaryConnectors
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: gasMixerF
+      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Appearance
+  - type: Flippable
+    mirrorEntity: GasMolarMixer
+  - type: Construction
+    node: molarmixerflipped

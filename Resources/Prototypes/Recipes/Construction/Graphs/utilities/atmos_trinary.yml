@@ -108,6 +108,20 @@
         amount: 2
         doAfter: 1
 
+    # Moffstation - Begin - Molar mixer
+    - to: molarmixer
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: molarmixerflipped
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    # Moffstation - End
+
     # Carpmosia-start - Atmos Alt Prototypes
     - to: mixerflippedAlt1
       steps:
@@ -429,6 +443,41 @@
       steps:
       - tool: Welding
         doAfter: 1
+
+  # Moffstation - Begin - Molar mixer
+  - node: molarmixer
+    entity: GasMolarMixer
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: molarmixerflipped
+    entity: GasMolarMixerFlipped
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+  # Moffstation - End
+
   # Carpmosia-start - Atmos Alt Prototypes
   - node: mixerflippedAlt1
     entity: GasMixerFlippedAlt1
