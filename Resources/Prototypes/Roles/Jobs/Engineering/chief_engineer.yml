@@ -35,6 +35,7 @@
   - GenpopEnter #starlight
   - GenpopLeave #starlight
   - Debrief # Starlight
+  - Shuttle # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

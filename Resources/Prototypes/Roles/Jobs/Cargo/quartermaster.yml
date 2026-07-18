@@ -36,6 +36,7 @@
   - Brig
   - Cryogenics
   - Debrief # Starlight
+  - Shuttle # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

@@ -36,6 +36,7 @@
   - Surgery # Starlight
   - Paramedic # Starlight
   - Debrief # Starlight
+  - Shuttle # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

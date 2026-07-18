@@ -178,6 +178,8 @@
         whitelist:
           components:
           - PAI
+  - type: AccessReader
+  - type: ActivatableUIRequiresAccess
       # Starlight-end
   - type: ContainerContainer
     containers:
@@ -281,6 +283,8 @@
     board: CargoShuttleConsoleCircuitboard
   - type: StealTarget
     stealGroup: CargoShuttleConsoleCircuitboard
+  - type: AccessReader
+    access: [["Shuttle"]]
 
 - type: entity
   parent: BaseComputerAiAccess
