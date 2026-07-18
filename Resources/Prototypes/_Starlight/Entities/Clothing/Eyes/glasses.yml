@@ -168,6 +168,7 @@
     - type: ShowAccessReaderSettings
     - type: ShowAccess
       seeIdHolder: true
+      itemsOnly: false
     - type: ShowHealthBars
       damageContainers:
         - Biological
