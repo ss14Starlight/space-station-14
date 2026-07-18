@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (Reach) Multiple rooms have been expanded to hopefully be better.
-    type: Tweak
-  id: 406319
-  time: '2026-07-01T08:09:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4946
-- author: Johnny
-  changes:
   - message: (Reach) Some pipes and cables were missing, nothing too bad but its fixed now.
     type: Fix
   id: 406320
@@ -2799,4 +2792,11 @@ Entries:
   id: 406718
   time: '2026-07-18T12:18:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: Johnny
+  changes:
+  - message: Added around 20 of the lobby songs into the jukebox to be able to be played.
+    type: Add
+  id: 406719
+  time: '2026-07-18T18:22:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5176
 Order: -1
