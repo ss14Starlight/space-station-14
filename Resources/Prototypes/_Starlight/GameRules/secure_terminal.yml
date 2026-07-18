@@ -1,41 +1,3 @@
-# ERT Chaplain "Antag"
-- type: antagSpecifier
-  parent: RestrictedAntag
-  id: ERTChaplain
-  spawnerPrototype: SpawnPointGhostERTChaplain
-  pickPlayer: false # As funny as it would be, we can't let your characters be CC. Tragic!
-  startingGear: ERTChaplainGearEVA
-  roleLoadout:
-  - RoleSurvivalMilitaryDouble
-  mindRoles:
-  - MindRoleGhostCorporateAligned
-  components:
-  - type: BibleUser
-  - type: RandomMetadata
-    nameSegments:
-    - NamesMilitaryLast
-    nameFormat: name-format-ert-specialist
-  - type: AutoImplant
-    implants:
-    - MindShieldImplant
-    - DeathRattleImplantCentcomm
-  - type: SpawnOnTrigger
-    proto: ERTChaplainSpawnEffect
-  - type: TriggerOnSpawn
-
-# Gamerules
-- type: entity
-  parent: BaseAntagGhostRoleRule
-  id: ERTChaplainSpawn
-  components:
-  - type: StationEvent
-  - type: AntagRandomSpawn
-  - type: AntagLoadProfileRule
-  - type: AntagSelection
-    antags:
-    - !type:FixedAntagCount
-      proto: ERTChaplain
-
 - type: entity
   parent: BaseGameRule
   id: WarOpsERTSpawn
@@ -93,6 +55,15 @@
   - type: RuleGrids
   - type: LoadMapRule
     gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTChaplainSpawn
+  components:
+  - type: StationEvent
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/CC-NT/Chaplain_GRID.yml
 
 # Spawners
 - type: entity
@@ -246,20 +217,19 @@
     - RandomHumanoidSpawnerCBURNCorpsman
 
 - type: entity
-  categories: [HideSpawnMenu, Spawner]
-  parent: BaseAntagSpawner
   id: SpawnPointGhostERTChaplain
+  parent: MarkerBase
+  name: ERT spawn point
+  suffix: Chaplain
   components:
-  - type: GhostRole
-    name: ghost-role-information-ert-chaplain-name
-    description: ghost-role-information-ert-chaplain-description
-    rules: ghost-role-information-corporate-aligned-rules
-    mindRoles:
-    - MindRoleGhostCorporateAligned
-    raffle:
-      settings: short
-    job: ERTChaplain
-    important: true
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: chaplain
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTChaplain
 
 # Misc
 - type: entity
