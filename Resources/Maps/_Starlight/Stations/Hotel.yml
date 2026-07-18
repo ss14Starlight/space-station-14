@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/15/2026 14:33:38
-  entityCount: 22310
+  time: 07/18/2026 10:58:58
+  entityCount: 22313
 maps:
 - 1
 grids:
@@ -7803,7 +7803,7 @@ entities:
       pos: 8.5,6.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -235613.6
+      secondsUntilStateChange: -236169.55
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9508,7 +9508,7 @@ entities:
       pos: 2.5,-7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -197737.66
+      secondsUntilStateChange: -198293.61
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9674,7 +9674,7 @@ entities:
       pos: -38.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249789.08
+      secondsUntilStateChange: -250345.03
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9690,7 +9690,7 @@ entities:
       pos: -36.5,-10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249688.14
+      secondsUntilStateChange: -250244.1
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -54478,12 +54478,12 @@ entities:
   - uid: 8801
     components:
     - type: Transform
-      pos: -35.559685,18.834204
+      pos: -35.31603,22.500866
       parent: 2
   - uid: 8802
     components:
     - type: Transform
-      pos: -35.465935,18.646704
+      pos: -32.692623,22.469616
       parent: 2
   - uid: 8803
     components:
@@ -56532,15 +56532,15 @@ entities:
     - type: Transform
       pos: -12.5,10.5
       parent: 2
-  - uid: 9094
-    components:
-    - type: Transform
-      pos: -32.5,18.5
-      parent: 2
   - uid: 9095
     components:
     - type: Transform
       pos: -38.5,-1.5
+      parent: 2
+  - uid: 9098
+    components:
+    - type: Transform
+      pos: -35.5,20.5
       parent: 2
 - proto: CrateFunBoardGames
   entities:
@@ -56568,15 +56568,15 @@ entities:
       - - ResearchDirector
 - proto: CrateMedicalSurgery
   entities:
-  - uid: 9098
-    components:
-    - type: Transform
-      pos: -34.5,18.5
-      parent: 2
   - uid: 9099
     components:
     - type: Transform
       pos: -26.5,-17.5
+      parent: 2
+  - uid: 15508
+    components:
+    - type: Transform
+      pos: -33.5,18.5
       parent: 2
 - proto: CrateNPCHamlet
   entities:
@@ -105244,10 +105244,10 @@ entities:
       parent: 2
 - proto: HolopadMedicalSurgery
   entities:
-  - uid: 15867
+  - uid: 15402
     components:
     - type: Transform
-      pos: -35.5,20.5
+      pos: -33.5,19.5
       parent: 2
 - proto: HolopadScienceAnomaly
   entities:
@@ -106448,6 +106448,18 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+- proto: LockerSurgeonFilled
+  entities:
+  - uid: 8560
+    components:
+    - type: Transform
+      pos: -32.5,18.5
+      parent: 2
+  - uid: 9094
+    components:
+    - type: Transform
+      pos: -34.5,18.5
+      parent: 2
 - proto: LockerWardenFilled
   entities:
   - uid: 16031
@@ -106835,7 +106847,7 @@ entities:
   - uid: 16095
     components:
     - type: Transform
-      pos: -33.48156,18.568579
+      pos: -35.4895,18.61064
       parent: 2
   - uid: 16096
     components:
@@ -119845,6 +119857,16 @@ entities:
     - type: Transform
       pos: -23.5,-14.5
       parent: 2
+  - uid: 15511
+    components:
+    - type: Transform
+      pos: -25.5,-12.5
+      parent: 2
+  - uid: 15512
+    components:
+    - type: Transform
+      pos: -18.5,-11.5
+      parent: 2
   - uid: 18123
     components:
     - type: Transform
@@ -120001,15 +120023,15 @@ entities:
       parent: 2
 - proto: SpawnPointSurgeon
   entities:
+  - uid: 15513
+    components:
+    - type: Transform
+      pos: -32.5,19.5
+      parent: 2
   - uid: 18151
     components:
     - type: Transform
       pos: -34.5,19.5
-      parent: 2
-  - uid: 18152
-    components:
-    - type: Transform
-      pos: -33.5,19.5
       parent: 2
 - proto: SpawnPointTechnicalAssistant
   entities:
@@ -122853,11 +122875,6 @@ entities:
     components:
     - type: Transform
       pos: -35.5,18.5
-      parent: 2
-  - uid: 18590
-    components:
-    - type: Transform
-      pos: -33.5,18.5
       parent: 2
   - uid: 18591
     components:
@@ -140296,6 +140313,18 @@ entities:
       parent: 2
 - proto: WindowDirectional
   entities:
+  - uid: 15509
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -33.5,21.5
+      parent: 2
+  - uid: 15510
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -34.5,21.5
+      parent: 2
   - uid: 21857
     components:
     - type: Transform
@@ -140343,23 +140372,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -34.5,22.5
       parent: 2
-  - uid: 21866
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -34.5,21.5
-      parent: 2
   - uid: 21867
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -33.5,22.5
-      parent: 2
-  - uid: 21868
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -33.5,21.5
       parent: 2
   - uid: 21869
     components:
