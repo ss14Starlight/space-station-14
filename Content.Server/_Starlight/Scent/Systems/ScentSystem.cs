@@ -426,7 +426,7 @@ public sealed class ScentSystem : SharedScentSystem
     }
 
     // Only merges into our own chain tail, never any other nearby marker. Revisiting an old spot
-    // would otherwise rewrite the trail's visit order.
+    // would otherwise rewrite the trail's visit order, causing the trail's specific path to be confused.
     private bool TryMergeIntoExisting(Entity<ScentComponent, TransformComponent> ent)
     {
         var (uid, scent, xform) = ent;
