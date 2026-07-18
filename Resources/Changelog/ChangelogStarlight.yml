@@ -1,81 +1,4 @@
 Entries:
-- author: BornStellar
-  changes:
-  - message: Taser fire mode on the MT-7G.
-    type: Add
-  id: 406285
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: department of the GSO job.
-    type: Fix
-  id: 406286
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: outfits for use in setting outfits of arbitrary entities (was requested by some admins).
-    type: Add
-  id: 406287
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: BornStellar
-  changes:
-  - message: names of the file names for the sprites of the X-03 shield to better match other sprite naming conventions.
-    type: Tweak
-  id: 406288
-  time: '2026-06-28T21:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4954
-- author: Johnny
-  changes:
-  - message: Added the advanced medipen as a lesser form of a combat medipen for ERT such as CBURN.
-    type: Add
-  id: 406289
-  time: '2026-06-28T21:56:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4936
-- author: Johnny
-  changes:
-  - message: Added a new role, the CBURN Corpsman.
-    type: Add
-  id: 406290
-  time: '2026-06-28T21:56:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4936
-- author: Johnny
-  changes:
-  - message: CBURN Agents loadout has been changed.
-    type: Tweak
-  id: 406291
-  time: '2026-06-28T21:56:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4936
-- author: Johnny
-  changes:
-  - message: All CBURN are automatically zombie immune.
-    type: Tweak
-  id: 406292
-  time: '2026-06-28T21:56:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4936
-- author: Johnny
-  changes:
-  - message: Changed CBURN suits to actually protect against injection based attacks like hardsuits.
-    type: Fix
-  id: 406293
-  time: '2026-06-28T21:56:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4936
-- author: mikeysaurus
-  changes:
-  - message: Silicon's now understand the Elvish language Felyaic.
-    type: Fix
-  id: 406294
-  time: '2026-06-29T08:21:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4961
-- author: Teddiousbear, Hanz(rButler)
-  changes:
-  - message: Added six new uniforms to secoff.
-    type: Add
-  id: 406295
-  time: '2026-06-29T08:21:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4947
 - author: Teddiousbear, Hanz(rButler)
   changes:
   - message: Added four new uniforms to dutyoff.
@@ -2799,4 +2722,81 @@ Entries:
   id: 406684
   time: '2026-07-16T12:50:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5117
+- author: Littlemen/Romero
+  changes:
+  - message: Dragon doesnt feel the bloodloss anymore, he is just built different.
+    type: Tweak
+  id: 406685
+  time: '2026-07-16T16:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5129
+- author: Rinary
+  changes:
+  - message: Removed peacemaker grenade launcher due to broken balance.
+    type: Remove
+  id: 406686
+  time: '2026-07-16T18:23:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5157
+- author: Arkanic
+  changes:
+  - message: Fix disposals deleting people.
+    type: Fix
+  id: 406687
+  time: '2026-07-17T08:48:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5164
+- author: TaserTheFox
+  changes:
+  - message: Fixed loc spam with the RCD families UI.
+    type: Fix
+  id: 406688
+  time: '2026-07-17T08:48:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5165
+- author: TaserTheFox
+  changes:
+  - message: Fixed missing loc strings in spray painter.
+    type: Fix
+  id: 406689
+  time: '2026-07-17T09:13:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5162
+- author: Spaghetti-Bit
+  changes:
+  - message: Removed Avali large caliber weapon knockback.
+    type: Tweak
+  id: 406690
+  time: '2026-07-17T09:28:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5142
+- author: Spaghetti-Bit
+  changes:
+  - message: Avali nanite shield breaks after taking a total of 50 damage, or heal a total of 50 damage.
+    type: Tweak
+  id: 406691
+  time: '2026-07-17T09:28:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5142
+- author: Spaghetti-Bit
+  changes:
+  - message: Avali guidebook entry, removing the weapon knockback mention. Explains the nanite shell technology.
+    type: Tweak
+  id: 406692
+  time: '2026-07-17T09:28:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5142
+- author: Rinary
+  changes:
+  - message: Fixed bug when unban did not register with NullLink, so unbanned player can't join on different servers.
+    type: Fix
+  id: 406693
+  time: '2026-07-17T11:05:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5167
+- author: DreadfulTaco
+  changes:
+  - message: Fixed Avali, Lizards, and Moths to be able to eat ice cream.
+    type: Fix
+  id: 406694
+  time: '2026-07-17T12:12:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5166
+- author: DreadfulTaco
+  changes:
+  - message: Added more ice cream supplies to ChefVends, and to the ice cream starter crate.
+    type: Tweak
+  id: 406695
+  time: '2026-07-17T12:12:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5166
 Order: -1
