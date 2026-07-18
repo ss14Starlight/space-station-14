@@ -185,9 +185,9 @@
   result: MakeshiftID
   completetime: 120
   materials:
-     Steel: 1000
-     Plastic: 400
-     Plasteel: 350
+     Steel: 1200
+     Plastic: 600
+     Plasteel: 950
 
 # AMMO
 - type: latheRecipe
