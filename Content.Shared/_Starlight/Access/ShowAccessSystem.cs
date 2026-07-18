@@ -19,6 +19,7 @@ public sealed partial class ShowAccessSystem : EntitySystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
@@ -124,9 +125,25 @@ public sealed partial class ShowAccessSystem : EntitySystem
 
     private void AddVerb(ShowAccessComponent showAccess, GetVerbsEvent<ExamineVerb> args, HashSet<ProtoId<AccessLevelPrototype>> tags)
     {
+        var localized = ProtoToLocalizedName(tags);
+
         var msg = new FormattedMessage();
-        msg.AddMarkupOrThrow(Loc.GetString(showAccess.ExamineLocId, ("access", tags.Count > 0 ? string.Join(", ", tags) : "None")));
+        msg.AddMarkupOrThrow(Loc.GetString(showAccess.ExamineLocId, ("access", tags.Count > 0 ? string.Join(", ", localized) : "None")));
 
         _examine.AddDetailedExamineVerb(args, showAccess, msg, Loc.GetString("show-access-verb-text"), "/Textures/_Starlight/Interface/VerbIcons/examine-access.png", Loc.GetString("show-access-verb-message"));
+    }
+
+    private HashSet<string> ProtoToLocalizedName(HashSet<ProtoId<AccessLevelPrototype>> protoIds)
+    {
+        HashSet<string> localized = [];
+
+        foreach (var protoId in protoIds)
+        {
+            if (!_proto.TryIndex(protoId, out var accessLevel)) continue;
+            var name = accessLevel.Name ?? accessLevel.ID;
+            localized.Add(Loc.GetString(name));
+        }
+
+        return localized;
     }
 }
