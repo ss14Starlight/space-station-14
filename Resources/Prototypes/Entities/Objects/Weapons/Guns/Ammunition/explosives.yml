@@ -72,9 +72,11 @@
   - type: SpentAmmoVisuals
     state: baton
     suffix: false
+  # Starlight-start
   - type: Tag
     tags:
     - GrenadeLessLethal
+  # Starlight-end
 
 - type: entity
   id: GrenadeBlast
