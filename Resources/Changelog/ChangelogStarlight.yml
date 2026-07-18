@@ -1,27 +1,6 @@
 Entries:
 - author: Tjmaxmillion
   changes:
-  - message: GSO job icon now match CC and ERT.
-    type: Tweak
-  id: 406304
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
-- author: Tjmaxmillion
-  changes:
-  - message: NTSF IDs not use NTSF job icon.
-    type: Tweak
-  id: 406305
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
-- author: Tjmaxmillion
-  changes:
-  - message: Marine job icons now match NTSF.
-    type: Tweak
-  id: 406306
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
-- author: Tjmaxmillion
-  changes:
   - message: IDs that had an 8x7 job icon square are now 8x8.
     type: Tweak
   id: 406307
@@ -2799,4 +2778,25 @@ Entries:
   id: 406703
   time: '2026-07-18T10:44:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5177
+- author: OMEGA
+  changes:
+  - message: (Cluster) Coroner's locker to Morgue.
+    type: Add
+  id: 406704
+  time: '2026-07-18T11:29:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5183
+- author: OMEGA
+  changes:
+  - message: (Cluster) Roboticist's locker to Robotics.
+    type: Add
+  id: 406705
+  time: '2026-07-18T11:29:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5183
+- author: OMEGA
+  changes:
+  - message: (Cluster) Overhauled piping network.
+    type: Tweak
+  id: 406706
+  time: '2026-07-18T11:29:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5183
 Order: -1
