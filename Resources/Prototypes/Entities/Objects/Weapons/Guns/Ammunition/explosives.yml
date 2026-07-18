@@ -58,7 +58,7 @@
 - type: entity #Starlight Used for peacekeeper
   id: GrenadeBaton
   name: baton grenade
-  description: Crack skulls, break jaws.
+  description: Crack skulls, break jaws. # Starlight-edit
   parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
