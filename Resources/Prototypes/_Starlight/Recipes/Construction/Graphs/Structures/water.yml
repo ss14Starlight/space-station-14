@@ -1,0 +1,20 @@
+- type: constructionGraph
+  id: Water
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DeleteEntity
+
+    - node: water
+      entity: FloorWaterDestructibleEntity
+      edges:
+        - to: start
+          completed:
+          - !type:EmptyAllContainers {}
+          - !type:PlaySound
+            sound: /Audio/Effects/Fluids/watersplash.ogg
+          - !type:DeleteEntity {}
+          steps:
+            - tool: Digging
+              doAfter: 5
