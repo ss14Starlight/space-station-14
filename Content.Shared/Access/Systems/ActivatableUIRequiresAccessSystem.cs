@@ -1,6 +1,7 @@
 using Content.Shared.Popups;
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
+using Content.Shared.Lock;
 
 namespace Content.Shared.Access.Systems;
 public sealed partial class ActivatableUIRequiresAccessSystem : EntitySystem
@@ -19,7 +20,13 @@ public sealed partial class ActivatableUIRequiresAccessSystem : EntitySystem
     {
         if (args.Cancelled)
             return;
-
+        if (TryComp<LockComponent>(activatableUI, out var lockComponent))
+        {
+            if (activatableUI.Comp.AllowUnlocking&&!lockComponent.Locked)
+            {
+                return;
+            }
+        }
         if (!_access.IsAllowed(args.User, activatableUI))
         {
             args.Cancel();

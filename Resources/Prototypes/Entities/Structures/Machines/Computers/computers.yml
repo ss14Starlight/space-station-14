@@ -180,6 +180,9 @@
           - PAI
   - type: AccessReader
   - type: ActivatableUIRequiresAccess
+    allowUnlocking: true
+  - type: Lock
+    unlockOnClick: false
       # Starlight-end
   - type: ContainerContainer
     containers:
