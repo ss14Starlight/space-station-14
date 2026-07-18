@@ -165,6 +165,8 @@
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
     - type: ShowAccessReaderSettings
+    - type: ShowAccess
+      seeIdHolder: true
     - type: ShowHealthBars
       damageContainers:
         - Biological

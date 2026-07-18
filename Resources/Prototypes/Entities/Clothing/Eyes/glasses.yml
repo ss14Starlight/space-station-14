@@ -208,6 +208,7 @@
     sprite: Clothing/Eyes/Glasses/commandglasses.rsi
   - type: FlashImmunity
   - type: EyeProtection
+  - type: ShowAccess # Starlight
     protectionTime: 5
   - type: Tag
     tags:
