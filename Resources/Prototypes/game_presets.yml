@@ -9,7 +9,7 @@
   rules:
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
-    - SpaceTrafficControlEventScheduler # Starlight 
+    - SpaceTrafficControlEventScheduler # Starlight
     - SpaceTrafficControlFriendlyEventScheduler # Starlight
     - BasicRoundstartVariation
 
