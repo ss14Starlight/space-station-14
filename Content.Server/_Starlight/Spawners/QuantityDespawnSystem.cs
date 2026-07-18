@@ -22,6 +22,9 @@ public sealed partial class QuantityDespawnSystem : EntitySystem
     {
         var category = ent.Comp.Category;
 
+        if (string.IsNullOrEmpty(category.Id))
+            return;
+
         // first time seeing this type, setup on dict
         if (!_ents.ContainsKey(category))
         {
