@@ -173,4 +173,15 @@ Entries:
   id: 480001
   time: '2026-07-17T17:21:32.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/48
+- author: AprilCatStreams
+  changes:
+  - message: Upgraded to the newest version of RobustToolbox for improved Performance,
+      Stability, an Security.
+    type: Tweak
+  - message: Fixed the balance briefly appearing while dispensing from vending machines
+      that don't charge you.
+    type: Fix
+  id: 500001
+  time: '2026-07-18T16:59:55.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/50
 
