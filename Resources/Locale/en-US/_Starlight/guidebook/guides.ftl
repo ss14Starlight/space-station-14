@@ -157,6 +157,7 @@ guide-entry-terror-spiders = Terror Spiders
 guide-entry-devil = Devil
 
 guide-entry-sl-deepfried-recipes = Deep Fried
+guide-entry-sl-ice-cream-recipes = Ice Cream Maker
 
 # Plumbing guides
 guide-entry-plumbing = Plumbing

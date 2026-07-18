@@ -1273,7 +1273,7 @@ namespace Content.Client.Lobby.UI
                     }
                     description.AddMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("job-no-requirements")));
 
-                    selector.Setup(items, job.LocalizedName, 200, description, icon, job.Guides);
+                    selector.Setup(items, job.LocalizedName, 210, description, icon, job.Guides); // Starlight-edit: account for longer job names to keep alignment (NTR for example)
 
                     if (!allowed)
                     {
