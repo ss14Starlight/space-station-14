@@ -1,5 +1,5 @@
 - type: entity
-  parent:  [ BasePDA, BaseMajorContraband ]
+  parent:  [ BasePDA, BaseCasinoContraband ]
   id: CasinoPDA
   abstract: true
   components:

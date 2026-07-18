@@ -1,8 +1,8 @@
 ﻿
-# Seraph
+# The House
 - type: entity
   id: MechHouse
-  parent: [ BaseMech, CombatMech, BaseNanoTrasenContraband, NanotrasenMech ]
+  parent: [ BaseMech, CombatMech, BaseCasinoContraband, NanotrasenMech ]
   name: The house
   description: The game was rigged from the start.
   components:
@@ -61,6 +61,81 @@
 - type: entity
   id: MechHouseFilled
   parent: MechHouseBattery
+  suffix: Battery, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+        - WeaponMechChainSword
+        - WeaponMechCombatPulseRifle
+        - WeaponMechCombatShotgun
+        - WeaponMechCombatMissileRack6
+        - WeaponMechCombatUltraRifle
+
+# Always Wins
+
+
+# Seraph
+- type: entity
+  id: MechAlways
+  parent: [ BaseMech, CombatMech, BaseCasinoContraband ]
+  name: Always Wins
+  description: They asked me if I had a degree in theoretical physics. I said I had a theoretical degree in physics. They said welcome aboard.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      noRot: true
+      sprite: _Starlight/Admeme/Casino/Objects/mechs/always.rsi
+      layers:
+        - map: [ "enum.MechVisualLayers.Base" ]
+          state: base
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+    - type: Mech
+      baseState: base
+      openState: base-open
+      brokenState: base-broken
+      mechToPilotDamageMultiplier: 0.0
+      airtight: true
+      maxIntegrity: 700
+      maxEquipmentAmount: 5
+      pilotWhitelist:
+        components:
+          - HumanoidAppearance
+    - type: MeleeWeapon
+      hidden: true
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 60
+          Structural: 400
+    - type: MeleeThrowOnHit
+      speed: 20
+      distance: 5
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 3.7
+    - type: Damageable
+      damageModifierSet: HeavyArmorNT
+    - type: MechThrusters
+    - type: Prying
+      pryPowered: true
+
+- type: entity
+  id: MechAlwaysBattery
+  parent: MechAlways
+  suffix: Battery, Air
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorAntique
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+- type: entity
+  id: MechAlwaysFilled
+  parent: MechAlwaysBattery
   suffix: Battery, Filled
   components:
     - type: Mech

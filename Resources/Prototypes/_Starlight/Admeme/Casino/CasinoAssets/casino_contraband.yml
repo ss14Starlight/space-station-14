@@ -1,0 +1,10 @@
+﻿- type: entity
+  id: BaseCasinoContraband
+  abstract: true
+  components:
+    - type: Contraband
+      severity: Gamorrah Casino
+
+- type: contrabandSeverity
+  id: Gamorrah Casino
+  examineText: contraband-examine-text-Casino

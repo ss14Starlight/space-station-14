@@ -1,6 +1,6 @@
 # Casino
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseCasinoContraband]
   id: CasinoIDCard
   abstract: true
   components:
@@ -11,6 +11,7 @@
     tags:
       - Command
       - Maintenance
+      - Casino
   - type: Tag
     tags:
     - DoorBumpOpener

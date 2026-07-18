@@ -1,6 +1,6 @@
 ﻿- type: entity
   name: Casino Pulse Pistol
-  parent: [BaseWeaponBatterySmall, BaseMajorContraband ]
+  parent: [BaseWeaponBatterySmall, BaseCasinoContraband ]
   id: WeaponPulsePistolCasino
   description: A modified version of a pulse gun, how Gamorrah Casino aquired or made such gun is a mystery.
   components:
@@ -17,7 +17,7 @@
           shader: unshaded
     - type: Lock
     - type: AccessReader
-      access: [[ "Command" ]]
+      access: [[ "Casino" ]]
     - type: Item
       size: Small
       shape:
