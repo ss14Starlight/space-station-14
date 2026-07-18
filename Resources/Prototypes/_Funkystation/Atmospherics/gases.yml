@@ -52,7 +52,7 @@
   molarMass: 32
   color: fffaf0
   reagent: Hydrogen
-  pricePerMole: 1.2
+  pricePerMole: 0.1
 
 - type: gas
   id: HyperNoblium
@@ -77,7 +77,7 @@
   molarMass: 120
   color: 009933
   reagent: Proto-Nitrate
-  pricePerMole: 0.6
+  pricePerMole: 5
 
 - type: gas
   id: Zauker
@@ -113,7 +113,7 @@
   molarMass: 4
   color: 005959
   reagent: Helium
-  pricePerMole: 0.8
+  pricePerMole: 0.3
 
 - type: gas
   id: AntiNoblium
