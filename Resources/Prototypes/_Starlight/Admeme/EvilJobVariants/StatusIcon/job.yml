@@ -4,7 +4,7 @@
   parent: JobIcon
   id: JobIconSyndicateCaptain
   icon:
-    sprite: &starlight-job-icon-rsi /Textures/_Starlight/Admeme/EvilJobVariants/Interface/Misc/job_icons.rsi
+    sprite: &evil-job-icon-rsi /Textures/_Starlight/Admeme/EvilJobVariants/Interface/Misc/job_icons.rsi
     state: SyndicateCaptain
   jobName: job-name-syndicate-captain
   allowSelection: false
@@ -13,7 +13,7 @@
   parent: JobIcon
   id: JobIconSyndicateChiefEngineer
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: SyndicateChiefEngineer
   jobName: job-name-syndicate-chief-engineer
   allowSelection: false
@@ -22,7 +22,7 @@
   parent: JobIcon
   id: JobIconSyndicateChiefMedicalOfficer
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: SyndicateChiefMedicalOfficer
   jobName: job-name-syndicate-chief-medical-officer
   allowSelection: false
@@ -31,7 +31,7 @@
   parent: JobIcon
   id: JobIconSyndicateHeadOfPersonnel
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: SyndicateHeadOfPersonnel
   jobName: job-name-syndicate-head-of-personnel
   allowSelection: false
@@ -40,7 +40,7 @@
   parent: JobIcon
   id: JobIconSyndicateHeadOfSecurity
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: SyndicateHeadOfSecurity
   jobName: job-name-syndicate-head-of-security
   allowSelection: false
@@ -49,7 +49,7 @@
   parent: JobIcon
   id: JobIconSyndicateIAA
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: SyndicateIAA
   jobName: job-name-syndicate-iaa
   allowSelection: false
@@ -58,7 +58,7 @@
   parent: JobIcon
   id: JobIconSyndicateMagistrate
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: SyndicateMagistrate
   jobName: job-name-syndicate-magistrate
   allowSelection: false
@@ -67,7 +67,7 @@
   parent: JobIcon
   id: JobIconSyndicateQuarterMaster
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: SyndicateQuarterMaster
   jobName: job-name-syndicate-quartermaster
   allowSelection: false
@@ -76,7 +76,7 @@
   parent: JobIcon
   id: JobIconSyndicateRedShield
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: SyndicateRedShield
   jobName: job-name-syndicate-redshield
   allowSelection: false
@@ -85,7 +85,7 @@
   parent: JobIcon
   id: JobIconSyndicateResearchDirector
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: SyndicateResearchDirector
   jobName: job-name-syndicate-research-director
   allowSelection: false
@@ -98,7 +98,7 @@
   parent: JobIcon
   id: JobIconEvilAssistant
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilAssistant
   jobName: job-name-assistant
   allowSelection: false
@@ -107,7 +107,7 @@
   parent: JobIcon
   id: JobIconEvilAtmosphericTechnician
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilAtmosphericTechnician
   jobName: job-name-atmostech
   allowSelection: false
@@ -116,7 +116,7 @@
   parent: JobIcon
   id: JobIconEvilBartender
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilBartender
   jobName: job-name-bartender
   allowSelection: false
@@ -125,7 +125,7 @@
   parent: JobIcon
   id: JobIconEvilBotanist
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilBotanist
   jobName: job-name-botanist
   allowSelection: false
@@ -134,7 +134,7 @@
   parent: JobIcon
   id: JobIconEvilBoxer
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilBoxer
   jobName: job-name-boxer
   allowSelection: false
@@ -143,7 +143,7 @@
   parent: JobIcon
   id: JobIconEvilBrigmedic
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilBrigmedic
   jobName: job-name-brigmedic
   allowSelection: false
@@ -152,7 +152,7 @@
   parent: JobIcon
   id: JobIconEvilCargoTechnician
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilCargoTechnician
   jobName: job-name-cargotech
   allowSelection: false
@@ -161,7 +161,7 @@
   parent: JobIcon
   id: JobIconEvilChaplain
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilChaplain
   jobName: job-name-chaplain
   allowSelection: false
@@ -170,7 +170,7 @@
   parent: JobIcon
   id: JobIconEvilChef
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilChef
   jobName: job-name-chef
   allowSelection: false
@@ -179,7 +179,7 @@
   parent: JobIcon
   id: JobIconEvilChemist
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilChemist
   jobName: job-name-chemist
   allowSelection: false
@@ -188,7 +188,7 @@
   parent: JobIcon
   id: JobIconEvilDetective
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilDetective
   jobName: job-name-detective
   allowSelection: false
@@ -197,7 +197,7 @@
   parent: JobIcon
   id: JobIconEvilDutyOfficer
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilDutyOfficer
   jobName: job-name-dutyofficer
   allowSelection: false
@@ -206,7 +206,7 @@
   parent: JobIcon
   id: JobIconEvilJanitor
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilJanitor
   jobName: job-name-janitor
   allowSelection: false
@@ -215,7 +215,7 @@
   parent: JobIcon
   id: JobIconEvilMailTech
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilMailTech
   jobName: job-name-mailtech
   allowSelection: false
@@ -224,7 +224,7 @@
   parent: JobIcon
   id: JobIconEvilMedicalDoctor
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilMedicalDoctor
   jobName: job-name-doctor
   allowSelection: false
@@ -233,7 +233,7 @@
   parent: JobIcon
   id: JobIconEvilMedicalIntern
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilMedicalIntern
   jobName: job-name-intern
   allowSelection: false
@@ -242,7 +242,7 @@
   parent: JobIcon
   id: JobIconEvilMime
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilMime
   jobName: job-name-mime
   allowSelection: false
@@ -251,7 +251,7 @@
   parent: JobIcon
   id: JobIconEvilMusician
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilMusician
   jobName: job-name-musician
   allowSelection: false
@@ -260,7 +260,7 @@
   parent: JobIcon
   id: JobIconEvilParamedic
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilParamedic
   jobName: job-name-paramedic
   allowSelection: false
@@ -269,7 +269,7 @@
   parent: JobIcon
   id: JobIconEvilPerformer
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilPerformer
   jobName: job-name-performer
   allowSelection: false
@@ -278,7 +278,7 @@
   parent: JobIcon
   id: JobIconEvilPsychologist
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilPsychologist
   jobName: job-name-psychologist
   allowSelection: false
@@ -287,7 +287,7 @@
   parent: JobIcon
   id: JobIconEvilReporter
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilReporter
   jobName: job-name-reporter
   allowSelection: false
@@ -296,7 +296,7 @@
   parent: JobIcon
   id: JobIconEvilResearchAssistant
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilResearchAssistant
   jobName: job-name-research-assistant
   allowSelection: false
@@ -305,7 +305,7 @@
   parent: JobIcon
   id: JobIconEvilRoboticist
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilRoboticist
   jobName: job-name-roboticist
   allowSelection: false
@@ -314,7 +314,7 @@
   parent: JobIcon
   id: JobIconEvilSalvageLead
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilSalvageLead
   jobName: job-name-salvagelead
   allowSelection: false
@@ -323,7 +323,7 @@
   parent: JobIcon
   id: JobIconEvilSalvageSpecialist
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilSalvageSpecialist
   jobName: job-name-salvagespec
   allowSelection: false
@@ -332,7 +332,7 @@
   parent: JobIcon
   id: JobIconEvilScientist
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilScientist
   jobName: job-name-scientist
   allowSelection: false
@@ -341,7 +341,7 @@
   parent: JobIcon
   id: JobIconEvilSecurityCadet
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilSecurityCadet
   jobName: job-name-cadet
   allowSelection: false
@@ -350,7 +350,7 @@
   parent: JobIcon
   id: JobIconEvilSecurityOfficer
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilSecurityOfficer
   jobName: job-name-security
   allowSelection: false
@@ -359,7 +359,7 @@
   parent: JobIcon
   id: JobIconEvilServiceWorker
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilServiceWorker
   jobName: job-name-serviceworker
   allowSelection: false
@@ -368,7 +368,7 @@
   parent: JobIcon
   id: JobIconEvilShaftMiner
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilShaftMiner
   jobName: job-name-miningspec
   allowSelection: false
@@ -377,7 +377,7 @@
   parent: JobIcon
   id: JobIconEvilStationEngineer
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilStationEngineer
   jobName: job-name-engineer
   allowSelection: false
@@ -386,7 +386,7 @@
   parent: JobIcon
   id: JobIconEvilSurgeon
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilSurgeon
   jobName: job-name-surgeon
   allowSelection: false
@@ -395,7 +395,7 @@
   parent: JobIcon
   id: JobIconEvilTechnicalAssistant
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilTechnicalAssistant
   jobName: job-name-technical-assistant
   allowSelection: false
@@ -404,7 +404,7 @@
   parent: JobIcon
   id: JobIconEvilVisitor
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilVisitor
   jobName: job-name-visitor
   allowSelection: false
@@ -413,7 +413,7 @@
   parent: JobIcon
   id: JobIconEvilWarden
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilWarden
   jobName: job-name-warden
   allowSelection: false
@@ -422,7 +422,7 @@
   parent: JobIcon
   id: JobIconEvilZookeeper
   icon:
-    sprite: *starlight-job-icon-rsi
+    sprite: *evil-job-icon-rsi
     state: EvilZookeeper
   jobName: job-name-zookeeper
   allowSelection: false
