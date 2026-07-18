@@ -215,20 +215,25 @@ public sealed partial class GameTicker
             return false;
 
         CurrentPreset = Preset;
-        foreach (var rule in Preset.Rules)
+        #region Starlight
+        /*foreach (var rule in Preset.Rules)
         {
             AddFilteredGameRule(rule);
-        }
+        }*/
+        #endregion
 
         // Starlight begin - Notify admins of preset now that it is locked in.
         if (Preset.ID != "Secret") _chatManager.SendAdminAnnouncement($"Round preset selected: {Preset.ID}.");
         _adminLogger.Add(LogType.RoundstartRulesAdded, LogImpact.High, $"Round preset selected: {Preset.ID}.");
         // Starlight end
 
+        #region Starlight
+        //  Moved this here so you could see what subgamemodes roll if you're an admin.
         foreach (var rule in Preset.Rules)
         {
-            AddGameRule(rule);
+            AddFilteredGameRule(rule);
         }
+        #endregion
 
         return true;
     }
