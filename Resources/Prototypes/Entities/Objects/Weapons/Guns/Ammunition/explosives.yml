@@ -93,7 +93,7 @@
     state: blast
     suffix: false
 
-- type: entity #Starlight Used for Peacekeeper and Paddy
+- type: entity
   id: GrenadeFlash
   name: flash grenade
   description: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE # Starlight
