@@ -1,11 +1,4 @@
 Entries:
-- author: Tjmaxmillion
-  changes:
-  - message: IDs that had an 8x7 job icon square are now 8x8.
-    type: Tweak
-  id: 406307
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
 - author: mikeysaurus
   changes:
   - message: Personal AIs can now purchase and learn Felyaic from their store.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406706
   time: '2026-07-18T11:29:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5183
+- author: neomoth
+  changes:
+  - message: Fix a small bug where upon relogging with a pulled-down mask, a popup would show up saying you need to pull it down when trying to eat/drink despite it already being down.
+    type: Fix
+  id: 406707
+  time: '2026-07-18T11:49:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5178
 Order: -1
