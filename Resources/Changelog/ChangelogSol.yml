@@ -199,4 +199,11 @@ Entries:
   id: 490001
   time: '2026-07-18T19:56:28.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/49
+- author: AprilCatStreams
+  changes:
+  - message: Added some performance fixes from upstream.
+    type: Add
+  id: 510001
+  time: '2026-07-18T19:56:45.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/51
 
