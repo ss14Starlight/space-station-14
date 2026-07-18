@@ -32,6 +32,7 @@ using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
+using Content.Shared.Flash;
 // Starlight edit end
 
 namespace Content.Server._Starlight.Changeling;
@@ -412,7 +413,10 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
-        EnsureComp<FlashImmunityComponent>(uid);
+        var flashImmunity = EnsureComp<FlashImmunityComponent>(uid);
+        var flashSystem = EntityManager.System<SharedFlashSystem>();
+        flashSystem.SetShowInExamine(uid, false, flashImmunity);
+
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
     }
     #region Starlight
