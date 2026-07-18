@@ -56,6 +56,7 @@ public sealed class CharacterSelectionTest : GameTest
   name: traitor-title
   description: traitor-description
   showInVote: false
+  minPlayers: 1
   rules:
   - {TraitorsMode}
 
