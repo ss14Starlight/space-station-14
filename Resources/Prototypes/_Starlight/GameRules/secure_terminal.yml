@@ -25,7 +25,7 @@
 
 # Gamerules
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: ERTChaplainSpawn
   components:
   - type: StationEvent
