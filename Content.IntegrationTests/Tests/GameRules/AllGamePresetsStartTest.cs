@@ -36,6 +36,7 @@ public sealed class AllGamePresetsStartTest : AntagTest
     public async Task TestAllGamemodesCanStart(string presetId)
     {
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
+        Server.CfgMan.SetCVar(CCVars.GameRoleTimers, false); // Starlight
         // Initially in the lobby
         await Server.WaitPost(() =>
         {
@@ -163,5 +164,6 @@ public sealed class AllGamePresetsStartTest : AntagTest
         STicker.SetGamePreset((GamePresetPrototype) null);
         await Pair.RunUntilSynced();
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
+        Server.CfgMan.SetCVar(CCVars.GameRoleTimers, true); // Starlight
     }
 }

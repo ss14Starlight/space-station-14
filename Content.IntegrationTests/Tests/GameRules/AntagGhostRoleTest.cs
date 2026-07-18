@@ -9,6 +9,7 @@ using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Antag;
 using Content.Shared.Players;
+using Content.Shared.CCVar;
 using Content.Shared._Starlight.CCVar;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -41,6 +42,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     public void TestAntagGhostRoles(string ruleId)
     {
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
+        Server.CfgMan.SetCVar(CCVars.GameRoleTimers, false); // Starlight
         var rule = SProtoMan.Index<EntityPrototype>(ruleId);
         Assert.That(rule.TryGetComponent<AntagSelectionComponent>(out var antag, SEntMan.ComponentFactory), Is.True);
 
@@ -80,6 +82,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         STicker.ClearGameRules();
         Assert.That(STicker.GetAddedGameRules(), Is.Empty);
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
+        Server.CfgMan.SetCVar(CCVars.GameRoleTimers, true); // Starlight
     }
 
     [Test]
@@ -89,6 +92,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     public void TestAntagGhostRolesSequential()
     {
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
+        Server.CfgMan.SetCVar(CCVars.GameRoleTimers, false); // Starlight
         foreach (var ruleId in AntagGameRules)
         {
             var rule = SProtoMan.Index<EntityPrototype>(ruleId);
@@ -111,6 +115,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         STicker.ClearGameRules();
         Assert.That(STicker.GetAddedGameRules(), Is.Empty);
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
+        Server.CfgMan.SetCVar(CCVars.GameRoleTimers, true); // Starlight
     }
 
     private void AssertGhostRoleTaken(GhostRoleAntagSpawnerComponent spawner, GhostRoleComponent role, TransformComponent xform)
