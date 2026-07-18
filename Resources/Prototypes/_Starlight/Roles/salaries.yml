@@ -17,7 +17,7 @@
 
     Chemist: 90
     Paramedic: 85
-    MedicalDoctor: 59
+    MedicalDoctor: 60
     MedicalIntern: 30
     Surgeon: 90
     Psychologist: 84
@@ -28,7 +28,7 @@
 
     Warden: 110
     Detective: 80
-    Brigmedic: 82
+    Brigmedic: 85
     DutyOfficer: 70
     SecurityOfficer: 64
     SecurityCadet: 30
