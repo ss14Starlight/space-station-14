@@ -2,62 +2,64 @@
   id: standart
   jobs:
     Captain: 150
-    HeadOfPersonnel: 130
+    HeadOfPersonnel: 145
     HeadOfSecurity: 145
     ChiefEngineer: 140
-    ResearchDirector: 130
-    ChiefMedicalOfficer: 135
-    Quartermaster: 120
+    ResearchDirector: 140
+    ChiefMedicalOfficer: 140
+    Quartermaster: 140
 
-    BlueShield: 110
+    BlueShield: 160
     NanoTrasenRepresentative: 165
     Magistrate: 176
     NanotrasenCareerTrainer: 150
-    IAA: 76
+    IAA: 80
 
     Chemist: 90
-    Paramedic: 50
-    MedicalDoctor: 58
-    MedicalIntern: 23
+    Paramedic: 85
+    MedicalDoctor: 59
+    MedicalIntern: 30
     Surgeon: 90
+    Psychologist: 84
 
-    AtmosphericTechnician: 90
-    StationEngineer: 54
-    TechnicalAssistant: 23
+    AtmosphericTechnician: 95
+    StationEngineer: 60
+    TechnicalAssistant: 30
 
-    Warden: 90
+    Warden: 110
     Detective: 80
-    Brigmedic: 73
+    Brigmedic: 82
     DutyOfficer: 70
     SecurityOfficer: 64
-    SecurityCadet: 23
+    SecurityCadet: 30
 
     StationAi: 155
     Borg: 85
 
     Chaplain: 50
     Chef: 50
-    Janitor: 30
+    Janitor: 45
     Botanist: 50
     Lawyer: 55
     Librarian: 50
     Musician: 40
     Bartender: 50
-    Mime: 30
-    Clown: 30
-    ServiceWorker: 23
-    Performer: 23
+    Mime: 40
+    Clown: 40
+    ServiceWorker: 30
+    Performer: 30
     Assistant: 15
+    Reporter: 50
 
-    Scientist: 65
-    Roboticist: 56
-    ResearchAssistant: 23
+    Scientist: 60
+    Roboticist: 85
+    ResearchAssistant: 30
 
-    SalvageLead: 75
-    SalvageSpecialist: 60
-    MiningSpecialist: 60
-    CargoTechnician: 45
-    MailTech: 55
+    SalvageLead: 110
+    SalvageSpecialist: 85
+    MiningSpecialist: 85
+    CargoTechnician: 60
+    MailTech: 70
 
     Visitor: 0
 
