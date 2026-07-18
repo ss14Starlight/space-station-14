@@ -225,6 +225,11 @@ public sealed partial class GameTicker
         _adminLogger.Add(LogType.RoundstartRulesAdded, LogImpact.High, $"Round preset selected: {Preset.ID}.");
         // Starlight end
 
+        foreach (var rule in Preset.Rules)
+        {
+            AddGameRule(rule);
+        }
+
         return true;
     }
 

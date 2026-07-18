@@ -7,6 +7,6 @@
   setPreference: false
   overrideConsoleVisibility: true
   access:
-  - Maintenance
+  - Visitor
   extendedAccess:
   - External
