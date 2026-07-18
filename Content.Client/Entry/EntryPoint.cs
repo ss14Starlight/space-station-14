@@ -140,6 +140,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
+            _prototypeManager.RegisterIgnore("arcadeScoreboard"); //Starlight: Lancer arcade scoreboards
 
             _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
 
