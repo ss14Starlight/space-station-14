@@ -30,6 +30,6 @@
   id: JobIconDealer
   icon:
     sprite: /Textures/_Starlight/Admeme/Casino/Interface/job_icons.rsi
-    state: ETO
+    state: JobIconCasinoDealer
   jobName: job-name-casino-dealer
   allowSelection: false

@@ -19,12 +19,27 @@
 
 - type: entity
   parent: CasinoIDCard
+  id: CasinoIDCardDealer
+  name: Gamorrah dealer ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: dealer
+        - sprite: &starlight-icon-rsi _Starlight/Admeme/casino/Interface/job_icons.rsi
+          offset: &icon-offset -0.19375, 0.0625
+          state: dealer
+    - type: IdCard
+      jobTitle: job-name-casino-dealer
+      jobIcon: JobIconCasinoDealer
+
+- type: entity
+  parent: CasinoIDCard
   id: CasinoIDCardOwner
   name: Gamorrah owner ID card
   components:
   - type: Sprite
     layers:
-      - state: casino
+      - state: owner
       - sprite: *starlight-icon-rsi
         offset: *icon-offset
         state: owner
@@ -39,7 +54,7 @@
   components:
     - type: Sprite
       layers:
-        - state: casino
+        - state: manager
         - sprite: *starlight-icon-rsi
           offset: *icon-offset
           state: manager
@@ -49,12 +64,12 @@
 
 - type: entity
   parent: CasinoIDCard
-  id: CasinoIDCardsecurity
+  id: CasinoIDCardSecurity
   name: Gamorrah security ID card
   components:
     - type: Sprite
       layers:
-        - state: casino
+        - state: security
         - sprite: *starlight-icon-rsi
           offset: *icon-offset
           state: security
@@ -62,18 +77,5 @@
       jobTitle: job-name-casino-security
       jobIcon: JobIconCasinoSecurity
 
-- type: entity
-  parent: CasinoIDCard
-  id: CasinoIDCardDealer
-  name: Gamorrah dealer ID card
-  components:
-    - type: Sprite
-      layers:
-        - state: casino
-        - sprite: &starlight-icon-rsi _Starlight/Admeme/casino/Interface/job_icons.rsi
-          offset: &icon-offset -0.09375, 0.0625
-          state: dealer
-    - type: IdCard
-      jobTitle: job-name-casino-dealer
-      jobIcon: JobIconCasinoDealer
+
 

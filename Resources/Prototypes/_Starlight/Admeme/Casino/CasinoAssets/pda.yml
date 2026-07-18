@@ -1,5 +1,5 @@
 - type: entity
-  parent:  [ BasePDA, BaseMedTakContraband ]
+  parent:  [ BasePDA, BaseMajorContraband ]
   id: CasinoPDA
   abstract: true
   components:
@@ -9,7 +9,7 @@
        !type:String
        pda-casino
   - type: PdaBorderColor
-    accentVColor: "#d7d7d0"
+    accentVColor: "#FFA213"
     borderColor: "#600000"
   - type: Sprite
     sprite: Objects/Devices/pda.rsi
