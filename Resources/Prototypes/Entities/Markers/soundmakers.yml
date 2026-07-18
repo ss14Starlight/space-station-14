@@ -1,0 +1,18 @@
+- type: entity
+  id: SoundMakerMaintsAmbience
+  parent: MarkerBase
+  name: sound maker
+  description: Marker that emits maintenance sounds in a 10 meter radius.
+  suffix: Sounds, Maintenance
+  components:
+  - type: SpamEmitSound
+    minInterval: 30
+    maxInterval: 60
+    sound:
+      collection: MaintsAmbience
+      params:
+        volume: -10
+        maxDistance: 10
+        variation: 0.01
+  - type: Sprite
+    state: pink
