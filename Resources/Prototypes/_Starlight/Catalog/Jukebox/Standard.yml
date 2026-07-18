@@ -34,7 +34,7 @@
   path:
     path: /Audio/_Starlight/Music/Jukebox/the_midnight_cry_by_christofori.ogg
 
-- type: jukebox
+- type: jukebox # Start - Lobby Music added to jukebox
   id: thestation
   name: A-Guy173 - The Station
   path:
@@ -158,4 +158,4 @@
   id: stenchofwhiskey
   name: Hermitsabee - Stench of Whiskey
   path:
-    path: /Audio/_Starlight/Lobby/stenchOfWhiskey.ogg
+    path: /Audio/_Starlight/Lobby/stenchOfWhiskey.ogg # End - Lobby music added to jukebox
