@@ -1,53 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: (Reach) Some pipes and cables were missing, nothing too bad but its fixed now.
-    type: Fix
-  id: 406320
-  time: '2026-07-01T08:09:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4946
-- author: Hot_Mic
-  changes:
-  - message: Replace NTS 'Kickstart' Ingeniator with NTS 'Jumpstart' Mini-Ingeniator on Shipyard Console with a new pricing of 85,000 Spesos.
-    type: Tweak
-  id: 406321
-  time: '2026-07-01T08:09:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4945
-- author: Arkanic
-  changes:
-  - message: Devil to game pool, 5% chance side antag, with a maximum of 2 devils in a round.
-    type: Add
-  id: 406322
-  time: '2026-07-01T08:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4941
-- author: Arkanic
-  changes:
-  - message: Stink damnation.
-    type: Add
-  id: 406323
-  time: '2026-07-01T08:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4941
-- author: Arkanic
-  changes:
-  - message: Misspelled contracts now show up as a "misprinted infernal contract", and appear visually duller.
-    type: Tweak
-  id: 406324
-  time: '2026-07-01T08:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4941
-- author: Arkanic
-  changes:
-  - message: Reworked damnations UI, it now has categories and displays crew you have damned.
-    type: Tweak
-  id: 406325
-  time: '2026-07-01T08:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4941
-- author: Arkanic
-  changes:
-  - message: Brought back terminator damnation, but now with a limit of 1 use per devil.
-    type: Tweak
-  id: 406326
-  time: '2026-07-01T08:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4941
 - author: redmushie
   changes:
   - message: Admin chat window can now popout.
@@ -2799,4 +2750,53 @@ Entries:
   id: 406719
   time: '2026-07-18T18:22:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5176
+- author: Johnny, miniusareas
+  changes:
+  - message: Added the visitor access, no longer will people tresspass without atleast doing a bit of work.
+    type: Add
+  id: 406720
+  time: '2026-07-18T18:53:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4960
+- author: Johnny, miniusareas
+  changes:
+  - message: Added a new visitor shuttle called the "Quail". Credits of design go to a SS13 dev named miniusareas from the shiptest server!
+    type: Add
+  id: 406721
+  time: '2026-07-18T18:53:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4960
+- author: Johnny, miniusareas
+  changes:
+  - message: Changed multiple different shuttles to not only use visitor access, but to just be hopefully more fun to use.
+    type: Tweak
+  id: 406722
+  time: '2026-07-18T18:53:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4960
+- author: Johnny, miniusareas
+  changes:
+  - message: Changed a few of the visitors loadouts to be better.
+    type: Tweak
+  id: 406723
+  time: '2026-07-18T18:53:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4960
+- author: Johnny, miniusareas
+  changes:
+  - message: The miniature energy guns energy usage got tweaked so it can shoot 10 disabler shots instead of 6, while also being added to a few visitor loadouts as an alternative disabler.
+    type: Tweak
+  id: 406724
+  time: '2026-07-18T18:53:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4960
+- author: Johnny, miniusareas
+  changes:
+  - message: Migrated all of the visitor files to _Starlight because wizden got rid of visitors it seems.
+    type: Tweak
+  id: 406725
+  time: '2026-07-18T18:53:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4960
+- author: Johnny, miniusareas
+  changes:
+  - message: The miniature energy guns flashlight has been fixed, now it actually turns on.
+    type: Fix
+  id: 406726
+  time: '2026-07-18T18:53:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4960
 Order: -1
