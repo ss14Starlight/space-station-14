@@ -262,7 +262,7 @@
   parent: JobIcon
   id: JobIconXenoborg
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Xenoborg
   jobName: chat-radio-xenoborg
 
@@ -270,6 +270,6 @@
   parent: JobIcon
   id: JobIconXenoborgMothership
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Mothership
   jobName: chat-radio-mothership
