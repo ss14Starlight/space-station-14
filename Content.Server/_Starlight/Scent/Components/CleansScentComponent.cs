@@ -7,4 +7,7 @@ public sealed partial class CleansScentComponent : Component
 {
     [DataField]
     public float CleanDelay = 6.0f;
+
+    [DataField]
+    public float MovementThreshold = 0.01f;
 }

@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Scent.Systems;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -49,4 +50,14 @@ public sealed partial class SmellerComponent : Component
     // How long Toggle Smelling locks out after walking into smoke, regardless of contents.
     [DataField]
     public TimeSpan SmokeLockout = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public SoundSpecifier SneezeSound =
+        new SoundPathSpecifier("/Audio/_Starlight/Scent/dog_sneeze.ogg", AudioParams.Default.WithVolume(-4));
+
+    [DataField]
+    public SoundSpecifier SniffSound = new SoundPathSpecifier("/Audio/_Starlight/Scent/dog_sniff.ogg");
+
+    [DataField]
+    public TimeSpan SniffDelay = TimeSpan.FromSeconds(1.5);
 }

@@ -18,7 +18,6 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Shared.Zombies;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -43,9 +42,6 @@ public sealed class ScentSystem : SharedScentSystem
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
-
-    private static readonly SoundSpecifier _sniffObjectSound = new SoundPathSpecifier("/Audio/_Starlight/Scent/dog_sniff.ogg");
-    private static readonly TimeSpan _sniffObjectDelay = TimeSpan.FromSeconds(1.5);
 
     public override void Initialize()
     {
@@ -84,7 +80,7 @@ public sealed class ScentSystem : SharedScentSystem
             return;
         }
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, ent.Owner, _sniffObjectDelay,
+        var doAfterArgs = new DoAfterArgs(EntityManager, ent.Owner, ent.Comp.SniffDelay,
             new SniffObjectDoAfterEvent(), ent.Owner, target: args.Target)
         {
             BreakOnMove = true,
@@ -93,7 +89,7 @@ public sealed class ScentSystem : SharedScentSystem
         };
 
         _doAfterSystem.TryStartDoAfter(doAfterArgs);
-        _audio.PlayPvs(_sniffObjectSound, ent.Owner);
+        _audio.PlayPvs(ent.Comp.SniffSound, ent.Owner);
         args.Handled = true;
     }
 
@@ -242,7 +238,7 @@ public sealed class ScentSystem : SharedScentSystem
             NeedHand = true,
             BreakOnDamage = true,
             BreakOnMove = true,
-            MovementThreshold = 0.01f,
+            MovementThreshold = cleaner.Comp.MovementThreshold,
         };
 
         if (!isSelf)
@@ -395,7 +391,7 @@ public sealed class ScentSystem : SharedScentSystem
     private TimeSpan RollEmitDelay(ScentComponent scent)
     {
         var variance = scent.EmitInterval * scent.EmitIntervalVariance;
-        var seconds = Math.Max(0.1f, scent.EmitInterval + _random.NextFloat(-variance, variance));
+        var seconds = Math.Max(scent.MinEmitInterval, scent.EmitInterval + _random.NextFloat(-variance, variance));
         return TimeSpan.FromSeconds(seconds);
     }
 

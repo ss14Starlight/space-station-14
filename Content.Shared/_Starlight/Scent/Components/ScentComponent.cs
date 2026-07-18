@@ -27,6 +27,11 @@ public sealed partial class ScentComponent : Component
     [DataField]
     public float EmitIntervalVariance = 0.3f;
 
+    // Floor for the jittered EmitInterval, so a high EmitIntervalVariance can't roll a
+    // near-zero or negative delay.
+    [DataField]
+    public float MinEmitInterval = 0.1f;
+
     // How much ScentMarkerComponent.Strength increases per merge, capped at 1.
     [DataField]
     public float MergeStrengthStep = 0.25f;

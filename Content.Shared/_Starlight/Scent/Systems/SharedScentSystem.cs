@@ -2,7 +2,6 @@ using Content.Shared._Starlight.Scent.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Popups;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Starlight.Scent.Systems;
@@ -13,9 +12,6 @@ public abstract class SharedScentSystem : EntitySystem
     [Dependency] protected readonly SharedActionsSystem Actions = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
-
-    private static readonly SoundSpecifier _sneezeSound =
-        new SoundPathSpecifier("/Audio/_Starlight/Scent/dog_sneeze.ogg", AudioParams.Default.WithVolume(-4));
 
     public override void Initialize()
     {
@@ -61,7 +57,7 @@ public abstract class SharedScentSystem : EntitySystem
     public void Sneeze(Entity<SmellerComponent> ent, bool predicted = false)
     {
         ClearTrackedScent(ent);
-        Audio.PlayPredicted(_sneezeSound, ent.Owner, predicted ? ent.Owner : null);
+        Audio.PlayPredicted(ent.Comp.SneezeSound, ent.Owner, predicted ? ent.Owner : null);
 
         var message = Loc.GetString("scent-sneeze-popup");
         if (predicted)
