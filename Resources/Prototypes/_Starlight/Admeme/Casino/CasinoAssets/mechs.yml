@@ -1,0 +1,60 @@
+﻿
+# Seraph
+- type: entity
+  id: MechHouse
+  parent: [ BaseMech, CombatMech, BaseNanoTrasenContraband, NanotrasenMech ]
+  name: The house
+  description: The game was rigged from the start.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      noRot: true
+      sprite: _Starlight\Admeme\Casino\Objects\mechs\house.rsi
+      layers:
+        - map: [ "enum.MechVisualLayers.Base" ]
+          state: base
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+    - type: Mech
+      baseState: base
+      openState: base-open
+      brokenState: base-broken
+      mechToPilotDamageMultiplier: 0.0
+      airtight: true
+      maxIntegrity: 700
+      maxEquipmentAmount: 5
+      pilotWhitelist:
+        components:
+          - HumanoidAppearance
+    - type: MeleeWeapon
+      hidden: true
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 60
+          Structural: 400
+    - type: MeleeThrowOnHit
+      speed: 20
+      distance: 5
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 3.7
+    - type: Damageable
+      damageModifierSet: HeavyArmorNT
+    - type: MechThrusters
+    - type: Prying
+      pryPowered: true
+
+- type: entity
+  id: MechHouseFilled
+  parent: MechSeraphBattery
+  suffix: Battery, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+        - WeaponMechChainSword
+        - WeaponMechCombatPulseRifle
+        - WeaponMechCombatShotgun
+        - WeaponMechCombatMissileRack6
+        - WeaponMechCombatUltraRifle
