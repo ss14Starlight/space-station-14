@@ -5,6 +5,9 @@ namespace Content.Server._Starlight.Spawners;
 
 public sealed partial class QuantityDespawnSystem : EntitySystem
 {
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+
     private readonly Dictionary<EntProtoId<QuantityDespawnCategoryComponent>, Queue<EntityUid>> _ents = new();
     private readonly Dictionary<EntProtoId<QuantityDespawnCategoryComponent>, long> _maxEnts = new();
 
@@ -24,11 +27,9 @@ public sealed partial class QuantityDespawnSystem : EntitySystem
         {
             _ents.Add(category, new());
 
-            // now figure out max for category
-            var catEnt = Spawn(category);
-            var catComp = Comp<QuantityDespawnCategoryComponent>(catEnt);
-            _maxEnts.Add(category, catComp.MaxEntities);
-            QueueDel(catEnt);
+            var proto = _prototype.Index(category);
+            proto.TryGetComponent<QuantityDespawnCategoryComponent>(out var catComp, _componentFactory);
+            _maxEnts.Add(category, catComp?.MaxEntities ?? 1000);
         }
 
         _ents[category].Enqueue(ent.Owner);
