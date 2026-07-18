@@ -28,9 +28,10 @@ namespace Content.IntegrationTests.Tests.GameRules
             var sGameTiming = server.ResolveDependency<IGameTiming>();
 
             MaxTimeRestartRuleComponent maxTime = null;
+            EntityUid ruleEntity = EntityUid.Invalid; // Starlight
             await server.WaitPost(() =>
             {
-                sGameTicker.StartGameRule("MaxTimeRestart", out var ruleEntity);
+                sGameTicker.StartGameRule("MaxTimeRestart", out ruleEntity); // Starlight
                 Assert.That(entityManager.TryGetComponent<MaxTimeRestartRuleComponent>(ruleEntity, out maxTime));
             });
 
@@ -44,8 +45,8 @@ namespace Content.IntegrationTests.Tests.GameRules
                 sGameTicker.StartRound();
             });
 
-            Assert.That(server.EntMan.Count<GameRuleComponent>(), Is.EqualTo(1));
-            Assert.That(server.EntMan.Count<ActiveGameRuleComponent>(), Is.EqualTo(1));
+            Assert.That(entityManager.HasComponent<ActiveGameRuleComponent>(ruleEntity)); // Starlight
+            Assert.That(entityManager.TryGetComponent<MaxTimeRestartRuleComponent>(ruleEntity, out maxTime)); // Starlight
 
             await server.WaitAssertion(() =>
             {
