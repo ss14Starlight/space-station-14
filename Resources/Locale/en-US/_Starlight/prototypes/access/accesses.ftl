@@ -52,3 +52,4 @@ id-card-access-level-pirate = Pirate
 id-card-access-level-blackstar = Blackstar
 id-card-access-level-medtak = MedTak
 id-card-access-level-casino = Casino
+id-card-access-level-visitor = Visitor

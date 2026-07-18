@@ -318,6 +318,9 @@
   id: HuntedTraitBackground
 
 - type: Tag
+  id: IceCream
+
+- type: Tag
   id: ImprovisedAmmoBox
 
 - type: Tag

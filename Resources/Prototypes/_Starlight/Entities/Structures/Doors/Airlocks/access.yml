@@ -933,6 +933,35 @@
       containers:
         board: [ DoorElectronicsBlackstar ]
 
+#Visitors
+- type: entity
+  parent: Airlock
+  id: AirlockVisitorLocked
+  suffix: Visitor, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsVisitor ]
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockVisitorGlassLocked
+  suffix: Visitor, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsVisitor ]
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockGlassShuttleVisitorLocked
+  suffix: Glass, Docking, Visitor, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsVisitor ]
+
+
 # Escape Pods (gridfills)
 - type: entity
   parent: AirlockExternalGlassShuttleEscape

@@ -113,11 +113,11 @@
       shader: unshaded
   - type: BatteryAmmoProvider
     proto: DisablerBolt
-    fireCost: 150
+    fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: DisablerBolt
-      fireCost: 150
+      fireCost: 100
     - proto: RedLaserBeam
       fireCost: 200
       conditions:
@@ -139,6 +139,7 @@
     autoRot: true
     radius: 6
     netsync: false
+  - type: ItemTogglePointLight
   - type: Appearance
   - type: HandheldLight
     needsCharge: false
