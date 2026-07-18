@@ -159,9 +159,3 @@
   name: Hermitsabee - Stench of Whiskey
   path:
     path: /Audio/_Starlight/Lobby/stenchOfWhiskey.ogg
-
-- type: jukebox
-  id: ccinterns
-  name: Suno - CC Interns
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/cc-interns.ogg
