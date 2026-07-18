@@ -111,7 +111,7 @@
 - type: cargoProduct
   id: ServiceDocumentPrinter
   icon:
-    sprite: Structures/Machines/printer.rsi
+    sprite: _Starlight/Structures/Machines/printer.rsi
     state: icon
   product: CrateServiceDocumentPrinter
   cost: 2000
