@@ -126,6 +126,8 @@
           completed:
             - !type:RaiseEvent
                 event: !type:MachineDeconstructedEvent
+          conditions:
+            - !type:WirePanel
           steps:
             - tool: Prying
               doAfter: 1
