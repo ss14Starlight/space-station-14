@@ -29,7 +29,8 @@ namespace Content.Shared.Random.Helpers
             var sum = picks.Values.Sum();
             var accumulated = 0f;
 
-            var rand = random.NextFloat() * sum;
+            // Exact former System.Random.NextFloat() conversion for seeded weighted picks.
+            var rand = random.Next() * 4.6566128752458E-10f * sum;
 
             foreach (var (key, weight) in picks)
             {
@@ -115,7 +116,8 @@ namespace Content.Shared.Random.Helpers
             var sum = weights.Values.Sum();
             var accumulated = 0f;
 
-            var rand = random.NextFloat() * sum;
+            // Exact former System.Random.NextFloat() conversion for seeded weighted picks.
+            var rand = random.Next() * 4.6566128752458E-10f * sum;
 
             foreach (var (key, weight) in weights)
             {
@@ -238,7 +240,7 @@ namespace Content.Shared.Random.Helpers
         public static bool PredictedProb(IGameTiming timing, float probability, NetEntity netEnt1, NetEntity? netEnt2 = null)
         {
             var rand = PredictedRandom(timing, netEnt1, netEnt2);
-            return rand.Prob(probability);
+            return rand.NextDouble() < probability;
         }
     }
 }

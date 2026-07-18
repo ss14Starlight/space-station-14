@@ -180,7 +180,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
                 throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
             entity = Spawn(profile.ForcedPrototype, coordinates);
             var resolvedEntity = (EntityUid)entity;
-            var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
+            var grammar = EnsureComp<GrammarComponent>(resolvedEntity);
             _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
 
             _autolog.LogToDiscord(Loc.GetString("autolog-forcedprototype", ("character", profile.Name), ("prototype", profile.ForcedPrototype)));

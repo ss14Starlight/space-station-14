@@ -19,7 +19,7 @@ public sealed partial class CrayonDecalGhostOverlay : DecalPlacementOverlay
     private readonly Angle _rotation;
     private readonly Color _color;
 
-    public CrayonDecalGhostOverlay(DecalPlacementSystem placement, SharedTransformSystem transform, SpriteSystem sprite, SharedInteractionSystem interaction, DecalPrototype? decalPrototype, Angle rotation, Color color) : base(placement, transform, sprite)
+    public CrayonDecalGhostOverlay(DecalPlacementSystem placement, SharedMapSystem map, SharedTransformSystem transform, SpriteSystem sprite, SharedInteractionSystem interaction, DecalPrototype? decalPrototype, Angle rotation, Color color) : base(placement, map, transform, sprite)
     {
         IoCManager.InjectDependencies(this);
         _interaction = interaction;

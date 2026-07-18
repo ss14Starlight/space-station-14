@@ -16,16 +16,7 @@ public sealed partial class PolymorphActionEvent : BasePolymorphActionEvent
     ///     the specific polymorph.
     /// </summary>
     [DataField]
-    public ProtoId<PolymorphPrototype>? ProtoId
-    {
-        get;
-        set
-        {
-            field = value;
-            if (IoCManager.Resolve<IPrototypeManager>().Resolve(value, out var proto))
-                Config = proto.Configuration;
-        }
-    }
+    public ProtoId<PolymorphPrototype>? ProtoId;
 
     public PolymorphActionEvent(ProtoId<PolymorphPrototype> protoId) : this()
     {

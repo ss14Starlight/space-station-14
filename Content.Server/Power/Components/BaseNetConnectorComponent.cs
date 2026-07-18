@@ -13,9 +13,9 @@ namespace Content.Server.Power.Components
     // So BaseNetConnectorNodeGroup<TNetType> is slow as shit.
     public interface IBaseNetConnectorComponent<in TNetType>
     {
-        public TNetType? Net { set; }
-        public Voltage Voltage { get; }
-        public string? NodeId { get; }
+        void SetNet(EntityUid uid, TNetType? net);
+        Voltage Voltage { get; }
+        string? NodeId { get; }
     }
 
     public abstract partial class BaseNetConnectorComponent<TNetType> : Component, IBaseNetConnectorComponent<TNetType>
@@ -23,43 +23,43 @@ namespace Content.Server.Power.Components
     {
         [Dependency] private IEntityManager _entMan = default!;
 
-        [ViewVariables(VVAccess.ReadWrite)]
-        public Voltage Voltage { get => _voltage; set => SetVoltage(value); }
+        [ViewVariables]
+        public Voltage Voltage => _voltage;
         [DataField("voltage")]
         private Voltage _voltage = Voltage.High;
 
         [ViewVariables]
-        public TNetType? Net { get => _net; set => SetNet(value); }
+        public TNetType? Net => _net;
         private TNetType? _net;
 
         [ViewVariables] public bool NeedsNet => _net != null;
 
         [DataField("node")] public string? NodeId { get; set; }
 
-        public void TryFindAndSetNet()
+        public void TryFindAndSetNet(EntityUid uid)
         {
-            if (TryFindNet(out var net))
+            if (TryFindNet(uid, out var net))
             {
-                Net = net;
+                SetNet(uid, net);
             }
         }
 
-        public void ClearNet()
+        public void ClearNet(EntityUid uid)
         {
             if (_net != null)
             {
-                RemoveSelfFromNet(_net);
+                RemoveSelfFromNet(uid, _net);
                 _net = null;
             }
         }
 
-        protected abstract void AddSelfToNet(TNetType net);
+        protected abstract void AddSelfToNet(EntityUid uid, TNetType net);
 
-        protected abstract void RemoveSelfFromNet(TNetType net);
+        protected abstract void RemoveSelfFromNet(EntityUid uid, TNetType net);
 
-        private bool TryFindNet([NotNullWhen(true)] out TNetType? foundNet)
+        private bool TryFindNet(EntityUid uid, [NotNullWhen(true)] out TNetType? foundNet)
         {
-            if (_entMan.TryGetComponent(Owner, out NodeContainerComponent? container))
+            if (_entMan.TryGetComponent(uid, out NodeContainerComponent? container))
             {
                 var compatibleNet = container.Nodes.Values
                     .Where(node => (NodeId == null || NodeId == node.Name) && node.NodeGroupID == (NodeGroupID) Voltage)
@@ -77,22 +77,22 @@ namespace Content.Server.Power.Components
             return false;
         }
 
-        private void SetNet(TNetType? newNet)
+        public void SetNet(EntityUid uid, TNetType? newNet)
         {
             if (_net != null)
-                RemoveSelfFromNet(_net);
+                RemoveSelfFromNet(uid, _net);
 
             if (newNet != null)
-                AddSelfToNet(newNet);
+                AddSelfToNet(uid, newNet);
 
             _net = newNet;
         }
 
-        private void SetVoltage(Voltage newVoltage)
+        public void SetVoltage(EntityUid uid, Voltage newVoltage)
         {
-            ClearNet();
+            ClearNet(uid);
             _voltage = newVoltage;
-            TryFindAndSetNet();
+            TryFindAndSetNet(uid);
         }
     }
 }

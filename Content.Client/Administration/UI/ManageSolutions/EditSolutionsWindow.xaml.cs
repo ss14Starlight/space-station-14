@@ -47,7 +47,7 @@ namespace Content.Client.Administration.UI.ManageSolutions
         {
             base.Close();
             _addReagentWindow?.Close();
-            _addReagentWindow?.Dispose();
+            _addReagentWindow = null;
         }
 
         public void SetTargetEntity(NetEntity target)
@@ -272,7 +272,6 @@ namespace Content.Client.Administration.UI.ManageSolutions
                 return;
 
             _addReagentWindow?.Close();
-            _addReagentWindow?.Dispose();
 
             _addReagentWindow = new AddReagentWindow(_target, _selectedSolution);
             _addReagentWindow.OpenCentered();
@@ -358,7 +357,6 @@ namespace Content.Client.Administration.UI.ManageSolutions
             {
                 // No applicable solutions
                 Close();
-                Dispose();
                 return;
             }
 

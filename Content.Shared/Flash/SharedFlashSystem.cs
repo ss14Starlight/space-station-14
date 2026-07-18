@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Examine;
@@ -8,7 +9,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Light;
 using Content.Shared.Popups;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Content.Shared.Timing;
@@ -21,7 +22,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Clothing.Components;
 using Content.Shared._Starlight.Flash.Components;
 
@@ -41,16 +41,17 @@ public abstract partial class SharedFlashSystem : EntitySystem
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
 
-    private EntityQuery<StatusEffectsComponent> _statusEffectsQuery;
+    private EntityQuery<FlashableComponent> _flashableQuery;
     private EntityQuery<DamagedByFlashingComponent> _damagedByFlashingQuery;
     private HashSet<EntityUid> _entSet = new();
 
     // The tag to add when a flash has no charges left.
     private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
-    // The key string for the status effect.
-    public ProtoId<StatusEffectPrototype> FlashedKey = "Flashed";
+    // The status effect entity applied to flashed targets.
+    public static readonly EntProtoId FlashedKey = "StatusEffectFlashed";
 
     public override void Initialize()
     {
@@ -65,7 +66,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
         SubscribeLocalEvent<FlashImmunityComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<FlashComponent, MapInitEvent>(OnFlashMapInit); // Starlight
 
-        _statusEffectsQuery = GetEntityQuery<StatusEffectsComponent>();
+        _flashableQuery = GetEntityQuery<FlashableComponent>();
         _damagedByFlashingQuery = GetEntityQuery<DamagedByFlashingComponent>();
     }
 
@@ -189,7 +190,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
         #endregion Starlight
 
         // don't paralyze, slowdown or convert to rev if the target is immune to flashes
-        if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, flashDuration, true))
+        if (!_statusEffectsSystem.TryUpdateStatusEffectDuration(target, FlashedKey, flashDuration))
             return;
 
         if (stunDuration != null)
@@ -231,14 +232,11 @@ public abstract partial class SharedFlashSystem : EntitySystem
         _entityLookup.GetEntitiesInRange(transform.Coordinates, range, _entSet);
         foreach (var entity in _entSet)
         {
-            // TODO: Use RandomPredicted https://github.com/space-wizards/RobustToolbox/pull/5849
-            var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(entity).Id);
-            var rand = new System.Random(seed);
-            if (!rand.Prob(probability))
+            if (!_random.ProbPredicted(_timing, probability, GetNetEntity(entity).Id))
                 continue;
 
             // Is the entity affected by the flash either through status effects or by taking damage?
-            if (!_statusEffectsQuery.HasComponent(entity) && !_damagedByFlashingQuery.HasComponent(entity))
+            if (!_flashableQuery.HasComponent(entity) && !_damagedByFlashingQuery.HasComponent(entity))
                 continue;
 
             // Check for entites in view.

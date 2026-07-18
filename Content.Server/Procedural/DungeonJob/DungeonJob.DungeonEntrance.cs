@@ -12,7 +12,7 @@ public sealed partial class DungeonJob
     /// <summary>
     /// <see cref="DungeonEntranceDunGen"/>
     /// </summary>
-    private async Task PostGen(DungeonEntranceDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, Random random)
+    private async Task PostGen(DungeonEntranceDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, IRobustRandom random)
     {
         var rooms = new List<DungeonRoom>(dungeon.Rooms);
         var roomTiles = new List<Vector2i>();
@@ -71,7 +71,7 @@ public sealed partial class DungeonJob
                     isValid = true;
 
                     // Entrance wew
-                    _maps.SetTile(_gridUid, _grid, tile, _tile.GetVariantTile(tileDef, random));
+                    _maps.SetTile(_gridUid, _grid, tile, _tileDefManager.GetVariantTile(tileDef, random));
                     ClearDoor(dungeon, _grid, tile);
                     var gridCoords = _maps.GridTileToLocal(_gridUid, _grid, tile);
                     // Need to offset the spawn to avoid spawning in the room.
@@ -92,7 +92,7 @@ public sealed partial class DungeonJob
                             continue;
                         }
 
-                        _maps.SetTile(_gridUid, _grid, nearTile.GridIndices, _tile.GetVariantTile(tileDef, random));
+                        _maps.SetTile(_gridUid, _grid, nearTile.GridIndices, _tileDefManager.GetVariantTile(tileDef, random));
                     }
 
                     break;

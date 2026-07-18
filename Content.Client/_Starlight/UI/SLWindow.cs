@@ -19,9 +19,11 @@ internal sealed class SLWindow : DefaultWindow
     internal SLWindow()
     {
         _stylesheetManager = IoCManager.Resolve<IStylesheetManager>();
-        Stylesheet = _stylesheetManager.Starlight;
+        Stylesheet = _stylesheetManager.SheetSystem;
         CloseButton.Stylesheet = Stylesheet;
         CloseButton.AddStyleClass("CrossButtonRed");
+        // SheetSystem close icon is 22px; keep it inside DefaultWindow's 25px header.
+        CloseButton.Margin = new Thickness(0);
     }
     public SLWindow Style(Func<IStylesheetManager, Stylesheet> func)
     {

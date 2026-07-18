@@ -80,7 +80,7 @@ namespace Content.Server.GameTicking.Commands
 
                     if (!newLifeSystem.SlotIsAvailable(player.UserId, charSlot))
                     {
-                        Logger.InfoS("security", $"{player.Name} ({player.UserId}) attempted to latejoin while in-game.");
+                        _sawmill.Info($"{player.Name} ({player.UserId}) attempted to latejoin while in-game.");
                         shell.WriteError($"{player.Name} is not in the lobby.   This incident will be reported.");
                         return;
                     }

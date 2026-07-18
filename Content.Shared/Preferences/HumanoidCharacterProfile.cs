@@ -328,7 +328,7 @@ namespace Content.Shared.Preferences
 
         public HumanoidCharacterProfile WithFlavorText(string flavorText)
         {
-            return new(this) { FlavorText = flavorText };
+            return new(this) { PhysicalDescription = flavorText };
         }
 
         public HumanoidCharacterProfile WithAge(int age)
@@ -519,7 +519,7 @@ namespace Content.Shared.Preferences
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
-            if (FlavorText != other.FlavorText) return false;
+            if (PhysicalDescription != other.PhysicalDescription) return false;
             if (Enabled != other.Enabled) return false;
             if (!SpeciesLoadoutEquals(SpeciesLoadout, other.SpeciesLoadout)) return false; // Far Horizons
             // Cosmatic Drift Record System-start
@@ -552,7 +552,7 @@ namespace Content.Shared.Preferences
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) throw new DebugAssertException($"_antagPreferences doesn't match expected '{_antagPreferences}' got '{other._antagPreferences}'");
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) throw new DebugAssertException($"_traitPreferences doesn't match expected '{_traitPreferences}' got '{other._traitPreferences}'");
             if (!Loadouts.SequenceEqual(other.Loadouts))  throw new DebugAssertException($"Loadouts doesn't match expected '{Loadouts}' got '{other.Loadouts}'");
-            if (FlavorText != other.FlavorText) throw new DebugAssertException($"FlavorText doesn't match expected '{FlavorText}' got '{other.FlavorText}'");
+            if (PhysicalDescription != other.PhysicalDescription) throw new DebugAssertException($"PhysicalDescription doesn't match expected '{PhysicalDescription}' got '{other.PhysicalDescription}'");
             if (Enabled != other.Enabled) throw new DebugAssertException($"Enabled doesn't match expected '{Enabled}' got '{other.Enabled}'");
             if (!SpeciesLoadoutEquals(SpeciesLoadout, other.SpeciesLoadout)) throw new DebugAssertException($"SpeciesLoadout doesn't match"); // Far Horizons
             // Cosmatic Drift Record System-start
@@ -677,13 +677,13 @@ namespace Content.Shared.Preferences
 
             string flavortext;
             var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength);
-            if (FlavorText.Length > maxFlavorTextLength)
+            if (PhysicalDescription.Length > maxFlavorTextLength)
             {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxFlavorTextLength];
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(PhysicalDescription)[..maxFlavorTextLength];
             }
             else
             {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(PhysicalDescription);
             }
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex);
@@ -710,7 +710,7 @@ namespace Content.Shared.Preferences
 
             Name = name;
             CustomSpecieName = customspeciename; // Starlight
-            FlavorText = flavortext;
+            PhysicalDescription = flavortext;
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -842,7 +842,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(_traitPreferences);
             hashCode.Add(_loadouts);
             hashCode.Add(Name);
-            hashCode.Add(FlavorText);
+            hashCode.Add(PhysicalDescription);
             hashCode.Add(Species);
             hashCode.Add(CustomSpecieName); // Starlight
             hashCode.Add(Age);

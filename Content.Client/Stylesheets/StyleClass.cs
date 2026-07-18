@@ -40,6 +40,11 @@ public static class StyleClass
     public const string LabelSubText = "LabelSubText";
     public const string LabelKeyText = "LabelKeyText";
     public const string LabelWeak = "LabelWeak"; // replaces `LabelSecondaryColor`
+    public const string LabelBig = "LabelBig";
+    public const string LabelSmall = "LabelSmall";
+    public const string WindowHeadingBackground = "WindowHeadingBackground";
+    public const string WindowHeadingBackgroundLight = "WindowHeadingBackgroundLight";
+    public const string TransparentBorderedWindowPanel = "TransparentBorderedWindowPanel";
     public const string LabelMonospaceText = "ConsoleText";
     public const string LabelMonospaceHeading = "ConsoleHeading";
     public const string LabelMonospaceSubHeading = "ConsoleSubHeading";

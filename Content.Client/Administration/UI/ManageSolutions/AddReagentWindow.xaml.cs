@@ -77,7 +77,6 @@ namespace Content.Client.Administration.UI.ManageSolutions
             if (selectedSolution == null)
             {
                 Close();
-                Dispose();
                 return;
             }
 

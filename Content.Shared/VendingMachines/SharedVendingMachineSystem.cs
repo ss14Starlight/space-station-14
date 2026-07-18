@@ -15,12 +15,10 @@ using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
-using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 #region Starlight
-using Content.Shared._Starlight.IoC;
 using Content.Shared._Starlight.VendingMachines;
 #endregion
 
@@ -41,10 +39,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     [Dependency] protected SharedUserInterfaceSystem UISystem = default!;
     [Dependency] protected IRobustRandom Randomizer = default!;
     [Dependency] private EmagSystem _emag = default!;
-
-    // Starlight
-    [Dependency] private INetManager _net = default!;
-    [Dependency] private SharedSLIoCSystem _slIoc = default!;
 
     public override void Initialize()
     {
@@ -124,15 +118,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         // 🌟Starlight🌟 Allow server-side systems to calculate prices
         // If emagged for interaction, the machine becomes free
-
-        // This is a hack, because this method is doing a lot of things it should not be in component get state
-        // EntityPrototype.TryGetComponent called in CalculateInventoryPrices > GuessCategory has a debug assert
-        // that resolves a dependency
-        // This breaks if this method runs on a thread other than the main thread without IoC initialized
-        // TODO STARLIGHT FIXME
-        if (_net.IsServer)
-            _slIoc.ServerInitIoC();
-
         var isEmagged = _emag.CheckFlag(entity.Owner, EmagType.Interaction);
         var showPricesNow = component.ShowPrices && !isEmagged;
         CalculateInventoryPrices(inventory, showPricesNow);

@@ -47,15 +47,15 @@ namespace Content.Server.Construction.Conditions
             if (transform.GridUid == null)
                 return false;
 
-            var transformSys = entityManager.System<SharedTransformSystem>();
-            var indices = transform.Coordinates.ToVector2i(entityManager, IoCManager.Resolve<IMapManager>(), transformSys);
+            var mapSystem = entityManager.System<SharedMapSystem>();
             var lookup = entityManager.EntitySysManager.GetEntitySystem<EntityLookupSystem>();
-
 
             if (!entityManager.TryGetComponent<MapGridComponent>(transform.GridUid.Value, out var grid))
                 return !HasEntity;
 
-            if (!entityManager.System<SharedMapSystem>().TryGetTileRef(transform.GridUid.Value, grid, indices, out var tile))
+            var indices = mapSystem.CoordinatesToTile(transform.GridUid.Value, grid, transform.Coordinates);
+
+            if (!mapSystem.TryGetTileRef(transform.GridUid.Value, grid, indices, out var tile))
                 return !HasEntity;
 
             foreach (var ent in lookup.GetEntitiesInTile(tile, flags: LookupFlags.Approximate | LookupFlags.Static))

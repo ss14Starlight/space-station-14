@@ -19,7 +19,7 @@ namespace Content.Server.Construction.Completions
 
             if (SouthRotation)
             {
-                transform.LocalRotation = Angle.Zero;
+                entityManager.System<SharedTransformSystem>().SetLocalRotation(uid, Angle.Zero, transform);
             }
         }
     }

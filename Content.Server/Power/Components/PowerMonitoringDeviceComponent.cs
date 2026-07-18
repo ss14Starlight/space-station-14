@@ -59,7 +59,7 @@ public sealed partial class PowerMonitoringDeviceComponent : Component
     /// <remarks>
     ///     Used when grouping multiple entities into a single power monitoring console entry
     /// </remarks>
-    public bool IsCollectionMaster { get { return Owner == CollectionMaster; } }
+    public bool IsCollectionMaster(EntityUid uid) => uid == CollectionMaster;
 
     /// <summary>
     ///     A list of other entities that are to be represented by this entity

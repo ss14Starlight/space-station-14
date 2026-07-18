@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Robust.Shared.Timing;
@@ -42,7 +41,7 @@ public sealed partial class SolutionPurgeSystem : EntitySystem
             {
                 _solutionContainer.SplitSolutionWithout(solution.Value,
                     purge.Quantity,
-                    purge.Preserve.Select(proto => proto.Id).ToArray());
+                    purge.Preserve.ToArray());
             }
         }
     }

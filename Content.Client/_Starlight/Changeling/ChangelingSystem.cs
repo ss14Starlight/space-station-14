@@ -2,6 +2,7 @@ using Content.Client.Alerts;
 using Content.Client.UserInterface.Systems.Alerts.Controls;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared.StatusIcon.Components;
+using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Changeling;
@@ -10,6 +11,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 {
 
     [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -35,8 +37,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             default:
                 return;
         }
-        var sprite = args.SpriteViewEnt.Comp;
-        sprite.LayerSetState(AlertVisualLayers.Base, $"{stateNormalized}");
+        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), AlertVisualLayers.Base, $"{stateNormalized}");
     }
 
     private void GetChanglingIcon(Entity<ChangelingComponent> ent, ref GetStatusIconsEvent args)

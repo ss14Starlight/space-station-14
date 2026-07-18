@@ -10,9 +10,11 @@ namespace Content.Shared.Movement.Components
     public sealed partial class MobMoverComponent : Component
     {
         private float _stepSoundDistance;
-        [DataField] public float GrabRange = 1.0f;
+        [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+        public float GrabRange = 1.0f;
 
-        [DataField] public float PushStrength = 600f;
+        [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+        public float PushStrength = 600f;
 
         [DataField, AutoNetworkedField]
         public float StepSoundMoveDistanceRunning = 2;
@@ -37,30 +39,6 @@ namespace Content.Shared.Movement.Components
             {
                 if (MathHelper.CloseToPercent(_stepSoundDistance, value)) return;
                 _stepSoundDistance = value;
-            }
-        }
-
-        [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-        public float GrabRangeVV
-        {
-            get => GrabRange;
-            set
-            {
-                if (MathHelper.CloseToPercent(GrabRange, value)) return;
-                GrabRange = value;
-                Dirty();
-            }
-        }
-
-        [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-        public float PushStrengthVV
-        {
-            get => PushStrength;
-            set
-            {
-                if (MathHelper.CloseToPercent(PushStrength, value)) return;
-                PushStrength = value;
-                Dirty();
             }
         }
     }

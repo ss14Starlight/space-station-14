@@ -157,7 +157,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
         foreach (var ruleId in selected.Rules)
         {
             if (!_prototypeManager.TryIndex(ruleId, out EntityPrototype? rule)
-                || !rule.TryGetComponent(_ruleCompName, out GameRuleComponent? ruleComp))
+                || !rule.TryComp(Factory.CompName<GameRuleComponent>(), out GameRuleComponent? ruleComp))
             {
                 Log.Error($"Encountered invalid rule {ruleId} in preset {selected.ID}");
                 return false;

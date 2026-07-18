@@ -25,8 +25,6 @@ using Robust.Shared.Random;
 using Content.Server.Chat;
 using Content.Server.Hands.Systems;
 using Content.Shared.NameModifier.EntitySystems;
-using Content.Shared.Clumsy;
-using Content.Shared.Cluwne;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
@@ -228,7 +226,7 @@ namespace Content.Server.Bible
                         }
 
                     }
-                    if (EntityManager.TryGetComponent<HandsComponent>(target, out var hands))
+                    if (TryComp<HandsComponent>(target, out var hands))
                     {
                         foreach (var hand in _hands.EnumerateHands((target, hands)))
                         {

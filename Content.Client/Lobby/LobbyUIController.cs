@@ -383,7 +383,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
                 // if the ghost window is open return it.
                 _characterSetupWindow?.DisposePopOut(); // Starlight: close the popout
                 _characterSetupWindow?.Close();
-                _characterSetup.Orphan();
+                if (!_characterSetup.Disposed)
+                    _characterSetup.Orphan();
                 container.AddChild(_characterSetup);
             }
             // end starlight

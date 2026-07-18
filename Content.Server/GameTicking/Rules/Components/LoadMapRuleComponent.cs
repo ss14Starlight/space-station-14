@@ -1,4 +1,3 @@
-using Content.Shared.GridPreloader.Prototypes;
 using Content.Shared.Maps;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -12,6 +11,7 @@ namespace Content.Server.GameTicking.Rules.Components;
 /// <summary>
 /// This is used for a game rule that loads a map when activated.
 /// Works with <see cref="RuleGridsComponent"/>.
+/// Exactly one of <see cref="GameMap"/>, <see cref="MapPath"/>, or <see cref="GridPath"/> should be set.
 /// </summary>
 [RegisterComponent, Access(typeof(LoadMapRuleSystem))]
 public sealed partial class LoadMapRuleComponent : Component
@@ -33,17 +33,6 @@ public sealed partial class LoadMapRuleComponent : Component
     /// </summary>
     [DataField]
     public ResPath? GridPath;
-
-    /// <summary>
-    /// A <see cref="PreloadedGridPrototype"/> to move to a new map.
-    /// If there are no instances left nothing is done.
-    /// <para>
-    /// This is deprecated. Do not create new content that uses this field,
-    /// and migrate existing content to be loaded dynamically during the round.
-    /// </para>
-    /// </summary>
-    [DataField, Obsolete("Do not pre-load grids. This causes the server to have to keep that grid loaded in memory during the entire round, even if that grid is never summoned to the playspace.")]
-    public ProtoId<PreloadedGridPrototype>? PreloadedGrid;
 
     /// <summary>
     /// Starlight - If a map with the tag below already exist, we do not load a new one and give info on the current one.

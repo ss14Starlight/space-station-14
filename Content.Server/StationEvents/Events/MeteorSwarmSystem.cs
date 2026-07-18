@@ -62,9 +62,18 @@ public sealed partial class MeteorSwarmSystem : StationEventSystem<MeteorSwarmCo
         {
             var spawnProto = RobustRandom.Pick(component.Meteors);
 
-            var angle = component.NonDirectional
-                ? RobustRandom.NextAngle()
-                : new Random(uid.Id).NextAngle();
+            Angle angle;
+            if (component.NonDirectional)
+            {
+                angle = RobustRandom.NextAngle();
+            }
+            else
+            {
+                // Deterministic approach angle shared by all meteors in this swarm.
+                IRobustRandom seededRandom = new RobustRandom();
+                seededRandom.SetSeed(uid.Id);
+                angle = seededRandom.NextAngle();
+            }
 
             var offset = angle.RotateVec(new Vector2((maximumDistance - minimumDistance) * RobustRandom.NextFloat() + minimumDistance, 0));
 

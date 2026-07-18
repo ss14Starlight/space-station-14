@@ -16,12 +16,12 @@ public sealed partial class BorgSwitchableSubstypeSystem : SharedBorgSwitchableS
             return;
 
         if (!Prototypes.Index(ent.Comp.BorgSubtype.Value)
-            .TryGetComponent<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory))
+            .TryComp<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory))
             return;
 
         // Configure special components
         if (Prototypes.TryIndex(ent.Comp.BorgSubtype, out var previousPrototype) &&
-            previousPrototype.TryGetComponent<BorgSubtypeDefinitionComponent>(out var previousSubtype, ComponentFactory))
+            previousPrototype.TryComp<BorgSubtypeDefinitionComponent>(out var previousSubtype, ComponentFactory))
         {
             if (previousSubtype.AddComponents is { } removeComponents)
                 EntityManager.RemoveComponents(ent, removeComponents);

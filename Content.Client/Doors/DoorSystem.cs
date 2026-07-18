@@ -151,7 +151,7 @@ public sealed partial class DoorSystem : SharedDoorSystem
         if (!_prototypeManager.Resolve(targetProto, out var target))
             return;
 
-        if (!target.TryGetComponent(out SpriteComponent? targetSprite, _componentFactory))
+        if (!target.TryComp(out SpriteComponent? targetSprite, _componentFactory))
             return;
 
         _sprite.SetBaseRsi(sprite.AsNullable(), targetSprite.BaseRSI);

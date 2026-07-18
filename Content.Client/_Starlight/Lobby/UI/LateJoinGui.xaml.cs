@@ -63,9 +63,6 @@ namespace Content.Client._Starlight.Lobby.UI
             _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
             _sawmill = _logManager.GetSawmill("latejoin.panel");
 
-            _jobRequirements.Updated += RebuildUI;
-            RebuildUI();
-
             SelectedId += x =>
             {
                 var (station, slot, jobId) = x;
@@ -76,8 +73,51 @@ namespace Content.Client._Starlight.Lobby.UI
                 Close();
             };
 
+            // Subscribe immediately so NewLifeWindow can reparent Contents without LateJoinGui entering the tree.
+            SubscribeExternal();
+            RebuildUI();
+        }
+
+        private bool _subscribed;
+
+        private void SubscribeExternal()
+        {
+            if (_subscribed)
+                return;
+
+            _subscribed = true;
+            _jobRequirements.Updated += RebuildUI;
             _gameTicker.LobbyJobsAvailableUpdated += JobsAvailableUpdated;
         }
+
+        private void UnsubscribeExternal()
+        {
+            if (!_subscribed)
+                return;
+
+            _subscribed = false;
+            _jobRequirements.Updated -= RebuildUI;
+            _gameTicker.LobbyJobsAvailableUpdated -= JobsAvailableUpdated;
+            _jobButtons.Clear();
+            _jobCategories.Clear();
+        }
+
+        protected override void EnteredTree()
+        {
+            base.EnteredTree();
+            SubscribeExternal();
+        }
+
+        protected override void ExitedTree()
+        {
+            base.ExitedTree();
+            UnsubscribeExternal();
+        }
+
+        /// <summary>
+        /// Cleanup when Contents is hosted elsewhere (e.g. NewLifeWindow) so LateJoinGui never exits the tree.
+        /// </summary>
+        public void Teardown() => UnsubscribeExternal();
 
         /// <summary>
         /// Rebuild all of the character picker buttons
@@ -359,18 +399,6 @@ namespace Content.Client._Starlight.Lobby.UI
             }
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-
-            if (disposing)
-            {
-                _jobRequirements.Updated -= RebuildUI;
-                _gameTicker.LobbyJobsAvailableUpdated -= JobsAvailableUpdated;
-                _jobButtons.Clear();
-                _jobCategories.Clear();
-            }
-        }
     }
 
     sealed class JobButton : ContainerButton

@@ -58,7 +58,8 @@ public sealed partial class AchievementUIController : UIController, IOnStateEnte
         _window?.Close();
         _window = null;
 
-        _notification?.Orphan();
+        if (_notification is { Disposed: false })
+            _notification.Orphan();
         _notification = null;
     }
 
@@ -90,13 +91,15 @@ public sealed partial class AchievementUIController : UIController, IOnStateEnte
         if (!_protoManager.TryIndex<AchievementPrototype>(achievementId, out var proto))
             return;
 
-        _notification?.Orphan();
+        if (_notification is { Disposed: false })
+            _notification.Orphan();
 
         var notification = _notification = new AchievementNotification();
         notification.SetAchievement(proto);
         notification.CloseRequested += () =>
         {
-            notification.Orphan();
+            if (!notification.Disposed)
+                notification.Orphan();
             if (_notification == notification)
                 _notification = null;
         };
@@ -110,7 +113,8 @@ public sealed partial class AchievementUIController : UIController, IOnStateEnte
 
         Timer.Spawn(NotificationDisplayDuration, () =>
         {
-            notification.Orphan();
+            if (!notification.Disposed)
+                notification.Orphan();
 
             if (_notification == notification)
                 _notification = null;

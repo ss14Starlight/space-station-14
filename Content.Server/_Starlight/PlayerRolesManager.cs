@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Content.Server.Database;
+using Content.Shared._NullLink;
 using Content.Shared._Starlight;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
@@ -14,6 +15,7 @@ public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjec
     [Dependency] private IServerDbManager _dbManager = default!;
     [Dependency] private IServerNetManager _netMgr = default!;
     [Dependency] private ILogManager _logger = default!;
+    [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
 
     private readonly Dictionary<ICommonSession, PlayerReg> _players = new();
 
@@ -38,13 +40,19 @@ public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjec
             Login(e.Session);
         else if (e.NewStatus == SessionStatus.Disconnected)
         {
+            var balance = 0.0;
+            _playerResources.TryGetResource(e.Session, "credits", out var creditBalance);
+            if (creditBalance is { } credits)
+                balance = credits;
+
+            _playerResources.RemoveResources(e.Session, out _);
+
             if (_players.Remove(e.Session, out var data))
             {
-                data!.Data.Resources.TryGetValue("credits", out var balance);
                 _ = _dbManager.SetPlayerDataForAsync(e.Session.UserId, new StarLightModel.PlayerDataDTO
                 {
                     GhostTheme = data!.Data.GhostTheme,
-                    Balance = (int)balance
+                    Balance = (int) balance
                 });
             }
         }
@@ -63,14 +71,22 @@ public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjec
     private async void Login(ICommonSession session)
     {
         var adminDat = await LoadPlayerData(session);
-        var reg = new PlayerReg(session, adminDat);
 
-        _players.Add(session, reg);
+        // Player may have disconnected while awaiting the database.
+        if (session.Status == SessionStatus.Disconnected)
+            return;
+
+        var reg = new PlayerReg(session, adminDat.Data);
+
+        if (!_players.TryAdd(session, reg))
+            return;
+
+        _playerResources.TrySetResource(session, "credits", adminDat.Balance, skipNullLink: true);
 
         UpdatePlayerStatus(session);
     }
 
-    private async Task<PlayerData> LoadPlayerData(ICommonSession session)
+    private async Task<(PlayerData Data, int Balance)> LoadPlayerData(ICommonSession session)
     {
         var dbData = await _dbManager.GetPlayerDataForAsync(session.UserId);
 
@@ -91,9 +107,7 @@ public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjec
             GhostTheme = dbData.GhostTheme
         };
 
-        data.Resources["credits"] = dbData.Balance;
-
-        return data;
+        return (data, dbData.Balance);
     }
     public PlayerData? GetPlayerData(EntityUid uid)
     {

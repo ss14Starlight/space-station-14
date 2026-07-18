@@ -2,11 +2,13 @@ using Content.Server.Engineering.Components;
 using Content.Server.Stack;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.DoAfter;
+using Content.Shared.Engineering;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Stacks;
 using JetBrains.Annotations;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Engineering.EntitySystems
@@ -25,9 +27,10 @@ namespace Content.Server.Engineering.EntitySystems
             base.Initialize();
 
             SubscribeLocalEvent<SpawnAfterInteractComponent, AfterInteractEvent>(HandleAfterInteract);
+            SubscribeLocalEvent<SpawnAfterInteractComponent, SpawnAfterInteractDoAfterEvent>(OnDoAfter);
         }
 
-        private async void HandleAfterInteract(EntityUid uid, SpawnAfterInteractComponent component, AfterInteractEvent args)
+        private void HandleAfterInteract(EntityUid uid, SpawnAfterInteractComponent component, AfterInteractEvent args)
         {
             if (!args.CanReach && !component.IgnoreDistance)
                 return;
@@ -40,39 +43,65 @@ namespace Content.Server.Engineering.EntitySystems
             if (!_maps.TryGetTileRef(gridUid.Value, grid, args.ClickLocation, out var tileRef))
                 return;
 
-            bool IsTileClear()
-            {
-                return tileRef.Tile.IsEmpty == false && !_turfSystem.IsTileBlocked(tileRef, CollisionGroup.MobMask);
-            }
-
-            if (!IsTileClear())
+            if (tileRef.Tile.IsEmpty || _turfSystem.IsTileBlocked(tileRef, CollisionGroup.MobMask))
                 return;
 
             if (component.DoAfterTime > 0)
             {
-                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.DoAfterTime, new AwaitedDoAfterEvent(), null)
+                var doAfterArgs = new DoAfterArgs(
+                    EntityManager,
+                    args.User,
+                    component.DoAfterTime,
+                    new SpawnAfterInteractDoAfterEvent(GetNetCoordinates(args.ClickLocation)),
+                    uid)
                 {
                     BreakOnMove = true,
                 };
-                var result = await _doAfterSystem.WaitDoAfter(doAfterArgs);
 
-                if (result != DoAfterStatus.Finished)
-                    return;
+                _doAfterSystem.TryStartDoAfter(doAfterArgs);
+                return;
             }
 
-            if (component.Deleted || !IsTileClear())
+            TryCompleteSpawn(uid, component, args.ClickLocation);
+        }
+
+        private void OnDoAfter(EntityUid uid, SpawnAfterInteractComponent component, SpawnAfterInteractDoAfterEvent args)
+        {
+            if (args.Cancelled || args.Handled)
                 return;
+
+            if (!TryCompleteSpawn(uid, component, GetCoordinates(args.ClickLocation)))
+                return;
+
+            args.Handled = true;
+        }
+
+        private bool TryCompleteSpawn(EntityUid uid, SpawnAfterInteractComponent component, EntityCoordinates clickLocation)
+        {
+            if (string.IsNullOrEmpty(component.Prototype))
+                return false;
+
+            var gridUid = _transform.GetGrid(clickLocation);
+            if (!TryComp<MapGridComponent>(gridUid, out var grid))
+                return false;
+            if (!_maps.TryGetTileRef(gridUid.Value, grid, clickLocation, out var tileRef))
+                return false;
+
+            if (tileRef.Tile.IsEmpty || _turfSystem.IsTileBlocked(tileRef, CollisionGroup.MobMask))
+                return false;
 
             if (TryComp<StackComponent>(uid, out var stackComp)
                 && component.RemoveOnInteract && !_stackSystem.TryUse((uid, stackComp), 1))
             {
-                return;
+                return false;
             }
 
-            Spawn(component.Prototype, args.ClickLocation.SnapToGrid(grid));
+            Spawn(component.Prototype, clickLocation.SnapToGrid(grid));
 
             if (component.RemoveOnInteract && stackComp == null)
                 TryQueueDel(uid);
+
+            return true;
         }
     }
 }

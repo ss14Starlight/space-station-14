@@ -88,7 +88,7 @@ public abstract partial class SharedTicketMachineSystem : EntitySystem
             return;
         }
 
-        var ticket = EntityManager.PredictedSpawnAtPosition(component.TicketProtoId, Transform(uid).Coordinates);
+        var ticket = PredictedSpawnAtPosition(component.TicketProtoId, Transform(uid).Coordinates);
         args.Handled = true;
 
         if (TryComp<TicketComponent>(ticket, out var ticketComponent))

@@ -21,7 +21,7 @@ namespace Content.Server.Power.Components
             set => NetworkLoad.DesiredPower = value;
         }
 
-        public ApcPowerProviderComponent? Provider = null;
+        public Entity<ApcPowerProviderComponent>? Provider = null;
 
         /// <summary>
         ///     When false, causes this to appear powered even if not receiving power from an Apc.

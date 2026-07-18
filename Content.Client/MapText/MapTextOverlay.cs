@@ -1,13 +1,10 @@
 ﻿using System.Numerics;
 using Content.Shared.MapText;
 using Robust.Client.Graphics;
-using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
-using Robust.Client.UserInterface.RichText;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client.MapText;
 
@@ -26,9 +23,7 @@ public sealed class MapTextOverlay : Overlay
         IConfigurationManager configManager,
         IEntityManager entManager,
         IUserInterfaceManager uiManager,
-        SharedTransformSystem transform,
-        IResourceCache resourceCache,
-        IPrototypeManager prototypeManager)
+        SharedTransformSystem transform)
     {
         _configManager = configManager;
         _entManager = entManager;

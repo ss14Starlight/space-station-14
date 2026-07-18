@@ -262,6 +262,7 @@
     - type: StatusEffects
       allowed:
         - Flashed
+    - type: Flashable
     - type: FlashImmunity
     - type: Construction
       graph: Cyborg

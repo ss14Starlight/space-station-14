@@ -16,7 +16,4 @@ public sealed class PlayerData
     public string? GhostTheme;
 
     public Color GhostThemeColor = Color.White;
-
-    [Obsolete("Use ISharedNullLinkPlayerResourcesManager to access this field")]
-    public Dictionary<string, double> Resources = [];
 }

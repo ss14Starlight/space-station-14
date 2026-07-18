@@ -18,10 +18,21 @@ namespace Content.Client.Administration.UI.Tabs
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
 
+            ServerShutdownButton.OnPressed += _ => _console.ExecuteCommand("shutdown");
+        }
+
+        protected override void EnteredTree()
+        {
+            base.EnteredTree();
             _config.OnValueChanged(CCVars.OocEnabled, OocEnabledChanged, true);
             _config.OnValueChanged(CCVars.LoocEnabled, LoocEnabledChanged, true);
+        }
 
-            ServerShutdownButton.OnPressed += _ => _console.ExecuteCommand("shutdown");
+        protected override void ExitedTree()
+        {
+            base.ExitedTree();
+            _config.UnsubValueChanged(CCVars.OocEnabled, OocEnabledChanged);
+            _config.UnsubValueChanged(CCVars.LoocEnabled, LoocEnabledChanged);
         }
 
         private void OocEnabledChanged(bool value)
@@ -32,17 +43,6 @@ namespace Content.Client.Administration.UI.Tabs
         private void LoocEnabledChanged(bool value)
         {
             SetLoocButton.Pressed = value;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-
-            if (disposing)
-            {
-                _config.UnsubValueChanged(CCVars.OocEnabled, OocEnabledChanged);
-                _config.UnsubValueChanged(CCVars.LoocEnabled, LoocEnabledChanged);
-            }
         }
     }
 }

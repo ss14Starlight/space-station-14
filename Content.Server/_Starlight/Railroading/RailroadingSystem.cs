@@ -180,7 +180,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
                 var cardPerformer = EnsureComp<RailroadCardPerformerComponent>(card);
                 cardPerformer.Performer = subject;
 
-                if (TryComp<MetaDataComponent>(card.Owner, out var meta)
+                if (TryComp(card.Owner, out MetaDataComponent? meta)
                     && meta.EntityPrototype?.ID == CriminalCardPrototypeId)
                 {
                     var achievementId = HasComp<CommandStaffComponent>(subject.Owner)

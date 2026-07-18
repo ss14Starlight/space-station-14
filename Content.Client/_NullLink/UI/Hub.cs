@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Resources;
-using Content.Client.Stylesheets;
+using Content.Client.Stylesheets.Palette;
 using Content.Shared._NullLink;
 using Content.Shared._Starlight.Abstract.Conditions;
 using Content.Shared._Starlight.GhostTheme;
@@ -16,7 +16,7 @@ using static Robust.Client.UserInterface.Controls.BoxContainer;
 
 namespace Content.Client._NullLink.UI;
 
-internal sealed partial class Hub : PanelContainer, IDisposable
+internal sealed partial class Hub : PanelContainer
 {
     private const string IconFont = "/Fonts/_NullLink/GameIcons/game-icons.ttf";
     private const string TextFont = "/Fonts/NotoSans/NotoSans-Regular.ttf";
@@ -63,7 +63,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         PanelOverride = new StyleBoxFlat
         {
             BackgroundColor = PanelColor,
-            BorderColor = StyleNano.NanoGold,
+            BorderColor = Palettes.Gold.Base,
             BorderThickness = new Thickness(2),
         };
 
@@ -120,8 +120,41 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         AddChild(outer);
 
         SetCollapsed(false);
+    }
 
-        _systemManager.SystemLoaded += OnSystemLoaded;
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+
+        if (_hub != null)
+        {
+            _hub.OnInitialized += OnHubChanged;
+            _hub.OnRequirementsUpdated += OnHubChanged;
+            _hub.OnServerUpdated += OnServerChanged;
+            _hub.OnServerInfoUpdated += OnServerInfoChanged;
+            _hub.OnServersRemoved += OnServerRemoved;
+            if (_hub.HubInitialized)
+                Rebuild();
+        }
+        else
+        {
+            _systemManager.SystemLoaded += OnSystemLoaded;
+        }
+    }
+
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+
+        _systemManager.SystemLoaded -= OnSystemLoaded;
+        if (_hub is null)
+            return;
+
+        _hub.OnInitialized -= OnHubChanged;
+        _hub.OnRequirementsUpdated -= OnHubChanged;
+        _hub.OnServerUpdated -= OnServerChanged;
+        _hub.OnServerInfoUpdated -= OnServerInfoChanged;
+        _hub.OnServersRemoved -= OnServerRemoved;
     }
 
     private void SetCollapsed(bool collapsed)
@@ -337,7 +370,7 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         if (info?.PanicBunkerActive == true)
             row.AddChild(MakeGlyph(BunkerGlyph, WarningColor, PanicBunkerTooltip(server)));
         if (recognized)
-            row.AddChild(MakeGlyph(RecognitionGlyph, StyleNano.NanoGold, Loc.GetString("nulllink-hub-recognition-tooltip")));
+            row.AddChild(MakeGlyph(RecognitionGlyph, Palettes.Gold.Base, Loc.GetString("nulllink-hub-recognition-tooltip")));
         if (ghost)
             row.AddChild(MakeGlyph(GhostGlyph, GhostColor, Loc.GetString("nulllink-hub-ghost-tooltip")));
 
@@ -479,20 +512,4 @@ internal sealed partial class Hub : PanelContainer, IDisposable
         List<KeyValuePair<string, NullLink.Server>> list)
         => list.OrderBy(kv => kv.Value.Title, StringComparer.OrdinalIgnoreCase);
 
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (!disposing)
-            return;
-
-        _systemManager.SystemLoaded -= OnSystemLoaded;
-        if (_hub is null)
-            return;
-
-        _hub.OnInitialized -= OnHubChanged;
-        _hub.OnRequirementsUpdated -= OnHubChanged;
-        _hub.OnServerUpdated -= OnServerChanged;
-        _hub.OnServerInfoUpdated -= OnServerInfoChanged;
-        _hub.OnServersRemoved -= OnServerRemoved;
-    }
 }

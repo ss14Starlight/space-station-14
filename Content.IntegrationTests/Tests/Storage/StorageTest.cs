@@ -36,6 +36,7 @@ public sealed class StorageTest : GameTest
 
         var protoManager = server.ResolveDependency<IPrototypeManager>();
         var entMan = server.ResolveDependency<IEntityManager>();
+        var compFact = server.ResolveDependency<IComponentFactory>();
 
         var itemSys = entMan.System<SharedItemSystem>();
 
@@ -43,11 +44,11 @@ public sealed class StorageTest : GameTest
         {
             foreach (var proto in protoManager.EnumeratePrototypes<EntityPrototype>())
             {
-                if (!proto.TryGetComponent<StorageComponent>("Storage", out var storage) ||
+                if (!proto.TryComp<StorageComponent>(out var storage, compFact) ||
                     storage.Whitelist != null ||
                     storage.MaxItemSize == null ||
                     StorageSizeArbitrageExempt.Contains(proto.ID) ||
-                    !proto.TryGetComponent<ItemComponent>("Item", out var item))
+                    !proto.TryComp<ItemComponent>(out var item, compFact))
                     continue;
 
                 Assert.That(itemSys.GetSizePrototype(storage.MaxItemSize.Value).Weight,
@@ -57,6 +58,8 @@ public sealed class StorageTest : GameTest
         });
     }
 
+    // StorageFillComponent is obsolete but still present in prototypes until Dec 2026; keep validating it.
+#pragma warning disable CS0618
     [Test]
     public async Task TestStorageFillPrototypes()
     {
@@ -64,6 +67,7 @@ public sealed class StorageTest : GameTest
         var server = pair.Server;
 
         var protoManager = server.ResolveDependency<IPrototypeManager>();
+        var compFact = server.ResolveDependency<IComponentFactory>();
 
         await server.WaitAssertion(() =>
         {
@@ -71,7 +75,7 @@ public sealed class StorageTest : GameTest
             {
                 foreach (var proto in protoManager.EnumeratePrototypes<EntityPrototype>())
                 {
-                    if (!proto.TryGetComponent<StorageFillComponent>("StorageFill", out var storage))
+                    if (!proto.TryComp<StorageFillComponent>(out var storage, compFact))
                         continue;
 
                     foreach (var entry in storage.Contents)
@@ -112,14 +116,14 @@ public sealed class StorageTest : GameTest
                 var size = 0;
                 await server.WaitAssertion(() =>
                 {
-                    if (!proto.TryGetComponent("Storage", out storage))
+                    if (!proto.TryComp<StorageComponent>(out storage, compFact))
                     {
                         Assert.Fail($"Entity {proto.ID} has storage-fill without a storage component!");
                         return;
                     }
 
-                    proto.TryGetComponent("Item", out item);
-                    size = GetFillSize(fill, false, protoMan, itemSys);
+                    proto.TryComp<ItemComponent>(out item, compFact);
+                    size = GetFillSize(fill, false, protoMan, itemSys, compFact);
                 });
 
                 if (storage == null)
@@ -156,7 +160,7 @@ public sealed class StorageTest : GameTest
                     ItemComponent? entryItem = null;
                     await server.WaitPost(() =>
                     {
-                        fillItem.TryGetComponent("Item", out entryItem);
+                        fillItem.TryComp<ItemComponent>(out entryItem, compFact);
                     });
 
                     if (entryItem == null)
@@ -190,20 +194,20 @@ public sealed class StorageTest : GameTest
 
             await server.WaitAssertion(() =>
             {
-                if (!proto.TryGetComponent("EntityStorage", out EntityStorageComponent? entStorage))
+                if (!proto.TryComp<EntityStorageComponent>(out var entStorage, compFact))
                     Assert.Fail($"Entity {proto.ID} has storage-fill without a storage component!");
 
                 if (entStorage == null)
                     return;
 
-                var size = GetFillSize(fill, true, protoMan, itemSys);
+                var size = GetFillSize(fill, true, protoMan, itemSys, compFact);
                 Assert.That(size, Is.LessThanOrEqualTo(entStorage.Capacity),
                     $"{proto.ID} storage fill is too large.");
             });
         }
     }
 
-    private int GetEntrySize(EntitySpawnEntry entry, bool getCount, IPrototypeManager protoMan, SharedItemSystem itemSystem)
+    private int GetEntrySize(EntitySpawnEntry entry, bool getCount, IPrototypeManager protoMan, SharedItemSystem itemSystem, IComponentFactory compFact)
     {
         if (entry.PrototypeId == null)
             return 0;
@@ -218,20 +222,20 @@ public sealed class StorageTest : GameTest
             return entry.Amount;
 
 
-        if (proto.TryGetComponent<ItemComponent>("Item", out var item))
+        if (proto.TryComp<ItemComponent>(out var item, compFact))
             return itemSystem.GetItemShape(item).GetArea() * entry.Amount;
 
         Assert.Fail($"Prototype is missing item comp: {entry.PrototypeId}");
         return 0;
     }
 
-    private int GetFillSize(StorageFillComponent fill, bool getCount, IPrototypeManager protoMan, SharedItemSystem itemSystem)
+    private int GetFillSize(StorageFillComponent fill, bool getCount, IPrototypeManager protoMan, SharedItemSystem itemSystem, IComponentFactory compFact)
     {
         var totalSize = 0;
         var groups = new Dictionary<string, int>();
         foreach (var entry in fill.Contents)
         {
-            var size = GetEntrySize(entry, getCount, protoMan, itemSystem);
+            var size = GetEntrySize(entry, getCount, protoMan, itemSystem, compFact);
 
             if (entry.GroupId == null)
                 totalSize += size;
@@ -265,4 +269,5 @@ public sealed class StorageTest : GameTest
             }
         });
     }
+#pragma warning restore CS0618
 }

@@ -92,7 +92,7 @@ public sealed partial class DeviceListSystem : SharedDeviceListSystem
             return;
         }
 
-        HashSet<DeviceNetworkComponent> filteredRecipients = new(args.Recipients.Count);
+        HashSet<Entity<DeviceNetworkComponent>> filteredRecipients = new(args.Recipients.Count);
 
         foreach (var recipient in args.Recipients)
         {

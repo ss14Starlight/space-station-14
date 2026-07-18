@@ -65,7 +65,7 @@ public sealed partial class NuclearCentrifugeSystem : EntitySystem
                     while (comp.ExtractedFuel > 1)
                     {
                         var plutoniumStack = Spawn("IngotPlutonium1", Transform(uid).Coordinates);
-                        _stackSystem.SetCount(plutoniumStack, Math.Clamp((int)Math.Floor(comp.ExtractedFuel), 1, _stackSize));
+                        _stackSystem.SetCount((plutoniumStack, null), Math.Clamp((int)Math.Floor(comp.ExtractedFuel), 1, _stackSize));
                         comp.ExtractedFuel -= _stackSystem.GetCount(plutoniumStack);
                         _stackSystem.TryMergeToContacts(plutoniumStack);
                     }

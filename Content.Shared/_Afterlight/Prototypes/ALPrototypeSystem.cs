@@ -12,7 +12,7 @@ public sealed partial class ALPrototypeSystem : EntitySystem
     {
         foreach (var entity in _prototype.EnumeratePrototypes<EntityPrototype>())
         {
-            if (entity.TryGetComponent(out T? comp, _compFactory))
+            if (entity.TryComp(out T? comp, _compFactory))
                 yield return (entity, comp);
         }
     }

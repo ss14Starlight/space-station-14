@@ -20,6 +20,10 @@ namespace Content.Server.Construction.Completions;
 [UsedImplicitly, DataDefinition]
 public sealed partial class BuildMech : IGraphAction
 {
+    [Dependency] private ILogManager _logManager = default!;
+
+    private ISawmill _log { get => field ??= _logManager.GetSawmill("construction.mech"); } = default!;
+
     [DataField("mechPrototype", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string MechPrototype = string.Empty;
 
@@ -37,7 +41,7 @@ public sealed partial class BuildMech : IGraphAction
         var newMech = entityManager.SpawnEntity(MechPrototype, transform.Coordinates);
         if (!entityManager.TryGetComponent<MechComponent>(newMech, out var mechComp))
         {
-            Logger.Warning($"Mech construct entity {uid} did not have a mech component! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have a mech component! Aborting build mech action.");
             return;
         }
 
@@ -60,7 +64,7 @@ public sealed partial class BuildMech : IGraphAction
     {
         if (!entityManager.TryGetComponent(uid, out ContainerManagerComponent? containerManager))
         {
-            Logger.Warning($"Mech construct entity {uid} did not have a container manager! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have a container manager! Aborting build mech action.");
             return;
         }
 

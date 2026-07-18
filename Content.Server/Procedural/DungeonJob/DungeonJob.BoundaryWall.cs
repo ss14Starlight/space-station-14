@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Robust.Shared.Random;
 using Content.Shared.Maps;
 using Content.Shared.Procedural;
 using Content.Shared.Procedural.PostGeneration;
@@ -12,7 +13,7 @@ public sealed partial class DungeonJob
     /// <summary>
     /// <see cref="BoundaryWallDunGen"/>
     /// </summary>
-    private async Task PostGen(BoundaryWallDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, Random random)
+    private async Task PostGen(BoundaryWallDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, IRobustRandom random)
     {
         var tileDef = _tileDefManager[gen.Tile];
         var tiles = new List<(Vector2i Index, Tile Tile)>(dungeon.RoomExteriorTiles.Count);
@@ -32,7 +33,7 @@ public sealed partial class DungeonJob
             if (!_anchorable.TileFree((_gridUid, _grid), neighbor, DungeonSystem.CollisionLayer, DungeonSystem.CollisionMask))
                 continue;
 
-            tiles.Add((neighbor, _tile.GetVariantTile((ContentTileDefinition) tileDef, random)));
+            tiles.Add((neighbor, _tileDefManager.GetVariantTile(tileDef, random)));
         }
 
         foreach (var index in dungeon.CorridorExteriorTiles)
@@ -43,7 +44,7 @@ public sealed partial class DungeonJob
             if (!_anchorable.TileFree((_gridUid, _grid), index, DungeonSystem.CollisionLayer, DungeonSystem.CollisionMask))
                 continue;
 
-            tiles.Add((index, _tile.GetVariantTile((ContentTileDefinition)tileDef, random)));
+            tiles.Add((index, _tileDefManager.GetVariantTile(tileDef, random)));
         }
 
         _maps.SetTiles(_gridUid, _grid, tiles);

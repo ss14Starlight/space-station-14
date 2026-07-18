@@ -3,7 +3,6 @@ using Robust.Client.Console;
 using Robust.Client.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Content.Client._NullLink;
 
 namespace Content.Client._Starlight.Managers;
 
@@ -12,7 +11,6 @@ public sealed partial class ClientPlayerManager : IClientPlayerRolesManager, IPo
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IClientNetManager _netMgr = default!;
     [Dependency] private ILogManager _logManager = default!;
-    [Dependency] private INullLinkPlayerResourcesManager _nullLinkResourcesManager = default!;
 
     private PlayerData? _playerData;
     private ISawmill _sawmill = default!;
@@ -22,17 +20,6 @@ public sealed partial class ClientPlayerManager : IClientPlayerRolesManager, IPo
     public void Initialize()
     {
         _netMgr.RegisterNetMessage<MsgUpdatePlayerStatus>(UpdateMessageRx);
-
-        _nullLinkResourcesManager.PlayerResourcesChanged += OnPlayerResourcesUpdated;
-    }
-
-    private void OnPlayerResourcesUpdated()
-    {
-        if (!_nullLinkResourcesManager.TryGetResources(out var resources)
-            || _player.LocalSession == null || _playerData == null)
-            return;
-
-        _playerData!.Resources = resources;
     }
 
     private void UpdateMessageRx(MsgUpdatePlayerStatus message)

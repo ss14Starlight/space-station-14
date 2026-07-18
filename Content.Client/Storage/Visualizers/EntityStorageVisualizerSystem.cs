@@ -46,11 +46,11 @@ public sealed partial class EntityStorageVisualizerSystem : VisualizerSystem<Ent
         {
             if (_prototypeManager.Resolve(prototype, out var proto))
             {
-                if (proto.TryGetComponent(out SpriteComponent? sprite, _componentFactory))
+                if (proto.TryComp(out SpriteComponent? sprite, _componentFactory))
                 {
                     SpriteSystem.SetBaseRsi((uid, args.Sprite), sprite.BaseRSI);
                 }
-                if (proto.TryGetComponent(out EntityStorageVisualsComponent? visuals, _componentFactory))
+                if (proto.TryComp(out EntityStorageVisualsComponent? visuals, _componentFactory))
                 {
                     comp.StateBaseOpen = visuals.StateBaseOpen;
                     comp.StateBaseClosed = visuals.StateBaseClosed;

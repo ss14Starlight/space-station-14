@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Lobby;
-using Content.Client.Stylesheets;
+using Content.Client.Stylesheets.Palette;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Whitelist;
@@ -134,7 +134,7 @@ namespace Content.Client.Construction.UI
         /// <inheritdoc />
         public void Dispose()
         {
-            _constructionView.Dispose();
+            _constructionView.Close();
 
             SystemBindingChanged(null);
             _systemManager.SystemLoaded -= OnSystemLoaded;
@@ -229,7 +229,7 @@ namespace Content.Client.Construction.UI
 
                 var itemButtonPanelContainer = new PanelContainer
                 {
-                    PanelOverride = new StyleBoxFlat { BackgroundColor = StyleNano.ButtonColorDefault },
+                    PanelOverride = new StyleBoxFlat { BackgroundColor = Palettes.Navy.Element },
                     Children = { itemButton },
                 };
 
@@ -312,7 +312,7 @@ namespace Content.Client.Construction.UI
                 return;
 
             button.Children.Single().Modulate = select ? Color.Green : Color.White;
-            var buttonColor = select ? StyleNano.ButtonColorDefault : Color.Transparent;
+            var buttonColor = select ? Palettes.Navy.Element : Color.Transparent;
             buttonPanel.PanelOverride = new StyleBoxFlat { BackgroundColor = buttonColor };
         }
 

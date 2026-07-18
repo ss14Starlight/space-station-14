@@ -36,8 +36,7 @@ public abstract partial class SharedGunSystem
             return;
 
         // 🌟Starlight🌟 — dual-wield verb: show when holding a gun in each hand
-        var dualWield = EntitySystem.Get<SharedDualWieldSystem>();
-        if (dualWield.TryGetBothGuns(args.User, out var leftGun, out var rightGun)
+        if (_dualWield.TryGetBothGuns(args.User, out var leftGun, out var rightGun)
             && (uid == leftGun || uid == rightGun))
         {
             var isActive = TryComp<DualWieldComponent>(args.User, out var dw) && dw.Active;
@@ -51,7 +50,7 @@ public abstract partial class SharedGunSystem
                 Priority = 2,
                 Disabled = !canDual && !isActive,
                 Message = (!canDual && !isActive) ? Loc.GetString("dual-wield-too-heavy") : null,
-                Act = () => dualWield.ToggleDualWield(args.User, leftGun, rightGun, isActive),
+                Act = () => _dualWield.ToggleDualWield(args.User, leftGun, rightGun, isActive),
             });
         }
 

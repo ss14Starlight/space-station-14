@@ -70,7 +70,7 @@ public sealed partial class HardsuitChemicalImmunitySystem : EntitySystem
             return;
 
         var parent = Transform(ent).ParentUid;
-        if (!EntityManager.EntityExists(parent))
+        if (!Exists(parent))
             return;
 
         // Check if helmet is equipped - if not, allow injection
@@ -89,7 +89,7 @@ public sealed partial class HardsuitChemicalImmunitySystem : EntitySystem
                 parent, parent, PopupType.Small);
 
             // Show popup to the attacker as well
-            if (args.Attacker.HasValue && EntityManager.EntityExists(args.Attacker.Value))
+            if (args.Attacker.HasValue && Exists(args.Attacker.Value))
             {
                 _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked-attacker"),
                     parent, args.Attacker.Value, PopupType.Small);
@@ -113,7 +113,7 @@ public sealed partial class HardsuitChemicalImmunitySystem : EntitySystem
             return;
 
         var parent = Transform(ent).ParentUid;
-        if (!EntityManager.EntityExists(parent))
+        if (!Exists(parent))
             return;
 
         // Check if helmet is equipped
@@ -132,7 +132,7 @@ public sealed partial class HardsuitChemicalImmunitySystem : EntitySystem
                 parent, parent, PopupType.Small);
 
             // Show popup to the attacker as well
-            if (args.Source.HasValue && EntityManager.EntityExists(args.Source.Value))
+            if (args.Source.HasValue && Exists(args.Source.Value))
             {
                 _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked-attacker"),
                     parent, args.Source.Value, PopupType.Small);

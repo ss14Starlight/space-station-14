@@ -15,17 +15,6 @@ public sealed class MsgUpdatePlayerStatus : NetMessage
         {
             buffer.ReadPadBits();
 
-            Dictionary<string, double> resources = [];
-
-            var resourcesCount = buffer.ReadInt32();
-            resources.EnsureCapacity(resourcesCount);
-            for (int i = 0; i < resourcesCount; i++)
-            {
-                var key = buffer.ReadString();
-                var value = buffer.ReadDouble();
-
-                resources[key] = value;
-            }
             var title = buffer.ReadString();
             var ghostTheme = buffer.ReadString();
 
@@ -33,7 +22,6 @@ public sealed class MsgUpdatePlayerStatus : NetMessage
             {
                 Title = title,
                 GhostTheme = ghostTheme,
-                Resources = resources,
             };
         }
     }
@@ -42,19 +30,10 @@ public sealed class MsgUpdatePlayerStatus : NetMessage
     {
         buffer.Write(Player != null);
 
-        if (Player == null) return;
+        if (Player == null)
+            return;
 
         buffer.WritePadBits();
-
-        var resources = Player.Resources ?? [];
-        buffer.Write(resources.Count);
-
-        foreach (var (key, value) in resources)
-        {
-            buffer.Write(key);
-            buffer.Write(value);
-        }
-
         buffer.Write(Player.Title);
         buffer.Write(Player.GhostTheme);
     }

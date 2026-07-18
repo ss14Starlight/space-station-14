@@ -43,7 +43,7 @@ public sealed partial class ChassisSpriteSelection : Control
 
         foreach (var ent in _prototype.Categories.GetValueRefOrNullRef(_borgSubtypeCategory))
         {
-            if (!ent.TryGetComponent<BorgSubtypeDefinitionComponent>(out var subtype, _componentFactory))
+            if (!ent.TryComp<BorgSubtypeDefinitionComponent>(out var subtype, _componentFactory))
                 continue;
 
             // Only add subtypes of the current selected 'main' borg type (engineering, medical, etc.)

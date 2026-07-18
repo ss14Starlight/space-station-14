@@ -29,7 +29,6 @@ using System.Linq;
 #region Starlight
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.Piping.Components;
-using Content.Server.Hands.Systems;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Actions;
 using Content.Shared.Atmos.Components;

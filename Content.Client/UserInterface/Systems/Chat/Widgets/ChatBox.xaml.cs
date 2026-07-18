@@ -24,13 +24,13 @@ public partial class ChatBox : UIWidget
 {
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private ILogManager _log = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // Sol
+    [Dependency] private IConfigurationManager _cfg = default!; // Sol
 
     private readonly ISawmill _sawmill;
     private readonly ChatUIController _controller;
 
     // Sol-start
-    private const string HighlightSoundPath = "/Audio/Effects/chime.ogg";
+    private static readonly SoundPathSpecifier HighlightSound = new("/Audio/Effects/chime.ogg");
     private const float HighlightSoundVolume = -5f;
     // Sol-end
 
@@ -44,6 +44,12 @@ public partial class ChatBox : UIWidget
     {
         RobustXamlLoader.Load(this);
         _sawmill = _log.GetSawmill("chat");
+        _controller = UserInterfaceManager.GetUIController<ChatUIController>();
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
 
         ChatInput.Input.OnTextEntered += OnTextEntered;
         ChatInput.Input.OnKeyBindDown += OnInputKeyBindDown;
@@ -53,10 +59,32 @@ public partial class ChatBox : UIWidget
         ChatInput.ChannelSelector.OnChannelSelect += OnChannelSelect;
         ChatInput.FilterButton.Popup.OnChannelFilter += OnChannelFilter;
         ChatInput.FilterButton.Popup.OnNewHighlights += OnNewHighlights;
-        _controller = UserInterfaceManager.GetUIController<ChatUIController>();
         _controller.MessageAdded += OnMessageAdded;
         _controller.HighlightsUpdated += OnHighlightsUpdated;
         _controller.RegisterChat(this);
+
+        // Construction-time channel selection may have run before we subscribed; sync label/selection.
+        if (SelectedChannel == ChatSelectChannel.None)
+            SafelySelectChannel(_controller.GetPreferredChannel());
+        else
+            _controller.UpdateSelectedChannel(this);
+    }
+
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+
+        _controller.UnregisterChat(this);
+        _controller.MessageAdded -= OnMessageAdded;
+        _controller.HighlightsUpdated -= OnHighlightsUpdated;
+        ChatInput.Input.OnTextEntered -= OnTextEntered;
+        ChatInput.Input.OnKeyBindDown -= OnInputKeyBindDown;
+        ChatInput.Input.OnTextChanged -= OnTextChanged;
+        ChatInput.Input.OnFocusEnter -= OnFocusEnter;
+        ChatInput.Input.OnFocusExit -= OnFocusExit;
+        ChatInput.ChannelSelector.OnChannelSelect -= OnChannelSelect;
+        ChatInput.FilterButton.Popup.OnChannelFilter -= OnChannelFilter;
+        ChatInput.FilterButton.Popup.OnNewHighlights -= OnNewHighlights;
     }
 
     private void OnTextEntered(LineEditEventArgs args)
@@ -72,12 +100,12 @@ public partial class ChatBox : UIWidget
             return;
         }
 
-        if (msg is { Read: false, AudioPath: { } })
-            _entManager.System<AudioSystem>().PlayGlobal(msg.AudioPath, Filter.Local(), false, AudioParams.Default.WithVolume(msg.AudioVolume));
+        if (msg is { Read: false, AudioPath: { } audioPath })
+            _entManager.System<AudioSystem>().PlayGlobal(new SoundPathSpecifier(audioPath), Filter.Local(), false, AudioParams.Default.WithVolume(msg.AudioVolume));
 
         // Sol-start: chime when a keyword-highlighted message is shown
         if (msg is { Read: false, ClientHighlighted: true } && _cfg.GetCVar(SolCCVars.ChatHighlightSound))
-            _entManager.System<AudioSystem>().PlayGlobal(HighlightSoundPath, Filter.Local(), false, AudioParams.Default.WithVolume(HighlightSoundVolume));
+            _entManager.System<AudioSystem>().PlayGlobal(HighlightSound, Filter.Local(), false, AudioParams.Default.WithVolume(HighlightSoundVolume));
         // Sol-end
 
         msg.Read = true;
@@ -236,15 +264,4 @@ public partial class ChatBox : UIWidget
         _controller.NotifyChatFocus(false);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (!disposing) return;
-        _controller.UnregisterChat(this);
-        ChatInput.Input.OnTextEntered -= OnTextEntered;
-        ChatInput.Input.OnKeyBindDown -= OnInputKeyBindDown;
-        ChatInput.Input.OnTextChanged -= OnTextChanged;
-        ChatInput.ChannelSelector.OnChannelSelect -= OnChannelSelect;
-    }
 }

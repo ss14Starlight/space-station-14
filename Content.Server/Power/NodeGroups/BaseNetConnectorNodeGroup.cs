@@ -32,12 +32,12 @@ namespace Content.Server.Power.NodeGroups
                          comp.NodeId == node.Name) &&
                         (NodeGroupID) comp.Voltage == node.NodeGroupID)
                     {
-                        SetNetConnectorNet(comp);
+                        SetNetConnectorNet(node.Owner, comp);
                     }
                 }
             }
         }
 
-        protected abstract void SetNetConnectorNet(IBaseNetConnectorComponent<TNetType> netConnectorComponent);
+        protected abstract void SetNetConnectorNet(EntityUid uid, IBaseNetConnectorComponent<TNetType> netConnectorComponent);
     }
 }

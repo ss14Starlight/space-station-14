@@ -79,6 +79,7 @@
   - type: StatusEffects
     allowed:
     - Flashed
+  - type: Flashable
   # Faction
   - type: NpcFactionMember
     factions:

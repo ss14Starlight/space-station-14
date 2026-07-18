@@ -69,8 +69,10 @@ namespace Content.Client.Instruments.UI
                 _instrumentMenu?.RemoveInstrument(instrument);
             }
 
-            _bandMenu?.Dispose();
-            _channelsMenu?.Dispose();
+            _bandMenu?.Close();
+            _bandMenu = null;
+            _channelsMenu?.Close();
+            _channelsMenu = null;
         }
 
         public void RefreshBands()

@@ -100,7 +100,7 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
         if (strapComp.SetVisible)
         {
             ent.Comp.OriginalVisible = buckledSprite.Visible;
-            buckledSprite.Visible = false;
+            _sprite.SetVisible((ent.Owner, buckledSprite), false);
         }
 
         // Starlight-end
@@ -129,7 +129,7 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
         // Starlight-start
 
         if (strapComp.SetVisible && ent.Comp.OriginalVisible is { } originalVis)
-            buckledSprite.Visible = originalVis;
+            _sprite.SetVisible((ent.Owner, buckledSprite), originalVis);
 
         // Starlight-end
 

@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Server.GridPreloader;
 using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Tag; // Starlight
@@ -23,11 +22,8 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private MapSystem _map = default!;
     [Dependency] private MapLoaderSystem _mapLoader = default!;
-    [Dependency] private TransformSystem _transform = default!;
-    [Dependency] private GridPreloaderSystem _gridPreloader = default!;
     #region Starlight
     [Dependency] private IConfigurationManager _cfg = default!;
-    [Dependency] private IMapManager _maps = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private EntityManager _entMan = default!;
     [Dependency] private DynamicRuleSystem _dynamicRule = default!;
@@ -35,14 +31,6 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
 
     protected override void Added(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args)
     {
-        if (comp.PreloadedGrid != null && !_gridPreloader.PreloadingEnabled)
-        {
-            // Preloading will never work if it's disabled, duh
-            Log.Debug($"Immediately ending {ToPrettyString(uid):rule} as preloading grids is disabled by cvar.");
-            ForceEndSelf(uid, rule);
-            return;
-        }
-
         // Starlight start
         if (_cfg.GetCVar(StarlightCCVars.DisableLoadMapRule))
             return;
@@ -58,7 +46,6 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
             // Component has one of three modes, only one of the three fields should ever be populated.
             DebugTools.AssertNull(comp.MapPath);
             DebugTools.AssertNull(comp.GridPath);
-            DebugTools.AssertNull(comp.PreloadedGrid);
 
             var gameMap = _prototypeManager.Index(comp.GameMap.Value);
             grids = GameTicker.LoadGameMap(gameMap, out mapId, null);
@@ -67,7 +54,6 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
         else if (comp.MapPath is { } path)
         {
             DebugTools.AssertNull(comp.GridPath);
-            DebugTools.AssertNull(comp.PreloadedGrid);
 
             var opts = DeserializationOptions.Default with { InitializeMaps = true };
             if (!_mapLoader.TryLoadMap(path, out var map, out var gridSet, opts))
@@ -85,8 +71,6 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
         }
         else if (comp.GridPath is { } gPath)
         {
-            DebugTools.AssertNull(comp.PreloadedGrid);
-
             // I fucking love it when "map paths" choses to ar
             _map.CreateMap(out mapId);
             var opts = DeserializationOptions.Default with { InitializeMaps = true };
@@ -98,21 +82,6 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
             }
 
             grids = new List<EntityUid> { grid.Value.Owner };
-        }
-        else if (comp.PreloadedGrid is { } preloaded)
-        {
-            // TODO: If there are no preloaded grids left, any rule announcements will still go off!
-            if (!_gridPreloader.TryGetPreloadedGrid(preloaded, out var loadedShuttle))
-            {
-                Log.Error($"Failed to get a preloaded grid with {preloaded}!");
-                ForceEndSelf(uid, rule);
-                return;
-            }
-
-            var mapUid = _map.CreateMap(out mapId, runMapInit: false);
-            _transform.SetParent(loadedShuttle.Value, mapUid);
-            grids = new List<EntityUid>() { loadedShuttle.Value };
-            _map.InitializeMap(mapUid);
         }
         else
         {
@@ -172,7 +141,7 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
                 {
                     mapId = mapcomp.MapId;
 
-                    var gridSet = _maps.GetAllGrids(mapcomp.MapId).ToList();
+                    var gridSet = _map.GetAllGrids(mapcomp.MapId).ToList();
                     grids = gridSet.Select(x => x.Owner).ToList();
 
                     var ev = new RuleLoadedGridsEvent(mapId, grids);

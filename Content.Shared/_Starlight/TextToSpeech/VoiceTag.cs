@@ -1,4 +1,5 @@
 using System;
+using Robust.Shared.IoC;
 using Robust.Shared.Localization;
 
 namespace Content.Shared._Starlight.TextToSpeech;
@@ -26,7 +27,7 @@ public readonly struct VoiceTag : IEquatable<VoiceTag>
     public string ToDisplayName()
     {
         // Check for custom localization key first
-        if (Loc.TryGetString(ToLocalizationKey(), out var localized))
+        if (IoCManager.Resolve<ILocalizationManager>().TryGetString(ToLocalizationKey(), out var localized))
             return localized;
 
         // Fallback to title casing

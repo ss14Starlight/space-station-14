@@ -31,6 +31,7 @@ public sealed partial class ReplayLoadingFailed : State
 
     protected override void Shutdown()
     {
-        _control?.Orphan();
+        if (_control is { Disposed: false })
+            _control.Orphan();
     }
 }

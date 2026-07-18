@@ -97,7 +97,6 @@ namespace Content.Server.Connection
 
         // nulllink start
         private RoleRequirementPrototype? _bunkerBypass;
-        private ServerPlaytimeRecognitionPrototype? _serverPlaytimeRecognition;
         private string? _project;
         private string? _server;
         // nulllink end

@@ -2,6 +2,7 @@ using System.Text.Json;
 using Content.Shared.Station.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Administration.Logs.Converters;
 
@@ -23,7 +24,9 @@ public sealed class EntityCoordinatesConverter : AdminLogConverter<EntityCoordin
         WriteEntityInfo(writer, value.EntityId, entities, "parent");
         writer.WriteNumber("x", value.X);
         writer.WriteNumber("y", value.Y);
-        var mapUid = value.GetMapUid(entities);
+        var mapUid = value.IsValid(entities)
+            ? entities.System<SharedTransformSystem>().GetMap(value)
+            : null;
         if (mapUid.HasValue)
         {
             WriteEntityInfo(writer, mapUid.Value, entities, "map");

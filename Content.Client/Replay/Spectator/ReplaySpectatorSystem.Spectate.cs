@@ -55,7 +55,7 @@ public sealed partial class ReplaySpectatorSystem
             RemComp<ReplaySpectatorComponent>(old.Value);
     }
 
-    public TransformComponent SpawnSpectatorGhost(EntityCoordinates coords, bool gridAttach)
+    public EntityUid SpawnSpectatorGhost(EntityCoordinates coords, bool gridAttach)
     {
         var old = _player.LocalEntity;
         var session = _player.GetSessionById(DefaultUser);
@@ -64,8 +64,6 @@ public sealed partial class ReplaySpectatorSystem
         var ent = Spawn("ReplayObserver", coords);
         _eye.SetMaxZoom(ent, Vector2.One * 5);
         EnsureComp<ReplaySpectatorComponent>(ent);
-
-        var xform = Transform(ent);
 
         if (gridAttach)
             _transform.AttachToGridOrMap(ent);
@@ -83,7 +81,7 @@ public sealed partial class ReplaySpectatorSystem
         _stateMan.RequestStateChange<ReplayGhostState>();
 
         _spectatorData = GetSpectatorData();
-        return xform;
+        return ent;
     }
 
     private void SpectateCommand(IConsoleShell shell, string argStr, string[] args)

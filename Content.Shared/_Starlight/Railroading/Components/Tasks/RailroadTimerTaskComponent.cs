@@ -2,7 +2,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Railroading.Components.Tasks;
 
-[RegisterComponent, AutoGenerateComponentPause]
+[RegisterComponent]
 public sealed partial class RailroadTimerTaskComponent : Component
 {
     [DataField]

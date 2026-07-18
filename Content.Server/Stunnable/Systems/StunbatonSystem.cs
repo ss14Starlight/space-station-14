@@ -18,6 +18,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 #endregion
 
@@ -35,6 +36,8 @@ namespace Content.Server.Stunnable.Systems
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private SharedAudioSystem _audio = default!;
         [Dependency] private TagSystem _tagSystem = default!;
+
+        private static readonly ProtoId<TagPrototype> ShieldTag = "Shield";
         #endregion
 
         public override void Initialize()
@@ -61,7 +64,7 @@ namespace Content.Server.Stunnable.Systems
 
             var target = args.Target.Value;
             // Check if target has the Shield tag
-            if (!_tagSystem.HasTag(target, "Shield"))
+            if (!_tagSystem.HasTag(target, ShieldTag))
                 return;
 
             // Check if user is NOT in combat mode

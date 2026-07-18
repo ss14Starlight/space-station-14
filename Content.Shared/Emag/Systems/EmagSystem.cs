@@ -78,7 +78,7 @@ public sealed partial class EmagSystem : EntitySystem
 
         var typeToUse = customEmagType ?? ent.Comp.EmagType;
 
-        var emaggedEvent = new GotEmaggedEvent(user, typeToUse, EmagComponent: ent.Comp);
+        var emaggedEvent = new GotEmaggedEvent(user, typeToUse, EmagComponent: ent.Comp, EmagUid: ent.Owner);
         RaiseLocalEvent(target, ref emaggedEvent);
 
         if (!emaggedEvent.Handled)
@@ -165,4 +165,10 @@ public enum EmagType
 /// <param name="Repeatable">Can the entity be emagged more than once? Prevents adding of <see cref="EmaggedComponent"/></param>
 /// <remarks>Needs to be handled in shared/client, not just the server, to actually show the emagging popup</remarks>
 [ByRefEvent]
-public record struct GotEmaggedEvent(EntityUid UserUid, EmagType Type, EmagComponent? EmagComponent = null, bool Handled = false, bool Repeatable = false); // Starlight
+public record struct GotEmaggedEvent(
+    EntityUid UserUid,
+    EmagType Type,
+    EmagComponent? EmagComponent = null,
+    EntityUid? EmagUid = null,
+    bool Handled = false,
+    bool Repeatable = false); // Starlight

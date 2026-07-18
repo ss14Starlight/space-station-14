@@ -13,6 +13,19 @@
       requireAll: true
   - type: TemporaryBlindness
 
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectCorporeal
+  name: corporeal
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - Revenant
+  - type: StatusEffectAlert
+    alert: Corporeal
+  - type: Corporeal
+
 # Upstream also does not have an updated status effect for muted. Delete this when they do,
 # but keep the "maximumDuration", that's a Starlight change.
 - type: entity

@@ -7,6 +7,11 @@ public interface ISharedNullLinkPlayerResourcesManager
 {
     void Initialize();
 
+    /// <summary>
+    /// Removes all resource state for a session. Returns the final snapshot if one existed.
+    /// </summary>
+    bool RemoveResources(ICommonSession session, [NotNullWhen(true)] out Dictionary<string, double>? finalResources);
+
     #region Setters
 
     bool TrySetResource(EntityUid uid, string id, double value, bool skipNullLink = false);

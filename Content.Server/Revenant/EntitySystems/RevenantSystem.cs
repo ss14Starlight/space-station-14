@@ -15,9 +15,12 @@ using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Revenant;
 using Content.Shared.Revenant.Components;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.Store.Components;
 using Content.Shared.Stunnable;
+using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
@@ -51,14 +54,17 @@ public sealed partial class RevenantSystem : EntitySystem
 
         SubscribeLocalEvent<RevenantComponent, DamageChangedEvent>(OnDamage);
         SubscribeLocalEvent<RevenantComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<RevenantComponent, StatusEffectAddedEvent>(OnStatusAdded);
-        SubscribeLocalEvent<RevenantComponent, StatusEffectEndedEvent>(OnStatusEnded);
+        // Stun status effects live in the status-effect container; update visuals when they enter/leave.
+        SubscribeLocalEvent<RevenantComponent, EntInsertedIntoContainerMessage>(OnStatusInserted);
+        SubscribeLocalEvent<RevenantComponent, EntRemovedFromContainerMessage>(OnStatusRemoved);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => MakeVisible(true));
 
         SubscribeLocalEvent<RevenantComponent, GetVisMaskEvent>(OnRevenantGetVis);
 
         InitializeAbilities();
     }
+
+    private static readonly EntProtoId CorporealStatusEffect = "StatusEffectCorporeal";
 
     private void OnRevenantGetVis(Entity<RevenantComponent> ent, ref GetVisMaskEvent args)
     {
@@ -86,16 +92,26 @@ public sealed partial class RevenantSystem : EntitySystem
         _eye.RefreshVisibilityMask(uid);
     }
 
-    private void OnStatusAdded(EntityUid uid, RevenantComponent component, StatusEffectAddedEvent args)
+    private void OnStatusInserted(EntityUid uid, RevenantComponent component, EntInsertedIntoContainerMessage args)
     {
-        if (args.Key == "Stun")
-            _appearance.SetData(uid, RevenantVisuals.Stunned, true);
+        if (args.Container.ID != StatusEffectContainerComponent.ContainerId)
+            return;
+
+        if (MetaData(args.Entity).EntityPrototype?.ID is not { } protoId || protoId != SharedStunSystem.StunId)
+            return;
+
+        _appearance.SetData(uid, RevenantVisuals.Stunned, true);
     }
 
-    private void OnStatusEnded(EntityUid uid, RevenantComponent component, StatusEffectEndedEvent args)
+    private void OnStatusRemoved(EntityUid uid, RevenantComponent component, EntRemovedFromContainerMessage args)
     {
-        if (args.Key == "Stun")
-            _appearance.SetData(uid, RevenantVisuals.Stunned, false);
+        if (args.Container.ID != StatusEffectContainerComponent.ContainerId)
+            return;
+
+        if (MetaData(args.Entity).EntityPrototype?.ID is not { } protoId || protoId != SharedStunSystem.StunId)
+            return;
+
+        _appearance.SetData(uid, RevenantVisuals.Stunned, false);
     }
 
     private void OnExamine(EntityUid uid, RevenantComponent component, ExaminedEvent args)
@@ -109,7 +125,7 @@ public sealed partial class RevenantSystem : EntitySystem
 
     private void OnDamage(EntityUid uid, RevenantComponent component, DamageChangedEvent args)
     {
-        if (!HasComp<CorporealComponent>(uid) || args.DamageDelta == null)
+        if (!_statusEffects.HasEffectComp<CorporealComponent>(uid) || args.DamageDelta == null)
             return;
 
         var essenceDamage = args.DamageDelta.GetTotal().Float() * component.DamageToEssenceCoefficient * -1;
@@ -163,7 +179,7 @@ public sealed partial class RevenantSystem : EntitySystem
 
         ChangeEssenceAmount(uid, -abilityCost, component, false);
 
-        _statusEffects.TryAddStatusEffect<CorporealComponent>(uid, "Corporeal", TimeSpan.FromSeconds(debuffs.Y), false);
+        _statusEffects.TryAddStatusEffectDuration(uid, CorporealStatusEffect, TimeSpan.FromSeconds(debuffs.Y));
         _stun.TryAddStunDuration(uid, TimeSpan.FromSeconds(debuffs.X));
 
         return true;

@@ -1,7 +1,7 @@
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Fluids;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Tag;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -14,6 +14,7 @@ public sealed partial class MessyDrinkerSystem : EntitySystem
     [Dependency] private SharedPuddleSystem _puddle = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private TagSystem _tag = default!;
 
     public override void Initialize()
@@ -37,10 +38,7 @@ public sealed partial class MessyDrinkerSystem : EntitySystem
         if (proto == null || !ent.Comp.SpillableTypes.Contains(proto.Value))
             return;
 
-        // TODO: Replace with RandomPredicted once the engine PR is merged
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
-        var rand = new System.Random(seed);
-        if (!rand.Prob(ent.Comp.SpillChance))
+        if (!_random.ProbPredicted(_timing, ent.Comp.SpillChance, GetNetEntity(ent).Id))
             return;
 
         if (ent.Comp.SpillMessagePopup != null)

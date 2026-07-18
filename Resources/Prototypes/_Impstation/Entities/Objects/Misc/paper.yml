@@ -61,11 +61,12 @@
     tags:
     - Folder
     - SecTicket
-  - type: StorageFill
-    contents:
-      - id: FineTicket
-      - id: FineTicket
-      - id: FineTicket
-      - id: FineTicket
-      - id: FineTicket
-      - id: FineTicket
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - FineTicket
+      - FineTicket
+      - FineTicket
+      - FineTicket
+      - FineTicket
+      - FineTicket

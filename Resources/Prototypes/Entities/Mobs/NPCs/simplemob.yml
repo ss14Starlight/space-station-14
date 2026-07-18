@@ -25,6 +25,7 @@
     - Flashed
     - RadiationProtection
     - Adrenaline
+  - type: Flashable
   - type: Buckle
   - type: StandingState
   - type: Tag
@@ -102,6 +103,7 @@
     - Flashed
     - RadiationProtection
     - Adrenaline
+  - type: Flashable
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:

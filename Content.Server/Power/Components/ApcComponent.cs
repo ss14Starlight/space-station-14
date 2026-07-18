@@ -62,13 +62,13 @@ public sealed partial class ApcComponent : BaseApcNetComponent
 
     // TODO ECS power a little better!
     // End the suffering
-    protected override void AddSelfToNet(IApcNet apcNet)
+    protected override void AddSelfToNet(EntityUid uid, IApcNet apcNet)
     {
-        apcNet.AddApc(Owner, this);
+        apcNet.AddApc((uid, this));
     }
 
-    protected override void RemoveSelfFromNet(IApcNet apcNet)
+    protected override void RemoveSelfFromNet(EntityUid uid, IApcNet apcNet)
     {
-        apcNet.RemoveApc(Owner, this);
+        apcNet.RemoveApc((uid, this));
     }
 }

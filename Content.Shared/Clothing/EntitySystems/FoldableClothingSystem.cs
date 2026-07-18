@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Foldable;
 using Content.Shared.Inventory;
@@ -67,7 +68,11 @@ public sealed partial class FoldableClothingSystem : EntitySystem
             // TODO CLOTHING fix this.
             if ((ent.Comp.FoldedHideLayers.Count != 0 || ent.Comp.UnfoldedHideLayers.Count != 0) &&
                 TryComp<HideLayerClothingComponent>(ent.Owner, out var hideLayerComp))
-                hideLayerComp.Slots = ent.Comp.FoldedHideLayers;
+            {
+                hideLayerComp.Layers = ent.Comp.FoldedHideLayers.ToDictionary(
+                    layer => layer,
+                    _ => clothingComp.Slots);
+            }
         }
         else
         {
@@ -83,7 +88,11 @@ public sealed partial class FoldableClothingSystem : EntitySystem
             // TODO CLOTHING fix this.
             if ((ent.Comp.FoldedHideLayers.Count != 0 || ent.Comp.UnfoldedHideLayers.Count != 0) &&
                 TryComp<HideLayerClothingComponent>(ent.Owner, out var hideLayerComp))
-                hideLayerComp.Slots = ent.Comp.UnfoldedHideLayers;
+            {
+                hideLayerComp.Layers = ent.Comp.UnfoldedHideLayers.ToDictionary(
+                    layer => layer,
+                    _ => clothingComp.Slots);
+            }
         }
     }
 }

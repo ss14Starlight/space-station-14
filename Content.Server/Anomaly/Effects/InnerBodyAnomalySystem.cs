@@ -277,7 +277,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             }
 
             if (HasComp(target, componentType))
-                EntityManager.RemoveComponent(target, componentType);
+                RemComp(target, componentType);
         }
     }
     #endregion

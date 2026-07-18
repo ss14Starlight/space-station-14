@@ -115,7 +115,7 @@ public sealed partial class RoleBanCommand : IConsoleCommand
         if (success)
         {
             HashSet<string>? roles = new() { role }; // Used for updating webhook
-            _bans.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, DateTimeOffset.UtcNow);
+            await _bans.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, DateTimeOffset.UtcNow);
         }
         // Starlight end - webhook for bans
     }

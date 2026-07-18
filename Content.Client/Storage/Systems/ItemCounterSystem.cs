@@ -52,7 +52,8 @@ public sealed partial class ItemCounterSystem : SharedItemCounterSystem
     //Starlight
     public void ProcessOpaqueSpriteByTable(EntityUid uid, string layer, int count, List<string> states, List<int> table, bool hide = false, SpriteComponent? sprite = null)
     {
-        if (!Resolve(uid, ref sprite) || !sprite.LayerMapTryGet(layer, out var layerKey, logError: true))
+        if (!Resolve(uid, ref sprite)
+            || !_sprite.LayerMapTryGet((uid, sprite), layer, out var layerKey, logMissing: true))
             return;
 
         var activeState = 0;
@@ -74,8 +75,8 @@ public sealed partial class ItemCounterSystem : SharedItemCounterSystem
         if (activeState >= states.Count)
             activeState = states.Count - 1;
 
-        sprite.LayerSetState(layerKey, states[activeState]);
-        sprite.LayerSetVisible(layerKey, !hide);
+        _sprite.LayerSetRsiState((uid, sprite), layerKey, states[activeState]);
+        _sprite.LayerSetVisible((uid, sprite), layerKey, !hide);
     }
 
     public void ProcessCompositeSprite(EntityUid uid, int count, int maxCount, List<string> layers, bool hide = false, SpriteComponent? sprite = null)

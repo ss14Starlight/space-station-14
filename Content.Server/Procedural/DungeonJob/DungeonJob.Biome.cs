@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Robust.Shared.Random;
 using Content.Server.Parallax;
 using Content.Shared.Maps;
 using Content.Shared.Parallax.Biomes;
@@ -14,7 +15,7 @@ public sealed partial class DungeonJob
     /// <summary>
     /// <see cref="BiomeDunGen"/>
     /// </summary>
-    private async Task PostGen(BiomeDunGen dunGen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, Random random)
+    private async Task PostGen(BiomeDunGen dunGen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, IRobustRandom random)
     {
         if (!_prototype.Resolve(dunGen.BiomeTemplate, out var indexedBiome))
             return;

@@ -1,4 +1,5 @@
-﻿using Content.Shared.Random.Helpers;
+﻿using Content.Shared._Starlight.Abstract.Extensions;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Trigger.Components.Conditions;
 using Content.Shared.Verbs;
 using Robust.Shared.Random;
@@ -70,17 +71,11 @@ public sealed partial class TriggerSystem
         if (args.Key != null && !ent.Comp.Keys.Contains(args.Key))
             return;
 
-        // TODO: Replace with RandomPredicted once the engine PR is merged
-        var hash = new List<int>
-        {
-            (int)_timing.CurTick.Value,
+        // Mix entity + optional user so multiple triggers in the same tick diverge.
+        var seed = SharedRandomExtensions.HashCodeCombine(
             GetNetEntity(ent).Id,
-            args.User == null ? 0 : GetNetEntity(args.User.Value).Id,
-        };
-        var seed = SharedRandomExtensions.HashCodeCombine(hash);
-        var rand = new System.Random(seed);
-
-        args.Cancelled |= !rand.Prob(ent.Comp.SuccessChance); // When not successful, Cancelled = true
+            args.User == null ? 0 : GetNetEntity(args.User.Value).Id);
+        args.Cancelled |= !_random.ProbPredicted(_timing, ent.Comp.SuccessChance, seed); // When not successful, Cancelled = true
     }
     private void OnMindRoleTriggerAttempt(Entity<MindRoleTriggerConditionComponent> ent, ref AttemptTriggerEvent args)
     {

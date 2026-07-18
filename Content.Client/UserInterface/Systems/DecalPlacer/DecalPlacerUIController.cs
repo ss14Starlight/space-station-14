@@ -35,7 +35,7 @@ public sealed partial class DecalPlacerUIController : UIController, IOnStateExit
     {
         if (_window == null)
             return;
-        _window.Dispose();
+        _window.Close();
         _window = null;
     }
 

@@ -8,7 +8,10 @@ namespace Content.Client.Administration.UI;
 [GenerateTypedNameReferences]
 public sealed partial class AdminMenuWindow : DefaultWindow
 {
-    public event Action? OnDisposed;
+    /// <summary>
+    /// Fired once when the admin menu is permanently torn down (not on Close/reopen).
+    /// </summary>
+    public event Action? OnTeardown;
 
     public AdminMenuWindow()
     {
@@ -33,11 +36,13 @@ public sealed partial class AdminMenuWindow : DefaultWindow
             ObjectsTabControl.RefreshObjectList();
     }
 
-    protected override void Dispose(bool disposing)
+    /// <summary>
+    /// Permanently tear down this window instance. Do not use for Close — the controller reuses the window.
+    /// </summary>
+    public void Teardown()
     {
-        OnDisposed?.Invoke();
-        base.Dispose(disposing);
-        OnDisposed = null;
+        OnTeardown?.Invoke();
+        OnTeardown = null;
     }
 
     private enum TabIndex

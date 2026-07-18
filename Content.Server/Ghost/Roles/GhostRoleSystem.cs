@@ -563,7 +563,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
         foreach (var proto in roleEnt.Comp.MindRoles)
         {
             if (!_prototype.TryIndex(proto, out var indexed)
-                || !indexed.TryGetComponent<MindRoleComponent>(out var comp, _ent.ComponentFactory))
+                || !indexed.TryComp<MindRoleComponent>(out var comp, _ent.ComponentFactory))
                 continue;
             var roleComp = (MindRoleComponent)comp;
 

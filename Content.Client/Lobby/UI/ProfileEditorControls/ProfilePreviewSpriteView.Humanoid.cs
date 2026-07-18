@@ -111,7 +111,7 @@ public sealed partial class ProfilePreviewSpriteView
                     EntMan,
                     _prototypeManager);
             }
-            catch (UnknownPrototypeException e)
+            catch (UnknownPrototypeException)
             {
                 loadout = new RoleLoadout();
             }
@@ -368,8 +368,8 @@ public sealed partial class ProfilePreviewSpriteView
     private Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> GetCyberneticsLayers(HumanoidCharacterProfile humanoid) => humanoid.Cybernetics.Select(p =>
     {
         var _cyberneticEnt = _prototypeManager.Index<EntityPrototype>(p);
-        if (_cyberneticEnt.TryGetComponent<BodyPartComponent>(out var part, EntMan.ComponentFactory) &&
-           _cyberneticEnt.TryGetComponent<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory))
+        if (_cyberneticEnt.TryComp<BodyPartComponent>(out var part, EntMan.ComponentFactory) &&
+           _cyberneticEnt.TryComp<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory))
         {
             return (CyberneticImplant.LayerFromBodypart(part), new(
                 !layer.Layers.TryGetValue(humanoid.Species, out var baseLayer) ? // Get layer value by species

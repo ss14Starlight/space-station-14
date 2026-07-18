@@ -29,6 +29,8 @@ verb-categories-select-type = Select Type
 verb-categories-fax = Set Destination
 verb-categories-power-level = Power Level
 verb-categories-adjust = Adjust
+verb-categories-switch = Switch
+verb-categories-manage-channels = Manage Channels
 
 verb-common-toggle-light = Toggle light
 verb-common-close = Close

@@ -36,10 +36,21 @@ public sealed class ChannelSelectorPopup : Popup
         };
 
         _chatUIController = UserInterfaceManager.GetUIController<ChatUIController>();
-        _chatUIController.SelectableChannelsChanged += SetChannels;
-        SetChannels(_chatUIController.SelectableChannels);
 
         AddChild(_channelSelectorHBox);
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+        _chatUIController.SelectableChannelsChanged += SetChannels;
+        SetChannels(_chatUIController.SelectableChannels);
+    }
+
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+        _chatUIController.SelectableChannelsChanged -= SetChannels;
     }
 
     public ChatSelectChannel? FirstChannel
@@ -113,13 +124,4 @@ public sealed class ChannelSelectorPopup : Popup
         Selected?.Invoke(channel);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (!disposing)
-            return;
-
-        _chatUIController.SelectableChannelsChanged -= SetChannels;
-    }
 }

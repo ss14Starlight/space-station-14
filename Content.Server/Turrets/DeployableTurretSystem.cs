@@ -112,7 +112,7 @@ public sealed partial class DeployableTurretSystem : SharedDeployableTurretSyste
         if (!TryComp<DeviceNetworkComponent>(ent, out var deviceNetwork))
             return;
 
-        var recipientDeviceNetworks = new HashSet<DeviceNetworkComponent>();
+        var recipientDeviceNetworks = new HashSet<Entity<DeviceNetworkComponent>>();
 
         // Only broadcast to connected devices
         foreach (var recipient in deviceNetwork.DeviceLists)
@@ -120,7 +120,7 @@ public sealed partial class DeployableTurretSystem : SharedDeployableTurretSyste
             if (!TryComp<DeviceNetworkComponent>(recipient, out var recipientDeviceNetwork))
                 continue;
 
-            recipientDeviceNetworks.Add(recipientDeviceNetwork);
+            recipientDeviceNetworks.Add((recipient, recipientDeviceNetwork));
         }
 
         if (recipientDeviceNetworks.Count > 0)

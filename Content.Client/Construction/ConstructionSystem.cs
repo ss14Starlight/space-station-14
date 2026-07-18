@@ -298,13 +298,13 @@ namespace Content.Client.Construction
             var comp = Comp<ConstructionGhostComponent>(ghost.Value);
             comp.Prototype = prototype;
             comp.GhostId = ghost.GetHashCode();
-            Comp<TransformComponent>(ghost.Value).LocalRotation = dir.ToAngle();
+            _transformSystem.SetLocalRotation(ghost.Value, dir.ToAngle());
             _ghosts.Add(comp.GhostId, ghost.Value);
 
             var sprite = Comp<SpriteComponent>(ghost.Value);
             _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
 
-            if (targetProto.TryGetComponent(out IconComponent? icon, EntityManager.ComponentFactory))
+            if (targetProto.TryComp(out IconComponent? icon, EntityManager.ComponentFactory))
             {
                 _sprite.AddBlankLayer((ghost.Value, sprite), 0);
                 _sprite.LayerSetSprite((ghost.Value, sprite), 0, icon.Icon);
@@ -390,7 +390,7 @@ namespace Content.Client.Construction
         {
             // Count ghosts at the given location and allow up to the maximum allowed per tile
             var ghostCount = _ghosts.Values.Count(ghost =>
-                EntityManager.GetComponent<TransformComponent>(ghost).Coordinates.Equals(loc));
+                Comp<TransformComponent>(ghost).Coordinates.Equals(loc));
 
             return ghostCount >= _configurationManager.GetCVar(StarlightCCVars.ConstructionMaxGhostsPerTile);
         }

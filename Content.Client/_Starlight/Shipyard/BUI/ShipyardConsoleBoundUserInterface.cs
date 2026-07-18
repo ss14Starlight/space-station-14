@@ -1,6 +1,4 @@
 using Content.Client._Starlight.Shipyard.UI;
-using Content.Shared._Starlight.Shipyard.Events;
-using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client._Starlight.Shipyard.BUI;
 
@@ -23,7 +21,6 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         _menu = new ShipyardConsoleMenu(this);
         _menu.OpenCentered();
         _menu.OnClose += Close;
-        _menu.OnOrderApproved += ApproveOrder;
 
         _menu.PopulateCategories();
         _menu.PopulateProducts();
@@ -39,21 +36,9 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         if (_menu != null)
         {
             _menu.OnClose -= Close;
-            _menu.OnOrderApproved -= ApproveOrder;
 
             _menu.Close();
             _menu = null;
         }
-    }
-
-    private void ApproveOrder(ButtonEventArgs args)
-    {
-        if (args.Button.Parent?.Parent is not VesselRow row || row.Vessel == null)
-        {
-            return;
-        }
-
-        var vesselId = row.Vessel.ID;
-        SendMessage(new ShipyardConsolePurchaseMessage(vesselId));
     }
 }

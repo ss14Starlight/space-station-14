@@ -384,7 +384,7 @@ public sealed partial class GargantuaSystem : EntitySystem
                 && physics.Hard
                 && (physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0)
             {
-                EntityManager.SpawnAttachedTo(active.EffectPrototype, tileCoords);
+                SpawnAttachedTo(active.EffectPrototype, tileCoords);
                 return true;
             }
         }
@@ -405,7 +405,7 @@ public sealed partial class GargantuaSystem : EntitySystem
                 if (!HasComp<KnockedDownComponent>(target))
                 {
                     var attachCoords = new EntityCoordinates(target, Vector2.Zero);
-                    EntityManager.SpawnAttachedTo(active.ImmobilizedEffectPrototype, attachCoords);
+                    SpawnAttachedTo(active.ImmobilizedEffectPrototype, attachCoords);
                 }
             }
 
@@ -424,7 +424,7 @@ public sealed partial class GargantuaSystem : EntitySystem
             return true;
         }
 
-        EntityManager.SpawnAttachedTo(active.EffectPrototype, tileCoords);
+        SpawnAttachedTo(active.EffectPrototype, tileCoords);
         return false;
     }
 

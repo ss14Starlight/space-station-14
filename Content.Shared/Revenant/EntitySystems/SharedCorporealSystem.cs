@@ -3,14 +3,14 @@ using Robust.Shared.Physics;
 using System.Linq;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Revenant.Components;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Revenant.EntitySystems;
 
 /// <summary>
-/// Makes the revenant solid when the component is applied.
+/// Makes the revenant solid when the status effect is applied.
 /// Additionally applies a few visual effects.
-/// Used for status effect.
 /// </summary>
 public abstract partial class SharedCorporealSystem : EntitySystem
 {
@@ -22,18 +22,19 @@ public abstract partial class SharedCorporealSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CorporealComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<CorporealComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<CorporealComponent, RefreshMovementSpeedModifiersEvent>(OnRefresh);
+        SubscribeLocalEvent<CorporealComponent, StatusEffectAppliedEvent>(OnApplied);
+        SubscribeLocalEvent<CorporealComponent, StatusEffectRemovedEvent>(OnRemoved);
+        SubscribeLocalEvent<CorporealComponent, StatusEffectRelayedEvent<RefreshMovementSpeedModifiersEvent>>(OnRefresh);
     }
 
-    private void OnRefresh(EntityUid uid, CorporealComponent component, RefreshMovementSpeedModifiersEvent args)
+    private void OnRefresh(Entity<CorporealComponent> effect, ref StatusEffectRelayedEvent<RefreshMovementSpeedModifiersEvent> args)
     {
-        args.ModifySpeed(component.MovementSpeedDebuff, component.MovementSpeedDebuff);
+        args.Args.ModifySpeed(effect.Comp.MovementSpeedDebuff, effect.Comp.MovementSpeedDebuff);
     }
 
-    public virtual void OnStartup(EntityUid uid, CorporealComponent component, ComponentStartup args)
+    public virtual void OnApplied(Entity<CorporealComponent> effect, ref StatusEffectAppliedEvent args)
     {
+        var uid = args.Target;
         _appearance.SetData(uid, RevenantVisuals.Corporeal, true);
 
         if (TryComp<FixturesComponent>(uid, out var fixtures) && fixtures.FixtureCount >= 1)
@@ -46,8 +47,9 @@ public abstract partial class SharedCorporealSystem : EntitySystem
         _movement.RefreshMovementSpeedModifiers(uid);
     }
 
-    public virtual void OnShutdown(EntityUid uid, CorporealComponent component, ComponentShutdown args)
+    public virtual void OnRemoved(Entity<CorporealComponent> effect, ref StatusEffectRemovedEvent args)
     {
+        var uid = args.Target;
         _appearance.SetData(uid, RevenantVisuals.Corporeal, false);
 
         if (TryComp<FixturesComponent>(uid, out var fixtures) && fixtures.FixtureCount >= 1)
@@ -57,7 +59,6 @@ public abstract partial class SharedCorporealSystem : EntitySystem
             _physics.SetCollisionMask(uid, fixture.Key, fixture.Value, (int) CollisionGroup.GhostImpassable, fixtures);
             _physics.SetCollisionLayer(uid, fixture.Key, fixture.Value, 0, fixtures);
         }
-        component.MovementSpeedDebuff = 1; //just so we can avoid annoying code elsewhere
         _movement.RefreshMovementSpeedModifiers(uid);
     }
 }

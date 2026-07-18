@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Atmos;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 
@@ -35,8 +36,17 @@ internal static class Const
     public static FixedPoint2 MaxDamagePerSecond = (100f / 180f) + RegenerationPerSecond; // Ensures it takes at least 3 minutes to deplete
     public static FixedPoint2 RegenerationPerSecond = 0.3f;
 
-    public static string[] AudioCrack = ["/Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg", "/Audio/_Starlight/Effects/supermatter/crystal_crack_2.ogg"];
-    public static string[] AudioBurn = ["/Audio/_Starlight/Effects/supermatter/burning_1.ogg", "/Audio/_Starlight/Effects/supermatter/burning_2.ogg", "/Audio/_Starlight/Effects/supermatter/burning_3.ogg"];
-    public static string AudioEvaporate = "/Audio/_Starlight/Effects/supermatter/emitter2.ogg";
+    public static SoundPathSpecifier[] AudioCrack =
+    [
+        new("/Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg"),
+        new("/Audio/_Starlight/Effects/supermatter/crystal_crack_2.ogg"),
+    ];
+    public static SoundPathSpecifier[] AudioBurn =
+    [
+        new("/Audio/_Starlight/Effects/supermatter/burning_1.ogg"),
+        new("/Audio/_Starlight/Effects/supermatter/burning_2.ogg"),
+        new("/Audio/_Starlight/Effects/supermatter/burning_3.ogg"),
+    ];
+    public static SoundPathSpecifier AudioEvaporate = new("/Audio/_Starlight/Effects/supermatter/emitter2.ogg");
 }
 public record struct GasProperties(float HeatTransferPerMole, float HeatModifier, float RadiationStability);

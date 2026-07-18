@@ -66,7 +66,7 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
         if (brainProto == null && profile != null &&
             _proto.TryIndex(profile.Species, out var species) &&
             _proto.TryIndex<EntityPrototype>(species.Prototype, out var entityProto) &&
-            entityProto.TryGetComponent<BodyComponent>(out var bodyComp, _compFactory) &&
+            entityProto.TryComp<BodyComponent>(out var bodyComp, _compFactory) &&
             bodyComp.Prototype != null &&
             _proto.TryIndex(bodyComp.Prototype.Value, out var body))
         {

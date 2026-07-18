@@ -33,7 +33,7 @@ public sealed partial class AnimateOnSpawnSystem : EntitySystem
             !TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        sprite.LayerSetVisible(AnimateOnSpawnVisualLayers.Animation, false);
+        _spriteSystem.LayerSetVisible((ent.Owner, sprite), AnimateOnSpawnVisualLayers.Animation, false);
         _appearanceSystem.SetData(ent, AnimateOnSpawnVisualState.Animating, false);
     }
 
@@ -43,10 +43,11 @@ public sealed partial class AnimateOnSpawnSystem : EntitySystem
             !TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        if(!sprite.LayerMapTryGet(AnimateOnSpawnVisualLayers.Animation, out var layer))
+        var spriteEnt = (ent.Owner, (SpriteComponent?)sprite);
+        if (!_spriteSystem.LayerMapTryGet(spriteEnt, AnimateOnSpawnVisualLayers.Animation, out var layer, false))
             return;
 
-        var rsi = sprite.LayerGetActualRSI(AnimateOnSpawnVisualLayers.Animation);
+        var rsi = _spriteSystem.LayerGetEffectiveRsi(spriteEnt, layer);
         if (rsi is null || !rsi.TryGetState(ent.Comp.AnimationState, out var state))
             return;
         var animLength = state.AnimationLength;
@@ -67,7 +68,7 @@ public sealed partial class AnimateOnSpawnSystem : EntitySystem
             Length = TimeSpan.FromSeconds(animLength),
         };
 
-        sprite.LayerSetVisible(AnimateOnSpawnVisualLayers.Animation, true);
+        _spriteSystem.LayerSetVisible(spriteEnt, AnimateOnSpawnVisualLayers.Animation, true);
         _animationSystem.Play(ent, anim, "spawnAnimation");
 
         _appearanceSystem.SetData(ent, AnimateOnSpawnVisualState.Animating, true);

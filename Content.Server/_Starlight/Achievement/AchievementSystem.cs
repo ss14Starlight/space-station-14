@@ -98,6 +98,7 @@ public sealed partial class AchievementSystem : EntitySystem
     private const string AvaliSpeciesId = "Avali";
     private const string ResomiSpeciesId = "Resomi";
     private const string UplinkCatEarsListingId = "UplinkCatEars";
+    private static readonly ProtoId<TagPrototype> ArrowTag = "Arrow";
     private readonly Dictionary<Guid, Dictionary<string, double>> _roundProgress = [];
     private readonly HashSet<Guid> _achievementFetchInFlight = [];
     private readonly HashSet<EntityUid> _commandStaffMindsThatDied = [];
@@ -530,7 +531,7 @@ public sealed partial class AchievementSystem : EntitySystem
 
     private void OnProjectileHit(EntityUid uid, ProjectileComponent _, ref ProjectileHitEvent args)
     {
-        if (_tag.HasTag(uid, "Arrow")
+        if (_tag.HasTag(uid, ArrowTag)
             && ResolvePlayerSessionFromParentChain(args.Target) is { } arrowSession)
         {
             QueueUnlockAchievement(arrowSession, "took_an_arrow_to_the_knee");
@@ -747,7 +748,7 @@ public sealed partial class AchievementSystem : EntitySystem
 
     private string GetCharacterName(ICommonSession session)
     {
-        if (session.AttachedEntity is { } attached && TryComp<MetaDataComponent>(attached, out var meta))
+        if (session.AttachedEntity is { } attached && TryComp(attached, out MetaDataComponent? meta))
             return meta.EntityName;
 
         return session.Name;

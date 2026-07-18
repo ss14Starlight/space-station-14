@@ -39,19 +39,21 @@ public sealed partial class NewLifeWindow : DefaultWindow
         LateJoinGui.Contents.Margin = new Thickness(0, 25, 0, 0);
         LateJoinGui.SelectedId += (_) => Close();
         AddChild(LateJoinGui.Contents);
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
         _jobRequirements.Updated += RemoveUsedCharacters;
     }
 
-    protected override void Dispose(bool disposing)
+    protected override void ExitedTree()
     {
-        base.Dispose(disposing);
-
-        if (disposing)
-        {
-            _jobRequirements.Updated -= RemoveUsedCharacters;
-            _jobButtons.Clear();
-            _jobCategories.Clear();
-        }
+        base.ExitedTree();
+        _jobRequirements.Updated -= RemoveUsedCharacters;
+        LateJoinGui.Teardown();
+        _jobButtons.Clear();
+        _jobCategories.Clear();
     }
 
     private void RemoveUsedCharacters()

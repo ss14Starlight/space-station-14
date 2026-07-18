@@ -5,7 +5,9 @@ namespace Content.Shared.StatusEffect
 {
     [RegisterComponent]
     [NetworkedComponent]
+#pragma warning disable CS0618 // Legacy StatusEffectsSystem retained until remaining consumers migrate.
     [Access(typeof(StatusEffectsSystem))]
+#pragma warning restore CS0618
     public sealed partial class StatusEffectsComponent : Component
     {
         [ViewVariables]
@@ -14,7 +16,9 @@ namespace Content.Shared.StatusEffect
         /// <summary>
         ///     A list of status effect IDs to be allowed
         /// </summary>
+#pragma warning disable CS0618 // Legacy StatusEffectsSystem retained until remaining consumers migrate.
         [DataField("allowed", required: true), Access(typeof(StatusEffectsSystem), Other = AccessPermissions.ReadExecute)]
+#pragma warning restore CS0618
         public List<string> AllowedEffects = default!;
     }
 

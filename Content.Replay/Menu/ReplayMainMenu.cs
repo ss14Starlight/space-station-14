@@ -13,6 +13,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Log;
 using Robust.Shared.Serialization.Markdown.Value;
 using Robust.Shared.Utility;
 using static Robust.Shared.Replays.ReplayConstants;
@@ -33,7 +34,9 @@ public sealed partial class ReplayMainScreen : State
     [Dependency] private IClientRobustSerializer _serializer = default!;
     [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
     [Dependency] private ContentReplayPlaybackManager _replayMan = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
+    private ISawmill _sawmill = default!;
     private ReplayMainMenuControl _mainMenuControl = default!;
     private SelectReplayWindow? _selectWindow;
     private ResPath _directory;
@@ -42,6 +45,8 @@ public sealed partial class ReplayMainScreen : State
 
     protected override void Startup()
     {
+        _sawmill = _logManager.GetSawmill("replay");
+
         _mainMenuControl = new(_resourceCache);
         _userInterfaceManager.StateRoot.AddChild(_mainMenuControl);
 
@@ -263,7 +268,7 @@ public sealed partial class ReplayMainScreen : State
         }
         catch (Exception ex)
         {
-            Logger.Error($"Failed to load replay info. Exception: {ex}");
+            _sawmill.Error($"Failed to load replay info. Exception: {ex}");
             SelectReplay(null);
             return;
         }
@@ -272,8 +277,10 @@ public sealed partial class ReplayMainScreen : State
 
     protected override void Shutdown()
     {
-        _mainMenuControl.Dispose();
-        _selectWindow?.Dispose();
+        if (!_mainMenuControl.Disposed)
+            _mainMenuControl.Orphan();
+        _selectWindow?.Close();
+        _selectWindow = null;
     }
 
     private void OptionsButtonPressed(BaseButton.ButtonEventArgs args)

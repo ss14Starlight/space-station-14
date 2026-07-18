@@ -1,4 +1,5 @@
 using System.Numerics;
+using Robust.Shared.Random;
 using System.Threading.Tasks;
 using Content.Shared.Maps;
 using Content.Shared.Procedural;
@@ -12,7 +13,7 @@ public sealed partial class DungeonJob
     /// <summary>
     /// <see cref="CorridorDunGen"/>
     /// </summary>
-    private async Task PostGen(CorridorDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, Random random)
+    private async Task PostGen(CorridorDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, IRobustRandom random)
     {
         var entrances = new List<Vector2i>(dungeon.Rooms.Count);
 
@@ -99,7 +100,7 @@ public sealed partial class DungeonJob
             if (reservedTiles.Contains(tile))
                 continue;
 
-            setTiles.Add((tile, _tile.GetVariantTile(tileDef, random)));
+            setTiles.Add((tile, _tileDefManager.GetVariantTile(tileDef, random)));
         }
 
         _maps.SetTiles(_gridUid, _grid, setTiles);

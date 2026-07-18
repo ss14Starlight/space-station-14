@@ -23,7 +23,7 @@ public sealed partial class MetalHydrogenReaction : IGasReactionEffect
     private const float TemperatureThreshold = 50f;
     private const float BaseRate = 0.10f;
 
-    public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
+    public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale, EntityUid? holderUid)
     {
         if (holder is not TileAtmosphere tile ||
             mixture.Pressure < MinPressure)

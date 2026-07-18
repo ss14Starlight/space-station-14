@@ -164,7 +164,8 @@ public sealed class ATMBui : BoundUserInterface
             return;
 
         _window.OnClose -= Close;
-        _window.Orphan();
+        if (!_window.Disposed)
+            _window.Close();
         _window = null;
     }
 }

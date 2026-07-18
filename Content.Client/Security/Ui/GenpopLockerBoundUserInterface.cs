@@ -29,7 +29,8 @@ public sealed class GenpopLockerBoundUserInterface(EntityUid owner, Enum uiKey) 
         base.Dispose(disposing);
         if (!disposing)
             return;
-        _menu?.Orphan();
+        if (_menu is { Disposed: false })
+            _menu.Close();
         _menu = null;
     }
 }

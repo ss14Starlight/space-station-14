@@ -1,4 +1,5 @@
 using System.Linq;
+using Robust.Shared.Random;
 using System.Threading.Tasks;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.NPC.Systems;
@@ -16,7 +17,7 @@ public sealed partial class DungeonJob
         EntityTableDunGen gen,
         List<Dungeon> dungeons,
         HashSet<Vector2i> reservedTiles,
-        Random random)
+        IRobustRandom random)
     {
         var count = random.Next(gen.MinCount, gen.MaxCount + 1);
         var npcs = _entManager.System<NPCSystem>();

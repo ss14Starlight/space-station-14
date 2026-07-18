@@ -305,7 +305,7 @@ public sealed partial class MarkingSet
                         var marking = new Marking(points.DefaultMarkings[index], colors, false);
 
                         AddBack(category, marking);
-                    } catch (System.ArgumentOutOfRangeException e) {
+                    } catch (System.ArgumentOutOfRangeException) {
                         // marking was deleted and cannot be added, let's purge it:
                         points.DefaultMarkings.RemoveAt(index);
                     }

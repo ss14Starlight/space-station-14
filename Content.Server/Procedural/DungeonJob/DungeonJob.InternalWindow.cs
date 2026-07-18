@@ -1,4 +1,5 @@
 using System.Numerics;
+using Robust.Shared.Random;
 using System.Threading.Tasks;
 using Content.Shared.Maps;
 using Content.Shared.Procedural;
@@ -12,7 +13,7 @@ public sealed partial class DungeonJob
     /// <summary>
     /// <see cref="InternalWindowDunGen"/>
     /// </summary>
-    private async Task PostGen(InternalWindowDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, Random random)
+    private async Task PostGen(InternalWindowDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, IRobustRandom random)
     {
         // Iterate every room and check if there's a gap beyond it that leads to another room within N tiles
         // If so then consider windows
@@ -81,7 +82,7 @@ public sealed partial class DungeonJob
                 {
                     var tile = validTiles[j];
                     var gridPos = _maps.GridTileToLocal(_gridUid, _grid, tile);
-                    _maps.SetTile(_gridUid, _grid, tile, _tile.GetVariantTile((ContentTileDefinition) tileDef, random));
+                    _maps.SetTile(_gridUid, _grid, tile, _tileDefManager.GetVariantTile(tileDef, random));
 
                     _entManager.SpawnEntitiesAttachedTo(gridPos, _entTable.GetSpawns(contents, random));
                 }

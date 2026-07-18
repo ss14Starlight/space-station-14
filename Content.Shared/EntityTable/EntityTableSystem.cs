@@ -17,15 +17,28 @@ public sealed partial class EntityTableSystem : EntitySystem
         return GetSpawns(entTableProto.Table, rand, ctx);
     }
 
+    public IEnumerable<EntProtoId> GetSpawns(EntityTablePrototype entTableProto, IRobustRandom rand, EntityTableContext? ctx = null)
+    {
+        return GetSpawns(entTableProto.Table, rand, ctx);
+    }
+
     public IEnumerable<EntProtoId> GetSpawns(EntityTableSelector? table, System.Random? rand = null, EntityTableContext? ctx = null)
     {
         if (table == null)
             return new List<EntProtoId>();
 
-        rand ??= _random.GetRandom();
+        rand ??= Underlying(_random);
         ctx ??= new EntityTableContext();
         return table.GetSpawns(rand, EntityManager, _prototypeManager, ctx);
     }
+
+    public IEnumerable<EntProtoId> GetSpawns(EntityTableSelector? table, IRobustRandom rand, EntityTableContext? ctx = null)
+    {
+        return GetSpawns(table, Underlying(rand), ctx);
+    }
+
+    // EntityTableSelector still consumes System.Random; prefer the concrete accessor to avoid the obsolete interface method.
+    private static System.Random Underlying(IRobustRandom random) => ((RobustRandom)random).GetRandom();
 }
 
 /// <summary>

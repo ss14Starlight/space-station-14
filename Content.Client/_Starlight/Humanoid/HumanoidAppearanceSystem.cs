@@ -67,7 +67,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             if(_sprite.LayerMapTryGet((entity.Owner, sprite), HumanoidVisualLayers.Eyes, out var layerIndex, true))
                 sprite.LayerSetShader(layerIndex, (ShaderInstance?)null);
 
-        sprite.Scale = new Vector2(humanoidAppearance.Width * humanoidAppearance.Height, humanoidAppearance.Height);
+        _sprite.SetScale((entity.Owner, sprite), new Vector2(humanoidAppearance.Width * humanoidAppearance.Height, humanoidAppearance.Height));
         //starlight end
     }
 

@@ -1,6 +1,7 @@
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Disposal.Holder;
+using Content.Shared.Disposal.Router;
 using Content.Shared.Disposal.Tube;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
@@ -13,7 +14,7 @@ namespace Content.Shared.Disposal.Unit;
 /// Holder for entities being transported through the disposals system.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(new[] { typeof(DisposalTubeSystem), typeof(SharedDisposalHolderSystem) })]
+[Access(new[] { typeof(DisposalTubeSystem), typeof(SharedDisposalHolderSystem), typeof(DisposalRouterSystem) })]
 public sealed partial class DisposalHolderComponent : Component, IGasMixtureHolder
 {
     /// <summary>

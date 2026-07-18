@@ -55,12 +55,17 @@ public sealed class MentorMHelpUIHandler(NetUserId owner) : IMHelpUIHandler
         if (ClydeWindow != null)
         {
             ClydeWindow.RequestClosed -= OnRequestClosed;
-            ClydeWindow.Dispose();
-            // need to dispose control cause we cant reattach it directly back to the window
-            // but orphan panels first so -they- can get readded when the window is opened again
+            // Orphan panels before disposing the Clyde window so they are not disposed with the root.
             if (Control != null)
+            {
                 foreach (var (_, panel) in _ticketsPanelMap)
-                    panel.Orphan();
+                {
+                    if (!panel.Disposed)
+                        panel.Orphan();
+                }
+            }
+
+            ClydeWindow.Dispose();
             // window wont be closed here so we will invoke ourselves
             OnClose?.Invoke();
         }

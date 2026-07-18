@@ -27,6 +27,7 @@ public sealed class NodeScannerBoundUserInterface(EntityUid owner, Enum uiKey) :
         if (!disposing)
             return;
 
-        _scannerDisplay?.Dispose();
+        _scannerDisplay?.Close();
+        _scannerDisplay = null;
     }
 }

@@ -153,6 +153,12 @@ public sealed partial class ChangelingComponent : Component
 public sealed partial class TransformData
 {
     /// <summary>
+    ///     Entity the DNA was stolen from.
+    /// </summary>
+    [DataField]
+    public EntityUid Source;
+
+    /// <summary>
     ///     Entity's name.
     /// </summary>
     [DataField]
@@ -171,8 +177,8 @@ public sealed partial class TransformData
     public string DNA;
 
     /// <summary>
-    ///     Entity's humanoid appearance component.
+    ///     Immutable snapshot of the entity's humanoid appearance at steal time.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), NonSerialized]
-    public HumanoidAppearanceComponent Appearance;
+    public HumanoidAppearanceComponent Appearance = default!;
 }

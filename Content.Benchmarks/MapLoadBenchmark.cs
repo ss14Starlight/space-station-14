@@ -48,7 +48,10 @@ public class MapLoadBenchmark
         PoolManager.Shutdown();
     }
 
-    public static string[] MapsSource { get; } = { "Empty", "Saltern", "Box", "Bagel", "Dev", "CentComm", "Core", "TestTeg", "Packed", "Omega", "Reach", "Meta", "Marathon", "MeteorArena", "Fland", "Oasis", "Convex"};
+    /// <summary>
+    /// All Sol and Starlight game maps, excluding Starlight maps replaced by Sol.
+    /// </summary>
+    public static string[] MapsSource { get; } = BenchmarkMaps.AllLoadableGameMapIds;
 
     [ParamsSource(nameof(MapsSource))]
     public string Map;

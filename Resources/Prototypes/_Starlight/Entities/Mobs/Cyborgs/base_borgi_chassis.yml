@@ -146,6 +146,7 @@
       - KnockedDown
       - SlowedDown
       - Flashed
+    - type: Flashable
     - type: TypingIndicator
       proto: robot
     - type: DamagedSiliconAccent

@@ -100,6 +100,7 @@ namespace Content.Server.Entry
         [Dependency] private ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayerRolesReq = default!;
         [Dependency] private INullLinkEventBusManager _nullLinkEventBus = default!;
         [Dependency] private INullLinkPlayerManager _nullLinkPlayerManager = default!;
+        [Dependency] private ISharedNullLinkPlayerResourcesManager _nullLinkPlayerResources = default!;
 #endregion Nulllink
 
         public override void PreInit()
@@ -186,6 +187,7 @@ namespace Content.Server.Entry
 
             _recipe.Initialize();
             _admin.Initialize();
+            _nullLinkPlayerResources.Initialize(); // NullLink resources before player status handlers
             _playerRoles.Initialize(); // Starlight
             _afk.Initialize();
             _rules.Initialize();
@@ -239,13 +241,12 @@ namespace Content.Server.Entry
             }
 
             _serverApi.Shutdown();
-            // TODO Should this be awaited?
-            _discordLink.Shutdown();
+            _discordLink.Shutdown().GetAwaiter().GetResult();
             _discordChatLink.Shutdown();
             // Nullink start
             _nullLinkPlayerManager.Shutdown();
             _nullLinkEventBus.Shutdown();
-            _actorRouter.Shutdown();
+            _actorRouter.Shutdown().AsTask().GetAwaiter().GetResult();
             _bugReport.Shutdown();
             // Nullink end
         }

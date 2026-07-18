@@ -87,7 +87,7 @@ public sealed partial class GuidebookUIController : UIController, IOnStateEntere
 
         // shutdown
         _guideWindow.DisposePopOut(); // Starlight: close the popout if exists
-        _guideWindow.Dispose();
+        _guideWindow.Close();
         _guideWindow = null;
         _poppedOut = false; // Starlight
         CommandBinds.Unregister<GuidebookUIController>();

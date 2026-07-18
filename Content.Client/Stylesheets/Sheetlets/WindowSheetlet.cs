@@ -9,6 +9,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Shared.Maths;
 using static Content.Client.Stylesheets.StylesheetHelpers;
 
 namespace Content.Client.Stylesheets.Sheetlets;
@@ -19,7 +20,6 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
 {
     public override StyleRule[] GetRules(T sheet, object config)
     {
-        IButtonConfig buttonCfg = sheet;
         IWindowConfig windowCfg = sheet;
         IIconConfig iconCfg = sheet;
 
@@ -49,24 +49,32 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
             Texture = sheet.GetTextureOr(windowCfg.WindowBackgroundBorderedPath, NanotrasenStylesheet.TextureRoot),
         };
         borderedBackgroundBox.SetPatchMargin(StyleBox.Margin.All, 2);
+        var transparentBorderedBackgroundBox = new StyleBoxTexture
+        {
+            Texture = sheet.GetTextureOr(windowCfg.TransparentWindowBackgroundBorderedPath, NanotrasenStylesheet.TextureRoot),
+        };
+        transparentBorderedBackgroundBox.SetPatchMargin(StyleBox.Margin.All, 2);
         var closeButtonTex = sheet.GetTextureOr(iconCfg.CrossIconPath, NanotrasenStylesheet.TextureRoot);
         var popOutButtonTex = ResCache.GetTexture("/Textures/_Starlight/Interface/Nano/pop_out.svg.png"); // Starlight
 
-        var leftPanel = StyleBoxHelpers.OpenLeftStyleBox(sheet);
-        leftPanel.SetPadding(StyleBox.Margin.All, 0.0f);
+        // FancyWindow heading strip — zero content margins so the header doesn't inflate past the title row.
+        var headingBackground = new StyleBoxTexture(StyleBoxHelpers.OpenLeftStyleBox(sheet));
+        headingBackground.SetPadding(StyleBox.Margin.All, 0);
+        headingBackground.SetContentMarginOverride(StyleBox.Margin.All, 0);
 
         // TODO: maybe also change everything here to `NanoWindow` or something
         return
         [
             // TODO: KILL DEFAULT WINDOW (in a bit)
+            // DefaultWindow header is hardcoded to 25px; keep title/close metrics inside that budget.
             E<Label>()
                 .Class(DefaultWindow.StyleClassWindowTitle)
                 .FontColor(sheet.HighlightPalette.Text)
-                .Font(sheet.BaseFont.GetFont(14, FontKind.Bold)),
+                .Font(sheet.BaseFont.GetFont(12, FontKind.Bold)),
             E<Label>()
                 .Class("windowTitleAlert")
                 .FontColor(Color.White)
-                .Font(sheet.BaseFont.GetFont(14, FontKind.Bold)),
+                .Font(sheet.BaseFont.GetFont(12, FontKind.Bold)),
             // TODO: maybe also change everything here to `NanoWindow` or something
             E()
                 .Class(DefaultWindow.StyleClassWindowPanel)
@@ -80,12 +88,25 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
             E()
                 .Class(StyleClass.BorderedWindowPanel)
                 .Panel(borderedBackgroundBox),
+            E()
+                .Class(StyleClass.TransparentBorderedWindowPanel)
+                .Panel(transparentBorderedBackgroundBox),
+            E<PanelContainer>()
+                .Class(StyleClass.WindowHeadingBackground)
+                .Prop(PanelContainer.StylePropertyPanel, headingBackground)
+                .Modulate(Color.FromHex("#1F1F23")),
+            E<PanelContainer>()
+                .Class(StyleClass.WindowHeadingBackgroundLight)
+                .Prop(PanelContainer.StylePropertyPanel, headingBackground),
+            // Restored from pre-sheetlet FancyWindow Margin="0 2".
+            E()
+                .Class(StyleClass.WindowContentsContainer)
+                .Margin(new Thickness(0, 2)),
 
-            // Close button
+            // Close button — no extra margin; 22px icon must fit the 25px DefaultWindow header.
             E<TextureButton>()
                 .Class(DefaultWindow.StyleClassWindowCloseButton)
-                .Prop(TextureButton.StylePropertyTexture, closeButtonTex)
-                .Margin(3),
+                .Prop(TextureButton.StylePropertyTexture, closeButtonTex),
             E<TextureButton>()
                 .Class(DefaultWindow.StyleClassWindowCloseButton)
                 .PseudoNormal()
@@ -106,8 +127,7 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
             // Starlight begin
             E<TextureButton>()
                 .Class(PopOutExtensions.PopOutButtonStyleClass)
-                .Prop(TextureButton.StylePropertyTexture, popOutButtonTex)
-                .Margin(3),
+                .Prop(TextureButton.StylePropertyTexture, popOutButtonTex),
             E<TextureButton>()
                 .Class(PopOutExtensions.PopOutButtonStyleClass)
                 .PseudoNormal()

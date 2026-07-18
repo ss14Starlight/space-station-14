@@ -115,8 +115,37 @@
     maximumDuration: 25m # <-- The only change relative to parent component definition
   # Starlight END
 
+# Causes electrocution stun/damage feedback marker.
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectElectrocution
+  name: electrocution
+  components:
+  - type: Electrocuted
+
 # Causes you to get drunk
 - type: entity
   parent: [ StatusEffectWoozy, StatusEffectSlurred ]
   id: StatusEffectDrunk
   name: drunk
+
+# Obstructs the target's vision with the flash overlay.
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectFlashed
+  name: flashed
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - Flashable
+  - type: FlashedStatusEffect
+
+# Applies jitter animation to arbitrary entities (not mob-only).
+- type: entity
+  parent: StatusEffectBase
+  id: StatusEffectJitter
+  name: jitter
+  components:
+  - type: RejuvenateRemovedStatusEffect
+  - type: JitterStatusEffect

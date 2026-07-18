@@ -86,7 +86,8 @@ namespace Content.Client.ContextMenu.UI
 
             Close();
             RootMenu.OnPopupHide -= Close;
-            RootMenu.Dispose();
+            if (!RootMenu.Disposed)
+                RootMenu.Orphan();
             RootMenu = default!;
         }
 

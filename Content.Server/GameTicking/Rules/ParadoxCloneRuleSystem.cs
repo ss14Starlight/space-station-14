@@ -170,7 +170,7 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
         {
             var reg = _componentFactory.GetRegistration(classProto.ClassComponent, ignoreCase: true);
             var classComp = _componentFactory.GetComponent(reg.Type);
-            EntityManager.AddComponent(clone, classComp);
+            AddComp(clone, classComp);
 
             if (classProto.ID == "Umbrae")
                 EnsureComp<NightVisionComponent>(clone);

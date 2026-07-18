@@ -101,9 +101,5 @@ public sealed partial class MhelpPanel : BoxContainer
         UpdateTypingIndicator();
     }
 
-    [Obsolete]
-    protected override void Dispose(bool disposing)
-        => base.Dispose(disposing);
-
     internal void SetInputVisibility(bool v) => SenderLineEdit.Visible = v;
 }

@@ -93,7 +93,7 @@ namespace Content.Server.Power.EntitySystems
 
         private void ApcPowerReceiverRemove(EntityUid uid, ApcPowerReceiverComponent component, ComponentRemove args)
         {
-            component.Provider?.RemoveReceiver(component);
+            component.Provider?.Comp.RemoveReceiver((uid, component));
         }
 
         private static void ApcPowerReceiverPaused(
@@ -134,7 +134,7 @@ namespace Content.Server.Power.EntitySystems
 
         private void PowerConsumerInit(EntityUid uid, PowerConsumerComponent component, ComponentInit args)
         {
-            _powerNetConnector.BaseNetConnectorInit(component);
+            _powerNetConnector.BaseNetConnectorInit(uid, component);
             AllocLoad(component.NetworkLoad);
         }
 
@@ -155,7 +155,7 @@ namespace Content.Server.Power.EntitySystems
 
         private void PowerSupplierInit(EntityUid uid, PowerSupplierComponent component, ComponentInit args)
         {
-            _powerNetConnector.BaseNetConnectorInit(component);
+            _powerNetConnector.BaseNetConnectorInit(uid, component);
             AllocSupply(component.NetworkSupply);
         }
 
@@ -471,10 +471,10 @@ namespace Content.Server.Power.EntitySystems
 
             foreach (var provider in net.Providers)
             {
-                foreach (var receiver in provider.LinkedReceivers)
+                foreach (var receiver in provider.Comp.LinkedReceivers)
                 {
-                    netNode.Loads.Add(receiver.NetworkLoad.Id);
-                    receiver.NetworkLoad.LinkedNetwork = netNode.Id;
+                    netNode.Loads.Add(receiver.Comp.NetworkLoad.Id);
+                    receiver.Comp.NetworkLoad.LinkedNetwork = netNode.Id;
                 }
             }
 
@@ -523,14 +523,14 @@ namespace Content.Server.Power.EntitySystems
         {
             foreach (var consumer in net.Consumers)
             {
-                netNode.Loads.Add(consumer.NetworkLoad.Id);
-                consumer.NetworkLoad.LinkedNetwork = netNode.Id;
+                netNode.Loads.Add(consumer.Comp.NetworkLoad.Id);
+                consumer.Comp.NetworkLoad.LinkedNetwork = netNode.Id;
             }
 
             foreach (var supplier in net.Suppliers)
             {
-                netNode.Supplies.Add(supplier.NetworkSupply.Id);
-                supplier.NetworkSupply.LinkedNetwork = netNode.Id;
+                netNode.Supplies.Add(supplier.Comp.NetworkSupply.Id);
+                supplier.Comp.NetworkSupply.LinkedNetwork = netNode.Id;
             }
         }
 

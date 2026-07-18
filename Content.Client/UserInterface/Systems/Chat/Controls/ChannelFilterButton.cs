@@ -30,9 +30,21 @@ public sealed class ChannelFilterButton : ChatPopupButton<ChannelFilterPopup>
             })
         );
 
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
         _chatUIController.FilterableChannelsChanged += Popup.SetChannels;
         _chatUIController.UnreadMessageCountsUpdated += Popup.UpdateUnread;
         Popup.SetChannels(_chatUIController.FilterableChannels);
+    }
+
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+        _chatUIController.FilterableChannelsChanged -= Popup.SetChannels;
+        _chatUIController.UnreadMessageCountsUpdated -= Popup.UpdateUnread;
     }
 
     protected override UIBox2 GetPopupPosition()
@@ -78,14 +90,4 @@ public sealed class ChannelFilterButton : ChatPopupButton<ChannelFilterPopup>
         UpdateChildColors();
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (!disposing)
-            return;
-
-        _chatUIController.FilterableChannelsChanged -= Popup.SetChannels;
-        _chatUIController.UnreadMessageCountsUpdated -= Popup.UpdateUnread;
-    }
 }

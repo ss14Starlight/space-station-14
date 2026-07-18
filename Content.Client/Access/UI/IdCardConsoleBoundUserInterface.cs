@@ -57,7 +57,8 @@ namespace Content.Client.Access.UI
             if (!disposing)
                 return;
 
-            _window?.Dispose();
+            _window?.Close();
+            _window = null;
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)

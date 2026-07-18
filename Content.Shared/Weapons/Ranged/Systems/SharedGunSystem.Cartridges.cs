@@ -57,12 +57,12 @@ public abstract partial class SharedGunSystem
         if (!ProtoManager.TryIndex(proto, out var entityProto))
             return null;
 
-        if (entityProto.TryGetComponent<ProjectileComponent>(out var projectile, Factory))
+        if (entityProto.TryComp<ProjectileComponent>(out var projectile, Factory))
         {
             if (!projectile.Damage.Empty)
                 return (projectile.Damage * Damageable.UniversalProjectileDamageModifier, 0f);
         }
-        else if (entityProto.TryGetComponent<HitscanBasicDamageComponent>(out var hitscan, Factory))
+        else if (entityProto.TryComp<HitscanBasicDamageComponent>(out var hitscan, Factory))
         {
             if (!hitscan.Damage.Empty)
             {

@@ -4,6 +4,7 @@ using Content.Shared.Screen;
 using Content.Shared.Screen.Components;
 using Content.Shared.TextScreen;
 using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -127,7 +128,7 @@ public sealed partial class ScreenSystem : VisualizerSystem<ScreenVisualsCompone
             BuildTextLayers(uid, component, args.Sprite);
             if (TryComp<ScreenComponent>(uid, out var screen) && screen.CurrentScreen != ScreenType.ShuttleTime)
                 foreach (var key in component.LayerStatesToDraw.Keys)
-                    args.Sprite.LayerSetVisible(key, false);
+                    _sprite.LayerSetVisible((uid, args.Sprite), key, false);
             DrawLayers(uid, component.LayerStatesToDraw);
         }
 
@@ -140,7 +141,7 @@ public sealed partial class ScreenSystem : VisualizerSystem<ScreenVisualsCompone
                 BuildTimerLayers(uid, timer, component);
                 if (TryComp<ScreenComponent>(uid, out var screen) && screen.CurrentScreen != ScreenType.ShuttleTime)
                     foreach (var key in timer.LayerStatesToDraw.Keys)
-                        args.Sprite.LayerSetVisible(key, false);
+                        _sprite.LayerSetVisible((uid, args.Sprite), key, false);
                 DrawLayers(uid, timer.LayerStatesToDraw);
             }
             else
@@ -154,11 +155,10 @@ public sealed partial class ScreenSystem : VisualizerSystem<ScreenVisualsCompone
         {
             if (TryComp<ScreenComponent>(uid, out var screenComp) && TryComp<SpriteComponent>(uid, out var sprite))
             {
-                if (!sprite.LayerMapTryGet(TextScreenVisuals.AlertLevel, out var layerId) || !sprite.TryGetLayer(layerId, out var layer))
+                if (!_sprite.LayerMapTryGet((uid, sprite), TextScreenVisuals.AlertLevel, out _, false))
                     return;
 
-                layer.SetRsi(null);
-                layer.SetState(alertLevel.ToString());
+                _sprite.LayerSetRsi((uid, sprite), TextScreenVisuals.AlertLevel, (RSI?)null, alertLevel.ToString());
             }
         }
     }
@@ -311,8 +311,6 @@ public sealed partial class ScreenSystem : VisualizerSystem<ScreenVisualsCompone
         if (!Resolve(uid, ref sprite))
             return;
 
-        int layerId = 0;
-
         screen.CurrentScreen = GetNextScreen(screen.CurrentScreen);
 
         switch (screen.CurrentScreen)
@@ -324,14 +322,14 @@ public sealed partial class ScreenSystem : VisualizerSystem<ScreenVisualsCompone
                     break;
                 }
 
-                if (sprite.LayerMapTryGet(TextScreenVisuals.AlertLevel, out layerId) && sprite.TryGetLayer(layerId, out var layer))
-                    layer.Visible = false;
+                if (_sprite.LayerMapTryGet((uid, sprite), TextScreenVisuals.AlertLevel, out _, false))
+                    _sprite.LayerSetVisible((uid, sprite), TextScreenVisuals.AlertLevel, false);
 
                 foreach (var key in visuals.LayerStatesToDraw.Keys)
-                    sprite.LayerSetVisible(key, true);
+                    _sprite.LayerSetVisible((uid, sprite), key, true);
 
                 foreach (var key in timer.LayerStatesToDraw.Keys)
-                    sprite.LayerSetVisible(key, true);
+                    _sprite.LayerSetVisible((uid, sprite), key, true);
 
                 if (timer.Target < _gameTiming.CurTime)
                 {
@@ -349,29 +347,29 @@ public sealed partial class ScreenSystem : VisualizerSystem<ScreenVisualsCompone
                     break;
                 }
 
-                if (sprite.LayerMapTryGet(TextScreenVisuals.AlertLevel, out layerId) && sprite.TryGetLayer(layerId, out layer))
-                    layer.Visible = false;
+                if (_sprite.LayerMapTryGet((uid, sprite), TextScreenVisuals.AlertLevel, out _, false))
+                    _sprite.LayerSetVisible((uid, sprite), TextScreenVisuals.AlertLevel, false);
 
                 if (TryComp<ScreenTimerComponent>(uid, out timer))
                     foreach (var key in timer.LayerStatesToDraw.Keys)
-                        sprite.LayerSetVisible(key, false);
+                        _sprite.LayerSetVisible((uid, sprite), key, false);
 
                 foreach (var key in visuals.LayerStatesToDraw.Keys)
-                    sprite.LayerSetVisible(key, true);
+                    _sprite.LayerSetVisible((uid, sprite), key, true);
 
                 BuildTextLayers(uid, visuals, sprite);
                 DrawLayers(uid, visuals.LayerStatesToDraw, sprite);
                 break;
             case ScreenType.AlertLevel:
-                if (sprite.LayerMapTryGet(TextScreenVisuals.AlertLevel, out layerId) && sprite.TryGetLayer(layerId, out layer))
-                    layer.Visible = true;
+                if (_sprite.LayerMapTryGet((uid, sprite), TextScreenVisuals.AlertLevel, out _, false))
+                    _sprite.LayerSetVisible((uid, sprite), TextScreenVisuals.AlertLevel, true);
 
                 if (TryComp<ScreenTimerComponent>(uid, out timer))
                     foreach (var key in timer.LayerStatesToDraw.Keys)
-                        sprite.LayerSetVisible(key, false);
+                        _sprite.LayerSetVisible((uid, sprite), key, false);
 
                 foreach (var key in visuals.LayerStatesToDraw.Keys)
-                    sprite.LayerSetVisible(key, false);
+                    _sprite.LayerSetVisible((uid, sprite), key, false);
                 break;
         }
     }

@@ -3,7 +3,7 @@ using Content.Server.Emp;
 using Content.Server.Lightning;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Anomaly.Effects.Components;
-using Content.Shared.StatusEffect;
+using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -61,9 +61,9 @@ public sealed partial class ElectricityAnomalySystem : EntitySystem
             var damage = (int) (elec.MaxElectrocuteDamage * anom.Severity);
             var duration = elec.MaxElectrocuteDuration * anom.Severity;
 
-            foreach (var (ent, comp) in _lookup.GetEntitiesInRange<StatusEffectsComponent>(_transform.GetMapCoordinates(uid, xform), range))
+            foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(_transform.GetMapCoordinates(uid, xform), range))
             {
-                _electrocution.TryDoElectrocution(ent, uid, damage, duration, true, statusEffects: comp, ignoreInsulation: true);
+                _electrocution.TryDoElectrocution(ent, uid, damage, duration, true, ignoreInsulation: true);
             }
         }
     }

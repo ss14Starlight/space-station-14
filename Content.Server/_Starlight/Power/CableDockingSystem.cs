@@ -57,11 +57,8 @@ public sealed partial class CableDockingSystem : EntitySystem
 
     private void OnDocked(DockEvent ev)
     {
-        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
-            return;
-
-        GetDockCableNodes(dockA, _dockACables);
-        GetDockCableNodes(dockB, _dockBCables);
+        GetDockCableNodes(ev.DockAUid, _dockACables);
+        GetDockCableNodes(ev.DockBUid, _dockBCables);
 
         foreach (var cableA in _dockACables)
         {
@@ -77,11 +74,8 @@ public sealed partial class CableDockingSystem : EntitySystem
 
     private void OnUndocked(UndockEvent ev)
     {
-        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
-            return;
-
-        GetDockCableNodes(dockA, _dockACables);
-        GetDockCableNodes(dockB, _dockBCables);
+        GetDockCableNodes(ev.DockAUid, _dockACables);
+        GetDockCableNodes(ev.DockBUid, _dockBCables);
 
         foreach (var cableA in _dockACables)
         {
@@ -257,14 +251,6 @@ public sealed partial class CableDockingSystem : EntitySystem
         tile = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
         return true;
     }
-
-#pragma warning disable CS0618 // Using .Owner for Performance.
-    private static bool TryGetDockEntity(DockingComponent component, out EntityUid uid)
-    {
-        uid = component.Owner;
-        return true;
-    }
-#pragma warning restore CS0618
 
     private void LinkCables(CableNode a, CableNode b)
     {

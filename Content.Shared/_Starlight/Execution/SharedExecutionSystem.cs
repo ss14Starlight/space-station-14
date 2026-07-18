@@ -20,7 +20,7 @@ namespace Content.Shared._Starlight.Execution;
 /// <summary>
 ///     Predicted verbs for violently murdering cuffed or crit creatures.
 /// </summary>
-public sealed class SharedExecutionSystem : EntitySystem
+public sealed partial class SharedExecutionSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private MobStateSystem _mobState = default!;

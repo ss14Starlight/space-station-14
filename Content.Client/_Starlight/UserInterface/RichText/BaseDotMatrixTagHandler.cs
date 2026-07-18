@@ -1,6 +1,6 @@
+using Content.Client.Resources;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.RichText;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.UserInterface.RichText;
@@ -10,25 +10,25 @@ public abstract partial class BaseDotMatrixTagHandler : IMarkupTagHandler
     /// <summary>
     /// Four-bit lookup table for font variants. See <see cref="FontVariation"/>.
     /// </summary>
-    private static readonly ProtoId<FontPrototype>[] _fontVariants =
+    private static readonly ResPath[] FontPaths =
     [
-        "DotMatrix",
-        "DotMatrixItalic",
-        "DotMatrixBold",
-        "DotMatrixBoldItalic",
-        "DotMatrixCondensed",
-        "DotMatrixCondensedItalic",
-        "DotMatrixCondensedBold",
-        "DotMatrixCondensedBoldItalic",
+        new("/Fonts/_Starlight/DotMatrix/DotMatrix-Regular.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrix-Italic.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrix-Bold.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrix-BoldItalic.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrix-CondensedRegular.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrix-CondensedItalic.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrix-CondensedBold.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrix-CondensedBoldItalic.otf"),
 
-        "DotMatrixDuo",
-        "DotMatrixDuoItalic",
-        "DotMatrixDuoBold",
-        "DotMatrixDuoBoldItalic",
-        "DotMatrixDuoCondensed",
-        "DotMatrixDuoCondensedItalic",
-        "DotMatrixDuoCondensedBold",
-        "DotMatrixDuoCondensedBoldItalic",
+        new("/Fonts/_Starlight/DotMatrix/DotMatrixDuo-Regular.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrixDuo-Italic.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrixDuo-Bold.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrixDuo-BoldItalic.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrixDuo-CondensedRegular.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrixDuo-CondensedItalic.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrixDuo-CondensedBold.otf"),
+        new("/Fonts/_Starlight/DotMatrix/DotMatrixDuo-CondensedBoldItalic.otf"),
     ];
 
     /// <summary>
@@ -43,7 +43,6 @@ public abstract partial class BaseDotMatrixTagHandler : IMarkupTagHandler
     }
 
     [Dependency] private IResourceCache _resourceCache = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public abstract string Name { get; }
 
@@ -79,7 +78,8 @@ public abstract partial class BaseDotMatrixTagHandler : IMarkupTagHandler
             (bold ? (int)FontVariation.Bold : 0) |
             (italic ? (int)FontVariation.Italic : 0);
 
-        var font = FontTag.CreateFont(context.Font, node, _resourceCache, _prototypeManager, _fontVariants[index]);
+        var size = FontTag.GetSizeForFontTag(context.Font, node);
+        var font = _resourceCache.GetFont(FontPaths[index], size);
         context.Font.Push(font);
     }
 

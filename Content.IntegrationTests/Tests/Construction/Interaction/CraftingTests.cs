@@ -85,9 +85,7 @@ public sealed class CraftingTests : InteractionTest
             Assert.That(sys.IsEntityInContainer(shard), Is.False);
         });
 
-#pragma warning disable CS4014 // Legacy construction code uses DoAfterAwait. If we await it we will be waiting forever.
-        await Server.WaitPost(() => SConstruction.TryStartItemConstruction(Spear, SEntMan.GetEntity(Player)));
-#pragma warning restore CS4014
+        await Server.WaitPost(() => Assert.That(SConstruction.TryStartItemConstruction(Spear, SEntMan.GetEntity(Player))));
         await RunTicks(1);
 
         // DoAfter is in progress. Entity not spawned, stacks have been split and someingredients are in a container.
@@ -109,9 +107,7 @@ public sealed class CraftingTests : InteractionTest
         await AssertEntityLookup((Rod, 10), (Cable, 10), (ShardGlass, 1));
 
         // Re-attempt the do-after
-#pragma warning disable CS4014 // Legacy construction code uses DoAfterAwait. See above.
-        await Server.WaitPost(() => SConstruction.TryStartItemConstruction(Spear, SEntMan.GetEntity(Player)));
-#pragma warning restore CS4014
+        await Server.WaitPost(() => Assert.That(SConstruction.TryStartItemConstruction(Spear, SEntMan.GetEntity(Player))));
         await RunTicks(1);
 
         // DoAfter is in progress. Entity not spawned, ingredients are in a container.

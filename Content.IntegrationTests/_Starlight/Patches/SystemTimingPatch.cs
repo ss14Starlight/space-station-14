@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -14,7 +15,7 @@ namespace Content.IntegrationTests._Starlight.Patches;
 /// </summary>
 internal static class SystemTimingPatch
 {
-    private static readonly MethodInfo _exportMethod = ResolveExportMethod();
+    private static readonly MethodInfo? _exportMethod = ResolveExportMethod();
 
     private static Dictionary<string, double> s_snapshot = [];
 
@@ -91,7 +92,7 @@ internal static class SystemTimingPatch
         return result;
     }
 
-    private static MethodInfo ResolveExportMethod()
+    private static MethodInfo? ResolveExportMethod()
     {
         var registry = ResolveDefaultRegistry();
         if (registry == null)
@@ -102,7 +103,7 @@ internal static class SystemTimingPatch
             [typeof(Stream), typeof(CancellationToken)]);
     }
 
-    private static object ResolveDefaultRegistry()
+    private static object? ResolveDefaultRegistry()
     {
         var asm = AppDomain.CurrentDomain.GetAssemblies()
             .FirstOrDefault(static a => a.GetName().Name == "Prometheus.NetStandard");

@@ -13,6 +13,7 @@ using Content.Shared.Screen.Components;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.GameTicking;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -222,7 +223,7 @@ namespace Content.Server.RoundEnd
                 null,
                 Color.Gold);
 
-            _audio.PlayGlobal("/Audio/_Starlight/Announcements/callEvac.ogg", Filter.Broadcast(), true);  //🌟Starlight🌟
+            _audio.PlayGlobal(new SoundPathSpecifier("/Audio/_Starlight/Announcements/callEvac.ogg"), Filter.Broadcast(), true);  //🌟Starlight🌟
 
             LastCountdownStart = _gameTiming.CurTime;
             ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
@@ -280,7 +281,7 @@ namespace Content.Server.RoundEnd
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
                 Loc.GetString("round-end-system-shuttle-sender-announcement"), false, colorOverride: Color.Gold);
 
-            _audio.PlayGlobal("/Audio/_Starlight/Announcements/recallEvac.ogg", Filter.Broadcast(), true); //🌟Starlight🌟
+            _audio.PlayGlobal(new SoundPathSpecifier("/Audio/_Starlight/Announcements/recallEvac.ogg"), Filter.Broadcast(), true); //🌟Starlight🌟
 
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;

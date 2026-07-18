@@ -9,7 +9,6 @@ namespace Content.Server.Salvage;
 sealed partial class SalvageRulerCommand : IConsoleCommand
 {
     [Dependency] private IEntityManager _entities = default!;
-    [Dependency] private IMapManager _maps = default!;
 
     public string Command => "salvageruler";
 
@@ -42,7 +41,7 @@ sealed partial class SalvageRulerCommand : IConsoleCommand
         var entityTransform = _entities.GetComponent<TransformComponent>(entity.Value);
         var total = Box2.UnitCentered;
         var first = true;
-        foreach (var mapGrid in _maps.GetAllGrids(entityTransform.MapID))
+        foreach (var mapGrid in _entities.System<SharedMapSystem>().GetAllGrids(entityTransform.MapID))
         {
             var aabb = _entities.System<SharedTransformSystem>().GetWorldMatrix(mapGrid).TransformBox(mapGrid.Comp.LocalAABB);
             if (first)

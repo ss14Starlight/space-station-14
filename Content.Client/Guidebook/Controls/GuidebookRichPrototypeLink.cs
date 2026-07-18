@@ -15,6 +15,8 @@ namespace Content.Client.Guidebook.Controls;
 /// </summary>
 public sealed class GuidebookRichPrototypeLink : Control, IPrototypeLinkControl
 {
+    private static readonly ISawmill Sawmill = Logger.GetSawmill("guidebook");
+
     private bool _linkActive = false;
     private FormattedMessage? _message;
     private readonly RichTextLabel _richTextLabel;
@@ -61,7 +63,7 @@ public sealed class GuidebookRichPrototypeLink : Control, IPrototypeLinkControl
             args.Handle();
         }
         else
-            Logger.Warning("Warning! No valid IAnchorClickHandler found.");
+            Sawmill.Warning("Warning! No valid IAnchorClickHandler found.");
     }
 }
 

@@ -8,8 +8,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.RCD.Systems;
 
-public sealed class RPDSystem : EntitySystem
+public sealed partial class RPDSystem : EntitySystem
 {
+    [Dependency] private RCDSystem _rcd = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -18,7 +20,7 @@ public sealed class RPDSystem : EntitySystem
     }
 
     private Control OnItemStatus(Entity<RCDComponent> entity)
-        => new RPDModeStatusControl(entity);
+        => new RPDModeStatusControl(entity, _rcd);
 
     private sealed class RPDModeStatusControl : Control
     {
@@ -31,11 +33,11 @@ public sealed class RPDSystem : EntitySystem
         private readonly bool _isRpd;
         private readonly RCDSystem _rcdSystem;
 
-        public RPDModeStatusControl(Entity<RCDComponent> entity)
+        public RPDModeStatusControl(Entity<RCDComponent> entity, RCDSystem rcdSystem)
         {
             _uid = entity.Owner;
             _isRpd = entity.Comp.IsRpd || entity.Comp.IsRPLD;
-            _rcdSystem = Get<RCDSystem>();
+            _rcdSystem = rcdSystem;
             AddChild(_label);
         }
 

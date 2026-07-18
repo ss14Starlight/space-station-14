@@ -15,13 +15,13 @@ namespace Content.Server.Power.NodeGroups
         /// </remarks>
         bool IsConnectedNetwork { get; }
 
-        void AddConsumer(PowerConsumerComponent consumer);
+        void AddConsumer(Entity<PowerConsumerComponent> consumer);
 
-        void RemoveConsumer(PowerConsumerComponent consumer);
+        void RemoveConsumer(Entity<PowerConsumerComponent> consumer);
 
-        void AddSupplier(PowerSupplierComponent supplier);
+        void AddSupplier(Entity<PowerSupplierComponent> supplier);
 
-        void RemoveSupplier(PowerSupplierComponent supplier);
+        void RemoveSupplier(Entity<PowerSupplierComponent> supplier);
 
         PowerState.Network NetworkNode { get; }
     }

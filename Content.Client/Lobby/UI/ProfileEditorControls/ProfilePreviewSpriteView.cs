@@ -129,11 +129,9 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
         return string.Join("\n", descriptionLines);
     }
 
-    protected override void Dispose(bool disposing)
+    protected override void ExitedTree()
     {
-        base.Dispose(disposing);
-        if (!disposing)
-            return;
+        base.ExitedTree();
 
         EntMan.DeleteEntity(PreviewDummy);
         PreviewDummy = EntityUid.Invalid;

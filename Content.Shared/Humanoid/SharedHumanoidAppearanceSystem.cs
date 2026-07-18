@@ -182,6 +182,18 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
         if (!Resolve(source, ref sourceHumanoid, false) || !Resolve(target, ref targetHumanoid, false))
             return;
 
+        CloneAppearance(target, sourceHumanoid, targetHumanoid);
+    }
+
+    /// <summary>
+    ///     Applies a humanoid appearance snapshot to a target without requiring the donor entity to still exist.
+    /// </summary>
+    public void CloneAppearance(EntityUid target, HumanoidAppearanceComponent sourceHumanoid,
+        HumanoidAppearanceComponent? targetHumanoid = null)
+    {
+        if (!Resolve(target, ref targetHumanoid, false))
+            return;
+
         targetHumanoid.Species = sourceHumanoid.Species;
         targetHumanoid.SkinColor = sourceHumanoid.SkinColor;
         targetHumanoid.EyeColor = sourceHumanoid.EyeColor;

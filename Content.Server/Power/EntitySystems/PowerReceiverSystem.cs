@@ -66,7 +66,7 @@ namespace Content.Server.Power.EntitySystems
         {
             foreach (var receiver in component.LinkedReceivers)
             {
-                receiver.NetworkLoad.LinkedNetwork = default;
+                receiver.Comp.NetworkLoad.LinkedNetwork = default;
                 component.Net?.QueueNetworkReconnect();
             }
 
@@ -75,11 +75,10 @@ namespace Content.Server.Power.EntitySystems
 
         private void OnProviderConnected(Entity<ApcPowerReceiverComponent> receiver, ref ExtensionCableSystem.ProviderConnectedEvent args)
         {
-            var providerUid = args.Provider.Owner;
-            if (!_provQuery.TryGetComponent(providerUid, out var provider))
+            if (!_provQuery.TryGetComponent(args.Provider, out var provider))
                 return;
 
-            receiver.Comp.Provider = provider;
+            receiver.Comp.Provider = (args.Provider.Owner, provider);
 
             ProviderChanged(receiver);
         }
@@ -95,7 +94,7 @@ namespace Content.Server.Power.EntitySystems
         {
             if (_recQuery.TryGetComponent(args.Receiver, out var receiver))
             {
-                provider.Comp.AddReceiver(receiver);
+                provider.Comp.AddReceiver((args.Receiver.Owner, receiver));
             }
         }
 
@@ -103,7 +102,7 @@ namespace Content.Server.Power.EntitySystems
         {
             if (_recQuery.TryGetComponent(args.Receiver, out var receiver))
             {
-                provider.RemoveReceiver(receiver);
+                provider.RemoveReceiver((args.Receiver.Owner, receiver));
             }
         }
 

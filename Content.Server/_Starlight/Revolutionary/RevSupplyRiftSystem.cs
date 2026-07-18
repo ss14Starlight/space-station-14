@@ -209,20 +209,22 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
             var riftTransform = Transform(uid);
 
             // Get all entities with HumanoidAppearanceComponent within a small radius
-            var nearbyHumanoids = EntityManager.EntityQuery<HumanoidAppearanceComponent, TransformComponent>()
-                .Where(pair =>
-                {
-                    var (_, otherTransform) = pair;
-                    return riftTransform.MapID == otherTransform.MapID &&
-                           (_transform.GetWorldPosition(riftTransform) - _transform.GetWorldPosition(otherTransform)).LengthSquared() < 4; // 2 unit radius
-                })
-                .Select(pair => pair.Item1.Owner)
-                .ToList();
-
-            if (nearbyHumanoids.Count > 0)
+            EntityUid? nearbyHumanoid = null;
+            var humanoidQuery = EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent>();
+            while (humanoidQuery.MoveNext(out var otherUid, out _, out var otherTransform))
             {
-                // Use the first nearby humanoid
-                var humanoid = nearbyHumanoids[0];
+                if (riftTransform.MapID != otherTransform.MapID)
+                    continue;
+
+                if ((_transform.GetWorldPosition(riftTransform) - _transform.GetWorldPosition(otherTransform)).LengthSquared() >= 4) // 2 unit radius
+                    continue;
+
+                nearbyHumanoid = otherUid;
+                break;
+            }
+
+            if (nearbyHumanoid is { } humanoid)
+            {
                 var name = Identity.Name(humanoid, EntityManager);
 
                 if (!string.IsNullOrEmpty(name))
@@ -461,11 +463,11 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
         int activeRiftCount = 0;
         EntityUid rift = default; // there has to be a better way to do this? (starlight)
         var riftsQuery = EntityQueryEnumerator<RevSupplyRiftComponent, DragonRiftComponent>();
-        while (riftsQuery.MoveNext(out _, out var revRift, out var dragonRift))
+        while (riftsQuery.MoveNext(out var riftUid, out var revRift, out _))
         {
             if (revRift.State == DragonRiftState.Finished)
             {
-                rift = revRift.Owner;
+                rift = riftUid;
                 activeRiftCount++;
             }
 
@@ -553,22 +555,22 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
     /// Checks if a rift has been destroyed and updates the listing accordingly.
     /// This is called by the StoreSystem whenever listings are refreshed.
     /// </summary>
-    /// <param name="storeComp">The store component being refreshed</param>
-    public void CheckRiftDestroyedAndUpdateListing(StoreComponent storeComp)
+    /// <param name="store">The store entity being refreshed</param>
+    public void CheckRiftDestroyedAndUpdateListing(Entity<StoreComponent> store)
     {
         // If no rift has been destroyed, we don't need to do anything
         if (!_riftDestroyed)
             return;
 
         // Find the supply rift listing
-        foreach (var listing in storeComp.FullListingsCatalog)
+        foreach (var listing in store.Comp.FullListingsCatalog)
         {
             if (listing.ID == RevSupplyRiftListingId)
             {
                 // Store the original description if we haven't already
-                if (!_originalDescriptions.TryGetValue(storeComp.Owner, out _))
+                if (!_originalDescriptions.TryGetValue(store.Owner, out _))
                 {
-                    _originalDescriptions[storeComp.Owner] = listing.Description ?? "";
+                    _originalDescriptions[store.Owner] = listing.Description ?? "";
                 }
 
                 // Update the description with the destroyed message

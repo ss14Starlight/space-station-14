@@ -79,7 +79,7 @@ public sealed partial class InventoryUIController : UIController, IOnStateEntere
     {
         if (_strippingWindow != null)
         {
-            _strippingWindow.Dispose();
+            _strippingWindow.Close();
             _strippingWindow = null;
         }
 

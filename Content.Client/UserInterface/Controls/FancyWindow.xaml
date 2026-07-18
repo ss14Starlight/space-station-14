@@ -3,6 +3,7 @@
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       MouseFilter="Stop"
                       MinWidth="200" MinHeight="150">
+    <!-- Decorative chrome only; keep content as a sibling so AngleRect patch margins do not inset the UI. -->
     <PanelContainer StyleClasses="BackgroundPanel" />
 
     <BoxContainer Orientation="Vertical">

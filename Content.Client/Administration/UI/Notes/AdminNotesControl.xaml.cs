@@ -256,22 +256,16 @@ public sealed partial class AdminNotesControl : Control
         NewNoteButton.Disabled = !create;
     }
 
-    protected override void Dispose(bool disposing)
+    protected override void ExitedTree()
     {
-        base.Dispose(disposing);
-
-        if (!disposing)
-        {
-            return;
-        }
+        base.ExitedTree();
 
         Inputs.Clear();
         NewNoteButton.OnPressed -= OnNewNoteButtonPressed;
 
-        if (_popup != null)
-        {
-            UserInterfaceManager.PopupRoot.RemoveChild(_popup);
-        }
+        if (_popup is { Disposed: false })
+            _popup.Orphan();
+        _popup = null;
 
         NoteDeleted = null;
     }

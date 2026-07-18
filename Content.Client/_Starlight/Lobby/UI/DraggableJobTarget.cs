@@ -1,7 +1,7 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
-using Content.Client.Stylesheets;
+using Content.Client.Stylesheets.Palette;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client.Graphics;
@@ -67,7 +67,7 @@ public sealed class DraggableJobTarget : Control
     public DraggableJobTarget()
     {
         // Add the panel used to highlight the target when hovered
-        var panelStyle = new StyleBoxFlat { BackgroundColor = StyleNano.NanoGold };
+        var panelStyle = new StyleBoxFlat { BackgroundColor = Palettes.Gold.Base };
         _backgroundPanel = new PanelContainer { Visible = false, PanelOverride = panelStyle };
         AddChild(_backgroundPanel);
 

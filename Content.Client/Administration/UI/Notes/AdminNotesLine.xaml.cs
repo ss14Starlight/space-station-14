@@ -14,6 +14,8 @@ namespace Content.Client.Administration.UI.Notes;
 [GenerateTypedNameReferences]
 public sealed partial class AdminNotesLine : BoxContainer
 {
+    private static readonly ISawmill Sawmill = Logger.GetSawmill("admin.notes");
+
     private readonly SpriteSystem _sprites;
 
     private const string AdminNotesTextureBase = "/Textures/Interface/AdminNotes/";
@@ -61,7 +63,7 @@ public sealed partial class AdminNotesLine : BoxContainer
         if (iconPath is null)
         {
             SeverityRect.Visible = false;
-            Logger.WarningS("admin.notes", $"Could not find an icon for note ID {Note.Id}");
+            Sawmill.Warning($"Could not find an icon for note ID {Note.Id}");
         }
         else
         {
@@ -193,14 +195,9 @@ public sealed partial class AdminNotesLine : BoxContainer
         Refresh();
     }
 
-    protected override void Dispose(bool disposing)
+    protected override void ExitedTree()
     {
-        base.Dispose(disposing);
-
-        if (!disposing)
-        {
-            return;
-        }
+        base.ExitedTree();
 
         OnClicked = null;
     }

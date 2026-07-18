@@ -51,7 +51,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
     }
 
     #region abilities
-    protected EntityUid CreateContract(EntityUid author, DevilComponent devilComp)
+    private EntityUid CreateContract(EntityUid author, DevilComponent devilComp)
     {
         var paper = Spawn(devilComp.InfernalContractPrototype, Transform(author).Coordinates);
         if (TryComp<InfernalContractComponent>(paper, out var contractComp))

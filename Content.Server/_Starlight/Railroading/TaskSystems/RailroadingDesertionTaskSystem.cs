@@ -69,7 +69,7 @@ public sealed partial class RailroadingDesertionTaskSystem : EntitySystem
 
         foreach (var gridUid in data.Grids)
         {
-            if (TryComp<TransformComponent>(gridUid, out var xform))
+            if (TryComp(gridUid, out TransformComponent? xform))
                 return subjectMap == xform.MapID;
         }
 

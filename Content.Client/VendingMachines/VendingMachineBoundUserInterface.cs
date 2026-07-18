@@ -73,10 +73,10 @@ namespace Content.Client.VendingMachines
                 }
                 else
                 {
-                    _menu.ToggleBalance();
+                    _menu.ToggleBalance(false);
                 }
             }
-            //  // 🌟Starlight end🌟
+            // 🌟Starlight end🌟
         }
 
         public void UpdateAmounts()
@@ -98,7 +98,7 @@ namespace Content.Client.VendingMachines
                 }
                 else
                 {
-                    _menu.ToggleBalance();
+                    _menu.ToggleBalance(false);
                 }
             }
              // 🌟Starlight end🌟
@@ -126,16 +126,15 @@ namespace Content.Client.VendingMachines
 
         protected override void Dispose(bool disposing)
         {
+            if (disposing && _menu != null)
+            {
+                _menu.OnItemSelected -= OnItemSelected;
+                _menu.OnClose -= Close;
+                // Do not Orphan — CreateWindow adds the menu to Disposals; base.Dispose already disposes it.
+                _menu = null;
+            }
+
             base.Dispose(disposing);
-            if (!disposing)
-                return;
-
-            if (_menu == null)
-                return;
-
-            _menu.OnItemSelected -= OnItemSelected;
-            _menu.OnClose -= Close;
-            _menu.Dispose();
         }
     }
 }

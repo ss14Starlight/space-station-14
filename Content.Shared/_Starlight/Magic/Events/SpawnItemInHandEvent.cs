@@ -26,12 +26,10 @@ public sealed partial class AfterSpawnItemInHandEvent
     /// <summary>
     ///     Entity that was spawned.
     /// </summary>
-    [DataField]
     public EntityUid Entity;
 
     /// <summary>
     ///     The entity who spawned the item.
     /// </summary>
-    [DataField]
     public EntityUid Performer;
 }

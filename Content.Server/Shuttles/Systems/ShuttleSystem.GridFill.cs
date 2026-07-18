@@ -131,7 +131,7 @@ public sealed partial class ShuttleSystem
         if (group.DirectDungeonSpawn)
         {
             var seed = _random.Next();
-            var spawnedGrid = _mapManager.CreateGridEntity(targetCenterMapCoords.MapId);
+            var spawnedGrid = _mapSystem.CreateGridEntity(targetCenterMapCoords.MapId);
 
             _transform.SetMapCoordinates(spawnedGrid, spawnMapCoords);
             _dungeon.GenerateDungeon(dungeonProto, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, seed);
@@ -143,7 +143,7 @@ public sealed partial class ShuttleSystem
 
         _mapSystem.CreateMap(out var mapId);
 
-        var tempSpawnedGrid = _mapManager.CreateGridEntity(mapId); // Starlight Edit: ``spawnedGrid`` -> ``tempSpawnedGrid``
+        var tempSpawnedGrid = _mapSystem.CreateGridEntity(mapId); // Starlight Edit: ``spawnedGrid`` -> ``tempSpawnedGrid``
 
         _transform.SetMapCoordinates(tempSpawnedGrid, new MapCoordinates(Vector2.Zero, mapId)); // Starlight Edit: ``spawnedGrid`` -> ``tempSpawnedGrid``
         _dungeon.GenerateDungeon(dungeonProto, tempSpawnedGrid.Owner, tempSpawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords); // Starlight Edit: ``spawnedGrid`` -> ``tempSpawnedGrid``

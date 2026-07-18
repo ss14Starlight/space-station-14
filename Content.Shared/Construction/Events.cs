@@ -132,3 +132,24 @@ public sealed partial class ConstructionInteractDoAfterEvent : DoAfterEvent
 public sealed partial class WelderRefineDoAfterEvent : SimpleDoAfterEvent
 {
 }
+
+/// <summary>
+/// Completes an initial item/structure construction reservation after a DoAfter delay.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed partial class InitialConstructionDoAfterEvent : DoAfterEvent
+{
+    [DataField(required: true)]
+    public uint OperationId;
+
+    private InitialConstructionDoAfterEvent()
+    {
+    }
+
+    public InitialConstructionDoAfterEvent(uint operationId)
+    {
+        OperationId = operationId;
+    }
+
+    public override DoAfterEvent Clone() => this;
+}

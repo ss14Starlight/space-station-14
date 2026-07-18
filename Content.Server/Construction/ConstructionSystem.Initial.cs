@@ -1,6 +1,5 @@
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Content.Server.Construction.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Construction;
@@ -17,8 +16,11 @@ using Content.Shared.Storage;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Construction
 {
@@ -31,6 +33,7 @@ namespace Content.Server.Construction
         [Dependency] private EntityLookupSystem _lookupSystem = default!;
         [Dependency] private SharedTransformSystem _transformSystem = default!;
         [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+        [Dependency] private ISharedPlayerManager _playerManager = default!;
 
         // --- WARNING! LEGACY CODE AHEAD! ---
         // This entire file contains the legacy code for initial construction.
@@ -44,6 +47,8 @@ namespace Content.Server.Construction
         {
             SubscribeNetworkEvent<TryStartStructureConstructionMessage>(HandleStartStructureConstruction);
             SubscribeNetworkEvent<TryStartItemConstructionMessage>(HandleStartItemConstruction);
+            SubscribeLocalEvent<PendingInitialConstructionComponent, InitialConstructionDoAfterEvent>(OnInitialConstructionDoAfter);
+            SubscribeLocalEvent<PendingInitialConstructionComponent, EntityTerminatingEvent>(OnPendingInitialConstructionTerminating);
         }
 
         // LEGACY CODE. See warning at the top of the file!
@@ -92,15 +97,23 @@ namespace Content.Server.Construction
             }
         }
 
-        // LEGACY CODE. See warning at the top of the file!
-        private async Task<EntityUid?> Construct(
+        /// <summary>
+        /// Reserves construction materials on the user and starts a DoAfter. Completion is handled by
+        /// <see cref="OnInitialConstructionDoAfter"/>.
+        /// </summary>
+        /// <returns>True if materials were reserved and the DoAfter was started.</returns>
+        private bool TryBeginConstruct(
             EntityUid user,
             string materialContainer,
             ConstructionGraphPrototype graph,
             ConstructionGraphEdge edge,
             ConstructionGraphNode targetNode,
             EntityCoordinates coords,
-            Angle angle = default)
+            Angle angle,
+            InitialConstructionKind kind,
+            ProtoId<ConstructionPrototype> constructionId,
+            int? structureAck = null,
+            NetUserId? sessionUserId = null)
         {
             // We need a place to hold our construction items!
             var container = _container.EnsureContainer<Container>(user, materialContainer, out var existed);
@@ -108,11 +121,11 @@ namespace Content.Server.Construction
             if (existed)
             {
                 _popup.PopupEntity(Loc.GetString("construction-system-construct-cannot-start-another-construction"), user, user);
-                return null;
+                return false;
             }
 
             var containers = new Dictionary<string, Container>();
-
+            var storeContainerIds = new Dictionary<string, string>();
             var doAfterTime = 0f;
 
             // HOLY SHIT THIS IS SOME HACKY CODE.
@@ -125,47 +138,24 @@ namespace Content.Server.Construction
                 while (true)
                 {
                     var random = _robustRandom.Next();
-                    var c = _container.EnsureContainer<Container>(user, random.ToString(), out var exists);
+                    var id = random.ToString();
+                    var c = _container.EnsureContainer<Container>(user, id, out var exists);
 
                     if (exists)
                         continue;
 
                     containers[name] = c;
+                    storeContainerIds[name] = id;
                     return c;
                 }
             }
 
             void FailCleanup()
             {
-                foreach (var entity in container.ContainedEntities.ToArray())
-                {
-                    _container.Remove(entity, container);
-                }
-
-                foreach (var cont in containers.Values)
-                {
-                    foreach (var entity in cont.ContainedEntities.ToArray())
-                    {
-                        _container.Remove(entity, cont);
-                    }
-                }
-
-                // If we don't do this, items are invisible for some fucking reason. Nice.
-                Timer.Spawn(1, ShutdownContainers);
-            }
-
-            void ShutdownContainers()
-            {
-                _container.ShutdownContainer(container);
-                foreach (var c in containers.Values.ToArray())
-                {
-                    _container.ShutdownContainer(c);
-                }
+                RestoreReservedMaterials(user, materialContainer, storeContainerIds);
             }
 
             var failed = false;
-
-            var steps = new List<ConstructionGraphStep>();
             var used = new HashSet<EntityUid>();
 
             foreach (var step in edge.Steps)
@@ -242,18 +232,33 @@ namespace Content.Server.Construction
                     failed = true;
                     break;
                 }
-
-                steps.Add(step);
             }
 
             if (failed)
             {
                 _popup.PopupEntity(Loc.GetString("construction-system-construct-no-materials"), user, user);
                 FailCleanup();
-                return null;
+                return false;
             }
 
-            var doAfterArgs = new DoAfterArgs(EntityManager, user, doAfterTime, new AwaitedDoAfterEvent(), null)
+            var pending = EnsureComp<PendingInitialConstructionComponent>(user);
+            var operationId = pending.NextOperationId++;
+            pending.Operations[operationId] = new PendingInitialConstruction
+            {
+                Kind = kind,
+                ConstructionId = constructionId,
+                GraphId = graph.ID,
+                EdgeTarget = edge.Target,
+                TargetNode = targetNode.Name,
+                PrimaryContainerId = materialContainer,
+                StoreContainers = storeContainerIds,
+                Coordinates = coords,
+                Angle = angle,
+                StructureAck = structureAck,
+                SessionUserId = sessionUserId,
+            };
+
+            var doAfterArgs = new DoAfterArgs(EntityManager, user, doAfterTime, new InitialConstructionDoAfterEvent(operationId), user)
             {
                 BreakOnDamage = true,
                 BreakOnMove = true,
@@ -263,66 +268,266 @@ namespace Content.Server.Construction
                 BlockDuplicate = false,
             };
 
-            if (await _doAfterSystem.WaitDoAfter(doAfterArgs) == DoAfterStatus.Cancelled)
+            if (!_doAfterSystem.TryStartDoAfter(doAfterArgs))
             {
+                pending.Operations.Remove(operationId);
                 FailCleanup();
-                return null;
+                return false;
             }
 
-            var newEntityProto = graph.Nodes[edge.Target].Entity.GetId(null, user, new(EntityManager));
-            var newEntity = SpawnAttachedTo(newEntityProto, coords, rotation: angle);
+            return true;
+        }
 
-            if (!TryComp(newEntity, out ConstructionComponent? construction))
+        private void OnInitialConstructionDoAfter(Entity<PendingInitialConstructionComponent> ent, ref InitialConstructionDoAfterEvent args)
+        {
+            if (args.Handled)
+                return;
+
+            if (!ent.Comp.Operations.Remove(args.OperationId, out var pending))
+                return;
+
+            args.Handled = true;
+
+            if (args.Cancelled)
             {
-                Log.Error($"Initial construction does not have a valid target entity! It is missing a ConstructionComponent.\nGraph: {graph.ID}, Initial Target: {edge.Target}, Ent. Prototype: {newEntityProto}\nCreated Entity {ToPrettyString(newEntity)} will be deleted.");
-                Del(newEntity); // Screw you, make proper construction graphs.
-                return null;
+                CancelPendingConstruction(ent.Owner, pending);
+                return;
             }
 
-            // We attempt to set the pathfinding target.
-            SetPathfindingTarget(newEntity, targetNode.Name, construction);
+            CompletePendingConstruction(ent.Owner, pending);
+        }
 
-            // We preserve the containers...
-            foreach (var (name, cont) in containers)
+        private void OnPendingInitialConstructionTerminating(Entity<PendingInitialConstructionComponent> ent, ref EntityTerminatingEvent args)
+        {
+            foreach (var pending in ent.Comp.Operations.Values.ToArray())
             {
-                var newCont = _container.EnsureContainer<Container>(newEntity, name);
+                CancelPendingConstruction(ent.Owner, pending, restoreMaterials: false);
+            }
 
-                foreach (var entity in cont.ContainedEntities.ToArray())
+            ent.Comp.Operations.Clear();
+        }
+
+        private void CancelPendingConstruction(EntityUid user, PendingInitialConstruction pending, bool restoreMaterials = true)
+        {
+            if (restoreMaterials && Exists(user))
+                RestoreReservedMaterials(user, pending.PrimaryContainerId, pending.StoreContainers);
+
+            ReleaseStructureAck(pending);
+        }
+
+        private void CompletePendingConstruction(EntityUid user, PendingInitialConstruction pending)
+        {
+            try
+            {
+                if (!Exists(user))
                 {
-                    _container.Remove(entity, cont, reparent: false, force: true);
-                    _container.Insert(entity, newCont);
+                    CancelPendingConstruction(user, pending, restoreMaterials: false);
+                    return;
                 }
-            }
 
-            // We now get rid of all them.
-            ShutdownContainers();
+                if (!PrototypeManager.TryIndex(pending.GraphId, out ConstructionGraphPrototype? graph)
+                    || !graph.Nodes.TryGetValue(pending.EdgeTarget, out var edgeNode)
+                    || !graph.Nodes.TryGetValue(pending.TargetNode, out var targetNode))
+                {
+                    CancelPendingConstruction(user, pending);
+                    return;
+                }
 
-            // We have step completed steps!
-            foreach (var step in steps)
-            {
-                foreach (var completed in step.Completed)
+                // Find the edge that targets EdgeTarget from the construction start. Re-index via construction prototype.
+                if (!PrototypeManager.TryIndex(pending.ConstructionId, out ConstructionPrototype? constructionPrototype)
+                    || !graph.Nodes.TryGetValue(constructionPrototype.StartNode, out var startNode))
+                {
+                    CancelPendingConstruction(user, pending);
+                    return;
+                }
+
+                var pathFind = graph.Path(startNode.Name, targetNode.Name);
+                if (pathFind == null || pathFind.Length == 0)
+                {
+                    CancelPendingConstruction(user, pending);
+                    return;
+                }
+
+                var edge = startNode.GetEdge(pathFind[0].Name);
+                if (edge == null || edge.Target != pending.EdgeTarget)
+                {
+                    CancelPendingConstruction(user, pending);
+                    return;
+                }
+
+                if (!_container.TryGetContainer(user, pending.PrimaryContainerId, out var primaryBase)
+                    || primaryBase is not Container primaryContainer)
+                {
+                    CancelPendingConstruction(user, pending);
+                    return;
+                }
+
+                var storeContainers = new Dictionary<string, Container>();
+                foreach (var (logical, containerId) in pending.StoreContainers)
+                {
+                    if (!_container.TryGetContainer(user, containerId, out var storeBase)
+                        || storeBase is not Container storeContainer)
+                    {
+                        CancelPendingConstruction(user, pending);
+                        return;
+                    }
+
+                    storeContainers[logical] = storeContainer;
+                }
+
+                var coords = pending.Coordinates;
+                if (!coords.IsValid(EntityManager))
+                {
+                    CancelPendingConstruction(user, pending);
+                    return;
+                }
+
+                var newEntityProto = edgeNode.Entity.GetId(null, user, new(EntityManager));
+                var newEntity = SpawnAttachedTo(newEntityProto, coords, rotation: pending.Angle);
+
+                if (!TryComp(newEntity, out ConstructionComponent? construction))
+                {
+                    Log.Error($"Initial construction does not have a valid target entity! It is missing a ConstructionComponent.\nGraph: {graph.ID}, Initial Target: {edge.Target}, Ent. Prototype: {newEntityProto}\nCreated Entity {ToPrettyString(newEntity)} will be deleted.");
+                    Del(newEntity);
+                    CancelPendingConstruction(user, pending);
+                    return;
+                }
+
+                // We attempt to set the pathfinding target.
+                SetPathfindingTarget(newEntity, targetNode.Name, construction);
+
+                // We preserve the containers...
+                foreach (var (name, cont) in storeContainers)
+                {
+                    var newCont = _container.EnsureContainer<Container>(newEntity, name);
+
+                    foreach (var entity in cont.ContainedEntities.ToArray())
+                    {
+                        _container.Remove(entity, cont, reparent: false, force: true);
+                        _container.Insert(entity, newCont);
+                    }
+                }
+
+                // We now get rid of all them (consuming unstored materials).
+                ShutdownConstructionContainers(primaryContainer, storeContainers.Values);
+
+                // We have step completed steps!
+                foreach (var step in edge.Steps)
+                {
+                    foreach (var completed in step.Completed)
+                    {
+                        completed.PerformAction(newEntity, user, EntityManager);
+                    }
+                }
+
+                // And we also have edge completed effects!
+                foreach (var completed in edge.Completed)
                 {
                     completed.PerformAction(newEntity, user, EntityManager);
                 }
-            }
 
-            // And we also have edge completed effects!
-            foreach (var completed in edge.Completed)
+                switch (pending.Kind)
+                {
+                    case InitialConstructionKind.Item:
+                        // Just in case this is a stack, attempt to merge it. If it isn't a stack, this will just normally pick up
+                        // or drop the item as normal.
+                        _stackSystem.TryMergeToHands(newEntity, user);
+                        break;
+                    case InitialConstructionKind.Structure:
+                        if (pending.StructureAck is { } ack
+                            && pending.SessionUserId is { } userId
+                            && _playerManager.TryGetSessionById(userId, out var session))
+                        {
+                            RaiseNetworkEvent(new AckStructureConstructionMessage(ack, GetNetEntity(newEntity)), session);
+                        }
+
+                        _adminLogger.Add(LogType.Construction, LogImpact.Low,
+                            $"{ToPrettyString(user):player} has turned a {pending.ConstructionId} construction ghost into {ToPrettyString(newEntity)} at {Transform(newEntity).Coordinates}");
+                        break;
+                }
+
+                ReleaseStructureAck(pending);
+            }
+            catch
             {
-                completed.PerformAction(newEntity, user, EntityManager);
+                CancelPendingConstruction(user, pending);
+                throw;
             }
-
-            return newEntity;
         }
 
-        private async void HandleStartItemConstruction(TryStartItemConstructionMessage ev, EntitySessionEventArgs args)
+        private void RestoreReservedMaterials(EntityUid user, string primaryContainerId, Dictionary<string, string> storeContainerIds)
+        {
+            if (!_container.TryGetContainer(user, primaryContainerId, out var primaryBase)
+                || primaryBase is not Container primaryContainer)
+            {
+                return;
+            }
+
+            foreach (var entity in primaryContainer.ContainedEntities.ToArray())
+            {
+                _container.Remove(entity, primaryContainer);
+            }
+
+            var storeContainers = new List<Container>();
+            foreach (var containerId in storeContainerIds.Values)
+            {
+                if (!_container.TryGetContainer(user, containerId, out var storeBase)
+                    || storeBase is not Container storeContainer)
+                    continue;
+
+                foreach (var entity in storeContainer.ContainedEntities.ToArray())
+                {
+                    _container.Remove(entity, storeContainer);
+                }
+
+                storeContainers.Add(storeContainer);
+            }
+
+            // If we don't do this, items are invisible for some fucking reason. Nice.
+            Timer.Spawn(1, () =>
+            {
+                if (!Exists(user))
+                    return;
+
+                ShutdownConstructionContainers(primaryContainer, storeContainers);
+            });
+        }
+
+        private void ShutdownConstructionContainers(Container primary, IEnumerable<Container> stores)
+        {
+            if (primary.Owner.IsValid() && Exists(primary.Owner))
+                _container.ShutdownContainer(primary);
+
+            foreach (var c in stores.ToArray())
+            {
+                if (c.Owner.IsValid() && Exists(c.Owner))
+                    _container.ShutdownContainer(c);
+            }
+        }
+
+        private void ReleaseStructureAck(PendingInitialConstruction pending)
+        {
+            if (pending.StructureAck is not { } ack
+                || pending.SessionUserId is not { } userId
+                || !_playerManager.TryGetSessionById(userId, out var session))
+                return;
+
+            if (_beingBuilt.TryGetValue(session, out var set))
+                set.Remove(ack);
+        }
+
+        private void HandleStartItemConstruction(TryStartItemConstructionMessage ev, EntitySessionEventArgs args)
         {
             if (args.SenderSession.AttachedEntity is {Valid: true} user)
-                await TryStartItemConstruction(ev.PrototypeName, user);
+                TryStartItemConstruction(ev.PrototypeName, user);
         }
 
         // LEGACY CODE. See warning at the top of the file!
-        public async Task<bool> TryStartItemConstruction(string prototype, EntityUid user)
+        /// <summary>
+        /// Validates and starts item construction. Returns true if materials were reserved and the DoAfter started.
+        /// Final completion is asynchronous via <see cref="InitialConstructionDoAfterEvent"/>.
+        /// </summary>
+        public bool TryStartItemConstruction(string prototype, EntityUid user)
         {
             if (!PrototypeManager.TryIndex(prototype, out ConstructionPrototype? constructionPrototype))
             {
@@ -385,23 +590,20 @@ namespace Content.Server.Construction
                 }
             }
 
-            if (await Construct(
-                    user,
-                    "item_construction",
-                    constructionGraph,
-                    edge,
-                    targetNode,
-                    Transform(user).Coordinates) is not { Valid: true } item)
-                return false;
-
-            // Just in case this is a stack, attempt to merge it. If it isn't a stack, this will just normally pick up
-            // or drop the item as normal.
-            _stackSystem.TryMergeToHands(item, user);
-            return true;
+            return TryBeginConstruct(
+                user,
+                "item_construction",
+                constructionGraph,
+                edge,
+                targetNode,
+                Transform(user).Coordinates,
+                default,
+                InitialConstructionKind.Item,
+                constructionPrototype.ID);
         }
 
         // LEGACY CODE. See warning at the top of the file!
-        private async void HandleStartStructureConstruction(TryStartStructureConstructionMessage ev, EntitySessionEventArgs args)
+        private void HandleStartStructureConstruction(TryStartStructureConstructionMessage ev, EntitySessionEventArgs args)
         {
             if (!PrototypeManager.TryIndex(ev.PrototypeName, out ConstructionPrototype? constructionPrototype))
             {
@@ -526,21 +728,21 @@ namespace Content.Server.Construction
                 return;
             }
 
-            if (await Construct(user,
+            if (!TryBeginConstruct(
+                    user,
                     (ev.Ack + constructionPrototype.GetHashCode()).ToString(),
                     constructionGraph,
                     edge,
                     targetNode,
                     GetCoordinates(ev.Location),
-                    constructionPrototype.CanRotate ? ev.Angle : Angle.Zero) is not {Valid: true} structure)
+                    constructionPrototype.CanRotate ? ev.Angle : Angle.Zero,
+                    InitialConstructionKind.Structure,
+                    constructionPrototype.ID,
+                    ev.Ack,
+                    args.SenderSession.UserId))
             {
                 Cleanup();
-                return;
             }
-
-            RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack, GetNetEntity(structure)));
-            _adminLogger.Add(LogType.Construction, LogImpact.Low, $"{ToPrettyString(user):player} has turned a {ev.PrototypeName} construction ghost into {ToPrettyString(structure)} at {Transform(structure).Coordinates}");
-            Cleanup();
         }
     }
 }

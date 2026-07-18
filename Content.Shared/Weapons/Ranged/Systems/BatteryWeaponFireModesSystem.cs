@@ -14,7 +14,6 @@ using Content.Shared._Starlight.Weapons.Ranged.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Lock;
-using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 #endregion Starlight

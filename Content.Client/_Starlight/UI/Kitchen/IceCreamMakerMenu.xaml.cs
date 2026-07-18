@@ -12,9 +12,7 @@ namespace Content.Client._Starlight.UI.Kitchen
     [GenerateTypedNameReferences]
     public sealed partial class IceCreamMakerMenu : FancyWindow
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-
-        public event Action<BaseButton.ButtonEventArgs, int>? OnCookTimeSelected;
+        [Dependency] private IGameTiming _timing = default!;
 
         public ButtonGroup CookTimeButtonGroup { get; }
 

@@ -5,8 +5,8 @@
     xmlns:co="clr-namespace:Content.Client.UserInterface.Controls"
     MinHeight="210">
     <BoxContainer Name="MainContainer" Orientation="Vertical">
-        <!-- 🌟Starlight🌟 Balance display -->
-        <BoxContainer Name="BalanceContainer" Orientation="Horizontal" Margin="4 4 4 0" HorizontalExpand="True">
+        <!-- 🌟Starlight🌟 Balance display (hidden until Refresh enables it for priced vendors) -->
+        <BoxContainer Name="BalanceContainer" Orientation="Horizontal" Margin="4 4 4 0" HorizontalExpand="True" Visible="False">
             <Label Name="BalanceLabel" Text="Balance: 0₡" StyleClasses="WindowFooterText" HorizontalAlignment="Left" />
         </BoxContainer>
         <LineEdit Name="SearchBar" PlaceHolder="{Loc 'vending-machine-component-search-filter'}" HorizontalExpand="True"  Margin ="4 4"/>

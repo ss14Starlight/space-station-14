@@ -456,7 +456,7 @@ public record struct VampireShadowBoxingStartAttemptEvent(EntityUid Performer, E
 }
 
 [Serializable, NetSerializable]
-public sealed class VampireShadowBoxingPunchEvent : EntityEventArgs
+public sealed partial class VampireShadowBoxingPunchEvent : EntityEventArgs
 {
     public NetEntity Source { get; }
     public NetEntity Target { get; }
@@ -466,9 +466,7 @@ public sealed class VampireShadowBoxingPunchEvent : EntityEventArgs
         Source = source;
         Target = target;
     }
-    [DataField]
     public TimeSpan PunchLifetime = TimeSpan.FromSeconds(0.33);
-    [DataField]
     public string EffectProto = "VampireShadowBoxingPunch";
 }
 

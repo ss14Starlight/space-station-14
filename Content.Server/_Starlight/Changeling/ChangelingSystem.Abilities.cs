@@ -18,7 +18,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Flash.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mindshield.FakeMindShield;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Light.Components;
 using Content.Shared.Actions.Events;
 using Content.Shared.RetractableItemAction;
@@ -44,6 +44,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
+    private static readonly EntProtoId TemporaryBlindnessEffect = "StatusEffectTemporaryBlindness";
 
     public void SubscribeAbilities()
     {
@@ -351,10 +352,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!TryComp<BlindableComponent>(target, out var blindable) || blindable.IsBlind)
             return;
 
-        _blindable.AdjustEyeDamage((target, blindable), 2);
-        var timeSpan = TimeSpan.FromSeconds(5f);
-        _statusEffect.TryAddStatusEffect(target, TemporaryBlindnessSystem.BlindingStatusEffect, timeSpan, false, TemporaryBlindnessSystem.BlindingStatusEffect);
-    }
+    _blindable.AdjustEyeDamage((target, blindable), 2);
+    var timeSpan = TimeSpan.FromSeconds(5f);
+    _statusEffect.TryAddStatusEffectDuration(target, TemporaryBlindnessEffect, timeSpan);
+}
 
     private void OnStingChem(Entity<ChangelingComponent> ent, ref StingChemEvent ev) => TryReagentSting(ent.Owner, ent.Comp, ev, ev.Chems);
 
@@ -373,7 +374,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
 
         var target = args.Target;
-        var fakeArmblade = EntityManager.SpawnEntity(FakeArmbladePrototype, Transform(target).Coordinates);
+        var fakeArmblade = Spawn(FakeArmbladePrototype, Transform(target).Coordinates);
         if (!_hands.TryPickupAnyHand(target, fakeArmblade))
         {
             QueueDel(fakeArmblade);

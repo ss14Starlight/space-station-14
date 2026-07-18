@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client._Starlight.UI;
 using Content.Client.Eui;
+using Content.Client.Stylesheets;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared.Eui;
 using JetBrains.Annotations;
@@ -82,7 +83,7 @@ public sealed class CardSelectionEui : BaseEui
                                 .WhenMouseEntered(_ => button.Modulate(Color.ForestGreen))
                                 .WhenMouseExited(_ => button.Modulate(card.Color))
                                 .FixSize(_cardSize)
-                                .AddClass("CardBorder")
+                                .AddClass(CardSelectionStyles.CardBorder)
                                 .Modulate(card.Color)
                         );
                         layout.Box(BoxContainer.LayoutOrientation.Vertical,
@@ -107,12 +108,12 @@ public sealed class CardSelectionEui : BaseEui
                     .WithHorizontalExp()
                     .WithMargin(new Thickness(5, 5, -1, 0))
                     .WithVAlignment(Control.VAlignment.Top)
-                    .AddClass("CardHeader")
+                    .AddClass(CardSelectionStyles.CardHeader)
                     .Modulate(card.Color));
                 if (card.Icon is not null)
                     box.Panel(panel => panel
                         .WithMargin(new Thickness(0, 5, 5, 0))
-                        .AddClass("CardBanner")
+                        .AddClass(CardSelectionStyles.CardBanner)
                         .Modulate(card.Color)
                         .Label(x => x.WithText(card.Icon)
                                     .WithFont("/Fonts/_NullLink/GameIcons/game-icons.ttf", 32)
@@ -128,7 +129,7 @@ public sealed class CardSelectionEui : BaseEui
             box.WithMargin(new Thickness(8, 85, 8, 0));
             box.Panel(panel =>
                 {
-                    panel.AddClass("MenuBar");
+                    panel.AddClass(CardSelectionStyles.MenuBar);
                     panel.Modulate(card.Color);
 
                     if (card.CreditReward is { } creditReward)
@@ -152,7 +153,7 @@ public sealed class CardSelectionEui : BaseEui
         });
         cardBox.Panel(panel =>
         {
-            panel.AddClass("CardBody")
+            panel.AddClass(CardSelectionStyles.CardBody)
                 .WithMargin(new Thickness(-2, 95, 0, 7))
                 .Modulate(card.Color)
                 .WithHorizontalExp()

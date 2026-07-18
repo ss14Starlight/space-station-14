@@ -7,6 +7,8 @@ namespace Content.Client.UserInterface.Systems.Inventory.Controls;
 
 public sealed class InventoryDisplay : LayoutContainer
 {
+    private static readonly ISawmill Sawmill = Logger.GetSawmill("ui.inventory");
+
     private int Columns = 0;
     private int Rows = 0;
     private const int MarginThickness = 10;
@@ -29,7 +31,7 @@ public sealed class InventoryDisplay : LayoutContainer
         VerticalExpand = true;
         InheritChildMeasure = true;
         if (!_buttons.TryAdd(newButton.SlotName, (newButton, buttonOffset)))
-            Logger.Warning("Tried to add button without a slot!");
+            Sawmill.Warning("Tried to add button without a slot!");
         SetPosition(newButton, buttonOffset * ButtonSize + new Vector2(ButtonSpacing, ButtonSpacing));
         UpdateSizeData(buttonOffset);
         return newButton;

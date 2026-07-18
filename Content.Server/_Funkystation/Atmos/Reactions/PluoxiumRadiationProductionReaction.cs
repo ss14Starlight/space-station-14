@@ -27,7 +27,7 @@ public sealed partial class PluoxiumRadiationProductionReaction : IGasReactionEf
     private const float RadiationThreshold = 0.01f;
     private static readonly TimeSpan TimerDuration = TimeSpan.FromSeconds(5);
 
-    public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
+    public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale, EntityUid? holderUid)
     {
         if (entityManager == null || gameTiming == null)
             return ReactionResult.NoReaction;
@@ -41,9 +41,8 @@ public sealed partial class PluoxiumRadiationProductionReaction : IGasReactionEf
         {
             return ReactionResult.NoReaction;
         }
-        else if (holder is Component component)
+        else if (holderUid is { } owner)
         {
-            var owner = component.Owner;
             radiationLevel = GetRadiationLevel(owner);
         }
         else if (holder is TileAtmosphere tile)

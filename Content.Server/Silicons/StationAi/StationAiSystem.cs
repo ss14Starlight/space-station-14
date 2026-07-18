@@ -78,7 +78,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     // Starlight Start
-    [Dependency] private IMapManager _map = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SuitSensorSystem _suitSensors = default!;
     [Dependency] private FollowerSystem _followerSystem = default!;
     [Dependency] private StationAiVisionSystem _aiVision = default!;
@@ -323,7 +323,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         if (mapCoordinates == MapCoordinates.Nullspace)
             return Fail();
 
-        if (!_map.TryFindGridAt(mapCoordinates, out var gridUid, out _))
+        if (!_mapSystem.TryFindGridAt(mapCoordinates, out var gridUid, out _))
             return Fail();
 
         var aiStation = _station.GetOwningStation(coreUid);

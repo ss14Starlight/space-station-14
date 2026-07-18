@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Physics;
 using Robust.Shared.Map;
-using Robust.Shared.Physics.Systems;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Shared.Spawning
 {
@@ -13,12 +13,12 @@ namespace Content.Shared.Spawning
             EntityCoordinates coordinates,
             CollisionGroup collisionLayer,
             in Box2? box = null,
-            SharedPhysicsSystem? physicsManager = null)
+            EntityLookupSystem? lookup = null)
         {
-            physicsManager ??= entityManager.System<SharedPhysicsSystem>();
+            lookup ??= entityManager.System<EntityLookupSystem>();
             var mapCoordinates = entityManager.System<SharedTransformSystem>().ToMapCoordinates(coordinates);
 
-            return entityManager.SpawnIfUnobstructed(prototypeName, mapCoordinates, collisionLayer, box, physicsManager);
+            return entityManager.SpawnIfUnobstructed(prototypeName, mapCoordinates, collisionLayer, box, lookup);
         }
 
         public static EntityUid? SpawnIfUnobstructed(
@@ -27,12 +27,15 @@ namespace Content.Shared.Spawning
             MapCoordinates coordinates,
             CollisionGroup collisionLayer,
             in Box2? box = null,
-            SharedPhysicsSystem? collision = null)
+            EntityLookupSystem? lookup = null)
         {
             var boxOrDefault = box.GetValueOrDefault(Box2.UnitCentered).Translated(coordinates.Position);
-            collision ??= entityManager.System<SharedPhysicsSystem>();
+            lookup ??= entityManager.System<EntityLookupSystem>();
 
-            foreach (var body in collision.GetCollidingEntities(coordinates.MapId, in boxOrDefault))
+            var entities = new HashSet<Entity<PhysicsComponent>>();
+            lookup.GetEntitiesIntersecting(coordinates.MapId, boxOrDefault, entities);
+
+            foreach (var (_, body) in entities)
             {
                 if (!body.Hard)
                 {
@@ -58,9 +61,9 @@ namespace Content.Shared.Spawning
             CollisionGroup collisionLayer,
             [NotNullWhen(true)] out EntityUid? entity,
             Box2? box = null,
-            SharedPhysicsSystem? physicsManager = null)
+            EntityLookupSystem? lookup = null)
         {
-            entity = entityManager.SpawnIfUnobstructed(prototypeName, coordinates, collisionLayer, box, physicsManager);
+            entity = entityManager.SpawnIfUnobstructed(prototypeName, coordinates, collisionLayer, box, lookup);
 
             return entity != null;
         }
@@ -72,9 +75,9 @@ namespace Content.Shared.Spawning
             CollisionGroup collisionLayer,
             [NotNullWhen(true)] out EntityUid? entity,
             in Box2? box = null,
-            SharedPhysicsSystem? physicsManager = null)
+            EntityLookupSystem? lookup = null)
         {
-            entity = entityManager.SpawnIfUnobstructed(prototypeName, coordinates, collisionLayer, box, physicsManager);
+            entity = entityManager.SpawnIfUnobstructed(prototypeName, coordinates, collisionLayer, box, lookup);
 
             return entity != null;
         }

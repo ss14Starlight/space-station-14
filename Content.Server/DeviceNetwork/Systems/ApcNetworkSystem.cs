@@ -39,7 +39,7 @@ namespace Content.Server.DeviceNetwork.Systems
 
         private void OnProviderConnected(EntityUid uid, ApcNetworkComponent component, ExtensionCableSystem.ProviderConnectedEvent args)
         {
-            if (!TryComp(args.Provider.Owner, out NodeContainerComponent? nodeContainer)) return;
+            if (!TryComp(args.Provider, out NodeContainerComponent? nodeContainer)) return;
 
             if (_nodeContainer.TryGetNode(nodeContainer, "power", out CableNode? node))
             {

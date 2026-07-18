@@ -794,7 +794,7 @@ public sealed partial class RCDSystem : EntitySystem
                 if ((component.IsRpd || component.IsRPLD) && prototype.HasLayers)
                 {
                     if (_protoManager.TryIndex<EntityPrototype>(proto, out var entityProto) &&
-                        entityProto.TryGetComponent<AtmosPipeLayersComponent>(out var atmosPipeLayers, _entityManager.ComponentFactory) &&
+                        entityProto.TryComp<AtmosPipeLayersComponent>(out var atmosPipeLayers, _entityManager.ComponentFactory) &&
                         _pipeLayersSystem.TryGetAlternativePrototype(atmosPipeLayers, pipeLayer, out var newProtoId))
                     {
                         proto = newProtoId;
@@ -809,7 +809,7 @@ public sealed partial class RCDSystem : EntitySystem
                 {
                     // We need to know what the pipe *would* look like to check for overlaps
                     if (_protoManager.TryIndex<EntityPrototype>(proto, out var pipeProto) &&
-                        pipeProto.TryGetComponent<NodeContainerComponent>(out var nodeContainer, _entityManager.ComponentFactory))
+                        pipeProto.TryComp<NodeContainerComponent>(out var nodeContainer, _entityManager.ComponentFactory))
                     {
                         // Check every node in the prototype to see if it overlaps something on the grid
                         foreach (var node in nodeContainer.Nodes.Values)
@@ -837,7 +837,7 @@ public sealed partial class RCDSystem : EntitySystem
                 }
 
                 var entityCoords = _mapSystem.GridTileToLocal(gridUid, mapGrid, position);
-                var mapCoords = new MapCoordinates(entityCoords.ToMapPos(EntityManager, _transform), entityCoords.GetMapId(EntityManager));
+                var mapCoords = _transform.ToMapCoordinates(entityCoords);
 
                 var ent = Spawn(proto, mapCoords, rotation: rotation);
                 // Starlight edit End: RPD/RPLD
@@ -845,13 +845,13 @@ public sealed partial class RCDSystem : EntitySystem
                 switch (prototype.Rotation)
                 {
                     case RcdRotation.Fixed:
-                        Transform(ent).LocalRotation = Angle.Zero;
+                        _transform.SetLocalRotation(ent, Angle.Zero);
                         break;
                     case RcdRotation.Camera:
-                        Transform(ent).LocalRotation = Transform(uid).LocalRotation;
+                        _transform.SetLocalRotation(ent, Transform(uid).LocalRotation);
                         break;
                     case RcdRotation.User:
-                        Transform(ent).LocalRotation = direction.ToAngle();
+                        _transform.SetLocalRotation(ent, direction.ToAngle());
                         break;
                 }
 

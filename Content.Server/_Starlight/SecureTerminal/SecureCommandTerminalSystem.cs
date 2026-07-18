@@ -620,7 +620,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                 proposal.AuthTimer = null;
                 _chat.DispatchGlobalAnnouncement(Loc.GetString("secure-terminal-awaiting-admin", ("request", Loc.GetString(proto.Name))), colorOverride: proto.AnnouncementColor);
                 _chatManager.SendAdminAlert(Loc.GetString("secure-terminal-admin", ("request", Loc.GetString(proto.Name)), ("reason", proposal.Reason)));
-                _audio.PlayGlobal("/Audio/Misc/adminlarm.ogg",
+                _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Misc/adminlarm.ogg"),
                     Filter.Empty().AddPlayers(_adminManager.ActiveAdmins),
                     false,
                     AudioParams.Default.WithVolume(-8f));

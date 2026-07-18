@@ -44,14 +44,6 @@ public sealed partial class PlayerTab : Control
         RobustXamlLoader.Load(this);
 
         _adminSystem = _entManager.System<AdminSystem>();
-        _adminSystem.PlayerListChanged += RefreshPlayerList;
-        _adminSystem.OverlayEnabled += OverlayEnabled;
-        _adminSystem.OverlayDisabled += OverlayDisabled;
-
-        _config.OnValueChanged(CCVars.AdminPlayerTabRoleSetting, RoleSettingChanged, true);
-        _config.OnValueChanged(CCVars.AdminPlayerTabColorSetting, ColorSettingChanged, true);
-        _config.OnValueChanged(CCVars.AdminPlayerTabSymbolSetting, SymbolSettingChanged, true);
-
 
         OverlayButton.OnPressed += OverlayButtonPressed;
         ShowDisconnectedButton.OnPressed += ShowDisconnectedPressed;
@@ -63,9 +55,34 @@ public sealed partial class PlayerTab : Control
         SearchList.GenerateItem += GenerateButton;
         SearchList.DataFilterCondition += DataFilterCondition;
         SearchList.ItemKeyBindDown += (args, data) => OnEntryKeyBindDown?.Invoke(args, data);
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+
+        _adminSystem.PlayerListChanged += RefreshPlayerList;
+        _adminSystem.OverlayEnabled += OverlayEnabled;
+        _adminSystem.OverlayDisabled += OverlayDisabled;
+
+        _config.OnValueChanged(CCVars.AdminPlayerTabRoleSetting, RoleSettingChanged, true);
+        _config.OnValueChanged(CCVars.AdminPlayerTabColorSetting, ColorSettingChanged, true);
+        _config.OnValueChanged(CCVars.AdminPlayerTabSymbolSetting, SymbolSettingChanged, true);
 
         RefreshPlayerList(_adminSystem.PlayerList);
+    }
 
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+
+        _adminSystem.PlayerListChanged -= RefreshPlayerList;
+        _adminSystem.OverlayEnabled -= OverlayEnabled;
+        _adminSystem.OverlayDisabled -= OverlayDisabled;
+
+        _config.UnsubValueChanged(CCVars.AdminPlayerTabRoleSetting, RoleSettingChanged);
+        _config.UnsubValueChanged(CCVars.AdminPlayerTabColorSetting, ColorSettingChanged);
+        _config.UnsubValueChanged(CCVars.AdminPlayerTabSymbolSetting, SymbolSettingChanged);
     }
 
     #region Antag Overlay
@@ -98,22 +115,6 @@ public sealed partial class PlayerTab : Control
     {
         _showDisconnected = args.Button.Pressed;
         RefreshPlayerList(_players);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (disposing)
-        {
-            _adminSystem.PlayerListChanged -= RefreshPlayerList;
-            _adminSystem.OverlayEnabled -= OverlayEnabled;
-            _adminSystem.OverlayDisabled -= OverlayDisabled;
-
-            OverlayButton.OnPressed -= OverlayButtonPressed;
-
-            ListHeader.OnHeaderClicked -= HeaderClicked;
-        }
     }
 
     #region ListContainer

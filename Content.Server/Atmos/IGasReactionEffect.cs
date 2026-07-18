@@ -14,7 +14,11 @@ namespace Content.Server.Atmos
         /// <param name="holder">The container of this gas mixture</param>
         /// <param name="atmosphereSystem">The atmosphere system</param>
         /// <param name="heatScale">Scaling factor that should be applied to all heat input or outputs.</param>
+        /// <param name="holderUid">
+        /// Optional entity that owns the mixture when the holder is entity-backed
+        /// (e.g. canister/tank). Null for tiles and pipe nets.
+        /// </param>
         ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem,
-            float heatScale);
+            float heatScale, EntityUid? holderUid);
     }
 }

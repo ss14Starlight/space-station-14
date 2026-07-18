@@ -6,7 +6,7 @@ namespace Content.Client._Starlight.UserInterface;
 public static class PopOutExtensions
 {
     /// <summary>
-    /// Style name for the pop out button. Its look is set in the stylesheet (see StyleBase).
+    /// Style name for the pop out button. Its look is set in the stylesheet (see WindowSheetlet).
     /// </summary>
     public const string PopOutButtonStyleClass = "windowPopOutButton";
 

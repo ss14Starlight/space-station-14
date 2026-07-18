@@ -53,7 +53,7 @@ public sealed partial class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeS
                     SpriteSpecifierSerializer.TextureRoot / prototype.SpritePath,
                     out var res))
             {
-                sprite.BaseRSI = res.RSI;
+                _sprite.SetBaseRsi((entity, sprite), res.RSI);
             }
             _sprite.LayerSetRsiState((entity, sprite), BorgVisualLayers.Body, prototype.SpriteBodyState);
             _sprite.LayerSetRsiState((entity, sprite), BorgVisualLayers.LightStatus, prototype.SpriteToggleLightState);

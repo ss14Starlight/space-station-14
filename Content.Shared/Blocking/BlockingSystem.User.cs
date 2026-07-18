@@ -64,7 +64,7 @@ public sealed partial class BlockingSystem
     /// </summary>
     private void OnBlockerToggled(EntityUid uid, BlockingComponent component, ItemToggledEvent args)
     {
-        if (!args.Activated && component.IsBlocking && TryComp<BlockingUserComponent>(component.User, out var blockingUserComponent) && TryComp<TransformComponent>(uid, out var transform))
+        if (!args.Activated && component.IsBlocking && TryComp(component.User, out BlockingUserComponent? blockingUserComponent) && TryComp(uid, out TransformComponent? transform))
             UserStopBlocking(transform.ParentUid, blockingUserComponent);
     }
     #endregion

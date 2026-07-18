@@ -327,7 +327,7 @@ public sealed partial class ContainmentFieldGeneratorSystem : EntitySystem
                 var rotateBy90 = angle.Degrees + 90;
                 var rotatedAngle = Angle.FromDegrees(rotateBy90);
 
-                fieldXForm.LocalRotation = rotatedAngle;
+                _transformSystem.SetLocalRotation(newField, rotatedAngle, fieldXForm);
             }
 
             fieldList.Add(newField);

@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Robust.Shared.Random;
 using Content.Shared.Doors.Components;
 using Content.Shared.Procedural;
 using Content.Shared.Procedural.PostGeneration;
@@ -13,7 +14,7 @@ public sealed partial class DungeonJob
     /// <summary>
     /// <see cref="CorridorDecalSkirtingDunGen"/>
     /// </summary>
-    private async Task PostGen(CorridorDecalSkirtingDunGen decks, Dungeon dungeon, HashSet<Vector2i> reservedTiles, Random random)
+    private async Task PostGen(CorridorDecalSkirtingDunGen decks, Dungeon dungeon, HashSet<Vector2i> reservedTiles, IRobustRandom random)
     {
         var directions = new ValueList<DirectionFlag>(4);
         var pocketDirections = new ValueList<Direction>(4);

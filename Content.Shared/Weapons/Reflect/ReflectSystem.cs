@@ -42,8 +42,8 @@ public sealed partial class ReflectSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
 
     #region Starlight
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private IGameTiming _timing = default!;
     #endregion
 
     public override void Initialize()

@@ -1,5 +1,5 @@
 using System.Collections.Frozen;
-using System.Text.RegularExpressions;
+using System.Text;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Popups;
@@ -456,8 +456,53 @@ public abstract partial class SharedChatSystem : EntitySystem
     public static string InjectTagAroundString(ChatMessage message, string targetString, string tag, string? tagParameter)
     {
         var rawmsg = message.WrappedMessage;
-        rawmsg = Regex.Replace(rawmsg, "(?i)(" + targetString + ")(?-i)(?![^[]*])", $"[{tag}={tagParameter}]$1[/{tag}]");
-        return rawmsg;
+        if (string.IsNullOrEmpty(rawmsg) || string.IsNullOrEmpty(targetString))
+            return rawmsg;
+
+        var wrapOpen = $"[{tag}={tagParameter}]";
+        var wrapClose = $"[/{tag}]";
+        var sb = new StringBuilder(rawmsg.Length);
+        var searchFrom = 0;
+
+        while (true)
+        {
+            var idx = rawmsg.IndexOf(targetString, searchFrom, StringComparison.OrdinalIgnoreCase);
+            if (idx < 0)
+            {
+                sb.Append(rawmsg, searchFrom, rawmsg.Length - searchFrom);
+                break;
+            }
+
+            var afterMatch = idx + targetString.Length;
+            var insideBrackets = false;
+            for (var i = afterMatch; i < rawmsg.Length; i++)
+            {
+                var c = rawmsg[i];
+                if (c == '[')
+                    break;
+                if (c == ']')
+                {
+                    insideBrackets = true;
+                    break;
+                }
+            }
+
+            sb.Append(rawmsg, searchFrom, idx - searchFrom);
+            if (insideBrackets)
+            {
+                sb.Append(rawmsg, idx, targetString.Length);
+            }
+            else
+            {
+                sb.Append(wrapOpen);
+                sb.Append(rawmsg, idx, targetString.Length);
+                sb.Append(wrapClose);
+            }
+
+            searchFrom = afterMatch;
+        }
+
+        return sb.ToString();
     }
 
     public static string GetStringInsideTag(ChatMessage message, string tag)

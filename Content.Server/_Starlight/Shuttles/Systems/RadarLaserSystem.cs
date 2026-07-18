@@ -28,7 +28,7 @@ public sealed partial class RadarLaserSystem : EntitySystem
 
         // The gun fires in the direction of its world rotation (angle zero = east/right; SS14 uses Angle 0 = south,
         // but world rotation on shuttle guns should reflect the direction they're aimed).
-        var fireDir = xform.WorldRotation.ToWorldVec();
+        var fireDir = _transforms.GetWorldRotation(xform).ToWorldVec();
 
         // Normalize just in case (should already be a unit vector, but be safe).
         var len = fireDir.Length();

@@ -412,7 +412,13 @@ namespace Content.Server.Atmos.EntitySystems
         /// <summary>
         ///     Performs reactions for a given gas mixture on an optional holder.
         /// </summary>
-        public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder)
+        /// <param name="mixture">The gas mixture to react.</param>
+        /// <param name="holder">The container of this gas mixture.</param>
+        /// <param name="holderUid">
+        /// Optional entity that owns the mixture when the holder is entity-backed
+        /// (e.g. canister/tank). Null for tiles and pipe nets.
+        /// </param>
+        public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, EntityUid? holderUid = null)
         {
             var reaction = ReactionResult.NoReaction;
             var temperature = mixture.Temperature;
@@ -440,7 +446,7 @@ namespace Content.Server.Atmos.EntitySystems
                 if (!doReaction)
                     continue;
 
-                reaction = prototype.React(mixture, holder, this, HeatScale);
+                reaction = prototype.React(mixture, holder, this, HeatScale, holderUid);
                 if(reaction.HasFlag(ReactionResult.StopReactions))
                     break;
             }

@@ -222,7 +222,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
                     ruleEnt.Comp.PoolByObjective.Add(objectivePrototype, [(card.Owner, card.Comp, ruleOwner)]);
             }
             else if (TryComp<ObjectiveComponent>(card.Owner, out var objective)
-                    && TryComp<MetaDataComponent>(card.Owner, out var meta)
+                    && TryComp(card.Owner, out MetaDataComponent? meta)
                     && meta.EntityPrototype is { } objectiveEntityPrototype)
             {
                 var objectiveProtoId = new EntProtoId<ObjectiveComponent>(objectiveEntityPrototype.ID);
@@ -247,7 +247,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
 
         // You’re probably going to ask why the entity itself holds information about how to spawn it.
         // Yes.
-        if (cardProto.TryGetComponent<RailroadSpawnFlowComponent>(out var flow, _comp))
+        if (cardProto.TryComp<RailroadSpawnFlowComponent>(out var flow, _comp))
         {
             if (flow.Probability < 1.0f && !_random.Prob(flow.Probability))
                 return;
@@ -264,7 +264,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
             var cardComp = EnsureComp<RailroadCardComponent>(eid);
 
             if (_proto.TryIndex(proto, out var cardProto)
-                && cardProto.TryGetComponent<RailroadSpawnFlowComponent>(out var flow, _comp)
+                && cardProto.TryComp<RailroadSpawnFlowComponent>(out var flow, _comp)
                 && flow.ObjectivePrototype is { }
                 && _proto.TryIndex(flow.ObjectivePrototype, out var objectiveProto))
             {
@@ -345,7 +345,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
                 if (!TryComp<ObjectiveComponent>(objectiveUid, out var objectiveComp))
                     continue;
 
-                if (TryComp<MetaDataComponent>(objectiveUid, out var meta)
+                if (TryComp(objectiveUid, out MetaDataComponent? meta)
                     && meta.EntityPrototype is { } objectiveEntityPrototype)
                 {
                     var objectiveProtoId = new EntProtoId<ObjectiveComponent>(objectiveEntityPrototype.ID);

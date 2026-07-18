@@ -48,6 +48,7 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
         if (SelectedChannel == channel)
             return;
         SelectedChannel = channel;
+        UpdateChannelSelectButton(channel, null, null);
         OnChannelSelect?.Invoke(channel);
     }
 

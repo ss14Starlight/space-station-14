@@ -36,7 +36,6 @@ public sealed class DeviceLinkingTest : GameTest
         var pair = Pair;
         var server = pair.Server;
         var compFact = server.ResolveDependency<IComponentFactory>();
-        var mapMan = server.ResolveDependency<IMapManager>();
         var mapSys = server.System<SharedMapSystem>();
         var deviceLinkSys = server.System<DeviceLinkSystem>();
 
@@ -51,14 +50,14 @@ public sealed class DeviceLinkingTest : GameTest
                     if (proto.Abstract || pair.IsTestPrototype(proto))
                         continue;
 
-                    if (!proto.TryGetComponent<DeviceLinkSinkComponent>(out var protoSinkComp, compFact))
+                    if (!proto.TryComp<DeviceLinkSinkComponent>(out var protoSinkComp, compFact))
                         continue;
 
                     foreach (var port in protoSinkComp.Ports)
                     {
                         // Create a map for each entity/port combo so they can't interfere
                         mapSys.CreateMap(out var mapId);
-                        var grid = mapMan.CreateGridEntity(mapId);
+                        var grid = mapSys.CreateGridEntity(mapId);
                         mapSys.SetTile(grid.Owner, grid.Comp, Vector2i.Zero, new Tile(1));
                         var coord = new EntityCoordinates(grid.Owner, 0, 0);
 

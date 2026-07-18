@@ -19,7 +19,7 @@ namespace Content.Shared.Chunking;
 public sealed partial class ChunkingSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _configurationManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
@@ -74,7 +74,7 @@ public sealed partial class ChunkingSystem : EntitySystem
         var bounds = _baseViewBounds.Translated(pos).Enlarged(viewEnlargement);
 
         var state = new QueryState(chunks, indexPool, chunkSize, bounds, _transform, EntityManager);
-        _mapManager.FindGridsIntersecting(xform.MapID, bounds, ref state, AddGridChunks, true);
+        _map.FindGridsIntersecting(xform.MapID, bounds, ref state, AddGridChunks, true);
     }
 
     private static bool AddGridChunks(

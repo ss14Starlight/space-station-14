@@ -70,7 +70,7 @@ public sealed partial class GasCanisterSystem : SharedGasCanisterSystem
 
     private void OnCanisterUpdated(EntityUid uid, GasCanisterComponent canister, ref AtmosDeviceUpdateEvent args)
     {
-        _atmos.React(canister.Air, canister);
+        _atmos.React(canister.Air, canister, uid);
 
         if (!TryComp<NodeContainerComponent>(uid, out var nodeContainer)
             || !TryComp<AppearanceComponent>(uid, out var appearance))

@@ -123,7 +123,7 @@ public static class CharacterProfileLanguageHelper
         IComponentFactory factory,
         [NotNullWhen(true)] out LanguageKnowledgeComponent? innate)
     {
-        if (mobProto.TryGetComponent(out innate, factory))
+        if (mobProto.TryComp(out innate, factory))
             return true;
 
         if (mobProto.Parents is null)

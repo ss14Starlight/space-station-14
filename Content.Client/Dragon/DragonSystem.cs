@@ -46,7 +46,7 @@ public sealed partial class DragonSystem : EntitySystem
                 // Starlight: For RevSupplyRift, use a brighter red color instead of purple
                 if (HasComp<RevolutionaryRiftComponent>(uid))
                 {
-                    sprite?.LayerSetColor(0, Color.FromHex("#ff3333"));
+                    _sprite.LayerSetColor((uid, sprite), 0, Color.FromHex("#ff3333"));
 
                     if (light != null)
                     {
@@ -56,7 +56,7 @@ public sealed partial class DragonSystem : EntitySystem
                 else
                 {
                     // Regular dragon rift still uses purple
-                    sprite?.LayerSetColor(0, Color.FromHex("#cf4cff"));
+                    _sprite.LayerSetColor((uid, sprite), 0, Color.FromHex("#cf4cff"));
 
                     if (light != null)
                     {

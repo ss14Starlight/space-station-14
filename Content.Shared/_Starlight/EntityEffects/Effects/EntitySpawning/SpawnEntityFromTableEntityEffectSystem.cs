@@ -23,16 +23,17 @@ public sealed partial class SpawnEntityFromTableEntityEffectSystem : EntityEffec
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<SpawnEntityFromTable> args)
     {
         var quantity = args.Effect.Number * (int)Math.Floor(args.Scale);
-        var random = _robustRandom.GetRandom();
 
         if (_net.IsServer)
         {
             for (var i = 0; i < quantity; i++)
             {
-                var spawns = _entityTable.GetSpawns(args.Effect.EntityTable, random);
+                var spawns = _entityTable.GetSpawns(args.Effect.EntityTable, _robustRandom);
                 foreach (var proto in spawns)
                 {
-                    var randomOffset = new Vector2(random.NextFloat(-args.Effect.Offset, args.Effect.Offset), random.NextFloat(-args.Effect.Offset, args.Effect.Offset));
+                    var randomOffset = new Vector2(
+                        _robustRandom.NextFloat(-args.Effect.Offset, args.Effect.Offset),
+                        _robustRandom.NextFloat(-args.Effect.Offset, args.Effect.Offset));
                     var ec = new EntityCoordinates(entity.Owner, entity.Owner.ToCoordinates().Position + randomOffset);
                     _entityManager.SpawnAtPosition(proto, ec);
                 }

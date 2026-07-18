@@ -728,7 +728,9 @@ namespace Content.Server.GameTicking
 
             EntityManager.FlushEntities();
 
-            _mapManager.Restart();
+            // Delete remaining map entities (MapSystem replacement for map manager restart).
+            foreach (var mapId in _map.GetAllMapIds().ToArray())
+                _map.DeleteMap(mapId);
 
             _banManager.Restart();
 

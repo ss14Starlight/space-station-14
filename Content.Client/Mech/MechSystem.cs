@@ -41,8 +41,9 @@ public sealed partial class MechSystem : SharedMechSystem
             drawDepth = DrawDepth.SmallMobs;
         }
 
-        if (args.Sprite.LayerMapTryGet(MechVisualLayers.Light, out var lightId) && args.Sprite.TryGetLayer(lightId, out var lightLayer) && _appearance.TryGetData<bool>(uid, MechVisuals.Light, out var light, args.Component))
-            lightLayer.Visible = light;
+        if (_sprite.LayerMapTryGet((uid, args.Sprite), MechVisualLayers.Light, out var lightId, false)
+            && _appearance.TryGetData<bool>(uid, MechVisuals.Light, out var light, args.Component))
+            _sprite.LayerSetVisible((uid, args.Sprite), lightId, light);
 
         _sprite.LayerSetRsiState((uid, args.Sprite), MechVisualLayers.Base, state);
         _sprite.SetDrawDepth((uid, args.Sprite), (int)drawDepth);

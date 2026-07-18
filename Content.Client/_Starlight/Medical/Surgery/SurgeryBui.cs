@@ -463,7 +463,10 @@ public sealed partial class SurgeryBui : BoundUserInterface
         base.Dispose(disposing);
 
         if (disposing)
-            _window?.Dispose();
+        {
+            _window?.Close();
+            _window = null;
+        }
         _hands.OnPlayerItemAdded -= OnPlayerItemAdded;
     }
 }

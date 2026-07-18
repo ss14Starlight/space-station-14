@@ -10,8 +10,8 @@ namespace Content.Server.Power.NodeGroups;
 public abstract class BasePowerNet<TNetType> : BaseNetConnectorNodeGroup<TNetType>, IBasePowerNet
     where TNetType : IBasePowerNet
 {
-    [ViewVariables] public readonly List<PowerConsumerComponent> Consumers = new();
-    [ViewVariables] public readonly List<PowerSupplierComponent> Suppliers = new();
+    [ViewVariables] public readonly List<Entity<PowerConsumerComponent>> Consumers = new();
+    [ViewVariables] public readonly List<Entity<PowerSupplierComponent>> Suppliers = new();
     public PowerNetSystem PowerNetSystem = default!;
 
     [ViewVariables]
@@ -25,36 +25,36 @@ public abstract class BasePowerNet<TNetType> : BaseNetConnectorNodeGroup<TNetTyp
 
     public bool IsConnectedNetwork => NodeCount > 1;
 
-    public void AddConsumer(PowerConsumerComponent consumer)
+    public void AddConsumer(Entity<PowerConsumerComponent> consumer)
     {
-        DebugTools.Assert(consumer.NetworkLoad.LinkedNetwork == default);
-        consumer.NetworkLoad.LinkedNetwork = default;
+        DebugTools.Assert(consumer.Comp.NetworkLoad.LinkedNetwork == default);
+        consumer.Comp.NetworkLoad.LinkedNetwork = default;
         Consumers.Add(consumer);
         QueueNetworkReconnect();
     }
 
-    public void RemoveConsumer(PowerConsumerComponent consumer)
+    public void RemoveConsumer(Entity<PowerConsumerComponent> consumer)
     {
         // Linked network can be default if it was re-connected twice in one tick.
-        DebugTools.Assert(consumer.NetworkLoad.LinkedNetwork == default || consumer.NetworkLoad.LinkedNetwork == NetworkNode.Id);
-        consumer.NetworkLoad.LinkedNetwork = default;
+        DebugTools.Assert(consumer.Comp.NetworkLoad.LinkedNetwork == default || consumer.Comp.NetworkLoad.LinkedNetwork == NetworkNode.Id);
+        consumer.Comp.NetworkLoad.LinkedNetwork = default;
         Consumers.Remove(consumer);
         QueueNetworkReconnect();
     }
 
-    public void AddSupplier(PowerSupplierComponent supplier)
+    public void AddSupplier(Entity<PowerSupplierComponent> supplier)
     {
-        DebugTools.Assert(supplier.NetworkSupply.LinkedNetwork == default);
-        supplier.NetworkSupply.LinkedNetwork = default;
+        DebugTools.Assert(supplier.Comp.NetworkSupply.LinkedNetwork == default);
+        supplier.Comp.NetworkSupply.LinkedNetwork = default;
         Suppliers.Add(supplier);
         QueueNetworkReconnect();
     }
 
-    public void RemoveSupplier(PowerSupplierComponent supplier)
+    public void RemoveSupplier(Entity<PowerSupplierComponent> supplier)
     {
         // Linked network can be default if it was re-connected twice in one tick.
-        DebugTools.Assert(supplier.NetworkSupply.LinkedNetwork == default || supplier.NetworkSupply.LinkedNetwork == NetworkNode.Id);
-        supplier.NetworkSupply.LinkedNetwork = default;
+        DebugTools.Assert(supplier.Comp.NetworkSupply.LinkedNetwork == default || supplier.Comp.NetworkSupply.LinkedNetwork == NetworkNode.Id);
+        supplier.Comp.NetworkSupply.LinkedNetwork = default;
         Suppliers.Remove(supplier);
         QueueNetworkReconnect();
     }

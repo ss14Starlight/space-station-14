@@ -158,7 +158,7 @@ public sealed partial class BanPanelEui : BaseEui
                         .Select(entry => entry.ToString())
                 )
                 .ToList();
-            _banManager.WebhookUpdateRoleBans(targetUid, ban.Target, Player.UserId, addressRange, targetHWid, roles, ban.BanDurationMinutes, ban.Severity, ban.Reason, now);
+            await _banManager.WebhookUpdateRoleBans(targetUid, ban.Target, Player.UserId, addressRange, targetHWid, roles, ban.BanDurationMinutes, ban.Severity, ban.Reason, now);
             // Starlight end - construct a list of role strings and send to webhook
 
             Close();
@@ -179,7 +179,7 @@ public sealed partial class BanPanelEui : BaseEui
             }
         }
 
-        _banManager.CreateServerBan(
+        await _banManager.CreateServerBan(
             targetUid,
             ban.Target,
             Player.UserId,

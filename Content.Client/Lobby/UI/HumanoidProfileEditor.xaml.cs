@@ -368,7 +368,7 @@ namespace Content.Client.Lobby.UI
                     return;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithHairGlowing(newColor.marking.IsGlowing));
-                Logger.Info(newColor.marking.IsGlowing.ToString());
+                _sawmill.Info(newColor.marking.IsGlowing.ToString());
                 UpdateCMarkingsHair();
                 ReloadPreview();
             };
@@ -1052,7 +1052,10 @@ namespace Content.Client.Lobby.UI
         /// </summary>
         public void RefreshLoadouts()
         {
-            _loadoutWindow?.Dispose();
+            _loadoutWindow?.Close();
+            if (_loadoutWindow is { Disposed: false })
+                _loadoutWindow.Orphan();
+            _loadoutWindow = null;
         }
 
         /// <summary>
@@ -1358,7 +1361,9 @@ namespace Content.Client.Lobby.UI
 
         private void OpenLoadout(JobPrototype? jobProto, RoleLoadout roleLoadout, RoleLoadoutPrototype roleLoadoutProto)
         {
-            _loadoutWindow?.Dispose();
+            _loadoutWindow?.Close();
+            if (_loadoutWindow is { Disposed: false })
+                _loadoutWindow.Orphan();
             _loadoutWindow = null;
             var collection = IoCManager.Instance;
 
@@ -1418,7 +1423,9 @@ namespace Content.Client.Lobby.UI
         // Starlight Start: Antag loadouts
         private void OpenAntagLoadout(AntagPrototype antagProto, RoleLoadout roleLoadout, RoleLoadoutPrototype roleLoadoutProto)
         {
-            _loadoutWindow?.Dispose();
+            _loadoutWindow?.Close();
+            if (_loadoutWindow is { Disposed: false })
+                _loadoutWindow.Orphan();
             _loadoutWindow = null;
             var collection = IoCManager.Instance;
 
@@ -1587,13 +1594,13 @@ namespace Content.Client.Lobby.UI
             ReloadPreview();
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void ExitedTree()
         {
-            base.Dispose(disposing);
-            if (!disposing)
-                return;
+            base.ExitedTree();
 
-            _loadoutWindow?.Dispose();
+            _loadoutWindow?.Close();
+            if (_loadoutWindow is { Disposed: false })
+                _loadoutWindow.Orphan();
             _loadoutWindow = null;
         }
 

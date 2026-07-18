@@ -55,6 +55,7 @@ namespace Content.Client.Chat.UI
         /// The time at which this bubble will die.
         /// </summary>
         private TimeSpan _deathTime;
+        private bool _dying;
 
         public float VerticalOffset { get; set; }
         private float _verticalOffsetAchieved;
@@ -113,12 +114,16 @@ namespace Content.Client.Chat.UI
             base.FrameUpdate(args);
 
             var timeLeft = (float)(_deathTime - _timing.RealTime).TotalSeconds;
-            if (_entityManager.Deleted(_senderEntity) || timeLeft <= 0)
+            if (!_dying && (_entityManager.Deleted(_senderEntity) || timeLeft <= 0))
             {
+                _dying = true;
                 // Timer spawn to prevent concurrent modification exception.
                 Timer.Spawn(0, Die);
                 return;
             }
+
+            if (_dying)
+                return;
 
             // Lerp to our new vertical offset if it's been modified.
             if (MathHelper.CloseToPercent(_verticalOffsetAchieved - VerticalOffset, 0, 0.1))

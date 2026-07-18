@@ -709,7 +709,7 @@ public sealed partial class FaxSystem : EntitySystem
     private void NotifyAdmins(string faxName, FaxPrintout printout)
     {
         _chat.SendAdminAnnouncement(Loc.GetString("fax-machine-chat-notify", ("fax", faxName)));
-        _audioSystem.PlayGlobal("/Audio/Machines/high_tech_confirm.ogg", Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), false, AudioParams.Default.WithVolume(-8f));
+        _audioSystem.PlayGlobal(new SoundPathSpecifier("/Audio/Machines/high_tech_confirm.ogg"), Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), false, AudioParams.Default.WithVolume(-8f));
 
         //starlight start
         //get all admins that are attached to a ghost
@@ -734,7 +734,7 @@ public sealed partial class FaxSystem : EntitySystem
                 Log.Info($"Admin {client.Name} has a back slot, sending fax to them.");
                 //generate the entity
                 var entityToSpawn = printout.PrototypeId;
-                if (EntityManager.TrySpawnInContainer(entityToSpawn, worn.Value, "storagebase", out var printed))
+                if (TrySpawnInContainer(entityToSpawn, worn.Value, "storagebase", out var printed))
                 {
                     if (TryComp<PaperComponent>(printed.Value, out var paper))
                     {

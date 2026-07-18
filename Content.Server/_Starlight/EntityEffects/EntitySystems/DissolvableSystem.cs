@@ -60,7 +60,7 @@ public sealed partial class DissolvableSystem : SharedDissolvableSystem
         }
 
         foreach (var thermiteEnt in _lookupSystem.GetEntitiesInRange<ThermiteComponent>(_transform.GetMapCoordinates(uid), 1f))
-            EntityManager.QueueDeleteEntity(thermiteEnt.Owner);
+            QueueDel(thermiteEnt.Owner);
 
         args.Handled = true;
     }

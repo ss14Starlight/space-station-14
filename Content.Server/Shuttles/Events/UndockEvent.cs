@@ -7,6 +7,8 @@ namespace Content.Server.Shuttles.Events;
 /// </summary>
 public sealed class UndockEvent : EntityEventArgs
 {
+    public EntityUid DockAUid = default!;
+    public EntityUid DockBUid = default!;
     public DockingComponent DockA = default!;
     public DockingComponent DockB = default!;
 

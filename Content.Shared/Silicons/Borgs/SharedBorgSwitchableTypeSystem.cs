@@ -25,6 +25,7 @@ public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem
     [Dependency] protected IPrototypeManager Prototypes = default!;
     [Dependency] private InteractionPopupSystem _interactionPopup = default!;
     [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!; // Starlight-edit
+    [Dependency] private IComponentFactory _componentFactory = default!; // Starlight-edit
 
     public static readonly EntProtoId ActionId = "ActionSelectBorgType";
 
@@ -83,7 +84,7 @@ public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem
 
         // Starlight-start: Handle subtype cost
         if (TryComp<BorgSwitchableSubtypeComponent>(ent, out var subtypeComp) && subtypeComp.BorgSubtype != null
-            && Prototypes.Index(subtypeComp.BorgSubtype.Value).TryGetComponent<BorgSubtypeDefinitionComponent>(out var subtype) && subtype.Price is not null and > 0)
+            && Prototypes.Index(subtypeComp.BorgSubtype.Value).TryComp<BorgSubtypeDefinitionComponent>(out var subtype, _componentFactory) && subtype.Price is not null and > 0)
         {
             if (!_playerResources.TryGetResource(ent.Owner, "credits", out var balance)
                 || balance < subtype.Price)

@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.Xenobiology;
 /// <summary>
 /// The base component all slime processor possess.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class SlimeProcessorComponent : Component
 {
     /// <summary>

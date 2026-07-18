@@ -164,7 +164,7 @@ public sealed partial class UmbraeSystem : EntitySystem
             }
         }
 
-        var snare = EntityManager.SpawnEntity(args.SnarePrototype, target);
+        var snare = Spawn(args.SnarePrototype, target);
         umbrae.PlacedSnares.Add(snare);
         Dirty(uid, umbrae);
 
@@ -195,12 +195,12 @@ public sealed partial class UmbraeSystem : EntitySystem
         if (!_vampire.CheckAndConsumeBloodCost(uid, comp, args.Action.Owner))
             return;
 
-        EntityManager.SpawnEntity(args.MistInPrototype, curXform.Coordinates);
+        Spawn(args.MistInPrototype, curXform.Coordinates);
 
         _transform.SetCoordinates(uid, target);
         _transform.AttachToGridOrMap(uid, curXform);
 
-        EntityManager.SpawnEntity(args.MistOutPrototype, target);
+        Spawn(args.MistOutPrototype, target);
 
         _popup.PopupEntity(Loc.GetString("action-vampire-dark-passage-activated"), uid, uid);
         _audio.PlayPvs(args.Sound, uid, AudioParams.Default.WithVolume(-1f));
@@ -495,7 +495,7 @@ public sealed partial class UmbraeSystem : EntitySystem
             return;
 
         var coords = GetCoordinates(args.TargetCoordinates);
-        var newBeacon = EntityManager.SpawnEntity(args.BeaconPrototype, coords);
+        var newBeacon = Spawn(args.BeaconPrototype, coords);
         umbrae.SpawnedShadowAnchorBeacon = newBeacon;
         umbrae.ShadowAnchorLoopId++;
         umbrae.ShadowAnchorAutoReturnTime = _timing.CurTime + args.AutoReturnDelay;

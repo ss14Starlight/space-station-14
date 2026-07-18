@@ -5,11 +5,10 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Audio;
 using Content.Shared.Popups;
 using Content.Shared.Chemistry.Reagent;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Random;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Components;
@@ -23,7 +22,6 @@ public sealed partial class PatchSystem : EntitySystem
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
 
@@ -61,7 +59,7 @@ public sealed partial class PatchSystem : EntitySystem
         if (user != target && !_interactionSystem.InRangeUnobstructed(user, target, popup: true))
             return false;
 
-        _audio.PlayPvs(patchComponent.ApplyBeginSound, patch, AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
+        _audio.PlayPvs(patchComponent.ApplyBeginSound, patch, AudioParams.Default.WithVariation(0.125f).WithVolume(1f));
 
         var isNotSelf = user != target;
 

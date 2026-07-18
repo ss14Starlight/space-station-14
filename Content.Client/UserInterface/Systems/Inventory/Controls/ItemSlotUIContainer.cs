@@ -13,6 +13,8 @@ public interface IItemslotUIContainer
 
 public abstract class ItemSlotUIContainer<T> : GridContainer, IItemslotUIContainer where T : SlotControl
 {
+    private static readonly ISawmill Sawmill = Logger.GetSawmill("ui.inventory");
+
     protected readonly Dictionary<string, T> Buttons = new();
 
     private int? _maxColumns;
@@ -40,7 +42,8 @@ public abstract class ItemSlotUIContainer<T> : GridContainer, IItemslotUIContain
     {
         foreach (var button in Buttons.Values)
         {
-            button.Dispose();
+            // Buttons may have been reparented; Orphan is safe when not a direct child.
+            button.Orphan();
         }
 
         Buttons.Clear();
@@ -83,7 +86,7 @@ public abstract class ItemSlotUIContainer<T> : GridContainer, IItemslotUIContain
     {
         if (newButton.SlotName == "")
         {
-            Logger.Warning("Could not add button " + newButton.Name + "No slotname");
+            Sawmill.Warning("Could not add button " + newButton.Name + "No slotname");
         }
 
         return !Buttons.TryAdd(newButton.SlotName, newButton) ? null : newButton;
@@ -121,8 +124,7 @@ public abstract class ItemSlotUIContainer<T> : GridContainer, IItemslotUIContain
     public virtual void RemoveButton(T button)
     {
         RemoveButtonFromDict(button);
-        Children.Remove(button);
-        button.Dispose();
+        button.Orphan();
     }
 
     public virtual T? GetButton(string slotName)

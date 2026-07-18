@@ -24,9 +24,9 @@ public sealed partial class AdoptedOrphanTraitSystem : EntitySystem
         "Felyaic",
     ];
 
-    [Dependency] private readonly IComponentFactory _factory = default!;
-    [Dependency] private readonly LanguageSystem _languages = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IComponentFactory _factory = default!;
+    [Dependency] private LanguageSystem _languages = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
         => SubscribeLocalEvent<AdoptedOrphanTraitComponent, ComponentInit>(OnInit);
@@ -49,7 +49,7 @@ public sealed partial class AdoptedOrphanTraitSystem : EntitySystem
         if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid)
             || !_proto.TryIndex(humanoid.Species, out SpeciesPrototype? species)
             || !_proto.TryIndex(species.Prototype, out EntityPrototype? mobProto)
-            || !mobProto.TryGetComponent(out LanguageKnowledgeComponent? innate, _factory))
+            || !mobProto.TryComp(out LanguageKnowledgeComponent? innate, _factory))
         {
             Log.Warning($"Could not resolve innate languages for Adopted Orphan on {ToPrettyString(uid)}");
             return;

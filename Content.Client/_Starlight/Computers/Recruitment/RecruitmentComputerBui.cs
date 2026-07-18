@@ -29,7 +29,12 @@ public sealed partial class RecruitmentComputerBui(EntityUid owner, Enum uiKey) 
     [ViewVariables]
     private SLWindow? _window;
 
-    protected override void Open() => UpdateState(State);
+    protected override void Open()
+    {
+        base.Open();
+        UpdateState(State);
+    }
+
     protected override void UpdateState(BoundUserInterfaceState? state)
     {
         TryInitWindow();
@@ -55,7 +60,6 @@ public sealed partial class RecruitmentComputerBui(EntityUid owner, Enum uiKey) 
             MinSize = new Vector2(756, 512),
             MaxSize = new Vector2(757, 513),
         }
-        .Style(x => x.Starlight)
         .Scroll(scroll => scroll
             .Box(BoxContainer.LayoutOrientation.Vertical, box => box
             .SelectBox<KeyValuePair<NetEntity, string>>(
@@ -139,6 +143,9 @@ public sealed partial class RecruitmentComputerBui(EntityUid owner, Enum uiKey) 
         base.Dispose(disposing);
 
         if (disposing)
-            _window?.Dispose();
+        {
+            _window?.Close();
+            _window = null;
+        }
     }
 }

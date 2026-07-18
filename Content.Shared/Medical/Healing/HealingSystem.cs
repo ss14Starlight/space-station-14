@@ -21,6 +21,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Utility;
 using Content.Shared._FarHorizons.Medical.ConditionalHealing;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
@@ -125,9 +126,11 @@ public sealed partial class HealingSystem : EntitySystem
                 var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
                 foreach(var reagent in solution.Contents)
                 {
-                    var drainReagent = healing.ReagentsToDrain.FirstOrDefault(drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
-                    if (solutionEntity != null && drainReagent != null)
-                        reagentsToRemove.Add((reagent, drainReagent.Quantity));
+                    if (solutionEntity != null &&
+                        healing.ReagentsToDrain.TryFirstOrNull(
+                            drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity,
+                            out var drainReagent))
+                        reagentsToRemove.Add((reagent, drainReagent.Value.Quantity));
                 }
 
                 foreach (var (reagent, amount) in reagentsToRemove)

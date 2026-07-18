@@ -125,13 +125,12 @@ public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
             }
 
             if (activeSlimeProcessorComponent.ProcessingFinishedMoment.Value > _gameTiming.CurTime) continue;
-            var random = _robustRandom.GetRandom();
             foreach (var entity in slimeProcessorComponent.SlimeContainer.ContainedEntities)
             {
                 if (!_entityManager.TryGetComponent(entity, out SlimeComponent? slimeComponent)) continue;
                 for (int i = 0; i < slimeProcessorComponent.YieldMultiplier + slimeComponent.SlimeSteroidAmount; i++)
                 {
-                    Vector2 randomOffset = new Vector2(random.NextFloat(-0.2F, 0.2F), random.NextFloat(-0.2F, 0.2F));
+                    Vector2 randomOffset = new Vector2(_robustRandom.NextFloat(-0.2F, 0.2F), _robustRandom.NextFloat(-0.2F, 0.2F));
                     EntityCoordinates ec = new EntityCoordinates(uid, uid.ToCoordinates().Position + randomOffset);
                     _entityManager.PredictedSpawnAtPosition(slimeComponent.Extract, ec);
                 }

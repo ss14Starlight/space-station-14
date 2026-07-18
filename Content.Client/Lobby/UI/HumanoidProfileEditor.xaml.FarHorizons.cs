@@ -100,7 +100,9 @@ public sealed partial class HumanoidProfileEditor
 
     private void OpenSpeciesLoadout(SpeciesPrototype species, RoleLoadout speciesLoadout, RoleLoadoutPrototype speciesLoadoutProto)
     {
-        _loadoutWindow?.Dispose();
+        _loadoutWindow?.Close();
+        if (_loadoutWindow is { Disposed: false })
+            _loadoutWindow.Orphan();
         _loadoutWindow = null;
         var collection = IoCManager.Instance;
 

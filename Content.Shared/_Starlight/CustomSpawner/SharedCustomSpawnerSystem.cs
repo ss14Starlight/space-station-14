@@ -121,11 +121,11 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
                     : null;
             // Impossible to get here with storedPosition being null, should be anyway.
             var spawned = PredictedSpawnAtPosition(data.ProtoId, storedPosition!.Value, storedOverrides);
-            Transform(spawned).LocalRotation = float.DegreesToRadians(storedRotation!.Value);
+            _xform.SetLocalRotation(spawned, float.DegreesToRadians(storedRotation!.Value));
         }
     }
 
-    private EntityCoordinates GetSpawnPosition(CustomSpawnerComponent comp, CustomSpawnData data, TransformComponent xform, System.Random rng)
+    private EntityCoordinates GetSpawnPosition(CustomSpawnerComponent comp, CustomSpawnData data, TransformComponent xform, IRobustRandom rng)
     {
         var pos = xform.Coordinates + new EntityCoordinates(xform.ParentUid, comp.GlobalSpawnOffset);
         switch (data.SpawnOffsets.Count)
@@ -149,7 +149,7 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
         return pos;
     }
 
-    private float GetSpawnRotation(CustomSpawnerComponent comp, CustomSpawnData data, System.Random rng)
+    private float GetSpawnRotation(CustomSpawnerComponent comp, CustomSpawnData data, IRobustRandom rng)
     {
         var rotation = comp.GlobalSpawnRotation;
         switch (data.SpawnRotations.Count)

@@ -66,6 +66,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
     public static readonly EntProtoId HitscanProto = "HitscanEffect";
     public const string ImpactProto = "ImpactEffect";
+    private static readonly ProtoId<DisplacementEffect> DisplacementEffectId = "displacementEffect";
     private DisplacementEffect _displacementEffect = null!;
     private bool _tracesEnabled = true;
     public override void Shutdown()
@@ -121,7 +122,7 @@ public sealed partial class GunSystem : SharedGunSystem
         InitializeMagazineVisuals();
         InitializeSpentAmmo();
 
-        _displacementEffect = _proto.Index<DisplacementEffect>("displacementEffect");
+        _displacementEffect = _proto.Index(DisplacementEffectId);
     }
 
 
@@ -303,7 +304,7 @@ public sealed partial class GunSystem : SharedGunSystem
         despawn.Lifetime = (time / 1000) + 1000;
 
         if (delay != 0)
-            Timer.Spawn((int)delay, () => spriteComp.Visible = true);
+            Timer.Spawn((int)delay, () => _sprite.SetVisible(spriteEnt, true));
 
         Timer.Spawn((int)time, () =>
         {

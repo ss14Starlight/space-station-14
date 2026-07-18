@@ -50,7 +50,7 @@ public sealed class VampireRuleTest : GameTest
             Assert.That(protoMan.TryIndex<EntityPrototype>(VampireGameRuleProtoId, out var gameRuleEntProto),
                 $"Failed to lookup vampire game rule entity prototype with ID \"{VampireGameRuleProtoId}\"!");
 
-            if (gameRuleEntProto.TryGetComponent<GameRuleComponent>(out var gameRule, compFact))
+            if (gameRuleEntProto.TryComp<GameRuleComponent>(out var gameRule, compFact))
                 minPlayers = Math.Max(2, Math.Min(gameRule.MinPlayers, 8)); // Cap at 8 for testing performance
         });
 

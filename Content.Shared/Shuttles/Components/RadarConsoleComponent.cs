@@ -8,17 +8,10 @@ namespace Content.Shared.Shuttles.Components;
 [AutoGenerateComponentPause] // Starlight
 public sealed partial class RadarConsoleComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float RangeVV
-    {
-        get => MaxRange;
-        set => IoCManager
-            .Resolve<IEntitySystemManager>()
-            .GetEntitySystem<SharedRadarConsoleSystem>()
-            .SetRange(Owner, value, this);
-    }
-
-    [DataField, AutoNetworkedField]
+    /// <summary>
+    /// Maximum radar range. Prefer <see cref="SharedRadarConsoleSystem.SetRange"/> when mutating at runtime.
+    /// </summary>
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public float MaxRange = 256f;
 
     /// <summary>

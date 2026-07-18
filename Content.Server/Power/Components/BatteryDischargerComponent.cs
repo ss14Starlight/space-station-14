@@ -5,14 +5,14 @@ namespace Content.Server.Power.Components
     [RegisterComponent]
     public sealed partial class BatteryDischargerComponent : BasePowerNetComponent
     {
-        protected override void AddSelfToNet(IPowerNet net)
+        protected override void AddSelfToNet(EntityUid uid, IPowerNet net)
         {
-            net.AddDischarger(this);
+            net.AddDischarger((uid, this));
         }
 
-        protected override void RemoveSelfFromNet(IPowerNet net)
+        protected override void RemoveSelfFromNet(EntityUid uid, IPowerNet net)
         {
-            net.RemoveDischarger(this);
+            net.RemoveDischarger((uid, this));
         }
     }
 }

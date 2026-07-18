@@ -226,7 +226,7 @@ public sealed partial class ShadekinSystem : EntitySystem
         }
 
         var effect = SpawnAtPosition(component.ShadekinPhaseInEffect2, Transform(uid).Coordinates);
-        Transform(effect).LocalRotation = Transform(uid).LocalRotation;
+        _transform.SetLocalRotation(effect, Transform(uid).LocalRotation);
 
         RaiseLocalEvent(uid, new RejuvenateEvent());
 

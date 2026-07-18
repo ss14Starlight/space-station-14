@@ -198,7 +198,9 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     /// <returns></returns>
     public bool TryStartDoAfter(DoAfterArgs args, [NotNullWhen(true)] out DoAfterId? id, DoAfterComponent? comp = null)
     {
+#pragma warning disable CS0618 // AwaitedDoAfterEvent is obsolete but still used by integration tests.
         DebugTools.Assert(args.Broadcast || Exists(args.EventTarget) || args.Event.GetType() == typeof(AwaitedDoAfterEvent));
+#pragma warning restore CS0618
         DebugTools.Assert(args.Event.GetType().HasCustomAttribute<NetSerializableAttribute>()
             || args.Event.GetType().Namespace is { } ns && ns.StartsWith("Content.IntegrationTests"), // classes defined in tests cannot be marked as serializable.
             $"Do after event is not serializable. Event: {args.Event.GetType()}");

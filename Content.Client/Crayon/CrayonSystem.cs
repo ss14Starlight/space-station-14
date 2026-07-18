@@ -35,6 +35,7 @@ public sealed partial class CrayonSystem : SharedCrayonSystem
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private DecalPlacementSystem _placement = default!;
+    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedHandsSystem _handsSystem = default!;
@@ -112,7 +113,7 @@ public sealed partial class CrayonSystem : SharedCrayonSystem
         var color = component.Color;
         if (component.OpaqueGhost)
             color.A /= 2;
-        _overlay.AddOverlay(new CrayonDecalGhostOverlay(_placement, _transform, _sprite, _interaction, decal,
+        _overlay.AddOverlay(new CrayonDecalGhostOverlay(_placement, _map, _transform, _sprite, _interaction, decal,
             -component.Rotation, color));
     }
 

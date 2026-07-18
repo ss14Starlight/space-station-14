@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -15,6 +16,7 @@ namespace Content.Shared.Clothing;
 public abstract partial class SharedCursedMaskSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
 
@@ -61,8 +63,7 @@ public abstract partial class SharedCursedMaskSystem : EntitySystem
 
     protected void RandomizeCursedMask(Entity<CursedMaskComponent> ent, EntityUid wearer)
     {
-        var random = new System.Random((int) _timing.CurTick.Value);
-        ent.Comp.CurrentState = random.Pick(Enum.GetValues<CursedMaskExpression>());
+        ent.Comp.CurrentState = _random.PickPredicted(_timing, Enum.GetValues<CursedMaskExpression>());
         _appearance.SetData(ent, CursedMaskVisuals.State, ent.Comp.CurrentState);
         _movementSpeedModifier.RefreshMovementSpeedModifiers(wearer);
     }

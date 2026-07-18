@@ -5,8 +5,8 @@ using Content.Shared.Climbing.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Medical;
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Popups;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Events;
@@ -28,6 +28,7 @@ public sealed partial class ClumsySystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -48,10 +49,7 @@ public sealed partial class ClumsySystem : EntitySystem
         if (!ent.Comp.ClumsyHypo)
             return;
 
-        // TODO: Replace with RandomPredicted once the engine PR is merged
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
-        var rand = new System.Random(seed);
-        if (!rand.Prob(ent.Comp.ClumsyDefaultCheck))
+        if (!_random.ProbPredicted(_timing, ent.Comp.ClumsyDefaultCheck, GetNetEntity(ent).Id))
             return;
 
         args.TargetGettingInjected = args.EntityUsingInjector;
@@ -67,10 +65,7 @@ public sealed partial class ClumsySystem : EntitySystem
         if (!ent.Comp.ClumsyDefib)
             return;
 
-        // TODO: Replace with RandomPredicted once the engine PR is merged
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
-        var rand = new System.Random(seed);
-        if (!rand.Prob(ent.Comp.ClumsyDefaultCheck))
+        if (!_random.ProbPredicted(_timing, ent.Comp.ClumsyDefaultCheck, GetNetEntity(ent).Id))
             return;
 
         args.DefibTarget = args.EntityUsingDefib;
@@ -86,10 +81,7 @@ public sealed partial class ClumsySystem : EntitySystem
         if (!ent.Comp.ClumsyCatching)
             return;
 
-        // TODO: Replace with RandomPredicted once the engine PR is merged
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(args.Item).Id);
-        var rand = new System.Random(seed);
-        if (!rand.Prob(ent.Comp.ClumsyDefaultCheck))
+        if (!_random.ProbPredicted(_timing, ent.Comp.ClumsyDefaultCheck, GetNetEntity(args.Item).Id))
             return;
 
         args.Cancelled = true; // fail to catch
@@ -120,10 +112,7 @@ public sealed partial class ClumsySystem : EntitySystem
         if (args.Gun.Comp.ClumsyProof)
             return;
 
-        // TODO: Replace with RandomPredicted once the engine PR is merged
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(args.Gun).Id);
-        var rand = new System.Random(seed);
-        if (!rand.Prob(ent.Comp.ClumsyDefaultCheck))
+        if (!_random.ProbPredicted(_timing, ent.Comp.ClumsyDefaultCheck, GetNetEntity(args.Gun).Id))
             return;
 
         if (ent.Comp.GunShootFailDamage != null)
@@ -151,10 +140,7 @@ public sealed partial class ClumsySystem : EntitySystem
             return;
         //Starlight End
 
-        // TODO: Replace with RandomPredicted once the engine PR is merged
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
-        var rand = new System.Random(seed);
-        if (!_cfg.GetCVar(CCVars.GameTableBonk) && !rand.Prob(ent.Comp.ClumsyDefaultCheck))
+        if (!_cfg.GetCVar(CCVars.GameTableBonk) && !_random.ProbPredicted(_timing, ent.Comp.ClumsyDefaultCheck, GetNetEntity(ent).Id))
             return;
 
         HitHeadClumsy(ent, args.BeingClimbedOn);

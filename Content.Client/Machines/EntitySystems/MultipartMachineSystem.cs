@@ -24,6 +24,7 @@ public sealed partial class MultipartMachineSystem : SharedMultipartMachineSyste
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private ISerializationManager _serialization= default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -61,7 +62,7 @@ public sealed partial class MultipartMachineSystem : SharedMultipartMachineSyste
             if (!XformQuery.TryGetComponent(ghostEnt, out var xform))
                 break;
 
-            xform.LocalRotation = part.Rotation;
+            _transform.SetLocalRotation(ghostEnt, part.Rotation, xform);
 
             Comp<MultipartMachineGhostComponent>(ghostEnt).LinkedMachine = ent;
 

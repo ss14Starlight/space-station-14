@@ -14,6 +14,8 @@ namespace Content.Client.UserInterface.Systems.Alerts.Widgets;
 [GenerateTypedNameReferences]
 public sealed partial class AlertsUI : UIWidget
 {
+    private static readonly ISawmill Sawmill = Logger.GetSawmill("alert");
+
     // also known as Control.Children?
     private readonly Dictionary<AlertKey, AlertControl> _alertControls = new();
 
@@ -43,7 +45,7 @@ public sealed partial class AlertsUI : UIWidget
         foreach (var alertControl in _alertControls.Values)
         {
             alertControl.OnPressed -= AlertControlPressed;
-            alertControl.Dispose();
+            alertControl.Orphan();
         }
 
         _alertControls.Clear();
@@ -78,15 +80,15 @@ public sealed partial class AlertsUI : UIWidget
         {
             if (!alertKey.AlertType.HasValue)
             {
-                Logger.WarningS("alert", "found alertkey without alerttype," +
-                                         " alert keys should never be stored without an alerttype set: {0}", alertKey);
+                Sawmill.Warning("found alertkey without alerttype," +
+                                " alert keys should never be stored without an alerttype set: {0}", alertKey);
                 continue;
             }
 
             var alertType = alertKey.AlertType.Value;
             if (!alertsSystem.TryGet(alertType, out var newAlert))
             {
-                Logger.ErrorS("alert", "Unrecognized alertType {0}", alertType);
+                Sawmill.Error("Unrecognized alertType {0}", alertType);
                 continue;
             }
 

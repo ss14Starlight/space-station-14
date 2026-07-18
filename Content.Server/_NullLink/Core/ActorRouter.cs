@@ -100,6 +100,6 @@ public sealed partial class ActorRouter : IActorRouter, IDisposable
 
     public void Dispose()
     {
-        OrleansClientHolder.Shutdown();
+        Shutdown().AsTask().GetAwaiter().GetResult();
     }
 }

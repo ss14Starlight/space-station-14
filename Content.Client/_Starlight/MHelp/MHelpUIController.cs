@@ -8,6 +8,7 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
+using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
@@ -75,7 +76,7 @@ public sealed partial class MHelpUIController : UIController, IOnSystemChanged<M
         if (message.PlaySound && localPlayer.UserId != message.Sender && _config.GetCVar(StarlightCCVars.MHelpPing))
         {
             if (_mHelpSound != null)
-                _audio.PlayGlobal(_mHelpSound, Filter.Local(), false);
+                _audio.PlayGlobal(new SoundPathSpecifier(_mHelpSound), Filter.Local(), false);
             _clyde.RequestWindowAttention();
         }
 
@@ -103,7 +104,7 @@ public sealed partial class MHelpUIController : UIController, IOnSystemChanged<M
 
         UIHelper?.Dispose();
         var ownerUserId = _playerManager.LocalUser!.Value;
-        UIHelper = isMentor || isAdmin ? new MentorMHelpUIHandler(ownerUserId) : new UserMHelpUIHandler(ownerUserId);
+        UIHelper = isMentor || isAdmin ? new MentorMHelpUIHandler(ownerUserId) : new UserMHelpUIHandler();
 
         UIHelper.OnMessageSend += (ticket, textMessage, playSound) => _mentorSystem?.Send(ticket,  textMessage, playSound);
         UIHelper.OnInputTextChanged += (ticket, text) => _mentorSystem?.SendInputTextUpdated(ticket,  text.Length > 0);

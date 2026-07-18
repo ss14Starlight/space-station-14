@@ -137,7 +137,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        var query = EntityManager.EntityQueryEnumerator<ChangelingComponent>();
+        var query = EntityQueryEnumerator<ChangelingComponent>();
 
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -394,9 +394,10 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var data = new TransformData
         {
+            Source = target,
             Name = metadata.EntityName,
             DNA = dna.DNA,
-            Appearance = appearance
+            Appearance = _serialization.CreateCopy(appearance, notNullableOverride: true)
         };
 
         if (fingerprint.Fingerprint != null)
@@ -472,7 +473,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         {
             Comp<FingerprintComponent>(newEnt).Fingerprint = data.Fingerprint;
             Comp<DnaComponent>(newEnt).DNA = data.DNA;
-            _humanoid.CloneAppearance(data.Appearance.Owner, newEnt);
+            _humanoid.CloneAppearance(newEnt, data.Appearance);
             _metaData.SetEntityName(newEnt, data.Name);
             var message = Loc.GetString("changeling-transform-finish", ("target", data.Name));
             _popup.PopupEntity(message, newEnt, newEnt);
@@ -492,7 +493,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             {
                 var storeCompCopy = _serialization.CreateCopy(storeComp, notNullableOverride: true);
                 RemComp<StoreComponent>(newUid.Value);
-                EntityManager.AddComponent(newUid.Value, storeCompCopy);
+                AddComp(newUid.Value, storeCompCopy);
             }
         }
 

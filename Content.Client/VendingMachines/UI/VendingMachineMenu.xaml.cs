@@ -62,19 +62,15 @@ namespace Content.Client.VendingMachines.UI
             VendingContents.ItemKeyBindDown += (args, data) => OnItemSelected?.Invoke(args, data);
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void ExitedTree()
         {
-            base.Dispose(disposing);
+            base.ExitedTree();
 
-            // Don't clean up dummies during disposal or we'll just have to spawn them again
-            if (!disposing)
-                return;
-
-            // Delete any dummy items we spawned
             foreach (var entity in _dummies.Values)
             {
                 _entityManager.QueueDeleteEntity(entity);
             }
+
             _dummies.Clear();
         }
 

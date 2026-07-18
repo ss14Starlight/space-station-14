@@ -11,13 +11,13 @@ namespace Content.Server.Power.NodeGroups
 {
     public interface IApcNet : IBasePowerNet
     {
-        void AddApc(EntityUid uid, ApcComponent apc);
+        void AddApc(Entity<ApcComponent> apc);
 
-        void RemoveApc(EntityUid uid, ApcComponent apc);
+        void RemoveApc(Entity<ApcComponent> apc);
 
-        void AddPowerProvider(ApcPowerProviderComponent provider);
+        void AddPowerProvider(Entity<ApcPowerProviderComponent> provider);
 
-        void RemovePowerProvider(ApcPowerProviderComponent provider);
+        void RemovePowerProvider(Entity<ApcPowerProviderComponent> provider);
 
         void QueueNetworkReconnect();
     }
@@ -26,15 +26,15 @@ namespace Content.Server.Power.NodeGroups
     [UsedImplicitly]
     public sealed partial class ApcNet : BasePowerNet<IApcNet>, IApcNet
     {
-        [ViewVariables] public readonly List<ApcComponent> Apcs = new();
-        [ViewVariables] public readonly List<ApcPowerProviderComponent> Providers = new();
+        [ViewVariables] public readonly List<Entity<ApcComponent>> Apcs = new();
+        [ViewVariables] public readonly List<Entity<ApcPowerProviderComponent>> Providers = new();
 
         //Debug property
-        [ViewVariables] private int TotalReceivers => Providers.Sum(provider => provider.LinkedReceivers.Count);
+        [ViewVariables] private int TotalReceivers => Providers.Sum(provider => provider.Comp.LinkedReceivers.Count);
 
         [ViewVariables]
-        private IEnumerable<ApcPowerReceiverComponent> AllReceivers =>
-            Providers.SelectMany(provider => provider.LinkedReceivers);
+        private IEnumerable<Entity<ApcPowerReceiverComponent>> AllReceivers =>
+            Providers.SelectMany(provider => provider.Comp.LinkedReceivers);
 
         public override void Initialize(Node sourceNode, IEntityManager entMan)
         {
@@ -49,32 +49,32 @@ namespace Content.Server.Power.NodeGroups
             PowerNetSystem?.DestroyApcNet(this);
         }
 
-        public void AddApc(EntityUid uid, ApcComponent apc)
+        public void AddApc(Entity<ApcComponent> apc)
         {
-            if (EntMan.TryGetComponent(uid, out PowerNetworkBatteryComponent? netBattery))
+            if (EntMan.TryGetComponent(apc.Owner, out PowerNetworkBatteryComponent? netBattery))
                 netBattery.NetworkBattery.LinkedNetworkDischarging = default;
 
             QueueNetworkReconnect();
             Apcs.Add(apc);
         }
 
-        public void RemoveApc(EntityUid uid, ApcComponent apc)
+        public void RemoveApc(Entity<ApcComponent> apc)
         {
-            if (EntMan.TryGetComponent(uid, out PowerNetworkBatteryComponent? netBattery))
+            if (EntMan.TryGetComponent(apc.Owner, out PowerNetworkBatteryComponent? netBattery))
                 netBattery.NetworkBattery.LinkedNetworkDischarging = default;
 
             QueueNetworkReconnect();
             Apcs.Remove(apc);
         }
 
-        public void AddPowerProvider(ApcPowerProviderComponent provider)
+        public void AddPowerProvider(Entity<ApcPowerProviderComponent> provider)
         {
             Providers.Add(provider);
 
             QueueNetworkReconnect();
         }
 
-        public void RemovePowerProvider(ApcPowerProviderComponent provider)
+        public void RemovePowerProvider(Entity<ApcPowerProviderComponent> provider)
         {
             Providers.Remove(provider);
 
@@ -86,9 +86,9 @@ namespace Content.Server.Power.NodeGroups
             PowerNetSystem?.QueueReconnectApcNet(this);
         }
 
-        protected override void SetNetConnectorNet(IBaseNetConnectorComponent<IApcNet> netConnectorComponent)
+        protected override void SetNetConnectorNet(EntityUid uid, IBaseNetConnectorComponent<IApcNet> netConnectorComponent)
         {
-            netConnectorComponent.Net = this;
+            netConnectorComponent.SetNet(uid, this);
         }
 
         public override string? GetDebugData()

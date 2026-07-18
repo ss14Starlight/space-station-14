@@ -16,16 +16,16 @@ namespace Content.Server._Sol.Shuttles;
 /// <summary>
 /// Links wallmount terminals to station anchors and proxies the anchor PowerCharge UI locally.
 /// </summary>
-public sealed class StationAnchorTerminalSystem : EntitySystem
+public sealed partial class StationAnchorTerminalSystem : EntitySystem
 {
     private const float FlashPeriod = 0.5f;
 
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedDeviceLinkSystem _deviceLink = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
-    [Dependency] private readonly PowerChargeSystem _powerCharge = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedDeviceLinkSystem _deviceLink = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private PowerChargeSystem _powerCharge = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

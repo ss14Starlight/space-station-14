@@ -350,7 +350,7 @@ namespace Content.Server.VendingMachines
                     }
 
                     if (PrototypeManager.TryIndex<EntityPrototype>(entry.ID, out var proto) &&
-                        proto.TryGetComponent<ItemPriceComponent>(out var priceComponent, _componentFactory))
+                        proto.TryComp<ItemPriceComponent>(out var priceComponent, _componentFactory))
                     {
                         var categoryPrice = _itemPriceManager.GetPriceForPrototype(entry.ID, priceComponent.PriceCategory);
                         entry.Price = categoryPrice ?? priceComponent.FallbackPrice;
@@ -494,7 +494,7 @@ namespace Content.Server.VendingMachines
             if (!isEmagged && component.ShowPrices && entry.Price <= 0)
             {
                 if (PrototypeManager.TryIndex<EntityPrototype>(itemId, out var proto) &&
-                    proto.TryGetComponent<ItemPriceComponent>(out var priceComponent, _componentFactory))
+                    proto.TryComp<ItemPriceComponent>(out var priceComponent, _componentFactory))
                 {
                     var categoryPrice = _itemPriceManager.GetPriceForPrototype(itemId, priceComponent.PriceCategory);
                     entry.Price = categoryPrice ?? priceComponent.FallbackPrice;
@@ -550,8 +550,10 @@ namespace Content.Server.VendingMachines
 
         private string? GuessCategory(EntityPrototype proto)
         {
-            // Prefer tags if present on the prototype
-            if (proto.TryGetComponent<TagComponent>(out var tagComp, _componentFactory))
+            // Prefer tags if present on the prototype.
+            // Use the registry lookup rather than EntityPrototype.TryGetComponent<T>, which resolves IoC
+            // internally and would fault on the PVS serialization worker thread.
+            if (proto.Components.TryGetComponent<TagComponent>(_componentFactory, out var tagComp))
             {
                 if (_tag.HasTag(tagComp, _foodSnackTag))
                     return "food_cheap";
@@ -568,7 +570,7 @@ namespace Content.Server.VendingMachines
             if (id.Contains("snack") || id.Contains("chips") || id.Contains("donk") || id.Contains("candy") || id.Contains("bar"))
                 return "food_cheap";
 
-            if (proto.TryGetComponent<Content.Shared.Clothing.Components.ClothingComponent>(out _, _componentFactory))
+            if (proto.Components.TryGetComponent<Content.Shared.Clothing.Components.ClothingComponent>(_componentFactory, out _))
                 return "clothing";
             if (id.StartsWith("clothing") || id.Contains("uniform") || id.Contains("shoes") || id.Contains("gloves") || id.Contains("belt") || id.Contains("backpack") || id.Contains("hat") || id.Contains("mask") || id.Contains("coat") || id.Contains("jacket"))
                 return "clothing";

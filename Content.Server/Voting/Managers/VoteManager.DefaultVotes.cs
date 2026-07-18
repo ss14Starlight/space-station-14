@@ -682,7 +682,7 @@ namespace Content.Server.Voting.Managers
 
             if (!_prototypeManager.TryIndex<RoundVotingChancesPrototype>(prototypeId, out var chancesPrototype))
             {
-                Logger.Warning($"Failed to find a chance prototype with ID: {prototypeId}");
+                _logManager.RootSawmill.Warning($"Failed to find a chance prototype with ID: {prototypeId}");
                 return presets;
             }
 
@@ -721,7 +721,7 @@ namespace Content.Server.Voting.Managers
 
             if (validPresets.Count == 0)
             {
-                Logger.Warning("There are no suitable game modes for the current number of players.");
+                _logManager.RootSawmill.Warning("There are no suitable game modes for the current number of players.");
                 return presets;
             }
 

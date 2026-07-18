@@ -184,20 +184,20 @@ public sealed partial class ExecutionSystem : EntitySystem
                 var prototype = _prototypeManager.Index<EntityPrototype>(cartridge.Prototype);
 
                 // Starlight start - support hitscans in cartridges
-                if (prototype.TryGetComponent<HitscanAmmoComponent>(out var hitscan, _componentFactory))
+                if (prototype.TryComp<HitscanAmmoComponent>(out var hitscan, _componentFactory))
                 {
-                    if (prototype.TryGetComponent<HitscanBasicDamageComponent>(out var hitscanDamage, _componentFactory))
+                    if (prototype.TryComp<HitscanBasicDamageComponent>(out var hitscanDamage, _componentFactory))
                     {
                         damage = hitscanDamage.Damage;
                     }
                 }
                 // Starlight end
-                prototype.TryGetComponent<ProjectileComponent>(out var projectileA, _componentFactory); // sloth forgive me
+                prototype.TryComp<ProjectileComponent>(out var projectileA, _componentFactory); // sloth forgive me
                 if (projectileA != null)
                 {
                     damage = projectileA.Damage;
                 }
-                prototype.TryGetComponent<ProjectileSpreadComponent>(out var projectilespreaderA, _componentFactory);
+                prototype.TryComp<ProjectileSpreadComponent>(out var projectilespreaderA, _componentFactory);
                 if (projectilespreaderA != null)
                 {
                     damage *= projectilespreaderA.Count;

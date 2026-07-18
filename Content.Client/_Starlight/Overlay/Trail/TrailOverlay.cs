@@ -39,13 +39,13 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
 
         var drawn = 0;
         var query = _entMan.EntityQueryEnumerator<TrailComponent, SpriteComponent>();
-        while (query.MoveNext(out var comp, out var sprite))
+        while (query.MoveNext(out var uid, out var comp, out var sprite))
         {
             if (comp.Mode == TrailMode.SpriteGhost)
             {
                 if (comp.Samples.Count < 2)
                     continue;
-                DrawGhostTrail(handle, comp, sprite, args);
+                DrawGhostTrail(handle, uid, comp, sprite, args);
             }
             else
             {
@@ -171,7 +171,7 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
             handle.UseShader(null);
     }
 
-    private void DrawGhostTrail(DrawingHandleWorld handle, TrailComponent comp, SpriteComponent sprite, in OverlayDrawArgs args)
+    private void DrawGhostTrail(DrawingHandleWorld handle, EntityUid uid, TrailComponent comp, SpriteComponent sprite, in OverlayDrawArgs args)
     {
         var samples = comp.Samples;
         var count = samples.Count;
@@ -180,6 +180,8 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
 
         if (sprite.Icon == null || count == 0)
             return;
+
+        var ent = (uid, sprite);
 
         for (int i = 0; i < count; i++)
         {
@@ -197,13 +199,11 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
 
             var color = Color.InterpolateBetween(comp.FadeColor, comp.TrailColor, t).WithAlpha(alpha);
 
-            var ent = (sprite.Owner, sprite);
-
-            ent.sprite.Color = color;
+            _spriteSys.SetColor(ent, color);
 
             _spriteSys.RenderSprite(ent, handle, sample.EyeRotation, sample.Rotation, sample.Position, null);
 
-            ent.sprite.Color = oldColor;
+            _spriteSys.SetColor(ent, oldColor);
         }
     }
 }

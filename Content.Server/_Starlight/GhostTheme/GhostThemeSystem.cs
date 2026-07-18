@@ -32,7 +32,7 @@ public sealed partial class GhostThemeSystem : EntitySystem
     public void OpenEui(ICommonSession session)
     {
         if (session.AttachedEntity is not { Valid: true } attached ||
-            !EntityManager.HasComponent<GhostComponent>(attached))
+            !HasComp<GhostComponent>(attached))
             return;
 
         if (_openUis.ContainsKey(session))
@@ -63,7 +63,7 @@ public sealed partial class GhostThemeSystem : EntitySystem
     public void ChangeColor(ICommonSession session, Color color)
     {
         if (session.AttachedEntity is not { Valid: true } attached ||
-            !EntityManager.TryGetComponent<GhostThemeComponent>(attached, out var themes))
+            !TryComp<GhostThemeComponent>(attached, out var themes))
             return;
 
         themes.GhostThemeColor = color;
@@ -79,7 +79,7 @@ public sealed partial class GhostThemeSystem : EntitySystem
     public void ChangeTheme(ICommonSession session, string theme)
     {
         if (session.AttachedEntity is not { Valid: true } attached ||
-            !EntityManager.TryGetComponent<GhostThemeComponent>(attached, out var themes))
+            !TryComp<GhostThemeComponent>(attached, out var themes))
             return;
 
         if (!_prototypeManager.TryIndex<GhostThemePrototype>(theme, out var proto))

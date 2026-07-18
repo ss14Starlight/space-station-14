@@ -15,16 +15,16 @@ using static Content.Server.Administration.Systems.AdminVerbSystem;
 namespace Content.Server._Starlight.Administration.Systems;
 public sealed partial class AdminVerbSystem : EntitySystem
 {
-    [Dependency] private readonly AdminTestArenaSystem _adminTestArenaSystem = default!;
-    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IEntitySystemManager _sys = default!;
+    [Dependency] private AdminTestArenaSystem _adminTestArenaSystem = default!;
+    [Dependency] private ISharedAdminManager _adminManager = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IEntitySystemManager _sys = default!;
     public override void Initialize()
         => SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddVerbs);
     private void AddVerbs(GetVerbsEvent<Verb> args)
     {
-        if (!EntityManager.TryGetComponent(args.User, out ActorComponent? actor))
+        if (!TryComp(args.User, out ActorComponent? actor))
             return;
 
         var player = actor.PlayerSession;

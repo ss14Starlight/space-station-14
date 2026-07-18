@@ -49,14 +49,14 @@ namespace Content.Server.Power.Components
         [ViewVariables]
         public PowerState.Supply NetworkSupply { get; } = new();
 
-        protected override void AddSelfToNet(IBasePowerNet powerNet)
+        protected override void AddSelfToNet(EntityUid uid, IBasePowerNet powerNet)
         {
-            powerNet.AddSupplier(this);
+            powerNet.AddSupplier((uid, this));
         }
 
-        protected override void RemoveSelfFromNet(IBasePowerNet powerNet)
+        protected override void RemoveSelfFromNet(EntityUid uid, IBasePowerNet powerNet)
         {
-            powerNet.RemoveSupplier(this);
+            powerNet.RemoveSupplier((uid, this));
         }
     }
 }

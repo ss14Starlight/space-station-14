@@ -30,8 +30,6 @@ namespace Content.Client._Starlight.Weapons.Gunnery;
 /// </summary>
 public sealed partial class GunneryRadarControl : BaseShuttleControl
 {
-    [Dependency] private IMapManager _mapManager = default!;
-
     private readonly SharedShuttleSystem  _shuttles;
     private readonly SharedTransformSystem _transform;
 
@@ -217,7 +215,7 @@ public sealed partial class GunneryRadarControl : BaseShuttleControl
         var viewAABB = viewBounds.CalcBoundingBox();
 
         _grids.Clear();
-        _mapManager.FindGridsIntersecting(
+        Maps.FindGridsIntersecting(
             xform.MapID,
             new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector),
             ref _grids, approx: true, includeMap: false);

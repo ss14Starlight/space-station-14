@@ -43,8 +43,6 @@ namespace Content.Client.Access.UI
         /// card's real job is not in the list. Must not be written back as a job change.
         /// </summary>
         private bool _jobProtoIsFallback;
-        // Starlight-edit: Start
-        private ProtoId<AccessGroupPrototype>? _selectedAccessGroup = null;
         public Action<ProtoId<AccessGroupPrototype>>? OnGroupSelected;
 
         private HashSet<ProtoId<AccessLevelPrototype>> _pendingPressedAccessLevels = new();

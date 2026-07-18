@@ -46,8 +46,20 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
         _transformSystem = _entManager.System<SharedTransformSystem>();
         _spriteSystem = _entManager.System<SpriteSystem>();
 
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
-        NavMap.MapClicked += OnNavMapClicked;  // Starlight
+        NavMap.MapClicked += OnNavMapClicked; // Starlight
+    }
+
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+        NavMap.TrackedEntitySelectedAction -= SetTrackedEntityFromNavMap;
+        NavMap.MapClicked -= OnNavMapClicked;
     }
 
     public void Set(string stationName, EntityUid? mapUid)
@@ -390,16 +402,6 @@ public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starligh
         MapClicked?.Invoke(coordinates);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            NavMap.TrackedEntitySelectedAction -= SetTrackedEntityFromNavMap;
-            NavMap.MapClicked -= OnNavMapClicked;
-        }
-
-        base.Dispose(disposing);
-    }
     // Starlight-end
 
     private void UpdateSensorsTable(NetEntity? currTrackedEntity, NetEntity? prevTrackedEntity)

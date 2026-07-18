@@ -41,6 +41,8 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private TagSystem _tag = default!; // Starlight
     [Dependency] private SharedPopupSystem _popup = default!; // Starlight
 
+    private static readonly ProtoId<TagPrototype> CanAffectLawBoardsTag = "CanAffectLawBoards"; // Starlight
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -382,17 +384,14 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
             return;
 
-        if (args.EmagComponent == null)
+        if (args.EmagComponent is not { } emag ||
+            args.EmagUid is not { } emagUid ||
+            !_tag.HasTag(emagUid, CanAffectLawBoardsTag)) //TODO test, changed from "FreeMAG"
             return;
-
-        if (!_tag.HasTag(args.EmagComponent.Owner, "CanAffectLawBoards")) //TODO test, changed from "FreeMAG"
-            return;
-
 
         if (!ent.Comp.IsLawboard)
             return;
 
-        var emag = args.EmagComponent;
         if (emag.Lawset.HasValue)
         {
             var lawset = emag.Lawset.Value; //Fallback to FreeLawSet because clearly something is going on

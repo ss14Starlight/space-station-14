@@ -1,4 +1,5 @@
 using Content.Client.Stylesheets.SheetletConfigs;
+using Content.Client.Stylesheets.Stylesheets;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -25,6 +26,14 @@ public sealed class PanelSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet,
         var boxNegative = new StyleBoxFlat { BackgroundColor = sheet.NegativePalette.Background };
         var boxHighlight = new StyleBoxFlat { BackgroundColor = sheet.HighlightPalette.Background };
 
+        // Angle-rect chrome for FancyWindow etc. Patch only — no button content margins —
+        // so PanelContainer.GetContentBox insets children by the 10px border, not 10+14.
+        var angleRect = new StyleBoxTexture
+        {
+            Texture = sheet.GetTextureOr(buttonCfg.BaseButtonPath, NanotrasenStylesheet.TextureRoot),
+        };
+        angleRect.SetPatchMargin(StyleBox.Margin.All, 10);
+
         return
         [
             E<PanelContainer>().Class(StyleClass.PanelLight).Panel(boxLight),
@@ -42,13 +51,13 @@ public sealed class PanelSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet,
             // panels that have the same corner bezels as buttons
             E()
                 .Class(StyleClass.BackgroundPanel)
-                .Prop(PanelContainer.StylePropertyPanel, StyleBoxHelpers.BaseStyleBox(sheet))
+                .Prop(PanelContainer.StylePropertyPanel, angleRect)
                 .Modulate(sheet.SecondaryPalette.Background),
             E()
                 .Class(StyleClass.BackgroundPanelDark)
-                .Prop(PanelContainer.StylePropertyPanel, StyleBoxHelpers.BaseStyleBox(sheet))
+                .Prop(PanelContainer.StylePropertyPanel, angleRect)
                 .Modulate(sheet.SecondaryPalette.BackgroundDark),
-             E()
+            E()
                 .Class(StyleClass.BackgroundPanelOpenLeft)
                 .Prop(PanelContainer.StylePropertyPanel, StyleBoxHelpers.OpenLeftStyleBox(sheet))
                 .Modulate(sheet.SecondaryPalette.Background),

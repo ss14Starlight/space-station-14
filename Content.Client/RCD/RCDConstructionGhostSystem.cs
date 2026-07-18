@@ -33,7 +33,6 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
     private EntityUid? _lastHeldRcd; // Starlight Edit: RPD/RPLD held-tool rotation sync
     // Starlight Start: RPD
     private bool _useMirrorPrototype = false;
-    public event EventHandler? FlipConstructionPrototype;
 
     public override void Initialize()
     {

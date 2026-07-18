@@ -12,9 +12,6 @@
     - HEAD
     unfoldedSlots:
     - MASK
-    foldedHideLayers: []
-    unfoldedHideLayers:
-    - Snout
   - type: Mask
     disableOnFolded: true
   - type: IngestionBlocker

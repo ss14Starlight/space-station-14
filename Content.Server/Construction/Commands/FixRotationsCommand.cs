@@ -104,7 +104,7 @@ public sealed partial class FixRotationsCommand : IConsoleCommand
 
             if (childXform.LocalRotation != Angle.Zero)
             {
-                childXform.LocalRotation = Angle.Zero;
+                _entManager.System<SharedTransformSystem>().SetLocalRotation(child, Angle.Zero, childXform);
                 changed++;
             }
         }

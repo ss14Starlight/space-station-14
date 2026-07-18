@@ -15,7 +15,7 @@ public sealed partial class DungeonJob
     /// <summary>
     /// <see cref="WormCorridorDunGen"/>
     /// </summary>
-    private async Task PostGen(WormCorridorDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, Random random)
+    private async Task PostGen(WormCorridorDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, IRobustRandom random)
     {
         var networks = new List<(Vector2i Start, HashSet<Vector2i> Network)>();
 
@@ -180,12 +180,12 @@ public sealed partial class DungeonJob
 
         foreach (var tile in dungeon.CorridorTiles)
         {
-            tiles.Add((tile, _tile.GetVariantTile(tileDef, random)));
+            tiles.Add((tile, _tileDefManager.GetVariantTile(tileDef, random)));
         }
 
         foreach (var tile in dungeon.CorridorExteriorTiles)
         {
-            tiles.Add((tile, _tile.GetVariantTile(tileDef, random)));
+            tiles.Add((tile, _tileDefManager.GetVariantTile(tileDef, random)));
         }
 
         _maps.SetTiles(_gridUid, _grid, tiles);

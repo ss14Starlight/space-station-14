@@ -57,8 +57,8 @@ public abstract partial class SharedSharpSystem : EntitySystem
     /// </summary>
     public float GetButcherDelay(EntityUid knife, EntityUid target, SharpComponent? sharp = null, ButcherableComponent? butcher = null)
     {
-        sharp ??= EntityManager.GetComponent<SharpComponent>(knife);
-        butcher ??= EntityManager.GetComponent<ButcherableComponent>(target);
+        sharp ??= Comp<SharpComponent>(knife);
+        butcher ??= Comp<ButcherableComponent>(target);
 
         return sharp.ButcherDelayModifier * butcher.ButcherDelay;
     }

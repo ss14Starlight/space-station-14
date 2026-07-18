@@ -51,7 +51,7 @@ public abstract partial class EntityTableSelector
         var rolls = Rolls.Get(rand);
         for (var i = 0; i < rolls; i++)
         {
-            if (!rand.Prob(Prob))
+            if (!(rand.NextDouble() < Prob))
                 continue;
 
             foreach (var spawn in GetSpawnsImplementation(rand, entMan, proto, ctx))

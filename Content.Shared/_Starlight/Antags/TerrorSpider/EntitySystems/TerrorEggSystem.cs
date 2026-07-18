@@ -14,6 +14,7 @@ public sealed partial class TerrorEggSystem : AccUpdateEntitySystem
 
     private readonly Dictionary<EntityUid, Entity<EggHolderComponent>> _eggs = [];
     private readonly EntProtoId[] _terrorSpiders = ["MobTerrorGray", "MobTerrorGreen", "MobTerrorRed"];
+    private static readonly ProtoId<DamageTypePrototype> BluntDamage = "Blunt";
     private DamageTypePrototype? _blunt;
     private DamageSpecifier? _damage;
     public override void Initialize()
@@ -31,7 +32,7 @@ public sealed partial class TerrorEggSystem : AccUpdateEntitySystem
         foreach (var egg in _eggs)
         {
             egg.Value.Comp.Counter++;
-            _blunt ??= _prototypes.Index<DamageTypePrototype>("Blunt");
+            _blunt ??= _prototypes.Index(BluntDamage);
             _damage ??= new(_blunt, 1);
             _damageable.TryChangeDamage(egg.Value.Owner, _damage, false);
             if (egg.Value.Comp.Counter >= 300)

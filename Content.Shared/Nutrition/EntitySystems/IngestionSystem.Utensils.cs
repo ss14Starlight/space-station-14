@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
@@ -14,6 +15,7 @@ public sealed partial class IngestionSystem
 {
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private EntityQuery<UtensilComponent> _utensilsQuery;
 
@@ -65,11 +67,8 @@ public sealed partial class IngestionSystem
         if (!Resolve(entity, ref entity.Comp))
             return;
 
-        // TODO: Once we have predicted randomness delete this for something sane...
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(entity).Id, GetNetEntity(userUid).Id);
-        var rand = new System.Random(seed);
-
-        if (!rand.Prob(entity.Comp.BreakChance))
+        var seed = SharedRandomExtensions.HashCodeCombine(GetNetEntity(entity).Id, GetNetEntity(userUid).Id);
+        if (!_random.ProbPredicted(_timing, entity.Comp.BreakChance, seed))
             return;
 
         _audio.PlayPredicted(entity.Comp.BreakSound, userUid, userUid, AudioParams.Default.WithVolume(-2f));

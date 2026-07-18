@@ -85,13 +85,7 @@ public abstract partial class SharedMouthStorageSystem : EntitySystem
 
         foreach (var entity in dumpQueue)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            // Upstream is trying to disincentivize using System.Random instances, which makes sense, except that
-            // they provide no way to do predicted randomness and the RobustToolbox PR produces -- you guessed it --
-            // System.Random instances.
             var angle = rand.NextAngle().RotateVec(new Vector2(rand.NextFloat(), 0));
-#pragma warning restore CS0618 // Type or member is obsolete
-
             _throwing.TryThrow(entity, angle);
         }
     }

@@ -9,6 +9,8 @@ namespace Content.Client.Administration.UI.CustomControls
     [Virtual]
     public class CommandButton : Button, IDocumentTag
     {
+        private static readonly ISawmill Sawmill = Logger.GetSawmill("admin.command-button");
+
         public string? Command { get; set; }
 
         public CommandButton()
@@ -41,7 +43,7 @@ namespace Content.Client.Administration.UI.CustomControls
         {
             if (args.Count != 2 || !args.TryGetValue("Text", out var text) || !args.TryGetValue("Command", out var command))
             {
-                Logger.Error($"Invalid arguments passed to {nameof(CommandButton)}");
+                Sawmill.Error($"Invalid arguments passed to {nameof(CommandButton)}");
                 control = null;
                 return false;
             }

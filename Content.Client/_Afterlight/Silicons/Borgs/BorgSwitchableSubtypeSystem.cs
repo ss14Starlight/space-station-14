@@ -40,7 +40,7 @@ public sealed partial class BorgSwitchableSubtypeSystem : SharedBorgSwitchableSu
         // LOT of copy pasted code from BorgSwitchableTypeSystem, but is probably necessary unless the upstream code
         // is refactored
 
-        if (!borgSubtypePrototype.TryGetComponent<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory))
+        if (!borgSubtypePrototype.TryComp<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory))
             return;
 
         // get our required components

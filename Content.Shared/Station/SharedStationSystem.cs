@@ -171,7 +171,10 @@ public abstract partial class SharedStationSystem : EntitySystem
         {
             foreach (var gridUid in data.Grids)
             {
-                if (Transform(gridUid).MapID == map)
+                // Station grid lists can briefly contain deleted grids while entity
+                // state is being applied or a test pair is being cleaned up.
+                if (TryComp(gridUid, out TransformComponent? transform) &&
+                    transform.MapID == map)
                 {
                     return uid;
                 }

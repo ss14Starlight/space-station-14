@@ -31,7 +31,6 @@ public sealed partial class DoorElectronicsConfigurationMenu : DefaultWindow
     private List<ProtoId<AccessLevelPrototype>> _allLevels = new();
     private HashSet<ProtoId<AccessLevelPrototype>> _pressedLevels = new();
     private ButtonGroup _accessGroupButtonGroup = new();
-    public event Action<List<ProtoId<AccessLevelPrototype>>>? OnSubmit;
     public event Action<ProtoId<AccessGroupPrototype>>? OnGroupSelected;
     // Starlight End
 

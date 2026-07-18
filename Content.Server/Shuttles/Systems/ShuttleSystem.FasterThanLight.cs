@@ -432,7 +432,7 @@ public sealed partial class ShuttleSystem
         LeaveNoFTLBehind((entity.Owner, xform), oldGridMatrix, oldMapUid);
 
         // Reset rotation so they always face the same direction.
-        xform.LocalRotation = Angle.Zero;
+        _transform.SetLocalRotation(entity.Owner, Angle.Zero, xform);
         _index += width + Buffer;
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, comp.TravelTime - DefaultArrivalTime);
 
@@ -520,7 +520,7 @@ public sealed partial class ShuttleSystem
                 {
                     foreach (var grid in stationData.Grids)
                     {
-                        if (!TryComp<TransformComponent>(grid, out var gridXform))
+                        if (!TryComp(grid, out TransformComponent? gridXform))
                             continue;
 
                         if (gridXform.MapUid is not { } stationMap || !Exists(stationMap))
@@ -984,7 +984,7 @@ public sealed partial class ShuttleSystem
             // We don't include this in the actual targetAABB because then we would be double-expanding it.
             // Once in this loop, then again when placing the shuttle later.
             // Note that targetAABB already has expansionAmount factored in already.
-            _mapManager.FindGridsIntersecting(mapId, targetAABB.Enlarged(maxOffset), ref grids);
+            _mapSystem.FindGridsIntersecting(mapId, targetAABB.Enlarged(maxOffset), ref grids);
 
             foreach (var grid in grids)
             {

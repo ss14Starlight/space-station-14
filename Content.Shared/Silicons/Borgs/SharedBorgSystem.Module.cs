@@ -429,7 +429,7 @@ public abstract partial class SharedBorgSystem
             string key;
             if (TryComp<StackComponent>(item, out var stack))
                 key = $"stack:{stack.StackTypeId}";
-            else if (TryComp<MetaDataComponent>(item, out var meta) && meta.EntityPrototype is { } proto)
+            else if (TryComp(item, out MetaDataComponent? meta) && meta.EntityPrototype is { } proto)
                 key = $"proto:{proto.ID}";
             else
                 key = $"uid:{item}";

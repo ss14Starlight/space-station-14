@@ -71,9 +71,9 @@ public sealed partial class OrganSystem : EntitySystem
     {
         foreach (var comp in (ent.Comp.Components ?? []).Values)
         {
-            if (!EntityManager.HasComponent(args.Body, comp.Component.GetType()))
+            if (!HasComp(args.Body, comp.Component.GetType()))
             {
-                EntityManager.AddComponent(args.Body, comp.Component);
+                AddComp(args.Body, comp.Component);
                 UpdateEntity(args.Body, comp.Component, ent.Owner);
             }
         }
@@ -83,9 +83,9 @@ public sealed partial class OrganSystem : EntitySystem
     {
         foreach (var comp in (ent.Comp.Components ?? []).Values)
         {
-            if (EntityManager.HasComponent(args.Body, comp.Component.GetType()))
+            if (HasComp(args.Body, comp.Component.GetType()))
             {
-                EntityManager.RemoveComponent(args.Body, EntityManager.GetComponent(args.Body, comp.Component.GetType()));
+                RemComp(args.Body, EntityManager.GetComponent(args.Body, comp.Component.GetType()));
                 UpdateEntity(args.Body, comp.Component, ent.Owner);
             }
         }

@@ -583,8 +583,6 @@ namespace Content.Server.Kitchen.EntitySystems
             var reagentDict = new Dictionary<string, FixedPoint2>();
             var malfunctioning = false;
 
-            int notTrueTypeCount = 0;
-
             // TODO use lists of Reagent quantities instead of reagent prototype ids.
             foreach (var item in component.Storage.ContainedEntities.ToArray())
             {

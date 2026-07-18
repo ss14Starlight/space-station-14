@@ -66,27 +66,22 @@ public abstract partial class InteractionTest
     {
         Assert.That(ProtoMan.Index<ConstructionPrototype>(prototype).Type, Is.EqualTo(ConstructionType.Item));
 
-        // Please someone purge async construction code
-        Task<bool> task = default!;
+        var started = false;
         await Server.WaitPost(() =>
         {
-            task = SConstruction.TryStartItemConstruction(prototype, SEntMan.GetEntity(Player));
+            started = SConstruction.TryStartItemConstruction(prototype, SEntMan.GetEntity(Player));
         });
 
-        Task? tickTask = null;
-        while (!task.IsCompleted)
+        // Start failure is immediate; success waits for the DoAfter to finish.
+        if (!shouldSucceed)
         {
-            tickTask = Pair.RunTicksSync(1);
-            await Task.WhenAny(task, tickTask);
+            Assert.That(started, Is.False);
+            await RunTicks(5);
+            return;
         }
 
-        if (tickTask != null)
-            await tickTask;
-
-#pragma warning disable RA0004
-        Assert.That(task.Result, Is.EqualTo(shouldSucceed));
-#pragma warning restore RA0004
-
+        Assert.That(started, Is.True);
+        await AwaitDoAfters();
         await RunTicks(5);
     }
 
@@ -758,7 +753,7 @@ public abstract partial class InteractionTest
         var pos = Transform.ToMapCoordinates(serverCoords);
         await Server.WaitPost(() =>
         {
-            if (MapMan.TryFindGridAt(pos, out var gridUid, out var grid))
+            if (MapSystem.TryFindGridAt(pos, out var gridUid, out var grid))
                 tile = MapSystem.GetTileRef(gridUid, grid, serverCoords).Tile;
         });
 
@@ -1117,7 +1112,7 @@ public abstract partial class InteractionTest
                 MapSystem.SetTile(gridEnt, SEntMan.GetCoordinates(coords ?? TargetCoords), tile);
                 return;
             }
-            else if (MapMan.TryFindGridAt(pos, out var gUid, out var gComp))
+            else if (MapSystem.TryFindGridAt(pos, out var gUid, out var gComp))
             {
                 MapSystem.SetTile(gUid, gComp, SEntMan.GetCoordinates(coords ?? TargetCoords), tile);
                 return;
@@ -1126,7 +1121,7 @@ public abstract partial class InteractionTest
             if (proto == null)
                 return;
 
-            gridEnt = MapMan.CreateGridEntity(MapData.MapId);
+            gridEnt = MapSystem.CreateGridEntity(MapData.MapId);
             grid = gridEnt;
             gridUid = gridEnt;
             gridComp = gridEnt.Comp;
@@ -1134,7 +1129,7 @@ public abstract partial class InteractionTest
             Transform.SetWorldPosition((gridUid, gridXform), pos.Position);
             MapSystem.SetTile((gridUid, gridComp), SEntMan.GetCoordinates(coords ?? TargetCoords), tile);
 
-            if (!MapMan.TryFindGridAt(pos, out _, out _))
+            if (!MapSystem.TryFindGridAt(pos, out _, out _))
                 Assert.Fail("Failed to create grid?");
         });
         await AssertTile(proto, coords);

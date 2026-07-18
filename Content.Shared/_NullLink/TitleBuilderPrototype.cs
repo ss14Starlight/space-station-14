@@ -2,7 +2,7 @@
 
 namespace Content.Shared._NullLink;
 
-[Prototype("titleBuilder")]
+[Prototype]
 public sealed partial class TitleBuilderPrototype : IPrototype
 {
     [ViewVariables]

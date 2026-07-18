@@ -12,7 +12,6 @@ namespace Content.Shared.Atmos.EntitySystems
         protected float AccumulatedFrameTime;
         protected bool PvsEnabled;
 
-        [Dependency] protected IPrototypeManager ProtoMan = default!;
         [Dependency] private SharedAtmosphereSystem _atmosphere = default!;
 
         /// <summary>

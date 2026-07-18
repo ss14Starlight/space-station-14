@@ -601,7 +601,7 @@ public sealed partial class VampireSystem : EntitySystem
     private int GetActionBloodThreshold(EntProtoId actionId)
     {
         if (_proto.TryIndex<EntityPrototype>(actionId, out var proto) &&
-            proto.TryGetComponent<VampireActionComponent>(out var vac, _componentFactory))
+            proto.TryComp<VampireActionComponent>(out var vac, _componentFactory))
             return vac.BloodToUnlock;
         return 0;
     }
@@ -782,7 +782,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         var reg = _componentFactory.GetRegistration(classProto.ClassComponent, ignoreCase: true);
         var classComp = _componentFactory.GetComponent(reg.Type);
-        EntityManager.AddComponent(uid, classComp);
+        AddComp(uid, classComp);
 
         if (classProto.ID == "Umbrae")
             EnsureComp<NightVisionComponent>(uid);

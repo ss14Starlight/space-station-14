@@ -23,7 +23,9 @@ public abstract partial class SharedGodmodeSystem : EntitySystem
 
         SubscribeLocalEvent<GodmodeComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
         SubscribeLocalEvent<GodmodeComponent, BeforeStatusEffectAddedEvent>(OnBeforeStatusEffect);
+#pragma warning disable CS0618 // Keep old-status-effect godmode block until legacy callers are gone.
         SubscribeLocalEvent<GodmodeComponent, BeforeOldStatusEffectAddedEvent>(OnBeforeOldStatusEffect);
+#pragma warning restore CS0618
         SubscribeLocalEvent<GodmodeComponent, BeforeStaminaDamageEvent>(OnBeforeStaminaDamage);
         SubscribeLocalEvent<GodmodeComponent, IngestibleEvent>(BeforeEdible);
         SubscribeLocalEvent<GodmodeComponent, SlipAttemptEvent>(OnSlipAttempt);
@@ -46,11 +48,13 @@ public abstract partial class SharedGodmodeSystem : EntitySystem
             args.Cancelled = true;
     }
 
+#pragma warning disable CS0618 // Keep old-status-effect godmode block until legacy callers are gone.
     private void OnBeforeOldStatusEffect(Entity<GodmodeComponent> ent, ref BeforeOldStatusEffectAddedEvent args)
     {
         // Old status effect system doesn't distinguish between good and bad status effects
         args.Cancelled = true;
     }
+#pragma warning restore CS0618
 
     private void OnBeforeStaminaDamage(EntityUid uid, GodmodeComponent component, ref BeforeStaminaDamageEvent args)
     {

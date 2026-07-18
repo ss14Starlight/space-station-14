@@ -83,7 +83,7 @@ public sealed partial class StatusEffectsSystem : EntitySystem
 
         foreach (var ent in _proto.EnumeratePrototypes<EntityPrototype>())
         {
-            if (ent.TryGetComponent<StatusEffectComponent>(out _, _factory))
+            if (ent.TryComp<StatusEffectComponent>(out _, _factory))
                 StatusEffectPrototypes.TryAdd(ent.ID, 0); // Starlight
         }
     }
@@ -172,7 +172,7 @@ public sealed partial class StatusEffectsSystem : EntitySystem
         if (!_proto.Resolve(effectProto, out var effectProtoData))
             return false;
 
-        if (!effectProtoData.TryGetComponent<StatusEffectComponent>(out var effectProtoComp, Factory))
+        if (!effectProtoData.TryComp<StatusEffectComponent>(out var effectProtoComp, Factory))
             return false;
 
         if (!_whitelist.CheckBoth(uid, effectProtoComp.Blacklist, effectProtoComp.Whitelist))

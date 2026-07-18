@@ -64,7 +64,7 @@ public abstract partial class SharedBorgSwitchableSubtypeSystem : EntitySystem
     protected virtual void UpdateEntityAppearance(Entity<BorgSwitchableSubtypeComponent> entity,
         EntityPrototype borgSubtypePrototype)
     {
-        if (!borgSubtypePrototype.TryGetComponent<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory))
+        if (!borgSubtypePrototype.TryComp<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory))
             return;
 
         if (TryComp(entity, out InteractionPopupComponent? popup))

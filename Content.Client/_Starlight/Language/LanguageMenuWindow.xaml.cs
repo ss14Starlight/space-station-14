@@ -19,18 +19,21 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
     {
         RobustXamlLoader.Load(this);
         _clientLanguageSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>();
-        _clientLanguageSystem.OnLanguagesChanged += UpdateState;
 
         MasterTabContainer.SetTabTitle((int)TabIndex.Spoken, Loc.GetString("language-menu-spoken-tab"));
         MasterTabContainer.SetTabTitle((int)TabIndex.Understood, Loc.GetString("language-menu-understood-tab"));
     }
 
-    protected override void Dispose(bool disposing)
+    protected override void EnteredTree()
     {
-        base.Dispose(disposing);
+        base.EnteredTree();
+        _clientLanguageSystem.OnLanguagesChanged += UpdateState;
+    }
 
-        if (disposing)
-            _clientLanguageSystem.OnLanguagesChanged -= UpdateState;
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+        _clientLanguageSystem.OnLanguagesChanged -= UpdateState;
     }
 
     protected override void Opened()

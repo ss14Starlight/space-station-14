@@ -7,10 +7,10 @@ namespace Content.Shared.DeviceNetwork.Events;
 /// </summary>
 public sealed class BeforeBroadcastAttemptEvent : CancellableEntityEventArgs
 {
-    public readonly IReadOnlySet<DeviceNetworkComponent> Recipients;
-    public HashSet<DeviceNetworkComponent>? ModifiedRecipients;
+    public readonly IReadOnlySet<Entity<DeviceNetworkComponent>> Recipients;
+    public HashSet<Entity<DeviceNetworkComponent>>? ModifiedRecipients;
 
-    public BeforeBroadcastAttemptEvent(IReadOnlySet<DeviceNetworkComponent> recipients)
+    public BeforeBroadcastAttemptEvent(IReadOnlySet<Entity<DeviceNetworkComponent>> recipients)
     {
         Recipients = recipients;
     }

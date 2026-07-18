@@ -23,12 +23,13 @@
   name: religious supplies crate
   description: Contains holy water, a censer and a bible.
   components:
-    - type: StorageFill
-      contents:
-        - id: Bible
-        - id: JugHolywater
-          amount: 2
-        - id: CosmicCenser
+    - type: ContainerFill
+      containers:
+        entity_storage:
+        - Bible
+        - JugHolywater
+        - JugHolywater
+        - CosmicCenser
 
 - type: entity
   id: CrateScienceAnomalousContainment
@@ -36,11 +37,12 @@
   name: anomalous containment supplies crate
   description: Contains a Containment Oubliette circuit board and two A.P.E circuit boards.
   components:
-    - type: StorageFill
-      contents:
-        - id: OublietteCircuitBoard
-        - id: APECircuitboard
-          amount: 2
+    - type: ContainerFill
+      containers:
+        entity_storage:
+        - OublietteCircuitBoard
+        - APECircuitboard
+        - APECircuitboard
 
 - type: cargoProduct
   id: ServiceReligiousSupplies
