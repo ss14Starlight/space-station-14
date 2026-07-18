@@ -1,165 +1,4 @@
 Entries:
-- author: Teddiousbear, Hanz(rButler)
-  changes:
-  - message: Added four new uniforms to dutyoff.
-    type: Add
-  id: 406296
-  time: '2026-06-29T08:21:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4947
-- author: Teddiousbear, Hanz(rButler)
-  changes:
-  - message: Added four new uniforms to brigmed.
-    type: Add
-  id: 406297
-  time: '2026-06-29T08:21:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4947
-- author: Teddiousbear, Hanz(rButler)
-  changes:
-  - message: Added two new uniforms to warden.
-    type: Add
-  id: 406298
-  time: '2026-06-29T08:21:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4947
-- author: Teddiousbear, Hanz(rButler)
-  changes:
-  - message: Added new hat to secoff.
-    type: Add
-  id: 406299
-  time: '2026-06-29T08:21:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4947
-- author: BornStellar and Hanz
-  changes:
-  - message: X-03 phase shield. A toggleable energy shield with an internal battery! While it is susceptible to EMPs and isn't as strong as its metal based counterparts, the fact that it self charges while not in use and stores easily in a pocket puts the 'Shield' into Blueshield officer.
-    type: Add
-  id: 406300
-  time: '2026-06-29T14:58:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4903
-- author: Tjmaxmillion
-  changes:
-  - message: CC Job icons now have a darker border.
-    type: Tweak
-  id: 406301
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
-- author: Tjmaxmillion
-  changes:
-  - message: CC IDs now have the CC logo rather than the NT logo.
-    type: Tweak
-  id: 406302
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
-- author: Tjmaxmillion
-  changes:
-  - message: CCO IDs are now green.
-    type: Tweak
-  id: 406303
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
-- author: Tjmaxmillion
-  changes:
-  - message: GSO job icon now match CC and ERT.
-    type: Tweak
-  id: 406304
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
-- author: Tjmaxmillion
-  changes:
-  - message: NTSF IDs not use NTSF job icon.
-    type: Tweak
-  id: 406305
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
-- author: Tjmaxmillion
-  changes:
-  - message: Marine job icons now match NTSF.
-    type: Tweak
-  id: 406306
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
-- author: Tjmaxmillion
-  changes:
-  - message: IDs that had an 8x7 job icon square are now 8x8.
-    type: Tweak
-  id: 406307
-  time: '2026-06-29T15:36:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4952
-- author: mikeysaurus
-  changes:
-  - message: Personal AIs can now purchase and learn Felyaic from their store.
-    type: Fix
-  id: 406308
-  time: '2026-06-30T15:27:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4963
-- author: mikeysaurus
-  changes:
-  - message: Silicons now understand Rodentia's language, Squeakish.
-    type: Fix
-  id: 406309
-  time: '2026-06-30T15:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4956
-- author: mikeysaurus
-  changes:
-  - message: Personal AIs can now purchase and learn Squeakish from their store.
-    type: Fix
-  id: 406310
-  time: '2026-06-30T15:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4956
-- author: mikeysaurus
-  changes:
-  - message: Adjusts Rodentia emote sounds to properly match their gender.
-    type: Fix
-  id: 406311
-  time: '2026-06-30T15:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4956
-- author: Johnny
-  changes:
-  - message: (Reach) Added a parallax to the background that looks nice!
-    type: Add
-  id: 406312
-  time: '2026-07-01T08:09:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4946
-- author: Johnny
-  changes:
-  - message: (Reach) Multiple heads of staffs offices, such as CMO and QM.
-    type: Add
-  id: 406313
-  time: '2026-07-01T08:09:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4946
-- author: Johnny
-  changes:
-  - message: (Reach) Station anchor in the back incase the shuttle needs to anchor in place.
-    type: Add
-  id: 406314
-  time: '2026-07-01T08:09:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4946
-- author: Johnny
-  changes:
-  - message: (Reach) Reach is now able to FTL, do with this information what you will.
-    type: Add
-  id: 406315
-  time: '2026-07-01T08:09:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4946
-- author: Johnny
-  changes:
-  - message: (Reach) Reach's main orientation faces north instead of east, meaning bridge is up engineering is down.
-    type: Tweak
-  id: 406316
-  time: '2026-07-01T08:09:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4946
-- author: Johnny
-  changes:
-  - message: (Reach) Medical has been changed to hopefully be better.
-    type: Tweak
-  id: 406317
-  time: '2026-07-01T08:09:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4946
-- author: Johnny
-  changes:
-  - message: (Reach) Engineering has been altered to hopefully be better.
-    type: Tweak
-  id: 406318
-  time: '2026-07-01T08:09:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4946
 - author: Johnny
   changes:
   - message: (Reach) Multiple rooms have been expanded to hopefully be better.
@@ -2799,4 +2638,165 @@ Entries:
   id: 406695
   time: '2026-07-17T12:12:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5166
+- author: Caws
+  changes:
+  - message: (Starboard) Brigmedic now has doors connecting to the main hallway so that Brigmedics don't need to walk all the way around from Maintenance. These doors also allow Paramedics to deliver Security to Brigmedic without having to go around as well.
+    type: Add
+  id: 406696
+  time: '2026-07-18T10:44:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5177
+- author: Caws
+  changes:
+  - message: '(Starboard) Added the following to the BSO room: Combat medkit, recharger, cell recharger, AAC tablet.'
+    type: Add
+  id: 406697
+  time: '2026-07-18T10:44:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5177
+- author: Caws
+  changes:
+  - message: (Starboard) Salvage dock has been extended (the sticky-out bit on the dock no longer stops you from docking).
+    type: Tweak
+  id: 406698
+  time: '2026-07-18T10:44:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5177
+- author: Caws
+  changes:
+  - message: (Starboard) The sticky-out bit on the Salvage dock now aligns with the Salvage shuttle's blast doors.
+    type: Tweak
+  id: 406699
+  time: '2026-07-18T10:44:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5177
+- author: Caws
+  changes:
+  - message: (Starboard) Mining's dock has been extended so that it doesn't block Salvage from docking.
+    type: Tweak
+  id: 406700
+  time: '2026-07-18T10:44:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5177
+- author: Caws
+  changes:
+  - message: (Starboard) Fixed the rotation of a wallmounted NanoMed that would dispense items into a wall.
+    type: Fix
+  id: 406701
+  time: '2026-07-18T10:44:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5177
+- author: Caws
+  changes:
+  - message: (Starboard) Fixed the BSO's room having a big ERROR in it.
+    type: Fix
+  id: 406702
+  time: '2026-07-18T10:44:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5177
+- author: Caws
+  changes:
+  - message: (Starboard) Removed the extra ammo / magazines from the BSO room.
+    type: Remove
+  id: 406703
+  time: '2026-07-18T10:44:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5177
+- author: OMEGA
+  changes:
+  - message: (Cluster) Coroner's locker to Morgue.
+    type: Add
+  id: 406704
+  time: '2026-07-18T11:29:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5183
+- author: OMEGA
+  changes:
+  - message: (Cluster) Roboticist's locker to Robotics.
+    type: Add
+  id: 406705
+  time: '2026-07-18T11:29:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5183
+- author: OMEGA
+  changes:
+  - message: (Cluster) Overhauled piping network.
+    type: Tweak
+  id: 406706
+  time: '2026-07-18T11:29:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5183
+- author: neomoth
+  changes:
+  - message: Fix a small bug where upon relogging with a pulled-down mask, a popup would show up saying you need to pull it down when trying to eat/drink despite it already being down.
+    type: Fix
+  id: 406707
+  time: '2026-07-18T11:49:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5178
+- author: OMEGA
+  changes:
+  - message: (Bagel) Guidebook crates, and light switch system to Library.
+    type: Add
+  id: 406708
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: OMEGA
+  changes:
+  - message: (Bagel) Small room for miners, with a ticket machine and shuttle console.
+    type: Add
+  id: 406709
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: OMEGA
+  changes:
+  - message: (Bagel) External dock for Mining and Salvage shuttles.
+    type: Add
+  id: 406710
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: OMEGA
+  changes:
+  - message: (Bagel) Coroner, Roboticist and Surgeon lockers.
+    type: Add
+  id: 406711
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: OMEGA
+  changes:
+  - message: (Bagel) Small conveyor belt at Cargo front, skates to Mail room.
+    type: Add
+  id: 406712
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: OMEGA
+  changes:
+  - message: (Bagel) Air alarms added across station.
+    type: Add
+  id: 406713
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: OMEGA
+  changes:
+  - message: (Bagel) Rearranged and redecorated Engineering.
+    type: Tweak
+  id: 406714
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: OMEGA
+  changes:
+  - message: (Bagel) Rearranged and redecorated Robotics.
+    type: Tweak
+  id: 406715
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: OMEGA
+  changes:
+  - message: (Bagel) Disposals improvements.
+    type: Tweak
+  id: 406716
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: OMEGA
+  changes:
+  - message: (Bagel) Tweaked bridge layout, added atmospheric alerts console.
+    type: Tweak
+  id: 406717
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
+- author: OMEGA
+  changes:
+  - message: (Bagel) Distro and Waste pipe networks updated with more coverage.
+    type: Tweak
+  id: 406718
+  time: '2026-07-18T12:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5130
 Order: -1
