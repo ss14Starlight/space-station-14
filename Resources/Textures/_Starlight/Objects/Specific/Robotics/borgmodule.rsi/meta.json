@@ -1,58 +1,111 @@
 {
     "version": 1,
     "license": "CC0-1.0",
-    "copyright": "Created by Road-Train (github) for Space Station 14. Centcomm module by Abby (happymemories11 - discord), MedTak by SevenShades",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "centcomm"
+            "name": "centcomm",
+            "copyright": "Centcomm module by Abby (happymemories11 - discord)"
         },
         {
-            "name": "icon-centcomm"
+            "name": "icon-centcomm",
+            "copyright": "Created by Road-Train (github) for Space Station 14."
         },
         {
             "name": "base-icon-inhand-left",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
         {
             "name": "base-icon-inhand-right",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
         {
             "name": "base-module-inhand-left",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
         {
             "name": "base-module-inhand-right",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
         {
             "name": "base-part-inhand-left",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
         {
             "name": "base-part-inhand-right",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
         {
             "name": "base-stripes-inhand-left",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
         {
             "name": "base-stripes-inhand-right",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Created by EmoGarbage404 (github) for Space Station 14"
         },
         {
-            "name": "medtak"
+            "name": "medtak",
+            "copyright": "SevenShades"
         },
         {
-            "name": "icon-medtak-med"
+            "name": "icon-medtak-med",
+            "copyright": "SevenShades"
         },
         {
-            "name": "icon-medtak-sec"
+            "name": "icon-medtak-sec",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "icon-loading",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "icon-paperwork",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "icon-mail",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "icon-mats",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "icon-surgery",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "icon-cooking",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "icon-bartending",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "command",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "hauling",
+            "copyright": "SevenShades"
+        },
+        {
+            "name": "mining",
+            "copyright": "SevenShades"
         },
 		{
             "name": "xenoborg_heavy",
@@ -77,6 +130,30 @@
 		{
             "name": "icon-xenoborg-hypo2",
 			"copyright": "Samuka-C, wonderfulnewworld"
+        },
+        {
+            "name": "icon-plumbing",
+            "copyright": "AegisShieldDev (github)"
+        },
+        {
+            "name": "makeshift",
+            "copyright": "Conflee"
+        },
+        {
+            "name": "icon-knife",
+            "copyright": "Conflee"
+        },
+        {
+            "name": "icon-salvage-defense",
+            "copyright": "Ohelig (github)"
+        },
+        {
+            "name": "icon-hands",
+            "copyright": "Citrea"
+        },
+        {
+            "name": "icon-nt",
+            "copyright": "Rinary"
         }
     ]
 }

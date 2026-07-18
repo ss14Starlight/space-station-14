@@ -71,3 +71,12 @@
   components:
   - type: Flatpack
     entity: VendingMachineSyndieDrobe
+
+- type: entity
+  parent: BaseFlatpack
+  id: IceCreamMakerFlatpack
+  name: ice cream maker flatpack
+  description: One ice cream maker in one multitool press!
+  components:
+  - type: Flatpack
+    entity: IceCreamMaker
