@@ -4,7 +4,7 @@
   parent: JobIcon
   id: JobIconSyndicateCaptain
   icon:
-    sprite: &starlight-job-icon-rsi /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: &starlight-job-icon-rsi /Textures/_Starlight/Admeme/EvilJobVariants/Interface/Misc/job_icons.rsi
     state: SyndicateCaptain
   jobName: job-name-syndicate-captain
   allowSelection: false
