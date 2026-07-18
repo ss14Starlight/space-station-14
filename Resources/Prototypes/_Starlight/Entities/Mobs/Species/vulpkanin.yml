@@ -36,13 +36,6 @@
       Unsexed: MaleVulpkanin
   - type: Damageable
     damageModifierSet: Vulpkanin
-    # Starlight Start
-  - type: Smeller
-  - type: UserInterface
-    interfaces:
-      enum.ScentSniffUiKey.Key:
-        type: ScentSniffBoundUserInterface
-    # Starlight End
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/pierce.ogg
