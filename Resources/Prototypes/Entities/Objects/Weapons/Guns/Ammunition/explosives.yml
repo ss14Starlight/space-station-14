@@ -110,9 +110,11 @@
   - type: SpentAmmoVisuals
     state: flash
     suffix: false
+  # Starlight-start
   - type: Tag
     tags:
-    - GrenadeLessLethal # Starlight
+    - GrenadeLessLethal
+  # Starlight-end
 
 - type: entity
   id: GrenadeFrag
