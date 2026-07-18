@@ -184,4 +184,19 @@ Entries:
   id: 500001
   time: '2026-07-18T16:59:55.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/50
+- author: Beans
+  changes:
+  - message: Added Material Silo & Fabs to Engineering.
+    type: Tweak
+  - message: Extended Cargo Docks so both shuttles can dock without blocking arrivals.
+    type: Tweak
+  - message: Fixed Genpop on reach, only having a out door to security.
+    type: Tweak
+  - message: Updated Virology on Cork.
+    type: Tweak
+  - message: Added Virology in Medical Maints on Saltern.
+    type: Add
+  id: 490001
+  time: '2026-07-18T19:56:28.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/49
 
