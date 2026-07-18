@@ -162,3 +162,44 @@
     weight: 2 # Its a cool shippy ship! Also making it around as equal as the cruiser cause its that big.
   - type: LoadMapRule
     gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SS13-Quail.yml
+
+- type: entity
+  id: UnknownShuttleMeatZone
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Meatzone.yml # Starlight
+
+- type: entity
+  id: UnknownShuttleMicroshuttle
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    weight: 11 # this is higher because its just a little generic personal shuttle
+    maxOccurrences: 4
+  - type: LoadMapRule
+    gridPath: /Maps/Shuttles/ShuttleEvent/microshuttle.yml
+
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleDisasterEvacPod
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming
+    maxOccurrences: 3
+  - type: LoadMapRule
+    gridPath: /Maps/Shuttles/ShuttleEvent/disaster_evacpod.yml
+
+# The power of 3 clowns proved too strong for the players and may need to be 1984'ed. Replace this with a more engaging clown shuttle. # Ill honour this in a diff PR for whoever put this here beforehand. - Johnny
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleHonki
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    weight: 2
+  - type: LoadMapRule
+    gridPath: /Maps/Shuttles/ShuttleEvent/honki.yml
