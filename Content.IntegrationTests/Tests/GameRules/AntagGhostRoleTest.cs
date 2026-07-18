@@ -49,16 +49,15 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Assert.That(rule.TryGetComponent<AntagSelectionComponent>(out var antag, SEntMan.ComponentFactory), Is.True);
 
         STicker.StartGameRule(ruleId, out var gameRule);
-        var gameRuleSelection = SEntMan.GetComponent<AntagSelectionComponent>(gameRule); // Starlight
 
         Dictionary<ProtoId<AntagSpecifierPrototype>, int> rules = [];
 
         foreach (var selector in antag!.Antags)
         {
             var specifier = SProtoMan.Index(selector.Proto);
-            var count = _antagSelection.GetTargetAntagCount((gameRule, gameRuleSelection), 1, selector.Proto); // Starlight, get the target antag count for this selector
+            var count = selector.GetTargetAntagCount(_random, 1);
             // We should always spawn at least one antag if we add a GameRule
-            Assert.That(count, Is.GreaterThanOrEqualTo(0)); // Starlight, we have some antags that intentionally underspawn based on playerRatio. As the person who implemented that... I'm really starting to regret my life choices.
+            Assert.That(count, Is.GreaterThanOrEqualTo(0)); // Starlight, we have some antags that intentionally underspawn based on playerRatio
 
             if (specifier.SpawnerPrototype == null)
                 continue;
@@ -79,7 +78,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         }
 
         // Ensure all ghost roles spawned and were assigned!!!
-        Assert.That(rules.Values, Is.All.GreaterThanOrEqualTo(0)); // Starlight. Some rules may target more antags than can be physically placed on this integration map, aka Terror Spiders, so ensure we didn't over-spawn instead.
+        Assert.That(rules.Values, Is.All.Zero);
 
         // End all rules
         STicker.ClearGameRules();
@@ -106,13 +105,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         var roleEnumerator = SEntMan.EntityQueryEnumerator<GhostRoleAntagSpawnerComponent, GhostRoleComponent, TransformComponent>();
         while (roleEnumerator.MoveNext(out var spawner, out var role, out var xform))
         {
-            #region Starlight
-            // Attempt to take the ghost role for this spawner.
-            var tookRole = AssertGhostRoleTaken(spawner, role, xform);
-            if (!tookRole)
-                continue;
-            #endregion
-
+            AssertGhostRoleTaken(spawner, role, xform);
             var newMind = ServerSession!.GetMind();
             Assert.That(newMind, Is.Not.EqualTo(mind));
             mind = newMind;
@@ -124,7 +117,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
     }
 
-    private bool AssertGhostRoleTaken(GhostRoleAntagSpawnerComponent spawner, GhostRoleComponent role, TransformComponent xform) // Starlight, returns a bool instead, so we can use it elsewhere
+    private void AssertGhostRoleTaken(GhostRoleAntagSpawnerComponent spawner, GhostRoleComponent role, TransformComponent xform)
     {
         // Ensure the ghost role spawner spawned correctly!
         Assert.That(spawner.Definition, Is.Not.Null);
@@ -143,7 +136,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Assert.That(_ghostRole.Takeover(ServerSession!, role.Identifier), Is.EqualTo(expectedAllowed));
 
         if (!expectedAllowed)
-            return false; // Starlight
+            return;
         #endregion
 
         // Take the ghost role and ensure we take it!
@@ -161,7 +154,5 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         // I will not get heisentest due to floating point errors
         Assert.That(MathHelper.CloseTo(sessionXform.Coordinates.X, xform.Coordinates.X, 0.001f), Is.True);
         Assert.That(MathHelper.CloseTo(sessionXform.Coordinates.Y, xform.Coordinates.Y, 0.001f), Is.True);
-
-        return true; // Starlight
     }
 }

@@ -11,7 +11,6 @@ using Content.Shared.Antag;
 using Content.Shared.CCVar;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared.GameTicking;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 
@@ -113,11 +112,8 @@ public sealed class AllGamePresetsStartTest : AntagTest
         {
             for (var count = 0; count < amount; count++)
             {
-                #region Starlight
-                Assert.That(i, Is.LessThan(players.Count), "Tried to assign more antags than there were players"); // Ensures we don't try to assign more antags than available players
-                await Pair.SetAntagPreference(antag.PrefRoles.FirstOrDefault(), true, players[i].UserId);
-                i++;
-                #endregion
+                await Pair.SetAntagPreference(antag.PrefRoles.FirstOrDefault(), true, players[i++].UserId);
+                Assert.That(i < min, $"Tried to assign more antags than there were players");
             }
         }
 
@@ -147,32 +143,12 @@ public sealed class AllGamePresetsStartTest : AntagTest
 
         await Server.WaitPost(() =>
         {
-            #region Starlight
-            // I don't know *why* multislot breaks so many things... Just that it does.
-            var playerByMind = new Dictionary<EntityUid, ICommonSession>();
-            foreach (var testPlayer in players)
+            var j = 0;
+            foreach (var (antag, amount) in rules)
             {
-                if (!SMind.TryGetMind(testPlayer, out var mindId, out _))
-                    continue;
-
-                playerByMind[mindId] = testPlayer;
-            }
-
-            foreach (var ruleUid in STicker.GetAddedGameRules())
-            {
-                if (!SEntMan.TryGetComponent<AntagSelectionComponent>(ruleUid, out var antagSelection))
-                    continue;
-
-                foreach (var (proto, assignedMinds) in antagSelection.AssignedMinds)
+                for (var count = 0; count < amount; count++)
                 {
-                    var antag = SProtoMan.Index(proto);
-                    foreach (var (mindUid, _) in assignedMinds)
-                    {
-                        Assert.That(playerByMind.TryGetValue(mindUid, out var playerSession), Is.True,
-                            $"Failed to find session for assigned mind {SEntMan.ToPrettyString(mindUid)} as antag {antag.ID}");
-                        SAssertAntagInitialized(antag, playerSession!);
-                    }
-                    #endregion
+                    SAssertAntagInitialized(antag, players[j++]);
                 }
             }
         });
