@@ -338,6 +338,7 @@
       - id: LidSalami
         weight: 0.05
       - id: MakeshiftID # Starlight
+        weight: 0.2 # Starlight
       - id: Flash3Use # Starlight
         weight: 0.3 # Starlight
       - id: Flash4Use # Starlight
