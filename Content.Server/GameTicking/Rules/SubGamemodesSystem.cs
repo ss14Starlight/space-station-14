@@ -5,7 +5,7 @@ using Content.Shared.Storage;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed partial class SubGamemodesSystem : GameRuleSystem<SubGamemodesComponent> // Starlight edit: Editing this anyway may as well fix it not being partial.
+public sealed partial class SubGamemodesSystem : GameRuleSystem<SubGamemodesComponent> // Starlight edit
 {
     [Dependency] private IChatManager _chat = default!; // Starlight
     [Dependency] private GameTicker _ticker = default!; // Starlight
