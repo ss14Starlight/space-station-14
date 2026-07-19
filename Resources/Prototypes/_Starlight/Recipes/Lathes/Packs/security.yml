@@ -23,6 +23,7 @@
   - MagazineBoxRiflePractice
   - WeaponDisablerPractice
   - WeaponLaserCarbinePractice
+  - WeaponFlareGunSecurity
   - MagazineDMRPractice
 
 - type: latheRecipePack
@@ -117,11 +118,6 @@
   - SpeedLoaderShotgunBeanbag
 # Battery
   - MagazineBatteryLr30
-# Peacekeeper
-  - BoxPeacekeeperGas
-  - BoxPeacekeeperStinger
-  - BoxPeacekeeperFlash
-  - BoxPeacekeeperBaton
 ####################################################
 
 - type: latheRecipePack
@@ -170,6 +166,7 @@
   - GrenadeBaton
   - GrenadeBlast
   - GrenadeEMP
+  - GrenadeFlash
   - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe

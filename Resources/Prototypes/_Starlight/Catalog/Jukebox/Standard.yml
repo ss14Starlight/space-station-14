@@ -34,8 +34,128 @@
   path:
     path: /Audio/_Starlight/Music/Jukebox/the_midnight_cry_by_christofori.ogg
 
-- type: jukebox
+- type: jukebox # Start - Lobby Music added to jukebox
   id: thestation
   name: A-Guy173 - The Station
   path:
     path: /Audio/_Starlight/Lobby/thestation.ogg
+
+- type: jukebox
+  id: thunderdome
+  name: MashedByMachines - Thunderdome
+  path:
+    path: /Audio/Lobby/thunderdome.ogg
+
+- type: jukebox
+  id: spaceasshole
+  name: Chris_Remo - Space Asshole
+  path:
+    path: /Audio/Lobby/space_asshole.ogg
+
+- type: jukebox
+  id: endlessspace
+  name: SolusLunes - Endless Space
+  path:
+    path: /Audio/Lobby/endless_space.ogg
+
+- type: jukebox
+  id: singuloose
+  name: Schiedková - Singuloose
+  path:
+    path: /Audio/Lobby/singuloose.ogg
+
+- type: jukebox
+  id: comethaley
+  name: Stellardrone - Comet Haley
+  path:
+    path: /Audio/Lobby/comet_haley.ogg
+
+- type: jukebox
+  id: spacstac
+  name: Hayabusa - Spac Stac
+  path:
+    path: /Audio/Lobby/Spac_Stac.ogg
+
+- type: jukebox
+  id: pwmur
+  name: Sunbeamstress - PWMUR
+  path:
+    path: /Audio/Lobby/pwmur.ogg
+
+- type: jukebox
+  id: lasersripapartthebulkhead
+  name: Sunbeamstress - Lasers Rip Apart the Bulkhead
+  path:
+    path: /Audio/Lobby/lasers_rip_apart_the_bulkhead.ogg
+
+- type: jukebox
+  id: everylightisblinkingatonce
+  name: Sunbeamstress - Every Light is Blinking at Once
+  path:
+    path: /Audio/Lobby/every_light_is_blinking_at_once.ogg
+
+- type: jukebox
+  id: atomicamnesiammx
+  name: Philip Dyer - Atomic Amnesia MMX
+  path:
+    path: /Audio/Lobby/atomicamnesiammx.ogg
+
+- type: jukebox
+  id: skubbystep
+  name: Finket - Skubstep
+  path:
+    path: /Audio/Lobby/skubstep.ogg
+
+- type: jukebox
+  id: timefracture
+  name: Bad_History - Timefracture
+  path:
+    path: /Audio/_Starlight/Lobby/timefracture.ogg
+
+- type: jukebox
+  id: hullrupture
+  name: Haplogynae - Hull Rupture
+  path:
+    path: /Audio/_Starlight/Lobby/hull_rupture.ogg
+
+- type: jukebox
+  id: echosinthedeep
+  name: Nightyshade - Echos in the Deep
+  path:
+    path: /Audio/_Starlight/Lobby/echoes-in-the-deep.ogg
+
+- type: jukebox
+  id: 762treastise
+  name: Haplogynae - 762 Treastise
+  path:
+    path: /Audio/_Starlight/Lobby/762_treastise.ogg
+
+- type: jukebox
+  id: aggravatedassaultbymelcom
+  name: Melcom - Aggravated Assault
+  path:
+    path: /Audio/_Starlight/Lobby/aggravated_assault_by_melcom_.ogg
+
+- type: jukebox
+  id: bluespace
+  name: Beptol Corporation Acoustics - Bluespace
+  path:
+    path: /Audio/_Starlight/Lobby/Bluespace.ogg
+
+- type: jukebox
+  id: redefininglines
+  name: Beptol Corporation Acoustics - Redefining Lines
+  path:
+    path: /Audio/_Starlight/Lobby/RedefiningLines.ogg
+
+- type: jukebox
+  id: homeburnchamber
+  name: Randy Goffe - HOME Burn Chamber
+  path:
+    path: /Audio/_Starlight/Lobby/HOME_Burn_Chamber_Starlight.ogg
+
+- type: jukebox
+  id: stenchofwhiskey
+  name: Hermitsabee - Stench of Whiskey
+  path:
+    path: /Audio/_Starlight/Lobby/stenchOfWhiskey.ogg # End - Lobby music added to jukebox
