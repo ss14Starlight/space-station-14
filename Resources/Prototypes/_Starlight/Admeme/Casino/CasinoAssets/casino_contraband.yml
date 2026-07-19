@@ -3,8 +3,8 @@
   abstract: true
   components:
     - type: Contraband
-      severity: Gamorrah Casino
+      severity: Casino
 
 - type: contrabandSeverity
-  id: Gamorrah Casino
+  id: Casino
   examineText: contraband-examine-text-Casino
