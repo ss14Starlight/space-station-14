@@ -188,7 +188,7 @@ public sealed partial class ShowAccessSystem : EntitySystem
         }
 
         // alphabetically sort the actual access tags into their sorted groups.
-        var sorted = new SortedDictionary<string, SortedSet<string>>();
+        var sorted = new Dictionary<string, SortedSet<string>>();
         const string Ungrouped = "\uffff";
         foreach (var protoId in protoIds)
         {
