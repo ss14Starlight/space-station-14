@@ -1,10 +1,12 @@
 using Content.Server._Starlight.Honeypot.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Honeypot;
 
 /// <summary>
 /// Replaces entities marked with <see cref="ReplaceOnInitComponent"/> on map init with the specified prototype and overrides.
 /// </summary>
+[EntityCategory("Spawner")]
 public sealed partial class ReplaceOnInitSystem : EntitySystem
 {
     public override void Initialize()

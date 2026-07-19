@@ -15,26 +15,31 @@
 
 ### Normal
 - type: entity
-  parent: ReinforcedWindow
+  parent: [MarkerBase, ReinforcedWindow]
   id: ReinforcedWindowHoneypot
   description: &honeypotDesc Notifies admins when it gets damaged. Can be destroyed as normal.
-  suffix: &honeypotSuffix Honeypot, Do Not Map
+  suffix: &honeypotSuffix Honeypot
   components:
     - type: ReplaceOnInit
       proto: ReinforcedWindow
       overrides: &honeypotOverrides
         - type: AdminNotifyOnDamage
           subject: "honeypot"
-    - &honeypotSprite
+    - &glassReinforcedWindowSprite
       type: Sprite
-      color: "#999999"
+      sprite: Structures/Windows/reinforced_window.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: &scale 1.25,1.25
+        - state: full
 
 ### Indestructible
 - type: entity
-  parent: ReinforcedWindow
+  parent: [MarkerBase, ReinforcedWindow]
   id: ReinforcedWindowHoneypotIndestructible
   description: &honeypotDescIndestructible Notifies admins when it gets damaged and is secretly indestructible.
-  suffix: &honeypotSuffixIndestructible Honeypot, Indestructible, Do Not Map
+  suffix: &honeypotSuffixIndestructible Honeypot, Indestructible
   components:
     - type: ReplaceOnInit
       proto: ReinforcedWindow
@@ -43,13 +48,13 @@
           subject: "honeypot"
         - type: Destructible
           thresholds: []
-    - *honeypotSprite
+    - *glassReinforcedWindowSprite
 
 ## Diagonal
 
 ### Normal
 - type: entity
-  parent: ReinforcedWindowDiagonal
+  parent: [MarkerBase, ReinforcedWindowDiagonal]
   id: ReinforcedWindowDiagonalHoneypot
   description: *honeypotDesc
   suffix: *honeypotSuffix
@@ -57,11 +62,18 @@
     - type: ReplaceOnInit
       proto: ReinforcedWindowDiagonal
       overrides: *honeypotOverrides
-    - *honeypotSprite
+    - &glassReinforcedDiagonalSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_window_diagonal.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: state0
 
 ### Indestructible
 - type: entity
-  parent: ReinforcedWindowDiagonal
+  parent: [MarkerBase, ReinforcedWindowDiagonal]
   id: ReinforcedWindowDiagonalHoneypotIndestructible
   description: *honeypotDescIndestructible
   suffix: *honeypotSuffixIndestructible
@@ -69,13 +81,13 @@
     - type: ReplaceOnInit
       proto: ReinforcedWindowDiagonal
       overrides: *honeypotOverridesIndestructible
-    - *honeypotSprite
+    - *glassReinforcedDiagonalSprite
 
 ## Directional
 
 ### Normal
 - type: entity
-  parent: WindowReinforcedDirectional
+  parent: [MarkerBase, WindowReinforcedDirectional]
   id: WindowReinforcedDirectionalHoneypot
   description: *honeypotDesc
   suffix: *honeypotSuffix
@@ -83,11 +95,18 @@
     - type: ReplaceOnInit
       proto: WindowReinforcedDirectional
       overrides: *honeypotOverrides
-    - *honeypotSprite
+    - &glassReinforcedDirectionalSprite
+      type: Sprite
+      sprite: Structures/Windows/directional.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: reinforced_window
 
 ### Indestructible
 - type: entity
-  parent: WindowReinforcedDirectional
+  parent: [MarkerBase, WindowReinforcedDirectional]
   id: WindowReinforcedDirectionalHoneypotIndestructible
   description: *honeypotDescIndestructible
   suffix: *honeypotSuffixIndestructible
@@ -95,7 +114,7 @@
     - type: ReplaceOnInit
       proto: WindowReinforcedDirectional
       overrides: *honeypotOverridesIndestructible
-    - *honeypotSprite
+    - *glassReinforcedDirectionalSprite
 
 # Plasma window
 
@@ -103,7 +122,7 @@
 
 ### Normal
 - type: entity
-  parent: ReinforcedPlasmaWindow
+  parent: [MarkerBase, ReinforcedPlasmaWindow]
   id: ReinforcedPlasmaWindowHoneypot
   description: *honeypotDesc
   suffix: *honeypotSuffix
@@ -111,11 +130,18 @@
     - type: ReplaceOnInit
       proto: ReinforcedPlasmaWindow
       overrides: *honeypotOverrides
-    - *honeypotSprite
+    - &plasmaReinforcedSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_plasma_window.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: full
 
 ### Indestructible
 - type: entity
-  parent: ReinforcedPlasmaWindow
+  parent: [MarkerBase, ReinforcedPlasmaWindow]
   id: ReinforcedPlasmaWindowHoneypotIndestructible
   description: *honeypotDescIndestructible
   suffix: *honeypotSuffixIndestructible
@@ -123,13 +149,13 @@
     - type: ReplaceOnInit
       proto: ReinforcedPlasmaWindow
       overrides: *honeypotOverridesIndestructible
-    - *honeypotSprite
+    - *plasmaReinforcedSprite
 
 ## Diagonal
 
 ### Normal
 - type: entity
-  parent: ReinforcedPlasmaWindowDiagonal
+  parent: [MarkerBase, ReinforcedPlasmaWindowDiagonal]
   id: ReinforcedPlasmaWindowDiagonalHoneypot
   description: *honeypotDesc
   suffix: *honeypotSuffix
@@ -137,11 +163,18 @@
     - type: ReplaceOnInit
       proto: ReinforcedPlasmaWindowDiagonal
       overrides: *honeypotOverrides
-    - *honeypotSprite
+    - &plasmaReinforcedDiagonalSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_plasma_diagonal.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: state0
 
 ### Indestructible
 - type: entity
-  parent: ReinforcedPlasmaWindowDiagonal
+  parent: [MarkerBase, ReinforcedPlasmaWindowDiagonal]
   id: ReinforcedPlasmaWindowDiagonalHoneypotIndestructible
   description: *honeypotDescIndestructible
   suffix: *honeypotSuffixIndestructible
@@ -149,13 +182,13 @@
     - type: ReplaceOnInit
       proto: ReinforcedPlasmaWindowDiagonal
       overrides: *honeypotOverridesIndestructible
-    - *honeypotSprite
+    - *plasmaReinforcedDiagonalSprite
 
 ## Directional
 
 ### Normal
 - type: entity
-  parent: PlasmaReinforcedWindowDirectional
+  parent: [MarkerBase, PlasmaReinforcedWindowDirectional]
   id: PlasmaReinforcedWindowDirectionalHoneypot
   description: *honeypotDesc
   suffix: *honeypotSuffix
@@ -163,11 +196,18 @@
     - type: ReplaceOnInit
       proto: PlasmaReinforcedWindowDirectional
       overrides: *honeypotOverrides
-    - *honeypotSprite
+    - &plasmaReinforcedDirectionalSprite
+      type: Sprite
+      sprite: Structures/Windows/directional.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: plasma_reinforced_window
 
 ### Indestructible
 - type: entity
-  parent: PlasmaReinforcedWindowDirectional
+  parent: [MarkerBase, PlasmaReinforcedWindowDirectional]
   id: PlasmaReinforcedWindowDirectionalHoneypotIndestructible
   description: *honeypotDescIndestructible
   suffix: *honeypotSuffixIndestructible
@@ -175,7 +215,7 @@
     - type: ReplaceOnInit
       proto: PlasmaReinforcedWindowDirectional
       overrides: *honeypotOverridesIndestructible
-    - *honeypotSprite
+    - *plasmaReinforcedDirectionalSprite
 
 # Uranium window
 
@@ -183,7 +223,7 @@
 
 ### Normal
 - type: entity
-  parent: ReinforcedUraniumWindow
+  parent: [MarkerBase, ReinforcedUraniumWindow]
   id: ReinforcedUraniumWindowHoneypot
   description: *honeypotDesc
   suffix: *honeypotSuffix
@@ -191,11 +231,18 @@
     - type: ReplaceOnInit
       proto: ReinforcedUraniumWindow
       overrides: *honeypotOverrides
-    - *honeypotSprite
+    - &uraniumReinforcedSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_uranium_window.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: full
 
 ### Indestructible
 - type: entity
-  parent: ReinforcedUraniumWindow
+  parent: [MarkerBase, ReinforcedUraniumWindow]
   id: ReinforcedUraniumWindowHoneypotIndestructible
   description: *honeypotDescIndestructible
   suffix: *honeypotSuffixIndestructible
@@ -203,13 +250,13 @@
     - type: ReplaceOnInit
       proto: ReinforcedUraniumWindow
       overrides: *honeypotOverridesIndestructible
-    - *honeypotSprite
+    - *uraniumReinforcedSprite
 
 ## Diagonal
 
 ### Normal
 - type: entity
-  parent: ReinforcedUraniumWindowDiagonal
+  parent: [MarkerBase, ReinforcedUraniumWindowDiagonal]
   id: ReinforcedUraniumWindowDiagonalHoneypot
   description: *honeypotDesc
   suffix: *honeypotSuffix
@@ -217,11 +264,18 @@
     - type: ReplaceOnInit
       proto: ReinforcedUraniumWindowDiagonal
       overrides: *honeypotOverrides
-    - *honeypotSprite
+    - &uraniumReinforcedDiagonalSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_uranium_diagonal.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: state0
 
 ### Indestructible
 - type: entity
-  parent: ReinforcedUraniumWindowDiagonal
+  parent: [MarkerBase, ReinforcedUraniumWindowDiagonal]
   id: ReinforcedUraniumWindowDiagonalHoneypotIndestructible
   description: *honeypotDescIndestructible
   suffix: *honeypotSuffixIndestructible
@@ -229,13 +283,13 @@
     - type: ReplaceOnInit
       proto: ReinforcedUraniumWindowDiagonal
       overrides: *honeypotOverridesIndestructible
-    - *honeypotSprite
+    - *uraniumReinforcedDiagonalSprite
 
 ## Directional
 
 ### Normal
 - type: entity
-  parent: UraniumReinforcedWindowDirectional
+  parent: [MarkerBase, UraniumReinforcedWindowDirectional]
   id: UraniumReinforcedWindowDirectionalHoneypot
   description: *honeypotDesc
   suffix: *honeypotSuffix
@@ -243,11 +297,18 @@
     - type: ReplaceOnInit
       proto: UraniumReinforcedWindowDirectional
       overrides: *honeypotOverrides
-    - *honeypotSprite
+    - &uraniumReinforcedDirectionalSprite
+      type: Sprite
+      sprite: Structures/Windows/directional.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: uranium_reinforced_window
 
 ### Indestructible
 - type: entity
-  parent: UraniumReinforcedWindowDirectional
+  parent: [MarkerBase, UraniumReinforcedWindowDirectional]
   id: UraniumReinforcedWindowDirectionalHoneypotIndestructible
   description: *honeypotDescIndestructible
   suffix: *honeypotSuffixIndestructible
@@ -255,6 +316,6 @@
     - type: ReplaceOnInit
       proto: UraniumReinforcedWindowDirectional
       overrides: *honeypotOverridesIndestructible
-    - *honeypotSprite
+    - *uraniumReinforcedDirectionalSprite
 
 # Honeypots END
