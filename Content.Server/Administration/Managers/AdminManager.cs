@@ -415,15 +415,29 @@ namespace Content.Server.Administration.Managers
                 RankId = rankId
             };
 
-            _admins.Add(session, reg);
-            // Starlight-edit
-            OnAdminsCountChanged?.Invoke(_admins.Count);
+            // NullLink AdminCheck may call ReloadAdmin before this finishes loading from the DB.
+            var alreadyPresent = !_admins.TryAdd(session, reg);
+            if (alreadyPresent)
+            {
+                var existing = _admins[session];
+                existing.IsSpecialLogin = specialLogin;
+                existing.RankId = rankId;
+                existing.Data = dat;
+                reg = existing;
+            }
+            else
+            {
+                // Starlight-edit
+                OnAdminsCountChanged?.Invoke(_admins.Count);
+            }
 
             if (session.ContentData()!.Stealthed)
                 reg.Data.Stealth = true;
 
             if (reg.Data.Active)
             {
+                // Still announce when alreadyPresent: ReloadAdmin only sends a private
+                // "became admin" message, not the login announcement.
                 if (_cfg.GetCVar(CCVars.AdminAnnounceLogin))
                 {
                     if (reg.Data.Stealth)

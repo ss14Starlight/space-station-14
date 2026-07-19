@@ -31,17 +31,17 @@ Incubating infections always produce a false-negative swab. A swab can also coll
 ## Blood-panel diagnosis
 
 <GuideEntityEmbed Entity="ChemistryEmptyVial"/>
-<GuideEntityEmbed Entity="MachineCentrifuge"/>
+<GuideEntityEmbed Entity="MachineElectrolysisUnit"/>
 
 1. Use an empty full-size chemistry vial on a patient with a bloodstream.
 
-2. Place the vial into a centrifuge and run it.
+2. Place the vial into an electrolysis unit and run it.
 
 3. Examine the processed vial.
 
 The panel reports the first detected pathogen, stage, dose, matching antibodies, and a summary of damaged, failing, or missing organs. Low-dose incubation below 1.25 can be false-negative.
 
-A blood sample can be used directly on a disease diagnoser or vaccinator without centrifuging, but centrifuging is required for the detailed examine panel.
+A blood sample can be used directly on a disease diagnoser or vaccinator without electrolyzing, but electrolysis is required for the detailed examine panel. The centrifuge is left for chemistry and changeling blood tests.
 
 ## Health analyzer
 

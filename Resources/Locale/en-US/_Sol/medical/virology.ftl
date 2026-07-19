@@ -31,19 +31,23 @@ sol-diagnoser-report-positive = RESULT: {$disease} detected.
     Blood sample: {$blood}
 sol-diagnoser-report-inconclusive = RESULT: Inconclusive.
 sol-diagnoser-report-name = Disease Diagnosis Report
+sol-diagnoser-started = The diagnoser begins analyzing the sample.
 sol-diagnoser-complete = Diagnosis complete. Report printed.
 sol-vaccinator-need-sample = Insert a valid pathogen sample.
 sol-vaccinator-bad-sample = Sample quality insufficient for vaccine production.
+sol-vaccinator-started = The vaccinator begins synthesizing a vaccine.
 sol-vaccinator-produced = Vaccine synthesized.
+sol-disease-machine-busy = The machine is already processing a sample.
 sol-vaccine-failed = Vaccination failed. Patient may already be symptomatic.
 sol-vaccine-applied = You vaccinate {$target}.
 sol-sample-swab = Contains a mucosal/surface sample.
 sol-sample-blood = Contains an unprocessed blood sample.
-sol-sample-blood-centrifuged = Contains a centrifuged blood panel.
+sol-sample-blood-centrifuged = Contains an electrolyzed blood panel.
 
 sol-blood-vial-full = This vial already contains a sample.
 sol-blood-drawn = You draw blood from {$target}.
-sol-blood-panel-not-ready = Blood panel not centrifuged.
+sol-blood-panel-not-ready = Blood panel not electrolyzed. Run the vial through an electrolysis unit.
+sol-blood-panel-ready = The blood panel finishes processing.
 sol-blood-panel-pathogen-negative = Blood panel: no pathogen markers detected.
 sol-blood-panel-inconclusive = Blood panel: inconclusive.
 sol-blood-panel-full = Blood panel:
@@ -68,8 +72,18 @@ sol-surgery-tool-sterilized = The tool is now sterile.
 sol-surgery-tool-disinfected-popup = The tool has been disinfected.
 sol-surgery-dirty-tool-warning = Your surgical tools are dirty! Sterilize them before the next patient.
 sol-surgery-failed-infection-risk = The failed step may have contaminated the wound.
-sol-surgery-inspect-asepsis-verb = Inspect asepsis
-sol-surgery-asepsis-status = Held non-sterile tools: {$dirty}. Surgical mask: { $masked ->
+sol-surgery-inspect-hygiene-verb = Inspect hygiene
+sol-surgery-hygiene-status = Body: { $body ->
+    [contaminated] [color=orange]pathogen contamination[/color]
+    [dirty] [color=yellow]dirty[/color]
+   *[clean] [color=green]clean[/color]
+}. Gloves: { $gloves ->
+    [none] none
+    [sterile] [color=green]sterile[/color]
+    [disinfected] [color=yellow]disinfected[/color]
+    [dirty] [color=red]dirty[/color]
+   *[clean] clean
+}. Surgical mask: { $masked ->
     [true] worn
    *[false] not worn
 }
@@ -78,11 +92,14 @@ sol-surgery-window-title-part = Surgery - {$part}
 sol-surgery-no-actions = No available surgical actions for this part.
 sol-surgery-action-prerequisite = Prerequisite: {$procedure} (for {$goal})
 sol-surgery-action-dirty-tools = Dirty tools — infection risk elevated
+sol-surgery-action-dirty-tools-sterility = Dirty tools — not sterile
 sol-surgery-dirty-confirm = Your tools are not sterile. Proceed with [bold]{$surgery}[/bold] — {$step}?
+sol-surgery-dirty-confirm-infection = Your tools are not sterile — infection risk elevated. Proceed with [bold]{$surgery}[/bold] — {$step}?
 sol-surgery-asepsis-banner = Tools: [color=green]{$sterile} sterile[/color], [color=orange]{$dirty} dirty[/color] · Mask: { $masked ->
     [true] [color=green]on[/color]
     *[false] [color=red]off[/color]
 }
+sol-surgery-tool-banner = Tools: [color=green]{$sterile} sterile[/color], [color=orange]{$dirty} dirty[/color]
 sol-surgery-must-lie-down = [color=red][font size=16]They need to be lying down![/font][/color]
 sol-surgery-needs-table = Needs operating table
 sol-surgery-remove-armor = Remove their armor!
@@ -92,7 +109,7 @@ sol-surgery-item-too-high = Item too high
 sol-surgery-missing-reagent = Missing reagent
 sol-surgery-missing-limb = Can't attach as limb
 sol-surgery-cannot-perform = Cannot perform this step
-sol-surgery-dirty-tool-before-step = Operating with non-sterile tools increases infection risk.
+sol-surgery-dirty-tool-before-step = Operating with non-sterile tools is unsafe.
 
 sol-sterilizer-unpowered = The sterilization chamber controller is unpowered.
 sol-sterilizer-doors-open = Close the entrance airlock to begin sterilization.

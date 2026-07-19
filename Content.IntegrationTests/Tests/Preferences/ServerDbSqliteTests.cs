@@ -112,6 +112,32 @@ namespace Content.IntegrationTests.Tests.Preferences
         }
 
         [Test]
+        public async Task TestSolAllergiesSurviveDatabaseRoundTrip()
+        {
+            var pair = Pair;
+            var db = GetDb(pair.Server);
+            var username = new NetUserId(new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567890"));
+            var original = CharlieCharlieson().WithSolAllergies(
+            [
+                new Content.Shared._Sol.Medical.Allergy.CharacterAllergyPreference(
+                    "SolAllergyWheat",
+                    Content.Shared._Sol.Medical.Allergy.AllergySeverity.Severe),
+            ]);
+
+            await db.InitPrefsAsync(username, original);
+            var prefs = await db.GetPlayerPreferencesAsync(username);
+            var loaded = (HumanoidCharacterProfile)prefs!.Characters[0];
+
+            Assert.That(loaded.SolAllergies, Has.Count.EqualTo(1));
+            Assert.That(loaded.SolAllergies[0].AllergyId.Id, Is.EqualTo("SolAllergyWheat"));
+            Assert.That(loaded.SolAllergies[0].Severity,
+                Is.EqualTo(Content.Shared._Sol.Medical.Allergy.AllergySeverity.Severe));
+            // Free-text medical fields stay untouched.
+            Assert.That(loaded.CDCharacterRecords?.Allergies,
+                Is.EqualTo(original.CDCharacterRecords?.Allergies));
+        }
+
+        [Test]
         public async Task TestNoPendingDatabaseChanges()
         {
             var pair = Pair;

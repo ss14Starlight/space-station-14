@@ -1,4 +1,5 @@
 using Content.Shared._Sol.Medical.Virology.Components;
+using Content.Shared.DoAfter;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -119,3 +120,9 @@ public readonly record struct BioterrorPayloadDeployedEvent(
 /// </summary>
 [ByRefEvent]
 public readonly record struct BioterrorStrainSynthesizedEvent(string StrainId, EntityUid Synthesizer, EntityUid? User);
+
+[Serializable, NetSerializable]
+public sealed partial class DiseaseDiagnosisDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class VaccineProductionDoAfterEvent : SimpleDoAfterEvent;

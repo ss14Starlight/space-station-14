@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Database;
 using Content.Shared._NullLink;
+using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Network;
 
 namespace Content.Server._NullLink.PlayerData;
@@ -88,6 +89,7 @@ public sealed partial class NullLinkPlayerManager
         if (_adminRanksSnapshot == null || _adminRankIds == null)
             return;
 
+        await playerData.AdminCheckLock.WaitAsync();
         try
         {
             var netUserId = new NetUserId(playerId);
@@ -119,7 +121,23 @@ public sealed partial class NullLinkPlayerManager
                         Title = matchedName,
                         Flags = [],
                     };
-                    await _dbManager.AddAdminAsync(admin);
+                    try
+                    {
+                        await _dbManager.AddAdminAsync(admin);
+                    }
+                    catch (DbUpdateException)
+                    {
+                        // Reconnect race: another AdminCheck inserted first. Align rank instead.
+                        existing = await _dbManager.GetAdminDataForAsync(netUserId);
+                        if (existing != null
+                            && _adminRankIds.ContainsValue(existing.AdminRankId ?? -1)
+                            && existing.AdminRankId != matchedRankId)
+                        {
+                            existing.AdminRankId = matchedRankId;
+                            existing.Title = matchedName;
+                            await _dbManager.UpdateAdminAsync(existing);
+                        }
+                    }
                 }
                 else if (_adminRankIds.ContainsValue(existing.AdminRankId ?? -1) && existing.AdminRankId != matchedRankId)
                 {
@@ -142,6 +160,10 @@ public sealed partial class NullLinkPlayerManager
         catch (Exception ex)
         {
             _sawmill.Error($"AdminCheck failed for {playerId}: {ex}");
+        }
+        finally
+        {
+            playerData.AdminCheckLock.Release();
         }
     }
 }

@@ -106,6 +106,11 @@ public abstract partial class SharedSolutionContainerMixerSystem : EntitySystem
                 continue;
 
             _solution.UpdateChemicals(soln.Value, true, reactionMixer);
+
+            // Match ReactionMixerSystem.TryMix so listeners (e.g. Sol blood panels) run for
+            // tabletop machines like the centrifuge / electrolysis unit.
+            var afterMixingEvent = new AfterMixingEvent(uid, ent);
+            RaiseLocalEvent(uid, ref afterMixingEvent);
         }
     }
 

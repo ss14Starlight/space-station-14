@@ -1,6 +1,7 @@
 using Content.Client._Starlight;
 using Content.Client.Hands.Systems;
 using Content.Client._Starlight.Medical.Surgery;
+using Content.Client._Sol.Medical.Virology;
 using Content.Shared._Sol.Medical.Virology.Components;
 using Content.Shared._Starlight;
 using Content.Shared._Starlight.Medical.Body.Part;
@@ -34,6 +35,7 @@ public sealed class SolContextualSurgeryBui : BoundUserInterface
     private readonly SurgerySystem _system;
     private readonly HandsSystem _hands;
     private readonly InventorySystem _inventory;
+    private readonly PathogenSystem _pathogen;
 
     private SolContextualSurgeryWindow? _window;
     private EntityUid? _part;
@@ -49,6 +51,7 @@ public sealed class SolContextualSurgeryBui : BoundUserInterface
         _hands = _entities.System<HandsSystem>();
         _entitySystem = _entities.System<StarlightEntitySystem>();
         _inventory = _entities.System<InventorySystem>();
+        _pathogen = _entities.System<PathogenSystem>();
 
         _hands.OnPlayerItemAdded += OnHandsChanged;
         _hands.OnPlayerItemRemoved += OnHandsChanged;
@@ -272,6 +275,7 @@ public sealed class SolContextualSurgeryBui : BoundUserInterface
         msg.AddMarkupOrThrow($"[bold]{FormattedMessage.EscapeText(action.SurgeryName)}[/bold]\n{FormattedMessage.EscapeText(stepName)}");
 
         var dirty = HasDirtyHeldTools(player);
+        var infectionContext = IsVirologyContext();
         var canPerform = _system.CanPerformStep(
             player,
             Owner,
@@ -285,7 +289,11 @@ public sealed class SolContextualSurgeryBui : BoundUserInterface
         if (!canPerform)
             msg.AddMarkupOrThrow($"\n[color=red]{FormattedMessage.EscapeText(FormatInvalidReason(reason, popup))}[/color]");
         else if (dirty)
-            msg.AddMarkupOrThrow($"\n[color=orange]{Loc.GetString("sol-surgery-action-dirty-tools")}[/color]");
+        {
+            msg.AddMarkupOrThrow($"\n[color=orange]{Loc.GetString(infectionContext
+                ? "sol-surgery-action-dirty-tools"
+                : "sol-surgery-action-dirty-tools-sterility")}[/color]");
+        }
 
         var button = new ChoiceControl();
         var texture = _entities.GetComponentOrNull<SpriteComponent>(action.StepEnt)?.Icon?.Default;
@@ -345,7 +353,7 @@ public sealed class SolContextualSurgeryBui : BoundUserInterface
         _pendingSurgery = surgery;
         _pendingStep = step;
         _window.ConfirmLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString(
-            "sol-surgery-dirty-confirm",
+            IsVirologyContext() ? "sol-surgery-dirty-confirm-infection" : "sol-surgery-dirty-confirm",
             ("surgery", surgeryName),
             ("step", stepName))));
         _window.ConfirmPanel.Visible = true;
@@ -408,14 +416,32 @@ public sealed class SolContextualSurgeryBui : BoundUserInterface
                 dirty++;
         }
 
-        var masked = _inventory.TryGetSlotEntity(player, "mask", out var mask) &&
-                     _entities.HasComponent<SurgicalMaskProtectionComponent>(mask.Value);
+        // Mask / infection framing only on virology stations; otherwise just tool cleanliness.
+        if (IsVirologyContext())
+        {
+            var masked = _inventory.TryGetSlotEntity(player, "mask", out var mask) &&
+                         _entities.HasComponent<SurgicalMaskProtectionComponent>(mask.Value);
+
+            _window.AsepsisLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString(
+                "sol-surgery-asepsis-banner",
+                ("dirty", dirty),
+                ("sterile", sterile),
+                ("masked", masked))));
+            return;
+        }
 
         _window.AsepsisLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString(
-            "sol-surgery-asepsis-banner",
+            "sol-surgery-tool-banner",
             ("dirty", dirty),
-            ("sterile", sterile),
-            ("masked", masked))));
+            ("sterile", sterile))));
+    }
+
+    private bool IsVirologyContext()
+    {
+        if (_pathogen.IsVirologyEnabledAt(Owner))
+            return true;
+
+        return _player.LocalEntity is { } player && _pathogen.IsVirologyEnabledAt(player);
     }
 
     private void UpdateDisabledPanel()

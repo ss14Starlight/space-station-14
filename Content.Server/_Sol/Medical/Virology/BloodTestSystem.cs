@@ -3,9 +3,10 @@ using Content.Shared._Sol.Medical.Virology;
 using Content.Shared._Sol.Medical.Virology.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
-using Content.Shared.Damage.Components;
 using Content.Shared.Examine;
+using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
@@ -15,15 +16,20 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Sol.Medical.Virology;
 
 /// <summary>
-/// Blood draw into vials and centrifuge-driven pathogen / immunity panels.
+/// Blood draw into vials and electrolysis-driven pathogen / immunity panels.
+/// Uses the electrolysis unit (not the centrifuge) so changeling blood tests stay intact.
 /// </summary>
 public sealed class BloodTestSystem : EntitySystem
 {
+    private static readonly ProtoId<MixingCategoryPrototype> ElectrolysisCategory = "Electrolysis";
+    private static readonly FixedPoint2 DrawAmount = 10;
+
     [Dependency] private readonly PathogenSystem _pathogen = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly SolHealthAnalyzerSystem _analyzer = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
 
     public override void Initialize()
     {
@@ -38,7 +44,7 @@ public sealed class BloodTestSystem : EntitySystem
         if (!args.CanReach || args.Target == null || args.Handled)
             return;
 
-        if (!HasComp<MobStateComponent>(args.Target) || !HasComp<BloodstreamComponent>(args.Target))
+        if (!HasComp<MobStateComponent>(args.Target) || !TryComp<BloodstreamComponent>(args.Target, out var bloodstream))
             return;
 
         if (HasComp<PathogenSampleComponent>(vial))
@@ -46,6 +52,25 @@ public sealed class BloodTestSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("sol-blood-vial-full"), vial, args.User);
             return;
         }
+
+        if (!_solutions.TryGetFitsInDispenser(vial.Owner, out var vialSoln, out var vialSolution) ||
+            vialSoln == null ||
+            vialSolution.AvailableVolume < DrawAmount)
+        {
+            _popup.PopupEntity(Loc.GetString("sol-blood-vial-full"), vial, args.User);
+            return;
+        }
+
+        if (!_solutions.ResolveSolution(args.Target.Value, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution) ||
+            bloodSolution.Volume <= 0 ||
+            bloodstream.BloodSolution is not { } bloodSoln)
+            return;
+
+        var drawn = _solutions.SplitSolution(bloodSoln, FixedPoint2.Min(DrawAmount, bloodSolution.Volume));
+        if (drawn.Volume <= 0)
+            return;
+
+        _solutions.TryAddSolution(vialSoln.Value, drawn);
 
         var sample = EnsureComp<PathogenSampleComponent>(vial);
         sample.IsBloodSample = true;
@@ -61,6 +86,7 @@ public sealed class BloodTestSystem : EntitySystem
         }
 
         vial.Comp.SourceEntity = GetNetEntity(args.Target.Value);
+        vial.Comp.PanelReady = false;
         Dirty(vial.Owner, sample);
         Dirty(vial);
         args.Handled = true;
@@ -77,29 +103,36 @@ public sealed class BloodTestSystem : EntitySystem
         if (!TryComp<PathogenSampleComponent>(vial, out var sample) || !sample.IsBloodSample)
             return;
 
-        // Only treat centrifuge-category mixers as blood panels.
-        var isCentrifuge = false;
+        // Electrolysis only — centrifuge remains the changeling blood test.
+        var isElectrolysis = false;
         foreach (var type in mixer.Comp.ReactionTypes)
         {
-            if (type.Id != "Centrifuge")
+            if (type != ElectrolysisCategory)
                 continue;
-            isCentrifuge = true;
+            isElectrolysis = true;
             break;
         }
 
-        if (!isCentrifuge)
+        if (!isElectrolysis)
             return;
 
         sample.IsCentrifuged = true;
         bloodVial.PanelReady = true;
         Dirty(vial, sample);
         Dirty(vial, bloodVial);
+        _popup.PopupEntity(Loc.GetString("sol-blood-panel-ready"), vial);
     }
 
     private void OnVialExamined(Entity<CentrifugeCompatibleBloodVialComponent> vial, ref ExaminedEvent args)
     {
-        if (!vial.Comp.PanelReady)
+        if (!TryComp<PathogenSampleComponent>(vial, out var sample) || !sample.IsBloodSample)
             return;
+
+        if (!vial.Comp.PanelReady || !sample.IsCentrifuged)
+        {
+            args.PushMarkup(Loc.GetString("sol-blood-panel-not-ready"));
+            return;
+        }
 
         args.PushMarkup(BuildBloodPanelText(vial));
     }

@@ -1,6 +1,7 @@
 using Content.Shared._Sol.Medical.Virology;
 using Content.Shared._Sol.Medical.Virology.Components;
 using Content.Shared._Sol.Medical.Virology.Events;
+using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -23,13 +24,16 @@ public sealed class DiseaseEquipmentSystem : EntitySystem
     [Dependency] private readonly PaperSystem _paper = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<DiseasePathogenSwabComponent, AfterInteractEvent>(OnSwabInteract);
         SubscribeLocalEvent<DiseaseDiagnoserComponent, AfterInteractUsingEvent>(OnDiagnoserInsert);
+        SubscribeLocalEvent<DiseaseDiagnoserComponent, DiseaseDiagnosisDoAfterEvent>(OnDiagnosisDoAfter);
         SubscribeLocalEvent<VaccinatorComponent, AfterInteractUsingEvent>(OnVaccinatorInsert);
+        SubscribeLocalEvent<VaccinatorComponent, VaccineProductionDoAfterEvent>(OnVaccineProductionDoAfter);
         SubscribeLocalEvent<PathogenVaccineComponent, AfterInteractEvent>(OnVaccineApply);
         SubscribeLocalEvent<PathogenSampleComponent, ExaminedEvent>(OnSampleExamined);
     }
@@ -107,8 +111,48 @@ public sealed class DiseaseEquipmentSystem : EntitySystem
         if (!TryComp<PathogenSampleComponent>(args.Used, out var sample))
             return;
 
+        if (machine.Comp.Processing)
+        {
+            _popup.PopupEntity(Loc.GetString("sol-disease-machine-busy"), machine, args.User);
+            return;
+        }
+
+        var doAfter = new DoAfterArgs(
+            EntityManager,
+            args.User,
+            machine.Comp.AnalysisDelay,
+            new DiseaseDiagnosisDoAfterEvent(),
+            machine,
+            target: args.Used,
+            used: args.Used)
+        {
+            NeedHand = true,
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            BreakOnHandChange = true,
+            BreakOnDropItem = true,
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfter))
+            return;
+
+        machine.Comp.Processing = true;
         args.Handled = true;
-        PrintDiagnosis(machine, args.Used, sample, args.User);
+        _popup.PopupEntity(Loc.GetString("sol-diagnoser-started"), machine, args.User);
+    }
+
+    private void OnDiagnosisDoAfter(Entity<DiseaseDiagnoserComponent> machine, ref DiseaseDiagnosisDoAfterEvent args)
+    {
+        machine.Comp.Processing = false;
+
+        if (args.Cancelled || args.Handled || args.Target == null)
+            return;
+
+        if (!TryComp<PathogenSampleComponent>(args.Target.Value, out var sample))
+            return;
+
+        PrintDiagnosis(machine, args.Target.Value, sample, args.User);
+        args.Handled = true;
     }
 
     public void PrintDiagnosis(
@@ -164,7 +208,48 @@ public sealed class DiseaseEquipmentSystem : EntitySystem
             return;
         }
 
+        if (machine.Comp.Processing)
+        {
+            _popup.PopupEntity(Loc.GetString("sol-disease-machine-busy"), machine, args.User);
+            return;
+        }
+
+        var doAfter = new DoAfterArgs(
+            EntityManager,
+            args.User,
+            machine.Comp.ProductionDelay,
+            new VaccineProductionDoAfterEvent(),
+            machine,
+            target: args.Used,
+            used: args.Used)
+        {
+            NeedHand = true,
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            BreakOnHandChange = true,
+            BreakOnDropItem = true,
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfter))
+            return;
+
+        machine.Comp.Processing = true;
         args.Handled = true;
+        _popup.PopupEntity(Loc.GetString("sol-vaccinator-started"), machine, args.User);
+    }
+
+    private void OnVaccineProductionDoAfter(Entity<VaccinatorComponent> machine, ref VaccineProductionDoAfterEvent args)
+    {
+        machine.Comp.Processing = false;
+
+        if (args.Cancelled || args.Handled || args.Target == null)
+            return;
+
+        if (!TryComp<PathogenSampleComponent>(args.Target.Value, out var sample) ||
+            sample.PathogenId == null ||
+            sample.ForceNegative)
+            return;
+
         var vaccine = Spawn(machine.Comp.VaccinePrototype, Transform(machine).Coordinates);
         var vac = EnsureComp<PathogenVaccineComponent>(vaccine);
         vac.PathogenId = sample.PathogenId;
@@ -182,8 +267,9 @@ public sealed class DiseaseEquipmentSystem : EntitySystem
 
         vac.Strength = 0f;
         Dirty(vaccine, vac);
-        QueueDel(args.Used);
+        QueueDel(args.Target.Value);
         _popup.PopupEntity(Loc.GetString("sol-vaccinator-produced"), machine, args.User);
+        args.Handled = true;
     }
 
     private void OnVaccineApply(Entity<PathogenVaccineComponent> vaccine, ref AfterInteractEvent args)

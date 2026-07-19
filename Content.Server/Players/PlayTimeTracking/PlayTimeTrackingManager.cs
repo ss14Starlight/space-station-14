@@ -87,6 +87,7 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
     private readonly List<Task> _pendingSaveTasks = new();
 
     private readonly Dictionary<ICommonSession, PlayTimeData> _playTimeData = new();
+    private readonly Dictionary<Guid, Dictionary<string, TimeSpan>> _pendingNullLinkPlaytime = new();
 
     public event CalcPlayTimeTrackersCallback? CalcTrackers;
 
@@ -374,6 +375,9 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
 
         data.Initialized = true;
 
+        if (_pendingNullLinkPlaytime.Remove(session.UserId, out var pendingNullLink))
+            ApplyNullLinkPlaytime(data, pendingNullLink);
+
         QueueRefreshTrackers(session);
         QueueSendTimers(session);
     }
@@ -382,12 +386,20 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
     public void EnrichWithNullLink(Dictionary<string, TimeSpan> playtime, Guid userId)
         => _task.RunOnMainThread(() =>
     {
-        if (!_player.TryGetSessionById(new NetUserId(userId), out var session))
+        if (!_player.TryGetSessionById(new NetUserId(userId), out var session)
+            || !_playTimeData.TryGetValue(session, out var data)
+            || !data.Initialized)
+        {
+            _pendingNullLinkPlaytime[userId] = new Dictionary<string, TimeSpan>(playtime);
             return;
+        }
 
-        if (!_playTimeData.TryGetValue(session, out var data))
-            return;
+        ApplyNullLinkPlaytime(data, playtime);
+        QueueSendTimers(session);
+    });
 
+    private static void ApplyNullLinkPlaytime(PlayTimeData data, IReadOnlyDictionary<string, TimeSpan> playtime)
+    {
         var merged = new Dictionary<string, TimeSpan>(playtime);
         foreach (var (tracker, time) in data.TrackerTimes)
         {
@@ -397,7 +409,7 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
                 merged[tracker] = time;
         }
         data.MergedTrackerTimes = merged;
-    });
+    }
     // NullLink end
 
     public void ClientDisconnected(ICommonSession session)
@@ -405,6 +417,7 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
         SaveSession(session);
 
         _playTimeData.Remove(session);
+        _pendingNullLinkPlaytime.Remove(session.UserId);
     }
     // Starlight Start: Allow playtime commands to target offline players.
     public async Task<TimeSpan?> TryAddTimeToTrackerByUserName(

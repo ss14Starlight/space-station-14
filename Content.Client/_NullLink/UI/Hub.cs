@@ -128,13 +128,12 @@ internal sealed partial class Hub : PanelContainer
 
         if (_hub != null)
         {
-            _hub.OnInitialized += OnHubChanged;
-            _hub.OnRequirementsUpdated += OnHubChanged;
-            _hub.OnServerUpdated += OnServerChanged;
-            _hub.OnServerInfoUpdated += OnServerInfoChanged;
-            _hub.OnServersRemoved += OnServerRemoved;
-            if (_hub.HubInitialized)
-                Rebuild();
+            SubscribeToHub();
+        }
+        else if (_systemManager.TryGetEntitySystem<HubSystem>(out var hubSystem))
+        {
+            _hub = hubSystem;
+            SubscribeToHub();
         }
         else
         {
@@ -170,13 +169,18 @@ internal sealed partial class Hub : PanelContainer
             return;
 
         _hub = hubSystem;
+        SubscribeToHub();
+
+        _systemManager.SystemLoaded -= OnSystemLoaded;
+    }
+
+    private void SubscribeToHub()
+    {
         _hub.OnInitialized += OnHubChanged;
         _hub.OnRequirementsUpdated += OnHubChanged;
         _hub.OnServerUpdated += OnServerChanged;
         _hub.OnServerInfoUpdated += OnServerInfoChanged;
         _hub.OnServersRemoved += OnServerRemoved;
-
-        _systemManager.SystemLoaded -= OnSystemLoaded;
 
         if (_hub.HubInitialized)
             Rebuild();

@@ -11,6 +11,8 @@ public sealed partial class DiseaseDiagnoserComponent : Component
 
     [DataField]
     public TimeSpan AnalysisDelay = TimeSpan.FromSeconds(3);
+
+    public bool Processing;
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -21,6 +23,8 @@ public sealed partial class VaccinatorComponent : Component
 
     [DataField]
     public TimeSpan ProductionDelay = TimeSpan.FromSeconds(5);
+
+    public bool Processing;
 }
 
 /// <summary>

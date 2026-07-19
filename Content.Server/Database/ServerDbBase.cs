@@ -29,6 +29,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Traits;
 using Content.Server._Starlight.Humanoid;
+using Content.Server._Sol.Medical.Allergy;
 
 namespace Content.Server.Database
 {
@@ -389,6 +390,11 @@ namespace Content.Server.Database
                 humanoid = humanoid.WithCDCharacterRecords(PlayerProvidedCharacterRecords.DefaultRecords()); // Seed with empty records when nothing has been saved yet
             }
 
+            // Sol: structured allergies (with severity) are embedded in the CD records JSON blob.
+            var solAllergies = SolAllergyPreferencesSerialization.ReadFromCharacterRecords(profile.CDProfile?.CharacterRecords);
+            if (solAllergies.Count > 0)
+                humanoid = humanoid.WithSolAllergies(solAllergies);
+
             return humanoid;
             // Cosmatic Drift Record System-end
         }
@@ -459,7 +465,10 @@ namespace Content.Server.Database
             // Cosmatic Drift Record System-start: Persist CD record updates back onto the database profile
             profile.CDProfile ??= new CDModel.CDProfile(); // Ensure the EF entity exists before serializing records
             var storedRecords = humanoid.CDCharacterRecords ?? PlayerProvidedCharacterRecords.DefaultRecords();
-            profile.CDProfile.CharacterRecords = JsonSerializer.SerializeToDocument(storedRecords); // Store player-authored data as JSON for SQLite/Postgres
+            // Sol: embed structured allergies beside CD fields so severity survives DB round-trips.
+            profile.CDProfile.CharacterRecords = SolAllergyPreferencesSerialization.EmbedInCharacterRecords(
+                storedRecords,
+                humanoid.SolAllergies);
             profile.CDProfile.CharacterRecordEntries.Clear(); // Keep denormalized entries in sync with the serialized blob
             profile.CDProfile.CharacterRecordEntries.AddRange(RecordsSerialization.GetEntries(storedRecords));
             // Cosmatic Drift Record System-end

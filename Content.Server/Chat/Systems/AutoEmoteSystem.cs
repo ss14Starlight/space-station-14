@@ -72,11 +72,21 @@ public sealed partial class AutoEmoteSystem : EntitySystem
 
     private void OnUnpaused(EntityUid uid, AutoEmoteComponent autoEmote, ref EntityUnpausedEvent args)
     {
+        // NextEmoteTime defaults to MaxValue (and RemoveEmote can set it there). Adding
+        // PausedTime would OverflowException and break entity detach to nullspace.
         foreach (var key in autoEmote.EmoteTimers.Keys)
         {
-            autoEmote.EmoteTimers[key] += args.PausedTime;
+            autoEmote.EmoteTimers[key] = AddPausedTime(autoEmote.EmoteTimers[key], args.PausedTime);
         }
-        autoEmote.NextEmoteTime += args.PausedTime;
+        autoEmote.NextEmoteTime = AddPausedTime(autoEmote.NextEmoteTime, args.PausedTime);
+    }
+
+    private static TimeSpan AddPausedTime(TimeSpan time, TimeSpan pausedTime)
+    {
+        if (time >= TimeSpan.MaxValue - pausedTime)
+            return TimeSpan.MaxValue;
+
+        return time + pausedTime;
     }
 
     /// <summary>

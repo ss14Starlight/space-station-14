@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Content.Server._Sol.Medical.Allergy;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Damage.Components;
 using Content.Shared._CD.Records;
 using Content.Shared._Sol.Medical.Allergy;
 using Content.Shared.Preferences;
@@ -157,6 +158,63 @@ public sealed class AllergySystemTest
                 allergy.ApplyFromFreeText(synthetic, "Peanut", "None");
                 Assert.That(entMan.HasComponent<AllergyComponent>(synthetic), Is.False);
             }
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task SevereWheatAllergyAppliesAsphyxiationDamage()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var proto = server.ResolveDependency<IPrototypeManager>();
+
+        await server.WaitAssertion(() =>
+        {
+            var human = entMan.Spawn("MobHuman");
+            var allergySys = entMan.System<AllergySystem>();
+            allergySys.ApplyFromPreferences(human,
+            [
+                new CharacterAllergyPreference("SolAllergyWheat", AllergySeverity.Severe),
+            ]);
+
+            Assert.That(entMan.TryGetComponent(human, out AllergyComponent? allergy), Is.True);
+            var wheat = proto.Index<AllergyPrototype>("SolAllergyWheat");
+            allergySys.TriggerAllergy(human, allergy!, wheat);
+
+            Assert.That(entMan.TryGetComponent(human, out DamageableComponent? damageable), Is.True);
+            Assert.That(damageable!.Damage.DamageDict["Poison"].Float(), Is.GreaterThanOrEqualTo(2f));
+            Assert.That(damageable.Damage.DamageDict["Asphyxiation"].Float(), Is.GreaterThanOrEqualTo(1f));
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task MildWheatAllergyDoesNotApplyAsphyxiationDamage()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var proto = server.ResolveDependency<IPrototypeManager>();
+
+        await server.WaitAssertion(() =>
+        {
+            var human = entMan.Spawn("MobHuman");
+            var allergySys = entMan.System<AllergySystem>();
+            allergySys.ApplyFromPreferences(human,
+            [
+                new CharacterAllergyPreference("SolAllergyWheat", AllergySeverity.Mild),
+            ]);
+
+            var wheat = proto.Index<AllergyPrototype>("SolAllergyWheat");
+            allergySys.TriggerAllergy(human, entMan.GetComponent<AllergyComponent>(human), wheat);
+
+            var damageable = entMan.GetComponent<DamageableComponent>(human);
+            Assert.That(damageable.Damage.DamageDict["Poison"].Float(), Is.GreaterThan(0f));
+            Assert.That(damageable.Damage.DamageDict.GetValueOrDefault("Asphyxiation").Float(), Is.EqualTo(0f));
         });
 
         await pair.CleanReturnAsync();

@@ -17,6 +17,7 @@ public sealed class SurgicalAsepsisSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
+    [Dependency] private readonly PathogenSystem _pathogen = default!;
 
     private static readonly HashSet<string> DisinfectantReagents = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -53,7 +54,9 @@ public sealed class SurgicalAsepsisSystem : EntitySystem
 
         args.PushMarkup(state);
 
-        if (ent.Comp.Contaminants.Count > 0)
+        // Pathogen wording is only meaningful on virology stations.
+        if (ent.Comp.Contaminants.Count > 0 &&
+            (_pathogen.IsVirologyEnabledAt(ent) || _pathogen.IsVirologyEnabledAt(args.Examiner)))
             args.PushMarkup(Loc.GetString("sol-surgery-tool-contaminated"));
     }
 

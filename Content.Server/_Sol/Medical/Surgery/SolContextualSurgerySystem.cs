@@ -1,8 +1,8 @@
+using Content.Server._Sol.Medical.Virology;
 using Content.Shared._Sol.Medical.Virology.Components;
 using Content.Shared._Sol.Medical.Virology.Events;
 using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared._Starlight.Medical.Surgery.Components;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
@@ -17,8 +17,8 @@ namespace Content.Server._Sol.Medical.Surgery;
 public sealed class SolContextualSurgerySystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly PathogenSystem _pathogen = default!;
 
     public override void Initialize()
     {
@@ -29,6 +29,10 @@ public sealed class SolContextualSurgerySystem : EntitySystem
 
     private void OnStepCompleted(ref SolSurgeryStepCompletedEvent args)
     {
+        // Infection-framed feedback only applies where surgery infection is active.
+        if (!_pathogen.IsVirologyEnabledAt(args.Body) && !_pathogen.IsVirologyEnabledAt(args.User))
+            return;
+
         foreach (var tool in args.Tools)
         {
             if (!TryComp<SurgicalToolSterilityComponent>(tool, out var sterility))
@@ -60,40 +64,65 @@ public sealed class SolContextualSurgerySystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
+        // Hygiene / infection context is only meaningful on virology stations.
+        if (!_pathogen.IsVirologyEnabledAt(target) && !_pathogen.IsVirologyEnabledAt(args.User))
+            return;
+
         var user = args.User;
+        var patient = target.Owner;
         args.Verbs.Add(new AlternativeVerb
         {
-            Text = Loc.GetString("sol-surgery-inspect-asepsis-verb"),
+            Text = Loc.GetString("sol-surgery-inspect-hygiene-verb"),
             Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/dot.svg.192dpi.png")),
-            Act = () => InspectAsepsis(user, target),
+            Act = () => InspectHygiene(user, patient),
             Priority = 2,
         });
     }
 
-    private void InspectAsepsis(EntityUid user, EntityUid patient)
+    private void InspectHygiene(EntityUid user, EntityUid patient)
     {
-        var dirtyTools = CountNonSterileHeld(user);
-        var masked = _inventory.TryGetSlotEntity(user, "mask", out var mask) &&
-                     HasComp<SurgicalMaskProtectionComponent>(mask.Value);
-
-        _popup.PopupEntity(
-            Loc.GetString("sol-surgery-asepsis-status", ("dirty", dirtyTools), ("masked", masked)),
-            patient,
-            user);
-    }
-
-    private int CountNonSterileHeld(EntityUid user)
-    {
-        var dirtyTools = 0;
-        foreach (var tool in _hands.EnumerateHeld(user))
+        var bodyState = "clean";
+        if (TryComp<SurfaceContaminationComponent>(patient, out var surface))
         {
-            if (TryComp<SurgicalToolSterilityComponent>(tool, out var sterility) &&
-                sterility.State != SurgicalSterilityState.Sterile)
+            if (surface.Contaminants.Count > 0)
+                bodyState = "contaminated";
+            else if (surface.IsDirty)
+                bodyState = "dirty";
+        }
+
+        var gloveState = "none";
+        if (_inventory.TryGetSlotEntity(patient, "gloves", out var gloves))
+        {
+            if (TryComp<SurgicalToolSterilityComponent>(gloves.Value, out var gloveSterility))
             {
-                dirtyTools++;
+                gloveState = gloveSterility.State switch
+                {
+                    SurgicalSterilityState.Sterile => "sterile",
+                    SurgicalSterilityState.Disinfected => "disinfected",
+                    _ => "dirty",
+                };
+            }
+            else if (TryComp<SurfaceContaminationComponent>(gloves.Value, out var gloveSurface) &&
+                     (gloveSurface.IsDirty || gloveSurface.Contaminants.Count > 0))
+            {
+                gloveState = "dirty";
+            }
+            else
+            {
+                gloveState = "clean";
             }
         }
 
-        return dirtyTools;
+        var masked = _inventory.TryGetSlotEntity(patient, "mask", out var mask) &&
+                     HasComp<SurgicalMaskProtectionComponent>(mask.Value);
+
+        _popup.PopupEntity(
+            Loc.GetString(
+                "sol-surgery-hygiene-status",
+                ("body", bodyState),
+                ("gloves", gloveState),
+                ("masked", masked)),
+            patient,
+            user);
     }
 }
