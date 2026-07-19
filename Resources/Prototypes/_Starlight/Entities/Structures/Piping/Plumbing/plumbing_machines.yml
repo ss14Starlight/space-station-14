@@ -20,7 +20,6 @@
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: CollideOnAnchor
-    enable: true
   - type: Visibility
     layer: 1
   - type: InteractionOutline
@@ -65,6 +64,8 @@
     layers:
     - state: tank
       map: [ "enum.SubfloorLayers.FirstLayer" ]
+  - type: CollideOnAnchor
+    enable: true
   - type: PlumbingDevice
     updateInterval: 2
   - type: PlumbingInlet
@@ -156,8 +157,6 @@
   name: plumbing input
   description: A small tank you pour reagents into. Other machines pull from this. Connects in all directions.
   components:
-  - type: CollideOnAnchor
-    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -230,6 +229,9 @@
     layers:
     - state: sink_wide
       map: [ "enum.SubfloorLayers.FirstLayer" ]
+  - type: Physics
+    bodyType: Static
+    canCollide: false
   - type: Rotatable
     rotateWhileAnchored: false
   - type: PlumbingDevice
@@ -300,8 +302,6 @@
   name: plumbing output
   description: A small tank that pulls reagents from the network. Draw from it with a container. Connects in all directions.
   components:
-  - type: CollideOnAnchor
-    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -374,6 +374,8 @@
     layers:
     - state: reaction_chamber
       map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
+  - type: CollideOnAnchor
+    enable: true
   - type: GenericVisualizer
     visuals:
       enum.PlumbingVisuals.Running:
@@ -456,6 +458,8 @@
     - state: smartfridge_door
       map: ["enum.StorageVisualLayers.Door", "enum.SubfloorLayers.SecondLayer"]
       shader: unshaded
+  - type: CollideOnAnchor
+    enable: true
   - type: SubFloorHide
     blockInteractions: false
     blockAmbience: false
@@ -540,6 +544,8 @@
     layers:
     - state: pill_press_off
       map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
+  - type: CollideOnAnchor
+    enable: true
   - type: GenericVisualizer
     visuals:
       enum.PlumbingVisuals.Running:
@@ -614,8 +620,6 @@
   name: plumbing filter
   description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
-  - type: CollideOnAnchor
-    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -737,6 +741,8 @@
     - state: synthesizer_overlay
       map: [ "enum.PlumbingVisualLayers.Overlay" ]
       visible: false
+  - type: CollideOnAnchor
+    enable: true
   - type: GenericVisualizer
     visuals:
       enum.PlumbingVisuals.Running:
@@ -844,8 +850,6 @@
         enum.PlumbingVisualLayers.Base:
           True: { state: disposal_working }
           False: { state: disposal }
-  - type: CollideOnAnchor
-    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -906,8 +910,6 @@
     - map: [ "enum.SolutionContainerLayers.Fill" ]
       state: fill-1
       visible: false
-  - type: CollideOnAnchor
-    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
