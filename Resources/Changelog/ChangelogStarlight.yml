@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Abductors can now actually spawn in Dynamic.
-    type: Fix
-  id: 406339
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: wonderfulnewworld
-  changes:
   - message: Dynamic gamerule player requirements now match their actual gamemodes.
     type: Fix
   id: 406340
@@ -2799,4 +2792,11 @@ Entries:
   id: 406738
   time: '2026-07-19T08:48:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5189
+- author: mikeysaurus
+  changes:
+  - message: Department remote shuttle consoles have been renamed to explicitly identify them as remote shuttle consoles.
+    type: Tweak
+  id: 406739
+  time: '2026-07-19T09:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5196
 Order: -1
