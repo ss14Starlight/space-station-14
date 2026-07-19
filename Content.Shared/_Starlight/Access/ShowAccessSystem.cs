@@ -23,7 +23,7 @@ public sealed partial class ShowAccessSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
 
     // ReSharper disable once UseCollectionExpression | Fucking clientside sandboxing
-    private static readonly List<ProtoId<AccessLevelPrototype>> _blacklistedGroups = new(){"AllAccess", "CyborgAllAccess", "Armory"};
+    private static readonly List<ProtoId<AccessGroupPrototype>> _blacklistedGroups = new(){"AllAccess", "CyborgAllAccess", "Armory"};
     private const string CommandProtoId = "Command";
 
     public override void Initialize()
