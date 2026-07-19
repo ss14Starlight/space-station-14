@@ -251,4 +251,17 @@ Entries:
   id: 530001
   time: '2026-07-19T04:08:30.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/53
+- author: AprilCatStreams & Famine
+  changes:
+  - message: Various minor improvements.
+    type: Tweak
+  - message: Added new color palettes for station construction and overhauls.
+    type: Add
+  - message: Removed PDA app limit for future expansion.
+    type: Tweak
+  - message: Improve animation of shipyard console - Famine.
+    type: Tweak
+  id: 560001
+  time: '2026-07-19T12:28:14.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/56
 
