@@ -290,3 +290,4 @@
     containers:
       key_slots:
       - EncryptionKeyCommand
+      - EncryptionKeyNanoTrasen # Starlight - Remove me when TelecomServerFilledNanoTrasen is mapped!
