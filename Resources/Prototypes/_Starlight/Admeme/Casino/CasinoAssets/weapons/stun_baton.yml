@@ -2,7 +2,7 @@
   name: Gamorrah Golden Baton
   parent: [BaseItem, BaseCasinoContraband]
   id: CasinoBaton
-  description: If you want to see the fate of democracies, look out the windows. Its archaic design requires no external power source.
+  description: If you want to see the fate of democracies, look out the windows. It has a odd twist at the end that allows easy disarming of Visitors. Its archaic design requires no external power source.
   components:
     - type: Sprite
       sprite: _Starlight/Admeme/Casino/Objects/Weapon/casino_baton.rsi

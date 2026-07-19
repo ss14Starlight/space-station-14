@@ -1,8 +1,8 @@
 ﻿- type: entity
-  name: Casino Pulse Pistol
+  name: Gamorrah Pulse Pistol
   parent: [BaseWeaponBatterySmall, BaseCasinoContraband ]
   id: WeaponPulsePistolCasino
-  description: A modified version of a pulse gun, how Gamorrah Casino aquired or made such gun is a mystery.
+  description: Success depends on forethought, dispassionate calculation of probabilities, accounting for every stray variable. Thats why this gun is the Gamorrah Weapon.
   components:
     - type: Appearance
     - type: Sprite
