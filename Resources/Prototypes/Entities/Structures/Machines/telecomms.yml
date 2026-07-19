@@ -34,6 +34,12 @@
       map: ["variant-service"]
     - state: variant-command
       map: ["variant-command"]
+    #region Starlight
+    - state: variant-law
+      map: ["variant-law"]
+    - state: variant-nt
+      map: ["variant-nt"]
+    #endregion Starlight
     - state: variant-multiple
       map: ["variant-multiple"]
     - state: telecom-open
@@ -83,6 +89,16 @@
         whitelist:
           tags:
           - EncryptionCommand
+      #region Starlight
+      variant-law:
+        whitelist:
+          tags:
+          - EncryptionLaw
+      variant-nt:
+        whitelist:
+          tags:
+          - EncryptionNanoTrasen
+      #endregion Starlight
       variant-multiple:
         whitelist:
           components:
@@ -125,6 +141,14 @@
         variant-command:
           True: { shader: unshaded }
           False: { shader: shaded }
+        #region Starlight
+        variant-law:
+          True: { shader: unshaded }
+          False: { shader: shaded }
+        variant-nt:
+          True: { shader: unshaded }
+          False: { shader: shaded }
+        #endregion Starlight
         variant-default:
           True: { shader: unshaded }
           False: { shader: shaded }

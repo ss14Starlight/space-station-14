@@ -58,6 +58,14 @@
         },
         {
             "name": "telecom-open"
+        },
+        {
+            "name": "variant-law",
+            "copyright": "CawsForConcern"
+        },
+        {
+            "name": "variant-nt",
+            "copyright": "CawsForConcern"
         }
     ]
 }
