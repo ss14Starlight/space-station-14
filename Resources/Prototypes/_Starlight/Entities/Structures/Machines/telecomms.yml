@@ -8,3 +8,14 @@
     containers:
       key_slots:
       - EncryptionKeyLaw
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledNanoTrasen
+# categories: [ ShouldMapStation ] # Will be made mandatory when mapped to all stations
+  suffix: NanoTrasen
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNanoTrasen
