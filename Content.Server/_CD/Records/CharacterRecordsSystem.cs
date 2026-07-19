@@ -120,9 +120,9 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
         // - Otherwise show only the base display (localized if possible).
         var speciesName = GetReadableSpeciesName(profile);
 
-        if (profile.Loadouts.TryGetValue(LoadoutSystem.GetJobPrototype(args.JobId), out var loadout)&&loadout.EntityName != null)
+        if (TryComp<MetaDataComponent>(player, out var metaData) && !string.IsNullOrEmpty(metaData.EntityName))
         {
-            chosenName =  loadout.EntityName;
+            chosenName =  metaData.EntityName;
         }
 
         // Build the composite record that consoles consume, mixing profile data with live round metadata.
