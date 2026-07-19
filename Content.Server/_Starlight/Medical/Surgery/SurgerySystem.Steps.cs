@@ -63,6 +63,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             if (!TryComp<BodyPartComponent>(uid, out var part) || part.Body is not { } patient)
                 continue;
 
+            // Sol-start: clamping actually stops ongoing incision bleeding.
+            if (HasComp<BleedersClampedComponent>(uid))
+                continue;
+            // Sol-end
+
             _bloodstreamSystem.TryModifyBleedAmount(patient, 0.1f);
         }
     }
@@ -89,6 +94,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
     private void OnStepClampBleedComplete(Entity<SurgeryClampBleedEffectComponent> ent, ref SurgeryStepEvent args)
     {
+        // Sol-start: effect is represented by BleedersClampedComponent added via the step YAML.
+        // Keeping this handler non-empty documents intentional behavior for Sol.
+        _ = ent;
+        _ = args;
+        // Sol-end
     }
     private void OnStepOrganInsertComplete(Entity<SurgeryStepOrganInsertComponent> ent, ref SurgeryStepEvent args)
     {

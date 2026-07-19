@@ -13,6 +13,7 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
+        - type: VirologyStation
         - type: StationJobs
           availableJobs:
             #service
@@ -38,6 +39,7 @@
             MedicalDoctor: [ 3, 3 ]
             MedicalIntern: [ 4, 4 ]
             Paramedic: [ 1, 1 ]
+            Virologist: [ 3, 3 ] # Sol: Saltern has a full virology department
             Surgeon: [ 1, 2 ]
             #science
             ResearchDirector: [ 1, 1 ]

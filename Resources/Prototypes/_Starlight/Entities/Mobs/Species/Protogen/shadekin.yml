@@ -54,7 +54,8 @@
         enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
         enum.SurgeryUIKey.Key:
-          type: SurgeryBui
+          # Sol-edit: contextual surgery UI (was SurgeryBui)
+          type: SolContextualSurgeryBui
         enum.ThavenMoodsUiKey.Key: # impstation edit
           type: ThavenMoodsBoundUserInterface
           requireInputValidation: false

@@ -638,6 +638,8 @@
       - medical-sop-patientcare
       - medical-sop-deceasedpatientcare
       - medical-sop-violetalertprotocol
+      - medical-sop-virology-outbreak
+      - medical-sop-allergies
 
 
 - type: guideEntry
@@ -694,6 +696,18 @@
   text: "/ServerInfo/_Sol/Guidebook/SolSOP/MedicalSOP/VioletAlertProtocol.xml"
   priority: 3
 
+- type: guideEntry
+  id: medical-sop-virology-outbreak
+  name: guide-entry-sl-medical-sop-virology-outbreak
+  text: "/ServerInfo/_Sol/Guidebook/SolSOP/MedicalSOP/VirologyOutbreak.xml"
+  priority: 4
+
+- type: guideEntry
+  id: medical-sop-allergies
+  name: guide-entry-sl-medical-sop-allergies
+  text: "/ServerInfo/_Sol/Guidebook/SolSOP/MedicalSOP/Allergies.xml"
+  priority: 5
+
 
 
 - type: guideEntry
@@ -703,6 +717,7 @@
   priority: 2
   children:
       - medical-sop-chiefmedicalofficer
+      - medical-sop-virologist
       - medical-sop-surgeon
       - medical-sop-medicaldoctor
       - medical-sop-medicalintern
@@ -718,16 +733,22 @@
   priority: 1
 
 - type: guideEntry
+  id: medical-sop-virologist
+  name: guide-entry-sl-medical-sop-virologist
+  text: "/ServerInfo/_Sol/Guidebook/SolSOP/MedicalSOP/Virologist.xml"
+  priority: 2
+
+- type: guideEntry
   id: medical-sop-surgeon
   name: guide-entry-sl-medical-sop-surgeon
   text: "/ServerInfo/_Sol/Guidebook/SolSOP/MedicalSOP/Surgeon.xml"
-  priority: 2
+  priority: 3
 
 - type: guideEntry
   id: medical-sop-medicaldoctor
   name: guide-entry-sl-medical-sop-medicaldoctor
   text: "/ServerInfo/_Sol/Guidebook/SolSOP/MedicalSOP/MedicalDoctor.xml"
-  priority: 3
+  priority: 4
 
 - type: guideEntry
   id: medical-sop-medicalintern

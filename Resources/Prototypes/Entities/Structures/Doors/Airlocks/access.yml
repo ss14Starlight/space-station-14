@@ -267,7 +267,8 @@
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsMedical ]
+      # Sol-edit: dedicated Virology access
+      board: [ DoorElectronicsVirology ]
 
 - type: entity
   parent: AirlockChemistry
@@ -701,7 +702,8 @@
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsMedical ]
+      # Sol-edit: dedicated Virology access
+      board: [ DoorElectronicsVirology ]
 
 - type: entity
   parent: AirlockScienceGlass

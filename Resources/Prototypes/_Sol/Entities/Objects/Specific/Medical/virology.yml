@@ -1,0 +1,14 @@
+# Sol components for existing disease equipment / tools
+
+- type: entity
+  id: HandheldHealthAnalyzerDebug
+  parent: HandheldHealthAnalyzer
+  name: debug health analyzer
+  description: Admin-only analyzer showing full pathogen, immunity, contamination, and surgery-infection state.
+  suffix: DEBUG
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DebugHealthAnalyzer
+  - type: Sprite
+    sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    state: icon

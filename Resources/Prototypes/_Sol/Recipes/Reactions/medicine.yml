@@ -1,0 +1,71 @@
+- type: reaction
+  id: SolAntiviral
+  impact: Medium
+  minTemp: 370
+  reactants:
+    Dylovene:
+      amount: 1
+    Amoxla:
+      amount: 1
+    Carbon:
+      amount: 1
+  products:
+    SolAntiviral: 3
+
+- type: reaction
+  id: SolAntipyretic
+  reactants:
+    Leporazine:
+      amount: 1
+    Saline:
+      amount: 1
+  products:
+    SolAntipyretic: 2
+
+- type: reaction
+  id: SolAntihistamine
+  reactants:
+    Diphenhydramine:
+      amount: 1
+    Dylovene:
+      amount: 1
+  products:
+    SolAntihistamine: 2
+
+- type: reaction
+  id: SolEpinephrineAllergy
+  reactants:
+    Epinephrine:
+      amount: 1
+    SolAntihistamine:
+      amount: 1
+  products:
+    SolEpinephrineAllergy: 2
+
+- type: reaction
+  id: SolCeftriaxone
+  impact: Medium
+  minTemp: 350
+  reactants:
+    Dylovene:
+      amount: 1
+    Carbon:
+      amount: 1
+    Ethanol:
+      amount: 1
+  products:
+    SolCeftriaxone: 3
+
+- type: reaction
+  id: SolRibavirin
+  impact: Medium
+  minTemp: 390
+  reactants:
+    SolAntiviral:
+      amount: 2
+    Phalanximine:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+  products:
+    SolRibavirin: 4

@@ -24,7 +24,8 @@
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
-        type: SurgeryBui
+        # Sol-edit: contextual surgery UI (was SurgeryBui)
+        type: SolContextualSurgeryBui
       enum.VampireClassUiKey.Key: # SL
         type: VampireClassBui
       enum.VampireLocateUiKey.Key: # SL

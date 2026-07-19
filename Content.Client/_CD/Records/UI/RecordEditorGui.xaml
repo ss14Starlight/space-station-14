@@ -39,17 +39,7 @@
                      <LineEdit Name="IdentifyingFeaturesEdit" HorizontalAlignment="Right" MinSize="350 0"/>
                  </BoxContainer>
                  <Control MinSize="0 20"/>
-                 <!-- Medical stuff -->
-                 <BoxContainer Orientation="Horizontal">
-                     <Label Text="{Loc 'humanoid-profile-editor-cd-records-allergies'}" />
-                     <Control HorizontalExpand="True" />
-                     <LineEdit Name="AllergiesEdit" HorizontalAlignment="Right" MinSize="350 0"/>
-                 </BoxContainer>
-                 <BoxContainer Orientation="Horizontal">
-                     <Label Text="{Loc 'humanoid-profile-editor-cd-records-drug-allergies'}" />
-                     <Control HorizontalExpand="True" />
-                     <LineEdit Name="DrugAllergiesEdit" HorizontalAlignment="Right" MinSize="350 0"/>
-                 </BoxContainer>
+                <!-- Medical stuff -->
                  <BoxContainer Orientation="Horizontal">
                      <Label Text="{Loc 'humanoid-profile-editor-cd-records-postmortem'}" />
                      <Control HorizontalExpand="True" />

@@ -43,8 +43,10 @@ public sealed partial class BodyScannerSystem : SharedBodyScannerSystem
         ent.Comp.TableEntity = args.Sink;
 
         // Why one? Because operating table don't have more than one slot, and also Health Analyzer works only with one target.
+        // Sol-start: begin analyzing when linking to an occupied table (was StopAnalyzingEntity).
         if (TryComp<HealthAnalyzerComponent>(ent.Owner, out var analyzer) && strap.BuckledEntities.Count == 1)
-            _healthAnalyzer.StopAnalyzingEntity((ent.Owner, analyzer), strap.BuckledEntities.First());
+            _healthAnalyzer.BeginAnalyzingEntity((ent.Owner, analyzer), strap.BuckledEntities.First());
+        // Sol-end
 
         table.Scanner = ent.Owner;
         Dirty(args.Sink, table);

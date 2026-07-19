@@ -1,0 +1,46 @@
+- type: job
+  id: Virologist
+  name: job-name-virologist
+  description: job-description-virologist
+  playTimeTracker: JobVirologist
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 5h
+    - !type:RoleTimeRequirement
+      role: JobChemist
+      time: 2h
+  startingGear: VirologistGear
+  icon: "JobIconVirologist"
+  supervisors: job-supervisors-cmo
+  canBeAntag: true
+  displayWeight: 6 # Sol: above Surgeon (5) so Virologist displays immediately before Surgeon
+  access:
+  - Medical
+  - Virology
+  - Maintenance
+  extendedAccess:
+  - Chemistry
+  - Surgery
+
+- type: startingGear
+  id: VirologistGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitVirology
+    ears: ClothingHeadsetMedical
+    outerClothing: ClothingOuterCoatLabViro
+    belt: ClothingBeltMedicalFilled
+  storage:
+    back:
+    - BoxMouthSwab
+
+- type: chameleonOutfit
+  id: VirologistChameleonOutfit
+  job: Virologist
+  equipment:
+    head: ClothingHeadHatHoodBioVirology
+    eyes: ClothingEyesHudMedical
+    mask: ClothingMaskSterile
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatLabViro
+    gloves: ClothingHandsGlovesNitrile

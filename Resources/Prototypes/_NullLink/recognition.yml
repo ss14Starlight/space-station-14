@@ -135,17 +135,27 @@
   recognition:
     main:
       - SOL.main
+      - SOL.beta
       # deliberately omit SOL.mapping — mapping playtime must not count
     mapping: []
+    beta:
+      - SOL.main
+      - SOL.beta
 
 - type: serverBanRecognition
   id: SOL
   recognition:
     main:
       - SOL.main
+      - SOL.beta
       - SOL.mapping
     mapping:
       - SOL.main
+      - SOL.beta
+      - SOL.mapping
+    beta:
+      - SOL.main
+      - SOL.beta
       - SOL.mapping
     # servers listed here are ban *sources this server accepts from the network*.
     # Outbound AddOrUpdateBan to SolLink always runs when NullLink is connected;

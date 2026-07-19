@@ -71,8 +71,6 @@
                         </BoxContainer>
                         <!-- Medical -->
                         <BoxContainer Name="RecordContainerMedical" Orientation="Vertical" HorizontalExpand="True" Visible="False" >
-                            <records:RecordLongItemDisplay Name="RecordContainerAllergies" Title="{Loc 'humanoid-profile-editor-cd-records-allergies'}"/>
-                            <records:RecordLongItemDisplay Name="RecordContainerDrugAllergies" Title="{Loc 'humanoid-profile-editor-cd-records-drug-allergies'}"/>
                             <records:RecordLongItemDisplay Name="RecordContainerPostmortem" Title="{Loc 'humanoid-profile-editor-cd-records-postmortem'}"/>
                             <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
                                 <Label Text="{Loc 'cd-character-records-viewer-record-med-sex'}"/>

@@ -198,7 +198,9 @@
       - id: ClothingBackpackSatchelVirology
       - id: ClothingBackpackDuffelVirology
     - id: ClothingShoesColorWhite
-    - id: ClothingHandsGlovesLatex
+    - id: BoxNitrileGloves # Sol-edit: virology PPE supplies
+    - id: BoxSterileMask # Sol-edit: virology PPE supplies
+    - id: ClothingHandsGlovesNitrile
     - id: ClothingMaskSterile
     - id: Syringe
     - id: BoxMouthSwab

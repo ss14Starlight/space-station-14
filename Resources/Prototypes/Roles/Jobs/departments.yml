@@ -109,6 +109,7 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
+  - Virologist # Sol-edit: immediately before Surgeon
   - Surgeon # Starlight-edit
 
 - type: department

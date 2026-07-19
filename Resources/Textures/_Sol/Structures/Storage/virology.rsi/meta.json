@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Derived from the Space Station 14 closet sprites and modified for Sol Station",
+  "states": [
+    {
+      "name": "med"
+    },
+    {
+      "name": "med_open"
+    },
+    {
+      "name": "med_door"
+    },
+    {
+      "name": "chemical_door"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "unlocked"
+    }
+  ]
+}

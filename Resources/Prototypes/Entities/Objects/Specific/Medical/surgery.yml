@@ -12,6 +12,10 @@
     tags:
     - SurgeryTool
   - type: SurgeryTool
+  # Sol-start
+  - type: SurgicalToolSterility
+  - type: SurfaceContamination
+  # Sol-end
 # Cautery
 
 - type: entity

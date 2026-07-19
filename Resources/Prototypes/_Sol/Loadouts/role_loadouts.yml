@@ -1,0 +1,55 @@
+- type: roleLoadout
+  id: JobVirologist
+  groups:
+  - GroupTankHarness
+  - MedicalDoctorHead
+  - MedicalMask
+  - VirologistJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - VirologistOuterClothing
+  - MedicalShoes
+  - MedicalDoctorPDA
+  - MedicalEyewear
+  - SurvivalMedical
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathToolMedical
+
+- type: loadout
+  id: VirologistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitVirology
+
+- type: loadout
+  id: VirologistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtVirology
+
+- type: loadoutGroup
+  id: VirologistJumpsuit
+  name: loadout-group-medical-doctor-jumpsuit
+  minLimit: 1
+  loadouts:
+  - VirologistJumpsuit
+  - VirologistJumpskirt
+
+- type: loadout
+  id: VirologistLabCoat
+  equipment:
+    outerClothing: ClothingOuterCoatLabViro
+
+- type: loadout
+  id: VirologistLongLabCoat
+  equipment:
+    outerClothing: ClothingOuterCoatLabVirologyLong
+
+- type: loadoutGroup
+  id: VirologistOuterClothing
+  name: loadout-group-medical-doctor-outerclothing
+  minLimit: 1
+  loadouts:
+  - VirologistLabCoat
+  - VirologistLongLabCoat

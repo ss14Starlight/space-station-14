@@ -36,6 +36,7 @@
     - SalvageLead
     - Mail
     - Pirate
+    - Virology # Sol-edit
 
 - type: accessLevel
   id: Debug1

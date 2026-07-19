@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 07/02/2026 02:26:55
-  entityCount: 10618
+  entityCount: 10619
 maps:
 - 1
 grids:
@@ -8404,6 +8404,9 @@ entities:
       invokeCounter: 1
     - type: DeviceLinkSource
       linkedPorts:
+        10619:
+        - - DoorStatus
+          - SterilizerDoorA
         148:
         - - DoorStatus
           - DoorBolt
@@ -8419,9 +8422,19 @@ entities:
       invokeCounter: 1
     - type: DeviceLinkSource
       linkedPorts:
+        10619:
+        - - DoorStatus
+          - SterilizerDoorB
         147:
         - - DoorStatus
           - DoorBolt
+- proto: SolSterilizationAirlockController
+  entities:
+  - uid: 10619
+    components:
+    - type: Transform
+      parent: 2
+      pos: 3.5,17.5
 - proto: AirlossAutoInjector
   entities:
   - uid: 150

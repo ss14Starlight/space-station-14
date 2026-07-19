@@ -229,7 +229,7 @@
     - name: Dev
       roles:
         - 1526063729207414875 # Dev
-      flags: [ADMIN, DEBUG, FUN, SPAWN, VAREDIT, MAPPING, LOGS, VIEWNOTES, ADMINCHAT, ADMINWHO, NAMECOLOR]
+      flags: [ADMIN, SERVER, DEBUG, FUN, SPAWN, VAREDIT, MAPPING, LOGS, VIEWNOTES, ROUND, ADMINCHAT, ADMINWHO, NAMECOLOR]
 
 # Sol mapping server — same ranks as SolMRP plus Mapper. Enable with:
 # nulllink.roles_req.admin_builder = "SolMapping"
@@ -300,7 +300,7 @@
     - name: Dev
       roles:
         - 1526063729207414875 # Dev
-      flags: [ADMIN, DEBUG, FUN, SPAWN, VAREDIT, MAPPING, LOGS, VIEWNOTES, ADMINCHAT, ADMINWHO, NAMECOLOR]
+      flags: [ADMIN, SERVER, DEBUG, FUN, SPAWN, VAREDIT, MAPPING, LOGS, VIEWNOTES, ROUND, ADMINCHAT, ADMINWHO, NAMECOLOR]
 
     - name: Mapper
       roles:

@@ -61,10 +61,19 @@ public abstract partial class SharedSurgerySystem
             return;
         }
 
+        // Sol-start: track surgery failure for infection risk calculation.
+        var surgeryFailed = false;
+        // Sol-end
         if (!_random.Prob(args.SuccessRate))
         {
             if (_net.IsClient) return;
             _popup.PopupEntity("Because of a careless tool, your hand shook. You need to start this step all over again!", args.User, PopupType.SmallCaution);
+            // Sol-start: failed steps still risk infecting an open wound.
+            surgeryFailed = true;
+            var failEv = new Content.Shared._Sol.Medical.Virology.Events.SolSurgeryStepCompletedEvent(
+                args.User, ent, part, GetTools(args.User), args.Step, args.Surgery, false, true);
+            RaiseLocalEvent(ref failEv);
+            // Sol-end
             return;
         }
 
@@ -84,6 +93,12 @@ public abstract partial class SharedSurgerySystem
         };
         RaiseLocalEvent(step, ref evComplete);
 
+        // Sol-start: notify Sol virology of completed surgery steps on the patient body.
+        var solEv = new Content.Shared._Sol.Medical.Virology.Events.SolSurgeryStepCompletedEvent(
+            args.User, ent, part, GetTools(args.User), args.Step, args.Surgery, evComplete.IsFinal, surgeryFailed);
+        RaiseLocalEvent(ref solEv);
+        // Sol-end
+
         RefreshUI(ent);
     }
 
@@ -92,6 +107,9 @@ public abstract partial class SharedSurgerySystem
         var progress = Comp<SurgeryProgressComponent>(args.Part);
         progress.CompletedSteps.Clear();
         progress.CompletedSurgeries.Clear();
+        // Sol-start: keep surgery progress replicated to clients.
+        Dirty(args.Part, progress);
+        // Sol-end
     }
     private void OnStepComplete(Entity<SurgeryStepComponent> ent, ref SurgeryStepCompleteEvent args)
     {
@@ -113,6 +131,9 @@ public abstract partial class SharedSurgerySystem
         }
         if (args.IsFinal)
             progress.CompletedSurgeries.Add(args.SurgeryProto);
+        // Sol-start: keep surgery progress replicated to clients.
+        Dirty(args.Part, progress);
+        // Sol-end
     }
     private void OnStep(Entity<SurgeryStepComponent> ent, ref SurgeryStepEvent args)
     {
@@ -141,8 +162,15 @@ public abstract partial class SharedSurgerySystem
             if (_net.IsServer && TryComp(tool, out SurgeryToolComponent? toolComp) && endSound != null)
                 _audio.PlayPvs(endSound, tool);
 
-            if (ent.Comp.ReagentId != null && _solutionContainerSystem.TryGetSolution(tool, "drink", out var solution))
-                _solutionContainerSystem.RemoveReagent(solution.Value, new ReagentQuantity(ent.Comp.ReagentId, ent.Comp.ReagentQuantity));
+            // Sol-start: consume reagent from drink or container (bone gel uses container).
+            if (ent.Comp.ReagentId != null)
+            {
+                if (_solutionContainerSystem.TryGetSolution(tool, "drink", out var drinkSolution))
+                    _solutionContainerSystem.RemoveReagent(drinkSolution.Value, new ReagentQuantity(ent.Comp.ReagentId, ent.Comp.ReagentQuantity));
+                else if (_solutionContainerSystem.TryGetSolution(tool, "container", out var containerSolution))
+                    _solutionContainerSystem.RemoveReagent(containerSolution.Value, new ReagentQuantity(ent.Comp.ReagentId, ent.Comp.ReagentQuantity));
+            }
+            // Sol-end
         }
 
         foreach (var reg in (ent.Comp.Add ?? []).Values)
@@ -355,7 +383,8 @@ public abstract partial class SharedSurgerySystem
         {
             foreach (var requirementId in requirementsIds)
             {
-                if (!_entitySystem.TryGetSingleton(requirementId, out var requirement)
+                // Sol-edit: traverse prerequisites when the singleton resolves (was inverted).
+                if (_entitySystem.TryGetSingleton(requirementId, out var requirement)
                     && GetNextStep(body, part, requirement, requirements) is { } requiredNext
                     && IsSurgeryValid(body, part, requirementId, requiredNext.Surgery.Comp.Steps[requiredNext.Step], out _, out _, out _))
                     return requiredNext;

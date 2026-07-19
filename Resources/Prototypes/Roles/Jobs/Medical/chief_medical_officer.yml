@@ -36,6 +36,7 @@
   - Surgery # Starlight
   - Paramedic # Starlight
   - Debrief # Starlight
+  - Virology # Sol-edit
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

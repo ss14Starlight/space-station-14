@@ -17,6 +17,11 @@
   - type: Appearance
   - type: Machine
     board: DiagnoserMachineCircuitboard
+  # Sol-start
+  - type: DiseaseDiagnoser
+  - type: AccessReader
+    access: [["Virology"], ["ChiefMedicalOfficer"]]
+  # Sol-end
 
 - type: entity
   name: disease diagnoser report

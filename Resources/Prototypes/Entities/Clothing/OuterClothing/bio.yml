@@ -130,3 +130,12 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  # Sol-start
+  - type: PathogenResistance
+    contactCoefficient: 0.2
+    airborneCoefficient: 0.25
+    fluidCoefficient: 0.15
+    surgeryCoefficient: 0.35
+    requiresSeal: true
+  - type: SurfaceContamination
+  # Sol-end

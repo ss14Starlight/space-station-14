@@ -1,0 +1,221 @@
+- type: antag
+  id: Bioterrorist
+  name: roles-antag-bioterrorist-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-bioterrorist-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 10h
+  - !type:RoleTimeRequirement
+    role: JobAtmosphericTechnician
+    time: 1h
+  - !type:RoleTimeRequirement
+    role: JobChemist
+    time: 5h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 1h
+  guides: [ Bioterrorists ]
+  playTimeTracker: AntagBioterrorist
+
+- type: antag
+  id: HeadBioterrorist
+  name: roles-antag-head-bioterrorist-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-head-bioterrorist-objective
+  requirements:
+  - !type:RoleTimeRequirement
+    role: AntagBioterrorist
+    time: 2h
+  guides: [ Bioterrorists ]
+  playTimeTracker: AntagHeadBioterrorist
+
+- type: playTimeTracker
+  id: AntagBioterrorist
+
+- type: playTimeTracker
+  id: AntagHeadBioterrorist
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleBioterrorist
+  name: Bioterrorist Role
+  components:
+  - type: MindRole
+    roleType: TeamAntagonist
+    exclusiveAntag: true
+    antagPrototype: Bioterrorist
+
+- type: entity
+  parent: MindRoleBioterrorist
+  id: MindRoleHeadBioterrorist
+  name: Head Bioterrorist Role
+  components:
+  - type: MindRole
+    antagPrototype: HeadBioterrorist
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointBioterrorist
+  name: bioterrorist spawn point
+  components:
+  - type: GhostRole
+    name: roles-antag-bioterrorist-name
+    description: roles-antag-bioterrorist-objective
+    rules: ghost-role-information-rules-default-team-antagonist
+    mindRoles:
+    - MindRoleBioterrorist
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Structures/Wallmounts/signs.rsi
+      state: virology
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointBioterrorist
+  id: SpawnPointHeadBioterrorist
+  name: head bioterrorist spawn point
+  components:
+  - type: GhostRole
+    name: roles-antag-head-bioterrorist-name
+    description: roles-antag-head-bioterrorist-objective
+    rules: ghost-role-information-rules-default-team-antagonist
+    mindRoles:
+    - MindRoleHeadBioterrorist
+
+- type: radioChannel
+  id: Bioterror
+  name: chat-radio-bioterror
+  keycode: 'h'
+  frequency: 1987
+  color: "#6b1a1a"
+  longRange: true
+
+- type: entity
+  parent: [ EncryptionKey, BaseMajorContraband ]
+  id: EncryptionKeyBioterror
+  name: bioterror encryption key
+  description: An encryption key used by a clandestine cell.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Bioterror
+    defaultChannel: Bioterror
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - state: synd_label
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetBioterror
+  name: bioterror headset
+  description: A discreet headset with a clandestine cell channel.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyBioterror
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/base.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/base.rsi
+
+- type: startingGear
+  id: BioterroristGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    back: ClothingBackpackSatchel
+    shoes: ClothingShoesColorBlack
+    ears: ClothingHeadsetBioterror
+    gloves: ClothingHandsGlovesLatex
+    mask: ClothingMaskSterile
+    id: AssistantPDA
+    pocket1: SolEnvironmentalScraper
+  storage:
+    back:
+    - BoxFolderBlack
+    - SolEnvironmentalScraper
+
+- type: startingGear
+  id: HeadBioterroristGear
+  parent: BioterroristGear
+  equipment:
+    back: ClothingBackpackDuffelBioterrorLab
+    pocket2: Multitool
+
+- type: entity
+  parent: [BaseObjective, BaseCodeObjective]
+  id: BioterrorEstablishLabObjective
+  name: Establish the clandestine laboratory
+  description: Deploy and operate the analyzer, incubator, and synthesizer away from the infiltration shuttle.
+  components:
+  - type: Objective
+    difficulty: 1.5
+    unique: true
+    issuer: objective-issuer-syndicate
+    icon:
+      sprite: Structures/Machines/diagnoser.rsi
+      state: icon
+
+- type: entity
+  parent: [BaseObjective, BaseCodeObjective]
+  id: BioterrorSynthesizeStrainObjective
+  name: Synthesize a viable custom strain
+  description: Culture environmental traits and assemble a bounded custom pathogen.
+  components:
+  - type: Objective
+    difficulty: 2
+    unique: true
+    issuer: objective-issuer-syndicate
+    icon:
+      sprite: Structures/Machines/vaccinator.rsi
+      state: icon
+
+- type: entity
+  parent: [BaseObjective, BaseCodeObjective]
+  id: BioterrorDeployPayloadObjective
+  name: Deploy manufactured cultures
+  description: Manufacture physical payloads and release a minimum infectious load on the station.
+  components:
+  - type: Objective
+    difficulty: 2
+    unique: true
+    issuer: objective-issuer-syndicate
+    icon:
+      sprite: Objects/Specific/Chemistry/vial.rsi
+      state: vial
+
+- type: entity
+  parent: [BaseObjective, BaseCodeObjective]
+  id: BioterrorDelayDiagnosisObjective
+  name: Delay confirmed diagnosis
+  description: Keep Medical from completing a matching vaccine for as long as possible after first deployment.
+  components:
+  - type: Objective
+    difficulty: 1.5
+    unique: true
+    issuer: objective-issuer-syndicate
+    icon:
+      sprite: Objects/Specific/Medical/mouth_swab.rsi
+      state: icon
+
+- type: entity
+  parent: [BaseObjective, BaseSurviveObjective]
+  id: BioterrorSurviveObjective
+  name: Keep the cell alive
+  description: At least one cell member must survive the round.
+  components:
+  - type: Objective
+    difficulty: 1
+    unique: true
+    issuer: objective-issuer-syndicate
+    icon:
+      sprite: Objects/Misc/folders.rsi
+      state: folder-white

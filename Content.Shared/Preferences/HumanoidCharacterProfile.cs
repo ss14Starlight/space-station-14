@@ -207,6 +207,9 @@ namespace Content.Shared.Preferences
                 : PlayerProvidedCharacterRecords.DefaultRecords();
             CDCharacterRecords.EnsureValid();
             // Cosmatic Drift Record System-end
+
+            // Sol allergies
+            SolAllergies = other.SolAllergies.Select(a => new Content.Shared._Sol.Medical.Allergy.CharacterAllergyPreference(a)).ToList();
         }
 
         /// <summary>
@@ -533,6 +536,10 @@ namespace Content.Shared.Preferences
                 return false;
             }
             // Cosmatic Drift Record System-end
+            if (SolAllergies.Count != other.SolAllergies.Count)
+                return false;
+            if (SolAllergies.Where((t, i) => !t.MemberwiseEquals(other.SolAllergies[i])).Any())
+                return false;
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
@@ -567,6 +574,10 @@ namespace Content.Shared.Preferences
                 throw new DebugAssertException($"CDCharacterRecords doesn't match expected null got '{other.CDCharacterRecords}'");
             }
             // Cosmatic Drift Record System-end
+            if (SolAllergies.Count != other.SolAllergies.Count)
+                throw new DebugAssertException($"SolAllergies count doesn't match expected '{SolAllergies.Count}' got '{other.SolAllergies.Count}'");
+            if (SolAllergies.Where((t, i) => !t.MemberwiseEquals(other.SolAllergies[i])).Any())
+                throw new DebugAssertException("SolAllergies doesn't match");
             Appearance.MemberwiseEquals(other.Appearance);
         }
         #endregion
@@ -750,6 +761,7 @@ namespace Content.Shared.Preferences
             CDCharacterRecords ??= PlayerProvidedCharacterRecords.DefaultRecords();
             CDCharacterRecords.EnsureValid();
             // Cosmatic Drift Record System-end
+            EnsureValidSolAllergies(prototypeManager);
             // Far Horizons start
             if (speciesPrototype.Loadout == null)
                 SpeciesLoadout = null;

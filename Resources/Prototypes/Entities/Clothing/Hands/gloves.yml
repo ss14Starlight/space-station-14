@@ -148,12 +148,20 @@
         Caustic: 0.9
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.9 # Starlight end
+  # Sol-start
+  - type: SurgicalToolSterility
+  - type: PathogenResistance
+    contactCoefficient: 0.75
+    fluidCoefficient: 0.55
+    surgeryCoefficient: 0.7
+  - type: SurfaceContamination
+  # Sol-end
 
 - type: entity
   parent: ClothingHandsButcherable
   id: ClothingHandsGlovesNitrile
   name: nitrile gloves
-  description: High-quality nitrile gloves. Expensive medical PPE.
+  description: High-quality sterile nitrile gloves. Expensive medical PPE.
   components:
   - type: Sprite
     sprite: Clothing/Hands/Gloves/nitrile.rsi
@@ -168,6 +176,14 @@
         Caustic: 0.9
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.9 # Starlight end
+  # Sol-start
+  - type: SurgicalToolSterility
+  - type: PathogenResistance
+    contactCoefficient: 0.75
+    fluidCoefficient: 0.55
+    surgeryCoefficient: 0.7
+  - type: SurfaceContamination
+  # Sol-end
 
 - type: entity
   parent: ClothingHandsButcherable

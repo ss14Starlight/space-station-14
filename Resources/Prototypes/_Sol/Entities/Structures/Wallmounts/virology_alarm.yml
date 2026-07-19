@@ -1,0 +1,127 @@
+# Quarantine alarm: static housing + flashing light layer (emergency light RSI).
+# Wire the button to lights with a network configurator (On/Off ports).
+
+- type: entity
+  id: VirologyAlarmLight
+  parent: AlwaysPoweredWallLight
+  name: virology quarantine alarm
+  description: A red flashing warning light used to mark an active biological quarantine.
+  suffix: Virology
+  categories: [ ShouldMapStation ]
+  components:
+  - type: Sprite
+    sprite: Structures/Wallmounts/Lighting/emergency_light.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - state: base
+      map: ["enum.VirologyAlarmLightVisualLayers.Base"]
+    - state: emergency_light_off
+      map: ["enum.VirologyAlarmLightVisualLayers.LightOff"]
+      color: "#ff3030"
+    - state: emergency_light_on
+      map: ["enum.VirologyAlarmLightVisualLayers.LightOn"]
+      color: "#ff3030"
+      shader: unshaded
+      visible: false
+  - type: PointLight
+    enabled: false
+    radius: 7
+    energy: 3
+    softness: 1
+    offset: "0, 0.4"
+    color: "#ff3030"
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 40
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VirologyAlarmLightVisuals.On:
+        enum.VirologyAlarmLightVisualLayers.LightOn:
+          True: { visible: true }
+          False: { visible: false }
+        enum.VirologyAlarmLightVisualLayers.LightOff:
+          True: { visible: false }
+          False: { visible: true }
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: SmartLight
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+  - type: Construction
+    graph: LightFixture
+    node: emergencyLight
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+          ShardGlass:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+  - type: VirologyAlarmLight
+
+- type: entity
+  id: VirologyAlarmButton
+  parent: LockableButton
+  name: virology quarantine alarm button
+  description: Toggles linked virology quarantine alarms. Requires virology access.
+  suffix: Virology
+  categories: [ ShouldMapStation ]
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Sol/Structures/Wallmounts/virology_q_switch.rsi
+    layers:
+    - state: base
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: off
+      map: ["enum.VirologyAlarmButtonVisualLayers.Indicator"]
+      shader: unshaded
+  - type: SignalSwitch
+    onPort: On
+    offPort: Off
+    statusPort: Status
+  - type: DeviceLinkSource
+    ports:
+    - On
+    - Off
+    - Status
+    lastSignals:
+      Status: false
+  - type: AccessReader
+    access: [["Virology"]]
+  - type: GenericVisualizer
+    visuals:
+      enum.VirologyAlarmButtonVisuals.On:
+        enum.VirologyAlarmButtonVisualLayers.Indicator:
+          True: { state: on }
+          False: { state: off }
+  - type: VirologyAlarmButton

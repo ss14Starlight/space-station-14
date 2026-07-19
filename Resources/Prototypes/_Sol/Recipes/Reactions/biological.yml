@@ -1,0 +1,26 @@
+- type: reaction
+  id: SolCultureNutrient
+  reactants:
+    EZNutrient:
+      amount: 1
+    Nutriment:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    SolCultureNutrient: 3
+
+- type: reaction
+  id: SolCultureStabilizer
+  impact: Medium
+  minTemp: 370
+  reactants:
+    SolCultureNutrient:
+      amount: 2
+    Cryoxadone:
+      amount: 1
+    Plasma:
+      amount: 1
+      catalyst: true
+  products:
+    SolCultureStabilizer: 3

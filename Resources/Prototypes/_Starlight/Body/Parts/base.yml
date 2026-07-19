@@ -23,7 +23,8 @@
   - type: UserInterface
     interfaces:
       enum.SurgeryUIKey.Key:
-        type: SurgeryBui
+        # Sol-edit: contextual surgery UI (was SurgeryBui)
+        type: SolContextualSurgeryBui
 
 - type: entity
   id: BaseTorso

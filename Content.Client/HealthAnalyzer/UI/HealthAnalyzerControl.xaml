@@ -1,87 +1,96 @@
 <BoxContainer
     xmlns="https://spacestation14.io"
-    Margin="5 5 5 5"
+    Margin="5"
     VerticalExpand="True"
+    HorizontalExpand="True"
     Orientation="Vertical">
     <Label
         Name="NoPatientDataText"
         Text="{Loc health-analyzer-window-no-patient-data-text}" />
 
+    <!-- Sol-start: wider two-column analyzer with tabbed clinical details. -->
     <BoxContainer
         Name="PatientDataContainer"
-        Margin="0 0 0 5"
-        Orientation="Vertical">
-        <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
-            <SpriteView OverrideDirection="South" Scale="2 2" Name="SpriteView" Access="Public" SetSize="64 64" />
-            <TextureRect Name="NoDataTex" Access="Public" SetSize="64 64" Visible="false" Stretch="KeepAspectCentered" TexturePath="/Textures/Interface/Misc/health_analyzer_out_of_range.png"/>
-            <!-- Starlight begin - changed to fix species and name labels overlapping -->
-            <BoxContainer Margin="5 0 0 0" Orientation="Vertical" VerticalAlignment="Top" SetWidth="155">
-                <BoxContainer Orientation="Vertical" Margin="0 0 0 4">
-                    <RichTextLabel Name="NameLabel" SetWidth="150" />
-                </BoxContainer>
-                <BoxContainer Orientation="Vertical">
+        Orientation="Horizontal"
+        VerticalExpand="True"
+        HorizontalExpand="True">
+        <BoxContainer
+            Name="PatientSummaryColumn"
+            Orientation="Vertical"
+            SetWidth="247"
+            Margin="0 0 8 0">
+            <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
+                <SpriteView OverrideDirection="South" Scale="2 2" Name="SpriteView" Access="Public" SetSize="64 64" />
+                <TextureRect Name="NoDataTex" Access="Public" SetSize="64 64" Visible="false"
+                             Stretch="KeepAspectCentered"
+                             TexturePath="/Textures/Interface/Misc/health_analyzer_out_of_range.png"/>
+                <BoxContainer Margin="5 0 0 0" Orientation="Vertical"
+                              VerticalAlignment="Top" HorizontalExpand="True">
+                    <RichTextLabel Name="NameLabel" />
                     <Label Name="SpeciesLabel" StyleClasses="LabelSubText" />
+                    <Label Name="ScanModeLabel"
+                           Text="{Loc 'health-analyzer-window-entity-unknown-text'}" />
                 </BoxContainer>
             </BoxContainer>
-            <!-- Starlight end -->
-            <!-- Starlight begin - printable health reports -->
-            <BoxContainer
-                Margin="0 0 5 0"
-                HorizontalExpand="True"
-                Orientation="Vertical"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top">
+
+            <BoxContainer Orientation="Horizontal" Margin="0 0 0 5" HorizontalExpand="True">
                 <Button
                     Name="PrintReportButton"
                     Text="{Loc 'health-analyzer-window-print-report'}"
                     Disabled="True"
                     Visible="False"
-                    HorizontalAlignment="Right"
-                    Margin="0 0 0 4" />
-                <Label HorizontalAlignment="Right"
-                       Name="ScanModeLabel"
-                       Text="{Loc 'health-analyzer-window-entity-unknown-text'}" />
+                    HorizontalAlignment="Left" />
+                <Control HorizontalExpand="True" />
+                <Label
+                    Name="AllergyWarningLabel"
+                    Text="{Loc 'sol-health-analyzer-allergies-warning'}"
+                    FontColorOverride="Yellow"
+                    Visible="False"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right" />
             </BoxContainer>
-            <!-- Starlight end -->
+
+            <PanelContainer StyleClasses="LowDivider" />
+
+            <GridContainer Margin="0 5 0 0" Columns="2">
+                <Label Text="{Loc 'health-analyzer-window-entity-status-text'}" />
+                <Label Name="StatusLabel" />
+                <Label Text="{Loc 'health-analyzer-window-entity-temperature-text'}" />
+                <Label Name="TemperatureLabel" />
+                <Label Text="{Loc 'health-analyzer-window-entity-blood-level-text'}" />
+                <Label Name="BloodLabel" />
+                <Label Text="{Loc 'health-analyzer-window-entity-damage-total-text'}" />
+                <Label Name="DamageLabel" />
+            </GridContainer>
+
+            <PanelContainer Name="AlertsDivider" Visible="False" StyleClasses="LowDivider" Margin="0 5 0 0" />
+            <BoxContainer Name="AlertsContainer" Visible="False" Margin="0 5"
+                          Orientation="Vertical" HorizontalAlignment="Center" />
+
+            <PanelContainer Name="ChemicalsDivider" Visible="False" StyleClasses="LowDivider" />
+            <BoxContainer Name="ChemicalsContainer" Visible="False" Margin="0 5"
+                          Orientation="Vertical" />
+
+            <BoxContainer Name="SolDebugContainer" Visible="False" Margin="0 5"
+                          Orientation="Vertical" />
         </BoxContainer>
 
-        <PanelContainer StyleClasses="LowDivider" />
+        <PanelContainer StyleClasses="LowDivider" SetWidth="1" Margin="0 0 8 0" />
 
-        <GridContainer Margin="0 5 0 0" Columns="2">
-            <Label Text="{Loc 'health-analyzer-window-entity-status-text'}" />
-            <Label Name="StatusLabel" />
-            <Label Text="{Loc 'health-analyzer-window-entity-temperature-text'}" />
-            <Label Name="TemperatureLabel" />
-            <Label Text="{Loc 'health-analyzer-window-entity-blood-level-text'}" />
-            <Label Name="BloodLabel" />
-            <Label Text="{Loc 'health-analyzer-window-entity-damage-total-text'}" />
-            <Label Name="DamageLabel" />
-        </GridContainer>
+        <TabContainer Name="DiagnosticTabs"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      MinWidth="342">
+            <ScrollContainer VScrollEnabled="True" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="GroupsContainer" Margin="2 5" Orientation="Vertical" />
+            </ScrollContainer>
+            <ScrollContainer VScrollEnabled="True" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="OrgansContainer" Margin="2 5" Orientation="Vertical" />
+            </ScrollContainer>
+            <ScrollContainer VScrollEnabled="True" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="AllergiesContainer" Margin="2 5" Orientation="Vertical" />
+            </ScrollContainer>
+        </TabContainer>
     </BoxContainer>
-
-    <PanelContainer Name="AlertsDivider" Visible="False" StyleClasses="LowDivider" />
-
-    <BoxContainer Name="AlertsContainer" Visible="False" Margin="0 5" Orientation="Vertical" HorizontalAlignment="Center">
-
-    </BoxContainer>
-
-    <PanelContainer StyleClasses="LowDivider" />
-
-    <BoxContainer
-        Name="GroupsContainer"
-        Margin="0 5 0 5"
-        Orientation="Vertical">
-    </BoxContainer>
-
-    <!-- Starlight begin - metabolizing chems section of ui -->
-    <PanelContainer Name="ChemicalsDivider" Visible="False" StyleClasses="LowDivider" />
-
-    <BoxContainer
-        Name="ChemicalsContainer"
-        Visible="False"
-        Margin="0 5 0 5"
-        Orientation="Vertical">
-    </BoxContainer>
-    <!-- Starlight end -->
-
+    <!-- Sol-end -->
 </BoxContainer>

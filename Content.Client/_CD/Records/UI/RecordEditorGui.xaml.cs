@@ -58,16 +58,6 @@ public sealed partial class RecordEditorGui : Control
 
         #region Medical
 
-        AllergiesEdit.OnTextChanged += args =>
-        {
-            UpdateRecords(_records.WithAllergies(args.Text));
-        };
-
-        DrugAllergiesEdit.OnTextChanged += args =>
-        {
-            UpdateRecords(_records.WithDrugAllergies(args.Text));
-        };
-
         PostmortemEdit.OnTextChanged += args =>
         {
             UpdateRecords(_records.WithPostmortemInstructions(args.Text));
@@ -174,8 +164,6 @@ public sealed partial class RecordEditorGui : Control
 
         IdentifyingFeaturesEdit.SetText(_records.IdentifyingFeatures);
 
-        AllergiesEdit.SetText(_records.Allergies);
-        DrugAllergiesEdit.SetText(_records.DrugAllergies);
         PostmortemEdit.SetText(_records.PostmortemInstructions);
     }
 

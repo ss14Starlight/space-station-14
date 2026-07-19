@@ -69,6 +69,7 @@ guide-entry-bartender = Bartender
 guide-entry-chef = Chef
 guide-entry-medical = Medical
 guide-entry-medicaldoctor = Medical Doctor
+guide-entry-virology = Virologist
 guide-entry-chemist = Chemist
 guide-entry-brute = Advanced Brute Medication
 guide-entry-botanicals = Botanicals

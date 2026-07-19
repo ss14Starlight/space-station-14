@@ -22,3 +22,8 @@
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: RequireProjectileTarget
+  # Sol-start
+  - type: Vaccinator
+  - type: AccessReader
+    access: [["Virology"], ["ChiefMedicalOfficer"]]
+  # Sol-end

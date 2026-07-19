@@ -1,0 +1,104 @@
+# Shared Virology locker body. Functional overlays not included in the custom
+# RSI continue to use their standard locker sprites.
+
+- type: entity
+  id: LockerVirologyBase
+  parent: LockerBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: med
+      sprite: _Sol/Structures/Storage/virology.rsi
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: med_door
+      sprite: _Sol/Structures/Storage/virology.rsi
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      sprite: _Sol/Structures/Storage/virology.rsi
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      offset: "-0.065,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+
+# Dedicated Virology-access medical staff locker using the Sol virology RSI.
+
+- type: entity
+  id: LockerVirology
+  parent: LockerVirologyBase
+  name: virology locker
+  suffix: Virology
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: med
+    stateDoorOpen: med_open
+    stateDoorClosed: med_door
+  - type: AccessReader
+    access: [["Virology"]]
+
+- type: entity
+  id: LockerVirologyFilled
+  parent: LockerVirology
+  suffix: Virology, Filled
+  categories: [ ShouldMapStation ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillVirologist
+
+# Dedicated Virology-access chemical storage.
+
+- type: entity
+  id: LockerVirologyChemistry
+  parent: LockerVirologyBase
+  name: virology chemical locker
+  suffix: Virology
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: med
+    stateDoorOpen: med_open
+    stateDoorClosed: chemical_door
+  - type: AccessReader
+    access: [["Virology"]]
+
+- type: entityTable
+  id: LockerFillVirologyChemistry
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: LockerFillChemistry
+    - id: BoxNitrileGloves
+    - id: BoxSterileMask
+
+- type: entity
+  id: LockerVirologyChemistryFilled
+  parent: LockerVirologyChemistry
+  suffix: Virology, Filled
+  categories: [ ShouldMapStation ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillVirologyChemistry

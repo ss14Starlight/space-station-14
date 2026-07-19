@@ -1,0 +1,13 @@
+- type: reaction
+  id: SolSterilizine
+  impact: Medium
+  minTemp: 350
+  reactants:
+    Bleach:
+      amount: 1
+    Ethanol:
+      amount: 1
+    SpaceCleaner:
+      amount: 1
+  products:
+    SolSterilizine: 3

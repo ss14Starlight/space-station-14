@@ -1,0 +1,186 @@
+<Document>
+# Virologist
+
+Virology mechanics operate on virology-enabled stations such as Cork and Saltern, regardless of the current game mode. IPCs and cyborgs cannot carry biological pathogens and do not suffer allergies.
+
+## First response
+
+- Isolate symptomatic patients and close doors around contaminated rooms.
+
+- Wear a sterile mask and gloves. Nitrile gloves are sterile medical PPE and become dirty after surgery or contamination. For airborne outbreaks, wear both a virology biosuit and matching hood; an incomplete suit leaks.
+
+- Keep contaminated protective equipment on until you can remove it safely. Remove the suit, hood, and mask while still wearing gloves.
+
+- Enable powered vent scrubbers. Airborne pathogen load is invisible to gas analyzers and is not an Atmos gas.
+
+## Rapid swab diagnosis
+
+<GuideEntityEmbed Entity="DiseaseSwab"/>
+<GuideEntityEmbed Entity="DiseaseDiagnoser"/>
+
+1. Use a fresh disease swab on the patient.
+
+2. Use the collected sample on the disease diagnoser.
+
+3. Read the printed report for pathogen, stage, dose, and sample type.
+
+The diagnoser requires Virology or CMO access. It does not consume the sample, so a positive sample can later be used by the vaccinator.
+
+Incubating infections always produce a false-negative swab. A swab can also collect surface contamination from an otherwise uninfected patient, so a positive surface sample does not prove systemic infection.
+
+## Blood-panel diagnosis
+
+<GuideEntityEmbed Entity="ChemistryEmptyVial"/>
+<GuideEntityEmbed Entity="MachineCentrifuge"/>
+
+1. Use an empty full-size chemistry vial on a patient with a bloodstream.
+
+2. Place the vial into a centrifuge and run it.
+
+3. Examine the processed vial.
+
+The panel reports the first detected pathogen, stage, dose, matching antibodies, and a summary of damaged, failing, or missing organs. Low-dose incubation below 1.25 can be false-negative.
+
+A blood sample can be used directly on a disease diagnoser or vaccinator without centrifuging, but centrifuging is required for the detailed examine panel.
+
+## Health analyzer
+
+An ordinary health analyzer shows organ condition and known allergies. It does not identify pathogens, infection stage, dose, immunity, contamination, or PPE protection. Use swabs and blood panels for diagnosis.
+
+## Pathogen reference
+
+### Station Flu
+
+- Transmission: contact, airborne, and surgery.
+
+- Incubation: about 3 minutes.
+
+- Symptoms: fever, coughing, sneezing, poison damage; critical cases also suffer asphyxiation.
+
+- Treatment: antiviral.
+
+- Recovery grants about 30 minutes of natural immunity; vaccination grants about 2 hours.
+
+### Wound Sepsis
+
+- Transmission: contact, fluid, and surgery.
+
+- Incubation: about 2 minutes.
+
+- Symptoms: fever, poison and blood-loss damage, with liver and heart stress.
+
+- Treatments: antiviral or amoxla.
+
+- This is the default infection introduced by unsafe surgery.
+
+### Bacterial Pneumonia
+
+- Transmission: contact, airborne, and surgery.
+
+- Targets the lungs.
+
+- Treatment: ceftriaxone only.
+
+### Enteric Fever
+
+- Transmission: contact and ingestion.
+
+- Targets the stomach and liver.
+
+- Treatment: ceftriaxone only.
+
+### Hemorrhagic Virus
+
+- Transmission: contact, fluid, and surgery.
+
+- Targets the liver and kidneys.
+
+- Treatment: ribavirin only.
+
+### Neuroviral Encephalitis
+
+- Transmission: contact and surgery.
+
+- Targets the brain.
+
+- Treatment: ribavirin only.
+
+### Engineered Bioagent
+
+- Transmission: contact, ingestion, airborne, and surgery.
+
+- Incubation: about 90 seconds.
+
+- Symptoms: strong fever, coughing, sneezing, poison damage, and critical asphyxiation.
+
+- Treatment: antiviral.
+
+### Engineered runtime strains
+
+Bioterror laboratories can register round-specific strains named `BT-###`. They inherit one of the known pathogen chassis and may add contact, airborne, or ingestion transmission; environmental persistence; cough shedding; slow incubation; virulence; liver targeting; or sterilant resistance. Diagnose and vaccinate them by their exact strain identity.
+
+Untreated disease can drive a healthy patient near critical condition before natural recovery. Matching treatment reduces pathogen dose each tick and advances recovery sooner. Trace amounts do not treat; only one matching dose is applied per tick.
+
+## Medication
+
+The Virology laboratory has its own chemistry setup. Virologists are responsible for preparing virology treatments and support medication themselves rather than coordinating routine production with Chemistry.
+
+Any configured treatment reagent in the bloodstream reduces infection dose each pathogen tick. Once dose falls below one quarter of the infective dose, the infection enters recovery.
+
+<GuideReagentEmbed Reagent="SolAntiviral"/>
+<GuideReagentEmbed Reagent="SolAntipyretic"/>
+<GuideReagentEmbed Reagent="SolCeftriaxone"/>
+<GuideReagentEmbed Reagent="SolRibavirin"/>
+
+- Antiviral treats flu, wound sepsis, and engineered bioagent, and also heals poison damage.
+
+- Ceftriaxone is the antibiotic for bacterial pneumonia and enteric fever.
+
+- Ribavirin is a specialized antiviral for hemorrhagic virus and neuroviral encephalitis.
+
+- Amoxla remains an alternative treatment for wound sepsis.
+
+- Antipyretic lowers dangerous fever but does not reduce infection dose.
+
+- Medication does not replace isolation, PPE, or environmental cleanup.
+
+## Vaccine production
+
+<GuideEntityEmbed Entity="Vaccinator"/>
+<GuideEntityEmbed Entity="Vaccine"/>
+
+1. Obtain a positive swab or blood sample.
+
+2. Use the sample on the vaccinator. The sample is consumed.
+
+3. Use the produced vaccine on the intended patient.
+
+Vaccines are pathogen- or strain-specific. They prevent new infection and can be administered during incubation, but they do not remove an infection already in progress. Vaccination fails once the matching infection is symptomatic or later.
+
+## Allergic reactions
+
+The health analyzer displays structured allergies recorded on the character profile. Mild reactions can be supported with antihistamine; severe respiratory reactions need allergy epinephrine and normal emergency care. Synthetic crew do not receive or react to allergies.
+
+<GuideReagentEmbed Reagent="SolAntihistamine"/>
+<GuideReagentEmbed Reagent="SolEpinephrineAllergy"/>
+
+## Decontamination
+
+<GuideEntityEmbed Entity="ClothingHandsGlovesNitrile"/>
+<GuideEntityEmbed Entity="SolSterilizationAirlockController"/>
+<GuideReagentEmbed Reagent="SolSterilizine"/>
+
+- Sterile nitrile gloves and surgical tools lose sterility after applicable surgery and must be washed or sterilized before reuse.
+
+- Sterilizine fully sterilizes compatible surgical tools and gloves.
+
+- Powered active station vent scrubbers remove nearby airborne pathogen load.
+
+- Paired virology airlocks linked to a sterilization chamber controller run an automatic cycle when the entrance closes: both doors bolt, harmless white fog fills only the chamber tiles, the fog fades, chamber air/surfaces/tools/gloves are sterilized, then the opposite door opens. Closing the inner lab-side door always starts another sterilization cycle so contaminated chamber air cannot leak outward. If that follow-up cleanse happens after inbound entry through the outer door, the outer door stays sealed instead of reopening.
+
+- Losing power, unlinking, or door failure aborts the cycle without sterilizing.
+
+- Sterilization does not cure an infected patient.
+
+For command policy, quarantine procedure, and Code Violet escalation, consult the Virologist and Virology Outbreak SOP entries.
+</Document>

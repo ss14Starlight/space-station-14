@@ -1,0 +1,32 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                Name="AllergyPanel"
+                StyleClasses="TraitsEntryPanel"
+                HorizontalExpand="True"
+                Margin="0 0 0 4">
+    <BoxContainer Orientation="Horizontal"
+                  HorizontalExpand="True"
+                  Margin="10 8">
+        <CheckBox Name="AllergyCheckbox"
+                  StyleClasses="TraitsEntryCheckbox"
+                  VerticalAlignment="Center"
+                  Margin="0 0 10 0"/>
+
+        <BoxContainer Orientation="Vertical"
+                      HorizontalExpand="True"
+                      VerticalAlignment="Center">
+            <BoxContainer Orientation="Horizontal">
+                <Label Name="AllergyNameLabel"
+                       StyleClasses="TraitsEntryNameLabel"/>
+                <Control HorizontalExpand="True"/>
+                <OptionButton Name="IntensityButton"
+                              MinWidth="140"
+                              Visible="False"/>
+            </BoxContainer>
+            <RichTextLabel Name="AllergyDescriptionLabel"
+                           StyleClasses="TraitsEntryDescriptionLabel"
+                           MaxWidth="1100"
+                           HorizontalAlignment="Left"
+                           Margin="0 4 0 0"/>
+        </BoxContainer>
+    </BoxContainer>
+</PanelContainer>

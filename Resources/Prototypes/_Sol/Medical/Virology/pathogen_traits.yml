@@ -1,0 +1,95 @@
+- type: pathogenTrait
+  id: SolTraitContact
+  name: sol-pathogen-trait-contact-name
+  description: sol-pathogen-trait-contact-desc
+  budgetCost: 1
+  addTransmission: Contact
+
+- type: pathogenTrait
+  id: SolTraitAirborne
+  name: sol-pathogen-trait-airborne-name
+  description: sol-pathogen-trait-airborne-desc
+  budgetCost: 2
+  addTransmission: Airborne
+  incompatibleWith:
+  - SolTraitSterilantResist
+
+- type: pathogenTrait
+  id: SolTraitIngestion
+  name: sol-pathogen-trait-ingestion-name
+  description: sol-pathogen-trait-ingestion-desc
+  budgetCost: 1
+  addTransmission: Ingestion
+
+- type: pathogenTrait
+  id: SolTraitAerosolStable
+  name: sol-pathogen-trait-aerosol-name
+  description: sol-pathogen-trait-aerosol-desc
+  budgetCost: 2
+  environmentalPersistenceMultiplier: 1.75
+  infectiveDoseMultiplier: 0.85
+
+- type: pathogenTrait
+  id: SolTraitCoughShed
+  name: sol-pathogen-trait-cough-name
+  description: sol-pathogen-trait-cough-desc
+  budgetCost: 1
+  coughChanceBonus: 0.08
+
+- type: pathogenTrait
+  id: SolTraitCultureYield
+  name: sol-pathogen-trait-yield-name
+  description: sol-pathogen-trait-yield-desc
+  budgetCost: 1
+  incubationMultiplier: 0.8
+
+- type: pathogenTrait
+  id: SolTraitIncubationSlow
+  name: sol-pathogen-trait-slow-name
+  description: sol-pathogen-trait-slow-desc
+  budgetCost: 1
+  incubationMultiplier: 1.5
+  infectionChanceBonus: -0.05
+
+- type: pathogenTrait
+  id: SolTraitEnvironmentalGrowth
+  name: sol-pathogen-trait-growth-name
+  description: sol-pathogen-trait-growth-desc
+  budgetCost: 1
+  environmentalPersistenceMultiplier: 1.4
+
+- type: pathogenTrait
+  id: SolTraitVirulent
+  name: sol-pathogen-trait-virulent-name
+  description: sol-pathogen-trait-virulent-desc
+  budgetCost: 2
+  lethalityBonus: 0.25
+  infectionChanceBonus: 0.1
+  incompatibleWith:
+  - SolTraitIncubationSlow
+
+- type: pathogenTrait
+  id: SolTraitOrganLiver
+  name: sol-pathogen-trait-liver-name
+  description: sol-pathogen-trait-liver-desc
+  budgetCost: 1
+  addTargetOrgans:
+  - liver
+  organDamageBonus: 0.05
+
+- type: pathogenTrait
+  id: SolTraitPersistent
+  name: sol-pathogen-trait-persistent-name
+  description: sol-pathogen-trait-persistent-desc
+  budgetCost: 2
+  environmentalPersistenceMultiplier: 2.0
+  sterilantSusceptibilityMultiplier: 0.7
+
+- type: pathogenTrait
+  id: SolTraitSterilantResist
+  name: sol-pathogen-trait-sterilant-name
+  description: sol-pathogen-trait-sterilant-desc
+  budgetCost: 2
+  sterilantSusceptibilityMultiplier: 0.45
+  incompatibleWith:
+  - SolTraitAirborne

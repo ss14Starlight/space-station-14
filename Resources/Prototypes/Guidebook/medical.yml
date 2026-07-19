@@ -4,9 +4,15 @@
   text: "/ServerInfo/Guidebook/Medical/Medical.xml"
   children:
   - MedicalDoctor
+  - Virology
   - Chemist
   - Cloning
   - Cryogenics
+
+- type: guideEntry
+  id: Virology
+  name: guide-entry-virology
+  text: "/ServerInfo/_Sol/Guidebook/Medical/Virology.xml"
 
 - type: guideEntry
   id: MedicalDoctor

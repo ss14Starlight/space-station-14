@@ -44,6 +44,9 @@
     maxTransferAmount: 30
   - type: StaticPrice
     price: 100
+  # Sol-start
+  - type: CentrifugeCompatibleBloodVial
+  # Sol-end
   - type: Destructible
     thresholds:
     - trigger: &DamageTrigger100

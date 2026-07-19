@@ -14,6 +14,9 @@
     - Recyclable
     - Trash
   - type: BotanySwab
+  # Sol-start: restore pathogen swab behavior alongside botany
+  - type: DiseasePathogenSwab
+  # Sol-end
   - type: GuideHelp
     guides:
   # - Virology (when it's back)
@@ -53,3 +56,6 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     state: salpen
+  # Sol-start
+  - type: PathogenVaccine
+  # Sol-end

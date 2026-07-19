@@ -1,0 +1,328 @@
+- type: allergy
+  id: SolAllergyPeanut
+  name: sol-allergy-peanut-name
+  description: sol-allergy-peanut-desc
+  triggerFoods:
+  - FoodPeanutButterIceCream
+  defaultSeverity: Severe
+  causesSneezing: true
+  causesAnaphylaxis: true
+
+- type: allergy
+  id: SolAllergyDairy
+  name: sol-allergy-dairy-name
+  description: sol-allergy-dairy-desc
+  triggerReagents:
+  - Milk
+  - MilkGoat
+  - Cream
+  - Butter
+  - IceCream
+  - Eggnog
+  triggerFoodRoots:
+  - FoodIceCreamBase
+  triggerFoods:
+  - FoodButter
+  - FoodButterSlice
+  - FoodCannabisButter
+  - FoodCheese
+  - FoodCheeseSlice
+  - FoodPacketCheeseBox
+  - FoodNutriCheeseEdam
+  - FoodNutriCheeseBrie
+  - FoodNutriCheeseMozzarellaSticks
+  - FoodNutriCheeseGorgonzola
+  - FoodBurgerCheese
+  - FoodBakedGrilledCheeseSandwich
+  - FoodBreadCreamcheese
+  - FoodBreadCreamcheeseSlice
+  - FoodPieBananaCream
+  - FoodPieBananaCreamSlice
+  defaultSeverity: Moderate
+  causesSneezing: true
+
+- type: allergy
+  id: SolAllergyEgg
+  name: sol-allergy-egg-name
+  description: sol-allergy-egg-desc
+  triggerReagents:
+  - Egg
+  - EggCooked
+  - Mayo
+  - Eggnog
+  triggerFoodRoots:
+  - FoodEggBase
+  - FoodCakeBase
+  - FoodCakeSliceBase
+  triggerFoods:
+  - FoodBakedPancake
+  - FoodBakedPancakeBb
+  - FoodBakedPancakeCc
+  - FoodBakedWaffle
+  - FoodBreadFrenchToast
+  - FoodMealEggsbenedict
+  - FoodRiceEgg
+  - FoodPieClafoutis
+  - FoodPieClafoutisSlice
+  defaultSeverity: Moderate
+  causesSneezing: true
+
+- type: allergy
+  id: SolAllergyWheat
+  name: sol-allergy-wheat-name
+  description: sol-allergy-wheat-desc
+  triggerReagents:
+  - Flour
+  triggerFoodRoots:
+  - FoodBreadBase
+  - FoodBreadSliceBase
+  - FoodDonutBase
+  - FoodDonutFruitBase
+  - FoodPieBase
+  - FoodPieSliceBase
+  - FoodCakeBase
+  - FoodCakeSliceBase
+  triggerFoods:
+  - FoodBreadBun
+  - FoodBreadBunBottom
+  - FoodBreadBunTop
+  - FoodBreadPita
+  - FoodBakedPancake
+  - FoodBakedPancakeBb
+  - FoodBakedPancakeCc
+  - FoodBakedWaffle
+  - FoodBakedWaffleSoy
+  - FoodBakedWaffleSoylent
+  - FoodBakedWaffleRoffle
+  - FoodDoughPie
+  - FoodCakeBatter
+  defaultSeverity: Moderate
+  causesSneezing: true
+
+- type: allergy
+  id: SolAllergySoy
+  name: sol-allergy-soy-name
+  description: sol-allergy-soy-desc
+  triggerReagents:
+  - MilkSoy
+  - Soysauce
+  - SoyLatte
+  triggerFoods:
+  - FoodSoybeans
+  - FoodTofu
+  - FoodTofuSlice
+  - FoodBurgerSoy
+  - FoodBurgerTofu
+  - FoodBreadTofu
+  - FoodBreadTofuSlice
+  - FoodCondimentPacketSoy
+  - FoodBakedWaffleSoy
+  - FoodBakedWaffleSoylent
+  defaultSeverity: Moderate
+  causesSneezing: true
+
+- type: allergy
+  id: SolAllergyFish
+  name: sol-allergy-fish-name
+  description: sol-allergy-fish-desc
+  triggerFoods:
+  - FoodMeatFish
+  - FoodMeatKoiFish
+  - FoodMealSashimi
+  - FoodBurgerCarp
+  - FoodTacoFish
+  - FoodDonkpocketCarp
+  - FoodDonkpocketCarpWarm
+  defaultSeverity: Severe
+  causesSneezing: true
+
+- type: allergy
+  id: SolAllergyShellfish
+  name: sol-allergy-shellfish-name
+  description: sol-allergy-shellfish-desc
+  triggerFoods:
+  - FoodMeatCrab
+  - FoodMeatCrabCooked
+  - FoodBurgerCrab
+  defaultSeverity: Severe
+  causesSneezing: true
+
+- type: allergy
+  id: SolAllergyTreeNut
+  name: sol-allergy-tree-nut-name
+  description: sol-allergy-tree-nut-desc
+  triggerFoods:
+  - FoodSnackPistachios
+  - FoodPistachioIceCream
+  - FoodRockyRoadIceCream
+  - FoodPieBaklava
+  - FoodPieBaklavaSlice
+  defaultSeverity: Severe
+  causesSneezing: true
+
+- type: allergy
+  id: SolAllergyLatex
+  name: sol-allergy-latex-name
+  description: sol-allergy-latex-desc
+  # Retained as a reagent-classified preference for medical records.
+  # No ingestible Latex reagent currently exists, so food cannot trigger it.
+  triggerReagents:
+  - Latex
+  defaultSeverity: Mild
+  causesSneezing: true
+
+# Medication allergies react when the matching reagent enters the bloodstream.
+
+- type: allergy
+  id: SolAllergyAmoxla
+  name: sol-allergy-amoxla-name
+  description: sol-allergy-amoxla-desc
+  triggerReagents:
+  - Amoxla
+  defaultSeverity: Severe
+  causesSneezing: false
+  innateSpecies:
+  - Arachnid
+  - Vulpkanin
+  - SlimePerson
+  - Reptilian
+  - Moth
+  - Human
+  - Dwarf
+  - Thaven
+  - Shadekin
+  - Rodentia
+  - Cyclorite
+  - Lagomorph
+  - Felionoid
+  - Elf
+  - Protogen
+  - ProtoArachnid
+  - ProtoVulp
+  - ProtoThaven
+  - ProtoSlimePerson
+  - ProtoKin
+  - ProtoMoth
+  - ProtoReptilian
+  - ProtoLagomorph
+  - ProtoFelionoid
+  - ProtoHuman
+  - ProtoElf
+  - ProtoDwarf
+  - ProtoCyclorite
+
+- type: allergy
+  id: SolAllergyDylovene
+  name: sol-allergy-dylovene-name
+  description: sol-allergy-dylovene-desc
+  triggerReagents:
+  - Dylovene
+  defaultSeverity: Moderate
+  causesSneezing: false
+
+- type: allergy
+  id: SolAllergyInaprovaline
+  name: sol-allergy-inaprovaline-name
+  description: sol-allergy-inaprovaline-desc
+  triggerReagents:
+  - Inaprovaline
+  defaultSeverity: Moderate
+  causesSneezing: false
+
+- type: allergy
+  id: SolAllergyEpinephrine
+  name: sol-allergy-epinephrine-name
+  description: sol-allergy-epinephrine-desc
+  triggerReagents:
+  - Epinephrine
+  - SolEpinephrineAllergy
+  defaultSeverity: Severe
+  causesSneezing: false
+
+- type: allergy
+  id: SolAllergyDiphenhydramine
+  name: sol-allergy-diphenhydramine-name
+  description: sol-allergy-diphenhydramine-desc
+  triggerReagents:
+  - Diphenhydramine
+  - SolAntihistamine
+  defaultSeverity: Moderate
+  causesSneezing: false
+
+- type: allergy
+  id: SolAllergyCryoxadone
+  name: sol-allergy-cryoxadone-name
+  description: sol-allergy-cryoxadone-desc
+  triggerReagents:
+  - Cryoxadone
+  defaultSeverity: Moderate
+  causesSneezing: false
+
+- type: allergy
+  id: SolAllergyAntiviral
+  name: sol-allergy-antiviral-name
+  description: sol-allergy-antiviral-desc
+  triggerReagents:
+  - SolAntiviral
+  defaultSeverity: Moderate
+  causesSneezing: false
+
+- type: allergy
+  id: SolAllergyCeftriaxone
+  name: sol-allergy-ceftriaxone-name
+  description: sol-allergy-ceftriaxone-desc
+  triggerReagents:
+  - SolCeftriaxone
+  defaultSeverity: Moderate
+  causesSneezing: false
+
+- type: allergy
+  id: SolAllergyRibavirin
+  name: sol-allergy-ribavirin-name
+  description: sol-allergy-ribavirin-desc
+  triggerReagents:
+  - SolRibavirin
+  defaultSeverity: Moderate
+  causesSneezing: false
+
+- type: allergy
+  id: SolAllergySaline
+  name: sol-allergy-saline-name
+  description: sol-allergy-saline-desc
+  triggerReagents:
+  - Saline
+  defaultSeverity: Severe
+  causesSneezing: false
+  innateSpecies:
+  - Avali
+  - Resomi
+  - ProtoAvali
+  - ProtoResomi
+
+- type: allergy
+  id: SolAllergyDexalin
+  name: sol-allergy-dexalin-name
+  description: sol-allergy-dexalin-desc
+  triggerReagents:
+  - Dexalin
+  defaultSeverity: Severe
+  causesSneezing: false
+  innateSpecies:
+  - Avali
+  - Resomi
+  - ProtoAvali
+  - ProtoResomi
+
+- type: allergy
+  id: SolAllergyDexalinPlus
+  name: sol-allergy-dexalin-plus-name
+  description: sol-allergy-dexalin-plus-desc
+  triggerReagents:
+  - DexalinPlus
+  defaultSeverity: Severe
+  causesSneezing: false
+  innateSpecies:
+  - Avali
+  - Resomi
+  - ProtoAvali
+  - ProtoResomi

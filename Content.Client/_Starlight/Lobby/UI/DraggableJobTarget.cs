@@ -261,8 +261,11 @@ public sealed class DraggableJobTarget : Control
         foreach (var department in departments)
         {
             // Get and sort jobs in department
-            var jobs = department.Roles.Select(protoMan.Index)
+            // Sol-edit: skip missing job prototypes instead of throwing during lobby UI init.
+            var jobs = department.Roles
+                .Select(id => protoMan.TryIndex(id, out JobPrototype? job) ? job : null)
                 .Where(r => r is { SetPreference: true, Hidden: false })
+                .Cast<JobPrototype>()
                 .ToList();
             jobs.Sort(JobUIComparer.Instance);
             foreach (var job in jobs)

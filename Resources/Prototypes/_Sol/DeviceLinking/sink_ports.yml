@@ -1,0 +1,14 @@
+- type: sinkPort
+  id: SterilizerDoorA
+  name: signal-port-name-sterilizer-door-a
+  description: signal-port-description-sterilizer-door-a
+
+- type: sinkPort
+  id: SterilizerDoorB
+  name: signal-port-name-sterilizer-door-b
+  description: signal-port-description-sterilizer-door-b
+
+- type: sinkPort
+  id: SterilizerQuarantineLock
+  name: signal-port-name-sterilizer-quarantine-lock
+  description: signal-port-description-sterilizer-quarantine-lock

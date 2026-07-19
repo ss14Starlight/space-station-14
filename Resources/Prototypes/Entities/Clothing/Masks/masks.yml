@@ -362,6 +362,14 @@
         Caustic: 0.95 # I kind of just put this here so that it would show the infection resistance...
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.9 # Starlight end
+  # Sol-start
+  - type: SurgicalMaskProtection
+  - type: PathogenResistance
+    contactCoefficient: 0.85
+    airborneCoefficient: 0.7
+    fluidCoefficient: 0.9
+    surgeryCoefficient: 0.65
+  # Sol-end
 
 - type: entity
   parent: ClothingMaskBase

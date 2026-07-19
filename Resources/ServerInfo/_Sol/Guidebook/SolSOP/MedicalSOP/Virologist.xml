@@ -1,0 +1,21 @@
+<Document>
+# Virologist
+
+<GuideEntityEmbed Entity="ClothingOuterBioVirology" Caption="Virologist"/>
+
+1. Virologists report directly to the Chief Medical Officer.
+
+2. Virologists sit immediately below Surgeons in medical seniority for coordination purposes, but do not supervise Surgeons and Surgeons do not require Virologist playtime.
+
+3. Primary duties include sample collection (swabs and blood), diagnosis, culture/vaccine preparation, pathogen containment, and outbreak reporting.
+
+4. Virologists must maintain chain-of-custody for samples and vaccines. Label samples with patient identity, time, and sample type whenever practical.
+
+5. Use PPE appropriate to the pathogen risk. Full bio suit and hood for airborne or unknown high-risk work. Surgical masks and sterile nitrile gloves are mandatory for routine patient sampling and any observation of surgery with open wounds.
+
+6. Sterilize or discard contaminated tools, gloves, and PPE between patients. Dirty surgical tools and nitrile gloves must be washed and sterilized before reuse. Use the paired sterilization chamber when leaving contaminated spaces: close the entrance, wait for fog to fade, then exit through the opposite door.
+
+7. Virologists prepare their own antiviral, antibiotic (ceftriaxone), specialized antiviral (ribavirin), antipyretic, sterilant, and allergy medications using the chemistry equipment in the Virology laboratory.
+
+8. Do not deliberately release live pathogens outside authorized sealed testing environments. Suspected bioterror activity must be reported to the CMO and Security.
+</Document>

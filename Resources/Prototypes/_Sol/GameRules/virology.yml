@@ -1,0 +1,84 @@
+- type: entity
+  id: VirologyModeRule
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: VirologyModeRule
+  - type: GameRule
+    minPlayers: 5
+    delay:
+      min: 10
+      max: 30
+    denyGameRules:
+    - Traitor
+    - Nukeops
+    - Revolutionary
+    - Zombie
+    - Wizard
+    - Changeling
+    - Vampire
+  - type: LoadMapRule
+    mapPath: /Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml
+  - type: RuleGrids
+  - type: AntagLoadProfileRule
+  - type: AntagObjectives
+    objectives:
+    - BioterrorEstablishLabObjective
+    - BioterrorSynthesizeStrainObjective
+    - BioterrorDeployPayloadObjective
+    - BioterrorDelayDiagnosisObjective
+    - BioterrorSurviveObjective
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    agentName: sol-bioterror-round-end-agent-name
+    definitions:
+    # This definition is deliberately first and mandatory. A player who opted
+    # into regular Bioterrorist can fill it without meeting the separate
+    # HeadBioterrorist playtime requirement, so an active cell always has a head.
+    - prefRoles: [ HeadBioterrorist ]
+      fallbackRoles: [ Bioterrorist ]
+      spawnerPrototype: SpawnPointHeadBioterrorist
+      min: 1
+      max: 1
+      startingGear: HeadBioterroristGear
+      briefing:
+        text: sol-bioterror-briefing-head
+        color: DarkRed
+      components:
+      - type: Bioterrorist
+        isHead: true
+      mindRoles:
+      - MindRoleHeadBioterrorist
+    - prefRoles: [ Bioterrorist ]
+      fallbackRoles: [ HeadBioterrorist ]
+      spawnerPrototype: SpawnPointBioterrorist
+      min: 1
+      max: 3
+      playerRatio: 15
+      startingGear: BioterroristGear
+      briefing:
+        text: sol-bioterror-briefing-member
+        color: DarkRed
+      components:
+      - type: Bioterrorist
+      mindRoles:
+      - MindRoleBioterrorist
+
+- type: gamePreset
+  id: Virology
+  alias:
+  - virology
+  - bioterror
+  name: sol-gamemode-virology-title
+  description: sol-gamemode-virology-desc
+  minPlayers: 5
+  showInVote: true
+  supportedMaps: VirologyMapPool
+  rules:
+  - VirologyModeRule
+  - Thief
+  # Selected creature / environmental threats Security can handle; major syndicate antags omitted.
+  - BasicStationEventScheduler
+  - BasicRoundstartVariation
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler

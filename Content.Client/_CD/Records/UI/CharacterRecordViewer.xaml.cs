@@ -453,8 +453,6 @@ public sealed partial class CharacterRecordViewer : FancyWindow
         RecordContainerMedical.Visible = true;
         var cr = record.PRecords;
         RecordContainerMedical.Visible = true;
-        RecordContainerAllergies.SetValue(cr.Allergies);
-        RecordContainerDrugAllergies.SetValue(cr.DrugAllergies);
         RecordContainerPostmortem.SetValue(cr.PostmortemInstructions);
         RecordContainerSex.Text = record.Sex.ToString();
     }

@@ -1,0 +1,281 @@
+# Clandestine bioterror laboratory machines and flatpacks (reuse medical sprites).
+
+- type: entity
+  id: SolClandestineSampleAnalyzer
+  parent: [ BaseMachinePowered, BaseMajorContraband ]
+  name: clandestine sample analyzer
+  description: A portable analyzer for environmental microbial scrapings. Definitely not medical issue.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/diagnoser.rsi
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+  - type: Appearance
+  - type: ClandestineSampleAnalyzer
+  - type: AccessReader
+    access: [["SyndicateAgent"], ["Virology"]]
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 50
+  - type: RefillableSolution
+    solution: tank
+  - type: ExaminableSolution
+    solution: tank
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: SolClandestineCultureIncubator
+  parent: [ BaseMachinePowered, BaseMajorContraband ]
+  name: clandestine culture incubator
+  description: Warms nutrient media and environmental isolates into viable cultures.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/vaccinator.rsi
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+  - type: Appearance
+  - type: ClandestineCultureIncubator
+  - type: AccessReader
+    access: [["SyndicateAgent"], ["Virology"]]
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 80
+  - type: RefillableSolution
+    solution: tank
+  - type: ExaminableSolution
+    solution: tank
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: SolClandestinePathogenSynthesizer
+  parent: [ BaseMachinePowered, BaseMajorContraband ]
+  name: clandestine pathogen synthesizer
+  description: Assembles cultured chassis and trait isolates into a bounded custom strain.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/vaccinator.rsi
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+  - type: Appearance
+  - type: ClandestinePathogenSynthesizer
+  - type: AccessReader
+    access: [["SyndicateAgent"], ["Virology"]]
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 80
+  - type: RefillableSolution
+    solution: tank
+  - type: ExaminableSolution
+    solution: tank
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: [ BaseFlatpack, BaseMajorContraband ]
+  id: SolClandestineSampleAnalyzerFlatpack
+  name: sample analyzer flatpack
+  description: A flatpack containing a clandestine environmental sample analyzer.
+  components:
+  - type: Flatpack
+    entity: SolClandestineSampleAnalyzer
+
+- type: entity
+  parent: [ BaseFlatpack, BaseMajorContraband ]
+  id: SolClandestineCultureIncubatorFlatpack
+  name: culture incubator flatpack
+  description: A flatpack containing a clandestine culture incubator.
+  components:
+  - type: Flatpack
+    entity: SolClandestineCultureIncubator
+
+- type: entity
+  parent: [ BaseFlatpack, BaseMajorContraband ]
+  id: SolClandestinePathogenSynthesizerFlatpack
+  name: pathogen synthesizer flatpack
+  description: A flatpack containing a clandestine pathogen synthesizer.
+  components:
+  - type: Flatpack
+    entity: SolClandestinePathogenSynthesizer
+
+- type: entity
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: SolEnvironmentalScraper
+  name: sterile environmental scraper
+  description: A sterile scraper for collecting environmental microbial samples from grime, vents, and waste.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/mouth_swab.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: EnvironmentalScraper
+    sterile: true
+
+- type: entity
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: SolMicrobialSample
+  name: microbial sample
+  description: An environmental microbial scraping awaiting analysis.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/mouth_swab.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: MicrobialSample
+
+- type: entity
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: SolPathogenCultureVial
+  name: pathogen culture vial
+  description: A cultured isolate ready for synthesis.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/vial.rsi
+    state: vial
+  - type: Item
+    size: Tiny
+  - type: PathogenCulture
+
+- type: entity
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: SolPathogenCultureAmpoule
+  name: pathogen culture ampoule
+  description: A sealed culture dose suitable for food or surface contamination.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/vial.rsi
+    state: vial
+  - type: Item
+    size: Tiny
+  - type: PathogenPayload
+    kind: Food
+    concentration: 5
+
+- type: entity
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: SolPathogenSurfaceApplicator
+  name: surface culture applicator
+  description: Applies a cultured strain to surfaces for contact transmission.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/mouth_swab.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: PathogenPayload
+    kind: Surface
+    concentration: 4
+
+- type: entity
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: SolPathogenAerosolCanister
+  name: aerosol culture canister
+  description: Releases a cultured airborne pathogen load into the local tile atmosphere.
+  components:
+  - type: Sprite
+    sprite: Objects/Tanks/generic.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: PathogenPayload
+    kind: Aerosol
+    concentration: 6
+
+- type: entity
+  parent: [ BaseChemistryEmptyBottle, BaseMajorContraband ]
+  id: SolCultureNutrientBottle
+  name: culture nutrient bottle
+  description: Nutrient medium for clandestine incubators.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: SolCultureNutrient
+          Quantity: 30
+
+- type: entity
+  parent: [ BaseChemistryEmptyBottle, BaseMajorContraband ]
+  id: SolCultureStabilizerBottle
+  name: culture stabilizer bottle
+  description: Stabilizer reagent required for pathogen synthesis.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: SolCultureStabilizer
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryEmptyBottle
+  id: SolSterilizineBottle
+  name: sterilizine bottle
+  components:
+  - type: Label
+    currentLabel: reagent-name-sol-sterilizine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: SolSterilizine
+          Quantity: 30
+
+- type: entity
+  parent: [ ClothingBackpackDuffel, BaseMajorContraband ]
+  id: ClothingBackpackDuffelBioterrorLab
+  name: bioterror deployment duffel
+  description: Contains flatpacked clandestine lab equipment and limited reagents.
+  components:
+  - type: StorageFill
+    contents:
+    - id: SolClandestineSampleAnalyzerFlatpack
+    - id: SolClandestineCultureIncubatorFlatpack
+    - id: SolClandestinePathogenSynthesizerFlatpack
+    - id: Multitool
+    - id: SolEnvironmentalScraper
+      amount: 4
+    - id: SolCultureNutrientBottle
+      amount: 2
+    - id: SolCultureStabilizerBottle
+    - id: SolSterilizineBottle
+      amount: 1

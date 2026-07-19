@@ -1,0 +1,99 @@
+<Document>
+  # Bioterrorists
+
+  A bioterror cell is a covert team antagonist that builds its threat during the round.
+  The cell begins together on an off-station infiltration vessel with no ready-to-release
+  pathogen. Your advantage is a portable clandestine laboratory, limited supplies, and a
+  private radio channel.
+
+  ## Cell roles
+
+  Every cell has exactly one [bold]Head Bioterrorist[/bold]. The head receives the deployment
+  duffel and is responsible for distributing equipment, choosing a hidden laboratory site,
+  and coordinating the cell. If no preferred head is available, a regular Bioterrorist is
+  promoted; the head slot does not remain empty.
+
+  Other [bold]Bioterrorists[/bold] collect samples, operate the laboratory, acquire replacement
+  reagents, manufacture payloads, and infiltrate the station. All members share the bioterror
+  radio channel.
+
+  ## Establishing the laboratory
+
+  The head's deployment duffel contains three flatpacks:
+
+  - An [bold]environmental sample analyzer[/bold].
+  - A [bold]culture incubator[/bold].
+  - A [bold]pathogen synthesizer[/bold].
+
+  <Box>
+    <GuideEntityEmbed Entity="SolClandestineSampleAnalyzerFlatpack"/>
+    <GuideEntityEmbed Entity="SolClandestineCultureIncubatorFlatpack"/>
+    <GuideEntityEmbed Entity="SolClandestinePathogenSynthesizerFlatpack"/>
+  </Box>
+
+  Use the supplied [bold]multitool[/bold] on each flatpack to deploy it. Establish the machines
+  away from your starting vessel, somewhere with power and enough privacy to control an accident.
+  The machines are contraband and can be destroyed, disassembled, or seized.
+
+  ## Environmental sampling
+
+  Use a sterile environmental scraper on suitable sources such as walls, maintenance grime,
+  vents, scrubbers, drains, refuse, soil, blood, and contaminated surfaces. Sampling takes time
+  and can be interrupted. Sources have cooldowns and finite useful material.
+
+  <Box>
+    <GuideEntityEmbed Entity="SolEnvironmentalScraper"/>
+    <GuideEntityEmbed Entity="SolMicrobialSample"/>
+  </Box>
+
+  A clean scraper produces better samples. Reusing a dirty scraper lowers quality and can
+  cross-contaminate the result. Different environments offer different chassis and traits:
+  vents favor airborne traits, waste favors ingestion, and dirty surfaces favor persistence
+  or contact transmission.
+
+  ## Analyzer, incubator, synthesizer
+
+  1. Insert a microbial sample into the [bold]analyzer[/bold] to identify its chassis, quality,
+     contamination, and available traits.
+  2. Put the analyzed sample into the [bold]incubator[/bold]. It consumes culture nutrient and
+     power to produce a viable culture.
+  3. Load a chassis culture and desired trait cultures into the [bold]synthesizer[/bold], add
+     stabilizer, then begin synthesis.
+
+  Traits have a limited budget and some combinations are incompatible. A strain cannot maximize
+  transmission, lethality, persistence, stealth, and resistance simultaneously.
+
+  ## Containment
+
+  Power loss, dirty samples, invalid synthesis, or unattended cultures can ruin inputs and
+  contaminate the machine, nearby surfaces, and local air. Wear sealed PPE, keep sterilizine
+  available, and do not place the laboratory where one accident exposes the whole cell.
+
+  Medical scrubbers, sterilization, diagnosis, immunity, and vaccines all work against custom
+  strains. Once Medical obtains a valid sample, it can identify your strain and manufacture a
+  matching vaccine.
+
+  ## Physical deployment
+
+  Synthesized strains are dispensed as physical cultures. They are not innate antagonist powers:
+
+  - Culture ampoules contaminate food or compatible surfaces.
+  - Surface applicators spread contact-focused cultures.
+  - Aerosol canisters release pathogen load into the local tile atmosphere.
+
+  <Box>
+    <GuideEntityEmbed Entity="SolPathogenCultureAmpoule"/>
+    <GuideEntityEmbed Entity="SolPathogenSurfaceApplicator"/>
+    <GuideEntityEmbed Entity="SolPathogenAerosolCanister"/>
+  </Box>
+
+  Payload strength depends on culture concentration. Anyone can use a payload, but an unprotected
+  operator risks exposure. Preserve a viable master culture and avoid revealing the laboratory
+  before the cell can recover from a failed deployment.
+
+  ## Objectives
+
+  The cell's shared goals include establishing all three machines away from the infiltration
+  vessel, synthesizing a viable custom strain, deploying enough infectious load, delaying a
+  confirmed diagnosis or vaccine, and keeping at least one member alive.
+</Document>

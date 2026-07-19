@@ -1,0 +1,5 @@
+- type: gameMapPool
+  id: VirologyMapPool
+  maps:
+  - SolCork
+  - SolSaltern

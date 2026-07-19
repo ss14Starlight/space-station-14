@@ -1,0 +1,55 @@
+- type: entity
+  id: SolSterilizationAirlockController
+  name: sterilization chamber controller
+  description: A floor vent that runs an automatic close-fog-sterilize cycle between two linked virology airlocks.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Structures/Piping/Atmospherics/vent.rsi
+    layers:
+    - state: vent_off
+      map: [ "enabled" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SterilizationControllerVisuals.State:
+        enabled:
+          Off: { state: vent_off }
+          Closing: { state: vent_lockout }
+          Fogging: { state: vent_out }
+          Fault: { state: vent_welded }
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: DeviceLinkSink
+    ports:
+    - SterilizerDoorA
+    - SterilizerDoorB
+    - SterilizerQuarantineLock
+  - type: SterilizationAirlockController
+  - type: GuideHelp
+    guides:
+    - Virology
+
+- type: entity
+  id: SolSterilizationFog
+  name: sterilization fog
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke_white
+    color: "#FFFFFFD9"
+  - type: Tag
+    tags:
+    - HideContextMenu
+  - type: SterilizationFog

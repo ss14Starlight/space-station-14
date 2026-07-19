@@ -28,7 +28,8 @@
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
-        type: SurgeryBui
+        # Sol-edit: contextual surgery UI (was SurgeryBui)
+        type: SolContextualSurgeryBui
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Slime/parts.rsi
     state: full

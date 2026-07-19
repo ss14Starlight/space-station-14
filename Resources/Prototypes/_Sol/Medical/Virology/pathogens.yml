@@ -1,0 +1,201 @@
+- type: pathogen
+  id: SolPathogenFlu
+  name: sol-pathogen-flu-name
+  description: sol-pathogen-flu-desc
+  transmission: Contact, Airborne, Surgery
+  infectiveDose: 1
+  baseInfectionChance: 0.4
+  incubationDuration: 180
+  symptomaticDuration: 480
+  criticalDuration: 300
+  recoveryDuration: 120
+  lethality: 0.15
+  feverTemperatureOffset: 1.5
+  coughChancePerSecond: 0.08
+  sneezeChancePerSecond: 0.05
+  symptomaticDamage:
+    types:
+      Poison: 0.12
+  criticalDamage:
+    types:
+      Poison: 0.35
+      Asphyxiation: 0.1
+  treatments:
+  - SolAntiviral
+  vaccineIdentity: SolPathogenFlu
+  recoveryImmunityDuration: 1800
+  vaccineImmunityDuration: 7200
+
+- type: pathogen
+  id: SolPathogenWoundSepsis
+  name: sol-pathogen-sepsis-name
+  description: sol-pathogen-sepsis-desc
+  transmission: Contact, Fluid, Surgery
+  infectiveDose: 0.75
+  baseInfectionChance: 0.45
+  incubationDuration: 120
+  symptomaticDuration: 360
+  criticalDuration: 240
+  recoveryDuration: 120
+  lethality: 0.35
+  feverTemperatureOffset: 2.0
+  coughChancePerSecond: 0.02
+  symptomaticDamage:
+    types:
+      Poison: 0.2
+      Bloodloss: 0.05
+  criticalDamage:
+    types:
+      Poison: 0.5
+      Bloodloss: 0.15
+  targetOrgans:
+  - liver
+  - heart
+  organDamagePerSecond: 0.1
+  treatments:
+  - SolAntiviral
+  - Amoxla
+  vaccineIdentity: SolPathogenWoundSepsis
+
+- type: pathogen
+  id: SolPathogenBioagent
+  name: sol-pathogen-bioagent-name
+  description: sol-pathogen-bioagent-desc
+  transmission: Contact, Ingestion, Airborne, Surgery
+  infectiveDose: 0.5
+  baseInfectionChance: 0.55
+  incubationDuration: 90
+  symptomaticDuration: 300
+  criticalDuration: 240
+  recoveryDuration: 180
+  lethality: 0.5
+  feverTemperatureOffset: 2.5
+  coughChancePerSecond: 0.12
+  sneezeChancePerSecond: 0.08
+  symptomaticDamage:
+    types:
+      Poison: 0.25
+  criticalDamage:
+    types:
+      Poison: 0.6
+      Asphyxiation: 0.2
+  treatments:
+  - SolAntiviral
+  vaccineIdentity: SolPathogenBioagent
+  sterilantSusceptibility: 1.25
+
+- type: pathogen
+  id: SolPathogenBacterialPneumonia
+  name: sol-pathogen-bacterial-pneumonia-name
+  description: sol-pathogen-bacterial-pneumonia-desc
+  transmission: Contact, Airborne, Surgery
+  infectiveDose: 1.25
+  baseInfectionChance: 0.32
+  incubationDuration: 240
+  symptomaticDuration: 420
+  criticalDuration: 240
+  recoveryDuration: 120
+  lethality: 0.35
+  feverTemperatureOffset: 2.0
+  coughChancePerSecond: 0.10
+  sneezeChancePerSecond: 0.01
+  symptomaticDamage:
+    types:
+      Poison: 0.12
+      Asphyxiation: 0.08
+  criticalDamage:
+    types:
+      Poison: 0.30
+      Asphyxiation: 0.28
+  targetOrgans:
+  - lungs
+  organDamagePerSecond: 0.06
+  treatments:
+  - SolCeftriaxone
+  vaccineIdentity: SolPathogenBacterialPneumonia
+
+- type: pathogen
+  id: SolPathogenEntericFever
+  name: sol-pathogen-enteric-fever-name
+  description: sol-pathogen-enteric-fever-desc
+  transmission: Contact, Ingestion
+  infectiveDose: 0.8
+  baseInfectionChance: 0.38
+  incubationDuration: 180
+  symptomaticDuration: 420
+  criticalDuration: 180
+  recoveryDuration: 120
+  lethality: 0.30
+  feverTemperatureOffset: 2.2
+  symptomaticDamage:
+    types:
+      Poison: 0.18
+  criticalDamage:
+    types:
+      Poison: 0.42
+      Bloodloss: 0.08
+  targetOrgans:
+  - stomach
+  - liver
+  organDamagePerSecond: 0.05
+  environmentalDecayPerSecond: 0.006
+  treatments:
+  - SolCeftriaxone
+  vaccineIdentity: SolPathogenEntericFever
+
+- type: pathogen
+  id: SolPathogenHemorrhagicVirus
+  name: sol-pathogen-hemorrhagic-virus-name
+  description: sol-pathogen-hemorrhagic-virus-desc
+  transmission: Contact, Fluid, Surgery
+  infectiveDose: 1.0
+  baseInfectionChance: 0.34
+  incubationDuration: 210
+  symptomaticDuration: 360
+  criticalDuration: 240
+  recoveryDuration: 150
+  lethality: 0.55
+  feverTemperatureOffset: 2.5
+  symptomaticDamage:
+    types:
+      Poison: 0.16
+      Bloodloss: 0.10
+  criticalDamage:
+    types:
+      Poison: 0.45
+      Bloodloss: 0.25
+  targetOrgans:
+  - liver
+  - kidneys
+  organDamagePerSecond: 0.07
+  treatments:
+  - SolRibavirin
+  vaccineIdentity: SolPathogenHemorrhagicVirus
+  sterilantSusceptibility: 1.2
+
+- type: pathogen
+  id: SolPathogenNeuroviralEncephalitis
+  name: sol-pathogen-neuroviral-encephalitis-name
+  description: sol-pathogen-neuroviral-encephalitis-desc
+  transmission: Contact, Surgery
+  infectiveDose: 1.5
+  baseInfectionChance: 0.28
+  incubationDuration: 300
+  symptomaticDuration: 480
+  criticalDuration: 240
+  recoveryDuration: 180
+  lethality: 0.40
+  feverTemperatureOffset: 1.8
+  symptomaticDamage:
+    types:
+      Poison: 0.14
+  criticalDamage:
+    types:
+      Poison: 0.38
+      Asphyxiation: 0.08
+  targetOrgans:
+  - brain
+  organDamagePerSecond: 0.055
+  treatments:
+  - SolRibavirin
+  vaccineIdentity: SolPathogenNeuroviralEncephalitis

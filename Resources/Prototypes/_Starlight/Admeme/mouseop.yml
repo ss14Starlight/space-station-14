@@ -178,7 +178,8 @@
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
       enum.SurgeryUIKey.Key:
-        type: SurgeryBui
+        # Sol-edit: contextual surgery UI (was SurgeryBui)
+        type: SolContextualSurgeryBui
   - type: Respirator
     minSaturation: 5.0
   - type: NoSlip

@@ -1,0 +1,112 @@
+- type: reagent
+  id: SolAntiviral
+  group: Medicine
+  name: reagent-name-sol-antiviral
+  desc: reagent-desc-sol-antiviral
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#66ccff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -1
+
+- type: reagent
+  id: SolAntipyretic
+  group: Medicine
+  name: reagent-name-sol-antipyretic
+  desc: reagent-desc-sol-antipyretic
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#88aaff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:AdjustTemperature
+        amount: -50000
+
+- type: reagent
+  id: SolSterilizine
+  group: Medicine
+  name: reagent-name-sol-sterilizine
+  desc: reagent-desc-sol-sterilizine
+  physicalDesc: reagent-physical-desc-strong-smelling
+  color: "#ddeeff"
+
+- type: reagent
+  id: SolAntihistamine
+  group: Medicine
+  name: reagent-name-sol-antihistamine
+  desc: reagent-desc-sol-antihistamine
+  physicalDesc: reagent-physical-desc-powdery
+  color: "#ccffcc"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -0.5
+
+- type: reagent
+  id: SolEpinephrineAllergy
+  group: Medicine
+  name: reagent-name-sol-epinephrine-allergy
+  desc: reagent-desc-sol-epinephrine-allergy
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#ffdddd"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: -2
+            Poison: -1
+
+- type: reagent
+  id: SolCeftriaxone
+  group: Medicine
+  name: reagent-name-sol-ceftriaxone
+  desc: reagent-desc-sol-ceftriaxone
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#aaddcc"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -0.75
+
+- type: reagent
+  id: SolRibavirin
+  group: Medicine
+  name: reagent-name-sol-ribavirin
+  desc: reagent-desc-sol-ribavirin
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#66aaff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -1.25
+
+- type: reagent
+  id: SolCultureNutrient
+  group: Biological
+  name: reagent-name-sol-culture-nutrient
+  desc: reagent-desc-sol-culture-nutrient
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#c8a26a"
+
+- type: reagent
+  id: SolCultureStabilizer
+  group: Biological
+  name: reagent-name-sol-culture-stabilizer
+  desc: reagent-desc-sol-culture-stabilizer
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#88ccaa"

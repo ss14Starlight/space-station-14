@@ -1,0 +1,42 @@
+<BoxContainer xmlns="https://spacestation14.io"
+              Orientation="Vertical"
+              HorizontalExpand="True"
+              VerticalExpand="True">
+    <PanelContainer StyleClasses="TraitsHeaderPanel" Margin="0 0 0 8">
+        <BoxContainer Orientation="Vertical" Margin="12 10">
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'cd-allergies-editor-allergies'}"
+                       StyleClasses="TraitsTitleLabel"/>
+                <Control HorizontalExpand="True"/>
+                <Label Text="{Loc 'cd-allergies-editor-intensity'}"
+                       StyleClasses="TraitsSubtitleLabel"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"/>
+            </BoxContainer>
+            <Label Text="{Loc 'cd-allergies-editor-intensity-mild-full'}"
+                   StyleClasses="TraitsEntryDescriptionLabel"
+                   Margin="0 8 0 0"/>
+            <Label Text="{Loc 'cd-allergies-editor-intensity-moderate-full'}"
+                   StyleClasses="TraitsEntryDescriptionLabel"/>
+            <Label Text="{Loc 'cd-allergies-editor-intensity-severe-full'}"
+                   StyleClasses="TraitsEntryDescriptionLabel"/>
+            <Label Text="{Loc 'cd-allergies-editor-intensity-extreme-full'}"
+                   StyleClasses="TraitsEntryDescriptionLabel"/>
+        </BoxContainer>
+    </PanelContainer>
+
+    <PanelContainer StyleClasses="TraitsSearchBar" Margin="0 0 0 8">
+        <LineEdit Name="SearchBar"
+                  PlaceHolder="{Loc 'cd-allergies-editor-search'}"
+                  HorizontalExpand="True"
+                  StyleClasses="TraitsSearchInput"
+                  Margin="10 8"/>
+    </PanelContainer>
+
+    <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+        <BoxContainer Name="EntriesContainer"
+                      Orientation="Vertical"
+                      HorizontalExpand="True"
+                      Margin="0 0 4 0"/>
+    </ScrollContainer>
+</BoxContainer>

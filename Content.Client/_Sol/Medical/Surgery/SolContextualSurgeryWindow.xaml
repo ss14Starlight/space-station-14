@@ -1,0 +1,35 @@
+<controls:SolContextualSurgeryWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._Sol.Medical.Surgery"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    MinSize="420 420">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 0 0 10">
+            <Button Name="PartsButton" Access="Public" Text="&lt; Parts"
+                    HorizontalExpand="True" StyleClasses="OpenBoth" />
+            <Label Name="PartLabel" Access="Public" HorizontalExpand="True"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </BoxContainer>
+        <RichTextLabel Name="AsepsisLabel" Access="Public" Margin="0 0 0 6" />
+        <ScrollContainer VScrollEnabled="True" HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Name="Parts" Access="Public" Orientation="Vertical" Visible="False" />
+            <BoxContainer Name="Actions" Access="Public" Orientation="Vertical" Visible="False" />
+        </ScrollContainer>
+        <BoxContainer Name="ConfirmPanel" Access="Public" Orientation="Vertical" Visible="False" Margin="0 8 0 0">
+            <RichTextLabel Name="ConfirmLabel" Access="Public" />
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 6 0 0">
+                <Button Name="ConfirmYesButton" Access="Public" Text="Operate anyway"
+                        HorizontalExpand="True" StyleClasses="OpenBoth" />
+                <Button Name="ConfirmNoButton" Access="Public" Text="Cancel"
+                        HorizontalExpand="True" StyleClasses="OpenBoth" />
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+    <PanelContainer Name="DisabledPanel" Access="Public" HorizontalExpand="True"
+                    VerticalExpand="True" Visible="False">
+        <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat BackgroundColor="#000000BF" />
+        </PanelContainer.PanelOverride>
+        <RichTextLabel Name="DisabledLabel" Access="Public" HorizontalAlignment="Center" />
+    </PanelContainer>
+</controls:SolContextualSurgeryWindow>

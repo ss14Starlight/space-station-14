@@ -202,7 +202,8 @@
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
-        type: SurgeryBui
+        # Sol-edit: contextual surgery UI (was SurgeryBui)
+        type: SolContextualSurgeryBui
       # starlight start
       enum.VampireClassUiKey.Key:
         type: VampireClassBui
@@ -271,7 +272,8 @@
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
-        type: SurgeryBui
+        # Sol-edit: contextual surgery UI (was SurgeryBui)
+        type: SolContextualSurgeryBui
     # Starlight-edit: end
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface

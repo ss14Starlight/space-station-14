@@ -13,6 +13,8 @@ using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client._CD.Records.UI;
 using Content.Shared._CD.Records;
 // Cosmatic Drift Record System-end
+using Content.Client._Sol.Medical.Allergy.UI;
+using Content.Shared._Sol.Medical.Allergy;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.Guidebook;
@@ -146,6 +148,7 @@ namespace Content.Client.Lobby.UI
         // Cosmatic Drift Record System-start
         private readonly RecordEditorGui _recordsTab; // Tracks CD records UI state
         // Cosmatic Drift Record System-end
+        private readonly AllergyEditorGui _allergiesTab;
 
         public HumanoidProfileEditor(
             IClientPreferencesManager preferencesManager,
@@ -600,6 +603,7 @@ namespace Content.Client.Lobby.UI
             // Cosmatic Drift Record System-start
             _recordsTab = CreateRecordEditorTab(); // Instantiate the CD record editor UI
             // Cosmatic Drift Record System-end
+            _allergiesTab = CreateAllergyEditorTab();
             SetupInfoEditors();
             RefreshCharacterInfo();
             // 🌟Starlight🌟 end
@@ -662,6 +666,30 @@ namespace Content.Client.Lobby.UI
             return recordEditor;
         }
         // Cosmatic Drift Record System-end
+
+        private AllergyEditorGui CreateAllergyEditorTab()
+        {
+            var allergyEditor = new AllergyEditorGui
+            {
+                HorizontalExpand = true,
+                VerticalExpand = true
+            };
+            allergyEditor.OnAllergiesChanged += OnAllergySelectionChanged;
+            TabContainer.AddChild(allergyEditor);
+            TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("humanoid-profile-editor-cd-allergies-tab"));
+            allergyEditor.Update(Profile);
+            return allergyEditor;
+        }
+
+        private void OnAllergySelectionChanged(List<CharacterAllergyPreference> allergies)
+        {
+            if (Profile is null)
+                return;
+
+            Profile = Profile.WithSolAllergies(allergies);
+            _recordsTab.Update(Profile);
+            SetDirty();
+        }
 
         private void UpdateSiliconVoicesControls()
         {
@@ -1121,6 +1149,7 @@ namespace Content.Client.Lobby.UI
             // Cosmatic Drift Record System-start
             _recordsTab.Update(Profile); // Refresh record editor when a profile is loaded
             // Cosmatic Drift Record System-end
+            _allergiesTab.Update(Profile);
             RefreshCharacterInfo(); //starlight
             Preview.Initialize(this, _entManager, _preferencesManager, _prototypeManager, _playerManager);
             Preview.UpdateKnownLanguages(); // Sol
@@ -1686,6 +1715,7 @@ namespace Content.Client.Lobby.UI
             UpdateSizeControls(); //starlight
             UpdateSpeciesLoadout(); // Far Horizons
             Traits.UpdateRequirements(Profile); // Sol: language traits are species-gated
+            _allergiesTab.Update(Profile); // Sol: refresh species-innate allergies
             Preview.UpdateKnownLanguages(); // Sol
             ReloadPreview();
         }
