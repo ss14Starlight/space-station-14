@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Content.Server._Sol.Medical.Allergy;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared._CD.Records;
 using Content.Shared._Sol.Medical.Allergy;
@@ -186,7 +187,46 @@ public sealed class AllergySystemTest
 
             Assert.That(entMan.TryGetComponent(human, out DamageableComponent? damageable), Is.True);
             Assert.That(damageable!.Damage.DamageDict["Poison"].Float(), Is.GreaterThanOrEqualTo(2f));
-            Assert.That(damageable.Damage.DamageDict["Asphyxiation"].Float(), Is.GreaterThanOrEqualTo(1f));
+            Assert.That(damageable.Damage.DamageDict["Asphyxiation"].Float(), Is.GreaterThanOrEqualTo(6f));
+            Assert.That(entMan.HasComponent<ActiveAllergyReactionComponent>(human), Is.True);
+            Assert.That(allergySys.IsHavingSevereReaction(human), Is.True);
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task AnaphylaxisBlocksAsphyxiationHealing()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var proto = server.ResolveDependency<IPrototypeManager>();
+
+        await server.WaitAssertion(() =>
+        {
+            var human = entMan.Spawn("MobHuman");
+            var allergySys = entMan.System<AllergySystem>();
+            var damageableSys = entMan.System<Content.Shared.Damage.Systems.DamageableSystem>();
+            allergySys.ApplyFromPreferences(human,
+            [
+                new CharacterAllergyPreference("SolAllergyWheat", AllergySeverity.Anaphylaxis),
+            ]);
+
+            var wheat = proto.Index<AllergyPrototype>("SolAllergyWheat");
+            allergySys.TriggerAllergy(human, entMan.GetComponent<AllergyComponent>(human), wheat);
+
+            var before = entMan.GetComponent<DamageableComponent>(human).Damage.DamageDict["Asphyxiation"].Float();
+            Assert.That(before, Is.GreaterThanOrEqualTo(12f));
+
+            // Respirator-style asphyx healing must not land during a severe reaction.
+            damageableSys.TryChangeDamage(human, new DamageSpecifier
+            {
+                DamageDict = { ["Asphyxiation"] = -20 },
+            }, interruptsDoAfters: false);
+
+            var after = entMan.GetComponent<DamageableComponent>(human).Damage.DamageDict["Asphyxiation"].Float();
+            Assert.That(after, Is.EqualTo(before));
         });
 
         await pair.CleanReturnAsync();

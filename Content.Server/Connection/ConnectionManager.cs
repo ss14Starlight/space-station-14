@@ -107,8 +107,8 @@ namespace Content.Server.Connection
 
             _conntrack = new ConntrackResolver(_http, _cfg, _logManager); // Starlight
             // NullLink start
-            _cfg.OnValueChanged(NullLinkCCVars.Project, x => _project = x, true);
-            _cfg.OnValueChanged(NullLinkCCVars.Server, x => _server = x, true);
+            _cfg.OnValueChanged(NullLinkCCVars.Project, x => _project = string.IsNullOrWhiteSpace(x) ? x : x.ToUpperInvariant(), true);
+            _cfg.OnValueChanged(NullLinkCCVars.Server, x => _server = string.IsNullOrWhiteSpace(x) ? x : x.ToLowerInvariant(), true);
             _cfg.OnValueChanged(NullLinkCCVars.BunkerBypass, reqProtoId
                 => _bunkerBypass = _prototypeManager.TryIndex<RoleRequirementPrototype>(reqProtoId, out var proto) ? proto : null, true);
             // NullLink end

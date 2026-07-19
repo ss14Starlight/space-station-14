@@ -650,7 +650,8 @@ public sealed class SterilizationAirlockSystem : EntitySystem
     }
 
     /// <summary>
-    /// Ends a follow-up cleanse with both doors closed and bolted so the outer door is not reopened.
+    /// Ends a follow-up cleanse with both doors closed. Does not reopen the outer door,
+    /// but releases cycle bolts so the chamber is usable again (quarantine lock still honored).
     /// </summary>
     private void FinishSealedIdle(Entity<SterilizationAirlockControllerComponent> ent)
     {
@@ -659,7 +660,8 @@ public sealed class SterilizationAirlockSystem : EntitySystem
         if (ent.Comp.DoorB is { } doorB && Exists(doorB))
             RemComp<SterilizationDoorLockComponent>(doorB);
 
-        EnsureBothDoorsBolted(ent);
+        // Keep doors closed — do not open the outer exit — but unbolt them after the cleanse.
+        ReleaseCycleBolts(ent);
 
         ent.Comp.Phase = SterilizationControllerPhase.Idle;
         ent.Comp.PhaseEndsAt = TimeSpan.Zero;

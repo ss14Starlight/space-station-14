@@ -2,6 +2,7 @@ using Content.Shared._Sol.Medical.Virology;
 using Content.Shared._Sol.Medical.Virology.Components;
 using Content.Shared._Sol.Medical.Virology.Events;
 using Content.Shared._Starlight.Medical.Surgery.Events;
+using Content.Shared.Body.Organ;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
@@ -41,12 +42,12 @@ public sealed class SurgeryInfectionSystem : EntitySystem
         if (!modifiers.StationEnabled)
             return;
 
-        // Gloves and tools lose sterility after every applicable surgery step.
+        // Gloves and tools used for this step consume clean uses (dirty after 2–3 uses).
         foreach (var tool in args.Tools)
-            MarkSterilityLost(tool);
+            RegisterSurgicalUse(tool);
 
         if (_inventory.TryGetSlotEntity(args.User, "gloves", out var gloves))
-            MarkSterilityLost(gloves.Value);
+            RegisterSurgicalUse(gloves.Value);
 
         if (modifiers.FinalChance <= 0f || modifiers.SelectedPathogenId == null)
             return;
@@ -137,7 +138,7 @@ public sealed class SurgeryInfectionSystem : EntitySystem
             }
         }
 
-        modifiers.ToolMultiplier = anyTool ? toolMult : 1.75f; // bare improvised tools
+        modifiers.ToolMultiplier = anyTool ? toolMult : 1f;
 
         // Gloves
         if (_inventory.TryGetSlotEntity(user, "gloves", out var gloves))
@@ -205,14 +206,31 @@ public sealed class SurgeryInfectionSystem : EntitySystem
         return DefaultSurgeryPathogen;
     }
 
+    private void RegisterSurgicalUse(EntityUid tool)
+    {
+        // Organs are implants, not instruments — they never become non-sterile from use.
+        if (HasComp<OrganComponent>(tool))
+            return;
+
+        var sterility = EnsureComp<SurgicalToolSterilityComponent>(tool);
+        _asepsis.RegisterSurgicalUse((tool, sterility));
+    }
+
     private void MarkSterilityLost(EntityUid tool)
     {
+        if (HasComp<OrganComponent>(tool))
+            return;
+
         var sterility = EnsureComp<SurgicalToolSterilityComponent>(tool);
         _asepsis.MarkSterilityLost((tool, sterility));
     }
 
     private void MarkToolUsed(EntityUid tool, string pathogenId, EntityUid patient)
     {
+        if (HasComp<OrganComponent>(tool))
+            return;
+
+        // Pathogen contamination also exhausts remaining clean uses.
         MarkSterilityLost(tool);
         var sterility = EnsureComp<SurgicalToolSterilityComponent>(tool);
 

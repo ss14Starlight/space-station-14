@@ -71,20 +71,23 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
     // Nulllink start
     private void Update(MsgUpdatePlayerPlayTime message)
     {
-        _rolesPerServer = message.RolePlayTimePerServer;
+        _rolesPerServer = new Dictionary<string, Dictionary<string, TimeSpan>>(
+            message.RolePlayTimePerServer,
+            StringComparer.OrdinalIgnoreCase);
         MergePlayTime();
     }
 
     private void OnProjectChanged(string value)
     {
-        _project = value;
+        // Match Hub / ActorRouter: prototype ids are uppercase (SOL), servers lowercase (beta).
+        _project = string.IsNullOrWhiteSpace(value) ? value : value.ToUpperInvariant();
         _serverPlaytimeRecognition = null;
         MergePlayTime();
     }
 
     private void OnServerChanged(string value)
     {
-        _server = value;
+        _server = string.IsNullOrWhiteSpace(value) ? value : value.ToLowerInvariant();
         MergePlayTime();
     }
 
@@ -102,17 +105,21 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 
             if (_serverPlaytimeRecognition?.Recognition.TryGetValue(_server, out var servers) is true)
             {
+                var selfKey = $"{_project}.{_server}";
                 foreach (var server in servers)
                 {
-                    if (_rolesPerServer.TryGetValue(server, out var rolesForServer))
+                    if (string.Equals(server, selfKey, StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    if (!_rolesPerServer.TryGetValue(server, out var rolesForServer))
+                        continue;
+
+                    foreach (var (tracker, time) in rolesForServer)
                     {
-                        foreach (var (tracker, time) in rolesForServer)
-                        {
-                            if (_mergedRoles.ContainsKey(tracker))
-                                _mergedRoles[tracker] += time;
-                            else
-                                _mergedRoles[tracker] = time;
-                        }
+                        if (_mergedRoles.ContainsKey(tracker))
+                            _mergedRoles[tracker] += time;
+                        else
+                            _mergedRoles[tracker] = time;
                     }
                 }
             }

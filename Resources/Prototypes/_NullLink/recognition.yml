@@ -129,18 +129,18 @@
       #- TRIESTEPORT.main
       #- AFTERLIGHT.main
 
-# Sol / North-Western — prototype id MUST match nulllink.id.project
+# Sol / North-Western — prototype id MUST match nulllink.id.project (case-insensitive; code uppercases)
+# Recognition lists are *other* servers whose NullLink playtime is imported.
+# Do not list the current server — local DB already has that time (Starlight pattern).
 - type: serverPlaytimeRecognition
   id: SOL
   recognition:
     main:
-      - SOL.main
       - SOL.beta
       # deliberately omit SOL.mapping — mapping playtime must not count
     mapping: []
     beta:
       - SOL.main
-      - SOL.beta
 
 - type: serverBanRecognition
   id: SOL

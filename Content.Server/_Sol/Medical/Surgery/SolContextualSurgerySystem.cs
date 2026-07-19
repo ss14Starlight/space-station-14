@@ -1,4 +1,5 @@
 using Content.Server._Sol.Medical.Virology;
+using Content.Server.Examine;
 using Content.Shared._Sol.Medical.Virology.Components;
 using Content.Shared._Sol.Medical.Virology.Events;
 using Content.Shared._Starlight.Medical.Surgery;
@@ -19,6 +20,7 @@ public sealed class SolContextualSurgerySystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly PathogenSystem _pathogen = default!;
+    [Dependency] private readonly ExamineSystem _examine = default!;
 
     public override void Initialize()
     {
@@ -38,25 +40,16 @@ public sealed class SolContextualSurgerySystem : EntitySystem
             if (!TryComp<SurgicalToolSterilityComponent>(tool, out var sterility))
                 continue;
 
-            if (sterility.State == SurgicalSterilityState.Dirty)
-            {
-                _popup.PopupEntity(
-                    Loc.GetString("sol-surgery-dirty-tool-warning"),
-                    args.User,
-                    args.User,
-                    PopupType.MediumCaution);
-                break;
-            }
+            // Only fully dirty tools elevate infection risk.
+            if (sterility.State != SurgicalSterilityState.Dirty)
+                continue;
+
+            _popup.PopupEntity(Loc.GetString("sol-surgery-dirty-tool-warning"), args.User, args.User, PopupType.MediumCaution);
+            break;
         }
 
         if (args.Failed)
-        {
-            _popup.PopupEntity(
-                Loc.GetString("sol-surgery-failed-infection-risk"),
-                args.User,
-                args.User,
-                PopupType.SmallCaution);
-        }
+            _popup.PopupEntity(Loc.GetString("sol-surgery-failed-infection-risk"), args.User, args.User, PopupType.SmallCaution);
     }
 
     private void OnGetVerbs(Entity<SurgeryTargetComponent> target, ref GetVerbsEvent<AlternativeVerb> args)
@@ -116,13 +109,12 @@ public sealed class SolContextualSurgerySystem : EntitySystem
         var masked = _inventory.TryGetSlotEntity(patient, "mask", out var mask) &&
                      HasComp<SurgicalMaskProtectionComponent>(mask.Value);
 
-        _popup.PopupEntity(
-            Loc.GetString(
-                "sol-surgery-hygiene-status",
-                ("body", bodyState),
-                ("gloves", gloveState),
-                ("masked", masked)),
-            patient,
-            user);
+        // Popups do not render RichText; use an examine tooltip so [color] tags work.
+        var message = FormattedMessage.FromMarkupOrThrow(Loc.GetString(
+            "sol-surgery-hygiene-status",
+            ("body", bodyState),
+            ("gloves", gloveState),
+            ("masked", masked)));
+        _examine.SendExamineTooltip(user, patient, message, getVerbs: false, centerAtCursor: false);
     }
 }

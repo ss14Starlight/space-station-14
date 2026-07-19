@@ -63,6 +63,7 @@ sol-ppe-safe-doff = You carefully remove the contaminated PPE while gloved.
 sol-ppe-unsafe-doff = Contaminated PPE contacts your bare skin as you remove it!
 
 sol-surgery-tool-sterile = [color=green]Sterile[/color]
+sol-surgery-tool-sterile-uses = [color=green]Sterile[/color] ({$uses} clean uses left)
 sol-surgery-tool-disinfected = [color=yellow]Disinfected[/color]
 sol-surgery-tool-dirty = [color=red]Dirty[/color]
 sol-surgery-tool-contaminated = [color=orange]Pathogen contamination detected.[/color]
@@ -187,8 +188,10 @@ sol-allergy-dexalin-name = Dexalin Contraindication
 sol-allergy-dexalin-desc = Species-specific adverse reaction to dexalin.
 sol-allergy-dexalin-plus-name = Dexalin Plus Contraindication
 sol-allergy-dexalin-plus-desc = Species-specific adverse reaction to dexalin plus.
-sol-allergy-reaction = You are having an allergic reaction to {$allergy}!
-sol-allergy-anaphylaxis = ANAPHYLAXIS! Seek emergency treatment!
+sol-allergy-symptoms-mild = Your skin itches and your nose begins to run.
+sol-allergy-symptoms-moderate = You feel nauseated as your skin swells and breaks out in hives.
+sol-allergy-symptoms-severe = Your throat tightens and every breath becomes difficult!
+sol-allergy-symptoms-anaphylaxis = Your airway is rapidly closing! You feel faint and cannot breathe!
 
 sol-bioterror-briefing = You are a bioterrorist. Establish a clandestine lab, culture environmental microbes into a custom strain, and deploy physical payloads. Avoid early detection.
 sol-bioterror-briefing-head = You are the Head Bioterrorist. You carry the portable lab flatpacks. Lead the cell, choose a hideout, and coordinate synthesis and deployment.

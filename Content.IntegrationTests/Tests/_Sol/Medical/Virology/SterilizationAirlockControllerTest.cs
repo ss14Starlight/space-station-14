@@ -271,8 +271,10 @@ public sealed class SterilizationAirlockControllerTest
             sterilizer.Update(0.1f);
             Assert.That(controllerComp.Phase, Is.EqualTo(SterilizationControllerPhase.Idle));
             Assert.That(entMan.GetComponent<DoorComponent>(doorA).State, Is.EqualTo(DoorState.Closed));
-            Assert.That(entMan.GetComponent<DoorBoltComponent>(doorA).BoltsDown, Is.True);
-            Assert.That(entMan.GetComponent<DoorBoltComponent>(doorB).BoltsDown, Is.True);
+            Assert.That(entMan.GetComponent<DoorComponent>(doorB).State, Is.EqualTo(DoorState.Closed));
+            // Follow-up cleanse must not reopen the outer door, but must release bolts afterward.
+            Assert.That(entMan.GetComponent<DoorBoltComponent>(doorA).BoltsDown, Is.False);
+            Assert.That(entMan.GetComponent<DoorBoltComponent>(doorB).BoltsDown, Is.False);
 
             controllerComp.RequiresPower = true;
             Assert.That(entMan.TryGetComponent(controller, out ApcPowerReceiverComponent power), Is.True);

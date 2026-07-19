@@ -12,6 +12,9 @@
     endSound:
       path: /Audio/Items/Medical/ointment_end.ogg
   - type: SurgeryTool
+  # Bone gel is a refillable bottle — do not wear out sterility like scalpels.
+  - type: SurgicalToolSterility
+    permanentSterility: true
   - type: Tag
     tags:
     - BoneGel

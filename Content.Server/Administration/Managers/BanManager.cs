@@ -108,6 +108,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     private void UpdateProject(string obj)
     {
+        obj = obj.ToUpperInvariant();
         if (!_prototypeManager.TryIndex<ServerBanRecognitionPrototype>(obj, out var banRecognition))
         {
             _banRecognition = null;

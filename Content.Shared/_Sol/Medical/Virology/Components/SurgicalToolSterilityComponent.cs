@@ -12,14 +12,35 @@ public sealed partial class SurgicalToolSterilityComponent : Component
     [DataField, AutoNetworkedField]
     public SurgicalSterilityState State = SurgicalSterilityState.Sterile;
 
+    /// <summary>
+    /// Surgical uses remaining before the tool becomes fully dirty / an infection risk.
+    /// Attacking someone or completing the last clean use sets this to 0.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int CleanUsesRemaining = 3;
+
+    /// <summary>
+    /// Clean-use budget restored by full sterilization.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int MaxCleanUses = 3;
+
     [DataField, AutoNetworkedField]
     public List<PathogenContaminationEntry> Contaminants = new();
 
     /// <summary>
-    /// Multiplier applied to surgery infection chance when this tool is used.
+    /// Multiplier applied to surgery infection chance when this tool is used while Dirty.
     /// </summary>
     [DataField, AutoNetworkedField]
     public float DirtyInfectionMultiplier = 2.5f;
+
+    /// <summary>
+    /// When true, surgical uses and melee attacks never consume clean uses or mark this Dirty
+    /// (e.g. bone gel bottles — sterility is about the gel, not the applicator bottle).
+    /// Organs are also never marked Dirty (handled separately via OrganComponent checks).
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool PermanentSterility;
 }
 
 [Serializable, NetSerializable]

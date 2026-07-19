@@ -274,7 +274,7 @@ public sealed class SolContextualSurgeryBui : BoundUserInterface
         var msg = new FormattedMessage();
         msg.AddMarkupOrThrow($"[bold]{FormattedMessage.EscapeText(action.SurgeryName)}[/bold]\n{FormattedMessage.EscapeText(stepName)}");
 
-        var dirty = HasDirtyHeldTools(player);
+        var dirty = IsStepToolDirty(player, action.StepEnt, partType, out _);
         var infectionContext = IsVirologyContext();
         var canPerform = _system.CanPerformStep(
             player,
@@ -330,12 +330,17 @@ public sealed class SolContextualSurgeryBui : BoundUserInterface
         };
     }
 
-    private bool HasDirtyHeldTools(EntityUid player)
+    /// <summary>
+    /// Only the tools required for this step matter — a dirty tool in the other hand is ignored.
+    /// </summary>
+    private bool IsStepToolDirty(EntityUid player, EntityUid stepEnt, BodyPartType partType, out HashSet<EntityUid> validTools)
     {
-        foreach (var held in _hands.EnumerateHeld(player))
+        _system.CanPerformStep(player, Owner, partType, stepEnt, false, out _, out _, out validTools);
+
+        foreach (var tool in validTools)
         {
-            if (_entities.TryGetComponent(held, out SurgicalToolSterilityComponent? sterility) &&
-                sterility.State != SurgicalSterilityState.Sterile)
+            if (_entities.TryGetComponent(tool, out SurgicalToolSterilityComponent? sterility) &&
+                sterility.State == SurgicalSterilityState.Dirty)
             {
                 return true;
             }

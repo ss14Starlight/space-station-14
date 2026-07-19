@@ -1,4 +1,5 @@
 using Content.Shared._Sol.Medical.Virology.Components;
+using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -53,6 +54,8 @@ public sealed class SurgicalAsepsisSystem : EntitySystem
     {
         var state = ent.Comp.State switch
         {
+            SurgicalSterilityState.Sterile when ent.Comp.CleanUsesRemaining < ent.Comp.MaxCleanUses
+                => Loc.GetString("sol-surgery-tool-sterile-uses", ("uses", ent.Comp.CleanUsesRemaining)),
             SurgicalSterilityState.Sterile => Loc.GetString("sol-surgery-tool-sterile"),
             SurgicalSterilityState.Disinfected => Loc.GetString("sol-surgery-tool-disinfected"),
             SurgicalSterilityState.Dirty => Loc.GetString("sol-surgery-tool-dirty"),
@@ -142,12 +145,20 @@ public sealed class SurgicalAsepsisSystem : EntitySystem
     }
 
     /// <summary>
-    /// Marks a surgical tool/gloves as dirty (e.g. after surgery or attacking someone).
+    /// Marks a surgical tool/gloves as dirty (e.g. after attacking someone).
     /// </summary>
     public void MarkSterilityLost(Entity<SurgicalToolSterilityComponent> ent)
     {
-        if (ent.Comp.State == SurgicalSterilityState.Dirty)
+        // Bone gel / organs: never treat as non-sterile instruments.
+        if (ent.Comp.PermanentSterility || HasComp<OrganComponent>(ent))
             return;
+
+        ent.Comp.CleanUsesRemaining = 0;
+        if (ent.Comp.State == SurgicalSterilityState.Dirty)
+        {
+            Dirty(ent);
+            return;
+        }
 
         ent.Comp.State = SurgicalSterilityState.Dirty;
         Dirty(ent);
@@ -157,6 +168,25 @@ public sealed class SurgicalAsepsisSystem : EntitySystem
             surface.IsDirty = true;
             Dirty(ent.Owner, surface);
         }
+    }
+
+    /// <summary>
+    /// Consumes one clean surgical use. The tool becomes Dirty after the last clean use.
+    /// </summary>
+    public void RegisterSurgicalUse(Entity<SurgicalToolSterilityComponent> ent)
+    {
+        if (ent.Comp.PermanentSterility || HasComp<OrganComponent>(ent) ||
+            ent.Comp.State == SurgicalSterilityState.Dirty)
+            return;
+
+        ent.Comp.CleanUsesRemaining = Math.Max(0, ent.Comp.CleanUsesRemaining - 1);
+        if (ent.Comp.CleanUsesRemaining <= 0)
+        {
+            MarkSterilityLost(ent);
+            return;
+        }
+
+        Dirty(ent);
     }
 
     public bool TryWash(Entity<SurgicalToolSterilityComponent> ent, EntityUid user, bool sterilize)
@@ -274,6 +304,8 @@ public sealed class SurgicalAsepsisSystem : EntitySystem
     {
         ent.Comp.Contaminants.Clear();
         ent.Comp.State = state;
+        if (state == SurgicalSterilityState.Sterile)
+            ent.Comp.CleanUsesRemaining = ent.Comp.MaxCleanUses;
         Dirty(ent);
 
         if (TryComp<SurfaceContaminationComponent>(ent, out var surface))

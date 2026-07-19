@@ -46,8 +46,8 @@ public sealed partial class ActorRouter : IActorRouter, IDisposable
         _cfg.OnValueChanged(NullLinkCCVars.Token, OnTokenChanged, true);
         _cfg.OnValueChanged(NullLinkCCVars.Enabled, OnEnabledChanged, true);
 
-        _cfg.OnValueChanged(NullLinkCCVars.Project, x => Project = x, true);
-        _cfg.OnValueChanged(NullLinkCCVars.Server, x => Server = x, true);
+        _cfg.OnValueChanged(NullLinkCCVars.Project, x => Project = string.IsNullOrWhiteSpace(x) ? x : x.ToUpperInvariant(), true);
+        _cfg.OnValueChanged(NullLinkCCVars.Server, x => Server = string.IsNullOrWhiteSpace(x) ? x : x.ToLowerInvariant(), true);
     }
     public ValueTask Shutdown()
     {

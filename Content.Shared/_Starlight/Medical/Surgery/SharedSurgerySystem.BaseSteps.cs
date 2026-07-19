@@ -69,9 +69,11 @@ public abstract partial class SharedSurgerySystem
             if (_net.IsClient) return;
             _popup.PopupEntity("Because of a careless tool, your hand shook. You need to start this step all over again!", args.User, PopupType.SmallCaution);
             // Sol-start: failed steps still risk infecting an open wound.
+            // Only the tools actually required for this step affect infection / sterility.
             surgeryFailed = true;
+            CanPerformStep(args.User, ent, part.Comp.PartType, step, false, out _, out _, out var failTools);
             var failEv = new Content.Shared._Sol.Medical.Virology.Events.SolSurgeryStepCompletedEvent(
-                args.User, ent, part, GetTools(args.User), args.Step, args.Surgery, false, true);
+                args.User, ent, part, failTools.ToList(), args.Step, args.Surgery, false, true);
             RaiseLocalEvent(ref failEv);
             // Sol-end
             return;
@@ -94,8 +96,9 @@ public abstract partial class SharedSurgerySystem
         RaiseLocalEvent(step, ref evComplete);
 
         // Sol-start: notify Sol virology of completed surgery steps on the patient body.
+        CanPerformStep(args.User, ent, part.Comp.PartType, step, false, out _, out _, out var usedTools);
         var solEv = new Content.Shared._Sol.Medical.Virology.Events.SolSurgeryStepCompletedEvent(
-            args.User, ent, part, GetTools(args.User), args.Step, args.Surgery, evComplete.IsFinal, surgeryFailed);
+            args.User, ent, part, usedTools.ToList(), args.Step, args.Surgery, evComplete.IsFinal, surgeryFailed);
         RaiseLocalEvent(ref solEv);
         // Sol-end
 
