@@ -16,8 +16,9 @@
     IAA: 76
 
     Chemist: 90
-    Paramedic: 50
-    MedicalDoctor: 58
+    Psychologist: 80
+    Paramedic: 70
+    MedicalDoctor: 60
     MedicalIntern: 23
     Surgeon: 90
 
@@ -32,7 +33,7 @@
     SecurityOfficer: 64
     SecurityCadet: 23
 
-    StationAi: 155
+    StationAi: 149
     Borg: 85
 
     Chaplain: 50
@@ -47,10 +48,13 @@
     Clown: 30
     ServiceWorker: 23
     Performer: 23
+    Reporter: 50
     Assistant: 15
+    Boxer: 30
+    Zookeeper: 40
 
     Scientist: 65
-    Roboticist: 56
+    Roboticist: 70
     ResearchAssistant: 23
 
     SalvageLead: 75
