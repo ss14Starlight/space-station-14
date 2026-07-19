@@ -55,6 +55,7 @@
   storage:
     back:
     - BoxSurvivalDwarf
+    - BookOfGrudges
 
 - type: loadout
   id: EmergencyNonBreather

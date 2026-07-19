@@ -44,7 +44,7 @@
 
 - type: entity
   parent: Bible
-  name: book of grudges
+  name: great book of grudges
   description: "Each page overflows with complaints about the enemies of Dwarfkind, including several trees."
   id: BibleBookOfGrudges
   components:
