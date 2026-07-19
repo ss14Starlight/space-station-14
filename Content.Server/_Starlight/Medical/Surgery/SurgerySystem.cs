@@ -14,6 +14,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Damage.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Server._Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -28,6 +29,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private ContainerSystem _containers = default!;
     [Dependency] private SleepingSystem _sleeping = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()

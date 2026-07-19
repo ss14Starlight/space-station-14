@@ -7,8 +7,10 @@ using Content.Shared._Sol.Medical.Virology.Components;
 using Content.Shared._Sol.Medical.Virology.Events;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage.Components;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sol.Medical.Virology;
@@ -23,7 +25,10 @@ public sealed class SolHealthAnalyzerSystem : EntitySystem
         "brain", "eyes", "heart", "lungs", "liver", "kidneys", "stomach", "tongue",
     ];
 
+    private static readonly HashSet<string> VitalOrganSlotSet = new(VitalOrganSlots, StringComparer.OrdinalIgnoreCase);
+
     [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly PathogenSystem _pathogen = default!;
     [Dependency] private readonly SurgeryInfectionSystem _surgeryInfection = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
@@ -52,42 +57,51 @@ public sealed class SolHealthAnalyzerSystem : EntitySystem
         if (!TryComp<BodyComponent>(target, out var body))
             return result;
 
-        var presentKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var expected = GetExpectedVitalSlots(body);
+        var presentSlots = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        foreach (var (organUid, _) in _body.GetBodyOrgans(target, body))
+        // Slot-based presence: do not infer vitals from prototype/name substrings
+        // (that falsely marked removed organs as still present).
+        foreach (var (partUid, part) in _body.GetBodyChildren(target, body))
         {
-            var rawName = MetaData(organUid).EntityName;
-            var name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(rawName);
-            var status = "Healthy";
-            var protoId = MetaData(organUid).EntityPrototype?.ID ?? string.Empty;
-
-            foreach (var slot in VitalOrganSlots)
+            foreach (var slotId in part.Organs.Keys)
             {
-                if (protoId.Contains(slot, StringComparison.OrdinalIgnoreCase) ||
-                    rawName.Contains(slot, StringComparison.OrdinalIgnoreCase))
+                var containerId = SharedBodySystem.GetOrganContainerId(slotId);
+                if (!_containers.TryGetContainer(partUid, containerId, out var container))
+                    continue;
+
+                foreach (var organUid in container.ContainedEntities)
                 {
-                    presentKeys.Add(slot);
+                    if (!HasComp<OrganComponent>(organUid))
+                        continue;
+
+                    var rawName = MetaData(organUid).EntityName;
+                    var name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(rawName);
+                    var status = "Healthy";
+
+                    if (TryComp<DamageableComponent>(organUid, out var damageable))
+                    {
+                        var total = damageable.TotalDamage.Float();
+                        status = total switch
+                        {
+                            <= 0 => "Healthy",
+                            < 20 => "Damaged",
+                            < 50 => "Failing",
+                            _ => "Critical",
+                        };
+                    }
+
+                    result.Add((GetNetEntity(organUid), name, status));
+
+                    if (expected.Contains(slotId) || VitalOrganSlotSet.Contains(slotId))
+                        presentSlots.Add(slotId);
                 }
             }
-
-            if (TryComp<DamageableComponent>(organUid, out var damageable))
-            {
-                var total = damageable.TotalDamage.Float();
-                status = total switch
-                {
-                    <= 0 => "Healthy",
-                    < 20 => "Damaged",
-                    < 50 => "Failing",
-                    _ => "Critical",
-                };
-            }
-
-            result.Add((GetNetEntity(organUid), name, status));
         }
 
-        foreach (var slot in GetExpectedVitalSlots(body))
+        foreach (var slot in expected)
         {
-            if (presentKeys.Contains(slot))
+            if (presentSlots.Contains(slot))
                 continue;
 
             var label = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(slot);
@@ -109,7 +123,7 @@ public sealed class SolHealthAnalyzerSystem : EntitySystem
             {
                 foreach (var organSlot in slot.Organs.Keys)
                 {
-                    if (VitalOrganSlots.Contains(organSlot))
+                    if (VitalOrganSlotSet.Contains(organSlot))
                         expected.Add(organSlot);
                 }
             }

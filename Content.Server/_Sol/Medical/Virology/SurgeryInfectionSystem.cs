@@ -22,6 +22,7 @@ public sealed class SurgeryInfectionSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SurgicalAsepsisSystem _asepsis = default!;
 
     /// <summary>
     /// Deterministic infection roll override for tests (0-1). Null uses RNG.
@@ -207,17 +208,7 @@ public sealed class SurgeryInfectionSystem : EntitySystem
     private void MarkSterilityLost(EntityUid tool)
     {
         var sterility = EnsureComp<SurgicalToolSterilityComponent>(tool);
-        if (sterility.State == SurgicalSterilityState.Dirty)
-            return;
-
-        sterility.State = SurgicalSterilityState.Dirty;
-        Dirty(tool, sterility);
-
-        if (TryComp<SurfaceContaminationComponent>(tool, out var surface))
-        {
-            surface.IsDirty = true;
-            Dirty(tool, surface);
-        }
+        _asepsis.MarkSterilityLost((tool, sterility));
     }
 
     private void MarkToolUsed(EntityUid tool, string pathogenId, EntityUid patient)

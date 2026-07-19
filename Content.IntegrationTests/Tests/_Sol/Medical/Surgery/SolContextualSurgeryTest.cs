@@ -8,6 +8,7 @@ using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Standing;
 using Robust.Shared.GameObjects;
@@ -135,6 +136,136 @@ public sealed class SolContextualSurgeryTest
             var nextProto = entMan.GetComponent<MetaDataComponent>(next!.Value.Surgery.Owner).EntityPrototype?.ID;
             Assert.That(nextProto, Is.EqualTo("SurgeryOpenIncision"));
             Assert.That(next.Value.Step, Is.EqualTo(0));
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task IncisionBleedEffectAppliesDamageAndBleed()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entMan = server.ResolveDependency<IEntityManager>();
+
+        await server.WaitAssertion(() =>
+        {
+            var patient = entMan.Spawn("MobHuman");
+            var surgeon = entMan.Spawn("MobHuman");
+            var body = entMan.System<SharedBodySystem>();
+            var torso = body.GetBodyChildrenOfType(patient, BodyPartType.Torso).First().Id;
+            var entities = entMan.System<StarlightEntitySystem>();
+            var scalpel = entMan.Spawn("Scalpel");
+
+            Assert.That(entities.TryGetSingleton("SurgeryStepOpenIncisionScalpel", out var stepEnt), Is.True);
+            Assert.That(entMan.TryGetComponent(patient, out DamageableComponent damage), Is.True);
+            Assert.That(entMan.TryGetComponent(patient, out BloodstreamComponent blood), Is.True);
+
+            var beforeDamage = damage.TotalDamage;
+            var beforeBleed = blood.BleedAmount;
+
+            var ev = new SurgeryStepEvent(surgeon, patient, torso, [scalpel])
+            {
+                StepProto = "SurgeryStepOpenIncisionScalpel",
+                SurgeryProto = "SurgeryOpenIncision",
+            };
+            entMan.EventBus.RaiseLocalEvent(stepEnt, ref ev);
+
+            Assert.That(damage.TotalDamage, Is.GreaterThan(beforeDamage), "Incision step should apply Slash damage");
+            Assert.That(blood.BleedAmount, Is.GreaterThan(beforeBleed), "Incision Slash damage should increase bleed");
+            Assert.That(entMan.HasComponent<IncisionOpenComponent>(torso), Is.True,
+                "IncisionOpen must be added by OnStep; without it continuous bleed never starts");
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task RemovingLiverUpdatesAnalyzerStatus()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entMan = server.ResolveDependency<IEntityManager>();
+
+        await server.WaitAssertion(() =>
+        {
+            var patient = entMan.Spawn("MobHuman");
+            var surgeon = entMan.Spawn("MobHuman");
+            var body = entMan.System<SharedBodySystem>();
+            var torso = body.GetBodyChildrenOfType(patient, BodyPartType.Torso).First().Id;
+            var entities = entMan.System<StarlightEntitySystem>();
+            var analyzer = entMan.System<Content.Server._Sol.Medical.Virology.SolHealthAnalyzerSystem>();
+
+            var before = analyzer.BuildOrganStatus(patient);
+            Assert.That(before.Any(o => o.Item2.Contains("Liver", System.StringComparison.OrdinalIgnoreCase) && o.Item3 == "Healthy"), Is.True);
+
+            EntityUid? liverBefore = null;
+            foreach (var (organUid, _) in body.GetPartOrgans(torso))
+            {
+                if (entMan.GetComponent<MetaDataComponent>(organUid).EntityPrototype?.ID?.Contains("Liver", System.StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    liverBefore = organUid;
+                    break;
+                }
+            }
+            Assert.That(liverBefore, Is.Not.Null);
+
+            Assert.That(entities.TryGetSingleton("SurgeryStepRemoveLiver", out var stepEnt), Is.True);
+            var ev = new SurgeryStepEvent(surgeon, patient, torso, [])
+            {
+                StepProto = "SurgeryStepRemoveLiver",
+                SurgeryProto = "SurgeryExtractLiver",
+            };
+            entMan.EventBus.RaiseLocalEvent(stepEnt, ref ev);
+
+            var after = analyzer.BuildOrganStatus(patient);
+            Assert.That(after.Any(o => o.Item2.Contains("Liver", System.StringComparison.OrdinalIgnoreCase) && o.Item3 == "Healthy"), Is.False,
+                $"Still healthy liver entries: {string.Join(", ", after.Select(o => $"{o.Item2}={o.Item3}"))}");
+            Assert.That(after.Any(o => o.Item2.Contains("Liver", System.StringComparison.OrdinalIgnoreCase) && o.Item3 == "Missing"), Is.True,
+                $"Missing liver not reported: {string.Join(", ", after.Select(o => $"{o.Item2}={o.Item3}"))}");
+
+            // Extracted organ must leave the torso (not vanish into a parent body slot).
+            Assert.That(entMan.Deleted(liverBefore!.Value), Is.False);
+            Assert.That(body.GetPartOrgans(torso).Any(o => o.Id == liverBefore), Is.False);
+            Assert.That(entMan.GetComponent<Content.Shared.Body.Organ.OrganComponent>(liverBefore.Value).Body, Is.Null);
+
+            var containers = entMan.System<Robust.Shared.Containers.SharedContainerSystem>();
+            var stillInTorso = containers.TryGetContainingContainer((liverBefore.Value, null, null), out var afterContainer)
+                && afterContainer.Owner == torso;
+            Assert.That(stillInTorso, Is.False,
+                "Extracted liver must not remain in the torso organ container");
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task IncisionOpenAppliesEvenWithoutToolsInEvent()
+    {
+        // Regression: OnStep used to return early when Tools lacked the scalpel,
+        // skipping IncisionOpen even though the do-after had already succeeded.
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entMan = server.ResolveDependency<IEntityManager>();
+
+        await server.WaitAssertion(() =>
+        {
+            var patient = entMan.Spawn("MobHuman");
+            var surgeon = entMan.Spawn("MobHuman");
+            var body = entMan.System<SharedBodySystem>();
+            var torso = body.GetBodyChildrenOfType(patient, BodyPartType.Torso).First().Id;
+            var entities = entMan.System<StarlightEntitySystem>();
+
+            Assert.That(entities.TryGetSingleton("SurgeryStepOpenIncisionScalpel", out var stepEnt), Is.True);
+
+            var ev = new SurgeryStepEvent(surgeon, patient, torso, [])
+            {
+                StepProto = "SurgeryStepOpenIncisionScalpel",
+                SurgeryProto = "SurgeryOpenIncision",
+            };
+            entMan.EventBus.RaiseLocalEvent(stepEnt, ref ev);
+
+            Assert.That(entMan.HasComponent<IncisionOpenComponent>(torso), Is.True);
         });
 
         await pair.CleanReturnAsync();

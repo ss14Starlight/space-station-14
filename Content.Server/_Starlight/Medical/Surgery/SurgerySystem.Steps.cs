@@ -10,6 +10,7 @@ using Content.Shared.Traits.Assorted;
 using Content.Shared.Bed.Sleep;
 using Content.Server._Starlight.Medical.Limbs;
 using Robust.Shared.Timing;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight;
@@ -87,8 +88,14 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     {
         if (ent.Comp.Damage == null)
             return;
-        var damage = ent.Comp.Damage;
-        if (ent.Comp.Damage is not null && TryComp<DamageableComponent>(args.Body, out var comp))
+
+        // Copy: DamageableSystem may reassign/modify the specifier through events.
+        // Awake patients take double surgical trauma (Starlight balance).
+        var damage = new DamageSpecifier(ent.Comp.Damage);
+        if (!HasComp<SleepingComponent>(args.Body))
+            damage *= 2f;
+
+        if (TryComp<DamageableComponent>(args.Body, out _))
             _damageableSystem.TryChangeDamage(args.Body, damage);
     }
 
@@ -136,25 +143,54 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         var type = ent.Comp.Organ.Values.First().Component.GetType();
 
-        if (ent.Comp.Slot != null && _containers.TryGetContainer(args.Part, SharedBodySystem.GetOrganContainerId(ent.Comp.Slot), out var container))
+        // Prefer the named slot when provided, but always drop + raise
+        // SurgeryOrganExtracted so organ systems and analyzers stay in sync.
+        if (ent.Comp.Slot != null &&
+            _containers.TryGetContainer(args.Part, SharedBodySystem.GetOrganContainerId(ent.Comp.Slot), out var container))
         {
-            foreach (var containedEnt in container.ContainedEntities)
-                if (HasComp(containedEnt, type))
-                    _containers.Remove(containedEnt, container);
+            foreach (var containedEnt in container.ContainedEntities.ToArray())
+            {
+                if (!HasComp(containedEnt, type) || !TryComp<OrganComponent>(containedEnt, out _))
+                    continue;
 
-            return;
+                if (TryExtractOrgan(containedEnt, args.Body, args.Part, args.User))
+                    return;
+            }
         }
 
         var organs = _body.GetPartOrgans(args.Part, Comp<BodyPartComponent>(args.Part));
         foreach (var organ in organs)
         {
-            if (!HasComp(organ.Id, type) || !_body.RemoveOrgan(organ.Id, organ.Component)) continue;
+            if (!HasComp(organ.Id, type))
+                continue;
 
-            var ev = new SurgeryOrganExtracted(args.Body, args.Part, organ.Id);
-            RaiseLocalEvent(organ.Id, ref ev);
-
-            return;
+            if (TryExtractOrgan(organ.Id, args.Body, args.Part, args.User))
+                return;
         }
+    }
+
+    /// <summary>
+    /// Removes an organ from its body-part container and places it in the world.
+    /// Plain <see cref="SharedBodySystem.RemoveOrgan"/> uses AttachParentToContainerOrGrid,
+    /// which can re-insert the organ into a parent container (invisible inside the patient).
+    /// Match amputation: force a destination next to the body, then prefer the surgeon's hands.
+    /// </summary>
+    private bool TryExtractOrgan(EntityUid organId, EntityUid body, EntityUid part, EntityUid user)
+    {
+        if (!_containers.TryGetContainingContainer((organId, null, null), out var container)
+            || !HasComp<BodyPartComponent>(container.Owner)
+            || !TryComp(body, out TransformComponent? bodyXform))
+            return false;
+
+        if (!_containers.Remove(organId, container, destination: bodyXform.Coordinates))
+            return false;
+
+        var ev = new SurgeryOrganExtracted(body, part, organId);
+        RaiseLocalEvent(organId, ref ev);
+
+        // Hands full / blocked → organ stays on the floor at the patient.
+        _handsSystem.TryPickupAnyHand(user, organId);
+        return true;
     }
 
     private void OnRemoveAccent(Entity<SurgeryRemoveAccentComponent> ent, ref SurgeryStepEvent args)

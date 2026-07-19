@@ -311,6 +311,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             "Damaged" => Color.Yellow,
             "Failing" => Color.Orange,
             "Critical" => Color.Red,
+            "Missing" => Color.Red,
             _ => Color.White,
         };
     }

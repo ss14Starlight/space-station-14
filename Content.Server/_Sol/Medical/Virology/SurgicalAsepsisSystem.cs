@@ -5,8 +5,11 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Melee.Events;
 
 namespace Content.Server._Sol.Medical.Virology;
 
@@ -18,6 +21,7 @@ public sealed class SurgicalAsepsisSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
     [Dependency] private readonly PathogenSystem _pathogen = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
     private static readonly HashSet<string> DisinfectantReagents = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -40,6 +44,9 @@ public sealed class SurgicalAsepsisSystem : EntitySystem
         SubscribeLocalEvent<SurgicalToolSterilityComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
         SubscribeLocalEvent<SurgicalToolSterilityComponent, AfterInteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<SurgicalToolSterilityComponent, ReactionEntityEvent>(OnReaction);
+        SubscribeLocalEvent<SurgicalToolSterilityComponent, MeleeHitEvent>(OnToolMeleeHit);
+        // Unarmed attacks raise MeleeHitEvent on the attacker; dirty worn gloves.
+        SubscribeLocalEvent<MobStateComponent, MeleeHitEvent>(OnUnarmedMeleeHit);
     }
 
     private void OnExamined(Entity<SurgicalToolSterilityComponent> ent, ref ExaminedEvent args)
@@ -99,6 +106,57 @@ public sealed class SurgicalAsepsisSystem : EntitySystem
             return;
 
         ApplyReagentClean(ent, args.Reagent, null);
+    }
+
+    private void OnToolMeleeHit(Entity<SurgicalToolSterilityComponent> ent, ref MeleeHitEvent args)
+    {
+        if (!args.IsHit || !HitLivingTarget(args))
+            return;
+
+        MarkSterilityLost(ent);
+    }
+
+    private void OnUnarmedMeleeHit(Entity<MobStateComponent> ent, ref MeleeHitEvent args)
+    {
+        // Only unarmed: weapon entity is the attacker themselves.
+        if (!args.IsHit || args.Weapon != ent.Owner || !HitLivingTarget(args))
+            return;
+
+        if (_inventory.TryGetSlotEntity(ent, "gloves", out var gloves) &&
+            TryComp<SurgicalToolSterilityComponent>(gloves.Value, out var gloveSterility))
+            MarkSterilityLost((gloves.Value, gloveSterility));
+    }
+
+    private bool HitLivingTarget(MeleeHitEvent args)
+    {
+        foreach (var target in args.HitEntities)
+        {
+            if (target == args.User)
+                continue;
+
+            if (HasComp<MobStateComponent>(target))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Marks a surgical tool/gloves as dirty (e.g. after surgery or attacking someone).
+    /// </summary>
+    public void MarkSterilityLost(Entity<SurgicalToolSterilityComponent> ent)
+    {
+        if (ent.Comp.State == SurgicalSterilityState.Dirty)
+            return;
+
+        ent.Comp.State = SurgicalSterilityState.Dirty;
+        Dirty(ent);
+
+        if (TryComp<SurfaceContaminationComponent>(ent, out var surface))
+        {
+            surface.IsDirty = true;
+            Dirty(ent.Owner, surface);
+        }
     }
 
     public bool TryWash(Entity<SurgicalToolSterilityComponent> ent, EntityUid user, bool sterilize)

@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using Content.Server._Sol.Medical.Virology;
 using Content.Shared._Sol.Medical.Virology;
 using Content.Shared._Sol.Medical.Virology.Components;
+using Content.Shared.Damage;
 using Content.Shared.Station.Components;
+using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.GameObjects;
 
 namespace Content.IntegrationTests.Tests._Sol.Medical.Virology;
@@ -138,6 +140,33 @@ public sealed class SurgeryInfectionAndAsepsisTest
             Assert.That(asepsis.TryWash((tool, sterility), user, sterilize: true), Is.True);
             Assert.That(sterility.State, Is.EqualTo(SurgicalSterilityState.Sterile));
             Assert.That(sterility.Contaminants, Is.Empty);
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task AttackingSomeoneDirtiesSterileTools()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entMan = server.ResolveDependency<IEntityManager>();
+
+        await server.WaitAssertion(() =>
+        {
+            var attacker = entMan.Spawn("SolSurgeryTestMob");
+            var victim = entMan.Spawn("SolSurgeryTestMob");
+            var tool = entMan.Spawn("SolSurgeryTestTool");
+            var sterility = entMan.EnsureComponent<SurgicalToolSterilityComponent>(tool);
+            sterility.State = SurgicalSterilityState.Sterile;
+
+            var hit = new MeleeHitEvent([victim], attacker, tool, new DamageSpecifier(), null)
+            {
+                IsHit = true,
+            };
+            entMan.EventBus.RaiseLocalEvent(tool, hit);
+
+            Assert.That(sterility.State, Is.EqualTo(SurgicalSterilityState.Dirty));
         });
 
         await pair.CleanReturnAsync();

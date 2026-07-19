@@ -140,10 +140,14 @@ public abstract partial class SharedSurgerySystem
         if(!_entitySystem.TryGetSingleton(args.StepProto, out var stepEnt)
             || !TryComp(stepEnt, out SurgeryStepComponent? stepComp)) return;
 
+        // Tool FX / reagent consumption are best-effort. Do not abort Add/Remove:
+        // the do-after already succeeded, and skip-on-missing-tool previously left
+        // wound markers (IncisionOpen, BleedersClamped, etc.) unapplied.
         foreach (var reg in (ent.Comp.Tools ?? []).Values)
         {
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
-            if (tool == default) return;
+            if (tool == default)
+                continue;
 
             var specificToolComp = AllComps(tool)
                 .OfType<ISurgeryToolComponent>();
