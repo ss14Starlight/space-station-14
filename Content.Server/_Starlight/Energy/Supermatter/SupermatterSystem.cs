@@ -222,7 +222,9 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         supermatter.Comp.DestabilizationModifier = 1f;
         supermatter.Comp.GasDoesDamage = 0f;
 
-        for (var i = 0; i < Const.GasProperties.Length; i++)
+        var gaslength = Math.Min(Const.GasProperties.Length, gas.Moles.Length); // i guess but only issue when enums shrink?
+
+        for (var i = 0; i < gaslength; i++)
         {
             var prop = Const.GasProperties[i];
             //var moles = gas.Moles[i]; // used for debugging if needed
@@ -240,7 +242,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
             
         }
             // im not sure if this needs to be in the loop
-            supermatter.Comp.RadiationStability = MathHelper.Clamp(radiationStability, 1.1, 10);
+            supermatter.Comp.RadiationStability = MathHelper.Clamp(radiationStability, 1.1f, 10f);
             supermatter.Comp.ReactionModifier = MathHelper.Clamp(supermatter.Comp.ReactionModifier, 0.1f, 3f);
             supermatter.Comp.RegenerationModifier = MathHelper.Clamp(supermatter.Comp.RegenerationModifier, 0f, 5f);
             supermatter.Comp.DestabilizationModifier =  MathHelper.Clamp(supermatter.Comp.DestabilizationModifier, 0.1f, 3f);
