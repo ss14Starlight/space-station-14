@@ -27,7 +27,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconDealer
+  id: JobIconCasinoDealer
   icon:
     sprite: /Textures/_Starlight/Admeme/Casino/Interface/job_icons.rsi
     state: dealer
