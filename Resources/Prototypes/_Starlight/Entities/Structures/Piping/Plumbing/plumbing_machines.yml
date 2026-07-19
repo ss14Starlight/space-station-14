@@ -19,6 +19,10 @@
     blockAmbience: false
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
+  - type: CollideOnAnchor
+    enable: true
+  - type: Visibility
+    layer: 1
   - type: InteractionOutline
   - type: Anchorable
   - type: Pullable
@@ -121,6 +125,7 @@
   description: Stores up to 200u of reagents. Useful for supplying separate duct networks with its unconnected outlets.
   components:
   - type: CollideOnAnchor
+    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -152,6 +157,7 @@
   description: A small tank you pour reagents into. Other machines pull from this. Connects in all directions.
   components:
   - type: CollideOnAnchor
+    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -295,6 +301,7 @@
   description: A small tank that pulls reagents from the network. Draw from it with a container. Connects in all directions.
   components:
   - type: CollideOnAnchor
+    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -608,6 +615,7 @@
   description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
   - type: CollideOnAnchor
+    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -837,6 +845,7 @@
           True: { state: disposal_working }
           False: { state: disposal }
   - type: CollideOnAnchor
+    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -898,6 +907,7 @@
       state: fill-1
       visible: false
   - type: CollideOnAnchor
+    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
