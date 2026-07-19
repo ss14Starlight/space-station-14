@@ -23,6 +23,10 @@
       color: "#c07c0c"
       roles:
       - 1526062699119906826 # Head Admin
+    - text: "Head-Mapper"
+      color: "#c07c0c"
+      roles:
+      - 1528299648660541460 # Head Mapper
     - text: "Maintainer"
       color: "#fc786c"
       roles:

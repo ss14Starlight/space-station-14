@@ -20,6 +20,8 @@ public sealed class VirologyAccessAndJobTest
             Assert.That(proto.TryIndex<JobPrototype>("Virologist", out var job), Is.True);
             Assert.That(job!.Access.Any(a => a == "Virology"), Is.True);
             Assert.That(job.Access.Any(a => a == "Medical"), Is.True);
+            Assert.That(job.Access.Any(a => a == "Chemistry"), Is.True);
+            Assert.That(job.Access.Any(a => a == "Surgery"), Is.True);
             Assert.That(job.RealDisplayWeight, Is.GreaterThan(
                 proto.Index<JobPrototype>("Surgeon").RealDisplayWeight));
 

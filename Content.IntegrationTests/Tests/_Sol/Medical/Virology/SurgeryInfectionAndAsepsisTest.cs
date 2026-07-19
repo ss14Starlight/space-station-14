@@ -198,9 +198,9 @@ public sealed class SurgeryInfectionAndAsepsisTest
                 new List<EntityUid> { organ },
                 "Scalpel",
                 "Surgery",
-                isFinal: false,
-                failed: false);
-            entMan.EventBus.RaiseLocalEvent(ref ev);
+                false,
+                false);
+            entMan.EventBus.RaiseEvent(EventSource.Local, ref ev);
 
             Assert.That(entMan.HasComponent<SurgicalToolSterilityComponent>(organ), Is.False);
 

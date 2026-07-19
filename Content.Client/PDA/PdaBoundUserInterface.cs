@@ -110,12 +110,14 @@ namespace Content.Client.PDA
 
         protected override void DetachCartridgeUI(Control cartridgeUIFragment)
         {
-            if (_menu is null)
+            if (_menu is null || _menu.Disposed)
                 return;
 
             _menu.ToHomeScreen();
             _menu.HideProgramHeader();
-            _menu.ProgramView.RemoveChild(cartridgeUIFragment);
+
+            if (!cartridgeUIFragment.Disposed && cartridgeUIFragment.Parent == _menu.ProgramView)
+                _menu.ProgramView.RemoveChild(cartridgeUIFragment);
         }
 
         protected override void UpdateAvailablePrograms(List<(EntityUid, CartridgeComponent)> programs)

@@ -119,13 +119,17 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
 
     protected override void Dispose(bool disposing)
     {
-        base.Dispose(disposing);
-
         if (disposing && _activeUiFragment is not null)
         {
+            // Detach before base.Dispose — CreateWindow tracks the menu in Disposals,
+            // and removing a child from an already-disposed ProgramView asserts.
             DetachCartridgeUI(_activeUiFragment);
             _activeUiFragment = null;
+            _activeCartridgeUI = null;
+            _activeProgram = null;
         }
+
+        base.Dispose(disposing);
     }
 
     protected CartridgeComponent? RetrieveCartridgeComponent(EntityUid? cartridgeUid)

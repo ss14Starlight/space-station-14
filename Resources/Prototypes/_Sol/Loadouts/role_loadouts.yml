@@ -9,7 +9,7 @@
   - MedicalBackpack
   - VirologistOuterClothing
   - MedicalShoes
-  - MedicalDoctorPDA
+  - VirologistPDA
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
@@ -53,3 +53,14 @@
   loadouts:
   - VirologistLabCoat
   - VirologistLongLabCoat
+
+- type: loadout
+  id: VirologistPDA
+  equipment:
+    id: VirologistPDA
+
+- type: loadoutGroup
+  id: VirologistPDA
+  name: loadout-group-virologist-id
+  loadouts:
+  - VirologistPDA

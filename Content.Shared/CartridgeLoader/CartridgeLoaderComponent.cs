@@ -30,12 +30,6 @@ public sealed partial class CartridgeLoaderComponent : Component
     public readonly List<EntityUid> BackgroundPrograms = new();
 
     /// <summary>
-    /// The maximum amount of programs that can be installed on the cartridge loader entity
-    /// </summary>
-    [DataField]
-    public int DiskSpace = 8;
-
-    /// <summary>
     /// Controls whether the cartridge loader will play notifications if it supports it at all
     /// TODO: Add an option for this to the PDA
     /// </summary>

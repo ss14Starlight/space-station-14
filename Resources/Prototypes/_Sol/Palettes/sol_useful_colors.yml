@@ -1,0 +1,9 @@
+﻿- type: palette
+  id: SolUseful
+  name: Sol Useful Colors
+  colors:
+    caution-yellow: "#FFFF00"
+    go-green: "#00AF00"
+    stop-red: "#AF0000"
+    danger-red: "#FF0000"
+    restricted-red: "#AA0000"

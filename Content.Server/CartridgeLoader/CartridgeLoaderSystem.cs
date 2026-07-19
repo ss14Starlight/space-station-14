@@ -198,9 +198,6 @@ public sealed partial class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
         if (!_containerSystem.TryGetContainer(loaderUid, InstalledContainerId, out var container))
             return false;
 
-        if (container.Count >= loader.DiskSpace)
-            return false;
-
         var ev = new ProgramInstallationAttempt(loaderUid, prototype);
         RaiseLocalEvent(ref ev);
 
