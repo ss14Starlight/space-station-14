@@ -26,7 +26,7 @@
     - type: Sprite
       layers:
         - state: dealer
-        - sprite: &starlight-icon-rsi _Starlight/Admeme/casino/Interface/job_icons.rsi
+        - sprite: &starlight-icon-rsi _Starlight/Admeme/Casino/Interface/job_icons.rsi
           offset: &icon-offset -0.19375, 0.0625
           state: dealer
     - type: IdCard
