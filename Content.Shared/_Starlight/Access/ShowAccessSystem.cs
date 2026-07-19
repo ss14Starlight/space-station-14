@@ -21,6 +21,10 @@ public sealed partial class ShowAccessSystem : EntitySystem
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private IPrototypeManager _proto = default!;
 
+    // ReSharper disable once UseCollectionExpression | Fucking clientside sandboxing
+    private static readonly List<ProtoId<AccessLevelPrototype>> _blacklistedGroups = new(){"AllAccess", "CyborgAllAccess", "Armory"};
+    private const string CommandProtoId = "Command";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -125,7 +129,7 @@ public sealed partial class ShowAccessSystem : EntitySystem
 
     private void AddVerb(ShowAccessComponent showAccess, GetVerbsEvent<ExamineVerb> args, HashSet<ProtoId<AccessLevelPrototype>> tags)
     {
-        var localized = ProtoToLocalizedName(tags);
+        var localized = LocalizeAndSort(tags);
 
         var msg = new FormattedMessage();
         msg.AddMarkupOrThrow(Loc.GetString(showAccess.ExamineLocId, ("access", tags.Count > 0 ? string.Join(", ", localized) : "None")));
@@ -133,17 +137,70 @@ public sealed partial class ShowAccessSystem : EntitySystem
         _examine.AddDetailedExamineVerb(args, showAccess, msg, Loc.GetString("show-access-verb-text"), "/Textures/_Starlight/Interface/VerbIcons/examine-access.png", Loc.GetString("show-access-verb-message"));
     }
 
-    private HashSet<string> ProtoToLocalizedName(HashSet<ProtoId<AccessLevelPrototype>> protoIds)
+    private List<string> LocalizeAndSort(HashSet<ProtoId<AccessLevelPrototype>> protoIds)
     {
-        HashSet<string> localized = [];
+        // HashSet<string> localized = [];
+        //
+        // foreach (var protoId in protoIds)
+        // {
+        //     if (!_proto.TryIndex(protoId, out var accessLevel)) continue;
+        //     var name = accessLevel.Name ?? accessLevel.ID;
+        //     localized.Add(Loc.GetString(name));
+        // }
+        //
+        // return localized;
 
-        foreach (var protoId in protoIds)
+        // Get groups then sort alphabetically to stay organized but also to make sure the order is same on client+server.
+        var groups = _proto.EnumeratePrototypes<AccessGroupPrototype>()
+            .Where(group => !_blacklistedGroups.Contains(group.ID)).ToList();
+        groups = groups.OrderBy(group => group.Name ?? group.ID).ToList();
+
+        /*
+         * Move command if present to top of list since despite that not being alphabetical order it's arguably the most important.
+         * Also because cargo comes before command in the above list so Quartermaster would be separated if I don't do this.
+         */
+        foreach (var group in groups.ToList().Where(group => group.ID == CommandProtoId))
         {
-            if (!_proto.TryIndex(protoId, out var accessLevel)) continue;
-            var name = accessLevel.Name ?? accessLevel.ID;
-            localized.Add(Loc.GetString(name));
+            groups.Remove(group);
+            groups.Insert(0, group);
+            break;
         }
 
-        return localized;
+        /*
+         * This is probably stupid and I probably need to implement some sort of priority
+         * property on access groups but here we just put tags into a list with the group association and
+         * ignore duplicates. Mostly works but could be an issue eventually, shrug.
+         */
+        var grouped = new Dictionary<ProtoId<AccessLevelPrototype>, string>();
+        foreach (var group in groups)
+        {
+            var name = group.Name ?? group.ID;
+            foreach (var tag in group.Tags) grouped.TryAdd(tag, name);
+        }
+
+        // alphabetically sort the actual access tags into their sorted groups.
+        var sorted = new SortedDictionary<string, SortedSet<string>>();
+        const string Ungrouped = "\uffff";
+        foreach (var protoId in protoIds)
+        {
+            if (!_proto.TryIndex(protoId, out var proto))
+                continue;
+            var name = Loc.GetString(proto.Name ?? proto.ID);
+            var group = grouped.GetValueOrDefault(protoId, Ungrouped);
+            if (!sorted.TryGetValue(group, out var list))
+            {
+                list = [];
+                sorted[group] = list;
+            }
+            list.Add(name);
+        }
+
+        // now just grab all the names of the access tags and shove them into a single string list
+        var result = new List<string>();
+        foreach (var (_, accessList) in sorted)
+            result.AddRange(accessList);
+
+        // voilà this code sucks here's your ordered access tags
+        return result;
     }
 }
