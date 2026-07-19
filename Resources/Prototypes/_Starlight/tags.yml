@@ -243,6 +243,12 @@
   id: EmergencyWelder
 
 - type: Tag
+  id: EncryptionLaw # ItemMapper: TelecomServer
+
+- type: Tag
+  id: EncryptionNanoTrasen # ItemMapper: TelecomServer
+
+- type: Tag
   id: Felionoid
 
 - type: Tag

@@ -12,6 +12,9 @@
       layers:
       - state: crypt_silver
       - state: nano_label
+    - type: Tag
+      tags:
+      - EncryptionLaw
 
 - type: entity
   parent: [ EncryptionKey, BaseNanoTrasenContraband ]
@@ -27,6 +30,9 @@
     layers:
     - state: crypt_gold
     - state: nano_label
+  - type: Tag
+    tags:
+    - EncryptionNanoTrasen
 
 - type: entity
   parent: EncryptionKeyNanoTrasen
