@@ -22,7 +22,7 @@
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
   product: CrateVendingMachineRestockChefvendFilled
-  cost: 1300 # Starlight-edit
+  cost: 1400 # Starlight-edit
   category: cargoproduct-category-name-service
   group: market
 
@@ -172,7 +172,7 @@
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
   product: CrateVendingMachineRestockSeedsFilled
-  cost: 3650 #SL EDIT
+  cost: 3750 #SL EDIT
   category: cargoproduct-category-name-hydroponics
   group: market
 
