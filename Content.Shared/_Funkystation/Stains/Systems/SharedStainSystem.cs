@@ -5,13 +5,17 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
 using Content.Shared.Fluids;
+using Content.Shared.Fluids.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Funkystation.Stains.Systems;
@@ -33,6 +37,7 @@ public abstract partial class SharedStainSystem : EntitySystem
     [Dependency] private SharedPuddleSystem _puddle = null!;
     [Dependency] private SharedPopupSystem _popup = null!;
     [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -50,6 +55,7 @@ public abstract partial class SharedStainSystem : EntitySystem
             UpdateVisuals(ent);
     }
 
+    // Moff start - we basically rewrote this whole function
     private void OnSpilledOn(Entity<StainableComponent> ent, ref SpilledOnEvent args)
     {
         if (IsStainBlocked(ent))
@@ -58,28 +64,42 @@ public abstract partial class SharedStainSystem : EntitySystem
         if (!_solution.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var stainSolution))
             return;
 
-        // Moffstation - Changed transfer amound to available volume, also check if its more than 0 before splitting
-        var transferAmount = FixedPoint.FixedPoint2.Min(args.Solution.AvailableVolume, ent.Comp.SpillTransferAmount);
-        if (transferAmount <= 0)
+        // Random chance that stains aren't applied
+        var rand = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(ent.Owner));
+        if (!rand.Prob(ent.Comp.StainChance))
             return;
 
-        var split = args.Solution.SplitSolution(transferAmount);
+        // Get the puddle's solution component, so that we can split the puddle's solution in a way that
+        // gets networked and updated properly
+        if (!TryComp<SolutionComponent>(args.Source, out var puddleSolutionComp))
+            return;
+        var split = _solution.SplitSolution((args.Source, puddleSolutionComp), ent.Comp.SpillTransferAmount);
 
+        // fuck water (and similar absorbent substances!)
         for (var i = split.Contents.Count - 1; i >= 0; i--)
         {
-            // Moffstation - check for Absorbent here rather than hardcoding water
             if (_prototype.TryIndex<ReagentPrototype>(split.Contents[i].Reagent.Prototype, out var reagentProto)
                 && reagentProto.Absorbent)
                 split.RemoveReagent(split.Contents[i].Reagent, split.Contents[i].Quantity);
         }
 
+        // Transfer our stuff in
         if (split.Volume > 0)
         {
+            // If there's no room, spill out stuff onto floor to make room
+            // This may end up making it loop a tad, but whatever
+            // This is kinda stupid when the solution is one thing, but neat for mixing in other reagents
+            if (split.Volume > stainSolution.Value.Comp.Solution.AvailableVolume)
+            {
+                var puddleSplit = _solution.SplitSolution(stainSolution.Value, split.Volume - stainSolution.Value.Comp.Solution.AvailableVolume);
+                _puddle.TrySpillAt(Transform(args.Source).Coordinates, puddleSplit, out _, false);
+            }
             _solution.TryAddSolution(stainSolution.Value, split);
             UpdateVisuals(ent);
             OnStained(ent, stainSolution.Value);
         }
     }
+    // Moff end
 
     protected virtual void OnStained(Entity<StainableComponent> ent, Entity<SolutionComponent> solution) { }
 
