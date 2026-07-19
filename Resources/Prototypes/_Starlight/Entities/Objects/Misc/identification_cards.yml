@@ -516,7 +516,7 @@
     sprite: Objects/Misc/id_cards.rsi
     heldPrefix: green
   - type: IdCard
-    jobTitle: job-name-ccserviceworker
+    jobTitle: job-name-cc-serviceworker
     jobIcon: JobIconCCServiceWorker
   - type: PresetIdCard
     job: CentCommServiceWorker
