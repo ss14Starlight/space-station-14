@@ -206,4 +206,42 @@ Entries:
   id: 510001
   time: '2026-07-18T19:56:45.000000+00:00'
   url: https://github.com/North-Western-Development/space-station-14/pull/51
+- author: AprilCatStreams
+  changes:
+  - message: Added a full Virology department with job, access, lockers, loadouts,
+      station staffing, and outbreak mode eligibility.
+    type: Add
+  - message: Added pathogen infection, transmission, incubation, organ damage, immunity,
+      vaccines, and natural recovery.
+    type: Add
+  - message: Added airborne pathogen simulation with scrubbers, PPE sealing, surface
+      contamination, and environmental sampling.
+    type: Add
+  - message: Added disease swabs, blood panels, centrifuges, diagnosers, and vaccinators
+      for diagnosis and vaccine production.
+    type: Add
+  - message: Added surgical infection risk, sterile tools and gloves, washing/sterilization,
+      and contextual surgery flow.
+    type: Add
+  - message: Added automatic fogging sterilization chambers with quarantine lock controls
+      for Virology airlocks.
+    type: Add
+  - message: Added selectable character allergies with severity, reactions, health
+      analyzer reporting, and Allergies SOP.
+    type: Add
+  - message: Added ceftriaxone, ribavirin, and treatment-specific pathogens including
+      bacterial pneumonia, enteric fever, hemorrhagic virus, and neuroviral encephalitis.
+    type: Add
+  - message: Added Bioterrorists antagonist with clandestine lab tools for engineered
+      pathogen strain creation and deployment.
+    type: Add
+  - message: Added Virology quarantine alarms, outbreak SOPs, Violet Alert updates,
+      and expanded medical guidebook coverage.
+    type: Add
+  - message: Improved health analyzer organ and allergy display, printed reports,
+      and diagnostic accuracy.
+    type: Tweak
+  id: 520001
+  time: '2026-07-19T02:30:14.000000+00:00'
+  url: https://github.com/North-Western-Development/space-station-14/pull/52
 
