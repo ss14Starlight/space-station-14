@@ -10,6 +10,7 @@ using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Content.Shared._CD.Records;
+using Content.Shared.Clothing;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Localization;
@@ -99,6 +100,7 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
         TryComp<DnaComponent>(player, out var dnaComponent);
 
         var jobTitle = jobPrototype.LocalizedName;
+        var chosenName = profile.Name;
 
         // Cross-reference the station data so we can keep the runtime record in sync.
         var stationRecordsKey = FindStationRecordsKey(player);
@@ -118,11 +120,16 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
         // - Otherwise show only the base display (localized if possible).
         var speciesName = GetReadableSpeciesName(profile);
 
+        if (profile.Loadouts.TryGetValue(LoadoutSystem.GetJobPrototype(args.JobId), out var loadout)&&loadout.EntityName != null)
+        {
+            chosenName =  loadout.EntityName;
+        }
+
         // Build the composite record that consoles consume, mixing profile data with live round metadata.
         var records = new FullCharacterRecords(
             pRecords: new PlayerProvidedCharacterRecords(profileRecords),
             stationRecordsKey: stationRecordsKey?.Id,
-            name: profile.Name,
+            name: chosenName!,
             age: profile.Age,
             species: speciesName,
             jobTitle: jobTitle,
