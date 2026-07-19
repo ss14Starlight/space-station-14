@@ -156,5 +156,9 @@
         acts: [ "Destruction" ]
   - type: PhysicalComposition
     materialComposition:
-      Steel: 2000 # 20 sheets
-      Glass: 1000 # 10 sheets
+      Steel: 500 # 5 sheets - Starlight
+      Glass: 300 # 3 sheets - Starlight
+  - type: Construction #Starlight - Makes the destroyed Cryo Pods Deconstrucable - start
+    graph: Machine
+    node: destroyedMachineFrame
+    #Starlight - End

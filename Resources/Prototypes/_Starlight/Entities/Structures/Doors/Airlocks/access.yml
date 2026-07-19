@@ -933,50 +933,33 @@
       containers:
         board: [ DoorElectronicsBlackstar ]
 
-# MedTak
+#Visitors
+- type: entity
+  parent: Airlock
+  id: AirlockVisitorLocked
+  suffix: Visitor, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsVisitor ]
+
 - type: entity
   parent: AirlockGlass
-  id: AirlockMedTakBasicGlassLocked
-  suffix: MedTak, Locked
+  id: AirlockVisitorGlassLocked
+  suffix: Visitor, Locked
   components:
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsMedTak ]
-    - type: Wires
-      layoutId: AirlockMedTak
-
-- type: entity
-  parent: AirlockBrigmed
-  id: AirlockMedTakLocked
-  suffix: MedTak, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMedTak ]
-    - type: Wires
-      layoutId: AirlockMedTak
-
-- type: entity
-  parent: AirlockBrigmedGlass
-  id: AirlockMedTakGlassLocked
-  suffix: MedTak, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMedTak ]
-    - type: Wires
-      layoutId: AirlockMedTak
+        board: [ DoorElectronicsVisitor ]
 
 - type: entity
   parent: AirlockGlassShuttle
-  id: AirlockGlassShuttleMedTakLocked
-  suffix: Glass, Docking, MedTak, Locked
+  id: AirlockGlassShuttleVisitorLocked
+  suffix: Glass, Docking, Visitor, Locked
   components:
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsMedTak ]
-    - type: Wires
-      layoutId: AirlockMedTak
+        board: [ DoorElectronicsVisitor ]
 
 
 # Escape Pods (gridfills)

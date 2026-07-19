@@ -644,6 +644,17 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
 
+- type: entity
+  parent: ClothingHeadHatWizard
+  id: ClothingHeadHatWitchyHat
+  name: witchy hat
+  description: Wicky-wicky-witchy hat!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/witchyhat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/witchyhat.rsi
+
 # Wizard duel!
 - type: entity
   parent: ClothingHeadHatRedwizard # Parents red since red wizard hat sprite base
