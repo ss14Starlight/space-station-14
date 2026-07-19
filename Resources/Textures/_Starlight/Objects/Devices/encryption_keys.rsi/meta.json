@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by JustAdler for https://github.com/ss14Starlight/space-station-14 | expedition_label by mikeysaurus | secmed_label by Killer Tamashi (Discord) [renamed to medsec_label], wizard label taken from ScarKy0's (github) job icon at https://github.com/space-wizards/space-station-14/commit/7c6028bc8037306536dca68f3c2cdd5edec56d14",
+    "copyright": "State based copyright",
     "size":
     {
         "x": 32,
@@ -10,44 +10,60 @@
     "states":
     [
         {
-            "name": "crypt_soviet"
+            "name": "crypt_soviet",
+            "copyright": "JustAdler"
         },
         {
-            "name": "soviet_label"
+            "name": "soviet_label",
+            "copyright": "JustAdler"
         },
         {
-            "name": "expedition_label"
+            "name": "expedition_label",
+            "copyright": "mikeysaurus"
         },
         {
-            "name": "salvage_label"
+            "name": "salvage_label",
+            "copyright": "JustAdler"
         },
 		{
             "name": "medsec_label",
-			"copyright": "Killer Tamashi",
-			"license": "CC-BY-SA-3.0"
+			"copyright": "Killer Tamashi"
         },
         {
-            "name": "crypt_purple"
+            "name": "crypt_purple",
+            "copyright": "JustAdler"
         },
         {
-            "name": "crypt_brown"
+            "name": "crypt_brown",
+            "copyright": "JustAdler"
         },
         {
-            "name": "blackstar_label"
+            "name": "blackstar_label",
+            "copyright": "JustAdler"
         },
         {
-            "name": "merchant_label"
+            "name": "merchant_label",
+            "copyright": "JustAdler"
         },
         {
             "name": "wizard_label",
-			"copyright": "ScarKy0",
-			"license": "CC-BY-SA-3.0"
+			"copyright": "ScarKy0"
         },
         {
-            "name": "admeme_label"
+            "name": "admeme_label",
+            "copyright": "JustAdler"
         },
         {
-            "name": "global_label"
+            "name": "global_label",
+            "copyright": "JustAdler"
+        },
+        {
+            "name": "crypt_gray",
+            "copyright": "DSC@300074782328750080"
+        },
+        {
+            "name": "law_label",
+            "copyright": "CawsForConcern"
         }
     ]
 }

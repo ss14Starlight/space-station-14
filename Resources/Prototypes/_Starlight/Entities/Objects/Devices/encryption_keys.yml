@@ -10,8 +10,10 @@
       defaultChannel: Law
     - type: Sprite
       layers:
-      - state: crypt_silver
-      - state: nano_label
+      - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+        state: crypt_gray
+      - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+        state: law_label
     - type: Tag
       tags:
       - EncryptionLaw
