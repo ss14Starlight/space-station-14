@@ -167,7 +167,7 @@ public sealed class LancerDiceOverlayControl : Control
                     _active.ShowAttackResult = true;
                     BuildAttackResult(_active);
 
-                    if (_active.Message.Hit && _active.Message.DamageDice.Length > 0)
+                    if (ShouldShowDamageWave(_active.Message))
                     {
                         _active.Phase = RollPhase.DamageDelay;
                         _active.PhaseElapsed = 0;
@@ -695,25 +695,67 @@ public sealed class LancerDiceOverlayControl : Control
         return waveDice.Count == 0 || waveDice.All(d => d.Settled);
     }
 
+    private static bool ShouldShowDamageWave(LancerArcadeMessages.LancerDiceRollMessage msg)
+    {
+        if (msg.DamageDice.Length == 0)
+            return false;
+
+        // Saves always deal damage (full or half); attacks only on hit.
+        return msg.Kind switch
+        {
+            LancerRollKind.Save => true,
+            LancerRollKind.Attack => msg.Hit,
+            _ => false
+        };
+    }
+
     private void BuildAttackResult(ActiveRoll roll)
     {
         var msg = roll.Message;
 
-        if (msg.Kind == LancerRollKind.Spot)
+        switch (msg.Kind)
         {
-            var result = msg.Hit
-                ? Loc.GetString("lancer-arcade-dice-spot-pass")
-                : Loc.GetString("lancer-arcade-dice-spot-fail");
+            case LancerRollKind.Spot:
+            {
+                var result = msg.Hit
+                    ? Loc.GetString("lancer-arcade-dice-spot-pass")
+                    : Loc.GetString("lancer-arcade-dice-spot-fail");
 
-            var spotVs = msg.TargetNumber > 0
-                ? Loc.GetString("lancer-arcade-dice-vs", ("total", msg.Total), ("target", msg.TargetNumber))
-                : msg.Total.ToString();
+                var spotVs = msg.TargetNumber > 0
+                    ? Loc.GetString("lancer-arcade-dice-vs", ("total", msg.Total), ("target", msg.TargetNumber))
+                    : msg.Total.ToString();
 
-            roll.AttackResultText = $"{spotVs}  {result}";
-            roll.ResultColor = msg.Hit
-                ? Color.FromHex("#88EE88")
-                : Color.FromHex("#EE8888");
-            return;
+                roll.AttackResultText = $"{spotVs}  {result}";
+                roll.ResultColor = msg.Hit
+                    ? Color.FromHex("#88EE88")
+                    : Color.FromHex("#EE8888");
+                return;
+            }
+            case LancerRollKind.Save:
+            {
+                // Hit means failed save (full damage); miss means passed (half damage).
+                var result = msg.Hit
+                    ? Loc.GetString("lancer-arcade-dice-save-fail")
+                    : Loc.GetString("lancer-arcade-dice-save-pass");
+
+                var saveVs = msg.TargetNumber > 0
+                    ? Loc.GetString("lancer-arcade-dice-vs", ("total", msg.Total), ("target", msg.TargetNumber))
+                    : msg.Total.ToString();
+
+                roll.AttackResultText = $"{saveVs}  {result}";
+                roll.ResultColor = msg.Hit
+                    ? Color.FromHex("#EE8888")
+                    : Color.FromHex("#88EE88");
+                return;
+            }
+            case LancerRollKind.StructureCheck:
+                roll.AttackResultText = Loc.GetString("lancer-arcade-dice-structure", ("roll", msg.Total));
+                roll.ResultColor = Color.FromHex("#E8C84A");
+                return;
+            case LancerRollKind.OverheatCheck:
+                roll.AttackResultText = Loc.GetString("lancer-arcade-dice-overheat", ("roll", msg.Total));
+                roll.ResultColor = Color.FromHex("#E8C84A");
+                return;
         }
 
         var attackResult = msg.Crit

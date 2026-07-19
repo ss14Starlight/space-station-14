@@ -166,6 +166,9 @@ public sealed partial class ArcadeSystem
         ArcadeHighScoreEntry entry,
         int maxEntries)
     {
+        if (maxEntries <= 0)
+            return null;
+
         // Maximum number of entries.
         // We can just add the score to the list and return its placement.
         if (highScoreEntries.Count < maxEntries)

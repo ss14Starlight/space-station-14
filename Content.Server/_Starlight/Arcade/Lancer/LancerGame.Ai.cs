@@ -25,14 +25,13 @@ public sealed partial class LancerGame
         }
 
         _aiQueue.Clear();
+        _reservedAiMoveCells.Clear();
+        _executingAiUnitId = -1;
         foreach (var unit in _units.Where(u =>
                      !u.Destroyed
                      && !u.Fleeing
                      && IsEnemyKind(u.Kind)))
         {
-            // One reaction per enemy activation (Core: 1 reaction per turn).
-            _reactionUsedThisActivation = false;
-
             // Catalytic Hammer stun: skip this activation, then clear.
             if (unit.Stunned)
             {
@@ -90,6 +89,7 @@ public sealed partial class LancerGame
 
                 if (step != null && !unit.Immobilized)
                 {
+                    ReserveAiMove(step);
                     _aiQueue.Add(new AiStep { UnitId = unit.Id, Kind = AiStepKind.Move, TargetCell = step });
                     actingFromArtillery = step;
                 }
@@ -141,6 +141,7 @@ public sealed partial class LancerGame
                 var step = StepToward(unit, moveGoal);
                 if (step != null)
                 {
+                    ReserveAiMove(step);
                     _aiQueue.Add(new AiStep { UnitId = unit.Id, Kind = AiStepKind.Move, TargetCell = step });
                     actingFrom = step;
                 }
@@ -170,10 +171,7 @@ public sealed partial class LancerGame
 
         foreach (var next in LancerHex.Neighbors(unit.Position))
         {
-            if (!LancerHex.InBounds(next) || IsOccupied(next))
-                continue;
-
-            if (_cells[next.Y][next.X].Terrain == LancerTerrainType.RubbleHard)
+            if (!IsValidAiMoveDestination(next))
                 continue;
 
             var dist = LancerHex.Distance(next, target);
@@ -194,10 +192,7 @@ public sealed partial class LancerGame
 
         foreach (var next in LancerHex.Neighbors(unit.Position))
         {
-            if (!LancerHex.InBounds(next) || IsOccupied(next))
-                continue;
-
-            if (_cells[next.Y][next.X].Terrain == LancerTerrainType.RubbleHard)
+            if (!IsValidAiMoveDestination(next))
                 continue;
 
             var dist = LancerHex.Distance(next, threat);
@@ -211,11 +206,26 @@ public sealed partial class LancerGame
         return best;
     }
 
+    private bool IsValidAiMoveDestination(LancerGridCoord next) =>
+        LancerHex.InBounds(next)
+        && !IsOccupied(next)
+        && !_reservedAiMoveCells.Contains(next)
+        && _cells[next.Y][next.X].Terrain != LancerTerrainType.RubbleHard;
+
+    private void ReserveAiMove(LancerGridCoord cell) => _reservedAiMoveCells.Add(cell);
+
     private void ExecuteAiStep(AiStep step)
     {
         var unit = GetUnit(step.UnitId);
         if (unit == null || unit.Destroyed || unit.Fleeing)
             return;
+
+        // One reaction budget per enemy activation; reset when execution advances to a new unit.
+        if (_executingAiUnitId != unit.Id)
+        {
+            _executingAiUnitId = unit.Id;
+            _reactionUsedThisActivation = false;
+        }
 
         switch (step.Kind)
         {
@@ -288,7 +298,13 @@ public sealed partial class LancerGame
         if (unit.Destroyed || unit.Fleeing)
             return;
 
+        if (!LancerHex.InBounds(destination)
+            || IsOccupied(destination)
+            || _cells[destination.Y][destination.X].Terrain == LancerTerrainType.RubbleHard)
+            return;
+
         unit.Position = destination;
+        _reservedAiMoveCells.Remove(destination);
         AddLog(Loc.GetString("lancer-arcade-log-enemy-move",
             ("unit", unit.Kind.ToString()),
             ("coord", FormatCoord(destination))));
@@ -301,7 +317,7 @@ public sealed partial class LancerGame
     {
         if (_hasVanguard)
         {
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < WeaponSlotCount; i++)
             {
                 var def = GetWeaponDef(i);
                 if (def != null && IsCqbWeapon(def) && _weaponLoaded[i])
@@ -310,7 +326,7 @@ public sealed partial class LancerGame
         }
 
         // Prefer first loaded ranged/CQB slot; else melee Loading weapon if loaded; else aux.
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             var def = GetWeaponDef(i);
             if (def == null || !_weaponLoaded[i])
@@ -319,7 +335,7 @@ public sealed partial class LancerGame
                 return i;
         }
 
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             var def = GetWeaponDef(i);
             if (def != null && _weaponLoaded[i])

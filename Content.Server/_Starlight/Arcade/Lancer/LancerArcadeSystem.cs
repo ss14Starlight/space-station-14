@@ -1,9 +1,13 @@
 using Content.Server.Advertise.EntitySystems;
+using Content.Server.Arcade.Systems;
 using Content.Shared.Advertise.Components;
 using Content.Shared._Starlight.Arcade.Lancer;
 using Content.Shared.Power;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Arcade.Lancer;
 
@@ -11,6 +15,10 @@ public sealed class LancerArcadeSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SpeakOnUIClosedSystem _speakOnUIClosed = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly ArcadeSystem _arcade = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -38,7 +46,14 @@ public sealed class LancerArcadeSystem : EntitySystem
 
     private void OnComponentInit(EntityUid uid, LancerArcadeComponent component, ComponentInit args)
     {
-        component.Game = new LancerGame(uid);
+        component.Game = new LancerGame(
+            uid,
+            EntityManager,
+            _random,
+            _prototypes,
+            _uiSystem,
+            _arcade,
+            _audio);
     }
 
     private void OnAfterUiOpen(EntityUid uid, LancerArcadeComponent component, AfterActivatableUIOpenEvent args)
@@ -82,10 +97,9 @@ public sealed class LancerArcadeSystem : EntitySystem
         if (args.Powered)
             return;
 
-        // Soft-reset the session on power loss so a reboot returns to mission select
+        // Soft-reset on power loss: return to the opening credit screen (Start Game),
         // without wiping cabinet campaign progress (skills / cleared missions).
-        // Also wipe the combat log so a powered-on cabinet doesn't show stale fight text.
-        component.Game?.ReturnToMissionSelect(clearLog: true);
+        component.Game?.ReturnToIntro();
         _uiSystem.CloseUi(uid, LancerArcadeUiKey.Key);
     }
 

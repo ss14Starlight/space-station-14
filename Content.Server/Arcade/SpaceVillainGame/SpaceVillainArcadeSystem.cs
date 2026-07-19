@@ -11,6 +11,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Arcade.Systems;
 using Content.Shared.Arcade.SpaceVillain;
+using Content.Shared.Arcade.Systems;
 
 namespace Content.Server.Arcade.SpaceVillain;
 
@@ -71,7 +72,7 @@ public sealed partial class SpaceVillainArcadeSystem : SharedSpaceVillainArcadeS
                     _speakOnUIClosed.TrySetFlag((uid, speakComponent));
                 break;
             case SpaceVillainPlayerAction.NewGame:
-                _audioSystem.PlayPvs(component.NewGameSound, uid, AudioParams.Default.WithVolume(-4f));
+                _audioSystem.PlayPvs(component.NewGameSound, uid, AudioParams.Default.WithVolume(SharedArcadeSystem.ArcadeSoundVolumeDb));
 
                 component.Game = new SpaceVillainGame(component, this, _arcade);
                 _uiSystem.ServerSendUiMessage(uid, SpaceVillainArcadeUiKey.Key, component.Game.GenerateMetaDataMessage());

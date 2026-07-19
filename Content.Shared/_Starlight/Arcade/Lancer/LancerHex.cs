@@ -36,19 +36,19 @@ public static class LancerHex
         return (Math.Abs(ca.Q - cb.Q) + Math.Abs(ca.R - cb.R) + Math.Abs(ca.S - cb.S)) / 2;
     }
 
+    // odd-r neighbor deltas for even / odd rows
+    private static readonly int[] DxEven = [+1, 0, -1, -1, -1, 0];
+    private static readonly int[] DyEven = [0, -1, -1, 0, +1, +1];
+    private static readonly int[] DxOdd = [+1, +1, 0, -1, 0, +1];
+    private static readonly int[] DyOdd = [0, -1, -1, 0, +1, +1];
+
     public static IEnumerable<LancerGridCoord> Neighbors(LancerGridCoord pos)
     {
-        // odd-r neighbor deltas for even / odd rows
-        int[] dxEven = [+1, 0, -1, -1, -1, 0];
-        int[] dyEven = [0, -1, -1, 0, +1, +1];
-        int[] dxOdd = [+1, +1, 0, -1, 0, +1];
-        int[] dyOdd = [0, -1, -1, 0, +1, +1];
-
         var even = (pos.Y & 1) == 0;
         for (var i = 0; i < 6; i++)
         {
-            var dx = even ? dxEven[i] : dxOdd[i];
-            var dy = even ? dyEven[i] : dyOdd[i];
+            var dx = even ? DxEven[i] : DxOdd[i];
+            var dy = even ? DyEven[i] : DyOdd[i];
             yield return new LancerGridCoord(pos.X + dx, pos.Y + dy);
         }
     }

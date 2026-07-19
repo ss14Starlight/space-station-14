@@ -29,8 +29,8 @@
                                      Stretch="KeepAspectCentered"
                                      HorizontalAlignment="Center"
                                      MaxSize="320 80" />
-                        <RichTextLabel Text="{Loc 'lancer-arcade-copyright'}" HorizontalAlignment="Center" MaxWidth="360" />
                         <RichTextLabel Text="{Loc 'lancer-arcade-disclaimer'}" HorizontalAlignment="Center" MaxWidth="360" />
+                        <RichTextLabel Text="{Loc 'lancer-arcade-copyright'}" HorizontalAlignment="Center" MaxWidth="360" />
                         <PanelContainer Name="IntroDiceArea" VerticalExpand="True" MinSize="0 120" />
                         <Button Name="IntroStartButton" Text="{Loc 'lancer-arcade-start-game'}" HorizontalAlignment="Center" />
                     </BoxContainer>

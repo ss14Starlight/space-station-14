@@ -17,6 +17,9 @@ public sealed partial class LancerGame
     public const int PlayerMaxStress = 4;
     public const int PlayerHexCharges = 3;
     public const int LockOnRange = 10;
+    /// <summary>Exposed-until-Stabilize sentinel used by overheat / meltdown outcomes.</summary>
+    public const int PermanentExposedTurns = 99;
+    public const int WeaponSlotCount = 3;
 
     public const int GruntMaxHp = 1;
     public const int GruntArmor = 1;

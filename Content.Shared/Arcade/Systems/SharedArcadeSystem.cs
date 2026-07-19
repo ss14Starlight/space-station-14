@@ -3,13 +3,16 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Arcade.Systems;
 
 public abstract partial class SharedArcadeSystem : EntitySystem
-{ }
+{
+    /// <summary>Default PVS volume for arcade cabinet SFX.</summary>
+    public const float ArcadeSoundVolumeDb = -4f;
+}
 
 /// <summary>
 /// Represents a single entry on the scoreboard of an arcade game.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class ArcadeHighScoreEntry : IComparable
+public sealed class ArcadeHighScoreEntry : IComparable, IComparable<ArcadeHighScoreEntry>
 {
     /// <summary>
     /// The name of the player associated with this high score entry.
@@ -29,9 +32,13 @@ public sealed class ArcadeHighScoreEntry : IComparable
         Score = score;
     }
 
+    public int CompareTo(ArcadeHighScoreEntry? other) =>
+        other is null ? 1 : Score.CompareTo(other.Score);
+
     public int CompareTo(object? obj)
     {
-        if (obj is not ArcadeHighScoreEntry entry) return 0;
-        return Score.CompareTo(entry.Score);
+        if (obj is not ArcadeHighScoreEntry entry)
+            return 0;
+        return CompareTo(entry);
     }
 }

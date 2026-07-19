@@ -1,6 +1,6 @@
 using Content.Shared._Starlight.Arcade.Lancer;
+using Content.Shared.Arcade.Systems;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using System.Linq;
 
@@ -8,8 +8,6 @@ namespace Content.Server._Starlight.Arcade.Lancer;
 
 public sealed partial class LancerGame
 {
-    private SharedAudioSystem? _audio;
-
     public void UpdateNewPlayerUi(EntityUid actor)
     {
         foreach (var line in _log)
@@ -73,7 +71,6 @@ public sealed partial class LancerGame
 
     private void PlayArcadeSound(string kind)
     {
-        _audio ??= _entityManager.System<SharedAudioSystem>();
         var path = kind switch
         {
             "newgame" => "/Audio/Effects/Arcade/newgame.ogg",
@@ -86,7 +83,9 @@ public sealed partial class LancerGame
         if (path == null)
             return;
 
-        _audio.PlayPvs(new SoundPathSpecifier(path), _owner, AudioParams.Default.WithVolume(-4f));
+        _audio.PlayPvs(new SoundPathSpecifier(path),
+            _owner,
+            AudioParams.Default.WithVolume(SharedArcadeSystem.ArcadeSoundVolumeDb));
     }
 
     private LancerGameStateSnapshot BuildSnapshot()
@@ -181,8 +180,8 @@ public sealed partial class LancerGame
 
     private LancerMechPanelState BuildMechPanel()
     {
-        var weapons = new LancerWeaponState[3];
-        for (var i = 0; i < 3; i++)
+        var weapons = new LancerWeaponState[WeaponSlotCount];
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             var def = GetWeaponDef(i);
             if (def == null)

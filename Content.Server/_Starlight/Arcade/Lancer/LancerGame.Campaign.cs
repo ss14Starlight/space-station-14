@@ -93,7 +93,7 @@ public sealed partial class LancerGame
     /// Soft session reset: unload the current run/combat and return to mission select.
     /// Preserves cabinet campaign progress (skills, cleared/unlocked missions).
     /// </summary>
-    /// <param name="clearLog">When true, wipe the combat log (used on power loss).</param>
+    /// <param name="clearLog">When true, wipe the combat log.</param>
     public void ReturnToMissionSelect(bool clearLog = false)
     {
         if (clearLog)
@@ -103,6 +103,17 @@ public sealed partial class LancerGame
             return;
 
         EnterMissionSelect();
+    }
+
+    /// <summary>
+    /// Soft session reset to the opening credit / disclaimer screen.
+    /// Preserves cabinet campaign progress (skills, cleared/unlocked missions).
+    /// </summary>
+    public void ReturnToIntro()
+    {
+        CancelInFlightSession();
+        ResetMission();
+        BroadcastState();
     }
 
     private void EnterMissionSelect()
@@ -409,9 +420,6 @@ public sealed partial class LancerGame
                               && _selectedMissionId == "crown-signal"
                               && !arcade.CampaignCompleted;
 
-        if (_pendingCampaignWin)
-            arcade.CampaignCompleted = true;
-
         _pendingChoiceIndex = -1;
         _phase = LancerGamePhase.SkillPick;
         PlayArcadeSound("win");
@@ -463,6 +471,7 @@ public sealed partial class LancerGame
         if (_pendingCampaignWin)
         {
             _pendingCampaignWin = false;
+            arcade.CampaignCompleted = true;
             _missionCompleteText = Loc.GetString("lancer-arcade-campaign-complete-body");
             _phase = LancerGamePhase.CampaignComplete;
             PlayArcadeSound("win");

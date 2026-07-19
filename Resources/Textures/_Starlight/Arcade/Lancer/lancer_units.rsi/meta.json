@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Everest, Kerberos, and Tokugawa sprites by allones (Black Pants Legion Discord). urbie created by joedawg39s (BPL Discord). Other unit sprites generated via Autosprite for BPL14.",
+  "copyright": "States everest_blue, everest_red, everest_blue_pistol, everest_con_pistol, everest_blue_with_pistol, everest_blue_straight_mag, everest_con_with_pistol, everest_red_straight_mag, kerberos_grunt, kerberos_sniper, kerberos_archer, kerberos_bombard, and tokugawa by allones (Black Pants Legion Discord). State urbie by joedawg39s (BPL Discord). Remaining states (raijin, grunt, cutlass, tortuga, monarch, bombard) generated via Autosprite for BPL14.",
   "size": {
     "x": 32,
     "y": 32

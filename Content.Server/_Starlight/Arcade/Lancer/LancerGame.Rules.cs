@@ -347,7 +347,7 @@ public sealed partial class LancerGame
         if (target == null || target.Destroyed)
         {
             _selectionMode = LancerSelectionMode.Target;
-            HighlightAttackTargets(GetWeaponRange(weapon));
+            HighlightAttackTargets(GetWeaponRange(weapon), ignoreLos: IsArcingWeapon(weapon));
             BroadcastState();
             return;
         }
@@ -979,7 +979,7 @@ public sealed partial class LancerGame
 
     private bool TryDestroyWeaponMount()
     {
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             if (GetWeaponDef(i) == null)
                 continue;
@@ -1052,7 +1052,7 @@ public sealed partial class LancerGame
             case LancerStabilizeOption.Reload:
             {
                 var reloaded = 0;
-                for (var i = 0; i < 3; i++)
+                for (var i = 0; i < WeaponSlotCount; i++)
                 {
                     if (!IsLoadingWeapon(i))
                         continue;
@@ -1074,7 +1074,7 @@ public sealed partial class LancerGame
 
     private void ResolveHex(LancerGridCoord cell)
     {
-        if (!TrySpendQuick(LancerPlayerAction.UseSystem) || _hexCharges <= 0)
+        if (_hexCharges <= 0 || !TrySpendQuick(LancerPlayerAction.UseSystem))
             return;
 
         _hexCharges--;
@@ -1258,7 +1258,7 @@ public sealed partial class LancerGame
             case 4:
                 // Destabilized Power Plant — Exposed until Stabilize.
                 _playerExposed = true;
-                _exposedTurnsRemaining = 99;
+                _exposedTurnsRemaining = PermanentExposedTurns;
                 AddLog(Loc.GetString("lancer-arcade-log-overheat-destabilized", ("roll", roll)));
                 break;
             case 1:
@@ -1275,7 +1275,7 @@ public sealed partial class LancerGame
         if (_stress >= 3)
         {
             _playerExposed = true;
-            _exposedTurnsRemaining = 99;
+            _exposedTurnsRemaining = PermanentExposedTurns;
             AddLog(Loc.GetString("lancer-arcade-log-overheat-meltdown-exposed"));
         }
         else if (_stress == 2)
@@ -1284,7 +1284,7 @@ public sealed partial class LancerGame
             if (save >= 10)
             {
                 _playerExposed = true;
-                _exposedTurnsRemaining = 99;
+                _exposedTurnsRemaining = PermanentExposedTurns;
                 AddLog(Loc.GetString("lancer-arcade-log-overheat-meltdown-eng-pass", ("total", save)));
             }
             else
@@ -1549,8 +1549,12 @@ public sealed partial class LancerGame
             if (dist > range0 || dist > range1)
                 continue;
 
-            if ((range0 > 1 && !HasLineOfSight(player.Position, unit.Position))
-                || (range1 > 1 && !HasLineOfSight(player.Position, unit.Position)))
+            if ((range0 > 1
+                 && !IsArcingWeapon(weapon0)
+                 && !HasLineOfSight(player.Position, unit.Position))
+                || (range1 > 1
+                    && !IsArcingWeapon(weapon1)
+                    && !HasLineOfSight(player.Position, unit.Position)))
                 continue;
 
             _cells[unit.Position.Y][unit.Position.X].Highlight = LancerCellHighlight.Target;
@@ -1585,6 +1589,10 @@ public sealed partial class LancerGame
         foreach (var cell in LancerHex.Line(from, to))
         {
             if (cell.Equals(from) || cell.Equals(to))
+                continue;
+
+            // Hex line rounding can briefly leave the board near edges.
+            if (!LancerHex.InBounds(cell))
                 continue;
 
             if (_cells[cell.Y][cell.X].Terrain == LancerTerrainType.RubbleHard)

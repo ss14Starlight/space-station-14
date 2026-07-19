@@ -87,6 +87,7 @@ public sealed partial class LancerArcadeWindow : FancyWindow
         _reactionCounting = true;
         _reactionPendingDamage = pendingDamage;
         UpdateReactionLabel(reaction);
+        UpdateInteractivity();
     }
 
     public void EnqueueDiceRoll(LancerArcadeMessages.LancerDiceRollMessage msg)
@@ -541,7 +542,7 @@ public sealed partial class LancerArcadeWindow : FancyWindow
             : FormatWeaponPickLabel(weapon);
 
         var available = weapon.Pickable;
-        button.Disabled = !available || picked;
+        button.Disabled = !_isPlayer || !available || picked;
     }
 
     private static string FormatWeaponPickLabel(LancerWeaponState weapon)

@@ -7,7 +7,11 @@ namespace Content.Server.Arcade.BlockGame;
 
 public sealed partial class BlockGame
 {
-    // note: field is 10(0 -> 9) wide and 20(0 -> 19) high
+    /// <summary>Playfield width in cells (0 .. Width-1).</summary>
+    public const int PlayfieldWidth = 10;
+
+    /// <summary>Playfield height in cells (0 .. Height-1).</summary>
+    public const int PlayfieldHeight = 20;
 
     /// <summary>
     /// The base amount of time between piece steps while softdropping.
@@ -199,7 +203,7 @@ public sealed partial class BlockGame
     /// </summary>
     private bool LowerBoundCheck(Vector2i position)
     {
-        return position.Y < 20;
+        return position.Y < PlayfieldHeight;
     }
 
     /// <summary>
@@ -207,7 +211,7 @@ public sealed partial class BlockGame
     /// </summary>
     private bool BorderCheck(Vector2i position)
     {
-        return position.X >= 0 && position.X < 10;
+        return position.X >= 0 && position.X < PlayfieldWidth;
     }
 
     /// <summary>

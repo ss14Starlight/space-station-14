@@ -9,6 +9,8 @@ namespace Content.Server._Starlight.Arcade.Lancer;
 /// Headless Monte Carlo combat evaluator for Lancer arcade balance.
 /// Ignores mission objectives — fights are eliminate-all. Relay destruction is a loss.
 /// Balance is measured against a competent scripted player policy, not optimal play.
+/// Non-arcing attacks use the same rubble-hard LOS check as the live game.
+/// Still optimistic vs live: no full Stress/overheat/structure-break fidelity.
 /// </summary>
 public sealed class LancerCombatSimulator
 {
@@ -303,13 +305,13 @@ public sealed class LancerCombatSimulator
         if (!LancerGame.Chassis.TryGetValue(loadout.ChassisId, out var chassis))
             chassis = LancerGame.Chassis[ChassisRaijin];
 
-        var weapons = new string[3];
-        for (var i = 0; i < 3; i++)
+        var weapons = new string[WeaponSlotCount];
+        for (var i = 0; i < WeaponSlotCount; i++)
             weapons[i] = i < chassis.WeaponIds.Length ? chassis.WeaponIds[i] : string.Empty;
 
         if (loadout.WeaponOverrides is { } overrides)
         {
-            for (var i = 0; i < 3 && i < overrides.Length; i++)
+            for (var i = 0; i < WeaponSlotCount && i < overrides.Length; i++)
             {
                 if (!string.IsNullOrEmpty(overrides[i]))
                     weapons[i] = overrides[i]!;
@@ -353,7 +355,7 @@ public sealed class LancerCombatSimulator
     private static void ResetWeapons(SimPlayer player)
     {
         // Loading weapons start loaded (match live game); empty slots stay unloaded.
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             var id = player.WeaponIds[i];
             if (string.IsNullOrEmpty(id) || !LancerGame.Weapons.ContainsKey(id))
@@ -491,7 +493,7 @@ public sealed class LancerCombatSimulator
         // Reload loading weapons when nothing useful is ready.
         if (NeedsReload(player))
         {
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < WeaponSlotCount; i++)
             {
                 if (LancerGame.Weapons.TryGetValue(player.WeaponIds[i], out var def)
                     && def.Tags.HasFlag(LancerWeaponTags.Loading))
@@ -588,7 +590,7 @@ public sealed class LancerCombatSimulator
                 }
             }
 
-            var weaponIndex = PickBestWeapon(player, px, py, target);
+            var weaponIndex = PickBestWeapon(player, px, py, target, terrain);
             if (weaponIndex < 0)
             {
                 if (shot == 0 && HexDist(px, py, target.X, target.Y) <= 1)
@@ -698,7 +700,7 @@ public sealed class LancerCombatSimulator
     private static bool HasReadyAnnihilatorKill(SimPlayer player, int px, int py, List<SimUnit> alive)
     {
         const int expectedDmg = 4; // ~1d3+2
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             if (!player.WeaponLoaded[i])
                 continue;
@@ -735,7 +737,7 @@ public sealed class LancerCombatSimulator
         var weaponIndex = -1;
         var dist = HexDist(px, py, target.X, target.Y);
         var bestScore = int.MinValue;
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             if (!LancerGame.Weapons.TryGetValue(player.WeaponIds[i], out var def))
                 continue;
@@ -761,7 +763,7 @@ public sealed class LancerCombatSimulator
     private static int GetMaxReadyRanged(SimPlayer player)
     {
         var max = 0;
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             if (!player.WeaponLoaded[i])
                 continue;
@@ -779,7 +781,7 @@ public sealed class LancerCombatSimulator
     {
         var hasReadyRanged = false;
         var hasEmptyLoading = false;
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             var id = player.WeaponIds[i];
             if (string.IsNullOrEmpty(id) || !LancerGame.Weapons.TryGetValue(id, out var def))
@@ -863,14 +865,18 @@ public sealed class LancerCombatSimulator
             return;
 
         // Attack player if in range, else relay for grunts.
-        if (HexDist(enemy.X, enemy.Y, px, py) <= weapon.Range)
+        if (HexDist(enemy.X, enemy.Y, px, py) <= weapon.Range
+            && (weapon.Tags.HasFlag(LancerWeaponTags.Arcing)
+                || HasSimLineOfSight(enemy.X, enemy.Y, px, py, terrain)))
         {
             ResolveEnemyAttack(enemy, weapon, px, py, player, terrain);
             return;
         }
 
         if (IsMookKind(enemy.Kind) && relay is { Destroyed: false }
-            && HexDist(enemy.X, enemy.Y, relay.X, relay.Y) <= weapon.Range)
+            && HexDist(enemy.X, enemy.Y, relay.X, relay.Y) <= weapon.Range
+            && (weapon.Tags.HasFlag(LancerWeaponTags.Arcing)
+                || HasSimLineOfSight(enemy.X, enemy.Y, relay.X, relay.Y, terrain)))
         {
             ResolveEnemyAttackOnRelay(enemy, weapon, relay, terrain);
         }
@@ -917,7 +923,7 @@ public sealed class LancerCombatSimulator
     private static int PickOverwatchWeapon(SimPlayer player)
     {
         // Prefer CQB / ranged; else best loaded weapon.
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             if (!player.WeaponLoaded[i])
                 continue;
@@ -929,7 +935,7 @@ public sealed class LancerCombatSimulator
 
         var best = -1;
         var bestScore = int.MinValue;
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             if (!player.WeaponLoaded[i])
                 continue;
@@ -947,13 +953,13 @@ public sealed class LancerCombatSimulator
         return best;
     }
 
-    private int PickBestWeapon(SimPlayer player, int px, int py, SimUnit target)
+    private int PickBestWeapon(SimPlayer player, int px, int py, SimUnit target, LancerTerrainType[,] terrain)
     {
         var dist = HexDist(px, py, target.X, target.Y);
         var best = -1;
         var bestScore = int.MinValue;
 
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             var id = player.WeaponIds[i];
             if (string.IsNullOrEmpty(id) || !LancerGame.Weapons.TryGetValue(id, out var def))
@@ -961,6 +967,9 @@ public sealed class LancerCombatSimulator
             if (!player.WeaponLoaded[i])
                 continue;
             if (dist > GetEffectiveRange(player, def))
+                continue;
+            if (!def.Tags.HasFlag(LancerWeaponTags.Arcing)
+                && !HasSimLineOfSight(px, py, target.X, target.Y, terrain))
                 continue;
 
             // Prefer higher expected damage; slight preference for sustained (non-loading) weapons.
@@ -1001,6 +1010,9 @@ public sealed class LancerCombatSimulator
 
         var dist = HexDist(px, py, target.X, target.Y);
         if (dist > GetEffectiveRange(player, weapon))
+            return;
+        if (!weapon.Tags.HasFlag(LancerWeaponTags.Arcing)
+            && !HasSimLineOfSight(px, py, target.X, target.Y, terrain))
             return;
 
         var isMelee = weapon.Tags.HasFlag(LancerWeaponTags.Melee) || weapon.Range <= 1;
@@ -1160,6 +1172,26 @@ public sealed class LancerCombatSimulator
             player.Exposed = false;
     }
 
+    private static bool HasSimLineOfSight(int fromX, int fromY, int toX, int toY, LancerTerrainType[,] terrain)
+    {
+        var from = new LancerGridCoord(fromX, fromY);
+        var to = new LancerGridCoord(toX, toY);
+        foreach (var cell in LancerHex.Line(from, to))
+        {
+            if (cell.Equals(from) || cell.Equals(to))
+                continue;
+
+            // Hex line rounding can briefly leave the board near edges.
+            if (!LancerHex.InBounds(cell))
+                continue;
+
+            if (terrain[cell.X, cell.Y] == LancerTerrainType.RubbleHard)
+                return false;
+        }
+
+        return true;
+    }
+
     private void ResolveEnemyAttack(
         SimUnit enemy,
         LancerWeaponDef weapon,
@@ -1168,6 +1200,10 @@ public sealed class LancerCombatSimulator
         SimPlayer player,
         LancerTerrainType[,] terrain)
     {
+        if (!weapon.Tags.HasFlag(LancerWeaponTags.Arcing)
+            && !HasSimLineOfSight(enemy.X, enemy.Y, px, py, terrain))
+            return;
+
         var difficulty = GetCoverDiff(terrain, px, py);
         if (IsEngaged(enemy.X, enemy.Y, px, py) && !weapon.Tags.HasFlag(LancerWeaponTags.Aux))
             difficulty += 1;
@@ -1198,6 +1234,10 @@ public sealed class LancerCombatSimulator
         SimUnit relay,
         LancerTerrainType[,] terrain)
     {
+        if (!weapon.Tags.HasFlag(LancerWeaponTags.Arcing)
+            && !HasSimLineOfSight(enemy.X, enemy.Y, relay.X, relay.Y, terrain))
+            return;
+
         var difficulty = GetCoverDiff(terrain, relay.X, relay.Y);
         var (accTotal, diffTotal) = ResolveAccDiff(enemy.AccBonus, difficulty);
         var roll = _rng.Next(1, 21);

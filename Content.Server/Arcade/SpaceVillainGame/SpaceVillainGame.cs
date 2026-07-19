@@ -4,6 +4,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Content.Server.Arcade.Systems;
 using Content.Shared.Arcade.SpaceVillain;
+using Content.Shared.Arcade.Systems;
 
 namespace Content.Server.Arcade.SpaceVillain;
 
@@ -109,7 +110,7 @@ public sealed partial class SpaceVillainGame
                     ("enemyName", _villainName),
                     ("attackAmount", attackAmount)
                 );
-                _audioSystem.PlayPvs(arcade.PlayerAttackSound, uid, AudioParams.Default.WithVolume(-4f));
+                _audioSystem.PlayPvs(arcade.PlayerAttackSound, uid, AudioParams.Default.WithVolume(SharedArcadeSystem.ArcadeSoundVolumeDb));
                 if (!VillainChar.Invincible)
                     VillainChar.Hp -= attackAmount;
                 _turtleTracker -= _turtleTracker > 0 ? 1 : 0;
@@ -122,7 +123,7 @@ public sealed partial class SpaceVillainGame
                     ("magicPointAmount", pointAmount),
                     ("healAmount", healAmount)
                 );
-                _audioSystem.PlayPvs(arcade.PlayerHealSound, uid, AudioParams.Default.WithVolume(-4f));
+                _audioSystem.PlayPvs(arcade.PlayerHealSound, uid, AudioParams.Default.WithVolume(SharedArcadeSystem.ArcadeSoundVolumeDb));
                 if (!PlayerChar.Invincible)
                     PlayerChar.Mp -= pointAmount;
                 PlayerChar.Hp += healAmount;
@@ -134,7 +135,7 @@ public sealed partial class SpaceVillainGame
                     "space-villain-game-player-recharge-message",
                     ("regainedPoints", chargeAmount)
                 );
-                _audioSystem.PlayPvs(arcade.PlayerChargeSound, uid, AudioParams.Default.WithVolume(-4f));
+                _audioSystem.PlayPvs(arcade.PlayerChargeSound, uid, AudioParams.Default.WithVolume(SharedArcadeSystem.ArcadeSoundVolumeDb));
                 PlayerChar.Mp += chargeAmount;
                 _turtleTracker -= _turtleTracker > 0 ? 1 : 0;
                 break;
@@ -261,6 +262,6 @@ public sealed partial class SpaceVillainGame
     {
         _running = false;
         UpdateUi(uid, playerMessage, enemyMessage, metadata: true);
-        _audioSystem.PlayPvs(sound, uid, AudioParams.Default.WithVolume(-4f));
+        _audioSystem.PlayPvs(sound, uid, AudioParams.Default.WithVolume(SharedArcadeSystem.ArcadeSoundVolumeDb));
     }
 }

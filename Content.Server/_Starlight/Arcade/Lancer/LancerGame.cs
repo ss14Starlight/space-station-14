@@ -1,6 +1,7 @@
 using Content.Server.Arcade.Systems;
 using Content.Shared._Starlight.Arcade.Lancer;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -8,17 +9,28 @@ namespace Content.Server._Starlight.Arcade.Lancer;
 
 public sealed partial class LancerGame
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    private readonly IEntityManager _entityManager;
+    private readonly IRobustRandom _random;
+    private readonly IPrototypeManager _prototypes;
     private readonly UserInterfaceSystem _uiSystem;
     private readonly ArcadeSystem _arcade;
+    private readonly SharedAudioSystem _audio;
 
-    public LancerGame(EntityUid owner)
+    public LancerGame(
+        EntityUid owner,
+        IEntityManager entityManager,
+        IRobustRandom random,
+        IPrototypeManager prototypes,
+        UserInterfaceSystem uiSystem,
+        ArcadeSystem arcade,
+        SharedAudioSystem audio)
     {
-        IoCManager.InjectDependencies(this);
-        _uiSystem = _entityManager.System<UserInterfaceSystem>();
-        _arcade = _entityManager.System<ArcadeSystem>();
+        _entityManager = entityManager;
+        _random = random;
+        _prototypes = prototypes;
+        _uiSystem = uiSystem;
+        _arcade = arcade;
+        _audio = audio;
         _owner = owner;
         ResetMission();
     }

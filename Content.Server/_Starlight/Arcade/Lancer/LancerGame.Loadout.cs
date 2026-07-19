@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.Arcade.Lancer;
 
 namespace Content.Server._Starlight.Arcade.Lancer;
@@ -26,8 +27,8 @@ public sealed partial class LancerGame
     private int _playerArmor;
     private int _playerHexCap = PlayerHexCharges;
 
-    private readonly string[] _weaponIds = new string[3];
-    private readonly bool[] _weaponLoaded = [true, true, true];
+    private readonly string[] _weaponIds = new string[WeaponSlotCount];
+    private readonly bool[] _weaponLoaded = Enumerable.Repeat(true, WeaponSlotCount).ToArray();
 
     private string? _selectedLoadoutId;
     private int _pendingChoiceIndex = -1;
@@ -52,7 +53,7 @@ public sealed partial class LancerGame
         // Optional weapon overrides for license-style Raijin variants.
         if (loadout.WeaponOverrides is { } overrides)
         {
-            for (var i = 0; i < 3 && i < overrides.Length; i++)
+            for (var i = 0; i < WeaponSlotCount && i < overrides.Length; i++)
             {
                 if (!string.IsNullOrEmpty(overrides[i]))
                     _weaponIds[i] = overrides[i]!;
@@ -106,7 +107,7 @@ public sealed partial class LancerGame
         _deepWellHeatResistThisTurn = false;
         _playerHexCap = PlayerHexCharges;
 
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
             _weaponIds[i] = i < def.WeaponIds.Length ? def.WeaponIds[i] : string.Empty;
 
         ResetWeaponLoadedState();
@@ -115,7 +116,7 @@ public sealed partial class LancerGame
     private void ResetWeaponLoadedState()
     {
         // Loading weapons start loaded; firing empties them until Stabilize → Reload.
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             if (string.IsNullOrEmpty(_weaponIds[i]) || !Weapons.ContainsKey(_weaponIds[i]))
             {
@@ -129,7 +130,7 @@ public sealed partial class LancerGame
 
     private LancerWeaponDef? GetWeaponDef(int index)
     {
-        if (index < 0 || index >= 3)
+        if (index < 0 || index >= WeaponSlotCount)
             return null;
 
         var id = _weaponIds[index];
@@ -208,8 +209,10 @@ public sealed partial class LancerGame
 
     private void TickTokugawaExposed()
     {
-        // Only tick Overclock Exposed (short duration). Overheat Exposed lasts until Stabilize (99).
-        if (!_playerExposed || _exposedTurnsRemaining <= 0 || _exposedTurnsRemaining > 10)
+        // Only tick Overclock Exposed (short duration). Permanent Exposed lasts until Stabilize.
+        if (!_playerExposed
+            || _exposedTurnsRemaining <= 0
+            || _exposedTurnsRemaining >= PermanentExposedTurns)
             return;
 
         _exposedTurnsRemaining--;
@@ -275,7 +278,7 @@ public sealed partial class LancerGame
             return Loc.GetString(loadout.NameLoc);
 
         var parts = new List<string>();
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < WeaponSlotCount; i++)
         {
             var def = GetWeaponDef(i);
             if (def != null)

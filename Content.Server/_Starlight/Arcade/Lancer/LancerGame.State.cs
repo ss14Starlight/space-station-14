@@ -105,6 +105,10 @@ public sealed partial class LancerGame
     private bool _braceUsedThisRound;
     /// <summary>Core: one reaction per character activation (enemy unit turn).</summary>
     private bool _reactionUsedThisActivation;
+    /// <summary>Unit currently executing AI steps; used to reset reaction budget per enemy.</summary>
+    private int _executingAiUnitId = -1;
+    /// <summary>Hexes reserved by planned AI moves in the current activation queue.</summary>
+    private readonly HashSet<LancerGridCoord> _reservedAiMoveCells = new();
     /// <summary>After Brace: no reactions until end of your next turn.</summary>
     private bool _braceReactionLockout;
     /// <summary>Brace aftermath: next player turn is one-quick only (no move/full/free/OC).</summary>
@@ -145,7 +149,7 @@ public sealed partial class LancerGame
     private bool _processingAi;
     private PendingResolution? _pendingResolution;
 
-    private readonly bool[] _weaponUsedThisTurn = new bool[3];
+    private readonly bool[] _weaponUsedThisTurn = new bool[WeaponSlotCount];
     private Action? _pendingReactionContinue;
 
     public bool Started => _phase != LancerGamePhase.Briefing || _combatStarted;

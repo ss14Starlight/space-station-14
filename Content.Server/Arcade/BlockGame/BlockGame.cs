@@ -171,7 +171,7 @@ public sealed partial class BlockGame
         var pointsToAdd = 0;
         var consecutiveLines = 0;
         var clearedLines = 0;
-        for (var y = 0; y < 20; y++)
+        for (var y = 0; y < PlayfieldHeight; y++)
         {
             if (CheckLine(y))
             {
@@ -205,7 +205,7 @@ public sealed partial class BlockGame
     /// <param name="y">The position of the line to check.</param>
     private bool CheckLine(int y)
     {
-        for (var x = 0; x < 10; x++)
+        for (var x = 0; x < PlayfieldWidth; x++)
         {
             if (!_field.Any(b => b.Position.X == x && b.Position.Y == y))
                 return false;
