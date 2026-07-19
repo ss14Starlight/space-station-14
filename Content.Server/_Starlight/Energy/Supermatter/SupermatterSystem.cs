@@ -242,10 +242,10 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
             
         }
             // im not sure if this needs to be in the loop
-            supermatter.Comp.RadiationStability = MathHelper.Clamp(radiationStability, 1.1f, 10f);
-            supermatter.Comp.ReactionModifier = MathHelper.Clamp(supermatter.Comp.ReactionModifier, 0.1f, 3f);
-            supermatter.Comp.RegenerationModifier = MathHelper.Clamp(supermatter.Comp.RegenerationModifier, 0f, 5f);
-            supermatter.Comp.DestabilizationModifier =  MathHelper.Clamp(supermatter.Comp.DestabilizationModifier, 0.1f, 3f);
+            supermatter.Comp.RadiationStability = MathHelper.Clamp(radiationStability, Const.MinRadiationStability, Const.MaxRadiationStability);
+            supermatter.Comp.ReactionModifier = MathHelper.Clamp(supermatter.Comp.ReactionModifier, Const.MinReactionModifier, Const.MaxReactionModifier);
+            supermatter.Comp.RegenerationModifier = MathHelper.Clamp(supermatter.Comp.RegenerationModifier, Const.MinRegenerationModifier, Const.MaxRegenerationModifier);
+            supermatter.Comp.DestabilizationModifier =  MathHelper.Clamp(supermatter.Comp.DestabilizationModifier, Const.MinDestabilizationModifier, Const.MaxDestabilizationModifier);
 
             ProcessHeat(supermatter, gas, heatTransfer * supermatter.Comp.ReactionModifier.Float(), heatModifier);
             TryCompensateDamage(supermatter, gas);

@@ -55,6 +55,48 @@ internal static class Const
 
     public static float EvaporationCompensation = 10;
 
+    public static float MinRadiationStability = 1.1f;
+    // Minimum radiation decay divisor.
+    // Higher values = radiation disappears faster.
+    // Prevents gases from making radiation effectively permanent.
+
+    public static float MaxRadiationStability = 10f;
+    // Maximum radiation decay divisor.
+    // Prevents gases like Halon from making radiation disappear instantly.
+
+    public static float MinReactionModifier = 0.1f;
+    // Minimum global Supermatter reaction multiplier.
+    // 1.0 = normal reaction speed.
+    // Lower values reduce heat, radiation, lighting and gas production.
+    // Prevents gases from completely stopping Supermatter reactions.
+
+    public static float MaxReactionModifier = 3f;
+    // Maximum global Supermatter reaction multiplier.
+    // Allows gases like Nitrium/ProtoNitrate to increase activity,
+    // but prevents exponential runaway behaviour.
+
+    public static float MinRegenerationModifier = 0f;
+    // Minimum passive regeneration multiplier.
+    // 0 = no passive healing.
+    // Prevents negative regeneration (additional damage).
+
+    public static float MaxRegenerationModifier = 5f;
+    // Maximum passive regeneration multiplier.
+    // Limits healing gases like Healium from making the crystal immortal.
+
+    public static float MinDestabilizationModifier = 0.1f;
+    // Minimum damage accumulation multiplier for breaking.
+    // Multiplier for durability loss from accumulated damage.
+    // 1.0 = normal.
+    // <1.0 = stabilization.
+    // >1.0 = faster delamination.
+    // Prevents gases from completely stopping durability loss.
+
+    public static float MaxDestabilizationModifier = 3f;
+    // Maximum damage accumulation multiplier for breaking.
+    // Allows destabilizing gases to accelerate delamination,
+    // but prevents instant destruction.
+
     public static FixedPoint2 MaxDamagePerSecond = (100f / 180f) + RegenerationPerSecond; // Ensures it takes at least 3 minutes to deplete
     public static FixedPoint2 RegenerationPerSecond = 0.3f;
 
@@ -64,6 +106,3 @@ internal static class Const
 }
 public record struct GasProperties(float HeatTransferPerMole, float HeatModifier, float RadiationStability, float RegenerationModifier, float ReactionModifier, float DestabilizationModifier, float GasDamage);
 
-// Heattransfer o2 100heat *0,24 =24 into o2. rest goes into SM for damage: this means removes heat from interaction
-// HeatMod 24 * 1,2 = 28.8 heat units?(k?) : How much heat goes into the gas
-// RadS how fast per update it, the current level decays:
