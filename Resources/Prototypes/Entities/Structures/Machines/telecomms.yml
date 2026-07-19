@@ -226,6 +226,7 @@
       - EncryptionKeyService
       - EncryptionKeyCommand
       - EncryptionKeyLaw # Starlight
+      - EncryptionKeyNanoTrasen # Starlight
 
 - type: entity
   parent: TelecomServer
