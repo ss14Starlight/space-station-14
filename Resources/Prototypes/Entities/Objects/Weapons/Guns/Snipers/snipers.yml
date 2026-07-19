@@ -21,9 +21,6 @@
       Resomi:
         knockback: 4
         staminaMultiplier: 15
-      Avali:
-        knockback: 2 # half of what resomi take
-        staminaMultiplier: 15
       Felionoid:
         knockback: 2 #half of what resomi take
         staminaMultiplier: 15
@@ -95,8 +92,6 @@
         knockback: 3
       Resomi:
         knockback: 2
-      Avali:
-        knockback: 1 # half of what resomi take
       Felionoid:
         knockback: 1 # half of what resomi take
   - type: BallisticAmmoProvider # Starlight
