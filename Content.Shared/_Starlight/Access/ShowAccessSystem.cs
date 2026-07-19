@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -108,8 +109,16 @@ public sealed partial class ShowAccessSystem : EntitySystem
         if (TryComp<InventoryComponent>(uid, out var inventory))
         {
             foreach (var slot in inventory.Containers)
+            {
+                if (slot.ContainedEntity is null) continue;
+                if (!_inventory.TryGetContainingSlot(
+                        (slot.ContainedEntity.Value, Transform(slot.ContainedEntity.Value),
+                            MetaData(slot.ContainedEntity.Value)), out var slotDef)) continue;
+                if (!TryComp<ClothingComponent>(slot.ContainedEntity, out var clothing)) continue;
+                if ((clothing.Slots & slotDef.SlotFlags) == 0x00) continue;
                 if (TryComp(slot.ContainedEntity, out showAccess))
                     break;
+            }
             if (showAccess is null) return false;
         }
         else return false;
