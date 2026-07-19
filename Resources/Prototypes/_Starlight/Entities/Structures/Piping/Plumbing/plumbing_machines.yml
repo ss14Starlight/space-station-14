@@ -14,6 +14,11 @@
   - type: Appearance
   - type: PlumbingConnectorAppearance
     offset: 0.09375
+  - type: SubFloorHide
+    blockInteractions: false
+    blockAmbience: false
+    visibleLayers:
+    - enum.SubfloorLayers.FirstLayer
   - type: InteractionOutline
   - type: Anchorable
   - type: Pullable
@@ -55,6 +60,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: tank
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: PlumbingDevice
     updateInterval: 2
   - type: PlumbingInlet
@@ -122,6 +128,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: buffer_tank
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: PlumbingOutlet
     solutionName: tank
     connectedOutlets: false
@@ -152,6 +159,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: pipe_input
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: PlumbingInput
     solutionName: input
   - type: Plungeable
@@ -215,6 +223,7 @@
     drawdepth: FloorObjects
     layers:
     - state: sink_wide
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: Rotatable
     rotateWhileAnchored: false
   - type: PlumbingDevice
@@ -293,6 +302,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: pipe_output
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: PlumbingDevice
     updateInterval: 2
   - type: PlumbingInlet
@@ -356,7 +366,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: reaction_chamber
-      map: [ "enum.PlumbingVisualLayers.Base" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
   - type: GenericVisualizer
     visuals:
       enum.PlumbingVisuals.Running:
@@ -435,10 +445,16 @@
     sprite: Structures/Machines/smartfridge.rsi
     layers:
     - state: smartfridge
-      map: ["enum.StorageVisualLayers.Base"]
+      map: ["enum.StorageVisualLayers.Base", "enum.SubfloorLayers.FirstLayer"]
     - state: smartfridge_door
-      map: ["enum.StorageVisualLayers.Door"]
+      map: ["enum.StorageVisualLayers.Door", "enum.SubfloorLayers.SecondLayer"]
       shader: unshaded
+  - type: SubFloorHide
+    blockInteractions: false
+    blockAmbience: false
+    visibleLayers:
+    - enum.SubfloorLayers.FirstLayer
+    - enum.SubfloorLayers.SecondLayer
   - type: PointLight
     radius: 1.2
     energy: 3.0
@@ -516,7 +532,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: pill_press_off
-      map: [ "enum.PlumbingVisualLayers.Base" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
   - type: GenericVisualizer
     visuals:
       enum.PlumbingVisuals.Running:
@@ -599,6 +615,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: filter
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: PlumbingDevice
     updateInterval: 2
   - type: PlumbingInlet
@@ -676,6 +693,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: filterF
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: NodeContainer
     nodes:
       inlet:
@@ -707,6 +725,7 @@
     noRot: false
     layers:
     - state: synthesizer
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
     - state: synthesizer_overlay
       map: [ "enum.PlumbingVisualLayers.Overlay" ]
       visible: false
@@ -810,7 +829,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: disposal
-      map: [ "enum.PlumbingVisualLayers.Base" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
   - type: GenericVisualizer
     visuals:
       enum.PlumbingVisuals.Running:
@@ -874,6 +893,7 @@
     sprite: Objects/Specific/Janitorial/drain.rsi
     layers:
     - state: icon
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
     - map: [ "enum.SolutionContainerLayers.Fill" ]
       state: fill-1
       visible: false
