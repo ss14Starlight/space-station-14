@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/19/2026 20:00:25
-  entityCount: 30429
+  time: 07/19/2026 20:19:46
+  entityCount: 30419
 maps:
 - 1
 grids:
@@ -14656,7 +14656,7 @@ entities:
       pos: -29.5,-12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -304546.47
+      secondsUntilStateChange: -305035.2
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14668,7 +14668,7 @@ entities:
       pos: 30.5,-28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -304552.97
+      secondsUntilStateChange: -305041.7
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14680,7 +14680,7 @@ entities:
       pos: 30.5,-24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -304553.66
+      secondsUntilStateChange: -305042.38
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14694,7 +14694,7 @@ entities:
       pos: 55.5,-24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -92001.89
+      secondsUntilStateChange: -92490.62
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15983,7 +15983,7 @@ entities:
       pos: 36.5,0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -396249.75
+      secondsUntilStateChange: -396738.47
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -28237,15 +28237,6 @@ entities:
       anchored: False
       rot: 3.141592653589793 rad
       pos: 63.5,36.5
-      parent: 2
-    - type: Physics
-      bodyType: Dynamic
-  - uid: 29769
-    components:
-    - type: Transform
-      anchored: False
-      rot: 3.141592653589793 rad
-      pos: 48.5,35.5
       parent: 2
     - type: Physics
       bodyType: Dynamic
@@ -73241,51 +73232,6 @@ entities:
     - type: Transform
       pos: 46.5,38.5
       parent: 2
-  - uid: 11438
-    components:
-    - type: Transform
-      pos: 46.5,43.5
-      parent: 2
-  - uid: 11439
-    components:
-    - type: Transform
-      pos: 46.5,42.5
-      parent: 2
-  - uid: 11440
-    components:
-    - type: Transform
-      pos: 46.5,41.5
-      parent: 2
-  - uid: 11441
-    components:
-    - type: Transform
-      pos: 46.5,44.5
-      parent: 2
-  - uid: 11443
-    components:
-    - type: Transform
-      pos: 70.5,44.5
-      parent: 2
-  - uid: 11444
-    components:
-    - type: Transform
-      pos: 70.5,43.5
-      parent: 2
-  - uid: 11445
-    components:
-    - type: Transform
-      pos: 70.5,42.5
-      parent: 2
-  - uid: 11446
-    components:
-    - type: Transform
-      pos: 70.5,41.5
-      parent: 2
-  - uid: 11447
-    components:
-    - type: Transform
-      pos: 70.5,40.5
-      parent: 2
   - uid: 11448
     components:
     - type: Transform
@@ -76537,12 +76483,12 @@ entities:
   - uid: 11986
     components:
     - type: Transform
-      pos: 16.643559,26.953007
+      pos: 16.267273,27.006931
       parent: 2
   - uid: 11987
     components:
     - type: Transform
-      pos: 16.653091,27.637276
+      pos: 16.266872,26.905369
       parent: 2
 - proto: ClothingEyesEyepatch
   entities:
@@ -76815,7 +76761,7 @@ entities:
   - uid: 12031
     components:
     - type: Transform
-      pos: 11.305592,29.738392
+      pos: 16.64714,27.074898
       parent: 2
 - proto: ClothingHeadHatWeldingMaskPainted
   entities:
@@ -76836,7 +76782,7 @@ entities:
   - uid: 12032
     components:
     - type: Transform
-      pos: 11.736895,29.693792
+      pos: 16.725266,27.090523
       parent: 2
 - proto: ClothingHeadHatWitch1
   entities:
@@ -151597,6 +151543,18 @@ entities:
     - type: Transform
       pos: -2.5,39.5
       parent: 2
+- proto: LockerRoboticistFilled
+  entities:
+  - uid: 11438
+    components:
+    - type: Transform
+      pos: 11.5,29.5
+      parent: 2
+  - uid: 11441
+    components:
+    - type: Transform
+      pos: 15.5,29.5
+      parent: 2
 - proto: LockerSalvageLeadFilledHardsuit
   entities:
   - uid: 20111
@@ -160478,20 +160436,10 @@ entities:
       parent: 2
 - proto: Rack
   entities:
-  - uid: 21399
-    components:
-    - type: Transform
-      pos: 11.5,29.5
-      parent: 2
   - uid: 21400
     components:
     - type: Transform
       pos: 13.5,24.5
-      parent: 2
-  - uid: 21401
-    components:
-    - type: Transform
-      pos: 17.5,27.5
       parent: 2
   - uid: 21402
     components:
@@ -168617,17 +168565,17 @@ entities:
   - uid: 15889
     components:
     - type: Transform
-      pos: 37.358643,39.528988
+      pos: 37.696728,39.740925
       parent: 2
   - uid: 17290
     components:
     - type: Transform
-      pos: 37.608643,39.646175
+      pos: 37.384228,39.56905
       parent: 2
   - uid: 22844
     components:
     - type: Transform
-      pos: 17.521523,27.703278
+      pos: 16.555935,27.585056
       parent: 2
   - uid: 22845
     components:
@@ -173375,6 +173323,12 @@ entities:
       parent: 2
 - proto: SinkWide
   entities:
+  - uid: 11440
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 18.5,27.5
+      parent: 2
   - uid: 23346
     components:
     - type: Transform
@@ -173488,12 +173442,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,24.5
-      parent: 2
-  - uid: 23366
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 18.5,27.5
       parent: 2
   - uid: 23367
     components:
@@ -183389,10 +183337,10 @@ entities:
       parent: 2
 - proto: VendingMachineRoboDrobe
   entities:
-  - uid: 24934
+  - uid: 11439
     components:
     - type: Transform
-      pos: 15.5,29.5
+      pos: 17.5,27.5
       parent: 2
 - proto: VendingMachineRobotics
   entities:
