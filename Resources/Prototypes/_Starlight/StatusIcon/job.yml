@@ -228,7 +228,7 @@
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: CCServiceWorker
-  jobName: job-name-ccserviceworker
+  jobName: job-name-cc-serviceworker
 
 - type: jobIcon
   parent: JobIcon

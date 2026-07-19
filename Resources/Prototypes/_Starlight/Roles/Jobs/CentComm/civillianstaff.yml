@@ -1,11 +1,32 @@
+- type: job
+  id: CentCommServiceWorker
+  name: job-name-cc-serviceworker
+  description: job-description-cc-serviceworker
+  playTimeTracker: JobCentCommServiceWorker
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 5h # Anti shitter/raider protection. Working on CentComm should require having a basic understanding of game mechanics.
+  setPreference: false
+  icon: "JobIconCCServiceWorker"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  bypassEorPacification: false
+  access:
+  - Service
+  - Maintenance
+  - Bar
+  - Kitchen
+  - Hydroponics
+  - Janitor
+
 - type: startingGear
   id: CCChefGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitChef
     shoes: ClothingShoesColorGreen
     head: ClothingHeadHatChef
-#    mask: ClothingMaskItalianMoustache # right now this is broken for vox, so its inhand.
-    id: CentcomServicePDA
+    mask: ClothingMaskItalianMoustache
+    id: CentCommServicePDA
     back: ClothingBackpackSatchel
     belt: ClothingBeltChefFilled
     ears: ClothingHeadsetService
@@ -13,16 +34,15 @@
     pocket1: ButchCleaver
     pocket2: BookHowToCookForFortySpaceman
   inhand:
-  - ClothingMaskItalianMoustache
   - DrinkWineBottleFull
 
 - type: startingGear
   id: CCServiceWorkerGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCentcommServiceWorker
+    jumpsuit: ClothingUniformJumpsuitCentCommServiceWorker
     shoes: ClothingShoesColorBlack
     head: ClothingHeadBandGreen
-    id: CentcomServicePDA
+    id: CentCommServicePDA
     back: ClothingBackpack
     ears: ClothingHeadsetService
     pocket1: Fork
@@ -31,10 +51,10 @@
 - type: startingGear
   id: CCBartenderGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCentcommBartender
+    jumpsuit: ClothingUniformJumpsuitCentCommBartender
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatTophat
-    id: CentcomServicePDA
+    id: CentCommServicePDA
     back: ClothingBackpack
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses
@@ -44,10 +64,10 @@
 - type: startingGear
   id: CCJanitorGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCentcommServiceWorker
+    jumpsuit: ClothingUniformJumpsuitCentCommServiceWorker
     shoes: ClothingShoesGaloshes
     gloves: ClothingHandsGlovesJanitor
-    id: CentcomServicePDA
+    id: CentCommServicePDA
     back: ClothingBackpackSatchel
     belt: ClothingBeltJanitorFilled
     ears: ClothingHeadsetService

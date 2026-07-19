@@ -952,12 +952,12 @@
 
 - type: entity
   parent: BasePDA
-  id: CentcomServicePDA
-  name: CentComm Service PDA
+  id: CentCommServicePDA
+  name: CentComm service PDA
   description: The crappy version they give to the people who make their food, mop their floors, and serve their drinks.
   components:
   - type: Pda
-    id: CentcomIDCardService
+    id: CentCommIDCardService
     penSlot:
       startingItem: PenCentcom
       priority: -1

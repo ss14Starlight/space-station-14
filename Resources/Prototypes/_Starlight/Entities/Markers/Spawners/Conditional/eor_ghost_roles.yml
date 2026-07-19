@@ -1,5 +1,6 @@
 - type: entity
-  name: centcomm service worker spawner (post-round)
+  name: CentComm service worker spawner
+  suffix: End of Round
   id: CCServiceWorkerSpawnerPostRound
   parent: MarkerBase
   components:
@@ -11,12 +12,18 @@
     - type: TriggerOnRoundEnd
     - type: AddComponentsOnTrigger
       components:
-        - type: RandomSpawner
-          prototypes:
-          - RandomHumanoidCCServiceWorker
+        - type: GhostRole
+          name: ghost-role-information-cc-serviceworker-name
+          description: ghost-role-information-cc-serviceworker-description
+          rules: ghost-role-information-nonantagonist-rules
+          raffle:
+            settings: short
+        - type: GhostRoleMobSpawner
+          prototype: MobHumanCCServiceWorkerEOR
 
 - type: entity
-  name: centcomm chef spawner (post-round)
+  name: CentComm chef spawner
+  suffix: End of Round
   id: CCChefSpawnerPostRound
   parent: MarkerBase
   components:
@@ -28,12 +35,18 @@
     - type: TriggerOnRoundEnd
     - type: AddComponentsOnTrigger
       components:
-        - type: RandomSpawner
-          prototypes:
-          - RandomHumanoidCCChef
+        - type: GhostRole
+          name: ghost-role-information-cc-chef-name
+          description: ghost-role-information-cc-chef-description
+          rules: ghost-role-information-nonantagonist-rules
+          raffle:
+            settings: short
+        - type: GhostRoleMobSpawner
+          prototype: MobHumanCCChefEOR
 
 - type: entity
-  name: centcomm bartender spawner (post-round)
+  name: CentComm bartender spawner
+  suffix: End of Round
   id: CCBartenderSpawnerPostRound
   parent: MarkerBase
   components:
@@ -45,12 +58,18 @@
     - type: TriggerOnRoundEnd
     - type: AddComponentsOnTrigger
       components:
-        - type: RandomSpawner
-          prototypes:
-          - RandomHumanoidCCBartender
+        - type: GhostRole
+          name: ghost-role-information-cc-bartender-name
+          description: ghost-role-information-cc-bartender-description
+          rules: ghost-role-information-nonantagonist-rules
+          raffle:
+            settings: short
+        - type: GhostRoleMobSpawner
+          prototype: MobHumanCCBartenderEOR
 
 - type: entity
-  name: centcomm janitor spawner (post-round)
+  name: CentComm janitor spawner
+  suffix: End of Round
   id: CCJanitorSpawnerPostRound
   parent: MarkerBase
   components:
@@ -62,6 +81,59 @@
     - type: TriggerOnRoundEnd
     - type: AddComponentsOnTrigger
       components:
-        - type: RandomSpawner
-          prototypes:
-          - RandomHumanoidCCJanitor
+        - type: GhostRole
+          name: ghost-role-information-cc-janitor-name
+          description: ghost-role-information-cc-janitor-description
+          rules: ghost-role-information-nonantagonist-rules
+          raffle:
+            settings: short
+        - type: GhostRoleMobSpawner
+          prototype: MobHumanCCJanitorEOR
+
+- type: entity
+  id: MobHumanCCServiceWorkerEOR
+  name: CentComm service worker
+  parent: MobHuman
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: IdBind
+    - type: Loadout
+      prototypes: [ CCServiceWorkerGear ]
+      roleLoadout: [ RoleSurvivalStandard ]
+
+- type: entity
+  id: MobHumanCCChefEOR
+  name: CentComm chef
+  parent: MobHuman
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: IdBind
+    - type: Loadout
+      prototypes: [ CCChefGear ]
+      roleLoadout: [ RoleSurvivalStandard ]
+
+- type: entity
+  id: MobHumanCCBartenderEOR
+  name: CentComm bartender
+  parent: MobHuman
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: IdBind
+    - type: Loadout
+      prototypes: [ CCBartenderGear ]
+      roleLoadout: [ RoleSurvivalStandard ]
+
+- type: entity
+  id: MobHumanCCJanitorEOR
+  name: CentComm janitor
+  parent: MobHuman
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: IdBind
+    - type: Loadout
+      prototypes: [ CCJanitorGear ]
+      roleLoadout: [ RoleSurvivalStandard ]

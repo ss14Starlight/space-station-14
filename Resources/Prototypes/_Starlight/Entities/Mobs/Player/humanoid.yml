@@ -1012,11 +1012,11 @@
       - NamesMilitaryLast
       nameFormat: name-format-ert
 
-## Centcomm
+## CentComm
 
 - type: entity
   id: RandomHumanoidCCServiceWorker
-  name: centcomm service worker ghost role
+  name: CentComm service worker ghost role
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -1037,7 +1037,7 @@
 
 - type: entity
   id: RandomHumanoidCCChef
-  name: centcomm chef ghost role
+  name: CentComm chef ghost role
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -1056,6 +1056,16 @@
       prototypes: [ CCChefGear ]
       roleLoadout: [ RoleSurvivalStandard ]
 
+- type: entity
+  id: RandomHumanoidCCBartender
+  name: CentComm bartender ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: bartender
+    - type: RandomHumanoidSpawner
+      settings: CCBartender
+
 - type: randomHumanoidSettings
   id: CCBartender
   parent: VisitorCivilian
@@ -1066,6 +1076,16 @@
     - type: Loadout
       prototypes: [ CCBartenderGear ]
       roleLoadout: [ RoleSurvivalStandard ]
+
+- type: entity
+  id: RandomHumanoidCCJanitor
+  name: CentComm janitor ghost role
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: janitor
+    - type: RandomHumanoidSpawner
+      settings: CCJanitor
 
 - type: randomHumanoidSettings
   id: CCJanitor
@@ -1078,22 +1098,3 @@
       prototypes: [ CCJanitorGear ]
       roleLoadout: [ RoleSurvivalStandard ]
 
-- type: entity
-  id: RandomHumanoidCCBartender
-  name: centcomm bartender ghost role
-  components:
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      state: bartender
-    - type: RandomHumanoidSpawner
-      settings: CCBartender
-
-- type: entity
-  id: RandomHumanoidCCJanitor
-  name: centcomm janitor ghost role
-  components:
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      state: janitor
-    - type: RandomHumanoidSpawner
-      settings: CCJanitor

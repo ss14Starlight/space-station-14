@@ -496,8 +496,8 @@
 
 - type: entity
   parent: IDCardStandard
-  id: CentcomIDCardService
-  name: Centcomm Service ID card
+  id: CentCommIDCardService
+  name: CentComm service ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -518,19 +518,10 @@
   - type: IdCard
     jobTitle: job-name-ccserviceworker
     jobIcon: JobIconCCServiceWorker
-  - type: Access
-    tags:
-    - Service
-    - Maintenance
-    - Bar
-    - Kitchen
-    - Hydroponics
-    - Janitor
+  - type: PresetIdCard
+    job: CentCommServiceWorker
   - type: NanoChatCard
     listNumber: false
-
-
-
 
 - type: entity
   parent: IDCardStandard
