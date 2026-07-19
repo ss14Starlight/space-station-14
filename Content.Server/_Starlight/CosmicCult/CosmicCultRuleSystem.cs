@@ -371,6 +371,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     private void OnGodSpawn(Entity<CosmicGodComponent> uid, ref ComponentInit args)
     {
+        _sound.DispatchStationEventMusic(uid, new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/caustic_shift.ogg"), StationEventMusicType.CosmicCult );
         var query = QueryActiveRules();
         while (query.MoveNext(out var ruleUid, out _, out var cultRule, out _))
         {
