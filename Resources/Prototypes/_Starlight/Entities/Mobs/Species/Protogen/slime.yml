@@ -29,6 +29,8 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
+  - type: InteractionPopup
+    interactSuccessSound: /Audio/Voice/Slime/slime_squish.ogg
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Slime/parts.rsi
     state: full
