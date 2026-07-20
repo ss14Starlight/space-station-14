@@ -8,6 +8,8 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.GameTicking.Rules;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using System.Linq;
+using Content.Server.Chat.Managers;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -17,6 +19,10 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
     [Dependency] private IRobustRandom _random = default!;
+    // Starlight begin
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private IChatManager _chat = default!;
+    // Starlight end
 
     protected override void Added(EntityUid uid, DynamicRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
@@ -24,6 +30,11 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
 
         component.Budget = _random.Next(component.StartingBudgetMin, component.StartingBudgetMax);
         component.NextRuleTime = Timing.CurTime + _random.Next(component.MinRuleInterval, component.MaxRuleInterval);
+        // Starlight begin - If in lobby, add them now so we can metagame!
+        if (_ticker.RunLevel != GameRunLevel.PreRoundLobby) return;
+        component.LastBudgetUpdate = Timing.CurTime;
+        Execute((uid, component));
+        // Starlight end
     }
 
     protected override void Started(EntityUid uid, DynamicRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -32,6 +43,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
 
         // Since we don't know how long until this rule is activated, we need to
         // set the last budget update to now so it doesn't immediately give the component a bunch of points.
+        if (_ticker.RunLevel == GameRunLevel.PreRoundLobby) return; // Starlight - Don't add them twice!
         component.LastBudgetUpdate = Timing.CurTime;
         Execute((uid, component));
     }
@@ -136,6 +148,17 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
         }
 
         //entity.Comp.Rules.AddRange(executedRules); // Starlight - comment
+
+        // Starlight begin
+        if (_ticker.RunLevel != GameRunLevel.PreRoundLobby) return executedRules;
+
+        List<string> ruleIdList = [];
+        foreach (var meta in executedRules.Select(MetaData))
+            if(meta.EntityPrototype is not null) ruleIdList.Add(meta.EntityPrototype.ID);
+
+        _chat.SendAdminAnnouncement($"Dynamic roundstart rules: {string.Join(", ", ruleIdList)}.");
+        // Starlight end
+
         return executedRules;
     }
 
