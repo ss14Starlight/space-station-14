@@ -271,15 +271,15 @@ public abstract partial class SharedFlashSystem : EntitySystem
         }
     }
     // Updates whether flash immunity is visible in examine window
-    public void SetShowInExamine(EntityUid uid, bool show, FlashImmunityComponent? comp = null)
+    #region Starlight
+    public void SetShowInExamine(EntityUid uid, bool show, FlashImmunityComponent comp)
     {
-        if (!Resolve(uid, ref comp, false))
-            return;
         if (comp.ShowInExamine == show)
             return;
         comp.ShowInExamine = show;
         Dirty(uid, comp);
     }
+    #endregion
 
     private void OnPermanentBlindnessFlashAttempt(Entity<PermanentBlindnessComponent> ent, ref FlashAttemptEvent args)
     {

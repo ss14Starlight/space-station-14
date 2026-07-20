@@ -42,6 +42,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _statusEffect = default!;
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private SharedFlashSystem _flashSystem = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
@@ -412,10 +413,10 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-passive-disable"), uid, uid); // Starlight
             return;
         }
-
+        // Starlight START
         var flashImmunity = EnsureComp<FlashImmunityComponent>(uid);
-        var flashSystem = EntityManager.System<SharedFlashSystem>();
-        flashSystem.SetShowInExamine(uid, false, flashImmunity);
+        _flashSystem.SetShowInExamine(uid, false, flashImmunity);
+        // Starlight END
 
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
     }
