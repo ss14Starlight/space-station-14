@@ -1,67 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Dynamic gamerule player requirements now match their actual gamemodes.
-    type: Fix
-  id: 406340
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: Mack
-  changes:
-  - message: Fix issue with butchering and surgery conflicting.
-    type: Fix
-  id: 406341
-  time: '2026-07-02T14:15:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4979
-- author: Conflee
-  changes:
-  - message: Updated Basilisk, Goliath, and Hivelord/Brood sprites. Basilisk and Goliath use the newer TGstation sprites, while Hivelord/Brood is an edit by myself.
-    type: Tweak
-  id: 406342
-  time: '2026-07-02T20:33:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4966
-- author: Conflee
-  changes:
-  - message: Updated the Goliath Meat, Goliath Steak, Goliath Hide, and Goliath Cloak/Hood sprites, to use newer TGstation sprites.
-    type: Tweak
-  id: 406343
-  time: '2026-07-02T20:33:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4966
-- author: Conflee
-  changes:
-  - message: Added Flimsy Lattice, which is an entity not a tile. Looks similar to lattice but with connected joints. Works like a carpet/catwalk/grate, sitting on top of tiles, allowing mappers to do more intricate detailing.
-    type: Add
-  id: 406344
-  time: '2026-07-02T21:00:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4968
-- author: Johnny
-  changes:
-  - message: Added multiple new prototypes/ghost role variants of NTSF and their gears.
-    type: Add
-  id: 406345
-  time: '2026-07-02T21:00:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4943
-- author: Johnny
-  changes:
-  - message: Changed some of the NTSF ghost roles to include more species and exclude others.
-    type: Tweak
-  id: 406346
-  time: '2026-07-02T21:00:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4943
-- author: wonderfulnewworld
-  changes:
-  - message: Added Devil to Dynamic.
-    type: Add
-  id: 406347
-  time: '2026-07-02T21:47:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4985
-- author: Romero
-  changes:
-  - message: Removed M90 GL.
-    type: Remove
-  id: 406348
-  time: '2026-07-02T21:47:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4934
 - author: Romero
   changes:
   - message: Added Lawbringer, as replacement of unused M90 GL, one per sec armory.
@@ -2799,4 +2736,67 @@ Entries:
   id: 406739
   time: '2026-07-19T09:03:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5196
+- author: Johnny
+  changes:
+  - message: Lapsi now squish when hugged.
+    type: Add
+  id: 406740
+  time: '2026-07-20T09:13:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5207
+- author: Johnny
+  changes:
+  - message: Lapsi no longer do normal hug sound.
+    type: Remove
+  id: 406741
+  time: '2026-07-20T09:13:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5207
+- author: neomoth
+  changes:
+  - message: Non-admins can no longer interact with the recruitment console at Central Command. Tiders lose.
+    type: Fix
+  id: 406742
+  time: '2026-07-20T13:41:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5213
+- author: neomoth
+  changes:
+  - message: Grenade Penguins no longer take spacing damage (lack of air, temperature, barotrauma, etc).
+    type: Tweak
+  id: 406743
+  time: '2026-07-20T14:06:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5210
+- author: neomoth
+  changes:
+  - message: Game now actually checks for TemperatureImmunityComponent so that it does what it's supposed to do.
+    type: Fix
+  id: 406744
+  time: '2026-07-20T14:06:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5210
+- author: RedSpeeds
+  changes:
+  - message: Fixed custom names not applying to humanoid jobs.
+    type: Fix
+  id: 406745
+  time: '2026-07-20T15:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5203
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed an issue where Changelings would appear as flash-proof when examined when using Augmented Eyesight.
+    type: Fix
+  id: 406746
+  time: '2026-07-20T15:29:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5192
+- author: Conflee
+  changes:
+  - message: Fixed incorrect sprite sheet layout for Laspi's Gummy Cat Tail.
+    type: Fix
+  id: 406747
+  time: '2026-07-20T15:52:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5217
+- author: Conflee
+  changes:
+  - message: Added Stir Stir the Prisoner Monkey. Pun Pun's shifty cousin, they are a ghost role that will be mapped into Genpop. They require 15 minutes of Security playtime, to dissuade shittery. Is an Advanced Monkey, so they have 2 hands but can not vent crawl. Needed for a future Traitor objective to kill Stir Stir, which would be easier if the Traitor lets themselves be arrested for a minor crime.
+    type: Add
+  id: 406748
+  time: '2026-07-20T16:18:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5208
 Order: -1
