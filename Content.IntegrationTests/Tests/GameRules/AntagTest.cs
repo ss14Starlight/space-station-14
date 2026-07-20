@@ -17,7 +17,7 @@ namespace Content.IntegrationTests.Tests.GameRules;
 /// </summary>
 public abstract partial class AntagTest : GameTest
 {
-    protected static readonly HashSet<string> IgnoredAntagSpecifiers = ["Brighteye", "TerrorSpiders"]; // Starlight, we're ignoring Brighteye and Terror Spiders as they need their own tests
+    protected static readonly HashSet<string> IgnoredAntagSpecifiers = ["Brighteye", "TerrorPrincess"]; // Starlight, we're ignoring Brighteye and Terror Spiders as they need their own tests
     public override PoolSettings PoolSettings => new()
     {
         Dirty = true,
