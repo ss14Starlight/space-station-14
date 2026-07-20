@@ -100,7 +100,6 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
         TryComp<DnaComponent>(player, out var dnaComponent);
 
         var jobTitle = jobPrototype.LocalizedName;
-        var chosenName = profile.Name;
 
         // Cross-reference the station data so we can keep the runtime record in sync.
         var stationRecordsKey = FindStationRecordsKey(player);
@@ -120,16 +119,13 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
         // - Otherwise show only the base display (localized if possible).
         var speciesName = GetReadableSpeciesName(profile);
 
-        if (TryComp<MetaDataComponent>(player, out var metaData) && !string.IsNullOrEmpty(metaData.EntityName))
-        {
-            chosenName =  metaData.EntityName;
-        }
+        var chosenName = MetaData(player).EntityName;
 
         // Build the composite record that consoles consume, mixing profile data with live round metadata.
         var records = new FullCharacterRecords(
             pRecords: new PlayerProvidedCharacterRecords(profileRecords),
             stationRecordsKey: stationRecordsKey?.Id,
-            name: chosenName!,
+            name: chosenName,
             age: profile.Age,
             species: speciesName,
             jobTitle: jobTitle,
