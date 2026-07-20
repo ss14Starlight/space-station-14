@@ -22,9 +22,7 @@
 
   A common gas, used by most species on the station to breathe.
 
-  Oxygen is an oxidizer, which means it supports combustion.
-  This makes it both useful when fusing gasses in a burn chamber, and dangerous when mixed with flammable gasses.
-  In spite of this obvious safety hazard, most species require it to live.
+  Oxygen is an oxidizer, which means it supports combustion.  In spite of this obvious safety hazard, most species require it to live.
 
   ## Nitrogen
   <Box>
@@ -37,8 +35,6 @@
 
   An inert gas, used in part with oxygen to create a breathable atmosphere.
 
-  Nitrogen is very stable and comprises most of a standard breathable atmosphere.
-
   Some species like Slimes breathe nitrogen, with the Vox species requiring strictly nitrogen to breathe.
 
   ## Carbon Dioxide
@@ -47,26 +43,26 @@
   </Box>
 
   A waste gas produced by most species on the station. A common byproduct of combustion.
-
-  Despite seeming useless, some departments use it in their line of work.
+  
+  Has radiation absorbing properties making it a useful moderator in certain power sources.
 
   ## Water Vapor
   <Box>
     <GuideEntityEmbed Entity="WaterVaporCanister" Caption=""/>
   </Box>
-  A common gas, produced by the burning of plasma and other processes.
+  A common gas, can be produced by the burning of hydrogen or tritium.
 
-  Water vapor has a good specific heat capacity compared to other gasses, making it useful for moving heat around.
+  Water vapor has a good specific heat capacity compared to other mundane gasses, making it useful for heat transfer.
 
   ## Nitrous Oxide
   <Box>
     <GuideEntityEmbed Entity="NitrousOxideCanister" Caption=""/>
     <GuideEntityEmbed Entity="EmergencyFunnyOxygenTank" Caption=""/>
   </Box>
-  An uncommon combination of oxygen and nitrogen. Primarily used as a anesthetic or recreationally. 
+  A reactive combination of oxygen and nitrogen. Primarily used as a anesthetic or narcotic in most species. 
   
-  Can be created by heating oxygen and ammonia, combining frezon and nitrogen, or exhalations from slime based organisms.
-
+  Can be created by heating oxygen and ammonia, combining frezon and nitrogen, or exhalations from slime based organisms.  Can be decomposed into its component atoms by heating to roughly 850 K.
+  
   ## Ammonia
   <Box>
     <GuideEntityEmbed Entity="AmmoniaCanister" Caption=""/>
@@ -87,6 +83,8 @@
   <Box>
     <GuideEntityEmbed Entity="HeliumCanister" Caption=""/>
   </Box>
-  The second most common atom in the universe. Has limited practical uses due being incredibly inert, but can be sold on the market for minor value due to the difficulty of isolating such an inert gas.
+  The second most common atom in the universe. 
+  
+  Has limited practical uses due being incredibly inert, but can be sold on the market for minor value due to the difficulty of isolating such an inert gas.
   
 </Document>

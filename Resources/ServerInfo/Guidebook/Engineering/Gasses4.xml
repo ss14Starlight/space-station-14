@@ -7,7 +7,9 @@
     <GuideEntityEmbed Entity="HealiumCanister" Caption=""/>
   </Box>
 
-  A humourously named gas that true to its name, is capable of healing most types of damage when inhaled. Inhalation causes increased hunger and thirst, aswell as drunkness. Excessive inhalation causes sleep.
+  A humourously named gas that true to its name, is capable of healing most types of damage when inhaled. 
+  
+  Inhalation progressively increases hunger and thirst, then causes drunkness and eventually unconsciousness.
   
   Healium is created by combining 1 BZ and 11 Frezon to create 12 Healium.
 
@@ -29,7 +31,7 @@
 
   Incredibly stable, hyper-noblium actively prevents most other reactions around it from occuring when in great enough quantities.
 
-  Hyper-noblium also has the best specific heat, making it the best working flood to move heat around.  
+  Hyper-noblium has the best specific heat, making it the best working fluid to store and transfer heat.  
   
   Hyper-noblium is created by combining 1 tritium with 2 nitrogen below 15 K. Additionally, the presence of BZ acts as a catalyst which reduces tritium consumption massively.
  
@@ -42,7 +44,7 @@
   
   Proto-nitrate converts almost all plasma based gasses, exempting pluoxium, ulnitranium, and BZ. BZ can be decomposed by PN, but instead effectively turns nitrous oxide into helium.
   
-  Conversion occurs faster with lower pressure and higher temperature, and consumes large amounts of heat while releasing massive quanties of helium as a byproduct. As plasma is created a small amount of proto-nitrate is consumed.
+  Conversion occurs faster with lower pressure and higher temperature, and consumes large amounts of heat while releasing massive quanties of helium as a byproduct. Proto-nitrate is consumed relative to plasma production.
   
   Proto-nitrate can be created by combining 10 hydrogen and 1 pluoxium between 5000 K and 10000 K.
   

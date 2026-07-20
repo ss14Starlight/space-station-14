@@ -6,11 +6,11 @@
   <Box>
     <GuideEntityEmbed Entity="PlasmaCanister" Caption=""/>
   </Box>
-  A flammable gas that is used in many processes on the station.
+  Gaseous phoron which is flammable but incredibly useful for industrial processes.
 
   Engineering uses this gas to generate power and create exotic gasses.
 
-  Burning it generates a lot of heat, producing carbon dioxide or tritium.
+  Burning it generates a lot of heat, producing carbon dioxide or tritium.  Combustion with oxygen consumes more oxygen the higher the temperature is.
 
   Plasma gas also has a good specific heat capacity, making it useful for moving heat around.
   
@@ -22,29 +22,25 @@
 
   Tritium is produced when burning plasma in a burn chamber with 97% or more oxygen, saturating plasma with pluoxium, or damaging a supermatter.
 
-  The efficiency of tritium fusion depends on various factors such as burn richness and temperature.
+ Combustion with oxygen consumes more oxygen the higher the temperature is.
   
   ## Frezon
   <Box>
     <GuideEntityEmbed Entity="FrezonCanister" Caption=""/>
   </Box>
 
-  One of the common export gasses.
+  A highly effective coolant and valuable export gas.
 
-  It has an extremely high specific heat capacity, making it excellent for moving large amounts of heat around. Hallucinogenic when inhaled, but causes genetic degredation.
+  Frezon has a massive specific heat making it useful as a working fluid for heat transfer. Additionally combines with nitrogen above -250 C to create nitrous oxide, absorbing energy and massively cooling the mixture. Causes genetic degredation and hallucinations in living beings exposed to it.
 
-  Additionally when exposed to nitrogen above -250 C frezon converts both into nitrous oxide and absorbs massive amounts of energy
-
-  Frezon is created by combining 1 tritium with 50 oxygen with a nitrogen catalyst to create 51 frezon. This reaction only occurs at roughly -200 C and below. Paradoxicallly, as the reaction gets colder a percentage of frezon that would be produced is instead replaced with nitrogen.
-  
-  Frezon can require lots of tuning to stay stable. Remember, atmospherics is all about experimentation and process optimization. Try it until you get it right!
+  Frezon is created by combining 1 tritium with 50 oxygen with a nitrogen catalyst to create 51 frezon. This reaction only occurs at roughly -200 C and below. Paradoxically, as the reaction gets colder a percentage of frezon that would be produced is instead replaced with nitrogen.
   
   ## BZ 
   <Box>
     <GuideEntityEmbed Entity="BZCanister" Caption=""/>
   </Box>
   
-  A intermediate gas used in many advanced atmospheric reactions.
+  An intermediate gas used in many advanced atmospheric reactions.
   
   Although highly sought after, BZ on its own primarily acts as a sleeping agent and hallucinogenic for slime based organisms.
   
