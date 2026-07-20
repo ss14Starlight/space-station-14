@@ -22,6 +22,7 @@
     id: PrisonerPDA
     ears: ClothingHeadsetAssistant
     jumpsuit: ClothingUniformJumpsuitPrisoner
+    head: ClothingHeadHatBeretPrison
 
 - type: chameleonOutfit
   id: PrisonerChameleonOutfit
@@ -31,3 +32,4 @@
     jumpsuit: ClothingUniformJumpsuitPrisoner
     ears: ClothingHeadsetAssistant
     gloves: ClothingHandsGlovesColorBlack
+    head: ClothingHeadHatBeretPrison
