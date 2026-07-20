@@ -160,6 +160,8 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
 
     private float CalculateKnockback(EntityUid user, KnockbackData data, bool magBoots = false)
     {
+        if(data.IsDisabledByMagboots && magBoots)
+            return 0;
         float knockback = data.Knockback;
         //If we have no slips, cut the knockback in half
         if (CheckForNoSlips(user))
