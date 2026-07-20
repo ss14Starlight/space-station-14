@@ -12,8 +12,14 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
+using Content.Server.Mind;
+using Content.Server.NukeOps;
+using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Shared.NukeOps;
 using Content.Shared.Players.PlayTimeTracking;
+using Content.Shared.Roles;
 using Content.Shared.Voting;
+using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -453,7 +459,7 @@ namespace Content.Server.Voting.Managers
                     return false;
             }
 
-            // Begin Starlight - Cosmic Cult
+            // Begin Starlight - Cosmic Cult & Crew
             if (eligibility == VoterEligibility.CosmicCult)
             {
                 var evt = new Content.Server._Starlight.CosmicCult.CosmicCultVoterEligibilityEvent(player, false);
@@ -461,7 +467,29 @@ namespace Content.Server.Voting.Managers
                 if (!evt.Eligible)
                     return false;
             }
-            // End Starlight - Cosmic Cult
+
+            if (eligibility == VoterEligibility.Crew)
+            {
+                if (player.AttachedEntity == null) // Ghosts dont count
+                    return false;
+
+                // Exclude nuke operatives and cultists
+                if (_entityManager.HasComponent<NukeOperativeComponent>(player.AttachedEntity)||_entityManager.HasComponent<CosmicCultComponent>(player.AttachedEntity)) // LOL no
+                    return false;
+
+                if (!_entityManager.System<MindSystem>().TryGetMind(player, out var mindId, out _)) // Get mind for job check
+                    return false;
+
+                var jobSystem = _entityManager.System<SharedJobSystem>();
+                if (!jobSystem.MindTryGetJob(mindId, out var job)) // Get job
+                    return false;
+
+                if (!_prototypeManager.TryIndex<JobPrototype>(job.ID, out var jobProto) || !jobProto.SetPreference) // Is job in the selection menu?
+                    return false;
+
+
+            }
+            // End Starlight - Cosmic Cult & Crew
 
             return true;
         }
@@ -562,6 +590,7 @@ namespace Content.Server.Voting.Managers
             GhostMinimumPlaytime, // Player needs to be a ghost, with a minimum playtime and deathtime as defined by votekick CCvars.
             MinimumPlaytime, //Player needs to have a minimum playtime and deathtime as defined by votekick CCvars.
             CosmicCult, // Starlight - Cosmic Cult
+            Crew // Starlight - Only crew members
         }
 
         #endregion
