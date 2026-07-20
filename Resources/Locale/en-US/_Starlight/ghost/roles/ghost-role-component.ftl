@@ -130,4 +130,4 @@ ghost-role-information-kiki-name = Kiki
 ghost-role-information-kiki-description = An honorable member of the kobold society in charge of botany and helping the botanists in any way she can.
 
 ghost-role-information-stirstir-name = Stir Stir
-ghost-role-information-stirstir-description = An disreputable monkey who should not be trusted. A real cell stuffer.
+ghost-role-information-stirstir-description = A disreputable monkey who should not be trusted. A real cell stuffer.

@@ -86,7 +86,7 @@
   parent: MobMonkeyAdvanced # He's smarter than the average monkey. Also no vent crawling.
   id: MobMonkeyStirStir
   suffix: AI
-  description: An disreputable monkey who should not be trusted. A real cell stuffer.
+  description: A disreputable monkey who should not be trusted. A real cell stuffer.
   components:
   - type: LanguageKnowledge
     speaks:
