@@ -727,3 +727,22 @@
       sprite: _Starlight/Clothing/Head/Hats/bunnygang.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Head/Hats/bunnygang.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretPrison
+  name: prison beret
+  description: A criminal's least favorite headwear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/beret_prison.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/beret_prison.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon

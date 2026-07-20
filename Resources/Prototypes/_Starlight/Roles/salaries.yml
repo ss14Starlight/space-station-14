@@ -60,6 +60,7 @@
     MailTech: 55
 
     Visitor: 0
+    Prisoner: 0
 
 - type: SalaryRoleBonus
   id: BlackOpsBonus
