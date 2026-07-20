@@ -23,8 +23,8 @@ public sealed partial class HealiumProductionReaction : IGasReactionEffect
 
         var efficiency = Math.Min(mixture.Temperature * 0.3f, Math.Min(initFrezon * 0.36f, initBZ * 4f));
 
-        var bZRemoved = efficiency * 0.25f;
-        var frezonRemoved = efficiency * 2.75f;
+        var bZRemoved = efficiency * 0.5f;
+        var frezonRemoved = efficiency * 2.5f;
         var healiumProduced = efficiency * 3f;
 
         if (efficiency <= 0 || initFrezon - frezonRemoved < 0 || initBZ - bZRemoved < 0)

@@ -8,7 +8,7 @@
   molarMass: 12
   color: 9370db
   reagent: BZ
-  pricePerMole: 1.2
+  pricePerMole: 1
 
 - type: gas
   id: Healium
@@ -20,7 +20,7 @@
   gasOverlayState: healium
   color: fa8072
   reagent: Healium
-  pricePerMole: 4
+  pricePerMole: 3
 
 - type: gas
   id: Nitrium
