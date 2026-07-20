@@ -161,7 +161,7 @@
     unique: true
     issuer: objective-issuer-syndicate
     icon:
-      sprite: Structures/Machines/diagnoser.rsi
+      sprite: _Sol/Structures/Machines/sample_analyzer.rsi
       state: icon
 
 - type: entity
@@ -175,8 +175,8 @@
     unique: true
     issuer: objective-issuer-syndicate
     icon:
-      sprite: Structures/Machines/vaccinator.rsi
-      state: icon
+      sprite: _Sol/Structures/Machines/pathogen_synthesizer.rsi
+      state: on
 
 - type: entity
   parent: [BaseObjective, BaseCodeObjective]

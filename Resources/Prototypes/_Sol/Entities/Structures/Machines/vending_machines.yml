@@ -1,0 +1,40 @@
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineViroVend
+  categories: [ ShouldMapStation ]
+  name: ViroVend
+  description: A locked medical-chemistry vendor stocked for virology work. Not the coffee machine either.
+  components:
+  - type: VendingMachine
+    showPrices: false
+    pack: ViroVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal
+    denyState: deny
+    ejectDelay: 2
+  - type: Machine
+    board: VendingMachineViroVendCircuitboard
+  - type: Sprite
+    sprite: _Sol/Structures/Machines/VendingMachines/virovend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Virology"]]
+  - type: GuideHelp
+    guides:
+    - MedicalDoctor
+    - Chemicals
+    - Chemist
+
+- type: entity
+  parent: VendingMachineViroVend
+  id: VendingMachineViroVendEmpty
+  suffix: Empty
+  components:
+  - type: EmptyVendingMachine

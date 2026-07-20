@@ -109,6 +109,12 @@ public sealed partial class PathogenCultureComponent : Component
     [DataField, AutoNetworkedField]
     public bool IsChassisCulture = true;
 
+    /// <summary>
+    /// Stack size for gene isolates of the same trait. Substrates stay at 1.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int Count = 1;
+
     [DataField, AutoNetworkedField]
     public TimeSpan SpoilsAt;
 }
@@ -139,11 +145,20 @@ public enum PathogenPayloadKind : byte
     Aerosol = 2,
 }
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ClandestineSampleAnalyzerComponent : Component
 {
     [DataField]
     public TimeSpan AnalysisDelay = TimeSpan.FromSeconds(4);
+
+    [DataField, AutoNetworkedField]
+    public bool Processing;
+
+    [DataField, AutoNetworkedField]
+    public bool HasFinishedSample;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan CycleEndsAt;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -156,10 +171,19 @@ public sealed partial class ClandestineCultureIncubatorComponent : Component
     public string NutrientReagent = "SolCultureNutrient";
 
     [DataField]
-    public float NutrientNeeded = 5f;
+    public float NutrientBaseCost = 5f;
+
+    [DataField]
+    public float NutrientExtraCost = 2f;
+
+    [DataField]
+    public int MaxSamples = 6;
 
     [DataField, AutoNetworkedField]
     public bool CycleInProgress;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan CycleStartedAt;
 
     [DataField, AutoNetworkedField]
     public TimeSpan CycleEndsAt;
@@ -169,13 +193,27 @@ public sealed partial class ClandestineCultureIncubatorComponent : Component
 
     [DataField, AutoNetworkedField]
     public TimeSpan OvergrowAt;
+
+    public static float GetBatchNutrientCost(int sampleCount, float baseCost, float extraCost)
+    {
+        if (sampleCount <= 0)
+            return 0f;
+
+        return baseCost + extraCost * (sampleCount - 1);
+    }
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ClandestinePathogenSynthesizerComponent : Component
 {
     [DataField]
-    public TimeSpan SynthesisDelay = TimeSpan.FromSeconds(15);
+    public TimeSpan SynthesisBaseDelay = TimeSpan.FromSeconds(12);
+
+    /// <summary>
+    /// Extra synthesis time added per gene budget point used.
+    /// </summary>
+    [DataField]
+    public TimeSpan SynthesisDelayPerBudget = TimeSpan.FromSeconds(4);
 
     [DataField]
     public int MaxTraitBudget = 6;
@@ -196,16 +234,28 @@ public sealed partial class ClandestinePathogenSynthesizerComponent : Component
     public bool CycleInProgress;
 
     [DataField, AutoNetworkedField]
-    public TimeSpan CycleEndsAt;
+    public TimeSpan CycleStartedAt;
 
     [DataField, AutoNetworkedField]
-    public ProtoId<PathogenPrototype>? PendingChassis;
+    public TimeSpan CycleEndsAt;
 
     [DataField, AutoNetworkedField]
     public List<ProtoId<PathogenTraitPrototype>> PendingTraits = new();
 
     [DataField, AutoNetworkedField]
     public float PendingViability = 1f;
+
+    /// <summary>
+    /// Gene isolates currently selected for the next synthesis recipe.
+    /// </summary>
+    [DataField]
+    public HashSet<EntityUid> SelectedGenes = new();
+
+    public TimeSpan GetSynthesisDelay(int budgetUsed)
+    {
+        var points = Math.Max(0, budgetUsed);
+        return SynthesisBaseDelay + SynthesisDelayPerBudget * points;
+    }
 }
 
 /// <summary>

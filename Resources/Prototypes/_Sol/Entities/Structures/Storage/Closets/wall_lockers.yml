@@ -1,0 +1,77 @@
+# Shared Sol wall-locker body using new_walllocker.rsi.
+# Functional overlays not included in the custom RSI continue to use standard sprites.
+
+- type: entity
+  id: LockerWallSolBase
+  parent: BaseWallLocker
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/wall_locker.rsi
+    layers:
+    - state: med
+      sprite: _Sol/Structures/Storage/new_walllocker.rsi
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: chem_door
+      sprite: _Sol/Structures/Storage/new_walllocker.rsi
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      sprite: _Sol/Structures/Storage/new_walllocker.rsi
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      sprite: _Sol/Structures/Storage/new_walllocker.rsi
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: panel_open
+      sprite: Structures/Storage/closet.rsi
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+
+- type: entity
+  id: LockerWallChemistry
+  parent: LockerWallSolBase
+  name: chemical wall locker
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: med
+    stateDoorOpen: med_open
+    stateDoorClosed: chem_door
+  - type: AccessReader
+    access: [["Chemistry"]]
+
+- type: entity
+  id: LockerWallVirologyChemistry
+  parent: LockerWallSolBase
+  name: virology chemical wall locker
+  suffix: Virology
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: med
+    stateDoorOpen: med_open
+    stateDoorClosed: virochem_door
+  - type: AccessReader
+    access: [["Virology"]]
+
+- type: entity
+  id: LockerWallVirology
+  parent: LockerWallSolBase
+  name: virology wall locker
+  suffix: Virology
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: med
+    stateDoorOpen: med_open
+    stateDoorClosed: virology_door
+  - type: AccessReader
+    access: [["Virology"]]

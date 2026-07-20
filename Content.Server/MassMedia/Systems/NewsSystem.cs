@@ -74,6 +74,10 @@ public sealed partial class NewsSystem : SharedNewsSystem
         _cfg.OnValueChanged(CCVars.DiscordNewsWebhookSendDuringRound, value => _webhookSendDuringRound = value, true);
         SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEndMessageEvent);
 
+        // Sol-edit: start
+        InitializePlaySol();
+        // Sol-edit: end
+
         // News writer
         SubscribeLocalEvent<NewsWriterComponent, MapInitEvent>(OnMapInit);
 
@@ -248,6 +252,11 @@ public sealed partial class NewsSystem : SharedNewsSystem
 
         if (_webhookSendDuringRound)
             AddNewsSendWebhook(article.Value);
+
+        // Sol-edit: start
+        if (_playSolNewsSendDuringRound)
+            TrySendArticleToPlaySol(article.Value);
+        // Sol-edit: end
 
         UpdateWriterDevices();
 
@@ -559,14 +568,18 @@ public sealed partial class NewsSystem : SharedNewsSystem
 
     private void OnRoundEndMessageEvent(RoundEndMessageEvent ev)
     {
-        if (_webhookSendDuringRound)
-            return;
-
         var query = EntityQueryEnumerator<StationNewsComponent>();
 
         while (query.MoveNext(out _, out var comp))
         {
-            SendArticlesListToDiscordWebhook(comp.Articles.OrderBy(article => article.ShareTime));
+            var ordered = comp.Articles.OrderBy(article => article.ShareTime);
+            if (!_webhookSendDuringRound)
+                SendArticlesListToDiscordWebhook(ordered);
+
+            // Sol-edit: start
+            if (!_playSolNewsSendDuringRound)
+                SendArticlesListToPlaySol(ordered);
+            // Sol-edit: end
         }
     }
 

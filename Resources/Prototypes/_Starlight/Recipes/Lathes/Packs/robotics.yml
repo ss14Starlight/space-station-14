@@ -200,6 +200,7 @@
     - VendingMachineTankDispenserEVACircuitboard
     - VendingMachineTankDispenserEngineeringCircuitboard
     - VendingMachineChemicalsCircuitboard
+    - VendingMachineViroVendCircuitboard # Sol-edit
     - VendingMachineDonkCircuitboard
     - VendingMachineIceCreamCircuitboard
 

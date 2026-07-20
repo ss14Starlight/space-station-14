@@ -1,0 +1,7 @@
+- type: alert
+  id: SolAllergicChoking
+  icons:
+  - sprite: /Textures/Interface/Alerts/breathing.rsi
+    state: not_enough_oxy
+  name: alerts-sol-allergic-choking-name
+  description: alerts-sol-allergic-choking-desc

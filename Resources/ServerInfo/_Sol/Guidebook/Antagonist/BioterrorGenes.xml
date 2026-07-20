@@ -1,0 +1,62 @@
+<Document>
+  # Pathogen Genes
+
+  Custom strains are built from recovered [bold]genes[/bold], not from any known civilian
+  illness. Cellular substrate is only an inert binder for assembly; it does not make the finished
+  organism Flu, wound sepsis, or any other catalogued station pathogen.
+
+  Synthesis can only tolerate so much genetic load at once. Some markers are mutually
+  exclusive. While you assemble a recipe, the synthesizer projects a [bold]strain forecast[/bold]:
+  transmission, clinical course, symptoms, organ targets, and treatment susceptibility.
+
+  Complexity ratings in parentheses indicate relative synthesis burden.
+
+  ## Transmission
+
+  - [bold]Contact persistence[/bold] (1): favors infection through surface contact.
+  - [bold]Airborne adaptation[/bold] (2): enables aerosol spread. Will not combine with sterilant resistance.
+  - [bold]Enteric adaptation[/bold] (1): enables foodborne and ingestion routes.
+  - [bold]Aerosol stability[/bold] (2): survives longer in air and needs less dose to take hold.
+
+  ## Environmental
+
+  - [bold]Environmental growth[/bold] (1): lingers longer on surfaces and waste.
+  - [bold]Environmental persistence[/bold] (2): strong resistance to natural decay; mild sterilant hardiness.
+  - [bold]Sterilant resistance[/bold] (2): markedly blunts sterilants. Will not combine with airborne adaptation.
+
+  ## Timing and virulence
+
+  - [bold]Culture yield[/bold] (1): shortens the silent incubation phase.
+  - [bold]Slow incubation[/bold] (1): lengthens incubation and slightly softens infectivity. Will not combine with heightened virulence.
+  - [bold]Heightened virulence[/bold] (2): raises lethality and infectivity. Will not combine with slow incubation.
+
+  ## Symptoms and shedding
+
+  - [bold]Cough shedding[/bold] (1): cough-driven spread. Will not combine with sneeze shedding.
+  - [bold]Sneeze shedding[/bold] (1): sneeze-driven spread. Will not combine with cough shedding.
+  - [bold]Respiratory distress[/bold] (2): shortness of breath and asphyxiation stress. Will not combine with hemorrhagic expression.
+  - [bold]Hemorrhagic expression[/bold] (2): bleeding and toxin stress. Will not combine with respiratory distress.
+
+  ## Organ tropism
+
+  Only one organ tropism can be expressed in a single strain:
+
+  - [bold]Hepatic tropism[/bold] (1): favors liver tissue.
+  - [bold]Pulmonary tropism[/bold] (2): favors lung tissue and worsens breathing.
+  - [bold]Cardiac tropism[/bold] (2): favors heart tissue and adds toxin stress.
+
+  ## Treatment vulnerability
+
+  A custom strain has [bold]no documented drug regimen[/bold] unless vulnerability markers are
+  included. Omitting them makes clearance harder for Medical, but also denies you an easy read
+  of a cure path from your own forecast.
+
+  - [bold]Antiviral vulnerability[/bold] (1): susceptible to Sol antiviral. Will not combine with ribavirin vulnerability.
+  - [bold]Ribavirin vulnerability[/bold] (2): susceptible to ribavirin. Will not combine with antiviral vulnerability.
+  - [bold]Ceftriaxone vulnerability[/bold] (1): susceptible to ceftriaxone. Will not combine with amoxla vulnerability.
+  - [bold]Amoxla vulnerability[/bold] (1): susceptible to amoxla. Will not combine with ceftriaxone vulnerability.
+
+  Reservoirs bias what you find. Vent airways favor airborne and antiviral markers. Waste
+  favors enteric routes and antibiotics. Blood and medical residue favor virulence and
+  treatment-vulnerability isolates.
+</Document>

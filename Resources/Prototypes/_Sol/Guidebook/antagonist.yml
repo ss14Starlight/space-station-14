@@ -2,3 +2,11 @@
   id: Bioterrorists
   name: guide-entry-bioterrorists
   text: "/ServerInfo/_Sol/Guidebook/Antagonist/Bioterrorists.xml"
+  children:
+  - BioterrorGenes
+
+- type: guideEntry
+  id: BioterrorGenes
+  name: guide-entry-bioterror-genes
+  text: "/ServerInfo/_Sol/Guidebook/Antagonist/BioterrorGenes.xml"
+  filterEnabled: True

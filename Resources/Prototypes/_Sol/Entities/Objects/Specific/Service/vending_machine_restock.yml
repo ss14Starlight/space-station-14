@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: VendingMachineRestockViroVend
+  name: ViroVend restock box
+  description: A box filled with reagents and medical supplies for the ViroVend. Load it into a ViroVend to begin.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - ViroVendInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_medical

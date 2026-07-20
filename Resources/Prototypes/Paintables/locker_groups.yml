@@ -89,5 +89,12 @@
   cost: 2
   defaultStyle: medical
   styles:
+    # Sol-start
+    chemical: LockerWallChemistry
+    # Sol-end
     evac: LockerWallEvacRepair
     medical: LockerWallMedical
+    # Sol-start
+    virology: LockerWallVirology
+    virology-chemical: LockerWallVirologyChemistry
+    # Sol-end

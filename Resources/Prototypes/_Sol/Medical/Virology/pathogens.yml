@@ -1,4 +1,32 @@
 - type: pathogen
+  id: SolPathogenCustomBase
+  name: sol-pathogen-custom-base-name
+  description: sol-pathogen-custom-base-desc
+  # Hidden binder base for gene-only bioterror synthesis. Never shown as a disease name.
+  transmission: None
+  infectiveDose: 1
+  baseInfectionChance: 0.3
+  incubationDuration: 180
+  symptomaticDuration: 360
+  criticalDuration: 240
+  recoveryDuration: 120
+  lethality: 0.15
+  feverTemperatureOffset: 0
+  coughChancePerSecond: 0
+  sneezeChancePerSecond: 0
+  symptomaticDamage:
+    types:
+      Poison: 0.08
+  criticalDamage:
+    types:
+      Poison: 0.25
+  treatments: []
+  vaccineIdentity: SolPathogenCustomBase
+  sterilantSusceptibility: 1
+  recoveryImmunityDuration: 1800
+  vaccineImmunityDuration: 7200
+
+- type: pathogen
   id: SolPathogenFlu
   name: sol-pathogen-flu-name
   description: sol-pathogen-flu-desc

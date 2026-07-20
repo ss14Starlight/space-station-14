@@ -1,0 +1,7 @@
+- type: latheRecipe
+  id: VendingMachineViroVendCircuitboard
+  result: VendingMachineViroVendCircuitboard
+  completetime: 4
+  materials:
+    Steel: 100
+    Glass: 500

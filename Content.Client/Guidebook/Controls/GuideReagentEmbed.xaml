@@ -47,6 +47,17 @@
                     </CollapsibleBody>
                 </Collapsible>
             </BoxContainer>
+            <BoxContainer Name="OverdoseContainer" HorizontalExpand="True">
+                <Collapsible>
+                    <CollapsibleHeading Title="{Loc 'guidebook-reagent-overdose-header'}"/>
+                    <CollapsibleBody>
+                        <BoxContainer Name="OverdoseDescriptionContainer"
+                                      Orientation="Vertical"
+                                      Margin="10 0 10 0"
+                                      HorizontalExpand="True"/>
+                    </CollapsibleBody>
+                </Collapsible>
+            </BoxContainer>
             <BoxContainer Name="PlantMetabolismsContainer" HorizontalExpand="True">
                 <Collapsible>
                     <CollapsibleHeading Title="{Loc 'guidebook-reagent-plant-metabolisms-header'}"/>

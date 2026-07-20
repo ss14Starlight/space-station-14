@@ -1,0 +1,32 @@
+- type: entity
+  parent: LockerWallChemistry
+  id: LockerWallChemistryFilled
+  suffix: Filled
+  categories: [ ShouldMapStation ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillChemistry
+
+- type: entity
+  parent: LockerWallVirologyChemistry
+  id: LockerWallVirologyChemistryFilled
+  suffix: Virology, Filled
+  categories: [ ShouldMapStation ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillVirologyChemistry
+
+- type: entity
+  parent: LockerWallVirology
+  id: LockerWallVirologyFilled
+  suffix: Virology, Filled
+  categories: [ ShouldMapStation ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillVirologist

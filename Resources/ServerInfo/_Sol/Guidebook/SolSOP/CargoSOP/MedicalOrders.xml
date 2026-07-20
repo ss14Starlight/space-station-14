@@ -14,6 +14,7 @@
 <Box>
 	<GuideEntityEmbed Entity="CrateVendingMachineRestockMedicalFilled"/>
 	<GuideEntityEmbed Entity="CrateVendingMachineRestockChemVendFilled"/>
+	<GuideEntityEmbed Entity="CrateVendingMachineRestockViroVendFilled"/>
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="CrateChemistryD"/>

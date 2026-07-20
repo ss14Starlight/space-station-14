@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Provided for Sol Station by Famine",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "med"
+    },
+    {
+      "name": "med_open"
+    },
+    {
+      "name": "chem_door"
+    },
+    {
+      "name": "virochem_door"
+    },
+    {
+      "name": "virology_door"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "welded"
+    }
+  ]
+}

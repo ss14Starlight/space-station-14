@@ -41,13 +41,15 @@ public sealed class BioterrorCellLaboratoryTest
   components:
   - type: Transform
   - type: EnvironmentalMicrobeSource
-    chassisId: SolPathogenWoundSepsis
+    chassisId: SolPathogenCustomBase
     baseQuality: 0.9
     remainingSamples: 3
     traitPool:
     - trait: SolTraitContact
       weight: 2
     - trait: SolTraitPersistent
+      weight: 1
+    - trait: SolTraitTreatAmoxla
       weight: 1
 ";
 
@@ -132,14 +134,20 @@ public sealed class BioterrorCellLaboratoryTest
             Assert.That(solutions.TryGetSolution(synthesizer, "tank", out var synthTank, out _), Is.True);
             solutions.TryAddReagent(synthTank!.Value, "SolCultureStabilizer", FixedPoint2.New(20));
 
-            var pendingTraits = new List<ProtoId<PathogenTraitPrototype>> { "SolTraitAirborne", "SolTraitCoughShed" };
+            var pendingTraits = new List<ProtoId<PathogenTraitPrototype>> { "SolTraitAirborne", "SolTraitCoughShed", "SolTraitTreatAntiviral" };
             Assert.That(registry.TryValidateTraits(pendingTraits, 6, out _), Is.True);
 
-            var def = registry.RegisterStrain("SolPathogenFlu", pendingTraits);
+            var def = registry.RegisterStrain(pendingTraits);
             Assert.That(def.IsRuntimeStrain, Is.True);
             Assert.That(def.Id.StartsWith("SolStrain-"), Is.True);
+            Assert.That(def.ChassisId, Is.EqualTo("SolPathogenCustomBase"));
             Assert.That((def.Transmission & PathogenTransmission.Airborne) != 0, Is.True);
+            Assert.That(def.Treatments, Does.Contain("SolAntiviral"));
             Assert.That(registry.TryResolve(def.Id, out var resolved) && resolved != null, Is.True);
+
+            var preview = registry.PreviewDefinition(pendingTraits);
+            Assert.That(preview.Treatments, Does.Contain("SolAntiviral"));
+            Assert.That(preview.CoughChancePerSecond, Is.GreaterThan(0f));
 
             pathogen.ForcedInfectionRoll = 0f;
             Assert.That(pathogen.TryExpose(mob, def.Id, 3f, PathogenTransmission.Airborne, force: true), Is.True);

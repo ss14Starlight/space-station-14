@@ -1,0 +1,10 @@
+- type: entity
+  parent: CrateVirologySecure
+  id: CrateVendingMachineRestockViroVendFilled
+  name: ViroVend restock crate
+  description: Contains a restock box for the ViroVend.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: VendingMachineRestockViroVend

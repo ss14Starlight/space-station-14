@@ -1,13 +1,13 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._Sol.Medical.Allergy;
 
 /// <summary>
 /// Mechanical allergies on a character.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class AllergyComponent : Component
 {
     /// <summary>
@@ -30,4 +30,17 @@ public sealed partial class AllergyComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public HashSet<ProtoId<AllergyPrototype>> InnateAllergies = new();
+
+    /// <summary>
+    /// Earliest time another standalone symptom popup may be shown (bloodstream path).
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
+    public TimeSpan NextSymptomPopup;
+
+    /// <summary>
+    /// Localized allergy name to append to the next food-taste popup for this eater.
+    /// Cleared after the taste popup consumes it.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string? PendingTasteAllergyName;
 }

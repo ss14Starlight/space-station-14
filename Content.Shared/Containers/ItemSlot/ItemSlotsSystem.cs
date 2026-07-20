@@ -145,7 +145,7 @@ namespace Content.Shared.Containers.ItemSlots
         {
             itemSlot = null;
 
-            if (!Resolve(uid, ref component))
+            if (!Resolve(uid, ref component, logMissing: false))
                 return false;
 
             return component.Slots.TryGetValue(slotId, out itemSlot);

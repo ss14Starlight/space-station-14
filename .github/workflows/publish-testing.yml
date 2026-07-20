@@ -80,3 +80,14 @@ jobs:
           GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL_DELTA }}
           DISCORD_CHANGELOG_ROLE_ID: "1526063915983831130"
+
+      - name: Push changelog to PlaySol
+        continue-on-error: true
+        run: python3 Tools/_Sol/push_changelog_to_playsol.py
+        env:
+          PLAYSOL_API_BASE: ${{ secrets.PLAYSOL_API_BASE }}
+          PLAYSOL_DEPLOY_SECRET: ${{ secrets.PLAYSOL_DEPLOY_SECRET }}
+          PLAYSOL_AUTH_PATH: ${{ secrets.PLAYSOL_AUTH_PATH }}
+          PLAYSOL_CHANGELOG_PATH: ${{ secrets.PLAYSOL_CHANGELOG_PATH }}
+          PLAYSOL_CHANGELOG_CHANNEL: testing
+          CHANGELOG_FILE_PATH: Resources/Changelog/ChangelogSol.yml

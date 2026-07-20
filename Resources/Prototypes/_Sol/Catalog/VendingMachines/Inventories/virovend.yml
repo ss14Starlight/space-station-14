@@ -1,0 +1,50 @@
+# Curated ChemVend + NanoMed subset for virology: reagents plus core medical
+# supplies, without duplicating departmental clothing / HUD / automender stock.
+
+- type: vendingMachineInventory
+  id: ViroVendInventory
+  startingInventory:
+    # Chemistry reagents (ChemVend)
+    Jug: 8
+    JugAluminium: 2
+    JugCarbon: 4
+    JugChlorine: 1
+    JugCopper: 2
+    JugEthanol: 2
+    JugFluorine: 1
+    JugHydrogen: 3
+    JugIodine: 1
+    JugIron: 2
+    JugLithium: 2
+    JugMercury: 1
+    JugNitrogen: 3
+    JugOxygen: 3
+    JugPhosphorus: 1
+    JugPotassium: 2
+    JugRadium: 1
+    JugSilicon: 2
+    JugSodium: 2
+    JugSugar: 3
+    JugSulfur: 1
+    # Focused medical supplies (NanoMed Plus subset)
+    HandheldHealthAnalyzer: 2
+    Gauze: 4
+    Brutepack: 4
+    Ointment: 4
+    Bloodpack: 4
+    Tourniquet: 2
+    ChemistryBottleEpinephrine: 3
+    Syringe: 5
+    BoxBottle: 2
+    PillCanisterTricordrazine: 2
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+  contrabandInventory:
+    DrinkLithiumFlask: 1
+    StrangePill: 3
+    ChemistryBottleToxin: 1
+    PillCanisterRandom: 1
+  emaggedInventory:
+    OminousPill: 2
+    PillDesoxyephedrine5: 1

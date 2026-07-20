@@ -2,6 +2,7 @@ using Content.Shared._Sol.Medical.Virology;
 using Content.Shared._Sol.Medical.Virology.Components;
 using Content.Shared._Sol.Medical.Virology.Events;
 using Content.Shared.DoAfter;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
@@ -11,12 +12,13 @@ using Robust.Shared.Timing;
 namespace Content.Server._Sol.Medical.Virology;
 
 /// <summary>
-/// Sterile environmental scraping for microbial traits / chassis material.
+/// Environmental scraping for trait genes used by the bioterror lab.
 /// </summary>
 public sealed class EnvironmentalSamplingSystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
@@ -73,21 +75,23 @@ public sealed class EnvironmentalSamplingSystem : EntitySystem
         source.NextAvailable = _timing.CurTime + source.Cooldown;
         Dirty(args.Target.Value, source);
 
-        var sample = Spawn("SolMicrobialSample", Transform(args.User).Coordinates);
+        var contaminated = !scraper.Comp.Sterile || scraper.Comp.Used;
+        var user = args.User;
+        var sample = Spawn("SolMicrobialSample", Transform(scraper).Coordinates);
         var sampleComp = EnsureComp<MicrobialSampleComponent>(sample);
-        sampleComp.ChassisId = source.ChassisId;
+        sampleComp.ChassisId = null;
         sampleComp.Quality = Math.Clamp(source.BaseQuality + _random.NextFloat(-0.15f, 0.15f), 0.05f, 1f);
         sampleComp.SourceLabel = MetaData(args.Target.Value).EntityName;
         sampleComp.Analyzed = false;
 
-        if (!scraper.Comp.Sterile || scraper.Comp.Used)
+        if (contaminated)
         {
             sampleComp.Contaminated = true;
             sampleComp.Quality *= 0.5f;
         }
 
-        // Weighted trait pick — may yield nothing useful.
-        if (source.TraitPool.Count > 0 && _random.Prob(0.75f))
+        // Always pick at least one trait when the source has a pool.
+        if (source.TraitPool.Count > 0)
         {
             var trait = PickWeightedTrait(source.TraitPool);
             if (trait != null)
@@ -95,7 +99,7 @@ public sealed class EnvironmentalSamplingSystem : EntitySystem
         }
 
         // Chance of a second weak trait on high-quality sources.
-        if (sampleComp.Quality > 0.8f && source.TraitPool.Count > 1 && _random.Prob(0.25f))
+        if (sampleComp.Quality > 0.8f && source.TraitPool.Count > 1 && _random.Prob(0.35f))
         {
             var trait = PickWeightedTrait(source.TraitPool);
             if (trait != null && !sampleComp.Traits.Contains(trait.Value))
@@ -103,11 +107,13 @@ public sealed class EnvironmentalSamplingSystem : EntitySystem
         }
 
         Dirty(sample, sampleComp);
-        scraper.Comp.Used = true;
-        scraper.Comp.Sterile = false;
-        Dirty(scraper);
         _meta.SetEntityName(sample, Loc.GetString("sol-bioterror-sample-name", ("source", sampleComp.SourceLabel ?? "unknown")));
-        _popup.PopupEntity(Loc.GetString("sol-bioterror-scrape-success"), sample, args.User);
+
+        // Consume the scraper and place the sample in the freed hand.
+        Del(scraper.Owner);
+        _hands.PickupOrDrop(user, sample, checkActionBlocker: false);
+
+        _popup.PopupEntity(Loc.GetString("sol-bioterror-scrape-success"), sample, user);
     }
 
     private ProtoId<PathogenTraitPrototype>? PickWeightedTrait(List<WeightedTraitEntry> pool)
@@ -129,7 +135,7 @@ public sealed class EnvironmentalSamplingSystem : EntitySystem
     }
 
     /// <summary>
-    /// Lazily attaches a source profile based on prototype / tags.
+    /// Lazily attaches a gene pool based on prototype / tags.
     /// </summary>
     public void EnsureSourceProfile(EntityUid target)
     {
@@ -143,52 +149,69 @@ public sealed class EnvironmentalSamplingSystem : EntitySystem
             protoId.Contains("Scrubber", StringComparison.OrdinalIgnoreCase) ||
             protoId.Contains("AirAlarm", StringComparison.OrdinalIgnoreCase))
         {
-            profile = MakeProfile("SolPathogenFlu", 0.7f, 3,
+            profile = MakeProfile(0.7f, 3,
                 ("SolTraitAirborne", 2f),
                 ("SolTraitAerosolStable", 1.5f),
-                ("SolTraitCoughShed", 1f));
+                ("SolTraitCoughShed", 1.2f),
+                ("SolTraitSneezeShed", 1f),
+                ("SolTraitDyspnea", 0.8f),
+                ("SolTraitOrganLungs", 0.7f),
+                ("SolTraitTreatAntiviral", 0.9f),
+                ("SolTraitTreatRibavirin", 0.5f));
         }
         else if (protoId.Contains("Hydroponics", StringComparison.OrdinalIgnoreCase) ||
                  protoId.Contains("Soil", StringComparison.OrdinalIgnoreCase) ||
                  protoId.Contains("Planter", StringComparison.OrdinalIgnoreCase))
         {
-            profile = MakeProfile("SolPathogenFlu", 0.75f, 4,
+            profile = MakeProfile(0.75f, 4,
                 ("SolTraitCultureYield", 2f),
                 ("SolTraitIncubationSlow", 1f),
-                ("SolTraitIngestion", 1.2f));
+                ("SolTraitIngestion", 1.2f),
+                ("SolTraitSneezeShed", 0.9f),
+                ("SolTraitTreatAmoxla", 0.7f));
         }
         else if (protoId.Contains("Disposal", StringComparison.OrdinalIgnoreCase) ||
                  protoId.Contains("Drain", StringComparison.OrdinalIgnoreCase) ||
                  protoId.Contains("Trash", StringComparison.OrdinalIgnoreCase) ||
                  protoId.Contains("Kitchen", StringComparison.OrdinalIgnoreCase))
         {
-            profile = MakeProfile("SolPathogenWoundSepsis", 0.65f, 4,
+            profile = MakeProfile(0.65f, 4,
                 ("SolTraitIngestion", 2f),
                 ("SolTraitEnvironmentalGrowth", 1.5f),
-                ("SolTraitContact", 1f));
+                ("SolTraitContact", 1f),
+                ("SolTraitHemorrhage", 0.8f),
+                ("SolTraitTreatCeftriaxone", 0.9f),
+                ("SolTraitTreatAmoxla", 0.6f));
         }
         else if (HasComp<SurfaceContaminationComponent>(target) ||
-                 protoId.Contains("Blood", StringComparison.OrdinalIgnoreCase))
+                 protoId.Contains("Blood", StringComparison.OrdinalIgnoreCase) ||
+                 protoId.Contains("Med", StringComparison.OrdinalIgnoreCase))
         {
-            profile = MakeProfile("SolPathogenWoundSepsis", 0.8f, 2,
+            profile = MakeProfile(0.8f, 2,
                 ("SolTraitVirulent", 2f),
                 ("SolTraitOrganLiver", 1.2f),
-                ("SolTraitContact", 1f));
+                ("SolTraitOrganHeart", 1f),
+                ("SolTraitHemorrhage", 1.1f),
+                ("SolTraitContact", 1f),
+                ("SolTraitTreatAntiviral", 1.2f),
+                ("SolTraitTreatCeftriaxone", 1f),
+                ("SolTraitTreatRibavirin", 0.7f));
         }
         else if (protoId.Contains("Wall", StringComparison.OrdinalIgnoreCase) ||
                  protoId.Contains("Girder", StringComparison.OrdinalIgnoreCase))
         {
-            profile = MakeProfile("SolPathogenWoundSepsis", 0.55f, 5,
+            profile = MakeProfile(0.55f, 5,
                 ("SolTraitContact", 2f),
                 ("SolTraitPersistent", 1.5f),
-                ("SolTraitSterilantResist", 0.8f));
+                ("SolTraitSterilantResist", 0.8f),
+                ("SolTraitOrganLiver", 0.6f),
+                ("SolTraitTreatAmoxla", 0.5f));
         }
 
         if (profile == null)
             return;
 
         var comp = AddComp<EnvironmentalMicrobeSourceComponent>(target);
-        comp.ChassisId = profile.ChassisId;
         comp.TraitPool = profile.TraitPool;
         comp.BaseQuality = profile.BaseQuality;
         comp.RemainingSamples = profile.RemainingSamples;
@@ -197,14 +220,12 @@ public sealed class EnvironmentalSamplingSystem : EntitySystem
     }
 
     private static EnvironmentalMicrobeSourceComponent MakeProfile(
-        ProtoId<PathogenPrototype> chassis,
         float quality,
         int samples,
         params (ProtoId<PathogenTraitPrototype> Trait, float Weight)[] traits)
     {
         var profile = new EnvironmentalMicrobeSourceComponent
         {
-            ChassisId = chassis,
             BaseQuality = quality,
             RemainingSamples = samples,
             Cooldown = TimeSpan.FromSeconds(20),

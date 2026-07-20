@@ -4,6 +4,7 @@ using Content.Shared.FixedPoint;
 using System.Text.Json.Serialization;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Contraband;
+using Content.Shared.EntityConditions.Conditions;
 using Content.Shared.EntityEffects;
 using Content.Shared.Localizations;
 using Content.Shared.Nutrition;
@@ -245,19 +246,126 @@ namespace Content.Shared.Chemistry.Reagent
         // TODO: Kill Metabolism groups!
         public Dictionary<ProtoId<MetabolismGroupPrototype>, ReagentEffectsGuideEntry>? GuideEntries;
 
+        /// <summary>
+        /// Medical overdose threshold in units, when this reagent has self-thresholded effects above 1u.
+        /// </summary>
+        public float? OverdoseThreshold;
+
+        /// <summary>
+        /// Guidebook text for overdose-gated metabolism effects, keyed by metabolism group.
+        /// </summary>
+        public Dictionary<ProtoId<MetabolismGroupPrototype>, ReagentEffectsGuideEntry>? OverdoseGuideEntries;
+
         public List<string>? PlantMetabolisms = null;
 
         public ReagentGuideEntry(ReagentPrototype proto, IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc)  // Starlught
         {
             ReagentPrototype = proto.ID;
-            GuideEntries = proto.Metabolisms?
-                .Select(x => (x.Key, x.Value.MakeGuideEntry(prototype, entSys, loc, proto))) // Starlught
-                .ToDictionary(x => x.Key, x => x.Item2);
+            GuideEntries = null;
+            OverdoseThreshold = null;
+            OverdoseGuideEntries = null;
+
+            if (proto.Metabolisms != null)
+            {
+                var hasOverdose = TryGetOverdoseThreshold(proto, out var odThreshold) &&
+                                  odThreshold > FixedPoint2.New(1);
+                if (hasOverdose)
+                    OverdoseThreshold = odThreshold.Float();
+
+                var normal = new Dictionary<ProtoId<MetabolismGroupPrototype>, ReagentEffectsGuideEntry>();
+                var overdose = new Dictionary<ProtoId<MetabolismGroupPrototype>, ReagentEffectsGuideEntry>();
+
+                foreach (var (group, entry) in proto.Metabolisms)
+                {
+                    var normalEffects = entry.Effects
+                        .Where(effect => !hasOverdose || !IsOverdoseEffect(effect, proto.ID, odThreshold))
+                        .ToArray();
+                    var overdoseEffects = hasOverdose
+                        ? entry.Effects.Where(effect => IsOverdoseEffect(effect, proto.ID, odThreshold)).ToArray()
+                        : [];
+
+                    if (normalEffects.Length > 0)
+                        normal[group] = entry.MakeGuideEntry(prototype, entSys, loc, proto, normalEffects);
+
+                    if (overdoseEffects.Length > 0)
+                        overdose[group] = entry.MakeGuideEntry(prototype, entSys, loc, proto, overdoseEffects);
+                }
+
+                if (normal.Count > 0)
+                    GuideEntries = normal;
+
+                if (overdose.Count > 0)
+                    OverdoseGuideEntries = overdose;
+            }
+
             if (proto.PlantMetabolisms.Count > 0)
             {
                 PlantMetabolisms =
                     new List<string>(proto.GuidebookReagentEffectsDescription(prototype, entSys, loc, proto.PlantMetabolisms, FixedPoint2.New(1f))); // Starlught
             }
+        }
+
+        /// <summary>
+        /// Lowest self-referencing reagent threshold above 1u, if any.
+        /// </summary>
+        public static bool TryGetOverdoseThreshold(ReagentPrototype reagent, out FixedPoint2 threshold)
+        {
+            threshold = default;
+            FixedPoint2? found = null;
+
+            if (reagent.Metabolisms == null)
+                return false;
+
+            foreach (var entry in reagent.Metabolisms.Values)
+            {
+                foreach (var effect in entry.Effects)
+                {
+                    if (effect.Conditions == null)
+                        continue;
+
+                    foreach (var condition in effect.Conditions)
+                    {
+                        if (condition is not ReagentCondition reagentCondition)
+                            continue;
+
+                        if (reagentCondition.Reagent != reagent.ID)
+                            continue;
+
+                        // Ignore "toxic at 1u" / any-amount thresholds.
+                        if (reagentCondition.Min <= FixedPoint2.New(1))
+                            continue;
+
+                        if (found == null || reagentCondition.Min < found)
+                            found = reagentCondition.Min;
+                    }
+                }
+            }
+
+            if (found == null)
+                return false;
+
+            threshold = found.Value;
+            return true;
+        }
+
+        public static bool IsOverdoseEffect(EntityEffect effect, string reagentId, FixedPoint2 threshold)
+        {
+            if (effect.Conditions == null)
+                return false;
+
+            foreach (var condition in effect.Conditions)
+            {
+                if (condition is not ReagentCondition reagentCondition)
+                    continue;
+
+                if (reagentCondition.Reagent != reagentId)
+                    continue;
+
+                if (reagentCondition.Min > FixedPoint2.New(1) && reagentCondition.Min >= threshold)
+                    return true;
+            }
+
+            return false;
         }
     }
 
@@ -283,7 +391,17 @@ namespace Content.Shared.Chemistry.Reagent
 
         public ReagentEffectsGuideEntry MakeGuideEntry(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc, ReagentPrototype proto)
         {
-            return new ReagentEffectsGuideEntry(MetabolismRate, proto.GuidebookReagentEffectsDescription(prototype, entSys, loc, Effects, MetabolismRate).ToArray()); // Starlught
+            return MakeGuideEntry(prototype, entSys, loc, proto, Effects);
+        }
+
+        public ReagentEffectsGuideEntry MakeGuideEntry(
+            IPrototypeManager prototype,
+            IEntitySystemManager entSys,
+            ILocalizationManager loc,
+            ReagentPrototype proto,
+            IEnumerable<EntityEffect> effects)
+        {
+            return new ReagentEffectsGuideEntry(MetabolismRate, proto.GuidebookReagentEffectsDescription(prototype, entSys, loc, effects, MetabolismRate).ToArray()); // Starlught
         }
     }
 

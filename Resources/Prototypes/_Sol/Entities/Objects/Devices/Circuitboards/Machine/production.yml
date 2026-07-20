@@ -1,0 +1,14 @@
+- type: entity
+  id: VendingMachineViroVendCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ViroVend circuitboard
+  description: A machine printed circuit board for a ViroVend machine
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: VendingMachineViroVendEmpty
+    stackRequirements:
+      Steel: 5
+      Manipulator: 1
+      Glass: 2

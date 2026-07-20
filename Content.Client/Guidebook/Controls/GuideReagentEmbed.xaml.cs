@@ -129,46 +129,8 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
         }
         #endregion
 
-        #region Effects
-        if (_chemistryGuideData.ReagentGuideRegistry.TryGetValue(reagent.ID, out var guideEntryRegistry) &&
-            guideEntryRegistry.GuideEntries != null &&
-            guideEntryRegistry.GuideEntries.Values.Any(pair => pair.EffectDescriptions.Any()))
-        {
-            EffectsDescriptionContainer.Children.Clear();
-            foreach (var (group, effect) in guideEntryRegistry.GuideEntries)
-            {
-                if (!effect.EffectDescriptions.Any())
-                    continue;
-
-                var groupLabel = new RichTextLabel();
-                groupLabel.SetMarkup(Loc.GetString("guidebook-reagent-effects-metabolism-group-rate",
-                    ("group", _prototype.Index<MetabolismGroupPrototype>(group).LocalizedName), ("rate", effect.MetabolismRate)));
-                var descriptionLabel = new RichTextLabel
-                {
-                    Margin = new Thickness(25, 0, 10, 0)
-                };
-
-                var descMsg = new FormattedMessage();
-                var descriptionsCount = effect.EffectDescriptions.Length;
-                var i = 0;
-                foreach (var effectString in effect.EffectDescriptions)
-                {
-                    descMsg.AddMarkupOrThrow(effectString);
-                    i++;
-                    if (i < descriptionsCount)
-                        descMsg.PushNewline();
-                }
-                descriptionLabel.SetMessage(descMsg);
-
-                EffectsDescriptionContainer.AddChild(groupLabel);
-                EffectsDescriptionContainer.AddChild(descriptionLabel);
-            }
-        }
-        else
-        {
-            EffectsContainer.Visible = false;
-        }
-        #endregion
+        GenerateEffects(reagent);
+        GenerateOverdose(reagent);
 
         #region PlantMetabolisms
         if (_chemistryGuideData.ReagentGuideRegistry.TryGetValue(reagent.ID, out var guideEntryRegistryPlant) &&
@@ -271,6 +233,102 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
                     _prototype,
                     _systemManager));
             }
+        }
+    }
+
+    /// <summary>
+    /// Builds the Effects section from the server guide registry (overdose effects excluded there).
+    /// </summary>
+    private void GenerateEffects(ReagentPrototype reagent)
+    {
+        EffectsDescriptionContainer.Children.Clear();
+
+        if (!_chemistryGuideData.ReagentGuideRegistry.TryGetValue(reagent.ID, out var guideEntry) ||
+            guideEntry.GuideEntries == null ||
+            !guideEntry.GuideEntries.Values.Any(pair => pair.EffectDescriptions.Any()))
+        {
+            EffectsContainer.Visible = false;
+            return;
+        }
+
+        foreach (var (group, effect) in guideEntry.GuideEntries)
+        {
+            if (!effect.EffectDescriptions.Any())
+                continue;
+
+            var groupLabel = new RichTextLabel();
+            groupLabel.SetMarkup(Loc.GetString("guidebook-reagent-effects-metabolism-group-rate",
+                ("group", _prototype.Index<MetabolismGroupPrototype>(group).LocalizedName),
+                ("rate", effect.MetabolismRate)));
+            EffectsDescriptionContainer.AddChild(groupLabel);
+
+            var descriptionLabel = new RichTextLabel
+            {
+                Margin = new Thickness(25, 0, 10, 0),
+            };
+            var descMsg = new FormattedMessage();
+            for (var i = 0; i < effect.EffectDescriptions.Length; i++)
+            {
+                descMsg.AddMarkupOrThrow(effect.EffectDescriptions[i]);
+                if (i < effect.EffectDescriptions.Length - 1)
+                    descMsg.PushNewline();
+            }
+
+            descriptionLabel.SetMessage(descMsg);
+            EffectsDescriptionContainer.AddChild(descriptionLabel);
+        }
+
+        EffectsContainer.Visible = true;
+    }
+
+    /// <summary>
+    /// Builds the Overdose section from the server guide registry.
+    /// </summary>
+    private void GenerateOverdose(ReagentPrototype reagent)
+    {
+        OverdoseDescriptionContainer.Children.Clear();
+
+        if (!_chemistryGuideData.ReagentGuideRegistry.TryGetValue(reagent.ID, out var guideEntry) ||
+            guideEntry.OverdoseThreshold is not { } threshold ||
+            guideEntry.OverdoseGuideEntries == null ||
+            !guideEntry.OverdoseGuideEntries.Values.Any(pair => pair.EffectDescriptions.Any()))
+        {
+            OverdoseContainer.Visible = false;
+            return;
+        }
+
+        OverdoseContainer.Visible = true;
+
+        var thresholdLabel = new RichTextLabel();
+        thresholdLabel.SetMarkup(Loc.GetString("guidebook-reagent-overdose-threshold",
+            ("amount", threshold)));
+        OverdoseDescriptionContainer.AddChild(thresholdLabel);
+
+        foreach (var (group, effect) in guideEntry.OverdoseGuideEntries)
+        {
+            if (!effect.EffectDescriptions.Any())
+                continue;
+
+            var groupLabel = new RichTextLabel();
+            groupLabel.SetMarkup(Loc.GetString("guidebook-reagent-effects-metabolism-group-rate",
+                ("group", _prototype.Index<MetabolismGroupPrototype>(group).LocalizedName),
+                ("rate", effect.MetabolismRate)));
+            OverdoseDescriptionContainer.AddChild(groupLabel);
+
+            var descriptionLabel = new RichTextLabel
+            {
+                Margin = new Thickness(25, 0, 10, 0),
+            };
+            var descMsg = new FormattedMessage();
+            for (var i = 0; i < effect.EffectDescriptions.Length; i++)
+            {
+                descMsg.AddMarkupOrThrow(effect.EffectDescriptions[i]);
+                if (i < effect.EffectDescriptions.Length - 1)
+                    descMsg.PushNewline();
+            }
+
+            descriptionLabel.SetMessage(descMsg);
+            OverdoseDescriptionContainer.AddChild(descriptionLabel);
         }
     }
 }

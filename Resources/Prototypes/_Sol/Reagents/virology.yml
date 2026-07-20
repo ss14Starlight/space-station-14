@@ -48,6 +48,8 @@
         damage:
           types:
             Poison: -0.5
+      - !type:ShortenAllergyReaction
+        seconds: 4
 
 - type: reagent
   id: SolEpinephrineAllergy
@@ -59,6 +61,8 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:ShortenAllergyReaction
+        seconds: 12
       - !type:HealthChange
         damage:
           types:
@@ -110,3 +114,4 @@
   desc: reagent-desc-sol-culture-stabilizer
   physicalDesc: reagent-physical-desc-opaque
   color: "#88ccaa"
+  contrabandSeverity: Major

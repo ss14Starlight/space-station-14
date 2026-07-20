@@ -48,33 +48,32 @@ public sealed partial class AllergyPrototype : IPrototype
     [DataField]
     public DamageSpecifier MildDamage = new()
     {
-        DamageDict = new() { { "Poison", 0.5 } },
+        DamageDict = new() { { "Poison", 0.2 } },
     };
 
     /// <summary>
-    /// Per-tick damage while a severe reaction is active. Tuned to outpace respirator recovery.
+    /// Per-tick severe damage. Tuned so a typical exposure reaches crit around 60s.
     /// </summary>
     [DataField]
     public DamageSpecifier SevereDamage = new()
     {
         DamageDict = new()
         {
-            { "Poison", 2 },
-            { "Asphyxiation", 6 },
+            { "Poison", 0.4 },
+            { "Asphyxiation", 1.25 },
         },
     };
 
     /// <summary>
-    /// Per-tick damage for anaphylaxis. Quickly life-threatening without clearing the allergen
-    /// and treating the reaction (epinephrine / airway support).
+    /// Per-tick anaphylaxis damage. Tuned so a typical exposure reaches crit around 30s.
     /// </summary>
     [DataField]
     public DamageSpecifier AnaphylaxisDamage = new()
     {
         DamageDict = new()
         {
-            { "Poison", 4 },
-            { "Asphyxiation", 12 },
+            { "Poison", 0.8 },
+            { "Asphyxiation", 2.5 },
         },
     };
 

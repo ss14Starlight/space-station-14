@@ -418,7 +418,7 @@ public abstract partial class SharedEntityStorageSystem : EntitySystem
 
     public bool CanOpen(EntityUid user, EntityUid target, bool silent = false, EntityStorageComponent? component = null)
     {
-        if (!Resolve(target, ref component))
+        if (!Resolve(target, ref component, logMissing: false))
             return false;
 
         if (!HasComp<HandsComponent>(user))

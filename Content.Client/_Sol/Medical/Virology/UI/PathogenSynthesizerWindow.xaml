@@ -1,0 +1,41 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+            Title="{Loc sol-pathogen-synth-ui-title}"
+            MinSize="720 520">
+    <BoxContainer Orientation="Horizontal" Margin="8" SeparationOverride="10">
+        <BoxContainer Orientation="Vertical" MinWidth="200" SeparationOverride="6">
+            <Label Text="{Loc sol-pathogen-synth-ui-substrate-header}" StyleClasses="LabelKeyText" />
+            <Label Name="SubstrateLabel" />
+            <Button Name="SubstrateButton" Text="{Loc sol-pathogen-synth-ui-substrate-insert}" />
+            <Label Name="StabilizerLabel" />
+            <Label Name="BudgetLabel" />
+            <Label Name="TimeLabel" />
+            <Label Name="ErrorLabel" FontColorOverride="#ff6666" />
+            <Control VerticalExpand="True" />
+            <Label Name="ProgressLabel" />
+            <Button Name="StartButton" Text="{Loc sol-pathogen-synth-ui-start}" />
+            <Button Name="ClearButton" Text="{Loc sol-pathogen-synth-ui-clear}" />
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="6">
+            <Label Text="{Loc sol-pathogen-synth-ui-genes-header}" StyleClasses="LabelKeyText" />
+            <Label Text="{Loc sol-pathogen-synth-ui-genes-hint}" StyleClasses="LabelSubText" />
+            <ScrollContainer VerticalExpand="True" HScrollEnabled="False" MinHeight="180">
+                <GridContainer Name="GeneGrid" Columns="2" HorizontalExpand="True" />
+            </ScrollContainer>
+            <Collapsible Name="ForecastCollapsible">
+                <CollapsibleHeading Title="{Loc 'sol-pathogen-synth-ui-forecast-header'}" />
+                <CollapsibleBody>
+                    <BoxContainer Name="ForecastContainer" Orientation="Vertical" Margin="4 0 4 0" SeparationOverride="2">
+                        <Label Name="ForecastEmptyLabel" Text="{Loc sol-pathogen-synth-ui-forecast-empty}" StyleClasses="LabelSubText" />
+                        <Label Name="ForecastTransmissionLabel" />
+                        <Label Name="ForecastStagesLabel" />
+                        <Label Name="ForecastSymptomsLabel" />
+                        <Label Name="ForecastOrgansLabel" />
+                        <Label Name="ForecastTreatmentsLabel" />
+                        <Label Name="ForecastStatsLabel" />
+                    </BoxContainer>
+                </CollapsibleBody>
+            </Collapsible>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

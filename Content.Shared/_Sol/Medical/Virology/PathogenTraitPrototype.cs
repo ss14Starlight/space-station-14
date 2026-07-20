@@ -66,4 +66,10 @@ public sealed partial class PathogenTraitPrototype : IPrototype
 
     [DataField]
     public DamageSpecifier SymptomDamageBonus = new();
+
+    /// <summary>
+    /// Reagent prototype IDs this gene makes the strain susceptible to as treatment.
+    /// </summary>
+    [DataField]
+    public List<string> AddTreatments = new();
 }

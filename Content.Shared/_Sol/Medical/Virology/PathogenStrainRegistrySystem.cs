@@ -9,6 +9,8 @@ namespace Content.Shared._Sol.Medical.Virology;
 /// </summary>
 public sealed partial class PathogenStrainRegistrySystem : EntitySystem
 {
+    public static readonly ProtoId<PathogenPrototype> CustomBaseId = "SolPathogenCustomBase";
+
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
@@ -58,15 +60,14 @@ public sealed partial class PathogenStrainRegistrySystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Registers a gene-defined custom strain on the blank synthesis base.
+    /// </summary>
     public PathogenDefinition RegisterStrain(
-        ProtoId<PathogenPrototype> chassisId,
         List<ProtoId<PathogenTraitPrototype>> traits,
         EntityUid? creator = null,
         string? codename = null)
     {
-        if (!_prototypes.TryIndex(chassisId, out PathogenPrototype? chassis) || chassis == null)
-            throw new InvalidOperationException($"Unknown pathogen chassis '{chassisId}'");
-
         ValidateTraits(traits, maxBudget: 6);
 
         var strainId = $"SolStrain-{_nextStrainIndex:D3}";
@@ -76,7 +77,7 @@ public sealed partial class PathogenStrainRegistrySystem : EntitySystem
         {
             StrainId = strainId,
             Codename = codename ?? $"BT-{strainId[^3..]}",
-            ChassisId = chassisId,
+            ChassisId = CustomBaseId,
             Traits = new List<ProtoId<PathogenTraitPrototype>>(traits),
             CreatedAt = _timing.CurTime,
             Creator = creator == null ? null : GetNetEntity(creator.Value),
@@ -88,22 +89,54 @@ public sealed partial class PathogenStrainRegistrySystem : EntitySystem
         return definition;
     }
 
+    /// <summary>
+    /// Builds a non-registered definition for synthesizer forecasting from selected genes.
+    /// </summary>
+    public PathogenDefinition PreviewDefinition(IReadOnlyList<ProtoId<PathogenTraitPrototype>> traits)
+    {
+        return BuildDefinitionFromTraits(traits, strainId: "preview", displayName: Loc.GetString("sol-pathogen-synth-ui-forecast-title"));
+    }
+
     public void ValidateTraits(IReadOnlyList<ProtoId<PathogenTraitPrototype>> traits, int maxBudget)
+    {
+        if (!TryValidateTraits(traits, maxBudget, out var error))
+            throw new InvalidOperationException(error ?? "Invalid trait selection");
+    }
+
+    public bool TryValidateTraits(
+        IReadOnlyList<ProtoId<PathogenTraitPrototype>> traits,
+        int maxBudget,
+        out string? error)
     {
         var budget = 0;
         var seen = new HashSet<string>();
         foreach (var traitId in traits)
         {
             if (!_prototypes.TryIndex(traitId, out PathogenTraitPrototype? trait) || trait == null)
-                throw new InvalidOperationException($"Unknown pathogen trait '{traitId}'");
+            {
+                error = Loc.GetString("sol-pathogen-synth-error-unknown-trait", ("trait", traitId.ToString()));
+                return false;
+            }
 
+            var traitName = Loc.GetString(trait.Name);
             if (!seen.Add(trait.ID))
-                throw new InvalidOperationException($"Duplicate trait '{trait.ID}'");
+            {
+                error = Loc.GetString("sol-pathogen-synth-error-duplicate-trait", ("trait", traitName));
+                return false;
+            }
 
             foreach (var other in trait.IncompatibleWith)
             {
-                if (traits.Any(t => t == other))
-                    throw new InvalidOperationException($"Trait '{trait.ID}' incompatible with '{other}'");
+                if (!traits.Any(t => t == other))
+                    continue;
+
+                var otherName = _prototypes.TryIndex(other, out PathogenTraitPrototype? otherTrait) && otherTrait != null
+                    ? Loc.GetString(otherTrait.Name)
+                    : other.ToString();
+                error = Loc.GetString("sol-pathogen-synth-error-incompatible",
+                    ("trait", traitName),
+                    ("other", otherName));
+                return false;
             }
 
             foreach (var selected in traits)
@@ -112,49 +145,65 @@ public sealed partial class PathogenStrainRegistrySystem : EntitySystem
                     continue;
                 if (!_prototypes.TryIndex(selected, out PathogenTraitPrototype? selectedTrait) || selectedTrait == null)
                     continue;
-                if (selectedTrait.IncompatibleWith.Contains(trait.ID))
-                    throw new InvalidOperationException($"Trait '{trait.ID}' incompatible with '{selectedTrait.ID}'");
+                if (!selectedTrait.IncompatibleWith.Contains(trait.ID))
+                    continue;
+
+                error = Loc.GetString("sol-pathogen-synth-error-incompatible",
+                    ("trait", traitName),
+                    ("other", Loc.GetString(selectedTrait.Name)));
+                return false;
             }
 
             budget += trait.BudgetCost;
         }
 
         if (budget > maxBudget)
-            throw new InvalidOperationException($"Trait budget {budget} exceeds maximum {maxBudget}");
-    }
-
-    public bool TryValidateTraits(
-        IReadOnlyList<ProtoId<PathogenTraitPrototype>> traits,
-        int maxBudget,
-        out string? error)
-    {
-        try
         {
-            ValidateTraits(traits, maxBudget);
-            error = null;
-            return true;
-        }
-        catch (InvalidOperationException ex)
-        {
-            error = ex.Message;
+            error = Loc.GetString("sol-pathogen-synth-error-budget",
+                ("used", budget),
+                ("max", maxBudget));
             return false;
         }
+
+        error = null;
+        return true;
+    }
+
+    public int GetTraitBudget(IReadOnlyList<ProtoId<PathogenTraitPrototype>> traits)
+    {
+        var budget = 0;
+        foreach (var traitId in traits)
+        {
+            if (_prototypes.TryIndex(traitId, out PathogenTraitPrototype? trait) && trait != null)
+                budget += trait.BudgetCost;
+        }
+
+        return budget;
     }
 
     private PathogenDefinition BuildDefinition(RuntimePathogenStrain strain)
     {
-        if (!_prototypes.TryIndex(strain.ChassisId, out PathogenPrototype? chassis) || chassis == null)
-            throw new InvalidOperationException($"Missing chassis '{strain.ChassisId}'");
+        return BuildDefinitionFromTraits(strain.Traits, strain.StrainId, strain.Codename);
+    }
+
+    private PathogenDefinition BuildDefinitionFromTraits(
+        IReadOnlyList<ProtoId<PathogenTraitPrototype>> traits,
+        string strainId,
+        string displayName)
+    {
+        if (!_prototypes.TryIndex(CustomBaseId, out PathogenPrototype? chassis) || chassis == null)
+            throw new InvalidOperationException($"Missing custom synthesis base '{CustomBaseId}'");
 
         var def = PathogenDefinition.FromPrototype(chassis);
-        def.Id = strain.StrainId;
-        def.DisplayName = strain.Codename;
-        def.ChassisId = chassis.ID;
+        def.Id = strainId;
+        def.DisplayName = displayName;
+        def.ChassisId = CustomBaseId;
         def.IsRuntimeStrain = true;
-        def.VaccineIdentity = strain.StrainId;
-        def.TraitIds = strain.Traits.Select(t => t.Id).ToList();
+        def.VaccineIdentity = strainId;
+        def.TraitIds = traits.Select(t => t.Id).ToList();
+        def.Treatments.Clear();
 
-        foreach (var traitId in strain.Traits)
+        foreach (var traitId in traits)
         {
             if (!_prototypes.TryIndex(traitId, out PathogenTraitPrototype? trait) || trait == null)
                 continue;
@@ -181,6 +230,12 @@ public sealed partial class PathogenStrainRegistrySystem : EntitySystem
 
             if (trait.SymptomDamageBonus.DamageDict.Count > 0)
                 def.SymptomaticDamage += trait.SymptomDamageBonus;
+
+            foreach (var treatment in trait.AddTreatments)
+            {
+                if (!def.Treatments.Contains(treatment))
+                    def.Treatments.Add(treatment);
+            }
         }
 
         // Hard viability clamp: cannot max every axis at once.

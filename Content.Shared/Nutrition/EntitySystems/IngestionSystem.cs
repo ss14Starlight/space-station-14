@@ -29,6 +29,9 @@ using Content.Shared.Body.Organ;
 using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.Medical.Body.Systems;
 #endregion
+// Sol-start
+using Content.Shared._Sol.Medical.Allergy;
+// Sol-end
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -65,6 +68,9 @@ public sealed partial class IngestionSystem : EntitySystem
     [Dependency] private SharedBodySystem _body = default!; // Starlight Edit: BodySystem -> SharedBodySystem
     [Dependency] private ReactiveSystem _reaction = default!;
     [Dependency] private StomachSystem _stomach = default!;
+    // Sol-start
+    [Dependency] private readonly SharedAllergySystem _allergy = default!;
+    // Sol-end
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -470,6 +476,15 @@ public sealed partial class IngestionSystem : EntitySystem
         _audio.PlayPredicted(entity.Comp.UseSound ?? edible.UseSound, args.Target, args.User);
 
         var flavors = _flavorProfile.GetLocalizedFlavorsMessage(entity.Owner, args.Target, args.Split);
+
+        // Sol-start: append allergy warning onto the taste line instead of a second overlapping popup.
+        var eater = args.ForceFed ? args.Target : args.User;
+        if (_allergy.TryTakePendingTasteAllergy(eater, out var allergyName) ||
+            _allergy.TryGetIngestAllergyName(eater, entity, args.Split, out allergyName))
+        {
+            flavors += Loc.GetString("sol-allergy-taste-append", ("allergy", allergyName));
+        }
+        // Sol-end
 
         if (args.ForceFed)
         {

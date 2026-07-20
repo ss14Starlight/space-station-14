@@ -233,6 +233,10 @@
             "directions": 4
         },
         {
+            "name": "direction_viro",
+            "directions": 4
+        },
+        {
             "name": "dock"
         },
         {

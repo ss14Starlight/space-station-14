@@ -150,8 +150,15 @@ spray-painter-style-wallcloset-pink = Pink
 spray-painter-style-wallcloset-white = White
 spray-painter-style-wallcloset-yellow = Yellow
 
+# Sol-start
+spray-painter-style-walllocker-chemical = Chemical
+# Sol-end
 spray-painter-style-walllocker-evac = Evac repair
 spray-painter-style-walllocker-medical = Medical
+# Sol-start
+spray-painter-style-walllocker-virology = Virology
+spray-painter-style-walllocker-virology-chemical = Virology chemical
+# Sol-end
 
 # Crates
 spray-painter-style-cratesteel-basic = Basic

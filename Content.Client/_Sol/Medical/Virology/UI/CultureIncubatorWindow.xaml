@@ -1,0 +1,21 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+            Title="{Loc sol-culture-incubator-ui-title}"
+            MinSize="420 380">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="8">
+        <Label Name="NutrientLabel" />
+        <Label Name="CostLabel" />
+        <Label Text="{Loc sol-culture-incubator-ui-samples-label}" StyleClasses="LabelKeyText" />
+        <ScrollContainer VerticalExpand="True" MinHeight="140" HScrollEnabled="False">
+            <BoxContainer Name="SampleList" Orientation="Vertical" SeparationOverride="4" />
+        </ScrollContainer>
+        <Label Name="ProgressLabel" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Button Name="StartButton" Text="{Loc sol-culture-incubator-ui-start}" HorizontalExpand="True" />
+            <Button Name="RetrieveButton" Text="{Loc sol-culture-incubator-ui-retrieve}" HorizontalExpand="True" Visible="False" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Button Name="EjectAllButton" Text="{Loc sol-culture-incubator-ui-eject-all}" HorizontalExpand="True" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

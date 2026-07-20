@@ -169,6 +169,16 @@
   - type: Sprite
     state: direction_icu
 
+# Sol: Viro
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalViro
+  name: viro sign
+  description: A direction sign, pointing out which way virology is.
+  components:
+    - type: Sprite
+      state: direction_viro
+
 - type: entity
   parent: BaseSignDirectional
   id: SignDirectionalJanitor

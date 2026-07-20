@@ -18,6 +18,8 @@ sol-pathogen-neuroviral-encephalitis-name = Neuroviral Encephalitis
 sol-pathogen-neuroviral-encephalitis-desc = A slow-onset viral infection of the brain. Requires specialized antiviral treatment.
 
 sol-pathogen-unknown-description = An unidentified pathogen.
+sol-pathogen-custom-base-name = Custom synthesis base
+sol-pathogen-custom-base-desc = Internal binder used for gene-only custom strain assembly. Not a natural disease.
 sol-pathogen-exposed = You feel a chill. Something may have gotten into your system...
 sol-pathogen-symptoms-start = You start feeling the effects of {$disease}.
 sol-pathogen-recovered = You seem to have recovered from {$disease}.
@@ -190,8 +192,17 @@ sol-allergy-dexalin-plus-name = Dexalin Plus Contraindication
 sol-allergy-dexalin-plus-desc = Species-specific adverse reaction to dexalin plus.
 sol-allergy-symptoms-mild = Your skin itches and your nose begins to run.
 sol-allergy-symptoms-moderate = You feel nauseated as your skin swells and breaks out in hives.
-sol-allergy-symptoms-severe = Your throat tightens and every breath becomes difficult!
-sol-allergy-symptoms-anaphylaxis = Your airway is rapidly closing! You feel faint and cannot breathe!
+sol-allergy-symptoms-severe = Your throat tightens and every breath becomes difficult! You struggle to speak!
+sol-allergy-symptoms-anaphylaxis = Your airway is rapidly closing! You can't get words out and can barely breathe!
+sol-allergy-taste-append = , but you're allergic to {$allergy}!
+
+alerts-sol-allergic-choking-name = [color=red]Allergic Reaction[/color]
+alerts-sol-allergic-choking-desc = Your airway is swelling shut. Seek [color=green]epinephrine[/color] or [color=green]antihistamine[/color] treatment.
+
+entity-effect-guidebook-shorten-allergy-reaction = shortens an active allergic reaction by about {NATURALFIXED($seconds, 1)} seconds{ $chance ->
+    [1] {""}
+    *[other] {" "}with a {$chance} chance
+}
 
 sol-bioterror-briefing = You are a bioterrorist. Establish a clandestine lab, culture environmental microbes into a custom strain, and deploy physical payloads. Avoid early detection.
 sol-bioterror-briefing-head = You are the Head Bioterrorist. You carry the portable lab flatpacks. Lead the cell, choose a hideout, and coordinate synthesis and deployment.
@@ -208,32 +219,128 @@ sol-bioterror-scrape-invalid = There is nothing useful to scrape here.
 sol-bioterror-scrape-depleted = This source has been scraped clean for now.
 sol-bioterror-scrape-success = You collect an environmental microbial sample.
 sol-bioterror-sample-name = microbial sample ({$source})
+sol-bioterror-sample-analyzed-name = analyzed sample ({$source})
+sol-bioterror-sample-examine-raw = It still needs analysis before incubation.
+sol-bioterror-sample-examine-analyzed = { $contaminated ->
+    [true] Analyzed: {$genetics}, quality {$quality}, contaminated
+    *[false] Analyzed: {$genetics}, quality {$quality}
+}
+sol-bioterror-sample-genetics-none = no identifiable genes
+sol-bioterror-sample-genetics = possible genetics: {$genes}
 sol-bioterror-lab-unpowered = The machine has no power.
-sol-bioterror-analyzer-result = Analysis: chassis={$chassis}, quality={$quality}, contaminated={$contaminated}, traits={$traits}
-sol-bioterror-analyzer-no-traits = none detected
-sol-bioterror-analyzer-examine = Accepts environmental scrapings for trait/chassis analysis.
+sol-bioterror-analyzer-started = Sample inserted. Analysis started.
+sol-bioterror-analyzer-complete = Analysis complete. Click the analyzer to retrieve the sample.
+sol-bioterror-analyzer-retrieved = You retrieve the analyzed sample.
+sol-bioterror-analyzer-busy = The analyzer is busy.
+sol-bioterror-analyzer-eject-first = Retrieve the finished sample first.
+sol-bioterror-analyzer-already = This sample has already been analyzed.
+sol-bioterror-analyzer-examine = Accepts environmental scrapings for genetic analysis.
+sol-bioterror-analyzer-examine-running = Analysis in progress.
+sol-bioterror-analyzer-examine-ready = An analyzed sample is ready for retrieval.
+sol-bioterror-incubator-full = The incubator chamber is full.
 sol-bioterror-incubator-need-analyzed = Insert an analyzed microbial sample.
 sol-bioterror-incubator-busy = The incubator is busy.
 sol-bioterror-incubator-need-nutrient = Add culture nutrient to the machine tank.
+sol-bioterror-incubator-no-viable = None of the loaded samples contain usable genes.
 sol-bioterror-incubator-started = Culture cycle started.
-sol-bioterror-incubator-complete = Culture ready.
-sol-bioterror-incubator-spoiled = Power loss spoiled the culture.
-sol-bioterror-incubator-overgrown = An unattended culture overgrew and contaminated the area!
-sol-bioterror-incubator-examine = Needs analyzed samples and nutrient medium.
+sol-bioterror-incubator-complete = Cultures ready. Retrieve them from the incubator.
+sol-bioterror-incubator-retrieved = You retrieve the finished cultures.
+sol-bioterror-incubator-empty-output = The incubator chamber is empty.
+sol-bioterror-incubator-spoiled = Power loss spoiled the culture batch.
+sol-bioterror-incubator-overgrown = An unattended culture batch overgrew and contaminated the area!
+sol-bioterror-incubator-examine = Load up to six analyzed samples, then start a batch from the interface.
 sol-bioterror-incubator-examine-running = Culture cycle in progress.
-sol-bioterror-synth-need-culture = Insert a culture vial, then begin synthesis.
-sol-bioterror-synth-need-chassis = Load a chassis culture first.
+sol-bioterror-incubator-examine-ready = Finished cultures are ready for retrieval.
+
+sol-culture-incubator-ui-title = Culture incubator
+sol-culture-incubator-ui-nutrient = Nutrient: {$amount} / {$max} u {$reagent}
+sol-culture-incubator-ui-cost = Batch cost: {$cost} u ({$count} / {$max} samples)
+sol-culture-incubator-ui-samples-label = Chamber samples
+sol-culture-incubator-ui-samples-empty = No samples loaded.
+sol-culture-incubator-ui-sample-entry = { $contaminated ->
+    [true] {$label} — {$detail}, quality {$quality} (contaminated)
+    *[false] {$label} — {$detail}, quality {$quality}
+}
+sol-culture-incubator-ui-progress = Incubating… {$remaining} remaining ({$percent}%)
+sol-culture-incubator-ui-ready = Cultures ready for retrieval.
+sol-culture-incubator-ui-start = Start cycle
+sol-culture-incubator-ui-retrieve = Retrieve cultures
+sol-culture-incubator-ui-eject = Eject
+sol-culture-incubator-ui-eject-all = Eject all samples
+
+sol-bioterror-synth-need-culture = Insert cellular substrate or gene cultures into the synthesizer.
+sol-bioterror-synth-need-substrate = Load cellular substrate into the substrate slot.
+sol-bioterror-synth-need-chassis = Load cellular substrate into the substrate slot.
 sol-bioterror-synth-need-stabilizer = Add culture stabilizer to the machine tank.
-sol-bioterror-synth-chassis-loaded = Chassis loaded: {$chassis}
-sol-bioterror-synth-traits-loaded = Trait isolates loaded into the recipe.
+sol-bioterror-synth-substrate-blocked = Could not load that culture as cellular substrate.
+sol-bioterror-synth-error-bad-chassis = Cellular substrate is missing or invalid.
+sol-bioterror-synth-error-multi-chassis = Only one cellular substrate culture can be loaded at a time.
+sol-bioterror-synth-error-duplicate-gene = Duplicate gene in recipe: {$gene}
 sol-bioterror-synth-invalid = Synthesis rejected: {$error}
 sol-bioterror-synth-started = Synthesis cycle started.
 sol-bioterror-synth-complete = Strain {$strain} synthesized. Ampoules dispensed.
 sol-bioterror-synth-failed = Synthesis failed catastrophically!
 sol-bioterror-synth-spoiled = Power loss ruined the synthesis batch.
 sol-bioterror-synth-busy = The synthesizer is busy.
-sol-bioterror-synth-begin-verb = Begin synthesis
-sol-bioterror-synth-examine = Pending chassis: {$chassis}. Traits: {$traits}.
+sol-bioterror-synth-examine = Load cellular substrate and select genes, then start synthesis from the interface.
+sol-bioterror-synth-examine-running = Synthesis cycle in progress.
+
+sol-bioterror-culture-substrate-name = cellular substrate
+sol-bioterror-culture-substrate-detail = cellular substrate
+sol-bioterror-culture-gene-name = {$gene}
+sol-bioterror-culture-gene-stack = {$gene} ×{$count}
+
+sol-pathogen-synth-error-unknown-trait = Unknown gene: {$trait}
+sol-pathogen-synth-error-duplicate-trait = Duplicate gene: {$trait}
+sol-pathogen-synth-error-incompatible = {$trait} is incompatible with {$other}
+sol-pathogen-synth-error-budget = Gene load {$used} exceeds capacity {$max}
+
+sol-pathogen-synth-ui-title = Pathogen synthesizer
+sol-pathogen-synth-ui-substrate-header = Cellular substrate
+sol-pathogen-synth-ui-substrate-slot = Cellular substrate
+sol-pathogen-synth-ui-substrate-empty = No cellular substrate loaded
+sol-pathogen-synth-ui-substrate-loaded = {$name}
+sol-pathogen-synth-ui-substrate-insert = Insert
+sol-pathogen-synth-ui-substrate-eject = Eject
+sol-pathogen-synth-ui-stabilizer = Stabilizer: {$amount} / {$max} u {$reagent} (needs {$needed} u)
+sol-pathogen-synth-ui-budget = Gene budget: {$used} / {$max}
+sol-pathogen-synth-ui-time = Estimated cycle: {$seconds} s
+sol-pathogen-synth-ui-genes-header = Gene storage
+sol-pathogen-synth-ui-genes-hint = Click genes to add or remove them from the recipe. Matching genes stack. Unselected genes stay stored. Open Strain forecast below for the projected outcome.
+sol-pathogen-synth-ui-genes-empty = No genes stored. Click gene cultures onto the machine.
+sol-pathogen-synth-ui-gene-button = { $selected ->
+    [true] [+] {$label} ({$cost})
+    *[false] {$label} ({$cost})
+}
+sol-pathogen-synth-ui-progress = Synthesizing… {$remaining} remaining ({$percent}%)
+sol-pathogen-synth-ui-start = Start synthesis
+sol-pathogen-synth-ui-clear = Clear selection
+sol-pathogen-synth-ui-forecast-title = Strain forecast
+sol-pathogen-synth-ui-forecast-header = Strain forecast
+sol-pathogen-synth-ui-forecast-empty = Select genes to preview the assembled strain.
+sol-pathogen-synth-ui-forecast-transmission = Transmission: {$value}
+sol-pathogen-synth-ui-forecast-stages = Flow: incubate {$incubation} → symptoms {$symptomatic} → critical {$critical} → recover {$recovery}
+sol-pathogen-synth-ui-forecast-symptoms = Symptoms: {$value}
+sol-pathogen-synth-ui-forecast-organs = Organ targets: {$value}
+sol-pathogen-synth-ui-forecast-treatments = Treatment susceptibility: {$value}
+sol-pathogen-synth-ui-forecast-stats = {$infectivity}. {$lethality}. {$sterilant}.
+sol-pathogen-synth-ui-route-none = none (add transmission genes)
+sol-pathogen-synth-ui-route-contact = contact
+sol-pathogen-synth-ui-route-airborne = airborne
+sol-pathogen-synth-ui-route-ingestion = ingestion
+sol-pathogen-synth-ui-route-fluid = fluid
+sol-pathogen-synth-ui-symptom-none = none notable
+sol-pathogen-synth-ui-symptom-cough = coughing
+sol-pathogen-synth-ui-symptom-sneeze = sneezing
+sol-pathogen-synth-ui-symptom-fever = fever
+sol-pathogen-synth-ui-symptom-damage = {$type} {$amount}/tick
+sol-pathogen-synth-ui-organs-none = none
+sol-pathogen-synth-ui-treatments-none = none (add treatment vulnerability genes)
+sol-pathogen-synth-ui-infectivity-value = Infectivity {$chance}% (dose {$dose})
+sol-pathogen-synth-ui-lethality-value = Lethality {$value}%
+sol-pathogen-synth-ui-sterilant-value = Sterilant susceptibility ×{$value}
+sol-pathogen-synth-ui-duration-minutes = {$minutes} min
+sol-pathogen-synth-ui-duration-seconds = {$seconds} s
 sol-bioterror-ampoule-name = culture ampoule ({$strain})
 sol-bioterror-round-end-agent-name = bioterrorist
 sol-bioterror-roundend-header = Bioterror cell results:
@@ -264,7 +371,13 @@ sol-pathogen-trait-ingestion-desc = Enables foodborne infection.
 sol-pathogen-trait-aerosol-name = Aerosol stability
 sol-pathogen-trait-aerosol-desc = Improves environmental persistence in air.
 sol-pathogen-trait-cough-name = Cough shedding
-sol-pathogen-trait-cough-desc = Increases cough-driven shedding.
+sol-pathogen-trait-cough-desc = Increases cough-driven shedding. Incompatible with sneeze shedding.
+sol-pathogen-trait-sneeze-name = Sneeze shedding
+sol-pathogen-trait-sneeze-desc = Increases sneeze-driven shedding. Incompatible with cough shedding.
+sol-pathogen-trait-dyspnea-name = Respiratory distress
+sol-pathogen-trait-dyspnea-desc = Causes shortness of breath and asphyxiation stress. Incompatible with hemorrhagic expression.
+sol-pathogen-trait-hemorrhage-name = Hemorrhagic expression
+sol-pathogen-trait-hemorrhage-desc = Causes bleeding and toxin stress. Incompatible with respiratory distress.
 sol-pathogen-trait-yield-name = Culture yield
 sol-pathogen-trait-yield-desc = Speeds incubation of isolates.
 sol-pathogen-trait-slow-name = Slow incubation
@@ -274,11 +387,23 @@ sol-pathogen-trait-growth-desc = Survives longer on surfaces and waste.
 sol-pathogen-trait-virulent-name = Heightened virulence
 sol-pathogen-trait-virulent-desc = Increases lethality and infectivity.
 sol-pathogen-trait-liver-name = Hepatic tropism
-sol-pathogen-trait-liver-desc = Targets liver tissue.
+sol-pathogen-trait-liver-desc = Targets liver tissue. Mutually exclusive with other organ tropisms.
+sol-pathogen-trait-lungs-name = Pulmonary tropism
+sol-pathogen-trait-lungs-desc = Targets lung tissue and worsens breathing. Mutually exclusive with other organ tropisms.
+sol-pathogen-trait-heart-name = Cardiac tropism
+sol-pathogen-trait-heart-desc = Targets heart tissue. Mutually exclusive with other organ tropisms.
 sol-pathogen-trait-persistent-name = Environmental persistence
 sol-pathogen-trait-persistent-desc = Resists environmental decay.
 sol-pathogen-trait-sterilant-name = Sterilant resistance
 sol-pathogen-trait-sterilant-desc = Reduces sterilant effectiveness.
+sol-pathogen-trait-treat-antiviral-name = Antiviral vulnerability
+sol-pathogen-trait-treat-antiviral-desc = Makes the strain treatable with Sol antiviral. Incompatible with ribavirin vulnerability.
+sol-pathogen-trait-treat-ribavirin-name = Ribavirin vulnerability
+sol-pathogen-trait-treat-ribavirin-desc = Makes the strain treatable with ribavirin. Incompatible with antiviral vulnerability.
+sol-pathogen-trait-treat-ceftriaxone-name = Ceftriaxone vulnerability
+sol-pathogen-trait-treat-ceftriaxone-desc = Makes the strain treatable with ceftriaxone. Incompatible with amoxla vulnerability.
+sol-pathogen-trait-treat-amoxla-name = Amoxla vulnerability
+sol-pathogen-trait-treat-amoxla-desc = Makes the strain treatable with amoxla. Incompatible with ceftriaxone vulnerability.
 
 chat-radio-bioterror = Bioterror
 
@@ -309,6 +434,7 @@ guide-entry-sl-medical-sop-virologist = Virologist
 guide-entry-sl-medical-sop-virology-outbreak = Virology and Outbreak Procedure
 guide-entry-sl-medical-sop-allergies = Allergies
 guide-entry-bioterrorists = Bioterrorists
+guide-entry-bioterror-genes = Pathogen Genes
 
 roles-antag-bioterrorist-name = Bioterrorist
 roles-antag-bioterrorist-objective = Help the cell culture environmental microbes into deployable custom strains.

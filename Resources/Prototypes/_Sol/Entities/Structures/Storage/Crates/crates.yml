@@ -1,0 +1,23 @@
+# Sol virology crates — medical equivalents with virology livery / access.
+
+- type: entity
+  parent: CratePlastic
+  id: CrateVirology
+  name: virology crate
+  components:
+  - type: Icon
+    sprite: _Sol/Structures/Storage/Crates/virology.rsi
+  - type: Sprite
+    sprite: _Sol/Structures/Storage/Crates/virology.rsi
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateVirologySecure
+  name: secure virology crate
+  components:
+  - type: Icon
+    sprite: _Sol/Structures/Storage/Crates/virology_secure.rsi
+  - type: Sprite
+    sprite: _Sol/Structures/Storage/Crates/virology_secure.rsi
+  - type: AccessReader
+    access: [["Virology"]]
