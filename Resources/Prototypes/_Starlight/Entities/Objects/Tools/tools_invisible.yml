@@ -2,7 +2,7 @@
   name: invisible wirecutters
   parent: BaseItem
   id: WirecuttersInvisible
-  description: The perfect piece of invisible equipment to snip those nasty wires of that invisible door! Insulation not included. 
+  description: The perfect piece of invisible equipment to snip those nasty wires of that invisible door! Insulation not included.
   components:
   - type: Tag
     tags:
