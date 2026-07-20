@@ -326,11 +326,10 @@
   - type: Access
     tags:
     - GenpopEnter
-  - type: IdCard
-    jobTitle: job-name-prisoner
-    jobIcon: JobIconPrisoner
-    canMicrowave: false
+  - type: PresetIdCard
+    job: Prisoner
     name: Stir Stir
+    canMicrowave: false
   - type: Speech
     speechVerb: Robotic
   - type: Tag # Ignore Chameleon tags
