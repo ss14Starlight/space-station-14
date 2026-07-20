@@ -446,7 +446,7 @@ namespace Content.Server.RoundEnd
                 }
                 else
                 {
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-vote-norecall"));
+                    _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-norecall"));
                 }
             };
         }
