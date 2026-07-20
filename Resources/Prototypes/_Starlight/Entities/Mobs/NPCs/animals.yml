@@ -128,3 +128,64 @@
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-kobold
 
+- type: entity
+  name: penguin
+  parent: SimpleMobBaseNoRespirator
+  id: MobPenguinNoRespirator
+  description: Their lives are constant pain due to their inner-body knees.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: penguin
+          sprite: Mobs/Animals/penguin.rsi
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.25
+          density: 100
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: penguin
+        Critical:
+          Base: penguin_dead
+        Dead:
+          Base: penguin_dead
+    - type: Butcherable
+      spawned:
+        - id: FoodMeatPenguin
+          amount: 3
+    - type: InteractionPopup
+      successChance: 0.5
+      interactSuccessString: petting-success-bird
+      interactFailureString: petting-failure-generic
+      interactSuccessSpawn: EffectHearts
+      interactSuccessSound:
+        path: /Audio/Animals/penguin_squawk.ogg
+    - type: Tag
+      tags:
+        - VimPilot
+    - type: NpcFactionMember
+      factions:
+        - Passive
+    - type: Temperature
+      currentTemperature: 310.15
+      specificHeat: 46
+    - type: TemperatureDamage
+      heatDamageThreshold: 335
+      coldDamageThreshold: 230
+      coldDamage:
+        types:
+          Cold : 0.05 #per second, scales with temperature & other constants
+      heatDamage:
+        types:
+          Heat : 0.2 #per second, scales with temperature & other constants
