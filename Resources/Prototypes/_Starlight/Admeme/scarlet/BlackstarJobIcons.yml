@@ -7,6 +7,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: Blackstar # PLACEHOLDER - replace when sprite ready
   jobName: job-name-blackstar-legion-commander
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -15,6 +16,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: Blackstar # PLACEHOLDER
   jobName: job-name-blackstar-high-legate
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -23,6 +25,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: Blackstar # PLACEHOLDER
   jobName: job-name-blackstar-legate
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -31,6 +34,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: Blackstar # PLACEHOLDER
   jobName: job-name-blackstar-dreadwalker
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -39,6 +43,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: Blackstar # PLACEHOLDER
   jobName: job-name-blackstar-legionnaire
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -47,6 +52,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: Blackstar # PLACEHOLDER
   jobName: job-name-blackstar-blackguard
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -55,3 +61,4 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: Blackstar # PLACEHOLDER
   jobName: job-name-blackstar-initiate
+  allowSelection: false
