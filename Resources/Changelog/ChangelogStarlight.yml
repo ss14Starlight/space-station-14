@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Changed some of the NTSF ghost roles to include more species and exclude others.
-    type: Tweak
-  id: 406346
-  time: '2026-07-02T21:00:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4943
 - author: wonderfulnewworld
   changes:
   - message: Added Devil to Dynamic.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406745
   time: '2026-07-20T15:13:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5203
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed an issue where Changelings would appear as flash-proof when examined when using Augmented Eyesight.
+    type: Fix
+  id: 406746
+  time: '2026-07-20T15:29:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5192
 Order: -1
