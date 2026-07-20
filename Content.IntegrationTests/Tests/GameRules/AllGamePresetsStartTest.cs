@@ -32,14 +32,14 @@ public sealed class AllGamePresetsStartTest : AntagTest
     //[TestOf(typeof(GameTicker)), TestOf(typeof(AntagSelectionSystem)), TestOf(typeof(AntagSelectionComponent))]
     //[TestCaseSource(nameof(_gamePresets))]
     //[Description("Ensures all Game Presets are able to start and assign all antags correctly without spawning anyone in nullspace.")]
+    [TestCase("AllerAtOnce")]
     [TestOf(typeof(GameTicker))]
     [TestOf(typeof(AntagSelectionSystem))]
     [TestOf(typeof(AntagSelectionComponent))]
-    [Description("Ensures AllerAtOnce can start and assign all of its antags without spawning anyone in nullspace.")]
+    [Description("Ensures AllerAtOnce can start and assign all antags correctly without spawning anyone in nullspace.")]
     [EnsureCVar(Side.Server, typeof(CCVars), nameof(CCVars.GameTickerIgnoredPresets), GameTicker.DummyGameRule)]
-    public async Task TestAllGamemodesCanStart()
-    {
-        const string presetId = "AllerAtOnce"; // The test takes too long if we run every gamemode, but aller at once "effectively" runs every gamemode, so we're just going to run it to save time.
+    public async Task TestAllGamemodesCanStart(string presetId)
+    { // The test takes too long if we run every gamemode, but aller at once "effectively" runs every gamemode, so we're just going to run it to save time.
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false);
         Server.CfgMan.SetCVar(CCVars.GameRoleTimers, false);
         #endregion
