@@ -1,67 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Tweaked Thief, SELF, and Abductor Dynamic Rule Costs.
-    type: Tweak
-  id: 406336
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: wonderfulnewworld
-  changes:
-  - message: Removed DummyNonAntag from Dynamic, and added Railroading to it too.
-    type: Tweak
-  id: 406337
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: wonderfulnewworld
-  changes:
-  - message: Dynamic will now ACTUALLY roll multiantags roundstart sometimes.
-    type: Fix
-  id: 406338
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: wonderfulnewworld
-  changes:
-  - message: Abductors can now actually spawn in Dynamic.
-    type: Fix
-  id: 406339
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: wonderfulnewworld
-  changes:
-  - message: Dynamic gamerule player requirements now match their actual gamemodes.
-    type: Fix
-  id: 406340
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: Mack
-  changes:
-  - message: Fix issue with butchering and surgery conflicting.
-    type: Fix
-  id: 406341
-  time: '2026-07-02T14:15:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4979
-- author: Conflee
-  changes:
-  - message: Updated Basilisk, Goliath, and Hivelord/Brood sprites. Basilisk and Goliath use the newer TGstation sprites, while Hivelord/Brood is an edit by myself.
-    type: Tweak
-  id: 406342
-  time: '2026-07-02T20:33:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4966
-- author: Conflee
-  changes:
-  - message: Updated the Goliath Meat, Goliath Steak, Goliath Hide, and Goliath Cloak/Hood sprites, to use newer TGstation sprites.
-    type: Tweak
-  id: 406343
-  time: '2026-07-02T20:33:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4966
-- author: Conflee
-  changes:
-  - message: Added Flimsy Lattice, which is an entity not a tile. Looks similar to lattice but with connected joints. Works like a carpet/catwalk/grate, sitting on top of tiles, allowing mappers to do more intricate detailing.
-    type: Add
-  id: 406344
-  time: '2026-07-02T21:00:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4968
 - author: Johnny
   changes:
   - message: Added multiple new prototypes/ghost role variants of NTSF and their gears.
@@ -2799,4 +2736,67 @@ Entries:
   id: 406735
   time: '2026-07-18T18:53:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5150
+- author: rtasva
+  changes:
+  - message: 'Leth: Added Kiki to Botany.'
+    type: Add
+  id: 406736
+  time: '2026-07-19T08:48:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5189
+- author: rtasva
+  changes:
+  - message: 'Leth: Updated fax machines to new color coded standard.'
+    type: Tweak
+  id: 406737
+  time: '2026-07-19T08:48:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5189
+- author: rtasva
+  changes:
+  - message: 'Leth: You no longer have to climb on top of a table to access the Supermatter APC.'
+    type: Fix
+  id: 406738
+  time: '2026-07-19T08:48:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5189
+- author: mikeysaurus
+  changes:
+  - message: Department remote shuttle consoles have been renamed to explicitly identify them as remote shuttle consoles.
+    type: Tweak
+  id: 406739
+  time: '2026-07-19T09:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5196
+- author: Johnny
+  changes:
+  - message: Lapsi now squish when hugged.
+    type: Add
+  id: 406740
+  time: '2026-07-20T09:13:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5207
+- author: Johnny
+  changes:
+  - message: Lapsi no longer do normal hug sound.
+    type: Remove
+  id: 406741
+  time: '2026-07-20T09:13:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5207
+- author: neomoth
+  changes:
+  - message: Non-admins can no longer interact with the recruitment console at Central Command. Tiders lose.
+    type: Fix
+  id: 406742
+  time: '2026-07-20T13:41:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5213
+- author: neomoth
+  changes:
+  - message: Grenade Penguins no longer take spacing damage (lack of air, temperature, barotrauma, etc).
+    type: Tweak
+  id: 406743
+  time: '2026-07-20T14:06:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5210
+- author: neomoth
+  changes:
+  - message: Game now actually checks for TemperatureImmunityComponent so that it does what it's supposed to do.
+    type: Fix
+  id: 406744
+  time: '2026-07-20T14:06:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5210
 Order: -1
