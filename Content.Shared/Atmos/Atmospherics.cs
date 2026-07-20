@@ -320,7 +320,7 @@ namespace Content.Shared.Atmos
         ///     Funky Atmos - /tg/ gases
         ///     The amount of energy 1 mol of Nitrium forming from Tritium, Nitrogen and BZ releases.
         /// </summary>
-        public const float NitriumProductionEnergy = -100e3f;
+        public const float NitriumProductionEnergy = -10e3f;
 
         /// <summary>
         ///     Funky Atmos - /tg/ gases
