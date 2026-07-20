@@ -352,8 +352,6 @@
     canMicrowave: false
   - type: PresetIdCard
     job: Prisoner
-  - type: Speech
-    speechVerb: Robotic
   - type: Tag # Ignore Chameleon tags
     tags:
     - DoorBumpOpener
