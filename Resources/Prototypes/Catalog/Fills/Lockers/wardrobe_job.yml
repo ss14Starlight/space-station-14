@@ -29,6 +29,7 @@
       - id: ClothingUniformJumpsuitPrisoner
       - id: ClothingUniformJumpskirtPrisoner
       - id: ClothingShoesColorBlack
+      - id: ClothingHeadHatBeretPrison # SL Edit
     - id: ClothingMaskMuzzle
     - !type:GroupSelector
       prob: 0.15

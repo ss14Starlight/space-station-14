@@ -96,3 +96,12 @@
   category: Humongous
   group: Command
   shuttlePath: /Maps/_Starlight/Shuttles/ReachButShipyard.yml
+
+- type: vessel
+  id: Bumblebee
+  name: NTS "Bumblebee" Flores
+  description: A medium sized botany shuttle made for advance farming operations, comes with two mutation rooms.
+  price: 60000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Bumblebee.yml
