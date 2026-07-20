@@ -1,34 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (CORK) Added the updated fax machines.
-    type: Add
-  id: 406356
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (CORK) Added kiki.
-    type: Add
-  id: 406357
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (CORK) Added shipyard console to bridge.
-    type: Add
-  id: 406358
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (ELKRIDGE) Added the updated fax machines.
-    type: Add
-  id: 406359
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (ELKRIDGE) Added kiki.
     type: Add
   id: 406360
@@ -2799,4 +2771,32 @@ Entries:
   id: 406755
   time: '2026-07-20T20:54:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5201
+- author: Spaghetti-Bit
+  changes:
+  - message: Disabler Bolts now go through windows.
+    type: Tweak
+  id: 406756
+  time: '2026-07-20T20:54:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5200
+- author: Spaghetti-Bit
+  changes:
+  - message: Taser Bolts no longer go through windows.
+    type: Tweak
+  id: 406757
+  time: '2026-07-20T20:54:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5200
+- author: Spaghetti-Bit
+  changes:
+  - message: Laser Carbine has inhand sprites again.
+    type: Fix
+  id: 406758
+  time: '2026-07-20T20:54:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5200
+- author: Spaghetti-Bit
+  changes:
+  - message: Practice disabler has inhand sprites again.
+    type: Fix
+  id: 406759
+  time: '2026-07-20T20:54:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5200
 Order: -1
