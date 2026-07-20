@@ -1,13 +1,6 @@
 Entries:
 - author: Romero
   changes:
-  - message: Removed M90 GL.
-    type: Remove
-  id: 406348
-  time: '2026-07-02T21:47:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4934
-- author: Romero
-  changes:
   - message: Added Lawbringer, as replacement of unused M90 GL, one per sec armory.
     type: Add
   id: 406349
@@ -2799,4 +2792,11 @@ Entries:
   id: 406747
   time: '2026-07-20T15:52:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5217
+- author: Conflee
+  changes:
+  - message: Added Stir Stir the Prisoner Monkey. Pun Pun's shifty cousin, they are a ghost role that will be mapped into Genpop. They require 15 minutes of Security playtime, to dissuade shittery. Is an Advanced Monkey, so they have 2 hands but can not vent crawl. Needed for a future Traitor objective to kill Stir Stir, which would be easier if the Traitor lets themselves be arrested for a minor crime.
+    type: Add
+  id: 406748
+  time: '2026-07-20T16:18:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5208
 Order: -1
