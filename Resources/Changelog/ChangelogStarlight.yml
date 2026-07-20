@@ -1,18 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Updated the Goliath Meat, Goliath Steak, Goliath Hide, and Goliath Cloak/Hood sprites, to use newer TGstation sprites.
-    type: Tweak
-  id: 406343
-  time: '2026-07-02T20:33:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4966
-- author: Conflee
-  changes:
-  - message: Added Flimsy Lattice, which is an entity not a tile. Looks similar to lattice but with connected joints. Works like a carpet/catwalk/grate, sitting on top of tiles, allowing mappers to do more intricate detailing.
-    type: Add
-  id: 406344
-  time: '2026-07-02T21:00:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4968
 - author: Johnny
   changes:
   - message: Added multiple new prototypes/ghost role variants of NTSF and their gears.
@@ -2799,4 +2785,18 @@ Entries:
   id: 406742
   time: '2026-07-20T13:41:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5213
+- author: neomoth
+  changes:
+  - message: Grenade Penguins no longer take spacing damage (lack of air, temperature, barotrauma, etc).
+    type: Tweak
+  id: 406743
+  time: '2026-07-20T14:06:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5210
+- author: neomoth
+  changes:
+  - message: Game now actually checks for TemperatureImmunityComponent so that it does what it's supposed to do.
+    type: Fix
+  id: 406744
+  time: '2026-07-20T14:06:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5210
 Order: -1
