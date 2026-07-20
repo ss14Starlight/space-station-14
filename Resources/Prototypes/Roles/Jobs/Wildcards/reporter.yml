@@ -30,6 +30,8 @@
     - CassetteTape
     - RubberStampReporter
     - ClothingOuterPressArmor
+    - Wrench
+    - NetworkConfigurator
   # Starlight End
 
 - type: chameleonOutfit
