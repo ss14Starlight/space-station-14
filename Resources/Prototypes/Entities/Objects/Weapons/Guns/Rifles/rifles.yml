@@ -19,8 +19,6 @@
         knockback: 0.1
       Resomi:
         knockback: 0.1
-      Avali:
-        knockback: 0.05 # Bigger bird, more sturdy bones.. or something.
       Felionoid:
         knockback: 0.05 #half of what resomi take
   - type: Sprite

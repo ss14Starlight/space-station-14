@@ -151,3 +151,12 @@
   components:
     - type: AccessReader
       access: [["Blackstar"]]
+
+#Visitor
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsVisitor
+  suffix: Visitor, Locked
+  components:
+    - type: AccessReader
+      access: [["Visitor"]]
