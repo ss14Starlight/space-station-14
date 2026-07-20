@@ -38,7 +38,7 @@
   gasOverlayState: plasma
   color: FF3300
   reagent: Plasma
-  pricePerMole: 1
+  pricePerMole: 0 # Can't have value due to roundstart supplies.
 
 - type: gas
   id: Tritium
