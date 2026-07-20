@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ELKRIDGE) Added kiki.
-    type: Add
-  id: 406360
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (ELKRIDGE) Added shipyard console.
     type: Add
   id: 406361
@@ -2799,4 +2792,11 @@ Entries:
   id: 406759
   time: '2026-07-20T20:54:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5200
+- author: redmushie
+  changes:
+  - message: Added a bunch of alternative job icons for event use.
+    type: Add
+  id: 406760
+  time: '2026-07-20T21:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5193
 Order: -1
