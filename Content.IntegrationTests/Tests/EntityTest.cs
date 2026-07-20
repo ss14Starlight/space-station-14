@@ -22,8 +22,14 @@ namespace Content.IntegrationTests.Tests
     public sealed class EntityTest : GameTest
     {
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
-
-        private const int DirtyBatchSize = 2000; // Starlight
+#region Starlight
+        /// <summary>
+        ///     How many prototypes <see cref="SpawnAndDirtyAllEntities"/> spawns before syncing, asserting and
+        ///     deleting. Peak memory scales with this, not with the total prototype count. Raising it makes the test
+        ///     faster and hungrier; lowering it does the reverse.
+        /// </summary>
+        private const int DirtyBatchSize = 2000;
+#endregion
 
         public override PoolSettings PoolSettings => new()
         {
