@@ -65,12 +65,12 @@
       stock: 1
 
 - type: listing
-  id: SpellbookFireball2
-  name: spellbook-fireball-name
-  description: spellbook-fireball-desc
-  productAction: ActionFireball
+  id: SpellbookFireMaster
+  name: spellbook-firemaster-name
+  description: spellbook-firemaster-desc
+  productAction: ActionFireballIII
   cost:
-    WizCoin: 1
+    WizCoin: 10
   categories:
   - SpellbookWar
   conditions:

@@ -19,3 +19,6 @@ spellbook-icestorm-name = Ice Storm
 spellbook-icestorm-desc = Unleash a freezing blast of ice that chills everything it touches to the bone!
 
 spellbook-mind-swap-description-starlight = Exchange bodies with another person! You'll lose access to most wizard equipment while in another body... is it worth it?
+
+spellbook-firemaster-name = The Pyromancer
+spellbook-firemaster-desc = A set of armor and spells tailored for the greatest of pyromancers. Burn them all, show them the searing heat of your skills.
