@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (LAGAN) Added the new fax machines and new chemist fax.
-    type: Add
-  id: 406362
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (LAGAN) Added kiki and more trays for botany.
     type: Add
   id: 406363
@@ -2799,4 +2792,11 @@ Entries:
   id: 406761
   time: '2026-07-20T22:23:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5184
+- author: RedSpeeds
+  changes:
+  - message: Added printer flatpack to ordering terminals.
+    type: Add
+  id: 406762
+  time: '2026-07-20T22:23:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5188
 Order: -1
