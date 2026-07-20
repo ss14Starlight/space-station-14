@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Added Devil to Dynamic.
-    type: Add
-  id: 406347
-  time: '2026-07-02T21:47:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4985
 - author: Romero
   changes:
   - message: Removed M90 GL.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406746
   time: '2026-07-20T15:29:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5192
+- author: Conflee
+  changes:
+  - message: Fixed incorrect sprite sheet layout for Laspi's Gummy Cat Tail.
+    type: Fix
+  id: 406747
+  time: '2026-07-20T15:52:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5217
 Order: -1
