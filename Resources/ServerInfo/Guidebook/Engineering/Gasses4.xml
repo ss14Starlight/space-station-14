@@ -9,9 +9,9 @@
 
   A humourously named gas that true to its name, is capable of healing most types of damage when inhaled. 
   
-  Inhalation progressively increases hunger and thirst, then causes drunkness and eventually unconsciousness.
+  Excessive inhalation causes drowsiness, with sufficient quantities causing outright unconsciousness.
   
-  Healium is created by combining 1 BZ and 11 Frezon to create 12 Healium.
+  Healium is created by combining 1 BZ and 11 Frezon to create 12 Healium and releases heat. Formation rate increases at lower temperatures and stops above 293 K.
 
   ## Nitrium
   <Box>
@@ -22,7 +22,7 @@
   
   When exposed to oxygen nitrium decays into hydrogen and releases a small amount of energy.
   
-  Nitrium is created by combining 1 tritium with 2 nitrogen and 0.1 BZ at over 1500 K.
+  Nitrium is created by combining 1 tritium with 1 nitrogen and 0.05 BZ at over 1500 K consuming heat.
  
   ## Hyper-Noblium
   <Box>
@@ -33,7 +33,7 @@
 
   Hyper-noblium has the best specific heat, making it the best working fluid to store and transfer heat.  
   
-  Hyper-noblium is created by combining 1 tritium with 2 nitrogen below 15 K. Additionally, the presence of BZ acts as a catalyst which reduces tritium consumption massively.
+  Hyper-noblium is created by combining 1 tritium with 2 nitrogen below 15 K but produces a large amount of heat. Additionally, the presence of BZ acts as a catalyst which reduces tritium consumption and heat output massively.
  
   ## Proto-Nitrate
   <Box>

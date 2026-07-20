@@ -1,6 +1,6 @@
 ﻿<Document>
   # Gasses
-  Mundane gasses that easily found in nature. Some are used to breathe whereas others have minor uses.
+  Mundane gasses that are easily found in nature. Some are used to breathe whereas others have minor uses.
 
   ## Air Mix
   <Box>
@@ -59,7 +59,7 @@
     <GuideEntityEmbed Entity="NitrousOxideCanister" Caption=""/>
     <GuideEntityEmbed Entity="EmergencyFunnyOxygenTank" Caption=""/>
   </Box>
-  A reactive combination of oxygen and nitrogen. Primarily used as a anesthetic or narcotic in most species. 
+  A chemically reactive combination of oxygen and nitrogen that is primarily used as a anesthetic or narcotic in most species. 
   
   Can be created by heating oxygen and ammonia, combining frezon and nitrogen, or exhalations from slime based organisms.  Can be decomposed into its component atoms by heating to roughly 850 K.
   
@@ -85,6 +85,6 @@
   </Box>
   The second most common atom in the universe. 
   
-  Has limited practical uses due being incredibly inert, but can be sold on the market for minor value due to the difficulty of isolating such an inert gas.
+  Has limited practical uses due to being incredibly inert, but can be sold on the market for minor value due to the difficulty of isolating such an inert gas.
   
 </Document>

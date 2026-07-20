@@ -8,9 +8,7 @@
   </Box>
   Gaseous phoron which is flammable but incredibly useful for industrial processes.
 
-  Engineering uses this gas to generate power and create exotic gasses.
-
-  Burning it generates a lot of heat, producing carbon dioxide or tritium.  Combustion with oxygen consumes more oxygen the higher the temperature is.
+  Burning it generates a lot of heat, producing carbon dioxide or tritium.  Combustion consumes less oxygen as temperature increases, capping roughly at 1643 K.
 
   Plasma gas also has a good specific heat capacity, making it useful for moving heat around.
   
@@ -20,9 +18,7 @@
   </Box>
   An extremely flammable radioactive gas.
 
-  Tritium is produced when burning plasma in a burn chamber with 97% or more oxygen, saturating plasma with pluoxium, or damaging a supermatter.
-
- Combustion with oxygen consumes more oxygen the higher the temperature is.
+  Tritium is produced when burning plasma in a burn chamber with 97% or more oxygen, saturating plasma with pluoxium, or by damaging a supermatter.
   
   ## Frezon
   <Box>
@@ -31,7 +27,7 @@
 
   A highly effective coolant and valuable export gas.
 
-  Frezon has a massive specific heat making it useful as a working fluid for heat transfer. Additionally combines with nitrogen above -250 C to create nitrous oxide, absorbing energy and massively cooling the mixture. Causes genetic degredation and hallucinations in living beings exposed to it.
+  Frezon has a massive specific heat making it useful as a working fluid for heat transfer. Additionally combines with nitrogen above -250 C to create nitrous oxide, absorbing energy and massively cooling the mixture. Causes genetic degradation and hallucinations in living beings that inhale it.
 
   Frezon is created by combining 1 tritium with 50 oxygen with a nitrogen catalyst to create 51 frezon. This reaction only occurs at roughly -200 C and below. Paradoxically, as the reaction gets colder a percentage of frezon that would be produced is instead replaced with nitrogen.
   
@@ -46,8 +42,8 @@
   
   BZ is created by combining 1 nitrous oxide with 2 plasma, but has several quirks that make large scale production difficult.
   
-  BZ forms exponentially faster the lower the pressure is and requires large volume to produce in bulk.
-  BZ produces heat on formation, and only forms under 310 K.
-  When there is more than 2 plasma per 1 nitrous oxide, no BZ is produced and instead the nitrous is decomposed.
+  BZ forms faster the lower the pressure is and requires large volume to produce in bulk.
+  BZ produces heat on formation, and only forms under 314 K.
+  When there is more than 2 plasma per 1 nitrous oxide a portion of nitrous oxide is decomposed instead being used to make BZ.
 
 </Document>
