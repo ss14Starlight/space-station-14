@@ -456,6 +456,7 @@
       tags:
       - BorgModuleGeneric
       - BorgModuleCargo
+      - BorgModuleMining #Starlight
     hasMindState: borg_e #Starlight ;-;
     noMindState: borg_e_r #Starlight ;-;
 # Starlight Start

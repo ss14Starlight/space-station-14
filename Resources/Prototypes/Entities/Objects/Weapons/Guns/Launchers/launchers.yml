@@ -21,9 +21,6 @@
       Resomi:
         knockback: 10
         staminaMultiplier: 8
-      Avali:
-        knockback: 5 # half of what resomi take
-        staminaMultiplier: 8
       Felionoid:
         knockback: 5 # half of what resomi take
         staminaMultiplier: 8
@@ -147,8 +144,6 @@
         knockback: -10
       Resomi:
         knockback: -5
-      Avali:
-        knockback: -2.5 # half of what resomi take
       Felionoid:
         knockback: -2.5 # half of what resomi take
   - type: Sprite
@@ -191,9 +186,6 @@
         staminaMultiplier: 8
       Rodentia:
         knockback: 10
-        staminaMultiplier: 8
-      Avali:
-        knockback: 5 # half of what resomi take
         staminaMultiplier: 8
       Felionoid:
         knockback: 5 # half of what resomi take
