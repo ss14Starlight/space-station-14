@@ -83,19 +83,17 @@
 
 - type: entity
   name: Stir Stir
-  parent: MobMonkeyAdvanced # Starlight, he's smarter than the average monkey.
+  parent: MobMonkeyAdvanced # He's smarter than the average monkey. Also no vent crawling.
   id: MobMonkeyStirStir
   suffix: AI
   description: An disreputable monkey who should not be trusted. A real cell stuffer.
   components:
-  # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
     - Ancestor
     understands:
     - Ancestor
     - GalacticCommon
-  # Starlight-end
   - type: GhostRole
     prob: 1
     makeSentient: true

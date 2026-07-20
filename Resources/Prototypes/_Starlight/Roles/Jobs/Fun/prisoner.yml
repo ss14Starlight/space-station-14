@@ -12,8 +12,6 @@
   supervisors: job-supervisors-hop
   access:
   - GenpopEnter
-  extendedAccess:
-  - Maintenance
 
 - type: startingGear
   id: PrisonerGear
