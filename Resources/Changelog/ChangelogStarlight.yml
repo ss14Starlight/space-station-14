@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (LAGAN) Added shipyard console.
-    type: Add
-  id: 406364
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (LAGAN) Added distro to artifact to reintroduce air after spacing.
     type: Add
   id: 406365
@@ -2799,4 +2792,11 @@ Entries:
   id: 406763
   time: '2026-07-20T23:00:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5010
+- author: lyxcaster
+  changes:
+  - message: Gave tarantulas night vision.
+    type: Tweak
+  id: 406764
+  time: '2026-07-20T23:45:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5163
 Order: -1
