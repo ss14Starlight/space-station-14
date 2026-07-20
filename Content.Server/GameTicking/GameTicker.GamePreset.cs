@@ -211,19 +211,22 @@ public sealed partial class GameTicker
     [PublicAPI]
     private bool AddGamePresetRules()
     {
+        RoundStartTimeSpan = _gameTiming.CurTime; // Starlight - Ensure this value is set to *something* before adding gamerules, mainly because of SLDynamic.
+
         if (DummyTicker || Preset == null)
             return false;
 
         CurrentPreset = Preset;
-        foreach (var rule in Preset.Rules)
-        {
-            AddGameRule(rule);
-        }
 
         // Starlight begin - Notify admins of preset now that it is locked in.
         if (Preset.ID != "Secret") _chatManager.SendAdminAnnouncement($"Round preset selected: {Preset.ID}.");
         _adminLogger.Add(LogType.RoundstartRulesAdded, LogImpact.High, $"Round preset selected: {Preset.ID}.");
         // Starlight end
+
+        foreach (var rule in Preset.Rules)
+        {
+            AddGameRule(rule);
+        }
 
         return true;
     }
