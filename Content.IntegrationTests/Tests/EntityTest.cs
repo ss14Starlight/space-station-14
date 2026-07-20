@@ -22,14 +22,14 @@ namespace Content.IntegrationTests.Tests
     public sealed class EntityTest : GameTest
     {
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
-#region Starlight
+        // Starlight Start
         /// <summary>
         ///     How many prototypes <see cref="SpawnAndDirtyAllEntities"/> spawns before syncing, asserting and
         ///     deleting. Peak memory scales with this, not with the total prototype count. Raising it makes the test
         ///     faster and hungrier; lowering it does the reverse.
         /// </summary>
         private const int DirtyBatchSize = 2000;
-#endregion
+        // Starlight End
 
         public override PoolSettings PoolSettings => new()
         {
@@ -181,13 +181,13 @@ namespace Content.IntegrationTests.Tests
                 .Where(p => !p.Components.ContainsKey("MapGrid")) // This will smash stuff otherwise.
                 .Select(p => p.ID)
                 .ToList();
-#region starlight
+            // Starlight Start
             var cEntMan = client.ResolveDependency<IEntityManager>();
 
             for (var i = 0; i < protoIds.Count; i += DirtyBatchSize)
             {
                 var batch = protoIds.GetRange(i, Math.Min(DirtyBatchSize, protoIds.Count - i));
-#endregion
+            // Starlight End
                 await server.WaitPost(() =>
                 {
                     foreach (var protoId in batch) // Starlight
@@ -203,7 +203,7 @@ namespace Content.IntegrationTests.Tests
                 });
 
                 await pair.RunUntilSynced();
-#region Starlight
+                // Starlight Start
                 // Make sure the client actually received the entities.
                 // 500 is completely arbitrary and inherited from when this ran as a single pass; a short final batch
                 // scales it down. Note that the client & sever entity counts aren't expected to match.
@@ -242,7 +242,7 @@ namespace Content.IntegrationTests.Tests
 
                 GC.Collect();
             }
-#endregion
+            // Starlight End
         }
 
         /// <summary>
