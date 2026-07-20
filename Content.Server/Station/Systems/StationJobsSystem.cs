@@ -297,6 +297,24 @@ public sealed partial class StationJobsSystem : EntitySystem
         UpdateJobsAvailable();
     }
 
+    #region Starlight
+
+    public void MakeJobLimited(EntityUid station, string jobPrototypeId, StationJobsComponent? stationJobs = null,
+        bool reset = false)
+    {
+        if (!Resolve(station, ref stationJobs))
+            throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
+
+        var realCount = stationJobs.PlayerJobs.Values.SelectMany(jobs => jobs).Count(job => job.Id == jobPrototypeId);
+
+        stationJobs.TotalJobs += realCount;
+        stationJobs.JobList[jobPrototypeId] = reset ? stationJobs.SetupAvailableJobs[jobPrototypeId][1] : 0;
+
+        UpdateJobsAvailable();
+    }
+
+    #endregion
+
     /// <inheritdoc cref="IsJobUnlimited(Robust.Shared.GameObjects.EntityUid,string,Content.Server.Station.Components.StationJobsComponent?)"/>
     /// <param name="station">Station to check.</param>
     /// <param name="job">Job to check.</param>
