@@ -43,6 +43,7 @@
         - DoorBumpOpener
         - AnomalyHost
         - Avali
+        - SpeciesSmall
         - NotLabelable
     - type: Absorbable
     - type: HumanoidAppearance

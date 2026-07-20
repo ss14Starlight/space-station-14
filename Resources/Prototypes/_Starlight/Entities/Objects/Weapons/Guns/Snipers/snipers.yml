@@ -23,13 +23,14 @@
     doestContain:
       Skating:
         knockback: 1.0
-        staminaMultiplier: 100
-      Rodentia:
-        knockback: 1.5
-      Resomi:
-        knockback: 1.5
-      Felionoid:
-        knockback: 0.75 # half of what resomi take
+        staminaDamage: 10
+      SpeciesSmall:
+        knockback: 8
+        staminaDamage: 10
+        doFly: true
+        isDisabledByMagboots: false
+        isReducedByMagboots: true
+        magbootReductionMultiplier: 50
   - type: BallisticAmmoProvider
     whitelist:
       tags:

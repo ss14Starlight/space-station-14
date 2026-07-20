@@ -69,14 +69,13 @@
       collection: WeakHit
   - type: KnockbackByUserTag
     doestContain:
-      Rodentia:
+      SpeciesSmall:
         knockback: 0
-      Resomi:
-        knockback: 0
-      Avali:
-        knockback: 0
-      Felionoid:
-        knockback: 0
+        staminaDamage: 0
+        doFly: false
+        isDisabledByMagboots: true
+        isReducedByMagboots: true
+        magbootReductionMultiplier: 100
   # Starlight end
   - type: Sprite
     sprite: Objects/Fun/Foam/foam_rifle.rsi

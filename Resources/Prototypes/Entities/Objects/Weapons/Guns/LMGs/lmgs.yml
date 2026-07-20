@@ -14,16 +14,14 @@
     doestContain:
       Skating:
         knockback: 0.5
-        staminaMultiplier: 100
-      Rodentia:
-        knockback: 0.02
-        staminaMultiplier: 100
-      Resomi:
-        knockback: 0.02
-        staminaMultiplier: 100
-      Felionoid:
-        knockback: 0.01 #half of what resomi take
-        staminaMultiplier: 100
+        staminaDamage: 1
+      SpeciesSmall:
+        knockback: 1.75
+        staminaDamage: 1 # 100 shots to stam crit.
+        doFly: false
+        isDisabledByMagboots: false
+        isReducedByMagboots: true
+        magbootReductionMultiplier: 80
     # starlight start
   - type: MeleeWeapon
     wideAnimationRotation: 90

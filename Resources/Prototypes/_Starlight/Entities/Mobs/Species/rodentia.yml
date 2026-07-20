@@ -127,6 +127,7 @@
       - DoorBumpOpener
       - AnomalyHost
       - Rodentia
+      - SpeciesSmall
       - NotLabelable
   - type: Item
     size: Huge

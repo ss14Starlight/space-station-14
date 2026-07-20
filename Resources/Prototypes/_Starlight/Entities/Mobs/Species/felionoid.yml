@@ -81,6 +81,7 @@
     - DoorBumpOpener
     - AnomalyHost
     - Felionoid
+    - SpeciesSmall
     - NotLabelable
   - type: Fixtures
     fixtures:

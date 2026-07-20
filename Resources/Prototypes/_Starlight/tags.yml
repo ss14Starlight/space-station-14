@@ -637,6 +637,10 @@
   id: SpecialMech
 
 - type: Tag
+  id: SpeciesSmall
+    # Tag for weapon knockback, assigned to small species.
+
+- type: Tag
   id: SpeedLoaderMagnumImprovised
 
 - type: Tag

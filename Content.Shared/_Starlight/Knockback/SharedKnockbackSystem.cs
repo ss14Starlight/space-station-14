@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Clothing;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
@@ -7,6 +8,8 @@ using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Item.ItemToggle;
+using Content.Shared.Item.ItemToggle.Components;
 using Robust.Shared.Map;
 
 //linq
@@ -21,6 +24,7 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
     [Dependency] private ThrowingSystem _throwing = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<KnockbackByUserTagComponent, OnNonEmptyGunShotEvent>(OnGunShot);
@@ -34,11 +38,20 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
             //check if the examiner has any tags that match the component's tags
             if (GetKnockbackData(ent, args.Examiner, out KnockbackData data))
             {
-                var knockback = CalculateKnockback(args.Examiner, data);
+                // Magboot check.
+                var hasMagBootsEnabled = false;
+                if (_inventory.TryGetSlotEntity(args.Examiner, "shoes", out var boots) &&
+                    TryComp<MagbootsComponent>(boots.Value, out _) &&
+                    _toggle.IsActivated(boots.Value))
+                {
+                    hasMagBootsEnabled = true;
+                }
+                var knockback = CalculateKnockback(args.Examiner, data, hasMagBootsEnabled);
                 //figure out the forwards/backwards direction
                 var direction = knockback < 0 ? "forwards" : "backwards";
+                // args to push to examine text.
                 args.PushMarkup(Loc.GetString("knockback-by-user-tag-component-examine-distance", ("knockback", String.Format("{0:0.###}", MathF.Abs(knockback))), ("direction", direction)));
-                args.PushMarkup(Loc.GetString("knockback-by-user-tag-component-examine-stamina", ("stamina", String.Format("{0:0.###}", CalculateStaminaDamage(data, knockback)))));
+                args.PushMarkup(Loc.GetString("knockback-by-user-tag-component-examine-stamina", ("stamina", String.Format("{0:0.###}", CalculateStaminaDamage(data,hasMagBootsEnabled)))));
             }
         }
     }
@@ -63,6 +76,17 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
         //check for tags
         if (GetKnockbackData(ent, user, out var data))
         {
+            var hasMagBootsEnabled = false;
+            // Check for magboots.
+            if (_inventory.TryGetSlotEntity(user, "shoes", out var boots) &&
+                TryComp<MagbootsComponent>(boots.Value, out _) &&
+                _toggle.IsActivated(boots.Value))
+            {
+                hasMagBootsEnabled = true;
+            }
+            // Early return.
+            if(data.IsDisabledByMagboots && hasMagBootsEnabled)
+                return;
             //get the gun component
             if (TryComp<GunComponent>(ent, out var gunComponent))
             {
@@ -91,12 +115,19 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
                 //set the new coordinates
                 var flippedDirection = new EntityCoordinates(user, modifiedCoords);
 
-                _throwing.TryThrow(user, flippedDirection, knockback * 5, user, 0, doSpin: false, compensateFriction: true);
+                if (data.IsReducedByMagboots && hasMagBootsEnabled)
+                {
+                    _throwing.TryThrow(user, flippedDirection, knockback * 5, user, 0, doSpin: false, compensateFriction: true, doFly: false);
+                }
+                else
+                {
+                    _throwing.TryThrow(user, flippedDirection, knockback * 5, user, 0, doSpin: false, compensateFriction: true, doFly: data.DoFly);
+                }
 
                 //deal stamina damage
                 if (TryComp<StaminaComponent>(user, out var stamina))
                 {
-                    _stamina.TakeStaminaDamage(user, CalculateStaminaDamage(data, knockback), component: stamina);
+                    _stamina.TakeStaminaDamage(user, CalculateStaminaDamage(data, hasMagBootsEnabled), component: stamina);
                 }
             }
         }
@@ -113,7 +144,11 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
             {
                 var tagdata = ent.Comp.DoestContain[tag];
                 totalData.Knockback += tagdata.Knockback;
-                totalData.StaminaMultiplier += tagdata.StaminaMultiplier;
+                totalData.StaminaDamage += tagdata.StaminaDamage;
+                totalData.DoFly = tagdata.DoFly;
+                totalData.IsDisabledByMagboots = tagdata.IsDisabledByMagboots;
+                totalData.IsReducedByMagboots = tagdata.IsReducedByMagboots;
+                totalData.MagbootReductionMultiplier = tagdata.MagbootReductionMultiplier;
                 hadAnyMatches = true;
             }
         }
@@ -123,7 +158,7 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
         return hadAnyMatches;
     }
 
-    private float CalculateKnockback(EntityUid user, KnockbackData data)
+    private float CalculateKnockback(EntityUid user, KnockbackData data, bool magBoots = false)
     {
         float knockback = data.Knockback;
         //If we have no slips, cut the knockback in half
@@ -131,12 +166,23 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
         {
             knockback *= 0.5f;
         }
+        else if (data.IsReducedByMagboots && magBoots)
+        {
+            knockback *= 1f - (data.MagbootReductionMultiplier / 100f);
+        }
 
         return knockback;
     }
 
-    private static float CalculateStaminaDamage(KnockbackData data, float knockback) => MathF.Abs(knockback) * data.StaminaMultiplier;
-
+    private static float CalculateStaminaDamage(KnockbackData data, bool magBoots = false)
+    {
+        if(data.IsDisabledByMagboots && magBoots)
+            return 0;
+        else if(data.IsReducedByMagboots && magBoots)
+            return data.StaminaDamage * (1f - (data.MagbootReductionMultiplier / 100f));
+        else
+            return data.StaminaDamage;
+    }
 
     private bool CheckForNoSlips(EntityUid uid)
     {

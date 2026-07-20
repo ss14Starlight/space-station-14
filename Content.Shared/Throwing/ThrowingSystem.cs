@@ -66,6 +66,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool playSound = true,
         bool doSpin = true,
         bool predicted = true, // Starlight
+        bool doFly = true, // Starlight
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         var thrownPos = _transform.GetMapCoordinates(uid);
@@ -74,7 +75,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         if (mapPos.MapId != thrownPos.MapId)
             return;
 
-        TryThrow(uid, mapPos.Position - thrownPos.Position, baseThrowSpeed, user, pushbackRatio, friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor, predicted: predicted); // Starlight edit
+        TryThrow(uid, mapPos.Position - thrownPos.Position, baseThrowSpeed, user, pushbackRatio, friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor, predicted: predicted, doFly: doFly); // Starlight edit
     }
 
     /// <summary>
@@ -87,6 +88,8 @@ public sealed partial class ThrowingSystem : EntitySystem
     /// <param name="friction">friction value used for the distance calculation. If set to null this defaults to the standard tile values</param>
     /// <param name="compensateFriction">True will adjust the throw so the item stops at the target coordinates. False means it will land at the target and keep sliding.</param>
     /// <param name="doSpin">Whether spin will be applied to the thrown entity.</param>
+    /// <param name="predicted">Whether or not the throw is predicted.</param>
+    /// <param name="doFly">Whether or not the entity will be in the air, affects movement heavily. Used exclusively by the gun knockback system.</param>
     /// <param name="unanchor">If set to Unanchorable, if the entity has <see cref="AnchorableComponent"/> and is unanchorable, it will unanchor the thrown entity. If set to All, it will unanchor the entity regardless.</param>
     public void TryThrow(EntityUid uid,
         Vector2 direction,
@@ -100,6 +103,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool playSound = true,
         bool doSpin = true,
         bool predicted = true, // Starlight
+        bool doFly = true, // Starlight
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         var physicsQuery = GetEntityQuery<PhysicsComponent>();
@@ -117,7 +121,7 @@ public sealed partial class ThrowingSystem : EntitySystem
             baseThrowSpeed,
             user,
             pushbackRatio,
-            friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor, predicted: predicted); // Starlight edit
+            friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor, predicted: predicted, doFly: doFly); // Starlight edit
     }
 
     /// <summary>
@@ -130,6 +134,8 @@ public sealed partial class ThrowingSystem : EntitySystem
     /// <param name="friction">friction value used for the distance calculation. If set to null this defaults to the standard tile values</param>
     /// <param name="compensateFriction">True will adjust the throw so the item stops at the target coordinates. False means it will land at the target and keep sliding.</param>
     /// <param name="doSpin">Whether spin will be applied to the thrown entity.</param>
+    /// <param name="predicted">Whether or not the throw is predicted.</param>
+    /// <param name="doFly">Whether or not the entity will be in the air, affects movement heavily. Used exclusively by the gun knockback system.</param>
     /// <param name="unanchor">If set to Unanchorable, if the entity has <see cref="AnchorableComponent"/> and is unanchorable, it will unanchor the thrown entity. If set to All, it will unanchor the entity regardless.</param>
     public void TryThrow(EntityUid uid,
         Vector2 direction,
@@ -146,6 +152,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool playSound = true,
         bool doSpin = true,
         bool predicted = true, // Starlight
+        bool doFly = true, // Starlight
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         if (baseThrowSpeed <= 0 || direction == Vector2Helpers.Infinity || direction == Vector2Helpers.NaN || direction == Vector2.Zero || friction < 0)
@@ -226,7 +233,7 @@ public sealed partial class ThrowingSystem : EntitySystem
             RaiseLocalEvent(user.Value, ref throwEvent, true);
         }
 
-        if (comp.LandTime == null || comp.LandTime <= TimeSpan.Zero)
+        if (comp.LandTime == null || comp.LandTime <= TimeSpan.Zero || !doFly) // Starlight edit
         {
             _thrownSystem.LandComponent(uid, comp, physics, playSound);
         }

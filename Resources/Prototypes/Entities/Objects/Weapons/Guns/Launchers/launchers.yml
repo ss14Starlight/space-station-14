@@ -14,16 +14,14 @@
     doestContain:
       Skating:
         knockback: 5
-        staminaMultiplier: 20
-      Rodentia:
-        knockback: 10
-        staminaMultiplier: 8
-      Resomi:
-        knockback: 10
-        staminaMultiplier: 8
-      Felionoid:
-        knockback: 5 # half of what resomi take
-        staminaMultiplier: 8
+        staminaDamage: 20
+      SpeciesSmall:
+        knockback: 15
+        staminaDamage: 40 # 3 shots to stam crit. 
+        doFly: true
+        isDisabledByMagboots: false
+        isReducedByMagboots: true
+        magbootReductionMultiplier: 30
   - type: Sprite
   - type: Clothing
     sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
@@ -140,12 +138,13 @@
     doestContain:
       Skating:
         knockback: -2.5
-      Rodentia:
+      SpeciesSmall:
         knockback: -10
-      Resomi:
-        knockback: -5
-      Felionoid:
-        knockback: -2.5 # half of what resomi take
+        staminaDamage: 50 # 2 shots to stam crit.
+        doFly: true
+        isDisabledByMagboots: false
+        isReducedByMagboots: true
+        magbootReductionMultiplier: 50
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
     layers:
@@ -181,15 +180,13 @@
   components:
   - type: KnockbackByUserTag # Starlight
     doestContain:
-      Resomi:
+      SpeciesSmall:
         knockback: 10
-        staminaMultiplier: 8
-      Rodentia:
-        knockback: 10
-        staminaMultiplier: 8
-      Felionoid:
-        knockback: 5 # half of what resomi take
-        staminaMultiplier: 8
+        staminaDamage: 50 # 2 shots to stam crit.
+        doFly: true
+        isDisabledByMagboots: false
+        isReducedByMagboots: true
+        magbootReductionMultiplier: 50
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
     layers:

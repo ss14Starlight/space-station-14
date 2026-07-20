@@ -14,16 +14,14 @@
     doestContain:
       Skating:
         knockback: 2
-        staminaMultiplier: 50
-      Rodentia:
-        knockback: 3
-        staminaMultiplier: 20
-      Resomi:
-        knockback: 3
-        staminaMultiplier: 20
-      Felionoid:
-        knockback: 1.5 #half of what resomi take
-        staminaMultiplier: 20
+        staminaDamage: 10
+      SpeciesSmall:
+        knockback: 4
+        staminaDamage: 10 # 10 shots to stam crit.
+        doFly: true
+        isDisabledByMagboots: false
+        isReducedByMagboots: true
+        magbootReductionMultiplier: 50
   - type: Sprite
     layers:
     - state: icon
