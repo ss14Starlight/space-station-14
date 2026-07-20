@@ -348,13 +348,10 @@
       state: Prisoner
   - type: Item
     heldPrefix: orange
-  - type: Access
-    tags:
-    - GenpopEnter
   - type: IdCard
-    jobTitle: job-name-prisoner
-    jobIcon: JobIconPrisoner
     canMicrowave: false
+  - type: PresetIdCard
+    job: Prisoner
   - type: Speech
     speechVerb: Robotic
   - type: Tag # Ignore Chameleon tags
