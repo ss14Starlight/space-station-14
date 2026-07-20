@@ -3,7 +3,7 @@
   id: SLDynamicRule
   components:
   - type: GameRule
-    minPlayers: 40 # Min for Wizard
+    minPlayers: 40
   - type: DynamicRule
     startingBudgetMin: 250 # 200's a bit too low, can't even roll most minor antags alongside anything but traitor.
     startingBudgetMax: 550
@@ -23,8 +23,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 15
         - id: DynamicSurvivalEventScheduler
           weight: 5
           conditions:
@@ -44,8 +42,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 15
       # Major Rules
       - !type:GroupSelector
         conditions:
@@ -390,8 +386,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 15
         - id: DynamicSurvivalEventScheduler
           weight: 3
           conditions:
@@ -411,8 +405,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 15
       # Major Rules, Beta
       - !type:GroupSelector
         conditions:

@@ -112,7 +112,7 @@
   name: extended-title
   showInVote: true # 🌟Starlight🌟
   description: extended-description
-  minPlayers: 5 # Starlight
+  minPlayers: 0 # Starlight
   rules:
   - BasicStationEventScheduler
   - MeteorSwarmScheduler

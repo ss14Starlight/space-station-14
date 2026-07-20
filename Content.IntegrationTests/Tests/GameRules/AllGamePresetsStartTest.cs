@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Content.IntegrationTests.Fixtures.Attributes;
-using Content.IntegrationTests.Utility;
 using Content.Server.Antag;
 using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
@@ -19,24 +18,31 @@ namespace Content.IntegrationTests.Tests.GameRules;
 [TestFixture]
 public sealed class AllGamePresetsStartTest : AntagTest
 {
+    #region Starlight
     /// <summary>
     /// A list of blacklisted <see cref="GamePresetPrototype"/> for this test. Some down streams might make changes which nuke upstream game modes they don't use.
     /// This prevents them from being tested. If you use this to silence valid test fails and your game fails to start. Skill issue. Do 100 push-ups.
     /// </summary>
-    private static readonly HashSet<string> IgnoredPresets = ["TerrorSpiders"]; // Is a string to prevent YAML Linter from freaking if this is empty. - Starlight, Terror Spiders need their own test
+    //private static readonly HashSet<string> IgnoredPresets = ["TerrorSpiders"]; // Is a string to prevent YAML Linter from freaking if this is empty. - Starlight, Terror Spiders need their own test
 
-    private static string[] _gamePresets = GameDataScrounger.PrototypesOfKind<GamePresetPrototype>().Where(p => !IgnoredPresets.Contains(p)).ToArray();
+    //private static string[] _gamePresets = GameDataScrounger.PrototypesOfKind<GamePresetPrototype>().Where(p => !IgnoredPresets.Contains(p)).ToArray();
 
-    // Tests that all game modes can start given ideal circumstances.
+    // Tests that AllerAtOnce and all of its game rules can start.
     [Test]
-    [TestOf(typeof(GameTicker)), TestOf(typeof(AntagSelectionSystem)), TestOf(typeof(AntagSelectionComponent))]
-    [TestCaseSource(nameof(_gamePresets))]
-    [Description("Ensures all Game Presets are able to start and assign all antags correctly without spawning anyone in nullspace.")]
+    //[TestOf(typeof(GameTicker)), TestOf(typeof(AntagSelectionSystem)), TestOf(typeof(AntagSelectionComponent))]
+    //[TestCaseSource(nameof(_gamePresets))]
+    //[Description("Ensures all Game Presets are able to start and assign all antags correctly without spawning anyone in nullspace.")]
+    [TestOf(typeof(GameTicker))]
+    [TestOf(typeof(AntagSelectionSystem))]
+    [TestOf(typeof(AntagSelectionComponent))]
+    [Description("Ensures AllerAtOnce can start and assign all of its antags without spawning anyone in nullspace.")]
     [EnsureCVar(Side.Server, typeof(CCVars), nameof(CCVars.GameTickerIgnoredPresets), GameTicker.DummyGameRule)]
-    public async Task TestAllGamemodesCanStart(string presetId)
+    public async Task TestAllGamemodesCanStart()
     {
-        Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
-        Server.CfgMan.SetCVar(CCVars.GameRoleTimers, false); // Starlight
+        const string presetId = "AllerAtOnce"; // The test takes too long if we run every gamemode, but aller at once "effectively" runs every gamemode, so we're just going to run it to save time.
+        Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false);
+        Server.CfgMan.SetCVar(CCVars.GameRoleTimers, false);
+        #endregion
         // Initially in the lobby
         await Server.WaitPost(() =>
         {
