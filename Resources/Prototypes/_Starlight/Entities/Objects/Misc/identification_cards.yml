@@ -312,6 +312,59 @@
 
 - type: entity
   parent: IDCardStandard
+  id: StirStirIDCard
+  name: stir stir's ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: orange
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Prisoner
+  - type: Item
+    heldPrefix: orange
+  - type: Access
+    tags:
+    - GenpopEnter
+  - type: IdCard
+    jobTitle: job-name-prisoner
+    jobIcon: JobIconPrisoner
+    canMicrowave: false
+    name: Stir Stir
+  - type: Speech
+    speechVerb: Robotic
+  - type: Tag # Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonerJobIDCard
+  name: prisoner ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: orange
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Prisoner
+  - type: Item
+    heldPrefix: orange
+  - type: Access
+    tags:
+    - GenpopEnter
+  - type: IdCard
+    jobTitle: job-name-prisoner
+    jobIcon: JobIconPrisoner
+    canMicrowave: false
+  - type: Speech
+    speechVerb: Robotic
+  - type: Tag # Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  parent: IDCardStandard
   id: SovietIdCard
   name: soviet id card
   components:
