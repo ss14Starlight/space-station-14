@@ -406,7 +406,12 @@ public sealed class CharacterSelectionTest : GameTest
             //Assert.That(spawnedProfile.MemberwiseEquals(expectedCharacterProfile), Is.True);
         }
 
-        await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.Server.WaitPost(() =>
+        {
+            // Do not leak OopsAllTraitors into the next pooled test.
+            ticker.SetGamePreset("Sandbox");
+            ticker.RestartRound();
+        });
     }
 
     // Run multiple round starts with the same set of characters, all of which are valid to select,
@@ -472,6 +477,12 @@ public sealed class CharacterSelectionTest : GameTest
             }
         }
         Assert.That(selectedCharacterSlots, Has.Count.EqualTo(cPref.Preferences.Characters.Count));
+
+        await pair.Server.WaitPost(() =>
+        {
+            // Do not leak OopsAllTraitors into the next pooled test.
+            ticker.SetGamePreset("Sandbox");
+        });
     }
 
 }

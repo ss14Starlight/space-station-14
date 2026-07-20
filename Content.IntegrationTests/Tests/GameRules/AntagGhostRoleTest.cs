@@ -45,17 +45,18 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         "SubTraitor",
         "SleeperAgents",
         "TraitorReinforcement",
-        // Covered by DerelictGenericCyborgSpawn, Borgi excluded because it's "novel"
+        // Covered by DerelictGenericCyborgSpawn
+        "DerelictBorgiSpawn",
         "DerelictPurrfusCyborgSpawn",
         "DerelictEngineerCyborgSpawn",
         "DerelictJanitorCyborgSpawn",
         "DerelictMedicalCyborgSpawn",
         "DerelictMiningCyborgSpawn",
         "DerelictSyndicateAssaultCyborgSpawn",
-        // Covered by DerelictStealthXenoborgSpawn
         "DerelictHeavyXenoborgSpawn",
         "DerelictEngiXenoborgSpawn",
         "DerelictScoutXenoborgSpawn",
+        "DerelictStealthXenoborgSpawn",
         "DerelictXenoBorgiSpawn",
         // One-offs
         "ParadoxCrisisSpawn",
@@ -65,7 +66,9 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         "VampireLess",
         "ZombieOutbreak",
         "NukeopsLate",
-        "SubWizard"
+        "SubWizard",
+        "Wizard",
+        "Changeling" // We don't use Wizden Changelings
     ];
     private static readonly string[] AntagGameRules = GameDataScrounger.EntitiesWithComponent("AntagSelection").Where(ruleId => !IgnoredAntagGameRules.Contains(ruleId)).ToArray(); // Exclude duplicate rules, they're really not needed and just time out tests.
     #endregion
