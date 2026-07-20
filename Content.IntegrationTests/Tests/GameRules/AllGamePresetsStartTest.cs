@@ -201,11 +201,8 @@ public sealed class AllGamePresetsStartTest : AntagTest
             {
                 foreach (var (antag, expected) in expectedCounts)
                 {
-                    Assert.That(
-                        actualCounts[antag],
-                        Is.EqualTo(expected),
-                        $"Expected {expected} player(s) to become {antag.ID}, " +
-                        $"but {actualCounts[antag]} were preselected.");
+                    Assert.That(actualCounts[antag], Is.EqualTo(expected),
+                        $"Expected {expected} player(s) to become {antag.ID}, but {actualCounts[antag]} were preselected.");
                 }
             });
             #endregion

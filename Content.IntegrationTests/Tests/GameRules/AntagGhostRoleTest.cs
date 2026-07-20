@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System.Collections.Generic;
+using System.Linq;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.IntegrationTests.Utility;
 using Content.Server.Antag;
@@ -122,9 +123,12 @@ public sealed partial class AntagGhostRoleTest : AntagTest
             #region Starlight
             if (IsIgnored(spawner))
                 continue;
+
+            if (!AssertGhostRoleTaken(spawner, role, xform))
+                continue;
             #endregion
 
-            AssertGhostRoleTaken(spawner, role, xform);
+            //AssertGhostRoleTaken(spawner, role, xform); // Starlight
             var newMind = ServerSession!.GetMind();
             Assert.That(newMind, Is.Not.EqualTo(mind));
             mind = newMind;
@@ -137,7 +141,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Server.CfgMan.SetCVar(CCVars.GameRoleTimers, true); // Starlight
     }
 
-    private void AssertGhostRoleTaken(GhostRoleAntagSpawnerComponent spawner, GhostRoleComponent role, TransformComponent xform)
+    private bool AssertGhostRoleTaken(GhostRoleAntagSpawnerComponent spawner, GhostRoleComponent role, TransformComponent xform) // Starlight, void to bool
     {
         // Ensure the ghost role spawner spawned correctly!
         Assert.That(spawner.Definition, Is.Not.Null);
@@ -145,9 +149,43 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Assert.That(xform.MapID, Is.Not.EqualTo(MapId.Nullspace));
 
         // Take the ghost role and ensure we take it!
-        Assert.That(_ghostRole.Takeover(ServerSession!, role.Identifier), Is.True);
-        Assert.That(ServerSession!.AttachedEntity, Is.Not.Null);
-        var antag = SProtoMan.Index(spawner.Definition);
+        #region Starlight
+        var definition = spawner.Definition!.Value;
+        var antag = SProtoMan.Index(definition);
+
+        var previousEntity = ServerSession!.AttachedEntity;
+        var previousMind = ServerSession.GetMind();
+
+        var eligible = AntagSys.CanTakeAntagGhostRole(ServerSession, definition);
+
+        var tookRole = _ghostRole.Takeover(ServerSession, role.Identifier);
+
+        Assert.That(tookRole, Is.EqualTo(eligible), eligible ? $"Eligible session failed to take {definition}."
+                : $"Ineligible session unexpectedly took {definition}.");
+
+        if (!eligible)
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(ServerSession.AttachedEntity, Is.EqualTo(previousEntity),
+                    "Rejected takeover changed the attached entity.");
+
+                Assert.That(ServerSession.GetMind(), Is.EqualTo(previousMind),
+                    "Rejected takeover changed the session's mind.");
+
+                Assert.That(role.Taken, Is.False,
+                    "Rejected takeover marked the ghost role as taken.");
+
+                Assert.That(_ghostRole.GhostRoles.Any(entry => entry.Comp.Identifier == role.Identifier), Is.True,
+                    "Rejected takeover removed the available ghost role.");
+            });
+
+            return false;
+        }
+
+        Assert.That(ServerSession.AttachedEntity, Is.Not.Null);
+
+        #endregion
         SAssertAntagInitialized(antag, ServerSession);
 
         // Ensure we spawned in the correct location
@@ -161,6 +199,8 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         // I will not get heisentest due to floating point errors
         Assert.That(MathHelper.CloseTo(sessionXform.Coordinates.X, xform.Coordinates.X, 0.001f), Is.True);
         Assert.That(MathHelper.CloseTo(sessionXform.Coordinates.Y, xform.Coordinates.Y, 0.001f), Is.True);
+
+        return true; // Starlight
     }
 
     #region Starlight

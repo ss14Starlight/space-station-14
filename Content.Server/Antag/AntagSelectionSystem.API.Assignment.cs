@@ -215,6 +215,27 @@ public sealed partial class AntagSelectionSystem
         return false;
     }
 
+    #region Starlight
+    /// <summary>
+    /// Returns whether a player may claim an antagonist ghost role.
+    /// This intentionally does not require the antag preference to be enabled.
+    /// </summary>
+    [PublicAPI]
+    public bool CanTakeAntagGhostRole(ICommonSession session, ProtoId<AntagSpecifierPrototype> definition)
+    {
+        return Proto.Resolve(definition, out var antag) && CanTakeAntagGhostRole(session, antag);
+    }
+
+    /// <summary>
+    /// Returns whether a player may claim an antagonist ghost role.
+    /// </summary>
+    [PublicAPI]
+    public bool CanTakeAntagGhostRole(ICommonSession session, AntagSpecifierPrototype definition)
+    {
+        return !IsAntagBanned(session, definition) && _playTime.IsAllowed(session, definition.PrefRoles);
+    }
+    #endregion
+
     /// <inheritdoc cref="TryMakeAntag(Entity{AntagSelectionComponent},AntagSpecifierPrototype,ICommonSession,bool)"/>
     [PublicAPI]
     public bool TryMakeAntag(Entity<AntagSelectionComponent> gameRule,

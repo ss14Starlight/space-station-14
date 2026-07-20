@@ -187,10 +187,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         #endregion
 
         // Ensure the player is allowed to play this antagonist!
-        if (IsAntagBanned(args.Player, def) || !_playTime.IsAllowed(args.Player, def.PrefRoles))
         #region Starlight
+        if (!CanTakeAntagGhostRole(args.Player, def))
         {
-            Log.Debug($"Player {args.Player.Name} was not allowed to take antag {def.ID} from game rule {ToPrettyString(rule)} due to being banned or not having enough playtime.");
+            Log.Debug($"Player {args.Player.Name} was not allowed to take antag {def.ID} from game rule {ToPrettyString(rule)} due to being banned or not meeting the role requirements.");
             return;
         }
         #endregion
