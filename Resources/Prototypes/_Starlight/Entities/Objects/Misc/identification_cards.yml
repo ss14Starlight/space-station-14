@@ -329,7 +329,6 @@
   - type: PresetIdCard
     job: Prisoner
     name: Stir Stir
-    canMicrowave: false
   - type: Speech
     speechVerb: Robotic
   - type: Tag # Ignore Chameleon tags
