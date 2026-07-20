@@ -31,7 +31,7 @@ public sealed partial class KnockbackData
     public float StaminaDamage = 0;
     /// <summary>
     /// Whether or not the ThrowSystem counts the entity as InAir
-    /// Keeping this valueas false seconds will make movement not feel painful for the player during automatic gunfire as BodyStatus.InAir prevents players from moving.
+    /// Keeping this value as false will make movement not feel painful for the player during automatic gunfire as BodyStatus.InAir prevents players from moving.
     /// True to enable ThrowingSystem.cs TryThrow() BodyStatus.InAir.
     /// </summary>
     [DataField]

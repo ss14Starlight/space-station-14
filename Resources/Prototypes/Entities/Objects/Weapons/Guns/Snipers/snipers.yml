@@ -16,7 +16,7 @@
         knockback: 2.0
         staminaDamage: 25
       SpeciesSmall:
-        knockback: 5
+        knockback: 3.25
         staminaDamage: 25 # 4 shots to stam crit.
         doFly: true 
         isDisabledByMagboots: false
@@ -90,9 +90,9 @@
         knockback: 3
         staminaDamage: 10 # 10 shots to stam crit.
         doFly: false
-        isDisabledByMagboots: true
+        isDisabledByMagboots: false
         isReducedByMagboots: true
-        magbootReductionMultiplier: 75
+        magbootReductionMultiplier: 30
   - type: BallisticAmmoProvider # Starlight
     capacity: 10
     proto: CartridgeMagnumSP

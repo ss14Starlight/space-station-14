@@ -16,7 +16,7 @@
         knockback: 2
         staminaDamage: 10
       SpeciesSmall:
-        knockback: 4
+        knockback: 1.75
         staminaDamage: 10 # 10 shots to stam crit.
         doFly: true
         isDisabledByMagboots: false

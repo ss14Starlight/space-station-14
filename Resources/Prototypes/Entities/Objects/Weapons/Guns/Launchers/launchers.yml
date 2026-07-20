@@ -16,7 +16,7 @@
         knockback: 5
         staminaDamage: 20
       SpeciesSmall:
-        knockback: 15
+        knockback: 2
         staminaDamage: 40 # 3 shots to stam crit. 
         doFly: true
         isDisabledByMagboots: false
@@ -139,7 +139,7 @@
       Skating:
         knockback: -2.5
       SpeciesSmall:
-        knockback: -10
+        knockback: -3
         staminaDamage: 50 # 2 shots to stam crit.
         doFly: true
         isDisabledByMagboots: false
@@ -181,7 +181,7 @@
   - type: KnockbackByUserTag # Starlight
     doestContain:
       SpeciesSmall:
-        knockback: 10
+        knockback: -3
         staminaDamage: 50 # 2 shots to stam crit.
         doFly: true
         isDisabledByMagboots: false

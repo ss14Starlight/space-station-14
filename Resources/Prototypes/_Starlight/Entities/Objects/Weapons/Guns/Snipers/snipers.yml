@@ -25,12 +25,12 @@
         knockback: 1.0
         staminaDamage: 10
       SpeciesSmall:
-        knockback: 8
+        knockback: 2
         staminaDamage: 10
         doFly: true
         isDisabledByMagboots: false
         isReducedByMagboots: true
-        magbootReductionMultiplier: 50
+        magbootReductionMultiplier: 20
   - type: BallisticAmmoProvider
     whitelist:
       tags:

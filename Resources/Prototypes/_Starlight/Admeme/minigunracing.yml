@@ -13,7 +13,7 @@
       SpeciesSmall:
         knockback: 0.2
         staminaDamage: 0
-        doFly: false
+        doFly: true
         isDisabledByMagboots: true
         isReducedByMagboots: true
         magbootReductionMultiplier: 100
