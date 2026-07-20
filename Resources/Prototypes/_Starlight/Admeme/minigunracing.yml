@@ -9,7 +9,7 @@
     doestContain:
       Skating:
         knockback: 0.2
-        staminaMultiplier: 0.0
+        staminaDamage: 0.0
       SpeciesSmall:
         knockback: 0.2
         staminaDamage: 0
