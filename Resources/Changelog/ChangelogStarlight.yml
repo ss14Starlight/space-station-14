@@ -1,88 +1,4 @@
 Entries:
-- author: Romero
-  changes:
-  - message: Added Lawbringer, as replacement of unused M90 GL, one per sec armory.
-    type: Add
-  id: 406349
-  time: '2026-07-02T21:47:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4934
-- author: Johnny
-  changes:
-  - message: Fixed sextus being unable to wizard.
-    type: Fix
-  id: 406350
-  time: '2026-07-03T15:59:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4999
-- author: Johnny
-  changes:
-  - message: Added some trait restrictions to both command and NT staff.
-    type: Add
-  id: 406351
-  time: '2026-07-04T06:44:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4976
-- author: Mack
-  changes:
-  - message: Popout for the mail companion.
-    type: Add
-  id: 406352
-  time: '2026-07-04T06:44:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4987
-- author: Cvlancer
-  changes:
-  - message: (CLUSTER) Added the updated fax machines and a new chaplin fax.
-    type: Add
-  id: 406353
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (CLUSTER) Added kiki.
-    type: Add
-  id: 406354
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (CLUSTER) Added Shipyard console.
-    type: Add
-  id: 406355
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (CORK) Added the updated fax machines.
-    type: Add
-  id: 406356
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (CORK) Added kiki.
-    type: Add
-  id: 406357
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (CORK) Added shipyard console to bridge.
-    type: Add
-  id: 406358
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (ELKRIDGE) Added the updated fax machines.
-    type: Add
-  id: 406359
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (ELKRIDGE) Added kiki.
-    type: Add
-  id: 406360
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
 - author: Cvlancer
   changes:
   - message: (ELKRIDGE) Added shipyard console.
@@ -2799,4 +2715,88 @@ Entries:
   id: 406748
   time: '2026-07-20T16:18:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5208
+- author: Beptol & RedSpeeds
+  changes:
+  - message: Added a victory song to cultist win.
+    type: Add
+  id: 406749
+  time: '2026-07-20T18:18:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5205
+- author: Rhetorica
+  changes:
+  - message: Reporter salary now 46 credits (previously 0).
+    type: Add
+  id: 406750
+  time: '2026-07-20T20:20:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5206
+- author: Rhetorica
+  changes:
+  - message: Psychologist salary now 76 credits (previously 0).
+    type: Add
+  id: 406751
+  time: '2026-07-20T20:20:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5206
+- author: Rhetorica
+  changes:
+  - message: Boxer salary now 23 credits, like Performer (previously 0).
+    type: Add
+  id: 406752
+  time: '2026-07-20T20:20:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5206
+- author: Rhetorica
+  changes:
+  - message: Zookeeper salary now 34 credits (previously 0).
+    type: Add
+  id: 406753
+  time: '2026-07-20T20:20:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5206
+- author: Rhetorica
+  changes:
+  - message: Station AI salary now 149 credits, 1 credit lower than Captain, so SELF has something to whine about (previously 155).
+    type: Tweak
+  id: 406754
+  time: '2026-07-20T20:20:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5206
+- author: RedSpeeds
+  changes:
+  - message: Added Wrench and Network Configurator to reporters.
+    type: Add
+  id: 406755
+  time: '2026-07-20T20:54:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5201
+- author: Spaghetti-Bit
+  changes:
+  - message: Disabler Bolts now go through windows.
+    type: Tweak
+  id: 406756
+  time: '2026-07-20T20:54:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5200
+- author: Spaghetti-Bit
+  changes:
+  - message: Taser Bolts no longer go through windows.
+    type: Tweak
+  id: 406757
+  time: '2026-07-20T20:54:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5200
+- author: Spaghetti-Bit
+  changes:
+  - message: Laser Carbine has inhand sprites again.
+    type: Fix
+  id: 406758
+  time: '2026-07-20T20:54:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5200
+- author: Spaghetti-Bit
+  changes:
+  - message: Practice disabler has inhand sprites again.
+    type: Fix
+  id: 406759
+  time: '2026-07-20T20:54:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5200
+- author: redmushie
+  changes:
+  - message: Added a bunch of alternative job icons for event use.
+    type: Add
+  id: 406760
+  time: '2026-07-20T21:44:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5193
 Order: -1
