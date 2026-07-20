@@ -47,9 +47,9 @@ public sealed partial class BZProductionReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Plasma, -plasmaRemoved);
         mixture.AdjustMoles(Gas.Nitrogen, nitrogenAdded);
         mixture.AdjustMoles(Gas.Oxygen, oxygenAdded);
-        mixture.AdjustMoles(Gas.BZ, bzAdded*5f);
+        mixture.AdjustMoles(Gas.BZ, bzAdded);
 
-        var energyReleased = (bzFormed*5f) * (Atmospherics.BZProductionEnergy + nitrousOxideDecomposed);
+        var energyReleased = bzFormed * (Atmospherics.BZProductionEnergy + nitrousOxideDecomposed);
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)
             mixture.Temperature = Math.Max((mixture.Temperature * heatCap + energyReleased) / heatCap, Atmospherics.TCMB);

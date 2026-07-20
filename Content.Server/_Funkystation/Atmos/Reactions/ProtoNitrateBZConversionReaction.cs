@@ -26,7 +26,7 @@ public sealed partial class ProtoNitrateBZConversionReaction : IGasReactionEffec
         mixture.AdjustMoles(Gas.BZ, -consumedAmount);
         mixture.AdjustMoles(Gas.Nitrogen, consumedAmount * 0.4f);
         mixture.AdjustMoles(Gas.Helium, consumedAmount * 1.6f);
-        mixture.AdjustMoles(Gas.Plasma, consumedAmount * 0.8f * 0.2f);
+        mixture.AdjustMoles(Gas.Plasma, consumedAmount * 0.8f);
 
         var energyReleased = consumedAmount * Atmospherics.ProtoNitrateBZConversionEnergy;
 

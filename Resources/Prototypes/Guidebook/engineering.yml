@@ -51,10 +51,6 @@
   - AtmosphericUpsets
   - AtmosTools
   - Gasses
-  - Gasses2
-  - Gasses3
-  - Gasses4
-  - Gasses5
 
 - type: guideEntry
   id: GasManipulation
@@ -265,28 +261,8 @@
 
 - type: guideEntry
   id: Gasses
-  name: guide-entry-gasses1
+  name: guide-entry-gasses
   text: "/ServerInfo/Guidebook/Engineering/Gasses.xml"
-  
-- type: guideEntry
-  id: Gasses2
-  name: guide-entry-gasses2
-  text: "/ServerInfo/Guidebook/Engineering/Gasses2.xml"
-  
-- type: guideEntry
-  id: Gasses3
-  name: guide-entry-gasses3
-  text: "/ServerInfo/Guidebook/Engineering/Gasses3.xml"
-  
-- type: guideEntry
-  id: Gasses4
-  name: guide-entry-gasses4
-  text: "/ServerInfo/Guidebook/Engineering/Gasses4.xml"
-  
-- type: guideEntry
-  id: Gasses5
-  name: guide-entry-gasses5
-  text: "/ServerInfo/Guidebook/Engineering/Gasses5.xml"
 
 - type: guideEntry
   id: ShuttleCraft

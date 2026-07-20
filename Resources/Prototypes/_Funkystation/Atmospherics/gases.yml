@@ -20,7 +20,7 @@
   gasOverlayState: healium
   color: fa8072
   reagent: Healium
-  pricePerMole: 4
+  pricePerMole: 2.7
 
 - type: gas
   id: Nitrium
@@ -32,7 +32,7 @@
   molarMass: 8
   color: a52a2a
   reagent: Nitrium
-  pricePerMole: 5
+  pricePerMole: 4
 
 - type: gas
   id: Pluoxium
@@ -52,7 +52,7 @@
   molarMass: 32
   color: fffaf0
   reagent: Hydrogen
-  pricePerMole: 0.1
+  pricePerMole: 1.2
 
 - type: gas
   id: HyperNoblium
@@ -77,7 +77,7 @@
   molarMass: 120
   color: 009933
   reagent: Proto-Nitrate
-  pricePerMole: 5
+  pricePerMole: 0.6
 
 - type: gas
   id: Zauker
@@ -113,7 +113,7 @@
   molarMass: 4
   color: 005959
   reagent: Helium
-  pricePerMole: 0.3
+  pricePerMole: 0.8
 
 - type: gas
   id: AntiNoblium
