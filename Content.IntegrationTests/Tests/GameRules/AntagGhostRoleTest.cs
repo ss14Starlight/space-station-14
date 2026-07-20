@@ -53,6 +53,13 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         foreach (var selector in antag!.Antags)
         {
             var specifier = SProtoMan.Index(selector.Proto);
+
+            #region Starlight
+            // Ignore our specific antags that need their own tests due to their entirely different spawning mechanics
+            if (IgnoredAntagSpecifiers.Contains(specifier.ID))
+                continue;
+            #endregion
+
             var count = selector.GetTargetAntagCount(_random, 1);
             // We should always spawn at least one antag if we add a GameRule
             Assert.That(count, Is.GreaterThanOrEqualTo(0)); // Starlight, we have some antags that intentionally underspawn based on playerRatio
@@ -67,6 +74,12 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         var roleEnumerator = SEntMan.EntityQueryEnumerator<GhostRoleAntagSpawnerComponent, GhostRoleComponent, TransformComponent>();
         while (roleEnumerator.MoveNext(out var spawner, out var role, out var xform))
         {
+
+            #region Starlight
+            if (IsIgnored(spawner))
+                continue;
+            #endregion
+
             // Ensure the ghost role spawner spawned correctly!
             Assert.That(spawner.Rule, Is.EqualTo(gameRule));
             Assert.That(spawner.Definition, Is.Not.Null);
@@ -105,6 +118,12 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         var roleEnumerator = SEntMan.EntityQueryEnumerator<GhostRoleAntagSpawnerComponent, GhostRoleComponent, TransformComponent>();
         while (roleEnumerator.MoveNext(out var spawner, out var role, out var xform))
         {
+
+            #region Starlight
+            if (IsIgnored(spawner))
+                continue;
+            #endregion
+
             AssertGhostRoleTaken(spawner, role, xform);
             var newMind = ServerSession!.GetMind();
             Assert.That(newMind, Is.Not.EqualTo(mind));
@@ -143,4 +162,14 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         Assert.That(MathHelper.CloseTo(sessionXform.Coordinates.X, xform.Coordinates.X, 0.001f), Is.True);
         Assert.That(MathHelper.CloseTo(sessionXform.Coordinates.Y, xform.Coordinates.Y, 0.001f), Is.True);
     }
+
+    #region Starlight
+    /// <summary>
+    /// Determines if a given ghost role antag spawner should be ignored based on the ignored antag specifiers.
+    /// </summary>
+    private static bool IsIgnored(GhostRoleAntagSpawnerComponent spawner)
+    {
+        return spawner.Definition is { } definition && IgnoredAntagSpecifiers.Contains(definition.Id);
+    }
+    #endregion
 }

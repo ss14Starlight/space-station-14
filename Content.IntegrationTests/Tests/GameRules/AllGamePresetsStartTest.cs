@@ -25,8 +25,6 @@ public sealed class AllGamePresetsStartTest : AntagTest
     /// </summary>
     private static readonly HashSet<string> IgnoredPresets = ["TerrorSpiders"]; // Is a string to prevent YAML Linter from freaking if this is empty. - Starlight, Terror Spiders need their own test
 
-    private static readonly HashSet<string> IgnoredAntagSpecifiers = ["Brighteye"]; // Starlight, we're ignoring Brighteye as it needs its own test
-
     private static string[] _gamePresets = GameDataScrounger.PrototypesOfKind<GamePresetPrototype>().Where(p => !IgnoredPresets.Contains(p)).ToArray();
 
     // Tests that all game modes can start given ideal circumstances.
