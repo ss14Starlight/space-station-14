@@ -311,14 +311,6 @@
     - DoorBumpOpener
 
 - type: entity
-  parent: PrisonerJobIDCard
-  id: StirStirIDCard
-  name: stir stir's ID card
-  components:
-  - type: PresetIdCard
-    name: Stir Stir
-
-- type: entity
   parent: IDCardStandard
   id: PrisonerJobIDCard
   name: prisoner ID card
@@ -339,6 +331,14 @@
   - type: Tag # Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+
+- type: entity
+  parent: PrisonerJobIDCard
+  id: StirStirIDCard
+  name: stir stir's ID card
+  components:
+  - type: PresetIdCard
+    name: Stir Stir
 
 - type: entity
   parent: IDCardStandard
