@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: Added multiple new prototypes/ghost role variants of NTSF and their gears.
-    type: Add
-  id: 406345
-  time: '2026-07-02T21:00:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4943
-- author: Johnny
-  changes:
   - message: Changed some of the NTSF ghost roles to include more species and exclude others.
     type: Tweak
   id: 406346
@@ -2799,4 +2792,11 @@ Entries:
   id: 406744
   time: '2026-07-20T14:06:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5210
+- author: RedSpeeds
+  changes:
+  - message: Fixed custom names not applying to humanoid jobs.
+    type: Fix
+  id: 406745
+  time: '2026-07-20T15:13:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5203
 Order: -1
