@@ -1,46 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Tweaked Thief, SELF, and Abductor Dynamic Rule Costs.
-    type: Tweak
-  id: 406336
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: wonderfulnewworld
-  changes:
-  - message: Removed DummyNonAntag from Dynamic, and added Railroading to it too.
-    type: Tweak
-  id: 406337
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: wonderfulnewworld
-  changes:
-  - message: Dynamic will now ACTUALLY roll multiantags roundstart sometimes.
-    type: Fix
-  id: 406338
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: wonderfulnewworld
-  changes:
-  - message: Abductors can now actually spawn in Dynamic.
-    type: Fix
-  id: 406339
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: wonderfulnewworld
-  changes:
-  - message: Dynamic gamerule player requirements now match their actual gamemodes.
-    type: Fix
-  id: 406340
-  time: '2026-07-02T13:52:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4957
-- author: Mack
-  changes:
-  - message: Fix issue with butchering and surgery conflicting.
-    type: Fix
-  id: 406341
-  time: '2026-07-02T14:15:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4979
 - author: Conflee
   changes:
   - message: Updated Basilisk, Goliath, and Hivelord/Brood sprites. Basilisk and Goliath use the newer TGstation sprites, while Hivelord/Brood is an edit by myself.
@@ -2799,4 +2757,46 @@ Entries:
   id: 406735
   time: '2026-07-18T18:53:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5150
+- author: rtasva
+  changes:
+  - message: 'Leth: Added Kiki to Botany.'
+    type: Add
+  id: 406736
+  time: '2026-07-19T08:48:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5189
+- author: rtasva
+  changes:
+  - message: 'Leth: Updated fax machines to new color coded standard.'
+    type: Tweak
+  id: 406737
+  time: '2026-07-19T08:48:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5189
+- author: rtasva
+  changes:
+  - message: 'Leth: You no longer have to climb on top of a table to access the Supermatter APC.'
+    type: Fix
+  id: 406738
+  time: '2026-07-19T08:48:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5189
+- author: mikeysaurus
+  changes:
+  - message: Department remote shuttle consoles have been renamed to explicitly identify them as remote shuttle consoles.
+    type: Tweak
+  id: 406739
+  time: '2026-07-19T09:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5196
+- author: Johnny
+  changes:
+  - message: Lapsi now squish when hugged.
+    type: Add
+  id: 406740
+  time: '2026-07-20T09:13:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5207
+- author: Johnny
+  changes:
+  - message: Lapsi no longer do normal hug sound.
+    type: Remove
+  id: 406741
+  time: '2026-07-20T09:13:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5207
 Order: -1
