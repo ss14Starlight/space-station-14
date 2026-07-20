@@ -344,8 +344,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!Proto.Resolve(antag.Proto, out var proto))
                 continue;
 
+            #region Starlight
             // We do it this way in case our resolve fails.
-            roles.Add((gameRule, proto, active, GetTargetAntagCount(antag, playerCount, ref runningCount)));
+            //roles.Add((gameRule, proto, active, GetTargetAntagCount(antag, playerCount, ref runningCount)));
+
+            var count = GetTargetAntagCount(antag, playerCount, ref runningCount);
+            if (count <= 0)
+                continue;
+
+            roles.Add((gameRule, proto, active, count));
+            #endregion
         }
     }
 
@@ -363,8 +371,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!Proto.Resolve(antag.Proto, out var definition))
                 continue;
 
-            // We do it this way in case our resolve fails.
-            antags.Add((definition, GetTargetAntagCount(antag, playerCount, ref runningCount)));
+            var count = GetTargetAntagCount(antag, playerCount, ref runningCount);
+            if (count <= 0)
+                continue;
+
+            antags.Add((definition, count));
         }
 
         return antags;

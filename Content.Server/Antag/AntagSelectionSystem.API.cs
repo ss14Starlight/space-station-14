@@ -668,7 +668,7 @@ public sealed partial class AntagSelectionSystem
     public bool IsAssignedExclusiveAntag(ICommonSession player, params HashSet<EntityUid> ignored)
     {
         // First check our mindroles.
-        if (_role.MindIsExclusiveAntagonist(player.AttachedEntity))
+        if (_role.PlayerIsExclusiveAntagonist(player)) // Starlight, I don't know why, but our antags are attached to the player rather than the entity, and this always fails if we try the other way around, so we're checking the player.
             return true;
 
         var query = QueryAllRules();

@@ -70,7 +70,7 @@ public abstract partial class AntagTest : GameTest
                 {
                     Assert.That(mindComp!.MindRoleContainer.ContainedEntities,
                         Has.Exactly(1).Matches<EntityUid>(x => SComp<MetaDataComponent>(x).EntityPrototype?.ID == role),
-                        $"{SToPrettyString(mindEnt)} owned by {session}, failed to acquire role {role} for antagonist {antag}");
+                        $"{SToPrettyString(mindEnt)} owned by {session}, failed to acquire role {role} for antagonist {antag}. MindRoles: {string.Join(", ", mindComp!.MindRoleContainer.ContainedEntities)}. All mind stuff: {string.Join(", ", SEntMan.GetComponents(mindEnt).Select(c => c.GetType().Name))}."); // Starlight, little more verbose since this was a pain to debug
                 }
             });
         }
