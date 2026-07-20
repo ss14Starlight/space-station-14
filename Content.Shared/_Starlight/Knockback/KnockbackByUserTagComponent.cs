@@ -18,19 +18,19 @@ public sealed partial class KnockbackData
     public KnockbackData() { }
 
     /// <summary>
-    /// The distance / throw force of the weapon being fired. 
+    /// The distance / throw force of the weapon being fired.
     /// In units of distance.
     /// Shotguns should have a high knockback. Rifles should have medium to low. LMGs should have medium.
     /// </summary>
     [DataField]
     public float Knockback = 0;
     /// <summary>
-    /// The amount of stamina damage taken per shot. 
+    /// The amount of stamina damage taken per shot.
     /// </summary>
     [DataField]
     public float StaminaDamage = 0;
     /// <summary>
-    /// Whether or not the ThrowSystem counts the entity as InAir
+    /// Whether or not the ThrowSystem counts the entity as InAir.
     /// Keeping this value as false will make movement not feel painful for the player during automatic gunfire as BodyStatus.InAir prevents players from moving.
     /// True to enable ThrowingSystem.cs TryThrow() BodyStatus.InAir.
     /// </summary>
