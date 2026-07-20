@@ -2473,7 +2473,7 @@
 # TODO: Make grenade penguin voice activated like the rest of the stealth items.
 - type: entity
   name: grenade penguin
-  parent: [ MobPenguinNoRespirator, MobCombat, BaseSyndicateContraband ] # Starlight edit
+  parent: [ MobPenguin, MobCombat, BaseSyndicateContraband ]
   id: MobGrenadePenguin
   description: A small penguin with a grenade strapped around its neck. Harvested by the Syndicate from icy shit-hole planets.
   components:
@@ -2545,6 +2545,10 @@
         damage: 50
       behaviors:
       - !type:ExplodeBehavior
+  - type: PressureImmunity
+  - type: Respirator
+    minSaturation: 5.0
+  - type: TemperatureImmunity
 
   # I have included a snake_hiss.ogg sound file so if you want to use that be my guest
 - type: entity
