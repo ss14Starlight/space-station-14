@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (CLUSTER) Added Shipyard console.
-    type: Add
-  id: 406355
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (CORK) Added the updated fax machines.
     type: Add
   id: 406356
@@ -2799,4 +2792,11 @@ Entries:
   id: 406754
   time: '2026-07-20T20:20:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5206
+- author: RedSpeeds
+  changes:
+  - message: Added Wrench and Network Configurator to reporters.
+    type: Add
+  id: 406755
+  time: '2026-07-20T20:54:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5201
 Order: -1
