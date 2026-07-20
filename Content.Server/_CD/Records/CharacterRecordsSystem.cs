@@ -119,13 +119,13 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
         // - Otherwise show only the base display (localized if possible).
         var speciesName = GetReadableSpeciesName(profile);
 
-        var chosenName = MetaData(player).EntityName;
+        var chosenName = MetaData(player).EntityName; // Starlight
 
         // Build the composite record that consoles consume, mixing profile data with live round metadata.
         var records = new FullCharacterRecords(
             pRecords: new PlayerProvidedCharacterRecords(profileRecords),
             stationRecordsKey: stationRecordsKey?.Id,
-            name: chosenName,
+            name: chosenName, // Starlight
             age: profile.Age,
             species: speciesName,
             jobTitle: jobTitle,
