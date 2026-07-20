@@ -550,7 +550,11 @@
   - type: StaticPrice
     price: 25
   - type: Shovel
-
+  # 🌟Starlight-start🌟
+  - type: Tool
+    qualities:
+      - Digging
+  # 🌟Starlight-end🌟
 - type: entity
   parent: BaseItem
   id: RollingPin
