@@ -1,11 +1,4 @@
 Entries:
-- author: Romero
-  changes:
-  - message: Added Lawbringer, as replacement of unused M90 GL, one per sec armory.
-    type: Add
-  id: 406349
-  time: '2026-07-02T21:47:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4934
 - author: Johnny
   changes:
   - message: Fixed sextus being unable to wizard.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406748
   time: '2026-07-20T16:18:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5208
+- author: Beptol & RedSpeeds
+  changes:
+  - message: Added a victory song to cultist win.
+    type: Add
+  id: 406749
+  time: '2026-07-20T18:18:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5205
 Order: -1
