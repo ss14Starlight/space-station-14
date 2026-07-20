@@ -20,7 +20,7 @@
   gasOverlayState: healium
   color: fa8072
   reagent: Healium
-  pricePerMole: 2.7
+  pricePerMole: 4
 
 - type: gas
   id: Nitrium
@@ -32,7 +32,7 @@
   molarMass: 8
   color: a52a2a
   reagent: Nitrium
-  pricePerMole: 4
+  pricePerMole: 5
 
 - type: gas
   id: Pluoxium
