@@ -88,7 +88,7 @@ public sealed partial class ProtoNitratePlasmaReaction : IGasReactionEffect
 		
 	///One PN becomes 100 plasma. More different types of gas in the soup can improve the rate of production without upgrading the mixer.	Massive helium byproduct to fuck up your pressure.
 
-        mixture.AdjustMoles(Gas.ProtoNitrate, production * 0.01f);
+        mixture.AdjustMoles(Gas.ProtoNitrate, production * -0.01f);
 		mixture.AdjustMoles(Gas.Plasma, production);
 		mixture.AdjustMoles(Gas.Helium, production * (100f/pressure));
 		mixture.AdjustMoles(Gas.Tritium, -decomposeTrit);
