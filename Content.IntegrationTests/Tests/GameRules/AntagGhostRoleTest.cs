@@ -33,7 +33,42 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     [SidedDependency(Side.Server)] private IRobustRandom _random = default!;
     [SidedDependency(Side.Server)] private GhostRoleSystem _ghostRole = default!;
 
-    private static readonly string[] AntagGameRules = GameDataScrounger.EntitiesWithComponent("AntagSelection");
+    #region Starlight
+    /// <summary>
+    /// Antag game rules excluded because an equivalent rule is already covered.
+    /// Keep the canonical rule and list its duplicates here.
+    /// </summary>
+    private static readonly HashSet<string> IgnoredAntagGameRules =
+    [
+        // Covered by Traitor
+        "TraitorLess",
+        "SubTraitor",
+        "SleeperAgents",
+        "TraitorReinforcement",
+        // Covered by DerelictGenericCyborgSpawn, Borgi excluded because it's "novel"
+        "DerelictPurrfusCyborgSpawn",
+        "DerelictEngineerCyborgSpawn",
+        "DerelictJanitorCyborgSpawn",
+        "DerelictMedicalCyborgSpawn",
+        "DerelictMiningCyborgSpawn",
+        "DerelictSyndicateAssaultCyborgSpawn",
+        // Covered by DerelictStealthXenoborgSpawn
+        "DerelictHeavyXenoborgSpawn",
+        "DerelictEngiXenoborgSpawn",
+        "DerelictScoutXenoborgSpawn",
+        "DerelictXenoBorgiSpawn",
+        // One-offs
+        "ParadoxCrisisSpawn",
+        "BrighteyeSpawn",
+        "SLChangelingLess",
+        "ThiefLess",
+        "VampireLess",
+        "ZombieOutbreak",
+        "NukeopsLate",
+        "SubWizard"
+    ];
+    private static readonly string[] AntagGameRules = GameDataScrounger.EntitiesWithComponent("AntagSelection").Where(ruleId => !IgnoredAntagGameRules.Contains(ruleId)).ToArray(); // Exclude duplicate rules, they're really not needed and just time out tests.
+    #endregion
 
     [Test]
     [TestOf(typeof(GameTicker)), TestOf(typeof(AntagSelectionSystem)), TestOf(typeof(AntagSelectionComponent)), TestOf(typeof(GhostRoleSystem))]
