@@ -41,6 +41,8 @@ public sealed class AllGamePresetsStartTest : AntagTest
         await Server.WaitPost(() =>
         {
             Assert.That(STicker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
+
+            Assert.That(Client.AttachedEntity, Is.Null); // Starlight, client should not be attached to any entity initially
             Assert.That(Pair.Player!.AttachedEntity, Is.Null); // Starlight, use pair.player instead of client since our roles are *still* tied to player
             Assert.That(STicker.PlayerGameStatuses[Pair.Player!.UserId], Is.EqualTo(PlayerGameStatus.NotReadyToPlay)); // Starlight, client -> pair.player
         });
@@ -120,7 +122,7 @@ public sealed class AllGamePresetsStartTest : AntagTest
             for (var count = 0; count < amount; count++)
             {
                 await Pair.SetAntagPreference(antag.PrefRoles.FirstOrDefault(), true, players[i++].UserId);
-                Assert.That(i < min, $"Tried to assign more antags than there were players");
+                Assert.That(i <= min, $"Tried to assign more antags than there were players"); // Starlight
             }
         }
 
@@ -136,15 +138,33 @@ public sealed class AllGamePresetsStartTest : AntagTest
             Assert.That(STicker.PlayerGameStatuses.Values.All(x => x == PlayerGameStatus.JoinedGame));
             Assert.That(STicker.PlayerGameStatuses, Has.Count.EqualTo(players.Count));
         });
-        Assert.That(CEntMan.EntityExists(Pair.Player!.AttachedEntity)); // Starlight, client -> pair.player
+        #region Starlight
+        // Verify the client-side attached entity.
+        Assert.That(Client.AttachedEntity, Is.Not.Null,
+            "The client was not attached to an entity after round start.");
 
-        var player = Pair.Player!.AttachedEntity!.Value;
-        Assert.That(SEntMan.EntityExists(player));
+        var clientPlayer = Client.AttachedEntity.Value;
+
+        Assert.That(CEntMan.EntityExists(clientPlayer), Is.True,
+            $"The client's attached entity {clientPlayer} did not exist client-side.");
+
+        // Verify the corresponding server-side attached entity.
+        Assert.That(Pair.Player!.AttachedEntity, Is.Not.Null,
+            "The server session was not attached to an entity after round start.");
+
+        var serverPlayer = Pair.Player.AttachedEntity.Value;
+
+        Assert.That(SEntMan.EntityExists(serverPlayer), Is.True,
+            $"The server session's attached entity {serverPlayer} did not exist server-side.");
+
+        // Verify that both sides refer to the same networked entity.
+        Assert.That(Pair.ToClientUid(serverPlayer), Is.EqualTo(clientPlayer),
+            "The client and server sessions were attached to different entities.");
 
         // Start all game presets so antags spawn!
         await Server.WaitPost(() =>
         {
-            #region Starlight
+
             // STicker.StartGamePresetRules();
             // Force every rule to start, including rules currently waiting on a delay.
             // Repeat because starting one rule can add additional rules.
