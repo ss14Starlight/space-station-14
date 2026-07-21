@@ -528,6 +528,38 @@
     id: KikiIDCard
 
 - type: entity
+  parent: ClearPDA
+  id: StirStirPDA
+  name: stir stir's PDA
+  description: Has been used as a hammer before.
+  components:
+  - type: Pda
+    id: StirStirIDCard
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
+  parent: ClearPDA
+  id: PrisonerPDA
+  name: prisoner PDA
+  description: Has been used as a hammer before.
+  components:
+  - type: Pda
+    id: PrisonerJobIDCard
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
   parent: BasePDA
   id: CommanderPDA
   name: commander PDA

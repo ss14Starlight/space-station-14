@@ -324,7 +324,7 @@
 
 - type: entity
   name: makeshift shotgun
-  parent: [WeaponFlareGunSecurity, BaseMinorContraband]
+  parent: [WeaponFlareGun, BaseMinorContraband]
   id: WeaponShotgunMakeshift
   description: A small hand-cannon that fires 12 gauge shotgun shells. Has no cloth to hold it together, so it has a high chance of falling apart with every shot.
   components:
@@ -339,6 +339,17 @@
   - type: Construction
     graph: MakeshiftShotgunGraph
     node: shotgun
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - ShellShotgun
+  - type: Tag
+    tags:
+    - Sidearm
   - type: WeaponDismantleOnShoot
     dismantleChance: 0.50
     selfDamage:
