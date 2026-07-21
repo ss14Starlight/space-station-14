@@ -141,24 +141,13 @@ public sealed partial class ShowAccessSystem : EntitySystem
         var localized = LocalizeAndSort(tags);
 
         var msg = new FormattedMessage();
-        msg.AddMarkupOrThrow(Loc.GetString(showAccess.ExamineLocId, ("access", tags.Count > 0 ? string.Join(", ", localized) : "None")));
+        msg.AddMarkupOrThrow(Loc.GetString(showAccess.ExamineLocId, ("groups", tags.Count > 0 ? string.Join("\n", localized) : "None")));
 
         _examine.AddDetailedExamineVerb(args, showAccess, msg, Loc.GetString("show-access-verb-text"), "/Textures/_Starlight/Interface/VerbIcons/examine-access.png", Loc.GetString("show-access-verb-message"));
     }
 
     private List<string> LocalizeAndSort(HashSet<ProtoId<AccessLevelPrototype>> protoIds)
     {
-        // HashSet<string> localized = [];
-        //
-        // foreach (var protoId in protoIds)
-        // {
-        //     if (!_proto.TryIndex(protoId, out var accessLevel)) continue;
-        //     var name = accessLevel.Name ?? accessLevel.ID;
-        //     localized.Add(Loc.GetString(name));
-        // }
-        //
-        // return localized;
-
         // Get groups then sort alphabetically to stay organized but also to make sure the order is same on client+server.
         var groups = _proto.EnumeratePrototypes<AccessGroupPrototype>()
             .Where(group => !_blacklistedGroups.Contains(group.ID)).ToList();
@@ -189,12 +178,12 @@ public sealed partial class ShowAccessSystem : EntitySystem
 
         // alphabetically sort the actual access tags into their sorted groups.
         var sorted = new Dictionary<string, SortedSet<string>>();
-        const string Ungrouped = "\uffff";
+        const string Ungrouped = "Ungrouped";
         foreach (var protoId in protoIds)
         {
             if (!_proto.TryIndex(protoId, out var proto))
                 continue;
-            var name = Loc.GetString(proto.Name ?? proto.ID);
+            var name = Loc.GetString("show-access-examined-access", ("access", Loc.GetString(proto.Name ?? proto.ID)));
             var group = grouped.GetValueOrDefault(protoId, Ungrouped);
             if (!sorted.TryGetValue(group, out var list))
             {
@@ -206,8 +195,9 @@ public sealed partial class ShowAccessSystem : EntitySystem
 
         // now just grab all the names of the access tags and shove them into a single string list
         var result = new List<string>();
-        foreach (var (_, accessList) in sorted)
-            result.AddRange(accessList);
+        foreach (var (group, accessList) in sorted)
+            if (accessList.Count > 0)
+                result.Add(Loc.GetString("show-access-examined-group", ("group", group), ("accesses", string.Join(", ", accessList))));
 
         // voilà this code sucks here's your ordered access tags
         return result;
