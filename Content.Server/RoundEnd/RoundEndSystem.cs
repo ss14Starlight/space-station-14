@@ -406,7 +406,7 @@ namespace Content.Server.RoundEnd
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
                     RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
-                    StartRecallVote();
+                    StartRecallVote(); // Starlight-edit
                     _autoCalledBefore = true;
                 }
 
@@ -423,6 +423,7 @@ namespace Content.Server.RoundEnd
             return AutoCallStartTime + TimeSpan.FromMinutes(autoCalledBefore);
         }
 
+        #region Starlight
         private void StartRecallVote()
         {
             var options = new VoteOptions() { DisplayVotes = true, Duration = TimeSpan.FromSeconds(30), VoterEligibility = VoteManager.VoterEligibility.Crew, Title = Loc.GetString("round-end-system-shuttle-auto-called-recall-vote")};
@@ -450,6 +451,7 @@ namespace Content.Server.RoundEnd
                 }
             };
         }
+        #endregion
     }
 
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs
