@@ -37,6 +37,21 @@
   equipment:
     pocket1: WeaponAdvancedTaser
 
+- type: loadout
+  id: SecurityPeacekeeper
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SkilledOfficer
+  dummyEntity: WeaponLauncherPeacekeeper
+  storage:
+    back:
+      - BoxPeacekeeperBaton
+      - GrenadeBaton
+      - BoxPeacekeeperFlash
+      - GrenadeGaslauncher
+      - GrenadeStingerlauncher
+      - WeaponLauncherPeacekeeper
+
 # Sidearm Options
 - type: loadout
   id: SecurityMk58
