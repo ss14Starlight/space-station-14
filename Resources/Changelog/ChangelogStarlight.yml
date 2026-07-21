@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (PRISM) Added the shipyard console.
-    type: Add
-  id: 406383
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (SEPULTUM) Added the new fax machines.
     type: Add
   id: 406384
@@ -2799,4 +2792,11 @@ Entries:
   id: 406782
   time: '2026-07-21T12:06:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5023
+- author: wonderfulnewworld
+  changes:
+  - message: Traitors are a little less common in dynamic.
+    type: Tweak
+  id: 406783
+  time: '2026-07-21T12:38:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5226
 Order: -1
