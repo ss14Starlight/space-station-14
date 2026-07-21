@@ -85,6 +85,9 @@
 - type: playTimeTracker
   id: JobCentCommJanitor
 
+- type: playTimeTracker
+  id: JobPrisoner
+
 # Other ghosts
 
 - type: playTimeTracker
