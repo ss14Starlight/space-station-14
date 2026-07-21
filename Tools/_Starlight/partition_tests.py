@@ -173,7 +173,7 @@ WEIGHT_OVERRIDES = {
     "TestAllConcurrent": 0.25,
     "TestAllRestocksAreAvailableToBuy": 0.5,
     "TestAllServerPrototypesAreSerializable": 35.0,
-    "TestAntagGhostRoles": 90.0,
+    "TestAntagGhostRoles": 30.0,
     "TestAntagGhostRolesSequential": 90.0,
     "TestApcLoad": 10.0,
     "TestBatteriesProportional": 0.5,
