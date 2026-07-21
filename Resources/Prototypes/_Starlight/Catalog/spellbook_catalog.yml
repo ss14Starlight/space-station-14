@@ -68,7 +68,8 @@
   id: SpellbookFireMaster
   name: spellbook-firemaster-name
   description: spellbook-firemaster-desc
-  productAction: ActionFireballIII
+  priority: 1
+  productAction: ActionFireballII
   cost:
     WizCoin: 10
   categories:
@@ -76,3 +77,37 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: SpellFirebolt
+  name: spellbook-firebolt-name
+  description: spellbook-firebolt-desc
+  priority: 2
+  productAction: ActionFirebolt
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookIceStorm3
+  name: spellbook-icestorm-name
+  description: spellbook-icestorm-desc
+  priority: 3
+  productAction: ActionIceStorm
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster

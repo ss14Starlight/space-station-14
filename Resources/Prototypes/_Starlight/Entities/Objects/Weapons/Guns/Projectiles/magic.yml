@@ -1,0 +1,31 @@
+- type: entity
+  id: ProjectileFirebolt
+  name: firebolt
+  description: Ignis!
+  parent: ProjectileFireball
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#E25822"
+    radius: 2.0
+    energy: 5.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 50
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: fireball
+      shader: unshaded
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 3
+    intensitySlope: 1
+    totalIntensity: 15
+    canCreateVacuum: false
+  - type: IgnitionSource
+    temperature: 10000
+    ignited: true
+  - type: IgniteOnCollide
+    fireStacks: 1

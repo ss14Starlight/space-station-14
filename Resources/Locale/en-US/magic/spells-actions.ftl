@@ -20,3 +20,5 @@ action-speech-spell-slip = SLEE PARRI!
 action-speech-spell-slip-tts = SLEE! PARRI!
 action-speech-spell-charge = DI'RI CEL!
 action-speech-spell-charge-tts = DEE, REE! CELL!!
+action-speech-spell-firebolt = IGNIS!!
+action-speech-spell-firebolt-tts = Ignissss!!
