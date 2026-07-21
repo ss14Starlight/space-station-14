@@ -34,7 +34,7 @@
   alias:
   - all
   name: all-at-once-title
-  minPlayers: 50 # Starlight
+  minPlayers: 60 # Starlight
   description: all-at-once-description
   showInVote: false
   rules:
@@ -69,7 +69,7 @@
   name: aller-at-once-title
   description: aller-at-once-description
   showInVote: false #Please god dont do this
-  minPlayers: 50 # Starlight
+  minPlayers: 60 # Starlight
   rules:
     - Nukeops
     - Traitor

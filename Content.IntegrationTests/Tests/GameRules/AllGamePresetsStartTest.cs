@@ -121,14 +121,25 @@ public sealed class AllGamePresetsStartTest : AntagTest
         });
 
         var i = 0;
-        foreach (var (antag, amount) in rules)
+        #region Starlight
+        /*foreach (var (antag, amount) in rules)
         {
             for (var count = 0; count < amount; count++)
             {
                 await Pair.SetAntagPreference(antag.PrefRoles.FirstOrDefault(), true, players[i++].UserId);
                 Assert.That(i <= min, $"Tried to assign more antags than there were players"); // Starlight
             }
+        }*/
+
+        // Let's see if we can solve IPCs rolling IIs... How troublesome.
+        var antagPreferences = rules.SelectMany(entry => entry.Item1.PrefRoles).ToHashSet();
+
+        foreach (var player in players)
+        {
+            await Pair.SetAntagPreferences(player, antagPreferences);
         }
+
+        #endregion
 
         await Pair.RunUntilSynced();
         await Pair.WaitCommand($"setgamepreset {presetId}");
