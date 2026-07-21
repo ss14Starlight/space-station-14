@@ -1,41 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (SEPULTUM) Added the new fax machines.
-    type: Add
-  id: 406384
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Added kiki.
-    type: Add
-  id: 406385
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Added the shipyard console.
-    type: Add
-  id: 406386
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Added the new fax machines.
-    type: Add
-  id: 406387
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Added kiki.
-    type: Add
-  id: 406388
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (SERPENTCREST) Added the shipyard console.
     type: Add
   id: 406389
@@ -2799,4 +2764,39 @@ Entries:
   id: 406783
   time: '2026-07-21T12:38:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5226
+- author: Turk1shcat
+  changes:
+  - message: Added a new mime mask found by snipping the manager wire of the autodrobe.
+    type: Add
+  id: 406784
+  time: '2026-07-21T13:06:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5139
+- author: Turk1shcat
+  changes:
+  - message: Added new sprites for the mime masks.
+    type: Add
+  id: 406785
+  time: '2026-07-21T13:06:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5139
+- author: Turk1shcat
+  changes:
+  - message: Added a new vendor for mimes! Still needs to be mapped.
+    type: Add
+  id: 406786
+  time: '2026-07-21T13:06:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5139
+- author: Turk1shcat
+  changes:
+  - message: Added a new set of tools found in the new vendor. Too bad you can't see them.
+    type: Add
+  id: 406787
+  time: '2026-07-21T13:06:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5139
+- author: Turk1shcat
+  changes:
+  - message: The Security mime mask is now craftable with a normal mime mask and cheap sunglasses.
+    type: Tweak
+  id: 406788
+  time: '2026-07-21T13:06:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5139
 Order: -1
