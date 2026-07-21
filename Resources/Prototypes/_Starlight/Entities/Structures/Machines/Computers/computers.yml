@@ -6,7 +6,9 @@
   components:
   - type: RecruitmentComputer
   - type: ActivatableUI
+    adminOnly: true
     key: enum.RecruitmentComputerUiKey.Key
+  - type: ActivatableUIRequiresAccess
   - type: UserInterface
     interfaces:
       enum.RecruitmentComputerUiKey.Key:
