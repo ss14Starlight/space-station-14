@@ -80,6 +80,15 @@
   shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml
 
 - type: vessel
+  id: Honeybee
+  name: NTS "Honeybee" Mini-Flores
+  description: A small sized botany shuttle made for advanced farming operations, comes with one mutation room.
+  price: 30000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Honeybee.yml
+
+- type: vessel
   id: Reach
   name: SS-Reach III
   description: A large station vessel made for skeleton crews that we decided to allow stations to buy.
