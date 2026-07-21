@@ -1,20 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Added kiki and some more trays.
-    type: Add
-  id: 406370
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added shipyard console.
-    type: Add
-  id: 406371
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (MING) Added the new fax machines.
     type: Add
   id: 406372
@@ -2799,4 +2785,18 @@ Entries:
   id: 406769
   time: '2026-07-20T23:45:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5168
+- author: Mack
+  changes:
+  - message: Enable/Disable verb to handheld crew monitors for alerts.
+    type: Add
+  id: 406770
+  time: '2026-07-21T00:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5170
+- author: Mack
+  changes:
+  - message: Confusing Activate/Deactivate verb from handheld crew monitors.
+    type: Remove
+  id: 406771
+  time: '2026-07-21T00:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5170
 Order: -1
