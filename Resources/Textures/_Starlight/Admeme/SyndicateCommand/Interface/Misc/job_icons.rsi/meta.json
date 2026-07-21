@@ -1,0 +1,51 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "SyndicateCaptain",
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by @redmushie (GitHub)"
+        },
+        {
+            "name": "SyndicateChiefEngineer",
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by @redmushie (GitHub)"
+        },
+        {
+            "name": "SyndicateChiefMedicalOfficer",
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by @redmushie (GitHub)"
+        },
+        {
+            "name": "SyndicateHeadOfPersonnel",
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by @redmushie (GitHub)"
+        },
+        {
+            "name": "SyndicateHeadOfSecurity",
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by @redmushie (GitHub)"
+        },
+        {
+            "name": "SyndicateIAA",
+            "copyright": "Chim, recolor by @redmushie (GitHub)"
+        },
+        {
+            "name": "SyndicateMagistrate",
+            "copyright": "Chim, recolor by @redmushie (GitHub)"
+        },
+        {
+            "name": "SyndicateQuarterMaster",
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, QuarterMaster modified by K-Dynamic (github), recolor by @redmushie (GitHub)"
+        },
+        {
+            "name": "SyndicateRedShield",
+            "copyright": "Starlight contributors, recolor by @redmushie (GitHub)"
+        },
+        {
+            "name": "SyndicateResearchDirector",
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by @redmushie (GitHub)"
+        }
+    ]
+}
