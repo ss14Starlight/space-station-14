@@ -2414,6 +2414,14 @@
   id: MobPenguin
   description: Their lives are constant pain due to their inner-body knees.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Penguin
+    understands:
+    - GalacticCommon
+    - Penguin
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:

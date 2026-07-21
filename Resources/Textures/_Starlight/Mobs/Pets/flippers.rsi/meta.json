@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "STARLIGHT, by Orhu (github)",
+  "states": [
+    {
+      "name": "flippers",
+      "directions": 4
+    },
+    {
+      "name": "flippers_dead"
+    },
+    {
+      "name": "flippers_dead_blood"
+    }
+  ]
+}
