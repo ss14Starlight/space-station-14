@@ -4,7 +4,7 @@
   id: MechHouse
   parent: [ BaseMech, CombatMech, BaseCasinoContraband, NanotrasenMech ]
   name: The house
-  description: The game was rigged from the start.
+  description: The game was rigged from the start. The house always wins.
   components:
     - type: Sprite
       drawdepth: Mobs
@@ -71,15 +71,15 @@
         - WeaponMechCombatMissileRack6
         - WeaponMechCombatUltraRifle
 
-# Always Wins
+# The house - >Always Wins
 
 
-# Seraph
+
 - type: entity
   id: MechAlways
   parent: [ BaseMech, CombatMech, BaseCasinoContraband ]
   name: Always Wins
-  description: They asked me if I had a degree in theoretical physics. I said I had a theoretical degree in physics. They said welcome aboard.
+  description: We Can't Expect God To Do All The Work. The house always wins.
   components:
     - type: Sprite
       drawdepth: Mobs
@@ -145,3 +145,36 @@
         - WeaponMechCombatShotgun
         - WeaponMechCombatMissileRack6
         - WeaponMechCombatUltraRifle
+
+
+- type: entity
+  name: House Spawner
+  suffix: Filled
+  id: SpawnMechHouseFilled
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - sprite: _Starlight/Admeme/Casino/Objects/mechs/house.rsi
+          state: base
+        - state: mechicon
+    - type: ConditionalSpawner
+      prototypes:
+        - MechHouseFilled
+
+- type: entity
+  name: Always win Spawner
+  suffix: Filled
+  id: SpawnMechAlwaysFilled
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - sprite: _Starlight/Admeme/Casino/Objects/mechs/always.rsi
+          state: base
+        - state: mechicon
+    - type: ConditionalSpawner
+      prototypes:
+        - MechAlwaysFilled
