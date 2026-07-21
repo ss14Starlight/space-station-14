@@ -1,34 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (SERPENTCREST) Added the shipyard console.
-    type: Add
-  id: 406389
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (STARBOARD) Added the new fax machines.
-    type: Add
-  id: 406390
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (STARBOARD) Added kiki.
-    type: Add
-  id: 406391
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (STARBOARD) Added shupyard console.
-    type: Add
-  id: 406392
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (Cork) Removed cryopod in bridge.
     type: Remove
   id: 406393
@@ -2799,4 +2771,32 @@ Entries:
   id: 406788
   time: '2026-07-21T13:06:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5139
+- author: SpaghettiBit
+  changes:
+  - message: The ability to remove, insert, and replace cells from batons. Stunbatons and stunprods have a passive drain.
+    type: Add
+  id: 406789
+  time: '2026-07-21T14:05:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5154
+- author: SpaghettiBit
+  changes:
+  - message: Removed the small-capacity cell from the stunprod crafting recipe.
+    type: Tweak
+  id: 406790
+  time: '2026-07-21T14:05:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5154
+- author: SpaghettiBit
+  changes:
+  - message: Stunprods now spawn without a cell.
+    type: Tweak
+  id: 406791
+  time: '2026-07-21T14:05:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5154
+- author: SpaghettiBit
+  changes:
+  - message: The NT paper jockeys have been granted one (1) singular voucher of happiness, their cane now has the ability to self recharge, no you cannot remove the cell.
+    type: Tweak
+  id: 406792
+  time: '2026-07-21T14:05:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5154
 Order: -1
