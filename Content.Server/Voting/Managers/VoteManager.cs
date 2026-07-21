@@ -389,7 +389,7 @@ namespace Content.Server.Voting.Managers
             }
 
             // Remove ineligible votes that somehow slipped through
-            foreach (var playerVote in v.CastVotes)
+            foreach (var playerVote in v.CastVotes.ToList()) //Starlight-edit - Who at upstream forgot to test this?!
             {
                 if (!CheckVoterEligibility(playerVote.Key, v.VoterEligibility))
                 {
