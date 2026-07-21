@@ -2706,6 +2706,7 @@
       groups:
         Brute: -0.07
         Burn: -0.07
+  - type: NightVision # Starlight
 
 - type: entity
   parent: MobSpiderBase

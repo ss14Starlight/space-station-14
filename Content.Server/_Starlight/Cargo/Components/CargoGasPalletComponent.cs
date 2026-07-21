@@ -1,4 +1,6 @@
+using Content.Server.Cargo.Components;
 using Content.Shared.Atmos;
+
 namespace Content.Server._Starlight.Cargo.Components;
 
 /// <summary>
@@ -8,21 +10,27 @@ namespace Content.Server._Starlight.Cargo.Components;
 public sealed partial class CargoGasPalletComponent : Component, IGasMixtureHolder
 {
     /// <summary>
-    /// The name of the pipe inlet
+    /// The name of the pipe node
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("inlet")]
-    public string InletName { get; set; } = "pipe";
+    [ViewVariables]
+    [DataField("pipeNode")]
+    public string PipeNodeName { get; set; } = "pipe";
 
     /// <summary>
     /// A gas mixture representing the remote resivoir.
     /// </summary>
     [DataField("gasMixture")]
-    public GasMixture Air { get; set; } = new GasMixture();
+    public GasMixture Air { get; set; } = new();
 
     /// <summary>
-    /// The maximum pressure to which this will accept gasses
+    /// The maximum pressure to which this will accept and/or output gasses
     /// </summary>
-    [DataField("maxPressure")]
-    public float MaxPressure { get; set; } = 4500;
+    [DataField]
+    public float MaxPressure { get; set; } = Atmospherics.MaxOutputPressure;
+
+    /// <summary>
+    /// Whether this is a buying, selling, or both type.
+    /// </summary>
+    [DataField]
+    public BuySellType PalletType = BuySellType.Sell;
 }
