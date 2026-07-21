@@ -112,3 +112,4 @@ petting-failure-mail-teleporter = You reach out to pet {THE($target)}, but {SUBJ
 ## Plushies
 
 plushie-large-soft-shark-cuddle = { CAPITALIZE(THE($user)) } cuddles the large blue shark.
+plushie-wawa-cuddle = { CAPITALIZE(THE($user)) } pats the legally distinct creature.

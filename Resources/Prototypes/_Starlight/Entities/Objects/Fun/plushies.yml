@@ -2051,3 +2051,51 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+
+# Le Wawa Plushie
+- type: entity
+  parent: BasePlushie
+  id: PlushieWawa
+  name: legally distinct plushie
+  description: A large, soft, and cuddly wawa. Perfectly legally distinct!
+  components:
+    - type: Item
+      size: Normal
+      sprite: _Starlight/Objects/Fun/Plushies/wawa_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/wawa_plushie.rsi
+      state: icon
+    - type: Clothing
+      quickEquip: false
+      sprite: _Starlight/Objects/Fun/Plushies/wawa_plushie.rsi
+      slots:
+      - neck
+    # Shows cuddle message when used in hand
+    - type: CuddleMessage
+      localizedMessageKey: plushie-wawa-cuddle
+    - type: EmitSoundOnUse
+      sound:
+        path: /Audio/Animals/wawa_statement.ogg
+      handle: false
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Animals/wawa_statement.ogg
+    - type: EmitSoundOnTrigger
+      sound:
+        path: /Audio/Animals/wawa_statement.ogg
+    - type: EmitSoundOnActivate
+      sound:
+        path: /Audio/Animals/wawa_statement.ogg
+    - type: EmitSoundOnCollide
+      sound:
+        path: /Audio/Animals/wawa_mock.ogg
+    - type: MeleeWeapon
+      wideAnimationRotation: 90
+      soundHit:
+        path: /Audio/Animals/wawa_protest.ogg
+    - type: UseDelay
+      delay: 1.0
+    - type: Tag
+      tags:
+        - Payload
+        - ClothMade

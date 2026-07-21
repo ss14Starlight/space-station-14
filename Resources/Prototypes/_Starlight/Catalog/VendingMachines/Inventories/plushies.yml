@@ -10,6 +10,17 @@
     stock: 3
 
 - type: listing
+  id: VendorPlushieWawa
+  productEntity: PlushieWawa
+  cost:
+    NTCredit: 20
+  categories:
+    - SLPlushies
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+
+- type: listing
   id: VendorPlushieSharkGrey
   productEntity: PlushieSharkGrey
   cost:
