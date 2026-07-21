@@ -193,11 +193,20 @@ public sealed partial class ShowAccessSystem : EntitySystem
             list.Add(name);
         }
 
-        // now just grab all the names of the access tags and shove them into a single string list
+        // now just grab all the names of the access tags and shove them into a single string list (and also move ungrouped to the back)
         var result = new List<string>();
-        foreach (var (group, accessList) in sorted)
-            if (accessList.Count > 0)
-                result.Add(Loc.GetString("show-access-examined-group", ("group", group), ("accesses", string.Join(", ", accessList))));
+        foreach (var group in sorted.Keys
+                     .Where(g => g != Ungrouped)
+                     .OrderBy(g => g)
+                     .Append(Ungrouped))
+        {
+            if (!sorted.TryGetValue(group, out var accessList) || accessList.Count == 0)
+                continue;
+
+            result.Add(Loc.GetString("show-access-examined-group",
+                ("group", group),
+                ("accesses", string.Join(", ", accessList))));
+        }
 
         // voilà this code sucks here's your ordered access tags
         return result;
