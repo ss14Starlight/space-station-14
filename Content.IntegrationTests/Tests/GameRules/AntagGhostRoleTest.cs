@@ -40,11 +40,21 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     /// </summary>
     private static readonly HashSet<string> IgnoredAntagGameRules =
     [
-        // Covered by Traitor
+        /// Already has their own tests
+        // Covered by TraitorRuleTet
+        "Traitor",
         "TraitorLess",
         "SubTraitor",
         "SleeperAgents",
         "TraitorReinforcement",
+        // Covered by VampireRuleTest
+        "Vampire",
+        "VampireLess",
+        // Covered by NukeOpsTest
+        "Nukeops",
+        "NukeopsLate",
+        "LoneOpsSpawn",
+        /// Groupings that don't already have their own tests
         // Covered by DerelictGenericCyborgSpawn
         "DerelictBorgiSpawn",
         "DerelictPurrfusCyborgSpawn",
@@ -60,15 +70,18 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         "DerelictXenoBorgiSpawn",
         // One-offs
         "ParadoxCrisisSpawn",
-        "BrighteyeSpawn",
         "SLChangelingLess",
         "ThiefLess",
-        "VampireLess",
-        "ZombieOutbreak",
-        "NukeopsLate",
-        "SubWizard",
+        "ZombieOutbreak", // We don't use it, anyways
+        "Changeling", // We don't use Wizden Changelings
+        /// Need their own tests due to LoadMapRule
         "Wizard",
-        "Changeling" // We don't use Wizden Changelings
+        "WizardDuel",
+        "SubWizard",
+        "WizardSpawn",
+        "TerrorSpidersSpawn",
+        "BrighteyeSpawn",
+        "SubBrighteye"
     ];
     private static readonly string[] AntagGameRules = GameDataScrounger.EntitiesWithComponent("AntagSelection").Where(ruleId => !IgnoredAntagGameRules.Contains(ruleId)).ToArray(); // Exclude duplicate rules, they're really not needed and just time out tests.
     #endregion
