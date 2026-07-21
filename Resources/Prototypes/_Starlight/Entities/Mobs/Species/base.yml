@@ -252,6 +252,12 @@
   # Starlight End
   - type: CosmicCenserTarget # Stellar - Cosmic Cult
   - type: Scent # Starlight - smell system
+  # Moff start - Funky footprints
+  - type: FootprintOwner
+  - type: SolutionManager
+    solutions:
+    - SolutionPrint
+  # Moff end
 
 - type: entity
   save: false
