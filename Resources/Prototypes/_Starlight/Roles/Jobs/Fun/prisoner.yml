@@ -1,0 +1,33 @@
+- type: job
+  id: Prisoner
+  name: job-name-prisoner
+  description: job-description-prisoner
+  playTimeTracker: JobPrisoner
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 0.25h
+  startingGear: PrisonerGear
+  icon: "JobIconPrisoner"
+  supervisors: job-supervisors-hop
+  access:
+  - GenpopEnter
+
+- type: startingGear
+  id: PrisonerGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: PrisonerPDA
+    ears: ClothingHeadsetAssistant
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    head: ClothingHeadHatBeretPrison
+
+- type: chameleonOutfit
+  id: PrisonerChameleonOutfit
+  job: Prisoner
+  equipment:
+    shoes: ClothingShoesColorBlack
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    ears: ClothingHeadsetAssistant
+    gloves: ClothingHandsGlovesColorBlack
+    head: ClothingHeadHatBeretPrison
