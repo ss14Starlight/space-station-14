@@ -1,34 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (PLASMA) Added the kiki.
-    type: Add
-  id: 406379
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PLASMA) Added the shipyard console.
-    type: Add
-  id: 406380
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PRISM) Added the new fax machines.
-    type: Add
-  id: 406381
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PRISM) Added kiki.
-    type: Add
-  id: 406382
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (PRISM) Added the shipyard console.
     type: Add
   id: 406383
@@ -2799,4 +2771,32 @@ Entries:
   id: 406778
   time: '2026-07-21T11:37:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Increased artillery projectile speeds.
+    type: Tweak
+  id: 406779
+  time: '2026-07-21T12:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5023
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Rebalanced all artillery weapons with more accurate damage values.
+    type: Tweak
+  id: 406780
+  time: '2026-07-21T12:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5023
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Fixed the Vanyek firing unintended follow-up shots.
+    type: Fix
+  id: 406781
+  time: '2026-07-21T12:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5023
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Overhauled the gunnery console UI to make it cleaner and easier to read.
+    type: Tweak
+  id: 406782
+  time: '2026-07-21T12:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5023
 Order: -1
