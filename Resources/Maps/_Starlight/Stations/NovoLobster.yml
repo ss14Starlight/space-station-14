@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/21/2026 08:19:48
-  entityCount: 21091
+  time: 07/21/2026 08:22:33
+  entityCount: 21097
 maps:
 - 1
 grids:
@@ -46887,6 +46887,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 29.5,-32.5
       parent: 2
+  - uid: 21094
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 34.5,-1.5
+      parent: 2
 - proto: DisposalJunction
   entities:
   - uid: 6004
@@ -47094,6 +47100,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -14.5,-18.5
       parent: 2
+  - uid: 21093
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 36.5,-1.5
+      parent: 2
 - proto: DisposalJunctionFlipped
   entities:
   - uid: 2843
@@ -47186,6 +47198,12 @@ entities:
     components:
     - type: Transform
       pos: 27.5,-24.5
+      parent: 2
+  - uid: 20610
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 37.5,-1.5
       parent: 2
   - uid: 20717
     components:
@@ -48157,11 +48175,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 38.5,-8.5
       parent: 2
-  - uid: 17931
-    components:
-    - type: Transform
-      pos: 37.5,-1.5
-      parent: 2
   - uid: 17934
     components:
     - type: Transform
@@ -48172,12 +48185,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 38.5,0.5
-      parent: 2
-  - uid: 17948
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 36.5,-0.5
       parent: 2
   - uid: 17949
     components:
@@ -53239,6 +53246,22 @@ entities:
     - type: Transform
       pos: 30.5,-33.5
       parent: 2
+  - uid: 21095
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 35.5,-1.5
+      parent: 2
+  - uid: 21096
+    components:
+    - type: Transform
+      pos: 34.5,-2.5
+      parent: 2
+  - uid: 21097
+    components:
+    - type: Transform
+      pos: 34.5,-3.5
+      parent: 2
 - proto: DisposalRouterBotany
   entities:
   - uid: 6865
@@ -53257,6 +53280,14 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-29.5
+      parent: 2
+- proto: DisposalRouterCargo
+  entities:
+  - uid: 17948
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 36.5,-0.5
       parent: 2
 - proto: DisposalRouterChemistry
   entities:
@@ -53817,6 +53848,12 @@ entities:
     components:
     - type: Transform
       pos: 26.5,-31.5
+      parent: 2
+  - uid: 21092
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 34.5,-4.5
       parent: 2
 - proto: DisposalUnit
   entities:
@@ -63995,6 +64032,14 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#EF6F6CFF'
+  - uid: 17931
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 37.5,-1.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#EF6F6CFF'
   - uid: 17942
     components:
     - type: Transform
@@ -64208,14 +64253,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 37.5,-2.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#EF6F6CFF'
-  - uid: 20610
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 37.5,-1.5
       parent: 2
     - type: AtmosPipeColor
       color: '#EF6F6CFF'
