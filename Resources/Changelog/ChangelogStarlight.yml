@@ -1,55 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MING) Added the new fax machines.
-    type: Add
-  id: 406372
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (MING) Added kiki and more trays.
-    type: Add
-  id: 406373
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (MING) Added shipyard console.
-    type: Add
-  id: 406374
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PACKED) Added the new fax machines.
-    type: Add
-  id: 406375
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PACKED) Added kiki.
-    type: Add
-  id: 406376
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PACKED) Added shipyard console.
-    type: Add
-  id: 406377
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PLAMSA) Added the new fax machines.
-    type: Add
-  id: 406378
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (PLASMA) Added the kiki.
     type: Add
   id: 406379
@@ -2799,4 +2750,53 @@ Entries:
   id: 406771
   time: '2026-07-21T00:10:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5170
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: Bulk gas ordering directly from the ATS, no canisters needed!
+    type: Add
+  id: 406772
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: Bulk cooled plasma ordering for maximum storage efficiency.
+    type: Add
+  id: 406773
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: (ATS) Distro and waste redone to match docking port standard layers.
+    type: Tweak
+  id: 406774
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: (ATS) All docks have distro/waste connections for shuttles to replenish air.
+    type: Tweak
+  id: 406775
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: (ATS) Cargo shuttle docks also have gas buying/selling pipes for shuttles to pipe from and into.
+    type: Tweak
+  id: 406776
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: CS-4T9 "Tanker", perfect for gas hauling, is now available for purchase for the low low price of $21,500 at your local shipyard console!
+    type: Add
+  id: 406777
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: Canned gas prices are now proportional to the amount of moles contained within for both the regular and liquid cooled variants.
+    type: Tweak
+  id: 406778
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
 Order: -1
