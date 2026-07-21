@@ -92,22 +92,6 @@ public sealed partial class MechComponent : Component
     public readonly string BatterySlotId = "mech-battery-slot";
 
     /// <summary>
-    /// The slot the gas tank is stored in.
-    /// </summary>
-    [ViewVariables]
-    public ContainerSlot GasTankSlot = default!;
-
-    [ViewVariables]
-    public readonly string GasTankSlotId = "mech-gas-tank-slot";
-
-    /// <summary>
-    /// A multiplier used to calculate how much of the damage done to a mech
-    /// is transfered to the pilot
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float MechToPilotDamageMultiplier;
-
-    /// <summary>
     /// Whether the mech has been destroyed and is no longer pilotable.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
@@ -140,9 +124,6 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? EquipmentWhitelist;
-
-    [DataField]
-    public EntityWhitelist? PilotWhitelist;
 
     /// <summary>
     /// A container for storing the equipment entities.

@@ -1,7 +1,8 @@
+using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Hands.Systems;
 using Content.Server.Mech.Components;
-using Content.Shared.ActionBlocker;
+using Content.Shared.Atmos;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
@@ -16,16 +17,14 @@ using Content.Shared.Power.EntitySystems;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
+using Content.Shared.Vehicle.Components;
 using Content.Shared.Verbs;
-using Content.Shared.Whitelist;
 using Content.Shared.Wires;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using System.Linq;
-using Content.Shared.Atmos;
 
 #region Starlight
 
@@ -41,7 +40,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Movement.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Server._Starlight.Mech.Components; //Starlight
+using Content.Server._Starlight.Mech.Components;
 #endregion Starlight
 
 namespace Content.Server.Mech.Systems;
@@ -49,7 +48,6 @@ namespace Content.Server.Mech.Systems;
 /// <inheritdoc/>
 public sealed partial class MechSystem : SharedMechSystem
 {
-    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private SharedBatterySystem _battery = default!;
     [Dependency] private ContainerSystem _container = default!;
@@ -57,7 +55,6 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
-    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private SharedToolSystem _toolSystem = default!;
 
 #region Starlight
@@ -77,183 +74,14 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
 
-    /// <inheritdoc/>
-    public override void Initialize()
+    [SubscribeLocalEvent]
+    private void OnMechCanMoveEvent(Entity<MechComponent> ent, ref VehicleCanRunEvent args)
     {
-        base.Initialize();
-
-        SubscribeLocalEvent<MechComponent, ToggleActionEvent>(OnToggleLightEvent); // Starlight
-        SubscribeLocalEvent<MechComponent, InteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<MechComponent, EntInsertedIntoContainerMessage>(OnInsertEquipment); // Starlight
-        SubscribeLocalEvent<MechComponent, EntRemovedFromContainerMessage>(OnItemRemoved); // Starlight-edit: Correct equipment update
-        SubscribeLocalEvent<MechComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<MechComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternativeVerb);
-        SubscribeLocalEvent<MechComponent, MechOpenUiEvent>(OnOpenUi);
-        SubscribeLocalEvent<MechComponent, RemoveBatteryEvent>(OnRemoveBattery);
-        SubscribeLocalEvent<MechComponent, RemoveGasTankEvent>(OnRemoveGasTank); // Starlight
-        SubscribeLocalEvent<MechComponent, ChargeChangedEvent>(OnChargeChanged); // Starlight
-        SubscribeLocalEvent<MechBatteryComponent, ChargeChangedEvent>(OnBatteryChargeChanged); // Starlight-edit
-        SubscribeLocalEvent<MechComponent, MechEntryEvent>(OnMechEntry);
-        SubscribeLocalEvent<MechComponent, MechExitEvent>(OnMechExit);
-
-        SubscribeLocalEvent<MechComponent, DamageChangedEvent>(OnDamageChanged);
-        SubscribeLocalEvent<MechComponent, MechEquipmentRemoveMessage>(OnRemoveEquipmentMessage);
-        SubscribeLocalEvent<MechComponent, MechMaintenanceUiMessage>(OnMaintenanceMessage); // Starlight
-
-        SubscribeLocalEvent<MechPilotComponent, ToolUserAttemptUseEvent>(OnToolUseAttempt);
-        SubscribeLocalEvent<MechPilotComponent, InhaleLocationEvent>(OnInhale);
-        SubscribeLocalEvent<MechPilotComponent, ExhaleLocationEvent>(OnExhale);
-        SubscribeLocalEvent<MechPilotComponent, AtmosExposedGetAirEvent>(OnExpose);
-
-        SubscribeLocalEvent<MechAirComponent, MapInitEvent>(OnInitializeAir); // STARLIGHT
-
-        #region Equipment UI message relays
-        SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);
-        SubscribeLocalEvent<MechComponent, MechSoundboardPlayMessage>(ReceiveEquipmentUiMesssages);
-        #endregion
+        if (ent.Comp.Broken || ent.Comp.Integrity <= 0 || ent.Comp.Energy <= 0)
+            args = args with { CanRun = false };
     }
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-        // Starlight-start: Raise ChargeChangedEvent if battery charge changed and NextUpdateTime is reached. Remove old code that only raised ChargeChangedEvent for the thruster component.
-        var mechEnum = EntityQueryEnumerator<MechComponent>();
-        while (mechEnum.MoveNext(out var uid, out var mechComp))
-        {
-            if (Timing.CurTime < mechComp.NextUpdateTime)
-                continue;
-
-            var deltaTime = Timing.CurTime - (mechComp.NextUpdateTime - mechComp.Delay);
-            mechComp.NextUpdateTime += mechComp.Delay - (Timing.CurTime - mechComp.NextUpdateTime);
-
-            if (mechComp.BatterySlot.ContainedEntity != null &&
-                TryComp<BatteryComponent>(mechComp.BatterySlot.ContainedEntity.Value, out var battery))
-            {
-                var passiveDrawEv = new GetPassiveChargeDrawRate(uid);
-                RaiseLocalEvent(uid, passiveDrawEv);
-
-                if (!MathHelper.CloseTo(passiveDrawEv.CumulativeDrawRate, 0f))
-                    TryChangeEnergy(uid, passiveDrawEv.CumulativeDrawRate * deltaTime.TotalSeconds);
-
-                var currentCharge = _battery.GetCharge((mechComp.BatterySlot.ContainedEntity.Value, battery));
-                if( mechComp.PlayPowerUpSound && (int)(currentCharge / battery.MaxCharge * 100) > 0 )
-                {
-                    _audioSystem.PlayPredicted(mechComp.PowerupSound, uid, uid);
-                    mechComp.PlayPowerUpSound = false;
-                    mechComp.PlayPowerSound = true;
-                }
-                if (mechComp.Energy != currentCharge)
-                {
-                    var ev = new ChargeChangedEvent(currentCharge, 0, battery.ChargeRate, battery.MaxCharge);
-                    RaiseLocalEvent(uid, ref ev);
-                }
-            }
-        }
-        // Starlight-end
-    }
-
-    // Starlight-start: fix movement block + Fix UpdateUserInterface
-
-    private void OnItemRemoved(EntityUid mech, MechComponent mechComp, EntRemovedFromContainerMessage args)
-    {
-        Dirty(mech, mechComp);
-        UpdateUserInterface(mech, mechComp);
-    }
-
-    private void UpdateCanMove(EntityUid mech, MechComponent? mechComp = null)
-    {
-        if (!Resolve(mech, ref mechComp))
-            return;
-
-        _actionBlocker.UpdateCanMove(mech);
-        if (mechComp.PilotSlot.ContainedEntity is { } pilot)
-            _actionBlocker.UpdateCanMove(pilot);
-    }
-
-    // Starlight-end
-
-    private void OnToggleLightEvent(EntityUid uid, MechComponent component, ToggleActionEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (component.BatterySlot.ContainedEntity == null
-            || !TryComp<BatteryComponent>(component.BatterySlot.ContainedEntity, out var battery)
-            || _battery.GetCharge((component.BatterySlot.ContainedEntity.Value, battery)) <= 0) // Starlight: Get current charge level correctly. Lights now work :)
-            return;
-
-        args.Handled = true;
-
-        ToggleLight(uid, component);
-    }
-
-    // Starlight-start: Correct UI/Charge update
-
-    private void OnChargeChanged(EntityUid uid, MechComponent component, ref ChargeChangedEvent args)
-    {
-        if ((int)(args.CurrentCharge / args.MaxCharge * 100) == 0) //We run this off of the mech's % power readout, rather than absolute values
-        {
-            if(component.Light)
-                ToggleLight(uid, component);
-            if(!component.PlayPowerUpSound)
-                _audioSystem.PlayPredicted(component.PowerDownSound, uid, uid);
-            component.PlayPowerUpSound = true;
-        }
-
-        component.Energy = args.CurrentCharge;
-        component.MaxEnergy = args.MaxCharge;
-
-        UpdateCanMove(uid, component); // Starlight-edit: fix movement block
-        UpdateUserInterface(uid, component);
-
-        Dirty(uid, component);
-    }
-
-    private void OnBatteryChargeChanged(EntityUid uid, MechBatteryComponent component, ref ChargeChangedEvent args)
-    {
-        if (!TryComp<MechComponent>(component.Mech, out var mechComp))
-            return;
-
-        var mech = component.Mech;
-
-        if ((int)(args.CurrentCharge / args.MaxCharge * 100) == 0) //We run this off of the mech's % power readout, rather than absolute values
-        {
-            if (mechComp.Light)
-                ToggleLight(mech, mechComp);
-            if(!mechComp.PlayPowerUpSound)
-                _audioSystem.PlayPredicted(mechComp.PowerDownSound, uid, uid);
-            mechComp.PlayPowerUpSound = true;
-        }
-
-        mechComp.Energy = args.CurrentCharge;
-        mechComp.MaxEnergy = args.MaxCharge;
-
-        UpdateCanMove(mech, mechComp);
-        UpdateUserInterface(mech, mechComp);
-
-        Dirty(mech, mechComp);
-    }
-
-    // Starlight-end
-
-    public void ToggleLight(EntityUid uid, MechComponent component)
-    {
-        if (!_light.TryGetLight(uid, out var light))
-            return;
-
-        _light.SetEnabled(uid, !component.Light, comp: light);
-
-        _actions.SetToggled(component.MechToggleLightActionEntity, !component.Light);
-
-        _audioSystem.PlayPredicted(component.ToggleLightSound, uid, uid);
-
-        component.Light = !component.Light;
-
-        Dirty(uid, component);
-
-        UpdateAppearance(uid, component);
-    }
-
+    [SubscribeLocalEvent]
     private void OnInteractUsing(EntityUid uid, MechComponent component, InteractUsingEvent args)
     {
         if (TryComp<WiresPanelComponent>(uid, out var panel) && !panel.Open)
@@ -263,7 +91,7 @@ public sealed partial class MechSystem : SharedMechSystem
         && _whitelistSystem.IsWhitelistPassOrNull(component.BatteryWhitelist, args.Used)) // Starlight - Mech Reactors
         {
             InsertBattery(uid, args.Used, component, battery);
-            UpdateCanMove(uid, component); // Starlight-edit: fix movement block
+            _actionBlocker.UpdateCanMove(uid);
             return;
         }
         if (component.GasTankSlot.ContainedEntity == null && TryComp<GasTankComponent>(args.Used, out var gasTank))
@@ -271,15 +99,13 @@ public sealed partial class MechSystem : SharedMechSystem
             InsertGasTank(uid, args.Used, component, gasTank);
         }
 
-        if (_toolSystem.HasQuality(args.Used, PryingQuality))
+        if (_toolSystem.HasQuality(args.Used, PryingQuality) && component.BatterySlot.ContainedEntity != null)
         {
-            if (component.BatterySlot.ContainedEntity != null)
+            var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, component.BatteryRemovalDelay,
+                new RemoveBatteryEvent(), uid, target: uid, used: args.Used)
             {
-                var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, component.BatteryRemovalDelay,
-                    new RemoveBatteryEvent(), uid, target: uid, used: args.Target)
-                {
-                    BreakOnMove = true
-                };
+                BreakOnMove = true
+            };
 
                 _doAfter.TryStartDoAfter(doAfterEventArgs);
             }
@@ -296,7 +122,8 @@ public sealed partial class MechSystem : SharedMechSystem
         }
     }
 
-    private void OnInsertEquipment(EntityUid uid, MechComponent component, EntInsertedIntoContainerMessage args)
+    [SubscribeLocalEvent]
+    private void OnInsertBattery(EntityUid uid, MechComponent component, EntInsertedIntoContainerMessage args)
     {
         UpdateUserInterface(uid, component); // Starlight-edit: Correct equipment update
         if (!(args.Container != component.BatterySlot || !TryComp<BatteryComponent>(args.Entity, out var battery)))
@@ -304,27 +131,18 @@ public sealed partial class MechSystem : SharedMechSystem
             component.Energy = _battery.GetCharge((args.Entity, battery)); // Starlight-edit: Correct energy update
             component.MaxEnergy = battery.MaxCharge;
 
-            Dirty(uid, component);
-            UpdateCanMove(uid, component); // Starlight-edit: fix movement block
-        }
-        else if (!(args.Container != component.GasTankSlot || !TryComp<GasTankComponent>(args.Entity, out var gasTank)))
-        {
-            Dirty(uid, component);
-            UpdateCanMove(uid, component); // Starlight-edit: fix movement block
-        }
-        else
-        {
-            return;
-        }
+        Dirty(uid, component);
+        Vehicle.RefreshCanRun(uid);
     }
 
+    [SubscribeLocalEvent]
     private void OnRemoveBattery(EntityUid uid, MechComponent component, RemoveBatteryEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
 
         RemoveBattery(uid, component);
-        UpdateCanMove(uid, component); // Starlight-edit: fix movement block
+        _actionBlocker.UpdateCanMove(uid);
 
         args.Handled = true;
     }
@@ -343,6 +161,7 @@ public sealed partial class MechSystem : SharedMechSystem
         _actions.SetToggled(component.MechToggleInternalsActionEntity, component.Internals);
     }
 
+    [SubscribeLocalEvent]
     private void OnMapInit(EntityUid uid, MechComponent component, MapInitEvent args)
     {
         var xform = Transform(uid);
@@ -357,21 +176,11 @@ public sealed partial class MechSystem : SharedMechSystem
         component.Integrity = component.MaxIntegrity;
         component.Energy = component.MaxEnergy;
 
-
-        // Starlight-start: Correct Charge/UI Update
-        if (component.BatterySlot.ContainedEntity != null)
-        {
-            var mechBattery = EnsureComp<MechBatteryComponent>(component.BatterySlot.ContainedEntity.Value);
-            mechBattery.Mech = uid;
-        }
-
-        component.NextUpdateTime = Timing.CurTime + component.Delay;
-        // Starlight-end
-
-        UpdateCanMove(uid, component); // Starlight-edit: fix movement block
+        Vehicle.RefreshCanRun(uid);
         Dirty(uid, component);
     }
 
+    [SubscribeLocalEvent]
     private void OnRemoveEquipmentMessage(EntityUid uid, MechComponent component, MechEquipmentRemoveMessage args)
     {
         var equip = GetEntity(args.Equipment);
@@ -423,18 +232,21 @@ public sealed partial class MechSystem : SharedMechSystem
     }
     #endregion
 
+    [SubscribeLocalEvent]
     private void OnOpenUi(EntityUid uid, MechComponent component, MechOpenUiEvent args)
     {
         args.Handled = true;
         ToggleMechUi(uid, component);
     }
 
-    private void OnToolUseAttempt(EntityUid uid, MechPilotComponent component, ref ToolUserAttemptUseEvent args)
+    [SubscribeLocalEvent]
+    private void OnToolUseAttempt(Entity<VehicleOperatorComponent> ent, ref ToolUserAttemptUseEvent args)
     {
-        if (args.Target == component.Mech)
+        if (ent.Comp.Vehicle is { } vehicle && args.Target == vehicle)
             args.Cancelled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnAlternativeVerb(EntityUid uid, MechComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
@@ -472,15 +284,16 @@ public sealed partial class MechSystem : SharedMechSystem
             };
             args.Verbs.Add(enterVerb);
         }
-        else if (!IsEmpty(component))
+        else if (Vehicle.HasOperator(uid))
         {
+            var operatorUid = Vehicle.GetOperatorOrNull(uid);
             var ejectVerb = new AlternativeVerb
             {
                 Text = Loc.GetString("mech-verb-exit"),
                 Priority = 1, // Promote to top to make ejecting the ALT-click action
                 Act = () =>
                 {
-                    if (args.User == uid || args.User == component.PilotSlot.ContainedEntity)
+                    if (args.User == uid || args.User == operatorUid)
                     {
                         TryEject(uid, component);
                         return;
@@ -499,59 +312,46 @@ public sealed partial class MechSystem : SharedMechSystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnMechEntry(EntityUid uid, MechComponent component, MechEntryEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
 
-        if (_whitelistSystem.IsWhitelistFail(component.PilotWhitelist, args.User))
+        if (!Vehicle.CanOperate(uid, args.User))
         {
             _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), Identity.Entity(args.User, EntityManager));
             return;
         }
 
-        if (TryComp<HandsComponent>(args.Args.User, out var handsComponent))
-            foreach (var hand in _hands.EnumerateHands((args.Args.User, handsComponent)))
-                _hands.DoDrop((args.Args.User, handsComponent), hand);
-
-        TryInsert(uid, args.Args.User, component);
-        _ui.CloseUis(uid); // Starlight - close any UIs upon mech entry
-        UpdateCanMove(uid, component); // Starlight-edit: fix movement block
-
-        _factionSystem.Up(args.Args.User, uid);
-
+        TryInsert(uid, args.User, component);
         args.Handled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnMechExit(EntityUid uid, MechComponent component, MechExitEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
 
-        TryEject(uid, component);
-        RemComp<NpcFactionMemberComponent>(uid);
+        if (!TryEject(uid, component))
+            return;
+
         args.Handled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnDamageChanged(EntityUid uid, MechComponent component, DamageChangedEvent args)
     {
         var integrity = component.MaxIntegrity - _damageable.GetTotalDamage((uid, args.Damageable));
         SetIntegrity(uid, integrity, component);
-
-        if (args.DamageIncreased &&
-            args.DamageDelta != null &&
-            component.PilotSlot.ContainedEntity != null)
-        {
-            var damage = args.DamageDelta * component.MechToPilotDamageMultiplier;
-            _damageable.ChangeDamage(component.PilotSlot.ContainedEntity.Value, damage);
-        }
     }
 
     private void ToggleMechUi(EntityUid uid, MechComponent? component = null, EntityUid? user = null)
     {
         if (!Resolve(uid, ref component))
             return;
-        user ??= component.PilotSlot.ContainedEntity;
+        user ??= Vehicle.GetOperatorOrNull(uid);
         if (user == null)
             return;
 
@@ -562,7 +362,19 @@ public sealed partial class MechSystem : SharedMechSystem
         UpdateUserInterface(uid, component);
     }
 
-    private void ReceiveEquipmentUiMesssages<T>(EntityUid uid, MechComponent component, T args) where T : MechEquipmentUiMessage
+    [SubscribeLocalEvent]
+    private void RelayGrabberUiMessage(EntityUid uid, MechComponent component, ref MechGrabberEjectMessage args)
+    {
+        ReceiveEquipmentUiMesssages(component, args);
+    }
+
+    [SubscribeLocalEvent]
+    private void RelaySoundboardUiMessage(EntityUid uid, MechComponent component, ref MechSoundboardPlayMessage args)
+    {
+        ReceiveEquipmentUiMesssages(component, args);
+    }
+
+    private void ReceiveEquipmentUiMesssages<T>(MechComponent component, T args) where T : MechEquipmentUiMessage
     {
         var ev = new MechEquipmentUiMessageRelayEvent(args);
         var allEquipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
@@ -601,7 +413,7 @@ public sealed partial class MechSystem : SharedMechSystem
         base.BreakMech(uid, component);
 
         _ui.CloseUi(uid, MechUiKey.Key);
-        UpdateCanMove(uid, component); // Starlight-edit: fix movement block
+        Vehicle.RefreshCanRun(uid);
     }
 
     public override bool TryChangeEnergy(EntityUid uid, FixedPoint2 delta, MechComponent? component = null)
@@ -638,7 +450,7 @@ public sealed partial class MechSystem : SharedMechSystem
             component.Energy = charge;
             Dirty(uid, component);
         }
-        UpdateCanMove(uid, component); // Starlight-edit: fix movement block
+        Vehicle.RefreshCanRun(uid);
         return true;
     }
     public void InsertGasTank(EntityUid uid, EntityUid toInsert, MechComponent? component = null, GasTankComponent? gasTank = null)
@@ -667,9 +479,7 @@ public sealed partial class MechSystem : SharedMechSystem
         component.Energy = _battery.GetCharge(toInsert);
         component.MaxEnergy = battery.MaxCharge;
 
-        _movementSpeedModifier.RefreshMovementSpeedModifiers(uid); //Starlight - mech reactors with speed mods
-
-        UpdateCanMove(uid, component); // Starlight-edit: fix movement block
+        Vehicle.RefreshCanRun(uid);
 
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
@@ -686,18 +496,19 @@ public sealed partial class MechSystem : SharedMechSystem
         component.Energy = 0;
         component.MaxEnergy = 0;
 
-        UpdateCanMove(uid, component); // Starlight-edit: fix movement block
+        Vehicle.RefreshCanRun(uid);
 
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
     }
 
     #region Atmos Handling
-
-    // STARLIGHT BEGIN
-    private void OnInhale(EntityUid uid, MechPilotComponent component, ref InhaleLocationEvent args)
+    [SubscribeLocalEvent]
+    private void OnInhale(Entity<VehicleOperatorComponent> ent, ref ref InhaleLocationEvent args)
     {
-        if (!TryComp<MechComponent>(component.Mech, out var mech))
+        if (ent.Comp.Vehicle is not { } vehicle ||
+            !TryComp<MechComponent>(vehicle, out var mech) ||
+            !TryComp<MechAirComponent>(vehicle, out var mechAir))
         {
             return;
         }
@@ -715,10 +526,12 @@ public sealed partial class MechSystem : SharedMechSystem
     }
     // STARLIGHT END
 
-    private void OnExhale(EntityUid uid, MechPilotComponent component, ref ExhaleLocationEvent args)
+    [SubscribeLocalEvent]
+    private void OnExhale(Entity<VehicleOperatorComponent> ent, ref ExhaleLocationEvent args)
     {
-        if (!TryComp<MechComponent>(component.Mech, out var mech) ||
-            !TryComp<MechAirComponent>(component.Mech, out var mechAir))
+        if (ent.Comp.Vehicle is not { } vehicle ||
+            !TryComp<MechComponent>(vehicle, out var mech) ||
+            !TryComp<MechAirComponent>(vehicle, out var mechAir))
         {
             return;
         }
@@ -726,27 +539,28 @@ public sealed partial class MechSystem : SharedMechSystem
         args.Gas = _atmosphere.GetContainingMixture(component.Mech); // STARLIGHT
     }
 
-    private void OnExpose(EntityUid uid, MechPilotComponent component, ref AtmosExposedGetAirEvent args)
+    [SubscribeLocalEvent]
+    private void OnExpose(Entity<VehicleOperatorComponent> ent, ref AtmosExposedGetAirEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || ent.Comp.Vehicle is not { } vehicle)
             return;
 
-        if (!TryComp(component.Mech, out MechComponent? mech))
+        if (!TryComp(vehicle, out MechComponent? mech))
             return;
 
-        if (mech.Airtight && TryComp(component.Mech, out MechAirComponent? air))
+        if (mech.Airtight && TryComp(vehicle, out MechAirComponent? air))
         {
             args.Handled = true;
             args.Gas = air.Air;
             return;
         }
 
-        args.Gas = _atmosphere.GetContainingMixture(component.Mech, excite: args.Excite);
+        args.Gas = _atmosphere.GetContainingMixture(vehicle, excite: args.Excite);
         args.Handled = true;
     }
 
-    // STARLIGHT BEGIN
-    private void OnInitializeAir(EntityUid uid, MechAirComponent comp, MapInitEvent args)
+    [SubscribeLocalEvent]
+    private void OnGetFilterAir(EntityUid uid, MechAirComponent comp, ref GetFilterAirEvent args)
     {
         var moles = Atmospherics.OneAtmosphere * comp.Air.Volume / (Atmospherics.R * Atmospherics.T20C);
         // "Skin" interactions will still have issues (ex. slime + h2o), so choosing a safe gas here
