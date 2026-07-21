@@ -154,6 +154,12 @@
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ScanGateMachineCircuitboard
+  - GygaxCentralElectronics
+  - GygaxPeripheralsElectronics
+  - GygaxTargetingElectronics
+  - DurandCentralElectronics
+  - DurandPeripheralsElectronics
+  - DurandTargetingElectronics
 
 - type: latheRecipePack
   parent:
@@ -292,9 +298,6 @@
   - GygaxLLeg
   - GygaxRArm
   - GygaxRLeg
-  - GygaxCentralElectronics
-  - GygaxPeripheralsElectronics
-  - GygaxTargetingElectronics
 
   - DurandHarness
   - DurandArmor
@@ -303,9 +306,6 @@
   - DurandLLeg
   - DurandRArm
   - DurandRLeg
-  - DurandCentralElectronics
-  - DurandPeripheralsElectronics
-  - DurandTargetingElectronics
 
 - type: latheRecipePack
   id: SecurityCyberLimbs
