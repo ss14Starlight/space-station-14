@@ -54,12 +54,12 @@
 
 - type: vessel
   id: CargoGas
-  name: CS-2P6 "Plasma"
+  name: CS-4T9 "Tanker"
   description: A small sized cargo shuttle 'borrowed' from another station that is able to hold gas.
-  price: 26410
+  price: 21500
   category: Small
   group: Cargo
-  shuttlePath: /Maps/_Starlight/Shuttles/cargo_plasma.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/GasTransport.yml
 
 - type: vessel
   id: Pioneer

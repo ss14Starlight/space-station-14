@@ -148,3 +148,6 @@ GyroscopeOff: Gyroscope
 
 #2026-07-11 - Removing the sec flaregun for the Peacekeeper
 WeaponFlareGunSecurity: null
+
+#2026-07-12
+CargoGasPallet: CargoGasPalletSell

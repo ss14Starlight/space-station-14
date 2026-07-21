@@ -1,14 +1,19 @@
 {
-   "version":1,
-   "size":{
+    "version":1,
+    "size":{
       "x":32,
       "y":32
-   },
-   "license":"CC-BY-SA-3.0",
-   "copyright":"Made by Conflee",
-   "states":[
-      {
-         "name":"cargoGasPallet"
-      }
-   ]
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "states":[
+        {
+            "name":"gas_sell_tank",
+            "copyright": "Made by Conflee"
+        },
+        {
+            "name": "gas_buy_tank",
+            "copyright": "Made by Conflee (GitHub), tweaked to buy pallet colors by redmushie (GitHub), improved by JohnnyMalawny (GitHub)"
+        }
+    ]
 }

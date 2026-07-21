@@ -1,5 +1,8 @@
 using System.Linq;
 using Content.Server.Cargo.Components;
+using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.Prototypes;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -141,7 +144,7 @@ public sealed partial class CargoSystem
     /// <remarks>
     /// Unlike Cargo Pallets, Cargo Gas Pallets only support selling for now, so no second parameter like GetCargoPallets
     /// </remarks>
-    private List<(EntityUid Entity, CargoGasPalletComponent Component, TransformComponent PalletXform)> GetCargoGasPallets(EntityUid gridUid)
+    private List<(EntityUid Entity, CargoGasPalletComponent Component, TransformComponent PalletXform)> GetCargoGasPallets(EntityUid gridUid, BuySellType requestType = BuySellType.All)
     {
         _gasPads.Clear();
 
@@ -149,17 +152,44 @@ public sealed partial class CargoSystem
 
         while (query.MoveNext(out var uid, out var comp, out var compXform))
         {
-            if (compXform.ParentUid != gridUid ||
-                !compXform.Anchored)
-            {
+            if (compXform.ParentUid != gridUid || !compXform.Anchored)
                 continue;
-            }
+            if ((comp.PalletType & requestType) == 0)
+                continue;
 
             _gasPads.Add((uid, comp, compXform));
-
         }
 
         return _gasPads;
+    }
+
+    private List<(EntityUid Entity, CargoGasPalletComponent Component, TransformComponent Transform)>
+        GetFreeCargoGasPallets(List<(EntityUid Entity, CargoGasPalletComponent Component, TransformComponent Transform)> pallets,
+            Gas gasType, float gasMoles, float gasTemp, int amountToFind)
+    {
+        _setEnts.Clear();
+
+        List<(EntityUid Entity, CargoGasPalletComponent Component, TransformComponent Transform)> outList = new();
+
+        foreach (var pallet in pallets)
+        {
+            var singleOrder = new GasMixture(pallet.Component.Air.Volume) { Temperature = gasTemp };
+            singleOrder.SetMoles(gasType, gasMoles);
+
+            var currentMix = new GasMixture(pallet.Component.Air);
+            _atmosphereSystem.Merge(currentMix, singleOrder);
+
+            while (currentMix.Pressure < pallet.Component.MaxPressure)
+            {
+                if (amountToFind-- <= 0)
+                    return outList;
+
+                outList.Add(pallet); // Every time we manage to mix in one order without overflowing, add it to outlist.
+                _atmosphereSystem.Merge(currentMix, singleOrder); // currentMix += singleOrder
+            }
+        }
+
+        return outList;
     }
 
     #endregion
@@ -236,13 +266,13 @@ public sealed partial class CargoSystem
     /// </summary>
     private void GetGasPalletStocks(EntityUid gridUid, out HashSet<CargoGasPalletComponent> gasPallets, out HashSet<(EntityUid, double)> gasValues)
     {
-            gasPallets = new HashSet<CargoGasPalletComponent>();
-            gasValues = new HashSet<(EntityUid, double)>();
-            foreach (var (gasPalletUid, gasPalletComponent, _) in GetCargoGasPallets(gridUid))
-            {
-                    gasPallets.Add(gasPalletComponent);
-                    gasValues.Add((gasPalletUid, _atmosphereSystem.GetPrice(gasPalletComponent.Air)));
-            }
+        gasPallets = new HashSet<CargoGasPalletComponent>();
+        gasValues = new HashSet<(EntityUid, double)>();
+        foreach (var (gasPalletUid, gasPalletComponent, _) in GetCargoGasPallets(gridUid, BuySellType.Sell))
+        {
+            gasPallets.Add(gasPalletComponent);
+            gasValues.Add((gasPalletUid, _atmosphereSystem.GetPrice(gasPalletComponent.Air)));
+        }
     }
 
     private bool CanSell(EntityUid uid, TransformComponent xform)
