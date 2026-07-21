@@ -55,10 +55,4 @@ public sealed partial class SharedThrowInsertContainerSystem : EntitySystem
         if (args.Component.Thrower != null)
             _adminLogger.Add(LogType.Landed, LogImpact.Low, $"{ToPrettyString(args.Thrown)} thrown by {ToPrettyString(args.Component.Thrower.Value):player} landed in {ToPrettyString(ent)}");
     }
-
-    /// Overridden in client with a cached result from first prediction tick.
-    protected virtual bool GetCachedResult() => true;
-
-    /// Overridden in client to cache predicted result.
-    protected virtual void CacheResult(bool result) { }
 }
