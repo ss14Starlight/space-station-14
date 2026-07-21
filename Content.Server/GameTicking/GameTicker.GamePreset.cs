@@ -211,6 +211,8 @@ public sealed partial class GameTicker
     [PublicAPI]
     private bool AddGamePresetRules()
     {
+        RoundStartTimeSpan = _gameTiming.CurTime; // Starlight - Ensure this value is set to *something* before adding gamerules, mainly because of SLDynamic.
+
         if (DummyTicker || Preset == null)
             return false;
 

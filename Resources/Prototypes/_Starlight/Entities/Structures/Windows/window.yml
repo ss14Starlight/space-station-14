@@ -5,3 +5,317 @@
   components:
   - type: Occluder
     enabled: false
+
+# Honeypots BEGIN
+# I tried inheritance on these guys, but ran into various things not inheriting, so YAML anchors it is.
+
+# Reinforced window
+
+## Full size
+
+### Normal
+- type: entity
+  parent: [MarkerBase, ReinforcedWindow]
+  id: ReinforcedWindowHoneypot
+  description: &honeypotDesc Notifies admins when it gets damaged. Can be destroyed as normal.
+  suffix: &honeypotSuffix Honeypot
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedWindow
+      overrides: &honeypotOverrides
+        - type: AdminNotifyOnDamage
+          subject: "honeypot"
+    - &glassReinforcedWindowSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_window.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: &scale 1.25,1.25
+        - state: full
+
+### Indestructible
+- type: entity
+  parent: [MarkerBase, ReinforcedWindow]
+  id: ReinforcedWindowHoneypotIndestructible
+  description: &honeypotDescIndestructible Notifies admins when it gets damaged and is secretly indestructible.
+  suffix: &honeypotSuffixIndestructible Honeypot, Indestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedWindow
+      overrides: &honeypotOverridesIndestructible
+        - type: AdminNotifyOnDamage
+          subject: "honeypot"
+        - type: Destructible
+          thresholds: []
+    - *glassReinforcedWindowSprite
+
+## Diagonal
+
+### Normal
+- type: entity
+  parent: [MarkerBase, ReinforcedWindowDiagonal]
+  id: ReinforcedWindowDiagonalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedWindowDiagonal
+      overrides: *honeypotOverrides
+    - &glassReinforcedDiagonalSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_window_diagonal.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: state0
+
+### Indestructible
+- type: entity
+  parent: [MarkerBase, ReinforcedWindowDiagonal]
+  id: ReinforcedWindowDiagonalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedWindowDiagonal
+      overrides: *honeypotOverridesIndestructible
+    - *glassReinforcedDiagonalSprite
+
+## Directional
+
+### Normal
+- type: entity
+  parent: [MarkerBase, WindowReinforcedDirectional]
+  id: WindowReinforcedDirectionalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: WindowReinforcedDirectional
+      overrides: *honeypotOverrides
+    - &glassReinforcedDirectionalSprite
+      type: Sprite
+      sprite: Structures/Windows/directional.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: reinforced_window
+
+### Indestructible
+- type: entity
+  parent: [MarkerBase, WindowReinforcedDirectional]
+  id: WindowReinforcedDirectionalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: WindowReinforcedDirectional
+      overrides: *honeypotOverridesIndestructible
+    - *glassReinforcedDirectionalSprite
+
+# Plasma window
+
+## Full size
+
+### Normal
+- type: entity
+  parent: [MarkerBase, ReinforcedPlasmaWindow]
+  id: ReinforcedPlasmaWindowHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedPlasmaWindow
+      overrides: *honeypotOverrides
+    - &plasmaReinforcedSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_plasma_window.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: full
+
+### Indestructible
+- type: entity
+  parent: [MarkerBase, ReinforcedPlasmaWindow]
+  id: ReinforcedPlasmaWindowHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedPlasmaWindow
+      overrides: *honeypotOverridesIndestructible
+    - *plasmaReinforcedSprite
+
+## Diagonal
+
+### Normal
+- type: entity
+  parent: [MarkerBase, ReinforcedPlasmaWindowDiagonal]
+  id: ReinforcedPlasmaWindowDiagonalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedPlasmaWindowDiagonal
+      overrides: *honeypotOverrides
+    - &plasmaReinforcedDiagonalSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_plasma_diagonal.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: state0
+
+### Indestructible
+- type: entity
+  parent: [MarkerBase, ReinforcedPlasmaWindowDiagonal]
+  id: ReinforcedPlasmaWindowDiagonalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedPlasmaWindowDiagonal
+      overrides: *honeypotOverridesIndestructible
+    - *plasmaReinforcedDiagonalSprite
+
+## Directional
+
+### Normal
+- type: entity
+  parent: [MarkerBase, PlasmaReinforcedWindowDirectional]
+  id: PlasmaReinforcedWindowDirectionalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: PlasmaReinforcedWindowDirectional
+      overrides: *honeypotOverrides
+    - &plasmaReinforcedDirectionalSprite
+      type: Sprite
+      sprite: Structures/Windows/directional.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: plasma_reinforced_window
+
+### Indestructible
+- type: entity
+  parent: [MarkerBase, PlasmaReinforcedWindowDirectional]
+  id: PlasmaReinforcedWindowDirectionalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: PlasmaReinforcedWindowDirectional
+      overrides: *honeypotOverridesIndestructible
+    - *plasmaReinforcedDirectionalSprite
+
+# Uranium window
+
+## Full size
+
+### Normal
+- type: entity
+  parent: [MarkerBase, ReinforcedUraniumWindow]
+  id: ReinforcedUraniumWindowHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedUraniumWindow
+      overrides: *honeypotOverrides
+    - &uraniumReinforcedSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_uranium_window.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: full
+
+### Indestructible
+- type: entity
+  parent: [MarkerBase, ReinforcedUraniumWindow]
+  id: ReinforcedUraniumWindowHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedUraniumWindow
+      overrides: *honeypotOverridesIndestructible
+    - *uraniumReinforcedSprite
+
+## Diagonal
+
+### Normal
+- type: entity
+  parent: [MarkerBase, ReinforcedUraniumWindowDiagonal]
+  id: ReinforcedUraniumWindowDiagonalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedUraniumWindowDiagonal
+      overrides: *honeypotOverrides
+    - &uraniumReinforcedDiagonalSprite
+      type: Sprite
+      sprite: Structures/Windows/reinforced_uranium_diagonal.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: state0
+
+### Indestructible
+- type: entity
+  parent: [MarkerBase, ReinforcedUraniumWindowDiagonal]
+  id: ReinforcedUraniumWindowDiagonalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: ReinforcedUraniumWindowDiagonal
+      overrides: *honeypotOverridesIndestructible
+    - *uraniumReinforcedDiagonalSprite
+
+## Directional
+
+### Normal
+- type: entity
+  parent: [MarkerBase, UraniumReinforcedWindowDirectional]
+  id: UraniumReinforcedWindowDirectionalHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: UraniumReinforcedWindowDirectional
+      overrides: *honeypotOverrides
+    - &uraniumReinforcedDirectionalSprite
+      type: Sprite
+      sprite: Structures/Windows/directional.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: uranium_reinforced_window
+
+### Indestructible
+- type: entity
+  parent: [MarkerBase, UraniumReinforcedWindowDirectional]
+  id: UraniumReinforcedWindowDirectionalHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: UraniumReinforcedWindowDirectional
+      overrides: *honeypotOverridesIndestructible
+    - *uraniumReinforcedDirectionalSprite
+
+# Honeypots END
