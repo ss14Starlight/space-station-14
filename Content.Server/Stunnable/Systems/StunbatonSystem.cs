@@ -116,18 +116,20 @@ namespace Content.Server.Stunnable.Systems
             args.PushMarkup(onMsg);
 
             // 🌟Starlight🌟 start
-            if (TryComp<PowerCellSlotComponent>(entity.Owner, out var slot))
+            Entity<BatteryComponent>? batteryEnt = null;
+            if (TryComp<BatteryComponent>(entity.Owner, out var battery) ||
+                _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
             {
-                Entity<BatteryComponent>? batteryEnt = null;
-                if (_powerCell.TryGetBatteryFromSlot(slot.Owner, out batteryEnt))
+                if (batteryEnt.HasValue)
                 {
-                    if (batteryEnt.HasValue)
-                    {
-                        var battery = batteryEnt.Value;
-                        var count = (int)(_battery.GetCharge(battery.Owner) / entity.Comp.EnergyPerUse);
-                        args.PushMarkup(Loc.GetString("melee-battery-examine", ("color", "yellow"), ("count", count)));
-                    }
+                    battery = batteryEnt.Value;
                 }
+
+                if(battery == null)
+                    return;
+
+                var count = (int)(_battery.GetCharge(battery.Owner) / entity.Comp.EnergyPerUse);
+                args.PushMarkup(Loc.GetString("melee-battery-examine", ("color", "yellow"), ("count", count)));
             }
 
             // 🌟Starlight🌟 end
@@ -138,30 +140,31 @@ namespace Content.Server.Stunnable.Systems
             base.TryTurnOn(entity, ref args);
 
             // 🌟Starlight🌟 start
-            if (TryComp<PowerCellSlotComponent>(entity.Owner, out var slot))
+            Entity<BatteryComponent>? batteryEnt = null;
+            if (TryComp<BatteryComponent>(entity.Owner, out var battery) ||
+                _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
             {
-                Entity<BatteryComponent>? batteryEnt = null;
-                if (_powerCell.TryGetBatteryFromSlot(slot.Owner, out batteryEnt))
+                if (batteryEnt.HasValue)
                 {
-                    if (batteryEnt.HasValue)
-                    {
-                        var battery = batteryEnt.Value;
-                        if (battery != null && _battery.GetCharge(battery.Owner) < entity.Comp.EnergyPerUse)
-                        {
-                            args.Cancelled = true;
-                            if (args.User != null)
-                            {
-                                _popup.PopupEntity(Loc.GetString("stunbaton-component-low-charge"), (EntityUid)args.User, (EntityUid)args.User);
-                            }
-                            return;
-                        }
+                    battery = batteryEnt.Value;
+                    if(battery == null)
+                        return;
 
-                        if (TryComp<RiggableComponent>(battery.Owner, out var rig) && rig.IsRigged)
+                    if (_battery.GetCharge(battery.Owner) < entity.Comp.EnergyPerUse)
+                    {
+                        args.Cancelled = true;
+                        if (args.User != null)
                         {
-                            _riggableSystem.Explode(entity.Owner, _battery.GetCharge(battery.Owner), args.User);
+                            _popup.PopupEntity(Loc.GetString("stunbaton-component-low-charge"), (EntityUid)args.User, (EntityUid)args.User);
                         }
-                        UpdateAppearance(entity, isActive: true);
+                        return;
                     }
+
+                    if (TryComp<RiggableComponent>(battery.Owner, out var rig) && rig.IsRigged)
+                    {
+                        _riggableSystem.Explode(entity.Owner, _battery.GetCharge(battery.Owner), args.User);
+                    }
+                    UpdateAppearance(entity, isActive: true);
                 }
             }
             // 🌟Starlight🌟 end
@@ -173,14 +176,14 @@ namespace Content.Server.Stunnable.Systems
             base.TryTurnOff(ent, ref args);
             if(args.Cancelled)
                 return;
-            UpdateAppearance(ent);
+            UpdateAppearance(ent, isActive: false);
         }
         private void OnChargeChanged(Entity<StunbatonComponent> entity, ref ChargeChangedEvent args)
         {
             // 🌟Starlight🌟 start
             Entity<BatteryComponent>? batteryEnt = null;
             if (TryComp<BatteryComponent>(entity.Owner, out var battery) ||
-             _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt)) // WHY did this get changed to return an entity, aaaa >_<
+                _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
             {
                 if(batteryEnt.HasValue)
                     battery = batteryEnt.Value;
@@ -189,7 +192,7 @@ namespace Content.Server.Stunnable.Systems
                     if (battery.LastCharge < entity.Comp.EnergyPerUse)
                     {
                         _itemToggle.TryDeactivate(entity.Owner, predicted: false);
-                        UpdateAppearance(entity);
+                        UpdateAppearance(entity, isActive: false);
                     }
                 }
             }
@@ -210,22 +213,19 @@ namespace Content.Server.Stunnable.Systems
             if (!Resolve(uid, ref comp, ref appearance, false))
                 return;
 
-
-            if (TryComp<PowerCellSlotComponent>(uid, out var slot))
+            Entity<BatteryComponent>? batteryEnt = null;
+            if (TryComp<BatteryComponent>(uid, out var battery) ||
+                _powerCell.TryGetBatteryFromSlot(uid, out batteryEnt))
             {
-                Entity<BatteryComponent>? batteryEnt = null;
-                if (!_powerCell.TryGetBatteryFromSlot(slot.Owner, out batteryEnt))
-                {
-                    _appearance.SetData(uid, StunbatonVisuals.Stunbaton_on, false);
-                    _appearance.SetData(uid, StunbatonVisuals.Stunbaton_off, false);
-                    _appearance.SetData(uid, StunbatonVisuals.Stunbaton_nocell, true);
-                }
-                else
-                {
-                    _appearance.SetData(uid, StunbatonVisuals.Stunbaton_on, isActive);
-                    _appearance.SetData(uid, StunbatonVisuals.Stunbaton_off, !isActive);
-                    _appearance.SetData(uid, StunbatonVisuals.Stunbaton_nocell, false);
-                }
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_on, isActive);
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_off, !isActive);
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_nocell, false);
+            }
+            else
+            {
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_on, false);
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_off, false);
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_nocell, true);
             }
         }
         #endregion
