@@ -12,3 +12,18 @@
   - type: ConditionalSpawner
     prototypes:
     - MobKoboldKiki
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMonkeyStirStir
+  name: Stir Stir Spawner
+  suffix: Genpop Prisoner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: monkey
+      sprite: Mobs/Animals/monkey.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMonkeyStirStir
