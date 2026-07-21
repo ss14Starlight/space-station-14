@@ -5,7 +5,7 @@
   description: Fires a fast but weaker bolt of fire toward the aimed location. (Cooldown of 20 seconds)
   components:
   - type: Action
-    useDelay: 5
+    useDelay: 20
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/fireball.ogg
     icon:

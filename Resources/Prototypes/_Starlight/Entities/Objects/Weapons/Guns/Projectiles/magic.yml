@@ -20,12 +20,12 @@
       shader: unshaded
   - type: Explosive
     explosionType: Default
-    maxIntensity: 3
+    maxIntensity: 2
     intensitySlope: 1
-    totalIntensity: 15
+    totalIntensity: 10
     canCreateVacuum: false
   - type: IgnitionSource
     temperature: 10000
     ignited: true
   - type: IgniteOnCollide
-    fireStacks: 1
+    fireStacks: 2222
