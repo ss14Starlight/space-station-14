@@ -4,14 +4,14 @@ using Content.Shared.Advertise.Components;
 using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Content.Shared.Arcade.BlockGame;
-using Content.Server.Arcade.Systems;
+using Content.Server._Starlight.Arcade.Systems;
 
 namespace Content.Server.Arcade.BlockGame;
 
-public sealed class BlockGameArcadeSystem : EntitySystem
+public sealed partial class BlockGameArcadeSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SpeakOnUIClosedSystem _speakOnUIClosed = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SpeakOnUIClosedSystem _speakOnUIClosed = default!;
 
     public override void Initialize()
     {
@@ -20,7 +20,9 @@ public sealed class BlockGameArcadeSystem : EntitySystem
         SubscribeLocalEvent<BlockGameArcadeComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<BlockGameArcadeComponent, AfterActivatableUIOpenEvent>(OnAfterUIOpen);
         SubscribeLocalEvent<BlockGameArcadeComponent, PowerChangedEvent>(OnBlockPowerChanged);
+        // Starlight-start
         SubscribeLocalEvent<BlockGameArcadeComponent, ArcadeScorePlacementSubmittedEvent>(OnPlacementSubmitted);
+        // Starlight-end
 
         Subs.BuiEvents<BlockGameArcadeComponent>(BlockGameUiKey.Key, subs =>
         {
@@ -92,6 +94,7 @@ public sealed class BlockGameArcadeSystem : EntitySystem
         component.Spectators.Clear();
     }
 
+    // Starlight-start
     private void OnPlacementSubmitted(Entity<BlockGameArcadeComponent> ent, ref ArcadeScorePlacementSubmittedEvent args)
     {
         if (ent.Comp.Game == null)
@@ -101,6 +104,7 @@ public sealed class BlockGameArcadeSystem : EntitySystem
         var placement = args.Placements;
         game.SetPlacement(placement);
     }
+    // Starlight-end
 
     private void OnPlayerAction(EntityUid uid, BlockGameArcadeComponent component, BlockGamePlayerActionMessage msg)
     {

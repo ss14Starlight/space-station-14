@@ -1,8 +1,8 @@
 using System.Linq;
 using Robust.Shared.Player;
 using Content.Shared.Arcade.BlockGame;
-using Content.Server.Arcade.Systems;
-using Content.Server.Arcade.Components;
+using Content.Server._Starlight.Arcade.Systems;
+using Content.Server._Starlight.Arcade.Components;
 
 namespace Content.Server.Arcade.BlockGame;
 
@@ -345,9 +345,11 @@ public sealed partial class BlockGame
     /// </summary>
     private void SendHighscoreUpdate()
     {
+        // Starlight-start
         var message = GetHighScoreUpdateMessage();
         if (message != null)
             SendMessage(message);
+        // Starlight-end
     }
 
     /// <summary>
@@ -355,11 +357,14 @@ public sealed partial class BlockGame
     /// </summary>
     private void SendHighscoreUpdate(EntityUid actor)
     {
+        // Starlight-start
         var message = GetHighScoreUpdateMessage();
         if (message != null)
             SendMessage(message, actor);
+        // Starlight-end
     }
 
+    // Starlight-start
     private BlockGameHighScoreUpdateMessage? GetHighScoreUpdateMessage()
     {
         if (!_entityManager.TryGetComponent<ArcadeScoreboardComponent>(_owner, out var scoreboard))
@@ -372,4 +377,5 @@ public sealed partial class BlockGame
 
         return message;
     }
+    // Starlight-end
 }

@@ -1,8 +1,9 @@
-using Content.Server.Arcade.Prototypes;
-using Content.Shared.Arcade.Systems;
+using Content.Server._Starlight.Arcade.Prototypes;
+using Content.Shared._Starlight.Arcade.Systems;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Arcade.Components;
+namespace Content.Server._Starlight.Arcade.Components;
 
 /// <summary>
 /// Arcade machines with this component have three kinds of scoreboards: machine, local, and global.
@@ -22,7 +23,7 @@ public sealed partial class ArcadeScoreboardComponent : Component
     /// </summary>
     /// <remarks>
     /// Will use the fallback count in <see cref="ServerScoreboard"/>, then
-    /// <see cref="CCVars.FallbackScoreboardEntriesCount"/>, if this is null.
+    /// <see cref="StarlightCCVars.FallbackScoreboardEntriesCount"/>, if this is null.
     /// </remarks>
     [DataField("maxEntries")]
     public int? MaxEntriesOverride = null;

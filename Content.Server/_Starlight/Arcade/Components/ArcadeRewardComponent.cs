@@ -1,6 +1,6 @@
 using Content.Shared.EntityTable.EntitySelectors;
 
-namespace Content.Server.Arcade.Components;
+namespace Content.Server._Starlight.Arcade.Components;
 
 /// <summary>
 ///     Represents the reward pool that an arcade machine can hold.

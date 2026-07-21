@@ -1,4 +1,4 @@
-using Content.Server.Arcade.Systems;
+using Content.Server._Starlight.Arcade.Systems;
 using Content.Shared.Arcade.BlockGame;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
@@ -10,7 +10,9 @@ public sealed partial class BlockGame
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    // Starlight-start
     private readonly ArcadeSystem _arcadeSystem;
+    // Starlight-end
     private readonly UserInterfaceSystem _uiSystem;
 
     /// <summary>
@@ -51,7 +53,9 @@ public sealed partial class BlockGame
     public BlockGame(EntityUid owner)
     {
         IoCManager.InjectDependencies(this);
+        // Starlight-start
         _arcadeSystem = _entityManager.System<ArcadeSystem>();
+        // Starlight-end
         _uiSystem = _entityManager.System<UserInterfaceSystem>();
 
         _owner = owner;
@@ -74,10 +78,12 @@ public sealed partial class BlockGame
         _gameOver = false;
     }
 
+    // Starlight-start
     public void SetPlacement(HighScorePlacement placement)
     {
         _highScorePlacement = placement;
     }
+    // Starlight-end
 
     /// <summary>
     /// Handles ending the game and updating the high scores.
@@ -89,8 +95,10 @@ public sealed partial class BlockGame
 
         if (_entityManager.TryGetComponent<BlockGameArcadeComponent>(_owner, out var cabinet))
         {
+            // Starlight-start
             _arcadeSystem.LoseGame(cabinet.Player, _owner, Points);
             SendHighscoreUpdate();
+            // Starlight-end
         }
 
         SendMessage(new BlockGameGameOverScreenMessage(Points, _highScorePlacement?.LocalPlacement, _highScorePlacement?.GlobalPlacement));
@@ -171,6 +179,7 @@ public sealed partial class BlockGame
         var pointsToAdd = 0;
         var consecutiveLines = 0;
         var clearedLines = 0;
+        // Starlight-edit: use named playfield height constant
         for (var y = 0; y < PlayfieldHeight; y++)
         {
             if (CheckLine(y))
@@ -205,6 +214,7 @@ public sealed partial class BlockGame
     /// <param name="y">The position of the line to check.</param>
     private bool CheckLine(int y)
     {
+        // Starlight-edit: use named playfield width constant
         for (var x = 0; x < PlayfieldWidth; x++)
         {
             if (!_field.Any(b => b.Position.X == x && b.Position.Y == y))

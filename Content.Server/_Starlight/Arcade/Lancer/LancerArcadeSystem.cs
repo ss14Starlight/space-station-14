@@ -1,5 +1,5 @@
 using Content.Server.Advertise.EntitySystems;
-using Content.Server.Arcade.Systems;
+using Content.Server._Starlight.Arcade.Systems;
 using Content.Shared.Advertise.Components;
 using Content.Shared._Starlight.Arcade.Lancer;
 using Content.Shared.Power;

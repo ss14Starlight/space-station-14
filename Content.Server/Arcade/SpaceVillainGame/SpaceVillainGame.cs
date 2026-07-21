@@ -2,9 +2,9 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
-using Content.Server.Arcade.Systems;
+using Content.Server._Starlight.Arcade.Systems;
 using Content.Shared.Arcade.SpaceVillain;
-using Content.Shared.Arcade.Systems;
+using Content.Shared._Starlight.Arcade.Systems;
 
 namespace Content.Server.Arcade.SpaceVillain;
 

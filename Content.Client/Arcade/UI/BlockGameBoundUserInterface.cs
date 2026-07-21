@@ -1,4 +1,4 @@
-﻿using Content.Shared.Arcade.BlockGame;
+using Content.Shared.Arcade.BlockGame;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.Arcade.UI;
@@ -50,10 +50,12 @@ public sealed class BlockGameBoundUserInterface : BoundUserInterface
                     _menu?.SetGameoverInfo(gameOverScreenMessage.FinalScore, gameOverScreenMessage.LocalPlacement, gameOverScreenMessage.GlobalPlacement);
                 break;
             case BlockGameHighScoreUpdateMessage highScoreUpdateMessage:
+                // Starlight-start
                 _menu?.UpdateHighscores(highScoreUpdateMessage.LocalHighscores,
                     highScoreUpdateMessage.GlobalHighscores,
                     highScoreUpdateMessage.MaxLocalScores,
                     highScoreUpdateMessage.MaxGlobalScores);
+                // Starlight-end
                 break;
             case BlockGameLevelUpdateMessage levelUpdateMessage:
                 _menu?.UpdateLevel(levelUpdateMessage.Level);

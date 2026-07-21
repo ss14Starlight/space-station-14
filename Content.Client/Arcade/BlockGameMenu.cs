@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
-using Content.Client.Arcade.UI;
 using Content.Client.Resources;
 using Content.Shared.Arcade.BlockGame;
-using Content.Shared.Arcade.Systems;
+using Content.Shared._Starlight.Arcade.Systems;
 using Content.Shared.Input;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -553,6 +552,7 @@ public sealed class BlockGameMenu : DefaultWindow
         _levelLabel.Text = Loc.GetString("blockgame-menu-label-level", ("level", level + 1));
     }
 
+    // Starlight-start
     public void UpdateHighscores(List<ArcadeHighScoreEntry>? localHighscores,
         List<ArcadeHighScoreEntry>? globalHighscores,
         int? maxLocalScores,
@@ -587,6 +587,7 @@ public sealed class BlockGameMenu : DefaultWindow
             builder.AppendLine(line);
         }
     }
+    // Starlight-end
 
     protected override void KeyBindDown(GUIBoundKeyEventArgs args)
     {

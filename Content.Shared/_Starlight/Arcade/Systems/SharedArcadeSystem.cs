@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Arcade.Systems;
+namespace Content.Shared._Starlight.Arcade.Systems;
 
 public abstract partial class SharedArcadeSystem : EntitySystem
 {

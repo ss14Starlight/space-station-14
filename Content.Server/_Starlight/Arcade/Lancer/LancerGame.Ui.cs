@@ -1,5 +1,5 @@
 using Content.Shared._Starlight.Arcade.Lancer;
-using Content.Shared.Arcade.Systems;
+using Content.Shared._Starlight.Arcade.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using System.Linq;

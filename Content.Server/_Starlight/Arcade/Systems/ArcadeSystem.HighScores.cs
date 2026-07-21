@@ -1,14 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server.Arcade.Components;
-using Content.Server.Arcade.Prototypes;
-using Content.Shared.Arcade.Systems;
-using Content.Shared.CCVar;
+using Content.Server._Starlight.Arcade.Components;
+using Content.Server._Starlight.Arcade.Prototypes;
+using Content.Shared._Starlight.Arcade.Systems;
+using Content.Shared._Starlight.CCVar;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Arcade.Systems;
+namespace Content.Server._Starlight.Arcade.Systems;
 
 public sealed partial class ArcadeSystem
 {
@@ -152,7 +152,7 @@ public sealed partial class ArcadeSystem
         _prototypeManager.TryIndex(protoId, out var scoreboard);
 
         return scoreboard?.MaxEntries
-            ?? _config.GetCVar(CCVars.FallbackScoreboardEntriesCount);
+            ?? _config.GetCVar(StarlightCCVars.FallbackScoreboardEntriesCount);
     }
 
     private static List<ArcadeHighScoreEntry> GetSortedHighscores(List<ArcadeHighScoreEntry> highScoreEntries)

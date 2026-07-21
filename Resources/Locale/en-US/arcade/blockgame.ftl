@@ -24,4 +24,3 @@ blockgame-menu-label-next = Next
 blockgame-menu-label-hold = Hold
 blockgame-menu-text-station = Station
 blockgame-menu-text-nanotrasen = NanoTrasen
-blockgame-menu-text-no-scores = ERROR: OUT OF ORDER

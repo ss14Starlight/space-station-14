@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Numerics;
-using Content.Client.Arcade.UI;
+using Content.Client._Starlight.Arcade.Crt;
 using Content.Client.Message;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.Arcade.Lancer;

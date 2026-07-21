@@ -1,5 +1,5 @@
-using Content.Server.Arcade.Systems;
 using Content.Shared.Arcade.BlockGame;
+using Content.Server._Starlight.Arcade.Systems;
 using Robust.Shared.Random;
 using System.Linq;
 
@@ -7,11 +7,13 @@ namespace Content.Server.Arcade.BlockGame;
 
 public sealed partial class BlockGame
 {
+    // Starlight-start
     /// <summary>Playfield width in cells (0 .. Width-1).</summary>
     public const int PlayfieldWidth = 10;
 
     /// <summary>Playfield height in cells (0 .. Height-1).</summary>
     public const int PlayfieldHeight = 20;
+    // Starlight-end
 
     /// <summary>
     /// The base amount of time between piece steps while softdropping.
@@ -158,10 +160,12 @@ public sealed partial class BlockGame
     }
     private int _internalPoints = 0;
 
+    // Starlight-start
     /// <summary>
     /// Where the current game has placed amongst the leaderboard.
     /// </summary>
     private HighScorePlacement? _highScorePlacement = null;
+    // Starlight-end
 
     /// <summary>
     /// Gets a random piece from the pool of pickable pieces. (<see cref="_blockGamePiecesBuffer"/>)
@@ -203,7 +207,7 @@ public sealed partial class BlockGame
     /// </summary>
     private bool LowerBoundCheck(Vector2i position)
     {
-        return position.Y < PlayfieldHeight;
+        return position.Y < PlayfieldHeight; // Starlight-edit: named playfield height
     }
 
     /// <summary>
@@ -211,7 +215,7 @@ public sealed partial class BlockGame
     /// </summary>
     private bool BorderCheck(Vector2i position)
     {
-        return position.X >= 0 && position.X < PlayfieldWidth;
+        return position.X >= 0 && position.X < PlayfieldWidth; // Starlight-edit: named playfield width
     }
 
     /// <summary>

@@ -1,4 +1,4 @@
-using Content.Shared.Arcade.Systems;
+using Content.Shared._Starlight.Arcade.Systems;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Arcade.BlockGame;

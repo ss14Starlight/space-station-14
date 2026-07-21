@@ -1,12 +1,12 @@
-using Content.Server.Arcade.Components;
-using Content.Server.Arcade.Prototypes;
-using Content.Shared.Arcade.Systems;
+using Content.Server._Starlight.Arcade.Components;
+using Content.Server._Starlight.Arcade.Prototypes;
+using Content.Shared._Starlight.Arcade.Systems;
 using Content.Shared.EntityTable;
 using JetBrains.Annotations;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Arcade.Systems;
+namespace Content.Server._Starlight.Arcade.Systems;
 
 public sealed partial class ArcadeSystem : SharedArcadeSystem
 {

@@ -1,6 +1,7 @@
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Arcade.Prototypes;
+namespace Content.Server._Starlight.Arcade.Prototypes;
 
 /// <summary>
 ///     Represents a local and global scoreboard for a particular arcade game.
@@ -20,7 +21,7 @@ public sealed partial class ArcadeScoreboardPrototype : IPrototype
     /// The maximum amount of top scores to keep track of for this scoreboard.
     /// </summary>
     /// <remarks>
-    /// Will use the fallback count in <see cref="CCVars.FallbackScoreboardEntriesCount"/> if this is null.
+    /// Will use the fallback count in <see cref="StarlightCCVars.FallbackScoreboardEntriesCount"/> if this is null.
     /// </remarks>
     [DataField]
     public int? MaxEntries = null;
