@@ -97,19 +97,14 @@
     doestContain:
       Skating:
         knockback: 5
-        staminaMultiplier: 0
-      Rodentia:
+        staminaDamage: 0
+      SpeciesSmall:
         knockback: 5
-        staminaMultiplier: 0
-      Resomi:
-        knockback: 2
-        staminaMultiplier: 0
-      Avali:
-        knockback: 1
-        staminaMultiplier: 0
-      Felionoid:
-        knockback: 1
-        staminaMultiplier: 0
+        staminaDamage: 0
+        doFly: false
+        isDisabledByMagboots: false
+        isReducedByMagboots: true
+        magbootReductionMultiplier: 10
   - type: Item
     size: Large
     shape:
