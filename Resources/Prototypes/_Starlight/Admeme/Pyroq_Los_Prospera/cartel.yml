@@ -1,0 +1,133 @@
+- type: startingGear
+  id: PoroqBoss
+  equipment:
+     jumpsuit: CamoUniformSuit
+     back: ClothingBackpackDuffel
+     shoes: ClothingShoesBootsCombatFilled
+     outClothing: ClothingOuterArmorBasic
+     id: PiratePDA
+     eyes: ClothingEyesGlassesSunglasses
+     ears: ClothingHeadsetFreelance
+     mask: ClothingMaskNeckGaiterRed
+     belt: ClothingBeltMilitaryWebbing
+     gloves: ClothingHandsMercGloveCombat
+     head: ClothingHeadHatBeret
+     suitstorage: WeaponRifleARG
+     pocket1: SmokeGrenade
+     pocket2: Flashbang
+  storage:
+     back:
+       -BoxZiptie
+       -StunProd
+     belt:
+       -WeaponPistolDeagle
+       -MagazineLightRifleFMJ
+       -MagazineLightRifleFMJ
+       -MagazineLightRifleFMJ
+       -MagazineLightRifleFMJ
+       -MagazineMagnum
+       -MagazineMagnum
+       -WeaponDisabler
+
+
+- type: StartingGear
+  id: PoroqMedic
+  equipment:
+        jumpsuit: CamoUniformSuit
+        back: ClothingBackpackDuffel
+        shoes: ClothingShoesBootsCombatFilled
+        outClothing: ClothingOuterArmorBasic
+        id: PiratePDA
+        ears: ClothingHeadsetFreelance
+        mask: ClothingMaskNeckGaiter
+        belt: ClothingBeltMilitaryWebbingMed
+        gloves: ClothingHandsMercGloveCombat
+        head: ClothingHeadHatBeretFrench
+        suitstorage: WeaponSubMachineGunUzi
+        pocket1: SmokeGrenade
+        pocket2: Flashbang
+    storage:
+        back:
+          -DefibrillatorSyndicate
+          -MedkitCombatFilled
+          -MedkitCombatFilled
+          -MedkitCombatFilled
+          -MedkitCombatFilled
+        belt:
+          -WeaponPistolDeagle
+          =MagazinePistolSubMachineGunUzi
+          -MagazinePistolSubMachineGunUzi
+          -MagazinePistolSubMachineGunUzi
+          -MagazineMagnum
+          -MagazineMagnum
+          -MedkitCombatFilled
+          -CombatMedipen
+          -CombatMedipen
+
+- type: StartingGear
+  id: PoroqFighterARG
+  equipment:
+    jumpsuit: CamoUniformSuit
+    back: ClothingBackpackDuffel
+    shoes: ClothingShoesBootsCombatFilled
+    outClothing: ClothingOuterArmorBasic
+    id: PiratePDA
+    ears: ClothingHeadsetFreelance
+    mask: ClothingMaskNeckGaiter
+    belt: ClothingBeltMilitaryWebbing
+    gloves: ClothingHandsMercGloveCombat
+    head: ClothingHeadHatBeretFrench
+    suitstorage: WeaponRifleARG
+    pocket1: ExGrenade
+    pocket2: ExGrenade
+
+  storage:
+    back:
+      -MagazineBoxLightRifleFMJ
+      -MagazineBoxLightRifleFMJ
+      -MagazineBoxLightRifleFMJ
+      -MagazineBoxLightRifleFMJ
+    belt:
+      -WeaponPistolDeagle
+      -MagazineLightRifleFMJ
+      -MagazineLightRifleFMJ
+      -MagazineLightRifleFMJ
+      -MagazineLightRifleFMJ
+      -MagazineLightRifleFMJ
+      -MagazineLightRifleFMJ
+      -MagazineMagnum
+      -MagazineMagnum
+
+- type: StartingGear
+  id: PoroqFighterShotgun
+  equipment:
+  jumpsuit: CamoUniformSuit
+  back: ClothingBackpackDuffel
+  shoes: ClothingShoesBootsCombatFilled
+  outClothing: ClothingOuterArmorBasic
+  id: PiratePDA
+  ears: ClothingHeadsetFreelance
+  mask: ClothingMaskNeckGaiter
+  belt: ClothingBeltMilitaryWebbing
+  gloves: ClothingHandsMercGloveCombat
+  head: ClothingHeadHatBeretFrench
+  suitstorage: WeaponShotgunCombat
+  pocket1: ExGrenade
+  pocket2: ExGrenade
+
+  storage:
+    back:
+      -BoxLethalShot
+      -BoxLethalShot
+      -BoxLethalShot
+      -BoxLethalShot
+    belt:
+      -WeaponPistolDeagle
+      -SpeedLoaderMagnumBasic
+      -SpeedLoaderMagnumBasic
+      -SpeedLoaderMagnumBasic
+      -SpeedLoaderMagnumBasic
+      -SpeedLoaderMagnumBasic
+      -SpeedLoaderMagnumBasic
+      -MagazineMagnum
+      -MagazineMagnum
