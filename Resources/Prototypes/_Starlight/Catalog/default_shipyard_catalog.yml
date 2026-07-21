@@ -54,12 +54,12 @@
 
 - type: vessel
   id: CargoGas
-  name: CS-2P6 "Plasma"
+  name: CS-4T9 "Tanker"
   description: A small sized cargo shuttle 'borrowed' from another station that is able to hold gas.
-  price: 26410
+  price: 21500
   category: Small
   group: Cargo
-  shuttlePath: /Maps/_Starlight/Shuttles/cargo_plasma.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/GasTransport.yml
 
 - type: vessel
   id: Pioneer
@@ -78,6 +78,15 @@
   category: Medium
   group: Cargo
   shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml
+
+- type: vessel
+  id: Honeybee
+  name: NTS "Honeybee" Mini-Flores
+  description: A small sized botany shuttle made for advanced farming operations, comes with one mutation room.
+  price: 30000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Honeybee.yml
 
 - type: vessel
   id: Reach

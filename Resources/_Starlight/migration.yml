@@ -126,3 +126,6 @@ WeaponFlareGunSecurity: null
 #2026-07-09 - PR #2597 removed the ability to toggle Thrusters, meaning Thruster [Off] can never be turned on again
 ThrusterOff: Thruster
 GyroscopeOff: Gyroscope
+
+#2026-07-12
+CargoGasPallet: CargoGasPalletSell
