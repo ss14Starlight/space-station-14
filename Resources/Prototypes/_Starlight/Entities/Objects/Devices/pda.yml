@@ -924,3 +924,30 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - NanoChatCartridge # CD
+
+- type: entity
+  parent: CentCommServicePDA
+  id: CentCommChefPDA
+  name: CentComm chef PDA
+  description: It's slick with the oil of the fat steak you're supposed to be cooking.
+  components:
+  - type: Pda
+    id: CentCommIDCardChef
+
+- type: entity
+  parent: CentCommServicePDA
+  id: CentCommBartenderPDA
+  name: CentComm bartender PDA
+  description: The trappings of a glorified cocktail waiter.
+  components:
+  - type: Pda
+    id: CentCommIDCardBartender
+
+- type: entity
+  parent: CentCommServicePDA
+  id: CentCommJanitorPDA
+  name: CentComm janitor PDA
+  description: Why are you reading this instead of mopping floors?
+  components:
+  - type: Pda
+    id: CentCommIDCardJanitor

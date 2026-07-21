@@ -4,9 +4,9 @@
   description: job-description-cc-serviceworker
   playTimeTracker: JobCentCommServiceWorker
   requirements:
-  - !type:OverallPlaytimeRequirement
+  - !type:RoleTimeRequirement
+    role: JobServiceWorker
     time: 5h # Anti shitter/raider protection. Working on CentComm should require having a basic understanding of game mechanics.
-  setPreference: false
   icon: "JobIconCCServiceWorker"
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -19,6 +19,63 @@
   - Hydroponics
   - Janitor
 
+- type: job
+  id: CentCommChef
+  name: job-name-cc-chef
+  description: job-description-cc-chef
+  playTimeTracker: JobCentCommChef
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobChef
+    time: 5h # Anti shitter/raider protection. Working on CentComm should require having a basic understanding of game mechanics.
+  setPreference: false
+  icon: "JobIconCCChef"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  bypassEorPacification: false
+  access:
+  - Service
+  - Maintenance
+  - Kitchen
+
+- type: job
+  id: CentCommBartender
+  name: job-name-cc-bartender
+  description: job-description-cc-bartender
+  playTimeTracker: JobCentCommBartender
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobBartender
+    time: 5h # Anti shitter/raider protection. Working on CentComm should require having a basic understanding of game mechanics.
+  setPreference: false
+  icon: "JobIconCCBartender"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  bypassEorPacification: false
+  access:
+  - Service
+  - Maintenance
+  - Bar
+
+- type: job
+  id: CentCommJanitor
+  name: job-name-cc-janitor
+  description: job-description-cc-janitor
+  playTimeTracker: JobCentCommJanitor
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobJanitor
+    time: 5h # Anti shitter/raider protection. Working on CentComm should require having a basic understanding of game mechanics.
+  setPreference: false
+  icon: "JobIconCCJanitor"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  bypassEorPacification: false
+  access:
+  - Service
+  - Maintenance
+  - Janitor
+
 - type: startingGear
   id: CCChefGear
   equipment:
@@ -26,7 +83,7 @@
     shoes: ClothingShoesColorGreen
     head: ClothingHeadHatChef
     mask: ClothingMaskItalianMoustache
-    id: CentCommServicePDA
+    id: CentCommChefPDA
     back: ClothingBackpackSatchel
     belt: ClothingBeltChefFilled
     ears: ClothingHeadsetService
@@ -54,7 +111,7 @@
     jumpsuit: ClothingUniformJumpsuitCentCommBartender
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatTophat
-    id: CentCommServicePDA
+    id: CentCommBartenderPDA
     back: ClothingBackpack
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses
@@ -67,7 +124,7 @@
     jumpsuit: ClothingUniformJumpsuitCentCommServiceWorker
     shoes: ClothingShoesGaloshes
     gloves: ClothingHandsGlovesJanitor
-    id: CentCommServicePDA
+    id: CentCommJanitorPDA
     back: ClothingBackpackSatchel
     belt: ClothingBeltJanitorFilled
     ears: ClothingHeadsetService
