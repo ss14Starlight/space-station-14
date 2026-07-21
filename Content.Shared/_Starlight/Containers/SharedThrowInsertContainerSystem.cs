@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Containers;
 
-public abstract partial class SharedThrowInsertContainerSystem : EntitySystem
+public sealed partial class SharedThrowInsertContainerSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
