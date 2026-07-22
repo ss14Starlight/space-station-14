@@ -26,3 +26,6 @@ spellbook-firemaster-desc = A set of armor and spells tailored for the greatest 
 
 spellbook-firebolt-name = Firebolt
 spellbook-firebolt-desc = A quick to recharge firebolt, sears the flesh and ignites those it lands on.
+
+spellbook-fireorb-name = Fireorb
+spellbook-fireorb-desc = A bigger and slower fireball, ignites everything in a wide area on detonation.

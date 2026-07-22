@@ -96,11 +96,11 @@
       - SpellbookFireMaster
 
 - type: listing
-  id: SpellbookIceStorm3
-  name: spellbook-icestorm-name
-  description: spellbook-icestorm-desc
+  id: SpellbookFireorb
+  name: spellbook-fireorb-name
+  description: spellbook-fireorb-desc
   priority: 3
-  productAction: ActionIceStorm
+  productAction: ActionFireOrb
   cost:
     WizCoin: 0
   categories:

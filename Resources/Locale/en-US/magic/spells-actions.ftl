@@ -22,3 +22,5 @@ action-speech-spell-charge = DI'RI CEL!
 action-speech-spell-charge-tts = DEE, REE! CELL!!
 action-speech-spell-firebolt = IGNIS!!
 action-speech-spell-firebolt-tts = Ignissss!!
+action-speech-spell-fireorb = INCANDE OMNES !!
+action-speech-spell-fireorb-tts = INKANDE OMNES!!

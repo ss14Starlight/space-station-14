@@ -14,18 +14,50 @@
       types:
         Heat: 50
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    sprite: _Starlight/Objects/Magic/magicactions.rsi
     layers:
-    - state: fireball
+    - state: firebolt
       shader: unshaded
   - type: Explosive
     explosionType: Default
-    maxIntensity: 2
+    maxIntensity: 1
     intensitySlope: 1
-    totalIntensity: 10
+    totalIntensity: 5
     canCreateVacuum: false
   - type: IgnitionSource
     temperature: 10000
     ignited: true
   - type: IgniteOnCollide
-    fireStacks: 2222
+    fireStacks: 2
+
+- type: entity
+  id: ProjectileFireOrb
+  name: fireorb
+  description: The air twists and wraps around the orb, staying close would be ill advised.
+  parent: ProjectileFireball
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#910f0f"
+    radius: 10.0
+    energy: 20.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 5
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/magicactions.rsi
+    layers:
+    - state: fireorb
+      shader: unshaded
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 0.5
+    totalIntensity: 30
+    canCreateVacuum: false
+  - type: IgnitionSource
+    temperature: 10000
+    ignited: true
+  - type: IgniteOnCollide
+    fireStacks: 10
