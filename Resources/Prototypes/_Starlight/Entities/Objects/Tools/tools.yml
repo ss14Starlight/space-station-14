@@ -956,7 +956,8 @@
     - DualPortVent
     - VentGas
     - VentPassive
-    - MixerGas
+    - MixerGasVolumetric
+    - MixerGasMolar
     - Radiator
     - RadiatorBend
     - SignalValve
