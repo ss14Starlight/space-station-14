@@ -52,4 +52,8 @@ public sealed partial class StarlightCCVars
 
     public static readonly CVarDef<bool> DisableLoadMapRule =
         CVarDef.Create("starlight.loadmaprule.disable", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> ForceTestersTab =
+        CVarDef.Create("ghosttheme.forcetesterstab", false, CVar.CLIENTONLY | CVar.ARCHIVE,
+            "forces the Testers ghost theme tab to be visible even if you have no unlocks.");
 }
