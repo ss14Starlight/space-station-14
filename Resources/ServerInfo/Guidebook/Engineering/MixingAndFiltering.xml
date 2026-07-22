@@ -24,6 +24,7 @@
   - If the requested mixture is 22% oxygen and 78% nitrogen, but there is no available oxygen, the mixer will not work until oxygen is available.
   - If oxygen is available, but at a pressure lower than required to create the proper mixture at the requested pressure, the mixer will still create the mixture, but the output will be at a lower pressure than requested.
 
+<!-- MoffStation edit Start: Molar Mixers -->
   Gas mixers can be used in a variety of applications, for example:
   - Mixing oxygen and nitrogen to create a breathable atmosphere
   - Mixing oxygen and plasma for plasma burning to create Tritium
@@ -35,6 +36,7 @@
   </Box>
   A Volumetric gas mixer mix gasses based on pressure, not on mols. The ratio of each gasses present in the output will be
   affected by differences in temperature between the two input gasses. For example:
+  <!-- MoffStation edit End: Molar Mixers -->
   - Presume a gas mixer was asked to mix Oxygen and Nitrogen at a ratio of 1:2 at a certain pressure.
   - The Nitrogen in this case is double the temperature of the Oxygen.
   - Hotter gas has more pressure, and thus fewer mols per volume than Oxygen.
