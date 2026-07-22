@@ -84,7 +84,7 @@
           steps:
             - material: PartRodMetal
               amount: 2
-              doAfter: 2
+              doAfter: 3
 
         - to: plasmaWindow
           completed:
@@ -95,7 +95,7 @@
           steps:
             - material: SheetPlasma
               amount: 2
-              doAfter: 2
+              doAfter: 3
 
         - to: uraniumWindow
           completed:
@@ -106,25 +106,25 @@
           steps:
             - material: UraniumGlass
               amount: 2
-              doAfter: 2
+              doAfter: 3
 
         - to: reinforcedWindow
           steps:
             - material: MetalRod
               amount: 2
-              doAfter: 2
+              doAfter: 3
 
         - to: plasmaWindow
           steps:
             - material: Plasma
               amount: 2
-              doAfter: 2
+              doAfter: 3
 
         - to: uraniumWindow
           steps:
             - material: Uranium
               amount: 2
-              doAfter: 2
+              doAfter: 3
 
     - node: reinforcedWindow
       entity: ReinforcedWindow
@@ -153,13 +153,13 @@
           steps:
             - material: Plasma
               amount: 2
-              doAfter: 2
+              doAfter: 3
 
         - to: reinforcedUraniumWindow
           steps:
             - material: Uranium
               amount: 2
-              doAfter: 2
+              doAfter: 3
 
     - node: tintedWindow
       entity: TintedWindow
@@ -203,7 +203,7 @@
           steps:
             - material: MetalRod
               amount: 2
-              doAfter: 2
+              doAfter: 3
 
     - node: reinforcedPlasmaWindow
       entity: ReinforcedPlasmaWindow
@@ -251,7 +251,7 @@
           steps:
             - material: MetalRod
               amount: 2
-              doAfter: 2
+              doAfter: 3
 
     - node: reinforcedUraniumWindow
       entity: ReinforcedUraniumWindow
