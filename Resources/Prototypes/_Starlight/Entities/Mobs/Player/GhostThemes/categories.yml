@@ -31,7 +31,7 @@
 - type: ghostThemeCategory
   id: Tester
   name: Tester
-  priority: -1
+  priority: 6
   hideIfNoUnlocks: true
 
   # When filtering, hide all other categories, show this one.
