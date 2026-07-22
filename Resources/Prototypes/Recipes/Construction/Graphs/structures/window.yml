@@ -75,6 +75,8 @@
             - tool: Anchoring
               doAfter: 2
 
+        # Starlight Start
+
         - to: reinforcedWindow
           steps:
             - material: PartRodMetal
@@ -111,6 +113,8 @@
               amount: 2
               doAfter: 3
 
+        # Starlight End
+
     - node: reinforcedWindow
       entity: ReinforcedWindow
       edges:
@@ -134,6 +138,8 @@
             - tool: Anchoring
               doAfter: 2
 
+        # Starlight Start
+
         - to: reinforcedPlasmaWindow
           steps:
             - material: Plasma
@@ -145,6 +151,8 @@
             - material: Uranium
               amount: 2
               doAfter: 3
+
+        # Starlight End
 
     - node: tintedWindow
       entity: TintedWindow
@@ -184,11 +192,15 @@
             - tool: Anchoring
               doAfter: 3
 
+        # Starlight Start
+
         - to: reinforcedPlasmaWindow
           steps:
             - material: MetalRod
               amount: 2
               doAfter: 3
+
+        # Starlight End
 
     - node: reinforcedPlasmaWindow
       entity: ReinforcedPlasmaWindow
@@ -232,11 +244,13 @@
             - tool: Anchoring
               doAfter: 3
 
+        # Starlight Start
         - to: reinforcedUraniumWindow
           steps:
             - material: MetalRod
               amount: 2
               doAfter: 3
+        # Starlight Start
 
     - node: reinforcedUraniumWindow
       entity: ReinforcedUraniumWindow
