@@ -76,33 +76,18 @@
               doAfter: 2
 
         - to: reinforcedWindow
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
-          conditions:
-            - !type:EntityAnchored {}
           steps:
             - material: PartRodMetal
               amount: 2
               doAfter: 3
 
         - to: plasmaWindow
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
-          conditions:
-            - !type:EntityAnchored {}
           steps:
             - material: SheetPlasma
               amount: 2
               doAfter: 3
 
         - to: uraniumWindow
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
-          conditions:
-            - !type:EntityAnchored {}
           steps:
             - material: UraniumGlass
               amount: 2
