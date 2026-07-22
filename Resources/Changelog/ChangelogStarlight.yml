@@ -1,74 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Fixed roboticist disposals bin.
-    type: Fix
-  id: 406401
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Fixed two random doors being in iaa office.
-    type: Fix
-  id: 406402
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Caws
-  changes:
-  - message: 'A two new posters: one that gives thanks to the contributors and their many hours of hard work, and a secret silly contraband one.'
-    type: Add
-  id: 406403
-  time: '2026-07-04T07:45:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4980
-- author: Caws
-  changes:
-  - message: (Silica) New fax machines.
-    type: Add
-  id: 406404
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) Shipyard Computer to Bridge.
-    type: Add
-  id: 406405
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) Cargo Tech lockers to Cargo Bay.
-    type: Add
-  id: 406406
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) Surgeon locker to Surgery.
-    type: Add
-  id: 406407
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) Coroner locker to Morgue.
-    type: Add
-  id: 406408
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) NCT lockers to NanoTrasen Career Office.
-    type: Add
-  id: 406409
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) Various visual tweaks and small fixes.
-    type: Tweak
-  id: 406410
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
 - author: ku-mo
   changes:
   - message: Implant charges no longer reset when extracted.
@@ -2799,4 +2729,74 @@ Entries:
   id: 406800
   time: '2026-07-22T08:18:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5236
+- author: Johnny
+  changes:
+  - message: (Reach) Added ATMS cuz like money.
+    type: Add
+  id: 406801
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added the prisoner monkey (forgot its name).
+    type: Add
+  id: 406802
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added an EVA room near evac.
+    type: Add
+  id: 406803
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added evacuation pods.
+    type: Add
+  id: 406804
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added pipes in cargo dock for gas buying/selling.
+    type: Add
+  id: 406805
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added a fireaxe into atmos.
+    type: Add
+  id: 406806
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added mass scanners on the walls to show peeps where your driving!
+    type: Add
+  id: 406807
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added BEAUTIFUL DIAGONAL TILES.
+    type: Add
+  id: 406808
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Removed some catwalks to see the BEAUTIFUL DIAGONAL TILES.
+    type: Remove
+  id: 406809
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Piping in general hallways have been reworked to put vents in more accessible spots.
+    type: Tweak
+  id: 406810
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
 Order: -1
