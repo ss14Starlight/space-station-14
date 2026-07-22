@@ -4,7 +4,6 @@ using Content.Server.Bible.Components;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
-using Content.Shared._Starlight.Antags.Vampires.Systems;
 using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.CombatMode.Pacification;
@@ -34,7 +33,7 @@ using Content.Server.EUI;
 using Content.Server._Starlight.Language;
 using Content.Server.Roles;
 
-namespace Content.Server._Starlight.Antags.Vampires.Systems;
+namespace Content.Server._Starlight.Antags.Vampires.Systems.Classes;
 
 public sealed partial class DantalionSystem : EntitySystem
 {

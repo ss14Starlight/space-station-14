@@ -1,5 +1,3 @@
-using Robust.Shared.GameObjects;
-
 namespace Content.Shared._Starlight.Chemistry.Events;
 
 /// <summary>

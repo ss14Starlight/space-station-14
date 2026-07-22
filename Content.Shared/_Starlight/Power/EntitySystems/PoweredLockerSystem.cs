@@ -1,6 +1,5 @@
 using Content.Shared._Starlight.Power.Components;
 using Content.Shared.Power;
-using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Starlight.Power.EntitySystems;
 

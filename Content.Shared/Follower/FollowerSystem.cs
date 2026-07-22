@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Numerics;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Database;
 using Content.Shared.Follower.Components;

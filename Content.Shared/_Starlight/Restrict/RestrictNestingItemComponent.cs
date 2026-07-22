@@ -1,9 +1,6 @@
-using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Tag;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Starlight.Restrict;
+namespace Content.Shared._Starlight.Restrict;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class RestrictNestingItemComponent : Component
 {

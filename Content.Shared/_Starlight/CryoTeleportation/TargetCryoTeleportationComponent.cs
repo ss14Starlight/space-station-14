@@ -1,6 +1,6 @@
 using Robust.Shared.Network;
 
-namespace Content.Shared.Starlight.CryoTeleportation;
+namespace Content.Shared._Starlight.CryoTeleportation;
 
 [RegisterComponent]
 public sealed partial class TargetCryoTeleportationComponent : Component

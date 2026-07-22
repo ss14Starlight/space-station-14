@@ -2,7 +2,6 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared._Starlight.ItemToggle.Components;
 using Content.Shared.Verbs;
-using Robust.Shared.Localization;
 
 namespace Content.Shared._Starlight.ItemToggle;
 

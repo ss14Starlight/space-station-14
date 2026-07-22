@@ -1,0 +1,35 @@
+#NanoMed Security
+- type: vendingMachineInventory
+  id: NanoMedSecurityInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 3
+    BodyBagFolded: 5
+    Gauze: 5
+    Brutepack: 5
+    Ointment: 5
+    Bloodpack: 5
+    Tourniquet: 5
+    ChemistryBottleEpinephrine: 3
+    ChemistryBottleBicaridine: 1
+    ChemistryBottleBruizine: 1
+    ChemistryBottleDermaline: 1
+    ChemistryBottleDexalin: 1
+    ChemistryBottleDylovene: 1
+    Syringe: 3
+    PillCanisterTricordrazine: 2
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+    PillCanisterHyronalin: 1
+    PillCanisterCharcoal: 1
+    AutoMenderBruteFilled: 1
+    AutoMenderBurnFilled: 1
+  contrabandInventory:
+    PillCanisterRandom: 1
+    PillCanisterNitrogen: 1
+    PowerCellSmall: 1
+    FoodSnackSwirlLollipop: 1
+  emaggedInventory:
+    OminousPill: 1
+    WeirdPill: 1
+    StrangePill: 1

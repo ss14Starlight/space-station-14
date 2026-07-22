@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
-using Content.Shared._Starlight.Atmos;
 using Content.Shared._Starlight.Atmos.Components;
 using Content.Shared.NodeContainer;
 using Content.Shared.Popups;

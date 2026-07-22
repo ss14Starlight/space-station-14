@@ -15,6 +15,9 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+#region Starlight
+using Content.Server._Starlight.Cargo.Components;
+#endregion
 
 namespace Content.Server.Cargo.Systems;
 

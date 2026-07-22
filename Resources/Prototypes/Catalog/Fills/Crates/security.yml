@@ -96,6 +96,7 @@
 - type: entity
   parent: CrateSecgear
   id: CrateSecurityTrackingMindshieldImplants
+  categories: [ ShouldMapStation ] # Starlight
   name: implanter crate
   description: Contains 4 MindShield implants and 4 tracking implant. Requires Security access to open.
   components:

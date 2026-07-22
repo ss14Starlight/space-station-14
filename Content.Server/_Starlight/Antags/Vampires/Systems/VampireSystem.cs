@@ -1,13 +1,10 @@
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Vampire.Components;
 using Content.Shared.Alert;
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
@@ -21,8 +18,8 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
-using Content.Server.Body.Components;
 using Content.Server.GameTicking;
+using Content.Server.Body.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
@@ -37,6 +34,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Prometheus;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Server._Starlight.Objectives.Components;
+using Content.Shared._Starlight.Vampire.Components;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 

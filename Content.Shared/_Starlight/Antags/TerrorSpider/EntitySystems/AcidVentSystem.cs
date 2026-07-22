@@ -1,7 +1,7 @@
 using Content.Shared.Tag;
 using Content.Shared.Tools.Systems;
 
-namespace Content.Shared._Starlight.Antags.TerrorSpider;
+namespace Content.Shared._Starlight.Antags.TerrorSpider.EntitySystems;
 
 public sealed partial class AcidVentSystem : EntitySystem
 {

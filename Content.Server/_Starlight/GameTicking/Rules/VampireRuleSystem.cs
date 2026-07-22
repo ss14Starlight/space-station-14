@@ -9,6 +9,7 @@ using Content.Shared._Starlight.Antags.Vampires.Components;
 using System.Text;
 using Robust.Shared.Audio;
 using Content.Server.GameTicking.Rules;
+using Content.Shared._Starlight.Roles.Components;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 

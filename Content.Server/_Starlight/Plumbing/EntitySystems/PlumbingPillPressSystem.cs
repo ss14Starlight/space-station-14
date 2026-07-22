@@ -1,7 +1,7 @@
 using System.Numerics;
 using Content.Server._Starlight.Plumbing.Components;
 using Content.Server._Starlight.Plumbing.Nodes;
-using Content.Shared.Starlight.Medical.Items.Components;
+using Content.Shared._Starlight.Medical.Items.Components;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry;

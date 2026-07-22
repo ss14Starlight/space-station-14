@@ -31,13 +31,13 @@ using Content.Shared.CCVar; // Starlight | ES Screenshake
 #region Starlight
 using Content.Client.DisplacementMap;
 using Content.Shared._Starlight.Effects;
-using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.Mech.Components;
-using Content.Shared.Starlight.Utility;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.Utility;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Weapons.Hitscan.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
 #endregion Starlight
 
 namespace Content.Client.Weapons.Ranged.Systems;

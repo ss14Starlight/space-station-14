@@ -35,7 +35,7 @@ using Robust.Shared.Prototypes;
 using Content.Server.AlertLevel;
 using Content.Server._NullLink.Helpers;
 using Content.Server._Starlight.Station;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Server.Player;
 using Content.Server._Starlight.Achievement;

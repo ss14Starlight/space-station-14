@@ -234,6 +234,7 @@
 
 - type: entity
   id: protectionanchor
+  categories: [ ShouldMapStation ]
   name: protection anchor
   description: Imposing the physical into Nullspace itself. it brings that of which dwells in between states into the physical. Entities that are travelling using these methods will be anchored and rooted into the world by force, being incapable of reaching through to Nullspace whilst in it’s range.
   parent: BaseMachinePowered

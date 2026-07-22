@@ -3,9 +3,9 @@ using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.SSDIndicator;
 using Robust.Shared.Console;
-using Content.Shared.Starlight.CryoTeleportation;
+using Content.Shared._Starlight.CryoTeleportation;
 
-namespace Content.Shared._Starlight.Commands.SSDIndicator;
+namespace Content.Server._Starlight.Commands;
 
 [AnyCommand]
 public sealed partial class SSDIndicatorCommand : IConsoleCommand

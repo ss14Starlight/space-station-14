@@ -39,4 +39,4 @@ execution-popup-self-gun-complete-internal = You're shooting yourself in the hea
 
 execution-popup-self-melee-complete-external = { CAPITALIZE(THE($attacker)) } slits their own throat!
 execution-popup-self-gun-complete-external = { CAPITALIZE(THE($attacker)) } shoots himself in the head!
-#Starlight end
+# Starlight end

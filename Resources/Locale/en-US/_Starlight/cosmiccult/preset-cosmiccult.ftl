@@ -173,6 +173,8 @@ objective-condition-entropy-title = SIPHON ENTROPY
 objective-condition-entropy-desc = Collectively siphon at least {$count} entropy from the crew.
 objective-condition-culttier-title = EMPOWER THE MONUMENT
 objective-condition-culttier-desc = Ensure that The Monument is brought to full power.
+objective-condition-chaplain-title = SUBVERT THEIR SHEPHERDS
+objective-condition-chaplain-desc = Convert as many chaplains as you can.
 objective-condition-victory-title = USHER IN THE END
 objective-condition-victory-desc = Beckon The Unknown, and herald the final curtain call.
 

@@ -1,7 +1,4 @@
-using Content.Server._Starlight.GameTicking.Rules;
-using Robust.Shared.Prototypes;
-
-namespace Content.Server.GameTicking.Rules.Components;
+namespace Content.Server._Starlight.GameTicking.Rules;
 
 [RegisterComponent, Access(typeof(NanoChatSpamRuleSystem))]
 public sealed partial class NanoChatSpamRuleComponent : Component

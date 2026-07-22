@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.Shuttles.UI;
+using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Weapons.Gunnery;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;

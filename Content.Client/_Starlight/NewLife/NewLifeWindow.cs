@@ -5,6 +5,7 @@ using Content.Client.Players.PlayTimeTracking;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Timing;
+using Content.Client._Starlight.Lobby.UI;
 
 namespace Content.Client._Starlight.NewLife;
 

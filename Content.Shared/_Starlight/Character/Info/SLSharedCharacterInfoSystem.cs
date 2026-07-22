@@ -11,12 +11,11 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Players;
 using Content.Shared.Preferences; //Starlight
 using Content.Shared.Roles;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Trigger.Components.Effects;
 using Content.Shared.Verbs;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
-using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Character.Info;

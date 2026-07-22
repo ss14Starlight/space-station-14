@@ -1,7 +1,6 @@
-using Content.Client._Starlight.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Radio;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.TextToSpeech;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 

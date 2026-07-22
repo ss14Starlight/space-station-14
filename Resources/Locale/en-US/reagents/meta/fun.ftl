@@ -40,5 +40,5 @@ reagent-desc-catessence = A type of carcinogenic enzyme known to break down prot
 reagent-name-canidessence = caninase
 reagent-desc-canidessence = A type of carcinogenic enzyme known to break down proteins found within the vocal cords of most animals. Mixing is NOT recommended.
 
-#Starlight
+# Starlight
 reagent-name-concentratedcorgijuice = juice that makes you a corgi forever

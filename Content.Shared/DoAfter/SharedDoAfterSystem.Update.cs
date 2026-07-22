@@ -1,4 +1,3 @@
-using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Gravity;
 using Content.Shared.Hands.Components;
@@ -6,7 +5,10 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.NullSpace; // Starlight
+#region Starlight
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.Antags.Abductor.Components;
+#endregion
 
 namespace Content.Shared.DoAfter;
 

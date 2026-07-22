@@ -22,6 +22,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Numerics;
 using Content.Shared.Damage.Components;
+using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 

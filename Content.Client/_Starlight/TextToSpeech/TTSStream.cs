@@ -1,4 +1,4 @@
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.TextToSpeech;
 using Robust.Shared.Audio;
 
 namespace Content.Client._Starlight.TextToSpeech;

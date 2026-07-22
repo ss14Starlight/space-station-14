@@ -13,7 +13,8 @@ using Robust.Shared.Map.Components; // Starlight
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Configuration;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.GameTicking.Rules;
 
 namespace Content.Server.GameTicking.Rules;
 

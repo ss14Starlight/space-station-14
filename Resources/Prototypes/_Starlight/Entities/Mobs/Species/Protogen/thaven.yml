@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  parent: BaseMobProtogen
   id: BaseMobProtoThaven
   name: Urist McEarster
   abstract: true

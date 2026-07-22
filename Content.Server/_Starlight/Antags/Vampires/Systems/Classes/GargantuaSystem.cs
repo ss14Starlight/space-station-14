@@ -12,7 +12,6 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.Doors.Components;
 using Content.Shared.Ensnaring.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Mobs.Components;
@@ -38,7 +37,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Physics;
 
-namespace Content.Server._Starlight.Antags.Vampires.Systems;
+namespace Content.Server._Starlight.Antags.Vampires.Systems.Classes;
 
 public sealed partial class GargantuaSystem : EntitySystem
 {

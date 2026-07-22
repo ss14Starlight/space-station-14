@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Numerics;
+using Content.Server._Starlight.NewLife;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
@@ -635,7 +636,7 @@ namespace Content.Server.Ghost
 
         //Starlight begin: Ghost admeme nonsense. Couldn't think of a better way to tell client to update chat channel permissions.
         public void CorporealStateChanged(EntityUid uid, bool isCorporeal) =>
-            RaiseNetworkEvent(new GhostCorporealEvent(isCorporeal), uid);
+            RaiseNetworkEvent(new GhostCorporealEvent(isCorporeal, GetNetEntity(uid)));
         //Starlight end
     }
 

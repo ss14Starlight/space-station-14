@@ -16,6 +16,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Access.Components;
 using Robust.Shared.GameObjects;
 using Content.Shared.Access.Systems;
+using Content.Shared._Starlight.Store.Components;
 #endregion Starlight
 
 namespace Content.Server.Store.Systems;

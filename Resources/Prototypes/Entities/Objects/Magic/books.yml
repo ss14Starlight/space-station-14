@@ -72,6 +72,15 @@
         WizCoin: 99999
 
 - type: entity
+  parent: WizardsGrimoire
+  id: WizardsGrimoireNTSF
+  suffix: Wizard, NTSF
+  components:
+    - type: Store
+      balance:
+        WizCoin: 4
+
+- type: entity
   parent: BaseSpellbook
   id: SpawnSpellbook
   name: spawn spellbook

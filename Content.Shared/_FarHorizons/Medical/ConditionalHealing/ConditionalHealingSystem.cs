@@ -2,7 +2,7 @@ using System.Linq;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Medical.Healing;
-using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared.Tag;
 
 namespace Content.Shared._FarHorizons.Medical.ConditionalHealing;

@@ -1,17 +1,11 @@
 using System.Linq;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Events;
-using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio.Systems;

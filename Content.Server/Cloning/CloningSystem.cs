@@ -21,7 +21,7 @@ using System.Linq;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Utility;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
 namespace Content.Server.Cloning;
 

@@ -2,7 +2,7 @@ using Content.Shared.EntityConditions;
 using Content.Shared.Localizations;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.EntityConditions.Conditions.Body;
+namespace Content.Shared._Starlight.EntityConditions.Conditions;
 
 /// <inheritdoc cref="EntityCondition"/>
 public sealed partial class HasComponentsCondition : EntityConditionBase<HasComponentsCondition>

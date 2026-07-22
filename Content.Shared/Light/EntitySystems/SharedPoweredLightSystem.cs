@@ -1,6 +1,3 @@
-using Content.Shared._Starlight.Light; // Starlight
-using Content.Shared._Starlight.Railroading; // Starlight
-using Content.Shared._Starlight.Shadekin; // Starlight
 using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -21,6 +18,11 @@ using Content.Shared.Storage.EntitySystems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+#region Starlight
+using Content.Shared._Starlight.Light;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
+using Content.Shared._Starlight.Shadekin.Components;
+#endregion
 
 namespace Content.Shared.Light.EntitySystems;
 

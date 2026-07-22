@@ -17,7 +17,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 
-namespace Content.Server.EnergyDome;
+namespace Content.Server._Starlight.EnergyDome;
 
 //TODO: This is all starlight code? move it
 public sealed partial class EnergyDomeSystem : EntitySystem

@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 
@@ -9,7 +9,7 @@ public sealed class TheDarkImmuneSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<TheDarkImmuneComponent, GotEquippedEvent>(OnEquipped);
-        SubscribeLocalEvent<TheDarkImmuneComponent, GotUnequippedEvent>((uid, _, args) => RemComp<TheDarkImmuneComponent>(args.Equipee));
+        SubscribeLocalEvent<TheDarkImmuneComponent, GotUnequippedEvent>((uid, _, args) => RemComp<TheDarkImmuneComponent>(args.EquipTarget));
     }
 
     private void OnEquipped(EntityUid uid, TheDarkImmuneComponent component, GotEquippedEvent args)
@@ -18,6 +18,6 @@ public sealed class TheDarkImmuneSystem : EntitySystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EnsureComp<TheDarkImmuneComponent>(args.Equipee);
+        EnsureComp<TheDarkImmuneComponent>(args.EquipTarget);
     }
 }

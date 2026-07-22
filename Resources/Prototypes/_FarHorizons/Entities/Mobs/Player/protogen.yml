@@ -42,7 +42,8 @@
 
 - type: entity
   save: false
-  name: Urisst' Mztosster
+  name: Urist McScalester # Starlight
+  suffix: Urisst' Mztosster # Starlight
   parent: BaseMobProtoReptilian # Starlight, ProtoReptile -> ProtoReptilian
   id: MobProtoReptilian # Starlight, ProtoReptile -> ProtoReptilian
 
@@ -66,7 +67,7 @@
 
 - type: entity
   save: false
-  name: Urist McHands The Proto-Dwarf # Starlight, to match with our Dwarf naming changes
+  name: Urist McHandster The Proto-Dwarf # Starlight, to match with our Dwarf naming changes
   parent: BaseMobProtoDwarf # Starlight, Dawi -> Dwarf
   id: MobProtoDwarf # Starlight, Dawi -> Dwarf
 
@@ -84,7 +85,8 @@
 
 - type: entity
   save: false
-  name: Urist McAvalister
+  name: Urist McSpaceRaptorster
+  suffix: Urist McAvalister # Starlight
   parent: BaseMobProtoAvali
   id: MobProtoAvali
 

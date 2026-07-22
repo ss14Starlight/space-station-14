@@ -242,3 +242,16 @@
     sprite: Clothing/Mask/ert.rsi
   - type: Clothing
     sprite: Clothing/Mask/ert.rsi
+
+- type: entity
+  parent: [ClothingMaskGasAtmos, BaseCommandContraband]
+  id: ClothingMaskGasCaptainPodWars
+  name: captain's gas mask
+  description: A repainted military surplus gas mask from the Pod Wars. In pretty good shape, considering it is slightly over 100 years old.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/gascaptain_podwars.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/gascaptain_podwars.rsi
+  - type: BreathMask
+  - type: IngestionBlocker

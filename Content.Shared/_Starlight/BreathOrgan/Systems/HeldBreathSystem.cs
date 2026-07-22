@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared._Starlight.BreathOrgan.Components;
 
-namespace Content.Shared._Starlight.BreathOrgan;
+namespace Content.Shared._Starlight.BreathOrgan.Systems;
 
 public sealed partial class HeldBreathSystem : EntitySystem
 {

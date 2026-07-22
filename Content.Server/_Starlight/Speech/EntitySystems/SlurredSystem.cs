@@ -6,7 +6,7 @@ using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Speech.EntitySystems;
+namespace Content.Server._Starlight.Speech.EntitySystems;
 
 public sealed partial class SlurredSystem : SharedSlurredSystem
 {

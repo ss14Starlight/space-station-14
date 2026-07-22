@@ -1,6 +1,6 @@
 using Content.Shared.Paper;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Handlers.Fax;
 
 [DataDefinition]
 public sealed partial class RailroadFaxLetter

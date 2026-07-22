@@ -1,13 +1,14 @@
-using Content.Shared.Eye.Blinding.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.Starlight.Overlay;
-using Content.Shared._Starlight.Vision;
+using Content.Shared._Starlight.Overlay.Systems;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.Overlay.Events;
+using Content.Client._Starlight.Overlay.Overlays;
 
-namespace Content.Client._Starlight.Overlay;
+namespace Content.Client._Starlight.Overlay.Systems;
 
 public sealed partial class NightVisionSystem : EntitySystem
 {

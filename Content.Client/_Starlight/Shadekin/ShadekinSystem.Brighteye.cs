@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Alert.Components;
 
 namespace Content.Client._Starlight.Shadekin;

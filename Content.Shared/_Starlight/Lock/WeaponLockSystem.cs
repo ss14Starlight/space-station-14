@@ -3,7 +3,7 @@ using Content.Shared.Lock;
 using Content.Shared.Hands;
 using Content.Shared.Weapons.Ranged.Systems;
 
-namespace Content.Shared.Starlight.Lock;
+namespace Content.Shared._Starlight.Lock;
 
 public sealed partial class WeaponLockSystem : EntitySystem
 {

@@ -4,7 +4,6 @@ using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Shared.Actions.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Destructible.Thresholds.Triggers;
-using Content.Shared.Item;
 using Content.Shared.Magic.Components;
 using Content.Shared._Starlight.Magic.Components;
 using Content.Shared.Magic.Events;

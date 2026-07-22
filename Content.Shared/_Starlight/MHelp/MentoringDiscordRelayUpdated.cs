@@ -1,7 +1,7 @@
 ﻿#nullable enable
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.MHelp;
+namespace Content.Shared._Starlight.MHelp;
 
 /// <summary>
 ///     Sent by the server to notify all clients when the webhook url is sent.

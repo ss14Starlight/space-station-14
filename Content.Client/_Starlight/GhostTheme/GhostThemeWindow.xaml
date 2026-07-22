@@ -2,21 +2,16 @@
     xmlns="https://spacestation14.io"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     Title="{Loc 'ghost-gui-ghost-theme-window-title'}"
-    MinSize="700 560"
-    SetSize="700 560">
+    MinSize="900 560"
+    SetSize="900 560">
 	<SplitContainer State="Auto" VerticalExpand="True" HorizontalExpand="True">
 		<BoxContainer Orientation="Vertical" HorizontalExpand="True">
 			<LineEdit Name="Search" VerticalAlignment="Top" Margin="0 0 0 8" PlaceHolder="{Loc 'crayon-window-placeholder'}"/>
-			<TabContainer Name="CategoryTabs" Margin="0 0 0 8">
-				<BoxContainer Name="Default"/>
-				<BoxContainer Name="Patreon"/>
-				<BoxContainer Name="Staff"/>
-				<BoxContainer Name="Event"/>
-				<BoxContainer Name="Unavailable"/>
+			<TabContainer Name="CategoryTabs" Margin="0 0 0 8" VerticalExpand="True">
 			</TabContainer>
-			<ScrollContainer VerticalExpand="True" HScrollEnabled="False">
-				<BoxContainer Orientation="Vertical" Name="GhostThemesContainer" VerticalExpand="True" SeparationOverride="4"/>
-			</ScrollContainer>
+			<!-- <ScrollContainer VerticalExpand="True" HScrollEnabled="False"> -->
+			<!-- 	<BoxContainer Orientation="Vertical" Name="GhostThemesContainer" VerticalExpand="True" SeparationOverride="4"/> -->
+			<!-- </ScrollContainer> -->
 		</BoxContainer>
 		<ScrollContainer VerticalExpand="True" HorizontalExpand ="True" HScrollEnabled="False">
 			<BoxContainer Orientation="Vertical" Name="GhostThemeDescriptionContainer" VerticalExpand="True"/>

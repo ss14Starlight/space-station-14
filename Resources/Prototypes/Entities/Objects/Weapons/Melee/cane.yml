@@ -92,6 +92,12 @@
         whitelist:
           tags:
           - CaneBlade
+  - type: MeleeWeapon # Starlight start
+    damage:
+      types:
+        Blunt: 9
+    soundHit:
+      collection: MetalThud # Starlight end
 
 - type: entity
   id: CaneSheathFilled

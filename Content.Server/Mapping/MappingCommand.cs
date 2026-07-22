@@ -2,7 +2,7 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Shared.Administration;
-using Content.Shared.Starlight.CCVar; //# Starlight
+using Content.Shared._Starlight.CCVar; //# Starlight
 using Robust.Shared.Configuration; //# Starlight
 using Robust.Shared.Console;
 using Robust.Shared.ContentPack;

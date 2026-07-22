@@ -1,5 +1,5 @@
-using Content.Client._Starlight.Trail;
-using Content.Server.Administration.Systems;
+using Content.Client._Starlight.Overlay.Trail;
+using Content.Shared._Starlight;
 using Content.Shared._Starlight.GhostTheme;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;

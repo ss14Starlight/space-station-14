@@ -1,6 +1,3 @@
-using Content.Server.StationEvents.Events;
-using Content.Shared.Whitelist;
-
 namespace Content.Server._Starlight.GameTicking.Rules.Components;
 
 [RegisterComponent, Access(typeof(DoorRuntimeRule))]
