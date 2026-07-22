@@ -51,7 +51,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private void OnInit(EntityUid uid, GasFilterComponent filter, ComponentInit args)
         {
-            UpdateAppearance(uid, filter);
+            UpdateAppearanceDelta(uid, core: FilterPortVisualsState.SolidOrange);
         }
 
         private void OnFilterUpdated(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args)
@@ -83,7 +83,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             // Starlight END
         }
 
-        // Starlight BEGIN
+        // Starlight BEGIN: Separate method with outvars for the visuals
         private void DoFilterUpdated(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args,
             out FilterPortVisualsState? coreVisual,
             out FilterPortVisualsState? inletVisual,
@@ -96,18 +96,13 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             outletVisual = null;
             // Starlight END
 
-
-            if (!filter.Enabled)
+            if (!filter.Enabled
+                || !_nodeContainer.TryGetNodes(uid, filter.InletName, filter.FilterName, filter.OutletName, out PipeNode? inletNode, out PipeNode? filterNode, out PipeNode? outletNode))
             {
-                coreVisual = FilterPortVisualsState.SolidOrange;
-                inletVisual = sideVisual = outletVisual = FilterPortVisualsState.Off;
                 return;
             }
 
-            if (!_nodeContainer.TryGetNodes(uid, filter.InletName, filter.FilterName, filter.OutletName,
-                    out PipeNode? inletNode, out PipeNode? filterNode, out PipeNode? outletNode))
-                return;
-
+            // Starlight BEGIN: Visuals + inlet check
             coreVisual = FilterPortVisualsState.Off;
             inletVisual = FilterPortVisualsState.Off;
             sideVisual = FilterPortVisualsState.Off;
@@ -120,10 +115,11 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 inletVisual = FilterPortVisualsState.SolidYellow;
                 return;
             }
+            // Starlight END: Visuals + inlet check
 
             //starlight edit - Moved logic to a new method
-            var transferVol = GetTransferRate(filter, args, inletNode.Air, outletNode); //starlight edit
-            var removed = inletNode.Air.RemoveVolume(transferVol);
+            var transferVol = GetTransferRate(filter, args, inletNode.Air, outletNode); // Starlight
+            var removed = inletNode.Air.RemoveVolume(transferVol); // Starlight
 
             // STARLIGHT - Disable outlet node pressure check for inline filter
             if (outletNode != inletNode && removed.TotalMoles <= DeltaMolCutoff)
@@ -228,10 +224,13 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             if (!args.Anchored)
             {
                 filter.Enabled = false;
-                UpdateAppearance(uid, filter);
+                UpdateAppearance(uid);
                 _ambientSoundSystem.SetAmbience(uid, false);
                 DirtyUI(uid, filter);
+                return;
             }
+
+            UpdateAppearance(uid, core: FilterPortVisualsState.SolidOrange);
         }
         // Starlight End
 
@@ -239,7 +238,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
         {
             // filter.Enabled = false; // Starlight Edit: Moved to OnAnchorChanged
 
-            UpdateAppearance(uid, filter);
+            UpdateAppearance(uid);
             _ambientSoundSystem.SetAmbience(uid, false);
 
             DirtyUI(uid, filter);
@@ -276,12 +275,33 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGas));
         }
 
-        private void UpdateAppearance(EntityUid uid, GasFilterComponent? filter = null)
+        private void UpdateAppearance(EntityUid uid,
+            AppearanceComponent? appearance = null,
+            FilterPortVisualsState core = FilterPortVisualsState.Off,
+            FilterPortVisualsState inlet = FilterPortVisualsState.Off,
+            FilterPortVisualsState outlet = FilterPortVisualsState.Off,
+            FilterPortVisualsState side = FilterPortVisualsState.Off) =>
+            UpdateAppearanceDelta(uid, appearance, core, inlet, outlet, side);
+
+        private void UpdateAppearanceDelta(EntityUid uid,
+            AppearanceComponent? appearance = null,
+            FilterPortVisualsState? core = null,
+            FilterPortVisualsState? inlet = null,
+            FilterPortVisualsState? outlet = null,
+            FilterPortVisualsState? side = null)
         {
-            if (!Resolve(uid, ref filter, false))
+            if (!Resolve(uid, ref appearance, false))
                 return;
 
-            _appearanceSystem.SetData(uid, FilterVisuals.Enabled, filter.Enabled);
+            if (core != null)
+                _appearanceSystem.SetData(uid, FilterVisuals.Core, core, appearance);
+            if (inlet != null)
+                _appearanceSystem.SetData(uid, FilterVisuals.Inlet, inlet, appearance);
+            if (outlet != null)
+                _appearanceSystem.SetData(uid, FilterVisuals.Outlet, outlet, appearance);
+            if (side != null)
+                _appearanceSystem.SetData(uid, FilterVisuals.Side, side, appearance);
+            // Dirty(uid, appearance);
         }
 
         private void OnToggleStatusMessage(EntityUid uid, GasFilterComponent filter, GasFilterToggleStatusMessage args)
@@ -290,7 +310,8 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             _adminLogger.Add(LogType.AtmosPowerChanged, LogImpact.Medium,
                 $"{ToPrettyString(args.Actor):player} set the power on {ToPrettyString(uid):device} to {args.Enabled}");
             DirtyUI(uid, filter);
-            UpdateAppearance(uid, filter);
+            if (!filter.Enabled)
+                UpdateAppearance(uid, core: FilterPortVisualsState.SolidOrange);
         }
 
         private void OnTransferRateChangeMessage(EntityUid uid, GasFilterComponent filter, GasFilterChangeRateMessage args)

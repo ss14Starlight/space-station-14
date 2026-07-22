@@ -49,7 +49,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private void OnInit(EntityUid uid, GasMixerComponent mixer, ComponentInit args)
         {
-            UpdateAppearance(uid, powered: true, core: FilterPortVisualsState.SolidOrange);
+            UpdateAppearance(uid, core: FilterPortVisualsState.SolidOrange);
         }
 
         private void OnMixerUpdated(EntityUid uid, GasMixerComponent mixer, ref AtmosDeviceUpdateEvent args)
@@ -205,7 +205,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 return;
             }
 
-            UpdateAppearance(uid, powered: true, core: FilterPortVisualsState.SolidOrange);
+            UpdateAppearance(uid, core: FilterPortVisualsState.SolidOrange);
         }
         // Starlight End
 
@@ -214,7 +214,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             // mixer.Enabled = false; // Starlight Edit: Moved to OnAnchorChanged
 
             DirtyUI(uid, mixer);
-            UpdateAppearance(uid, powered: true, core: FilterPortVisualsState.SolidOrange);
+            UpdateAppearance(uid);
             _userInterfaceSystem.CloseUi(uid, GasFilterUiKey.Key);
         }
 
@@ -251,25 +251,14 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private void UpdateAppearance(EntityUid uid,
             AppearanceComponent? appearance = null,
-            bool powered = false,
             FilterPortVisualsState core = FilterPortVisualsState.Off,
             FilterPortVisualsState inlet = FilterPortVisualsState.Off,
             FilterPortVisualsState outlet = FilterPortVisualsState.Off,
-            FilterPortVisualsState side = FilterPortVisualsState.Off)
-        {
-            if (!Resolve(uid, ref appearance, false))
-                return;
-
-            _appearance.SetData(uid, FilterVisuals.Powered, powered, appearance);
-            _appearance.SetData(uid, FilterVisuals.Core, core, appearance);
-            _appearance.SetData(uid, FilterVisuals.Inlet, inlet, appearance);
-            _appearance.SetData(uid, FilterVisuals.Outlet, outlet, appearance);
-            _appearance.SetData(uid, FilterVisuals.Side, side, appearance);
-        }
+            FilterPortVisualsState side = FilterPortVisualsState.Off) =>
+            UpdateAppearanceDelta(uid, appearance, core, inlet, outlet, side);
 
         private void UpdateAppearanceDelta(EntityUid uid,
             AppearanceComponent? appearance = null,
-            bool? powered = null,
             FilterPortVisualsState? core = null,
             FilterPortVisualsState? inlet = null,
             FilterPortVisualsState? outlet = null,
@@ -278,8 +267,6 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             if (!Resolve(uid, ref appearance, false))
                 return;
 
-            if (powered != null)
-                _appearance.SetData(uid, FilterVisuals.Powered, powered, appearance);
             if (core != null)
                 _appearance.SetData(uid, FilterVisuals.Core, core, appearance);
             if (inlet != null)
@@ -298,9 +285,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 $"{ToPrettyString(args.Actor):player} set the power on {ToPrettyString(uid):device} to {args.Enabled}");
             DirtyUI(uid, mixer);
             if (!mixer.Enabled)
-                UpdateAppearance(uid, powered: true, core: FilterPortVisualsState.SolidOrange);
-            else
-                UpdateAppearanceDelta(uid, powered: true);
+                UpdateAppearance(uid, core: FilterPortVisualsState.SolidOrange);
         }
 
         private void OnOutputPressureChangeMessage(EntityUid uid, GasMixerComponent mixer,
