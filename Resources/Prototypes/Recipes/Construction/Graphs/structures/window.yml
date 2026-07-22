@@ -79,24 +79,6 @@
 
         - to: reinforcedWindow
           steps:
-            - material: PartRodMetal
-              amount: 2
-              doAfter: 3
-
-        - to: plasmaWindow
-          steps:
-            - material: SheetPlasma
-              amount: 2
-              doAfter: 3
-
-        - to: uraniumWindow
-          steps:
-            - material: UraniumGlass
-              amount: 2
-              doAfter: 3
-
-        - to: reinforcedWindow
-          steps:
             - material: MetalRod
               amount: 2
               doAfter: 3
