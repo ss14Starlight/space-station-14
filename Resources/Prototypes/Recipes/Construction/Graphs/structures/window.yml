@@ -182,6 +182,16 @@
               amount: 2
               doAfter: 3
 
+        - to: uraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: Plasma
+              amount: 2
+          steps:
+            - material: Uranium
+              amount: 2
+              doAfter: 3
+
         # Starlight End
 
     - node: reinforcedPlasmaWindow
@@ -206,6 +216,20 @@
               doAfter: 2
             - tool: Anchoring
               doAfter: 3
+
+        # Starlight Start
+
+        - to: reinforcedUraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: Plasma
+              amount: 2
+          steps:
+            - material: Uranium
+              amount: 2
+              doAfter: 3
+
+        # Starlight End
 
     - node: uraniumWindow
       entity: UraniumWindow
