@@ -4,7 +4,7 @@
   startNode: start
   targetNode: molarmixer
   category: construction-category-atmospherics
-  placementMode: SnapgridCenter
+  placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasMixerFlipped
   conditions:
@@ -17,7 +17,7 @@
   startNode: start
   targetNode: molarmixerflipped
   category: construction-category-atmospherics
-  placementMode: SnapgridCenter
+  placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasMixer
   conditions:

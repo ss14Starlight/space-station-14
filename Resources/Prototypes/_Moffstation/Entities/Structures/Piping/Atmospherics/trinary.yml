@@ -4,7 +4,7 @@
   name: molar gas mixer
   description: Very useful for mixing gases.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers
   components:
   - type: SubFloorHide
     visibleLayers:
@@ -17,6 +17,13 @@
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: gasMixer
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasMolarMixer
+      Secondary: GasMolarMixerAlt1
+      Tertiary: GasMolarMixerAlt2
+      Quaternary: GasMolarMixerAlt3
+      Quinary: GasMolarMixerAlt4
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -34,7 +41,7 @@
     inletOne: inlet
     inletTwo: filter
   - type: Flippable
-    mirrorEntity: GasMixerFlipped
+    mirrorEntity: GasMolarMixerFlipped
   - type: Construction
     graph: GasTrinary
     node: mixer
@@ -51,12 +58,12 @@
     - MixingAndFiltering
 
 - type: entity
-  parent: GasMixerFlipped
+  parent: GasMolarMixer
   id: GasMolarMixerFlipped
   name: molar gas mixer
   suffix: Flipped
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers
   components:
   - type: Sprite
     sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
@@ -66,6 +73,13 @@
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: gasMixerF
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasMolarMixerFlipped
+      Secondary: GasMolarMixerFlippedAlt1
+      Tertiary: GasMolarMixerFlippedAlt2
+      Quaternary: GasMolarMixerFlippedAlt3
+      Quinary: GasMolarMixerFlippedAlt4
   - type: Appearance
   - type: Flippable
     mirrorEntity: GasMolarMixer
