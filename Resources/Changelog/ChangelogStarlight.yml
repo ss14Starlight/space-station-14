@@ -1,277 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (MING) Added the new fax machines.
-    type: Add
-  id: 406372
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (MING) Added kiki and more trays.
-    type: Add
-  id: 406373
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (MING) Added shipyard console.
-    type: Add
-  id: 406374
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PACKED) Added the new fax machines.
-    type: Add
-  id: 406375
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PACKED) Added kiki.
-    type: Add
-  id: 406376
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PACKED) Added shipyard console.
-    type: Add
-  id: 406377
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PLAMSA) Added the new fax machines.
-    type: Add
-  id: 406378
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PLASMA) Added the kiki.
-    type: Add
-  id: 406379
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PLASMA) Added the shipyard console.
-    type: Add
-  id: 406380
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PRISM) Added the new fax machines.
-    type: Add
-  id: 406381
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PRISM) Added kiki.
-    type: Add
-  id: 406382
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PRISM) Added the shipyard console.
-    type: Add
-  id: 406383
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Added the new fax machines.
-    type: Add
-  id: 406384
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Added kiki.
-    type: Add
-  id: 406385
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Added the shipyard console.
-    type: Add
-  id: 406386
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Added the new fax machines.
-    type: Add
-  id: 406387
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Added kiki.
-    type: Add
-  id: 406388
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Added the shipyard console.
-    type: Add
-  id: 406389
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (STARBOARD) Added the new fax machines.
-    type: Add
-  id: 406390
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (STARBOARD) Added kiki.
-    type: Add
-  id: 406391
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (STARBOARD) Added shupyard console.
-    type: Add
-  id: 406392
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (Cork) Removed cryopod in bridge.
-    type: Remove
-  id: 406393
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PACKED) Removed infinite power from ai core and a ai camera in maints.
-    type: Remove
-  id: 406394
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PRISM) Removed infinite power from ai core.
-    type: Remove
-  id: 406395
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Removed infinite power from ai core.
-    type: Remove
-  id: 406396
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Removed outdoor ai turrent from ai.
-    type: Remove
-  id: 406397
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (CORK) Fixed a dispo pipe in virology.
-    type: Fix
-  id: 406398
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (LAGAN) Fixed some distro pipes not being the correct color.
-    type: Fix
-  id: 406399
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (Manor) Fixed salv and mining docks.
-    type: Fix
-  id: 406400
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Fixed roboticist disposals bin.
-    type: Fix
-  id: 406401
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Fixed two random doors being in iaa office.
-    type: Fix
-  id: 406402
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Caws
-  changes:
-  - message: 'A two new posters: one that gives thanks to the contributors and their many hours of hard work, and a secret silly contraband one.'
-    type: Add
-  id: 406403
-  time: '2026-07-04T07:45:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4980
-- author: Caws
-  changes:
-  - message: (Silica) New fax machines.
-    type: Add
-  id: 406404
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) Shipyard Computer to Bridge.
-    type: Add
-  id: 406405
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) Cargo Tech lockers to Cargo Bay.
-    type: Add
-  id: 406406
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) Surgeon locker to Surgery.
-    type: Add
-  id: 406407
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) Coroner locker to Morgue.
-    type: Add
-  id: 406408
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) NCT lockers to NanoTrasen Career Office.
-    type: Add
-  id: 406409
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
-- author: Caws
-  changes:
-  - message: (Silica) Various visual tweaks and small fixes.
-    type: Tweak
-  id: 406410
-  time: '2026-07-04T08:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4991
 - author: ku-mo
   changes:
   - message: Implant charges no longer reset when extracted.
@@ -2799,4 +2526,277 @@ Entries:
   id: 406771
   time: '2026-07-21T00:10:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5170
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: Bulk gas ordering directly from the ATS, no canisters needed!
+    type: Add
+  id: 406772
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: Bulk cooled plasma ordering for maximum storage efficiency.
+    type: Add
+  id: 406773
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: (ATS) Distro and waste redone to match docking port standard layers.
+    type: Tweak
+  id: 406774
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: (ATS) All docks have distro/waste connections for shuttles to replenish air.
+    type: Tweak
+  id: 406775
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: (ATS) Cargo shuttle docks also have gas buying/selling pipes for shuttles to pipe from and into.
+    type: Tweak
+  id: 406776
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: CS-4T9 "Tanker", perfect for gas hauling, is now available for purchase for the low low price of $21,500 at your local shipyard console!
+    type: Add
+  id: 406777
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: redmushie, JohnnyMalawny
+  changes:
+  - message: Canned gas prices are now proportional to the amount of moles contained within for both the regular and liquid cooled variants.
+    type: Tweak
+  id: 406778
+  time: '2026-07-21T11:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5127
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Increased artillery projectile speeds.
+    type: Tweak
+  id: 406779
+  time: '2026-07-21T12:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5023
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Rebalanced all artillery weapons with more accurate damage values.
+    type: Tweak
+  id: 406780
+  time: '2026-07-21T12:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5023
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Fixed the Vanyek firing unintended follow-up shots.
+    type: Fix
+  id: 406781
+  time: '2026-07-21T12:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5023
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Overhauled the gunnery console UI to make it cleaner and easier to read.
+    type: Tweak
+  id: 406782
+  time: '2026-07-21T12:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5023
+- author: wonderfulnewworld
+  changes:
+  - message: Traitors are a little less common in dynamic.
+    type: Tweak
+  id: 406783
+  time: '2026-07-21T12:38:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5226
+- author: Turk1shcat
+  changes:
+  - message: Added a new mime mask found by snipping the manager wire of the autodrobe.
+    type: Add
+  id: 406784
+  time: '2026-07-21T13:06:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5139
+- author: Turk1shcat
+  changes:
+  - message: Added new sprites for the mime masks.
+    type: Add
+  id: 406785
+  time: '2026-07-21T13:06:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5139
+- author: Turk1shcat
+  changes:
+  - message: Added a new vendor for mimes! Still needs to be mapped.
+    type: Add
+  id: 406786
+  time: '2026-07-21T13:06:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5139
+- author: Turk1shcat
+  changes:
+  - message: Added a new set of tools found in the new vendor. Too bad you can't see them.
+    type: Add
+  id: 406787
+  time: '2026-07-21T13:06:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5139
+- author: Turk1shcat
+  changes:
+  - message: The Security mime mask is now craftable with a normal mime mask and cheap sunglasses.
+    type: Tweak
+  id: 406788
+  time: '2026-07-21T13:06:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5139
+- author: SpaghettiBit
+  changes:
+  - message: The ability to remove, insert, and replace cells from batons. Stunbatons and stunprods have a passive drain.
+    type: Add
+  id: 406789
+  time: '2026-07-21T14:05:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5154
+- author: SpaghettiBit
+  changes:
+  - message: Removed the small-capacity cell from the stunprod crafting recipe.
+    type: Tweak
+  id: 406790
+  time: '2026-07-21T14:05:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5154
+- author: SpaghettiBit
+  changes:
+  - message: Stunprods now spawn without a cell.
+    type: Tweak
+  id: 406791
+  time: '2026-07-21T14:05:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5154
+- author: SpaghettiBit
+  changes:
+  - message: The NT paper jockeys have been granted one (1) singular voucher of happiness, their cane now has the ability to self recharge, no you cannot remove the cell.
+    type: Tweak
+  id: 406792
+  time: '2026-07-21T14:05:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5154
+- author: Vincolan
+  changes:
+  - message: Added Casino PDA.
+    type: Add
+  id: 406793
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Vincolan
+  changes:
+  - message: Added Casino Dealer, Security, Owner and manager ID.
+    type: Add
+  id: 406794
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Vincolan
+  changes:
+  - message: Casino Pistol.
+    type: Add
+  id: 406795
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Vincolan
+  changes:
+  - message: The house, Always wins.
+    type: Add
+  id: 406796
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Vincolan
+  changes:
+  - message: Casino baton.
+    type: Add
+  id: 406797
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Vincolan
+  changes:
+  - message: Casino access.
+    type: Add
+  id: 406798
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Johnny
+  changes:
+  - message: Changed most of the music in jukebox to hopefully be quieter.
+    type: Tweak
+  id: 406799
+  time: '2026-07-22T08:18:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5231
+- author: Caws
+  changes:
+  - message: Performers now have service access just like other theatre staff.
+    type: Fix
+  id: 406800
+  time: '2026-07-22T08:18:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5236
+- author: Johnny
+  changes:
+  - message: (Reach) Added ATMS cuz like money.
+    type: Add
+  id: 406801
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added the prisoner monkey (forgot its name).
+    type: Add
+  id: 406802
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added an EVA room near evac.
+    type: Add
+  id: 406803
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added evacuation pods.
+    type: Add
+  id: 406804
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added pipes in cargo dock for gas buying/selling.
+    type: Add
+  id: 406805
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added a fireaxe into atmos.
+    type: Add
+  id: 406806
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added mass scanners on the walls to show peeps where your driving!
+    type: Add
+  id: 406807
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Added BEAUTIFUL DIAGONAL TILES.
+    type: Add
+  id: 406808
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Removed some catwalks to see the BEAUTIFUL DIAGONAL TILES.
+    type: Remove
+  id: 406809
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: Johnny
+  changes:
+  - message: (Reach) Piping in general hallways have been reworked to put vents in more accessible spots.
+    type: Tweak
+  id: 406810
+  time: '2026-07-22T08:18:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5223
 Order: -1
