@@ -2,7 +2,6 @@ using Content.Shared.Atmos;
 
 namespace Content.Server._Moffstation.Atmos.Piping.Trinary.Components;
 
-
 /// <summary>
 /// A Gas Mixer variant which mix gases by mols rather than pressure
 /// </summary>

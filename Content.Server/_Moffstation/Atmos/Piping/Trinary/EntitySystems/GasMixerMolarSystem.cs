@@ -1,11 +1,10 @@
 using Content.Server._Moffstation.Atmos.Piping.Trinary.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Atmos.Piping.Components;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Atmos.Piping;
 using Content.Shared.Atmos.Piping.Components;
 using Content.Shared.Atmos.Piping.Trinary.Components;
@@ -33,14 +32,24 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
 
-
-    [SubscribeLocalEvent]
-    private void OnInit(Entity<GasMixerMolarComponent> ent, ref ComponentInit args)
+    public override void Initialize()
     {
-        UpdateAppearance(ent);
+        base.Initialize();
+
+        SubscribeLocalEvent<GasMixerMolarComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<GasMixerMolarComponent, AtmosDeviceUpdateEvent>(OnMixerUpdated);
+        SubscribeLocalEvent<GasMixerMolarComponent, AtmosDeviceDisabledEvent>(OnMixerLeaveAtmosphere);
+        SubscribeLocalEvent<GasMixerMolarComponent, ActivateInWorldEvent>(OnMixerActivate);
+        SubscribeLocalEvent<GasMixerMolarComponent, GasAnalyzerScanEvent>(OnMixerGasAnalyzed);
+
+        SubscribeLocalEvent<GasMixerMolarComponent, GasMixerChangeOutputPressureMessage>(OnOutputPressureChange);
+        SubscribeLocalEvent<GasMixerMolarComponent, GasMixerChangeNodePercentageMessage>(OnNodePercentageChanged);
+        SubscribeLocalEvent<GasMixerMolarComponent, GasMixerToggleStatusMessage>(OnStatusToggled);
     }
 
-    [SubscribeLocalEvent]
+    private void OnInit(Entity<GasMixerMolarComponent> ent, ref ComponentInit args)
+        => UpdateAppearance(ent);
+
     private void OnMixerUpdated(Entity<GasMixerMolarComponent> ent, ref AtmosDeviceUpdateEvent args)
     {
         if (!ent.Comp.Enabled ||
@@ -81,7 +90,7 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
             _atmosphereSystem.Merge(transferMixture, transferableInletTwo);
 
             var pressureDelta = ent.Comp.TargetPressure - outlet.Air.Pressure;
-            var totalTransferredMoles = (pressureDelta * outlet.Air.Volume) / (transferMixture.Temperature * Atmospherics.R);
+            var totalTransferredMoles = pressureDelta * outlet.Air.Volume / (transferMixture.Temperature * Atmospherics.R);
 
             // step 3 : transfer gas from inlets using the total transferred mole amount and the requested concentrations.
             _atmosphereSystem.Merge(outlet.Air, transferableInletOne.Remove(totalTransferredMoles * ent.Comp.InletOneConcentration));
@@ -93,17 +102,15 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
             _ambientSoundSystem.SetAmbience(ent.Owner, totalTransferredMoles > 0);
     }
 
-    [SubscribeLocalEvent]
     private void OnMixerLeaveAtmosphere(Entity<GasMixerMolarComponent> ent, ref AtmosDeviceDisabledEvent args)
     {
         ent.Comp.Enabled = false;
 
         DirtyUi(ent);
         UpdateAppearance(ent);
-        _userInterfaceSystem.CloseUi(ent.Owner, GasFilterUiKey.Key);
+        _userInterfaceSystem.CloseUi(ent.Owner, GasMixerUiKey.Key);
     }
 
-    [SubscribeLocalEvent]
     private void OnMixerActivate(Entity<GasMixerMolarComponent> ent, ref ActivateInWorldEvent args)
     {
         if (args.Handled || !args.Complex)
@@ -125,7 +132,6 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
         args.Handled = true;
     }
 
-    [SubscribeLocalEvent]
     private void OnMixerGasAnalyzed(Entity<GasMixerMolarComponent> ent, ref GasAnalyzerScanEvent args)
     {
         args.GasMixtures ??= [];
@@ -158,7 +164,6 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
 
     // Ui messages
 
-    [SubscribeLocalEvent]
     private void OnOutputPressureChange(Entity<GasMixerMolarComponent> ent,
         ref GasMixerChangeOutputPressureMessage args)
     {
@@ -170,7 +175,6 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
         DirtyUi(ent);
     }
 
-    [SubscribeLocalEvent]
     private void OnNodePercentageChanged(Entity<GasMixerMolarComponent> ent,
         ref GasMixerChangeNodePercentageMessage args)
     {
@@ -184,7 +188,6 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
         DirtyUi(ent);
     }
 
-    [SubscribeLocalEvent]
     private void OnStatusToggled(Entity<GasMixerMolarComponent> ent, ref GasMixerToggleStatusMessage args)
     {
         ent.Comp.Enabled = args.Enabled;
@@ -207,8 +210,7 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
     }
 
     private void DirtyUi(Entity<GasMixerMolarComponent> ent)
-    {
-        _userInterfaceSystem.SetUiState(
+        => _userInterfaceSystem.SetUiState(
             ent.Owner,
             GasMixerUiKey.Key,
             new GasMixerBoundUserInterfaceState(
@@ -216,6 +218,4 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
                 ent.Comp.TargetPressure,
                 ent.Comp.Enabled,
                 ent.Comp.InletOneConcentration));
-    }
-
 }
