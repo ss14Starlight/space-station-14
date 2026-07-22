@@ -102,7 +102,7 @@
     name: ghost-role-information-stirstir-name
     description: ghost-role-information-stirstir-description
     rules: ghost-role-information-nonantagonist-rules
-    job: Prisoner
+    job: StirStir
   - type: GhostTakeoverAvailable
   - type: Butcherable
     butcheringType: Spike

@@ -15,3 +15,4 @@ JobRoboticist = Roboticist
 JobSalvageLead = Salvage Lead
 JobSurgeon = Surgeon
 JobZookeeper = Zookeeper
+job-name-stirstir = Stir Stir
