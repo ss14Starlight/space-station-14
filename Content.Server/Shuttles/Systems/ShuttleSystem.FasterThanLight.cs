@@ -31,6 +31,7 @@ using Content.Shared._Starlight.Camera;
 using Content.Shared.Station.Components;
 using Robust.Server.Player;
 using Content.Shared.Body.Components;
+using Content.Shared.Atmos.Components;
 #endregion
 
 namespace Content.Server.Shuttles.Systems;
@@ -775,6 +776,7 @@ public sealed partial class ShuttleSystem
 
     /// <summary>
     /// Puts everyone unbuckled on the floor, paralyzed.
+    /// #Starlight  Added check for MovedByPressureComponent to see if the entity is disabled, if so, toss them if spaced and skip stun.
     /// </summary>
     private void DoTheDinosaur(TransformComponent xform)
     {
@@ -787,6 +789,12 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
+                // Starlight START
+                // If the entity has a MovedByPressureComponent, check if it's disabled, if so, skip the stun (e.g. magboots).
+                if (TryComp<MovedByPressureComponent>(child, out var moved) && !moved.Enabled)
+                    continue;
+                // Starlight END
+
                 _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
 
                 // If the guy we knocked down is on a spaced tile, throw them too

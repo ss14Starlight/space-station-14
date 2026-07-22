@@ -196,7 +196,7 @@
 
 - type: entity # Starlight Grenades for the Peacekeeper
   id: GrenadeGaslauncher
-  name: Gas grenade
+  name: gas grenade
   description: Able to choke a room or several of your friends.
   parent: [ BaseGrenade, BaseSecurityContraband]
   components:
@@ -211,10 +211,13 @@
   - type: SpentAmmoVisuals
     state: blast
     suffix: false
+  - type: Tag
+    tags:
+    - GrenadeLessLethal
 
 - type: entity # Starlight Grenades for the sec Peacekeeper
   id: GrenadeStingerlauncher
-  name: Stinger grenade
+  name: stinger grenade
   description: An unruly crowd's favourite.
   parent: [ BaseGrenade, BaseSecurityContraband]
   components:
@@ -229,3 +232,6 @@
   - type: SpentAmmoVisuals
     state: blast
     suffix: false
+  - type: Tag
+    tags:
+    - GrenadeLessLethal
