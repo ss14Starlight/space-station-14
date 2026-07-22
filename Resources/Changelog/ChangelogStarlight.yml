@@ -1,11 +1,4 @@
 Entries:
-- author: ku-mo
-  changes:
-  - message: Implant charges no longer reset when extracted.
-    type: Fix
-  id: 406411
-  time: '2026-07-04T08:35:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4984
 - author: wonderfulnewworld
   changes:
   - message: DAGDs will no longer roll story objectives.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406810
   time: '2026-07-22T08:18:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: neomoth
+  changes:
+  - message: Disposal bins and the like now properly predict thrown items being inserted into them.
+    type: Add
+  id: 406811
+  time: '2026-07-22T20:54:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5179
 Order: -1
