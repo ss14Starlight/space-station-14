@@ -1,0 +1,95 @@
+- type: listing
+  id: VendorClothingEyesGlassesCheapSunglasses
+  productEntity: ClothingEyesGlassesCheapSunglasses
+  cost:
+    NTCredit: 100
+  categories:
+  - SLMime
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorClothingMaskMime
+  productEntity: ClothingMaskMime
+  cost:
+    NTCredit: 60
+  categories:
+  - SLMime
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorClothingMaskBlushingMime
+  productEntity: ClothingMaskBlushingMime
+  cost:
+    NTCredit: 60
+  categories:
+  - SLMime
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorClothingMaskScaredMime
+  productEntity: ClothingMaskScaredMime
+  cost:
+    NTCredit: 60
+  categories:
+  - SLMime
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorClothingMaskSadMime
+  productEntity: ClothingMaskSadMime
+  cost:
+    NTCredit: 60
+  categories:
+  - SLMime
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorDrinkBottleOfNothingFull
+  productEntity: DrinkBottleOfNothingFull
+  cost:
+    NTCredit: 120
+  categories:
+  - SLMime
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorFoodMimana
+  productEntity: FoodMimana
+  cost:
+    NTCredit: 30
+  categories:
+  - SLMime
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorToolboxInvisibleFilled
+  productEntity: ToolboxInvisibleFilled
+  cost:
+    NTCredit: 300
+  categories:
+  - SLMime
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerAccessCondition
