@@ -36,6 +36,7 @@
     color: CornflowerBlue
     sound: "/Audio/Ambience/Antag/headrev_start.ogg"
   startingGear: HeadRevGear
+  allowNonHumans: true # Starlight
   components:
   - type: Revolutionary
   - type: HeadRevolutionary

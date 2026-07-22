@@ -54,10 +54,10 @@
   - AntagWizardDuelist # Starlight antag loadout
   briefing:
     color: Turquoise
-  tags: # Starlight start
+  allowNonHumans: true # Starlight start
+  tags:
     - Wizard
-    - CantBecomeRevolutionary
-      # Starlight-end
+    - CantBecomeRevolutionary # Starlight end
   components:
   - type: NpcFactionMember
     factions:

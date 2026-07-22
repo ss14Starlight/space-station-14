@@ -18,6 +18,7 @@
   id: Vampire
   prefRoles:
   - Vampire
+  allowNonHumans: true
   tags:
     - CantBecomeRevolutionary
   blacklist:

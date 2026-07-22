@@ -6,12 +6,14 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Antag;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
+using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Players;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+
 using static Content.Server.Antag.Components.AntagSelectionTime;
 
 namespace Content.Server.Antag;
@@ -186,7 +188,7 @@ public sealed partial class AntagSelectionSystem
         if (HasComp<GhostComponent>(uid))
             return false;
 
-        if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(uid)) // Starlight, no visual nubody
+        if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(uid) && !HasComp<HandsComponent>(uid)) // Starlight, no visual nubody
             return false;
 
         return true;

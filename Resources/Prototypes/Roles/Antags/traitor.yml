@@ -20,6 +20,7 @@
   id: Traitor
   prefRoles:
   - Traitor
+  allowNonHumans: true # Starlight
   blacklist:
     components:
     - AntagImmune
