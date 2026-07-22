@@ -305,8 +305,6 @@
   - type: AutoImplant
     implants:
     - BluespaceImplant
-    slots:
-    - HEAD
 
 - type: entity
   name: Rt Hon. Flippers
@@ -329,14 +327,14 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: flippers
-    - type: DamageStateVisuals
-      states:
-        Alive:
-          Base: flippers
-        Critical:
-          Base: flippers_dead
-        Dead:
-          Base: flippers_dead_blood
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: flippers
+      Critical:
+        Base: flippers_dead
+      Dead:
+        Base: flippers_dead_blood
   - type: InteractionPopup
     successChance: 1
     interactSuccessString: petting-success-bird
