@@ -54,6 +54,10 @@
   - AntagWizardDuelist # Starlight antag loadout
   briefing:
     color: Turquoise
+  tags: # Starlight start
+    - Wizard
+    - CantBecomeRevolutionary
+      # Starlight-end
   components:
   - type: NpcFactionMember
     factions:

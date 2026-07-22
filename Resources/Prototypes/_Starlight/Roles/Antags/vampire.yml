@@ -18,6 +18,8 @@
   id: Vampire
   prefRoles:
   - Vampire
+  tags:
+    - CantBecomeRevolutionary
   blacklist:
     components:
     - AntagImmune

@@ -32,6 +32,8 @@
     text: ninja-role-greeting
     color: Green
     sound: /Audio/Misc/ninja_greeting.ogg
+  tags: # Starlight
+    - CantBecomeRevolutionary # Starlight
   components:
   - type: SpaceNinja
   - type: ThermalVision # Starlight

@@ -40,13 +40,13 @@
   startingGear: AbductorScientistGear
   spawnerPrototype: AbductorScientistSpawner
   pickPlayer: false
-  components:
-  - type: AbductorScientist
-  - type: Tag
-    tags:
+  tags:
     - Abductor
     - AbductorScientist
     - CanPilot
+    - CantBecomeRevolutionary
+  components:
+  - type: AbductorScientist
 
 - type: antagSpecifier
   parent: BaseAbductor
@@ -54,9 +54,9 @@
   startingGear: AbductorAgentGear
   spawnerPrototype: AbductorAgentSpawner
   pickPlayer: false
-  components:
-  - type: AbductorAgent
-  - type: Tag
-    tags:
+  tags:
     - Abductor
     - CanPilot
+    - CantBecomeRevolutionary
+  components:
+  - type: AbductorAgent

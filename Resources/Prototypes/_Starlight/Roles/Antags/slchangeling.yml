@@ -7,6 +7,8 @@
     color: Red
     sound: /Audio/Ambience/Antag/changeling_start.ogg
   allowNonHumans: false
+  tags:
+    - CantBecomeRevolutionary
   components:
   - type: ChangelingDevour
   - type: ChangelingIdentity

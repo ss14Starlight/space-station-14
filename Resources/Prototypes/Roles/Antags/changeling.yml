@@ -24,7 +24,9 @@
     text: changeling-role-greeting
     color: Red
     sound: /Audio/Ambience/Antag/changeling_start.ogg
-  allowNonHumans: false # Starlight
+  allowNonHumans: false # Starlight start
+  tags:
+    - CantBecomeRevolutionary # Starlight end
   components:
   - type: ChangelingDevour
   - type: ChangelingIdentity

@@ -38,6 +38,9 @@
     # TODO: Need Wizard Start sound
     #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
   # TODO: WizardComp as needed
+  tags: # Starlight start
+    - Wizard
+    - CantBecomeRevolutionary # Starlight end
   components:
   - type: NpcFactionMember
     factions:

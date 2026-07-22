@@ -1,3 +1,4 @@
+using Prometheus;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -23,8 +24,12 @@ using Content.Shared.Database;
 using Content.Shared.Follower;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Humanoid;
+using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
+using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -34,12 +39,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-// Starlight Start
-using Prometheus;
-using Content.Shared.Preferences;
-using Content.Shared.Preferences.Loadouts;
-using Content.Shared.Humanoid;
-// Starlight End
 using static Content.Server.Antag.Components.AntagSelectionTime;
 
 namespace Content.Server.Antag;
@@ -87,6 +86,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
     #region Starlight
     [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
     #endregion
 
     // arbitrary random number to give late joining some mild interest.
@@ -829,6 +829,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         // The following is where we apply components, equipment, and other changes to our antagonist entity.
         EntityManager.AddComponents(antag, prototype.Components);
+
+        #region Starlight
+        // Eh, screw it, we'll keep the tag system.
+        _tag.AddTags(antag, prototype.Tags);
+        #endregion
 
         // Equip the entity's RoleLoadout and LoadoutGroup
         List<ProtoId<StartingGearPrototype>> gear = new();

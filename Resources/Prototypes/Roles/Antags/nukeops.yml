@@ -81,8 +81,10 @@
   prefRoles:
   - GenericTeamAntagonist # For antag ban purposes
   roleLoadout:
-  - AntagNukeops # Starlight
-  allowNonHumans: true # Starlight
+  - AntagNukeops # Starlight start
+  allowNonHumans: true
+  tags:
+    - CantBecomeRevolutionary # Starlight end
   components:
   - type: NukeOperative
   - type: NpcFactionMember

@@ -38,6 +38,8 @@
     text: brighteye-role-greeting
     color: "#F200FF"
     sound: "/Audio/_Starlight/Ambience/Antag/brighteye.ogg"
+  tags:
+    - CantBecomeRevolutionary
   components:
   - type: Brighteye
     energy: 200 # THIS IS HARDCODED BULLSHIT... i wish i could set this auto to MaxEnergy.

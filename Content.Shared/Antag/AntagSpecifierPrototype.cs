@@ -1,5 +1,6 @@
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
+using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -132,6 +133,14 @@ public sealed partial class AntagSpecifierPrototype : IPrototype, IInheritingPro
     /// </remarks>
     [DataField]
     public EntProtoId? SpawnerPrototype;
+
+    #region Starlight
+    /// <summary>
+    /// Tags added to the player.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<TagPrototype>> Tags = new();
+    #endregion
 }
 
 /// <summary>

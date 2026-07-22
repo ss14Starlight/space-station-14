@@ -28,6 +28,8 @@
   - MindRoleDevil
   briefing:
     sound: "/Audio/_Starlight/Misc/devil_greeting.ogg"
+  tags:
+    - CantBecomeRevolutionary
   components:
   - type: ActiveListener
   - type: Unholy
