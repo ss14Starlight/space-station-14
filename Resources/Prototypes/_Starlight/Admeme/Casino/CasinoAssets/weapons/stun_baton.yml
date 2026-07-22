@@ -1,0 +1,40 @@
+﻿- type: entity
+  name: Gamorrah Golden Baton
+  parent: [BaseItem, BaseCasinoContraband]
+  id: CasinoBaton
+  description: If you want to see the fate of democracies, look out the windows. It has a odd twist at the end that allows easy disarming of Visitors. Its archaic design requires no external power source.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Casino/Objects/Weapon/casino_baton.rsi
+      state: icon
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      damage:
+        types:
+          Blunt: 5
+      bluntStaminaDamageFactor: 2.0
+      angle: 60
+      animation: WeaponArcThrust
+      soundHit:
+        collection: GenericHit
+    - type: StaminaDamageOnHit
+      damage: 35
+      sound: /Audio/Weapons/egloves.ogg
+    - type: StaminaDamageOnCollide
+      damage: 35
+      sound: /Audio/Weapons/egloves.ogg
+    - type: Item
+      size: Normal
+      sprite: _Starlight/Admeme/Casino/Objects/Weapon/casino_baton.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Casino/Objects/Weapon/casino_baton.rsi
+      quickEquip: false
+      slots:
+        - Belt
+    - type: Tag
+      tags:
+        - Truncheon
+    - type: DisarmMalus
+      malus: 0.425
+    - type: StaticPrice
+      price: 80
