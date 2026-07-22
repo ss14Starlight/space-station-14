@@ -25,6 +25,9 @@
     color: Red
     sound: /Audio/Ambience/Antag/changeling_start.ogg
   allowNonHumans: false # Starlight start
+  blacklist:
+    components:
+    - AntagImmune
   tags:
     - CantBecomeRevolutionary # Starlight end
   components:

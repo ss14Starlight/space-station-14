@@ -16,6 +16,9 @@
   prefRoles:
   - Thief
   allowNonHumans: true
+  blacklist: # Starlight start
+    components:
+    - AntagImmune # Starlight end
   multiAntagSetting: NotExclusive
   startingGear: ThiefGear
   components:

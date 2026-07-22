@@ -39,6 +39,9 @@
     #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
   # TODO: WizardComp as needed
   allowNonHumans: true # Starlight start
+  blacklist:
+    components:
+    - AntagImmune
   tags:
     - Wizard
     - CantBecomeRevolutionary # Starlight end
