@@ -99,6 +99,5 @@ public abstract partial class SharedGasVolumePumpSystem : EntitySystem
     public void Toggle(EntityUid uid, GasVolumePumpComponent component)
     {
         Set(uid, component, !component.Enabled);
-        return;
     }
 }

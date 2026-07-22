@@ -106,8 +106,7 @@
     receiveFrequencyId: BasicDevice
     transmitFrequencyId: AtmosMonitor
     sendBroadcastAttemptEvent: true
-    examinableAddress: true
-    prefix: device-address-prefix-pressure-pump
+    prefix: device-address-prefix-gas-pump
   - type: WirelessNetworkConnection
     range: 200
   - type: DeviceLinkSink
@@ -194,7 +193,6 @@
       receiveFrequencyId: BasicDevice
       transmitFrequencyId: AtmosMonitor
       sendBroadcastAttemptEvent: true
-      examinableAddress: true
       prefix: device-address-prefix-volume-pump
     - type: WirelessNetworkConnection
       range: 200
