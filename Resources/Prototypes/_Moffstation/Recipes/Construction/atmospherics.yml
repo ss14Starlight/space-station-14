@@ -6,7 +6,7 @@
   category: construction-category-atmospherics
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
-  mirror: GasMixerFlipped
+  mirror: GasMolarMixerFlipped
   conditions:
   - !type:NoUnstackableInTile
 
@@ -19,6 +19,6 @@
   category: construction-category-atmospherics
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
-  mirror: GasMixer
+  mirror: GasMolarMixer
   conditions:
   - !type:NoUnstackableInTile

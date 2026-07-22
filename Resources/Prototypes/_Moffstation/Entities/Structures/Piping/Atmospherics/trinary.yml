@@ -44,7 +44,7 @@
     mirrorEntity: GasMolarMixerFlipped
   - type: Construction
     graph: GasTrinary
-    node: mixer
+    node: molarmixer
   - type: AmbientSound
     enabled: false
     volume: -9
@@ -83,5 +83,11 @@
   - type: Appearance
   - type: Flippable
     mirrorEntity: GasMolarMixer
+  - type: GenericVisualizer
+    visuals:
+      enum.FilterVisuals.Enabled:
+        enabled:
+          True: { state: gasMixerFOn }
+          False: { state: gasMixerF }
   - type: Construction
     node: molarmixerflipped

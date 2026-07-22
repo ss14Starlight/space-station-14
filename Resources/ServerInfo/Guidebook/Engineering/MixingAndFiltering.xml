@@ -29,12 +29,12 @@
   - Mixing oxygen and nitrogen to create a breathable atmosphere
   - Mixing oxygen and plasma for plasma burning to create Tritium
 
-  There is two types of Gas mixers, each one mixing gasses in a different way :
+  There are two types of gas mixers, each mixing gases differently:
 
   <Box>
     <GuideEntityEmbed Entity="GasMixer" Caption="Volumetric Gas Mixer" Rotation="90"/>
   </Box>
-  A Volumetric gas mixer mix gasses based on pressure, not on mols. The ratio of each gasses present in the output will be
+  A volumetric gas mixer mixes gases based on pressure, not moles. The ratio of each gasses present in the output will be
   affected by differences in temperature between the two input gasses. For example:
   <!-- MoffStation edit End: Molar Mixers -->
   - Presume a gas mixer was asked to mix Oxygen and Nitrogen at a ratio of 1:2 at a certain pressure.
@@ -43,13 +43,15 @@
   - Because of this, Nitrogen will have half the mols compared to Oxygen when the gas mixer attempts to create the mix.
   - The output will be 1:1 instead of 1:2. You'll have 1 mol of Nitrogen per 1 mol of Oxygen, instead of 2 mols of Nitrogen per 1 mol of Oxygen.
 
+  <!-- MoffStation edit Start: Molar Mixers -->
   <Box>
     <GuideEntityEmbed Entity="GasMolarMixer" Caption="Molar Gas Mixer" Rotation="90"/>
   </Box>
-  A Molar gas mixer mix gasses based on mols. The ratio of each input gases present in the output will always respect
+  A molar gas mixer mixes gasses based on moles. The ratio of each input gases present in the output will always respect
   the percentages requested by the user, regardless of differences in temperature between the two gasses.
   This can cause the mixer to work very slowly when one of the two input gasses is not available
   in sufficient quantity to produce the requested gas mixture at the requested pressure.
+  <!-- MoffStation edit End: Molar Mixers -->
 
   ## Gas Filter
   Gas filters are used to separate gasses from a mixture within a [textlink="pipe network." link="PipeNetworks"]

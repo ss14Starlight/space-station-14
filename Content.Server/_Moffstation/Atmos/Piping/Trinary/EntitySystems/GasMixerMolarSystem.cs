@@ -32,6 +32,8 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
 
+    private const float PercentageScale = 100.0f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -48,7 +50,15 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
     }
 
     private void OnInit(Entity<GasMixerMolarComponent> ent, ref ComponentInit args)
-        => UpdateAppearance(ent);
+    {
+        var sum = ent.Comp.InletOneConcentration + ent.Comp.InletTwoConcentration;
+        if (sum > 0f)
+        {
+            ent.Comp.InletOneConcentration /= sum;
+            ent.Comp.InletTwoConcentration /= sum;
+        }
+        UpdateAppearance(ent);
+    }
 
     private void OnMixerUpdated(Entity<GasMixerMolarComponent> ent, ref AtmosDeviceUpdateEvent args)
     {
@@ -178,7 +188,7 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
     private void OnNodePercentageChanged(Entity<GasMixerMolarComponent> ent,
         ref GasMixerChangeNodePercentageMessage args)
     {
-        var nodeOne = Math.Clamp(args.NodeOne, 0f, 100.0f) / 100.0f;
+        var nodeOne = Math.Clamp(args.NodeOne, 0f, PercentageScale) / PercentageScale;
         ent.Comp.InletOneConcentration = nodeOne;
         ent.Comp.InletTwoConcentration = 1.0f - ent.Comp.InletOneConcentration;
         _adminLogger.Add(

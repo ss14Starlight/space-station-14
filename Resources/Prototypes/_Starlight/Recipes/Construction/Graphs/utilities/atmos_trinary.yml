@@ -54,6 +54,30 @@
           amount: 2
           doAfter: 1
 
+      - to: molarmixerAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerflippedAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerflippedAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
       - to: pneumaticvalveAlt1
         steps:
         - material: Steel
