@@ -58,33 +58,18 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
         {
             // Starlight BEGIN
             // Actual update logic moved to another method, with outvars for cosmetic results.
-            DoFilterUpdated(uid, filter, ref args,
+            DoUpdate(uid, filter, ref args,
                 out var core,
                 out var inlet,
                 out var side,
                 out var outlet);
 
-            if (!TryComp<AppearanceComponent>(uid, out var appearance))
-                return;
-
-            // Apply only updated visuals. (Many cases where only one or two get updated).
-            if (core != null)
-            {
-                _appearanceSystem.SetData(uid, FilterVisuals.Core, core, appearance);
-                _ambientSoundSystem.SetAmbience(uid, core == FilterPortVisualsState.SolidGreen); // Not green? Not flowing.
-            }
-            if (inlet != null)
-                _appearanceSystem.SetData(uid, FilterVisuals.Inlet, inlet, appearance);
-            if (outlet != null)
-                _appearanceSystem.SetData(uid, FilterVisuals.Outlet, outlet, appearance);
-            if (side != null)
-                _appearanceSystem.SetData(uid, FilterVisuals.Side, side, appearance);
-
+            UpdateAppearanceDelta(uid, null, core, inlet, outlet, side);
             // Starlight END
         }
 
         // Starlight BEGIN: Separate method with outvars for the visuals
-        private void DoFilterUpdated(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args,
+        private void DoUpdate(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args,
             out FilterPortVisualsState? coreVisual,
             out FilterPortVisualsState? inletVisual,
             out FilterPortVisualsState? sideVisual,
@@ -98,9 +83,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             if (!filter.Enabled
                 || !_nodeContainer.TryGetNodes(uid, filter.InletName, filter.FilterName, filter.OutletName, out PipeNode? inletNode, out PipeNode? filterNode, out PipeNode? outletNode))
-            {
-                return;
-            }
+                return; // Starlight: Ambience control is elsewhere
 
             // Starlight BEGIN: Visuals + inlet check
             coreVisual = FilterPortVisualsState.Off;
@@ -275,6 +258,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGas));
         }
 
+        // Starlight BEGIN: More convenient appearance control
         private void UpdateAppearance(EntityUid uid,
             AppearanceComponent? appearance = null,
             FilterPortVisualsState core = FilterPortVisualsState.Off,
@@ -294,7 +278,10 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 return;
 
             if (core != null)
+            {
                 _appearanceSystem.SetData(uid, FilterVisuals.Core, core, appearance);
+                _ambientSoundSystem.SetAmbience(uid, core == FilterPortVisualsState.SolidGreen); // Not green? Not flowing.
+            }
             if (inlet != null)
                 _appearanceSystem.SetData(uid, FilterVisuals.Inlet, inlet, appearance);
             if (outlet != null)
@@ -303,6 +290,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 _appearanceSystem.SetData(uid, FilterVisuals.Side, side, appearance);
             // Dirty(uid, appearance);
         }
+        // Starlight END: More convenient appearance control
 
         private void OnToggleStatusMessage(EntityUid uid, GasFilterComponent filter, GasFilterToggleStatusMessage args)
         {
