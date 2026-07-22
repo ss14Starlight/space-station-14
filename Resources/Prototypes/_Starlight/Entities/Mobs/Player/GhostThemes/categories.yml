@@ -9,23 +9,23 @@
   priority: 1
 
 - type: ghostThemeCategory
-  id: Event
-  name: Event
-  priority: 2
-
-- type: ghostThemeCategory
   id: Mentor
   name: Mentor
-  priority: 3
+  priority: 2
 
 - type: ghostThemeCategory
   id: Staff
   name: Staff
-  priority: 4
+  priority: 3
 
 - type: ghostThemeCategory
   id: NullLink
   name: NullLink
+  priority: 4
+
+- type: ghostThemeCategory
+  id: Event
+  name: Event
   priority: 5
 
 - type: ghostThemeCategory
