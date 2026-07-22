@@ -49,6 +49,8 @@
     speechSounds: ALLagomorph
     speechVerb: Lagomorph
     allowedEmotes: ['Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore', 'LagomorphStomp']
+  - type: BodyEmotes
+    soundsId: LagomorphBodyEmotes
   - type: ChatListenerRange # way better at hearing, +2 to all
     voiceRange: 12
     whisperClearRange: 4

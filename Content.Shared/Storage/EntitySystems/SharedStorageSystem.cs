@@ -45,11 +45,11 @@ using Content.Shared.Rounding;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Enumerators;
 #region Starlight
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared._Starlight.Lock;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Network;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 #endregion
 
 namespace Content.Shared.Storage.EntitySystems;

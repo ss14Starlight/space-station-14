@@ -1,8 +1,7 @@
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Humanoid;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Popups;
-using Content.Shared.Starlight.Medical.Surgery.Events;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Inventory;
@@ -11,6 +10,8 @@ using Content.Server._Starlight.Bluespace;
 using Content.Shared.Zombies;
 using Content.Server.Cargo.Components;
 using Content.Shared.Mindshield.Components;
+using Content.Shared._Starlight.Shadekin.Components;
+using Content.Shared._Starlight.Station;
 
 namespace Content.Server._Starlight.Shadekin;
 

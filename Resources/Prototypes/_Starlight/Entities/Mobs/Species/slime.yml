@@ -29,6 +29,8 @@
         type: VampireClassBui
       enum.VampireLocateUiKey.Key: # SL
         type: VampireLocateBui
+  - type: InteractionPopup # Starlight
+    interactSuccessSound: /Audio/Voice/Slime/slime_squish.ogg # Starlight
   - type: Absorbable
   - type: Hunger
   - type: Thirst
@@ -119,7 +121,7 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: 0.25 # Starlight-edit
+            Heat: 0.5 # Starlight-edit
       - !type:PopupMessage
         type: Local
         visualType: Large

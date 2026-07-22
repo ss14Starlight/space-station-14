@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Ranged.Events;

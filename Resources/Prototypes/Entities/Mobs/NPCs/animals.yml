@@ -2545,6 +2545,12 @@
         damage: 50
       behaviors:
       - !type:ExplodeBehavior
+  #SL begin
+  - type: PressureImmunity
+  - type: Respirator
+    minSaturation: 5.0
+  - type: TemperatureImmunity
+  #SL end
 
   # I have included a snake_hiss.ogg sound file so if you want to use that be my guest
 - type: entity

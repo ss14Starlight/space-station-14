@@ -45,7 +45,6 @@
 
 - type: markingPoints
   id: MobProtoReptilianMarkingLimits
-  onlyWhitelisted: true
   points:
     FaceCover:
       points: 1

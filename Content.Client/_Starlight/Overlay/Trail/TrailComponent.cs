@@ -4,7 +4,7 @@ using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.Trail;
 
-namespace Content.Client._Starlight.Trail;
+namespace Content.Client._Starlight.Overlay.Trail;
 
 /// <summary>
 /// Marks an entity to leave a fading motion trail behind it.

@@ -2,6 +2,8 @@
   id: OrganProtokinEyes
   parent: OrganProtogenEyes
   name: shadekin cybernetic eyes
+  suffix: Protokin
+  description: "Cybernetic eyes of a Black-eye Shadekin that can never see their home reality again. These eyes have excellent night vision, but are very sensitive to bright flashes as a result."
   components:
   - type: FunctionalOrgan
     comps:

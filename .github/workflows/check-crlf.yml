@@ -1,5 +1,10 @@
 ﻿name: EditorConfig Check
 
+# Cancel older jobs on PRs when new changes are pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 on:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
@@ -10,6 +15,6 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v7
     - name: Check for CRLF, trailing whitespace, and missing final newlines
       run: Tools/check_crlf.py

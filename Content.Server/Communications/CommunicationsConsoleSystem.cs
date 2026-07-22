@@ -28,7 +28,7 @@ using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 // Starlight Start
-using Content.Shared.Starlight.SecureTerminal;
+using Content.Shared._Starlight.SecureTerminal;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Shared.Silicons.StationAi;
@@ -229,7 +229,7 @@ namespace Content.Server.Communications
                 shuttleCountdownEnd: _roundEndSystem.ExpectedCountdownEnd,
                 shuttleCallsAllowed: _roundEndSystem.GetShuttleCallsEnabled(),
                 lastCountdownStart: _roundEndSystem.LastCountdownStart,
-                hasSecureTerminal: TryComp<Content.Shared.Starlight.SecureTerminal.SecureCommandTerminalConsoleComponent>(uid, out var sct) && sct.Enabled
+                hasSecureTerminal: TryComp<Content.Shared._Starlight.SecureTerminal.SecureCommandTerminalConsoleComponent>(uid, out var sct) && sct.Enabled
             // Starlight edit End
             ));
         }

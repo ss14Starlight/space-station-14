@@ -6,6 +6,7 @@ using Content.Server.Humanoid;
 using Content.Server.Preferences.Managers;
 using Content.Server.Traits;
 using Content.Shared._Starlight.Character.Info;
+using Content.Shared._Starlight.Station;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;

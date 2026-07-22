@@ -1,3 +1,4 @@
+using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.RoundEnd;
 using Content.Shared.Administration;
@@ -6,7 +7,7 @@ using Robust.Shared.Console;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Administration.Commands;
+namespace Content.Server._Starlight.Administration.Systems.Commands;
 
 [AdminCommand(AdminFlags.Round)]
 public sealed partial class AllowShuttleCallsCommand : LocalizedEntityCommands

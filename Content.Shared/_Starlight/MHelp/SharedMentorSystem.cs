@@ -1,9 +1,8 @@
 #nullable enable
-using Content;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.MHelp;
+namespace Content.Shared._Starlight.MHelp;
 
 public abstract class SharedMentorSystem : EntitySystem
 {

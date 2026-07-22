@@ -5,6 +5,7 @@ using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Body.Components
 {
     [RegisterComponent, Access(typeof(RespiratorSystem)), AutoGenerateComponentPause]

@@ -83,6 +83,7 @@
   - Pirate
   - Blackstar
   - MedTak
+  - Visitor
 
 - type: accessGroup
   id: Syndicate
@@ -100,5 +101,5 @@
   - Pirate
 
 - type: accessLevel
-  id: MedTak
-  name: id-card-access-level-medtak
+  id: Visitor
+  name: id-card-access-level-visitor

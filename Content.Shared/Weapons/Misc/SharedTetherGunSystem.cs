@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.Components;
@@ -18,6 +17,9 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
+#region Starlight
+using Content.Shared._Starlight.Shadekin.Components;
+#endregion
 
 namespace Content.Shared.Weapons.Misc;
 

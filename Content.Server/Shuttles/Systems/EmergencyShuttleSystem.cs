@@ -46,6 +46,7 @@ using Content.Server.Parallax;
 using Content.Shared.Parallax.Biomes;
 using Content.Server.Procedural;
 using Robust.Shared.Map;
+using Content.Shared._Starlight.Shuttles.Components;
 // Starlight End
 
 namespace Content.Server.Shuttles.Systems;
@@ -328,7 +329,17 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
             return null;
         }
 
-        var targetGrid = _station.GetLargestGrid(stationUid);
+        // Starlight BEGIN
+        EntityUid? targetGrid = null;
+
+        // Grab the "main grid" from the StationData comp.
+        if (TryComp<StationDataComponent>(stationUid, out var stationData) &&
+            stationData.MainGrids.TryFirstOrNull(out var mainGridId))
+            targetGrid = mainGridId;
+
+        // If that didn't work, try to find the biggest grid.
+        targetGrid ??= _station.GetLargestGrid(stationUid);
+        // Starlight END
 
         DockTime = _timing.CurTime;
 

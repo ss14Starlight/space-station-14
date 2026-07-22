@@ -8,3 +8,8 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 10h
+  - !type:SpeciesRequirement
+    species:
+    - IPC
+    inverted: true
+  playTimeTracker: AntagDevil

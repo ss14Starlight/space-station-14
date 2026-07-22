@@ -13,6 +13,7 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Content.Server.NPC.HTN;
+using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server.Salvage;
 

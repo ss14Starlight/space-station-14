@@ -1,7 +1,7 @@
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Server.Voting.Managers;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Voting;
 using Robust.Server.Player;
 using Robust.Shared.Timing;

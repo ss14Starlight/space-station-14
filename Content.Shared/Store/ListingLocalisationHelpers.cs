@@ -1,5 +1,8 @@
-﻿using Content.Shared.Store.Conditions;
-using Robust.Shared.Prototypes;
+﻿using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Shared._Starlight.Store.Conditions;
+using Content.Shared._Starlight.Store;
+#endregion
 
 namespace Content.Shared.Store;
 

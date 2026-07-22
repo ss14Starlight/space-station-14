@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared._Starlight.IoC;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Advertise.Components;
@@ -20,6 +19,10 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+#region Starlight
+using Content.Shared._Starlight.IoC;
+using Content.Shared._Starlight.VendingMachines;
+#endregion
 
 namespace Content.Shared.VendingMachines;
 

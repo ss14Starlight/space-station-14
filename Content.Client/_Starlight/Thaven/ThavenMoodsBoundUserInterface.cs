@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Thaven.Components;
+using Content.Shared._Starlight.Thaven;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 

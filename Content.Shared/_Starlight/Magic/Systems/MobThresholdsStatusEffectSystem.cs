@@ -4,7 +4,6 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared._Starlight.Magic.Components;
-using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 

@@ -9,6 +9,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.PowerCell;
+using Content.Shared._Starlight.Emp;
 
 namespace Content.Server.Emp;
 

@@ -1,6 +1,6 @@
 using Content.Shared._Starlight.Abstract.Conditions;
 using Content.Shared._Starlight.Trail;
-using Content.Shared.Starlight.Utility;
+using Content.Shared._Starlight.Utility;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.GhostTheme;

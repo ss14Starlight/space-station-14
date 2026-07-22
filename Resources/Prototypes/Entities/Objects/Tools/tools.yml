@@ -381,8 +381,10 @@
   - type: Sprite
     sprite: Objects/Tools/rcd.rsi
     state: icon
-  - type: Item
-    size: Normal
+  - type: Item #SL
+    size: Small
+    shape:
+    - 0,0,1,1
   - type: Clothing
     sprite: Objects/Tools/rcd.rsi
     quickEquip: false

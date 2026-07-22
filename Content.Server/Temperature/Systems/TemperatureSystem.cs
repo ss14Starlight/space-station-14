@@ -1,5 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Temperature.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
@@ -37,6 +38,7 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
         var query = EntityQueryEnumerator<InternalTemperatureComponent, TemperatureComponent>();
         while (query.MoveNext(out var uid, out var comp, out var temp))
         {
+            if (HasComp<TemperatureImmunityComponent>(uid)) continue; // Starlight
             // don't do anything if they equalised
             var diff = Math.Abs(temp.CurrentTemperature - comp.Temperature);
             if (diff < 0.1f)

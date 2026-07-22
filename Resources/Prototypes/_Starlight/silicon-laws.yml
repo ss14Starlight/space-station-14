@@ -461,27 +461,27 @@
   - NTNC3
   obeysTo: laws-owner-centcom
 
-# MedTak lawset
+# Xenoroach laws
 - type: siliconLaw
-  id: MedTak1
+  id: Xenoroach1
   order: 1
-  lawString: law-medtak-1
+  lawString: law-xenoroach-1
 
 - type: siliconLaw
-  id: MedTak2
+  id: Xenoroach2
   order: 2
-  lawString: law-medtak-2
+  lawString: law-xenoroach-2
 
 - type: siliconLaw
-  id: MedTak3
+  id: Xenoroach3
   order: 3
-  lawString: law-medtak-3
+  lawString: law-xenoroach-3
 
 - type: siliconLawset
-  id: MedTakLawset
-  name: law-medtak-name
+  id: XenoroachLawset
+  name: law-xenoroach-name
   laws:
-  - MedTak1
-  - MedTak2
-  - MedTak3
-  obeysTo: laws-owner-medtak
+  - Xenoroach1
+  - Xenoroach2
+  - Xenoroach3
+  obeysTo: laws-owner-xenoborgs

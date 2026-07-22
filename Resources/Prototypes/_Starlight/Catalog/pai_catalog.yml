@@ -127,6 +127,23 @@
       stock: 1
 
 - type: listing
+  id: Felyaic
+  name: language-Felyaic-name
+  description: language-Felyaic-description
+  productLanguage: Felyaic
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: felyaic
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+
+- type: listing
   id: Terrum
   name: language-Terrum-name
   description: language-Terrum-description
@@ -262,6 +279,22 @@
   icon:
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
     state: lagomorph
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Squeakish
+  name: language-Squeakish-name
+  description: language-Squeakish-description
+  productLanguage: Squeakish
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: squeakish
   cost:
     SiliconMemory: 5
   categories:

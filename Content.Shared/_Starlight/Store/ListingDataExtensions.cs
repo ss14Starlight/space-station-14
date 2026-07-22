@@ -1,6 +1,6 @@
-using System.Collections.Generic;
+using Content.Shared.Store;
 
-namespace Content.Shared.Store;
+namespace Content.Shared._Starlight.Store;
 
 /// <summary>
 /// Extensions for the ListingData class to add metadata support.

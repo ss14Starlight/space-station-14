@@ -12,7 +12,7 @@ using Content.Shared._Starlight.SSDIndicator.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Events;
-using Content.Shared.Starlight.CryoTeleportation;
+using Content.Shared._Starlight.CryoTeleportation;
 // Starlight-end
 
 namespace Content.Shared.SSDIndicator;

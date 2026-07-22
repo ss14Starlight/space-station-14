@@ -23,6 +23,7 @@ using System.Linq;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Clothing.Components;
+using Content.Shared._Starlight.Flash.Components;
 
 namespace Content.Shared.Flash;
 
@@ -177,6 +178,16 @@ public abstract partial class SharedFlashSystem : EntitySystem
         if (attempt.Cancelled)
             return;
 
+        #region Starlight
+        // Increase the flash duration if the flashed entity has a multiplier (some species are more vulnerable to flashes)
+        if(TryComp<FlashModifierComponent>(target, out var flashMod)
+            && float.IsFinite(flashMod.Modifier)
+            && flashMod.Modifier > 0)
+        {
+            flashDuration *= flashMod.Modifier;
+        }
+        #endregion Starlight
+
         // don't paralyze, slowdown or convert to rev if the target is immune to flashes
         if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, flashDuration, true))
             return;
@@ -259,6 +270,16 @@ public abstract partial class SharedFlashSystem : EntitySystem
             }
         }
     }
+    // Updates whether flash immunity is visible in examine window
+    #region Starlight
+    public void SetShowInExamine(EntityUid uid, bool show, FlashImmunityComponent comp)
+    {
+        if (comp.ShowInExamine == show)
+            return;
+        comp.ShowInExamine = show;
+        Dirty(uid, comp);
+    }
+    #endregion
 
     private void OnPermanentBlindnessFlashAttempt(Entity<PermanentBlindnessComponent> ent, ref FlashAttemptEvent args)
     {

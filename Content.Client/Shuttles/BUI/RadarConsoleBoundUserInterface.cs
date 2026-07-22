@@ -1,3 +1,4 @@
+using Content.Client._Starlight.UserInterface;
 using Content.Client.Shuttles.UI;
 using Content.Shared.Shuttles.BUIStates;
 using JetBrains.Annotations;
@@ -21,7 +22,7 @@ public sealed class RadarConsoleBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _window = this.CreateWindow<RadarConsoleWindow>();
+        _window = this.CreatePopOutableWindow<RadarConsoleWindow>(EntMan); // Starlight: popout
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -31,5 +32,14 @@ public sealed class RadarConsoleBoundUserInterface : BoundUserInterface
             return;
 
         _window?.UpdateState(cState.State, cState.DockingPortStates); // Starlight: +DockStates
+    }
+
+    // Starlight: close popout
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (disposing)
+            _window?.DisposePopOut();
     }
 }

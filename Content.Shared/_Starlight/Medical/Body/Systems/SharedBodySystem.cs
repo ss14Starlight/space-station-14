@@ -5,6 +5,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Systems;
 
 public abstract partial class SharedBodySystem : EntitySystem

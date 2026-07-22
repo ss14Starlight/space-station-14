@@ -1,5 +1,4 @@
 using Content.Shared.Emag.Systems;
-using Content.Shared._Starlight.Thaven.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.Dataset;
 

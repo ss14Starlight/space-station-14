@@ -3,11 +3,8 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
-using Content.Server._NullLink.Helpers;
 using Content.Server._Starlight.Achievement;
 using Content.Server.Station.Systems;
-using Content.Server._Starlight.Energy.Supermatter;
-using Content.Shared.Abilities.Goliath;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -28,6 +25,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.Abstract;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 

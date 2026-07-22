@@ -3,7 +3,6 @@ using Content.Server.Actions;
 using Content.Shared.Hands.EntitySystems;
 using Content.Server.RandomMetadata;
 using Robust.Server.Audio;
-using Robust.Shared.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Server.Humanoid;
 using Content.Shared.Humanoid.Markings;

@@ -2,7 +2,6 @@ using Content.Shared.Examine;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Localization;
 
 namespace Content.Shared._Starlight.Silicons.Borgs;
 

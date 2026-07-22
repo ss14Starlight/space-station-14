@@ -21,9 +21,6 @@
       Resomi:
         knockback: 0.02
         staminaMultiplier: 100
-      Avali:
-        knockback: 0.01 # half of what resomi take
-        staminaMultiplier: 100
       Felionoid:
         knockback: 0.01 #half of what resomi take
         staminaMultiplier: 100

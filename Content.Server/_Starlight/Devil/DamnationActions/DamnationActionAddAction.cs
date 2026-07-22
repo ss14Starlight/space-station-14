@@ -1,8 +1,5 @@
-using Content.Server.Actions;
 using Content.Shared._Starlight.Devil.DamnationActions;
 using Content.Shared._Starlight.Devil;
-using Robust.Shared.Prototypes;
-using Content.Server.Administration.Components;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
 

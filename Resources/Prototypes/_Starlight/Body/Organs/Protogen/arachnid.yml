@@ -2,6 +2,7 @@
   id: OrganProtoArachnidHeart
   parent: [BaseProtogenOrgan, OrganProtogenHeart]
   name: arachnid cybernetic heart
+  suffix: Proto-Arachnid
   components:
   - type: Sprite
     state: heart-on

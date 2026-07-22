@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "canister_cap_sealed",
+      "copyright": "Made by Darius (@w.hite on Discord)"
+    },
+    {
+      "name": "canister_ribbon_sealed",
+      "copyright": "Made by @redmushie (GitHub)"
+    }
+  ]
+}

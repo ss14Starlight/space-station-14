@@ -1,5 +1,4 @@
 ﻿using Content.Shared._Starlight.CrawlUnder;
-using Content.Shared.Interaction.Events;
 
 
 namespace Content.Server._Starlight.CrawlUnder;

@@ -42,7 +42,6 @@ using Content.Server._Starlight.Medical.Limbs;
 using Content.Server._Starlight.Thaven;
 using Content.Server.Administration.Components;
 using Content.Server.Power.Components;
-using Content.Shared._Starlight.Thaven.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Contraband;
@@ -50,6 +49,8 @@ using Content.Shared.Electrocution;
 using Content.Shared.Humanoid;
 using Content.Shared.Overlays;
 using Content.Shared._Starlight.Medical.Body.Part;
+using Content.Shared._Starlight;
+using Content.Shared._Starlight.Thaven;
 #endregion Starlight
 
 namespace Content.Server.Administration.Systems;
@@ -1127,5 +1128,6 @@ public sealed partial class AdminVerbSystem
         AddRandomMood = -32, //Starlight Thaven
         AddCustomMood = -33, //Starlight Thaven
         BlockObjectiveTargeting = -44, // Starlight
+        RejoinAtmosDevice = -45 // Starlight
     }
 }

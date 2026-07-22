@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Starlight.Eye.Blinding.Components;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
 using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Robust.Shared.Map.Components;
 
 namespace Content.Shared._Starlight.Eye.Blinding.Systems;
@@ -42,12 +42,12 @@ public sealed partial class ChildBlockVisionSystem : EntitySystem
             var totalOrgans = _bodySystem.GetBodyOrganEntityComps<OrganComponent>((ent.Owner, body));
             var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((ent.Owner, body));
 
-            // if we got organs but no eyes then cancel the event to blind
-            if (totalOrgans.Count > 0 && eyes.Count == 0)
+            if (_bodySystem.HasOrganSlot(ent.Owner, body, "eyes") && eyes.Count == 0)
             {
                 args.Cancel();
                 return;
             }
+
         }
 
         var parent = _transform.GetParentUid(ent);

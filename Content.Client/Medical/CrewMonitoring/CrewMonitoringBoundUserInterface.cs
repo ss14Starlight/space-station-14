@@ -8,6 +8,7 @@ using Robust.Shared.Player;
 using System.Linq;
 using Robust.Shared.Timing;
 using Content.Shared.Medical.SuitSensors;
+using Content.Client._Starlight.UserInterface;
 #endregion
 
 namespace Content.Client.Medical.CrewMonitoring;
@@ -22,10 +23,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
 
     private TimeSpan _lastOpened = TimeSpan.Zero; // Starlight
 
-    public CrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-        IoCManager.InjectDependencies(this);     // Starlight
-    }
+    public CrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) => IoCManager.InjectDependencies(this);     // Starlight
 
     protected override void Open()
     {
@@ -50,7 +48,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
             }
         }
 
-        _menu = this.CreateWindow<CrewMonitoringWindow>();
+        _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan); // Starlight
         _menu.Set(stationName, gridUid);
         _menu.MapClicked += OnMapClicked; // Starlight
     }
@@ -91,6 +89,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
             if (_menu != null)
             {
                 _menu.MapClicked -= OnMapClicked;
+                _menu.DisposePopOut(); // Starlight: close the popout
                 _menu = null;
             }
         }

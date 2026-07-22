@@ -6,6 +6,7 @@ using Content.Server.GameTicking;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.StationEvents.Components;
+using Content.Server.StationEvents.Events;
 using Content.Server.Stunnable;
 using Content.Shared._FarHorizons.Silicons.Glitching;
 using Content.Shared.Administration.Components;
@@ -25,7 +26,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._Starlight.GameTicking.Rules;
 
 public sealed partial class PsychicScreachRule : StationEventSystem<PsychicScreachRuleComponent>
 {

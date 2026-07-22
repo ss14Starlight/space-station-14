@@ -9,6 +9,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
+#region Starlight
+using Content.Shared._Starlight.Abstract;
+#endregion
 
 namespace Content.Shared.Abilities.Goliath;
 

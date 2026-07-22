@@ -1,4 +1,3 @@
-using Content.Server.StationEvents.Events;
 using Robust.Shared.Audio;
 
 namespace Content.Server._Starlight.GameTicking.Rules.Components;

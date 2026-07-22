@@ -12,8 +12,10 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server.StationEvents.Events;
+using Content.Server._Starlight.StationEvents.Components;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._Starlight.StationEvents.Events;
 
 public sealed partial class WreckSwarmSystem : StationEventSystem<WreckSwarmComponent>
 {

@@ -2,8 +2,6 @@ using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared.Actions.Events;
 using Content.Shared.Actions;
-using Content.Shared.Alert;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Movement.Systems;

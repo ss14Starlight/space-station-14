@@ -19,6 +19,9 @@ using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Player;
+using Content.Shared._Starlight.Computers.RemoteEye.Components;
+using Content.Shared._Starlight.Computers.RemoteEye.Events;
+using Content.Shared._Starlight.Computers.RemoteEye.UI;
 
 namespace Content.Server._Starlight.Computers.RemoteEye;
 

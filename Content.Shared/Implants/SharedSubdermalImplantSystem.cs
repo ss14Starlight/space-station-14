@@ -64,7 +64,6 @@ public abstract partial class SharedSubdermalImplantSystem : EntitySystem
 
         EntityManager.RemoveComponents(ent.Comp.ImplantedEntity.Value, ent.Comp.ImplantComponents);
         _actions.RemoveAction(ent.Comp.ImplantedEntity.Value, ent.Comp.Action);
-        ent.Comp.Action = null;
 
         var ev = new ImplantRemovedEvent(ent.Owner, ent.Comp.ImplantedEntity.Value);
         RaiseLocalEvent(ent.Owner, ref ev);

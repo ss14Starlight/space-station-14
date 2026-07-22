@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.EntityConditions.Conditions.Body;
+using Content.Shared._Starlight.EntityConditions.Conditions;
 using Content.Shared.EntityConditions;
 
 namespace Content.Server._Starlight.EntityConditions.Conditions;

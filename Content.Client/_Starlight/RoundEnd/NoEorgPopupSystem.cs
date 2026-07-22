@@ -1,5 +1,5 @@
 using Content.Shared.GameTicking;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 
 namespace Content.Client._Starlight.RoundEnd;

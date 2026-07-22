@@ -1,5 +1,5 @@
-﻿using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Server.Body.Components;
+﻿using Content.Server.Body.Components;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.Effects.Body;
 

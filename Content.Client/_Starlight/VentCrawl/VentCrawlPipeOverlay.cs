@@ -5,7 +5,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
-using Content.Shared._Starlight.VentCrawl.EntitySystems;
 
 namespace Content.Client._Starlight.VentCrawl;
 

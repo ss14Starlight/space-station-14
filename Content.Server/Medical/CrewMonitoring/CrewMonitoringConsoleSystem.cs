@@ -19,6 +19,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using System.ComponentModel.DataAnnotations;
+using Content.Shared._Starlight.Medical.CrewMonitoring;
 #endregion
 
 namespace Content.Server.Medical.CrewMonitoring;
