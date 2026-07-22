@@ -4,7 +4,7 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
     state: air #SL Edit
   product: AirCanister
-  cost: 600
+  cost: 660 # Starlight, PR #5127
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -14,7 +14,7 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
     state: oxygen #SL Edit
   product: OxygenCanister
-  cost: 600
+  cost: 700 # Starlight, PR #5127
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -24,7 +24,7 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
     state: l_oxygen #SL Edit
   product: LiquidOxygenCanister
-  cost: 1000
+  cost: 3750 # Starlight, PR #5127
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -34,7 +34,7 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
     state: nitrogen #SL Edit
   product: NitrogenCanister
-  cost: 500
+  cost: 650 # Starlight, PR #5127
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -44,7 +44,7 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
     state: l_nitrogen #SL Edit
   product: LiquidNitrogenCanister
-  cost: 1000
+  cost: 3200 # Starlight, PR #5127
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -54,7 +54,7 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
     state: carbon #SL Edit
   product: CarbonDioxideCanister
-  cost: 670 # even though it's poisonous, it comes locked and only damages you slowly even with high amounts (tested)
+  cost: 800 # Starlight, PR #5127
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -64,7 +64,7 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
     state: carbon #SL Edit
   product: LiquidCarbonDioxideCanister
-  cost: 1800 # much less deadly than the plasma can (this has been tested) even though this is cold+poison
+  cost: 4400 # Starlight, PR #5127
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -94,7 +94,7 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
     state: plasma #SL Edit
   product: PlasmaCanister
-  cost: 4200 # for reference, bagel's 3x1 roundstart plasma chamber contains ~16kmol for free, this is $4.2k for 2769 mol
+  cost: 4900 # Starlight, PR #5127
   category: cargoproduct-category-name-atmospherics
   group: market
 
