@@ -56,6 +56,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private void OnFilterUpdated(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args)
         {
+            // Starlight BEGIN
             // Actual update logic moved to another method, with outvars for cosmetic results.
             DoFilterUpdated(uid, filter, ref args,
                 out var core,
@@ -68,13 +69,18 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             // Apply only updated visuals. (Many cases where only one or two get updated).
             if (core != null)
+            {
                 _appearanceSystem.SetData(uid, FilterVisuals.Core, core, appearance);
+                _ambientSoundSystem.SetAmbience(uid, core == FilterPortVisualsState.SolidGreen);
+            }
             if (inlet != null)
                 _appearanceSystem.SetData(uid, FilterVisuals.Inlet, inlet, appearance);
             if (outlet != null)
                 _appearanceSystem.SetData(uid, FilterVisuals.Outlet, outlet, appearance);
             if (side != null)
                 _appearanceSystem.SetData(uid, FilterVisuals.Side, side, appearance);
+
+            // Starlight END
         }
 
         private void DoFilterUpdated(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args,
@@ -91,7 +97,6 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             // STARLIGHT - Disable outlet node pressure check for inline filter
             if (!filter.Enabled)
             {
-                _ambientSoundSystem.SetAmbience(uid, false);
                 return;
             }
 
@@ -109,7 +114,6 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 // Idle: nothing to do. Not a failure.
                 coreVisual = FilterPortVisualsState.SolidYellow;
                 inletVisual = FilterPortVisualsState.SolidYellow;
-                _ambientSoundSystem.SetAmbience(uid, false);
                 return;
             }
 
@@ -130,8 +134,8 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 return;
             }
 
-            var sideHasGas = false;
-            var sideFlowing = false;
+            var sideHasGas = false; // Starlight
+            var sideFlowing = false; // Starlight
 
             if (filter.FilteredGas.HasValue)
             {
@@ -159,14 +163,15 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
                 _ambientSoundSystem.SetAmbience(uid, wantsToFilter.TotalMoles > 0f); // starlight edit - fix subtick
             }
+            _atmosphereSystem.Merge(outletNode.Air, removed);
 
+            // Starlight BEGIN -- Visuals only
             var sideBlocked = sideHasGas && !sideFlowing;
 
             if (sideHasGas)
                 sideVisual = sideFlowing ? FilterPortVisualsState.SolidGreen : FilterPortVisualsState.BlinkingRed;
 
             var outletFlowing = removed.TotalMoles > DeltaMolCutoff;
-            _atmosphereSystem.Merge(outletNode.Air, removed);
 
             if (outletFlowing)
                 outletVisual = FilterPortVisualsState.SolidGreen;
@@ -175,6 +180,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 coreVisual = FilterPortVisualsState.SolidGreen;
             else if (sideBlocked)
                 coreVisual = FilterPortVisualsState.SolidRed;
+            // Starlight END
         }
 
         //starlight fix subtick
