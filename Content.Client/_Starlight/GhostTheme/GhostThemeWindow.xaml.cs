@@ -8,7 +8,9 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Content.Client.GameTicking.Managers;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.UserInterface;
+using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.GhostTheme;
@@ -19,6 +21,7 @@ public sealed partial class GhostThemeWindow : DefaultWindow
     private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IConfigurationManager _conf = default!;
 
     private readonly ClientGameTicker _gameTicker;
     private readonly SpriteSystem _sprites;
@@ -192,7 +195,7 @@ public sealed partial class GhostThemeWindow : DefaultWindow
         }
 
         // Hide tabs with no unlocks that are set to do so by removing from dictionary entirely
-        categoryTabsDict = categoryTabsDict
+        if (!_conf.GetCVar(StarlightCCVars.ForceTestersTab)) categoryTabsDict = categoryTabsDict
             .Where(category =>
                 !(category.Key.HideIfNoUnlocks &&
                   category.Value.GetChild(0).Children
@@ -203,30 +206,6 @@ public sealed partial class GhostThemeWindow : DefaultWindow
         // Actually append the tabs in the order of categories list
         foreach (var category in categories.Where(category => categoryTabsDict.ContainsKey(category)))
             CategoryTabs.AddChild(categoryTabsDict[category]);
-
-        // foreach (var ghostTheme in _prototypeManager.EnumeratePrototypes<GhostThemePrototype>())
-        // {
-        //     if (ghostTheme.Private && !_availableThemes.Contains(ghostTheme.ID))
-        //         continue;
-        //
-        //     var toolTipText = string.Join(", ", ghostTheme.Requirements.Select(x=>x.GetRequirementDescription()));
-        //
-        //     var ghostPicker = new GhostPicker(_sprites,
-        //         ghostTheme.SpriteSpecifier.Sprite,
-        //         ghostTheme.Name,
-        //         !_availableThemes.Contains(ghostTheme.ID));
-        //     GhostThemesContainer.AddChild(ghostPicker);
-        //
-        //     ghostPicker.ToolTip = toolTipText;
-        //     if (_availableThemes.Contains(ghostTheme.ID))
-        //     {
-        //         ghostPicker.OnPressed += args =>
-        //         {
-        //             SelectedTheme = ghostTheme.ID;
-        //             RefreshUI();
-        //         };
-        //     }
-        // }
     }
 
     public void UpdateThemes(HashSet<string> AvailableThemes)
