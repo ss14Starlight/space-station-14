@@ -36,7 +36,18 @@
         Quaternary: GasFilterInlineAlt3
         Quinary: GasFilterInlineAlt4
     - type: GasFilter
-      passthrough: true
+      inlet: pipe
+      outlet: pipe
+    - type: NodeContainer
+      nodes:
+        pipe:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: Longitudinal
+        filter:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: West
     - type: Construction
       graph: GasTrinaryStarlight
       node: inline_filter
