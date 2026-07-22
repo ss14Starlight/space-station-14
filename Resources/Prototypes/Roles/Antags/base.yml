@@ -11,6 +11,8 @@
   - ERTMedical
   - ERTJanitor
   - CBURN
+  - CentralCommandOperator # Starlight start
+  - CentralCommandGreenShield # Starlight end
   blacklist:
     components:
     - AntagImmune
@@ -28,6 +30,8 @@
   - ResearchDirector
   - ChiefEngineer
   - Quartermaster
+  - NanoTrasenRepresentative # Starlight
+  - Magistrate # Starlight
 
 # Borgs
 - type: antagSpecifier
@@ -59,12 +63,14 @@
   - HeadOfSecurity
   - Warden
   - Detective
+  - Brigmedic # Starlight
+  - DutyOfficer # Starlight
   - SecurityOfficer
   - SecurityCadet
 
 - type: antagSpecifier
   abstract: true
-  parent: [ CommandBlacklistedAntag, SecurityBlacklistedAntag ]
+  parent: [ CommandBlacklistedAntag, SecurityBlacklistedAntag, NanoTrasenBlacklistedAntag, TSFBlacklistedAntag, GeneralMindshieldBlacklistedAntag ] # Starlight
   id: MindshieldRestrictedAntag
 
 - type: antagSpecifier

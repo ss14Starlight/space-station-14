@@ -1,0 +1,34 @@
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: NanoTrasenBlacklistedAntag
+  jobBlacklist:
+  - BlueShield
+  - Magistrate
+  - NanoTrasenRepresentative
+  - StationAi
+  - IAA
+  - NanotrasenCareerTrainer
+  - Decimus
+  - NanoTrasenSpecialForces
+  - NTNCBlueShield
+
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: TSFBlacklistedAntag
+  jobBlacklist:
+  - SolGovOfficer
+  - SolGovOfficerSheriff
+  - TSFMCCrew
+  - TSFMarine
+  - TSFMarineElite
+
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: GeneralMindshieldBlacklistedAntag
+  jobBlacklist:
+  - SalvageLead
+  - SalvageSpecialist
+  - Paramedic
