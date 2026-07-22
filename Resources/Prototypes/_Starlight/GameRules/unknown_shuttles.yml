@@ -19,9 +19,188 @@
     - id: UnknownShuttleMicroshuttle
     - id: UnknownShuttleSpacebus
     - id: UnknownShuttleFireResponse
+    - id: UnknownShuttleQuail
 
 - type: entityTable
   id: UnknownShuttlesFreelanceTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: UnknownShuttleSyndieEvacPod
+
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleCargoLost
+  components:
+  - type: StationEvent
+    maxOccurrences: 2
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/Lost_Cargo.yml
+
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleTravelingCuisine
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming
+    maxOccurrences: 2
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Salami.yml
+
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleSyndieEvacPod
+  components:
+  - type: StationEvent
+    startAnnouncement: null # It should be silent.
+    weight: 5 # lower because weird freelance roles
+    maxOccurrences: 2
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml
+
+- type: entity
+  id: UnknownShuttleNTQuark
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null # It should be silent.
+    weight: .5 # Hopefully this is uncommon enough, it needs to be uncommon enough that people wont waste time metaknowledging it.
+    earliestStart: 45 # late to hopefully have enough ghosts to fill all roles quickly.
+    minimumPlayers: 25
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/NT-Quark.yml
+
+- type: entity
+  id: UnknownShuttleCruiser
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    weight: 2 # Its just a big ship, so it needs to be rarer to be interesting.
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/NT-Cruiser.yml
+
+- type: entity
+  id: UnknownShuttleCryptid
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Cryptid.yml
+
+- type: entity
+  id: UnknownShuttleEternal
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Eternal.yml
+
+- type: entity
+  id: UnknownShuttleFlatline
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/EMS-Flatline.yml
+
+- type: entity
+  id: UnknownShuttleGym
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    weight: 5 # Its just a big ship, so it needs to be rarer to be interesting.
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Gym.yml
+
+- type: entity
+  id: UnknownShuttleNTIncorporation
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    weight: 2 # Its just a big ship, so it needs to be rarer to be interesting.
+    earliestStart: 45 # late to hopefully have enough ghosts to fill all roles quickly. (5-6)
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/NT-Incorporation.yml
+
+- type: entity
+  id: UnknownShuttleJoe
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Joe.yml
+
+- type: entity
+  id: UnknownShuttleLambordeere
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/NT-Lambordeere.yml
+
+- type: entity
+  id: UnknownShuttleSpacebus
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/NT-Route.yml
+
+- type: entity
+  id: UnknownShuttleQuail
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    weight: 2 # Its a cool shippy ship! Also making it around as equal as the cruiser cause its that big.
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SS13-Quail.yml
+
+- type: entity
+  id: UnknownShuttleMeatZone
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Meatzone.yml # Starlight
+
+- type: entity
+  id: UnknownShuttleMicroshuttle
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    weight: 11 # this is higher because its just a little generic personal shuttle
+    maxOccurrences: 4
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/microshuttle.yml
+
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleDisasterEvacPod
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming
+    maxOccurrences: 3
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/disaster_evacpod.yml
+
+# The power of 3 clowns proved too strong for the players and may need to be 1984'ed. Replace this with a more engaging clown shuttle. # Ill honour this in a diff PR for whoever put this here beforehand. - Johnny
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleHonki
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    weight: 2
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/honki.yml
