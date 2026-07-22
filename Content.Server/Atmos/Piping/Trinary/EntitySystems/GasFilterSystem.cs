@@ -30,7 +30,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
         [Dependency] private SharedPopupSystem _popupSystem = default!;
         [Dependency] private NodeContainerSystem _nodeContainer = default!;
 
-        private const float DeltaMolCutoff = 0.001f;
+        private const float DeltaMolCutoff = 0.001f; // Starlight: Used for visuals
 
         public override void Initialize()
         {
@@ -71,7 +71,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             if (core != null)
             {
                 _appearanceSystem.SetData(uid, FilterVisuals.Core, core, appearance);
-                _ambientSoundSystem.SetAmbience(uid, core == FilterPortVisualsState.SolidGreen);
+                _ambientSoundSystem.SetAmbience(uid, core == FilterPortVisualsState.SolidGreen); // Not green? Not flowing.
             }
             if (inlet != null)
                 _appearanceSystem.SetData(uid, FilterVisuals.Inlet, inlet, appearance);
@@ -83,6 +83,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             // Starlight END
         }
 
+        // Starlight BEGIN
         private void DoFilterUpdated(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args,
             out FilterPortVisualsState? coreVisual,
             out FilterPortVisualsState? inletVisual,
@@ -93,10 +94,13 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             inletVisual = null;
             sideVisual = null;
             outletVisual = null;
+            // Starlight END
 
-            // STARLIGHT - Disable outlet node pressure check for inline filter
+
             if (!filter.Enabled)
             {
+                coreVisual = FilterPortVisualsState.SolidOrange;
+                inletVisual = sideVisual = outletVisual = FilterPortVisualsState.Off;
                 return;
             }
 
@@ -121,16 +125,13 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             var transferVol = GetTransferRate(filter, args, inletNode.Air, outletNode); //starlight edit
             var removed = inletNode.Air.RemoveVolume(transferVol);
 
-            // GetTransferRate already clamped the transfer to whatever room is actually left in
-            // the outlet, so a ~zero result here - using the same cutoff as everywhere else - means
-            // the outlet has no room at all, not that the outlet is merely "flowing slowly".
+            // STARLIGHT - Disable outlet node pressure check for inline filter
             if (outletNode != inletNode && removed.TotalMoles <= DeltaMolCutoff)
             {
                 // Blocked: outlet has no room at all.
                 coreVisual = FilterPortVisualsState.SolidRed;
                 outletVisual = FilterPortVisualsState.BlinkingRed;
                 _atmosphereSystem.Merge(inletNode.Air, removed);
-                _ambientSoundSystem.SetAmbience(uid, false);
                 return;
             }
 
