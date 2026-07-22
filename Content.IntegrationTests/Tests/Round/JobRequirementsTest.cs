@@ -138,13 +138,11 @@ public sealed class JobRequirementsTest
 
         await pair.Client.WaitAssertion(() =>
         {
-            // Starlight Begin
             cPref.UpdateCharacter(humanoidZero
                 .WithSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies)
                 .WithAge(age)
                 .WithJobPreferences(priorities.Keys), 0);
             cPref.UpdateJobPriorities(priorities);
-            // Starlight End
         });
 
         await pair.ReallyBeIdle();
@@ -202,11 +200,9 @@ public sealed class JobRequirementsTest
 
         await pair.Client.WaitAssertion(() =>
         {
-            // Starlight Begin
             humanoidZero = humanoidZero
                 .WithSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies)
                 .WithJobPreferences(priorities.Keys);
-            // Starlight End
             cPref.UpdateCharacter(humanoidZero.WithAge(75), 0);
             var maxSlots = cPref.Settings?.MaxCharacterSlots ?? 30;
             for (var i = 1; i < maxSlots; i++)
