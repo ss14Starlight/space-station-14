@@ -309,7 +309,7 @@
 - type: entity
   name: Rt Hon. Flippers
   parent: MobPenguin
-  id: MobFlippers
+  id: MobPenguinFlippers
   description: Emperor of the Court.
   components:
   # Starlight-start: Languages
