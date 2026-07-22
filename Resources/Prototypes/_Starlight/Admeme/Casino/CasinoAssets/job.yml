@@ -1,0 +1,35 @@
+﻿- type: jobIcon
+  parent: JobIcon
+  id: JobIconCasinoOwner
+  icon:
+    sprite: /Textures/_Starlight/Admeme/Casino/Interface/job_icons.rsi
+    state: owner
+  jobName: job-name-casino-owner
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCasinoManager
+  icon:
+    sprite: /Textures/_Starlight/Admeme/Casino/Interface/job_icons.rsi
+    state: manager
+  jobName: job-name-casino-manager
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCasinoSecurity
+  icon:
+    sprite: /Textures/_Starlight/Admeme/Casino/Interface/job_icons.rsi
+    state: security
+  jobName: job-name-casino-security
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCasinoDealer
+  icon:
+    sprite: /Textures/_Starlight/Admeme/Casino/Interface/job_icons.rsi
+    state: dealer
+  jobName: job-name-casino-dealer
+  allowSelection: false
