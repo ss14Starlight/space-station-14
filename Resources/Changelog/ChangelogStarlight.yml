@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Manor) Fixed salv and mining docks.
-    type: Fix
-  id: 406400
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (SERPENTCREST) Fixed roboticist disposals bin.
     type: Fix
   id: 406401
@@ -2799,4 +2792,11 @@ Entries:
   id: 406799
   time: '2026-07-22T08:18:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5231
+- author: Caws
+  changes:
+  - message: Performers now have service access just like other theatre staff.
+    type: Fix
+  id: 406800
+  time: '2026-07-22T08:18:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5236
 Order: -1
