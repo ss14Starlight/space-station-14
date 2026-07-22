@@ -56,15 +56,17 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private void OnFilterUpdated(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceUpdateEvent args)
         {
+            // Actual update logic moved to another method, with outvars for cosmetic results.
             DoFilterUpdated(uid, filter, ref args,
-                out var core, out var inlet, out var side, out var outlet);
+                out var core,
+                out var inlet,
+                out var side,
+                out var outlet);
 
             if (!TryComp<AppearanceComponent>(uid, out var appearance))
                 return;
 
-            // if (filter.InletName == filter.OutletName)
-            //     inlet = outlet;
-
+            // Apply only updated visuals. (Many cases where only one or two get updated).
             if (core != null)
                 _appearanceSystem.SetData(uid, FilterVisuals.Core, core, appearance);
             if (inlet != null)
@@ -100,9 +102,6 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             var (inletEmpty, outletBlocked, outletFlowing, sideHasGas, sideFlowing) =
                 TransferGas(uid, filter, args, inletNode, filterNode, outletNode);
 
-            // --- Resolve visuals from the recorded outcome. Kept in one place so the resolution
-            // policy (e.g. whether a blocked side should also paint the outlet/core red) is a
-            // single spot to change, independent of the transfer logic above. ---
             coreVisual = FilterPortVisualsState.Off;
             inletVisual = FilterPortVisualsState.Off;
             sideVisual = FilterPortVisualsState.Off;
