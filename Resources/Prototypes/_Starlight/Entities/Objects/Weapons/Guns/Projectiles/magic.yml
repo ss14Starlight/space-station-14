@@ -14,7 +14,8 @@
       types:
         Heat: 50
   - type: Sprite
-    sprite: _Starlight/Objects/Magic/magicactions.rsi
+    noRot: false
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
     - state: firebolt
       shader: unshaded
@@ -46,7 +47,7 @@
       types:
         Heat: 5
   - type: Sprite
-    sprite: _Starlight/Objects/Magic/magicactions.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
     - state: fireorb
       shader: unshaded

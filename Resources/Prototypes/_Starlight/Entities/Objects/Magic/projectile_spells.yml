@@ -2,15 +2,15 @@
   parent: ActionFireball
   id: ActionFirebolt
   name: Firebolt
-  description: Fires a fast but weaker bolt of fire toward the aimed location. (Cooldown of 20 seconds)
+  description: Fires a fast but weaker bolt of fire toward the aimed location. (Cooldown of 5 seconds)
   components:
   - type: Action
-    useDelay: 20
+    useDelay: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/fireball.ogg
     icon:
-      sprite: Objects/Magic/magicactions.rsi
-      state: fireball
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: firebolt
   - type: TargetAction
     range: 60
     checkCanAccess: false
@@ -20,5 +20,30 @@
   - type: SpeakOnAction
     sentence: action-speech-spell-firebolt
     tts: action-speech-spell-firebolt-tts
+    modifier: Spell
+  - type: EorgPreventAction # Starlight
+
+- type: entity
+  parent: ActionFireball
+  id: ActionFireOrb
+  name: Fire Orb
+  description: Fires a fast but weaker bolt of fire toward the aimed location. (Cooldown of 20 seconds)
+  components:
+  - type: Action
+    useDelay: 20
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/fireball.ogg
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: fireorb
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileFireOrb
+  - type: SpeakOnAction
+    sentence: action-speech-spell-fireorb
+    tts: action-speech-spell-fireorb-tts
     modifier: Spell
   - type: EorgPreventAction # Starlight
