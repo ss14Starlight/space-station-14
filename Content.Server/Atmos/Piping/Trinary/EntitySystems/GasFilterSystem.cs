@@ -104,16 +104,6 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             var transferVol = GetTransferRate(filter, args, inletNode.Air, outletNode); // Starlight
             var removed = inletNode.Air.RemoveVolume(transferVol); // Starlight
 
-            // STARLIGHT - Disable outlet node pressure check for inline filter
-            if (outletNode != inletNode && removed.TotalMoles <= DeltaMolCutoff)
-            {
-                // Blocked: outlet has no room at all.
-                coreVisual = FilterPortVisualsState.SolidRed;
-                outletVisual = FilterPortVisualsState.BlinkingRed;
-                _atmosphereSystem.Merge(inletNode.Air, removed);
-                return;
-            }
-
             var sideHasGas = false; // Starlight
             var sideFlowing = false; // Starlight
 
@@ -140,25 +130,29 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 _atmosphereSystem.Merge(filterNode.Air, actuallyFiltered);
                 _atmosphereSystem.Merge(inletNode.Air, returned);
                 // starlight edit end - fix subtick
-
-                _ambientSoundSystem.SetAmbience(uid, wantsToFilter.TotalMoles > 0f); // starlight edit - fix subtick
             }
+
+            // Starlight BEGIN -- Visuals + outlet merge
+            // STARLIGHT - Disable outlet node pressure check for inline filter
+            var outletFlowing = removed.TotalMoles > DeltaMolCutoff;
             _atmosphereSystem.Merge(outletNode.Air, removed);
 
-            // Starlight BEGIN -- Visuals only
             var sideBlocked = sideHasGas && !sideFlowing;
 
             if (sideHasGas)
                 sideVisual = sideFlowing ? FilterPortVisualsState.SolidGreen : FilterPortVisualsState.BlinkingRed;
 
-            var outletFlowing = removed.TotalMoles > DeltaMolCutoff;
+            // Blocked: nothing moved at all this tick.
+            var outletBlocked = outletNode != inletNode && !outletFlowing && !sideFlowing;
 
             if (outletFlowing)
                 outletVisual = FilterPortVisualsState.SolidGreen;
+            else if (outletBlocked)
+                outletVisual = FilterPortVisualsState.BlinkingRed;
 
             if (outletFlowing || sideFlowing)
                 coreVisual = FilterPortVisualsState.SolidGreen;
-            else if (sideBlocked)
+            else if (sideBlocked || outletBlocked)
                 coreVisual = FilterPortVisualsState.SolidRed;
             // Starlight END
         }
