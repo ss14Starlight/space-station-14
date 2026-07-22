@@ -1,48 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Cork) Removed cryopod in bridge.
-    type: Remove
-  id: 406393
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PACKED) Removed infinite power from ai core and a ai camera in maints.
-    type: Remove
-  id: 406394
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (PRISM) Removed infinite power from ai core.
-    type: Remove
-  id: 406395
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Removed infinite power from ai core.
-    type: Remove
-  id: 406396
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (SERPENTCREST) Removed outdoor ai turrent from ai.
-    type: Remove
-  id: 406397
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
-  - message: (CORK) Fixed a dispo pipe in virology.
-    type: Fix
-  id: 406398
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (LAGAN) Fixed some distro pipes not being the correct color.
     type: Fix
   id: 406399
@@ -2799,4 +2757,46 @@ Entries:
   id: 406792
   time: '2026-07-21T14:05:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5154
+- author: Vincolan
+  changes:
+  - message: Added Casino PDA.
+    type: Add
+  id: 406793
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Vincolan
+  changes:
+  - message: Added Casino Dealer, Security, Owner and manager ID.
+    type: Add
+  id: 406794
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Vincolan
+  changes:
+  - message: Casino Pistol.
+    type: Add
+  id: 406795
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Vincolan
+  changes:
+  - message: The house, Always wins.
+    type: Add
+  id: 406796
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Vincolan
+  changes:
+  - message: Casino baton.
+    type: Add
+  id: 406797
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Vincolan
+  changes:
+  - message: Casino access.
+    type: Add
+  id: 406798
+  time: '2026-07-22T07:41:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5173
 Order: -1
