@@ -1340,8 +1340,6 @@
   parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicRaycast
-    collisionMask: BulletImpassable
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1388,6 +1386,7 @@
     knockdownDuration: 0.5s
   - type: HitscanBasicRaycast
     maxDistance: 5
+    collisionMask: BulletImpassable
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1610,36 +1609,42 @@
     count: 9
     spread: 10
 
-# Apollo Heavy Laser - Devastating shuttle cannon laser
+# Apollo Plasma Bolt - Focused ship-to-ship bolt: high direct heat, small blast
 - type: entity
   id: ApolloHeavyLaser
-  name: apollo heavy laser beam
-  parent: BasicHitscan
+  name: apollo plasma bolt
+  parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      color: "#FF44FF"
+    scale: 0.8, 0.8
+  - type: Projectile
     damage:
       types:
-        Heat: 250
-        Structural: 100
-  - type: HitscanBasicRaycast
-    collisionMask: BulletImpassable
-  - type: HitscanReflect
-    reflectiveType: Energy
-  - type: HitscanBasicVisuals
-    muzzleFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: muzzle_beam_heavy
-    travelFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: beam_heavy
-    impactFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: impact_beam_heavy
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-        state: heavylaser
+        Heat: 200
+        Structural: 80
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 140
+    intensitySlope: 10
+    maxIntensity: 14
+    canCreateVacuum: true
+  - type: TimedDespawn
+    lifetime: 2.0
+  - type: PointLight
+    radius: 3.5
+    energy: 2.5
+    color: "#FF44FF"
+  - type: RadarBlip
+    color: "#FF44FF"
+    scale: 0.9
+    shape: Circle
+    requireInSpace: true
 
 - type: entity
   parent: BasicHitscanNoBeam
@@ -1716,70 +1721,79 @@
         state: impact_blue
 
 
-# Scylla Laser Railgun - Wide cyan beam, extreme range, grid-powered
+# Scylla Laser Bolt - Devastatingly concentrated energy bolt
 - type: entity
   id: ScyllaWideLaser
-  name: scylla railgun beam
-  parent: BasicHitscan
+  name: scylla laser bolt
+  parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      color: "#00CCFF"
+    scale: 2.5, 2.5
+  - type: Projectile
     damage:
       types:
-        Heat: 750
-        Structural: 1100
-  - type: HitscanReflect
-    reflectiveType: None
-  - type: HitscanBasicRaycast
-    collisionMask: BulletImpassable
-    maxDistance: 1200.0
-  - type: HitscanBasicVisuals
-    muzzleFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: muzzle_beam_heavy
-    travelFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: beam_heavy
-    impactFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: impact_beam_heavy
-    bullet:
-      color: "#00CCFF"
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-        state: heavylaser
+        Heat: 1100           # laser burns straight through armour
+        Structural: 700
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 700      # concentrated, intense at epicenter — not wide like Leviathan
+    intensitySlope: 9
+    maxIntensity: 110
+    canCreateVacuum: true
+  - type: TimedDespawn
+    lifetime: 5.0
+  - type: PointLight
+    radius: 9.0
+    energy: 7.0
+    color: "#00CCFF"
+  - type: RadarBlip
+    color: "#00CCFF"
+    scale: 1.8
+    shape: Circle
+    requireInSpace: true
 
-# AMX-9 DYNAMRE Dual Turbolaser - Double Apollo-class laser beam
+# AMX-9 DYNAMRE Large Plasma Blob - Devastating AoE plasma blob (violent capital-class)
 - type: entity
   id: DynamreDualLaser
-  name: dynamre dual turbolaser beam
-  parent: BasicHitscan
+  name: dynamre plasma blob
+  parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanBasicDamage
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      color: "#FF44FF"
+    scale: 1.8, 1.8
+  - type: Projectile
     damage:
       types:
-        Heat: 500
-        Structural: 200
-  - type: HitscanReflect
-    reflectiveType: None
-  - type: HitscanBasicRaycast
-    collisionMask: BulletImpassable
-  - type: HitscanBasicVisuals
-    muzzleFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: muzzle_beam_heavy
-    travelFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: beam_heavy
-    impactFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: impact_beam_heavy
-    bullet:
-      color: "#FF44FF"
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-        state: heavylaser
+        Heat: 450
+        Structural: 150
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 780
+    intensitySlope: 5
+    maxIntensity: 50
+    canCreateVacuum: true
+  - type: TimedDespawn
+    lifetime: 2.5
+  - type: PointLight
+    radius: 6.5
+    energy: 5.5
+    color: "#FF44FF"
+  - type: RadarBlip
+    color: "#FF44FF"
+    scale: 1.6
+    shape: Circle
+    requireInSpace: true
 
 # Beam Emitter
 - type: entity
