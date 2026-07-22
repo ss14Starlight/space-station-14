@@ -32,7 +32,6 @@ job-name-medtak-pilot = MedTak Pilot
 job-name-medtak-security = MedTak Security
 job-name-medtak-borg = MedTak Silicon
 
-
 job-greet-information-rules = {$jobRules}
 
 role-type-corporate-aligned-name = Corporate Aligned
