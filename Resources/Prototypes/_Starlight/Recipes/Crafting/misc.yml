@@ -6,3 +6,10 @@
   category: construction-category-misc
   objectType: Item
 
+- type: construction
+  id: ClothingMaskMimeSecurity
+  graph: ClothingMaskMimeSecurity
+  startNode: start
+  targetNode: mask
+  category: construction-category-misc
+  objectType: Item
