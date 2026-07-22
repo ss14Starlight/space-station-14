@@ -175,14 +175,14 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 wantsToFilter.SetMoles(filter.FilteredGas.Value, removed.GetMoles(filter.FilteredGas.Value));
                 removed.SetMoles(filter.FilteredGas.Value, 0f);
 
-                sideHasGas = wantsToFilter.TotalMoles > DeltaMolCutoff;
+                sideHasGas = wantsToFilter.TotalMoles > DeltaMolCutoff; // Starlight
 
                 // starlight edit start - fix subtick
                 var filterVolume = GetTransferRate(filter, args, wantsToFilter, filterNode);
 
                 // Remove the filtered volume that actually can fit in the filter
                 var actuallyFiltered = wantsToFilter.RemoveVolume(filterVolume);
-                sideFlowing = actuallyFiltered.TotalMoles > DeltaMolCutoff;
+                sideFlowing = actuallyFiltered.TotalMoles > DeltaMolCutoff; // Starlight
 
                 // The remaining gas in wantsToFilter should be returned to inlet
                 var returned = wantsToFilter;
@@ -195,10 +195,10 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 _ambientSoundSystem.SetAmbience(uid, wantsToFilter.TotalMoles > 0f); // starlight edit - fix subtick
             }
 
-            var outletFlowing = removed.TotalMoles > DeltaMolCutoff;
+            var outletFlowing = removed.TotalMoles > DeltaMolCutoff; // Starlight
             _atmosphereSystem.Merge(outletNode.Air, removed);
 
-            return (false, false, outletFlowing, sideHasGas, sideFlowing);
+            return (false, false, outletFlowing, sideHasGas, sideFlowing); // Starlight
         }
 
         //starlight fix subtick
