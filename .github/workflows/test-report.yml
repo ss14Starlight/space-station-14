@@ -1,0 +1,42 @@
+name: Test Report
+
+on:
+  workflow_run:
+    workflows: ['Build & Test Debug']
+    types:
+      - completed
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
+jobs:
+  report:
+    name: Publish test results
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion != 'cancelled' }}
+    steps:
+      - name: Content Tests
+        uses: dorny/test-reporter@v3
+        with:
+          artifact: test-trx-content
+          name: Content Tests
+          path: 'nunit-results/*.xml'
+          reporter: dotnet-nunit
+          list-suites: failed
+          list-tests: failed
+          fail-on-error: false
+          fail-on-empty: false
+
+      - name: Integration Tests
+        uses: dorny/test-reporter@v3
+        with:
+          artifact: /test-trx-shard-(.*)/
+          name: 'Integration Tests (shard $1)'
+          path: 'nunit-results/*.xml'
+          reporter: dotnet-nunit
+          list-suites: failed
+          list-tests: failed
+          fail-on-error: false
+          fail-on-empty: false
