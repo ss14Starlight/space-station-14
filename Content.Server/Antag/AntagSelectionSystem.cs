@@ -195,7 +195,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
         #endregion
 
-        if (!TrySpawnAntagonist((rule, select), def, args.Player, _transform.GetMapCoordinates(ent), out var uid))
+        if (!TrySpawnAntagonist((rule, select), def, args.Player, _transform.GetMapCoordinates(ent), out var uid, out var selectedProfile)) // Starlight
         {
             Log.Error($"Tried to make {args.Player.UserId} into an antagonist but was unable to spawn an entity for them. Game rule {ToPrettyString(ent)}");
             return;
@@ -203,7 +203,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         // We do this after TrySpawnAntagonist so we don't have to worry about a failed spawn adding permanent pre selections to a game rule.
         PreSelectSession((rule, select), def, args.Player);
-        InitializeAntag((rule, select), def, uid.Value, args.Player);
+        InitializeAntag((rule, select), def, uid.Value, args.Player, selectedProfile); // Starlight
         args.TookRole = true;
 
         // Move ghosts that were watching the raffle on the spawner over to the freshly spawned antag.
@@ -475,9 +475,9 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
             // Try to assign them an entity if the game rule allows it.
             // We don't deselect fails since we may have to wait until the player has spawned first!
-            if (TryGetAntagEntity(antag.GameRule, antag.Definition, player, out var antagEnt))
+            if (TryGetAntagEntity(antag.GameRule, antag.Definition, player, out var antagEnt, out var selectedProfile)) // Starlight
             {
-                InitializeAntag(antag.GameRule, antag.Definition, antagEnt.Value, player);
+                InitializeAntag(antag.GameRule, antag.Definition, antagEnt.Value, player, selectedProfile); // Starlight
                 return true;
             }
 
@@ -520,12 +520,12 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 continue;
 
             // Try to get a valid antag entity.
-            if (!TryGetAntagEntity(antag.GameRule, antag.Definition, player, out var antagEnt))
+            if (!TryGetAntagEntity(antag.GameRule, antag.Definition, player, out var antagEnt, out var selectedProfile)) // Starlight
                 continue; // Something has gone horribly wrong if this happens, check your error log!
 
             // Pre-select the sesssion, then initialize the antag!
             PreSelectSession(antag.GameRule, antag.Definition, player);
-            InitializeAntag(antag.GameRule, antag.Definition, antagEnt.Value, player);
+            InitializeAntag(antag.GameRule, antag.Definition, antagEnt.Value, player, selectedProfile); // Starlight
 
             // Reduce the slots left by one
             // If we finish assigning all slots
@@ -572,12 +572,12 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 continue;
 
             // Try to get a valid antag entity.
-            if (!TryGetAntagEntity(gameRule, antag.Definition, player, out var antagEnt))
+            if (!TryGetAntagEntity(gameRule, antag.Definition, player, out var antagEnt, out var selectedProfile)) // Starlight
                 continue; // Something has likely gone horribly wrong if this happens, check your error log!
 
             // Pre-select the session, then initialize the antag!
             PreSelectSession(gameRule, antag.Definition, player);
-            InitializeAntag(gameRule, antag.Definition, antagEnt.Value, player);
+            InitializeAntag(gameRule, antag.Definition, antagEnt.Value, player, selectedProfile); // Starlight
 
             // Reduce the slots left by one
             // If we finish assigning all slots
@@ -681,7 +681,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         ICommonSession player)
     {
         // Get a valid entity to initialize
-        if (!TryGetAntagEntity(gameRule, prototype, player, out var antagEnt))
+        if (!TryGetAntagEntity(gameRule, prototype, player, out var antagEnt, out var selectedProfile)) // Starlight
         {
             DeSelectSession(gameRule, prototype, player);
             return false;
@@ -698,16 +698,17 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             return false;
         }
 
-        InitializeAntag(gameRule, prototype, antagEnt.Value, player);
+        InitializeAntag(gameRule, prototype, antagEnt.Value, player, selectedProfile); // Starlight
         return true;
     }
 
     private bool TryGetAntagEntity(Entity<AntagSelectionComponent> gameRule,
         AntagSpecifierPrototype prototype,
         ICommonSession player,
-        [NotNullWhen(true)]out EntityUid? antagEnt)
+        [NotNullWhen(true)]out EntityUid? antagEnt,
+        out HumanoidCharacterProfile? selectedProfile) // Starlight
     {
-        antagEnt = GetAntagEntity(gameRule, prototype, player);
+        antagEnt = GetAntagEntity(gameRule, prototype, player, out selectedProfile); // Starlight
         return antagEnt != null;
     }
 
@@ -723,16 +724,21 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// <returns>Entity of the antagonist</returns>
     private EntityUid? GetAntagEntity(Entity<AntagSelectionComponent> gameRule,
         AntagSpecifierPrototype prototype,
-        ICommonSession player)
+        ICommonSession player,
+        out HumanoidCharacterProfile? selectedProfile) // Starlight
     {
+        selectedProfile = null; // Starlight
+
         // If there's no valid position for us to be moved to, then just return the entity currently attached to the session.
         // We need a position to spawn a new entity so we can't spawn a new entity without a proper position.
         // Doesn't throw an error since for some antags this is intended behavior.
         if (!TryGetValidSpawnPosition(gameRule, prototype, out var coordinates, player))
             return player.AttachedEntity;
 
-        if (TrySpawnAntagonist(gameRule, prototype, player, coordinates.Value, out var entity))
+        if (TrySpawnAntagonist(gameRule, prototype, player, coordinates.Value, out var entity, out selectedProfile)) // Starlight
             return entity;
+
+        selectedProfile = null; // Starlight, the spawned profile was not applied if spawning failed.
 
         if (player.AttachedEntity is not { } uid)
         {
@@ -754,12 +760,14 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         AntagSpecifierPrototype prototype,
         ICommonSession player,
         MapCoordinates coordinates,
-        [NotNullWhen(true)]out EntityUid? uid)
+        [NotNullWhen(true)]out EntityUid? uid,
+        out HumanoidCharacterProfile? selectedProfile) // Starlight
     {
         var ev = new AntagSelectEntityEvent(gameRule, prototype, coordinates, player);
         RaiseLocalEvent(gameRule, ref ev, true);
 
         uid = ev.Entity;
+        selectedProfile = ev.SelectedProfile; // Starlight
         return ev.Handled;
     }
 
@@ -821,7 +829,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// Initializes the antagonist status on the specified entity.
     /// Adds the needed components, loadouts, items, attaches the player and fires off an event.
     /// </summary>
-    private void InitializeAntag(Entity<AntagSelectionComponent> gameRule, AntagSpecifierPrototype prototype, EntityUid antag, ICommonSession player)
+    private void InitializeAntag(Entity<AntagSelectionComponent> gameRule, AntagSpecifierPrototype prototype, EntityUid antag, ICommonSession player, HumanoidCharacterProfile? selectedProfile) // Starlight
     {
         // Make sure player was properly pre-selected.
         Debug.Assert(gameRule.Comp.PreSelectedSessions.TryGetValue(prototype.ID, out var value) && value.Contains(player),
@@ -840,7 +848,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (prototype.StartingGear is not null)
             gear.Add(prototype.StartingGear.Value);
 
-        var selectedLoadout = GetSelectedLoadout(player, prototype.RoleLoadout, out var selectedLoadoutProto); // Starlight, antag loadouts
+        var selectedLoadout = GetSelectedLoadout(player, selectedProfile, prototype.RoleLoadout, out var selectedLoadoutProto); // Starlight, antag loadouts
         _loadout.Equip(antag, gear, prototype.RoleLoadout, selectedLoadout, selectedLoadoutProto); // Starlight
 
         // Ensure that we have the right mind for our entity.
@@ -885,40 +893,22 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
     #region Starlight
     // Starlight - Antag Loadouts
-        private RoleLoadout? GetSelectedLoadout(ICommonSession? session, List<ProtoId<RoleLoadoutPrototype>>? roleLoadouts, out RoleLoadoutPrototype? proto)
+        private RoleLoadout? GetSelectedLoadout(ICommonSession? session, HumanoidCharacterProfile? profile, List<ProtoId<RoleLoadoutPrototype>>? roleLoadouts, out RoleLoadoutPrototype? proto)
     {
         proto = null;
 
-        if (session == null || roleLoadouts == null || roleLoadouts.Count == 0)
+        if (profile == null || roleLoadouts == null || roleLoadouts.Count == 0)
             return null;
-
-        ProtoId<RoleLoadoutPrototype>? selectedId = null;
 
         foreach (var candidate in roleLoadouts)
         {
-            if (_prototypeManager.HasIndex(candidate))
-            {
-                selectedId = candidate;
-                break;
-            }
+            if (!_prototypeManager.TryIndex(candidate, out proto))
+                continue;
+
+            return profile.GetLoadoutOrDefault(candidate, session, profile.Species, EntityManager, _prototypeManager).Clone();
         }
 
-        if (selectedId == null || !_prototypeManager.TryIndex(selectedId.Value, out proto))
-            return null;
-
-        HumanoidCharacterProfile? profile = null;
-
-        if (_pref.TryGetCachedPreferences(session.UserId, out var pref))
-        {
-            profile = pref.Characters.Values
-                .OfType<HumanoidCharacterProfile>()
-                .FirstOrDefault(p => p.Enabled);
-        }
-
-        if (profile == null)
-            return null;
-
-        return profile.GetLoadoutOrDefault(selectedId.Value, session, profile.Species, EntityManager, _prototypeManager).Clone();
+        return null;
     }
     #endregion
 }
@@ -940,6 +930,8 @@ public record struct AntagSelectEntityEvent(Entity<AntagSelectionComponent> Game
     public bool Handled => Entity != null;
 
     public EntityUid? Entity;
+
+    public HumanoidCharacterProfile? SelectedProfile; // Starlight
 }
 
 /// <summary>

@@ -45,8 +45,9 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
             profile = prefs.SelectProfileForAntag(args.Antag.PrefRoles); // Starlight
         }
 
-        // Startlight - Start (Changing fully so RandomWithSpecies loads with a specieID)
+        #region Starlight
         var species = Proto.Index(SharedHumanoidAppearanceSystem.DefaultSpecies);
+
         if (profile is not null)
             species = Proto.Index(profile.Species);
 
@@ -56,15 +57,19 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
             && (ent.Comp.SpeciesOverrideBlacklist?.Contains(new ProtoId<SpeciesPrototype>(species.ID)) ?? false))
             species = Proto.Index(ent.Comp.SpeciesOverride.Value);
 
-        if (profile is null)
-            profile = HumanoidCharacterProfile.RandomWithSpecies(species.ID);
+        profile ??= HumanoidCharacterProfile.RandomWithSpecies(species.ID);
+        profile = profile.WithSpecies(species.ID);
 
-        if (profile?.ForcedPrototype != "" && profile is not null)
+        // This exact profile is subsequently used for its loadout.
+        args.SelectedProfile = profile;
+
+        if (!string.IsNullOrEmpty(profile.ForcedPrototype))
         {
             if (!Proto.Resolve(profile.ForcedPrototype, out var forcedProto))
                 throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
+
             args.Entity = Spawn(profile.ForcedPrototype, args.Coords);
-            var resolvedEntity = (EntityUid)args.Entity;
+            var resolvedEntity = args.Entity.Value;
             var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
             _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
 
@@ -73,19 +78,20 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
         else
         {
             args.Entity = Spawn(species.Prototype, args.Coords);
-            _humanoid.LoadProfile(args.Entity.Value, profile?.WithSpecies(species.ID));
+            _humanoid.LoadProfile(args.Entity.Value, profile);
         }
 
-        if (ent.Comp.ApplyCharacterProfile && profile is not null)
+        if (ent.Comp.ApplyCharacterProfile)
         {
             _metaSystem.SetEntityName(args.Entity.Value, profile.Name);
             _sLSharedCharacterInfoSystem.ApplyCharacterInfo(args.Entity.Value, profile);
+
             if (args.Session is not null)
                 _traitSystem.ApplyTraits(args.Entity.Value, profile, args.Session);
         }
 
-        if (profile?.ForcedPrototype != "")
-            RaiseLocalEvent(args.Entity.Value, new ForcedPrototypeDoSpecialEvent()); // Starlight
-        // Starlight - End
+        if (!string.IsNullOrEmpty(profile.ForcedPrototype))
+            RaiseLocalEvent(args.Entity.Value, new ForcedPrototypeDoSpecialEvent());
+    #endregion
     }
 }

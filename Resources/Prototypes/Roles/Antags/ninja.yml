@@ -23,11 +23,13 @@
 - type: antagSpecifier
   parent: RestrictedAntag
   id: SpaceNinja
+  prefRoles: # Starlight
+  - SpaceNinja # Starlight
   spawnerPrototype: SpawnPointGhostSpaceNinja
   #pickPlayer: false # Starlight, you can be a ninja.
   startingGear: SpaceNinjaGear
   roleLoadout:
-  - RoleSurvivalSpaceNinja
+  - AntagSpaceNinja # Starlight
   briefing:
     text: ninja-role-greeting
     color: Green

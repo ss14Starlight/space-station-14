@@ -19,6 +19,7 @@
   parent: RestrictedAntag
   id: MothershipCore
   prefRoles: [ MothershipCore ]
+  roleLoadout: [ AntagMothership ] # Starlight
   spawnerPrototype: SpawnPointGhostRoleMothershipCore
 
 - type: antag
@@ -40,6 +41,7 @@
   parent: RestrictedAntag
   id: BaseXenoborg
   prefRoles: [ Xenoborg ]
+  roleLoadout: [ AntagXenoborg ] # Starlight
   spawnerPrototype: SpawnPointGhostRoleXenoborg
 
 - type: antagSpecifier

@@ -145,6 +145,8 @@
 - type: antagSpecifier
   parent: BaseNukeops
   id: LoneOp
+  prefRoles: # Starlight
+  - Nukeops # Starlight
   spawnerPrototype: SpawnPointLoneNukeOperative
   #pickPlayer: false # Starlight, uh, yeah, we want it to be you.
   startingGear: SyndicateLoneOperativeGearFull
