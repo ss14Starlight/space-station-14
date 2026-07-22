@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (LAGAN) Fixed some distro pipes not being the correct color.
-    type: Fix
-  id: 406399
-  time: '2026-07-04T06:44:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4971
-- author: Cvlancer
-  changes:
   - message: (Manor) Fixed salv and mining docks.
     type: Fix
   id: 406400
@@ -2799,4 +2792,11 @@ Entries:
   id: 406798
   time: '2026-07-22T07:41:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5173
+- author: Johnny
+  changes:
+  - message: Changed most of the music in jukebox to hopefully be quieter.
+    type: Tweak
+  id: 406799
+  time: '2026-07-22T08:18:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5231
 Order: -1
