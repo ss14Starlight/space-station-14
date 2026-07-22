@@ -379,3 +379,20 @@
           reagent: Necrosol
           amount: -0.5
         # Starlight-End
+
+- type: reagent
+  id: HealingNanites
+  name: reagent-name-healing-nanites
+  group: Medicine
+  desc: reagent-desc-healing-nanites
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: electrifying
+  color: "#ff9249"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -4
+            Brute: -4

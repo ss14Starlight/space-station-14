@@ -1,0 +1,48 @@
+- type: entity
+  name: Healing Nanite Injector
+  parent: BaseItem
+  id: AvaliHealingInjector
+  description: A claw containing fluid suspended healing nanites.
+  components:
+  - type: Item
+    sprite: _Starlight/Effects/avali_injector.rsi
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Effects/avali_injector.rsi
+    layers:
+    - state: icon
+      shader: unshaded
+  - type: Injector
+    solutionName: pen
+    currentTransferAmount: null
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: icon-empty
+  - type: ExaminableSolution
+    solution: pen
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 2.5
+        reagents:
+        - ReagentId: HealingNanites
+          Quantity: 2.5
+  - type: Unremoveable
+  - type: TimedDespawn
+    lifetime: 15
+  - type: DeleteOnSolutionEmpty
+    solution: pen
+  - type: StaticPrice
+    price: 0 # Not sellable.
+

@@ -26,4 +26,3 @@
         state: healoff
     - type: InstantAction
       event: !type:ExitStasisActionEvent
-
