@@ -185,7 +185,7 @@
         - to: uraniumWindow
           completed:
             - !type:GivePrototype
-              prototype: Plasma
+              prototype: SheetPlasma
               amount: 2
           steps:
             - material: Uranium
@@ -222,7 +222,7 @@
         - to: reinforcedUraniumWindow
           completed:
             - !type:GivePrototype
-              prototype: Plasma
+              prototype: SheetPlasma
               amount: 2
           steps:
             - material: Uranium
