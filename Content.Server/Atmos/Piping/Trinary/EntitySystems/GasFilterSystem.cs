@@ -99,56 +99,18 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                     out PipeNode? inletNode, out PipeNode? filterNode, out PipeNode? outletNode))
                 return;
 
-            var (inletEmpty, outletBlocked, outletFlowing, sideHasGas, sideFlowing) =
-                TransferGas(uid, filter, args, inletNode, filterNode, outletNode);
-
             coreVisual = FilterPortVisualsState.Off;
             inletVisual = FilterPortVisualsState.Off;
             sideVisual = FilterPortVisualsState.Off;
             outletVisual = FilterPortVisualsState.Off;
 
-            if (inletEmpty)
+            if (inletNode.Air.TotalMoles <= DeltaMolCutoff)
             {
                 // Idle: nothing to do. Not a failure.
                 coreVisual = FilterPortVisualsState.SolidYellow;
                 inletVisual = FilterPortVisualsState.SolidYellow;
-                return;
-            }
-
-            if (outletBlocked)
-            {
-                // Blocked: outlet has no room at all.
-                coreVisual = FilterPortVisualsState.SolidRed;
-                outletVisual = FilterPortVisualsState.BlinkingRed;
-                return;
-            }
-
-            var sideBlocked = sideHasGas && !sideFlowing;
-
-            if (sideHasGas)
-                sideVisual = sideFlowing ? FilterPortVisualsState.SolidGreen : FilterPortVisualsState.BlinkingRed;
-
-            if (outletFlowing)
-                outletVisual = FilterPortVisualsState.SolidGreen;
-
-            if (outletFlowing || sideFlowing)
-                coreVisual = FilterPortVisualsState.SolidGreen;
-            else if (sideBlocked)
-                coreVisual = FilterPortVisualsState.SolidRed;
-        }
-
-        /// <summary>
-        /// Actually moves the gas for one tick and reports what happened, so
-        /// <see cref="DoFilterUpdated"/> can decide the visuals separately from the transfer.
-        /// </summary>
-        private (bool InletEmpty, bool OutletBlocked, bool OutletFlowing, bool SideHasGas, bool SideFlowing) TransferGas(
-            EntityUid uid, GasFilterComponent filter, AtmosDeviceUpdateEvent args,
-            PipeNode inletNode, PipeNode filterNode, PipeNode outletNode)
-        {
-            if (inletNode.Air.TotalMoles <= DeltaMolCutoff)
-            {
                 _ambientSoundSystem.SetAmbience(uid, false);
-                return (true, false, false, false, false);
+                return;
             }
 
             //starlight edit - Moved logic to a new method
@@ -160,9 +122,12 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             // the outlet has no room at all, not that the outlet is merely "flowing slowly".
             if (outletNode != inletNode && removed.TotalMoles <= DeltaMolCutoff)
             {
+                // Blocked: outlet has no room at all.
+                coreVisual = FilterPortVisualsState.SolidRed;
+                outletVisual = FilterPortVisualsState.BlinkingRed;
                 _atmosphereSystem.Merge(inletNode.Air, removed);
                 _ambientSoundSystem.SetAmbience(uid, false);
-                return (false, true, false, false, false);
+                return;
             }
 
             var sideHasGas = false;
@@ -175,14 +140,14 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 wantsToFilter.SetMoles(filter.FilteredGas.Value, removed.GetMoles(filter.FilteredGas.Value));
                 removed.SetMoles(filter.FilteredGas.Value, 0f);
 
-                sideHasGas = wantsToFilter.TotalMoles > DeltaMolCutoff; // Starlight
+                sideHasGas = wantsToFilter.TotalMoles > DeltaMolCutoff;
 
                 // starlight edit start - fix subtick
                 var filterVolume = GetTransferRate(filter, args, wantsToFilter, filterNode);
 
                 // Remove the filtered volume that actually can fit in the filter
                 var actuallyFiltered = wantsToFilter.RemoveVolume(filterVolume);
-                sideFlowing = actuallyFiltered.TotalMoles > DeltaMolCutoff; // Starlight
+                sideFlowing = actuallyFiltered.TotalMoles > DeltaMolCutoff;
 
                 // The remaining gas in wantsToFilter should be returned to inlet
                 var returned = wantsToFilter;
@@ -195,10 +160,21 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 _ambientSoundSystem.SetAmbience(uid, wantsToFilter.TotalMoles > 0f); // starlight edit - fix subtick
             }
 
-            var outletFlowing = removed.TotalMoles > DeltaMolCutoff; // Starlight
+            var sideBlocked = sideHasGas && !sideFlowing;
+
+            if (sideHasGas)
+                sideVisual = sideFlowing ? FilterPortVisualsState.SolidGreen : FilterPortVisualsState.BlinkingRed;
+
+            var outletFlowing = removed.TotalMoles > DeltaMolCutoff;
             _atmosphereSystem.Merge(outletNode.Air, removed);
 
-            return (false, false, outletFlowing, sideHasGas, sideFlowing); // Starlight
+            if (outletFlowing)
+                outletVisual = FilterPortVisualsState.SolidGreen;
+
+            if (outletFlowing || sideFlowing)
+                coreVisual = FilterPortVisualsState.SolidGreen;
+            else if (sideBlocked)
+                coreVisual = FilterPortVisualsState.SolidRed;
         }
 
         //starlight fix subtick
