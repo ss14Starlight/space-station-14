@@ -16,7 +16,7 @@ public abstract partial class AntagCountSelector
     /// Each antag spawned by a game rule "takes" a select group of players from the pool.
     /// </summary>
     [DataField]
-    public int PlayerRatio = 10;
+    public float PlayerRatio = 10.0f; // Starlight, make this a float so we can do some scaling
 
     [DataField(required: true)]
     public ProtoId<AntagSpecifierPrototype> Proto;

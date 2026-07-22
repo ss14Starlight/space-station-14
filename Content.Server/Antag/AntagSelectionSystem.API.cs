@@ -168,7 +168,7 @@ public sealed partial class AntagSelectionSystem
     public int GetTargetAntagCount(AntagCountSelector selector, int playerCount, ref int runningCount)
     {
         var count = selector.GetTargetAntagCount(RobustRandom, playerCount - runningCount);
-        runningCount += count * selector.PlayerRatio;
+        runningCount += (int)(count * selector.PlayerRatio); // Starlight
         return count;
     }
 
