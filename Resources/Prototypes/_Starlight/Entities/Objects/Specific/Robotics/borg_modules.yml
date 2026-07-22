@@ -370,6 +370,8 @@
           - Document
           components:
           - Stamp
+          - IdCard
+          - Pda
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
 
