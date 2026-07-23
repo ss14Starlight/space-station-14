@@ -7,8 +7,8 @@ using Content.Shared.DeviceLinking.Events;
 using Content.Shared.DeviceNetwork;
 using JetBrains.Annotations;
 
-namespace Content.Server.DeviceLinking.Systems
-{
+namespace Content.Server.DeviceLinking.Systems;
+
     [UsedImplicitly]
     public sealed partial class GasVolumePumpSignalSystem : EntitySystem
     {
@@ -35,25 +35,14 @@ namespace Content.Server.DeviceLinking.Systems
             var state = SignalState.Momentary;
             args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
 
-            if (args.Port == component.OpenPort)
-            {
-                if (state == SignalState.High || state == SignalState.Momentary)
-                {
-                    if (volumePump.Enabled == false)
-                        _volumePumpSystem.SetEnable(uid, volumePump);
-                }
-            }
-            else if (args.Port == component.ClosePort)
-            {
-                if (state == SignalState.High || state == SignalState.Momentary)
-                    _volumePumpSystem.SetDisable(uid, volumePump);
-            }
+            if (state is not (SignalState.High or SignalState.Momentary)) return;
+            if (args.Port == component.OpenPort && !volumePump.Enabled)
+                _volumePumpSystem.Set(uid, volumePump, true);
+            else if (args.Port == component.OpenPort && volumePump.Enabled)
+                _volumePumpSystem.Set(uid, volumePump, false);
             else if (args.Port == component.TogglePort)
-            {
-                if (state == SignalState.High || state == SignalState.Momentary)
-                    _volumePumpSystem.SetToggle(uid, volumePump);
-            }
+                _volumePumpSystem.Toggle(uid, volumePump);
 
         }
     }
-}
+
