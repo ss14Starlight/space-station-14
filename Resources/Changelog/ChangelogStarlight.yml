@@ -1,11 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: Revised random smart corgi name datasets to align with a consistent naming theme.
-    type: Tweak
-  id: 406414
-  time: '2026-07-04T09:06:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4990
 - author: OMEGA
   changes:
   - message: (Hotel) Advanced SMES in AI Core.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406813
   time: '2026-07-23T08:49:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5181
+- author: Mack
+  changes:
+  - message: You can now see the pipes from plumbing compatible machines using a t-ray scanner.
+    type: Tweak
+  id: 406814
+  time: '2026-07-23T09:14:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5197
 Order: -1
