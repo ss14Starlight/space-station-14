@@ -181,6 +181,7 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_pump.ogg
+        # Starlight: Replaced DeviceNetwork, see Starlight block
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
     # Starlight start
