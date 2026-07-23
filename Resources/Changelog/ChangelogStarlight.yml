@@ -1,25 +1,4 @@
 Entries:
-- author: Tjmaxmillion
-  changes:
-  - message: Fixed GSO Job icon.
-    type: Fix
-  id: 406428
-  time: '2026-07-05T08:56:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5014
-- author: Conflee
-  changes:
-  - message: Putrid Blood has been renamed to Mortucussus, which is now directly used for the Ambuzol recipe. Centrifuging the blood drawn from Zombies is no longer required. All other Metashiled changes from PR 4747 are kept.
-    type: Tweak
-  id: 406429
-  time: '2026-07-05T13:16:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5009
-- author: Mack
-  changes:
-  - message: Cyberarm tool icons not showing for some species.
-    type: Fix
-  id: 406430
-  time: '2026-07-05T14:08:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4986
 - author: Caws
   changes:
   - message: Added a NanoMed Security to the Security shuttle's Medbay.
@@ -2799,4 +2778,25 @@ Entries:
   id: 406827
   time: '2026-07-23T10:42:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5172
+- author: redmushie
+  changes:
+  - message: (ATS) Updated dock buy/sell pipes to follow updated convention.
+    type: Tweak
+  id: 406828
+  time: '2026-07-23T11:13:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5244
+- author: redmushie
+  changes:
+  - message: (ATS) Distro dock inlet regulators; prevents the ATS from giving all of its distro to a visiting shuttle.
+    type: Add
+  id: 406829
+  time: '2026-07-23T11:13:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5244
+- author: redmushie
+  changes:
+  - message: (CS-4T9 Tanker) Updated buy/sell gas pipes to follow updated convention.
+    type: Tweak
+  id: 406830
+  time: '2026-07-23T11:13:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5244
 Order: -1
