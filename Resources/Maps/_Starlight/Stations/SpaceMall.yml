@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/11/2026 05:39:12
-  entityCount: 42572
+  time: 07/23/2026 02:57:26
+  entityCount: 42578
 maps:
 - 1
 grids:
@@ -18703,7 +18703,7 @@ entities:
       pos: 79.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -288368.6
+      secondsUntilStateChange: -288728.75
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19845,7 +19845,7 @@ entities:
       pos: -38.5,-5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -161879.64
+      secondsUntilStateChange: -162239.78
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -26431,7 +26431,7 @@ entities:
   - uid: 1870
     components:
     - type: Transform
-      pos: -56.463505,-17.322332
+      pos: -56.56302,-18.306583
       parent: 2
   - uid: 1871
     components:
@@ -129528,22 +129528,22 @@ entities:
   - uid: 21120
     components:
     - type: Transform
-      pos: 18.70728,-35.425194
+      pos: 19.533524,-35.343914
       parent: 2
   - uid: 21121
     components:
     - type: Transform
-      pos: 18.691654,-35.28457
+      pos: 19.658524,-35.48454
       parent: 2
   - uid: 21122
     components:
     - type: Transform
-      pos: 18.61353,-35.331444
+      pos: 19.580399,-35.39079
       parent: 2
   - uid: 21123
     components:
     - type: Transform
-      pos: 18.73853,-35.25332
+      pos: 19.736649,-35.51579
       parent: 2
 - proto: FoodPlateSmallPlastic
   entities:
@@ -190161,6 +190161,13 @@ entities:
     - type: Transform
       pos: 11.191645,-45.39397
       parent: 2
+- proto: IceCreamMaker
+  entities:
+  - uid: 42574
+    components:
+    - type: Transform
+      pos: 18.5,-35.5
+      parent: 2
 - proto: Igniter
   entities:
   - uid: 29403
@@ -191401,6 +191408,13 @@ entities:
     - type: Transform
       pos: 20.5,7.5
       parent: 2
+- proto: LockerCoronerFilled
+  entities:
+  - uid: 36386
+    components:
+    - type: Transform
+      pos: -56.5,-17.5
+      parent: 2
 - proto: LockerDetectiveFilled
   entities:
   - uid: 29583
@@ -191789,6 +191803,18 @@ entities:
     - type: Transform
       pos: 50.5,-23.5
       parent: 2
+- proto: LockerRoboticistFilled
+  entities:
+  - uid: 42060
+    components:
+    - type: Transform
+      pos: 45.5,-15.5
+      parent: 2
+  - uid: 42578
+    components:
+    - type: Transform
+      pos: 46.5,-15.5
+      parent: 2
 - proto: LockerSalvageLeadFilledHardsuit
   entities:
   - uid: 29644
@@ -191909,12 +191935,31 @@ entities:
     - type: Transform
       pos: 23.5,37.5
       parent: 2
+- proto: LockerSurgeonFilled
+  entities:
+  - uid: 42576
+    components:
+    - type: Transform
+      pos: -56.5,-4.5
+      parent: 2
+  - uid: 42577
+    components:
+    - type: Transform
+      pos: -48.5,-4.5
+      parent: 2
 - proto: LockerSyndicateShipGearBasic
   entities:
   - uid: 29660
     components:
     - type: Transform
       pos: 84.5,-24.5
+      parent: 2
+- proto: LockerVirologistFilled
+  entities:
+  - uid: 42063
+    components:
+    - type: Transform
+      pos: -61.5,-20.5
       parent: 2
 - proto: LockerWardenFilled
   entities:
@@ -217523,8 +217568,7 @@ entities:
   - uid: 34083
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 19.42603,-35.425194
+      pos: 19.455399,-35.406414
       parent: 2
 - proto: RPD
   entities:
@@ -225171,6 +225215,13 @@ entities:
     components:
     - type: Transform
       pos: -17.5,-24.5
+      parent: 2
+- proto: SpawnMobMonkeyStirStir
+  entities:
+  - uid: 42573
+    components:
+    - type: Transform
+      pos: 13.5,11.5
       parent: 2
 - proto: SpawnMobMoproach
   entities:
@@ -233767,12 +233818,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -56.5,-18.5
       parent: 2
-  - uid: 36386
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -56.5,-17.5
-      parent: 2
   - uid: 36387
     components:
     - type: Transform
@@ -238407,6 +238452,13 @@ entities:
     components:
     - type: Transform
       pos: -36.5,-25.5
+      parent: 2
+- proto: VendingMachineMime
+  entities:
+  - uid: 42575
+    components:
+    - type: Transform
+      pos: 20.5,3.5
       parent: 2
 - proto: VendingMachineNutri
   entities:
@@ -265575,13 +265627,6 @@ entities:
     - type: Transform
       pos: 18.5,13.5
       parent: 2
-- proto: WardrobeRoboticsFilled
-  entities:
-  - uid: 42060
-    components:
-    - type: Transform
-      pos: 45.5,-15.5
-      parent: 2
 - proto: WardrobeScienceFilled
   entities:
   - uid: 42061
@@ -265593,13 +265638,6 @@ entities:
     components:
     - type: Transform
       pos: 43.5,-11.5
-      parent: 2
-- proto: WardrobeVirologyFilled
-  entities:
-  - uid: 42063
-    components:
-    - type: Transform
-      pos: -61.5,-20.5
       parent: 2
 - proto: WarningAir
   entities:
