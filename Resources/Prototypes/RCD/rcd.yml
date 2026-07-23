@@ -195,22 +195,6 @@
   rotation: Camera
   fx: EffectRCDConstruct3
 
-# Starlight start
-- type: rcd
-  id: FirelockEdge
-  category: Airlocks
-  sprite: /Textures/_Starlight/Interface/Radial/RCD/firelock_edge.png
-  mode: ConstructObject
-  prototype: FirelockEdge
-  cost: 3
-  delay: 3
-  collisionMask: Impassable
-  collisionBounds: "-0.23,-0.49,0.23,-0.36"
-  rotation: User
-  fx: EffectRCDConstruct3
-#Starlight end
-
-
 # Lighting
 - type: rcd
   id: TubeLight
@@ -237,21 +221,6 @@
   collisionBounds: "-0.23,-0.49,0.23,-0.36"
   rotation: User
   fx: EffectRCDConstruct1
-
-#Starlight start
-- type: rcd
-  id: LightPostSmall
-  category: Lighting
-  sprite: /Textures/_Starlight/Interface/Radial/RCD/small_light_post.png
-  mode: ConstructObject
-  prototype: LightPostSmall
-  cost: 3
-  delay: 2
-  collisionMask: MachineMask
-  collisionBounds: "-0.17,-0.30,0.17,0.25"
-  rotation: Fixed
-  fx: EffectRCDConstruct1
-#Starlight end
 
 # Electrical
 - type: rcd
