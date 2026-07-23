@@ -927,12 +927,12 @@
 
 - type: entity
   parent: BasePDA
-  id: CentCommServicePDA
-  name: CentComm service PDA
+  id: CentCommServiceWorkerPDA
+  name: CentComm service worker PDA
   description: The crappy version they give to the people who make their food, mop their floors, and serve their drinks.
   components:
   - type: Pda
-    id: CentCommIDCardService
+    id: CentCommIDCardServiceWorker
     penSlot:
       startingItem: PenCentcom
       priority: -1
@@ -958,7 +958,7 @@
       - NanoChatCartridge # CD
 
 - type: entity
-  parent: CentCommServicePDA
+  parent: CentCommServiceWorkerPDA
   id: CentCommChefPDA
   name: CentComm chef PDA
   description: It's slick with the oil of the fat steak you're supposed to be cooking.
@@ -967,7 +967,7 @@
     id: CentCommIDCardChef
 
 - type: entity
-  parent: CentCommServicePDA
+  parent: CentCommServiceWorkerPDA
   id: CentCommBartenderPDA
   name: CentComm bartender PDA
   description: The trappings of a glorified cocktail waiter.
@@ -976,7 +976,7 @@
     id: CentCommIDCardBartender
 
 - type: entity
-  parent: CentCommServicePDA
+  parent: CentCommServiceWorkerPDA
   id: CentCommJanitorPDA
   name: CentComm janitor PDA
   description: Why are you reading this instead of mopping floors?

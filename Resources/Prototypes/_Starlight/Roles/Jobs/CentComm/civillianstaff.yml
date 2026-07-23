@@ -99,7 +99,7 @@
     jumpsuit: ClothingUniformJumpsuitCentCommServiceWorker
     shoes: ClothingShoesColorBlack
     head: ClothingHeadBandGreen
-    id: CentCommServicePDA
+    id: CentCommServiceWorkerPDA
     back: ClothingBackpack
     ears: ClothingHeadsetService
     pocket1: Fork

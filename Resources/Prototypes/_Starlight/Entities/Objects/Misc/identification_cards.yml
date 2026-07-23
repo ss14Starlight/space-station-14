@@ -526,8 +526,8 @@
 
 - type: entity
   parent: IDCardStandard
-  id: CentCommIDCardService
-  name: CentComm service ID card
+  id: CentCommIDCardServiceWorker
+  name: CentComm service worker ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
