@@ -83,6 +83,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/Comet.yml"),
         new("/Maps/_Starlight/Shuttles/Honeybee.yml"),
         new("/Maps/_Starlight/Shuttles/GasTransport.yml"),
+        new("/Maps/_Starlight/Shuttles/Inquisitor.yml"),
 
         // Syndicate
         new("/Maps/_Starlight/Shuttles/blackhorse.yml"),
@@ -101,6 +102,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/incorporation.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/montague.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/romeo.yml"),
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/VisitorInquisitor.yml"),
         new("/Maps/_Starlight/Shuttles/lotteryShuttleAdmeme.yml"),
         new("/Maps/_Starlight/Shuttles/LancePirates.yml"),
         new("/Maps/_Starlight/Shuttles/LynatiKr20/SmugglerMex.yml"),
