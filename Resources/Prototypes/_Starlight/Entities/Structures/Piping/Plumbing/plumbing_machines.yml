@@ -14,6 +14,14 @@
   - type: Appearance
   - type: PlumbingConnectorAppearance
     offset: 0.09375
+  - type: SubFloorHide
+    blockInteractions: false
+    blockAmbience: false
+    visibleLayers:
+    - enum.SubfloorLayers.FirstLayer
+  - type: CollideOnAnchor
+  - type: Visibility
+    layer: 1
   - type: InteractionOutline
   - type: Anchorable
   - type: Pullable
@@ -55,6 +63,9 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: tank
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
+  - type: CollideOnAnchor
+    enable: true
   - type: PlumbingDevice
     updateInterval: 2
   - type: PlumbingInlet
@@ -115,6 +126,7 @@
   description: Stores up to 200u of reagents. Useful for supplying separate duct networks with its unconnected outlets.
   components:
   - type: CollideOnAnchor
+    enable: false
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -122,6 +134,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: buffer_tank
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: PlumbingOutlet
     solutionName: tank
     connectedOutlets: false
@@ -144,7 +157,6 @@
   name: plumbing input
   description: A small tank you pour reagents into. Other machines pull from this. Connects in all directions.
   components:
-  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -152,6 +164,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: pipe_input
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: PlumbingInput
     solutionName: input
   - type: Plungeable
@@ -215,6 +228,10 @@
     drawdepth: FloorObjects
     layers:
     - state: sink_wide
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
+  - type: Physics
+    bodyType: Static
+    canCollide: false
   - type: Rotatable
     rotateWhileAnchored: false
   - type: PlumbingDevice
@@ -285,7 +302,6 @@
   name: plumbing output
   description: A small tank that pulls reagents from the network. Draw from it with a container. Connects in all directions.
   components:
-  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -293,6 +309,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: pipe_output
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: PlumbingDevice
     updateInterval: 2
   - type: PlumbingInlet
@@ -356,7 +373,9 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: reaction_chamber
-      map: [ "enum.PlumbingVisualLayers.Base" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
+  - type: CollideOnAnchor
+    enable: true
   - type: GenericVisualizer
     visuals:
       enum.PlumbingVisuals.Running:
@@ -435,10 +454,18 @@
     sprite: Structures/Machines/smartfridge.rsi
     layers:
     - state: smartfridge
-      map: ["enum.StorageVisualLayers.Base"]
+      map: ["enum.StorageVisualLayers.Base", "enum.SubfloorLayers.FirstLayer"]
     - state: smartfridge_door
-      map: ["enum.StorageVisualLayers.Door"]
+      map: ["enum.StorageVisualLayers.Door", "enum.SubfloorLayers.SecondLayer"]
       shader: unshaded
+  - type: CollideOnAnchor
+    enable: true
+  - type: SubFloorHide
+    blockInteractions: false
+    blockAmbience: false
+    visibleLayers:
+    - enum.SubfloorLayers.FirstLayer
+    - enum.SubfloorLayers.SecondLayer
   - type: PointLight
     radius: 1.2
     energy: 3.0
@@ -516,7 +543,9 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: pill_press_off
-      map: [ "enum.PlumbingVisualLayers.Base" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
+  - type: CollideOnAnchor
+    enable: true
   - type: GenericVisualizer
     visuals:
       enum.PlumbingVisuals.Running:
@@ -591,7 +620,6 @@
   name: plumbing filter
   description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
-  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -599,6 +627,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: filter
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: PlumbingDevice
     updateInterval: 2
   - type: PlumbingInlet
@@ -676,6 +705,7 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: filterF
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: NodeContainer
     nodes:
       inlet:
@@ -707,9 +737,12 @@
     noRot: false
     layers:
     - state: synthesizer
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
     - state: synthesizer_overlay
       map: [ "enum.PlumbingVisualLayers.Overlay" ]
       visible: false
+  - type: CollideOnAnchor
+    enable: true
   - type: GenericVisualizer
     visuals:
       enum.PlumbingVisuals.Running:
@@ -810,14 +843,13 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: disposal
-      map: [ "enum.PlumbingVisualLayers.Base" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
   - type: GenericVisualizer
     visuals:
       enum.PlumbingVisuals.Running:
         enum.PlumbingVisualLayers.Base:
           True: { state: disposal_working }
           False: { state: disposal }
-  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -874,10 +906,10 @@
     sprite: Objects/Specific/Janitorial/drain.rsi
     layers:
     - state: icon
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
     - map: [ "enum.SolutionContainerLayers.Fill" ]
       state: fill-1
       visible: false
-  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
