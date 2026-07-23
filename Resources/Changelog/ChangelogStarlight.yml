@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Hotel) Wiring for AI Upload, HOP and Law.
-    type: Tweak
-  id: 406421
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
   - message: (Hotel) Increased AME to two cores.
     type: Tweak
   id: 406422
@@ -2799,4 +2792,11 @@ Entries:
   id: 406820
   time: '2026-07-23T09:42:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5233
+- author: Caws
+  changes:
+  - message: Fixed a niche UI crash/flickering related to the new gases, Ulnitranium and ZXA, when using certain Atmos devices.
+    type: Fix
+  id: 406821
+  time: '2026-07-23T10:08:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5238
 Order: -1
