@@ -1,34 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Hotel) Increased AME to two cores.
-    type: Tweak
-  id: 406422
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) TEG streamlined and Atmo rooms now combined, burn chamber size reduced.
-    type: Tweak
-  id: 406423
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Expanded airlocks in Engineering to remove 1x1 airlocks.
-    type: Tweak
-  id: 406424
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) HV wiring between generators and SMES.
-    type: Tweak
-  id: 406425
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
   - message: (Hotel) LV wiring in maints.
     type: Tweak
   id: 406426
@@ -2799,4 +2771,32 @@ Entries:
   id: 406821
   time: '2026-07-23T10:08:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5238
+- author: OMEGA
+  changes:
+  - message: (Silica) Roboticist lockers.
+    type: Add
+  id: 406822
+  time: '2026-07-23T10:08:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5194
+- author: OMEGA
+  changes:
+  - message: (Silica) Overhauled piping networks.
+    type: Tweak
+  id: 406823
+  time: '2026-07-23T10:08:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5194
+- author: OMEGA
+  changes:
+  - message: (Silica) Additional Air Alarm coverage.
+    type: Tweak
+  id: 406824
+  time: '2026-07-23T10:08:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5194
+- author: OMEGA
+  changes:
+  - message: (Silica) Added freezers and heaters to atmos.
+    type: Tweak
+  id: 406825
+  time: '2026-07-23T10:08:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5194
 Order: -1
