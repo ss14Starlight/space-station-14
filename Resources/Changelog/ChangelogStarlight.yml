@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Hotel) SMES in TEG.
-    type: Remove
-  id: 406420
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
   - message: (Hotel) Wiring for AI Upload, HOP and Law.
     type: Tweak
   id: 406421
@@ -2799,4 +2792,11 @@ Entries:
   id: 406819
   time: '2026-07-23T09:16:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5246
+- author: Caws
+  changes:
+  - message: (Starboard) Fixed a missing disposals pipe by the stage, which caused trash that fell out of disposals to rip up the floor tiles.
+    type: Fix
+  id: 406820
+  time: '2026-07-23T09:42:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5233
 Order: -1
