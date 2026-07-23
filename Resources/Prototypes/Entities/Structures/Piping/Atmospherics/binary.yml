@@ -104,8 +104,6 @@
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
-    transmitFrequencyId: AtmosMonitor
-    sendBroadcastAttemptEvent: true
     prefix: device-address-prefix-gas-pump
   - type: WirelessNetworkConnection
     range: 200
@@ -114,7 +112,7 @@
       - Open
       - Close
       - Toggle
-  - type: SignalControlledValve
+  - type: GasPressurePumpSignal
   # Starlight end
   - type: GuideHelp
     guides:
@@ -191,8 +189,6 @@
     - type: DeviceNetwork
       deviceNetId: Wireless
       receiveFrequencyId: BasicDevice
-      transmitFrequencyId: AtmosMonitor
-      sendBroadcastAttemptEvent: true
       prefix: device-address-prefix-volume-pump
     - type: WirelessNetworkConnection
       range: 200
@@ -201,7 +197,7 @@
         - Open
         - Close
         - Toggle
-    - type: SignalControlledValve
+    - type: GasVolumePumpSignal
     # Starlight end
     - type: GuideHelp
       guides:

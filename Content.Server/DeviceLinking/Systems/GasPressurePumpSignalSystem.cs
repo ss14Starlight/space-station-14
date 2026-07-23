@@ -1,0 +1,58 @@
+using Content.Server.Atmos.Piping.Binary.EntitySystems;
+using Content.Server.DeviceLinking.Components;
+using Content.Shared.Atmos.Components;
+using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceLinking.Events;
+using Content.Shared.DeviceNetwork;
+using JetBrains.Annotations;
+
+namespace Content.Server.DeviceLinking.Systems
+{
+    [UsedImplicitly]
+    public sealed partial class GasPressurePumpSignalSystem : EntitySystem
+    {
+        [Dependency] private GasPressurePumpSystem _pressurePumpSystem = default!;
+        [Dependency] private DeviceLinkSystem _signalSystem = default!;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<GasPressurePumpSignalComponent, ComponentInit>(OnInit);
+            SubscribeLocalEvent<GasPressurePumpSignalComponent, SignalReceivedEvent>(OnSignalReceived);
+        }
+
+        private void OnInit(EntityUid uid, GasPressurePumpSignalComponent component, ComponentInit args)
+        {
+            _signalSystem.EnsureSinkPorts(uid, component.OpenPort, component.ClosePort, component.TogglePort);
+        }
+
+        private void OnSignalReceived(EntityUid uid, GasPressurePumpSignalComponent component, ref SignalReceivedEvent args)
+        {
+            if(!TryComp(uid, out GasPressurePumpComponent? pressurePump))
+                return;
+
+            var state = SignalState.Momentary;
+            args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
+
+            if (args.Port == component.OpenPort)
+            {
+                if (state == SignalState.High || state == SignalState.Momentary)
+                {
+                    if (pressurePump.Enabled == false)
+                        _pressurePumpSystem.SetEnable(uid, pressurePump);
+                }
+            }
+            else if (args.Port == component.ClosePort)
+            {
+                if (state == SignalState.High || state == SignalState.Momentary)
+                    _pressurePumpSystem.SetDisable(uid, pressurePump);
+            }
+            else if (args.Port == component.TogglePort)
+            {
+                if (state == SignalState.High || state == SignalState.Momentary)
+                    _pressurePumpSystem.SetToggle(uid, pressurePump);
+            }
+
+        }
+    }
+}

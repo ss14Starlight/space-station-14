@@ -137,4 +137,19 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
         Set(uid, component, !component.Enabled);
         return;
     }
+
+    public void SetEnable(EntityUid uid, GasPressurePumpComponent component)
+    {
+        Set(uid, component, true);
+    }
+
+    public void SetDisable(EntityUid uid, GasPressurePumpComponent component)
+    {
+        Set(uid, component, false);
+    }
+
+    public void SetToggle(EntityUid uid, GasPressurePumpComponent component)
+    {
+        Toggle(uid, component);
+    }
 }
