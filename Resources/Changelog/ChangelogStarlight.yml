@@ -1,41 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Hotel) Advanced SMES in AI Core.
-    type: Add
-  id: 406415
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Communications console to Law Office.
-    type: Add
-  id: 406416
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Named all SMES, Substations and APCs based off beacon name and cardinals.
-    type: Add
-  id: 406417
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Burn chamber, recycler and space heaters in Atmos.
-    type: Add
-  id: 406418
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Advanced SMES in PA Control.
-    type: Remove
-  id: 406419
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
   - message: (Hotel) SMES in TEG.
     type: Remove
   id: 406420
@@ -2799,4 +2764,39 @@ Entries:
   id: 406814
   time: '2026-07-23T09:14:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5197
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Added stasis beds to medbay.
+    type: Add
+  id: 406815
+  time: '2026-07-23T09:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5246
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Added some BEAUTIFUL DIAGONAL TILES.
+    type: Add
+  id: 406816
+  time: '2026-07-23T09:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5246
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Removed the research server in exchange for a mat silo.
+    type: Remove
+  id: 406817
+  time: '2026-07-23T09:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5246
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Rotting corpse is gone now.
+    type: Remove
+  id: 406818
+  time: '2026-07-23T09:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5246
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Cryopods now work.
+    type: Fix
+  id: 406819
+  time: '2026-07-23T09:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5246
 Order: -1
