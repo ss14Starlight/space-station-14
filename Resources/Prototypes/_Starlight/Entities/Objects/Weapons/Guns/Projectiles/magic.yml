@@ -52,13 +52,12 @@
     - state: fireorb
       shader: unshaded
   - type: Explosive
-    explosionType: Default
-    maxIntensity: 1
-    intensitySlope: 0.5
-    totalIntensity: 30
+    explosionType: FireBomb
+    maxIntensity: 2
+    intensitySlope: 0.1
+    totalIntensity: 25
+    fireStacks: 80
     canCreateVacuum: false
   - type: IgnitionSource
     temperature: 10000
     ignited: true
-  - type: IgniteOnCollide
-    fireStacks: 10
