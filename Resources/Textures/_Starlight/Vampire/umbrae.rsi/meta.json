@@ -1,32 +1,39 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station 13",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "cloak_of_darkness"
+            "name": "cloak_of_darkness",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "shadow_snare"
+            "name": "shadow_snare",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "shadow_boxing"
+            "name": "shadow_boxing",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "shadow_anchor"
+            "name": "shadow_anchor",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "extinguish"
+            "name": "extinguish",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "eternal_darkness"
+            "name": "eternal_darkness",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "dark_passage"
+            "name": "dark_passage",
+            "copyright": "Taken from Paradise Station 13"
         }
     ]
 }
