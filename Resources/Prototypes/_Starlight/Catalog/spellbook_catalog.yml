@@ -111,3 +111,37 @@
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookIgniteRune
+  name: spellbook-igniterune-name
+  description: spellbook-igniterune-desc
+  priority: 4
+  productAction: ActionIgniteRuneWiz
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookExplosionRune
+  name: spellbook-explosionrune-name
+  description: spellbook-explosionrune-desc
+  priority: 5
+  productAction: ActionExplosionRuneWiz
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster

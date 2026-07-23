@@ -1,0 +1,59 @@
+- type: entity
+  parent: BaseRuneAction
+  id: ActionExplosionRuneWiz
+  name: Explosion Rune
+  description: Summons a rune that explodes if used.
+  components:
+  - type: Action
+    useDelay: 40
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: ExplosionRuneWiz
+  - type: SpeakOnAction
+    sentence: action-speech-spell-explosionrune
+    tts: action-speech-spell-explosionrune-tts
+    modifier: Spell
+  - type: Sprite
+    sprite: Structures/Magic/Cult/trap.rsi
+    layers:
+      - state: trap
+        color: '#FF770055'
+  - type: EorgPreventAction # Starlight
+
+- type: entity
+  parent: ActionIgniteRune
+  id: ActionIgniteRuneWiz
+  name: Incendiary Rune
+  description: Summons a rune that ignites if used.
+  components:
+  - type: SpeakOnAction
+    sentence: action-speech-spell-iginiterune
+    tts: action-speech-spell-iginiterune-tts
+    modifier: Spell
+  - type: Action
+    useDelay: 40
+  - type: Sprite
+    sprite: Structures/Magic/Cult/rune.rsi
+    layers:
+      - state: cult6
+        color: '#FF770055'
+
+- type: entity
+  parent: ActionExplosionRune
+  id: ExplosionRuneWiz
+  name: Explosion Rune
+  components:
+    - type: TriggerOnCollide
+      fixtureID: rune
+      maxTriggers: 1
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 20
+      intensitySlope: 5
+      maxIntensity: 3
+    - type: Sprite
+      sprite: Structures/Magic/Cult/trap.rsi
+      layers:
+        - state: trap
+          color: '#FF770055'

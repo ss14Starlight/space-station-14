@@ -55,7 +55,7 @@
     explosionType: Incendiary
     maxIntensity: 1
     intensitySlope: 0.1
-    totalIntensity: 20
+    totalIntensity: 15
     canCreateVacuum: false
   - type: IgnitionSource
     temperature: 10000

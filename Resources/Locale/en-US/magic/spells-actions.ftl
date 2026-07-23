@@ -24,3 +24,7 @@ action-speech-spell-firebolt = IGNIS!!
 action-speech-spell-firebolt-tts = Ignissss!!
 action-speech-spell-fireorb = INCANDE OMNES !!
 action-speech-spell-fireorb-tts = INKANDE OMNES!!
+action-speech-spell-explosionrune = DETONO !
+action-speech-spell-explosionrune-tts = DETONO!!
+action-speech-spell-iginiterune = ARDE VIVAT !!
+action-speech-spell-iginiterune-tts = ARDE VIVAT!!
