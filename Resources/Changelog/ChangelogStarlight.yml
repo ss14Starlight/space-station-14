@@ -1,18 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: (Hotel) LV wiring in maints.
-    type: Tweak
-  id: 406426
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: mikeysaurus
-  changes:
-  - message: Updated lobby observe warning text to make more sense now that players can edit their character in-round.
-    type: Tweak
-  id: 406427
-  time: '2026-07-04T10:25:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5007
 - author: Tjmaxmillion
   changes:
   - message: Fixed GSO Job icon.
@@ -2799,4 +2785,18 @@ Entries:
   id: 406825
   time: '2026-07-23T10:08:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5194
+- author: joshujo
+  changes:
+  - message: pressure pumps now accept signals.
+    type: Add
+  id: 406826
+  time: '2026-07-23T10:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5172
+- author: joshujo
+  changes:
+  - message: volumetric pumps now accept signals.
+    type: Add
+  id: 406827
+  time: '2026-07-23T10:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5172
 Order: -1
