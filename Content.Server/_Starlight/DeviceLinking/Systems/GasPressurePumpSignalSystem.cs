@@ -9,40 +9,40 @@ using JetBrains.Annotations;
 
 namespace Content.Server._Starlight.DeviceLinking.Systems;
 
-    [UsedImplicitly]
-    public sealed partial class GasPressurePumpSignalSystem : EntitySystem
+[UsedImplicitly]
+public sealed partial class GasPressurePumpSignalSystem : EntitySystem
+{
+    [Dependency] private GasPressurePumpSystem _pressurePumpSystem = default!;
+    [Dependency] private DeviceLinkSystem _signalSystem = default!;
+
+    public override void Initialize()
     {
-        [Dependency] private GasPressurePumpSystem _pressurePumpSystem = default!;
-        [Dependency] private DeviceLinkSystem _signalSystem = default!;
-
-        public override void Initialize()
-        {
-            base.Initialize();
-            SubscribeLocalEvent<GasPressurePumpSignalComponent, ComponentInit>(OnInit);
-            SubscribeLocalEvent<GasPressurePumpSignalComponent, SignalReceivedEvent>(OnSignalReceived);
-        }
-
-        private void OnInit(EntityUid uid, GasPressurePumpSignalComponent component, ComponentInit args)
-        {
-            _signalSystem.EnsureSinkPorts(uid, component.OpenPort, component.ClosePort, component.TogglePort);
-        }
-
-        private void OnSignalReceived(EntityUid uid, GasPressurePumpSignalComponent component, ref SignalReceivedEvent args)
-        {
-            if(!TryComp(uid, out GasPressurePumpComponent? pressurePump))
-                return;
-
-            var state = SignalState.Momentary;
-            args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
-
-            if (state is not (SignalState.High or SignalState.Momentary)) return;
-            if (args.Port == component.OpenPort && !pressurePump.Enabled)
-                _pressurePumpSystem.Set(uid, pressurePump, true);
-            else if (args.Port == component.OpenPort && pressurePump.Enabled)
-                _pressurePumpSystem.Set(uid, pressurePump, false);
-            else if (args.Port == component.TogglePort)
-                _pressurePumpSystem.Toggle(uid, pressurePump);
-
-        }
+        base.Initialize();
+        SubscribeLocalEvent<GasPressurePumpSignalComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<GasPressurePumpSignalComponent, SignalReceivedEvent>(OnSignalReceived);
     }
+
+    private void OnInit(EntityUid uid, GasPressurePumpSignalComponent component, ComponentInit args)
+    {
+        _signalSystem.EnsureSinkPorts(uid, component.OpenPort, component.ClosePort, component.TogglePort);
+    }
+
+    private void OnSignalReceived(EntityUid uid, GasPressurePumpSignalComponent component, ref SignalReceivedEvent args)
+    {
+        if (!TryComp(uid, out GasPressurePumpComponent? pressurePump))
+            return;
+
+        var state = SignalState.Momentary;
+        args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
+
+        if (state is not (SignalState.High or SignalState.Momentary)) return;
+        if (args.Port == component.OpenPort && !pressurePump.Enabled)
+            _pressurePumpSystem.Set(uid, pressurePump, true);
+        else if (args.Port == component.OpenPort && pressurePump.Enabled)
+            _pressurePumpSystem.Set(uid, pressurePump, false);
+        else if (args.Port == component.TogglePort)
+            _pressurePumpSystem.Toggle(uid, pressurePump);
+
+    }
+}
 
