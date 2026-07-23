@@ -36,12 +36,12 @@ public sealed partial class GasVolumePumpSignalSystem : EntitySystem
         args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
 
         if (state is not (SignalState.High or SignalState.Momentary)) return;
-        if (args.Port == component.OpenPort && !volumePump.Enabled)
+        if (args.Port == component.OpenPort)
             _volumePumpSystem.Set(uid, volumePump, true);
-        else if (args.Port == component.OpenPort && volumePump.Enabled)
+        else if (args.Port == component.OpenPort)
             _volumePumpSystem.Set(uid, volumePump, false);
         else if (args.Port == component.TogglePort)
-            _volumePumpSystem.Toggle(uid, volumePump);
+            _volumePumpSystem.Set(uid, volumePump, !volumePump.Enabled);
 
     }
 }
