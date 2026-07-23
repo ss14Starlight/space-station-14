@@ -42,6 +42,7 @@
   - type: WorldTargetAction
     event: !type:ProjectileSpellEvent
       prototype: ProjectileFireOrb
+      projectileSpeed: 3
   - type: SpeakOnAction
     sentence: action-speech-spell-fireorb
     tts: action-speech-spell-fireorb-tts
