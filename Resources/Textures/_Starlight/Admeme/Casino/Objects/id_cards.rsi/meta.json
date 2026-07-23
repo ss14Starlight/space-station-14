@@ -1,0 +1,27 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "security",
+      "copyright": "Vincolan"
+    },
+    {
+      "name": "manager",
+      "copyright": "Vincolan"
+    },
+    {
+      "name": "owner",
+      "copyright": "Vincolan"
+    },
+    {
+      "name": "dealer",
+      "copyright": "Vincolan"
+    }
+  ]
+}
