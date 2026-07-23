@@ -283,6 +283,38 @@
         - tool: Welding
           doAfter: 1
 
+    - node: molarmixerAlt3
+      entity: GasMolarMixerAlt3
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerAlt4
+      entity: GasMolarMixerAlt4
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
     - node: molarmixerflippedAlt1
       entity: GasMolarMixerFlippedAlt1
       edges:
@@ -301,6 +333,38 @@
 
     - node: molarmixerflippedAlt2
       entity: GasMolarMixerFlippedAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerflippedAlt3
+      entity: GasMolarMixerFlippedAlt3
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerflippedAlt4
+      entity: GasMolarMixerFlippedAlt4
       edges:
       - to: start
         conditions:
