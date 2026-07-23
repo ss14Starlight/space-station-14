@@ -134,3 +134,15 @@
   fireStates: 3
   fireStacks: 2
   temperature: 1500
+
+#Starlight
+- type: explosion
+  id: Incendiary
+  damagePerIntensity:
+    types:
+      Heat: 5
+  lightColor: Red
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 10
+  fireStacks: 5
+  temperature: 1500
