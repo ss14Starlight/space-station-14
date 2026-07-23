@@ -116,6 +116,8 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
     {
     }
 
+    #region Starlight
+
     protected void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
     {
         if (!Resolve(uid, ref pump, ref appearance, false))
@@ -124,8 +126,6 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
         var pumpOn = pump.Enabled && _receiver.IsPowered(uid);
         _appearance.SetData(uid, PumpVisuals.Enabled, pumpOn, appearance);
     }
-
-    #region Starlight
 
     public void Set(EntityUid uid, GasPressurePumpComponent component, bool value)
     {
