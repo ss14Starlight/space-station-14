@@ -13,20 +13,17 @@
   - type: KnockbackByUserTag # Starlight
     doestContain:
       Skating:
-        knockback: 2.0
+        knockback: 2
         staminaMultiplier: 50
       Rodentia:
         knockback: 4
-        staminaMultiplier: 15
+        staminaMultiplier: 25
       Resomi:
         knockback: 4
-        staminaMultiplier: 15
-      Avali:
-        knockback: 2 # half of what resomi take
-        staminaMultiplier: 15
+        staminaMultiplier: 25
       Felionoid:
         knockback: 2 #half of what resomi take
-        staminaMultiplier: 15
+        staminaMultiplier: 25
     # starlight start
   - type: MeleeWeapon
     wideAnimationRotation: 90
@@ -93,12 +90,13 @@
     doestContain:
       Rodentia:
         knockback: 3
+        staminaMultiplier: 20
       Resomi:
         knockback: 2
-      Avali:
-        knockback: 1 # half of what resomi take
+        staminaMultiplier: 20
       Felionoid:
         knockback: 1 # half of what resomi take
+        staminaMultiplier: 20
   - type: BallisticAmmoProvider # Starlight
     capacity: 10
     proto: CartridgeMagnumSP
