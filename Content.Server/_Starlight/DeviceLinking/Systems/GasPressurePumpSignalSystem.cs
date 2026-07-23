@@ -1,12 +1,13 @@
+using Content.Server._Starlight.DeviceLinking.Components;
 using Content.Server.Atmos.Piping.Binary.EntitySystems;
-using Content.Server.DeviceLinking.Components;
+using Content.Server.DeviceLinking.Systems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.DeviceNetwork;
 using JetBrains.Annotations;
 
-namespace Content.Server.DeviceLinking.Systems;
+namespace Content.Server._Starlight.DeviceLinking.Systems;
 
     [UsedImplicitly]
     public sealed partial class GasPressurePumpSignalSystem : EntitySystem

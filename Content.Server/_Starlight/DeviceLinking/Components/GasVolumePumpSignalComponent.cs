@@ -1,8 +1,7 @@
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.DeviceLinking.Components
-{
+namespace Content.Server._Starlight.DeviceLinking.Components;
     [RegisterComponent]
     public sealed partial class GasVolumePumpSignalComponent : Component
     {
@@ -15,4 +14,3 @@ namespace Content.Server.DeviceLinking.Components
         [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
         public string TogglePort = "Toggle";
     }
-}
