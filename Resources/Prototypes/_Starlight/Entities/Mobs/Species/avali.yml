@@ -134,6 +134,9 @@
       bleedHealPerUpdate: 1.0
       critHealingModifier: 0.5
       stasisDamageReduction: 0.7
+    - type: ActionGrant
+      actions:
+      - ActionHealingNanites
 
 # Chirp!
 # Chirp!

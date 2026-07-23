@@ -21,3 +21,6 @@ reagent-desc-acrileni = A weak natural medicine able to treat light peircing dam
 
 reagent-name-iceialin = iceialin
 reagent-desc-iceialin = Cool to the touch, a chem that can restore the temperature of a corpse back to normal.
+
+reagent-name-healing-nanites = healing nanites
+reagent-desc-healing-nanites = A solution containg fluid suspened healing nanites. Heal minor brute, and temperature based damage quickly.

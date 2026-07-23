@@ -26,3 +26,23 @@
         state: healoff
     - type: InstantAction
       event: !type:ExitStasisActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionHealingNanites
+  name: Activate Injector Claw
+  description: Fill your claws with injectible healing nanites
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_avali.rsi
+        state: heal-nanites
+    - type: LimitedCharges
+      maxCharges: 3
+    - type: AutoRecharge
+      rechargeDuration: 120
+    - type: InstantAction
+      event: !type:SpawnItemInHandEvent
+        spawned: AvaliHealingInjector
+        requiresFreeHand: true

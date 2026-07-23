@@ -387,12 +387,14 @@
   desc: reagent-desc-healing-nanites
   physicalDesc: reagent-physical-desc-opaque
   flavor: electrifying
-  color: "#ff9249"
+  color: "#a52faf"
   metabolisms:
     Medicine:
       effects:
       - !type:HealthChange
         damage:
           groups:
-            Burn: -4
-            Brute: -4
+            Brute: -3
+          types:
+            Cold: -2
+            Heat: -2
