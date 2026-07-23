@@ -1,0 +1,184 @@
+﻿using Content.Server._Starlight.Cargo.Components;
+using Content.Server._Starlight.Cargo.TamperSeal.Components;
+using Content.Server.Cargo.Systems;
+using Content.Server.Materials;
+using Content.Server.Popups;
+using Content.Server.Station.Systems;
+using Content.Server.Storage.EntitySystems;
+using Content.Shared._Starlight.Cargo.MaterialDispenser;
+using Content.Shared._Starlight.Cargo.TamperSeal.Components;
+using Content.Shared.Containers;
+using Content.Shared.EntityTable;
+using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.Materials;
+using Content.Shared.Storage.Components;
+using Content.Shared.Tools;
+using JetBrains.Annotations;
+using Robust.Server.Containers;
+using Robust.Server.GameObjects;
+using Robust.Shared.Containers;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
+
+namespace Content.Server._Starlight.Cargo.MaterialDispenser;
+
+/// <summary>
+/// This handles...
+/// </summary>
+[UsedImplicitly]
+public sealed class MaterialDispenserSystem : EntitySystem
+{
+    [Dependency] private ContainerSystem _containerSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private MaterialStorageSystem _materialStorageSystem = default!;
+    [Dependency] private EntityStorageSystem _storageSystem = default!;
+    [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private PricingSystem _pricingSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+
+    private static readonly ProtoId<MaterialPrototype> _crateMaterial = "Steel";
+    private static readonly int _crateMaterialAmount = 5;
+    /// <inheritdoc/>
+    public override void Initialize(){
+        base.Initialize();
+        SubscribeLocalEvent<MaterialDispenserComponent, ComponentStartup>(SubscribeUpdateUiState);
+        SubscribeLocalEvent<MaterialDispenserComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
+        SubscribeLocalEvent<MaterialDispenserComponent, MaterialEntityInsertedEvent>(SubscribeUpdateUiState);
+        SubscribeLocalEvent<MaterialDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
+
+
+        SubscribeLocalEvent<MaterialDispenserComponent, MaterialDispenserAmountButton>(OnAmountButtonMessage);
+        SubscribeLocalEvent<MaterialDispenserComponent, MaterialDispenserDepartmentSelected>(OnDepartmentSelectMessage);
+        SubscribeLocalEvent<MaterialDispenserComponent, MaterialDispenserModeChange>(OnModeChange);
+        SubscribeLocalEvent<MaterialDispenserComponent, MaterialDispenserEjectCrate>(OnCrateEjectMessage);
+
+    }
+
+    private void OnCrateEjectMessage(Entity<MaterialDispenserComponent> ent, ref MaterialDispenserEjectCrate args)
+    {
+        var materialProto = _prototypeManager.Index(_crateMaterial);
+        var sheetVolume = _materialStorageSystem.GetSheetVolume(materialProto);
+
+        if (_materialStorageSystem.GetMaterialAmount(ent, _crateMaterial) < _crateMaterialAmount * sheetVolume)
+        {
+            return;
+        }
+
+        _materialStorageSystem.TryChangeMaterialAmount(ent, _crateMaterial, -_crateMaterialAmount * sheetVolume);
+
+        var stationId = _stationSystem.GetOwningStation(ent.Owner);
+        if (stationId==null)
+        {
+            return;
+        }
+        var item = Spawn(ent.Comp.CrateId, new EntityCoordinates(ent.Owner, 0, 0));
+
+        foreach (var material in ent.Comp.Buffer)
+        {
+            var spawnedMats = _materialStorageSystem.SpawnMultipleFromMaterial(material.Value, material.Key, Transform(item).Coordinates);
+
+            foreach (var spawnedMat in spawnedMats) _storageSystem.Insert(spawnedMat, item);
+        }
+
+        ent.Comp.Buffer.Clear();
+
+        _transformSystem.Unanchor(item);
+        if (!TryComp<TamperSealableComponent>(item, out var tamperSealable))
+            return;
+        var recipient = _prototypeManager.Index(ent.Comp.Account);
+        var seal = EnsureComp<TamperSealComponent>(item);
+        seal.Recipient = ent.Comp.Account;
+        seal.RecipientName = recipient.TamperSealName;
+        seal.RecipientExamineColor = recipient.Color;
+        seal.Color = recipient.TamperSealColor;
+        seal.Accesses = new List<TamperSealAccessPattern>(recipient.TamperSealAccesses);
+        seal.DestroyToolQualities = new HashSet<ProtoId<ToolQualityPrototype>>(tamperSealable.DestroyToolQualities);
+        var value = EnsureComp<TamperSealValueComponent>(item);
+        value.StationId = (EntityUid)stationId;
+        var price = _pricingSystem.GetPrice(item);
+        value.Value = (int)price;
+        value.Reward = (int) Math.Floor(ent.Comp.RewardMultiplier * price); // Rewards rounded down.
+        value.Penalty = 0; // Penalties dont apply since miners provided materials.
+        value.Refund = 0; // Refunds dont apply since miners provided materials.
+
+        // Attach an integrity component. This is used by the integrity system to detect repeat tampering.
+        var integrity = EnsureComp<TamperSealIntegrityBeaconComponent>(item);
+        integrity.StationId = (EntityUid)stationId;
+
+        DirtyEntity(item);
+
+        UpdateUiState(ent);
+    }
+
+    private void OnModeChange(Entity<MaterialDispenserComponent> ent, ref MaterialDispenserModeChange args)
+    {
+        ent.Comp.Mode = args.Mode;
+        UpdateUiState(ent);
+    }
+
+    private void OnAmountButtonMessage(Entity<MaterialDispenserComponent> ent, ref MaterialDispenserAmountButton args)
+    {
+        var materialProto = _prototypeManager.Index<MaterialPrototype>(args.Material);
+        var sheetVolume = _materialStorageSystem.GetSheetVolume(materialProto);
+        var amount = args.Amount * sheetVolume;
+        if (ent.Comp.Mode == MaterialDispenserMode.Transfer)
+        {
+            if (!args.FromBuffer)
+            {
+                if (ent.Comp.Buffer.ContainsKey(args.Material) && ent.Comp.Buffer[args.Material] >= amount)
+                {
+                    ent.Comp.Buffer[args.Material] -= amount;
+                    _materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, amount);
+
+                    if (ent.Comp.Buffer[args.Material] <= 0) ent.Comp.Buffer.Remove(args.Material);
+                }
+            }
+            else
+            {
+                if(!_materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, -amount)) return;
+                if (!ent.Comp.Buffer.ContainsKey(args.Material)) ent.Comp.Buffer.Add(args.Material, 0);
+                ent.Comp.Buffer[args.Material] += amount;
+            }
+
+        }
+        else if (ent.Comp.Mode == MaterialDispenserMode.Eject)
+        {
+            if (!args.FromBuffer)
+            {
+                if (ent.Comp.Buffer.ContainsKey(args.Material) && ent.Comp.Buffer[args.Material] >= amount)
+                {
+                    ent.Comp.Buffer[args.Material] -= amount;
+                    var stored = _materialStorageSystem.GetMaterialAmount(ent, args.Material);
+                    _materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, amount);
+                }
+                if (ent.Comp.Buffer[args.Material] <= 0) ent.Comp.Buffer.Remove(args.Material);
+            }
+            _materialStorageSystem.EjectMaterial(ent.Owner, args.Material, amount);
+        }
+        UpdateUiState(ent);
+    }
+
+
+    private void OnDepartmentSelectMessage(Entity<MaterialDispenserComponent> ent, ref MaterialDispenserDepartmentSelected args)
+    {
+        ent.Comp.Account = args.Department;
+        UpdateUiState(ent);
+    }
+
+    private void SubscribeUpdateUiState<T>(Entity<MaterialDispenserComponent> ent, ref T ev)
+    {
+        UpdateUiState(ent);
+    }
+
+    private void UpdateUiState(Entity<MaterialDispenserComponent> ent)
+    {
+        var (owner, materialDispenser) = ent;
+        var state = new MaterialDispenserBoundUserInterfaceState(materialDispenser.Mode, materialDispenser.Account.Id,
+            materialDispenser.Buffer);
+        _userInterfaceSystem.SetUiState(owner, MaterialDispenserUiKey.Key, state);
+
+    }
+
+}

@@ -1,0 +1,86 @@
+﻿- type: entity
+  id: MachineMaterialDispenser
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: material dispenser
+  description: An advanced machine, capable of distributing materials into crates.
+  components:
+    - type: Sprite
+      sprite: Structures/Machines/silo.rsi
+      snapCardinals: true
+      layers:
+        - state: silo
+          map: [ "base" ]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerDeviceVisuals.Powered:
+          base:
+            True: { state: silo_active }
+            False: { state: silo }
+    - type: MaterialStorage
+      whitelist:
+        tags:
+          - Sheet
+          - RawMaterial
+          - Ingot
+    - type: ItemToggle
+      onUse: false
+      onActivate: false
+      verbToggleOn: verb-toggle-magnet-activate
+      verbToggleOff: verb-toggle-magnet-deactivate
+      soundActivate:
+        collection: sparks
+        params:
+          variation: 0.250
+      soundDeactivate:
+        collection: sparks
+        params:
+          variation: 0.250
+    - type: AltUseToggle
+    - type: ComponentToggler
+      components:
+        - type: MagnetPickup
+          requiresEquipping: false
+          slotFlags: 0
+    - type: ActivatableUI
+      key: enum.MaterialDispenserUiKey.Key
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.MaterialDispenserUiKey.Key:
+          type: MaterialDispenserBoundUserInterface
+    - type: Machine
+      board: MaterialSiloMachineCircuitboard
+    - type: MaterialDispenser
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.4,-0.4,0.4,0.4"
+          density: 190
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 300
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:ChangeConstructionNodeBehavior
+              node: machineFrame
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: WiresVisuals
+    - type: WiresPanel
+    - type: StaticPrice
+      price: 1500
