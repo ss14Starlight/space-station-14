@@ -6,11 +6,11 @@ namespace Content.Server._Starlight.DeviceLinking.Components;
 [RegisterComponent]
 public sealed partial class GasVolumePumpSignalComponent : Component
 {
-    [DataField("openPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string OpenPort = "Open";
+    [DataField("onPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+    public string OnPort = "On";
 
-    [DataField("closePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string ClosePort = "Close";
+    [DataField("offPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+    public string OffPort = "Off";
 
     [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string TogglePort = "Toggle";

@@ -24,7 +24,7 @@ public sealed partial class GasPressurePumpSignalSystem : EntitySystem
 
     private void OnInit(EntityUid uid, GasPressurePumpSignalComponent component, ComponentInit args)
     {
-        _signalSystem.EnsureSinkPorts(uid, component.OpenPort, component.ClosePort, component.TogglePort);
+        _signalSystem.EnsureSinkPorts(uid, component.OnPort, component.OffPort, component.TogglePort);
     }
 
     private void OnSignalReceived(EntityUid uid, GasPressurePumpSignalComponent component, ref SignalReceivedEvent args)
@@ -36,9 +36,9 @@ public sealed partial class GasPressurePumpSignalSystem : EntitySystem
         args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
 
         if (state is not (SignalState.High or SignalState.Momentary)) return;
-        if (args.Port == component.OpenPort)
+        if (args.Port == component.OnPort)
             _pressurePumpSystem.Set(uid, pressurePump, true);
-        else if (args.Port == component.OpenPort)
+        else if (args.Port == component.OffPort)
             _pressurePumpSystem.Set(uid, pressurePump, false);
         else if (args.Port == component.TogglePort)
             _pressurePumpSystem.Set(uid, pressurePump, !pressurePump.Enabled);
