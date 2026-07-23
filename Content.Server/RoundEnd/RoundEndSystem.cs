@@ -405,7 +405,6 @@ namespace Content.Server.RoundEnd
             {
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
-                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
                     StartRecallVote(); // Starlight-edit
                     _autoCalledBefore = true;
                 }
@@ -436,17 +435,18 @@ namespace Content.Server.RoundEnd
             {
                 if (args.Winner == null)
                 {
+                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
                     _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-tie"));
                     return;
                 }
 
                 if ((int)args.Winner == 0)
                 {
-                    CancelRoundEndCountdown(null, true);
                     _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-recall"));
                 }
                 else
                 {
+                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
                     _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-norecall"));
                 }
             };
