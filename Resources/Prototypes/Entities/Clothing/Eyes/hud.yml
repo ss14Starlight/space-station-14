@@ -80,6 +80,7 @@
   - type: Clothing
     sprite: Clothing/Eyes/Hud/command.rsi
   - type: ShowJobIcons
+  - type: ShowAccess # Starlight
   - type: Tag
     tags:
     - PetWearable
