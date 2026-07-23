@@ -66,6 +66,19 @@
           amount: 2
           doAfter: 1
 
+      - to: molarmixerAlt3
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerAlt4
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+
       - to: molarmixerflippedAlt1
         steps:
         - material: Steel
@@ -73,6 +86,18 @@
           doAfter: 1
 
       - to: molarmixerflippedAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerflippedAlt3
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerflippedAlt4
         steps:
         - material: Steel
           amount: 2
