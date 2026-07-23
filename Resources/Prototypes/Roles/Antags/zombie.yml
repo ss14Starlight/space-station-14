@@ -18,7 +18,7 @@
   playTimeTracker: AntagInitialInfected # Starlight end
 
 - type: antagSpecifier
-  parent: RestrictedAntag
+  parent: ZombieRestrictedAntag # Starlight
   id: InitialInfected
   prefRoles: [ InitialInfected ]
   blacklist:

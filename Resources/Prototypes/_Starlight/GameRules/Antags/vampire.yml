@@ -35,7 +35,7 @@
     antags:
     - !type:LinearAntagCount
       proto: Vampire
-      playerRatio: 20
+      playerRatio: 24
       range:
         min: 1
         max: 12
@@ -51,7 +51,7 @@
     antags:
     - !type:LinearAntagCount
       proto: Vampire
-      playerRatio: 28
+      playerRatio: 33.6
       range:
         min: 1
         max: 6

@@ -19,7 +19,7 @@
     antags:
     - !type:LinearAntagCount
       proto: Devil
-      playerRatio: 50
+      playerRatio: 60
       range:
         min: 1
         max: 2
