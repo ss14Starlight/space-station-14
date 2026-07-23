@@ -601,6 +601,9 @@
   id: Sausage # MetamorphRecipe: FoodSausageBun
 
 - type: Tag
+  id: CrispyRiceBar
+
+- type: Tag
   id: ScanGateMachineBoard
 
 - type: Tag
