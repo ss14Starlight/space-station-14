@@ -13,11 +13,6 @@
     sentence: action-speech-spell-explosionrune
     tts: action-speech-spell-explosionrune-tts
     modifier: Spell
-  - type: Sprite
-    sprite: Structures/Magic/Cult/trap.rsi
-    layers:
-      - state: trap
-        color: '#FF770055'
   - type: EorgPreventAction # Starlight
 
 - type: entity
@@ -32,11 +27,7 @@
     modifier: Spell
   - type: Action
     useDelay: 40
-  - type: Sprite
-    sprite: Structures/Magic/Cult/rune.rsi
-    layers:
-      - state: cult6
-        color: '#FF770055'
+  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: ActionExplosionRune
