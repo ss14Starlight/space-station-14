@@ -6,6 +6,7 @@ namespace Content.Server._Starlight.Weather.Components;
 /// Starts weather when placed on a map.
 /// </summary>
 [RegisterComponent]
+[EntityCategory("Spawner")]
 public sealed partial class WeatherMarkerComponent : Component
 {
     /// <summary>
