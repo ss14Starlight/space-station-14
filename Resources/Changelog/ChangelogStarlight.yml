@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Added a NanoMed Security to the Security shuttle's Medbay.
-    type: Add
-  id: 406431
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
   - message: Added a cell recharger to the Security shuttle's Medbay.
     type: Add
   id: 406432
@@ -2799,4 +2792,11 @@ Entries:
   id: 406830
   time: '2026-07-23T11:13:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5244
+- author: Caws
+  changes:
+  - message: 'Added station beacons for mappers to use: Mail Room, Mining, Paramedic, Clown, Mime, and Musician.'
+    type: Add
+  id: 406831
+  time: '2026-07-24T07:47:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5282
 Order: -1
