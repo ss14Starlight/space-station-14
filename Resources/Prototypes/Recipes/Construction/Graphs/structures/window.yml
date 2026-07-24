@@ -252,7 +252,7 @@
               prototype: SheetPGlass1
               amount: 2
           steps:
-            - material: ReinforcedUraniumGlass
+            - material: UraniumGlass
               amount: 2
               doAfter: 3
 
