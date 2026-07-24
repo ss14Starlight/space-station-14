@@ -10,7 +10,6 @@
     - id: CDAdvertDansTickets
     - id: CDAdvertPopeCrunchCereal
     - id: CDAdvertDansQuickNoodles
-    - id: CDAdvertBecomeSilicon
     - id: CDAdvertCloningPSA # PSA announcements are uncommon.
       weight: 0.75
     - id: CDAdvertSecurityPSA
