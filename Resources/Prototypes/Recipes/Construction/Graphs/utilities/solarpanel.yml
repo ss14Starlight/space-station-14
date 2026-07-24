@@ -90,14 +90,14 @@
         - to: solarpaneluranium
           completed:
             - !type:SpawnPrototype
-              prototype: SheetPlasma
-              amount: 1
+              prototype: SheetPGlass1
+              amount: 2
           conditions:
             - !type:EntityAnchored
               anchored: true
           steps:
-            - material: Uranium
-              amount: 1
+            - material: UraniumGlass
+              amount: 2
               doAfter: 2
 
         # Starlight End
@@ -138,22 +138,30 @@
 
         # Starlight Start
 
-        - to: solarpanelplasma
+        - to: solarpaneluranium
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetGlass1
+              amount: 2
           conditions:
             - !type:EntityAnchored
               anchored: true
           steps:
-            - material: Plasma
-              amount: 1
+            - material: UraniumGlass
+              amount: 2
               doAfter: 2
 
-        - to: solarpaneluranium
+        - to: solarpanelplasma
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetGlass1
+              amount: 2
           conditions:
             - !type:EntityAnchored
               anchored: true
           steps:
-            - material: Uranium
-              amount: 1
+            - material: PlasmaGlass
+              amount: 2
               doAfter: 2
 
         # Starlight End
