@@ -28,7 +28,7 @@ public sealed class CrewMonitorAlertsSystem : EntitySystem
                 ent.Comp.Enabled = !ent.Comp.Enabled;
                 Dirty(ent);
             },
-            Priority = 1,
+            Priority = -1,
         });
     }
 }

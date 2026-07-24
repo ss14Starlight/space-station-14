@@ -25,3 +25,4 @@
     lightEnergy: 0.8
     lightRadius: 10
     lightSoftness: 3
+    dimmable: false
