@@ -376,6 +376,10 @@
     - HVCable
     - CableTerminal
     - Deconstruct
+    #Starlight start
+    - FirelockEdge
+    - LightPostSmall
+    #Starlight end
   - type: LimitedCharges
     maxCharges: 30
   - type: Sprite
