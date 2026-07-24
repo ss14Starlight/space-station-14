@@ -1,7 +1,18 @@
 - type: entity
   id: WeatherMarkerBase
-  abstract: true
   name: Weather Marker
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Marker
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Tag
+    tags:
+    - ForceFixRotations
 
 # Wet Weather
 - type: entity
