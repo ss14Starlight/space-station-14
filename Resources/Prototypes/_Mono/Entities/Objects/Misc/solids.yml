@@ -1,8 +1,8 @@
 - type: entity
-  name: Phenylpiperidine crystal
+  name: phenylpiperidine crystal # Starlight, lowercase
   parent: [ BaseItem, BaseMedicalContraband ]
   id: PhenylpiperidineSolidified
-  description: 5u of Phenylpiperidine solidified with Tricordrazine. Worth a lot.
+  description: 5u of phenylpiperidine solidified with tricordrazine. Worth a lot. # Starlight, lowercase
   components:
   - type: Sprite
     sprite: _Mono/Objects/Misc/phenylpiperidine.rsi
@@ -20,7 +20,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 4 
+        maxVol: 4
         reagents:
         - ReagentId: Phenylpiperidine
           Quantity: 4 # Contains 4u but costs 5u to make - No more infinite dylo with 5u of phenyl
