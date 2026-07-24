@@ -6,6 +6,10 @@
   components:
   - type: Action
     useDelay: 40
+    icon:
+        sprite: Structures/Magic/Cult/rune.rsi
+        state: cult6
+        color: '#FF770055'
   - type: InstantAction
     event: !type:InstantSpawnSpellEvent
       prototype: ExplosionRuneWiz
@@ -27,17 +31,17 @@
     modifier: Spell
   - type: Action
     useDelay: 40
-  - type: EorgPreventAction # Starlight
+    icon:
+        sprite: Structures/Magic/Cult/trap.rsi
+        state: trap
+        color: '#FF770055'
+
 
 - type: entity
-  parent: ActionExplosionRune
+  parent: ExplosionRune
   id: ExplosionRuneWiz
   name: Explosion Rune
   components:
-    - type: TriggerOnCollide
-      fixtureID: rune
-      maxTriggers: 1
-    - type: ExplodeOnTrigger
     - type: Explosive
       explosionType: Default
       totalIntensity: 20
