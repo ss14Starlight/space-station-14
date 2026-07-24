@@ -3,6 +3,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Containers;
 using Content.Shared.Database;
+using Content.Shared.Destructible;
 using Content.Shared.Disposal.Components;
 using Content.Shared.Disposal.Holder;
 using Content.Shared.Disposal.Tube;
@@ -84,6 +85,10 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
 
         // See SharedDisposalUnitSystem.Visuals
         SubscribeLocalEvent<DisposalUnitComponent, DisposalUnitUiButtonPressedMessage>(OnUiButtonPressed);
+
+        #region Starlight
+        SubscribeLocalEvent<DisposalUnitComponent, DestructionEventArgs>(OnDestruction);
+        #endregion
     }
 
     #region: Event handling
@@ -148,6 +153,13 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
         }
     }
 
+    #endregion
+
+    #region Starlight
+    /// <summary>
+    /// stop destruction from deleting people inside
+    /// </summary>
+    private void OnDestruction(Entity<DisposalUnitComponent> ent, ref DestructionEventArgs args) => EjectContents(ent);
     #endregion
 
     /// <summary>

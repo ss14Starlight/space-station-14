@@ -233,6 +233,7 @@ namespace Content.Shared.SubFloor
     [Serializable, NetSerializable]
     public enum SubfloorLayers : byte
     {
-        FirstLayer
+        FirstLayer, // Starlight
+        SecondLayer // Starlight
     }
 }

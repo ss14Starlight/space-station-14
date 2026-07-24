@@ -13,8 +13,8 @@
   access:
   - Theatre
   - Maintenance
-  extendedAccess:
   - Service
+  extendedAccess:
   - Bar
   - Kitchen
   - Hydroponics
