@@ -14,7 +14,4 @@ public sealed partial class NanoChatSpamRuleComponent : Component
     /// </summary>
     [DataField]
     public float RecipientChance = 0.3f;
-
-    [DataField]
-    public int? MaxPlayers;
 }

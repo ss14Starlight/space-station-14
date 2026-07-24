@@ -43,7 +43,7 @@ public sealed partial class NanoChatSpamRuleSystem : StationEventSystem<NanoChat
     [Dependency] private SharedTimeSystem _timeSystem = default!;
     [Dependency] private ContainerSystem _container = default!;
 
-    private static readonly Regex _randomNumberPattern = new(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled);
+    private static readonly Regex _randomNumberPattern = MyRegex();
 
     protected override void Started(EntityUid uid, NanoChatSpamRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -370,4 +370,7 @@ public sealed partial class NanoChatSpamRuleSystem : StationEventSystem<NanoChat
 
         return allNames.Count > 0 ? _random.Pick(allNames) : "John Doe";
     }
+
+    [GeneratedRegex(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled)]
+    private static partial Regex MyRegex();
 }
