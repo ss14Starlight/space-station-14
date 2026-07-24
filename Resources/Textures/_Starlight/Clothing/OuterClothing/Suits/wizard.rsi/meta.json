@@ -20,6 +20,15 @@
       "name": "equipped-OUTERCLOTHING-dog",
       "directions": 4,
       "copyright": "SevenShades"
+    },
+    {
+      "name": "fire",
+      "copyright": "Littlemen/Romero"
+    },
+    {
+      "name": "fire-OUTERCLOTHING",
+      "directions": 4,
+      "copyright": "Littlemen/Romero"
     }
   ]
 }
