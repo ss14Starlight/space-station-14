@@ -1,10 +1,10 @@
 using Content.Shared.Alert;
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Shared.Map;
-using Content.Shared._Starlight.GPS.Components;
+using Content.Shared._Starlight.Astronav.Components;
 using Robust.Shared.Player;
 
-namespace Content.Shared._Starlight.GPS.Systems;
+namespace Content.Shared._Starlight.Astronav.Systems;
 public sealed partial class AstroNavMobSystem : EntitySystem
 {
     [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;

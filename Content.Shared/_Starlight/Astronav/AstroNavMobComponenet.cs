@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Content.Shared.Alert;
 
-namespace Content.Shared._Starlight.GPS.Components;
+namespace Content.Shared._Starlight.Astronav.Components;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class AstroNavMobComponent : Component
