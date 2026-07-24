@@ -191,7 +191,7 @@
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/KevinMacleod/VibingOverVenus.ogg
 
-  
+
   # Christmas
 - type: entity
   parent: BaseVinylDisc
@@ -833,7 +833,7 @@
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/goonstation/floaty.ogg
-  
+
 - type: entity
   parent: BaseVinylDisc
   id: VinylGraveyard

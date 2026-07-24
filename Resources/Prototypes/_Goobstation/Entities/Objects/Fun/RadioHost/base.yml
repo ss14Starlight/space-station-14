@@ -14,7 +14,7 @@
   # To create a custom Vinyl using layers, use the following template.
   # sprite: _Goobstation/Objects/Fun/RadioHost/vinyl.rsi
   # state: default
-  # layers:             
+  # layers:
   # - state: base-dark  # Choose either "base-dark", "base-medium" or "base-light".
   #   color: pink       # The lighter the base, the more color will show through.
   # - state: label      # Requires a label.

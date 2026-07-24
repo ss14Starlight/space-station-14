@@ -1,20 +1,23 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "icon by SlamBamActionman;synd-cd, jne-cd by Jvne",
+  "copyright": "see sprite states",
   "size": {
     "x": 32,
     "y": 32
-  },
-  "states": [
-    {
-      "name": "icon"
     },
-    {
-      "name": "synd-cd"
-    },
-    {
-      "name": "jne-cd"
-    }
-  ]
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "SlamBamActionman"
+        },
+        {
+            "name": "synd-cd",
+            "copyright": "Jvne"
+        },
+        {
+            "name": "jne-cd",
+            "copyright": "Jvne"
+        }
+    ]
 }
