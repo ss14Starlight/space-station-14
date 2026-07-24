@@ -10,17 +10,17 @@
     {
       "name": "base",
       "directions": 4,
-      "copyright": "Edit by Conflee, originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi."
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi, edits by Conflee"
     },
     {
       "name": "cover",
       "directions": 4,
-      "copyright": "Edit by Conflee, originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi."
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi, edits by Conflee"
     },
     {
       "name": "full",
       "directions": 4,
-      "copyright": "Edit by Conflee, originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi."
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi, edits by Conflee"
     }
   ]
 }

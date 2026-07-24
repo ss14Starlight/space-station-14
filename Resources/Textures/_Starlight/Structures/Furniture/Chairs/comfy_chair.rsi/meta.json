@@ -10,12 +10,12 @@
     {
       "name": "base",
       "directions": 4,
-  "copyright": "Edit by Conflee, originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs.dmi"
+  "copyright": "Originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs.dmi, edits by Conflee"
     },
     {
       "name": "overlay",
       "directions": 4,
-  "copyright": "Edit by Conflee, originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs.dmi"
+  "copyright": "Originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/chairs.dmi, edits by Conflee"
     }
   ]
 }

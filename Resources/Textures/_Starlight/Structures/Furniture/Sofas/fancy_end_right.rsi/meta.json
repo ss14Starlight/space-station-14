@@ -10,12 +10,12 @@
     {
       "name": "base",
       "directions": 4,
-      "copyright": "Edit by Conflee, originals Taken from monkestation at commit https://github.com/Monkestation/Monkestation2.0/blob/HEAD/monkestation/code/modules/get_off_my_lawn/icons/bed_chair.dmi"
+      "copyright": "Originals taken from monkestation at commit https://github.com/Monkestation/Monkestation2.0/blob/HEAD/monkestation/code/modules/get_off_my_lawn/icons/bed_chair.dmi, edits by Conflee"
     },
     {
       "name": "overlay",
       "directions": 4,
-      "copyright": "Edit by Conflee, originals Taken from monkestation at commit https://github.com/Monkestation/Monkestation2.0/blob/HEAD/monkestation/code/modules/get_off_my_lawn/icons/bed_chair.dmi"
+      "copyright": "Originals taken from monkestation at commit https://github.com/Monkestation/Monkestation2.0/blob/HEAD/monkestation/code/modules/get_off_my_lawn/icons/bed_chair.dmi, edits by Conflee"
     }
   ]
 }

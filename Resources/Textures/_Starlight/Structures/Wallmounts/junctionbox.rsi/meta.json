@@ -9,23 +9,23 @@
   "states": [
     {
       "name": "generic_door",
-      "copyright": "Edit by Conflee, originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi."
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi, edits by Conflee"
     },
     {
       "name": "generic_open",
-      "copyright": "Edit by Conflee, originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi."
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi, edits by Conflee"
     },
     {
       "name": "junctionbox",
-      "copyright": "Edit by Conflee, originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi."
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi, edits by Conflee"
     },
     {
       "name": "junctionbox_closed",
-      "copyright": "Edit by Conflee, originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi."
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi, edits by Conflee"
     },
     {
       "name": "junctionbox_open",
-      "copyright": "Edit by Conflee, originals Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi."
+      "copyright": "Originals taken from tgstation at commit https://github.com/tgstation/tgstation/blob/HEAD/icons/map_icons/objects.dmi, edits by Conflee"
     }
   ]
 }

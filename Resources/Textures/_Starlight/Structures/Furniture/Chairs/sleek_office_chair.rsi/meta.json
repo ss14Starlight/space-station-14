@@ -10,12 +10,12 @@
     {
       "name": "base",
       "directions": 4,
-      "copyright": "Edit by Conflee, originals Taken from Goon at commit https://github.com/goonstation/goonstation/blob/HEAD/icons/obj/furniture/chairs.dmi"
+      "copyright": "Originals Taken from Goon at commit https://github.com/goonstation/goonstation/blob/HEAD/icons/obj/furniture/chairs.dmi, edits by Conflee"
     },
     {
       "name": "overlay",
       "directions": 4,
-      "copyright": "Edit by Conflee, originals Taken from Goon at commit https://github.com/goonstation/goonstation/blob/HEAD/icons/obj/furniture/chairs.dmi"
+      "copyright": "Originals Taken from Goon at commit https://github.com/goonstation/goonstation/blob/HEAD/icons/obj/furniture/chairs.dmi, edits by Conflee"
     }
   ]
 }
