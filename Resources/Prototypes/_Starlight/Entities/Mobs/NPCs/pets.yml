@@ -305,3 +305,48 @@
   - type: AutoImplant
     implants:
     - BluespaceImplant
+
+- type: entity
+  name: Rt Hon. Flippers
+  parent: MobPenguin
+  id: MobPenguinFlippers
+  description: Emperor of the Court.
+  components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Penguin
+    understands:
+    - Penguin
+    - GalacticCommon
+  # Starlight-end
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Pets/flippers.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: flippers
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: flippers
+      Critical:
+        Base: flippers_dead
+      Dead:
+        Base: flippers_dead_blood
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-bird
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/penguin_squawk.ogg
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
