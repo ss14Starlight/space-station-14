@@ -1,0 +1,52 @@
+﻿- type: entity
+  name: Gamorrah Pulse Pistol
+  parent: [BaseWeaponBatterySmall, BaseCasinoContraband ]
+  id: WeaponPulsePistolCasino
+  description: Success depends on forethought, dispassionate calculation of probabilities, accounting for every stray variable. Thats why this gun is the Gamorrah Weapon.
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Admeme/Casino/Objects/Weapon/pulse_pistol.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: stun
+          map: ["enum.FireModesLayers.FireMode"]
+        - state: stun-unshaded-0
+          map: ["enum.GunVisualLayers.MagUnshaded"]
+          shader: unshaded
+    - type: Lock
+    - type: AccessReader
+      access: [[ "Casino" ]]
+    - type: Item
+      size: Small
+      shape:
+        - 0, 0, 1, 1
+    - type: MagazineVisuals
+      magState: stun
+      steps: 5
+      zeroVisible: true
+    - type: BatteryAmmoProvider
+      proto: TaserBolt
+      fireCost: 100
+    - type: BatteryWeaponFireModes
+      fireModes:
+        - proto: TaserBolt
+          fireCost: 100
+          magState: stun
+          visualState: stun
+        - proto: RedLaserBeam
+          fireCost: 100
+          magState: kill
+          visualState: kill
+        - proto: DestroyBeam
+          fireCost: 200
+          magState: destroy
+          visualState: destroy
+    - type: GunFireModeSounds
+      sounds:
+        2:
+          path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+    - type: Battery
+      maxCharge: 2600
+      startingCharge: 2600
