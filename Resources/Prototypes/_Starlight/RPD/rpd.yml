@@ -255,7 +255,7 @@
 
 - type: rcd
   id: CanisterPort
-  category: GasStorage
+  category: InterfacesStorage
   sprite: /Textures/_Starlight/Interface/Radial/RPD/port.png
   mode: ConstructObject
   prototype: GasPort
@@ -268,7 +268,7 @@
 
 - type: rcd
   id: SubFloorGasTank
-  category: GasStorage
+  category: InterfacesStorage
   sprite:
     sprite: _Starlight/Structures/Piping/Atmospherics/subfloortank.rsi
     state: subFloorTank
