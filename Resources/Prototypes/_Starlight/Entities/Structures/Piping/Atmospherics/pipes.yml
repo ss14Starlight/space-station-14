@@ -29,6 +29,8 @@
       Tertiary: GasPipeSubfloorTankAlt2
       Quaternary: GasPipeSubfloorTankAlt3
       Quinary: GasPipeSubfloorTankAlt4
+  - type: StaticPrice
+    price: 75
   - type: PipeAppearance
     extraColoredLayers:
     - enum.SubfloorLayers.FirstLayer
