@@ -38,6 +38,9 @@ device-address-prefix-volume-pump = VPP-
 device-address-prefix-smes = SMS-
 device-address-prefix-turret = TRT-
 device-address-prefix-gas-pump = GPP-
+device-address-prefix-air-injector = AIR-
+device-address-prefix-gas-filter = GFL-
+device-address-prefix-gas-mixer = GMR-
 
 # PDAs and terminals
 device-address-prefix-console = CLS-
