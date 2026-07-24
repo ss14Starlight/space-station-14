@@ -1,4 +1,3 @@
-using Content.Client.Lobby;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Stylesheets;
 using Content.Shared.Clothing;
@@ -16,7 +15,7 @@ namespace Content.Client._Moffstation.Antags.UI;
 public sealed partial class AntagEntry : PanelContainer
 {
     [Dependency] private JobRequirementsManager _requirements = default!;
-    [Dependency] private IClientPreferencesManager _preferencesManager = default!;
+    //[Dependency] private IClientPreferencesManager _preferencesManager = default!; // Starlight
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public const string StyleClassButton = "button";
@@ -28,7 +27,7 @@ public sealed partial class AntagEntry : PanelContainer
 
     private readonly AntagPrototype _antag;
 
-    public AntagEntry(AntagPrototype antag, bool enabled)
+    public AntagEntry(AntagPrototype antag, bool enabled, HumanoidCharacterProfile? profile) // Starlight
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -44,7 +43,7 @@ public sealed partial class AntagEntry : PanelContainer
         AntagCheckbox.Pressed = enabled;
         AntagCheckbox.OnToggled += OnCheckboxToggled;
 
-        SetupRequirements();
+        SetupRequirements(profile); // Starlight
         SetupLoadoutButton();
 
         LoadoutButton.StyleClasses.Add(StyleClassButton);
@@ -56,11 +55,9 @@ public sealed partial class AntagEntry : PanelContainer
         };
     }
 
-    private void SetupRequirements()
+    private void SetupRequirements(HumanoidCharacterProfile? profile) // Starlight
     {
-        var locked = !_requirements.IsAllowed(_antag,
-            _preferencesManager.Preferences?.SelectedCharacter as HumanoidCharacterProfile,
-            out var reason);
+        var locked = !_requirements.IsAllowed(_antag, profile, out var reason); // Starlight
 
         AntagCheckbox.Visible = !locked;
         AntagCheckbox.Disabled = locked;

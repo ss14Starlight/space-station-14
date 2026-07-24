@@ -32,10 +32,10 @@ public sealed partial class SpecialRolesTab : BoxContainer
 
         SearchBar.OnTextChanged += OnSearchTextChanged;
 
-        PopulateCategories(null);
+        PopulateCategories(null, null); // Starlight
     }
 
-    private void PopulateCategories(IReadOnlySet<ProtoId<AntagPrototype>>? selectedAntags)
+    private void PopulateCategories(IReadOnlySet<ProtoId<AntagPrototype>>? selectedAntags, HumanoidCharacterProfile? profile) // Starlight
     {
         var expandedState = _categoryUis.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.IsExpanded);
 
@@ -73,7 +73,7 @@ public sealed partial class SpecialRolesTab : BoxContainer
                 continue;
 
             var expanded = expandedState.TryGetValue(category.ID, out var prev) ? prev : (bool?)null;
-            var categoryUi = new AntagCategory(category, antags, selectedAntags, expanded);
+            var categoryUi = new AntagCategory(category, antags, profile, selectedAntags, expanded); // Starlight
             categoryUi.OnAntagToggled += OnAntagToggled;
             categoryUi.OnLoadoutPressed += id => OnLoadoutPressed?.Invoke(id);
             _categoryUis[category.ID] = categoryUi;
@@ -109,6 +109,6 @@ public sealed partial class SpecialRolesTab : BoxContainer
 
     public void RefreshAntags(HumanoidCharacterProfile? profile)
     {
-        PopulateCategories(profile?.AntagPreferences);
+        PopulateCategories(profile?.AntagPreferences, profile); // Starlight
     }
 }
