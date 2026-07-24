@@ -412,18 +412,6 @@
         - 0
         - -90
         - 180
-    - type: DeviceNetwork
-      deviceNetId: Wireless
-      receiveFrequencyId: BasicDevice
-      prefix: device-address-prefix-gas-mixer
-    - type: WirelessNetworkConnection
-      range: 200
-    - type: DeviceLinkSink
-      ports:
-        - On
-        - Off
-        - Toggle
-    - type: GasMixerSignal
     # Starlight end
     - type: GuideHelp
       guides:
