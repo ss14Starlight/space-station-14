@@ -1,23 +1,23 @@
 - type: entity
   parent: GasPipeSansLayers
   id: GasPipeSubfloorTank
-  name: subfloor tank
-  description: A large gas tank built into the subfloor, adding significant capacity to whichever pipe network it connects to.
+  name: subfloor gas tank
+  description: A large gas tank built into the subfloor, adding significant capacity to whichever pipe network it connects to. I wonder how much it can store?
   placement:
     mode: AlignAtmosPipeLayers
   components:
   - type: Sprite
-    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
     drawdepth: ThinPipe
     layers:
       - state: pipeFourway
-        map: [ "enum.PipeVisualLayers.Pipe" ]
+        map: [ "enum.SubfloorLayers.FirstLayer" ]
       - sprite: _Starlight/Structures/Piping/Atmospherics/subfloortank.rsi
         state: subFloorTank
-        map: [ "enum.SubfloorLayers.FirstLayer" ]
+        map: [ "enum.PipeVisualLayers.Pipe" ]
   - type: AtmosPipeLayers
     spriteLayersRsiPaths:
-      enum.PipeVisualLayers.Pipe:
+      enum.SubfloorLayers.FirstLayer:
         Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
         Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
@@ -29,6 +29,9 @@
       Tertiary: GasPipeSubfloorTankAlt2
       Quaternary: GasPipeSubfloorTankAlt3
       Quinary: GasPipeSubfloorTankAlt4
+  - type: PipeAppearance
+    extraColoredLayers:
+    - enum.SubfloorLayers.FirstLayer
   - type: Tag
     tags:
     - Pipe

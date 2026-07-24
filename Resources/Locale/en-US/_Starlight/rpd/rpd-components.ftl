@@ -3,6 +3,7 @@ rpd-component-atmospheric-utility = Atmospheric utility
 rpd-component-pumps = Pumps and valves
 rpd-component-vents = Vents
 rpd-component-sensors-monitors = Sensors and monitors
+rpd-component-gas-storage = Gas storage
 rcd-rpd-mode-primary = Primary
 rcd-rpd-mode-secondary = Secondary
 rcd-rpd-mode-tertiary = Tertiary
