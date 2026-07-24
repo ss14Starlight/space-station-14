@@ -1,18 +1,4 @@
 Entries:
-- author: ku-mo
-  changes:
-  - message: Antag playtime requirements no longer spam localization warnings.
-    type: Fix
-  id: 406455
-  time: '2026-07-07T13:54:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5005
-- author: Rtasva
-  changes:
-  - message: 'Saltern: Added Theater.'
-    type: Add
-  id: 406456
-  time: '2026-07-07T18:24:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5012
 - author: Rtasva
   changes:
   - message: 'Saltern: Relocated NCT, IAA, and Disposals.'
@@ -2799,4 +2785,18 @@ Entries:
   id: 406854
   time: '2026-07-24T18:51:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5247
+- author: Orhu
+  changes:
+  - message: Added Rt Hon. Flippers,  a pet for the law department.
+    type: Add
+  id: 406855
+  time: '2026-07-24T19:21:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5224
+- author: Orhu
+  changes:
+  - message: Penguin language.
+    type: Add
+  id: 406856
+  time: '2026-07-24T19:21:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5224
 Order: -1
