@@ -4,6 +4,7 @@
   group: Narcotics
   desc: reagent-desc-phenylpiperidine
   physicalDesc: reagent-physical-desc-crystalline
+  allowedDepartments: [Medical] # Starlight
   flavor: bitter
   color: "#b4dae0"
   metabolisms:

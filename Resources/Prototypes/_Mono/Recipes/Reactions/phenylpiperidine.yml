@@ -37,7 +37,7 @@
 - type: reaction
   id: PhenylpiperidineSolidification
   impact: Low
-  minTemp: 310
+  minTemp: 375 # Starlight, fix temp
   reactants:
     Phenylpiperidine:
       amount: 5

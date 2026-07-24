@@ -6,10 +6,10 @@
   suffix: Phenylpiperidine
   components:
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution: # Starlight, no nubody
       reagents:
       - ReagentId: Phenylpiperidine
-        Quantity: 1
+        Quantity: 100 # Starlight
   - type: PointLight
     color: "#b4dae0"
   - type: Sprite
