@@ -1,20 +1,6 @@
 Entries:
 - author: r3d3mpt1on
   changes:
-  - message: Oil Packs, HV Cables, Patch Packs to the Combat Medkit and BrigKit whitelists.
-    type: Add
-  id: 406442
-  time: '2026-07-05T17:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4970
-- author: r3d3mpt1on
-  changes:
-  - message: Patch Packs are now 1x2 instead of 1x1.
-    type: Tweak
-  id: 406443
-  time: '2026-07-05T17:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4970
-- author: r3d3mpt1on
-  changes:
   - message: Patches are now 1x1 instead of 1x2.
     type: Tweak
   id: 406444
@@ -2799,4 +2785,18 @@ Entries:
   id: 406841
   time: '2026-07-24T14:51:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5285
+- author: joshujo
+  changes:
+  - message: Edge firelocks to RCD.
+    type: Add
+  id: 406842
+  time: '2026-07-24T17:28:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5262
+- author: joshujo
+  changes:
+  - message: Post lights to RCD.
+    type: Add
+  id: 406843
+  time: '2026-07-24T17:28:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5262
 Order: -1
