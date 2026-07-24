@@ -1,11 +1,4 @@
 Entries:
-- author: Musikly
-  changes:
-  - message: Changed name of the speed cyberlimb from "speg" to "speed leg".
-    type: Tweak
-  id: 406438
-  time: '2026-07-05T15:48:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5017
 - author: wonderfulnewworld
   changes:
   - message: All Protogens are now properly absorbable by Changelings, regardless of frame type.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406837
   time: '2026-07-24T10:21:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5286
+- author: Caws
+  changes:
+  - message: Added warm light tubes. Less harsh than sodium light tubes, but still very orange. Printable at autolathes.
+    type: Add
+  id: 406838
+  time: '2026-07-24T12:17:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5284
 Order: -1
