@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Stylesheets;
 using Content.Shared.Clothing;
@@ -75,7 +76,9 @@ public sealed partial class AntagEntry : PanelContainer
 
     private void SetupLoadoutButton()
     {
-        if (!_prototypeManager.TryIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(_antag.ID), out _))
+        var loadoutId = _antag.RoleLoadout?.FirstOrDefault();
+
+        if (loadoutId == null || !_prototypeManager.HasIndex<RoleLoadoutPrototype>(loadoutId.Value)) // Starlight
         {
             LoadoutButton.Disabled = true;
             return;

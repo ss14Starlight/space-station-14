@@ -214,6 +214,9 @@ namespace Content.Client.Lobby.UI
 
             Traits.OnTraitsChanged += OnTraitsSelectionChanged; // Starlight
 
+            Antags.OnAntagsChanged += OnAntagsSelectionChanged; // Moffstation
+            Antags.OnLoadoutPressed += OnAntagLoadoutPressed; // Moffstation
+
             #region Left
 
             #region Name
@@ -912,9 +915,11 @@ namespace Content.Client.Lobby.UI
             }
         }
 
+        #region Starlight
         public void RefreshAntags()
         {
-            AntagList.RemoveAllChildren();
+            Antags.RefreshAntags(Profile); // Moffstation
+            /*AntagList.RemoveAllChildren();
             var items = new[]
             {
                 ("humanoid-profile-editor-antag-preference-yes-button", 0),
@@ -1020,8 +1025,53 @@ namespace Content.Client.Lobby.UI
                 // Starlight ENd
 
                 AntagList.AddChild(antagContainer);
-            }
+            }*/
         }
+        private void OnAntagsSelectionChanged(HashSet<ProtoId<AntagPrototype>> antags)
+        {
+            if (Profile is null)
+                return;
+
+            Profile = Profile.WithAntagPreferences(antags);
+            ReloadPreview();
+            SetDirty();
+        }
+
+        private void OnAntagLoadoutPressed(ProtoId<AntagPrototype> antagId)
+        {
+            if (Profile is null ||
+                !_prototypeManager.TryIndex<AntagPrototype>(antagId, out var antag))
+            {
+                return;
+            }
+
+            var antagLoadoutId = antag.RoleLoadout?.FirstOrDefault();
+
+            if (antagLoadoutId == null ||
+                !_prototypeManager.TryIndex<RoleLoadoutPrototype>(
+                    antagLoadoutId.Value,
+                    out var roleLoadoutProto))
+            {
+                return;
+            }
+
+            RoleLoadout? loadout = null;
+            Profile.Loadouts.TryGetValue(roleLoadoutProto.ID, out loadout);
+            loadout = loadout?.Clone();
+
+            if (loadout == null)
+            {
+                loadout = new RoleLoadout(roleLoadoutProto.ID);
+                loadout.SetDefault(
+                    Profile,
+                    _playerManager.LocalSession,
+                    _prototypeManager,
+                    force: true);
+            }
+
+            OpenAntagLoadout(antag, loadout, roleLoadoutProto);
+        }
+        #endregion
 
         private void SetDirty()
         {
@@ -1660,6 +1710,7 @@ namespace Content.Client.Lobby.UI
             Markings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
             // In case there's job restrictions for the species
             RefreshJobs();
+            RefreshAntags(); // Starlight
             // In case there's species restrictions for loadouts
             RefreshLoadouts();
             UpdateSexControls(); // update sex for new species
