@@ -1,32 +1,4 @@
 Entries:
-- author: TeddiousbearPA
-  changes:
-  - message: Updated Meta files to new Copyright standard.
-    type: Tweak
-  id: 406450
-  time: '2026-07-06T11:53:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5006
-- author: wonderfulnewworld
-  changes:
-  - message: The Lone Colossus will now spawn again occasionally.
-    type: Tweak
-  id: 406451
-  time: '2026-07-07T12:47:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5031
-- author: wonderfulnewworld
-  changes:
-  - message: The Cosmic Cult and Terror Spiders now call 8 minute evac shuttles instead of 5 and 10 minutes respectively.
-    type: Tweak
-  id: 406452
-  time: '2026-07-07T13:32:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5030
-- author: ku-mo
-  changes:
-  - message: Marking names in the character editor no longer spam localization warnings.
-    type: Fix
-  id: 406453
-  time: '2026-07-07T13:54:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5005
 - author: ku-mo
   changes:
   - message: Material storage eject buttons no longer spam localization warnings.
@@ -2799,4 +2771,32 @@ Entries:
   id: 406849
   time: '2026-07-24T17:53:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5298
+- author: redmushie
+  changes:
+  - message: Subfloor gas tanks that can store 1000L!
+    type: Add
+  id: 406850
+  time: '2026-07-24T18:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5291
+- author: redmushie
+  changes:
+  - message: Gas storage sub-menu to RPD.
+    type: Add
+  id: 406851
+  time: '2026-07-24T18:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5291
+- author: redmushie
+  changes:
+  - message: Moved Connector Port to said RPD submenu.
+    type: Tweak
+  id: 406852
+  time: '2026-07-24T18:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5291
+- author: redmushie
+  changes:
+  - message: Subfloor gas tanks to said RPD submenu.
+    type: Add
+  id: 406853
+  time: '2026-07-24T18:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5291
 Order: -1
