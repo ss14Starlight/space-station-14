@@ -18,17 +18,9 @@
     speciesHardOverride: Abductor
   - type: AntagSelection
     antags:
-    - !type:LinearAntagCount
+    - !type:FixedAntagCount
       proto: AbductorScientist
-      playerRatio: 75
-      range:
-        min: 1
-        max: 2
-    - !type:LinearAntagCount
+    - !type:FixedAntagCount
       proto: AbductorAgent
-      playerRatio: 65
-      range:
-        min: 1
-        max: 3
   - type: DynamicRuleCost
     cost: 100
