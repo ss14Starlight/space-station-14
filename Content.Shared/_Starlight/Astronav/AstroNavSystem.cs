@@ -2,11 +2,10 @@ using Content.Shared.Alert;
 using Content.Shared.GPS.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Shuttles.Components;
-using Content.Shared._Starlight.Astronav.Components;
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Shared.GameObjects;
 
-namespace Content.Shared._Starlight.Astronav.Systems;
+namespace Content.Shared._Starlight.Astronav;
 public sealed partial class AstroNavSystem : EntitySystem
 {
     [Dependency] private AlertsSystem _alerts = default!;

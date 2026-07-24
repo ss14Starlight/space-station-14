@@ -1,6 +1,6 @@
 using Content.Shared.Shuttles.Systems;
 using Robust.Shared.GameStates;
-using Content.Shared._Starlight.Astronav.Systems;
+using Content.Shared._Starlight.Astronav;
 
 namespace Content.Shared.Shuttles.Components;
 
