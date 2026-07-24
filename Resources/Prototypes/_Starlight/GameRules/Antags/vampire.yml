@@ -51,7 +51,7 @@
     antags:
     - !type:LinearAntagCount
       proto: Vampire
-      playerRatio: 33.6
+      playerRatio: 32.5 # This is the absolute maximum ratio that still lets Beta get 2.
       range:
         min: 1
         max: 6
