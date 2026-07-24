@@ -28,24 +28,25 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
     {
         if(comp.SoundEntity == null)
             return;
-        _audio.SetGain(comp.SoundEntity, comp.Active && args.Powered ? comp.DefaultParams.Volume : 0f);
+        _audio.SetGain(comp.SoundEntity, GetGain(comp, args.Powered));
     }
 
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
     {
         comp.Active = !comp.Active;
         if (comp.SoundEntity != null)
-            _audio.SetGain(comp.SoundEntity, comp.Active && _power.IsPowered(uid) ? comp.DefaultParams.Volume : 0f);
+            _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)));
     }
 
     private void OnMediaPlayed(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaPlayedEvent args)
     {
+        var startParams = comp.DefaultParams.WithVolume(-100f);
         var sound = _audio.PlayPvs(args.MediaPlayed, uid, comp.DefaultParams);
         if (sound == null)
             return;
 
         comp.SoundEntity = sound.Value.Entity;
-            _audio.SetGain(comp.SoundEntity, comp.Active && _power.IsPowered(uid) ? comp.DefaultParams.Volume : 0f);
+            _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)));
     }
 
     private void OnMediaStopped(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaStoppedEvent args)
@@ -75,11 +76,6 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             Text = comp.LowVolume ? "Lower Volume" : "Increase Volume",
             Act = () =>
             {
-                if (TryComp<RadioSpeakerComponent>(uid, out var speaker))
-                {
-                    speaker.LouderSpeech = !speaker.LouderSpeech;
-                    Dirty(uid, speaker);
-                }
                 comp.LowVolume = !comp.LowVolume;
                 Dirty(uid, comp);
                 if (comp.SoundEntity != null)
