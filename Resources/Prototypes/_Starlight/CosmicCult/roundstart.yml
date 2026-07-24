@@ -16,6 +16,7 @@
     - CosmicEntropyObjective
     - CosmicChaplainObjective
   - type: AntagSelection
+    lateJoinAdditional: true
     antags:
     - !type:LinearAntagCount
       proto: CosmicAntagCultist

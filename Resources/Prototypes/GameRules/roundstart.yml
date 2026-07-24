@@ -269,6 +269,7 @@
       min: 240
       max: 420 # Starlight end
   - type: AntagSelection
+    lateJoinAdditional: true # Starlight
     agentName: changeling-round-end-agent-name
     antags:
     - !type:LinearAntagCount
@@ -298,6 +299,7 @@
     background: RevClown
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
+    lateJoinAdditional: true # Starlight
     antags:
     - !type:LinearAntagCount
       proto: HeadRev
@@ -362,6 +364,7 @@
       max: 900
   - type: ZombieRule
   - type: AntagSelection
+    lateJoinAdditional: true # Starlight
     antags:
     - !type:LinearAntagCount
       proto: InitialInfected
