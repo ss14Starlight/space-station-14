@@ -1,13 +1,6 @@
 Entries:
 - author: Rtasva
   changes:
-  - message: 'Saltern: Relocated NCT, IAA, and Disposals.'
-    type: Tweak
-  id: 406457
-  time: '2026-07-07T18:24:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5012
-- author: Rtasva
-  changes:
   - message: 'Saltern: General mapping updates.'
     type: Fix
   id: 406458
@@ -2799,4 +2792,11 @@ Entries:
   id: 406856
   time: '2026-07-24T19:21:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5224
+- author: Conflee
+  changes:
+  - message: Fixed Prisoner appearing as a job in the job menu. Split Stir Stir into a new job. Cleaned up loc files. Prepped Prisoner role for use in Prison Colony.
+    type: Fix
+  id: 406857
+  time: '2026-07-24T19:21:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5243
 Order: -1
