@@ -1,39 +1,4 @@
 Entries:
-- author: r3d3mpt1on
-  changes:
-  - message: Patches are now 1x1 instead of 1x2.
-    type: Tweak
-  id: 406444
-  time: '2026-07-05T17:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4970
-- author: ku-mo
-  changes:
-  - message: Rodentia's glowing hair now properly displaces.
-    type: Fix
-  id: 406445
-  time: '2026-07-05T17:08:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4994
-- author: Johnny
-  changes:
-  - message: (Reach) Uhhhh.... Yeah I dont want to talk about it, godo. I fixed disposals.
-    type: Fix
-  id: 406446
-  time: '2026-07-05T17:08:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5015
-- author: Johnny
-  changes:
-  - message: Added a custom RCD that is given to the chief engineer.
-    type: Add
-  id: 406447
-  time: '2026-07-05T20:25:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4995
-- author: TeddiousbearPA
-  changes:
-  - message: Added time requirements for senior formal uniforms and deputy for Sec/Dutyoff.
-    type: Tweak
-  id: 406448
-  time: '2026-07-06T11:53:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5006
 - author: TeddiousbearPA
   changes:
   - message: Renamed Deputy Formal to Deputy.
@@ -2799,4 +2764,39 @@ Entries:
   id: 406843
   time: '2026-07-24T17:28:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5262
+- author: CasaleBalthazar
+  changes:
+  - message: the molar gas mixer, a new type of gas mixer that respect the specified mix when mixing gases at different temperatures.
+    type: Add
+  id: 406844
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CasaleBalthazar
+  changes:
+  - message: renamed the gas mixer to volumetric gas mixer.
+    type: Tweak
+  id: 406845
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CasaleBalthazar
+  changes:
+  - message: updated the guidebook entry on gas mixing/filtering.
+    type: Tweak
+  id: 406846
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CrazyPhantom
+  changes:
+  - message: Ported Molar gas mixers.
+    type: Add
+  id: 406847
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CrazyPhantom
+  changes:
+  - message: Added alt layers for molar gas mixers.
+    type: Add
+  id: 406848
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
 Order: -1
