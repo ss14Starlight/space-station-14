@@ -918,7 +918,8 @@ namespace Content.Client.Lobby.UI
         #region Starlight
         public void RefreshAntags()
         {
-            Antags.RefreshAntags(Profile); // Moffstation
+            var renderedAntags = Antags.RefreshAntags(Profile); // Starlight
+            UpdateAntagPreferences(renderedAntags); // Starlight
             /*AntagList.RemoveAllChildren();
             var items = new[]
             {
@@ -1029,13 +1030,35 @@ namespace Content.Client.Lobby.UI
         }
         private void OnAntagsSelectionChanged(HashSet<ProtoId<AntagPrototype>> antags)
         {
-            if (Profile is null)
+            #region Starlight
+            if (UpdateAntagPreferences(antags))
+                ReloadPreview();
+
+            /*if (Profile is null)
                 return;
 
             Profile = Profile.WithAntagPreferences(antags);
             ReloadPreview();
-            SetDirty();
+            SetDirty();*/
+            #endregion
         }
+
+        #region Starlight
+        private bool UpdateAntagPreferences(IEnumerable<ProtoId<AntagPrototype>> antags)
+        {
+            if (Profile is null)
+                return false;
+
+            var selectedAntags = antags.ToHashSet();
+
+            if (selectedAntags.SetEquals(Profile.AntagPreferences))
+                return false;
+
+            Profile = Profile.WithAntagPreferences(selectedAntags);
+            SetDirty();
+            return true;
+        }
+        #endregion
 
         private void OnAntagLoadoutPressed(ProtoId<AntagPrototype> antagId)
         {

@@ -100,15 +100,26 @@ public sealed partial class SpecialRolesTab : BoxContainer
 
     private void OnAntagToggled(ProtoId<AntagPrototype> antagId, bool selected)
     {
-        var allSelected = _categoryUis.Values
+        #region Starlight
+        /*var allSelected = _categoryUis.Values
             .SelectMany(c => c.GetSelectedAntagIds())
-            .ToHashSet();
+            .ToHashSet();*/
+        #endregion
 
-        OnAntagsChanged?.Invoke(allSelected);
+        OnAntagsChanged?.Invoke(GetSelectedAntagIds()); // Starlight
     }
 
-    public void RefreshAntags(HumanoidCharacterProfile? profile)
+    public HashSet<ProtoId<AntagPrototype>> RefreshAntags(HumanoidCharacterProfile? profile) // Starlight
     {
         PopulateCategories(profile?.AntagPreferences, profile); // Starlight
+        return GetSelectedAntagIds(); // Starlight
     }
+
+#region Starlight
+    private HashSet<ProtoId<AntagPrototype>> GetSelectedAntagIds()
+    {
+        return _categoryUis.Values.SelectMany(category => category.GetSelectedAntagIds()).ToHashSet();
+    }
+
+#endregion
 }
