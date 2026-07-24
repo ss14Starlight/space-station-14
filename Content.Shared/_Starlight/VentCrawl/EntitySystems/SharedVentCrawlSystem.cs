@@ -128,6 +128,13 @@ public sealed partial class SharedVentCrawlSystem : EntitySystem
 
         holder.IsExitingVentCrawls = true;
 
+        if (holder.CurrentTube is { } currentTube &&
+            TryComp<VentCrawlTubeComponent>(currentTube, out var tube) &&
+            tube.ContainedHolders.Remove(uid))
+        {
+            Dirty(currentTube, tube);
+        }
+
         UpdateExitAction(holder);
 
         var container = GetOrEnsureContainer(uid);
