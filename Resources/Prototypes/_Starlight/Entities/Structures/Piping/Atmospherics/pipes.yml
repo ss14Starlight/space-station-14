@@ -48,6 +48,13 @@
   - type: Construction
     graph: GasPipeSubfloorTank
     node: tank
+  - type: VentCrawlTube
+  - type: VentCrawlJunction
+    degrees:
+      - 0
+      - 90
+      - -90
+      - 180
   - type: GuideHelp
     guides:
     - Pipes
