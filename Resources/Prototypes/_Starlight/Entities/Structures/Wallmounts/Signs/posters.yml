@@ -780,6 +780,16 @@
     sprite: _Starlight/Structures/Wallmounts/posters/tipper_cream_soda.rsi
     state: tipper_cream_soda_tg
 
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandNaN
+  name: "NaN%"
+  description: "Beware the dangers of Negative Energy."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/nan.rsi
+    state: NaN
+
 # Prison Colony
 
 - type: entity
