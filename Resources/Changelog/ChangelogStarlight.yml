@@ -1,18 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: All Protogens now occupy the same bag space as their non-Proto variants.
-    type: Fix
-  id: 406440
-  time: '2026-07-05T15:48:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5008
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Moths use the correct death sounds now.
-    type: Fix
-  id: 406441
-  time: '2026-07-05T15:48:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5008
 - author: r3d3mpt1on
   changes:
   - message: Oil Packs, HV Cables, Patch Packs to the Combat Medkit and BrigKit whitelists.
@@ -2799,4 +2785,18 @@ Entries:
   id: 406839
   time: '2026-07-24T12:39:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5294
+- author: Conflee, Sevenshades, Caws
+  changes:
+  - message: A Robotics-themed Surgery sign. Sprites by Conflee.
+    type: Add
+  id: 406840
+  time: '2026-07-24T14:51:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5285
+- author: Conflee, Sevenshades, Caws
+  changes:
+  - message: A Heat sign, for indicating heating rooms. Sprites by Sevenshades.
+    type: Add
+  id: 406841
+  time: '2026-07-24T14:51:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5285
 Order: -1
