@@ -213,12 +213,26 @@
   fx: EffectRCDConstruct0
 
 - type: rcd
-  id: MixerGas
+  id: MixerGasVolumetric
   category: AtmosphericUtility
-  sprite: /Textures/_Starlight/Interface/Radial/RPD/gas_mixer.png
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/v_gas_mixer.png
   mode: ConstructObject
   prototype: GasMixer
   mirrorPrototype: GasMixerFlipped
+  cost: 4
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  hasLayers: true
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: MixerGasMolar
+  category: AtmosphericUtility
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/m_gas_mixer.png
+  mode: ConstructObject
+  prototype: GasMolarMixer
+  mirrorPrototype: GasMolarMixerFlipped
   cost: 4
   delay: 0
   collisionMask: Impassable
