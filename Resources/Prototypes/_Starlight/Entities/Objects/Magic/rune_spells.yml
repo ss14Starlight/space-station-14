@@ -34,7 +34,6 @@
     icon:
         sprite: Structures/Magic/Cult/trap.rsi
         state: trap
-        color: '#FF770055'
 
 
 - type: entity
@@ -51,4 +50,3 @@
       sprite: Structures/Magic/Cult/trap.rsi
       layers:
         - state: trap
-          color: '#FF770055'
