@@ -668,3 +668,96 @@
   - GasMolarMixerFlippedAlt2
   - GasMolarMixerFlippedAlt3
   - GasMolarMixerFlippedAlt4
+
+# region quaternary
+
+# Subfloor gas tank BEGIN
+- type: construction
+  id: GasPipeSubfloorTank
+  graph: GasPipeSubfloorTank
+  startNode: start
+  targetNode: tank
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+    - GasPipeSubfloorTank
+    - GasPipeSubfloorTankAlt1
+    - GasPipeSubfloorTankAlt2
+    - GasPipeSubfloorTankAlt3
+    - GasPipeSubfloorTankAlt4
+
+- type: construction
+  id: GasPipeSubfloorTankAlt1
+  hide: true
+  graph: GasPipeSubfloorTank
+  startNode: start
+  targetNode: tankAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+    - GasPipeSubfloorTank
+    - GasPipeSubfloorTankAlt1
+    - GasPipeSubfloorTankAlt2
+    - GasPipeSubfloorTankAlt3
+    - GasPipeSubfloorTankAlt4
+
+- type: construction
+  id: GasPipeSubfloorTankAlt2
+  hide: true
+  graph: GasPipeSubfloorTank
+  startNode: start
+  targetNode: tankAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+    - GasPipeSubfloorTank
+    - GasPipeSubfloorTankAlt1
+    - GasPipeSubfloorTankAlt2
+    - GasPipeSubfloorTankAlt3
+    - GasPipeSubfloorTankAlt4
+
+- type: construction
+  id: GasPipeSubfloorTankAlt3
+  hide: true
+  graph: GasPipeSubfloorTank
+  startNode: start
+  targetNode: tankAlt3
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+    - GasPipeSubfloorTank
+    - GasPipeSubfloorTankAlt1
+    - GasPipeSubfloorTankAlt2
+    - GasPipeSubfloorTankAlt3
+    - GasPipeSubfloorTankAlt4
+
+- type: construction
+  id: GasPipeSubfloorTankAlt4
+  hide: true
+  graph: GasPipeSubfloorTank
+  startNode: start
+  targetNode: tankAlt4
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+    - GasPipeSubfloorTank
+    - GasPipeSubfloorTankAlt1
+    - GasPipeSubfloorTankAlt2
+    - GasPipeSubfloorTankAlt3
+    - GasPipeSubfloorTankAlt4
+# Subfloor gas tank END

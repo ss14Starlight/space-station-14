@@ -269,13 +269,27 @@
 
 - type: rcd
   id: CanisterPort
-  category: AtmosphericUtility
+  category: InterfacesStorage
   sprite: /Textures/_Starlight/Interface/Radial/RPD/port.png
   mode: ConstructObject
   prototype: GasPort
   cost: 3
   delay: 0
   collisionMask: Impassable
+  rotation: User
+  hasLayers: true
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: SubfloorGasTank
+  category: InterfacesStorage
+  sprite:
+    sprite: _Starlight/Structures/Piping/Atmospherics/subfloortank.rsi
+    state: subFloorTank
+  mode: ConstructObject
+  prototype: GasPipeSubfloorTank
+  cost: 5
+  delay: 0
   rotation: User
   hasLayers: true
   fx: EffectRCDConstruct0
