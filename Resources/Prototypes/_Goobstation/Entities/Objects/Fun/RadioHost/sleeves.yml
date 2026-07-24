@@ -52,7 +52,7 @@
   parent: BaseVinylSleeveFilled
   id: VinylSleeveDevil
   name: "vinyl sleeve: Devil"
-  description: A vinyle sleeve with an inverted pentacle. Is that... real blood?
+  description: A vinyl sleeve with an inverted pentacle. Is that... real blood?
   components:
   - type: Sprite
     state: devil-vinyl-sleeve
@@ -276,7 +276,7 @@
   parent: BaseVinylSleeveFilled
   id: VinylSleeveRedSun
   name: "vinyl sleeve: Red Sun"
-  description: Who would have know Red Sun produced music?
+  description: Who would have known Red Sun produced music?
   components:
   - type: Sprite
     state: redsun-vinyl-sleeve

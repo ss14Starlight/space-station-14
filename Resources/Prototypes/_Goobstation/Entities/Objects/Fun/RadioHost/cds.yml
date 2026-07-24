@@ -32,7 +32,7 @@
 - type: entity
   parent: BaseCDDisc
   id: CDAdvertChemistryAdvert
-  name: "CD: Chemistry Advertment"
+  name: "CD: Chemistry Advertisement"
   description: A CD containing a prerecorded advertisement for the station's chemistry department.
   components:
   - type: Vinyl

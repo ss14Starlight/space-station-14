@@ -138,8 +138,8 @@
     slots:
       vinyl:
         name: vinyl
-        insertSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylEject.ogg
-        ejectSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylInsert.ogg
+        insertSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylInsert.ogg
+        ejectSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylEject.ogg
         whitelist:
           tags:
           - VinylSleeveFit
@@ -159,8 +159,8 @@
     slots:
       vinyl:
         name: vinyl
-        insertSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylEject.ogg
-        ejectSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylInsert.ogg
+        insertSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylInsert.ogg
+        ejectSound: /Audio/_Goobstation/RadioStation/Vinyls/vinylEject.ogg
         whitelist:
           tags:
           - VinylSleeveFit

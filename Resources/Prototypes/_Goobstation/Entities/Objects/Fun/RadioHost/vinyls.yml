@@ -457,7 +457,7 @@
   parent: BaseVinylDisc
   id: VinylLunch
   name: "vinyl: Lunch"
-  description:
+  description: A fast pace groovy electronic tune.
   components:
   - type: Sprite
     state: default
