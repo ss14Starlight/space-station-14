@@ -1,18 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Security shuttle's mass scanner faces forward for easier navigation.
-    type: Tweak
-  id: 406436
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: ku-mo
-  changes:
-  - message: Added Document Printer to the Supply department on Ming.
-    type: Add
-  id: 406437
-  time: '2026-07-05T15:10:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4992
 - author: Musikly
   changes:
   - message: Changed name of the speed cyberlimb from "speg" to "speed leg".
@@ -2799,4 +2785,18 @@ Entries:
   id: 406835
   time: '2026-07-24T09:37:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5280
+- author: Mack
+  changes:
+  - message: Handheld crew monitors will once again eject the battery on alt-click.
+    type: Fix
+  id: 406836
+  time: '2026-07-24T10:20:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5263
+- author: Caws
+  changes:
+  - message: Increased the linking range for AI Upload computers from 20 to 200. Most maps with far away AI Uploads (Lobster, Hotel, Starboard, etc.) already did this manually, this just lets mappers do it without manual editing (and lets players re-link a broken AI Uploads without admin help).
+    type: Tweak
+  id: 406837
+  time: '2026-07-24T10:21:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5286
 Order: -1
