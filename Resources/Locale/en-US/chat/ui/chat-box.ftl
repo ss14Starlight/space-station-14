@@ -40,3 +40,4 @@ hud-chatbox-highlights-tooltip = The words need to be separated by a newline,
 hud-chatbox-highlights-placeholder = @McHands
                                      "Judge"
                                      Medical
+hud-chatbox-auto-highlights = Auto Highlights:

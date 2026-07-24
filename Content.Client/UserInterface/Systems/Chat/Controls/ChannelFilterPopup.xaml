@@ -16,6 +16,7 @@
                     <TextEdit Name="HighlightEdit" MinHeight="150" Margin="5 5"/>
                 </PanelContainer>
                 <Button Name="HighlightButton" Text="{Loc 'hud-chatbox-highlights-button'}" ToolTip="{Loc 'hud-chatbox-highlights-tooltip'}"/>
+                <RichTextLabel Name="AutoHighlightsLabel" Access="Public" Visible="False" Margin="2 5" SetWidth="120"/>
             </BoxContainer>
             <!-- Starlight start -->
             <BoxContainer Name="TTSMuteVBox" MinWidth="120" Margin="0 10" Orientation="Vertical" SeparationOverride="4">

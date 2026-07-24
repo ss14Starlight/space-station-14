@@ -10,6 +10,8 @@ using Content.Shared.CCVar;
 using NUnit.Framework;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
+using Content.Client.UserInterface.Systems.Chat.Widgets;
+using Content.Client.UserInterface.Systems.Chat.Controls;
 
 namespace Content.IntegrationTests.Tests._Starlight;
 
@@ -152,4 +154,69 @@ public sealed class ChatHighlightTest : GameTest
         Assert.That(activeHighlights, Contains.Item("Captain"));
         Assert.That(activeHighlights, Contains.Item("(?<!\\w)Cap(?!\\w)"));
     }
+
+    [Test]
+    [RunOnSide(Side.Client)]
+    public async Task TestAutoHighlightsVisibleInUI()
+    {
+        var chatController = _uiManager.GetUIController<ChatUIController>();
+        
+        // 1. Enable auto-fill highlights
+        _configManager.SetCVar(CCVars.ChatAutoFillHighlights, true);
+
+        // 2. Set custom highlights
+        var customHighlights = "ling\nrev";
+        chatController.UpdateHighlights(customHighlights);
+
+        // 3. Create a ChatBox widget
+        var chatBox = new ChatBox();
+
+        // 4. Simulate character update
+        var characterData = new CharacterInfoSystem.CharacterData(
+            default,
+            "Captain",
+            new Dictionary<string, List<Shared.Objectives.ObjectiveInfo>>(),
+            null,
+            "John Doe"
+        );
+
+        InvokeOnCharacterUpdated(chatController, characterData);
+
+        // 5. Get the text currently displayed in the filter popup's textbox and auto-highlights label
+        var highlightEdit = chatBox.ChatInput.FilterButton.Popup.FindControl<Robust.Client.UserInterface.Controls.TextEdit>("HighlightEdit");
+        var uiHighlightsText = Robust.Shared.Utility.Rope.Collapse(highlightEdit.TextRope);
+        var autoHighlightsLabel = chatBox.ChatInput.FilterButton.Popup.FindControl<Robust.Client.UserInterface.Controls.RichTextLabel>("AutoHighlightsLabel");
+
+        try
+        {
+            // Assert that the UI textbox ONLY contains custom highlights (doesn't pollute/show auto highlights)
+            Assert.That(uiHighlightsText, Contains.Substring("ling"));
+            Assert.That(uiHighlightsText, Contains.Substring("rev"));
+            Assert.That(uiHighlightsText, Is.Not.Contains("Captain"));
+
+            // Assert that the read-only AutoHighlightsLabel is visible and displays the active auto highlights
+            Assert.That(autoHighlightsLabel.Visible, Is.True);
+            Assert.That(autoHighlightsLabel.Text, Is.Not.Null);
+            Assert.That(autoHighlightsLabel.Text, Contains.Substring("Captain"));
+            Assert.That(autoHighlightsLabel.Text, Contains.Substring("John"));
+            Assert.That(autoHighlightsLabel.Text, Contains.Substring("Doe"));
+
+            // Assert that internally they are indeed active in memory
+            var highlightsField = chatController.GetType().GetField(
+                "_highlights",
+                BindingFlags.NonPublic | BindingFlags.Instance
+            );
+            Assert.That(highlightsField, Is.Not.Null);
+            var activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
+            
+            Assert.That(activeHighlights, Contains.Item("ling"));
+            Assert.That(activeHighlights, Contains.Item("rev"));
+            Assert.That(activeHighlights, Contains.Item("Captain"));
+        }
+        finally
+        {
+            chatBox.Dispose();
+        }
+    }
 }
+

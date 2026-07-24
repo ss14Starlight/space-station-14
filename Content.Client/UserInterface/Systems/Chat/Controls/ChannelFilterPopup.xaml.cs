@@ -200,6 +200,27 @@ public sealed partial class ChannelFilterPopup : Popup
         OnNewHighlights?.Invoke(Rope.Collapse(HighlightEdit.TextRope));
     }
 
+    public void UpdateAutoHighlights(string autoHighlights)
+    {
+        if (string.IsNullOrEmpty(autoHighlights))
+        {
+            AutoHighlightsLabel.Visible = false;
+            return;
+        }
+
+        var list = autoHighlights
+            .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Select(h => h.TrimStart('@'))
+            .Distinct();
+
+        var joined = string.Join(", ", list);
+        var header = Loc.GetString("hud-chatbox-auto-highlights");
+        var markup = $"{header} [color=#8a8a8a][i]{joined}[/i][/color]";
+
+        AutoHighlightsLabel.SetMessage(Robust.Shared.Utility.FormattedMessage.FromMarkupOrThrow(markup));
+        AutoHighlightsLabel.Visible = true;
+    }
+
     public void UpdateUnread(ChatChannel channel, int? unread)
     {
         if (_filterStates.TryGetValue(channel, out var checkbox))

@@ -40,6 +40,10 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
     private bool _charInfoIsAttach = false;
 
     public event Action<string>? HighlightsUpdated;
+    // Starlight Start
+    public event Action<string>? AutoHighlightsUpdated;
+    public string AutoHighlights => _autoFillHighlightsEnabled ? _autoHighlights : string.Empty;
+    // Starlight End
 
     private void InitializeHighlights()
     {
@@ -51,6 +55,7 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
                 UpdateAutoFillHighlights();
             else
                 ReloadHighlights();
+            AutoHighlightsUpdated?.Invoke(AutoHighlights);
         }, true);
         // Starlight End
 
@@ -192,6 +197,7 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         // Starlight Start
         _autoHighlights = newHighlights;
         ReloadHighlights();
+        AutoHighlightsUpdated?.Invoke(AutoHighlights);
         // Starlight End
         _charInfoIsAttach = false;
     }

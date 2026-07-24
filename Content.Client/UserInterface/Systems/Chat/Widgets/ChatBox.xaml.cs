@@ -48,7 +48,9 @@ public partial class ChatBox : UIWidget
         _controller = UserInterfaceManager.GetUIController<ChatUIController>();
         _controller.MessageAdded += OnMessageAdded;
         _controller.HighlightsUpdated += OnHighlightsUpdated;
+        _controller.AutoHighlightsUpdated += OnAutoHighlightsUpdated;
         _controller.RegisterChat(this);
+        ChatInput.FilterButton.Popup.UpdateAutoHighlights(_controller.AutoHighlights);
     }
 
     private void OnTextEntered(LineEditEventArgs args)
@@ -77,6 +79,11 @@ public partial class ChatBox : UIWidget
     private void OnHighlightsUpdated(string highlights)
     {
         ChatInput.FilterButton.Popup.UpdateHighlights(highlights);
+    }
+
+    private void OnAutoHighlightsUpdated(string autoHighlights)
+    {
+        ChatInput.FilterButton.Popup.UpdateAutoHighlights(autoHighlights);
     }
 
     private void OnChannelSelect(ChatSelectChannel channel)
@@ -229,6 +236,8 @@ public partial class ChatBox : UIWidget
 
         if (!disposing) return;
         _controller.UnregisterChat(this);
+        _controller.HighlightsUpdated -= OnHighlightsUpdated;
+        _controller.AutoHighlightsUpdated -= OnAutoHighlightsUpdated;
         ChatInput.Input.OnTextEntered -= OnTextEntered;
         ChatInput.Input.OnKeyBindDown -= OnInputKeyBindDown;
         ChatInput.Input.OnTextChanged -= OnTextChanged;
