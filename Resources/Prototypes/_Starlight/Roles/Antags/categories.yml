@@ -19,6 +19,7 @@
   id: Outlaws
   name: antag-category-outlaws-name
   description: antag-category-outlaws-desc
+  priority: 2
   accentColor: "#753c2f"
   antags:
   - Brighteye
@@ -29,6 +30,7 @@
   id: USSP
   name: antag-category-ussp-name
   description: antag-category-ussp-desc
+  priority: 4
   accentColor: "#cc2500"
   antags:
   - HeadRev
@@ -37,6 +39,7 @@
   id: Wizard
   name: antag-category-wizard-name
   description: antag-category-wizard-desc
+  priority: 3
   accentColor: "#6b3999"
   antags:
   - Wizard
@@ -46,6 +49,7 @@
   id: Xenoborgs
   name: antag-category-xenoborg-name
   description: antag-category-xenoborg-desc
+  priority: 5
   accentColor: "#0a0344"
   antags:
   - MothershipCore
@@ -55,6 +59,7 @@
   id: Occult
   name: antag-category-occult-name
   description: antag-category-occult-desc
+  priority: 1
   accentColor: "#69bbbb"
   antags:
   - CosmicAntagCultist

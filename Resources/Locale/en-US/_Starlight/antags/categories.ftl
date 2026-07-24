@@ -1,7 +1,7 @@
-antag-category-occult-name = The Occult
+antag-category-occult-name = Occult
 antag-category-occult-desc = Various occultic groups, either working on behalf of their "Gods", "Lords", other extradimensional beings, or, in rare cases, being one themselves. Obviously, this is bad for efficiency, and must be stopped.
 
-antag-category-wizard-name = The Space Wizard Federation
+antag-category-wizard-name = Space Wizard Federation
 antag-category-wizard-desc = The Space Wizard Federation is a mysterious, unknown and rather strange force, whose existence parallels with life as a concept. While their members don't directly oppose NanoTrasen, they tend to get... carried away, whenever they end up on one of their stations.
 
 antag-category-xenoborg-name = Xenoborgs
