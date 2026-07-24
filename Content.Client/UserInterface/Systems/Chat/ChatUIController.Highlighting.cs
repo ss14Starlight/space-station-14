@@ -34,6 +34,7 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
 
     private bool _autoFillHighlightsEnabled;
     private string _autoHighlights = ""; // Starlight
+    private CharacterData? _cachedCharacterData; // Starlight
 
     /// <summary>
     ///     The boolean that keeps track of the 'OnCharacterUpdated' event, whenever it's a player attaching or opening the character info panel.
@@ -99,12 +100,20 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         _autoHighlights = string.Empty;
         ReloadHighlights();
         AutoHighlightsUpdated?.Invoke(AutoHighlights);
-        // Starlight end
 
-        // If auto highlights are enabled generate a request for new character info
-        // that will be used to determine the highlights.
-        _charInfoIsAttach = true;
-        _characterInfo?.RequestCharacterInfo(); // Starlight
+        if (_cachedCharacterData != null && _cachedCharacterData.Value.Entity == _player.LocalEntity)
+        {
+            _charInfoIsAttach = true;
+            OnCharacterUpdated(_cachedCharacterData.Value);
+        }
+        else
+        {
+            // If auto highlights are enabled generate a request for new character info
+            // that will be used to determine the highlights.
+            _charInfoIsAttach = true;
+            _characterInfo?.RequestCharacterInfo();
+        }
+        // Starlight end
     }
 
     // Starlight Start
@@ -178,6 +187,8 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
 
     private void OnCharacterUpdated(CharacterData data)
     {
+        _cachedCharacterData = data; // Starlight
+
         // If _charInfoIsAttach is false then the opening of the character panel was the one
         // to generate the event, dismiss it.
         if (!_charInfoIsAttach)
@@ -210,7 +221,7 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         if (_loc.TryGetString($"highlights-{jobKey}", out var jobMatches))
             newHighlights += '\n' + jobMatches.Replace(", ", "\n");
 
-// Starlight Start
+        // Starlight Start
         _autoHighlights = newHighlights;
         ReloadHighlights();
         AutoHighlightsUpdated?.Invoke(AutoHighlights);

@@ -101,8 +101,6 @@ public sealed partial class ChannelFilterPopup : Popup
 
         _cfg.UnsubValueChanged(CCVars.ChatAutoFillHighlights, OnAutoFillCVarChanged);
     }
-    // Starlight end
-    // Starlight start
 
     /// <summary>
     ///     Creates checkbox toggle mute buttons for each defined Radio channel prototype.
@@ -249,12 +247,13 @@ public sealed partial class ChannelFilterPopup : Popup
             .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             .Select(h => h.TrimStart('@'))
             .Distinct(StringComparer.OrdinalIgnoreCase)
-            .Select(FormattedMessage.EscapeText);
+            .Select(FormattedMessage.EscapeText)
+            .Select(h => Loc.GetString("hud-chatbox-auto-highlights-bullet", ("item", h)));
 
-        var bullets = string.Join("\n", list.Select(h => $"•\u00A0{h}"));
-        var markup = $"[color=#8a8a8a][i]{bullets}[/i][/color]";
+        var bullets = string.Join("\n", list);
+        var markup = Loc.GetString("hud-chatbox-auto-highlights-wrapper", ("bullets", bullets));
 
-        AutoHighlightsLabel.SetMessage(Robust.Shared.Utility.FormattedMessage.FromMarkupOrThrow(markup));
+        AutoHighlightsLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(markup));
         AutoHighlightsLabel.Visible = true;
     }
     // Starlight end

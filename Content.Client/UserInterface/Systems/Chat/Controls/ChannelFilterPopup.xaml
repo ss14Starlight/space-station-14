@@ -5,15 +5,13 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Systems.Chat.Controls">
     <PanelContainer Name="FilterPopupPanel" StyleClasses="BorderedWindowPanel">
         <BoxContainer Orientation="Horizontal" SeparationOverride="8" Margin="10 0">
-            <BoxContainer Name="FilterVBox" MinWidth="105" Margin="0 10" Orientation="Vertical" SeparationOverride="4">
-                <!-- Starlight start -->
-                <Label Text="{Loc 'hud-chatbox-channel-filter'}"/>
-                <!-- Starlight end -->
-            </BoxContainer>
             <!-- Starlight start -->
+            <BoxContainer Name="FilterVBox" MinWidth="105" Margin="0 10" Orientation="Vertical" SeparationOverride="4">
+                <Label Text="{Loc 'hud-chatbox-channel-filter'}"/>
+            </BoxContainer>
             <cc:VSeparator Margin="2 10" />
-            <!-- Starlight end -->
             <BoxContainer Name="HighlightsVBox" MinWidth="160" Margin="0 10" Orientation="Vertical" SeparationOverride="4">
+                <!-- Starlight end -->
                 <Label Text="{Loc 'hud-chatbox-highlights'}"/>
                 <PanelContainer>
                     <!-- Begin custom background for TextEdit -->

@@ -21,7 +21,7 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 [Virtual]
 public partial class ChatBox : UIWidget
 {
-    private const int FormattedMessageDefaultCapacity = 3;
+    private const int FormattedMessageDefaultCapacity = 3; // Starlight
 
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private ILogManager _log = default!;
@@ -55,13 +55,9 @@ public partial class ChatBox : UIWidget
         _controller = UserInterfaceManager.GetUIController<ChatUIController>();
         _controller.MessageAdded += OnMessageAdded;
         _controller.HighlightsUpdated += OnHighlightsUpdated;
-        // Starlight start
-        _controller.AutoHighlightsUpdated += OnAutoHighlightsUpdated;
-        // Starlight end
+        _controller.AutoHighlightsUpdated += OnAutoHighlightsUpdated; // Starlight
         _controller.RegisterChat(this);
-        // Starlight start
-        ChatInput.FilterButton.Popup.UpdateAutoHighlights(_controller.AutoHighlights);
-        // Starlight end
+        ChatInput.FilterButton.Popup.UpdateAutoHighlights(_controller.AutoHighlights); // Starlight
     }
 
     private void OnTextEntered(LineEditEventArgs args)
