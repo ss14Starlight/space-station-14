@@ -1,10 +1,11 @@
 using Content.Shared.Shuttles.Systems;
 using Robust.Shared.GameStates;
+using Content.Shared._Starlight.GPS.Systems;
 
 namespace Content.Shared.Shuttles.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedRadarConsoleSystem))]
+[Access(typeof(SharedRadarConsoleSystem), typeof(AstroNavSystem))]
 [AutoGenerateComponentPause] // Starlight
 public sealed partial class RadarConsoleComponent : Component
 {
