@@ -28,7 +28,11 @@ public sealed partial class WeatherMarkerSystem : EntitySystem
 
         // sanity check for invalid map
         if (xform.MapID == MapId.Nullspace)
+        {
+            QueueDel(uid);
             return;
+        }
+
 
         var mapId = xform.MapID;
 
