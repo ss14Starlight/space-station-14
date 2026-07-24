@@ -29,9 +29,9 @@
   effects:
   - !type:Explosion
     explosionType: Default
-    maxIntensity: 100
-    intensityPerUnit: 0.65
-    intensitySlope: 5
+    maxIntensity: 8 # Starlight, christ this was a death mix before
+    intensityPerUnit: 0.35 # It's pretty much just slightly stronger than potassium and water now.
+    intensitySlope: 4 # Starlight end
     maxTotalIntensity: 100
 
 - type: reaction
