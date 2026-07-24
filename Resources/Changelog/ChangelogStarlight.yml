@@ -1,172 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: (Hotel) LV wiring in maints.
-    type: Tweak
-  id: 406426
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: mikeysaurus
-  changes:
-  - message: Updated lobby observe warning text to make more sense now that players can edit their character in-round.
-    type: Tweak
-  id: 406427
-  time: '2026-07-04T10:25:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5007
-- author: Tjmaxmillion
-  changes:
-  - message: Fixed GSO Job icon.
-    type: Fix
-  id: 406428
-  time: '2026-07-05T08:56:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5014
-- author: Conflee
-  changes:
-  - message: Putrid Blood has been renamed to Mortucussus, which is now directly used for the Ambuzol recipe. Centrifuging the blood drawn from Zombies is no longer required. All other Metashiled changes from PR 4747 are kept.
-    type: Tweak
-  id: 406429
-  time: '2026-07-05T13:16:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5009
-- author: Mack
-  changes:
-  - message: Cyberarm tool icons not showing for some species.
-    type: Fix
-  id: 406430
-  time: '2026-07-05T14:08:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4986
-- author: Caws
-  changes:
-  - message: Added a NanoMed Security to the Security shuttle's Medbay.
-    type: Add
-  id: 406431
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
-  - message: Added a cell recharger to the Security shuttle's Medbay.
-    type: Add
-  id: 406432
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
-  - message: Added a SecTech to the Security shuttle.
-    type: Add
-  id: 406433
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
-  - message: Security shuttle's power setup has been fixed.
-    type: Tweak
-  id: 406434
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
-  - message: Security shuttle's lockers are no longer empty.
-    type: Tweak
-  id: 406435
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
-  - message: Security shuttle's mass scanner faces forward for easier navigation.
-    type: Tweak
-  id: 406436
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: ku-mo
-  changes:
-  - message: Added Document Printer to the Supply department on Ming.
-    type: Add
-  id: 406437
-  time: '2026-07-05T15:10:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4992
-- author: Musikly
-  changes:
-  - message: Changed name of the speed cyberlimb from "speg" to "speed leg".
-    type: Tweak
-  id: 406438
-  time: '2026-07-05T15:48:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5017
-- author: wonderfulnewworld
-  changes:
-  - message: All Protogens are now properly absorbable by Changelings, regardless of frame type.
-    type: Fix
-  id: 406439
-  time: '2026-07-05T15:48:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5008
-- author: wonderfulnewworld
-  changes:
-  - message: All Protogens now occupy the same bag space as their non-Proto variants.
-    type: Fix
-  id: 406440
-  time: '2026-07-05T15:48:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5008
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Moths use the correct death sounds now.
-    type: Fix
-  id: 406441
-  time: '2026-07-05T15:48:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5008
-- author: r3d3mpt1on
-  changes:
-  - message: Oil Packs, HV Cables, Patch Packs to the Combat Medkit and BrigKit whitelists.
-    type: Add
-  id: 406442
-  time: '2026-07-05T17:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4970
-- author: r3d3mpt1on
-  changes:
-  - message: Patch Packs are now 1x2 instead of 1x1.
-    type: Tweak
-  id: 406443
-  time: '2026-07-05T17:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4970
-- author: r3d3mpt1on
-  changes:
-  - message: Patches are now 1x1 instead of 1x2.
-    type: Tweak
-  id: 406444
-  time: '2026-07-05T17:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4970
-- author: ku-mo
-  changes:
-  - message: Rodentia's glowing hair now properly displaces.
-    type: Fix
-  id: 406445
-  time: '2026-07-05T17:08:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4994
-- author: Johnny
-  changes:
-  - message: (Reach) Uhhhh.... Yeah I dont want to talk about it, godo. I fixed disposals.
-    type: Fix
-  id: 406446
-  time: '2026-07-05T17:08:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5015
-- author: Johnny
-  changes:
-  - message: Added a custom RCD that is given to the chief engineer.
-    type: Add
-  id: 406447
-  time: '2026-07-05T20:25:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4995
-- author: TeddiousbearPA
-  changes:
-  - message: Added time requirements for senior formal uniforms and deputy for Sec/Dutyoff.
-    type: Tweak
-  id: 406448
-  time: '2026-07-06T11:53:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5006
-- author: TeddiousbearPA
-  changes:
-  - message: Renamed Deputy Formal to Deputy.
-    type: Tweak
-  id: 406449
-  time: '2026-07-06T11:53:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5006
 - author: TeddiousbearPA
   changes:
   - message: Updated Meta files to new Copyright standard.
@@ -2799,4 +2631,172 @@ Entries:
   id: 406825
   time: '2026-07-23T10:08:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5194
+- author: joshujo
+  changes:
+  - message: pressure pumps now accept signals.
+    type: Add
+  id: 406826
+  time: '2026-07-23T10:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5172
+- author: joshujo
+  changes:
+  - message: volumetric pumps now accept signals.
+    type: Add
+  id: 406827
+  time: '2026-07-23T10:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5172
+- author: redmushie
+  changes:
+  - message: (ATS) Updated dock buy/sell pipes to follow updated convention.
+    type: Tweak
+  id: 406828
+  time: '2026-07-23T11:13:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5244
+- author: redmushie
+  changes:
+  - message: (ATS) Distro dock inlet regulators; prevents the ATS from giving all of its distro to a visiting shuttle.
+    type: Add
+  id: 406829
+  time: '2026-07-23T11:13:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5244
+- author: redmushie
+  changes:
+  - message: (CS-4T9 Tanker) Updated buy/sell gas pipes to follow updated convention.
+    type: Tweak
+  id: 406830
+  time: '2026-07-23T11:13:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5244
+- author: Caws
+  changes:
+  - message: 'Added station beacons for mappers to use: Mail Room, Mining, Paramedic, Clown, Mime, and Musician.'
+    type: Add
+  id: 406831
+  time: '2026-07-24T07:47:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5282
+- author: Conflee
+  changes:
+  - message: Added NaN% poster, immortalizing a round where Beta broke the entire power grid of a station by getting negative power, making station unfixable even with admin commands. Spawned from the Contraband Poster pool.
+    type: Add
+  id: 406832
+  time: '2026-07-24T08:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5277
+- author: Conflee
+  changes:
+  - message: Resprited all Gun Safes. They now have a marker indicating which type of gun is inside them, making it much easier to find the correct safe more quickly.
+    type: Tweak
+  id: 406833
+  time: '2026-07-24T09:37:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5280
+- author: Conflee
+  changes:
+  - message: Added Command, Lawyer, Syndicate, and Security access Gun Safes.
+    type: Add
+  id: 406834
+  time: '2026-07-24T09:37:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5280
+- author: Conflee
+  changes:
+  - message: Swapped the Disabler Gun Safe to use Security access instead of Armory access. Disablers are starting loadout kit, and the safes are often mapped outside Armory in locker rooms etc. There's no reason to make Secoffs drag Warden from Genpop to open these.
+    type: Tweak
+  id: 406835
+  time: '2026-07-24T09:37:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5280
+- author: Mack
+  changes:
+  - message: Handheld crew monitors will once again eject the battery on alt-click.
+    type: Fix
+  id: 406836
+  time: '2026-07-24T10:20:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5263
+- author: Caws
+  changes:
+  - message: Increased the linking range for AI Upload computers from 20 to 200. Most maps with far away AI Uploads (Lobster, Hotel, Starboard, etc.) already did this manually, this just lets mappers do it without manual editing (and lets players re-link a broken AI Uploads without admin help).
+    type: Tweak
+  id: 406837
+  time: '2026-07-24T10:21:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5286
+- author: Caws
+  changes:
+  - message: Added warm light tubes. Less harsh than sodium light tubes, but still very orange. Printable at autolathes.
+    type: Add
+  id: 406838
+  time: '2026-07-24T12:17:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5284
+- author: redmushie
+  changes:
+  - message: Observer ghosts now have typing indicators.
+    type: Add
+  id: 406839
+  time: '2026-07-24T12:39:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5294
+- author: Conflee, Sevenshades, Caws
+  changes:
+  - message: A Robotics-themed Surgery sign. Sprites by Conflee.
+    type: Add
+  id: 406840
+  time: '2026-07-24T14:51:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5285
+- author: Conflee, Sevenshades, Caws
+  changes:
+  - message: A Heat sign, for indicating heating rooms. Sprites by Sevenshades.
+    type: Add
+  id: 406841
+  time: '2026-07-24T14:51:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5285
+- author: joshujo
+  changes:
+  - message: Edge firelocks to RCD.
+    type: Add
+  id: 406842
+  time: '2026-07-24T17:28:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5262
+- author: joshujo
+  changes:
+  - message: Post lights to RCD.
+    type: Add
+  id: 406843
+  time: '2026-07-24T17:28:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5262
+- author: CasaleBalthazar
+  changes:
+  - message: the molar gas mixer, a new type of gas mixer that respect the specified mix when mixing gases at different temperatures.
+    type: Add
+  id: 406844
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CasaleBalthazar
+  changes:
+  - message: renamed the gas mixer to volumetric gas mixer.
+    type: Tweak
+  id: 406845
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CasaleBalthazar
+  changes:
+  - message: updated the guidebook entry on gas mixing/filtering.
+    type: Tweak
+  id: 406846
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CrazyPhantom
+  changes:
+  - message: Ported Molar gas mixers.
+    type: Add
+  id: 406847
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CrazyPhantom
+  changes:
+  - message: Added alt layers for molar gas mixers.
+    type: Add
+  id: 406848
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: redmushie
+  changes:
+  - message: Maximum atmospheric device output pressures have been reverted to their non-doubled levels.
+    type: Tweak
+  id: 406849
+  time: '2026-07-24T17:53:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5298
 Order: -1
