@@ -33,7 +33,7 @@ public sealed partial class ProtoNitratePlasmaReaction : IGasReactionEffect
 		
 	///Determine reaction rate based on physical constants and PN present. Temperature increases rate. Pressure decreases speed similar to BZ, less decrease from pressure when more PN.
 		
-		var rate = (1f * temperature / ( (pressure/initProtoNitrate) ));
+		var rate = (.01f * temperature / ( (pressure/initProtoNitrate) ));
 	
 	///Check presence each gas that can decompose, if greater than 1, decompose equal to rate and add decompose value to production	
 	
@@ -86,12 +86,12 @@ public sealed partial class ProtoNitratePlasmaReaction : IGasReactionEffect
 		
         var production = ( (decomposeTrit * 1.25f) + (decomposeFrez * 0.03f) + (decomposeHeal * .1f) + (decomposeNitr * 5f) + (decomposeHNob * .2f) + (decomposeANob * 1f) + (decomposeHalon * .5f) + (decomposeZauker * 15f) + (decomposeZXA * .5f) );			
 		
-	///One PN becomes 100 plasma. More different types of gas in the soup can improve the rate of production without upgrading the mixer.	Massive helium byproduct to fuck up your pressure.
+	///One PN becomes 10 plasma. More different types of gas in the soup can improve the rate of production without upgrading the mixer.	Massive helium byproduct to fuck up your pressure.
 
-        mixture.AdjustMoles(Gas.ProtoNitrate, production * -0.01f);
+        mixture.AdjustMoles(Gas.ProtoNitrate, production * -0.1f);
 		mixture.AdjustMoles(Gas.Plasma, production);
-		mixture.AdjustMoles(Gas.Helium, production * (100f/pressure));
-		mixture.AdjustMoles(Gas.Tritium, -decomposeTrit);
+		mixture.AdjustMoles(Gas.Helium, production * (50f/pressure));
+		mixture.AdjustMoles(Gas.Tritium, -decomposeTrit);	
 		mixture.AdjustMoles(Gas.Frezon, -decomposeFrez);
 		mixture.AdjustMoles(Gas.Healium, -decomposeHeal);
 		mixture.AdjustMoles(Gas.Nitrium, -decomposeNitr);
