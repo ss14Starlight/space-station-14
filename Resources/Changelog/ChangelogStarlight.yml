@@ -1,13 +1,6 @@
 Entries:
 - author: TeddiousbearPA
   changes:
-  - message: Renamed Deputy Formal to Deputy.
-    type: Tweak
-  id: 406449
-  time: '2026-07-06T11:53:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5006
-- author: TeddiousbearPA
-  changes:
   - message: Updated Meta files to new Copyright standard.
     type: Tweak
   id: 406450
@@ -2799,4 +2792,11 @@ Entries:
   id: 406848
   time: '2026-07-24T17:53:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: redmushie
+  changes:
+  - message: Maximum atmospheric device output pressures have been reverted to their non-doubled levels.
+    type: Tweak
+  id: 406849
+  time: '2026-07-24T17:53:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5298
 Order: -1
