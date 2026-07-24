@@ -28,7 +28,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: Phenylpiperidine
-          max: 3.99
+          max: 4.99
         - !type:MetabolizerTypeCondition
           type: [ Cyclorite ]
         reagent: Phenylpiperidine
@@ -109,7 +109,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: Phenylpiperidine
-          min: 4.01
+          min: 5.01
         - !type:MetabolizerTypeCondition
           type: [ Cyclorite ]
         reagent: Phenylpiperidine
