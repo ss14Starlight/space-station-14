@@ -32,7 +32,8 @@ hud-chatbox-channel-Visual = Actions
 hud-chatbox-channel-Damage = Damage
 hud-chatbox-channel-Unspecified = Unspecified
 
-hud-chatbox-highlights = Highlights:
+hud-chatbox-channel-filter = Channels
+hud-chatbox-highlights = Chat Highlights
 hud-chatbox-highlights-button = Submit
 hud-chatbox-highlights-tooltip = The words need to be separated by a newline,
                                  if wrapped around " they will be highlighted
@@ -40,4 +41,4 @@ hud-chatbox-highlights-tooltip = The words need to be separated by a newline,
 hud-chatbox-highlights-placeholder = @McHands
                                      "Judge"
                                      Medical
-hud-chatbox-auto-highlights = Auto Highlights:
+hud-chatbox-auto-fill-toggle = Name & Job

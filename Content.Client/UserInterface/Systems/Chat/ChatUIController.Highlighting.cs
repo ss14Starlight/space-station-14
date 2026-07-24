@@ -4,6 +4,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Content.Shared.CCVar;
 using Content.Client.CharacterInfo;
+using Content.Client._Starlight.TextToSpeech;
 using static Content.Client.CharacterInfo.CharacterInfoSystem;
 
 namespace Content.Client.UserInterface.Systems.Chat;
@@ -41,7 +42,14 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
 
     public event Action<string>? HighlightsUpdated;
     // Starlight Start
+    /// <summary>
+    ///     Event triggered when the auto-fill highlights list is updated.
+    /// </summary>
     public event Action<string>? AutoHighlightsUpdated;
+
+    /// <summary>
+    ///     The current active auto-fill highlights list, or empty if disabled.
+    /// </summary>
     public string AutoHighlights => _autoFillHighlightsEnabled ? _autoHighlights : string.Empty;
     // Starlight End
 
@@ -54,8 +62,10 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
             if (value)
                 UpdateAutoFillHighlights();
             else
+            {
                 ReloadHighlights();
-            AutoHighlightsUpdated?.Invoke(AutoHighlights);
+                AutoHighlightsUpdated?.Invoke(AutoHighlights);
+            }
         }, true);
         // Starlight End
 
@@ -84,6 +94,12 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
     {
         if (!_autoFillHighlightsEnabled)
             return;
+
+        // Starlight start
+        _autoHighlights = string.Empty;
+        ReloadHighlights();
+        AutoHighlightsUpdated?.Invoke(AutoHighlights);
+        // Starlight end
 
         // If auto highlights are enabled generate a request for new character info
         // that will be used to determine the highlights.
@@ -194,11 +210,31 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         if (_loc.TryGetString($"highlights-{jobKey}", out var jobMatches))
             newHighlights += '\n' + jobMatches.Replace(", ", "\n");
 
-        // Starlight Start
+// Starlight Start
         _autoHighlights = newHighlights;
         ReloadHighlights();
         AutoHighlightsUpdated?.Invoke(AutoHighlights);
         // Starlight End
         _charInfoIsAttach = false;
     }
+
+    // Starlight start
+    /// <summary>
+    ///     Clears the active TTS speech queue.
+    /// </summary>
+    public void ClearTTSQueue()
+    {
+        if (_ent.TrySystem<TextToSpeechSystem>(out var tts))
+            tts.ClearQueue();
+    }
+
+    /// <summary>
+    ///     Sets the mute state of a TTS radio channel.
+    /// </summary>
+    public void SetTTSChannelMuted(Robust.Shared.Prototypes.ProtoId<Content.Shared.Radio.RadioChannelPrototype> channelId, bool muted)
+    {
+        if (_ent.TrySystem<TextToSpeechStreamSystem>(out var ttsStream))
+            ttsStream.SetChannelMuted(channelId, muted);
+    }
+    // Starlight end
 }
