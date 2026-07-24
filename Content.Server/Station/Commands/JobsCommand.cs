@@ -126,6 +126,19 @@ public sealed class JobsCommand : ToolshedCommand
         bool resetToMidroundCount) =>
         @ref.Select(x => SetLimited(ctx, x, resetToMidroundCount));
 
+    [CommandImplementation("del")]
+    public JobSlotRef DelJob(IInvocationContext ctx, [PipedArgument] JobSlotRef @ref)
+    {
+        _jobs ??= GetSys<StationJobsSystem>();
+        _jobs.DeleteJobSlot(@ref.Station, @ref.Job);
+        ctx.WriteLine($"Job {@ref.Job} was removed from the station.");
+        return @ref;
+    }
+
+    [CommandImplementation("del")]
+    public IEnumerable<JobSlotRef> DelJob(IInvocationContext ctx, [PipedArgument] IEnumerable<JobSlotRef> @ref) =>
+        @ref.Select(x => DelJob(ctx, x));
+
     #endregion
 }
 

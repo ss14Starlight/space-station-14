@@ -313,6 +313,15 @@ public sealed partial class StationJobsSystem : EntitySystem
         UpdateJobsAvailable();
     }
 
+    public void DeleteJobSlot(EntityUid station, string jobPrototypeId, StationJobsComponent? stationJobs = null)
+    {
+        if (!Resolve(station, ref stationJobs))
+            throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
+
+        if (!stationJobs.JobList.Remove(jobPrototypeId))
+            throw new ArgumentException("Job prototype was not present in the job list.");
+    }
+
     #endregion
 
     /// <inheritdoc cref="IsJobUnlimited(Robust.Shared.GameObjects.EntityUid,string,Content.Server.Station.Components.StationJobsComponent?)"/>
@@ -518,7 +527,7 @@ public sealed partial class StationJobsSystem : EntitySystem
 
         while (query.MoveNext(out var station, out var comp))
         {
-            if (comp.SetupAvailableJobs.Count == 0) continue; // Starlight: no jobs were created in the first place, don't show this entry.
+            if (comp.SetupAvailableJobs.Count == 0 && comp.JobList.Count == 0) continue; // Starlight: no jobs were created in the first place, don't show this entry.
             var netStation = GetNetEntity(station);
             var list = comp.JobList.ToDictionary(x => x.Key, x => x.Value);
             jobs.Add(netStation, list);
