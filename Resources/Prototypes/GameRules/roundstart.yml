@@ -226,7 +226,7 @@
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
   - type: DynamicRuleCost
-    cost: 100
+    cost: 125 # Starlight
 
 - type: entity
   parent: [ BaseTraitorRule, BaseRoundstartAntagRule ]
