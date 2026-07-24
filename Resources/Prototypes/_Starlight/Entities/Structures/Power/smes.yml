@@ -43,3 +43,20 @@
   components:
   - type: Battery
     startingCharge: 0
+
+- type: entity
+  parent: SMESBasic
+  id: SMESBasicBackup
+  suffix: Basic, 8MJ, Backup
+  name: backup SMES
+  description: A SMES unit that only discharges power when the primary supply on its network can't keep up with demand.
+  components:
+    - type: PowerNetworkBatteryPriority
+      priority: 1
+      engageThreshold: 0.98        # engage once demand hits 98% of combined primary max supply (rate-capped)
+      disengageThreshold: 0.90     # disengage (rate signal) once demand drops back below 90% of primary max supply
+      chargeEngageThreshold: 0.20  # engage once primaries' combined charge drops to 20% or below (running dry)
+      chargeDisengageThreshold: 0.40 # disengage (charge signal) once primaries climb back above 40% charge
+      # Backup engages if EITHER signal trips, and only disengages once BOTH clear.
+    - type: PowerNetworkBattery
+      canDischarge: false     # starts disengaged; PowerNetworkBatteryPrioritySystem flips this on/off at runtime

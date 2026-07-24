@@ -112,6 +112,30 @@ namespace Content.Server.Power.Components
             set => NetworkBattery.Efficiency = value;
         }
 
+        // Starlight Start
+        /// <summary>
+        ///     Current stored energy, in joules. Runtime state synced from
+        ///     <see cref="BatteryComponent"/>, not configured directly here.
+        /// </summary>
+        [ViewVariables]
+        public float CurrentStorage
+        {
+            get => NetworkBattery.CurrentStorage;
+            set => NetworkBattery.CurrentStorage = value;
+        }
+
+        /// <summary>
+        ///     Maximum stored energy, in joules. Runtime state synced from
+        ///     <see cref="BatteryComponent"/>, not configured directly here.
+        /// </summary>
+        [ViewVariables]
+        public float Capacity
+        {
+            get => NetworkBattery.Capacity;
+            set => NetworkBattery.Capacity = value;
+        }
+        // Starlight End
+
         [ViewVariables]
         public PowerState.Battery NetworkBattery { get; } = new();
     }
