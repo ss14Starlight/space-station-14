@@ -112,6 +112,7 @@
   - type: ShowCriminalRecordIcons
   - type: EyeProtection
     protectionTime: 5
+  - type: ShowAccess
   - type: StealTarget
     stealGroup: RareGlassesCollection
 
@@ -165,6 +166,9 @@
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
     - type: ShowAccessReaderSettings
+    - type: ShowAccess
+      seeIdHolder: true
+      itemsOnly: false
     - type: ShowHealthBars
       damageContainers:
         - Biological

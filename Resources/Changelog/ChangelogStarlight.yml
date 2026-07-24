@@ -1,144 +1,4 @@
 Entries:
-- author: ku-mo
-  changes:
-  - message: Implant charges no longer reset when extracted.
-    type: Fix
-  id: 406411
-  time: '2026-07-04T08:35:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4984
-- author: wonderfulnewworld
-  changes:
-  - message: DAGDs will no longer roll story objectives.
-    type: Fix
-  id: 406412
-  time: '2026-07-04T09:06:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5004
-- author: wonderfulnewworld
-  changes:
-  - message: DAGDs can no longer accidentally be targets of help objectives.
-    type: Fix
-  id: 406413
-  time: '2026-07-04T09:06:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5004
-- author: Sparlight
-  changes:
-  - message: Revised random smart corgi name datasets to align with a consistent naming theme.
-    type: Tweak
-  id: 406414
-  time: '2026-07-04T09:06:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4990
-- author: OMEGA
-  changes:
-  - message: (Hotel) Advanced SMES in AI Core.
-    type: Add
-  id: 406415
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Communications console to Law Office.
-    type: Add
-  id: 406416
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Named all SMES, Substations and APCs based off beacon name and cardinals.
-    type: Add
-  id: 406417
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Burn chamber, recycler and space heaters in Atmos.
-    type: Add
-  id: 406418
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Advanced SMES in PA Control.
-    type: Remove
-  id: 406419
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) SMES in TEG.
-    type: Remove
-  id: 406420
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Wiring for AI Upload, HOP and Law.
-    type: Tweak
-  id: 406421
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Increased AME to two cores.
-    type: Tweak
-  id: 406422
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) TEG streamlined and Atmo rooms now combined, burn chamber size reduced.
-    type: Tweak
-  id: 406423
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) Expanded airlocks in Engineering to remove 1x1 airlocks.
-    type: Tweak
-  id: 406424
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) HV wiring between generators and SMES.
-    type: Tweak
-  id: 406425
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: OMEGA
-  changes:
-  - message: (Hotel) LV wiring in maints.
-    type: Tweak
-  id: 406426
-  time: '2026-07-04T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4993
-- author: mikeysaurus
-  changes:
-  - message: Updated lobby observe warning text to make more sense now that players can edit their character in-round.
-    type: Tweak
-  id: 406427
-  time: '2026-07-04T10:25:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5007
-- author: Tjmaxmillion
-  changes:
-  - message: Fixed GSO Job icon.
-    type: Fix
-  id: 406428
-  time: '2026-07-05T08:56:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5014
-- author: Conflee
-  changes:
-  - message: Putrid Blood has been renamed to Mortucussus, which is now directly used for the Ambuzol recipe. Centrifuging the blood drawn from Zombies is no longer required. All other Metashiled changes from PR 4747 are kept.
-    type: Tweak
-  id: 406429
-  time: '2026-07-05T13:16:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5009
-- author: Mack
-  changes:
-  - message: Cyberarm tool icons not showing for some species.
-    type: Fix
-  id: 406430
-  time: '2026-07-05T14:08:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4986
 - author: Caws
   changes:
   - message: Added a NanoMed Security to the Security shuttle's Medbay.
@@ -2799,4 +2659,144 @@ Entries:
   id: 406810
   time: '2026-07-22T08:18:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5223
+- author: neomoth
+  changes:
+  - message: Disposal bins and the like now properly predict thrown items being inserted into them.
+    type: Add
+  id: 406811
+  time: '2026-07-22T20:54:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5179
+- author: 12tie
+  changes:
+  - message: New art for the railroad cards.
+    type: Tweak
+  id: 406812
+  time: '2026-07-23T08:07:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5259
+- author: neomoth
+  changes:
+  - message: Administration Glasses/hud, Skills Sunglasses/hud, and Central Command Glasses can now all see accesses present on a PDA/ID by examining it directly. Only CC Glasses can do this by examining a player holding a PDA/ID.
+    type: Add
+  id: 406813
+  time: '2026-07-23T08:49:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5181
+- author: Mack
+  changes:
+  - message: You can now see the pipes from plumbing compatible machines using a t-ray scanner.
+    type: Tweak
+  id: 406814
+  time: '2026-07-23T09:14:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5197
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Added stasis beds to medbay.
+    type: Add
+  id: 406815
+  time: '2026-07-23T09:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5246
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Added some BEAUTIFUL DIAGONAL TILES.
+    type: Add
+  id: 406816
+  time: '2026-07-23T09:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5246
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Removed the research server in exchange for a mat silo.
+    type: Remove
+  id: 406817
+  time: '2026-07-23T09:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5246
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Rotting corpse is gone now.
+    type: Remove
+  id: 406818
+  time: '2026-07-23T09:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5246
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Cryopods now work.
+    type: Fix
+  id: 406819
+  time: '2026-07-23T09:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5246
+- author: Caws
+  changes:
+  - message: (Starboard) Fixed a missing disposals pipe by the stage, which caused trash that fell out of disposals to rip up the floor tiles.
+    type: Fix
+  id: 406820
+  time: '2026-07-23T09:42:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5233
+- author: Caws
+  changes:
+  - message: Fixed a niche UI crash/flickering related to the new gases, Ulnitranium and ZXA, when using certain Atmos devices.
+    type: Fix
+  id: 406821
+  time: '2026-07-23T10:08:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5238
+- author: OMEGA
+  changes:
+  - message: (Silica) Roboticist lockers.
+    type: Add
+  id: 406822
+  time: '2026-07-23T10:08:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5194
+- author: OMEGA
+  changes:
+  - message: (Silica) Overhauled piping networks.
+    type: Tweak
+  id: 406823
+  time: '2026-07-23T10:08:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5194
+- author: OMEGA
+  changes:
+  - message: (Silica) Additional Air Alarm coverage.
+    type: Tweak
+  id: 406824
+  time: '2026-07-23T10:08:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5194
+- author: OMEGA
+  changes:
+  - message: (Silica) Added freezers and heaters to atmos.
+    type: Tweak
+  id: 406825
+  time: '2026-07-23T10:08:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5194
+- author: joshujo
+  changes:
+  - message: pressure pumps now accept signals.
+    type: Add
+  id: 406826
+  time: '2026-07-23T10:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5172
+- author: joshujo
+  changes:
+  - message: volumetric pumps now accept signals.
+    type: Add
+  id: 406827
+  time: '2026-07-23T10:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5172
+- author: redmushie
+  changes:
+  - message: (ATS) Updated dock buy/sell pipes to follow updated convention.
+    type: Tweak
+  id: 406828
+  time: '2026-07-23T11:13:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5244
+- author: redmushie
+  changes:
+  - message: (ATS) Distro dock inlet regulators; prevents the ATS from giving all of its distro to a visiting shuttle.
+    type: Add
+  id: 406829
+  time: '2026-07-23T11:13:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5244
+- author: redmushie
+  changes:
+  - message: (CS-4T9 Tanker) Updated buy/sell gas pipes to follow updated convention.
+    type: Tweak
+  id: 406830
+  time: '2026-07-23T11:13:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5244
 Order: -1
