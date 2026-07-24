@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Added a cell recharger to the Security shuttle's Medbay.
-    type: Add
-  id: 406432
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
   - message: Added a SecTech to the Security shuttle.
     type: Add
   id: 406433
@@ -2799,4 +2792,11 @@ Entries:
   id: 406831
   time: '2026-07-24T07:47:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5282
+- author: Conflee
+  changes:
+  - message: Added NaN% poster, immortalizing a round where Beta broke the entire power grid of a station by getting negative power, making station unfixable even with admin commands. Spawned from the Contraband Poster pool.
+    type: Add
+  id: 406832
+  time: '2026-07-24T08:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5277
 Order: -1
