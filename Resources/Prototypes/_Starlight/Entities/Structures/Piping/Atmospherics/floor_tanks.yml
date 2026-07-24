@@ -1,8 +1,8 @@
 - type: entity
   parent: GasPipeSansLayers
-  id: GasPipeSubfloorTank
-  name: subfloor gas tank
-  description: A large gas tank built into the subfloor, adding significant capacity to whichever pipe network it connects to. I wonder how much it can store?
+  id: GasPipeSubFloorTank
+  name: sub-floor gas tank
+  description: A sizeable gas tank built into the sub-floor area for convenient gas storage when above-floor space is at a premium. I wonder how much it can store?
   placement:
     mode: AlignAtmosPipeLayers
   components:
@@ -24,11 +24,11 @@
         Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
         Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
     alternativePrototypes:
-      Primary: GasPipeSubfloorTank
-      Secondary: GasPipeSubfloorTankAlt1
-      Tertiary: GasPipeSubfloorTankAlt2
-      Quaternary: GasPipeSubfloorTankAlt3
-      Quinary: GasPipeSubfloorTankAlt4
+      Primary: GasPipeSubFloorTank
+      Secondary: GasPipeSubFloorTankAlt1
+      Tertiary: GasPipeSubFloorTankAlt2
+      Quaternary: GasPipeSubFloorTankAlt3
+      Quinary: GasPipeSubFloorTankAlt4
   - type: PipeAppearance
     extraColoredLayers:
     - enum.SubfloorLayers.FirstLayer
@@ -49,8 +49,8 @@
     - PipeNetworks
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeSubfloorTank]
-  id: GasPipeSubfloorTankAlt1
+  parent: [GasPipeLayerAlt1, GasPipeSubFloorTank]
+  id: GasPipeSubFloorTankAlt1
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -58,8 +58,8 @@
     sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeSubfloorTank]
-  id: GasPipeSubfloorTankAlt2
+  parent: [GasPipeLayerAlt2, GasPipeSubFloorTank]
+  id: GasPipeSubFloorTankAlt2
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -67,8 +67,8 @@
     sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
 
 - type: entity
-  parent: [GasPipeLayerAlt3, GasPipeSubfloorTank]
-  id: GasPipeSubfloorTankAlt3
+  parent: [GasPipeLayerAlt3, GasPipeSubFloorTank]
+  id: GasPipeSubFloorTankAlt3
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -76,8 +76,8 @@
     sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
 
 - type: entity
-  parent: [GasPipeLayerAlt4, GasPipeSubfloorTank]
-  id: GasPipeSubfloorTankAlt4
+  parent: [GasPipeLayerAlt4, GasPipeSubFloorTank]
+  id: GasPipeSubFloorTankAlt4
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite

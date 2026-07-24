@@ -968,7 +968,7 @@
     - PressureRegulator
     - PassiveGate
     - PipeSensor
-    - SubfloorGasTank
+    - SubFloorGasTank
     - Deconstruct
     - AirAlarm
     - AirSensor
