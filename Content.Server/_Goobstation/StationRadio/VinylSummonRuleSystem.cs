@@ -197,10 +197,10 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             _containers.Remove(vinylUid, container);
 
         // Play sound effect
-        _audio.PlayPvs(summonComp.BurnSound, vinylCoords, AudioParams.Default.WithVolume(-5f));
+        _audio.PlayPvs(summonComp.BurnSound, vinylCoords, summonComp.BurnSoundParams); // AudioParams.Default.WithVolume(-5f));
 
         // Spawn ash at the vinyl's location
-        Spawn("Ash", vinylCoords);
+        Spawn(summonComp.AshPrototype, vinylCoords);
 
         // Delete the vinyl
         QueueDel(vinylUid);

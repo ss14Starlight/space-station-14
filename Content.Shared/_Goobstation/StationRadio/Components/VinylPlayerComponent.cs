@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Goobstation.StationRadio.Components;
@@ -16,4 +17,10 @@ public sealed partial class VinylPlayerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? SoundEntity;
+
+    /// <summary>
+    /// Default audio params for the played audio.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public AudioParams DefaultParams = AudioParams.Default.WithVolume(3.5f).WithMaxDistance(8f); // 8 is just the edge of the screen usually
 }

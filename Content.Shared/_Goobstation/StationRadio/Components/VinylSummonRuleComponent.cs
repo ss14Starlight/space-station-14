@@ -1,5 +1,6 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Goobstation.StationRadio.Components;
 
@@ -20,4 +21,16 @@ public sealed partial class VinylSummonRuleComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier BurnSound = new SoundPathSpecifier("/Audio/Effects/cig_snuff.ogg");
+
+    /// <summary>
+    /// Set default volume for the Burn sound.
+    /// </summary>
+    [DataField]
+    public AudioParams BurnSoundParams = AudioParams.Default.WithVolume(-5f);
+
+    /// <summary>
+    /// The prototype that is spawned when the vinyl burns to ash.
+    /// </summary>
+    [DataField]
+    public EntProtoId AshPrototype = "Ash";
 }
