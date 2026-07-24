@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Goob.StationRadio.Events;
+namespace Content.Shared._Goobstation.StationRadio.Events;
 
 [Serializable, NetSerializable]
 public sealed class StationRadioMediaStoppedEvent : EntityEventArgs

@@ -1,5 +1,5 @@
-using Content.Shared._Goob.StationRadio.Components;
-using Content.Shared._Goob.StationRadio.Events;
+using Content.Shared._Goobstation.StationRadio.Components;
+using Content.Shared._Goobstation.StationRadio.Events;
 using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared.Communications;
@@ -19,7 +19,7 @@ using System.Linq;
 using Content.Shared.Radio.Components;
 using Content.Server.Chat.Systems;
 
-namespace Content.Shared._Goob.StationRadio;
+namespace Content.Server._Goobstation.StationRadio;
 
 /// <summary>
 /// System that handles spawning game rules when vinyl disks finish playing.

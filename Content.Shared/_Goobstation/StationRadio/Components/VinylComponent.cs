@@ -1,7 +1,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Goob.StationRadio.Components;
+namespace Content.Shared._Goobstation.StationRadio.Components;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class VinylComponent : Component

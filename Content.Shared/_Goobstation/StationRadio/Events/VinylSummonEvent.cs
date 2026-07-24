@@ -1,4 +1,4 @@
-namespace Content.Shared._Goob.StationRadio.Events;
+namespace Content.Shared._Goobstation.StationRadio.Events;
 
 /// <summary>
 /// Raised on a vinyl player when a vinyl is inserted and starts playing.
