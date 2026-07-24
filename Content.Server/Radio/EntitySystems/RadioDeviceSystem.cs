@@ -13,6 +13,7 @@ using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Robust.Shared.Prototypes;
+using Content.Shared.Power.EntitySystems; // Goobstation - Radio Host
 
 #region Starlight
 using Content.Server._Starlight.Language;
@@ -31,6 +32,8 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
     [Dependency] private RadioSystem _radio = default!;
     [Dependency] private InteractionSystem _interaction = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
+
+    [Dependency] private SharedPowerReceiverSystem _power = default!; // Goobstation - Radio Host
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid, string)> _recentlySent = new(); // Starlight edit
@@ -192,7 +195,7 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnReceiveRadio(EntityUid uid, RadioSpeakerComponent component, ref RadioReceiveEvent args)
     {
-        if (uid == args.RadioSource)
+        if (uid == args.RadioSource || component.PowerRequired && !_power.IsPowered(uid)) // Goobstation - Radio Host - Powered required
             return;
 
         var nameEv = new TransformSpeakerNameEvent(args.MessageSource, Name(args.MessageSource));
@@ -204,8 +207,9 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
         var message = args.OriginalChatMsg.Message; // Starlight-edit: The chat system will handle the rest and re-obfuscate if needed.
-        _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit,
-            nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Starlight
+        _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name,
+            checkRadioPrefix: component.LouderSpeech, // Goobstation - LouderSpeech
+            languageOverride: args.Language); // Starlight
     }
 
     private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)

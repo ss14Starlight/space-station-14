@@ -1,0 +1,67 @@
+- type: entity
+  id: StationRadioServer
+  name: station radio server
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  description: A rack of servers, controls whether your voice is being broadcasted or not
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Goobstation/Structures/Machines/StationRadio/stationradioserver.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: StationRadioServer
+  - type: DeviceLinkSource
+    ports:
+    - StationRadioServerPort
+    # TODO: unlit & maints panel sprite
+  - type: Transform
+    noRot: false
+  - type: Rotatable
+  - type: Machine
+    board: StationRadioServerCircuitboard
+  - type: TelecomExempt
+  - type: RadioMicrophone
+    powerRequired: true
+    broadcastChannel: RadioShow
+    unobstructedRequired: true
+
+- type: entity
+  id: StationRadioRig
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: station radio rig
+  description: A collection of everything you need to play music over the station.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Goobstation/Structures/Machines/StationRadio/radiostationrig.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: DeviceLinkSink
+    ports:
+    - StationRadioRigPort
+  - type: Transform
+    noRot: false
+  - type: Rotatable
+  - type: Machine
+    board: StationRadioRigCircuitboard
+  - type: RadioRig

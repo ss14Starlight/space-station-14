@@ -1,0 +1,24 @@
+# threats called in by playing the Number Station CD
+- type: weightedRandom
+  id: NumberStationThreats
+  weights:
+    # Major Threats 20% Chance
+    LoneOp: 0.6
+    Dragon: 0.3
+    Wizard: 0.1
+    # Moderate Threats 60% Chance
+    NinjaBackup: 0.9
+    Eeeplet: 0.8
+    Rod: 0.6
+    Revenant: 0.5
+    Pirate: 0.2
+    # Minor Threats 20% Chance
+    #Tourists: XX # Adjust values when Tourists are working.
+    Clown: 0.4
+    DeadDrop: 0.6
+
+# Threats
+- type: ninjaHackingThreat
+  id: DeadDrop
+  announcement: station-syndicate-dead-drop-announcement
+  rule: SyndicateDeadDrop

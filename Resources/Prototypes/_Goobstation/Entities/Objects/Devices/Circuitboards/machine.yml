@@ -1,0 +1,78 @@
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: VinylPlayerCircuitboard
+  name: vinyl player machine board
+  description: A machine printed circuit board for a vinyl player.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: VinylPlayer
+    stackRequirements:
+      Manipulator: 1
+      Steel: 3 # Moffstation - 1 -> 3
+      WoodPlank: 1 # Moffstation - 3 -> 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: TapeDeckCircuitboard
+  name: tape deck machine board
+  description: A machine printed circuit board for a tape deck.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: TapeDeck
+    stackRequirements:
+      Manipulator: 2
+      Plastic: 3
+      WoodPlank: 5
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: StationRadioServerCircuitboard
+  name: station radio server machine board
+  description: A machine printed circuit board for a station radio server.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: StationRadioServer
+    stackRequirements:
+      Manipulator: 2 # Moffstation - 1 -> 2
+      Steel: 5 # Moffstation - 10 -> 5
+      Plastic: 2 # Moffstation - 10 -> 2
+      Plasma: 1 # Moffstation - 5 -> 1
+      CableMV: 4 # Moffstation - HV -> MV
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: StationRadioRigCircuitboard
+  name: station radio rig machine board
+  description: A machine printed circuit board for a station radio rig.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: StationRadioRig
+    stackRequirements:
+      Manipulator: 3
+      Steel: 5
+      Glass: 2 # Moffstation - 5 -> 2
+      Cable: 2
+      WoodPlank: 4 # Moffstation - Add Wood since its mostly made of wood.
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: StationRadioCircuitboard
+  name: station radio machine board
+  description: A machine printed circuit board for a station radio receiver.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: StationRadioReceiver
+    stackRequirements:
+      Manipulator: 1
+      Cable: 2
+

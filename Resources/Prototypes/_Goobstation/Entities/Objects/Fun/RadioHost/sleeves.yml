@@ -1,0 +1,390 @@
+# Unfilled Sleeves
+- type: entity
+  parent: BaseVinylSleeve
+  id: VinylSleeveAI
+  name: "vinyl sleeve: AI"
+  description: A sleeve designed to hold and store vinyl discs.
+  components:
+  - type: Sprite
+    state: ai-vinyl-sleeve
+  - type: ContainerFill
+    containers:
+      vinyl:
+      - VinylSpaceJazz
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveBlockycraft
+  name: "vinyl sleeve: Blockycraft"
+  description: The videogame soundtrack for the game with the same name.
+  components:
+  - type: Sprite
+    state: blockycraft-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveChristmas
+  name: "vinyl sleeve: Christmas"
+  description: A jolly vinyl sleeve for the holiday season.
+  components:
+  - type: Sprite
+    state: christmas-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveClown
+  name: "vinyl sleeve: Clown"
+  description: A vinyl sleeve with the face of the clown.
+  components:
+  - type: Sprite
+    state: clown-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveCoffee
+  name: "vinyl sleeve: Coffee"
+  description: Big time! A vinyl sleeve for those who love coffee.
+  components:
+  - type: Sprite
+    state: coffee-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveDevil
+  name: "vinyl sleeve: Devil"
+  description: A vinyle sleeve with an inverted pentacle. Is that... real blood?
+  components:
+  - type: Sprite
+    state: devil-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveDJClown
+  name: "vinyl sleeve: DJ Clown"
+  description: A vinyl sleeve containing music from the famous DJ Clown.
+  components:
+  - type: Sprite
+    state: djclown-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeve
+  id: VinylSleeveDJTider
+  name: "vinyl sleeve: DJ Tider"
+  description: A vinyl sleeve containing music from the famous DJ Tider.
+  components:
+  - type: Sprite
+    state: djtider-vinyl-sleeve
+  - type: ContainerFill
+    containers:
+      vinyl:
+      - VinylGreytideSong
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveEye
+  name: "vinyl sleeve: Eye"
+  description: A vinyl sleeve with a design of a large eye.
+  components:
+  - type: Sprite
+    state: eye-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveFart
+  name: "vinyl sleeve: Fart"
+  description: Some will say this vinyl sleeve doesn't contain music. Others... their masterpiece.
+  components:
+  - type: Sprite
+    state: fart-vinyl-sleeve
+  - type: EntityTableContainerFill
+    containers:
+      vinyl: !type:NestedSelector
+        tableId: RandomVinylDiscFart # Fill with a random fart song.
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveFisherman
+  name: "vinyl sleeve: Fisherman"
+  description: A vinyl sleeve with songs to fish to.
+  components:
+  - type: Sprite
+    state: fisherman-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveFlash
+  name: "vinyl sleeve: Flash"
+  description: A vinyl sleeve with a design of a flash.
+  components:
+  - type: Sprite
+    state: flash-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveHeisenbee
+  name: "vinyl sleeve: Heisenbee"
+  description: A vinyl sleeve with the goonstation mascot Heisenbee on it.
+  components:
+  - type: Sprite
+    state: heisenbee-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveHockey
+  name: "vinyl sleeve: Hockey"
+  description: A vinyl sleeve with a hockey player.
+  components:
+  - type: Sprite
+    state: hockey-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveJanitor
+  name: "vinyl sleeve: Janitor"
+  description: A vinyl sleeve containing songs to clean to.
+  components:
+  - type: Sprite
+    state: janitor-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveJapan
+  name: "vinyl sleeve: Japan"
+  description: A vinyl sleeve designed after an ancient style of animation from a long lost culture.
+  components:
+  - type: Sprite
+    state: japan-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveMGS
+  name: "vinyl sleeve: MGS"
+  description: Snake? Snaaaaaaaaaaake!.
+  components:
+  - type: Sprite
+    state: mgs-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveNewNanoYork
+  name: "vinyl sleeve: New Nano York"
+  description: A vinyl sleeve with the design of a city scape.
+  components:
+  - type: Sprite
+    state: newnanoyork-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveNukeDisk
+  name: "vinyl sleeve: Nuke Disk"
+  description: GET DAT disc!!!
+  components:
+  - type: Sprite
+    state: nukedisk-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePDA
+  name: "vinyl sleeve: PDA"
+  description: A vinyl sleeve designed to look like a PDA.
+  components:
+  - type: Sprite
+    state: pda-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePeace
+  name: "vinyl sleeve: Peace"
+  description: A vinyl sleeve designed to hold and store vinyl discs.
+  components:
+  - type: Sprite
+    state: peace-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePickle
+  name: "vinyl sleeve: Pickle"
+  description: A vinyl sleeve designed to hold and store vinyl discs.
+  components:
+  - type: Sprite
+    state: pickle-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePizza
+  name: "vinyl sleeve: Pizza"
+  description: A vinyl sleeve with an Italian design.
+  components:
+  - type: Sprite
+    state: pizza-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePlainBeige
+  name: "vinyl sleeve: Plain Beige"
+  description: A beige vinyl sleeve used for storing vinyl discs.
+  components:
+  - type: Sprite
+    state: plainbeige-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePlainBlack
+  name: "vinyl sleeve: Plain Black"
+  description: A black vinyl sleeve used for storing vinyl discs.
+  components:
+  - type: Sprite
+    state: plainblack-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePlainWhite
+  name: "vinyl sleeve: Plain White"
+  description: A white vinyl sleeve used for storing vinyl discs.
+  components:
+  - type: Sprite
+    state: plainwhite-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveQuestional
+  name: "vinyl sleeve: Questional"
+  description: A vinyl sleeve with an unremarkable design.
+  components:
+  - type: Sprite
+    state: questional-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveRat
+  name: "vinyl sleeve: Rat"
+  description: A vinyl sleeve with Chef Remi, the famous rat chef.
+  components:
+  - type: Sprite
+    state: rat-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveReactor
+  name: "vinyl sleeve: Reactor"
+  description: A vinyl sleeve with a design featuring the insides of a nuclear reactor.
+  components:
+  - type: Sprite
+    state: reactor-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveRedSun
+  name: "vinyl sleeve: Red Sun"
+  description: Who would have know Red Sun produced music?
+  components:
+  - type: Sprite
+    state: redsun-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveShulker
+  name: "vinyl sleeve: Shulker"
+  description: A vinyl sleeve with a design of a useful storage container from a famous game.
+  components:
+  - type: Sprite
+    state: shulker-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveSkull
+  name: "vinyl sleeve: Skull"
+  description: A vinyl sleeve with an intimidating skull design.
+  components:
+  - type: Sprite
+    state: skull-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveStation13
+  name: "vinyl sleeve: Station 13"
+  description: A vinyl sleeve with the Station 13 logo.
+  components:
+  - type: Sprite
+    state: station13-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveStation14
+  name: "vinyl sleeve: Station 14"
+  description: A vinyl sleeve with the Station 14 logo.
+  components:
+  - type: Sprite
+    state: station14-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveSunnySideOfLavaland
+  name: "vinyl sleeve: Sunny Side of Lavaland"
+  description: A vinyl sleeve from the hit album, Sunny Side of Lavaland.
+  components:
+  - type: Sprite
+    state: sunnysideoflavaland-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveTH
+  name: "vinyl sleeve: TH_"
+  description: A vinyl sleeve used for storing vinyl discs.
+  components:
+  - type: Sprite
+    state: th-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveVampire
+  name: "vinyl sleeve: Vampire"
+  description: A vinyl sleeve with the design of a vampire sitting upon a throne of skulls.
+  components:
+  - type: Sprite
+    state: vampire-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveWeird
+  name: "vinyl sleeve: Weird"
+  description: A vinyl sleeve with a strange and unusual design.
+  components:
+  - type: Sprite
+    state: weird-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveWelcomeToSS13
+  name: "vinyl sleeve: Welcome to SS13"
+  description: A vinyl sleeve from the hit album, Welcome to Station 13.
+  components:
+  - type: Sprite
+    state: welcometoss13-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveNonBinary
+  name: "vinyl sleeve: Non Binary"
+  description: A vinyl sleeve with the colors of the Non-Binary flag. Express your identity.
+  components:
+  - type: Sprite
+    state: nb-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleevePride
+  name: "vinyl sleeve: Pride"
+  description: A vinyl sleeve with the colors of the Pride flag. Show your support.
+  components:
+  - type: Sprite
+    state: pride-vinyl-sleeve
+
+- type: entity
+  parent: BaseVinylSleeveFilled
+  id: VinylSleeveTrans
+  name: "vinyl sleeve: Trans"
+  description: A vinyl sleeve with the colors of the Trans flag. Stand proud.
+  components:
+  - type: Sprite
+    state: trans-vinyl-sleeve

@@ -1,0 +1,180 @@
+- type: entityTable
+  id: RandomCDDisc
+  table: !type:GroupSelector
+    children:
+    - id: CDAdvertBillMovie
+    - id: CDAdvertCaptainTraining
+    - id: CDAdvertCargoniaRecruitment
+    - id: CDAdvertChemistryAdvert
+    - id: CDAdvertDanitosBurritos
+    - id: CDAdvertDansTickets
+    - id: CDAdvertPopeCrunchCereal
+    - id: CDAdvertDansQuickNoodles
+    - id: CDAdvertBecomeSilicon
+    - id: CDAdvertCloningPSA # PSA announcements are uncommon.
+      weight: 0.75
+    - id: CDAdvertSecurityPSA
+      weight: 0.75
+    - id: CDAdvertBecomeSilicon # Overlord advert should be rarer.
+      weight: 0.5
+    - id: CDMiscDuck # Stupid duck noises.
+      weight: 0.3
+    - id: CDJNEShow # JNE Show should be super rare.
+      weight: 0.2
+    - id: CDJNENextUp
+      weight: 0.2
+    - id: CDJNENinja
+      weight: 0.2
+    - id: CDSyndicateFM # Syndicate CDs should be ultrarare.
+      weight: 0.05
+    - id: CDNukieAnnouncement
+      weight: 0.05
+    - id: CDNukieFigurines
+      weight: 0.05
+    - id: CDNukieResignation
+      weight: 0.05
+    - id: CDNukieSupport
+      weight: 0.05
+    - id: CDNumbers # There should never be selected. But who knows.
+      weight: 0.001
+
+- type: entityTable
+  id: RandomVinylSleeve
+  table: !type:GroupSelector
+    children:
+    - id: VinylSleeveAI
+    - id: VinylSleeveBlockycraft
+    - id: VinylSleeveChristmas
+    - id: VinylSleeveClown
+    - id: VinylSleeveCoffee
+    - id: VinylSleeveDevil
+    - id: VinylSleeveDJClown
+    - id: VinylSleeveDJTider
+    - id: VinylSleeveEye
+    - id: VinylSleeveFisherman
+    - id: VinylSleeveFlash
+    - id: VinylSleeveHeisenbee
+    - id: VinylSleeveHockey
+    - id: VinylSleeveJanitor
+    - id: VinylSleeveJapan
+    - id: VinylSleeveMGS
+    - id: VinylSleeveNewNanoYork
+    - id: VinylSleeveNukeDisk
+    - id: VinylSleevePDA
+    - id: VinylSleevePeace
+    - id: VinylSleevePickle
+    - id: VinylSleevePizza
+    - id: VinylSleevePlainBeige
+    - id: VinylSleevePlainBlack
+    - id: VinylSleevePlainWhite
+    - id: VinylSleeveQuestional
+    - id: VinylSleeveRat
+    - id: VinylSleeveReactor
+    - id: VinylSleeveRedSun
+    - id: VinylSleeveShulker
+    - id: VinylSleeveSkull
+    - id: VinylSleeveStation13
+    - id: VinylSleeveStation14
+    - id: VinylSleeveSunnySideOfLavaland
+    - id: VinylSleeveTH
+    - id: VinylSleeveVampire
+    - id: VinylSleeveWeird
+    - id: VinylSleeveWelcomeToSS13
+    - id: VinylSleeveNonBinary
+    - id: VinylSleevePride
+    - id: VinylSleeveTrans
+    - id: VinylSleeveFart # Fart/Clown Songs
+    weight: 0.2
+
+
+- type: entityTable
+  id: RandomVinylDisc
+  table: !type:GroupSelector
+    children:
+    - id: VinylAirportLounge
+    - id: VinylBoogiePart
+    - id: VinylBurnTheWorldWaltz
+    - id: VinylCorncob
+    - id: VinylDeadlyRoulette
+    - id: VinylFeralAngelWaltz
+    - id: VinylJingleBells
+    - id: VinylLateNightRadio
+    - id: VinylMesmerizingGalaxyLoop
+    - id: VinylNightInVenice
+    - id: VinylSpaceJazz
+    - id: VinylVibingOverVenus
+    - id: VinylChristmasSong
+    - id: VinylAlsoSprachZarathustra
+    - id: VinylRussianDance
+    - id: VinylTheFlowerDuet
+    - id: VinylWinterVivaldi
+    - id: VinylCelloSuite
+    - id: VinylRideOfTheValkyries
+    - id: VinylRomeoAndJuliet
+    - id: VinylMaxi
+    - id: VinylXtra
+    - id: VinylGiga
+    - id: VinylEveryoneIsSoAlive
+    - id: VinylHighTechnologicBeat
+    - id: VinylAfterParty
+    - id: VinylItFeelsGoodToBeAliveToo
+    - id: VinylFunkadelic
+    - id: VinylLunch
+    - id: VinylGroovy
+    - id: VinylAnonymous
+    - id: VinylDistantStar
+    - id: VinylWaystations
+    - id: VinylUpbeatOne
+    - id: VinylUpbeatTwo
+    - id: VinylPlanets
+    - id: VinylChillOne
+    - id: VinylChillTwo
+    - id: VinylChillThree
+    - id: VinylChillFour
+    - id: VinylBeaches
+    - id: VinylDanceOnASpaceVolcano
+    - id: VinylFloaty
+    - id: VinylGraveyard
+    - id: VinylRiverdancer
+    - id: VinylSpaceGardener
+    - id: VinylKeyLime
+    - id: VinylLayEggIsTrue
+    - id: VinylMonkeyRiot
+    - id: VinylOhNoEvilStar
+    - id: VinylRepose
+    - id: VinylAdventureThree
+    - id: VinylAdventureFour
+    - id: VinylAdventureFive
+    - id: VinylAtlas
+    - id: VinylAtmosphere
+    - id: VinylBanjoOne
+    - id: VinylBiodome
+    - id: VinylBlackWingInterface
+    - id: VinylBumblebee
+    - id: VinylCloudSkyManGuy
+    - id: VinylJourney
+    - id: VinylEphedrineOverdose
+    - id: VinylGetThatAntag
+    - id: VinylGreytideSong
+    - id: VinylNukiesTrap
+    - id: VinylRunningOut
+    - id: VinylSponsoredBySyndicate
+    - id: VinylTraitorousIntent
+    - id: VinylViolet
+    - id: VinylPeakAsshole # Space asshole but deep fried.
+    weight: 0.05
+
+- type: entityTable
+  id: RandomVinylDiscFart # Clown/fart songs on their own table.
+  table: !type:GroupSelector
+    children:
+    - id: VinylButtris
+    - id: VinylWeAreNumberTwo
+    - id: VinylUguu
+    - id: VinylPoo
+    - id: VinylDiscoPoo
+    - id: VinylCoreOfPoo
+    - id: VinylFartElise
+    - id: VinylHonkmas
+    - id: VinylEggshell
+    - id: VinylWarriorsHonk

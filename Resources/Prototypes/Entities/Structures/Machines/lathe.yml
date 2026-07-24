@@ -144,6 +144,7 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
+    - ServiceBoardsStaticGoob # Goobstation - Radio Host boards
     # Starlight Start
     - CassetteTape
     - TapeRecorder
@@ -308,6 +309,7 @@
     - StarlightCircuitImprinterLootable
     - ReactorCircuitboards # FH edit
     - OublietteCircuitBoard # Starlight
+    - ServiceBoardsGoob # Goobstation - Radio Host boards
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
