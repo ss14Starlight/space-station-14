@@ -78,20 +78,52 @@
         # Starlight Start
 
         - to: reinforcedWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
           steps:
-            - material: MetalRod
+            - material: ReinforcedGlass
               amount: 2
               doAfter: 3
 
         - to: plasmaWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
           steps:
-            - material: Plasma
+            - material: PlasmaGlass
+              amount: 2
+              doAfter: 3
+
+        - to: reinforcedPlasmaWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedPlasmaGlass
               amount: 2
               doAfter: 3
 
         - to: uraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
           steps:
-            - material: Uranium
+            - material: UraniumGlass
+              amount: 2
+              doAfter: 3
+
+        - to: reinforcedUraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedUraniumGlass
               amount: 2
               doAfter: 3
 
@@ -122,15 +154,43 @@
 
         # Starlight Start
 
-        - to: reinforcedPlasmaWindow
+        - to: plasmaWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 2
           steps:
-            - material: Plasma
+            - material: PlasmaGlass
+              amount: 2
+              doAfter: 3
+
+        - to: reinforcedPlasmaWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedPlasmaGlass
+              amount: 2
+              doAfter: 3
+
+        - to: uraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 2
+          steps:
+            - material: UraniumGlass
               amount: 2
               doAfter: 3
 
         - to: reinforcedUraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 2
           steps:
-            - material: Uranium
+            - material: ReinforcedUraniumGlass
               amount: 2
               doAfter: 3
 
@@ -177,18 +237,22 @@
         # Starlight Start
 
         - to: reinforcedPlasmaWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPGlass1
+              amount: 2
           steps:
-            - material: MetalRod
+            - material: ReinforcedPlasmaGlass
               amount: 2
               doAfter: 3
 
         - to: uraniumWindow
           completed:
             - !type:GivePrototype
-              prototype: SheetPlasma
+              prototype: SheetPGlass1
               amount: 2
           steps:
-            - material: Uranium
+            - material: ReinforcedUraniumGlass
               amount: 2
               doAfter: 3
 
@@ -222,10 +286,10 @@
         - to: reinforcedUraniumWindow
           completed:
             - !type:GivePrototype
-              prototype: SheetPlasma
+              prototype: SheetRPGlass1
               amount: 2
           steps:
-            - material: Uranium
+            - material: ReinforcedUraniumGlass
               amount: 2
               doAfter: 3
 
@@ -252,8 +316,12 @@
 
         # Starlight Start
         - to: reinforcedUraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: UraniumGlass
+              amount: 2
           steps:
-            - material: MetalRod
+            - material: ReinforcedUraniumGlass
               amount: 2
               doAfter: 3
         # Starlight End
