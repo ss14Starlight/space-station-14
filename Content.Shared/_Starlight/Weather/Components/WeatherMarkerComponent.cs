@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.Weather.Components;
+namespace Content.Shared._Starlight.Weather.Components;
 
 /// <summary>
 /// Starts weather when placed on a map.

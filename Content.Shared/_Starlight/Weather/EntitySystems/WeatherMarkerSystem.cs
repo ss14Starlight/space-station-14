@@ -1,16 +1,18 @@
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
-using Content.Server.Weather;
-using Content.Server._Starlight.Weather.Components;
+using Robust.Shared.Network;
+using Content.Shared.Weather;
+using Content.Shared._Starlight.Weather.Components;
 
-namespace Content.Server._Starlight.Weather.EntitySystems;
+namespace Content.Shared._Starlight.Weather.EntitySystems;
 
 /// <summary>
 /// Adds weather to a map.
 /// </summary>
 public sealed partial class WeatherMarkerSystem : EntitySystem
 {
-    [Dependency] private readonly WeatherSystem _weather = default!;
+    [Dependency] private readonly SharedWeatherSystem _weather = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
 
     public override void Initialize()
     {
@@ -24,17 +26,17 @@ public sealed partial class WeatherMarkerSystem : EntitySystem
     /// </summary>
     private void OnMapInit(EntityUid uid, WeatherMarkerComponent comp, MapInitEvent args)
     {
-        var xform = Transform(uid);
+        if(_netManager.IsClient)
+            return;
+
+        var mapId = Transform(uid).MapID;
 
         // sanity check for invalid map
-        if (xform.MapID == MapId.Nullspace)
+        if (mapId == MapId.Nullspace)
         {
             QueueDel(uid);
             return;
         }
-
-
-        var mapId = xform.MapID;
 
         // apply weather
         Timer.Spawn(comp.Delay, () => _weather.TryAddWeather(mapId, comp.Weather, out _, comp.Duration));
