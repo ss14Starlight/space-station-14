@@ -8,7 +8,8 @@
         <BoxContainer Orientation="Vertical" Margin="12 10">
             <!-- Title Row -->
             <BoxContainer Orientation="Horizontal" Margin="0 0 0 8">
-                <Label Text="{Loc 'moff-special-roles-tab'}"
+                <!-- Starlight -->
+                <Label Text="{Loc 'humanoid-profile-editor-antags-tab'}"
                        StyleClasses="TraitsTitleLabel"/>
                 <Control HorizontalExpand="True"/>
                 <Label Name="GlobalTraitCountLabel"
