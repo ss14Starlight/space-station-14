@@ -35,8 +35,7 @@ public sealed partial class GasOutletInjectorSystem : EntitySystem
         if (args.Handled || !args.Complex)
             return;
 
-        component.Enabled = !component.Enabled;
-        UpdateAppearance(uid, component);
+        Set(uid, component, !component.Enabled);
         args.Handled = true;
     }
 
