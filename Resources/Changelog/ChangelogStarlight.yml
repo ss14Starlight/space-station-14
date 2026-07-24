@@ -1,34 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Added a cell recharger to the Security shuttle's Medbay.
-    type: Add
-  id: 406432
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
-  - message: Added a SecTech to the Security shuttle.
-    type: Add
-  id: 406433
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
-  - message: Security shuttle's power setup has been fixed.
-    type: Tweak
-  id: 406434
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
-  - message: Security shuttle's lockers are no longer empty.
-    type: Tweak
-  id: 406435
-  time: '2026-07-05T14:29:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4998
-- author: Caws
-  changes:
   - message: Security shuttle's mass scanner faces forward for easier navigation.
     type: Tweak
   id: 406436
@@ -2799,4 +2771,32 @@ Entries:
   id: 406831
   time: '2026-07-24T07:47:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5282
+- author: Conflee
+  changes:
+  - message: Added NaN% poster, immortalizing a round where Beta broke the entire power grid of a station by getting negative power, making station unfixable even with admin commands. Spawned from the Contraband Poster pool.
+    type: Add
+  id: 406832
+  time: '2026-07-24T08:42:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5277
+- author: Conflee
+  changes:
+  - message: Resprited all Gun Safes. They now have a marker indicating which type of gun is inside them, making it much easier to find the correct safe more quickly.
+    type: Tweak
+  id: 406833
+  time: '2026-07-24T09:37:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5280
+- author: Conflee
+  changes:
+  - message: Added Command, Lawyer, Syndicate, and Security access Gun Safes.
+    type: Add
+  id: 406834
+  time: '2026-07-24T09:37:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5280
+- author: Conflee
+  changes:
+  - message: Swapped the Disabler Gun Safe to use Security access instead of Armory access. Disablers are starting loadout kit, and the safes are often mapped outside Armory in locker rooms etc. There's no reason to make Secoffs drag Warden from Genpop to open these.
+    type: Tweak
+  id: 406835
+  time: '2026-07-24T09:37:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5280
 Order: -1
