@@ -171,6 +171,7 @@
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
+    - type: ShowAccess
     - type: EyeProtection
       protectionTime: 5
 
