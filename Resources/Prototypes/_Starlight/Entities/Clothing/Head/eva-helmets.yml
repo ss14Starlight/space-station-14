@@ -129,15 +129,15 @@
     - WhitelistChameleon
 
 - type: entity
-  parent:  ClothingHeadEVAHelmetBase
+  parent:  ClothingHeadHardsuitBase
   id: ClothingHeadHelmetsoftsuitWizardFire
-  name: wizard fire hood
+  name: wizard pyromancer hood
   description: A hood of living fire, the inferno within stares at you.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hoods/wizard.rsi
+    sprite: _Starlight/Clothing/Head/Hoods/wizardfire.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hoods/wizard.rsi
+    sprite: _Starlight/Clothing/Head/Hoods/wizardfire.rsi
     equipSound:
       collection: storageRustle
     unequipSound:
