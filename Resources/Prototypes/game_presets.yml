@@ -239,7 +239,7 @@
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Revolutionary
-  - SubGamemodesRuleLessThieves # Starlight. 3 max thieves on revs, so they can't be guaranteed an Emag.
+  - SubGamemodesRuleConversion # Starlight. 3 max thieves on revs, so they can't be guaranteed an Emag.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler # Starlight
