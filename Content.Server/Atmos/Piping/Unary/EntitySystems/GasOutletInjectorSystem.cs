@@ -82,7 +82,6 @@ public sealed partial class GasOutletInjectorSystem : EntitySystem
         if (component.Enabled == value) return;
         component.Enabled = value;
         UpdateAppearance(uid, component);
-        Dirty(uid, component);
     }
 
     #endregion

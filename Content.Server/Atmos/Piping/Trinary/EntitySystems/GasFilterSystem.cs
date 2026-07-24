@@ -291,7 +291,7 @@ public sealed partial class GasFilterSystem : EntitySystem
         if (component.Enabled == value) return;
         component.Enabled = value;
         UpdateAppearance(uid, component);
-        Dirty(uid, component);
+        DirtyUI(uid, component);
     }
 
     #endregion
