@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: All Protogens are now properly absorbable by Changelings, regardless of frame type.
-    type: Fix
-  id: 406439
-  time: '2026-07-05T15:48:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5008
-- author: wonderfulnewworld
-  changes:
   - message: All Protogens now occupy the same bag space as their non-Proto variants.
     type: Fix
   id: 406440
@@ -2799,4 +2792,11 @@ Entries:
   id: 406838
   time: '2026-07-24T12:17:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5284
+- author: redmushie
+  changes:
+  - message: Observer ghosts now have typing indicators.
+    type: Add
+  id: 406839
+  time: '2026-07-24T12:39:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5294
 Order: -1
