@@ -318,7 +318,7 @@
         - to: reinforcedUraniumWindow
           completed:
             - !type:GivePrototype
-              prototype: UraniumGlass
+              prototype: SheetUGlass1
               amount: 2
           steps:
             - material: ReinforcedUraniumGlass
