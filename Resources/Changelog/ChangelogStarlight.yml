@@ -1,13 +1,6 @@
 Entries:
 - author: ku-mo
   changes:
-  - message: Material storage eject buttons no longer spam localization warnings.
-    type: Fix
-  id: 406454
-  time: '2026-07-07T13:54:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5005
-- author: ku-mo
-  changes:
   - message: Antag playtime requirements no longer spam localization warnings.
     type: Fix
   id: 406455
@@ -2799,4 +2792,11 @@ Entries:
   id: 406853
   time: '2026-07-24T18:28:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5291
+- author: OMEGA
+  changes:
+  - message: Solar panels can now be upgraded in-place by using the correct materials on them.
+    type: Add
+  id: 406854
+  time: '2026-07-24T18:51:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5247
 Order: -1
