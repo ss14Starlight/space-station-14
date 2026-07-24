@@ -2,7 +2,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.CartridgeLoader;
 using Content.Server._CD.CartridgeLoader.Cartridges;
-using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Systems;
 using Robust.Server.Player;
 using Content.Shared._CD.NanoChat;
@@ -22,13 +21,14 @@ using Content.Server.Mind;
 using Content.Shared._CD.CartridgeLoader.Cartridges;
 using Content.Shared._Starlight.Time;
 using Robust.Server.Containers;
+using Content.Server.StationEvents.Events;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
 /// <summary>
 /// Game rule that periodically sends spam advertisements via NanoChat.
 /// </summary>
-public sealed partial class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComponent>
+public sealed partial class NanoChatSpamRuleSystem : StationEventSystem<NanoChatSpamRuleComponent>
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -49,23 +49,7 @@ public sealed partial class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpam
     {
         base.Started(uid, component, gameRule, args);
 
-        // Schedule first spam
-        component.NextSpamTime = _random.NextFloat(component.MinDelay, component.MaxDelay);
-    }
-
-    protected override void ActiveTick(EntityUid uid, NanoChatSpamRuleComponent component, GameRuleComponent gameRule, float frameTime)
-    {
-        base.ActiveTick(uid, component, gameRule, frameTime);
-
-        component.NextSpamTime -= frameTime;
-
-        if (component.NextSpamTime > 0)
-            return;
-
-        // Reset timer
-        component.NextSpamTime += _random.NextFloat(component.MinDelay, component.MaxDelay);
-
-        // Send spam
+        // Fire once, auto ended by StationEventSystem
         SendSpamMessage(component);
     }
 
