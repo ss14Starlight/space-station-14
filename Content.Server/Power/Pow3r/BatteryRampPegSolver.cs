@@ -256,7 +256,8 @@ namespace Content.Server.Power.Pow3r
                 return;
 
             // Target output capacity for batteries
-            var relativeBatteryOutput = Math.Min(unmet, totalBatterySupply) / totalBatterySupply;
+            //Starlight: guard an edge case 0/0 = NaN when totalBatterySupply is 0.
+            var relativeBatteryOutput = totalBatterySupply > 0f ? Math.Min(unmet, totalBatterySupply) / totalBatterySupply : 0f;
             var relativeTargetBatteryOutput = Math.Min(unmet, totalMaxBatterySupply) / totalMaxBatterySupply;
 
             // Apply load to supplying batteries
