@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Raised Chemistry jobslots from 2 to 4.
-    type: Tweak
-  id: 406487
-  time: '2026-07-08T14:36:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5041
-- author: Caws
-  changes:
   - message: (Starboard) Medbay's entrance is far easier to access now.
     type: Tweak
   id: 406488
@@ -2799,4 +2792,11 @@ Entries:
   id: 406886
   time: '2026-07-25T07:33:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5289
+- author: CrazyPhantom
+  changes:
+  - message: Nanochat spam is no longer Admin only and is based on population.
+    type: Add
+  id: 406887
+  time: '2026-07-25T07:33:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5292
 Order: -1
