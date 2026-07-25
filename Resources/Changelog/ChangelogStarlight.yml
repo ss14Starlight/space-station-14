@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Fland) Re-organized Engineering's locker room so it's easier for Engineers to find their lockers.
-    type: Tweak
-  id: 406505
-  time: '2026-07-10T10:54:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5048
-- author: Caws
-  changes:
   - message: (Fland) Moved utility lockers (tool lockers, welding supplies, etc.) in Engineering to the storage room west of their locker room.
     type: Tweak
   id: 406506
@@ -2799,4 +2792,11 @@ Entries:
   id: 406904
   time: '2026-07-25T18:49:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5297
+- author: Mack
+  changes:
+  - message: Disabled the Bright-Eye antag from rolling.
+    type: Remove
+  id: 406905
+  time: '2026-07-25T20:25:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5320
 Order: -1
