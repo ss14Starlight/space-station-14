@@ -1128,9 +1128,10 @@
 - type: entity
   id: ToolboxSELF
   parent: ToolboxThief
+  suffix: SELF
   components:
   - type: ThiefUndeterminedBackpack
-    toolName: Supplies
+    toolName: self-toolbox-name
     maxSelectedSets: 1
     possibleSets:
     - SaboteurSELF

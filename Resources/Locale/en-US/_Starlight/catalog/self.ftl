@@ -20,3 +20,5 @@ self-backpack-category-spy-description =
     as you achieve you're goal of liberation, these tools will work.
     Includes: A bag full of chameleon gear, a camera bug,
     chameleon controller implant, a fake mindshield implant.
+
+self-backpack-name = SELF Supplies
