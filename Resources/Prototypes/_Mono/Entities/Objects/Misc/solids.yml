@@ -10,7 +10,7 @@
   - type: Item
     size: Tiny
   - type: StaticPrice
-    price: 900 # Reduced from the 1250 it is in monolith
+    price: 1250
   - type: Edible
   - type: FlavorProfile
     flavors:
