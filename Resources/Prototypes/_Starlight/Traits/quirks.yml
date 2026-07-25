@@ -1,4 +1,15 @@
 - type: trait
+  id: Unclonable
+  name: trait-unclonable-name
+  description: trait-unclonable-desc
+  category: Quirks
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: Uncloneable
+
+- type: trait
   id: Pacifist
   name: trait-pacifist-name
   description: trait-pacifist-desc
