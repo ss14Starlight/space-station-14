@@ -11,6 +11,7 @@ namespace Content.Server.Administration.Commands
     {
         //[Dependency] private readonly IServerDbManager _dbManager = default!; NullLink-edit: move to general method at Manager
         [Dependency] private IBanManager _banManager = default!;
+        [Dependency] private ILogManager _logManager = default!; // NullLink-edit
 
         public override string Command => "pardon";
 
@@ -24,7 +25,7 @@ namespace Content.Server.Administration.Commands
             catch (Exception e)
             {
                 shell.WriteError($"Pardon failed: {e.Message}");
-                Logger.GetSawmill("admin.bans").Error($"Pardon command failed: {e}");
+                _logManager.GetSawmill("admin.bans").Error($"Pardon command failed: {e}");
             }
             // Starlight-end
         }
