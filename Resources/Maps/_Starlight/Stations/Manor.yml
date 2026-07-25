@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/24/2026 09:15:03
+  time: 07/25/2026 02:52:32
   entityCount: 35262
 maps:
 - 1
@@ -12399,7 +12399,7 @@ entities:
       fixtures: {}
 - proto: AirAlarmElectronics
   entities:
-  - uid: 35047
+  - uid: 35049
     components:
     - type: Transform
       parent: 33959
@@ -12475,7 +12475,7 @@ entities:
       pos: 1.5,-2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -181996.53
+      secondsUntilStateChange: -182237.44
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12608,7 +12608,7 @@ entities:
       pos: -52.5,58.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -208768.5
+      secondsUntilStateChange: -209009.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14793,7 +14793,7 @@ entities:
       pos: 18.5,53.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -382657.56
+      secondsUntilStateChange: -382898.47
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15330,7 +15330,7 @@ entities:
       pos: -61.5,49.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -238528.36
+      secondsUntilStateChange: -238769.27
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18688,13 +18688,13 @@ entities:
       fixtures: {}
 - proto: APCElectronics
   entities:
-  - uid: 35043
+  - uid: 35047
     components:
     - type: Transform
       parent: 33959
     - type: Physics
       canCollide: False
-  - uid: 35044
+  - uid: 35048
     components:
     - type: Transform
       parent: 33959
@@ -103843,7 +103843,7 @@ entities:
       pos: -71.5,55.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -73243.76
+      secondsUntilStateChange: -73484.664
       state: Opening
   - uid: 15978
     components:
@@ -106037,7 +106037,7 @@ entities:
       pos: 66.5,41.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -135419.94
+      secondsUntilStateChange: -135660.84
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 11124.3888776
@@ -107527,7 +107527,7 @@ entities:
       pos: -27.5,81.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -123529.93
+      secondsUntilStateChange: -123770.836
       state: Closing
   - uid: 16376
     components:
@@ -163078,9 +163078,9 @@ entities:
       linkedPorts:
         32986:
         - - Pressed
-          - Open
-        - - Pressed
           - AutoClose
+        - - Pressed
+          - Toggle
     - type: Fixtures
       fixtures: {}
 - proto: LockableButtonCommand
@@ -165181,7 +165181,7 @@ entities:
       parent: 2
 - proto: MiniGravityGeneratorCircuitboard
   entities:
-  - uid: 35041
+  - uid: 35043
     components:
     - type: Transform
       parent: 33959
@@ -183065,7 +183065,7 @@ entities:
       parent: 2
 - proto: ShuttleConsoleCircuitboard
   entities:
-  - uid: 35048
+  - uid: 35041
     components:
     - type: Transform
       parent: 33959
@@ -185643,7 +185643,7 @@ entities:
       parent: 2
 - proto: SMESMachineCircuitboard
   entities:
-  - uid: 35049
+  - uid: 35045
     components:
     - type: Transform
       parent: 33959
@@ -193935,12 +193935,8 @@ entities:
   - uid: 33959
     components:
     - type: Transform
-      pos: -110.62583,32.493256
+      pos: -110.511154,32.564144
       parent: 2
-    - type: UserInterface
-      actors:
-        enum.StorageUiKey.Key:
-        - invalid
     - type: Storage
       storedItems:
         35041:
@@ -193985,7 +193981,6 @@ entities:
           - 35047
           - 35048
           - 35049
-    - type: ActiveUserInterface
 - proto: TowelColorNT
   entities:
   - uid: 13806
@@ -195405,7 +195400,7 @@ entities:
       parent: 2
 - proto: WallmountGeneratorElectronics
   entities:
-  - uid: 35046
+  - uid: 35044
     components:
     - type: Transform
       parent: 33959
@@ -195460,7 +195455,7 @@ entities:
       fixtures: {}
 - proto: WallmountSubstationElectronics
   entities:
-  - uid: 35045
+  - uid: 35046
     components:
     - type: Transform
       parent: 33959
