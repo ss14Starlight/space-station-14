@@ -3,8 +3,8 @@
   name: The Saboteur
   description: self-backpack-category-saboteur-description
   sprite:
-    sprite: Objects/Tools/drill.rsi
-    state: drill_screw
+    sprite: Objects/Tools/jaws_of_life.rsi
+    state: proto_jaws_pry
   content:
   - PrototypeJawsOfLife
   - WelderIndustrialAdvanced
@@ -34,7 +34,7 @@
   name: The Liberator
   description: self-backpack-category-liberator-description
   sprite:
-    sprite: _Starlight/Objects/Specific/SELF/freemag.rsi
+    sprite: Objects/Tools/access_breaker.rsi
     state: icon
   content:
   - AccessBreaker
