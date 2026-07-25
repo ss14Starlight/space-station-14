@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/25/2026 07:12:20
-  entityCount: 267
+  time: 07/25/2026 07:55:17
+  entityCount: 271
 maps: []
 grids:
 - 1
@@ -30,7 +30,7 @@ entities:
     - type: MetaData
       name: Harm's Space Truck
     - type: Transform
-      pos: -0.5,5
+      pos: 0,6
       parent: invalid
     - type: MapGrid
       chunks:
@@ -960,6 +960,36 @@ entities:
     - type: Action
       originalIconColor: '#FFFFFFFF'
       container: 119
+- proto: AirAlarm
+  entities:
+  - uid: 270
+    components:
+    - type: Transform
+      pos: 0.5,-5.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 213
+      - 269
+      - 209
+      - 212
+      - 268
+      - 210
+    - type: Fixtures
+      fixtures: {}
+  - uid: 271
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-2.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 214
+      - 174
+      - 211
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 121
@@ -1095,6 +1125,35 @@ entities:
     - type: DeviceNetwork
       address: 5245-BE6E
       receiveFrequency: 1280
+- proto: AirSensor
+  entities:
+  - uid: 174
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-0.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 271
+  - uid: 268
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-8.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 270
+  - uid: 269
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-14.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 270
 - proto: APCBasic
   entities:
   - uid: 125
@@ -1173,8 +1232,8 @@ entities:
   - uid: 131
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2,-5.5
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-5.5
       parent: 1
   - uid: 132
     components:
@@ -1819,12 +1878,6 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeBendAlt4
   entities:
-  - uid: 174
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-3.5
-      parent: 1
   - uid: 175
     components:
     - type: Transform
@@ -2026,15 +2079,11 @@ entities:
   - uid: 199
     components:
     - type: Transform
-      anchored: False
       rot: 1.5707963267948966 rad
       pos: 0.5,-3.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-    - type: Physics
-      canCollide: True
-      bodyType: Dynamic
   - uid: 200
     components:
     - type: Transform
@@ -2129,6 +2178,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-14.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 270
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 210
@@ -2137,6 +2189,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 270
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 211
@@ -2144,6 +2199,9 @@ entities:
     - type: Transform
       pos: 0.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 271
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubberAlt4
@@ -2154,6 +2212,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 270
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 213
@@ -2162,6 +2223,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-14.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 270
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 214
@@ -2169,6 +2233,9 @@ entities:
     - type: Transform
       pos: 0.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 271
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GeneratorBasic15kW

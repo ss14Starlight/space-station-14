@@ -109,7 +109,7 @@
 - type: vessel
   id: SpaceTruck
   name: Harm's Space Truck
-  description: A small size space truck. This one has a legal IFF console on board...no one knows why it's installed or why it's on sale.
+  description: A small sized space truck. This one has a legal IFF console on board... no one knows why it's installed or why it's on sale.
   price: 15050
   category: Small
   group: Civilian
