@@ -155,7 +155,7 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ExplosionResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.01
   - type: StaminaResistance
     damageCoefficient: 0.4
   - type: Armor
