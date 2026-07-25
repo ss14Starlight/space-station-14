@@ -593,3 +593,18 @@
         reagents:
         - ReagentId: DexalinPlus
           Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: iceialin
+  id: JugIceialin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-iceialin
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Iceialin
+          Quantity: 200

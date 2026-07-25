@@ -5,10 +5,10 @@ using Content.Shared.Whitelist;
 
 namespace Content.Server._Starlight.Objectives;
 
-public sealed class EnsureBorgHasLawsConditionSystem : EntitySystem
+public sealed partial class EnsureBorgHasLawsConditionSystem : EntitySystem
 {
-    [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SiliconLawSystem _siliconLaw = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
     public override void Initialize()
     {

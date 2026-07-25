@@ -1,0 +1,117 @@
+- type: reagent
+  id: Ulnitranium
+  name: reagent-name-ulnitranium
+  desc: reagent-desc-ulnitranium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: sour
+  color: "#ee9568"
+  metabolisms:
+    Gas:
+      effects:
+      - !type:Oxygenate
+        factor: 8
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Vox, Slime]
+      - !type:ModifyLungGas
+        ratios:
+          NitrousOxide: 1.0
+          Pluoxium: -1.0
+
+- type: reagent
+  id: ZXA
+  name: reagent-name-zxa
+  desc: reagent-desc-zxa
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: sweet
+  color: "#d9ecf0"
+  metabolisms:
+    Gas:
+      effects:
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 0.2
+        emote: Cough
+        showInChat: true
+        probability: 0.05
+
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 1
+        ignoreResistances: true
+        maxScale: 5
+        damage:
+          types:
+            Cellular: -0.01 # It can heal you a *tiny* amount, if you wanna sleep it off.
+
+
+      - !type:ModifyStatusEffect
+        minScale: 0.6
+        effectProto: StatusEffectSeeingRainbow
+        type: Add
+        time: 5
+
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 0.2
+        emote: Laugh
+        showInChat: true
+        probability: 0.05
+
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 0.2
+        emote: Scream
+        showInChat: true
+        probability: 0.005
+
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 0.5
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+          max: 0.1
+        type: Local
+        visualType: Medium
+        messages: [ "effect-sleepy" ]
+        probability: 0.1
+
+
+      - !type:MovementSpeedModifier
+        minScale: 1
+        conditions:
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+          max: 0.1
+        walkSpeedModifier: 0.65
+        sprintSpeedModifier: 0.65
+
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 1
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+          max: 0.1
+        effectProto: StatusEffectForcedSleeping
+        type: Update
+        time: 10
+
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 0.1
+        reagent: ZXAMetabolites
+        amount: 1.8

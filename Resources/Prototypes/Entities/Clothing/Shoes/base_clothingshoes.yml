@@ -47,6 +47,12 @@
   id: ClothingShoesMilitaryBase
   components:
   - type: Matchbox
+  - type: Storage
+    grid: [] # starlight
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      item: !type:ContainerSlot
   - type: ItemSlots
     slots:
       item:
@@ -62,6 +68,8 @@
   id: ClothingShoesBootsSecFilled
   suffix: Filled
   components:
+  - type: Storage
+    grid: [] # starlight
   - type: ContainerFill
     containers:
       item:

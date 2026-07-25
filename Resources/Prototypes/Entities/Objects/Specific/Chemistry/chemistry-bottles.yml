@@ -168,7 +168,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-aloxadone
+    currentLabel: reagent-name-aloxadone #starlight
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -183,7 +183,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-ambuzol
+    currentLabel: reagent-name-ambuzol #starlight
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -198,7 +198,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-ambuzol-plus
+    currentLabel: reagent-name-ambuzol-plus #starlight
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -228,7 +228,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-barozine
+    currentLabel: reagent-name-barozine #starlight
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -258,7 +258,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-bruizine
+    currentLabel: reagent-name-bruizine #starlight
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -273,7 +273,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-cognizine
+    currentLabel: reagent-name-cognizine #starlight
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -648,7 +648,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-oculine
+    currentLabel: reagent-name-oculine #starlight
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -678,7 +678,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-opporozidone
+    currentLabel: reagent-name-opporozidone #starlight
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -749,7 +749,7 @@
 
 - type: entity
   id: ChemistryBottlePulpedBananaPeel
-  suffix: pulped-banana-peel
+  suffix: pulped banana peel #starlight
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
@@ -1395,6 +1395,21 @@
         - ReagentId: Sulfur
           Quantity: 30
 
+- type: entity
+  id: ChemistryBottleIceialin
+  suffix: iceialin
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-iceialin
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Iceialin
+          Quantity: 30
+
 # Entity tables
 - type: entityTable
   id: BasicReagentBottlesTable
@@ -1476,6 +1491,7 @@
     - id: ChemistryBottleHaloperidol
     - id: ChemistryBottleHolywater
     - id: ChemistryBottleHyronalin
+    - id: ChemistryBottleIceialin
     - id: ChemistryBottleInaprovaline
     - id: ChemistryBottleInsuzine
     - id: ChemistryBottleIpecac
@@ -1505,25 +1521,3 @@
     - id: ChemistryBottleUltravasculine
     - id: ChemistryBottleCharcoal
     - id: ChemistryBottleLaughter
-
-#TODO: Move to _Starlight
-- type: entity
-  parent: BaseChemistryBottleFilled
-  id: CorgiJuiceChemistryBottle
-  suffix: essence of corgi
-  components:
-  - type: Label
-    currentLabel: reagent-name-corgi-endless # Starlight
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: CorgiJuice
-          Quantity: 30
-  - type: SolutionRegeneration
-    solution: drink
-    generated:
-      reagents:
-      - ReagentId: CorgiJuice
-        Quantity: 0.075

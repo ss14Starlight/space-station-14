@@ -2,19 +2,19 @@
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
-using Content.Shared._Starlight.Railroading;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Objectives.Components;
-using Content.Shared.Objectives.Systems;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Server.Player;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using static Content.Shared._Starlight.Railroading.RailroadRuleComponent;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Abstract;
+using static Content.Shared._Starlight.Railroading.Components.RailroadRuleComponent;
+using Content.Shared._Starlight.Abstract.Conditions;
 
 namespace Content.Server._Starlight.Railroading;
 
@@ -25,14 +25,14 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
     private const byte SpawnPerTick = 10;
     private const byte ProcessingMaxTry = 10;
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IComponentFactory _comp = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly SharedJobSystem _job = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IComponentFactory _comp = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private SharedJobSystem _job = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
         => base.Initialize();

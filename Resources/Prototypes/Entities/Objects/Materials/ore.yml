@@ -55,6 +55,16 @@
           Quantity: 10
   - type: Item
     heldPrefix: gold
+  # BEGIN STARLIGHT - DWARF SPAM
+  - type: TriggerOnPointedAt
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      tags:
+      - Dwarf
+  - type: SpeakOnTrigger
+    text: dwarf-callout-wealth
+    targetUser: true
+  #END STARLIGHT
   - type: Tag
     tags:
     - Ore

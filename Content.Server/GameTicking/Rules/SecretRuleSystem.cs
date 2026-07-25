@@ -15,12 +15,16 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
+public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    // Starlight begin
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    // Starlight end
 
     private readonly Dictionary<string, int> _secretPresetCooldown = new();
     private string _ruleCompName = default!;
@@ -44,6 +48,7 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
         }
 
         Log.Info($"Selected {preset.ID} as the secret preset.");
+        if (_ticker.RunLevel == GameRunLevel.PreRoundLobby) _chatManager.SendAdminAnnouncement($"Round preset selected: Secret ({preset.ID})."); // Starlight
         _adminLogger.Add(LogType.EventStarted, $"Selected {preset.ID} as the secret preset.");
 
         foreach (var rule in preset.Rules)

@@ -523,12 +523,12 @@
 - type: emote
   id: LagomorphStomp
   name: chat-emote-name-stomp
-  category: Vocal
+  category: Hands
   available: false
   icon: _Starlight/Interface/Emotes/stomp-emote.png
   whitelist:
     components:
-    - Vocal
+    - Hands
   blacklist:
     components:
     - BorgChassis

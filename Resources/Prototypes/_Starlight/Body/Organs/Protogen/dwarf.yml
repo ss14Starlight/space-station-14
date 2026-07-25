@@ -1,0 +1,48 @@
+- type: entity
+  id: OrganProtoDwarfHeart
+  parent: OrganProtogenHeart
+  name: dwarf cybernetic heart
+  suffix: Proto-Dwarf
+  description: Doesn't actually need to beat, simply mimics the movement to provide comfort for the user.
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Dwarf, Protogen]
+
+- type: entity
+  id: OrganProtoDwarfLiver
+  parent: OrganProtogenLiver
+  name: dwarf cybernetic liver
+  suffix: Proto-Dwarf
+  description: Pairing suggestion, a side of fermented RAM sticks and a nice CPU.
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Dwarf]
+
+- type: entity
+  id: OrganProtoDwarfStomach
+  parent: OrganProtogenStomach
+  name: dwarf biological reactor
+  suffix: Proto-Dwarf
+  description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
+    state: stomach
+  - type: Organ
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 75
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+    isSpecialDigestibleExclusive: false
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Dwarf, Animal]

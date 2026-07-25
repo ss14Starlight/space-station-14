@@ -327,6 +327,7 @@
   - type: IdentityBlocker
   - type: Tag
     tags:
+    - MimeMask #Starlight
     - HamsterWearable
     - WhitelistChameleon
   - type: HideLayerClothing
@@ -524,6 +525,8 @@
     - HeadSide
   - type: Pierceable
     level: Rock
+  - type: FlashImmunity # Starlight
+    blocksSpecialVision: False
   - type: Armor
     modifiers:
       coefficients:
@@ -735,6 +738,11 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  # Starlight-start
+  - type: Construction
+    graph: ClothingMaskMimeSecurity
+    node: mask
+  # Starlight-end
 
 - type: entity
   parent: ClothingMaskBase

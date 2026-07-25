@@ -19,3 +19,13 @@
   id: CaptainJumpsuitNoble
   equipment:
     jumpsuit: ClothingUniformJumpsuitCaptainNoble
+
+- type: loadout
+  id: CaptainGlasses
+  equipment:
+    eyes: ClothingEyesGlassesCommand
+
+- type: loadout
+  id: CaptainHud
+  equipment:
+    eyes: ClothingEyesHudCommand

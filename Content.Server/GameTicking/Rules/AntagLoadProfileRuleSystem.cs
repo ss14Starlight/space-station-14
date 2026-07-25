@@ -6,6 +6,7 @@ using Content.Server.Humanoid;
 using Content.Server.Preferences.Managers;
 using Content.Server.Traits;
 using Content.Shared._Starlight.Character.Info;
+using Content.Shared._Starlight.Station;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -15,16 +16,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfileRuleComponent>
+public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfileRuleComponent>
 {
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IServerPreferencesManager _prefs = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!; // Starlight
-    [Dependency] private readonly TraitSystem _traitSystem = default!; //Starlight
-    [Dependency] private readonly SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
-    [Dependency] private readonly GrammarSystem _grammarSystem = default!; // Starlight
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; // Starlight
+    [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IServerPreferencesManager _prefs = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!; // Starlight
+    [Dependency] private TraitSystem _traitSystem = default!; //Starlight
+    [Dependency] private SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
+    [Dependency] private GrammarSystem _grammarSystem = default!; // Starlight
+    [Dependency] private AutoDiscordLogSystem _autolog = default!; // Starlight
 
     public override void Initialize()
     {

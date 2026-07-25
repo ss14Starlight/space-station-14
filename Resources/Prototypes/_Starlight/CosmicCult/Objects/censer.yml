@@ -46,6 +46,9 @@
         - ReagentId: Holywater
           Quantity: 100
         maxVol: 100
+  - type: RefillReagentFilter
+    reagents:
+    - Holywater
   - type: ItemTogglePointLight
   - type: ToggleableVisuals
     spriteLayer: flame

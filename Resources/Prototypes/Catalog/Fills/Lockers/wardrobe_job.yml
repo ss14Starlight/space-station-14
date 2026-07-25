@@ -29,6 +29,7 @@
       - id: ClothingUniformJumpsuitPrisoner
       - id: ClothingUniformJumpskirtPrisoner
       - id: ClothingShoesColorBlack
+      - id: ClothingHeadHatBeretPrison # SL Edit
     - id: ClothingMaskMuzzle
     - !type:GroupSelector
       prob: 0.15
@@ -64,6 +65,7 @@
       - id: WhoopieCushion
       - id: Brutepack
       - id: StrangePill
+      - id: WeirdPill # Starlight
       - id: Shiv
     - !type:GroupSelector
       prob: 0.1
@@ -73,6 +75,7 @@
       - id: Blunt
       - id: PackPaperRolling
       - id: OminousPill # Starlight
+      - id: GoldenPill # Starlight
       - id: Cigarette
         amount: !type:RangeNumberSelector
           range: 1, 4

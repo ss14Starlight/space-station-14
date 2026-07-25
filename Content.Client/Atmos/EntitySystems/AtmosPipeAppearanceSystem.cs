@@ -11,8 +11,8 @@ namespace Content.Client.Atmos.EntitySystems;
 [UsedImplicitly]
 public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanceSystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -66,6 +66,19 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
         if (args.Sprite == null)
             return;
 
+        // Starlight Start
+
+        // Grabbing the color, moved up.
+        if (!_appearance.TryGetData<Color>(uid, PipeColorVisuals.Color, out var color, args.Component))
+            color = Color.White;
+
+        // Apply color to all explicitly opted-in layers
+        foreach (var tintedLayer in component.ExtraColoredLayers)
+            if (_sprite.LayerMapTryGet((uid, args.Sprite), tintedLayer, out var tintedIndex, false))
+                args.Sprite[tintedIndex].Color = color;
+
+        // Starlight End
+
         if (!args.Sprite.Visible)
         {
             // This entity is probably below a floor and is not even visible to the user -> don't bother updating sprite data.
@@ -81,8 +94,7 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
             return;
         }
 
-        if (!_appearance.TryGetData<Color>(uid, PipeColorVisuals.Color, out var color, args.Component))
-            color = Color.White;
+        // Starlight: Grabbing the Color moved to top of method in Starlight block
 
         for (byte i = 0; i < numberOfPipeLayers; i++)
         {

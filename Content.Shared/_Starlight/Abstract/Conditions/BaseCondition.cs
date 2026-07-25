@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Content.Shared.Store;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace Content.Shared._Starlight.Abstract.Conditions;
 /// <summary>
@@ -14,7 +8,7 @@ namespace Content.Shared._Starlight.Abstract.Conditions;
 [MeansImplicitUse]
 public abstract partial class BaseCondition
 {
-    [Dependency] protected readonly IEntityManager Ent = default!;
+    [Dependency] protected IEntityManager Ent = default!;
 
     public virtual bool Handle(EntityUid @subject, EntityUid @object)
     {

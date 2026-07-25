@@ -6,11 +6,11 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Paper;
 
-public sealed class GameruleOnSignSytem : EntitySystem
+public sealed partial class GameruleOnSignSytem : EntitySystem
 {
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

@@ -173,6 +173,16 @@
       maxPulseLength: 120
       decayhreshold: 0
       deleteEntity: false
+      scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
+      useNormalContainmentParticle: false
+      particleInteractions:
+      - interactionKey: NullspaceStabilizer
+        effect: EndAnomaly
+        delay: 60
+        distanceThreshold: 10
+        spawnCore: true
+        deleteEntityAfterEnd: true
+        visualEffect: CleanseEffectVFX
     - type: SecretDataAnomaly
       randomStartSecretMin: 2
       randomStartSecretMax: 5
@@ -407,3 +417,100 @@
       canTeleportToOtherMaps: true
       randomTeleport: false
     - type: DarkLight
+
+- type: entity
+  id: CosmicMalignRift
+  name: anomaly
+  description: A malign light pours forth from within.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    bodyStatus: InAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
+    drawdepth: Mobs
+    snapCardinals: true
+    offset: 0,0.27
+    layers:
+      - state: rift-unshaded
+        shader: unshaded
+  - type: Anomaly
+    initialStabilityRange:
+      0.5: 0.5
+    initialSeverityRange:
+      0.5: 0.5
+    growthThreshold: 0.25
+    minPulseLength: 9999
+    maxPulseLength: 10000
+    pulseSound: null
+    supercriticalSound: null
+    supercriticalSoundAtAnimationStart: null
+    supercriticalDuration: 0
+    corePrototype: null
+    coreInertPrototype: null
+    deleteEntity: true
+    minPointsPerSecond: 10
+    maxPointsPerSecond: 70
+    decayhreshold: -1
+    severityGrowthCoefficient: 0
+    healthChangePerSecond: 0
+    shuffleParticlesOnMapInit: false
+    randomBehaviorOnMapInit: false
+    scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
+    useNormalDangerParticle: false
+    useNormalUnstableParticle: false
+    useNormalContainmentParticle: false
+    useNormalTransformationParticle: false
+    canPulse: false
+    particleInteractions:
+    - interactionKey: NullspaceStabilizer
+      effect: EndAnomaly
+      delay: 60
+      distanceThreshold: 10
+      spawnCore: false
+      visualEffect: CleanseEffectVFX
+  - type: SecretDataAnomaly
+    secret:
+    - Severity
+    - OutputPoint
+    - Behavior
+    - ParticleDanger
+    - ParticleUnstable
+    - ParticleTransformation
+  - type: Clickable
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    castShadows: false
+    color: "#42a4ae"
+  - type: CosmicCultExamine
+    cultistText: cosmic-examine-text-forthecult
+  - type: CosmicMalignRift
+  - type: CosmicCorrupting
+    corruptionMaxTicks: 6
+    corruptionSpeed: 8
+    corruptionChance: 1
+    corruptionReduction: 0.16
+  - type: Damageable
+  - type: DamageOnAttacked
+    damage:
+      types:
+        Cold: 10
+  - type: GuideHelp
+    guides:
+    - AnomalousResearch
+    - CosmicCultMalignRifts

@@ -26,6 +26,7 @@
   - AnomalyLocator
   - AnomalyLocatorWide
   - APECircuitboard
+  - OublietteCircuitBoard # Starlight ## REMINDER for anyone reading this: Oubliette and APE recipes shouldn't be hard to obtain. Keep this in mind when balancing science.
   - AnomalyVesselCircuitboard
 
 - type: technology

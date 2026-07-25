@@ -11,8 +11,11 @@ using Content.Shared.Roles;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Shared.Body.Part;
-using Content.Shared.Starlight;
-using Robust.Shared.Utility; // Starlight
+#region Starlight
+using Content.Shared._Starlight.Medical.Limbs;
+using Content.Client._Starlight.Humanoid;
+using Content.Shared._Starlight.Humanoid;
+#endregion
 
 namespace Content.Client.Lobby.UI.ProfileEditorControls;
 

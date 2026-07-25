@@ -21,7 +21,7 @@
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]
-            Botanist: [ 2, 3 ]
+            Botanist: [ 2, 2 ]
             Chef: [ 2, 2 ]
             Janitor: [ 3, 3 ]
             Chaplain: [ 1, 1 ]
@@ -51,11 +51,11 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            SecurityOfficer: [ 9, 10 ]
-            Detective: [ 1, 1 ]
-            SecurityCadet: [ 5, 5 ]
+            DutyOfficer: [ 2, 2 ] # exception to pop requirements due to unique genpop
+            SecurityOfficer: [ 6, 8 ]
+            SecurityCadet: [ 3, 4 ]
             Brigmedic: [ 1, 1 ]
-            DutyOfficer: [ 2, 2 ]
+            Detective: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]

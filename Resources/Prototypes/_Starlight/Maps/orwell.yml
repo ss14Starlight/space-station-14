@@ -3,6 +3,7 @@
   mapName: 'Orwell "Citadel" Station'
   mapPath: /Maps/_Starlight/Stations/Orwell.yml
   minPlayers: 50
+  maxPlayers: 350
   stations:
     StarlightOrwell:
       stationProto: StandardNanotrasenStation
@@ -25,6 +26,8 @@
             Janitor: [ 2, 3 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
+            Reporter: [ 2, 2 ]
+            Lawyer: [ 2, 2 ]
             ServiceWorker: [ 3, 4 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -47,10 +50,10 @@
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 2 ]
-            SecurityOfficer: [ 10, 10 ]
-            Detective: [ 1, 1 ]
-            SecurityCadet: [ 6, 6 ]
-            Brigmedic: [ 1, 1 ]
+            SecurityOfficer: [ 10, 12 ]
+            SecurityCadet: [ 5, 6 ]
+            Brigmedic: [ 2, 2 ]
+            Detective: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]

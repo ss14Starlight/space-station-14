@@ -4,10 +4,10 @@ using Content.Shared.Popups;
 
 namespace Content.Shared._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeMutationPotionSystem : EntitySystem
+public sealed partial class SlimeMutationPotionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private SharedPopupSystem _sharedPopupSystem = default!;
 
     public override void Initialize()
     {

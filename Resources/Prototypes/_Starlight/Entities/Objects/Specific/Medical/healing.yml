@@ -1,0 +1,34 @@
+- type: entity
+  name: pill
+  suffix: Psicodine 10u
+  parent: Pill
+  id: PillPsicodine
+  components:
+  - type: Pill
+    pillType: 2
+  - type: Sprite
+    state: pill3
+  - type: Label
+    currentLabel: reagent-label-psicodine-10
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Psicodine
+          Quantity: 10
+
+- type: entity
+  name: pill canister
+  parent: PillCanister
+  id: PillCanisterPsicodine
+  suffix: Psicodine 10u, 5
+  components:
+  - type: Label
+    currentLabel: reagent-label-psicodine-10
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PillPsicodine
+          amount: 5

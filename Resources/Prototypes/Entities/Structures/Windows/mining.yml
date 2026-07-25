@@ -1,7 +1,7 @@
 - type: entity
   id: MiningWindow
   name: mining window
-  parent: WindowRCDResistant
+  parent: [ WindowRCDResistant, BaseDeltaPressureReinforcedGlass ] # Starlight
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -52,7 +52,7 @@
     price: 100
 
 - type: entity
-  parent: ShuttleWindow
+  parent: MiningWindow # Starlight
   id: MiningWindowDiagonal
   suffix: diagonal
   placement:

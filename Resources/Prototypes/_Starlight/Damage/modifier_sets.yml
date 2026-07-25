@@ -60,12 +60,74 @@
     Heat: 0.75
     Bloodloss: 0
 
+# Thaven
+- type: damageModifierSet
+  id: Thaven
+  coefficients:
+    Blunt: 1.1
+    Slash: 1.1
+    Piercing: 1.1
+    Cold: 0.9
+    Heat: 0.9
+    Poison: 0.9
+    Cellular: 1.1
+    Radiation: 1.2
+
+# ProtoDwarf
+- type: damageModifierSet
+  id: ProtoDwarf
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.65
+    Heat: 1.15 # Their beards.
+    Poison: 0.85 # Alcohol-optimized organs.
+
+# ProtoArachnid
+- type: damageModifierSet
+  id: ProtoArachnid
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.70
+    Heat: 1.2
+    Poison: 0.90 # Don't really have a good reason, all things considered.
+    Caustic: 0.85 # Dense webs?
+
 - type: damageModifierSet
   id: Elf
   coefficients:
     Poison: 0.75
     Cellular: 0.9 # magic makes the flesh is less corruptible
     Blunt: 1.2 # brittle bones, etc.
+
+# ProtoElf
+- type: damageModifierSet
+  id: ProtoElf
+  coefficients:
+    Shock: 1.15 # They can counter some of the shock, magic resistance.
+    Heat: 1.15 # They can share this with thaven, they've got similar enough body types.
+    Cold: 0.7 # Bog standard cold resist.
+    Poison: 0.75
+    Blunt: 1.25 # blunt's gonna be fatal to them
+# Cellular resist gone, half body machine is fighting against magic skin.
+
+# Lagomorph
+- type: damageModifierSet
+  id: Lagomorph
+  coefficients:
+    Blunt: 0.9
+    Cold: 0.75
+    Heat: 1.25
+
+# ProtoLagomorph
+- type: damageModifierSet
+  id: ProtoLagomorph
+  coefficients:
+    Shock: 1.25
+    Cold: 0.60 # They're already good against cold, so theirs can be lower.
+    Heat: 1.35 # Even worse off than Vulps.
+# Blunt weakness cancels out
 
 - type: damageModifierSet
   id: SlimeFireproofPotionEffect
@@ -120,3 +182,107 @@
     Blunt: 5
     Slash: 5
     Piercing: 5
+
+- type: damageModifierSet
+  id: Rodentia
+  coefficients:
+    Blunt: 1.3
+    Slash: 1.15
+    Piercing: 1.15
+
+- type: damageModifierSet
+  id: LightArmor
+  coefficients:
+    Blunt: 0.75
+    Slash: 0.75
+    Piercing: 0.7
+    Shock: 1.2
+    Heat: 0.7
+  flatReductions:
+    Blunt: 5
+    Heat: 5
+
+- type: damageModifierSet
+  id: MediumArmorNT
+  coefficients:
+    Blunt: 0.6
+    Slash: 0.6
+    Piercing: 0.65
+    Shock: 1.4
+    Heat: 0.7
+  flatReductions:
+    Blunt: 8
+    Heat: 10
+
+- type: damageModifierSet
+  id: HeavyArmorNT
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.5
+    Piercing: 0.35
+    Shock: 1.8
+    Heat: 0.6
+  flatReductions:
+    Blunt: 15
+    Heat: 15
+
+- type: damageModifierSet
+  id: MediumArmorSyndi
+  coefficients:
+    Blunt: 0.65
+    Slash: 0.65
+    Piercing: 0.6
+    Shock: 1.4
+    Heat: 0.65
+  flatReductions:
+    Blunt: 8
+    Heat: 5
+
+- type: damageModifierSet
+  id: HeavyArmorSyndi
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.5
+    Piercing: 0.4
+    Shock: 1.8
+    Heat: 0.7
+  flatReductions:
+    Blunt: 10
+    Heat: 7
+
+# Mech armor
+- type: damageModifierSet
+  id: ThinArmor
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.8
+    Piercing: 0.9
+    Shock: 1.2
+    Heat: 0.8
+  flatReductions:
+    Blunt: 3
+    Heat: 2
+
+- type: damageModifierSet
+  id: CluwneBeast # Needssome resistances so it doesn't die instantly.
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.9
+    Cold: 0.8
+    Piercing: 0.7
+    Heat: 0.8
+    Poison: 0.8
+    Radiation: 0.2
+    Shock: 0.8
+    Cellular: 0.2
+    Bloodloss: 0.4
+
+- type: damageModifierSet
+  id: HardLightBarrier
+  coefficients:
+    Heat: 0.8
+    Blunt: 0.8
+    Slash: 0.8
+    Piercing: 0.8
+    Cold: 0.8
+    Shock: 1.6

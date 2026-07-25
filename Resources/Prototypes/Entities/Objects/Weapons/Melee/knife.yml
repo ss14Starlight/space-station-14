@@ -67,10 +67,12 @@
       fix1:
         shape: !type:PolygonShape
           vertices:
-          - -0.475,-0.225
-          - -0.225,-0.475
-          - 0.525,0.275
-          - 0.275,0.525
+          # Starlight Start
+          - -0.455,-0.225
+          - -0.225,-0.455
+          - 0.475,0.275
+          - 0.275,0.475
+          # Starlight End
         density: 20 # derived from base_item
         mask:
         - ItemMask
@@ -108,10 +110,12 @@
       fix1:
         shape: !type:PolygonShape
           vertices:
-          - -0.58,-0.12
-          - -0.34,-0.55
-          - 0.6,-0.075
+          # Starlight Start
+          - -0.48,-0.12
+          - -0.34,-0.45
+          - 0.45,-0.075
           - 0.375,0.375
+          # Starlight End
         density: 20 # derived from base_item
         mask:
         - ItemMask
@@ -384,10 +388,12 @@
         shape: !type:PolygonShape
           radius: 0.01
           vertices:
-          - -0.475,-0.225
-          - -0.225,-0.475
-          - 0.525,0.275
-          - 0.275,0.525
+          # Starlight Start
+          - -0.455,-0.225
+          - -0.225,-0.455
+          - 0.475,0.275
+          - 0.275,0.475
+          # Starlight End
         density: 20 # derived from base_item
         mask:
         - ItemMask

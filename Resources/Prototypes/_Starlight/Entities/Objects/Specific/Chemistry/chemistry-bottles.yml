@@ -89,6 +89,81 @@
           Quantity: 30
 
 - type: entity
+  id: ChemistryBottleWeldingFuel
+  suffix: welding fuel
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-welding-fuel
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleOil
+  suffix: oil
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-oil
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Oil
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleCornoil
+  suffix: corn oil
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-cornoil
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Cornoil
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleAcetone
+  suffix: acetone
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-acetone
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Acetone
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottlePhenol
+  suffix: phenol
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-phenol
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Phenol
+          Quantity: 30
+
+- type: entity
   id: ChemistryBottleWeh
   suffix: weh
   parent: BaseChemistryBottleFilled
@@ -102,3 +177,39 @@
         reagents:
         - ReagentId: JuiceThatMakesYouWeh
           Quantity: 30
+
+- type: entity
+  id: ChemistryBottleHew
+  suffix: hew
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-hew
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: JuiceThatMakesYouHew
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: CorgiJuiceChemistryBottle
+  suffix: essence of corgi
+  components:
+  - type: Label
+    currentLabel: reagent-name-corgi-endless
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: CorgiJuice
+          Quantity: 30
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: CorgiJuice
+        Quantity: 0.075

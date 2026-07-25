@@ -150,3 +150,45 @@
     - state: green
     - sprite: _Starlight/Mobs/Animals/Spiders/terror_princess.rsi
       state: 1-alive
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: MarkerBase
+  id: SpawnPointXenoroach
+  name: xenoroach spawn point
+  components:
+  - type: GhostRole
+    name: ghost-role-information-xenoroach-name
+    description: ghost-role-information-xenoroach-description
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleXenoborg
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobXenoroach
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Starlight/Mobs/Silicon/Chassis/xenoroach.rsi
+      state: xenoroach
+
+- type: entity
+  id: SpawnPointGhostCluwneBeast
+  name: ghost role spawn point
+  suffix: cluwnebeast
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: Cluwne Beast
+    description: Spread laughter and chaos by hitting and turning the crew into cluwnes.
+    rules: You are an antagonist, transform as many of the crew as you can into cluwnes.
+  - type: GhostRoleMobSpawner
+    prototype: MobCluwneBeast
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Mobs/Aliens/cluwnebeast.rsi
+        state: icon

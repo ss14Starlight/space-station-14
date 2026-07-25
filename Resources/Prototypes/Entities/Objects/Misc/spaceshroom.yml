@@ -27,6 +27,16 @@
         All: !type:GroupSelector
           children:
           - id: FoodSpaceshroom
+    # BEGIN STARLIGHT - DWARF SPAM
+    - type: TriggerOnPointedAt
+    - type: WhitelistTriggerCondition
+      userWhitelist:
+        tags:
+        - Dwarf
+    - type: SpeakOnTrigger
+      text: dwarf-callout-mushroom
+      targetUser: true
+    #END STARLIGHT
     - type: Damageable
       damageContainer: StructuralInorganic
       damageModifierSet: Wood
@@ -94,6 +104,16 @@
     thickness: 0.02
     area: 0.02
     conductivity: 0.43
+  # BEGIN STARLIGHT - DWARF SPAM
+  - type: TriggerOnPointedAt
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      tags:
+      - Dwarf
+  - type: SpeakOnTrigger
+    text: dwarf-callout-mushroom
+    targetUser: true
+  #END STARLIGHT
   - type: Tag
     tags:
     - Mushroom
@@ -147,6 +167,16 @@
   - type: Produce
   - type: StaticPrice
     price: 40
+  # BEGIN STARLIGHT - DWARF SPAM
+  - type: TriggerOnPointedAt
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      tags:
+      - Dwarf
+  - type: SpeakOnTrigger
+    text: dwarf-callout-mushroom
+    targetUser: true
+  #END STARLIGHT
   - type: Construction
     graph: CookedSpaceshroom
     node: cooked spaceshroom

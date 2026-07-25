@@ -14,5 +14,13 @@ namespace Content.Server.Nuke
         /// </summary>
         [DataField("allNukesAvailable")]
         public bool AllNukesAvailable;
+
+        #region Starlight
+        /// <summary>
+        /// if true will give all avaialble nuke codes.
+        /// </summary>
+        [DataField]
+        public bool PrintAll;
+        #endregion
     }
 }

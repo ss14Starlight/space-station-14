@@ -2,7 +2,7 @@ using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Starlight.AlertArmory;
+namespace Content.Server._Starlight.AlertArmory;
 
 /// <summary>
 /// this comp is entirely added by the AlertArmory system and shouldn't be attached.

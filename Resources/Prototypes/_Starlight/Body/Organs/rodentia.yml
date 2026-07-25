@@ -1,0 +1,31 @@
+- type: entity
+  id: OrganRodentiaEyes
+  parent: OrganHumanEyes
+  name: rodentia eyes
+  suffix: Rodentia
+  description: "The beady eyes of a Rodentia."
+  components:
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobRodentiaEyes
+
+- type: entity
+  id: OrganRodentiaStomach
+  parent: OrganHumanStomach
+  name: rodentia stomach
+  suffix: Rodentia
+  description: "The resistant stomach of a Rodentia."
+  components:
+    - type: Metabolizer
+      metabolizerTypes: [ Rodentia ]
+
+- type: entity
+  id: OrganRodentiaHeart
+  parent: OrganHumanHeart
+  name: rodentia heart
+  suffix: Rodentia
+  description: "The animal-like heart of a Rodentia."
+  components:
+    - type: Metabolizer
+      metabolizerTypes: [ Rodentia ]

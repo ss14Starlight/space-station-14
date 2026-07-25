@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Scaling.Components;
 using Content.Shared.Mobs.Components;
 
 namespace Content.Shared._Starlight.Scaling;

@@ -16,6 +16,11 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 25h # Starlight
+    - !type:TraitsRequirement # Starlight
+      traits:
+        - Iterator
+        - Muted
+      inverted: true
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"

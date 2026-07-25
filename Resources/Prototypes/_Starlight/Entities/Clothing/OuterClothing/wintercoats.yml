@@ -69,7 +69,7 @@
 # Security
 ## Duty Officer
 - type: entity
-  parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
+  parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband, AllowSuitStorageClothing]
   id: ClothingOuterWinterDutyOfficer
   name: duty officer's armored winter coat
   description: A sturdy, utilitarian winter coat designed to protect a duty officer from any uppity perma prisoners.

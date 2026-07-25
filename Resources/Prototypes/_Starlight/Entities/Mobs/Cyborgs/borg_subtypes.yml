@@ -77,6 +77,19 @@
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
       inventoryTemplateId: Tallborg
+
+- type: entity
+  parent: BorgEngineerSubtypeBase
+  id: BorgEngineerSubtypeMezo
+  name: Mezo
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/mezo.rsi
+      spriteBodyState: engi
+      spriteHasMindState: engi_e
+      spriteNoMindState: engi_e_r
+      spriteToggleLightState: engi_l
+      inventoryTemplateId: borg
 # region Generic
 
 - type: entity
@@ -118,6 +131,18 @@
       spriteToggleLightState: noble_l
       inventoryTemplateId: borgDutch
 
+- type: entity
+  parent: BorgGenericSubtypeBase
+  id: BorgGenericSubtypeMezo
+  name: Mezo
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/mezo.rsi
+      spriteBodyState: borg
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: borg
 # region Janitor
 
 - type: entity
@@ -197,6 +222,19 @@
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
       inventoryTemplateId: Tallborg
+
+- type: entity
+  parent: BorgJanitorSubtypeBase
+  id: BorgJanitorSubtypeMezo
+  name: Mezo
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/mezo.rsi
+      spriteBodyState: jani
+      spriteHasMindState: jani_e
+      spriteNoMindState: jani_e_r
+      spriteToggleLightState: jani_l
+      inventoryTemplateId: borg
 # region Medical
 
 - type: entity
@@ -289,6 +327,19 @@
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
       inventoryTemplateId: Tallborg
+
+- type: entity
+  parent: BorgMedicalSubtypeBase
+  id: BorgMedicalSubtypeMezo
+  name: Mezo
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/mezo.rsi
+      spriteBodyState: medi
+      spriteHasMindState: medi_e
+      spriteNoMindState: medi_e_r
+      spriteToggleLightState: medi_l
+      inventoryTemplateId: borg
 # region Mining(Salvage)
 
 - type: entity
@@ -381,6 +432,19 @@
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
       inventoryTemplateId: Tallborg
+
+- type: entity
+  parent: BorgMiningSubtypeBase
+  id: BorgMiningSubtypeMezo
+  name: Mezo
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/mezo.rsi
+      spriteBodyState: mining
+      spriteHasMindState: mining_e
+      spriteNoMindState: mining_e_r
+      spriteToggleLightState: mining_l
+      inventoryTemplateId: borg
 # region Service
 
 - type: entity
@@ -479,6 +543,19 @@
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
       inventoryTemplateId: Tallborg
+
+- type: entity
+  parent: BorgServiceSubtypeBase
+  id: BorgServiceSubtypeMezo
+  name: Mezo
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/mezo.rsi
+      spriteBodyState: service
+      spriteHasMindState: service_e
+      spriteNoMindState: service_e_r
+      spriteToggleLightState: service_l
+      inventoryTemplateId: borg
 # region Security
 
 - type: entity
@@ -637,6 +714,19 @@
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
       inventoryTemplateId: Tallborg
+
+- type: entity
+  parent: BorgCargoSubtypeBase
+  id: BorgCargoSubtypeMezo
+  name: Mezo
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/mezo.rsi
+      spriteBodyState: cargo
+      spriteHasMindState: cargo_e
+      spriteNoMindState: cargo_e_r
+      spriteToggleLightState: cargo_l
+      inventoryTemplateId: borg
 # region Purrfus
 
 - type: entity

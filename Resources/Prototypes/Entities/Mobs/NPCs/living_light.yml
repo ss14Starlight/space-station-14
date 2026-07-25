@@ -16,6 +16,7 @@
   - type: NpcFactionMember
     factions:
     - SimpleHostile
+    - Floral # Starlight
   - type: NPCImprintingOnSpawnBehaviour
     spawnFriendsSearchRadius: 10
     whitelist:

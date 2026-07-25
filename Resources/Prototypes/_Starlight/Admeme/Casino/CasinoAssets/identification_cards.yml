@@ -1,0 +1,82 @@
+# Casino
+- type: entity
+  parent: [IDCardStandard, BaseCasinoContraband]
+  id: CasinoIDCard
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Casino/Objects/id_cards.rsi
+  - type: IdCard
+  - type: Access
+    tags:
+      - Command
+      - Maintenance
+      - Casino
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: NanoChatCard
+    listNumber: false
+
+- type: entity
+  parent: CasinoIDCard
+  id: CasinoIDCardDealer
+  name: Gamorrah dealer ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: dealer
+        - sprite: &starlight-icon-rsi _Starlight/Admeme/Casino/Interface/job_icons.rsi
+          offset: &icon-offset -0.19375, 0.0625
+          state: dealer
+    - type: IdCard
+      jobTitle: job-name-casino-dealer
+      jobIcon: JobIconCasinoDealer
+
+- type: entity
+  parent: CasinoIDCard
+  id: CasinoIDCardOwner
+  name: Gamorrah owner ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: owner
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
+        state: owner
+  - type: IdCard
+    jobTitle: job-name-casino-owner
+    jobIcon: JobIconCasinoOwner
+
+- type: entity
+  parent: CasinoIDCard
+  id: CasinoIDCardManager
+  name: Gamorrah manager ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: manager
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: manager
+    - type: IdCard
+      jobTitle: job-name-casino-manager
+      jobIcon: JobIconCasinoManager
+
+- type: entity
+  parent: CasinoIDCard
+  id: CasinoIDCardSecurity
+  name: Gamorrah security ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: security
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: security
+    - type: IdCard
+      jobTitle: job-name-casino-security
+      jobIcon: JobIconCasinoSecurity
+
+
+

@@ -1,16 +1,17 @@
-using Content.Shared.Eye.Blinding.Components;
+using Content.Client._Starlight.Overlay.Overlays;
+using Content.Shared._Starlight.Overlay.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._Starlight.Overlay;
+namespace Content.Client._Starlight.Overlay.Systems;
 
-public sealed class CycloriteVisionSystem : EntitySystem
+public sealed partial class CycloriteVisionSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     private CycloriteVisionOverlay _overlay = default!;
     private const string CycloriteShaderPrototype = "CycloriteShader";
 

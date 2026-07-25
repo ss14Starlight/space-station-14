@@ -12,11 +12,12 @@
   access:
   - Theatre
   - Maintenance
+  - Service # Starlight
   special:
   - !type:AddComponentSpecial
     components:
     - type: MimePowers
-      preventWriting: false #SL
+      preventWriting: true
     - type: FrenchAccent
 
 - type: startingGear

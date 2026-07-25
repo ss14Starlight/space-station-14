@@ -23,15 +23,15 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     Battery charging from APC is handled by <see cref="Content.Shared.Power.EntitySystems.ChargerSystem"/>.
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingSynthesizerSystem : EntitySystem
+public sealed partial class PlumbingSynthesizerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private readonly Dictionary<EntityUid, TimeSpan> _nextUiUpdate = new();
 

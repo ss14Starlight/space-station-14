@@ -835,6 +835,7 @@
   physicalDesc: reagent-physical-desc-crisp
   flavor: medicine
   color: "#86caf7"
+  worksOnTheDead: true # starlight
   metabolisms:
     Medicine:
       effects:
@@ -843,6 +844,8 @@
             - !type:ReagentCondition
               reagent: Ambuzol
               min: 10
+        - !type:ReduceRotting # starlight
+          seconds: 20
         - !type:AdjustReagent
           conditions:
           - !type:MetabolizerTypeCondition
@@ -859,6 +862,7 @@
   physicalDesc: reagent-physical-desc-crisp
   flavor: medicine
   color: "#1274b5"
+  worksOnTheDead: true # starlight
   metabolisms:
     Medicine:
       effects:
@@ -868,6 +872,12 @@
             - !type:ReagentCondition
               reagent: AmbuzolPlus
               min: 5
+        - !type:HealthChange # starlight
+          damage:
+            types:
+             Cellular: -6
+        - !type:ReduceRotting # starlight
+          seconds: 60
         - !type:AdjustReagent
           conditions:
           - !type:MetabolizerTypeCondition
@@ -1522,6 +1532,11 @@
       effects:
       - !type:SatiateThirst
         factor: 3
+      - !type:SatiateHunger # Starlight start, diona stuff
+        factor: 2 # It's as infinite as normal water, so it doesn't really matter that it's the same.
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ] # Starlight end
     Medicine:  # Starlight
       effects:
       - !type:HealthChange
@@ -1693,7 +1708,7 @@
   physicalDesc: reagent-physical-desc-sickly
   flavor: acid
   color: "#b5e36d"
-  worksOnTheDead: true
+  worksOnTheDead: true # starlight
   metabolisms:
     Medicine:
       effects:
@@ -1751,47 +1766,6 @@
           type: [ Cyclorite ]
         reagent: Arcryox
         amount: -0.5
-        # Starlight-End
-
-- type: reagent
-  id: Necrosol
-  name: reagent-name-necrosol
-  group: Medicine
-  desc: reagent-desc-necrosol
-  physicalDesc: reagent-physical-desc-necrotic
-  flavor: medicine
-  color: "#86a5bd"
-  worksOnTheDead: true
-  plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: -5
-  - !type:PlantAdjustHealth
-    amount: 5
-  - !type:PlantCryoxadone {}
-  metabolisms:
-    Medicine:
-      effects:
-        - !type:EvenHealthChange
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
-          damage:
-            Brute: -2
-            Burn: -2
-        - !type:HealthChange
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
-          damage:
-            types:
-              Poison: -2
-        # Starlight-Start: Cyclorite Metabolism
-        - !type:AdjustReagent
-          conditions:
-            - !type:MetabolizerTypeCondition
-             type: [ Cyclorite ]
-          reagent: Necrosol
-          amount: -0.5
         # Starlight-End
 
 - type: reagent

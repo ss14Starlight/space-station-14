@@ -78,6 +78,9 @@
   id: Bow
 
 - type: Tag
+  id: BrigmedicBeltEquip
+
+- type: Tag
   id: BulletUnarmedCollide
 
 - type: Tag
@@ -109,6 +112,12 @@
 
 - type: Tag
   id: CantBecomeRevolutionary
+
+- type: Tag # used for camera construction graphs
+  id: Camera
+
+- type: Tag # used for camera construction graphs
+  id: CameraReinforced
 
 - type: Tag
   id: CentcommVibroblade
@@ -147,10 +156,16 @@
   id: ChonoLoke
 
 - type: Tag
+  id: CheapSunglasses #used in the security mime mask crafting graph
+
+- type: Tag
   id: ClownKudzu
 
 - type: Tag
   id: CluwneBeastWearable
+
+- type: Tag
+  id: CombatMech
 
 - type: Tag
   id: Compy
@@ -219,13 +234,16 @@
   id: DurandTargetingControlModule
 
 - type: Tag
+  id: Dwarf
+
+- type: Tag
   id: ElderArena
 
 - type: Tag
-  id: EmergencyWelder
+  id: Elf
 
 - type: Tag
-  id: ExternalAirlock
+  id: EmergencyWelder
 
 - type: Tag
   id: Felionoid
@@ -246,6 +264,12 @@
   id: FormerSoldierTraitBackground
 
 - type: Tag
+  id: FringeTraitBackground
+
+- type: Tag
+  id: FrontierTraitBackground
+
+- type: Tag
   id: FlatpackBlacklist
 
 - type: Tag
@@ -259,6 +283,9 @@
 
 - type: Tag
   id: Grenade120mm # Ammo: Magazine120mmGrenadeBlast, ShuttleGunNTSFCyerxa120mm
+
+- type: Tag
+  id: GrenadeLessLethal #Ammo for the peacekeeper
 
 - type: Tag
   id: GygaxArmor
@@ -288,10 +315,19 @@
   id: GygaxTargetingControlModule
 
 - type: Tag
+  id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
+
+- type: Tag
   id: HiltPlasteel
 
 - type: Tag
   id: HiltWood
+
+- type: Tag
+  id: HuntedTraitBackground
+
+- type: Tag
+  id: IceCream
 
 - type: Tag
   id: ImprovisedAmmoBox
@@ -312,7 +348,13 @@
   id: ImprovisedWrench
 
 - type: Tag
+  id: IgnoreMele
+
+- type: Tag
   id: Inedible # Prevents something from being eaten using DevourSystem, but only if on the direct target (e.g. doesn't apply if in inventory of target)
+
+- type: Tag
+  id: IndustrialMech
 
 - type: Tag
   id: InsulatedFabric
@@ -331,6 +373,9 @@
   id: L6Saw
 
 - type: Tag
+  id: Labelable
+
+- type: Tag
   id: LightRifleHeavy
 
 - type: Tag
@@ -341,6 +386,9 @@
 
 - type: Tag
   id: LabellerRefillPaper
+
+- type: Tag
+  id: Lagomorph
 
 - type: Tag
   id: LoneOpsUplink
@@ -382,6 +430,9 @@
   id: MagazineAK570_90mm
 
 - type: Tag
+  id: PaddyUpgradeKit
+
+- type: Tag
   id: PowerCageOmega
 
 - type: Tag
@@ -400,7 +451,13 @@
   id: MagazinePistolDP
 
 - type: Tag
+  id: MagazinePistolHighCapacitySP
+
+- type: Tag
   id: MagazinePistolImprovised
+
+- type: Tag
+  id: MagazinePistolSubMachineGunSP
 
 - type: Tag
   id: MagazineRifleM52
@@ -421,7 +478,13 @@
   id: MagicalEncounterTraitBackground
 
 - type: Tag
+  id: MechAirTank
+
+- type: Tag
   id: MechReactor
+
+- type: Tag
+  id: MechThruster
 
 - type: Tag
   id: MedCyberEyes
@@ -435,6 +498,9 @@
 
 - type: Tag
   id: MicroManipulatorStockPart
+
+- type: Tag
+  id: MimeMask #used in the security mime mask crafting graph
 
 - type: Tag
   id: ModularBarrel
@@ -467,6 +533,9 @@
   id: OvenMachineBoard
 
 - type: Tag
+  id: ParadoxCloneTraitBackground
+
+- type: Tag
   id: ParaKnife
 
 - type: Tag
@@ -494,6 +563,12 @@
   id: PrototypeJawsOfLife
 
 - type: Tag
+  id: ProtoElf
+
+- type: Tag
+  id: ProtoLagomorph
+
+- type: Tag
   id: PrototypeVibroblade
 
 - type: Tag
@@ -501,6 +576,12 @@
 
 - type: Tag
   id: Resomi
+
+- type: Tag
+  id: RipleyMKIIUpgradeKit
+
+- type: Tag
+  id: Rodentia
 
 - type: Tag
   id: RomerolDisasterSurvivorTraitBackground
@@ -527,6 +608,9 @@
 
 - type: Tag
   id: SecuredLocker
+
+- type: Tag
+  id: Shadekin
 
 - type: Tag
   id: ShadekinCore
@@ -560,6 +644,9 @@
 
 - type: Tag
   id: SovietWarehouse
+
+- type: Tag
+  id: SpecialMech
 
 - type: Tag
   id: SpeedLoaderMagnumImprovised
@@ -608,6 +695,9 @@
 
 - type: Tag
   id: UnDissolvable
+
+- type: Tag
+  id: USSPTraitBackground
 
 - type: Tag
   id: Vial

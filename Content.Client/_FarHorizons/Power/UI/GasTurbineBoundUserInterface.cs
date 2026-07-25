@@ -11,10 +11,10 @@ namespace Content.Client._FarHorizons.Power.UI;
 /// Initializes a <see cref="GasTurbineWindow"/> and updates it when new server messages are received.
 /// </summary>
 [UsedImplicitly]
-public sealed class GasTurbineBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
+public sealed partial class GasTurbineBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
 {
-    [Dependency] private readonly IClientGameTiming _gameTiming = null!;
-    [Dependency] private readonly IEntityManager _entityManager = null!;
+    [Dependency] private IClientGameTiming _gameTiming = null!;
+    [Dependency] private IEntityManager _entityManager = null!;
 
     [ViewVariables]
     private GasTurbineWindow? _window;

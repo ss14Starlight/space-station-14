@@ -1,7 +1,7 @@
 using Content.Server.Discord;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 
 namespace Content.Server.GameTicking
 {

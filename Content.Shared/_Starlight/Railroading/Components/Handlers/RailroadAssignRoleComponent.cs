@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Handlers;
 
 [RegisterComponent]
 public sealed partial class RailroadAssignRoleComponent : Component

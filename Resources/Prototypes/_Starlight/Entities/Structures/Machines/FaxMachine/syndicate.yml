@@ -1,0 +1,24 @@
+# Group
+- type: faxGroup
+  id: FaxGroupSyndicate
+  name: fax-group-syndicate
+  order: 1800
+  color: "#82120a"
+  selectable: false
+  selectableEmagged: true
+
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineSyndicateBase
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#82120a"
+
+# Regular Syndicate fax machine is FaxMachineSyndie with order=200.
+
+# Event syndicate faxes in event/syndicate.yml.

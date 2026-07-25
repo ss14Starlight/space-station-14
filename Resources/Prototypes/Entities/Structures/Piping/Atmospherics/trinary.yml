@@ -26,7 +26,6 @@
           !type:PipeNode
           nodeGroupID: Pipe
           pipeDirection: South
-    - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: GasTrinaryBase
@@ -92,9 +91,6 @@
         - 0
         - -90
         - 180
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:
@@ -162,15 +158,12 @@
       - 0
       - -90
       - 180
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
   # Starlight end
 
 - type: entity
   parent: GasTrinaryBase
   id: GasMixer
-  name: gas mixer
+  name: volumetric gas mixer # Moffstation Edit: Added "volumetric"
   description: Very useful for mixing gases.
   placement:
     mode: AlignAtmosPipeLayers # starlight
@@ -231,9 +224,6 @@
         - 0
         - -90
         - 180
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:
@@ -242,7 +232,7 @@
 - type: entity
   parent: GasMixer
   id: GasMixerFlipped
-  name: gas mixer
+  name: volumetric gas mixer # Moffstation Edit: Added "volumetric"
   suffix: Flipped
   placement:
     mode: AlignAtmosPipeLayers # starlight
@@ -297,9 +287,6 @@
       - 0
       - -90
       - 180
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
   # Starlight end
 
 - type: entity
@@ -377,9 +364,6 @@
         - 0
         - -90
         - 180
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:

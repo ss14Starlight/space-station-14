@@ -2,19 +2,20 @@ using System.Linq;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.AlertLevel;
 using Content.Server.StationEvents.Components;
+using Content.Server.StationEvents.Events;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Random.Helpers;
 using Content.Shared.StationRecords;
 using Robust.Shared.Random;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._Starlight.GameTicking.Rules;
 
-public sealed class SecurityDrillRule : StationEventSystem<SecurityDrillRuleComponent>
+public sealed partial class SecurityDrillRule : StationEventSystem<SecurityDrillRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private StationRecordsSystem _recordsSystem = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     protected override void Added(EntityUid uid, SecurityDrillRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {

@@ -16,4 +16,8 @@
       traits:
         - Burned
       inverted: true
+  - !type:TraitsRequirement
+      traits:
+        - Nightblind
+      inverted: true
   playTimeTracker: AntagBrighteye

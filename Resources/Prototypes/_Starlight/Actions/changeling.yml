@@ -647,6 +647,23 @@
     chemicalCost: 20
 
 - type: entity
+  id: ActionToggleProtogenDisguise
+  name: Toggle Protogen Disguise
+  description: Form a fake protogen cybernetic frame. Costs 0 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: protogen_armor
+  - type: InstantAction
+    event: !type:ActionProtogenDisguiseEvent {}
+  - type: ChangelingAction
+    chemicalCost: 0
+
+- type: entity
   id: ActionHivemindAccess
   name: Hivemind Access
   description: Tune your chemical receptors for hivemind communication.

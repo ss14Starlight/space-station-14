@@ -58,6 +58,7 @@
       - id: ClothingHeadHatFez
       - id: ClothingHeadHatPaper
       - id: ClothingHeadHatPirate
+      - id: ClothingHeadHatWitchyHat # Starlight
       - id: ClothingMaskSterile
       - id: ClothingMultipleHeadphones
       - id: ClothingNeckTieRed
@@ -263,6 +264,8 @@
         children:
         - id: ClothingHandsGlovesColorYellowBudget
           weight: 5
+        - id: ClothingHandsGlovesFingerlessBudget # Starlight
+          weight: 3 # Starlight
         - id: ClothingHandsGlovesFingerlessInsulated
           weight: 0.5
         - id: ClothingHandsGlovesColorYellow
@@ -304,6 +307,7 @@
       - id: BarberScissors
       - id: TwinPointerKit # Starlight: Added twinpointer to maints loot
       - id: JetpackImprovisedFilled #Starlight
+      - id: JailFree # Starlight
       - id: Flash0Use # Starlight
         weight: 0.6 # Starlight
       - id: Flash1Use # Starlight
@@ -455,9 +459,11 @@
   table: !type:GroupSelector
     children:
     - id: ClothingHandsGlovesColorYellowBudget # budget insuls
-      weight: 85
+      weight: 80 # Starlight
     - id: ClothingHandsGlovesColorYellow # true insuls
       weight: 10
+    - id: ClothingHandsGlovesFingerlessBudget # fingerless budget insuls
+      weight: 5 # Starlight
     - id: ClothingHandsGlovesFingerlessInsulated # fingerless
       weight: 4
     - id: ClothingHandsGlovesConducting # conducting

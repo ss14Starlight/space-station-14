@@ -7,6 +7,11 @@ marking-HeadHeavyTattoos-head_heavy1 = Heavy Neck Tattoos (Lower)
 marking-HeadHeavyTattoos-head_heavy2 = Heavy Neck Tattoos (Upper)
 marking-HeadHeavyTattoos = Heavy Neck Tattoos
 
+marking-HeadScarLeft = Head Scar (Left)
+marking-HeadScarLeft-scar-head-l = Head scar
+marking-HeadScarRight = Head Scar (Right)
+marking-HeadScarRight-scar-head-r = Head scar
+
 # Head (Top)
 marking-HeadEarrings-head_earrings1 = Right Earring
 marking-HeadEarrings-head_earrings2 = Left Earring
@@ -81,6 +86,11 @@ marking-HandHeavyTattoosRight = Heavy Hand Tattoos (Right)
 marking-BodyHairLeftArm = Body Hair (Left)
 marking-BodyHairRightArm = Body Hair (Right)
 
+marking-ScarLeftArm = Arm Scar (Left)
+marking-ScarLeftArm-scar-arm-l = Arm scar
+marking-ScarRightArm = Arm Scar (Right)
+marking-ScarRightArm-scar-arm-r = Arm scar
+
 # Legs
 marking-LegDollJointsTattooLeft-l_leg_doll = Doll Joints Leg Tattoo (Left)
 marking-LegDollJointsTattooLeft = Doll Joints Leg Tattoo (Left)
@@ -113,3 +123,7 @@ marking-FootHeavyTattoosRight = Heavy Foot Tattoos (Right)
 marking-BodyHairLeftLeg = Body Hair (Left)
 marking-BodyHairRightLeg = Body Hair (Right)
 
+marking-LegScarLeft = Leg Scar (Left)
+marking-LegScarLeft-scar-leg-l = Leg scar
+marking-LegScarRight = Leg Scar (Right)
+marking-LegScarRight-scar-leg-r = Leg scar

@@ -1,21 +1,16 @@
-﻿using Content.Shared._Starlight.Antags.TerrorSpider;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Events;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
+﻿using Content.Shared.Damage.Events;
 using Content.Shared.Spider;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
-using Content.Shared.Verbs;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Starlight.Antags.TerrorSpider;
+namespace Content.Shared._Starlight.Antags.TerrorSpider.EntitySystems;
 
-public sealed class StealthOnWebSystem : EntitySystem
+public sealed partial class StealthOnWebSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedStealthSystem _stealth = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedStealthSystem _stealth = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<StealthOnWebComponent, StartCollideEvent>(OnEntityEnter);

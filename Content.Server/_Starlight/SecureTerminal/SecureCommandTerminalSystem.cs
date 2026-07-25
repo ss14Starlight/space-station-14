@@ -6,12 +6,12 @@ using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
-using Content.Server.Starlight.AlertArmory;
+using Content.Server._Starlight.AlertArmory;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Content.Shared.Popups;
 using Content.Shared.Station.Components;
-using Content.Shared.Starlight.SecureTerminal;
+using Content.Shared._Starlight.SecureTerminal;
 using Content.Server.GameTicking.Rules.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
@@ -31,38 +31,38 @@ using Content.Shared.Toggleable;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Shared._NullLink;
 
-namespace Content.Server.Starlight.SecureTerminal;
+namespace Content.Server._Starlight.SecureTerminal;
 
 /// <summary>
 /// Drives the Secure Command Terminal — proposal creation, multi-party authorization,
 /// countdown timers, fee deduction, salary penalties, and final action execution.
 /// </summary>
-public sealed class SecureCommandTerminalSystem : EntitySystem
+public sealed partial class SecureCommandTerminalSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly StationSystem _stations = default!;
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
-    [Dependency] private readonly AlertArmorySystem _armory = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly AccessReaderSystem _access = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IPrototypeManager _protos = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly SharedIdCardSystem _idCard = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly NukeCodePaperSystem _nukeCodeSystem = default!;
-    [Dependency] private readonly SharedAirlockSystem _airlock = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerResourcesManager _playerResources = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private StationSystem _stations = default!;
+    [Dependency] private AlertLevelSystem _alertLevel = default!;
+    [Dependency] private AlertArmorySystem _armory = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private AccessReaderSystem _access = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private SharedIdCardSystem _idCard = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private NukeCodePaperSystem _nukeCodeSystem = default!;
+    [Dependency] private SharedAirlockSystem _airlock = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private AutoDiscordLogSystem _autolog = default!;
+    [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
 
     public override void Initialize()
     {
@@ -143,13 +143,23 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
             if (toExpire != null)
                 foreach (var requestId in toExpire)
+                {
+                    // Expired proposals are always still Pending, so refund the held fee.
+                    if (stationComp.ActiveProposals.TryGetValue(requestId, out var expiredProposal))
+                        RefundFee(expiredProposal);
                     stationComp.ActiveProposals.Remove(requestId);
+                }
 
             if (toFire != null)
                 foreach (var requestId in toFire)
                 {
                     if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
                     {
+                        // grab the requester before the proposal is removed incase of recall
+                        var requester = stationComp.ActiveProposals.TryGetValue(requestId, out var firingProposal)
+                            ? firingProposal.Requester
+                            : EntityUid.Invalid;
+
                         ExecuteAction(stationUid, proto);
                         stationComp.ActiveProposals.Remove(requestId);
                         if (proto.ActionType == SecureTerminalActionType.Armory)
@@ -157,6 +167,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
                             // Track as deployed so it can still be recalled
                             var authorizedAt = now - TimeSpan.FromSeconds(proto.ActivationDelaySecs);
                             stationComp.DeployedArmories[requestId] = authorizedAt;
+                            stationComp.DeployedArmoryRequesters[requestId] = requester;
                         }
                         else if (proto.OneTimeUse)
                             stationComp.UsedOnce.Add(requestId);
@@ -301,21 +312,21 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
-        // We check and charge the fee now, deny on sufficient funds.
+        // We charge charge the requester when requested so we don't have to deal with them not having the funds when approved.
         if (proto.Fee > 0)
+        {
             if (_playerResources.TryGetResource(actor, "credits", out var balance) && balance < proto.Fee)
             {
                 _popup.PopupCursor($"Insufficient funds. Required: {proto.Fee}\u20a1", actor, PopupType.Medium);
                 return;
             }
-            else
-            {
-                _playerResources.TryUpdateResource(actor, "credits", -proto.Fee);
-                _popup.PopupCursor($"Debited {proto.Fee}\u20a1. Balance: {balance -= proto.Fee}\u20a1", actor, PopupType.Medium);
-            }
+
+            _playerResources.TryUpdateResource(actor, "credits", -proto.Fee);
+            _popup.PopupCursor($"Held {proto.Fee}\u20a1 pending authorization.", actor, PopupType.Medium);
+        }
 
         // Create the proposal
-        var proposal = new SecureTerminalProposalData { RequestId = msg.RequestId };
+        var proposal = new SecureTerminalProposalData { RequestId = msg.RequestId, Requester = actor };
         stationComp.ActiveProposals[msg.RequestId] = proposal;
 
         if (reason is not null)
@@ -413,7 +424,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         if (stationUid == null) return;
         if (!TryComp<SecureCommandTerminalStationComponent>(stationUid.Value, out var stationComp)) return;
 
-        if (!stationComp.ActiveProposals.ContainsKey(msg.RequestId))
+        if (!stationComp.ActiveProposals.TryGetValue(msg.RequestId, out var deniedProposal))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-no-active-proposal"), actor, PopupType.Medium);
             return;
@@ -428,6 +439,9 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         }
 
         stationComp.ActiveProposals.Remove(msg.RequestId);
+
+        // Refund the held fee if denied
+        RefundFee(deniedProposal);
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(actor):player} denied secure terminal proposal: {msg.RequestId}");
@@ -510,9 +524,20 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             }
         }
 
+        // Gonna keep the code here, becuase I put in the time to write it and get it working,
+        // but if an armory is called it is probably going to arrive.
+        // And it can be recalled once on station so it dosen't make much sense for it to be refunded.
+        // Refund if armory is recalled
+        var refundTarget = hasActivatingArmory && proposal != null
+            ? proposal.Requester
+            : stationComp.DeployedArmoryRequesters.GetValueOrDefault(msg.RequestId, EntityUid.Invalid);
+
         stationComp.ActiveProposals.Remove(msg.RequestId);
         stationComp.DeployedArmories.Remove(msg.RequestId);
+        stationComp.DeployedArmoryRequesters.Remove(msg.RequestId);
         stationComp.UsedOnce.Add(msg.RequestId);
+
+        RefundFee(refundTarget, proto, 0f);
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(actor):player} recalled armory via secure terminal: {msg.RequestId}");
@@ -628,6 +653,25 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
         // Apply salary penalty to station
         stationComp.SalaryPenalty = Math.Min(0.8f, stationComp.SalaryPenalty + proto.SalaryPenalty);
+    }
+
+    /// <summary>
+    /// Refund the fee that was held at request time due to it being denied, cancelled, etc.
+    /// </summary>
+    private void RefundFee(SecureTerminalProposalData proposal, float fraction = 1f)
+    {
+        if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(proposal.RequestId, out var proto))
+            RefundFee(proposal.Requester, proto, fraction);
+    }
+
+    private void RefundFee(EntityUid requester, SecureCommandTerminalRequestPrototype proto, float fraction = 1f)
+    {
+        if (proto.Fee <= 0 || !requester.IsValid())
+            return;
+
+        var amount = (int)(proto.Fee * fraction);
+        if (amount > 0)
+            _playerResources.TryUpdateResource(requester, "credits", amount);
     }
 
     /// <summary>Execute the prototype's configured action against the station.</summary>

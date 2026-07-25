@@ -1,0 +1,20 @@
+- type: entity
+  id: HolosignEngineeringWarning
+  name: engineering warning barrier
+  description: A barrier of non-solid light, warning everyone of danger around it.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Starlight/Structures/Holo/engineering.rsi
+    state: icon
+  - type: TimedDespawn
+    lifetime: 180
+  - type: PointLight
+    enabled: true
+    radius: 3
+    color: orange
+    castShadows: false
+  - type: Clickable

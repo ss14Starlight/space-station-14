@@ -1042,6 +1042,8 @@
     color: "#f4ffad"
   - type: FireProtection
     reduction: 0.2
+  - type: TrayScanner
+    enabled: true
   - type: Armor
     modifiers:
       coefficients:
@@ -1250,27 +1252,3 @@
     color: "#f4ffad"
     radius: 5
     energy: 2
-
-- type: entity
-  parent: ClothingHeadHardsuitBase
-  id: ChangelingClothingHeadHelmetHardsuit
-  name: organic space helmet
-  description: A spaceworthy biomass of pressure and temperature resistant tissue.
-  suffix: Unremoveable
-  components:
-  - type: Item
-  - type: Sprite
-    sprite: Changeling/ling_spacesuit_helmet.rsi
-  - type: Clothing
-    sprite: Changeling/ling_spacesuit_helmet.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.225
-    lowPressureMultiplier: 1000
-  - type: Unremoveable
-  - type: Armor # Starlight start
-    modifiers:
-      coefficients:
-        Blunt: 0.9 # It's pretty thick, and should give *something* so you have a reason to use it over a hardsuit.
-        Slash: 0.9
-        Piercing: 0.95
-        Heat: 0.85 # Starlight end

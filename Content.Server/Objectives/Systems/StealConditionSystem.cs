@@ -18,21 +18,23 @@ using Content.Shared._Starlight.Railroading;
 using Content.Shared.Objectives;
 using Content.Server._Starlight.Railroading;
 using Content.Server._Starlight.Shadekin;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
 
 namespace Content.Server.Objectives.Systems;
 
-public sealed class StealConditionSystem : EntitySystem
+public sealed partial class StealConditionSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!; // Starlight
-    [Dependency] private readonly RailroadingSystem _railroad = default!; // Starlight
-    [Dependency] private readonly ShadekinSystem _shadekin = default!; // Starlight
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedObjectivesSystem _objectives = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!; // Starlight
+    [Dependency] private RailroadingSystem _railroad = default!; // Starlight
+    [Dependency] private ShadekinSystem _shadekin = default!; // Starlight
 
     private EntityQuery<ContainerManagerComponent> _containerQuery;
 

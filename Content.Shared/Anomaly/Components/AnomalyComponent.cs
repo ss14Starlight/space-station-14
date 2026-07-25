@@ -5,6 +5,10 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+#region Starlight
+using Robust.Shared.Serialization;
+using Content.Shared.DoAfter;
+#endregion
 
 namespace Content.Shared.Anomaly.Components;
 
@@ -187,6 +191,44 @@ public sealed partial class AnomalyComponent : Component
     [DataField, AutoNetworkedField]
     public AnomalousParticleType TransformationParticleType;
 
+    #region Starlight
+    [DataField]
+    public List<AnomalyParticleInteraction> ParticleInteractions = [];
+
+    [ViewVariables]
+    public DoAfterId? ParticleInteractionDoAfter;
+
+    [ViewVariables]
+    public int? ActiveParticleInteraction;
+
+    [ViewVariables]
+    public EntityUid? ActiveParticleInteractionSource;
+
+    [DataField]
+    public bool ShuffleParticlesOnMapInit = true;
+
+    [DataField]
+    public bool RandomBehaviorOnMapInit = true;
+
+    [DataField]
+    public string? ScannerContainmentParticleReadout;
+
+    [DataField]
+    public bool UseNormalDangerParticle = true;
+
+    [DataField]
+    public bool UseNormalUnstableParticle = true;
+
+    [DataField]
+    public bool UseNormalContainmentParticle = true;
+
+    [DataField]
+    public bool UseNormalTransformationParticle = true;
+
+    [DataField, AutoNetworkedField]
+    public bool CanPulse = true;
+    #endregion
+
     #region Points and Vessels
     /// <summary>
     /// The vessel that the anomaly is connceted to. Stored so that multiple
@@ -279,6 +321,48 @@ public sealed partial class AnomalyComponent : Component
     // Starlight End
 }
 
+#region Starlight
+[DataDefinition]
+public sealed partial class AnomalyParticleInteraction
+{
+    [DataField]
+    public string? InteractionKey;
+
+    [DataField]
+    public AnomalousParticleType? ParticleType;
+
+    [DataField]
+    public AnomalyParticleInteractionEffect Effect = AnomalyParticleInteractionEffect.EndAnomaly;
+
+    [DataField]
+    public TimeSpan Delay = TimeSpan.Zero;
+
+    [DataField]
+    public float DistanceThreshold = 10f;
+
+    [DataField]
+    public bool SpawnCore = false;
+
+    [DataField]
+    public bool Logged = true;
+
+    [DataField]
+    public EntProtoId? VisualEffect = "CleanseEffectVFX";
+
+    [DataField]
+    public SoundSpecifier? Sound;
+
+    [DataField]
+    public bool DeleteEntityAfterEnd = false;
+}
+
+public enum AnomalyParticleInteractionEffect : byte
+{
+    EndAnomaly,
+    DeleteEntity,
+}
+#endregion
+
 /// <summary>
 /// Event raised at regular intervals on an anomaly to do whatever its effect is.
 /// </summary>
@@ -335,3 +419,8 @@ public readonly record struct AnomalyBehaviorChangedEvent(EntityUid Anomaly, Pro
 /// </summary>
 [ByRefEvent]
 public record struct AnomalyAffectedByParticleEvent(EntityUid Anomaly, EntityUid Particle);
+
+#region Starlight
+[Serializable, NetSerializable]
+public sealed partial class AnomalyParticleInteractionDoAfterEvent : SimpleDoAfterEvent;
+#endregion

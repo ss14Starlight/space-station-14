@@ -8,9 +8,9 @@ namespace Content.Client._FarHorizons.Power.UI;
 /// Initializes a <see cref="NuclearReactorWindow"/> and updates it when new server messages are received.
 /// </summary>
 [UsedImplicitly]
-public sealed class NuclearReactorBoundUserInterface : BoundUserInterface
+public sealed partial class NuclearReactorBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     [ViewVariables]
     private NuclearReactorWindow? _window;

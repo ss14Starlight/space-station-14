@@ -10,6 +10,7 @@ using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Content.Shared._CD.Records;
+using Content.Shared.Clothing;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Localization;
@@ -21,13 +22,13 @@ namespace Content.Server._CD.Records;
 /// <summary>
 /// Keeps the runtime record database for players on a station and exposes helpers to mutate it.
 /// </summary>
-public sealed class CharacterRecordsSystem : EntitySystem
+public sealed partial class CharacterRecordsSystem : EntitySystem
 {
     private static readonly ISawmill Sawmill = Logger.GetSawmill("characterrecords");
 
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly StationRecordsSystem _records = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private StationRecordsSystem _records = default!;
 
     /// <summary>
     /// Used when no usable species information is available.
@@ -118,11 +119,13 @@ public sealed class CharacterRecordsSystem : EntitySystem
         // - Otherwise show only the base display (localized if possible).
         var speciesName = GetReadableSpeciesName(profile);
 
+        var chosenName = MetaData(player).EntityName; // Starlight
+
         // Build the composite record that consoles consume, mixing profile data with live round metadata.
         var records = new FullCharacterRecords(
             pRecords: new PlayerProvidedCharacterRecords(profileRecords),
             stationRecordsKey: stationRecordsKey?.Id,
-            name: profile.Name,
+            name: chosenName, // Starlight
             age: profile.Age,
             species: speciesName,
             jobTitle: jobTitle,
