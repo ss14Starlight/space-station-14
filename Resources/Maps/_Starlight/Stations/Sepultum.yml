@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/25/2026 00:31:27
-  entityCount: 43074
+  time: 07/25/2026 00:48:20
+  entityCount: 43075
 maps:
 - 1
 grids:
@@ -13055,7 +13055,7 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: Door
-      secondsUntilStateChange: -239115
+      secondsUntilStateChange: -239271.58
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13350,7 +13350,7 @@ entities:
       pos: -7.5,67.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -193076.97
+      secondsUntilStateChange: -193233.55
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13400,7 +13400,7 @@ entities:
       pos: -4.5,84.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -1977.2007
+      secondsUntilStateChange: -2133.7825
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13616,7 +13616,7 @@ entities:
       pos: 7.5,4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -247345.52
+      secondsUntilStateChange: -247502.1
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13678,7 +13678,7 @@ entities:
       pos: 16.5,93.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -132273.27
+      secondsUntilStateChange: -132429.84
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13690,7 +13690,7 @@ entities:
       pos: 16.5,89.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -132272.66
+      secondsUntilStateChange: -132429.23
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13701,7 +13701,7 @@ entities:
       pos: -60.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -132523.03
+      secondsUntilStateChange: -132679.61
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13712,7 +13712,7 @@ entities:
       pos: -56.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -132523.45
+      secondsUntilStateChange: -132680.03
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13723,7 +13723,7 @@ entities:
       pos: -52.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -132524
+      secondsUntilStateChange: -132680.58
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13734,7 +13734,7 @@ entities:
       pos: -48.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -132524.73
+      secondsUntilStateChange: -132681.31
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13797,7 +13797,7 @@ entities:
       pos: -60.5,77.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20542.502
+      secondsUntilStateChange: -20699.084
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -14177,7 +14177,7 @@ entities:
       pos: -43.5,-15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -24631.611
+      secondsUntilStateChange: -24788.193
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14607,7 +14607,7 @@ entities:
       pos: -2.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -10223.866
+      secondsUntilStateChange: -10380.448
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -23412,6 +23412,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -26.5,22.5
+      parent: 2
+  - uid: 43075
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,28.5
       parent: 2
 - proto: CableApcExtension
   entities:
@@ -89803,7 +89809,7 @@ entities:
       pos: -24.5,66.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -42099.797
+      secondsUntilStateChange: -42256.38
       state: Closing
 - proto: CurtainsPurple
   entities:
@@ -89818,7 +89824,7 @@ entities:
       pos: -122.5,47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -144463.69
+      secondsUntilStateChange: -144620.27
       state: Opening
   - uid: 14770
     components:
