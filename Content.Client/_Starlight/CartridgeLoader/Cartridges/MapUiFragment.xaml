@@ -1,4 +1,4 @@
-﻿<cartridges:MapUiFragment xmlns:cartridges="clr-namespace:Content.Client.CartridgeLoader.Cartridges"
+﻿<cartridges:MapUiFragment xmlns:cartridges="clr-namespace:Content.Client._Starlight.CartridgeLoader.Cartridges"
                           xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                           xmlns="https://spacestation14.io"
                           xmlns:ui="clr-namespace:Content.Client.Pinpointer.UI"

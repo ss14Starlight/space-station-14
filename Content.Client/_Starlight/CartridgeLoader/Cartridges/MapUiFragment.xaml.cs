@@ -5,7 +5,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
 
-namespace Content.Client.CartridgeLoader.Cartridges;
+namespace Content.Client._Starlight.CartridgeLoader.Cartridges;
 
 [GenerateTypedNameReferences]
 public sealed partial class MapUiFragment : Control
