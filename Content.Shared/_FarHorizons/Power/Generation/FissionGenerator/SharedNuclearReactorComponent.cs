@@ -40,6 +40,7 @@ public sealed partial class ReactorSlotBUIData
     public float NeutronRadioactivity = 0f;
     public float Radioactivity = 0f;
     public float SpentFuel = 0f;
+    public float ReactionRatio;
 }
 
 [Serializable, NetSerializable]

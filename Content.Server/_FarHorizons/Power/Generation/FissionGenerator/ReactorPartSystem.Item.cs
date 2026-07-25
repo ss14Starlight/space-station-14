@@ -2,7 +2,6 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Nutrition;
 using Content.Shared.Radiation.Components;
@@ -13,10 +12,8 @@ public sealed partial class ReactorPartSystem
 {
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private SharedPointLightSystem _lightSystem = default!;
-    [Dependency] private DamageableSystem _damageable = default!;
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
-    private float _burnDiv => (ReactorPartBurnTemp - ReactorPartHotTemp) / 5; // The 5 is how much heat damage insulated gloves protect from
+    private static float BurnDiv(ReactorPartComponent component) => (component.BurnTemp - component.HotTemp) / 5; // The 5 is how much heat damage insulated gloves protect from
 
     public override void Initialize()
     {
@@ -99,9 +96,9 @@ public sealed partial class ReactorPartSystem
                     break;
             }
 
-            if (comp.Temperature > Atmospherics.T0C + ReactorPartBurnTemp)
+            if (comp.Temperature > Atmospherics.T0C + comp.BurnTemp)
                 args.PushMarkup(Loc.GetString("reactor-part-burning"));
-            else if (comp.Temperature > Atmospherics.T0C + ReactorPartHotTemp)
+            else if (comp.Temperature > Atmospherics.T0C + comp.HotTemp)
                 args.PushMarkup(Loc.GetString("reactor-part-hot"));
         }
     }
@@ -133,32 +130,31 @@ public sealed partial class ReactorPartSystem
     private void OnAtmosExposed(EntityUid uid, ReactorPartComponent component, ref AtmosExposedUpdateEvent args)
     {
         // Stops it from cooking the room while in the reactor
-        if (!TryComp(uid, out MetaDataComponent? metaData) || (metaData.Flags & MetaDataFlags.InContainer) == MetaDataFlags.InContainer)
+        if(!TryComp(uid, out MetaDataComponent? metaData) || (metaData.Flags & MetaDataFlags.InContainer) == MetaDataFlags.InContainer)
             return;
 
         // Can't use args.GasMixture because then it wouldn't excite the tile
         var gasMix = _atmosphereSystem.GetContainingMixture(uid, false, true) ?? GasMixture.SpaceGas;
-        if (gasMix.TotalMoles < Atmospherics.GasMinMoles)
+        if(gasMix.TotalMoles < Atmospherics.GasMinMoles)
             gasMix = GasMixture.SpaceGas;
 
-        var totalThermalMass = component.ThermalMass + _atmosphereSystem.GetHeatCapacity(gasMix, true);
-        var totalEnergy = (component.ThermalMass * component.Temperature) + _atmosphereSystem.GetThermalEnergy(gasMix);
-        var tEquilibrium = totalEnergy / totalThermalMass;
+        var DeltaT = (component.Temperature - gasMix.Temperature) * 0.01f;
 
-        // Not realistic, but makes things happen on a game-like time scale
-        component.Temperature = tEquilibrium;
+        if (Math.Abs(DeltaT) < 0.1)
+            return;
 
+        component.Temperature -= DeltaT;
         if (!gasMix.Immutable) // This prevents it from heating up space itself
             // This viloates COE, but if energy is conserved, then pulling out a hot rod will instantly turn the room into an oven
-            gasMix.Temperature -= (gasMix.Temperature - tEquilibrium) * 0.1f;
+            gasMix.Temperature += 0.1f * DeltaT * component.ThermalMass / _atmosphereSystem.GetHeatCapacity(gasMix, false);
 
         var burncomp = EnsureComp<DamageOnInteractComponent>(uid);
 
-        burncomp.IsDamageActive = component.Temperature > Atmospherics.T0C + ReactorPartHotTemp;
+        burncomp.IsDamageActive = component.Temperature > Atmospherics.T0C + component.HotTemp;
 
         if (burncomp.IsDamageActive)
         {
-            var damage = Math.Min(Math.Max((component.Temperature - Atmospherics.T0C - ReactorPartHotTemp) / _burnDiv, 0), 100);
+            var damage = Math.Max((component.Temperature - Atmospherics.T0C - component.HotTemp) / BurnDiv(component), 0);
 
             // Giant string of if/else that makes sure it will interfere only as much as it needs to
             if (burncomp.Damage == null)
@@ -170,8 +166,6 @@ public sealed partial class ReactorPartSystem
             else
                 burncomp.Damage.DamageDict["Heat"] = damage;
         }
-
-        _appearance.SetData(uid, ReactorPartVisuals.HeatDistort, component.Temperature > Atmospherics.T0C + ReactorPartBurnTemp);
 
         Dirty(uid, burncomp);
     }

@@ -881,7 +881,8 @@ public sealed partial class NuclearReactorSystem : EntitySystem
                         PartName = Identity.Name(reactorPart.Value, _entityManager),
                         NeutronRadioactivity = partComp.Properties.NeutronRadioactivity,
                         Radioactivity = partComp.Properties.Radioactivity,
-                        SpentFuel = partComp.Properties.FissileIsotopes
+                        SpentFuel = partComp.Properties.FissileIsotopes,
+                        ReactionRatio = partComp.ReactionRatio
                     });
                 }
                 catch
@@ -911,7 +912,6 @@ public sealed partial class NuclearReactorSystem : EntitySystem
                GridWidth = gridWidth,
                GridHeight = gridHeight,
 
-               ReactionRatio = _partSystem.ReactionRatio,
                AckAvailable = (reactor.AlarmState & NuclearReactorAlarmStates.Alarms) != 0,
            });
     }

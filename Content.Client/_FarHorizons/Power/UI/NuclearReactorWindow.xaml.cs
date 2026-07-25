@@ -31,7 +31,6 @@ public sealed partial class NuclearReactorWindow : FancyWindow
     private int _gridWidth = 0;
     private int _gridHeight = 0;
 
-    private float _reactionRatio = 0.5f;
 
     private byte _displayMode = 1<<0;
     private double _targetPulse = 0;
@@ -111,7 +110,6 @@ public sealed partial class NuclearReactorWindow : FancyWindow
     public void Update(NuclearReactorBuiState msg)
     {
         _data = msg.SlotData;
-        _reactionRatio = msg.ReactionRatio;
 
         ReactorTempValue.Text = FormatTemperature(msg.ReactorTemp);
         ReactorTempBar.Value = msg.ReactorTemp;
@@ -405,7 +403,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     private static string FormatPower(float power) => Loc.GetString("comp-nuclear-reactor-ui-therm-format", ("power", power));
 
-    private double GetFuelLevel(ReactorSlotBUIData data) => Math.Max(1 - (data.SpentFuel / (data.SpentFuel + (data.Radioactivity * _reactionRatio) + (data.NeutronRadioactivity * _reactionRatio * _reactionRatio))), 0);
+    private static double GetFuelLevel(ReactorSlotBUIData data) => Math.Max(1 - (data.SpentFuel / (data.SpentFuel + (data.Radioactivity * data.ReactionRatio) + (data.NeutronRadioactivity * data.ReactionRatio * data.ReactionRatio))), 0);
 
     private void AdjustControlRods(float amount) => ControlRodModify?.Invoke(amount);
 }
