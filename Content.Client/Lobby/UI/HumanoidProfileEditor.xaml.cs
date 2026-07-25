@@ -1030,20 +1030,10 @@ namespace Content.Client.Lobby.UI
         }
         private void OnAntagsSelectionChanged(HashSet<ProtoId<AntagPrototype>> antags)
         {
-            #region Starlight
             if (UpdateAntagPreferences(antags))
                 ReloadPreview();
-
-            /*if (Profile is null)
-                return;
-
-            Profile = Profile.WithAntagPreferences(antags);
-            ReloadPreview();
-            SetDirty();*/
-            #endregion
         }
 
-        #region Starlight
         private bool UpdateAntagPreferences(IEnumerable<ProtoId<AntagPrototype>> antags)
         {
             if (Profile is null)
@@ -1058,7 +1048,6 @@ namespace Content.Client.Lobby.UI
             SetDirty();
             return true;
         }
-        #endregion
 
         private void OnAntagLoadoutPressed(ProtoId<AntagPrototype> antagId)
         {
