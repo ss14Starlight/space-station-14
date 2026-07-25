@@ -38,7 +38,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             SubscribeLocalEvent<GasMixerComponent, ActivateInWorldEvent>(OnMixerActivate);
             SubscribeLocalEvent<GasMixerComponent, GasAnalyzerScanEvent>(OnMixerAnalyzed);
             SubscribeLocalEvent<GasMixerComponent, AnchorStateChangedEvent>(OnAnchorChanged); // Starlight
-                                                                                              // Bound UI subscriptions
+            // Bound UI subscriptions
             SubscribeLocalEvent<GasMixerComponent, GasMixerChangeOutputPressureMessage>(OnOutputPressureChangeMessage);
             SubscribeLocalEvent<GasMixerComponent, GasMixerChangeNodePercentageMessage>(OnChangeNodePercentageMessage);
             SubscribeLocalEvent<GasMixerComponent, GasMixerToggleStatusMessage>(OnToggleStatusMessage);
