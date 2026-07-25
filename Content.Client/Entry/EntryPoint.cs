@@ -15,6 +15,7 @@ using Content.Client.IoC;
 using Content.Client.Launcher;
 using Content.Client.Lobby;
 using Content.Client.MainMenu;
+using Content.Client.Overlays;
 using Content.Client.Parallax.Managers;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Playtime;
@@ -177,6 +178,7 @@ namespace Content.Client.Entry
 
             _parallaxManager.LoadDefaultParallax();
 
+            _overlayManager.AddOverlay(new CP14BasePostProcessOverlay()); // CP14-PostProcess
             _overlayManager.AddOverlay(new SingularityOverlay());
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
             _chatManager.Initialize();
