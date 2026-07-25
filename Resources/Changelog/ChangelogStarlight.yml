@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Fland) Added a guidebook crate to Library, threw in a nice carpet for Library's front desk as a bonus too.
-    type: Add
-  id: 406502
-  time: '2026-07-10T10:54:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5048
-- author: Caws
-  changes:
   - message: (Fland) Added some clutter to an empty room east of Cargo.
     type: Add
   id: 406503
@@ -2799,4 +2792,11 @@ Entries:
   id: 406901
   time: '2026-07-25T17:53:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5261
+- author: Neomoth, AegisShieldDev
+  changes:
+  - message: Tabs to the ghost theme menu.
+    type: Add
+  id: 406902
+  time: '2026-07-25T18:21:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5225
 Order: -1
