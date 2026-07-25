@@ -11,25 +11,28 @@
       "name": "icon"
     },
     {
-      "name": "icon_red"
+      "name": "icon_sec"
     },
     {
-      "name": "icon_blue"
+      "name": "icon_med"
     },
     {
-      "name": "icon_green"
+      "name": "icon_srv"
     },
     {
-      "name": "icon_brown"
+      "name": "icon_cargo"
     },
     {
-      "name": "icon_orange"
+      "name": "icon_eng"
     },
     {
       "name": "icon_yellow"
     },
     {
-      "name": "icon_purple"
+      "name": "icon_rnd"
+    },
+    {
+      "name": "icon_atmos"
     },
     {
       "name": "burn",

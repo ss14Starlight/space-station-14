@@ -115,7 +115,30 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/ticket.rsi
     layers:
-    - state: icon_blue
+    - state: icon_med
+    - map: [ "enum.TicketVisualLayers.Number1" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+    - map: [ "enum.TicketVisualLayers.Number2" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.2, 0
+    - map: [ "enum.TicketVisualLayers.Number3" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.4, 0
+  - type: Ticket
+
+- type: entity  
+  name: ticket
+  parent: BaseTicket
+  id: TicketCyan
+  description: 'A piece of cyan paper with printed number and NT logo.'
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    layers:
+    - state: icon_atmos
     - map: [ "enum.TicketVisualLayers.Number1" ]
       sprite: _Starlight/Structures/Machines/ticket_machine.rsi
       color: "#1f1f1f"
@@ -138,7 +161,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/ticket.rsi
     layers:
-    - state: icon_green
+    - state: icon_srv
     - map: [ "enum.TicketVisualLayers.Number1" ]
       sprite: _Starlight/Structures/Machines/ticket_machine.rsi
       color: "#1f1f1f"
@@ -161,7 +184,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/ticket.rsi
     layers:
-    - state: icon_brown
+    - state: icon_cargo
     - map: [ "enum.TicketVisualLayers.Number1" ]
       sprite: _Starlight/Structures/Machines/ticket_machine.rsi
       color: "#1f1f1f"
@@ -184,7 +207,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/ticket.rsi
     layers:
-    - state: icon_orange
+    - state: icon_eng
     - map: [ "enum.TicketVisualLayers.Number1" ]
       sprite: _Starlight/Structures/Machines/ticket_machine.rsi
       color: "#1f1f1f"
@@ -230,7 +253,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/ticket.rsi
     layers:
-    - state: icon_purple
+    - state: icon_rnd
     - map: [ "enum.TicketVisualLayers.Number1" ]
       sprite: _Starlight/Structures/Machines/ticket_machine.rsi
       color: "#1f1f1f"

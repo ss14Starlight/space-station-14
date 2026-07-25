@@ -73,6 +73,8 @@
   parent: TicketMachine
   suffix: Filled
   components:
+  - type: TicketMachine
+    ticketProtoID: "TicketRed"
   - type: ContainerFill
     containers:
       TicketMachinePaper:
@@ -83,6 +85,20 @@
   parent: TicketMachine
   suffix: Filled
   components:
+  - type: TicketMachine
+    ticketProtoID: "TicketBlue"
+  - type: ContainerFill
+    containers:
+      TicketMachinePaper:
+        - LabellerRefillPaper
+
+- type: entity
+  id: TicketMachineFilledCyan
+  parent: TicketMachine
+  suffix: Filled
+  components:
+  - type: TicketMachine
+    ticketProtoID: "TicketCyan"
   - type: ContainerFill
     containers:
       TicketMachinePaper:
@@ -93,6 +109,8 @@
   parent: TicketMachine
   suffix: Filled
   components:
+  - type: TicketMachine
+    ticketProtoID: "TicketGreen"
   - type: ContainerFill
     containers:
       TicketMachinePaper:
@@ -103,6 +121,8 @@
   parent: TicketMachine
   suffix: Filled
   components:
+  - type: TicketMachine
+    ticketProtoID: "TicketBrown"
   - type: ContainerFill
     containers:
       TicketMachinePaper:
@@ -113,6 +133,8 @@
   parent: TicketMachine
   suffix: Filled
   components:
+  - type: TicketMachine
+    ticketProtoID: "TicketBrown"
   - type: ContainerFill
     containers:
       TicketMachinePaper:
@@ -123,6 +145,8 @@
   parent: TicketMachine
   suffix: Filled
   components:
+  - type: TicketMachine
+    ticketProtoID: "TicketYellow"
   - type: ContainerFill
     containers:
       TicketMachinePaper:
@@ -133,6 +157,8 @@
   parent: TicketMachine
   suffix: Filled
   components:
+  - type: TicketMachine
+    ticketProtoID: "TicketPurple"
   - type: ContainerFill
     containers:
       TicketMachinePaper:
@@ -153,6 +179,14 @@
   components:
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
+
+- type: entity
+  id: TicketMachineCMO
+  parent: TicketMachineFilledBlue
+  suffix: CMO, Filled
+  components:
+  - type: AccessReader
+    access: [["ChiefMedicalOfficer"]]
 
 - type: entity
   id: TicketMachineWarden
@@ -176,7 +210,7 @@
   suffix: Cargo, QM, Filled
   components:
   - type: AccessReader
-    access: [["QM"]]
+    access: [["QuarterMaster"]]
 
 - type: entity
   id: TicketMachineCEOrange
@@ -184,7 +218,7 @@
   suffix: ENGI, CE, Filled
   components:
   - type: AccessReader
-    access: [["CE"]]
+    access: [["ChiefEngineer"]]
 
 - type: entity
   id: TicketMachineWardenCEYellow
@@ -192,12 +226,12 @@
   suffix: ENGI, CE, Filled
   components:
   - type: AccessReader
-    access: [["CE"]]
+    access: [["ChiefEngineer"]]
 
 - type: entity
   id: TicketMachineRD
-  parent: TicketMachineFilledRD
+  parent: TicketMachineFilledPurple
   suffix: SCI, RD, Filled
   components:
   - type: AccessReader
-    access: [["RD"]]
+    access: [["ResearchDirector"]]
