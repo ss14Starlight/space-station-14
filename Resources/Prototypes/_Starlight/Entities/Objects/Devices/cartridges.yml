@@ -27,8 +27,8 @@
     - type: Cartridge
       programName: map-program-name
       icon:
-        sprite: Objects/Devices/gps.rsi
-        state: icon
+        sprite: Objects/Devices/tablets.rsi
+        state: tablet
     - type: MapCartridge
     - type: UIFragment
       ui: !type:MapUi
