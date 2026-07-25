@@ -128,7 +128,7 @@ public sealed partial class ActiveGameRuleEntityTypeParser : TypeParser<ActiveGa
 
     public override CompletionResult? TryAutocomplete(ParserContext ctx, CommandArgument? arg)
     {
-        var hint = ToolshedCommand.GetArgHint(arg, typeof(GameRuleEntity));
+        var hint = ToolshedCommand.GetArgHint(arg, typeof(ActiveGameRuleEntity));
         var query = _entMan.AllEntityQueryEnumerator<GameRuleComponent, MetaDataComponent>();
         var list = new List<CompletionOption>();
         while (query.MoveNext(out var uid, out _, out var metadata))
