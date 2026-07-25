@@ -3,15 +3,15 @@
   id: MetalHydrogenAxe
   name: metal hydrogen axe
   parent: [BaseEngineeringContraband, FireAxe]
-  description: A lightweight crowbar with an extremely sharp fire axe head attached.
+  description: An incredibly dense fire axe forged from metal hydrogen.
   components:
   - type: MeleeWeapon
-    attackRate: 0.85
+    attackRate: 0.55
     damage:
       types:
-        Blunt: 4
-        Slash: 10
-        Structural: 8
+        Blunt: 12
+        Slash: 13
+        Structural: 15
   - type: Sprite
     sprite: _Funkystation/Objects/Weapons/Melee/metal_hydrogen_axe.rsi
     state: icon
