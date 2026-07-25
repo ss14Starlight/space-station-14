@@ -218,6 +218,7 @@
       conditions:
         - !type:HolidayActiveCondition
           holiday: FestiveSeason
+    - id: MapCartridge
     # Starlight End
 
 - type: entity

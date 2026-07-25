@@ -33,7 +33,7 @@ public sealed partial class CartridgeLoaderComponent : Component
     /// The maximum amount of programs that can be installed on the cartridge loader entity
     /// </summary>
     [DataField]
-    public int DiskSpace = 8;
+    public int DiskSpace = 12; //Starlight-edit Allow for more programs
 
     /// <summary>
     /// Controls whether the cartridge loader will play notifications if it supports it at all

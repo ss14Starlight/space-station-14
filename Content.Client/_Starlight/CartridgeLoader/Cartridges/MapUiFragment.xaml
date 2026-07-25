@@ -1,0 +1,14 @@
+﻿<cartridges:MapUiFragment xmlns:cartridges="clr-namespace:Content.Client.CartridgeLoader.Cartridges"
+                          xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                          xmlns="https://spacestation14.io"
+                          xmlns:ui="clr-namespace:Content.Client.Pinpointer.UI"
+                          Margin="1 0 2 5"
+                          RectClipContent="True">
+    <PanelContainer StyleClasses="BackgroundDark" VerticalExpand="True" VerticalAlignment="Stretch" RectClipContent="True" >
+    <!-- <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True"> -->
+
+            <ui:NavMapControl Name="NavMapScreen" HorizontalExpand="True" VerticalExpand="True"
+                              SizeFlagsStretchRatio="1" Margin="0 0 0 10" />
+    </PanelContainer>
+    <!-- </BoxContainer> -->
+</cartridges:MapUiFragment>
