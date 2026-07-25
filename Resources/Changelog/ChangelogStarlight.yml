@@ -1,53 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: Fixed issues with usernames and ghost themes not aligning.
-    type: Fix
-  id: 406493
-  time: '2026-07-08T21:13:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5024
-- author: Conflee
-  changes:
-  - message: Changed Wreck Swarms to only occur at most once every 5 minutes instead of once every 1 minute. Earliest occurrence is also now 15 minutes instead of 12. This should reduce the frequency of rounds where there are 20-30 wrecks surrounding the station by shift end.
-    type: Tweak
-  id: 406494
-  time: '2026-07-08T21:32:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5026
-- author: Scarlet Lightweaver
-  changes:
-  - message: Added a search bar to the guidebook.
-    type: Add
-  id: 406495
-  time: '2026-07-08T21:52:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5044
-- author: Scarlet Lightweaver
-  changes:
-  - message: Changed the content warning to include mindcontrol.
-    type: Tweak
-  id: 406496
-  time: '2026-07-08T21:52:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5044
-- author: Caws
-  changes:
-  - message: (Leth) You no longer have to deconstruct an reconstruct thrusters & gyroscopes in order make them work - they just start turned on now. Pilots rejoice.
-    type: Fix
-  id: 406497
-  time: '2026-07-10T10:54:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5064
-- author: BornStellar
-  changes:
-  - message: WT550g can no longer accept any ammunition.
-    type: Fix
-  id: 406498
-  time: '2026-07-10T10:54:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5057
-- author: Caws
-  changes:
-  - message: (Fland) Added space heaters added to Atmospherics.
-    type: Add
-  id: 406499
-  time: '2026-07-10T10:54:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5048
 - author: Caws
   changes:
   - message: (Fland) Added a front desk for Engineering.
@@ -2799,4 +2750,53 @@ Entries:
   id: 406892
   time: '2026-07-25T13:19:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5317
+- author: Swonki
+  changes:
+  - message: Added Eep Secondary Attack.
+    type: Add
+  id: 406893
+  time: '2026-07-25T17:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5171
+- author: Swonki
+  changes:
+  - message: Removed passive Eep lightning, Eep can now eat from SMES, Substations, and APC's in peace.
+    type: Remove
+  id: 406894
+  time: '2026-07-25T17:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5171
+- author: Swonki
+  changes:
+  - message: Removed passive Eep energy regeneration, Eeps must now use SMES/APC/Substations.
+    type: Remove
+  id: 406895
+  time: '2026-07-25T17:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5171
+- author: Swonki
+  changes:
+  - message: Changed Eep Space movement from 1.5 to 0.5.
+    type: Tweak
+  id: 406896
+  time: '2026-07-25T17:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5171
+- author: Swonki
+  changes:
+  - message: Changed Eep tesla damage, now it does 15 burn.
+    type: Tweak
+  id: 406897
+  time: '2026-07-25T17:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5171
+- author: Swonki
+  changes:
+  - message: Changed Eep power drain action, now it's 2x as fast.
+    type: Tweak
+  id: 406898
+  time: '2026-07-25T17:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5171
+- author: Swonki
+  changes:
+  - message: Changed Eep max charge to be tripled.
+    type: Tweak
+  id: 406899
+  time: '2026-07-25T17:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5171
 Order: -1
