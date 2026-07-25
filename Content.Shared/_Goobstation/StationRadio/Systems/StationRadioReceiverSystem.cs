@@ -34,7 +34,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
     {
         comp.Active = !comp.Active;
-+       Dirty(uid, comp);
+        Dirty(uid, comp);
         if (comp.SoundEntity != null)
             _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)));
     }
