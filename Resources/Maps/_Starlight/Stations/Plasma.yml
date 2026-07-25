@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/25/2026 19:53:20
-  entityCount: 28002
+  time: 07/25/2026 19:54:58
+  entityCount: 28003
 maps:
 - 1
 grids:
@@ -15946,7 +15946,7 @@ entities:
       pos: -131.5,-45.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -192179.42
+      secondsUntilStateChange: -192274.56
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -28058,6 +28058,12 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -20.5,-3.5
+      parent: 2
+  - uid: 28003
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -47.5,-7.5
       parent: 2
 - proto: ButtonFrameJanitor
   entities:
@@ -181896,7 +181902,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -392286.2
+      secondsUntilStateChange: -392381.34
       state: Opening
     - type: Airlock
       autoClose: False
