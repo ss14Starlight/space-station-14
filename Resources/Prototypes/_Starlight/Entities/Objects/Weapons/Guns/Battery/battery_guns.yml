@@ -186,6 +186,12 @@
     - state: disable-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Lock
+    mindShieldLock: true
+    autoUnlock: true
+    autoLock: true
+  - type: AccessReader
+    access: [["Ntrep"]]
   - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 100
@@ -243,6 +249,8 @@
       isLooped: true
   - type: ToggleableVisuals
     spriteLayer: light
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20
   - type: StealTarget
     stealGroup: NTRepWeapon
 
