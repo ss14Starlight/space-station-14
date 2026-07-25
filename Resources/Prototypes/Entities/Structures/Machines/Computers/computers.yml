@@ -183,6 +183,9 @@
     allowUnlocking: true
   - type: Lock
     unlockOnClick: false
+  - type: Wires
+    boardName: wires-board-name-computer
+    layoutId: ComputerAiLockable
       # Starlight-end
   - type: ContainerContainer
     containers:
@@ -193,9 +196,6 @@
   - type: GuideHelp
     guides:
     - ShuttleCraft
-  - type: Wires
-    boardName: wires-board-name-computer
-    layoutId: ComputerAiLockable
 
 - type: entity
   parent: BaseComputerShuttle
