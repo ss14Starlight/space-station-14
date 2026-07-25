@@ -16,12 +16,12 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
 ///Get ingredients
 
 		var initialPluoxMoles = mixture.GetMoles(Gas.Pluoxium);
-		var initialTritiumMoles = mixture.GetMoles(Gas.Tritium);
+		var initialHydrogenMoles = mixture.GetMoles(Gas.Hydrogen);
         var temperature = mixture.Temperature;
 
 ///Check pluox flat concentration relative to fuel
 
-		var pluoxRatio = initialPluoxMoles / initialTritiumMoles;		
+		var pluoxRatio = initialPluoxMoles / initialHydrogenMoles;		
 
 ///Too much pluox? Ignite! It's super oxygen and doesnt care about current temperature.
 
