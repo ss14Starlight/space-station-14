@@ -29,7 +29,7 @@ public sealed partial class RadioSpeakerComponent : Component
     // Goobstation - Radio Host
     [DataField, AutoNetworkedField]
     public bool LouderSpeech;
-    
+
     /// <summary>
     /// Does the radio need to be on a power grid to work?
     /// </summary>
