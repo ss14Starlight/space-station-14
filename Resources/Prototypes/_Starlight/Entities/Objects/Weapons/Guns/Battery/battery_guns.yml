@@ -139,6 +139,7 @@
     autoRot: true
     radius: 6
     netsync: false
+  - type: ItemTogglePointLight
   - type: Appearance
   - type: HandheldLight
     needsCharge: false
@@ -162,6 +163,96 @@
       isLooped: true
   - type: ToggleableVisuals
     spriteLayer: light
+
+- type: entity
+  name: NanoTrasen representative's miniature energy gun
+  parent: [ BaseWeaponBatterySmall, BaseNanoTrasenContraband ]
+  id: WeaponRepresentativesMiniEnergyGun
+  description: An energy gun capable of switching between lethal and debilitating lasers.
+  components:
+  - type: StationGridMemory
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/repmini.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: disable-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+      shader: unshaded
+    - state: base-overlay
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    - state: disable-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Lock
+    mindShieldLock: true
+    autoUnlock: true
+    autoLock: true
+  - type: AccessReader
+    access: [["Ntrep"]]
+  - type: BatteryAmmoProvider
+    proto: DisablerBolt
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: DisablerBolt
+      fireCost: 100
+      magState: disable
+      visualState: disable-unshaded
+    - proto: RedLaserBeam
+      fireCost: 200
+      magState: kill
+      visualState: kill-unshaded
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
+        - red
+        - gamma
+        - psi
+        - orange
+        - delta
+        - episo
+  - type: MagazineVisuals
+    magState: disable
+    steps: 4
+    zeroVisible: true
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
+    netsync: false
+  - type: ItemTogglePointLight
+  - type: Appearance
+  - type: HandheldLight
+    needsCharge: false
+    addPrefix: false
+    wattage: 0.2
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: LightBehaviour
+    behaviours:
+    - !type:FadeBehaviour
+      id: radiating
+      maxDuration: 2.0
+      startValue: 3.0
+      endValue: 2.0
+      isLooped: true
+      reverseWhenFinished: true
+    - !type:PulseBehaviour
+      id: blinking
+      interpolate: Nearest
+      maxDuration: 1.0
+      isLooped: true
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20
+  - type: StealTarget
+    stealGroup: NTRepWeapon
 
 - type: entity
   name: dominator

@@ -1,4 +1,4 @@
-﻿# Traitor
+# Traitor
 - type: weightedRandom
   id: SubTraitorObjectiveGroups
   weights:
@@ -75,6 +75,7 @@
     VampireCaptainHardsuitStealObjective: 0.75 # Good luck.
     VampireNTRepHardsuitStealObjective: 0.75 # Usually in the bridge... hard to get to.
     VampireBSOHardsuitStealObjective: 0.75 # Same as the above...
+    VampireNTRepWeaponStealObjective: 1
     VampireBSOWeaponStealObjective: 1
 
 - type: weightedRandom

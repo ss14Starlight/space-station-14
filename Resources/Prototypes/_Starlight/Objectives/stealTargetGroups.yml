@@ -106,6 +106,13 @@
     state: icon
 
 - type: stealTargetGroup
+  id: NTRepWeapon
+  name: steal-target-groups-ntr-weapon
+  sprite:
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/repmini.rsi
+    state: icon
+
+- type: stealTargetGroup
   id: BSOWeapon
   name: steal-target-groups-bso-weapon
   sprite:

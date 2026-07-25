@@ -44,6 +44,7 @@
     CaptainHardsuitStealObjective: 0.75 # Good luck.
     NTRepHardsuitStealObjective: 0.75 # Usually in the bridge... hard to get to.
     NTRepBriefcaseSecureStealObjective: 0.75 # Same as most NT Rep stuff.
+    NTRepWeaponStealObjective: 0.75
     BSOHardsuitStealObjective: 0.75 # Same as the above...
     BSOMagbootsStealObjective: 0.75 # Easier to hide, at least.
     BSOWeaponStealObjective: 0.75 # Blue Shield weapons. Includes the X-01 and Blueguard Service Pistol.

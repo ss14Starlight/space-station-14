@@ -1,4 +1,4 @@
-﻿# Departmental abstracts
+# Departmental abstracts
 - type: entity
   abstract: true
   parent: BaseTraitorStealObjective
@@ -218,6 +218,15 @@
   components:
   - type: StealCondition
     stealGroup: NTRepBriefcaseSecure
+
+- type: entity
+  parent: BaseTraitorNanoTrasenStealObjective
+  id: NTRepWeaponStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: NTRepWeapon
+  - type: Objective
+    difficulty: 2.5
 
 - type: entity
   parent: BaseTraitorNanoTrasenStealObjective
