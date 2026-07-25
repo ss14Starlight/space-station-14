@@ -1,4 +1,5 @@
-﻿using Content.Server.Administration.Managers;
+﻿using System.Threading.Tasks;
+using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
@@ -10,10 +11,25 @@ namespace Content.Server.Administration.Commands
     {
         //[Dependency] private readonly IServerDbManager _dbManager = default!; NullLink-edit: move to general method at Manager
         [Dependency] private IBanManager _banManager = default!;
+        [Dependency] private ILogManager _logManager = default!; // NullLink-edit
 
         public override string Command => "pardon";
 
         public override async void Execute(IConsoleShell shell, string argStr, string[] args)
+        {
+            // Starlight-start: Move all code into internal method and use catch to catch errors
+            try
+            {
+                await ExecuteInternal(shell, argStr, args);
+            }
+            catch (Exception e)
+            {
+                _logManager.GetSawmill("admin.bans").Error($"Pardon command failed: {e}");
+            }
+            // Starlight-end
+        }
+
+        public async Task ExecuteInternal(IConsoleShell shell, string argStr, string[] args) // Starlight-edit
         {
             var player = shell.Player;
 
@@ -56,7 +72,7 @@ namespace Content.Server.Administration.Commands
                 return;
             }
 
-            await _banManager.CreateServerUnban(banId, player?.UserId, DateTimeOffset.Now); // NullLink-edit: move to general method at Manager
+            await _banManager.CreateServerUnban(banId, player?.UserId, DateTimeOffset.Now, ban.ProjectName, ban.ServerName); // NullLink-edit: move to general method at Manager
 
             shell.WriteLine(Loc.GetString($"cmd-pardon-success", ("id", banId)));
         }
