@@ -281,10 +281,11 @@ public sealed partial class EmergencyShuttleSystem
             // Guarantees that emergency shuttle arrives first before anyone else can FTL.
             while (query.MoveNext(out var comp, out var centcommXform))
             {
-                var mapId = Transform((EntityUid)comp.MapEntity!).MapID; //Starlight-edit - Use the right fucking mapid... How hard is it wizden!
-                if (Deleted(comp.Entity))
-                    continue;
                 //Starlight edit start - Add ERT shuttles to whitelist on beacon
+                if (Deleted(comp.Entity) || comp.MapEntity is not {} || Deleted(comp.MapEntity))
+                    continue;
+
+                var mapId = Transform((EntityUid)comp.MapEntity!).MapID;
                 if (_shuttle.TryAddFTLDestination(mapId, true, false, false, out var ftlDestinationComponent))
                 {
                     var whitelistInst = new EntityWhitelist

@@ -246,6 +246,9 @@
   id: EmergencyWelder
 
 - type: Tag
+  id: ERTShuttle
+
+- type: Tag
   id: Felionoid
 
 - type: Tag
@@ -713,6 +716,3 @@
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground
-
-- type: Tag
-  id: ERTShuttle
