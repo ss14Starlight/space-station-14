@@ -103,7 +103,7 @@
   parent: BaseCDDisc
   id: CDAdvertSecurityPSA
   name: "CD: Security PSA"
-  description: A CD containing a prerecorded public service announcement for station security department.
+  description: A CD containing a prerecorded public service announcement for the station's security department.
   components:
   - type: Vinyl
     song:
