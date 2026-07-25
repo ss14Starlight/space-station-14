@@ -1130,7 +1130,7 @@
   parent: ToolboxThief
   components:
   - type: ThiefUndeterminedBackpack
-    toolName: SELF Supplies
+    toolName: Supplies
     maxSelectedSets: 1
     possibleSets:
     - SaboteurSELF
