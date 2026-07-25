@@ -24,7 +24,6 @@ namespace Content.Server.Administration.Commands
             }
             catch (Exception e)
             {
-                shell.WriteError($"Pardon failed: {e.Message}");
                 _logManager.GetSawmill("admin.bans").Error($"Pardon command failed: {e}");
             }
             // Starlight-end
