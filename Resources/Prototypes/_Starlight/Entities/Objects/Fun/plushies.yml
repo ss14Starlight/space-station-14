@@ -2060,33 +2060,33 @@
   components:
   - type: Item
     size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/sea_bunny.rsi
+    sprite: &sprite _Starlight/Objects/Fun/Plushies/sea_bunny.rsi
   - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/sea_bunny.rsi
+    sprite: *sprite
     state: icon
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+      path: &sound /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+      path: *sound
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+      path: *sound
   - type: EmitSoundOnTrigger
     sound:
-      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+      path: *sound
   - type: Edible
     requiresSpecialDigestion: true
     useSound:
-      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+      path: *sound
   - type: MeleeWeapon
     wideAnimationRotation: 180
     soundHit:
-      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+      path: *sound
   - type: Clothing
     quickEquip: false
-    sprite: _Starlight/Objects/Fun/Plushies/sea_bunny.rsi
+    sprite: *sprite
     slots:
       - HEAD
     clothingVisuals:
