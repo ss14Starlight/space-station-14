@@ -1,9 +1,11 @@
-﻿using Content.Server.Station.Systems;
+﻿using Content.Server.CartridgeLoader;
+using Content.Server.CartridgeLoader.Cartridges;
+using Content.Server.Station.Systems;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.Pinpointer;
 
-namespace Content.Server.CartridgeLoader.Cartridges;
+namespace Content.Server._Starlight.CartridgeLoader.Cartridges;
 
 /// <summary>
 /// This handles...

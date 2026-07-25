@@ -1,6 +1,6 @@
 ﻿using Robust.Shared.Serialization;
 
-namespace Content.Shared.CartridgeLoader.Cartridges;
+namespace Content.Shared._Starlight.CartridgeLoader.Cartridges;
 
 [Serializable, NetSerializable]
 public sealed class MapUiState : BoundUserInterfaceState
