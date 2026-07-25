@@ -36,9 +36,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             if (args.Handled || !args.Complex)
                 return;
 
-            #region Starlight
-            Set(uid, component, !component.Enabled);
-            #endregion
+            Set(uid, component, !component.Enabled); // Starlight
             args.Handled = true;
         }
 
