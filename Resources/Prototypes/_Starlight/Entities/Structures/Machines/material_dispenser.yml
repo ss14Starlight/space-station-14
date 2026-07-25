@@ -5,18 +5,11 @@
   description: An advanced machine, capable of distributing materials into crates.
   components:
     - type: Sprite
-      sprite: Structures/Machines/silo.rsi
+      sprite: _Starlight/Structures/Machines/material_dispenser.rsi
       snapCardinals: true
       layers:
-        - state: silo
-          map: [ "base" ]
+        - state: material_dispenser
     - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.PowerDeviceVisuals.Powered:
-          base:
-            True: { state: silo_active }
-            False: { state: silo }
     - type: MaterialStorage
       whitelist:
         tags:
@@ -50,7 +43,7 @@
         enum.MaterialDispenserUiKey.Key:
           type: MaterialDispenserBoundUserInterface
     - type: Machine
-      board: MaterialSiloMachineCircuitboard
+      board: MaterialDispenserMachineCircuitBoard
     - type: MaterialDispenser
     - type: ContainerContainer
       containers:

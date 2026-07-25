@@ -1300,3 +1300,16 @@
         GlassBeaker:
           amount: 1
           defaultPrototype: Beaker
+
+- type: entity
+  id: MaterialDispenserMachineCircuitBoard
+  parent: BaseMachineCircuitboard
+  name: Material dispenser machine board
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: MaterialDispenser
+      stackRequirements:
+        Steel: 5
+        Manipulator: 2
