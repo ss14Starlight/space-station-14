@@ -1,6 +1,3 @@
-trait-unclonable-name = Unclonable
-trait-unclonable-desc = Your unique DNA composition is incompatible with cloning technology. You cannot be cloned.
-
 trait-blindness-name = Blindness
 trait-blindness-desc = You are legally blind, and can't see clearly past a few meters in front of you.
 
