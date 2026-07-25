@@ -23,6 +23,9 @@ using System.Numerics;
 using Content.Shared.Procedural;
 using Robust.Shared.Map.Components;
 using Content.Shared._Starlight.Shuttles.Components;
+using Content.Shared.Tag;
+using Content.Shared.Whitelist;
+
 // Starlight End
 
 namespace Content.Server.Shuttles.Systems;
@@ -278,13 +281,19 @@ public sealed partial class EmergencyShuttleSystem
             // Guarantees that emergency shuttle arrives first before anyone else can FTL.
             while (query.MoveNext(out var comp, out var centcommXform))
             {
+                var mapId = Transform((EntityUid)comp.MapEntity!).MapID; //Starlight-edit - Use the right fucking mapid... How hard is it wizden!
                 if (Deleted(comp.Entity))
                     continue;
-
-                if (_shuttle.TryAddFTLDestination(centcommXform.MapID, true, out var ftlComp))
+                //Starlight edit start - Add ERT shuttles to whitelist on beacon
+                if (_shuttle.TryAddFTLDestination(mapId, true, false, false, out var ftlDestinationComponent))
                 {
-                    _shuttle.SetFTLWhitelist((centcommXform.MapUid!.Value, ftlComp), null);
+                    var whitelistInst = new EntityWhitelist
+                    {
+                        Tags = new() { "ERTShuttle" }
+                    };
+                    _shuttle.SetFTLWhitelist((Entity<FTLDestinationComponent?>)comp.MapEntity, whitelistInst);
                 }
+                //Starlight-edit end
             }
         }
     }
