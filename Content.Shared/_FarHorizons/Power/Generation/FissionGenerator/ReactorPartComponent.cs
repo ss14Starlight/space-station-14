@@ -109,6 +109,30 @@ public sealed partial class ReactorPartComponent : Component
     /// </summary>
     [GuidebookData]
     public float ReactionRatio => ReactionReactant != 0 ? (ReactionProduct / ReactionReactant) : 0;
+
+    /// <summary>
+    /// Base heat added by neutron stimulated emission.
+    /// </summary>
+    [DataField]
+    public float NeutronStimulatedHeating = 50f;
+
+    /// <summary>
+    /// Base heat added by stimulated emission.
+    /// </summary>
+    [DataField]
+    public float StimulatedHeating = 25f;
+
+    /// <summary>
+    /// Base heat added by spontaneous neutron reactions.
+    /// </summary>
+    [DataField]
+    public float SpontaneousNeutronHeating = 20f;
+
+    /// <summary>
+    /// Base heat added by spontaneous reactions.
+    /// </summary>
+    [DataField]
+    public float SpontaneousHeating = 10f;
     #endregion
 
     #region Variables
@@ -173,9 +197,16 @@ public sealed partial class ReactorPartComponent : Component
     /// </summary>
     [DataField]
     public float ThermalMass = 420 * 250; //specific heat capacity of steel (420 J/KgK) * mass of component (Kg)
+
+    [DataField]
+    public float SpaceHeatTransferRate = 0.1f;
+
+    [DataField]
+    public float MaxBurnDamage = 100f;
+
     #endregion
 
-    [DataField("material")]
+    [DataField]
     public ProtoId<MaterialPrototype> Material = "Steel";
 
     public MaterialProperties Properties

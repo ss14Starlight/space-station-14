@@ -1002,6 +1002,8 @@ public sealed partial class NuclearReactorSystem : EntitySystem
 
         if(component.AlarmState.HasFlag(NuclearReactorAlarmStates.HighRad))
             component.AlarmState |= NuclearReactorAlarmStates.HighRadAck;
+
+        UpdateUI(uid, component);
     }
 
     private float _accumulator = 0f;

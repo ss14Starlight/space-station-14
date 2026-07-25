@@ -146,7 +146,7 @@ public sealed partial class ReactorPartSystem
         component.Temperature -= DeltaT;
         if (!gasMix.Immutable) // This prevents it from heating up space itself
             // This viloates COE, but if energy is conserved, then pulling out a hot rod will instantly turn the room into an oven
-            gasMix.Temperature += 0.1f * DeltaT * component.ThermalMass / _atmosphereSystem.GetHeatCapacity(gasMix, false);
+            gasMix.Temperature += component.SpaceHeatTransferRate * DeltaT * component.ThermalMass / _atmosphereSystem.GetHeatCapacity(gasMix, false);
 
         var burncomp = EnsureComp<DamageOnInteractComponent>(uid);
 
@@ -154,7 +154,7 @@ public sealed partial class ReactorPartSystem
 
         if (burncomp.IsDamageActive)
         {
-            var damage = Math.Max((component.Temperature - Atmospherics.T0C - component.HotTemp) / BurnDiv(component), 0);
+            var damage = Math.Min(Math.Max((component.Temperature - Atmospherics.T0C - component.HotTemp) / BurnDiv(component), 0),component.MaxBurnDamage);
 
             // Giant string of if/else that makes sure it will interfere only as much as it needs to
             if (burncomp.Damage == null)

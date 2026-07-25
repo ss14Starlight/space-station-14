@@ -229,7 +229,7 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
                     {
                         result.Add(new() { dir = _random.NextAngle().GetDir(), velocity = _random.Next(2, 3 + 1) });
                     }
-                    reactorPart.Temperature += 50f * reactorPart.StimulatedHeatingFactor;
+                    reactorPart.Temperature += reactorPart.NeutronStimulatedHeating * reactorPart.StimulatedHeatingFactor;
                 }
                 else if (neutron.velocity <= 5 && Prob(reactorPart.ReactionRate * reactorPart.Properties.Radioactivity * reactorPart.NeutronReactionBias)) // stimulated emission
                 {
@@ -239,7 +239,7 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
                     {
                         result.Add(new() { dir = _random.NextAngle().GetDir(), velocity = _random.Next(1, 3 + 1) });
                     }
-                    reactorPart.Temperature += 25f * reactorPart.StimulatedHeatingFactor;
+                    reactorPart.Temperature += reactorPart.StimulatedHeating * reactorPart.StimulatedHeatingFactor;
                 }
                 else
                 {
@@ -270,7 +270,7 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
             }
             reactorPart.Properties.NeutronRadioactivity -= reactorPart.ReactionReactant * reactorPart.SpontaneousReactionConsumptionMultiplier;
             reactorPart.Properties.Radioactivity += reactorPart.ReactionProduct * reactorPart.SpontaneousReactionConsumptionMultiplier;
-            reactorPart.Temperature += 20f * reactorPart.SpontaneousHeatingFactor;
+            reactorPart.Temperature += reactorPart.SpontaneousNeutronHeating * reactorPart.SpontaneousHeatingFactor;
         }
         if (Prob(reactorPart.Properties.Radioactivity * reactorPart.ReactionRate * reactorPart.NeutronCrossSection))
         {
@@ -280,7 +280,7 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
             }
             reactorPart.Properties.Radioactivity -= reactorPart.ReactionReactant * reactorPart.SpontaneousReactionConsumptionMultiplier;
             reactorPart.Properties.FissileIsotopes += reactorPart.ReactionProduct * reactorPart.SpontaneousReactionConsumptionMultiplier;
-            reactorPart.Temperature += 10f * reactorPart.SpontaneousHeatingFactor;
+            reactorPart.Temperature += reactorPart.SpontaneousHeating * reactorPart.SpontaneousHeatingFactor;
         }
 
         if (reactorPart.HasRodType(ReactorPartComponent.RodTypes.ControlRod))
