@@ -165,7 +165,7 @@
         - LabellerRefillPaper
 
 - type: entity
-  id: TicketMachineHOP
+  id: TicketMachineHOPWhite
   parent: TicketMachineFilled
   suffix: HOP, Filled
   components:
@@ -173,7 +173,7 @@
     access: [["HeadOfPersonnel"]]
 
 - type: entity
-  id: TicketMachineHOP
+  id: TicketMachineHOPBlue
   parent: TicketMachineFilledBlue
   suffix: HOP, Filled
   components:

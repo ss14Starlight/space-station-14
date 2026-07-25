@@ -92,7 +92,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/ticket.rsi
     layers:
-    - state: icon_red
+    - state: icon_sec
     - map: [ "enum.TicketVisualLayers.Number1" ]
       sprite: _Starlight/Structures/Machines/ticket_machine.rsi
       color: "#1f1f1f"
