@@ -9,10 +9,10 @@ public sealed class SpaceVillainArcadeBoundUserInterface : BoundUserInterface
 
     public SpaceVillainArcadeBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-        SendAction(SpaceVillainPlayerAction.RequestData);
+        SendAction(SpaceVillainPlayerAction.RequestData); // Starlight-edit
     }
 
-    public void SendAction(SpaceVillainPlayerAction action)
+    public void SendAction(SpaceVillainPlayerAction action) // Starlight-edit
     {
         SendMessage(new SpaceVillainArcadePlayerActionMessage(action));
     }

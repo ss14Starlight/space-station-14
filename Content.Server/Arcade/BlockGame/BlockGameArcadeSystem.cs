@@ -20,14 +20,12 @@ public sealed partial class BlockGameArcadeSystem : EntitySystem
         SubscribeLocalEvent<BlockGameArcadeComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<BlockGameArcadeComponent, AfterActivatableUIOpenEvent>(OnAfterUIOpen);
         SubscribeLocalEvent<BlockGameArcadeComponent, PowerChangedEvent>(OnBlockPowerChanged);
-        // Starlight-start
-        SubscribeLocalEvent<BlockGameArcadeComponent, ArcadeScorePlacementSubmittedEvent>(OnPlacementSubmitted);
-        // Starlight-end
+        SubscribeLocalEvent<BlockGameArcadeComponent, ArcadeScorePlacementSubmittedEvent>(OnPlacementSubmitted); // Starlight-edit
 
         Subs.BuiEvents<BlockGameArcadeComponent>(BlockGameUiKey.Key, subs =>
         {
             subs.Event<BoundUIClosedEvent>(OnAfterUiClose);
-            subs.Event<BlockGamePlayerActionMessage>(OnPlayerAction);
+            subs.Event<BlockGamePlayerActionMessage>(OnPlayerAction); // Starlight-edit
         });
     }
 
@@ -45,7 +43,7 @@ public sealed partial class BlockGameArcadeSystem : EntitySystem
         if (!Resolve(uid, ref blockGame))
             return;
 
-        _uiSystem.ServerSendUiMessage(uid, BlockGameUiKey.Key, new BlockGameUserStatusMessage(blockGame.Player == actor), actor);
+        _uiSystem.ServerSendUiMessage(uid, BlockGameUiKey.Key, new BlockGameUserStatusMessage(blockGame.Player == actor), actor); // Starlight-edit
     }
 
     private void OnComponentInit(EntityUid uid, BlockGameArcadeComponent component, ComponentInit args)
@@ -94,7 +92,7 @@ public sealed partial class BlockGameArcadeSystem : EntitySystem
         component.Spectators.Clear();
     }
 
-    // Starlight-start
+    #region Starlight
     private void OnPlacementSubmitted(Entity<BlockGameArcadeComponent> ent, ref ArcadeScorePlacementSubmittedEvent args)
     {
         if (ent.Comp.Game == null)
@@ -104,7 +102,7 @@ public sealed partial class BlockGameArcadeSystem : EntitySystem
         var placement = args.Placements;
         game.SetPlacement(placement);
     }
-    // Starlight-end
+    #endregion
 
     private void OnPlayerAction(EntityUid uid, BlockGameArcadeComponent component, BlockGamePlayerActionMessage msg)
     {

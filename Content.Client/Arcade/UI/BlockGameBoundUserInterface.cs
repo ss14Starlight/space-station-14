@@ -23,33 +23,33 @@ public sealed class BlockGameBoundUserInterface : BoundUserInterface
     {
         switch (message)
         {
-            case BlockGameVisualUpdateMessage updateMessage:
+            case BlockGameVisualUpdateMessage updateMessage: // Starlight-edit
                 switch (updateMessage.GameVisualType)
                 {
-                    case BlockGameVisualType.GameField:
+                    case BlockGameVisualType.GameField: // Starlight-edit
                         _menu?.UpdateBlocks(updateMessage.Blocks);
                         break;
-                    case BlockGameVisualType.HoldBlock:
+                    case BlockGameVisualType.HoldBlock: // Starlight-edit
                         _menu?.UpdateHeldBlock(updateMessage.Blocks);
                         break;
-                    case BlockGameVisualType.NextBlock:
+                    case BlockGameVisualType.NextBlock: // Starlight-edit
                         _menu?.UpdateNextBlock(updateMessage.Blocks);
                         break;
                 }
                 break;
-            case BlockGameScoreUpdateMessage scoreUpdate:
+            case BlockGameScoreUpdateMessage scoreUpdate: // Starlight-edit
                 _menu?.UpdatePoints(scoreUpdate.Points);
                 break;
-            case BlockGameUserStatusMessage userMessage:
+            case BlockGameUserStatusMessage userMessage: // Starlight-edit
                 _menu?.SetUsability(userMessage.IsPlayer);
                 break;
-            case BlockGameSetScreenMessage statusMessage:
+            case BlockGameSetScreenMessage statusMessage: // Starlight-edit
                 if (statusMessage.IsStarted) _menu?.SetStarted();
                 _menu?.SetScreen(statusMessage.Screen);
-                if (statusMessage is BlockGameGameOverScreenMessage gameOverScreenMessage)
+                if (statusMessage is BlockGameGameOverScreenMessage gameOverScreenMessage) // Starlight-edit
                     _menu?.SetGameoverInfo(gameOverScreenMessage.FinalScore, gameOverScreenMessage.LocalPlacement, gameOverScreenMessage.GlobalPlacement);
                 break;
-            case BlockGameHighScoreUpdateMessage highScoreUpdateMessage:
+            case BlockGameHighScoreUpdateMessage highScoreUpdateMessage: // Starlight-edit
                 // Starlight-start
                 _menu?.UpdateHighscores(highScoreUpdateMessage.LocalHighscores,
                     highScoreUpdateMessage.GlobalHighscores,
@@ -57,7 +57,7 @@ public sealed class BlockGameBoundUserInterface : BoundUserInterface
                     highScoreUpdateMessage.MaxGlobalScores);
                 // Starlight-end
                 break;
-            case BlockGameLevelUpdateMessage levelUpdateMessage:
+            case BlockGameLevelUpdateMessage levelUpdateMessage: // Starlight-edit
                 _menu?.UpdateLevel(levelUpdateMessage.Level);
                 break;
         }
@@ -65,7 +65,7 @@ public sealed class BlockGameBoundUserInterface : BoundUserInterface
 
     public void SendAction(BlockGamePlayerAction action)
     {
-        SendMessage(new BlockGamePlayerActionMessage(action));
+        SendMessage(new BlockGamePlayerActionMessage(action)); // Starlight-edit
     }
 
     protected override void Dispose(bool disposing)

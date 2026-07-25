@@ -91,18 +91,18 @@ public sealed partial class BlockGame
                 break;
             case BlockGamePlayerAction.Pause:
                 _running = false;
-                SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Pause, Started));
+                SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Pause, Started)); // Starlight-edit
                 break;
             case BlockGamePlayerAction.Unpause:
                 if (!_gameOver && Started)
                 {
                     _running = true;
-                    SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Game));
+                    SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Game)); // Starlight-edit
                 }
                 break;
             case BlockGamePlayerAction.ShowHighscores:
                 _running = false;
-                SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Highscores, Started));
+                SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Highscores, Started)); // Starlight-edit
                 break;
         }
     }
@@ -180,14 +180,14 @@ public sealed partial class BlockGame
     {
         if (_gameOver)
         {
-            SendMessage(new BlockGameGameOverScreenMessage(Points, _highScorePlacement?.LocalPlacement, _highScorePlacement?.GlobalPlacement), actor);
+            SendMessage(new BlockGameGameOverScreenMessage(Points, _highScorePlacement?.LocalPlacement, _highScorePlacement?.GlobalPlacement), actor); // Starlight-edit
             return;
         }
 
         if (Paused)
-            SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Pause, Started), actor);
+            SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Pause, Started), actor); // Starlight-edit
         else
-            SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Game, Started), actor);
+            SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Game, Started), actor); // Starlight-edit
 
         FullUpdate(actor);
     }
@@ -228,7 +228,7 @@ public sealed partial class BlockGame
             return;
 
         var computedField = ComputeField();
-        SendMessage(new BlockGameVisualUpdateMessage(computedField.ToArray(), BlockGameVisualType.GameField));
+        SendMessage(new BlockGameVisualUpdateMessage(computedField.ToArray(), BlockGameVisualType.GameField)); // Starlight-edit
     }
 
     /// <summary>
@@ -240,7 +240,7 @@ public sealed partial class BlockGame
             return;
 
         var computedField = ComputeField();
-        SendMessage(new BlockGameVisualUpdateMessage(computedField.ToArray(), BlockGameVisualType.GameField), actor);
+        SendMessage(new BlockGameVisualUpdateMessage(computedField.ToArray(), BlockGameVisualType.GameField), actor); // Starlight-edit
     }
 
     /// <summary>
@@ -275,7 +275,7 @@ public sealed partial class BlockGame
     /// </summary>
     private void SendNextPieceUpdate()
     {
-        SendMessage(new BlockGameVisualUpdateMessage(NextPiece.BlocksForPreview(), BlockGameVisualType.NextBlock));
+        SendMessage(new BlockGameVisualUpdateMessage(NextPiece.BlocksForPreview(), BlockGameVisualType.NextBlock)); // Starlight-edit
     }
 
     /// <summary>
@@ -283,7 +283,7 @@ public sealed partial class BlockGame
     /// </summary>
     private void SendNextPieceUpdate(EntityUid actor)
     {
-        SendMessage(new BlockGameVisualUpdateMessage(NextPiece.BlocksForPreview(), BlockGameVisualType.NextBlock), actor);
+        SendMessage(new BlockGameVisualUpdateMessage(NextPiece.BlocksForPreview(), BlockGameVisualType.NextBlock), actor); // Starlight-edit
     }
 
     /// <summary>
@@ -292,9 +292,9 @@ public sealed partial class BlockGame
     private void SendHoldPieceUpdate()
     {
         if (HeldPiece.HasValue)
-            SendMessage(new BlockGameVisualUpdateMessage(HeldPiece.Value.BlocksForPreview(), BlockGameVisualType.HoldBlock));
+            SendMessage(new BlockGameVisualUpdateMessage(HeldPiece.Value.BlocksForPreview(), BlockGameVisualType.HoldBlock)); // Starlight-edit
         else
-            SendMessage(new BlockGameVisualUpdateMessage(Array.Empty<BlockGameBlock>(), BlockGameVisualType.HoldBlock));
+            SendMessage(new BlockGameVisualUpdateMessage(Array.Empty<BlockGameBlock>(), BlockGameVisualType.HoldBlock)); // Starlight-edit
     }
 
     /// <summary>
@@ -303,9 +303,9 @@ public sealed partial class BlockGame
     private void SendHoldPieceUpdate(EntityUid actor)
     {
         if (HeldPiece.HasValue)
-            SendMessage(new BlockGameVisualUpdateMessage(HeldPiece.Value.BlocksForPreview(), BlockGameVisualType.HoldBlock), actor);
+            SendMessage(new BlockGameVisualUpdateMessage(HeldPiece.Value.BlocksForPreview(), BlockGameVisualType.HoldBlock), actor); // Starlight-edit
         else
-            SendMessage(new BlockGameVisualUpdateMessage(Array.Empty<BlockGameBlock>(), BlockGameVisualType.HoldBlock), actor);
+            SendMessage(new BlockGameVisualUpdateMessage(Array.Empty<BlockGameBlock>(), BlockGameVisualType.HoldBlock), actor); // Starlight-edit
     }
 
     /// <summary>
@@ -313,7 +313,7 @@ public sealed partial class BlockGame
     /// </summary>
     private void SendLevelUpdate()
     {
-        SendMessage(new BlockGameLevelUpdateMessage(Level));
+        SendMessage(new BlockGameLevelUpdateMessage(Level)); // Starlight-edit
     }
 
     /// <summary>
@@ -321,7 +321,7 @@ public sealed partial class BlockGame
     /// </summary>
     private void SendLevelUpdate(EntityUid actor)
     {
-        SendMessage(new BlockGameLevelUpdateMessage(Level), actor);
+        SendMessage(new BlockGameLevelUpdateMessage(Level), actor); // Starlight-edit
     }
 
     /// <summary>
@@ -329,7 +329,7 @@ public sealed partial class BlockGame
     /// </summary>
     private void SendPointsUpdate()
     {
-        SendMessage(new BlockGameScoreUpdateMessage(Points));
+        SendMessage(new BlockGameScoreUpdateMessage(Points)); // Starlight-edit
     }
 
     /// <summary>
@@ -337,7 +337,7 @@ public sealed partial class BlockGame
     /// </summary>
     private void SendPointsUpdate(EntityUid actor)
     {
-        SendMessage(new BlockGameScoreUpdateMessage(Points), actor);
+        SendMessage(new BlockGameScoreUpdateMessage(Points), actor); // Starlight-edit
     }
 
     /// <summary>
@@ -364,7 +364,7 @@ public sealed partial class BlockGame
         // Starlight-end
     }
 
-    // Starlight-start
+    #region Starlight
     private BlockGameHighScoreUpdateMessage? GetHighScoreUpdateMessage()
     {
         if (!_entityManager.TryGetComponent<ArcadeScoreboardComponent>(_owner, out var scoreboard))
@@ -377,5 +377,5 @@ public sealed partial class BlockGame
 
         return message;
     }
-    // Starlight-end
+    #endregion
 }
