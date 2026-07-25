@@ -293,6 +293,16 @@
 
         # Starlight Start
 
+        - to: uraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRPGlass1
+              amount: 2
+          steps:
+            - material: UraniumGlass
+              amount: 2
+              doAfter: 3
+
         - to: reinforcedUraniumWindow
           completed:
             - !type:GivePrototype
