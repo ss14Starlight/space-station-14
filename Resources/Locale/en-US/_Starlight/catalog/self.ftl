@@ -21,4 +21,4 @@ self-backpack-category-spy-description =
     Includes: A bag full of chameleon gear, a camera bug,
     chameleon controller implant, a fake mindshield implant.
 
-self-backpack-name = SELF Supplies
+self-toolbox-name = SELF Supplies
