@@ -229,6 +229,14 @@
     access: [["ChiefEngineer"]]
 
 - type: entity
+  id: TicketMachineWardenAtmos
+  parent: TicketMachineFilledCyan
+  suffix: ENGI, Atmos, Filled, Cyan
+  components:
+  - type: AccessReader
+    access: [["AtmosTech"]]
+
+- type: entity
   id: TicketMachineRD
   parent: TicketMachineFilledPurple
   suffix: SCI, RD, Filled, Purple
