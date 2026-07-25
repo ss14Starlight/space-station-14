@@ -22,6 +22,7 @@ using Content.Shared._CD.CartridgeLoader.Cartridges;
 using Content.Shared._Starlight.Time;
 using Robust.Server.Containers;
 using Content.Server.StationEvents.Events;
+using Content.Server.StationEvents.Components;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
@@ -43,17 +44,20 @@ public sealed partial class NanoChatSpamRuleSystem : StationEventSystem<NanoChat
     [Dependency] private SharedTimeSystem _timeSystem = default!;
     [Dependency] private ContainerSystem _container = default!;
 
-    private static readonly Regex _randomNumberPattern = MyRegex();
+    private static readonly Regex _randomNumberPattern = RandomNumberPatternRegex();
 
     protected override void Started(EntityUid uid, NanoChatSpamRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 
         // Fire once, auto ended by StationEventSystem
-        SendSpamMessage(component);
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
+            return;
+
+        SendSpamMessage(component, stationEvent.TargetStation);
     }
 
-    private void SendSpamMessage(NanoChatSpamRuleComponent component)
+    private void SendSpamMessage(NanoChatSpamRuleComponent component, EntityUid? targetStation)
     {
         // Get all advertisement prototypes
         var adPrototypes = _prototype.EnumeratePrototypes<NanoChatAdvertisementPrototype>().ToList();
@@ -68,6 +72,10 @@ public sealed partial class NanoChatSpamRuleSystem : StationEventSystem<NanoChat
         {
             // Skip if no number assigned
             if (card.Number == null)
+                continue;
+
+            // Only include NanoChat cards belonging to the event's target station.
+            if (targetStation == null || _station.GetOwningStation(cardUid) != targetStation)
                 continue;
 
             // Check if card is in a PDA that belongs to a player
@@ -372,5 +380,5 @@ public sealed partial class NanoChatSpamRuleSystem : StationEventSystem<NanoChat
     }
 
     [GeneratedRegex(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled)]
-    private static partial Regex MyRegex();
+    private static partial Regex RandomNumberPatternRegex();
 }
