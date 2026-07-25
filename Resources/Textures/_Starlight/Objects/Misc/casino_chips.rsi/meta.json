@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Starlight by Glaud0283",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    { "name": "chips-0" },
+    { "name": "chips-1" },
+    { "name": "chips-2" },
+    { "name": "chips-3" },
+    { "name": "chips-4" },
+    { "name": "chips-5" },
+    { "name": "chips-6" },
+    { "name": "chips-7" },
+    { "name": "chips-8" },
+    { "name": "chips-9" },
+    { "name": "chips-10" }
+  ]
+}

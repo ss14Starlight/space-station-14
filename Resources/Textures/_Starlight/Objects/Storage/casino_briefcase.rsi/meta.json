@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Recoloured from Objects/Storage/Briefcases/briefcase_brown.rsi (made by ps3moira) for Starlight by Glaud0283",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "icon"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "unlocked"
+    }
+  ]
+}
