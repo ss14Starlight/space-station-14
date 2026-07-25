@@ -27,12 +27,25 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
         if (initialPluoxMoles < 50f)
             return ReactionResult.NoReaction;
 
-		var rate = (0f);
+		var satrate = (0f);
+		var temprate = (0f);
 
 		if (pluoxRatio > 2f)
 		{
-			rate = (pluoxRatio * 0.1f);
+			satrate = (pluoxRatio * 0.1f);
 		}
+
+///Can also ignite from very high temperatures.
+
+		if (temperature > 1500f)
+		{
+			temprate = (temperature/1500f);
+		}
+
+        var rate = (satrate + temprate);
+
+        if (rate < 1f)
+            return ReactionResult.NoReaction; 
 				
 		mixture.AdjustMoles(Gas.Hydrogen, -rate);
 		mixture.AdjustMoles(Gas.Pluoxium, -rate);
