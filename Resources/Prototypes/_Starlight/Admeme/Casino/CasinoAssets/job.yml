@@ -33,3 +33,21 @@
     state: dealer
   jobName: job-name-casino-dealer
   allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCasinoBrigmed
+  icon:
+    sprite: /Textures/_Starlight/Admeme/Casino/Interface/job_icons.rsi
+    state: brigmed
+  jobName: job-name-casino-brigmed
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCasinoTreasurer
+  icon:
+    sprite: /Textures/_Starlight/Admeme/Casino/Interface/job_icons.rsi
+    state: treasurer
+  jobName: job-name-casino-treasurer
+  allowSelection: false
