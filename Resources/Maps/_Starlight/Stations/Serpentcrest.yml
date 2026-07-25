@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/25/2026 02:01:29
+  time: 07/25/2026 02:03:07
   entityCount: 29506
 maps:
 - 1
@@ -5337,7 +5337,7 @@ entities:
             2: 61713
           -9,6:
             2: 65280
-            4: 7
+            6: 7
           -8,7:
             0: 13104
             2: 34952
@@ -5550,7 +5550,7 @@ entities:
           -9,3:
             3: 1799
           -9,4:
-            5: 7
+            4: 7
             3: 1792
           -12,-4:
             0: 63675
@@ -6092,7 +6092,7 @@ entities:
             0: 65535
           -9,5:
             3: 7
-            6: 1792
+            5: 1792
           -12,9:
             0: 30704
           -13,9:
@@ -7569,15 +7569,15 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-            Oxygen: 6666.982
-        - volume: 2500
-          temperature: 293.15
-          moles:
             Plasma: 6666.982
         - volume: 2500
           temperature: 293.15
           moles:
             Nitrogen: 6666.982
+        - volume: 2500
+          temperature: 293.15
+          moles:
+            Oxygen: 6666.982
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
