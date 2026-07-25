@@ -156,6 +156,9 @@
   id: ChonoLoke
 
 - type: Tag
+  id: CheapSunglasses #used in the security mime mask crafting graph
+
+- type: Tag
   id: ClownKudzu
 
 - type: Tag
@@ -282,6 +285,9 @@
   id: Grenade120mm # Ammo: Magazine120mmGrenadeBlast, ShuttleGunNTSFCyerxa120mm
 
 - type: Tag
+  id: GrenadeLessLethal #Ammo for the peacekeeper
+
+- type: Tag
   id: GygaxArmor
 
 - type: Tag
@@ -307,6 +313,9 @@
 
 - type: Tag
   id: GygaxTargetingControlModule
+
+- type: Tag
+  id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
 
 - type: Tag
   id: HiltPlasteel
@@ -489,6 +498,9 @@
 
 - type: Tag
   id: MicroManipulatorStockPart
+
+- type: Tag
+  id: MimeMask #used in the security mime mask crafting graph
 
 - type: Tag
   id: ModularBarrel
