@@ -1,5 +1,5 @@
-using Content.Shared._CP14.Configuration;
 using System.Numerics;
+using Content.Shared.CCVar;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Configuration;
@@ -32,7 +32,7 @@ public sealed class CP14BasePostProcessOverlay : Overlay
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        if (!_configManager.GetCVar(CP14ConfigVars.PostProcess))
+        if (!_configManager.GetCVar(CCVars.PostProcess))
             return false;
 
         if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out EyeComponent? eyeComp))
