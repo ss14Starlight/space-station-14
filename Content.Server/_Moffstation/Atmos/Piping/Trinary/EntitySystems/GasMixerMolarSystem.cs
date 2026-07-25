@@ -14,6 +14,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
+using YamlDotNet.Core.Tokens;
 
 namespace Content.Server._Moffstation.Atmos.Piping.Trinary.EntitySystems;
 
@@ -228,4 +229,34 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
                 ent.Comp.TargetPressure,
                 ent.Comp.Enabled,
                 ent.Comp.InletOneConcentration));
+
+    #region Starlight
+
+    private void DirtyUi(EntityUid uid, GasMixerMolarComponent component)
+        =>_userInterfaceSystem.SetUiState(uid, GasMixerUiKey.Key,
+            new GasMixerBoundUserInterfaceState(
+                Comp<MetaDataComponent>(uid).EntityName,
+                component.TargetPressure,
+                component.Enabled,
+                component.InletOneConcentration
+            ));
+
+    private void UpdateAppearance(EntityUid uid, GasMixerMolarComponent? component = null, AppearanceComponent? appearance = null)
+    {
+        if (!Resolve(uid, ref component, ref appearance))
+            return;
+
+        _appearance.SetData(uid, FilterVisuals.Enabled, component.Enabled, appearance);
+    }
+
+    public void Set(EntityUid uid, GasMixerMolarComponent component, bool value)
+    {
+        if (component.Enabled == value) return;
+
+        component.Enabled = value;
+        UpdateAppearance(uid, component);
+        DirtyUi(uid, component);
+    }
+
+    #endregion
 }
