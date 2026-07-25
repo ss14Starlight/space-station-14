@@ -21,8 +21,8 @@ public sealed partial class ActivatableUIRequiresAccessSystem : EntitySystem
         if (args.Cancelled)
             return;
         // Starlight-start
-        if (TryComp<LockComponent>(activatableUI, out var lockComponent) 
-            && activatableUI.Comp.AllowUnlocking 
+        if (TryComp<LockComponent>(activatableUI, out var lockComponent)
+            && activatableUI.Comp.AllowUnlocking
             && !lockComponent.Locked)
             return;
         // Starlight-end
