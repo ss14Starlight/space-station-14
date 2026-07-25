@@ -1,116 +1,4 @@
 Entries:
-- author: r3d3mpt1on
-  changes:
-  - message: Oil Packs, HV Cables, Patch Packs to the Combat Medkit and BrigKit whitelists.
-    type: Add
-  id: 406442
-  time: '2026-07-05T17:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4970
-- author: r3d3mpt1on
-  changes:
-  - message: Patch Packs are now 1x2 instead of 1x1.
-    type: Tweak
-  id: 406443
-  time: '2026-07-05T17:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4970
-- author: r3d3mpt1on
-  changes:
-  - message: Patches are now 1x1 instead of 1x2.
-    type: Tweak
-  id: 406444
-  time: '2026-07-05T17:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4970
-- author: ku-mo
-  changes:
-  - message: Rodentia's glowing hair now properly displaces.
-    type: Fix
-  id: 406445
-  time: '2026-07-05T17:08:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4994
-- author: Johnny
-  changes:
-  - message: (Reach) Uhhhh.... Yeah I dont want to talk about it, godo. I fixed disposals.
-    type: Fix
-  id: 406446
-  time: '2026-07-05T17:08:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5015
-- author: Johnny
-  changes:
-  - message: Added a custom RCD that is given to the chief engineer.
-    type: Add
-  id: 406447
-  time: '2026-07-05T20:25:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4995
-- author: TeddiousbearPA
-  changes:
-  - message: Added time requirements for senior formal uniforms and deputy for Sec/Dutyoff.
-    type: Tweak
-  id: 406448
-  time: '2026-07-06T11:53:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5006
-- author: TeddiousbearPA
-  changes:
-  - message: Renamed Deputy Formal to Deputy.
-    type: Tweak
-  id: 406449
-  time: '2026-07-06T11:53:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5006
-- author: TeddiousbearPA
-  changes:
-  - message: Updated Meta files to new Copyright standard.
-    type: Tweak
-  id: 406450
-  time: '2026-07-06T11:53:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5006
-- author: wonderfulnewworld
-  changes:
-  - message: The Lone Colossus will now spawn again occasionally.
-    type: Tweak
-  id: 406451
-  time: '2026-07-07T12:47:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5031
-- author: wonderfulnewworld
-  changes:
-  - message: The Cosmic Cult and Terror Spiders now call 8 minute evac shuttles instead of 5 and 10 minutes respectively.
-    type: Tweak
-  id: 406452
-  time: '2026-07-07T13:32:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5030
-- author: ku-mo
-  changes:
-  - message: Marking names in the character editor no longer spam localization warnings.
-    type: Fix
-  id: 406453
-  time: '2026-07-07T13:54:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5005
-- author: ku-mo
-  changes:
-  - message: Material storage eject buttons no longer spam localization warnings.
-    type: Fix
-  id: 406454
-  time: '2026-07-07T13:54:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5005
-- author: ku-mo
-  changes:
-  - message: Antag playtime requirements no longer spam localization warnings.
-    type: Fix
-  id: 406455
-  time: '2026-07-07T13:54:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5005
-- author: Rtasva
-  changes:
-  - message: 'Saltern: Added Theater.'
-    type: Add
-  id: 406456
-  time: '2026-07-07T18:24:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5012
-- author: Rtasva
-  changes:
-  - message: 'Saltern: Relocated NCT, IAA, and Disposals.'
-    type: Tweak
-  id: 406457
-  time: '2026-07-07T18:24:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5012
 - author: Rtasva
   changes:
   - message: 'Saltern: General mapping updates.'
@@ -2799,4 +2687,116 @@ Entries:
   id: 406841
   time: '2026-07-24T14:51:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5285
+- author: joshujo
+  changes:
+  - message: Edge firelocks to RCD.
+    type: Add
+  id: 406842
+  time: '2026-07-24T17:28:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5262
+- author: joshujo
+  changes:
+  - message: Post lights to RCD.
+    type: Add
+  id: 406843
+  time: '2026-07-24T17:28:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5262
+- author: CasaleBalthazar
+  changes:
+  - message: the molar gas mixer, a new type of gas mixer that respect the specified mix when mixing gases at different temperatures.
+    type: Add
+  id: 406844
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CasaleBalthazar
+  changes:
+  - message: renamed the gas mixer to volumetric gas mixer.
+    type: Tweak
+  id: 406845
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CasaleBalthazar
+  changes:
+  - message: updated the guidebook entry on gas mixing/filtering.
+    type: Tweak
+  id: 406846
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CrazyPhantom
+  changes:
+  - message: Ported Molar gas mixers.
+    type: Add
+  id: 406847
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: CrazyPhantom
+  changes:
+  - message: Added alt layers for molar gas mixers.
+    type: Add
+  id: 406848
+  time: '2026-07-24T17:53:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5240
+- author: redmushie
+  changes:
+  - message: Maximum atmospheric device output pressures have been reverted to their non-doubled levels.
+    type: Tweak
+  id: 406849
+  time: '2026-07-24T17:53:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5298
+- author: redmushie
+  changes:
+  - message: Subfloor gas tanks that can store 1000L!
+    type: Add
+  id: 406850
+  time: '2026-07-24T18:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5291
+- author: redmushie
+  changes:
+  - message: Gas storage sub-menu to RPD.
+    type: Add
+  id: 406851
+  time: '2026-07-24T18:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5291
+- author: redmushie
+  changes:
+  - message: Moved Connector Port to said RPD submenu.
+    type: Tweak
+  id: 406852
+  time: '2026-07-24T18:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5291
+- author: redmushie
+  changes:
+  - message: Subfloor gas tanks to said RPD submenu.
+    type: Add
+  id: 406853
+  time: '2026-07-24T18:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5291
+- author: OMEGA
+  changes:
+  - message: Solar panels can now be upgraded in-place by using the correct materials on them.
+    type: Add
+  id: 406854
+  time: '2026-07-24T18:51:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5247
+- author: Orhu
+  changes:
+  - message: Added Rt Hon. Flippers,  a pet for the law department.
+    type: Add
+  id: 406855
+  time: '2026-07-24T19:21:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5224
+- author: Orhu
+  changes:
+  - message: Penguin language.
+    type: Add
+  id: 406856
+  time: '2026-07-24T19:21:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5224
+- author: Conflee
+  changes:
+  - message: Fixed Prisoner appearing as a job in the job menu. Split Stir Stir into a new job. Cleaned up loc files. Prepped Prisoner role for use in Prison Colony.
+    type: Fix
+  id: 406857
+  time: '2026-07-24T19:21:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5243
 Order: -1
