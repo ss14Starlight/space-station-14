@@ -14,11 +14,12 @@ public sealed partial class PluoxPlasmaFire : IGasReactionEffect
         if (mixture.Temperature > 20f && mixture.GetMoles(Gas.HyperNoblium) >= 5f)
             return ReactionResult.NoReaction;
 ///Get ingredients
-		
+
 		var initialPluoxMoles = mixture.GetMoles(Gas.Pluoxium);
 		var initialPlasmaMoles = mixture.GetMoles(Gas.Plasma);
+        var temperature = mixture.Temperature;
 		
-///Check pluox flat concentration relative to fuel 
+///Check pluox flat concentration relative to fuel
 
 		var pluoxRatio = initialPluoxMoles / initialPlasmaMoles;		
 
@@ -45,14 +46,14 @@ public sealed partial class PluoxPlasmaFire : IGasReactionEffect
         var rate = (satrate + temprate);
 
         if (rate < 1f)
-            return ReactionResult.NoReaction; 
-				
+            return ReactionResult.NoReaction;     
+
 		mixture.AdjustMoles(Gas.Plasma, -rate);
 		mixture.AdjustMoles(Gas.Pluoxium, -rate);
 		mixture.AdjustMoles(Gas.Tritium, rate);
-			
+
 		var energyReleased = (Atmospherics.FirePlasmaEnergyReleased * rate);
-		
+
 ///While generic conversion interactions make sense to me, the exact mechanics of fire and fire visuals, do not.		
 
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);

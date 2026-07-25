@@ -14,13 +14,14 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
         if (mixture.Temperature > 20f && mixture.GetMoles(Gas.HyperNoblium) >= 5f)
             return ReactionResult.NoReaction;
 ///Get ingredients
-		
+
 		var initialPluoxMoles = mixture.GetMoles(Gas.Pluoxium);
-		var initialHydrogenMoles = mixture.GetMoles(Gas.Hydrogen);
-		
+		var initialTritiumMoles = mixture.GetMoles(Gas.Tritium);
+        var temperature = mixture.Temperature;
+
 ///Check pluox flat concentration relative to fuel
 
-		var pluoxRatio = initialPluoxMoles / initialHydrogenMoles;		
+		var pluoxRatio = initialPluoxMoles / initialTritiumMoles;		
 
 ///Too much pluox? Ignite! It's super oxygen and doesnt care about current temperature.
 
@@ -45,14 +46,14 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
         var rate = (satrate + temprate);
 
         if (rate < 1f)
-            return ReactionResult.NoReaction; 
+            return ReactionResult.NoReaction;     
 				
 		mixture.AdjustMoles(Gas.Hydrogen, -rate);
 		mixture.AdjustMoles(Gas.Pluoxium, -rate);
 		mixture.AdjustMoles(Gas.WaterVapor, rate * 0.5f);
 			
 		var energyReleased = (Atmospherics.FireHydrogenEnergyReleased * rate);
-		
+
 ///While generic conversion interactions make sense to me, the exact mechanics of fire and fire visuals, do not.		
 
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
