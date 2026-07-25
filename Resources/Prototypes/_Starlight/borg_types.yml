@@ -177,6 +177,7 @@
     tags:
     - Borg
     - Debrief
+    - HeadOfPersonnel
 
   # Visual
   inventoryTemplateId: borgTall
@@ -228,3 +229,4 @@
       tags:
         - Borg
         - BorgCargo
+        - Quartermaster
