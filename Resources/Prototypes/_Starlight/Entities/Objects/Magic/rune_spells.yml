@@ -45,7 +45,7 @@
       explosionType: Default
       totalIntensity: 20
       intensitySlope: 5
-      maxIntensity: 3
+      maxIntensity: 4
     - type: Sprite
       sprite: Structures/Magic/Cult/trap.rsi
       layers:

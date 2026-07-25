@@ -163,7 +163,7 @@
       coefficients:
         Blunt: 0.6
         Slash: 0.8
-        Piercing: 0.60
+        Piercing: 0.50
         Heat: 0.1
   - type: ClothingSpeedModifier
     walkModifier: 0.9
@@ -179,8 +179,8 @@
     - Hardsuit
     - WhitelistChameleon
   - type: PointLight
-    radius: 2
-    energy: 2.2
+    radius: 4
+    energy: 5
     color: "#DE3A3A"
   - type: RestrictByUserTag
     contains:
