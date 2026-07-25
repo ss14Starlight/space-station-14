@@ -317,9 +317,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             await serverGrain.AddUnban(banId, unban, project, server);
         }
 
-        var localBan = await _db.GetServerBanAsync(banId);
-        if (localBan != null)
-            await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
+        await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
     }
 
     public async Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
