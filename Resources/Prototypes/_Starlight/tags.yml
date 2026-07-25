@@ -162,10 +162,10 @@
   id: CluwneBeastWearable
 
 - type: Tag
-  id: CombatRemote # Tag: used on the RemoteSignallerCombat
+  id: CombatMech
 
 - type: Tag
-  id: CombatMech
+  id: CombatRemote # Tag: used on the RemoteSignallerCombat
 
 - type: Tag
   id: Compy
