@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Medbay's entrance is far easier to access now.
-    type: Tweak
-  id: 406488
-  time: '2026-07-08T14:36:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5041
-- author: Caws
-  changes:
   - message: (Starboard) Fixed the entire mail network.
     type: Fix
   id: 406489
@@ -2799,4 +2792,11 @@ Entries:
   id: 406887
   time: '2026-07-25T07:33:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5292
+- author: SevenShades
+  changes:
+  - message: Sprites for the Plumbing Smart Dispenser.
+    type: Add
+  id: 406888
+  time: '2026-07-25T07:33:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5301
 Order: -1
