@@ -27,7 +27,7 @@ using Content.Server.StationEvents.Components;
 namespace Content.Server._Starlight.GameTicking.Rules;
 
 /// <summary>
-/// Game rule that periodically sends spam advertisements via NanoChat.
+/// Game rule that sends spam advertisements via NanoChat.
 /// </summary>
 public sealed partial class NanoChatSpamRuleSystem : StationEventSystem<NanoChatSpamRuleComponent>
 {
