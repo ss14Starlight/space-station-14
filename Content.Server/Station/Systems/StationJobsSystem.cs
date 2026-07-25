@@ -318,8 +318,11 @@ public sealed partial class StationJobsSystem : EntitySystem
         if (!Resolve(station, ref stationJobs))
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
 
-        if (!stationJobs.JobList.Remove(jobPrototypeId))
+        if(!stationJobs.JobList.TryGetValue(jobPrototypeId, out var job))
             throw new ArgumentException("Job prototype was not present in the job list.");
+
+        if (job is not null) stationJobs.TotalJobs -= job.Value;
+        stationJobs.JobList.Remove(jobPrototypeId);
     }
 
     #endregion
