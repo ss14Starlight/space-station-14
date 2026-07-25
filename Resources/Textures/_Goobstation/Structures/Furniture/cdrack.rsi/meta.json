@@ -1,47 +1,59 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Jvne",
+    "copyright": "see sprite states",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "cd-10"
+            "name": "cd-10",
+            "copyright": "Jvne"
         },
         {
-            "name": "cd-9"
+            "name": "cd-9",
+            "copyright": "Jvne"
         },
         {
-            "name": "cd-8"
+            "name": "cd-8",
+            "copyright": "Jvne"
         },
         {
-            "name": "cd-7"
+            "name": "cd-7",
+            "copyright": "Jvne"
         },
         {
-            "name": "cd-6"
+            "name": "cd-6",
+            "copyright": "Jvne"
         },
         {
-            "name": "cd-5"
+            "name": "cd-5",
+            "copyright": "Jvne"
         },
         {
-            "name": "cd-4"
+            "name": "cd-4",
+            "copyright": "Jvne"
         },
         {
-            "name": "cd-3"
+            "name": "cd-3",
+            "copyright": "Jvne"
         },
         {
-            "name": "cd-2"
+            "name": "cd-2",
+            "copyright": "Jvne"
         },
         {
-            "name": "cd-0"
+            "name": "cd-0",
+            "copyright": "Jvne"
         },
         {
-            "name": "cd-1"
+            "name": "cd-1",
+            "copyright": "Jvne"
         },
         {
-            "name": "base"
+            "name": "base",
+            "copyright": "Jvne"
         }
     ]
 }

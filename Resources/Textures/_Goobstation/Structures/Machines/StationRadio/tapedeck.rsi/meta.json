@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "taken from goonstation at commit: https://github.com/goonstation/goonstation/blob/master/icons/obj/radiostation.dmi, resprited and made 4-directional by rouden_ (discord), unlit created by Huaqas (GitHub)",
+    "copyright": "see sprite states",
     "size": {
         "x": 32,
         "y": 32
@@ -9,10 +9,12 @@
     "states": [
         {
             "name": "icon",
+            "copyright": "taken from goonstation at commit: https://github.com/goonstation/goonstation/blob/master/icons/obj/radiostation.dmi, resprited and made 4-directional by rouden_ (discord)",
             "directions": 4
         },
         {
             "name": "unlit",
+            "copyright": "unlit created by Huaqas (GitHub)",
             "directions": 4
         }
     ]
