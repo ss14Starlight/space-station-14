@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Fixed ERROR when holding Goliath Steaks.
-    type: Fix
-  id: 406492
-  time: '2026-07-08T20:11:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5046
 - author: Mack
   changes:
   - message: Fixed issues with usernames and ghost themes not aligning.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406891
   time: '2026-07-25T12:57:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5319
+- author: CrazyPhantom, redmushie
+  changes:
+  - message: Fixed the molar gas mixer not working.
+    type: Fix
+  id: 406892
+  time: '2026-07-25T13:19:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5317
 Order: -1
