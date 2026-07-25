@@ -89,5 +89,19 @@
         enabled:
           True: { state: gasMixerFOn }
           False: { state: gasMixerF }
+  - type: NodeContainer # Starlight START: Fix flipped variant having incorrect outlets
+    nodes:
+      inlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+      filter:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: West
+      outlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: North # Starlight END
   - type: Construction
     node: molarmixerflipped
