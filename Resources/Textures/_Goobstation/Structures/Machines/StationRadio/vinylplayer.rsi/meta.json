@@ -9,19 +9,19 @@
     "states": [
         {
             "name": "icon",
-            "copyright": "taken from goonstation at commit: https://github.com/goonstation/goonstation/blob/master/icons/obj/radiostation.dmi, edited to be tabletop by rouden_ (discord)",
+            "copyright": "taken from goonstation at commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e, edited to be tabletop by rouden_ (discord)"
         },
         {
             "name": "disk_installed",
-            "copyright": "disk_installed created by rouden_ (discord)",
+            "copyright": "disk_installed created by rouden_ (discord)"
         },
         {
             "name": "unlit",
-            "copyright": "unlit created by rouden_ (discord)",
+            "copyright": "unlit created by rouden_ (discord)"
         },
         {
             "name": "panel",
-            "copyright": "panel created by by rouden_ (discord)",
+            "copyright": "panel created by rouden_ (discord)"
         }
     ]
 }
