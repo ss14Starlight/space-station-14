@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Ported updated security camera sprites / animations from Upstream.
-    type: Tweak
-  id: 406491
-  time: '2026-07-08T16:11:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5019
 - author: Conflee
   changes:
   - message: Fixed ERROR when holding Goliath Steaks.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406890
   time: '2026-07-25T12:33:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5315
+- author: Rinary
+  changes:
+  - message: Fixed null link unbans.
+    type: Fix
+  id: 406891
+  time: '2026-07-25T12:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5319
 Order: -1
