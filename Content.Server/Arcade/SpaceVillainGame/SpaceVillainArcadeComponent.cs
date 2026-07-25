@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Arcade.SpaceVillain;
 
 [RegisterComponent]
-public sealed partial class SpaceVillainArcadeComponent : Component
+public sealed partial class SpaceVillainArcadeComponent : Component // Starlight-edit
 {
     /// <summary>
     /// Unused flag that can be hacked via wires.

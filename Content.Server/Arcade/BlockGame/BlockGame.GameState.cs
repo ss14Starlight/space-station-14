@@ -7,13 +7,13 @@ namespace Content.Server.Arcade.BlockGame;
 
 public sealed partial class BlockGame
 {
-    // Starlight-start
+    #region Starlight
     /// <summary>Playfield width in cells (0 .. Width-1).</summary>
     public const int PlayfieldWidth = 10;
 
     /// <summary>Playfield height in cells (0 .. Height-1).</summary>
     public const int PlayfieldHeight = 20;
-    // Starlight-end
+    #endregion
 
     /// <summary>
     /// The base amount of time between piece steps while softdropping.
@@ -160,12 +160,12 @@ public sealed partial class BlockGame
     }
     private int _internalPoints = 0;
 
-    // Starlight-start
+    #region Starlight
     /// <summary>
     /// Where the current game has placed amongst the leaderboard.
     /// </summary>
     private HighScorePlacement? _highScorePlacement = null;
-    // Starlight-end
+    #endregion
 
     /// <summary>
     /// Gets a random piece from the pool of pickable pieces. (<see cref="_blockGamePiecesBuffer"/>)

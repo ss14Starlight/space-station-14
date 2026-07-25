@@ -15,21 +15,21 @@ using Content.Shared._Starlight.Arcade.Systems;
 
 namespace Content.Server.Arcade.SpaceVillain;
 
-public sealed partial class SpaceVillainArcadeSystem : SharedSpaceVillainArcadeSystem
+public sealed partial class SpaceVillainArcadeSystem : SharedSpaceVillainArcadeSystem // Starlight-edit
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SpeakOnUIClosedSystem _speakOnUIClosed = default!;
-    [Dependency] private readonly ArcadeSystem _arcade = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SpeakOnUIClosedSystem _speakOnUIClosed = default!;
+    [Dependency] private ArcadeSystem _arcade = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<SpaceVillainArcadeComponent, AfterActivatableUIOpenEvent>(OnAfterUIOpenSV);
-        SubscribeLocalEvent<SpaceVillainArcadeComponent, SpaceVillainArcadePlayerActionMessage>(OnSVPlayerAction);
+        SubscribeLocalEvent<SpaceVillainArcadeComponent, SpaceVillainArcadePlayerActionMessage>(OnSVPlayerAction); // Starlight-edit
         SubscribeLocalEvent<SpaceVillainArcadeComponent, PowerChangedEvent>(OnSVillainPower);
     }
 
@@ -63,6 +63,7 @@ public sealed partial class SpaceVillainArcadeSystem : SharedSpaceVillainArcadeS
 
         switch (msg.PlayerAction)
         {
+            // Starlight-start
             case SpaceVillainPlayerAction.Attack:
             case SpaceVillainPlayerAction.Heal:
             case SpaceVillainPlayerAction.Recharge:
@@ -80,12 +81,13 @@ public sealed partial class SpaceVillainArcadeSystem : SharedSpaceVillainArcadeS
             case SpaceVillainPlayerAction.RequestData:
                 _uiSystem.ServerSendUiMessage(uid, SpaceVillainArcadeUiKey.Key, component.Game.GenerateMetaDataMessage());
                 break;
+            // Starlight-end
         }
     }
 
     private void OnAfterUIOpenSV(EntityUid uid, SpaceVillainArcadeComponent component, AfterActivatableUIOpenEvent args)
     {
-        component.Game ??= new(component, this, _arcade);
+        component.Game ??= new(component, this, _arcade); // Starlight-edit
     }
 
     private void OnSVillainPower(EntityUid uid, SpaceVillainArcadeComponent component, ref PowerChangedEvent args)
@@ -93,6 +95,6 @@ public sealed partial class SpaceVillainArcadeSystem : SharedSpaceVillainArcadeS
         if (TryComp<ApcPowerReceiverComponent>(uid, out var power) && power.Powered)
             return;
 
-        _uiSystem.CloseUi(uid, SpaceVillainArcadeUiKey.Key);
+        _uiSystem.CloseUi(uid, SpaceVillainArcadeUiKey.Key); // Starlight-edit
     }
 }

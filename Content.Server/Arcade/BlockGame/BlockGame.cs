@@ -8,11 +8,9 @@ namespace Content.Server.Arcade.BlockGame;
 
 public sealed partial class BlockGame
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    // Starlight-start
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
     private readonly ArcadeSystem _arcadeSystem;
-    // Starlight-end
     private readonly UserInterfaceSystem _uiSystem;
 
     /// <summary>
@@ -53,9 +51,7 @@ public sealed partial class BlockGame
     public BlockGame(EntityUid owner)
     {
         IoCManager.InjectDependencies(this);
-        // Starlight-start
         _arcadeSystem = _entityManager.System<ArcadeSystem>();
-        // Starlight-end
         _uiSystem = _entityManager.System<UserInterfaceSystem>();
 
         _owner = owner;
@@ -69,7 +65,7 @@ public sealed partial class BlockGame
     /// </summary>
     public void StartGame()
     {
-        SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Game));
+        SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Game)); // Starlight-edit
 
         FullUpdate();
 
@@ -78,12 +74,10 @@ public sealed partial class BlockGame
         _gameOver = false;
     }
 
-    // Starlight-start
-    public void SetPlacement(HighScorePlacement placement)
-    {
-        _highScorePlacement = placement;
-    }
-    // Starlight-end
+    #region Starlight
+    public void SetPlacement(HighScorePlacement placement) 
+        => _highScorePlacement = placement;
+    #endregion
 
     /// <summary>
     /// Handles ending the game and updating the high scores.
@@ -93,15 +87,15 @@ public sealed partial class BlockGame
         _running = false;
         _gameOver = true;
 
+        // Starlight-start
         if (_entityManager.TryGetComponent<BlockGameArcadeComponent>(_owner, out var cabinet))
         {
-            // Starlight-start
             _arcadeSystem.LoseGame(cabinet.Player, _owner, Points);
             SendHighscoreUpdate();
-            // Starlight-end
         }
 
         SendMessage(new BlockGameGameOverScreenMessage(Points, _highScorePlacement?.LocalPlacement, _highScorePlacement?.GlobalPlacement));
+        // Starlight-end
     }
 
     /// <summary>
@@ -258,7 +252,7 @@ public sealed partial class BlockGame
         NextPiece = GetRandomBlockGamePiece(_random);
         _holdBlock = false;
 
-        SendMessage(new BlockGameVisualUpdateMessage(NextPiece.BlocksForPreview(), BlockGameVisualType.NextBlock));
+        SendMessage(new BlockGameVisualUpdateMessage(NextPiece.BlocksForPreview(), BlockGameVisualType.NextBlock)); // Starlight-edit
     }
 
     /// <summary>
