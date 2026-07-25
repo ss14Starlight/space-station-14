@@ -7,7 +7,7 @@
   effects:
     - !type:AddCompsEffect
       components:
-        - type: Unclonable
+        - type: Uncloneable
 
 - type: trait
   id: Pacifist
