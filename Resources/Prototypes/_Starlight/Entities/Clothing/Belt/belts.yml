@@ -400,3 +400,23 @@
     - type: Clothing
       sprite: _Starlight/Clothing/Belt/retro_officer_belt.rsi
     - type: Appearance
+
+- type: entity
+  parent: [ClothingBeltStorageBase, BaseSecurityContraband]
+  id: ClothingPouchPeacekeeper
+  name: less lethal grenade pouch
+  description: Tactical storage for less lethal grenades.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Pouch/grenade.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Pouch/grenade.rsi
+    slots:
+    - NECK
+  - type: Storage
+    grid:
+    - 0,0,3,1
+    whitelist:
+      tags:
+        - GrenadeLessLethal
+  - type: Appearance

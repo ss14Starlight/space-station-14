@@ -12,11 +12,6 @@
           steps:
             - material: MetalRod
               amount: 1
-            - tag: PowerCellSmall
-              name: construction-graph-tag-power-cell-small
-              icon:
-                sprite: Objects/Power/power_cells.rsi
-                state: small
             - tag: Handcuffs
               icon:
                 sprite: Objects/Misc/cablecuffs.rsi
