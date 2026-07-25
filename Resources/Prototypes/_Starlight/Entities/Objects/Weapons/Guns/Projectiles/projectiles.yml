@@ -130,6 +130,25 @@
         Heat: 10
 
 - type: entity
+  name: representative laser bolt
+  id: BulletLaserRepresentativeSL
+  parent: BaseBulletStarlight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectHeavyLaser
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 15
+
+- type: entity
   name : disabler bolt
   id: BulletEnergySMGDisabler
   parent: BulletEnergyTurretBase

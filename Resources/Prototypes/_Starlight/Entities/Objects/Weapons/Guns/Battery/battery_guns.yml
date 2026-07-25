@@ -201,7 +201,7 @@
       fireCost: 100
       magState: disable
       visualState: disable-unshaded
-    - proto: RedLaserBeam
+    - proto: BulletLaserRepresentativeSL
       fireCost: 200
       magState: kill
       visualState: kill-unshaded
