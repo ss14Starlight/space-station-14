@@ -74,6 +74,7 @@
     castShadows: false
     enabled: false
   - type: ActiveInputMover # Starlight
+  - type: Speech # Starlight, only adds speech bubble while typing
 
 # proto for player ghosts specifically
 - type: entity

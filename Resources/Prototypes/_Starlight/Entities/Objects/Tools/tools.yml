@@ -956,7 +956,8 @@
     - DualPortVent
     - VentGas
     - VentPassive
-    - MixerGas
+    - MixerGasVolumetric
+    - MixerGasMolar
     - Radiator
     - RadiatorBend
     - SignalValve
@@ -968,6 +969,7 @@
     - PressureRegulator
     - PassiveGate
     - PipeSensor
+    - SubfloorGasTank
     - Deconstruct
     - AirAlarm
     - AirSensor
