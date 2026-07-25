@@ -37,6 +37,7 @@
       tags:
         - Borg
         - BorgResearch
+        - ResearchDirector
   # Starlight END
 
 # Engineering borg
@@ -79,6 +80,7 @@
     tags:
       - Borg
       - BorgEngineering
+      - ChiefEngineer
   # Starlight end
 
   # Visual
@@ -146,6 +148,7 @@
     tags:
       - Borg
       - BorgCargo
+      - Quartermaster
   # Starlight-end
 
 
@@ -233,7 +236,8 @@
       - CyborgAllAccess
     tags:
       - Borg
-      - BorgMedical # Starlight END
+      - BorgMedical
+      - ChiefMedicalOfficer # Starlight END
 
   # Visual
   inventoryTemplateId: borgDutch
