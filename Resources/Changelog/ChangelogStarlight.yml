@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Fland) Moved utility lockers (tool lockers, welding supplies, etc.) in Engineering to the storage room west of their locker room.
-    type: Tweak
-  id: 406506
-  time: '2026-07-10T10:54:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5048
-- author: Caws
-  changes:
   - message: (Fland) Improved TEG's roundstart piping.
     type: Tweak
   id: 406507
@@ -2799,4 +2792,11 @@ Entries:
   id: 406905
   time: '2026-07-25T20:25:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5320
+- author: ScarletLightweaver
+  changes:
+  - message: re-added the un clonable trait!.
+    type: Add
+  id: 406906
+  time: '2026-07-25T21:21:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5313
 Order: -1
