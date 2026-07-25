@@ -161,7 +161,7 @@ public sealed partial class SharedVentCrawlSystem
 
         tube.Connected = false;
 
-        foreach (var holder in tube.ContainedHolders)
+        foreach (var holder in tube.ContainedHolders.ToArray())
             ExitVentCrawl(holder);
     }
 

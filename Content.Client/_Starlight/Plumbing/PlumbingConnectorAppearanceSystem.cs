@@ -4,6 +4,7 @@ using Content.Shared._Starlight.Plumbing.Components;
 using Content.Client.SubFloor;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared.SubFloor;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 
@@ -121,6 +122,9 @@ public sealed partial class PlumbingConnectorAppearanceSystem : EntitySystem
         if (!_appearance.TryGetData<bool>(uid, PlumbingVisuals.CoveredByFloor, out var coveredByFloor, args.Component))
             coveredByFloor = false;
 
+        if (!_appearance.TryGetData<bool>(uid, SubFloorVisuals.ScannerRevealed, out var scannerRevealed, args.Component))
+            scannerRevealed = false;
+
         var nodeDirections = (PipeDirection)nodeDirectionsInt;
         var connectedDirections = (PipeDirection)connectedDirectionsInt;
         var inletDirections = (PipeDirection)inletDirectionsInt;
@@ -152,7 +156,7 @@ public sealed partial class PlumbingConnectorAppearanceSystem : EntitySystem
             if (_sprite.LayerMapTryGet((uid, args.Sprite), layerName, out var layerKey2, false))
             {
                 var layer = args.Sprite[layerKey2];
-                layer.Visible = hasNode && !coveredByFloor;
+                layer.Visible = hasNode && (!coveredByFloor || scannerRevealed);
 
                 if (layer.Visible)
                 {
@@ -186,6 +190,9 @@ public sealed partial class PlumbingConnectorAppearanceSystem : EntitySystem
         if (!_appearance.TryGetData<bool>(uid, PlumbingVisuals.CoveredByFloor, out var coveredByFloor, args.Component))
             coveredByFloor = false;
 
+        if (!_appearance.TryGetData<bool>(uid, SubFloorVisuals.ScannerRevealed, out var scannerRevealed, args.Component))
+            scannerRevealed = false;
+
         if (!_xformQuery.TryGetComponent(uid, out var xform))
             return;
 
@@ -200,7 +207,7 @@ public sealed partial class PlumbingConnectorAppearanceSystem : EntitySystem
             var layer = sprite[layerKey];
             var slotMask = ReadPackedDirectionNibble(localPacked, direction);
             var isConnected = (slotMask & (1 << slotIndex)) != 0;
-            layer.Visible = isConnected && !coveredByFloor;
+            layer.Visible = isConnected && (!coveredByFloor || scannerRevealed);
             if (!layer.Visible)
                 continue;
 
