@@ -1,6 +1,5 @@
-cp14-ui-options-main-graphics-wave-shader = Wave shader
-
-cp14-ui-options-postprocess = Cosmetic Post-processing
+# Starlight - Cosmetic Post-processing -> Additive lighting
+cp14-ui-options-postprocess = Additive lighting
 cp14-ui-options-postprocess-tooltip =
     When enabled, cosmetic post-processing effects such as
     additive lighting will be present. This does not control
