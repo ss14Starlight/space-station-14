@@ -105,12 +105,3 @@
   category: Medium
   group: Civilian
   shuttlePath: /Maps/_Starlight/Shuttles/Bumblebee.yml
-
-- type: vessel
-  id: Inquisitor
-  name: NTS "Little Brother" Inquisitor
-  description: A small detective shuttle built for a classic duo of crime-fighting sleuths.
-  price: 30000
-  category: Small
-  group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/Inquisitor.yml
