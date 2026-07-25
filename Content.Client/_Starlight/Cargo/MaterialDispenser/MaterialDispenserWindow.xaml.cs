@@ -76,6 +76,8 @@ public sealed partial class MaterialDispenserWindow : FancyWindow
             control.OnAmountButton += (s, i) => OnAmountButton?.Invoke(s, i, false);
             OutputCrateInfo.AddChild(control);
         }
+
+        NoMatsInCrate.Visible = OutputCrateInfo.ChildCount == 0;
         PopulateBuffer();
 
     }
@@ -114,5 +116,6 @@ public sealed partial class MaterialDispenserWindow : FancyWindow
             control.OnAmountButton += (s, i) => OnAmountButton?.Invoke(s, i, true);
             BufferInfo.AddChild(control);
         }
+        NoMats.Visible = BufferInfo.ChildCount == 0;
     }
 }
