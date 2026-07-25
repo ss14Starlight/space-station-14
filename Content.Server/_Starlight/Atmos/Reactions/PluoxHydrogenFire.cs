@@ -38,9 +38,9 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
 
 ///Can also ignite from very high temperatures.
 
-		if (temperature > 1500f)
+		if (temperature > 5500f)
 		{
-			temprate = (temperature/1500f);
+			temprate = (temperature/5500f);
 		}
 
         var rate = (satrate + temprate);
