@@ -7,6 +7,14 @@
   allowedDepartments: [Medical] # Starlight
   flavor: bitter
   color: "#b4dae0"
+  # Starlight start
+  plantMetabolism:
+    - !type:PlantAdjustToxins
+      amount: 7
+    - !type:PlantAdjustHealth
+      amount: 5
+    - !type:PlantDiethylamine {}
+  # Starlight end
   metabolisms:
     Medicine:
       metabolismRate: 0.2
