@@ -2,6 +2,7 @@
 using Content.Shared._Starlight.Cargo.MaterialDispenser;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Chemistry;
+using Content.Shared.Materials;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Cargo.Components;
@@ -25,5 +26,9 @@ public sealed partial class MaterialDispenserComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float RewardMultiplier = 0.1f;
+
+    [DataField] public ProtoId<MaterialPrototype> CrateMaterial = "Steel";
+
+    [DataField] public int CrateMaterialAmount = 5;
 
 }

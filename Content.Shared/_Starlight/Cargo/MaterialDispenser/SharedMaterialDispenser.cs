@@ -14,6 +14,7 @@ namespace Content.Shared._Starlight.Cargo.MaterialDispenser
         Key
     }
 
+    [Serializable, NetSerializable]
     public enum MaterialDispenserMode
     {
         Transfer,

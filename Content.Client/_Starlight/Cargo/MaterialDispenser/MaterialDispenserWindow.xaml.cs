@@ -91,17 +91,15 @@ public sealed partial class MaterialDispenserWindow : FancyWindow
 
     private void PopulateDepartmentSelector()
     {
-        if (_entityManager.TryGetComponent<TransformComponent>(_owner, out var xform))
+        var stationEntity = _stationSystem.GetOwningStation(_owner);
+        if (stationEntity == null) return;
+        var accounts = _cargoSystem.GetAccounts((Entity<StationBankAccountComponent?>)stationEntity);
+        var i = 0;
+        foreach (var account in accounts)
         {
-            var stationEntity = _stationSystem.GetOwningStation(_owner);
-            var accounts = _cargoSystem.GetAccounts((Entity<StationBankAccountComponent?>)stationEntity!);
-            var i = 0;
-            foreach (var account in accounts)
-            {
-                DepartmentSelector.AddItem(account.Key.Id, i);
-                _departmentOptions[i] = account.Key.Id;
-                i++;
-            }
+            DepartmentSelector.AddItem(account.Key.Id, i);
+            _departmentOptions[i] = account.Key.Id;
+            i++;
         }
     }
 

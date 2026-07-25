@@ -7,6 +7,7 @@ using Content.Server.Station.Systems;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._Starlight.Cargo.MaterialDispenser;
 using Content.Shared._Starlight.Cargo.TamperSeal.Components;
+using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Containers;
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.EntitySelectors;
@@ -38,8 +39,7 @@ public sealed class MaterialDispenserSystem : EntitySystem
     [Dependency] private PricingSystem _pricingSystem = default!;
     [Dependency] private StationSystem _stationSystem = default!;
 
-    private static readonly ProtoId<MaterialPrototype> _crateMaterial = "Steel";
-    private static readonly int _crateMaterialAmount = 5;
+
     /// <inheritdoc/>
     public override void Initialize(){
         base.Initialize();
@@ -58,21 +58,24 @@ public sealed class MaterialDispenserSystem : EntitySystem
 
     private void OnCrateEjectMessage(Entity<MaterialDispenserComponent> ent, ref MaterialDispenserEjectCrate args)
     {
-        var materialProto = _prototypeManager.Index(_crateMaterial);
+        var materialProto = _prototypeManager.Index(ent.Comp.CrateMaterial);
+        var crateMaterial = materialProto.ID;
+        var crateMaterialAmount = ent.Comp.CrateMaterialAmount;
         var sheetVolume = _materialStorageSystem.GetSheetVolume(materialProto);
-
-        if (_materialStorageSystem.GetMaterialAmount(ent, _crateMaterial) < _crateMaterialAmount * sheetVolume)
-        {
-            return;
-        }
-
-        _materialStorageSystem.TryChangeMaterialAmount(ent, _crateMaterial, -_crateMaterialAmount * sheetVolume);
-
         var stationId = _stationSystem.GetOwningStation(ent.Owner);
         if (stationId==null)
         {
             return;
         }
+
+        if (_materialStorageSystem.GetMaterialAmount(ent, crateMaterial) < crateMaterialAmount * sheetVolume)
+        {
+            return;
+        }
+
+        _materialStorageSystem.TryChangeMaterialAmount(ent, crateMaterial, -crateMaterialAmount * sheetVolume);
+
+
         var item = Spawn(ent.Comp.CrateId, new EntityCoordinates(ent.Owner, 0, 0));
 
         foreach (var material in ent.Comp.Buffer)
@@ -85,27 +88,28 @@ public sealed class MaterialDispenserSystem : EntitySystem
         ent.Comp.Buffer.Clear();
 
         _transformSystem.Unanchor(item);
-        if (!TryComp<TamperSealableComponent>(item, out var tamperSealable))
-            return;
-        var recipient = _prototypeManager.Index(ent.Comp.Account);
-        var seal = EnsureComp<TamperSealComponent>(item);
-        seal.Recipient = ent.Comp.Account;
-        seal.RecipientName = recipient.TamperSealName;
-        seal.RecipientExamineColor = recipient.Color;
-        seal.Color = recipient.TamperSealColor;
-        seal.Accesses = new List<TamperSealAccessPattern>(recipient.TamperSealAccesses);
-        seal.DestroyToolQualities = new HashSet<ProtoId<ToolQualityPrototype>>(tamperSealable.DestroyToolQualities);
-        var value = EnsureComp<TamperSealValueComponent>(item);
-        value.StationId = (EntityUid)stationId;
-        var price = _pricingSystem.GetPrice(item);
-        value.Value = (int)price;
-        value.Reward = (int) Math.Floor(ent.Comp.RewardMultiplier * price); // Rewards rounded down.
-        value.Penalty = 0; // Penalties dont apply since miners provided materials.
-        value.Refund = 0; // Refunds dont apply since miners provided materials.
+        if (TryComp<TamperSealableComponent>(item, out var tamperSealable))
+        {
+            var recipient = _prototypeManager.Index(ent.Comp.Account);
+            var seal = EnsureComp<TamperSealComponent>(item);
+            seal.Recipient = ent.Comp.Account;
+            seal.RecipientName = recipient.TamperSealName;
+            seal.RecipientExamineColor = recipient.Color;
+            seal.Color = recipient.TamperSealColor;
+            seal.Accesses = new List<TamperSealAccessPattern>(recipient.TamperSealAccesses);
+            seal.DestroyToolQualities = new HashSet<ProtoId<ToolQualityPrototype>>(tamperSealable.DestroyToolQualities);
+            var value = EnsureComp<TamperSealValueComponent>(item);
+            value.StationId = (EntityUid)stationId;
+            var price = _pricingSystem.GetPrice(item);
+            value.Value = (int)price;
+            value.Reward = (int)Math.Floor(ent.Comp.RewardMultiplier * price); // Rewards rounded down.
+            value.Penalty = 0; // Penalties dont apply since miners provided materials.
+            value.Refund = 0; // Refunds dont apply since miners provided materials.
 
-        // Attach an integrity component. This is used by the integrity system to detect repeat tampering.
-        var integrity = EnsureComp<TamperSealIntegrityBeaconComponent>(item);
-        integrity.StationId = (EntityUid)stationId;
+            // Attach an integrity component. This is used by the integrity system to detect repeat tampering.
+            var integrity = EnsureComp<TamperSealIntegrityBeaconComponent>(item);
+            integrity.StationId = (EntityUid)stationId;
+        }
 
         DirtyEntity(item);
 
@@ -120,7 +124,8 @@ public sealed class MaterialDispenserSystem : EntitySystem
 
     private void OnAmountButtonMessage(Entity<MaterialDispenserComponent> ent, ref MaterialDispenserAmountButton args)
     {
-        var materialProto = _prototypeManager.Index<MaterialPrototype>(args.Material);
+        if (args.Amount <= 0 || !_prototypeManager.TryIndex<MaterialPrototype>(args.Material, out var materialProto))
+            return;
         var sheetVolume = _materialStorageSystem.GetSheetVolume(materialProto);
         var amount = args.Amount * sheetVolume;
         if (ent.Comp.Mode == MaterialDispenserMode.Transfer)
@@ -129,8 +134,9 @@ public sealed class MaterialDispenserSystem : EntitySystem
             {
                 if (ent.Comp.Buffer.ContainsKey(args.Material) && ent.Comp.Buffer[args.Material] >= amount)
                 {
+                    if(!_materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, amount)) return;
                     ent.Comp.Buffer[args.Material] -= amount;
-                    _materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, amount);
+
 
                     if (ent.Comp.Buffer[args.Material] <= 0) ent.Comp.Buffer.Remove(args.Material);
                 }
@@ -150,10 +156,10 @@ public sealed class MaterialDispenserSystem : EntitySystem
                 if (ent.Comp.Buffer.ContainsKey(args.Material) && ent.Comp.Buffer[args.Material] >= amount)
                 {
                     ent.Comp.Buffer[args.Material] -= amount;
-                    var stored = _materialStorageSystem.GetMaterialAmount(ent, args.Material);
-                    _materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, amount);
+                    if (!_materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, amount)) return;
+
+                    if (ent.Comp.Buffer[args.Material] <= 0) ent.Comp.Buffer.Remove(args.Material);
                 }
-                if (ent.Comp.Buffer[args.Material] <= 0) ent.Comp.Buffer.Remove(args.Material);
             }
             _materialStorageSystem.EjectMaterial(ent.Owner, args.Material, amount);
         }
@@ -163,6 +169,8 @@ public sealed class MaterialDispenserSystem : EntitySystem
 
     private void OnDepartmentSelectMessage(Entity<MaterialDispenserComponent> ent, ref MaterialDispenserDepartmentSelected args)
     {
+        if (!_prototypeManager.TryIndex<CargoAccountPrototype>(args.Department, out _))
+            return;
         ent.Comp.Account = args.Department;
         UpdateUiState(ent);
     }
