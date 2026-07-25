@@ -75,7 +75,7 @@ public sealed partial class BlockGame
     }
 
     #region Starlight
-    public void SetPlacement(HighScorePlacement placement) 
+    public void SetPlacement(HighScorePlacement placement)
         => _highScorePlacement = placement;
     #endregion
 
