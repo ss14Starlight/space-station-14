@@ -451,13 +451,19 @@
   description: Pulls in all reagents from its inlets and stores up to 200u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power.
   components:
   - type: Sprite
-    sprite: Structures/Machines/smartfridge.rsi
+    sprite: _Starlight/Structures/Machines/smart_dispenser.rsi
+    noRot: true
     layers:
-    - state: smartfridge
-      map: ["enum.StorageVisualLayers.Base", "enum.SubfloorLayers.FirstLayer"]
-    - state: smartfridge_door
-      map: ["enum.StorageVisualLayers.Door", "enum.SubfloorLayers.SecondLayer"]
+    - state: dispenser
+    - state: dispenser-unshaded
       shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
   - type: CollideOnAnchor
     enable: true
   - type: SubFloorHide
