@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "State based copyright)",
+    "copyright": "briochebea(discord)",
     "size":
     {
         "x": 32,
@@ -10,22 +10,18 @@
     "states":
     [
         {
-            "name": "icon",
-            "copyright": "briochebea(discord)"
+            "name": "icon"
         },
         {
             "name": "inhand-left",
-            "copyright": "briochebea(discord)",
             "directions": 4
         },
         {
             "name": "inhand-right",
-            "copyright": "briochebea(discord)",
             "directions": 4
         },
         {
             "name": "equipped-HELMET",
-            "copyright": "briochebea(discord)",
             "directions": 4
         }
     ]
