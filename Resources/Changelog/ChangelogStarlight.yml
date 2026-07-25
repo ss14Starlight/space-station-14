@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Fland) Added some clutter to an empty room east of Cargo.
-    type: Add
-  id: 406503
-  time: '2026-07-10T10:54:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5048
-- author: Caws
-  changes:
   - message: (Fland) Replaced most of the manually placed guns and equipment in Armory with gun safes.
     type: Tweak
   id: 406504
@@ -2799,4 +2792,11 @@ Entries:
   id: 406902
   time: '2026-07-25T18:21:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5225
+- author: MetalSage, TheShuEd
+  changes:
+  - message: Added a new graphics option, additive lighting.
+    type: Add
+  id: 406903
+  time: '2026-07-25T18:21:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5314
 Order: -1
