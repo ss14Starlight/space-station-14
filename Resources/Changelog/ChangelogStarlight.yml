@@ -1,25 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Starboard) Fixed a bunch of issues in North Maints where if you sneezed on it it'll space itself.
-    type: Fix
-  id: 406490
-  time: '2026-07-08T14:36:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5041
-- author: Caws
-  changes:
-  - message: Ported updated security camera sprites / animations from Upstream.
-    type: Tweak
-  id: 406491
-  time: '2026-07-08T16:11:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5019
-- author: Conflee
-  changes:
-  - message: Fixed ERROR when holding Goliath Steaks.
-    type: Fix
-  id: 406492
-  time: '2026-07-08T20:11:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5046
 - author: Mack
   changes:
   - message: Fixed issues with usernames and ghost themes not aligning.
@@ -2799,4 +2778,25 @@ Entries:
   id: 406889
   time: '2026-07-25T07:58:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5302
+- author: redmushie
+  changes:
+  - message: Fixed RPD submenu icon being an error.
+    type: Fix
+  id: 406890
+  time: '2026-07-25T12:33:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5315
+- author: Rinary
+  changes:
+  - message: Fixed null link unbans.
+    type: Fix
+  id: 406891
+  time: '2026-07-25T12:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5319
+- author: CrazyPhantom, redmushie
+  changes:
+  - message: Fixed the molar gas mixer not working.
+    type: Fix
+  id: 406892
+  time: '2026-07-25T13:19:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5317
 Order: -1
