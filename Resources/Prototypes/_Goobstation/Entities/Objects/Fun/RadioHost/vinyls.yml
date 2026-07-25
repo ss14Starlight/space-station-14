@@ -1147,7 +1147,7 @@
   - type: Sprite
     state: default
     layers:
-    - state: default
+    - state: forgotten-vinyl-disc
     - state: label
       color: black
   - type: Vinyl
