@@ -6,18 +6,39 @@
     },
     "license": "CC-BY-SA-3.0",
     "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6",
-    "states":[
-        {
-            "name":"icon"
-        },
-        {
-            "name": "burn",
-            "delays": [
-                [
-                    0.5,
-                    0.5
-                ]
-            ]
-      }
-    ]
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "icon_red"
+    },
+    {
+      "name": "icon_blue"
+    },
+    {
+      "name": "icon_green"
+    },
+    {
+      "name": "icon_brown"
+    },
+    {
+      "name": "icon_orange"
+    },
+    {
+      "name": "icon_yellow"
+    },
+    {
+      "name": "icon_purple"
+    },
+    {
+      "name": "burn",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    }
+  ]
 }

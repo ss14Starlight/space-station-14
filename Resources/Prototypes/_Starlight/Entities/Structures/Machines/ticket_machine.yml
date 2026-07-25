@@ -69,9 +69,135 @@
         - LabellerRefillPaper
 
 - type: entity
+  id: TicketMachineFilledRed
+  parent: TicketMachine
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      TicketMachinePaper:
+        - LabellerRefillPaper
+
+- type: entity
+  id: TicketMachineFilledBlue
+  parent: TicketMachine
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      TicketMachinePaper:
+        - LabellerRefillPaper
+
+- type: entity
+  id: TicketMachineFilledGreen
+  parent: TicketMachine
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      TicketMachinePaper:
+        - LabellerRefillPaper
+
+- type: entity
+  id: TicketMachineFilledBrown
+  parent: TicketMachine
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      TicketMachinePaper:
+        - LabellerRefillPaper
+
+- type: entity
+  id: TicketMachineFilledOrange
+  parent: TicketMachine
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      TicketMachinePaper:
+        - LabellerRefillPaper
+
+- type: entity
+  id: TicketMachineFilledYellow
+  parent: TicketMachine
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      TicketMachinePaper:
+        - LabellerRefillPaper
+
+- type: entity
+  id: TicketMachineFilledPurple
+  parent: TicketMachine
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      TicketMachinePaper:
+        - LabellerRefillPaper
+
+- type: entity
   id: TicketMachineHOP
   parent: TicketMachineFilled
   suffix: HOP, Filled
   components:
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
+
+- type: entity
+  id: TicketMachineHOP
+  parent: TicketMachineFilledBlue
+  suffix: HOP, Filled
+  components:
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+
+- type: entity
+  id: TicketMachineWarden
+  parent: TicketMachineFilledRed
+  suffix: SEC, Warden, Filled
+  components:
+  - type: AccessReader
+    access: [["Warden"]]
+
+- type: entity
+  id: TicketMachineService
+  parent: TicketMachineFilledGreen
+  suffix: Service, Filled
+  components:
+  - type: AccessReader
+    access: [["Service"]]
+
+- type: entity
+  id: TicketMachineQM
+  parent: TicketMachineFilledBrown
+  suffix: Cargo, QM, Filled
+  components:
+  - type: AccessReader
+    access: [["QM"]]
+
+- type: entity
+  id: TicketMachineCEOrange
+  parent: TicketMachineFilledOrange
+  suffix: ENGI, CE, Filled
+  components:
+  - type: AccessReader
+    access: [["CE"]]
+
+- type: entity
+  id: TicketMachineWardenCEYellow
+  parent: TicketMachineFilledYellow
+  suffix: ENGI, CE, Filled
+  components:
+  - type: AccessReader
+    access: [["CE"]]
+
+- type: entity
+  id: TicketMachineRD
+  parent: TicketMachineFilledRD
+  suffix: SCI, RD, Filled
+  components:
+  - type: AccessReader
+    access: [["RD"]]

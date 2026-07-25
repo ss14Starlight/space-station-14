@@ -82,3 +82,164 @@
       color: "#1f1f1f"
       offset: -0.4, 0
   - type: Ticket
+
+- type: entity
+  name: ticket
+  parent: BaseTicket
+  id: TicketRed
+  description: 'A piece of red paper with printed number and NT logo.'
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    layers:
+    - state: icon_red
+    - map: [ "enum.TicketVisualLayers.Number1" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+    - map: [ "enum.TicketVisualLayers.Number2" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.2, 0
+    - map: [ "enum.TicketVisualLayers.Number3" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.4, 0
+  - type: Ticket
+
+- type: entity  
+  name: ticket
+  parent: BaseTicket
+  id: TicketBlue
+  description: 'A piece of blue paper with printed number and NT logo.'
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    layers:
+    - state: icon_blue
+    - map: [ "enum.TicketVisualLayers.Number1" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+    - map: [ "enum.TicketVisualLayers.Number2" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.2, 0
+    - map: [ "enum.TicketVisualLayers.Number3" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.4, 0
+  - type: Ticket
+
+- type: entity  
+  name: ticket
+  parent: BaseTicket
+  id: TicketGreen
+  description: 'A piece of green paper with printed number and NT logo.'
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    layers:
+    - state: icon_green
+    - map: [ "enum.TicketVisualLayers.Number1" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+    - map: [ "enum.TicketVisualLayers.Number2" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.2, 0
+    - map: [ "enum.TicketVisualLayers.Number3" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.4, 0
+  - type: Ticket
+
+- type: entity  
+  name: ticket
+  parent: BaseTicket
+  id: TicketBrown
+  description: 'A piece of brown paper with printed number and NT logo.'
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    layers:
+    - state: icon_brown
+    - map: [ "enum.TicketVisualLayers.Number1" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+    - map: [ "enum.TicketVisualLayers.Number2" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.2, 0
+    - map: [ "enum.TicketVisualLayers.Number3" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.4, 0
+  - type: Ticket
+
+- type: entity  
+  name: ticket
+  parent: BaseTicket
+  id: TicketOrange
+  description: 'A piece of orange paper with printed number and NT logo.'
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    layers:
+    - state: icon_orange
+    - map: [ "enum.TicketVisualLayers.Number1" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+    - map: [ "enum.TicketVisualLayers.Number2" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.2, 0
+    - map: [ "enum.TicketVisualLayers.Number3" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.4, 0
+  - type: Ticket
+
+- type: entity  
+  name: ticket
+  parent: BaseTicket
+  id: TicketYellow
+  description: 'A piece of yellow paper with printed number and NT logo.'
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    layers:
+    - state: icon_yellow
+    - map: [ "enum.TicketVisualLayers.Number1" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+    - map: [ "enum.TicketVisualLayers.Number2" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.2, 0
+    - map: [ "enum.TicketVisualLayers.Number3" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.4, 0
+  - type: Ticket
+
+- type: entity  
+  name: ticket
+  parent: BaseTicket
+  id: TicketPurple
+  description: 'A piece of purple paper with printed number and NT logo.'
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    layers:
+    - state: icon_purple
+    - map: [ "enum.TicketVisualLayers.Number1" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+    - map: [ "enum.TicketVisualLayers.Number2" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.2, 0
+    - map: [ "enum.TicketVisualLayers.Number3" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.4, 0
+  - type: Ticket
