@@ -15,7 +15,7 @@ internal static class Const
     public static float MinimumSpecialGasMoles = 3f;
 
     public static GasProperties[] GasProperties =
-    [   //  HEATT   HEATM  RADS REGEM REACM DESM GADA  
+    [//  HEATT   HEATM  RADS REGEM REACM DESM GADA
         new (0.24f, 1.20f, 1.4f, 0f, 0f, 0f, 0f), // oxygen
         new (0.20f, 1.46f, 1.5f, 0f, 0f, 0f, 0f), // nitrogen
         new (0.12f, 2.21f, 3.5f, 0f, 0f, 0f, 0f), // carbon dioxide

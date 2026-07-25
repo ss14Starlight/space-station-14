@@ -215,15 +215,12 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         float heatTransfer = 0;
         float heatModifier = 0;
         float radiationStability = 0;
-
         // Reset gas effect modifiers
         supermatter.Comp.RegenerationModifier = 1f;
         supermatter.Comp.ReactionModifier = 1f;
         supermatter.Comp.DestabilizationModifier = 1f;
         supermatter.Comp.GasDoesDamage = 0f;
-
-        var gaslength = Math.Min(Const.GasProperties.Length, gas.Moles.Length); // i guess but only issue when enums shrink?
-
+        var gaslength = Math.Min(Const.GasProperties.Length, gas.Moles.Length);//i guess but only issue when enums shrink?
         for (var i = 0; i < gaslength; i++)
         {
             var prop = Const.GasProperties[i];
