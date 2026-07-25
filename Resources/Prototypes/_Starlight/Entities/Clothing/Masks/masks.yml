@@ -243,6 +243,18 @@
   - type: Clothing
     sprite: Clothing/Mask/ert.rsi
 
+# New Mime Mask
+- type: entity
+  parent: ClothingMaskMime
+  id: ClothingMaskSusMime
+  name: sus mime mask
+  description: For when your crewmates say something a little sus.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/mime_sus.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/mime_sus.rsi
+
 - type: entity
   parent: [ClothingMaskGasAtmos, BaseCommandContraband]
   id: ClothingMaskGasCaptainPodWars

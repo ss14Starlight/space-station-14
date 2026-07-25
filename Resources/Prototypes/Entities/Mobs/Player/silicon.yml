@@ -346,7 +346,7 @@
   - type: DeviceNetwork
     deviceNetId: Wired
   - type: DeviceLinkSource
-    range: 20
+    range: 200
     ports:
       - AiLawConsoleSender
 # Starlight-end

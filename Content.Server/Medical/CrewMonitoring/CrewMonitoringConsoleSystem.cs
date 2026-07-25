@@ -137,8 +137,14 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
                 return;
         }
 
-        // If the console was opened since this person became crit/dead, we have no need to notify the user again.
-        if (console.LastInterfaceUpdate > since)
+        // Monitors with toggleable alerts always alert, gated only by the verb. Everything else
+        // acknowledges: if the UI was opened since this person became crit/dead, don't notify again.
+        if (TryComp<CrewMonitorAlertsComponent>(uid, out var alerts))
+        {
+            if (!alerts.Enabled)
+                return;
+        }
+        else if (console.LastInterfaceUpdate > since)
             return;
 
         // Play sound either locally (e.g. for Station AI) or in area.
@@ -170,8 +176,9 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
         // Starlight START
         component.LastInterfaceUpdate = _gameTiming.CurTime;
 
-        // Reset alert visuals if the UI is viewed by anyone.
-        _appearanceSystem.SetData(uid, CrewMonitorVisuals.Alert, false);
+        // Reset alert visuals if the UI is viewed by anyone, unless this monitor always alerts.
+        if (!HasComp<CrewMonitorAlertsComponent>(uid))
+            _appearanceSystem.SetData(uid, CrewMonitorVisuals.Alert, false);
         // Starlight END
 
         // The grid must have a NavMapComponent to visualize the map in the UI

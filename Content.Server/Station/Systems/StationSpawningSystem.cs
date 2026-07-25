@@ -209,6 +209,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         // make it more consistent and equip things in a more effective order.
         if (loadout != null)
         {
+            EquipRoleName(entity.Value, loadout, roleProto!); // Set custom humaniod name based on job loadout
             var startingGear = prototype?.StartingGear != null ? [_prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear)] : Array.Empty<IEquipmentLoadout>();
             StarlightEquipRoleLoadout(entity.Value, loadout, startingGear, roleProto!);
         }

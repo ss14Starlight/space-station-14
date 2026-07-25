@@ -13,6 +13,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Weapons.Gunnery;
 
@@ -53,6 +54,9 @@ public sealed partial class GunneryRadarControl : BaseShuttleControl
 
     private Vector2? _cursorRelativePos;  // control-local pixel position
     private bool     _lmbHeld;
+    private bool     _firingLmb; // true while LMB held for firing (not selection/guidance)
+    private float    _fireThrottle; // accumulated seconds; fire intent sent once per interval
+    private const float FireThrottleInterval = 0.05f; // 20 Hz — enough for any gun, avoids per-frame spam
 
     private List<Entity<MapGridComponent>> _grids = new();
 
@@ -111,8 +115,27 @@ public sealed partial class GunneryRadarControl : BaseShuttleControl
     {
         base.KeyBindDown(args);
 
-        if (args.Function == EngineKeyFunctions.UIClick)
-            _lmbHeld = true;
+        if (args.Function != EngineKeyFunctions.UIClick)
+            return;
+
+        _lmbHeld = true;
+
+        // If clicking on a cannon blip, select/deselect it immediately.
+        if (TrySelectCannonAt(args.RelativePixelPosition))
+            return;
+
+        // While a guided projectile is active, LMB steers rather than fires.
+        if (_trackedGuidedProjectile != null)
+            return;
+
+        // Clicking empty space with a cannon selected → start firing.
+        if (_coordinates == null || _rotation == null || SelectedCannons.Count == 0)
+            return;
+
+        _firingLmb = true;
+        var worldPos = ScreenToWorld(args.RelativePixelPosition);
+        foreach (var selected in SelectedCannons)
+            OnFireRequested?.Invoke(selected, worldPos);
     }
 
     protected override void KeyBindUp(GUIBoundKeyEventArgs args)
@@ -123,22 +146,27 @@ public sealed partial class GunneryRadarControl : BaseShuttleControl
             return;
 
         _lmbHeld = false;
+        _firingLmb = false;
+    }
 
-        // Don't fire if we can't resolve world coords.
-        if (_coordinates == null || _rotation == null)
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        // Keep sending fire requests while LMB is held (full-auto / burst auto-repeat).
+        // Throttled to 20 Hz so we don't spam a raycast/CannonBlocked check every rendered frame.
+        if (!_firingLmb || SelectedCannons.Count == 0 || _cursorRelativePos == null)
+        {
+            _fireThrottle = FireThrottleInterval; // ready to fire the instant the next press lands
             return;
+        }
 
-        var clickPos  = args.RelativePixelPosition;
-        var worldPos  = ScreenToWorld(clickPos);
-
-        // Check if click landed on a cannon blip — if so, select it.
-        if (TrySelectCannonAt(clickPos))
+        _fireThrottle += args.DeltaSeconds;
+        if (_fireThrottle < FireThrottleInterval)
             return;
+        _fireThrottle -= FireThrottleInterval;
 
-        // Otherwise: fire all selected cannons toward click position.
-        if (SelectedCannons.Count == 0)
-            return;
-
+        var worldPos = ScreenToWorld(_cursorRelativePos.Value);
         foreach (var selected in SelectedCannons)
             OnFireRequested?.Invoke(selected, worldPos);
     }
