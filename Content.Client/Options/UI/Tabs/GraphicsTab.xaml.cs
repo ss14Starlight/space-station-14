@@ -22,6 +22,7 @@ public sealed partial class GraphicsTab : Control
 
         Control.AddOptionCheckBox(CVars.DisplayVSync, VSyncCheckBox);
         Control.AddOptionCheckBox(CCVars.AmbientOcclusion, AmbientOcclusionCheckBox);
+        Control.AddOptionCheckBox(CCVars.PostProcess, PostProcessCheckBox); // CP14
         Control.AddOption(new OptionFullscreen(Control, _cfg, FullscreenCheckBox));
         Control.AddOption(new OptionLightingQuality(Control, _cfg, DropDownLightingQuality));
 
