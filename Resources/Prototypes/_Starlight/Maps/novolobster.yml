@@ -5,7 +5,7 @@
   minPlayers: 40
   maxPlayers: 350
   stations:
-    StarlightLobster:
+    StarlightNovoLobster:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
