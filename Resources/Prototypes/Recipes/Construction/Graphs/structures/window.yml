@@ -127,6 +127,16 @@
               amount: 2
               doAfter: 3
 
+        - to: clockworkWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+          steps:
+            - material: ClockworkGlass
+              amount: 2
+              doAfter: 3
+
         # Starlight End
 
     - node: reinforcedWindow
