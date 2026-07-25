@@ -369,7 +369,6 @@
           - Document
           components:
           - Stamp
-    # Starlight - slot for holding PDAs, IDs and stamps
     - hand:
         emptyLabel: borg-slot-idstamps-empty
         emptyRepresentative: BorgModulePaperStampPlaceholder
