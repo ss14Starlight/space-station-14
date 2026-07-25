@@ -76,13 +76,13 @@ public sealed partial class ReactorPartComponent : Component
     /// Multiplier for heating from neutron stimulated reactions on this part.
     /// </summary>
     [DataField]
-    public float StimulatedHeatingFactor = 1f;
+    public float StimulatedHeatingFactor = 2.5f;
 
     /// <summary>
     /// Multiplier for heating from spontaneous reactions on this part.
     /// </summary>
     [DataField]
-    public float SpontaneousHeatingFactor = 1f;
+    public float SpontaneousHeatingFactor = 0.35f;
 
     /// <summary>
     /// Multiplier for how much reactant/product is consumed/produced in spontaneous reactions on this part.
