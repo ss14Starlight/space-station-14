@@ -403,9 +403,9 @@ namespace Content.Server.RoundEnd
                                         : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
             if (mins != 0 && _gameTiming.CurTime - AutoCallStartTime > TimeSpan.FromMinutes(mins))
             {
-                if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
+                if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null && _shuttleCallsEnabled) //Starlight-edit
                 {
-                    StartRecallVote(); // Starlight-edit
+                    StartCallVote(); // Starlight-edit
                     _autoCalledBefore = true;
                 }
 
@@ -423,9 +423,9 @@ namespace Content.Server.RoundEnd
         }
 
         #region Starlight
-        private void StartRecallVote()
+        private void StartCallVote()
         {
-            var options = new VoteOptions() { DisplayVotes = true, Duration = TimeSpan.FromSeconds(30), VoterEligibility = VoteManager.VoterEligibility.Crew, Title = Loc.GetString("round-end-system-shuttle-auto-called-recall-vote")};
+            var options = new VoteOptions() { DisplayVotes = true, Duration = TimeSpan.FromSeconds(30), VoterEligibility = VoteManager.VoterEligibility.Crew, Title = Loc.GetString("round-end-system-shuttle-auto-called-call-vote")};
             options.SetInitiatorOrServer(null);
             options.Options.Add(("Yes", 0));
             options.Options.Add(("No", 1));
