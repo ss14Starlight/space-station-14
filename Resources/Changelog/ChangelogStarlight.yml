@@ -1,34 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Fland) Expanded Brigmedic to be less cramped.
-    type: Tweak
-  id: 406511
-  time: '2026-07-10T10:54:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5048
-- author: Caws
-  changes:
-  - message: (Fland) Distro and waste's pipe colors have been updated to match other maps.
-    type: Tweak
-  id: 406512
-  time: '2026-07-10T10:54:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5048
-- author: Caws
-  changes:
-  - message: (Fland) Re-linked AI Upload to AI Core.
-    type: Fix
-  id: 406513
-  time: '2026-07-10T10:54:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5048
-- author: Caws
-  changes:
-  - message: Thief's undetermined toolbox & thief's undetermined satchel are no longer contraband. New antags rejoice.
-    type: Tweak
-  id: 406514
-  time: '2026-07-10T12:36:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5063
-- author: Caws
-  changes:
   - message: (Geiger Complex) Added a soft drinks vendor and some drink machine restocks by the syndicate Bruise-O-Mat. Dwarf brewers rejoice.
     type: Add
   id: 406515
@@ -2799,4 +2771,32 @@ Entries:
   id: 406910
   time: '2026-07-26T10:31:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5258
+- author: joshujo
+  changes:
+  - message: Mixers now accept signals.
+    type: Add
+  id: 406911
+  time: '2026-07-26T11:14:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5281
+- author: joshujo
+  changes:
+  - message: Filters(including inlines) now accept signals.
+    type: Add
+  id: 406912
+  time: '2026-07-26T11:14:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5281
+- author: joshujo
+  changes:
+  - message: Air injectors now accept signals.
+    type: Add
+  id: 406913
+  time: '2026-07-26T11:14:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5281
+- author: joshujo
+  changes:
+  - message: Molar mixers now accept signals.
+    type: Add
+  id: 406914
+  time: '2026-07-26T11:14:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5281
 Order: -1
