@@ -1,69 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Surgeon lockers now have a ZXA tank instead of Nitrous Oxide and Healium.
-    type: Tweak
-  id: 406554
-  time: '2026-07-11T05:47:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4891
-- author: wonderfulnewworld
-  changes:
-  - message: Roboticist lockers no longer have Healium, and have a chance for their Nitrous Oxide tank replaced with a ZXA tank.
-    type: Tweak
-  id: 406555
-  time: '2026-07-11T05:47:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4891
-- author: wonderfulnewworld
-  changes:
-  - message: Tweaked the Roboticist surgical kit and bottle case sprites.
-    type: Tweak
-  id: 406556
-  time: '2026-07-11T05:47:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4891
-- author: xxhotgirl69
-  changes:
-  - message: Adds new witch hat in Autodrobe and random maint loot.
-    type: Add
-  id: 406557
-  time: '2026-07-11T06:18:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4997
-- author: wonderfulnewworld
-  changes:
-  - message: Added ColossusSpawn to Dynamic.
-    type: Add
-  id: 406558
-  time: '2026-07-11T11:26:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5028
-- author: wonderfulnewworld
-  changes:
-  - message: Traitor, Thief, and SLChangeling will no longer roll together with their -Less versions in Dynamic, unless they both happen to be roundstart spawns.
-    type: Remove
-  id: 406559
-  time: '2026-07-11T11:26:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5028
-- author: wonderfulnewworld
-  changes:
-  - message: WizardDuel, SubWizard, and WizardSpawn will no longer roll together with Zombie in Dynamic, unless they both happen to to be roundstart spawns.
-    type: Remove
-  id: 406560
-  time: '2026-07-11T11:26:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5028
-- author: wonderfulnewworld
-  changes:
-  - message: Dynamic will gain budget 50% slower after gaining too much budget without spending it.
-    type: Tweak
-  id: 406561
-  time: '2026-07-11T11:26:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5028
-- author: wonderfulnewworld
-  changes:
-  - message: Traitor has a chance to fail to roll in Dynamic. In essence, this is a chance at getting Extended.
-    type: Tweak
-  id: 406562
-  time: '2026-07-11T11:26:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5028
-- author: wonderfulnewworld
-  changes:
   - message: Rolling midround Nukeops and LoneOpsSpawn in Dynamic now has a higher cost.
     type: Tweak
   id: 406563
@@ -2799,4 +2736,67 @@ Entries:
   id: 406953
   time: '2026-07-26T13:41:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5274
+- author: Orhu
+  changes:
+  - message: (Serpentcrest) Added Stir Stir to Genpop.
+    type: Add
+  id: 406954
+  time: '2026-07-26T14:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5252
+- author: Orhu
+  changes:
+  - message: (Serpentcrest) Added Flippers to Courtroom.
+    type: Add
+  id: 406955
+  time: '2026-07-26T14:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5252
+- author: Orhu
+  changes:
+  - message: (Serpentcrest) Added vend of silence to Mime Room.
+    type: Add
+  id: 406956
+  time: '2026-07-26T14:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5252
+- author: Orhu
+  changes:
+  - message: (Serpentcrest) Added ice cream maker to Kitchen and Ice Cream Stand.
+    type: Add
+  id: 406957
+  time: '2026-07-26T14:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5252
+- author: Orhu
+  changes:
+  - message: (Serpentcrest) Added space heaters to Atmos.
+    type: Add
+  id: 406958
+  time: '2026-07-26T14:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5252
+- author: Orhu
+  changes:
+  - message: (Serpentcrest) Added ticket machine to HOP.
+    type: Add
+  id: 406959
+  time: '2026-07-26T14:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5252
+- author: Orhu
+  changes:
+  - message: (Serpentcrest) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
+    type: Add
+  id: 406960
+  time: '2026-07-26T14:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5252
+- author: Orhu
+  changes:
+  - message: (Serpentcrest) One of the bookshelves in the library is now guaranteed to contain all guidebooks.
+    type: Tweak
+  id: 406961
+  time: '2026-07-26T14:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5252
+- author: Orhu
+  changes:
+  - message: (Serpentcrest) Placed a station beacon in Washroom.
+    type: Tweak
+  id: 406962
+  time: '2026-07-26T14:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5252
 Order: -1
