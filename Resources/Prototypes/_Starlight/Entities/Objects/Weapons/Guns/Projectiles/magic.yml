@@ -14,7 +14,6 @@
       types:
         Heat: 50
   - type: Sprite
-    noRot: false
     sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
     - state: firebolt
@@ -60,3 +59,33 @@
   - type: IgnitionSource
     temperature: 10000
     ignited: true
+
+- type: entity
+  id: ProjectileFireArrow
+  name: firearrow
+  description: Flagra!
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#E25822"
+    radius: 1.0
+    energy: 10.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 30
+        Slash: 30
+    soundHit:
+      path: /Audio/Weapons/Guns/Gunshots/Hit/energy_meat1.oog
+  - type: Explosive
+    explosionType: FireBomb
+    totalIntensity: 0.01
+    intensitySlope: 1
+    maxIntensity: 0.1
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: firearrow
+  - type: IgniteOnCollide
+    fireStacks: 1

@@ -27,7 +27,7 @@
   parent: ActionFireball
   id: ActionFireOrb
   name: Fire Orb
-  description: Fires a slow moving Orb of fire that will ignite everyone in a big radius in a glorious inferno. (4 minutes cooldown)
+  description: Fires a slow moving Orb of fire that will ignite everyone in a big radius in a glorious inferno. (Cooldown of 4 minutes)
   components:
   - type: Action
     useDelay: 240
@@ -42,9 +42,35 @@
   - type: WorldTargetAction
     event: !type:ProjectileSpellEvent
       prototype: ProjectileFireOrb
-      projectileSpeed: 2
+      projectileSpeed: 1
   - type: SpeakOnAction
     sentence: action-speech-spell-fireorb
     tts: action-speech-spell-fireorb-tts
+    modifier: Spell
+  - type: EorgPreventAction # Starlight
+
+- type: entity
+  parent: ActionFireball
+  id: ActionFireArrow
+  name: Fire arrow
+  description: Fires a solid flame in the form of an arrow. (Cooldown of 5 seconds)
+  components:
+  - type: Action
+    useDelay: 5
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/fireball.ogg
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: firearrow
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileFireArrow
+      projectileSpeed: 35
+  - type: SpeakOnAction
+    sentence: action-speech-spell-firearrow
+    tts: action-speech-spell-firearrow-tts
     modifier: Spell
   - type: EorgPreventAction # Starlight

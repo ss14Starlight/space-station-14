@@ -151,7 +151,7 @@
   id: SpellbookExplosionRune
   name: spellbook-explosionrune-name
   description: spellbook-explosionrune-desc
-  priority: 5
+  priority: 6
   productAction: ActionExplosionRuneWiz
   cost:
     WizCoin: 0
@@ -168,12 +168,80 @@
   id: SpellFireballWar
   name: spellbook-fireball-name
   description: spellbook-fireball-desc
-  priority: 2
+  priority: 7
   productAction: ActionFireballII
   cost:
     WizCoin: 0
   categories:
   - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellFireArrow
+  name: spellbook-firearrow-name
+  description: spellbook-firearrow-desc
+  priority: 8
+  productAction: ActionFireArrow
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookVoidApplauseWar
+  name: spellbook-voidapplause-name
+  description: spellbook-voidapplause-desc
+  productAction: ActionVoidApplause
+  priority: 9
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookKnockWar
+  name: spellbook-knock-name
+  description: spellbook-knock-desc
+  productAction: ActionKnock
+  priority: 10
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookBlinkWar
+  name: spellbook-blink-name
+  description: spellbook-blink-desc
+  productAction: ActionBlink
+  priority: 11
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookUtility
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1

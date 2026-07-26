@@ -34,3 +34,6 @@ spellbook-explosionrune-desc = Place a magical rune under your feet that detonat
 
 spellbook-igniterune-name = Incendiary Rune
 spellbook-igniterune-desc = Place a magical rune under your feet that ignites anyone who dares walk on it.
+
+spellbook-firearrow-name = Fire Arrow
+spellbook-firearrow-desc = Fire an extremely fast arrow of fire, quick to recharge.
