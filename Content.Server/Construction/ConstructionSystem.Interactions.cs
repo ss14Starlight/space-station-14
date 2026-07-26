@@ -297,11 +297,12 @@ namespace Content.Server.Construction
                     if(HasComp<UnremoveableComponent>(insert))
                         return HandleResult.False;
 
-                    _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation - Interaction particles
-
                     // If we're only testing whether this step would be handled by the given event, then we're done.
                     if (validation)
                         return HandleResult.Validated;
+
+                    if (doAfterState == DoAfterState.None) // Starlight
+                        _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation
 
                     // If we still haven't completed this step's DoAfter...
                     if (doAfterState == DoAfterState.None && insertStep.DoAfter > 0)

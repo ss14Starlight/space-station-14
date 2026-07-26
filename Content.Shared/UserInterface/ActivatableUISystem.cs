@@ -21,7 +21,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
 
     public override void Initialize()
     {
@@ -186,7 +186,10 @@ public sealed partial class ActivatableUISystem : EntitySystem
     private void InteractUI(EntityUid user, Entity<ActivatableUIComponent> ui)
     {
         var interactionParticle = false;
-        InteractUI(user, ui, ui, ref interactionParticle);
+
+        if (!InteractUI(user, ui, ui, ref interactionParticle)) // Starlight
+            return; // Starlight
+
         _interaction.DoContactInteraction(user, ui, null, true, interactionParticles: interactionParticle);
     }
     // End Stellar - interaction particles

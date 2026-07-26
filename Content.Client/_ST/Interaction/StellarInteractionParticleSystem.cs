@@ -88,6 +88,8 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
             _ => throw new ArgumentOutOfRangeException(nameof(ev), $"Interaction particle event has unknown particle type {ev.Type}"),
         };
         _animation.Play(particle, animation, AnimateKey);
+
+        EnsureComp<InteractionParticleTrackerComponent>(performer).ExpireTime = _timing.CurTime + ev.Cooldown; // Starlight
     }
 
     private Animation GetUseAnimation(Vector2 endOffset, Color color)
