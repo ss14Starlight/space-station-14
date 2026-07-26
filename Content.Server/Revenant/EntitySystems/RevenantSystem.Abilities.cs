@@ -257,9 +257,7 @@ public sealed partial class RevenantSystem
             new Vector2(component.ChillFalloffRadius, component.ChillFalloffRadius)))
             .ToArray();
 
-        var physQuery = GetEntityQuery<PhysicsComponent>();
-
-        //Generate the ice tiles
+        //Generate the ice tiles and add the moles for freezon
         foreach (var tileref in falloffTiles)
         {
             //Generate the tiles in a radius that always spawn. 
@@ -270,9 +268,8 @@ public sealed partial class RevenantSystem
                 continue;
             }
 
-            int chance = Random.Shared.Next(1, 101);
-
-            if(chance <= component.ChillFalloffChance) {
+            //Percentage chance to generate ice tiles in the falloff area
+            if(_random.Prob(component.ChillFalloffChance)) {
                 Spawn("IceCrust", _mapSystem.ToCenterCoordinates(tileref, map));
                 _atmosphere.GetTileMixture(xform.GridUid.Value, null, tileref.GridIndices, true)?.AdjustMoles(Gas.Frezon, component.ChillFrezonPerTile);
             }

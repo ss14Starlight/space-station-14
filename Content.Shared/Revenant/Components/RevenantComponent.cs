@@ -145,10 +145,10 @@ public sealed partial class RevenantComponent : Component
     public float ChillFalloffRadius = 5f;
 
     /// <summary>
-    /// The chance the chillFalloffRadius happens. 100 is always 0 is never
+    /// The chance the chillFalloffRadius happens. 1 is always 0 is never
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("chillFalloffChance")]
-    public float ChillFalloffChance = 50;
+    public float ChillFalloffChance = .5f;
 
     /// <summary>
     /// The amount of frezon (in moles) added to a tile's atmosphere for every

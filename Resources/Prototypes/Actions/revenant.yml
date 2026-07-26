@@ -51,7 +51,7 @@
   components:
   - type: Action
     useDelay: 15
-    icon: Interface/Actions/chill.png
+    icon: Interface/Actions/snowgrave.png
   - type: InstantAction
     event: !type:RevenantChillActionEvent
 
