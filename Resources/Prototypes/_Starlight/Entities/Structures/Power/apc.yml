@@ -117,8 +117,8 @@
 - type: entity
   parent: BaseAPCAdvanced
   id: AdvancedAPC
-  suffix: Advanced, 100kJ
+  suffix: Advanced, 200kJ
   components:
   - type: Battery
-    maxCharge: 100000
-    startingCharge: 100000
+    maxCharge: 200000
+    startingCharge: 200000
