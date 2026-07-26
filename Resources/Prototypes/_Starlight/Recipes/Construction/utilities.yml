@@ -17,6 +17,7 @@
   category: construction-category-utilities
   objectType: Structure
   placementMode: SnapgridCenter
+  canBuildInImpassable: true
 
 # region unary
 
