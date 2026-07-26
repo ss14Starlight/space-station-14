@@ -52,3 +52,9 @@
     - id: FoodSnackSus
     - id: FoodSnackSyndi
     - id: FoodSnackSwirlLollipop
+    # Starlight Start
+    - id: FoodBoxCrispyRiceBar
+    - id: FoodSnackRiceBarPacket
+    - id: FoodLollipopPlain
+    - id: FoodSnackHardCandy
+    # Starlight End
