@@ -24,6 +24,7 @@ namespace Content.Server.Administration.Commands
             }
             catch (Exception e)
             {
+                shell.WriteError($"Pardon failed: {e.Message}"); // Hey guys, when you get exception, default WriteError won't work! So this thingy intentional
                 _logManager.GetSawmill("admin.bans").Error($"Pardon command failed: {e}");
             }
             // Starlight-end
