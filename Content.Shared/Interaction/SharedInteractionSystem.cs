@@ -538,7 +538,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(user, userMessage, true);
 
             _adminLogger.Add(LogType.InteractHand, LogImpact.Low, $"{user} interacted with {target}");
-            DoContactInteraction(user, target, null, true, message); // Stellar - interaction particles
+            DoContactInteraction(user, target, null, true, message, interactionParticles: message.InteractionParticle); // Stellar - interaction particles
             if (message.Handled || userMessage.Handled)
                 return;
 
@@ -1260,7 +1260,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(used, useMsg, true);
             if (useMsg.Handled)
             {
-                DoContactInteraction(user, used, null, true, useMsg); // Interaction particles
+                DoContactInteraction(user, used, null, true, useMsg, interactionParticleType: StellarInteractionParticleType.InHand); // Interaction particles
                 if (delayComponent != null && useMsg.ApplyDelay)
                     _useDelay.TryResetDelay((used, delayComponent));
                 return true;
