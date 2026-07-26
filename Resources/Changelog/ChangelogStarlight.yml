@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Geiger Complex) Added a soft drinks vendor and some drink machine restocks by the syndicate Bruise-O-Mat. Dwarf brewers rejoice.
-    type: Add
-  id: 406515
-  time: '2026-07-10T12:36:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5060
-- author: Caws
-  changes:
   - message: A thruster that was stuck permanently turned off on the NukeOps "GX-86 Omen" shuttle has been fixed.
     type: Fix
   id: 406516
@@ -2799,4 +2792,11 @@ Entries:
   id: 406914
   time: '2026-07-26T11:14:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5281
+- author: Rinary
+  changes:
+  - message: Fixed three new bugs with unbans =).
+    type: Fix
+  id: 406915
+  time: '2026-07-26T11:14:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5343
 Order: -1
