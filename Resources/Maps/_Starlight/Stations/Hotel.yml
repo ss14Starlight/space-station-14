@@ -67263,8 +67263,6 @@ entities:
       pos: 27.5,2.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 10661
   - uid: 10851
@@ -67274,8 +67272,6 @@ entities:
       pos: 25.5,2.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 10661
 - proto: FirelockEdge
