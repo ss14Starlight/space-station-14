@@ -228,4 +228,16 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
                 ent.Comp.TargetPressure,
                 ent.Comp.Enabled,
                 ent.Comp.InletOneConcentration));
+
+    #region Starlight
+    public void Set(EntityUid uid, GasMixerMolarComponent component, bool value)
+    {
+        if (component.Enabled == value) return;
+
+        component.Enabled = value;
+        UpdateAppearance((uid, component));
+        DirtyUi((uid, component));
+    }
+
+    #endregion
 }
