@@ -82,3 +82,7 @@
     slots:
     - back
     - suitStorage
+  - type: Tool # Ronstation start
+    qualities:
+      - Prying
+      - Tearing # Ronstation end
