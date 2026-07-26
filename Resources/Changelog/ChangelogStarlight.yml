@@ -1,228 +1,4 @@
 Entries:
-- author: Forrestgod
-  changes:
-  - message: Broken Cryopods can now be deconstructed via a welder just like broken machine frames.
-    type: Tweak
-  id: 406568
-  time: '2026-07-11T13:14:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5097
-- author: AprilCatStreams
-  changes:
-  - message: Users can no longer use their PDAs while dead/crit.
-    type: Fix
-  id: 406569
-  time: '2026-07-11T13:14:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5088
-- author: AprilCatStreams
-  changes:
-  - message: Surgically removed limbs no longer cause the holder to bleed.
-    type: Fix
-  id: 406570
-  time: '2026-07-11T13:55:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5086
-- author: AprilCatStreams
-  changes:
-  - message: UI misalignment in job selection screen of character editor due to long job names.
-    type: Fix
-  id: 406571
-  time: '2026-07-11T14:21:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5082
-- author: Caws
-  changes:
-  - message: (Space Mall) Added the Ticket Machine to HOP and generally tweaked HOP's line up.
-    type: Add
-  id: 406572
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: '(Space Mall) The mail system now works like other stations! Currently limited to just the following: Botany, Chemistry, Drug Store, and Kitchen.'
-    type: Add
-  id: 406573
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Added 2 more space heaters to Atmos.
-    type: Add
-  id: 406574
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Added a charger and cell recharger to Bridge.
-    type: Add
-  id: 406575
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Added an EOD closet to Security's locker room.
-    type: Add
-  id: 406576
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Added a Guidebooks crate to Library.
-    type: Add
-  id: 406577
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Added a document printer to Library.
-    type: Add
-  id: 406578
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Drug Store's beacon now uses the same color as Chemistry.
-    type: Tweak
-  id: 406579
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Prisoners can no longer get themselves stuck by exiting the wrong turnstile from GenPop.
-    type: Fix
-  id: 406580
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) BSO's Room corrected to be NT access only.
-    type: Fix
-  id: 406581
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Fixed a bunch where the Evac shuttle would always announce it was "near Command" because there was a station beacon mapped *on* the evac shuttle herself.
-    type: Fix
-  id: 406582
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Removed some firelocks under doors in Atmospherics that didn't really need them.
-    type: Remove
-  id: 406583
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Duplicate Cryonics station beacon from Medical's cryo pods.
-    type: Remove
-  id: 406584
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Home
-  changes:
-  - message: Added the song Burn Chamber by Home to Starlight.
-    type: Add
-  id: 406585
-  time: '2026-07-11T14:21:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5080
-- author: Trosling
-  changes:
-  - message: Added Cosmic Cultist objective demanding them to convert chaplains to address issues with round-removal of chaplains.
-    type: Add
-  id: 406586
-  time: '2026-07-11T14:42:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5075
-- author: wonderfulnewworld
-  changes:
-  - message: Added DynamicLP, for Beta. Needs to be tested, not in rotation yet. It has a lower min and max starting cost than Alpha's version, and has longer time between rules.
-    type: Add
-  id: 406587
-  time: '2026-07-11T17:13:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5076
-- author: wonderfulnewworld
-  changes:
-  - message: Increased SLChangeling's Dynamic Rule Cost to 125, like Vampire.
-    type: Tweak
-  id: 406588
-  time: '2026-07-11T17:13:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5076
-- author: SevenShades
-  changes:
-  - message: MedTak silicons not seeing client icons.
-    type: Fix
-  id: 406589
-  time: '2026-07-12T11:22:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5100
-- author: neomoth
-  changes:
-  - message: Added highly customizable spawner entities.
-    type: Add
-  id: 406590
-  time: '2026-07-12T12:08:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4973
-- author: Conflee
-  changes:
-  - message: Added Security Tickets. Tickets can be found in Ticket Pads, within Security Officer Lockers or the SecTech. A new line in Corporate Law under 'Normal Punishments' outlines their use as a step up from an informal warning, and how to fill out a ticket.
-    type: Add
-  id: 406591
-  time: '2026-07-12T17:12:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5050
-- author: Arkanic
-  changes:
-  - message: Improved projectile performance.
-    type: Tweak
-  id: 406592
-  time: '2026-07-12T21:23:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5113
-- author: Arkanic
-  changes:
-  - message: Fixed the infamous "shooting at wall or person close by you makes you shoot yourself" bug that we all love and will dearly miss.
-    type: Fix
-  id: 406593
-  time: '2026-07-12T21:23:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5113
-- author: Arkanic
-  changes:
-  - message: Hitscan projectiles can now properly overpenetrate through walls, and aren't broken by two walls adjacent to each other.
-    type: Fix
-  id: 406594
-  time: '2026-07-12T21:23:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5113
-- author: Arkanic
-  changes:
-  - message: A dinky pistol that definitely has no relation whatsoever to any of the above changes.
-    type: Add
-  id: 406595
-  time: '2026-07-12T21:23:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5113
-- author: mikeysaurus
-  changes:
-  - message: Animal Kidneys can now be used in Surgery to replace kidneys.
-    type: Fix
-  id: 406596
-  time: '2026-07-12T21:23:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5105
-- author: Conflee
-  changes:
-  - message: Resprited the Post Light to be in 3/4ths perspective instead of Flat perspective, so it looks more like a real object that is in the world instead of a PNG. (only walls, windows, and airlocks should be in Flat perspective).
-    type: Tweak
-  id: 406597
-  time: '2026-07-12T22:04:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5106
-- author: Sparlight
-  changes:
-  - message: Fixed inconsistent animal husbandry behavior.  Now your chickens won't stop your cows from breeding.
-    type: Fix
-  id: 406598
-  time: '2026-07-12T22:32:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5101
-- author: wonderfulnewworld
-  changes:
-  - message: You can now swing vibroblade sheathes, the captain's sheathe, the cane sheathe, and the bunny gang backpack.
-    type: Add
-  id: 406599
-  time: '2026-07-12T22:32:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5095
 - author: wonderfulnewworld
   changes:
   - message: Senior security officer, duty officer, brigmedic, and warden clothes now use the correct senior time.
@@ -2799,4 +2575,228 @@ Entries:
   id: 406967
   time: '2026-07-26T14:08:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5257
+- author: Orhu
+  changes:
+  - message: (Sepultum) Added Stir Stir Spawn to Genpop.
+    type: Add
+  id: 406968
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) Added Flippers to Magistrate's Office.
+    type: Add
+  id: 406969
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) Added vend of silence to Mime Room.
+    type: Add
+  id: 406970
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) Added ice cream maker to Kitchen.
+    type: Add
+  id: 406971
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) Added space heaters to Atmos.
+    type: Add
+  id: 406972
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) Added a robotics control console to Robotics.
+    type: Add
+  id: 406973
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) Added a ticket machine to HOP.
+    type: Add
+  id: 406974
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
+    type: Add
+  id: 406975
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) One of the bookshelves in Library will now always contain all guidebooks.
+    type: Tweak
+  id: 406976
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) Placed a station beacon in Washroom.
+    type: Tweak
+  id: 406977
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) Replaced cargo tech lockers with large variants.
+    type: Tweak
+  id: 406978
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Sepultum) Linked the SM radiation shutters to their button.
+    type: Fix
+  id: 406979
+  time: '2026-07-26T14:38:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Ming) Added Stir Stir to Genpop.
+    type: Add
+  id: 406980
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Added Flippers to Courtroom.
+    type: Add
+  id: 406981
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Added vend of silence to Mime Room.
+    type: Add
+  id: 406982
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Added ice cream machine to kitchen and ice cream stand.
+    type: Add
+  id: 406983
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Added ticket machine to HOP.
+    type: Add
+  id: 406984
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
+    type: Add
+  id: 406985
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Placed a station beacon in Washroom.
+    type: Tweak
+  id: 406986
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Swapped cargo tech lockers for large variants.
+    type: Tweak
+  id: 406987
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Changed the salvage dock to allow both the mining and salvage shuttles to dock at the same time.
+    type: Tweak
+  id: 406988
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Fixed the wiring to the air vents outside of HOP.
+    type: Fix
+  id: 406989
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Fixed an APC that wasn't linked to MVs near Robotics.
+    type: Fix
+  id: 406990
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Arkanic
+  changes:
+  - message: Fixed criminal, terminator, etc railroading cards not appearing.
+    type: Fix
+  id: 406991
+  time: '2026-07-26T15:10:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5305
+- author: SirLutz
+  changes:
+  - message: Supermatter interactions for funky/starlight gases(enum).
+    type: Add
+  id: 406992
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: Modifiers in old calculations.
+    type: Add
+  id: 406993
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: New variables for calculations.
+    type: Add
+  id: 406994
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: Components for new modifiers.
+    type: Add
+  id: 406995
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: partial old calculations.
+    type: Remove
+  id: 406996
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: Tritium, Nitrous oxide, Freezon change reactifity.
+    type: Tweak
+  id: 406997
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: minor wrong naming of variables.
+    type: Fix
+  id: 406998
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: Hydrogen molar mass from 32 to 1.
+    type: Fix
+  id: 406999
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
 Order: -1
