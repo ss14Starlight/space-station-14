@@ -8,6 +8,9 @@ using Content.Shared.Warps;
 using Content.Server._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
+using Robust.Shared.Timing;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map;
 
@@ -23,23 +26,101 @@ public sealed partial class CosmicEffigySystem : EntitySystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusEffigy>(OnColossusEffigy);
+        SubscribeLocalEvent<CosmicEffigyComponent, EntityTerminatingEvent>(OnEffigyTerminating);
+        SubscribeLocalEvent<CosmicEffigyComponent, CosmicEffigyDestroyedEvent>(OnEffigyDestroyed);
     }
-
     private void OnColossusEffigy(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusEffigy args)
     {
+        if (ent.Comp.CurrentEffigy != null && EntityManager.EntityExists(ent.Comp.CurrentEffigy))
+        {
+            _popup.PopupEntity(
+                Loc.GetString("ghost-role-colossus-effigy-exists"), ent, ent);
+                                
+            return;
+        }
+        
         if (!VerifyPlacement(ent, out var pos))
             return;
 
-        _actions.RemoveAction(ent.Owner, ent.Comp.EffigyPlaceActionEntity);
         _codeCondition.SetCompleted(ent.Owner, ent.Comp.EffigyObjective);
-        Spawn(ent.Comp.EffigyPrototype, pos);
-        ent.Comp.Timed = false;
+        var effigy = Spawn(ent.Comp.EffigyPrototype, pos);
+
+        if (TryComp<CosmicEffigyComponent>(effigy, out var effigyComp))
+        {
+            effigyComp.Colossus = ent.Owner;
+        }
+        ent.Comp.CurrentEffigy = effigy;
+        //ent.Comp.EffigyAvailable = false;
+        if (ent.Comp.EffigyPlaceActionEntity is { } action && TryComp<LimitedChargesComponent>(action, out var charges))
+        {
+            _charges.SetCharges((action, charges), 0);
+            Dirty(action, charges);
+        }
+        ent.Comp.Timed = false;//Flag for midround spawn; prevents death timer.
+        //ent.Comp.EffigyRechargeTimer = TimeSpan.MaxValue;//remove this in hope of fixing issue
+        Dirty(ent);
+    }
+    private void OnEffigyTerminating(Entity<CosmicEffigyComponent> ent, ref EntityTerminatingEvent args)
+    {
+        RaiseLocalEvent(ent.Owner, new CosmicEffigyDestroyedEvent());
+    }
+    // detect if linked effigy has died crit so on
+    private void OnEffigyDestroyed(Entity<CosmicEffigyComponent> ent, ref CosmicEffigyDestroyedEvent args)
+    {
+    if (ent.Comp.Colossus is not { } colossusUid)
+        return;
+
+    if (!TryComp<CosmicColossusComponent>(colossusUid, out var colossus))
+        return;
+
+    //Remove reference to the destroyed effigy
+    if (colossus.CurrentEffigy == ent.Owner)
+        colossus.CurrentEffigy = null;
+
+    // Start the recharge timer, vanishing of effigy + time
+    colossus.EffigyRechargeTimer = _timing.CurTime + colossus.EffigyRechargeTime;
+    // Update networked component state
+    Dirty(colossusUid, colossus);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<CosmicColossusComponent>();
+
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            // Still waiting for recharge
+            if (_timing.CurTime < comp.EffigyRechargeTimer)
+                continue;
+
+            // No action assigned
+            if (comp.EffigyPlaceActionEntity is not { } action)
+                continue;
+
+            // No LimitedCharges component
+            if (!TryComp<LimitedChargesComponent>(action, out var charges))
+                continue;
+
+            // Already charged
+            if (_charges.GetCurrentCharges((action, charges, null)) >= charges.MaxCharges)
+            continue;
+
+            // Restore ability
+            _charges.SetCharges((action, charges), charges.MaxCharges);
+            Dirty(action, charges);
+
+            // Stop this from firing every tick
+            comp.EffigyRechargeTimer = TimeSpan.MaxValue;
+            Dirty(uid, comp);
+        }
     }
 
     private bool VerifyPlacement(Entity<CosmicColossusComponent> ent, out EntityCoordinates outPos)

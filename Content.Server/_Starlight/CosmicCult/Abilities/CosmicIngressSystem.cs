@@ -22,11 +22,8 @@ public sealed partial class CosmicIngressSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<CosmicCultComponent, EventCosmicIngress>(OnCosmicIngress);
-
         SubscribeLocalEvent<HumanoidAppearanceComponent, EventCosmicAnomalyIngress>(OnAnomalyIngress);
-
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusIngress>(OnColossusIngress);
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusIngressDoAfter>(OnColossusIngressDoAfter);
     }
@@ -78,19 +75,34 @@ public sealed partial class CosmicIngressSystem : EntitySystem
         _doAfter.TryStartDoAfter(doargs);
     }
 
-    private void OnColossusIngressDoAfter(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusIngressDoAfter args)
+    private void OnColossusIngressDoAfter(Entity<CosmicColossusComponent> ent,
+    ref EventCosmicColossusIngressDoAfter args)
     {
         if (args.Args.Target is not { } target)
             return;
+
         if (args.Cancelled || args.Handled)
             return;
+
         args.Handled = true;
         var comp = ent.Comp;
+        var coordinates = Transform(target).Coordinates;
 
-        if (TryComp<DoorBoltComponent>(target, out var doorBolt))
-            _door.SetBoltsDown((target, doorBolt), false);
-        _door.StartOpening(target);
+        //Play the force ingress effect first
         _audio.PlayPvs(comp.IngressSfx, ent);
-        Spawn(comp.CultVfx, Transform(target).Coordinates);
+        Spawn(comp.CultVfx, coordinates);
+        // Remove all existing doors on the tile
+        foreach (var entity in _lookup.GetEntitiesIntersecting(coordinates))
+        {
+            if (HasComp<DoorComponent>(entity))
+                QueueDel(entity);
+        }
+        // Spawn corrupted replacement
+        var malignDoor = Spawn("DoorCosmicCult", coordinates);
+        //Pry open the new malign door
+        if (TryComp<DoorComponent>(malignDoor, out var door))
+        {
+            _door.StartOpening(malignDoor);
+        }
     }
 }

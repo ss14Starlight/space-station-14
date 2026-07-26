@@ -17,6 +17,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
@@ -34,6 +36,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private ThrowingSystem _throw = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
 
     public override void Initialize()
     {
@@ -45,7 +48,6 @@ public sealed partial class CosmicColossusSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-
         var colossusQuery = EntityQueryEnumerator<CosmicColossusComponent>();
         while (colossusQuery.MoveNext(out var ent, out var comp))
         {
@@ -78,7 +80,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
             }
         }
     }
-
+    // Bug: the spell ethereal jaunt teleports you somewhere???? So wiz mindswap + etheral jaunt makes issues with this perhaps.
     private void OnSpawn(Entity<CosmicColossusComponent> ent, ref ComponentInit args) // I WANT THIS BIG GUY HURLED TOWARDS THE STATION
     {
         ent.Comp.DeathTimer = _timing.CurTime + ent.Comp.DeathWait;
@@ -90,7 +92,12 @@ public sealed partial class CosmicColossusSystem : EntitySystem
                 _throw.TryThrow(ent, Transform(stationGrid.Value).Coordinates, baseThrowSpeed: 30, null, 0, 0, false, false, false, false, false);
         }
         if (ent.Comp.Timed)
+        {
             _actions.AddAction(ent, ref ent.Comp.EffigyPlaceActionEntity, ent.Comp.EffigyPlaceAction, ent);
+            ent.Comp.EffigyRechargeTimer = TimeSpan.MaxValue;//maxtime since the recharge should be set after the effigy dies.
+            Dirty(ent);
+        }
+
         _actions.AddAction(ent, ref ent.Comp.HibernateActionEntity, ent.Comp.HibernateAction, ent);
     }
 

@@ -9,6 +9,7 @@ public sealed partial class CosmicSunderSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private OccluderSystem _occluder = default!;
 
     public override void Initialize()
     {
@@ -20,6 +21,12 @@ public sealed partial class CosmicSunderSystem : EntitySystem
     private void OnColossusSunder(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusSunder args)
     {
         args.Handled = true;
+        
+        var origin = _transform.GetMapCoordinates(ent);
+        var target = _transform.ToMapCoordinates(args.Target);
+
+        if (!_occluder.InRangeUnoccluded(origin, target, 0f, ignoreTouching: true))//0f zero range since yml has the range
+        return;
 
         var comp = ent.Comp;
         _appearance.SetData(ent, ColossusVisuals.Status, ColossusStatus.Action);
