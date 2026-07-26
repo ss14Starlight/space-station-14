@@ -69,7 +69,7 @@
     #- id: SubXenoborgs
     #- id: TerrorSpidersSpawn
     - id: RailroadingTerminator
-    #- id: Brighteye # Brighteye is disabled until more work is put in.
+    - id: Brighteye
     - id: ColossusSpawn # Starlight end
     - id: EeepEvent # imp
     - !type:NestedSelector

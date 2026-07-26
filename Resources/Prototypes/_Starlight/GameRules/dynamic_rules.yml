@@ -298,14 +298,14 @@
             min: 10
           - !type:RoundDurationCondition
             min: 1200 # 20 minutes
-        #- id: Brighteye # Brighteye is disabled until more work is put in.
-        #  weight: 1
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:PlayerCountCondition
-        #    min: 20
-        #  - !type:RoundDurationCondition
-        #    min: 1200 # 20 minutes
+        - id: Brighteye
+          weight: 1
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 20
+          - !type:RoundDurationCondition
+            min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
           conditions:
@@ -630,14 +630,14 @@
             min: 10
           - !type:RoundDurationCondition
             min: 1200 # 20 minutes
-        #- id: Brighteye # Starlight - disabled from rolling
-        #  weight: 1
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:PlayerCountCondition
-        #    min: 20
-        #  - !type:RoundDurationCondition
-        #    min: 1200 # 20 minutes
+        - id: Brighteye
+          weight: 1
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 20
+          - !type:RoundDurationCondition
+            min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
           conditions:
