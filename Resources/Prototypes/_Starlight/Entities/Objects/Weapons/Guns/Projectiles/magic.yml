@@ -45,6 +45,8 @@
     damage:
       types:
         Heat: 5
+  - type: TimedDespawn
+    lifetime: 60
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
@@ -64,7 +66,7 @@
   id: ProjectileFireArrow
   name: firearrow
   description: Flagra!
-  parent: BaseBullet
+  parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
@@ -77,7 +79,7 @@
         Heat: 30
         Slash: 30
     soundHit:
-      path: /Audio/Weapons/Guns/Gunshots/Hit/energy_meat1.oog
+      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
   - type: Explosive
     explosionType: FireBomb
     totalIntensity: 0.01
