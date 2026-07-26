@@ -317,7 +317,6 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             await serverGrain.AddUnban(banId, unban, project, server);
         }
 
-
         if (project != null && server != null)
         {
             var localBan = await _db.GetServerBanAsync(banId);
