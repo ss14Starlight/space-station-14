@@ -87,3 +87,31 @@
     - id: CigPackMixed
     - id: CigPackRollie
     - id: CigPackMedRollie
+
+- type: entity
+  parent: BoxCardboard
+  id: FoodBoxCrispyRiceBar
+  name: box of crispy rice bars
+  description: 'A legally distinct bar of crispy rice held together with marshmallow.'
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/crispy_rice_bars.rsi
+    state: ricebar_box
+  - type: Storage
+    grid:
+    - 0,0,1,2
+    whitelist:
+      tags:
+      - CrispyRiceBar
+  - type: Item
+    sprite: _Starlight/Objects/Consumable/Food/crispy_rice_bars.rsi
+    size: Normal
+    shape:
+    - 0,0,2,1
+    storedOffset: -1,1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: FoodSnackRiceBarPacket
+          amount: 6

@@ -3,13 +3,26 @@
   name: job-name-prisoner
   description: job-description-prisoner
   playTimeTracker: JobPrisoner
+  startingGear: PrisonerGear
+  setPreference: false
+  icon: "JobIconPrisoner"
+  supervisors: job-supervisors-prisoner
+  access:
+  - GenpopEnter
+
+- type: job
+  id: StirStir
+  name: job-name-stirstir
+  description: job-description-stirstir
+  playTimeTracker: JobStirStir
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
       time: 0.25h
   startingGear: PrisonerGear
+  setPreference: false
   icon: "JobIconPrisoner"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-security
   access:
   - GenpopEnter
 

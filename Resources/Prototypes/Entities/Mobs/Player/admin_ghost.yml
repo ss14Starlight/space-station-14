@@ -133,7 +133,10 @@
       - IPC
       - Hybrid
   - type: ShowHungerIcons
-  - type: ShowThirstIcons # Starlight END
+  - type: ShowThirstIcons
+  - type: ShowAccess
+    seeIdHolder: true
+    itemsOnly: false # Starlight END
   - type: ShowContrabandDetails
   - type: Inventory
     templateId: aghost
