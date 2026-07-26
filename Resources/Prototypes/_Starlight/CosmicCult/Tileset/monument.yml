@@ -97,6 +97,15 @@
   - type: GuideHelp
     guides:
     - CosmicCult
+  - type: WarpPoint
+    follow: false
+    location: The Monument
+    blacklist:
+      tags:
+        - GhostOnlyWarp
+  - type: Tag
+    tags:
+      - GhostOnlyWarp
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-forthecult
   - type: CosmicCorrupting
