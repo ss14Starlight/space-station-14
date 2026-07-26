@@ -23,7 +23,7 @@
     lifetime: 1.75
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/_Starlight/Effects/redspace_thunderclap.ogg
+      path: /Audio/_Starlight/Effects/redspace_thunderclap.ogg # Starlight
   - type: ESSparkOnTrigger
     count: 8
     sparkPrototype: MoffEffectSparksRedspace
