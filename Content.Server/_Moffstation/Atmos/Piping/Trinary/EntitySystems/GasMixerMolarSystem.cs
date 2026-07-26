@@ -100,7 +100,7 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
             _atmosphereSystem.Merge(transferMixture, transferableInletTwo);
 
             var pressureDelta = ent.Comp.TargetPressure - outlet.Air.Pressure;
-            var totalTransferredMoles = pressureDelta * outlet.Air.Volume / (transferMixture.Temperature * Atmospherics.R);
+            var totalTransferredMoles = pressureDelta * outlet.Air.Volume / (outlet.Air.Temperature * Atmospherics.R); // Starlight
 
             // step 3 : transfer gas from inlets using the total transferred mole amount and the requested concentrations.
             _atmosphereSystem.Merge(outlet.Air, transferableInletOne.Remove(totalTransferredMoles * ent.Comp.InletOneConcentration));
@@ -228,4 +228,16 @@ public sealed partial class GasMixerMolarSystem : EntitySystem
                 ent.Comp.TargetPressure,
                 ent.Comp.Enabled,
                 ent.Comp.InletOneConcentration));
+
+    #region Starlight
+    public void Set(EntityUid uid, GasMixerMolarComponent component, bool value)
+    {
+        if (component.Enabled == value) return;
+
+        component.Enabled = value;
+        UpdateAppearance((uid, component));
+        DirtyUi((uid, component));
+    }
+
+    #endregion
 }

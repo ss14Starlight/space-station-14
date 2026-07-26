@@ -40,7 +40,9 @@
   - type: Tool
     qualities:
       - Prying
+      - Tearing # Starlight
   - type: ToolTileCompatible
+    delay: 6 # Starlight
   - type: Prying
     useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
     playSoundOnDoafter: true #SL

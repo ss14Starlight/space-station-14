@@ -1,0 +1,33 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "states":
+    [
+        {
+            "name": "icon",
+            "copyright": "briochebear(discord)"
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "briochebear(discord)",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "briochebear(discord)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET",
+            "copyright": "briochebear(discord)",
+            "directions": 4
+        }
+    ]
+}
+
