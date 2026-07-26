@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Fixed Intercom Assemblies by adding the InteractionOutline and Clickable components to them, so you no longer have to right click them and click their icon when on that stage of construction/deconstruction.
-    type: Fix
-  id: 406522
-  time: '2026-07-10T17:54:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5062
 - author: BlythT
   changes:
   - message: Added additional filters to the Voice Selector menu in the Character Editor to make finding and picking a voice much easier (special thanks to those who contributed!).
@@ -2799,4 +2792,11 @@ Entries:
   id: 406921
   time: '2026-07-26T11:55:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5331
+- author: neomoth
+  changes:
+  - message: Fix whisper messages that start with a language prefix (e.g. "+mof,hello" now whispers "Hello" in Moffic instead of "Mof,hello" in your currently selected language).
+    type: Fix
+  id: 406922
+  time: '2026-07-26T12:36:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5324
 Order: -1
