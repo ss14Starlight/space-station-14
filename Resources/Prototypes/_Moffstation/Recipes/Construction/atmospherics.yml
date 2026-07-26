@@ -1,0 +1,24 @@
+- type: construction
+  id: GasMolarMixer
+  graph: GasTrinary
+  startNode: start
+  targetNode: molarmixer
+  category: construction-category-atmospherics
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  mirror: GasMolarMixerFlipped
+  conditions:
+  - !type:NoUnstackableInTile
+
+- type: construction
+  id: GasMolarMixerFlipped
+  hide: true
+  graph: GasTrinary
+  startNode: start
+  targetNode: molarmixerflipped
+  category: construction-category-atmospherics
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  mirror: GasMolarMixer
+  conditions:
+  - !type:NoUnstackableInTile
