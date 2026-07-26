@@ -39,3 +39,54 @@
       shader: unshaded
       map: ["enum.ApcVisualLayers.Environment"]
       visible: false
+
+# advanced APC
+- type: entity
+  parent: BaseAPC
+  id: APCAdvanced
+  name: advanced APC
+  suffix: Advanced, 100kJ
+  components:
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
+  - type: Apc
+    maxLoad: 60000 # triple the amount a basic APC handles
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Starlight/Structures/Power/apc.rsi
+    layers:
+    - state: advanced-base
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    - state: display-charging
+      shader: unshaded
+      map: ["enum.ApcVisualLayers.ChargeState"]
+    - state: lock0-locked
+      shader: unshaded
+      map: ["enum.ApcVisualLayers.InterfaceLock"]
+      visible: false
+    - state: lock1-locked
+      shader: unshaded
+      map: ["enum.ApcVisualLayers.PanelLock"]
+      visible: false
+    - state: lock1-locked #when these are implemented get actual sprites.
+      shader: unshaded
+      map: ["enum.ApcVisualLayers.Equipment"]
+      visible: false
+    - state: lock1-locked
+      shader: unshaded
+      map: ["enum.ApcVisualLayers.Lighting"]
+      visible: false
+    - state: lock1-locked
+      shader: unshaded
+      map: ["enum.ApcVisualLayers.Environment"]
+      visible: false
+  - type: PowerMonitoringDevice
+    group: APC
+    sourceNode: input
+    loadNode: output
+    collectionName: apc
+    sprite: _Starlight/Structures/Power/apc.rsi
+    state: advanced-static
