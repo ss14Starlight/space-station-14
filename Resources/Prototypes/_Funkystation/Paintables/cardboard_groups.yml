@@ -1,0 +1,20 @@
+- type: paintableGroup
+  cost: 1
+  id: Cardboard
+  defaultStyle: plain
+  styles:
+    plain: CardboardBoxLarge
+    hazard: CardboardBoxLargeHazard
+    restock: CardboardBoxLargeRestock
+    weh: CardboardBoxLargeWeh
+    internals: CardboardBoxLargeInternals
+#    botany: CardboardBoxLargeBotany
+    cargo: CardboardBoxLargeCargo
+    chemistry: CardboardBoxLargeChemisty
+    command: CardboardBoxLargeCommand
+    engineering: CardboardBoxLargeEngi
+    evidence: CardboardBoxLargeEvidence
+    medical: CardboardBoxLargeMedical
+    science: CardboardBoxLargeScience
+    security: CardboardBoxLargeSecurity
+    service: CardboardBoxLargeService

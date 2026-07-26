@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: CargoCartOrder
+  icon:
+    sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box.rsi
+    state: bigbox
+  product: CargoCart
+  cost: 2500
+  category: cargoproduct-category-name-cargo
+  group: market

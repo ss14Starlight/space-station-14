@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprite by mkanke for Funkystation",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "boxshelf",
+      "directions": 4
+    },
+    {
+      "name": "fill1",
+      "directions": 4
+    },
+    {
+      "name": "fill2",
+      "directions": 4
+    },
+    {
+      "name": "fill3",
+      "directions": 4
+    },
+    {
+      "name": "fill4",
+      "directions": 4
+    }
+  ]
+}

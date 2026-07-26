@@ -1,0 +1,313 @@
+- type: entity
+  parent: BaseItem
+  id: CardboardBoxLarge
+  name: large cardboard box
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box.rsi
+    layers:
+    - state: bigbox
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      map: [ "enum.PaperLabelVisuals.Layer" ]
+      offset: -0.1, 0.2
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: bounty }
+          CaptainsPaper: { state: captains_paper }
+          Invoice: { state: invoice }
+      enum.PaintableVisuals.Prototype:
+        boxPaintMap:
+          CardboardBoxLarge: { state: bigbox, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box.rsi }
+          CardboardBoxLargeHazard: { state: bigboxhazard, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_hazard.rsi }
+          CardboardBoxLargeRestock: { state: bigboxrestock, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_restock.rsi }
+          CardboardBoxLargeWeh: { state: bigboxweh, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_weh.rsi }
+          CardboardBoxLargeInternals: { state: bigboxinternals, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_internals.rsi }
+#          CardboardBoxLargeBotany: { state: bigboxbotany, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_botany.rsi.rsi }
+          CardboardBoxLargeCargo: { state: bigboxcargo, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_cargo.rsi }
+          CardboardBoxLargeChemisty: { state: bigboxchemisty, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_chemisty.rsi }
+          CardboardBoxLargeCommand: { state: bigboxcommand, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_command.rsi }
+          CardboardBoxLargeEngi: { state: bigboxengi, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_engi.rsi }
+          CardboardBoxLargeEvidence: { state: bigboxevidence, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_evidence.rsi }
+          CardboardBoxLargeMedical: { state: bigboxmedical, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_medical.rsi }
+          CardboardBoxLargeScience: { state: bigboxscience, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_science.rsi }
+          CardboardBoxLargeSecurity: { state: bigboxsecurity, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_security.rsi }
+          CardboardBoxLargeService: { state: bigboxservice, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_service.rsi }
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,4
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      paper_label: !type:ContainerSlot
+      # to prevent bag open/honk spam
+  - type: UseDelay
+    delay: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: MultiHandedItem
+  - type: InteractionOutline
+  - type: Appearance
+  - type: ItemSlots
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+        - Paper
+      blacklist:
+        tags:
+        - Book
+  - type: Dumpable
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 200 #Loses 2 cardboard per recycle
+  - type: Construction
+    graph: CardboardboxLargeGraph
+    node: cardboardboxlargenode
+    containers:
+    - entity_storage
+  - type: Paintable
+    group: Cardboard
+  - type: Tag
+    tags:
+    - CardboardboxLarge
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeRestock
+  name: restock box
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_restock.rsi
+    layers:
+    - state: bigboxrestock
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      map: [ "enum.PaperLabelVisuals.Layer" ]
+      offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeHazard
+  name: hazard box
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_hazard.rsi
+    layers:
+    - state: bigboxhazard
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      map: [ "enum.PaperLabelVisuals.Layer" ]
+      offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeWeh
+  name: weh box
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_weh.rsi
+    layers:
+    - state: bigboxweh
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      map: [ "enum.PaperLabelVisuals.Layer" ]
+      offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeInternals
+  name: internals box
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_internals.rsi
+    layers:
+    - state: bigboxinternals
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      map: [ "enum.PaperLabelVisuals.Layer" ]
+      offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeBotany
+  name: botany box
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_botany.rsi
+    layers:
+      - state: bigboxbotany
+      - state: paper
+        sprite: Structures/Storage/Crates/labels.rsi
+        map: [ "enum.PaperLabelVisuals.Layer" ]
+        offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeCargo
+  name: cargo box
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_cargo.rsi
+      layers:
+        - state: bigboxcargo
+        - state: paper
+          sprite: Structures/Storage/Crates/labels.rsi
+          map: [ "enum.PaperLabelVisuals.Layer" ]
+          offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeChemisty
+  name: chemisty box
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_chemisty.rsi
+      layers:
+        - state: bigboxchemisty
+        - state: paper
+          sprite: Structures/Storage/Crates/labels.rsi
+          map: [ "enum.PaperLabelVisuals.Layer" ]
+          offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeCommand
+  name: command box
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_command.rsi
+      layers:
+        - state: bigboxcommand
+        - state: paper
+          sprite: Structures/Storage/Crates/labels.rsi
+          map: [ "enum.PaperLabelVisuals.Layer" ]
+          offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeEngi
+  name: engineering box
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_engi.rsi
+      layers:
+        - state: bigboxengi
+        - state: paper
+          sprite: Structures/Storage/Crates/labels.rsi
+          map: [ "enum.PaperLabelVisuals.Layer" ]
+          offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeEvidence
+  name: evidence box
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_evidence.rsi
+      layers:
+        - state: bigboxevidence
+        - state: paper
+          sprite: Structures/Storage/Crates/labels.rsi
+          map: [ "enum.PaperLabelVisuals.Layer" ]
+          offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeMedical
+  name: medical box
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_medical.rsi
+      layers:
+        - state: bigboxmedical
+        - state: paper
+          sprite: Structures/Storage/Crates/labels.rsi
+          map: [ "enum.PaperLabelVisuals.Layer" ]
+          offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeScience
+  name: science box
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_science.rsi
+      layers:
+        - state: bigboxscience
+        - state: paper
+          sprite: Structures/Storage/Crates/labels.rsi
+          map: [ "enum.PaperLabelVisuals.Layer" ]
+          offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeSecurity
+  name: security box
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_security.rsi
+      layers:
+        - state: bigboxsecurity
+        - state: paper
+          sprite: Structures/Storage/Crates/labels.rsi
+          map: [ "enum.PaperLabelVisuals.Layer" ]
+          offset: -0.1, 0.2
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeService
+  name: service box
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Sprite
+      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_service.rsi
+      layers:
+        - state: bigboxservice
+        - state: paper
+          sprite: Structures/Storage/Crates/labels.rsi
+          map: [ "enum.PaperLabelVisuals.Layer" ]
+          offset: -0.1, 0.2

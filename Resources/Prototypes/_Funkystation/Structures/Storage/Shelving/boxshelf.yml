@@ -1,0 +1,120 @@
+- type: entity
+  parent: BaseStructure
+  id: BoxShelf
+  name: box shelf
+  description: A shelf for storing boxes.
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/dodgeball.ogg"
+  - type: InteractionOutline
+  - type: PlaceableSurface
+  - type: Sprite
+    sprite: _Funkystation/Structures/Furniture/boxshelf.rsi
+    state: boxshelf
+  - type: Appearance
+  - type: Occluder
+    boundingBox: -0.45, -0.45, 0.45, 0.45
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 300
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ItemSlots
+    slots:
+      fill4:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 9
+      fill3:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 8
+      fill2:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 7
+      fill1:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 6
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: [ ]
+      fill4: !type:ContainerSlot { }
+      fill3: !type:ContainerSlot { }
+      fill2: !type:ContainerSlot { }
+      fill1: !type:ContainerSlot { }
+  - type: ItemMapper
+    mapLayers:
+      fill1:
+        minCount: 1
+        whitelist:
+          tags:
+          - CardboardboxLarge
+      fill2:
+        minCount: 2
+        whitelist:
+          tags:
+          - CardboardboxLarge
+      fill3:
+        minCount: 3
+        whitelist:
+          tags:
+          - CardboardboxLarge
+      fill4:
+        minCount: 4
+        whitelist:
+          tags:
+          - CardboardboxLarge
+    sprite: _Funkystation/Structures/Furniture/boxshelf.rsi
+  - type: Construction
+    graph: BoxShelf
+    node: boxshelf
