@@ -40,7 +40,7 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         if (ent.Comp.CurrentEffigy != null && EntityManager.EntityExists(ent.Comp.CurrentEffigy))
         {
             _popup.PopupEntity(
-                Loc.GetString("ghost-role-colossus-effigy-exists"), ent, ent);
+                Loc.GetString("cosmiccult-silicon-effigy-exists"), ent, ent);
                                 
             return;
         }
