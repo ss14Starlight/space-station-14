@@ -26,7 +26,7 @@ public sealed partial class SpawnParticleEffect : EntityEffectBase<SpawnParticle
     [DataField]
     public Color? ColorOverride;
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
         => null; // this doesnt need a guidebook entry
 }
 
