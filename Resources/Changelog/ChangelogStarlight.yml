@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: A thruster that was stuck permanently turned off on the NukeOps "GX-86 Omen" shuttle has been fixed.
-    type: Fix
-  id: 406516
-  time: '2026-07-10T13:40:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5067
-- author: Caws
-  changes:
   - message: Disposal pipes will now unanchor themselves if items (or mobs) get stuck in them for too long.
     type: Tweak
   id: 406517
@@ -2799,4 +2792,11 @@ Entries:
   id: 406915
   time: '2026-07-26T11:14:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5343
+- author: wonderfulnewworld, Merrokitsune
+  changes:
+  - message: The fire axes can now tear plating.
+    type: Add
+  id: 406916
+  time: '2026-07-26T11:14:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5341
 Order: -1
