@@ -235,8 +235,6 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
             supermatter.Comp.ReactionModifier += prop.ReactionModifier * percent;
             supermatter.Comp.DestabilizationModifier += prop.DestabilizationModifier * percent;
             supermatter.Comp.GasDoesDamage += prop.GasDamage * percent;
-
-            
         }
             // im not sure if this needs to be in the loop
             supermatter.Comp.RadiationStability = MathHelper.Clamp(radiationStability, Const.MinRadiationStability, Const.MaxRadiationStability);
