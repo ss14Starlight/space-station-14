@@ -16,24 +16,25 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
 ///Get ingredients
 
 		var initialPluoxMoles = mixture.GetMoles(Gas.Pluoxium);
+		var initialCo2moles = mixture.GetMoles(Gas.CarbonDioxide);
 		var initialHydrogenMoles = mixture.GetMoles(Gas.Hydrogen);
         var temperature = mixture.Temperature;
 
-///Check pluox flat concentration relative to fuel
+///Check pluox flat concentration relative to fuel, Co2 contribuites to reduce threshold for intentional reaction.
 
-		var pluoxRatio = initialPluoxMoles / initialHydrogenMoles;		
+		var pluoxRatio = (initialPluoxMoles + (initialCo2moles * 0.5f)) / initialHydrogenMoles;		
 
 ///Too much pluox? Ignite! It's super oxygen and doesnt care about current temperature.
 
-        if (initialPluoxMoles < 50f)
+        if (initialPluoxMoles < 25f)
             return ReactionResult.NoReaction;
 
 		var satrate = (0f);
 		var temprate = (0f);
 
-		if (pluoxRatio > 2f)
+		if (pluoxRatio > 0.5f)
 		{
-			satrate = (pluoxRatio * 0.1f);
+			satrate = (pluoxRatio * 0.05f);
 		}
 
 ///Can also ignite from very high temperatures.
@@ -44,15 +45,25 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
 		}
 
         var rate = (satrate + temprate);
+        var burn = (0f);
 
-        if (rate < 1f)
+        if (rate < 0.0001f)
             return ReactionResult.NoReaction;     
-				
-		mixture.AdjustMoles(Gas.Hydrogen, -rate);
-		mixture.AdjustMoles(Gas.Pluoxium, -rate);
-		mixture.AdjustMoles(Gas.WaterVapor, rate * 0.5f);
+
+///At a certain rate the reaction gets slower unless cooled to prevent insanity.
+
+        if (rate > 1f)
+            burn = (1f + (rate / temperature));
+        else
+		{
+            burn = (rate);
+		}
+
+		mixture.AdjustMoles(Gas.Hydrogen, -burn);
+		mixture.AdjustMoles(Gas.Pluoxium, -burn * 0.5f);
+		mixture.AdjustMoles(Gas.WaterVapor, burn * 0.5f);
 			
-		var energyReleased = (Atmospherics.FireHydrogenEnergyReleased * rate);
+		var energyReleased = (Atmospherics.FireHydrogenEnergyReleased * burn);
 
 ///While generic conversion interactions make sense to me, the exact mechanics of fire and fire visuals, do not.		
 
