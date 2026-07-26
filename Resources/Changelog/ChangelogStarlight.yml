@@ -1,67 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Added Security Tickets. Tickets can be found in Ticket Pads, within Security Officer Lockers or the SecTech. A new line in Corporate Law under 'Normal Punishments' outlines their use as a step up from an informal warning, and how to fill out a ticket.
-    type: Add
-  id: 406591
-  time: '2026-07-12T17:12:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5050
-- author: Arkanic
-  changes:
-  - message: Improved projectile performance.
-    type: Tweak
-  id: 406592
-  time: '2026-07-12T21:23:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5113
-- author: Arkanic
-  changes:
-  - message: Fixed the infamous "shooting at wall or person close by you makes you shoot yourself" bug that we all love and will dearly miss.
-    type: Fix
-  id: 406593
-  time: '2026-07-12T21:23:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5113
-- author: Arkanic
-  changes:
-  - message: Hitscan projectiles can now properly overpenetrate through walls, and aren't broken by two walls adjacent to each other.
-    type: Fix
-  id: 406594
-  time: '2026-07-12T21:23:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5113
-- author: Arkanic
-  changes:
-  - message: A dinky pistol that definitely has no relation whatsoever to any of the above changes.
-    type: Add
-  id: 406595
-  time: '2026-07-12T21:23:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5113
-- author: mikeysaurus
-  changes:
-  - message: Animal Kidneys can now be used in Surgery to replace kidneys.
-    type: Fix
-  id: 406596
-  time: '2026-07-12T21:23:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5105
-- author: Conflee
-  changes:
-  - message: Resprited the Post Light to be in 3/4ths perspective instead of Flat perspective, so it looks more like a real object that is in the world instead of a PNG. (only walls, windows, and airlocks should be in Flat perspective).
-    type: Tweak
-  id: 406597
-  time: '2026-07-12T22:04:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5106
-- author: Sparlight
-  changes:
-  - message: Fixed inconsistent animal husbandry behavior.  Now your chickens won't stop your cows from breeding.
-    type: Fix
-  id: 406598
-  time: '2026-07-12T22:32:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5101
-- author: wonderfulnewworld
-  changes:
-  - message: You can now swing vibroblade sheathes, the captain's sheathe, the cane sheathe, and the bunny gang backpack.
-    type: Add
-  id: 406599
-  time: '2026-07-12T22:32:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5095
 - author: wonderfulnewworld
   changes:
   - message: Senior security officer, duty officer, brigmedic, and warden clothes now use the correct senior time.
@@ -2799,4 +2736,67 @@ Entries:
   id: 406990
   time: '2026-07-26T14:38:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Arkanic
+  changes:
+  - message: Fixed criminal, terminator, etc railroading cards not appearing.
+    type: Fix
+  id: 406991
+  time: '2026-07-26T15:10:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5305
+- author: SirLutz
+  changes:
+  - message: Supermatter interactions for funky/starlight gases(enum).
+    type: Add
+  id: 406992
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: Modifiers in old calculations.
+    type: Add
+  id: 406993
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: New variables for calculations.
+    type: Add
+  id: 406994
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: Components for new modifiers.
+    type: Add
+  id: 406995
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: partial old calculations.
+    type: Remove
+  id: 406996
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: Tritium, Nitrous oxide, Freezon change reactifity.
+    type: Tweak
+  id: 406997
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: minor wrong naming of variables.
+    type: Fix
+  id: 406998
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: SirLutz
+  changes:
+  - message: Hydrogen molar mass from 32 to 1.
+    type: Fix
+  id: 406999
+  time: '2026-07-26T15:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5199
 Order: -1
