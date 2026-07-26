@@ -108,6 +108,9 @@
   name: advanced APC frame
   description: An advanced control terminal for the area's electrical systems, lacking the electronics.
   components:
+  - type: Construction
+    graph: APC
+    node: advancedApcFrame
   - type: Sprite
     sprite: _Starlight/Structures/Power/apc.rsi
     state: advanced-frame
