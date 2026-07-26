@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Fland) Extended Mining's dock.
-    type: Tweak
-  id: 406509
-  time: '2026-07-10T10:54:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5048
-- author: Caws
-  changes:
-  - message: (Fland) Swapped out Fland's cargo shuttle for Silica's because it fits in the docking space waaay easier.
-    type: Tweak
-  id: 406510
-  time: '2026-07-10T10:54:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5048
-- author: Caws
-  changes:
   - message: (Fland) Expanded Brigmedic to be less cramped.
     type: Tweak
   id: 406511
@@ -2799,4 +2785,18 @@ Entries:
   id: 406908
   time: '2026-07-25T21:21:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5310
+- author: Conflee
+  changes:
+  - message: Added Crispy Rice Bars, a legally distinct crispy rice treat held together with marshmallow! Boxes and individually wrapped bars can be spawned by the Random Snack spawners, and 1 box can be purchased at snack venders.
+    type: Add
+  id: 406909
+  time: '2026-07-26T10:31:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5258
+- author: Conflee
+  changes:
+  - message: Added a handful of Starlight-unique food wrappers to the Random Trash spawners.
+    type: Tweak
+  id: 406910
+  time: '2026-07-26T10:31:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5258
 Order: -1
