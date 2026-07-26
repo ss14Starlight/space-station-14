@@ -92,6 +92,8 @@ public sealed partial class RCDSystem : EntitySystem
         // Starlight End
     }
 
+    public void SetSelectedLayer(Entity<RCDComponent> ent, AtmosPipeLayer layer) => ent.Comp.LastSelectedLayer = layer;
+
     #region Event handling
 
     private void OnMapInit(EntityUid uid, RCDComponent component, MapInitEvent args)
@@ -195,6 +197,7 @@ public sealed partial class RCDSystem : EntitySystem
             selectedLayer = AtmosPipeLayer.Tertiary;
 
         rcd.LastSelectedLayer = selectedLayer;
+        Log.Info($"Selected layer: {selectedLayer}");
     }
 
     private void OnGetUtilityVerb(EntityUid uid, RCDComponent component, GetVerbsEvent<UtilityVerb> args)

@@ -15,6 +15,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Numerics;
+using Content.Client._Starlight.RCD.Systems;
 using static Robust.Client.Placement.PlacementManager;
 using Content.Shared.Atmos.EntitySystems;
 
@@ -36,7 +37,9 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     [Dependency] private IStateManager _stateManager = default!;
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IEntityNetworkManager _entityNetwork = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
+    private readonly ISawmill _sawmill;
     private readonly SharedMapSystem _mapSystem;
     private readonly SharedTransformSystem _transformSystem;
     private readonly SharedAtmosPipeLayersSystem _pipeLayersSystem;
@@ -59,6 +62,7 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     public AlignRPDAtmosPipeLayers(PlacementManager pMan) : base(pMan)
     {
         IoCManager.InjectDependencies(this);
+        _sawmill = _logManager.GetSawmill("AlignRPDAtmosPipeLayers");
         _mapSystem = _entityManager.System<SharedMapSystem>();
         _transformSystem = _entityManager.System<SharedTransformSystem>();
         _spriteSystem = _entityManager.System<SpriteSystem>();
@@ -204,12 +208,12 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         }
 
         // Update layer if changed
-        if (newLayer != _currentLayer)
-            _currentLayer = newLayer;
+        _currentLayer = newLayer;
 
         if (rcd.CurrentMode == RpdMode.Free)
         {
-            UpdateSelectedLayer(heldEntity.Value, _currentLayer);
+            _sawmill.Info($"Selected layer: {newLayer}");
+            _rcdSystem.SetSelectedLayer((heldEntity.Value, rcd), newLayer);
         }
 
         UpdatePlacer(_currentLayer);
@@ -230,6 +234,7 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         {
             _lastLayerSyncEntity = heldEntity;
             _lastLayerSynced = layer;
+
             _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
         }
     }
