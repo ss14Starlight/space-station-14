@@ -57,6 +57,14 @@
   name: sparks
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite # Starlight start
+    sprite: _Starlight/Effects/portal_implant.rsi
+    layers:
+    - state: redspace_flash
+      shader: unshaded
+    drawdepth: Effects
+    noRot: true
+    loop: false # Starlight end
   - type: EmitSoundOnSpawn
     sound: null
   - type: IgnitionSource
