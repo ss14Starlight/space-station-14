@@ -83,6 +83,9 @@ public sealed partial class ESTimedDespawnSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return 0;
 
+        if (ent.Comp.Lifetime == TimeSpan.Zero) // Starlight
+            return 1; // Starlight
+
         return Math.Clamp((_timing.CurTime - ent.Comp.SpawnTime) / ent.Comp.Lifetime, 0, 1);
     }
 

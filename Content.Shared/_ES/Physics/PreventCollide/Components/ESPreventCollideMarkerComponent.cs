@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._ES.Physics.PreventCollide.Components;
 
 /// <summary>
-/// Corresponding marker component to <see cref="ESPreventCollideMarkerComponent"/>
+/// Corresponding marker component to <see cref="ESPreventCollideComponent"/>
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(ESPreventCollideSystem), Other = AccessPermissions.None)]
