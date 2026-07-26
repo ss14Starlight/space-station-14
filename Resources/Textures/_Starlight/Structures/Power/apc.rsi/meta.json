@@ -8,22 +8,22 @@
   },
   "states": [
     {
-      "name": "base",
+      "name": "advanced-base",
       "directions": 4,
-      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b and heavily modified by EmoGarbage404 (github)"
+      "copyright": "Modified from tgstation commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b by Wayiscute (GitHub)"
     },
 	{
-      "name": "static",
-      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b and heavily modified by EmoGarbage404 (github)"
+      "name": "advanced-static",
+      "copyright": "Modified from tgstation commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b by Wayiscute (GitHub)"
     },
     {
-      "name": "broken",
-      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b and heavily modified by EmoGarbage404 (github)",
+      "name": "advanced-broken",
+      "copyright": "Modified from tgstation commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b by Wayiscute (GitHub)",
       "directions": 4
     },
     {
-      "name": "frame",
-      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b and heavily modified by EmoGarbage404 (github)",
+      "name": "advanced-frame",
+      "copyright": "Modified from tgstation commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b by Wayiscute (GitHub)",
       "directions": 4
     },
     {
