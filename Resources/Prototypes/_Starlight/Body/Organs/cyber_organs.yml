@@ -179,6 +179,18 @@
     groups:
     - id: Food
     - id: Drink
+  - type: ItemBorgModule
+    hands:
+      - item: BorgCyberStomachStraw
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: cooking-module }
+  - type: Tag
+    tags:
+      - BorgModuleGeneric
+  - type: BorgModule
+    borgFitTypes:
+      - borg-type-all
+  - type: SelectableBorgModule
 
 - type: entity
   id: BudgetCyberKidneys

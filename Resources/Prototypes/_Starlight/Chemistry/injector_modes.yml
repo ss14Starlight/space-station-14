@@ -25,3 +25,11 @@
 - type: injectorMode
   parent: [ BaseDeforestJetInjectorMode, BaseDynamicMode ]
   id: DeforestJetInjectorDynamicMode
+
+- type: injectorMode
+  parent: [ BaseDrawMode ]
+  id: CyberStomachBorgModuleInjectMode
+  transferAmounts:
+    - 5
+  containerDrawTime: 0.5
+  injectSound: "Audio/Items/drink.ogg"

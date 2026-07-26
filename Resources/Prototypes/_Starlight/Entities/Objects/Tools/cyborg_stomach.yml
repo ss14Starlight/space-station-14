@@ -1,0 +1,29 @@
+- type: entity
+  parent: BaseItem
+  name: Straw
+  description: A straw to drain liquids into the cybernetic stomach.
+  id: BorgCyberStomachStraw
+  suffix: Borg
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeStraight
+      color: "#ffff00"
+      scale: 0.80,0.80
+    - type: SolutionContainerManager
+      solutions:
+        injector:
+          maxVol: 30
+    - type: Injector
+      activeModeProtoId: CyberStomachBorgModuleInjectMode
+      ignoreMobs: true
+      ignoreClosed: false
+      allowedModes:
+        - CyberStomachBorgModuleInjectMode
+    - type: ExaminableSolution
+      solution: injector
+      exactVolume: true
+    - type: SolutionPurge
+      solution: injector
+      quantity: 5
+      duration: 5
