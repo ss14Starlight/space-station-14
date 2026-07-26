@@ -1,39 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Rolling midround Nukeops and LoneOpsSpawn in Dynamic now has a higher cost.
-    type: Tweak
-  id: 406563
-  time: '2026-07-11T11:26:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5028
-- author: wonderfulnewworld
-  changes:
-  - message: Decreased minimum time between events by 2.5 minutes. Hopefully this will make it horde less.
-    type: Tweak
-  id: 406564
-  time: '2026-07-11T11:26:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5028
-- author: wonderfulnewworld
-  changes:
-  - message: Decreased AbductorsSpawn Dynamic cost. They're not that intrusive, all things considered.
-    type: Tweak
-  id: 406565
-  time: '2026-07-11T11:26:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5028
-- author: wonderfulnewworld
-  changes:
-  - message: ParadoxCloneSpawn and AbductorsSpawn now have a small chance to fail, and roll 5 minutes later now. This is to prevent them from rolling every single round...
-    type: Tweak
-  id: 406566
-  time: '2026-07-11T11:26:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5028
-- author: wonderfulnewworld
-  changes:
-  - message: You can now find Ulnitranium and ZXA tanks on expeds.
-    type: Add
-  id: 406567
-  time: '2026-07-11T12:45:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5090
 - author: Forrestgod
   changes:
   - message: Broken Cryopods can now be deconstructed via a welder just like broken machine frames.
@@ -2799,4 +2764,39 @@ Entries:
   id: 406962
   time: '2026-07-26T14:08:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5252
+- author: Orhu
+  changes:
+  - message: (Space Mall) Added Stir Stir to Genpop.
+    type: Add
+  id: 406963
+  time: '2026-07-26T14:08:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5257
+- author: Orhu
+  changes:
+  - message: (Space Mall) Added Flippers to Magistrate's Office.
+    type: Add
+  id: 406964
+  time: '2026-07-26T14:08:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5257
+- author: Orhu
+  changes:
+  - message: (Space Mall) Added vend of silence to Mime Room.
+    type: Add
+  id: 406965
+  time: '2026-07-26T14:08:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5257
+- author: Orhu
+  changes:
+  - message: (Space Mall) Added ice cream maker to kitchen.
+    type: Add
+  id: 406966
+  time: '2026-07-26T14:08:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5257
+- author: Orhu
+  changes:
+  - message: (Space Mall) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
+    type: Add
+  id: 406967
+  time: '2026-07-26T14:08:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5257
 Order: -1
