@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Added Security Tickets. Tickets can be found in Ticket Pads, within Security Officer Lockers or the SecTech. A new line in Corporate Law under 'Normal Punishments' outlines their use as a step up from an informal warning, and how to fill out a ticket.
-    type: Add
-  id: 406591
-  time: '2026-07-12T17:12:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5050
 - author: Arkanic
   changes:
   - message: Improved projectile performance.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406990
   time: '2026-07-26T14:38:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Arkanic
+  changes:
+  - message: Fixed criminal, terminator, etc railroading cards not appearing.
+    type: Fix
+  id: 406991
+  time: '2026-07-26T15:10:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5305
 Order: -1
