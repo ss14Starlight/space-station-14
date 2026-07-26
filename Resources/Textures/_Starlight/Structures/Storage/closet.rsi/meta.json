@@ -191,6 +191,18 @@
         {
             "name": "roboticist_door",
 			"copyright": "Taken from tgstation, resprited into Roboticist by wonderfulnewworld (GitHub)"
+        },
+        {
+            "name": "casino",
+			"copyright": "Recoloured from the captain locker in Structures/Storage/closet.rsi by Glaud0283 (GitHub)"
+        },
+        {
+            "name": "casino_door",
+			"copyright": "Recoloured from the captain locker in Structures/Storage/closet.rsi by Glaud0283 (GitHub)"
+        },
+        {
+            "name": "casino_open",
+			"copyright": "Recoloured from the captain locker in Structures/Storage/closet.rsi by Glaud0283 (GitHub)"
         }
     ]
 }

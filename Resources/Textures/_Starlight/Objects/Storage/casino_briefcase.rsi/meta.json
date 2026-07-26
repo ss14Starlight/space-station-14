@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Recoloured from Objects/Storage/Briefcases/briefcase_brown.rsi (made by ps3moira) for Starlight by Glaud0283",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -9,20 +9,25 @@
   "states": [
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Recoloured by Glaud0283 from Objects/Storage/Briefcases/briefcase_brown.rsi by ps3moira"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Recoloured by Glaud0283 from Objects/Storage/Briefcases/briefcase_brown.rsi by ps3moira"
     },
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Recoloured by Glaud0283 from Objects/Storage/Briefcases/briefcase_brown.rsi by ps3moira"
     },
     {
-      "name": "locked"
+      "name": "locked",
+      "copyright": "Glaud0283"
     },
     {
-      "name": "unlocked"
+      "name": "unlocked",
+      "copyright": "Glaud0283"
     }
   ]
 }

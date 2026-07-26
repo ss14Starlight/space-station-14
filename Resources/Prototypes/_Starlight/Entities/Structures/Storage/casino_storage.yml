@@ -4,12 +4,13 @@
   name: casino vault locker
   description: A black and gold locker for the house's chips. Casino staff only.
   components:
+  - type: Appearance
   - type: Sprite
-    sprite: _Starlight/Structures/Storage/casino_locker.rsi
+    sprite: _Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
-    stateBaseClosed: generic
-    stateDoorOpen: generic_open
-    stateDoorClosed: generic_door
+    stateBaseClosed: casino
+    stateDoorOpen: casino_open
+    stateDoorClosed: casino_door
   - type: AccessReader
     access: [["Casino"]]
 
