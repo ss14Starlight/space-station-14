@@ -6,10 +6,10 @@ namespace Content.Client._Starfall.Particles;
 
 /// <summary>
 /// Handles the particle onevent cases that (from as far as I am aware) cannot be replaced by <see cref="SpawnParticleEffect"/> and the trigger system.
-/// <see cref="ParticleOnThrownComponent"/>, continuous emission while in flight, the active emitter must be tracked and explicitly stopped on landing.</item>
+/// <see cref="ParticleOnThrownComponent"/>, continuous emission while in flight, the active emitter must be tracked and explicitly stopped on landing.
 /// <see cref="ParticleOnGunShotProjectileComponent"/> attaches a particle emitter to
 /// every individual projectile fired, which has no trigger equivalent,
-/// although you should put this on the projectile entity itself as an emitter ideally.</item>
+/// although you should put this on the projectile entity itself as an emitter ideally.
 /// All other event particle needs should use <see cref="SpawnParticleEffect"/> in <c>EntityEffectOnTrigger</c> component instead of dedicated components here.
 /// </summary>
 public sealed class ParticleOnEventSystem : EntitySystem

@@ -92,13 +92,16 @@ public sealed partial class ParticleSystem : EntitySystem
         _overlayManager.AddOverlay(_overlay);
 
         _cfg.OnValueChanged(CCVars.ParticleQuality, OnQualityChanged, invokeImmediately: true);
-        _cfg.OnValueChanged(CCVars.ParticleGlobalBudget, v => _globalBudget = v, invokeImmediately: true);
+        _cfg.OnValueChanged(CCVars.ParticleGlobalBudget, OnGlobalBudgetChanged, invokeImmediately: true); // Starlight, subscribe to global budget changes
     }
+
+    private void OnGlobalBudgetChanged(int budget) => _globalBudget = budget; // Starlight
 
     public override void Shutdown()
     {
         base.Shutdown();
         _cfg.UnsubValueChanged(CCVars.ParticleQuality, OnQualityChanged);
+        _cfg.UnsubValueChanged(CCVars.ParticleGlobalBudget, OnGlobalBudgetChanged); // Starlight, unsubscribe from global budget changes when shutting down
         _overlayManager.RemoveOverlay(_overlay);
         _emitters.Clear();
         _liveParticleCount = 0;
@@ -812,6 +815,14 @@ public sealed partial class ParticleSystem : EntitySystem
     private void AgeOffScreenParticles(ActiveEmitter emitter, float dt)
     {
         emitter.Age += TimeSpan.FromSeconds(dt);
+
+        #region Starlight
+        // Mirror TickEmitter's duration expiry so off-screen emitters can still be reaped.
+        var duration = (float)(emitter.Overrides?.Duration ?? emitter.Proto.Duration).TotalSeconds;
+        if (!emitter.Exhausted && duration > 0f && emitter.Age.TotalSeconds >= duration)
+            emitter.Exhausted = true;
+        #endregion
+
         foreach (var p in emitter.Particles)
         {
             if (!p.Alive) continue;

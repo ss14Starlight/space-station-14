@@ -37,7 +37,7 @@ public sealed class ParticleRuntimeOverrides
     public float? Speed; // Initial speed of each particle at spawn.
     public float? SpeedVariance; // Random variance added to each particle's initial speed at spawn, in the range [-SpeedVariance, SpeedVariance].
     public Vector2? ConstantForce; // A constant acceleration applied to each particle every tick, X = right, Y = up.
-    public float? Gravity; // Additional downward (or upward with negative values) acceleration applied to each particle every tick. Added on top of ConstantForce.Y.
+    public float? Gravity; // Per-tick vertical positional offset, scaled by the particle's normalized age. This is applied directly to the particle position and does not affect velocity, drag, terminal speed, or <see cref="ConstantForce"/>. - Starlight
     public float? Drag; // Multiplier applied to each particle's velocity every tick, simulating air resistance. 1.0 = no drag, 0.5 = velocity halved every tick.
     public float? TerminalSpeed; // Maximum speed for each particle. If non-null, velocity is clamped to this magnitude every tick after applying forces and drag.
     public float? NoiseStrength; // Strength of the procedural noise turbulence applied to each particle every tick, in screen-space units. Noise is a curl field based on Perlin noise.

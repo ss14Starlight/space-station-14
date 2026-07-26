@@ -12,6 +12,7 @@ public sealed class ParticleOverlay : Overlay
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     private readonly ParticleSystem _system;
+    private const float EmitterCullMargin = 5f; // Starlight: margin for culling emitters slightly off screen
 
     // Shader cache
     private readonly Dictionary<string, ShaderInstance?> _shaderCache = new();
@@ -43,7 +44,7 @@ public sealed class ParticleOverlay : Overlay
         {
             if (emitter.MapCoords.MapId != mapId)
                 continue;
-            if (!args.WorldBounds.Contains(emitter.MapCoords.Position))
+            if (!args.WorldBounds.Enlarged(EmitterCullMargin).Contains(emitter.MapCoords.Position)) // Starlight, things slightly off screen can be rendered since some of their particles might be on screen
                 continue;
             if (emitter.Frames.Length == 0)
                 continue;
