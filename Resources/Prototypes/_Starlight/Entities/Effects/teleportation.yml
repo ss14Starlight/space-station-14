@@ -111,6 +111,7 @@
     radius: 2
     energy: 1
     netsync: false
+  - type: TriggerOnSpawn
   - type: ESSparkOnTrigger
     count: 8
     sparkPrototype: MoffEffectSparksRedspace
