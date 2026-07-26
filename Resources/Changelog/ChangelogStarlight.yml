@@ -1,67 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Ming) Camera from Botany's back room.
-    type: Remove
-  id: 406545
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: wonderfulnewworld
-  changes:
-  - message: Disabled Xenoborgs and Terror Spiders until their respective issues are fixed.
-    type: Remove
-  id: 406546
-  time: '2026-07-10T18:32:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5066
-- author: Caws
-  changes:
-  - message: The Hybrid Taser can now be fired when pacified.
-    type: Fix
-  id: 406547
-  time: '2026-07-10T19:10:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5051
-- author: AprilCatStreams
-  changes:
-  - message: Fixed divide by zero in Biomass Reclaimer allowing bloodless bodies to be processed again.
-    type: Fix
-  id: 406548
-  time: '2026-07-10T20:02:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5071
-- author: SevenShades
-  changes:
-  - message: New system for adding status icons with implants.
-    type: Add
-  id: 406549
-  time: '2026-07-10T21:35:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4439
-- author: SevenShades
-  changes:
-  - message: MedTak client system rework.
-    type: Add
-  id: 406550
-  time: '2026-07-10T21:35:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4439
-- author: SevenShades
-  changes:
-  - message: Two new suits and weapons for MedTak, along with some other content.
-    type: Add
-  id: 406551
-  time: '2026-07-10T21:35:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4439
-- author: wonderfulnewworld
-  changes:
-  - message: Added Ulnitranium, a new gas, equivalent to Pluoxium for Nitrogen breathers. It's made the same way as Pluoxium, but with Nitrogen + Nitrous instead of Oxygen + CO2. It can also be made with radiation, and can be used in place of Pluoxium to make Proto-Nitrate.
-    type: Add
-  id: 406552
-  time: '2026-07-11T05:47:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4891
-- author: wonderfulnewworld
-  changes:
-  - message: Added ZXA, a new anesthetic gas that works on any species with lungs. It's made by combining BZ, Nitrous Oxide, and Water Vapor, although it only consumes half of the water vapor it requires.
-    type: Add
-  id: 406553
-  time: '2026-07-11T05:47:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4891
 - author: wonderfulnewworld
   changes:
   - message: Surgeon lockers now have a ZXA tank instead of Nitrous Oxide and Healium.
@@ -2799,4 +2736,67 @@ Entries:
   id: 406944
   time: '2026-07-26T13:11:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5307
+- author: Orhu
+  changes:
+  - message: (Elkridge) Added Stir Stir to Genpop.
+    type: Add
+  id: 406945
+  time: '2026-07-26T13:41:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5274
+- author: Orhu
+  changes:
+  - message: (Elkridge) Added Flippers to Courtroom.
+    type: Add
+  id: 406946
+  time: '2026-07-26T13:41:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5274
+- author: Orhu
+  changes:
+  - message: (Elkridge) Added vend of silence to Mime Room.
+    type: Add
+  id: 406947
+  time: '2026-07-26T13:41:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5274
+- author: Orhu
+  changes:
+  - message: (Elkridge) Added ice cream maker to Kitchen.
+    type: Add
+  id: 406948
+  time: '2026-07-26T13:41:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5274
+- author: Orhu
+  changes:
+  - message: (Elkridge) Added ticket machine to HOP.
+    type: Add
+  id: 406949
+  time: '2026-07-26T13:41:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5274
+- author: Orhu
+  changes:
+  - message: (Elkridge) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
+    type: Add
+  id: 406950
+  time: '2026-07-26T13:41:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5274
+- author: Orhu
+  changes:
+  - message: (Elkridge) Made one of the bookshelves in Library guaranteed to have all guidebooks.
+    type: Tweak
+  id: 406951
+  time: '2026-07-26T13:41:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5274
+- author: Orhu
+  changes:
+  - message: (Elkridge) Placed a station beacon in Washroom.
+    type: Tweak
+  id: 406952
+  time: '2026-07-26T13:41:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5274
+- author: Orhu
+  changes:
+  - message: (Elkridge) Replaced mail tech lockers with new large variants.
+    type: Tweak
+  id: 406953
+  time: '2026-07-26T13:41:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5274
 Order: -1
