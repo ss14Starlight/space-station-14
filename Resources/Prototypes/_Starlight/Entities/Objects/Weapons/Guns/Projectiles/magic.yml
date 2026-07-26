@@ -82,7 +82,7 @@
       path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
   - type: Explosive
     explosionType: FireBomb
-    totalIntensity: 0.01
+    totalIntensity: 0.1
     intensitySlope: 1
     maxIntensity: 0.1
   - type: Sprite
