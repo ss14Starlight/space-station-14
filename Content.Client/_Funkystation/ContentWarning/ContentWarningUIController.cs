@@ -20,7 +20,7 @@ public sealed partial class ContentWarningUIController : UIController, IOnStateE
 
     private void AttemptOpenContentWarningPopup()
     {
-        if (_cfg.GetCVar(CCVars_Funky.ContentWarningDisplay) || _cfg.GetCVar(CCVars_Funky.ContentWarningAcknowledged))
+        if (!_cfg.GetCVar(CCVars_Funky.ContentWarningDisplay) || _cfg.GetCVar(CCVars_Funky.ContentWarningAcknowledged))
             return;
 
         OpenContentWarningPopup();
