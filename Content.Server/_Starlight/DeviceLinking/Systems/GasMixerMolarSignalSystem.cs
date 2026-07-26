@@ -29,7 +29,7 @@ public sealed partial class GasMixerMolarSignalSystem : EntitySystem
 
     private void OnSignalReceived(EntityUid uid, GasMixerMolarSignalComponent component, ref SignalReceivedEvent args)
     {
-        if (!TryComp(uid, out GasMixerMolarComponent? MixerMolar))
+        if (!TryComp(uid, out GasMixerMolarComponent? mixerMolar))
             return;
 
         var state = SignalState.Momentary;
@@ -37,11 +37,11 @@ public sealed partial class GasMixerMolarSignalSystem : EntitySystem
 
         if (state is not (SignalState.High or SignalState.Momentary)) return;
         if (args.Port == component.OnPort)
-            _mixerMolarSystem.Set(uid, MixerMolar, true);
+            _mixerMolarSystem.Set(uid, mixerMolar, true);
         else if (args.Port == component.OffPort)
-            _mixerMolarSystem.Set(uid, MixerMolar, false);
+            _mixerMolarSystem.Set(uid, mixerMolar, false);
         else if (args.Port == component.TogglePort)
-            _mixerMolarSystem.Set(uid, MixerMolar, !MixerMolar.Enabled);
+            _mixerMolarSystem.Set(uid, mixerMolar, !mixerMolar.Enabled);
 
     }
 }
