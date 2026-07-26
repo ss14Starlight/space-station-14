@@ -46,12 +46,12 @@
 - type: entity
   parent: BaseAction
   id: ActionRevenantChill
-  name: Chilling Grasp
+  name: Chill of the grave
   description: Costs 50 Essence.
   components:
   - type: Action
     useDelay: 15
-    icon: Interface/Actions/defile.png
+    icon: Interface/Actions/chill.png
   - type: InstantAction
     event: !type:RevenantChillActionEvent
 
