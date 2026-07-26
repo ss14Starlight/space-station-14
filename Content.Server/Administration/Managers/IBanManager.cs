@@ -134,7 +134,7 @@ public interface IBanManager
     /// <summary>
     /// Creates a record of an unban action for a previously issued server ban.
     /// </summary>
-    public Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime);
+    public Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime, string? project = null, string? server = null);
 
     /// <summary>
     /// Retrieves the details of a server ban with the specified identifier.

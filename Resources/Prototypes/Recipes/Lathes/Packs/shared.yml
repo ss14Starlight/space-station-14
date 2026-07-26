@@ -26,6 +26,7 @@
   - DimLightBulb
   - WarmLightBulb
   - BlackLightTube # Starlight
+  - LightTubeWarm # Starlight
 
 - type: latheRecipePack
   id: PowerCellsStatic
