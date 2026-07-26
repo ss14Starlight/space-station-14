@@ -39,7 +39,7 @@
 
 # Power
 - type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseCircuitryRecipeCategory ] # Starlight - disencourage APC stacking
+  parent: [ BaseCircuitboardRecipe, BaseCircuitryRecipeCategory ] # Starlight - discourage APC stacking
   id: APCElectronics
   result: APCElectronics
 
