@@ -1,27 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Ming) Fixed a broken firelock by Washrooms.
-    type: Fix
-  id: 406542
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
-  - message: (Ming) Fixed that one disposal unit  by Engineering front that would spit out all the garbage from Engineering.
-    type: Fix
-  id: 406543
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
-  - message: (Ming) Fixed 'disposal unit to nowhere' in Atmospherics.
-    type: Fix
-  id: 406544
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
   - message: (Ming) Camera from Botany's back room.
     type: Remove
   id: 406545
@@ -2799,4 +2778,25 @@ Entries:
   id: 406941
   time: '2026-07-26T13:10:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5276
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added Stir Stir to genpop.
+    type: Add
+  id: 406942
+  time: '2026-07-26T13:11:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5307
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added Ice cream machine to freezer.
+    type: Add
+  id: 406943
+  time: '2026-07-26T13:11:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5307
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added Add Vend of Silence to mime/clown room.
+    type: Add
+  id: 406944
+  time: '2026-07-26T13:11:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5307
 Order: -1
