@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Senior security officer, duty officer, brigmedic, and warden clothes now use the correct senior time.
-    type: Fix
-  id: 406600
-  time: '2026-07-12T22:32:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5098
 - author: Littlemen/Romero
   changes:
   - message: The Peacekeeper. A break action single shot grenade launcher for security.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406999
   time: '2026-07-26T15:26:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: BlythT
+  changes:
+  - message: Improved chat filters and highlights UI.
+    type: Tweak
+  id: 407000
+  time: '2026-07-26T17:20:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5293
 Order: -1
