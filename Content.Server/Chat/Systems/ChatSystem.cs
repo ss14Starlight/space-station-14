@@ -221,6 +221,13 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (message.Text.StartsWith(SharedLanguageSystem.ChatPrefixChar))
             language = _language.GetLanguageFromPrefix(source, ref message.Text, out _, true);
         else language = languageOverride ?? _language.GetLanguage(source);
+
+        // Parse out the whisper and emote prefix here instead of before whisper cmd to fix language prefix bullshittery
+        if (message.Text.StartsWith(WhisperPrefix) && desiredType == InGameICChatType.Whisper)
+            message.Text = message.Text[1..];
+        else if ((message.Text.StartsWith(EmotesPrefix) || message.Text.StartsWith(EmotesAltPrefix)) &&
+                 desiredType == InGameICChatType.Emote)
+            message.Text = message.Text[1..];
         // Starlight end
 
         bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
