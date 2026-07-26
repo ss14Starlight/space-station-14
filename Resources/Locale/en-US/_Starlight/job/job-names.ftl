@@ -18,4 +18,4 @@ JobZookeeper = Zookeeper
 JobCentCommServiceWorker = CentComm Service Worker
 JobCentCommChef = CentComm Chef
 JobCentCommBartender = CentComm Bartender
-JobCentCommJanitor = CentComm Janitor 
+JobCentCommJanitor = CentComm Janitor
