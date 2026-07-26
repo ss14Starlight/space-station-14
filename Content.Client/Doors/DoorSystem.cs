@@ -195,14 +195,14 @@ public sealed partial class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Denying:
-                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.DenyKey)) // ES
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.DenyKey))
                     return;
 
                 _animationSystem.Play(entity, (Animation)entity.Comp.DenyingAnimation, DoorComponent.DenyKey);
 
                 return;
             case DoorState.Emagging:
-                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.EmagKey)) // ES
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.EmagKey))
                     return;
 
                 _animationSystem.Play(entity, (Animation)entity.Comp.EmaggingAnimation, DoorComponent.EmagKey);
