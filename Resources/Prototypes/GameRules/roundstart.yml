@@ -38,8 +38,8 @@
       prob: 0.05 # Starlight. We can go back down to 0.05, since they scale now.
     #- id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
     #  prob: 0.05 # Starlight start, Equalizing subgamemodes
-    - id: SubBrighteye
-      prob: 0.05
+    #- id: SubBrighteye # Brighteye is disabled until more work is put in.
+    #  prob: 0.05
     - id: SiliconLiberation
       prob: 0.20 #Starlight end
 
@@ -57,8 +57,8 @@
       prob: 0.20
     #- id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
     #  prob: 0.05
-    - id: SubBrighteye
-      prob: 0.05
+    #- id: SubBrighteye
+    #  prob: 0.05
     - id: SiliconLiberation
       prob: 0.20 #Starlight end
 
@@ -76,8 +76,8 @@
       prob: 0.20 # Starlight, Xenoborgs need a little bit of a distraction
     - id: SubWizard
       prob: 0.05 # Starlight Space is dangerous, yo.
-    - id: SubBrighteye # Starlight
-      prob: 0.05
+    #- id: SubBrighteye # Starlight
+    #  prob: 0.05
     - id: SiliconLiberation #Starlight
       prob: 0.20 #Starlight
 
@@ -93,8 +93,8 @@
       prob: 0.15
     - id: VampireLess # Reworked
       prob: 0.15
-    - id: SubBrighteye
-      prob: 0.05
+    #- id: SubBrighteye
+    #  prob: 0.05
     - id: SiliconLiberation
       prob: 0.2 #Starlight end
 

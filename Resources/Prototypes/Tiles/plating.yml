@@ -59,6 +59,7 @@
     collection: FootstepPlating
   friction: 0.75 #a little less then actual snow
   heatCapacity: 10000
+  weather: true # Starlight - it's got snow on it, so it's outside
 
 - type: tile
   id: PlatingIronsand

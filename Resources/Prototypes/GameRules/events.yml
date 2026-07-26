@@ -34,6 +34,11 @@
     - id: CommunicationBlackout
     - id: NightShift
     - id: SyndicateDeadDrop
+    - id: NanoChatSpamTiny
+    - id: NanoChatSpamLowPop
+    - id: NanoChatSpamMidPop
+    - id: NanoChatSpamHighPop
+    - id: NanoChatSpamUltraPop
     # Starlight End
     - id: MalignRiftSpawn # Funky
 
@@ -62,7 +67,7 @@
     - id: WizardSpawn
     - id: AbductorsSpawn # Starlight start
     #- id: SubXenoborgs
-    - id: BrighteyeSpawn
+    #- id: BrighteyeSpawn
     #- id: TerrorSpidersSpawn
     - id: RailroadingTerminator
     - id: ColossusSpawn # Starlight end
