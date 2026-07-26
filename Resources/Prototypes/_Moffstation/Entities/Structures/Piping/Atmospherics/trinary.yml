@@ -56,6 +56,20 @@
   - type: GuideHelp
     guides:
     - MixingAndFiltering
+  # Starlight start
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+    prefix: device-address-prefix-gas-mixer-molar
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+  - type: GasMixerMolarSignal
+  #Starlight end
 
 - type: entity
   parent: GasMolarMixer
@@ -89,5 +103,33 @@
         enabled:
           True: { state: gasMixerFOn }
           False: { state: gasMixerF }
+  - type: NodeContainer # Starlight START: Fix flipped variant having incorrect outlets
+    nodes:
+      inlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+      filter:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: West
+      outlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: North # Starlight END
   - type: Construction
     node: molarmixerflipped
+  # Starlight start
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+    prefix: device-address-prefix-gas-mixer-molar
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+  - type: GasMixerMolarSignal
+  # Starlight end
