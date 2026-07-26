@@ -8,6 +8,7 @@
     - type: Tag
       tags:
         - AdvancedApcElectronics # for construction graph
+        - RamChip # FH
     - type: Sprite
       sprite: Objects/Misc/module.rsi
       state: engineering
