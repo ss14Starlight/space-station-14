@@ -1,11 +1,4 @@
 Entries:
-- author: BlythT
-  changes:
-  - message: Added additional filters to the Voice Selector menu in the Character Editor to make finding and picking a voice much easier (special thanks to those who contributed!).
-    type: Add
-  id: 406523
-  time: '2026-07-10T17:54:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5045
 - author: Caws
   changes:
   - message: (Cog) Added some space heaters to Atmospherics.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406922
   time: '2026-07-26T12:36:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5324
+- author: Orhu
+  changes:
+  - message: (Manor) Added Flippers to Magistrate's Office.
+    type: Add
+  id: 406923
+  time: '2026-07-26T12:36:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5323
 Order: -1
