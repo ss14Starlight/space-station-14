@@ -31,7 +31,7 @@ public sealed partial class ContentWarningPopup : FancyWindow
     private void InitWindow()
     {
         ContentWarningBodyIntro.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("content-warning-introduction")));
-		
+
 		ContentWarningBodyInfo.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("content-warning-information")));
 
         ContentWarningReject.OnPressed += _ =>
