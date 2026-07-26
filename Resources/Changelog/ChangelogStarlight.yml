@@ -1,25 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Senior security officer, duty officer, brigmedic, and warden clothes now use the correct senior time.
-    type: Fix
-  id: 406600
-  time: '2026-07-12T22:32:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5098
-- author: Littlemen/Romero
-  changes:
-  - message: The Peacekeeper. A break action single shot grenade launcher for security.
-    type: Add
-  id: 406601
-  time: '2026-07-12T23:16:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5068
-- author: Littlemen/Romero
-  changes:
-  - message: 'Several grenade type for it: Stinger, Flash, Baton, Teargas.'
-    type: Add
-  id: 406602
-  time: '2026-07-12T23:16:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5068
 - author: Littlemen/Romero
   changes:
   - message: Loadout option for officers to replace their taser/dominator for the Peacekeeper.
@@ -2799,4 +2778,25 @@ Entries:
   id: 406999
   time: '2026-07-26T15:26:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5199
+- author: BlythT
+  changes:
+  - message: Improved chat filters and highlights UI.
+    type: Tweak
+  id: 407000
+  time: '2026-07-26T17:20:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5293
+- author: TrixxedHeart
+  changes:
+  - message: Added Particles and a config option for them.
+    type: Add
+  id: 407001
+  time: '2026-07-26T17:35:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5334
+- author: TrixxedHeart
+  changes:
+  - message: There are now particle effects for fire and gibbing.
+    type: Add
+  id: 407002
+  time: '2026-07-26T17:35:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5334
 Order: -1
