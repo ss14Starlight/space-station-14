@@ -8,6 +8,16 @@
   objectType: Structure
   placementMode: SnapgridCenter
 
+# Advanced APC
+- type: construction
+  id: AdvancedAPC
+  graph: APC
+  startNode: start
+  targetNode: advancedApc
+  category: construction-category-utilities
+  objectType: Structure
+  placementMode: SnapgridCenter
+
 # region unary
 
 - type: construction

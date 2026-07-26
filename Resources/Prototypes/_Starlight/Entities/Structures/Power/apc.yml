@@ -88,11 +88,14 @@
     collectionName: apc
     sprite: _Starlight/Structures/Power/apc.rsi
     state: advanced-static
+  - type: Construction
+    graph: APC
+    node: advancedApc
 
 # advanced APC under construction
 - type: entity
   parent: APCFrame
-  #categories: [ HideSpawnMenu ] #testing, unhide me on PR
+  categories: [ HideSpawnMenu ]
   id: AdvancedAPCFrame
   name: advanced APC frame
   description: An advanced control terminal for the area's electrical systems, lacking the electronics.
@@ -100,9 +103,6 @@
   - type: Sprite
     sprite: _Starlight/Structures/Power/apc.rsi
     state: advanced-frame
-  - type: Construction
-    graph: advancedAPC
-    node: advancedApcFrame
 
 # Constructed advanced APC
 - type: entity
