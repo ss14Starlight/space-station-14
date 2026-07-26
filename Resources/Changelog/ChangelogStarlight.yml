@@ -1,81 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Space Mall) Prisoners can no longer get themselves stuck by exiting the wrong turnstile from GenPop.
-    type: Fix
-  id: 406580
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) BSO's Room corrected to be NT access only.
-    type: Fix
-  id: 406581
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Fixed a bunch where the Evac shuttle would always announce it was "near Command" because there was a station beacon mapped *on* the evac shuttle herself.
-    type: Fix
-  id: 406582
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Removed some firelocks under doors in Atmospherics that didn't really need them.
-    type: Remove
-  id: 406583
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Caws
-  changes:
-  - message: (Space Mall) Duplicate Cryonics station beacon from Medical's cryo pods.
-    type: Remove
-  id: 406584
-  time: '2026-07-11T14:21:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5084
-- author: Home
-  changes:
-  - message: Added the song Burn Chamber by Home to Starlight.
-    type: Add
-  id: 406585
-  time: '2026-07-11T14:21:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5080
-- author: Trosling
-  changes:
-  - message: Added Cosmic Cultist objective demanding them to convert chaplains to address issues with round-removal of chaplains.
-    type: Add
-  id: 406586
-  time: '2026-07-11T14:42:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5075
-- author: wonderfulnewworld
-  changes:
-  - message: Added DynamicLP, for Beta. Needs to be tested, not in rotation yet. It has a lower min and max starting cost than Alpha's version, and has longer time between rules.
-    type: Add
-  id: 406587
-  time: '2026-07-11T17:13:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5076
-- author: wonderfulnewworld
-  changes:
-  - message: Increased SLChangeling's Dynamic Rule Cost to 125, like Vampire.
-    type: Tweak
-  id: 406588
-  time: '2026-07-11T17:13:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5076
-- author: SevenShades
-  changes:
-  - message: MedTak silicons not seeing client icons.
-    type: Fix
-  id: 406589
-  time: '2026-07-12T11:22:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5100
-- author: neomoth
-  changes:
-  - message: Added highly customizable spawner entities.
-    type: Add
-  id: 406590
-  time: '2026-07-12T12:08:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4973
 - author: Conflee
   changes:
   - message: Added Security Tickets. Tickets can be found in Ticket Pads, within Security Officer Lockers or the SecTech. A new line in Corporate Law under 'Normal Punishments' outlines their use as a step up from an informal warning, and how to fill out a ticket.
@@ -2799,4 +2722,81 @@ Entries:
   id: 406979
   time: '2026-07-26T14:38:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5245
+- author: Orhu
+  changes:
+  - message: (Ming) Added Stir Stir to Genpop.
+    type: Add
+  id: 406980
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Added Flippers to Courtroom.
+    type: Add
+  id: 406981
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Added vend of silence to Mime Room.
+    type: Add
+  id: 406982
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Added ice cream machine to kitchen and ice cream stand.
+    type: Add
+  id: 406983
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Added ticket machine to HOP.
+    type: Add
+  id: 406984
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
+    type: Add
+  id: 406985
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Placed a station beacon in Washroom.
+    type: Tweak
+  id: 406986
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Swapped cargo tech lockers for large variants.
+    type: Tweak
+  id: 406987
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Changed the salvage dock to allow both the mining and salvage shuttles to dock at the same time.
+    type: Tweak
+  id: 406988
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Fixed the wiring to the air vents outside of HOP.
+    type: Fix
+  id: 406989
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
+- author: Orhu
+  changes:
+  - message: (Ming) Fixed an APC that wasn't linked to MVs near Robotics.
+    type: Fix
+  id: 406990
+  time: '2026-07-26T14:38:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5248
 Order: -1
