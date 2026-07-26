@@ -36,11 +36,13 @@ public sealed partial class LoadoutComponent : Component
     public List<ProtoId<StartingGearPrototype>>? PostSpawnGear;
 
     /// <summary>
-    /// A flag to determine whether to apply <see cref="PostSpawnGear"/>.
+    /// If <see langword="true"/>, skip on initial spawn so that <see cref="PostSpawnGear"/> gets added after station spawn.
     /// </summary>
     [DataField]
     [AutoNetworkedField]
     public bool PostStationSpawn;
+
+    public bool AppliedPostSpawnGear;
 
     #endregion Starlight
 }
