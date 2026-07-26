@@ -90,5 +90,5 @@
 
 - type: latheRecipe
   parent: [ BaseGoldCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
-  id: AdvancedAPCElectronics
-  result: AdvancedAPCElectronics
+  id: APCAdvancedElectronics
+  result: APCAdvancedElectronics

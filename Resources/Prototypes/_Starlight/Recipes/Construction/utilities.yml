@@ -10,10 +10,10 @@
 
 # Advanced APC
 - type: construction
-  id: AdvancedAPC
+  id: APCAdvanced
   graph: APC
   startNode: start
-  targetNode: advancedApc
+  targetNode: apcAdvanced
   category: construction-category-utilities
   objectType: Structure
   placementMode: SnapgridCenter

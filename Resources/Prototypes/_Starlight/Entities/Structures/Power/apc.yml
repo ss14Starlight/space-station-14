@@ -95,7 +95,7 @@
     startingCharge: 0
   - type: Construction
     graph: APC
-    node: advancedApc
+    node: apcAdvanced
   - type: PowerNetworkBattery
     maxSupply: 45000
     maxChargeRate: 20000
@@ -105,14 +105,14 @@
 # advanced APC under construction
 - type: entity
   parent: APCFrame
-  categories: [ HideSpawnMenu ]
-  id: AdvancedAPCFrame
+  #categories: [ HideSpawnMenu ]
+  id: APCAdvancedFrame
   name: advanced APC frame
   description: An advanced control terminal for the area's electrical systems, lacking the electronics.
   components:
   - type: Construction
     graph: APC
-    node: advancedApcFrame
+    node: apcAdvancedFrame
   - type: Sprite
     sprite: _Starlight/Structures/Power/apc.rsi
     state: advanced-frame
@@ -120,7 +120,7 @@
 # Constructed advanced APC
 - type: entity
   parent: BaseAPCAdvanced
-  id: AdvancedAPCConstructed
+  id: APCAdvancedConstructed
   suffix: Advanced, Open
   components:
   - type: WiresPanel
@@ -129,7 +129,7 @@
 # APCs in use
 - type: entity
   parent: BaseAPCAdvanced
-  id: AdvancedAPC
+  id: APCAdvanced
   suffix: Advanced, 200kJ
   components:
   - type: Battery

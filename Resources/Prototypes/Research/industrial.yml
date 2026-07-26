@@ -95,7 +95,7 @@
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
   - EmitterCircuitboard
-  - AdvancedAPCElectronics # Starlight
+  - APCAdvancedElectronics # Starlight
   radioChannels:
   - Engineering
 

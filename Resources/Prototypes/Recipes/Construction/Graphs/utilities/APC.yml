@@ -22,7 +22,7 @@
               doAfter: 2
 
         #region Starlight
-        - to: advancedApcFrame
+        - to: apcAdvancedFrame
           steps:
             - material: Plasteel
               amount: 2
@@ -39,12 +39,12 @@
               doAfter: 2
 
     #region Starlight
-    - node: advancedApcFrame
-      entity: AdvancedAPCFrame
+    - node: apcAdvancedFrame
+      entity: APCAdvancedFrame
       edges:
-        - to: advancedApc
+        - to: apcAdvanced
           steps:
-            - tag: AdvancedApcElectronics
+            - tag: ApcAdvancedElectronics
               name: construction-graph-component-advanced-apc-electronics
               icon:
                 sprite: "Objects/Misc/module.rsi"
@@ -77,13 +77,13 @@
               doAfter: 4
 
     #region Starlight
-    - node: advancedApc
-      entity: AdvancedAPCConstructed
+    - node: apcAdvanced
+      entity: APCAdvancedConstructed
       edges:
-        - to: advancedApcFrame
+        - to: apcAdvancedFrame
           completed:
             - !type:GivePrototype
-              prototype: AdvancedAPCElectronics
+              prototype: APCAdvancedElectronics
               amount: 1
           conditions:
             - !type:WirePanel
