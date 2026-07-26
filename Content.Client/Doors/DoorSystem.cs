@@ -137,6 +137,9 @@ public sealed partial class DoorSystem : SharedDoorSystem
         switch (state)
         {
             case DoorState.Open:
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.OpenKey))
+                    return;
+
                 // Moffstation - Start - Don't stop animations
                 /*
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey))
@@ -153,6 +156,9 @@ public sealed partial class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Closed:
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey))
+                    return;
+
                 // Moffstation - Start - Don't stop animations
                 /*
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.OpenKey))
@@ -189,10 +195,16 @@ public sealed partial class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Denying:
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.DenyKey)) // ES
+                    return;
+
                 _animationSystem.Play(entity, (Animation)entity.Comp.DenyingAnimation, DoorComponent.DenyKey);
 
                 return;
             case DoorState.Emagging:
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.EmagKey)) // ES
+                    return;
+
                 _animationSystem.Play(entity, (Animation)entity.Comp.EmaggingAnimation, DoorComponent.EmagKey);
 
                 return;
