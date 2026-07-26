@@ -24,6 +24,19 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: RevenantChillingGrasp
+  name: revenant-chill-name
+  description: revenant-chill-desc
+  productAction: ActionRevenantChill
+  cost:
+    StolenEssence: 50
+  categories:
+  - RevenantAbilities
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 #- type: listing
 #  id: RevenantBlight
 #  name: revenant-blight-name

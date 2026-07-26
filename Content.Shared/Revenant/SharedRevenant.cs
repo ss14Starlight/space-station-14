@@ -46,6 +46,10 @@ public sealed partial class RevenantDefileActionEvent : InstantActionEvent
 {
 }
 
+public sealed partial class RevenantChillActionEvent : InstantActionEvent
+{
+}
+
 public sealed partial class RevenantOverloadLightsActionEvent : InstantActionEvent
 {
 }

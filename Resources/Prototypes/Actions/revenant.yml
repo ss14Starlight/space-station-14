@@ -45,6 +45,18 @@
 
 - type: entity
   parent: BaseAction
+  id: ActionRevenantChill
+  name: Chilling Grasp
+  description: Costs 50 Essence.
+  components:
+  - type: Action
+    useDelay: 15
+    icon: Interface/Actions/defile.png
+  - type: InstantAction
+    event: !type:RevenantChillActionEvent
+
+- type: entity
+  parent: BaseAction
   id: ActionRevenantMalfunction
   name: Malfunction
   description: Costs 60 Essence.

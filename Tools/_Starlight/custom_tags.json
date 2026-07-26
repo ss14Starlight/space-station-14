@@ -418,6 +418,7 @@
         "!type:ResistFireAlertEvent mapping",
         "!type:RetakeVowAlertEvent mapping",
         "!type:RevenantBlightActionEvent mapping",
+        "!type:RevenantChillActionEvent mapping",
         "!type:RevenantDefileActionEvent mapping",
         "!type:RevenantMalfunctionActionEvent mapping",
         "!type:RevenantOverloadLightsActionEvent mapping",
