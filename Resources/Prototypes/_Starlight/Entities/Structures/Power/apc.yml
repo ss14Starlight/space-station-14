@@ -43,13 +43,11 @@
 # advanced APC
 - type: entity
   parent: BaseAPC
-  id: APCAdvanced
+  categories: [ HideSpawnMenu ]
+  id: BaseAPCAdvanced
   name: advanced APC
-  suffix: Advanced, 100kJ
+  description: An advanced control terminal for the area's electrical systems, capable of handling a much higher network load.
   components:
-  - type: Battery
-    maxCharge: 100000
-    startingCharge: 100000
   - type: Apc
     maxLoad: 60000 # triple the amount a basic APC handles
   - type: Sprite
@@ -90,3 +88,22 @@
     collectionName: apc
     sprite: _Starlight/Structures/Power/apc.rsi
     state: advanced-static
+
+# Constructed advanced APC
+- type: entity
+  parent: BaseAPCAdvanced
+  id: AdvancedAPCConstructed
+  suffix: Advanced, Open
+  components:
+  - type: WiresPanel
+    open: true
+
+# APCs in use
+- type: entity
+  parent: BaseAPCAdvanced
+  id: AdvancedAPC
+  suffix: Advanced, 100kJ
+  components:
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
