@@ -49,6 +49,7 @@
   description: An advanced control terminal for the area's electrical systems, capable of handling a much higher network load.
   components:
   - type: Apc
+    voltage: Apc
     maxLoad: 90000 # significantly more than a basic APC handles
   - type: Sprite
     drawdepth: WallMountedItems
@@ -89,6 +90,7 @@
     sprite: _Starlight/Structures/Power/apc.rsi
     state: advanced-static
   - type: Battery
+    netsync: false
     maxCharge: 200000
     startingCharge: 0
   - type: Construction
