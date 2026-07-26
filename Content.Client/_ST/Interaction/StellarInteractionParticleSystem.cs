@@ -20,6 +20,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private AnimationPlayerSystem _animation = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private TransformSystem _xform = default!;
 
     private const string AnimateKey = "particle-animation";
 
@@ -27,6 +28,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
     {
         { StellarInteractionParticleType.Use, "StellarInteractionParticleUse" },
         { StellarInteractionParticleType.Pull, "StellarInteractionParticlePull" },
+        { StellarInteractionParticleType.InHand, "StellarInteractionParticleUse" },
     };
 
     public override void Initialize()
@@ -46,7 +48,8 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         if (!Exists(performer) || !Exists(target))
             return;
 
-        if (ev.Type == StellarInteractionParticleType.Pull)
+        var type = ev.Type;
+        if (type == StellarInteractionParticleType.Pull)
         {
             (performer, target) = (target, performer);
         }
@@ -67,10 +70,22 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
             return;
 
         if (performerXform.ParentUid != targetXform.ParentUid)
-            return;
+        {
+            if (type == StellarInteractionParticleType.Pull)
+                return;
+
+            type = StellarInteractionParticleType.InHand;
+        }
 
         var performerTargetDelta = targetXform.LocalPosition - performerXform.LocalPosition;
-        var particle = Spawn(InteractionParticleIds[ev.Type], performerXform.Coordinates);
+        var inHandDelta = new Vector2(0, 0.75f);
+        var particle = Spawn(InteractionParticleIds[type], performerXform.Coordinates);
+
+        if (type == StellarInteractionParticleType.InHand)
+        {
+            used = target;
+            _xform.SetParent(particle, performer);
+        }
 
         if (used is { } usedEntity && Exists(usedEntity) && TryComp<SpriteComponent>(usedEntity, out var usedSprite))
         {
@@ -80,12 +95,15 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
             // ES END
         }
 
-        var spriteColor = Comp<SpriteComponent>(particle).Color;
-        var animation = ev.Type switch
+        var sprite = Comp<SpriteComponent>(particle);
+        sprite.NoRotation = true;
+        var spriteColor = sprite.Color;
+        var animation = type switch
         {
             StellarInteractionParticleType.Use => GetUseAnimation(performerTargetDelta, spriteColor),
             StellarInteractionParticleType.Pull => GetPullAnimation(performerTargetDelta, spriteColor),
-            _ => throw new ArgumentOutOfRangeException(nameof(ev), $"Interaction particle event has unknown particle type {ev.Type}"),
+            StellarInteractionParticleType.InHand => GetUseAnimation(inHandDelta, spriteColor),
+            _ => throw new ArgumentOutOfRangeException(nameof(ev), $"Interaction particle event has unknown particle type {type}"),
         };
         _animation.Play(particle, animation, AnimateKey);
     }
