@@ -255,7 +255,6 @@
   components:
   - type: LimitedCharges
     maxCharges: 2
-    charges: 1
   - type: AutoRecharge
     rechargeDuration: 480 #8minutes
   - type: Action
@@ -275,7 +274,6 @@
   components:
   - type: LimitedCharges
     maxCharges: 1
-    charges: 1
   - type: Action
     useDelay: 1
     itemIconStyle: NoItem
