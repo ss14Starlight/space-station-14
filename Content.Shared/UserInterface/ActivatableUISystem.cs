@@ -21,7 +21,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!; // Starlight
 
     public override void Initialize()
     {

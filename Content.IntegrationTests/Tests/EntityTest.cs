@@ -282,10 +282,11 @@ namespace Content.IntegrationTests.Tests
                 "FilledSlimeExtract",
                 "Loadout",
                 // Starlight end
-                // ES fancy timed despawn
+                // ES start
                 "ESTimedDespawn",
                 "ESSparkOnTrigger",
-                "BluespaceLocker", // Spawns bluespace farticles in its code
+                // ES end
+                "BluespaceLocker", // Moff Station
             };
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);

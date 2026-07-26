@@ -96,11 +96,11 @@
           True: { visible: True }
           False: { visible: False }
   # Starlight-end
-# ES START
+  # ES START
   - type: ESSparkOnHit
     prob: 0.25
     count: 2
-# ES END
+  # ES END
 
 - type: entity
   id: LockerBaseSecure
