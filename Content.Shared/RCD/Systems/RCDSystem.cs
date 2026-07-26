@@ -59,9 +59,7 @@ public sealed partial class RCDSystem : EntitySystem
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TagSystem _tags = default!;
-    // ES START
-    [Dependency] private ESSparksSystem _esSparks = default!;
-    // ES END
+    [Dependency] private ESSparksSystem _esSparks = default!; // ES
     // Starlight Start
     [Dependency] private SharedAtmosPipeLayersSystem _pipeLayersSystem = default!;
     [Dependency] private IEntityManager _entityManager = default!;
@@ -139,9 +137,7 @@ public sealed partial class RCDSystem : EntitySystem
 
         // Set the current RCD prototype to the one supplied
         component.ProtoId = args.ProtoId;
-// ES START
-        _esSparks.DoSparks(uid, 1, user: args.Actor);
-// ES END
+        _esSparks.DoSparks(uid, 1, user: args.Actor); // ES
         UpdateCachedPrototype(uid, component); // Starlight: RPD
 
         _adminLogger.Add(LogType.RCD, LogImpact.Low, $"{args.Actor} set RCD mode to: {prototype.Mode} : {prototype.Prototype}");
