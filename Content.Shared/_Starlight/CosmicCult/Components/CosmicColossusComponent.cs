@@ -51,7 +51,7 @@ public sealed partial class CosmicColossusComponent : Component
 
     [AutoPausedField, DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan EffigyRechargeTimer = TimeSpan.MaxValue;
-    
+
     [DataField]
     public TimeSpan EffigyRechargeTime = TimeSpan.FromMinutes(4);
 
