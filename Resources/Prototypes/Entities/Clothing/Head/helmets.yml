@@ -354,7 +354,7 @@
   - type: BreathMask
   - type: PointLight # Starlight
     color: "#a1f7f7" # Starlight
- 
+
 #Chitinous Helmet
 - type: entity
   parent: [ ClothingHeadHelmetBase, BaseMajorContraband]

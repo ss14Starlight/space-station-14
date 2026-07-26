@@ -34,7 +34,7 @@
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterArmorAtmosian
   name: atmosian armor
-  description: An atmos fire suit reinforced with incredibly dense but incredibly heavy metal hydrogen for the real pipe knights among us.
+  description: An atmos fire suit reinforced with incredibly heav metal hydrogen for the real pipe knights among us.
   components:
   - type: Sprite
     sprite: _Funkystation/Clothing/OuterClothing/Armor/atmosian_armor.rsi
