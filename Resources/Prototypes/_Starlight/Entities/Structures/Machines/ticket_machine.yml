@@ -234,7 +234,7 @@
   suffix: ENGI, Atmos, Filled, Cyan
   components:
   - type: AccessReader
-    access: [["AtmosTech"]]
+    access: [["Atmospherics"]]
 
 - type: entity
   id: TicketMachineRD
