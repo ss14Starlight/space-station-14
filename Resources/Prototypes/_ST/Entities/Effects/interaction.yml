@@ -8,8 +8,6 @@
   components:
   - type: TimedDespawn
     lifetime: 1.1
-  - type: Transform
-    noRot: true
   - type: Sprite
     sprite: _ST/Effects/interaction.rsi
     state: hand

@@ -32,5 +32,4 @@ public enum StellarInteractionParticleType
 {
     Use,
     Pull,
-    InHand, // ES
 }
