@@ -1,5 +1,8 @@
 # PLEASE, KEEP THIS FILE ALPHABETIZED
 - type: Tag
+  id: AdvancedApcElectronics # ConstructionGraph: APC
+
+- type: Tag
   id: AnomalyCoreShadow
 
 - type: Tag

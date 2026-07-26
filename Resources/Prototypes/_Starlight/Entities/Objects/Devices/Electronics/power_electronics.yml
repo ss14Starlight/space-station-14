@@ -5,7 +5,9 @@
   name: advanced APC electronics
   description: Circuit used to construct an advanced APC.
   components:
-    - type: ApcElectronics
+    - type: Tag
+      tags:
+        - AdvancedApcElectronics # for construction graph
     - type: Sprite
       sprite: Objects/Misc/module.rsi
       state: engineering
