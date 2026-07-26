@@ -1,10 +1,102 @@
 - type: entity
-  id: NanoChatSpam
+  id: NanoChatSpamBase
   parent: BaseGameRule
+  abstract: true
   components:
   - type: GameRule
+  - type: StationEvent
+    weight: 6
+    earliestStart: 10
+    duration: 1
+
+- type: entity
+  parent: NanoChatSpamBase
+  id: NanoChatSpamTiny
+  components:
+  - type: StationEvent
+    minimumPlayers: 5
   - type: NanoChatSpamRule
-    minDelay: 5  # 2m
-    maxDelay: 10  # 5m
-    maxRecipientsPerMessage: 3  # Up to 3 people get each spam
-    recipientChance: 0.3  # 30% of eligible players get spam
+    maxRecipientsPerMessage: 1
+    recipientChance: 0.3
+
+- type: entity
+  parent: NanoChatSpamBase
+  id: NanoChatSpamLowPop
+  components:
+  - type: StationEvent
+    minimumPlayers: 20
+  - type: NanoChatSpamRule
+    maxRecipientsPerMessage: 2
+    recipientChance: 0.3
+
+- type: entity
+  parent: NanoChatSpamBase
+  id: NanoChatSpamMidPop
+  components:
+  - type: StationEvent
+    minimumPlayers: 40
+  - type: NanoChatSpamRule
+    maxRecipientsPerMessage: 3
+    recipientChance: 0.3
+
+- type: entity
+  parent: NanoChatSpamBase
+  id: NanoChatSpamHighPop
+  components:
+  - type: StationEvent
+    minimumPlayers: 80
+  - type: NanoChatSpamRule
+    maxRecipientsPerMessage: 5
+    recipientChance: 0.3
+
+- type: entity
+  parent: NanoChatSpamBase
+  id: NanoChatSpamUltraPop
+  components:
+  - type: StationEvent
+    minimumPlayers: 150
+  - type: NanoChatSpamRule
+    maxRecipientsPerMessage: 8
+    recipientChance: 0.3
+
+# Admin variants
+- type: entity
+  id: NanoChatSpamAdminBase
+  parent: BaseGameRule
+  abstract: true
+  components:
+  - type: GameRule
+  - type: StationEvent
+    duration: 1
+
+- type: entity
+  parent: NanoChatSpamAdminBase
+  id: NanoChatSpam1
+  components:
+  - type: NanoChatSpamRule
+    maxRecipientsPerMessage: 1
+    recipientChance: 1.0
+
+- type: entity
+  parent: NanoChatSpamAdminBase
+  id: NanoChatSpam2
+  components:
+  - type: NanoChatSpamRule
+    maxRecipientsPerMessage: 2
+    recipientChance: 1.0
+
+- type: entity
+  parent: NanoChatSpamAdminBase
+  id: NanoChatSpam5
+  components:
+  - type: NanoChatSpamRule
+    maxRecipientsPerMessage: 5
+    recipientChance: 1.0
+
+- type: entity
+  parent: NanoChatSpamAdminBase
+  id: NanoChatSpam10
+  components:
+  - type: NanoChatSpamRule
+    maxRecipientsPerMessage: 10
+    recipientChance: 1.0
