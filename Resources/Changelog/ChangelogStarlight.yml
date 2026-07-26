@@ -1,69 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Ming) Added a civilian NanoMed to Medical's front.
-    type: Add
-  id: 406533
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
-  - message: (Ming) Added a civilian NanoMed to Evac.
-    type: Add
-  id: 406534
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
-  - message: (Ming) Added a civilian NanoMed to Washrooms.
-    type: Add
-  id: 406535
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
-  - message: (Ming) Added a guidebooks crate to the library.
-    type: Add
-  id: 406536
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
-  - message: (Ming) Added a document printer and paper bin to Medical reception.
-    type: Add
-  id: 406537
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
-  - message: (Ming) Changed up the library's bookshelf layout to be a little more interesting.
-    type: Tweak
-  id: 406538
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
-  - message: (Ming) Small changes to Botany to make it feel less cramped.
-    type: Tweak
-  id: 406539
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
-  - message: (Ming) Swapped the positions of Botany's front desk and front entrance.
-    type: Tweak
-  id: 406540
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
-  - message: (Ming) Added shutters to the NCT Office and gave it proper walls.
-    type: Tweak
-  id: 406541
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
   - message: (Ming) Fixed a broken firelock by Washrooms.
     type: Fix
   id: 406542
@@ -2799,4 +2736,67 @@ Entries:
   id: 406932
   time: '2026-07-26T13:10:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5275
+- author: Orhu
+  changes:
+  - message: (Plasma) Added Stir Stir to Genpop.
+    type: Add
+  id: 406933
+  time: '2026-07-26T13:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5276
+- author: Orhu
+  changes:
+  - message: (Plasma) Added Flippers to Courtroom.
+    type: Add
+  id: 406934
+  time: '2026-07-26T13:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5276
+- author: Orhu
+  changes:
+  - message: (Plasma) Added vend of silence to Mime Room.
+    type: Add
+  id: 406935
+  time: '2026-07-26T13:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5276
+- author: Orhu
+  changes:
+  - message: (Plasma) Added ice cream maker to Kitchen.
+    type: Add
+  id: 406936
+  time: '2026-07-26T13:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5276
+- author: Orhu
+  changes:
+  - message: (Plasma) Added ticket machine to HOP.
+    type: Add
+  id: 406937
+  time: '2026-07-26T13:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5276
+- author: Orhu
+  changes:
+  - message: (Plasma) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
+    type: Add
+  id: 406938
+  time: '2026-07-26T13:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5276
+- author: Orhu
+  changes:
+  - message: (Plasma) Added a guidebook crate to the Library.
+    type: Add
+  id: 406939
+  time: '2026-07-26T13:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5276
+- author: Orhu
+  changes:
+  - message: (Plasma) Placed a station beacon in Washroom.
+    type: Tweak
+  id: 406940
+  time: '2026-07-26T13:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5276
+- author: Orhu
+  changes:
+  - message: (Plasma) Replaced certain out-of-place tiles at the plasma miners.
+    type: Tweak
+  id: 406941
+  time: '2026-07-26T13:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5276
 Order: -1
