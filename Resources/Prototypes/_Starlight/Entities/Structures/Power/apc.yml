@@ -88,9 +88,17 @@
     collectionName: apc
     sprite: _Starlight/Structures/Power/apc.rsi
     state: advanced-static
+  - type: Battery
+    maxCharge: 200000
+    startingCharge: 0
   - type: Construction
     graph: APC
     node: advancedApc
+  - type: PowerNetworkBattery
+    maxSupply: 45000
+    maxChargeRate: 20000
+    supplyRampTolerance: 4000
+    supplyRampRate: 2000
 
 # advanced APC under construction
 - type: entity
