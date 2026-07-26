@@ -1,69 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Cog) Added some space heaters to Atmospherics.
-    type: Add
-  id: 406524
-  time: '2026-07-10T18:32:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5059
-- author: Caws
-  changes:
-  - message: (Cog) Added a guidebooks crate to Library.
-    type: Add
-  id: 406525
-  time: '2026-07-10T18:32:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5059
-- author: Caws
-  changes:
-  - message: (Cog) Added a new cleaning closet for Janitors by Security / Dorms.
-    type: Add
-  id: 406526
-  time: '2026-07-10T18:32:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5059
-- author: Caws
-  changes:
-  - message: (Cog) Added a space cleaner dispenser to the Cleaning Closet by Evac.
-    type: Add
-  id: 406527
-  time: '2026-07-10T18:32:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5059
-- author: Caws
-  changes:
-  - message: "(Cog) Added a new station beacon: \"Cleaning Closet\".'Extra' janitor rooms will be marked with this station beacon in the future. This should make finding the 'main' janitor closet less confusing."
-    type: Add
-  id: 406528
-  time: '2026-07-10T18:32:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5059
-- author: Caws
-  changes:
-  - message: (Cog) Added two water sources to Chemistry.
-    type: Add
-  id: 406529
-  time: '2026-07-10T18:32:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5059
-- author: Caws
-  changes:
-  - message: (Cog) Reworked the layout of Robotics. It now has a front desk and it can see into the IPC repair bay more easily.
-    type: Tweak
-  id: 406530
-  time: '2026-07-10T18:32:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5059
-- author: Caws
-  changes:
-  - message: (Cog) Replaced the empty emergency suit closet in Artifact with a filled one and threw in a nitrogen closet as well.
-    type: Fix
-  id: 406531
-  time: '2026-07-10T18:32:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5059
-- author: Caws
-  changes:
-  - message: (Ming) Added some space heaters outside of Atmos, west of the main power engine.
-    type: Add
-  id: 406532
-  time: '2026-07-10T18:32:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5058
-- author: Caws
-  changes:
   - message: (Ming) Added a civilian NanoMed to Medical's front.
     type: Add
   id: 406533
@@ -2799,4 +2736,67 @@ Entries:
   id: 406923
   time: '2026-07-26T12:36:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5323
+- author: Orhu
+  changes:
+  - message: (Packed) Added Stir Stir to Genpop.
+    type: Add
+  id: 406924
+  time: '2026-07-26T13:10:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5275
+- author: Orhu
+  changes:
+  - message: (Packed) Added Flippers to Courtroom.
+    type: Add
+  id: 406925
+  time: '2026-07-26T13:10:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5275
+- author: Orhu
+  changes:
+  - message: (Packed) Added vend of silence to Mime Room.
+    type: Add
+  id: 406926
+  time: '2026-07-26T13:10:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5275
+- author: Orhu
+  changes:
+  - message: (Packed) Added ice cream maker to Kitchen.
+    type: Add
+  id: 406927
+  time: '2026-07-26T13:10:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5275
+- author: Orhu
+  changes:
+  - message: (Packed) Added space heaters to Atmos.
+    type: Add
+  id: 406928
+  time: '2026-07-26T13:10:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5275
+- author: Orhu
+  changes:
+  - message: (Packed) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
+    type: Add
+  id: 406929
+  time: '2026-07-26T13:10:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5275
+- author: Orhu
+  changes:
+  - message: (Packed) Made one of the bookshelves in Library guaranteed to have all guidebooks.
+    type: Tweak
+  id: 406930
+  time: '2026-07-26T13:10:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5275
+- author: Orhu
+  changes:
+  - message: (Packed) Placed a station beacon in Washroom.
+    type: Tweak
+  id: 406931
+  time: '2026-07-26T13:10:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5275
+- author: Orhu
+  changes:
+  - message: (Packed) Linked Artifact Chamber airlock doors.
+    type: Fix
+  id: 406932
+  time: '2026-07-26T13:10:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5275
 Order: -1
