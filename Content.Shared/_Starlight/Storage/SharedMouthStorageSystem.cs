@@ -95,6 +95,9 @@ public abstract partial class SharedMouthStorageSystem : EntitySystem
             var ev = new FellDownThrowAttemptEvent(entity);
             RaiseLocalEvent(entity, ref ev);
 
+            if (ev.Cancelled)
+                return;
+
             _throwing.PredictedFallThrowItem(uid, entity, component.BaseThrowSpeed);
         }
     }
