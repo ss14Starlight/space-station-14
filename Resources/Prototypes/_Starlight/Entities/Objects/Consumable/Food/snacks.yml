@@ -236,3 +236,68 @@
     flavors:
     - sweet
     - apple
+
+# Crispy Rice Bars
+
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackRiceBarPacket
+  name: crispy rice bar
+  description: A legally distinct bar of crispy rice held together with marshmallow.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/crispy_rice_bars.rsi
+    state: ricebar
+  - type: Item
+    sprite: _Starlight/Objects/Consumable/Food/crispy_rice_bars.rsi
+    heldPrefix: ricebar
+    storedOffset: 0,-1
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodPacketRiceBarTrash
+      - id: FoodSnackRiceBar
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+    requireHands: false
+  - type: Tag
+    tags:
+    - CrispyRiceBar
+
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackRiceBar
+  name: crispy rice bar
+  description: A legally distinct bar of crispy rice held together with marshmallow.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - rice
+      - fiber
+      - sweet
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/crispy_rice_bars.rsi
+    state: ricebar-open
+  - type: Item
+    sprite: _Starlight/Objects/Consumable/Food/crispy_rice_bars.rsi
+    heldPrefix: ricebar-open
+    storedOffset: 0,-2
+  - type: Tag
+    tags:
+    - CrispyRiceBar
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: FoodPacketTrash
+  id: FoodPacketRiceBarTrash
+  name: crispy rice bar wrapper
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/crispy_rice_bars.rsi
+    state: ricebar-trash
+  - type: Item
+    sprite: _Starlight/Objects/Consumable/Food/crispy_rice_bars.rsi
+    inhandVisuals:
+      left:
+      - state: ricebar-inhand-left
+      right:
+      - state: ricebar-inhand-right
