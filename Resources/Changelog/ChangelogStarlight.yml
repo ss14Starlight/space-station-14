@@ -1,39 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Disposal pipes will now unanchor themselves if items (or mobs) get stuck in them for too long.
-    type: Tweak
-  id: 406517
-  time: '2026-07-10T17:27:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5021
-- author: Caws
-  changes:
-  - message: Entities will now pry up tiles if they exit disposals via disconnected pipes.
-    type: Tweak
-  id: 406518
-  time: '2026-07-10T17:27:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5021
-- author: Caws
-  changes:
-  - message: Mobs will now get knocked prone if they exit disposals through a naked pipe or trunk. You won't be knocked down if you exit via a disposals unit on the other side.
-    type: Tweak
-  id: 406519
-  time: '2026-07-10T17:27:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5021
-- author: Caws
-  changes:
-  - message: Ported updated mailing unit sprites / animations from Upstream.
-    type: Tweak
-  id: 406520
-  time: '2026-07-10T17:27:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5021
-- author: Conflee
-  changes:
-  - message: Resprites Intercoms, based on Imp/TG Sprites, to  be boxier and use the machine color palette. This makes them stand out more against our dark steel walls which makes seeing them easier, which will hopefully lead to them being used more often.
-    type: Tweak
-  id: 406521
-  time: '2026-07-10T17:54:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5062
 - author: Conflee
   changes:
   - message: Fixed Intercom Assemblies by adding the InteractionOutline and Clickable components to them, so you no longer have to right click them and click their icon when on that stage of construction/deconstruction.
@@ -2799,4 +2764,39 @@ Entries:
   id: 406916
   time: '2026-07-26T11:14:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5341
+- author: Johnny
+  changes:
+  - message: (Reach) Added screens to the walls.
+    type: Add
+  id: 406917
+  time: '2026-07-26T11:55:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5331
+- author: Johnny
+  changes:
+  - message: (Reach) Added a sink to bar.
+    type: Add
+  id: 406918
+  time: '2026-07-26T11:55:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5331
+- author: Johnny
+  changes:
+  - message: (Reach) Added two fuel dispensers to engi and atmos.
+    type: Add
+  id: 406919
+  time: '2026-07-26T11:55:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5331
+- author: Johnny
+  changes:
+  - message: (Reach) Added detective and brigmedic roles.
+    type: Add
+  id: 406920
+  time: '2026-07-26T11:55:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5331
+- author: Johnny
+  changes:
+  - message: (Reach) Removed the access locked windoors on bar/kitchen.
+    type: Remove
+  id: 406921
+  time: '2026-07-26T11:55:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5331
 Order: -1
