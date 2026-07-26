@@ -43,6 +43,15 @@
       damageAmount:
         types:
           Shock: 5
+  - type: ComponentBorgModule
+    components:
+      - type: NightVision
+  - type: Tag
+    tags:
+      - BorgModuleGeneric
+  - type: BorgModule
+    borgFitTypes:
+      - borg-type-all
 
 - type: entity
   id: CyberEyeThermal
@@ -69,6 +78,15 @@
       damageAmount:
         types:
           Shock: 5
+  - type: ComponentBorgModule
+    components:
+      - type: ThermalVision
+  - type: Tag
+    tags:
+      - BorgModuleGeneric
+  - type: BorgModule
+    borgFitTypes:
+      - borg-type-all
 
 - type: entity
   id: BudgetCyberEyes
