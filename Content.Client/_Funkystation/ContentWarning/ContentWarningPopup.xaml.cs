@@ -30,7 +30,10 @@ public sealed partial class ContentWarningPopup : FancyWindow
 
     private void InitWindow()
     {
-        ContentWarningBodyIntro.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("content-warning-introduction")));
+        var year = DateTime.Now.Year;
+        year += 500;
+
+        ContentWarningBodyIntro.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("content-warning-introduction", ("year", year.ToString()))));
 
 		ContentWarningBodyInfo.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("content-warning-information")));
 

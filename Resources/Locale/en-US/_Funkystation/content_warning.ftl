@@ -6,7 +6,7 @@ content-warning-reject = Reject
 content-warning-introduction =
     Welcome to the Starlight Sector, a corporate sector on the fringes of the Trans-Solar Federation, established near the Null Scar many years ago by NanoTrasen for scientific research. Though NanoTrasen still owns these stations and maintains some degree of oversight, they were pulled away on more urgent business 50 years ago, turning to a third-party contractor to man their stations in their absence: Central Command.
 
-    The year is 2526, and you are a low-level employee contracted by Central Command, headed to one of these research stations for the first time. Good luck.
+    The year is {$year}, and you are a low-level employee contracted by Central Command, headed to one of these research stations for the first time. Good luck.
 
 content-warning-information =
     Includes pixelated blood, gore, and graphic violence, plus dark themes such as kidnapping, mind control, and murder.
