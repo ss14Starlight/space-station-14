@@ -109,8 +109,8 @@ public sealed partial class DoorSystem : SharedDoorSystem
         switch (state)
         {
             case DoorState.Open:
-                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.OpenKey))
-                    return;
+                //if (_animationSystem.HasRunningAnimation(entity, DoorComponent.OpenKey)) - Starlight, don't have this pr
+                //    return;
 
                 // Moffstation - Start - Don't stop animations
                 /*
@@ -128,8 +128,8 @@ public sealed partial class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Closed:
-                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey))
-                    return;
+                //if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey)) - Starlight, don't have this pr
+                //    return;
 
                 // Moffstation - Start - Don't stop animations
                 /*
