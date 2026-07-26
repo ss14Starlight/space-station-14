@@ -1,5 +1,5 @@
 - type: entity
-  id: EffectFlashBluespaceUpstream # Moffstation - Namespaced
+  id: EffectFlashBluespaceSimple # Starlight, name changed
   categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
