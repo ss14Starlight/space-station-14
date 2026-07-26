@@ -21,13 +21,13 @@
                 state: "charger_APC"
               doAfter: 2
 
-#region Starlight
+        #region Starlight
         - to: advancedApcFrame
           steps:
             - material: Plasteel
               amount: 2
               doAfter: 1
-#endregion Starlight
+        #endregion Starlight
         - to: start
           completed:
             - !type:GivePrototype
@@ -38,7 +38,7 @@
             - tool: Screwing
               doAfter: 2
 
-#region Starlight
+    #region Starlight
     - node: advancedApcFrame
       entity: AdvancedAPCFrame
       edges:
@@ -59,7 +59,7 @@
           steps:
             - tool: Welding
               doAfter: 2
-#endregion Starlight
+      #endregion Starlight
 
     - node: apc
       entity: APCConstructed
@@ -76,7 +76,7 @@
             - tool: Prying
               doAfter: 4
 
-#region Starlight
+    #region Starlight
     - node: advancedApc
       entity: AdvancedAPCConstructed
       edges:
@@ -91,4 +91,4 @@
           steps:
             - tool: Prying
               doAfter: 4
-#endregion Starlight
+      #endregion Starlight
