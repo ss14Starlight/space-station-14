@@ -78,10 +78,10 @@ public sealed partial class CosmicIngressSystem : EntitySystem
     private void OnColossusIngressDoAfter(Entity<CosmicColossusComponent> ent,
     ref EventCosmicColossusIngressDoAfter args)
     {
-        if (args.Args.Target is not { } target)
+        if (args.Cancelled || args.Handled)
             return;
 
-        if (args.Cancelled || args.Handled)
+        if (args.Args.Target is not { } target)
             return;
 
         args.Handled = true;

@@ -80,7 +80,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
             }
         }
     }
-    // Bug: the spell ethereal jaunt teleports you somewhere???? So wiz mindswap + etheral jaunt makes issues with this perhaps.
+    //Bug: the spell ethereal jaunt teleports you somewhere???? So wiz mindswap + etheral jaunt makes issues with this perhaps.
     private void OnSpawn(Entity<CosmicColossusComponent> ent, ref ComponentInit args) // I WANT THIS BIG GUY HURLED TOWARDS THE STATION
     {
         ent.Comp.DeathTimer = _timing.CurTime + ent.Comp.DeathWait;

@@ -20,13 +20,13 @@ public sealed partial class CosmicSunderSystem : EntitySystem
 
     private void OnColossusSunder(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusSunder args)
     {
-        args.Handled = true;
-        
         var origin = _transform.GetMapCoordinates(ent);
         var target = _transform.ToMapCoordinates(args.Target);
 
         if (!_occluder.InRangeUnoccluded(origin, target, 0f, ignoreTouching: true))//0f zero range since yml has the range
         return;
+
+        args.Handled = true;
 
         var comp = ent.Comp;
         _appearance.SetData(ent, ColossusVisuals.Status, ColossusStatus.Action);
