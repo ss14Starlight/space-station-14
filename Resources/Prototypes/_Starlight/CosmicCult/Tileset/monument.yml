@@ -97,7 +97,6 @@
   - type: GuideHelp
     guides:
     - CosmicCult
-    location: The Monument
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-forthecult
   - type: CosmicCorrupting
