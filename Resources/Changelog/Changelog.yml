@@ -1,20 +1,4 @@
 ﻿Entries:
-- author: ArtisticRoomba
-  changes:
-  - message: Added atmospherics delta-pressure structure damage. Objects like windows,
-      thindows, windoors, etc. will have damage done to them depending on the pressure
-      difference across the sides of the object.
-    type: Add
-  id: 8918
-  time: '2025-09-03T23:58:48.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/39238
-- author: ArtisticRoomba
-  changes:
-  - message: Inflatable walls and airlocks now actually take Delta-Pressure damage.
-    type: Fix
-  id: 8919
-  time: '2025-09-04T01:08:53.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/40098
 - author: Quantum-cross
   changes:
   - message: Hot gas now looks hot!
