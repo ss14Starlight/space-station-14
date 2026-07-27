@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (Reach) Something something biogenerator in botany.
-    type: Add
-  id: 406662
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
   - message: (Reach) I wont tell you what i removed but I removed something...
     type: Remove
   id: 406663
@@ -2799,4 +2792,11 @@ Entries:
   id: 407061
   time: '2026-07-27T11:23:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5338
+- author: Makeshift
+  changes:
+  - message: You can now construct catwalks on (some) water tiles, by using two steel rods on them.
+    type: Add
+  id: 407062
+  time: '2026-07-27T13:11:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5358
 Order: -1
