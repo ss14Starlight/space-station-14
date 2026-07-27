@@ -43,3 +43,54 @@
   components:
   - type: Battery
     startingCharge: 0
+
+- type: entity
+  parent: SMESBasic
+  id: SMESBasicBackup
+  suffix: Basic, 8MJ, Backup
+  name: backup SMES
+  description: A SMES unit that only discharges power when the primary supply on its network can't keep up with demand.
+  components:
+    - type: PowerNetworkBatteryPriority
+      priority: 1
+      engageThreshold: 0.98          # engage once demand hits 98% of combined lower-tier max supply (rate-capped)
+      disengageThreshold: 0.90       # disengage (rate signal) once demand drops back below 90% of lower-tier max supply
+      chargeEngageThreshold: 0.20    # engage once lower tiers' combined charge drops to 20% or below (running dry)
+      chargeDisengageThreshold: 0.40 # disengage (charge signal) once lower tiers climb back above 40% charge
+      # Engages if EITHER signal trips; only disengages once BOTH clear.
+    - type: PowerNetworkBattery
+      canDischarge: false            # starts disengaged; PowerNetworkBatteryPrioritySystem manages this at runtime
+
+- type: entity
+  parent: SMESAdvanced
+  id: SMESAdvancedBackup
+  suffix: Advanced, 16MJ, Backup
+  name: advanced backup SMES
+  description: An advanced SMES unit that only discharges power when the primary supply on its network can't keep up with demand.
+  components:
+    - type: PowerNetworkBatteryPriority
+      priority: 1
+      engageThreshold: 0.98         # engage once demand hits 98% of combined lower-tier max supply (rate-capped)
+      disengageThreshold: 0.90       # disengage (rate signal) once demand drops back below 90% of lower-tier max supply
+      chargeEngageThreshold: 0.20    # engage once lower tiers' combined charge drops to 20% or below (running dry)
+      chargeDisengageThreshold: 0.40 # disengage (charge signal) once lower tiers climb back above 40% charge
+      # Engages if EITHER signal trips; only disengages once BOTH clear.
+    - type: PowerNetworkBattery
+      canDischarge: false            # starts disengaged; PowerNetworkBatteryPrioritySystem manages this at runtime
+
+- type: entity
+  parent: SMESBlue
+  id: SMESBlueBackup
+  suffix: Hyper Advanced, 64MJ, Backup
+  name: hyper advanced backup SMES
+  description: A hyper advanced SMES unit that only discharges power when the primary supply on its network can't keep up with demand.
+  components:
+    - type: PowerNetworkBatteryPriority
+      priority: 1
+      engageThreshold: 0.98         # engage once demand hits 98% of combined lower-tier max supply (rate-capped)
+      disengageThreshold: 0.90       # disengage (rate signal) once demand drops back below 90% of lower-tier max supply
+      chargeEngageThreshold: 0.20    # engage once lower tiers' combined charge drops to 20% or below (running dry)
+      chargeDisengageThreshold: 0.40 # disengage (charge signal) once lower tiers climb back above 40% charge
+      # Engages if EITHER signal trips; only disengages once BOTH clear.
+    - type: PowerNetworkBattery
+      canDischarge: false            # starts disengaged; PowerNetworkBatteryPrioritySystem manages this at runtime
