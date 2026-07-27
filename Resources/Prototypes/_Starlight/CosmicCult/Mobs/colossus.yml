@@ -96,6 +96,7 @@
       proper: true
       gender: epicene
   - type: ProtectedFromStepTriggers
+  - type: IgnoreSpiderWeb
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
