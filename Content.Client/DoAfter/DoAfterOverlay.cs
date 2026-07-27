@@ -37,7 +37,6 @@ public sealed class DoAfterOverlay : Overlay
     private const float StartX = 2;
     private const float EndX = 22f;
 
-    #region Ephmeral Space
     // Time after which the doafter will lerp to max alpha.Add a comment on  line R40Add diff commentMarkdown input:  edit mode selected.WritePreviewAdd a suggestionHeadingBoldItalicQuoteCodeLinkUnordered listNumbered listTask listMentionReferenceMore itemsSaved repliesAdd FilesPaste, drop, or click to add filesCancelCommentStart a review
     private static readonly TimeSpan MaxAlphaTime = TimeSpan.FromSeconds(0.3f);
 
@@ -46,7 +45,6 @@ public sealed class DoAfterOverlay : Overlay
 
     // Time after which the doafter will lerp to its final y offset.
     private static readonly TimeSpan MaxYPosTime = TimeSpan.FromSeconds(0.5f);
-    #endregion
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
@@ -121,17 +119,16 @@ public sealed class DoAfterOverlay : Overlay
             foreach (var doAfter in comp.DoAfters.Values)
             {
                 // Hide some DoAfters from other players for stealthy actions (ie: thieving gloves)
-                var maxAlpha = 1f; // Ephmeral Space
+                var maxAlpha = 1f;
                 if (doAfter.Args.Hidden || isInContainer)
                 {
                     if (uid != localEnt)
                         continue;
 
                     // Hints to the local player that this do-after is not visible to other players.
-                    maxAlpha = 0.5f; // Ephmeral Space
+                    maxAlpha = 0.5f;
                 }
 
-                #region Ephmeral Space
                 var elapsed = time - doAfter.StartTime;
 
                 var alpha = MathHelper.Lerp(0f, maxAlpha, (float)Math.Clamp(elapsed / MaxAlphaTime, 0.0, 1.0));
@@ -145,7 +142,6 @@ public sealed class DoAfterOverlay : Overlay
                 var yFinished = spriteBounds.Height / 2f + 0.05f;
                 var yStart = yFinished / 6f;
                 var yOffset = MathHelper.Lerp(yStart, yFinished, Easings.OutSine((float)Math.Clamp(elapsed / MaxYPosTime, 0.0, 1.0)));
-                #endregion
 
                 // Position above the entity (we've already applied the matrix transform to the entity itself)
                 // Offset by the texture size for every do_after we have.
@@ -153,7 +149,7 @@ public sealed class DoAfterOverlay : Overlay
                     yOffset / scale + offset / EyeManager.PixelsPerMeter * scale);
 
                 // Draw the underlying bar texture
-                handle.DrawTexture(_barTexture, position, Color.White.WithAlpha(alpha)); // Ephmeral Space
+                handle.DrawTexture(_barTexture, position, Color.White.WithAlpha(alpha));
 
                 Color color;
                 float elapsedRatio;
@@ -161,7 +157,7 @@ public sealed class DoAfterOverlay : Overlay
                 // if we're cancelled then flick red / off.
                 if (doAfter.CancelledTime != null)
                 {
-                    elapsed = doAfter.CancelledTime.Value - doAfter.StartTime; // Ephmeral Space
+                    elapsed = doAfter.CancelledTime.Value - doAfter.StartTime;
                     elapsedRatio = (float)Math.Min(1, elapsed.TotalSeconds / doAfter.Args.Delay.TotalSeconds);
                     var cancelElapsed = (time - doAfter.CancelledTime.Value).TotalSeconds;
                     var flash = Math.Floor(cancelElapsed / FlashTime) % 2 == 0;
@@ -169,7 +165,6 @@ public sealed class DoAfterOverlay : Overlay
                 }
                 else
                 {
-                    //elapsed = time - doAfter.StartTime; // Ephmeral Space
                     elapsedRatio = (float)Math.Min(1, elapsed.TotalSeconds / doAfter.Args.Delay.TotalSeconds);
                     color = GetProgressColor(elapsedRatio, alpha);
                 }
