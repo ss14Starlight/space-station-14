@@ -34,7 +34,7 @@
     icon:
         sprite: Structures/Magic/Cult/trap.rsi
         state: trap
-
+  - type: EorgPreventAction
 
 - type: entity
   parent: ExplosionRune
@@ -57,16 +57,20 @@
   name: Freeze Rune
   description: Summons a rune that will freeze in place anyone who walks on it.
   components:
-  - type: TargetAction
-    checkCanAccess: false
-    range: 15
+  - type: Action
     useDelay: 30
     icon:
         sprite: Structures/Magic/Cult/rune.rsi
-        state: cult4
-  - type: InstantAction
-    event: !type:InstantSpawnSpellEvent
-      prototype: FreezeRuneWiz
+        state: cult6
+        color: '#FF770055'
+  - type: TargetAction
+    range: 10
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: FreezeRuneWiz
+        amount: 1
   - type: SpeakOnAction
     sentence: action-speech-spell-explosionrune
     tts: action-speech-spell-explosionrune-tts

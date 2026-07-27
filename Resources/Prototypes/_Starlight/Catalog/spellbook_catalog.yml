@@ -256,7 +256,7 @@
   priority: 12
   productEntity: ClothingOuterSoftsuitWizardFire
   cost:
-    WizCoin: 0
+    WizCoin: 15
   categories:
   - SpellbookWar
   conditions:
