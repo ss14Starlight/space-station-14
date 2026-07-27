@@ -37,9 +37,7 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     [Dependency] private IStateManager _stateManager = default!;
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IEntityNetworkManager _entityNetwork = default!;
-    [Dependency] private ILogManager _logManager = default!;
 
-    private readonly ISawmill _sawmill;
     private readonly SharedMapSystem _mapSystem;
     private readonly SharedTransformSystem _transformSystem;
     private readonly SharedAtmosPipeLayersSystem _pipeLayersSystem;
@@ -53,16 +51,13 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     private const float GuideRadius = 0.05f;
     private const float GuideOffset = 0.125f;
 
-    private EntityCoordinates _mouseCoordsRaw = default;
+    private EntityCoordinates _mouseCoordsRaw;
     private AtmosPipeLayer _currentLayer = AtmosPipeLayer.Primary;
-    private EntityUid? _lastLayerSyncEntity = null;
-    private AtmosPipeLayer? _lastLayerSynced = null;
     private Color _guideColor = new(0, 0, 0.5785f);
 
     public AlignRPDAtmosPipeLayers(PlacementManager pMan) : base(pMan)
     {
         IoCManager.InjectDependencies(this);
-        _sawmill = _logManager.GetSawmill("AlignRPDAtmosPipeLayers");
         _mapSystem = _entityManager.System<SharedMapSystem>();
         _transformSystem = _entityManager.System<SharedTransformSystem>();
         _spriteSystem = _entityManager.System<SpriteSystem>();
@@ -211,10 +206,7 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         _currentLayer = newLayer;
 
         if (rcd.CurrentMode == RpdMode.Free)
-        {
-            _sawmill.Info($"Selected layer: {newLayer}");
             UpdateSelectedLayer(heldEntity.Value, rcd, newLayer);
-        }
 
         UpdatePlacer(_currentLayer);
     }
@@ -230,14 +222,11 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     //   and uses it directly during placement in Free mode.
     private void UpdateSelectedLayer(EntityUid heldEntity, RCDComponent rcd, AtmosPipeLayer layer)
     {
-        if (_lastLayerSyncEntity != heldEntity || _lastLayerSynced != layer)
-        {
-            _lastLayerSyncEntity = heldEntity;
-            _lastLayerSynced = layer;
+        if (rcd.LastSelectedLayer == layer)
+            return;
 
-            _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
-            _rcdSystem.SetSelectedLayer((heldEntity, rcd), layer);
-        }
+        _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
+        _rcdSystem.SetSelectedLayer((heldEntity, rcd), layer);
     }
 
     private void UpdatePlacer(AtmosPipeLayer layer)
