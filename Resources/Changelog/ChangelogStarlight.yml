@@ -1,88 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Throwing items is now predicted on the client, meaning throwing items should feel faster and smoother.
-    type: Add
-  id: 406644
-  time: '2026-07-15T11:04:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5049
-- author: neomoth
-  changes:
-  - message: Splitting item stacks is now predicted as a result of making throwing items predicted. Should also now feel more responsive just like throwing things.
-    type: Add
-  id: 406645
-  time: '2026-07-15T11:04:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5049
-- author: SpaghettiBit
-  changes:
-  - message: Added Avali guidebook entry regarding large caliber weapon knockback.
-    type: Add
-  id: 406646
-  time: '2026-07-15T11:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5141
-- author: SpaghettiBit
-  changes:
-  - message: 'Tweaked Avali guidebook: Nexus information blurb.'
-    type: Tweak
-  id: 406647
-  time: '2026-07-15T11:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5141
-- author: SpaghettiBit
-  changes:
-  - message: 'Tweaked Avali guidebook: Sound blurb.'
-    type: Tweak
-  id: 406648
-  time: '2026-07-15T11:40:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5141
-- author: hermitsabee
-  changes:
-  - message: Added the song Stench of Whiskey by hermitsabee to Starlight's lobby music.
-    type: Add
-  id: 406649
-  time: '2026-07-15T11:40:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5133
-- author: Bigfoot Bravo
-  changes:
-  - message: IPCs can use Hair! NT spared some expense with these hair sets, but NT may invest further later on, upgrading this hair to true holograms at a later date.
-    type: Tweak
-  id: 406650
-  time: '2026-07-15T12:01:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4417
-- author: wonderfulnewworld
-  changes:
-  - message: Added Budget cyber legs, which provide no speed bonus at all, but take less damage on EMPs vs their normal counterpart.
-    type: Add
-  id: 406651
-  time: '2026-07-15T12:20:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5131
-- author: wonderfulnewworld
-  changes:
-  - message: Loadout cyber legs are now their budget variants instead. You'll need to replace them if you currently have them equipped on your character.
-    type: Tweak
-  id: 406652
-  time: '2026-07-15T12:20:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5131
-- author: wonderfulnewworld
-  changes:
-  - message: Fixed other cyberlegs not taking damage on EMP.
-    type: Fix
-  id: 406653
-  time: '2026-07-15T12:20:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5131
-- author: Littlemen/Romero
-  changes:
-  - message: The Eeep now recovers blood quickly.
-    type: Add
-  id: 406654
-  time: '2026-07-15T19:01:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5151
-- author: wonderfulnewworld
-  changes:
-  - message: Added Survival, KesslerSyndrome, and ShitStation to Dynamic and DynamicLP.
-    type: Add
-  id: 406655
-  time: '2026-07-15T19:01:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5078
 - author: Johnny
   changes:
   - message: Added reach into the shipyard (no it wont duplicate items or whatever).
@@ -2799,4 +2715,88 @@ Entries:
   id: 407043
   time: '2026-07-27T09:10:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5254
+- author: jhrushbe
+  changes:
+  - message: Hot reactor parts now visibly distort the air around them.
+    type: Add
+  id: 407044
+  time: '2026-07-27T10:11:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5295
+- author: jhrushbe
+  changes:
+  - message: Added a new crate that contains everything needed to make a nuclear reactor setup from scratch.
+    type: Add
+  id: 407045
+  time: '2026-07-27T10:11:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5295
+- author: jhrushbe
+  changes:
+  - message: Added an ACK button to the nuclear reactor's UI that will silence alarms.
+    type: Add
+  id: 407046
+  time: '2026-07-27T10:11:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5295
+- author: jhrushbe
+  changes:
+  - message: Hot reactor parts can now deal a maximum of 100 damage on touch. No more instant ashing.
+    type: Tweak
+  id: 407047
+  time: '2026-07-27T10:11:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5295
+- author: jhrushbe
+  changes:
+  - message: Changed the way the nuclear reactor handles reactor parts to prevent internal desyncs.
+    type: Tweak
+  id: 407048
+  time: '2026-07-27T10:11:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5295
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where reactor parts could get hotter than the surface of the sun from being spaced.
+    type: Fix
+  id: 407049
+  time: '2026-07-27T10:11:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5295
+- author: CrazyPhantom
+  changes:
+  - message: 'Reactor StimulatedHeatingFactor: 1 -> 2.5.'
+    type: Tweak
+  id: 407050
+  time: '2026-07-27T10:11:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5295
+- author: CrazyPhantom
+  changes:
+  - message: 'Reactor SpontaneousHeatingFactor: 1 -> 0.35.'
+    type: Tweak
+  id: 407051
+  time: '2026-07-27T10:11:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5295
+- author: Crimsonblod
+  changes:
+  - message: Corgi body temperature raised by 1.5 degrees.
+    type: Tweak
+  id: 407052
+  time: '2026-07-27T10:47:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5350
+- author: wonderfulnewworld
+  changes:
+  - message: The syndicate fire axe can no longer tear plating.
+    type: Fix
+  id: 407053
+  time: '2026-07-27T10:47:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5349
+- author: bynddark8, redmushie
+  changes:
+  - message: Introduces new clothing sprites for the CentComm Service Worker, Bartender, Chef and Janitor.
+    type: Add
+  id: 407054
+  time: '2026-07-27T10:47:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5039
+- author: bynddark8, redmushie
+  changes:
+  - message: Creates roleplay only ghost roles available at EOR for players to do menial tasks at CentComm.
+    type: Add
+  id: 407055
+  time: '2026-07-27T10:47:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5039
 Order: -1
