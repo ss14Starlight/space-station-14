@@ -282,6 +282,11 @@ namespace Content.IntegrationTests.Tests
                 "FilledSlimeExtract",
                 "Loadout",
                 // Starlight end
+                // ES start
+                "ESTimedDespawn",
+                "ESSparkOnTrigger",
+                // ES end
+                "BluespaceLocker", // Moff Station
             };
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);
