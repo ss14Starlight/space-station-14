@@ -165,7 +165,7 @@
         - LabellerRefillPaper
 
 - type: entity
-  id: TicketMachineHOPWhite
+  id: TicketMachineHOP
   parent: TicketMachineFilled
   suffix: HOP, Filled, White
   components:
