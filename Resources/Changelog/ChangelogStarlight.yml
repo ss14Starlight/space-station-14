@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (Reach) I wont tell you what i removed but I removed something...
-    type: Remove
-  id: 406663
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
   - message: (Reach) Made AI Core command locked.
     type: Tweak
   id: 406664
@@ -2799,4 +2792,11 @@ Entries:
   id: 407062
   time: '2026-07-27T13:11:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5358
+- author: CrazyPhantom
+  changes:
+  - message: Hitting a corner in disposals now deals 4 blunt, maxing at 100.
+    type: Add
+  id: 407063
+  time: '2026-07-27T16:24:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5361
 Order: -1
