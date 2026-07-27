@@ -61,7 +61,7 @@ public sealed partial class PluoxTritFire : IGasReactionEffect
 
 		mixture.AdjustMoles(Gas.Tritium, -burn);
 		mixture.AdjustMoles(Gas.Pluoxium, -burn * 0.5f);
-		mixture.AdjustMoles(Gas.WaterVapor, burn * 0.5f);
+		mixture.AdjustMoles(Gas.WaterVapor, burn);
 
 		var energyReleased = (Atmospherics.FireHydrogenEnergyReleased * burn);
 
