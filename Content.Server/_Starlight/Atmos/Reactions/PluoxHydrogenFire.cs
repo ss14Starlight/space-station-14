@@ -26,9 +26,6 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
 
 ///Too much pluox? Ignite! It's super oxygen and doesnt care about current temperature.
 
-        if (initialPluoxMoles < 25f)
-            return ReactionResult.NoReaction;
-
 		var satrate = (0f);
 		var temprate = (0f);
 
