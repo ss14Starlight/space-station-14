@@ -5,34 +5,33 @@
         "y":32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6",
+    "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6; Cas states: Discord @vincolan",
   "states": [
     {
       "name": "icon"
     },
     {
-      "name": "icon_sec"
+      "name": "icon_cas",
+      "delays": [
+        [
+          10,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
     },
     {
-      "name": "icon_med"
+      "name": "logo_nt"
     },
     {
-      "name": "icon_srv"
-    },
-    {
-      "name": "icon_cargo"
-    },
-    {
-      "name": "icon_eng"
-    },
-    {
-      "name": "icon_yellow"
-    },
-    {
-      "name": "icon_rnd"
-    },
-    {
-      "name": "icon_atmos"
+      "name": "logo_cas"
     },
     {
       "name": "burn",
