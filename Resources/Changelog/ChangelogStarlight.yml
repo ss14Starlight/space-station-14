@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Fixed other cyberlegs not taking damage on EMP.
-    type: Fix
-  id: 406653
-  time: '2026-07-15T12:20:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5131
 - author: Littlemen/Romero
   changes:
   - message: The Eeep now recovers blood quickly.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407052
   time: '2026-07-27T10:47:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5350
+- author: wonderfulnewworld
+  changes:
+  - message: The syndicate fire axe can no longer tear plating.
+    type: Fix
+  id: 407053
+  time: '2026-07-27T10:47:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5349
 Order: -1
