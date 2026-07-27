@@ -1,81 +1,4 @@
 Entries:
-- author: piepie3.149 , Conflee
-  changes:
-  - message: Added a variant of the Captain's Gas Mask which is a military surplus gas mask from the Pod Wars but repainted in the Captain's colors. Appears instead of their normal Gas Mask 15% of the time.
-    type: Add
-  id: 406614
-  time: '2026-07-13T19:18:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5119
-- author: wonderfulnewworld
-  changes:
-  - message: The Security Bomber Jacket now has a little more pierce resist, a moderate less heat resist, and a moderate more explosion resist.
-    type: Tweak
-  id: 406615
-  time: '2026-07-13T19:18:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5093
-- author: wonderfulnewworld, SnappingOpossum
-  changes:
-  - message: You can now spawn a new Robust Toolbox every 60 seconds in Deathmatch.
-    type: Add
-  id: 406616
-  time: '2026-07-13T20:52:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5027
-- author: wonderfulnewworld, SnappingOpossum
-  changes:
-  - message: Removed the Soap from Deathmatch loot.
-    type: Remove
-  id: 406617
-  time: '2026-07-13T20:52:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5027
-- author: wonderfulnewworld, SnappingOpossum
-  changes:
-  - message: The Robust Toolbox is now deleted when dropped.
-    type: Tweak
-  id: 406618
-  time: '2026-07-13T20:52:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5027
-- author: wonderfulnewworld, SnappingOpossum
-  changes:
-  - message: You will now alternate between all enabled characters in Deathmatch.
-    type: Tweak
-  id: 406619
-  time: '2026-07-13T20:52:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5027
-- author: STARLIGHT TEAM
-  changes:
-  - message: Removed the Regular Self-Activation artifact trigger until its fixed or made clearer.
-    type: Remove
-  id: 406620
-  time: '2026-07-13T21:43:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5022
-- author: Caws
-  changes:
-  - message: (Oasis) Added a few more space heaters for Atmos.
-    type: Add
-  id: 406621
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Added a Guidebooks crate and personal computer to the Library.
-    type: Add
-  id: 406622
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Added a 'Washroom' station beacon to the washroom.
-    type: Add
-  id: 406623
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Added some emergency wall closets to the washroom.
-    type: Add
-  id: 406624
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
 - author: Caws
   changes:
   - message: (Oasis) Added a missing station beacon to Cryosleep.
@@ -2799,4 +2722,81 @@ Entries:
   id: 407013
   time: '2026-07-27T07:45:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5351
+- author: Orhu
+  changes:
+  - message: (Kiloton) Added Stir Stir to Genpop.
+    type: Add
+  id: 407014
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Kiloton) Added Flippers to Courtroom.
+    type: Add
+  id: 407015
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Kiloton) Added vend of silence to Mime Room.
+    type: Add
+  id: 407016
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Kiloton) Added ice cream maker to Kitchen.
+    type: Add
+  id: 407017
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Kiloton) Added a guidebook crate to the Library.
+    type: Add
+  id: 407018
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Kiloton) Added ticket machine to HOP.
+    type: Add
+  id: 407019
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Kiloton) Added coroner, surgeon, virologist, geneticist, and roboticist lockers to appropriate locations.
+    type: Add
+  id: 407020
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Kiloton) Added operating computers to the surgery rooms.
+    type: Add
+  id: 407021
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Kiloton) Placed station beacons in both washrooms.
+    type: Tweak
+  id: 407022
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Kiloton) Replaced cargo tech and mail tech lockers with large variants.
+    type: Tweak
+  id: 407023
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Kiloton) Filled in the spaced area outside of the clinic to reduce spacing potential.
+    type: Tweak
+  id: 407024
+  time: '2026-07-27T08:21:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5255
 Order: -1
