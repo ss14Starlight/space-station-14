@@ -213,7 +213,7 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         if (rcd.CurrentMode == RpdMode.Free)
         {
             _sawmill.Info($"Selected layer: {newLayer}");
-            _rcdSystem.SetSelectedLayer((heldEntity.Value, rcd), newLayer);
+            UpdateSelectedLayer(heldEntity.Value, rcd, newLayer);
         }
 
         UpdatePlacer(_currentLayer);
@@ -228,7 +228,7 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     //   sends that exact layer as RPDSelectedLayerEvent.
     // - Server stores it on the held RCDComponent (LastSelectedLayer)
     //   and uses it directly during placement in Free mode.
-    private void UpdateSelectedLayer(EntityUid heldEntity, AtmosPipeLayer layer)
+    private void UpdateSelectedLayer(EntityUid heldEntity, RCDComponent rcd, AtmosPipeLayer layer)
     {
         if (_lastLayerSyncEntity != heldEntity || _lastLayerSynced != layer)
         {
@@ -236,6 +236,7 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
             _lastLayerSynced = layer;
 
             _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
+            _rcdSystem.SetSelectedLayer((heldEntity, rcd), layer);
         }
     }
 

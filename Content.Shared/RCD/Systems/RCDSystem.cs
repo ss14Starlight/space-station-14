@@ -197,7 +197,6 @@ public sealed partial class RCDSystem : EntitySystem
             selectedLayer = AtmosPipeLayer.Tertiary;
 
         rcd.LastSelectedLayer = selectedLayer;
-        Log.Info($"Selected layer: {selectedLayer}");
     }
 
     private void OnGetUtilityVerb(EntityUid uid, RCDComponent component, GetVerbsEvent<UtilityVerb> args)
