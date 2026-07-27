@@ -1,18 +1,4 @@
 Entries:
-- author: SevenShades & Ilya246
-  changes:
-  - message: Added logic to allow drawing diagonals on mass scanners.
-    type: Add
-  id: 406612
-  time: '2026-07-13T10:48:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5116
-- author: SevenShades & Ilya246
-  changes:
-  - message: Added diagonal lattices and plating tiles.
-    type: Add
-  id: 406613
-  time: '2026-07-13T10:48:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5116
 - author: piepie3.149 , Conflee
   changes:
   - message: Added a variant of the Captain's Gas Mask which is a military surplus gas mask from the Pod Wars but repainted in the Captain's colors. Appears instead of their normal Gas Mask 15% of the time.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407011
   time: '2026-07-27T07:45:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5271
+- author: Caws
+  changes:
+  - message: Intercom construction on walls works again (you don't need to tear down the wall to build an intercom anymore), Engineers rejoice.
+    type: Fix
+  id: 407012
+  time: '2026-07-27T07:45:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5351
+- author: Caws
+  changes:
+  - message: Intercom assemblies are no longer Invincible.
+    type: Fix
+  id: 407013
+  time: '2026-07-27T07:45:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5351
 Order: -1
