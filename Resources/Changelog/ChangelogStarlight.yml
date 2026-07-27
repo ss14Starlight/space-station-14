@@ -1,74 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Oasis) Removed a roundstart turbo charger from NT Career Office, replaced with a regular charger and cell recharger.
-    type: Remove
-  id: 406634
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Removed the cryogenic sleep unit from the Conference room.
-    type: Remove
-  id: 406635
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Rinary
-  changes:
-  - message: Fixed bug when wizden's patreon username decoration overrides Starlight decoration.
-    type: Fix
-  id: 406636
-  time: '2026-07-14T08:24:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5032
-- author: Arkanic
-  changes:
-  - message: Ammunition now shows how much damage it deals again.
-    type: Fix
-  id: 406637
-  time: '2026-07-14T12:53:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5137
-- author: Arkanic
-  changes:
-  - message: Ammunition that has armour penetration characteristics now shows what percentage of armor it ignores or is reduced by.
-    type: Add
-  id: 406638
-  time: '2026-07-14T12:53:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5137
-- author: Rinary
-  changes:
-  - message: Fixed ban sync between all our servers and alpha.
-    type: Fix
-  id: 406639
-  time: '2026-07-14T13:20:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5138
-- author: neomoth
-  changes:
-  - message: Eeep will no longer globally announce their presence, only doing so on the map they spawn in.
-    type: Fix
-  id: 406640
-  time: '2026-07-14T13:37:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5128
-- author: neomoth
-  changes:
-  - message: Nar'sie, Ratvar, and Eeep will no longer announce when an admin decides to spawn them in their admin arena. Rejoice, no more jumpscares, surely.
-    type: Tweak
-  id: 406641
-  time: '2026-07-14T13:37:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5128
-- author: TaserTheFox
-  changes:
-  - message: Fixed loc spam with gas analyzers.
-    type: Fix
-  id: 406642
-  time: '2026-07-15T10:01:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5140
-- author: joshujo
-  changes:
-  - message: Ulnitranium is no longer scrubbed by scrubbers by default.
-    type: Tweak
-  id: 406643
-  time: '2026-07-15T10:36:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5145
 - author: neomoth
   changes:
   - message: Throwing items is now predicted on the client, meaning throwing items should feel faster and smoother.
@@ -2799,4 +2729,74 @@ Entries:
   id: 407033
   time: '2026-07-27T08:22:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5270
+- author: Orhu
+  changes:
+  - message: (Fland) Added Stir Stir to Genpop.
+    type: Add
+  id: 407034
+  time: '2026-07-27T09:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5254
+- author: Orhu
+  changes:
+  - message: (Fland) Added Flippers to Magistrate's Office.
+    type: Add
+  id: 407035
+  time: '2026-07-27T09:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5254
+- author: Orhu
+  changes:
+  - message: (Fland) Added vend of silence to maints outside of Clown/Mime Room (no space).
+    type: Add
+  id: 407036
+  time: '2026-07-27T09:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5254
+- author: Orhu
+  changes:
+  - message: (Fland) Added an ice cream maker to Kitchen.
+    type: Add
+  id: 407037
+  time: '2026-07-27T09:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5254
+- author: Orhu
+  changes:
+  - message: (Fland) Added ticket machine to HOP.
+    type: Add
+  id: 407038
+  time: '2026-07-27T09:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5254
+- author: Orhu
+  changes:
+  - message: (Fland) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
+    type: Add
+  id: 407039
+  time: '2026-07-27T09:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5254
+- author: Orhu
+  changes:
+  - message: (Fland) Add Washroom station beacon.
+    type: Tweak
+  id: 407040
+  time: '2026-07-27T09:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5254
+- author: Orhu
+  changes:
+  - message: (Fland) Placed more civilian NanoMeds around the map.
+    type: Tweak
+  id: 407041
+  time: '2026-07-27T09:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5254
+- author: Orhu
+  changes:
+  - message: (Fland) Replaced second R&D console with robotics control console to Robotics.
+    type: Tweak
+  id: 407042
+  time: '2026-07-27T09:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5254
+- author: Orhu
+  changes:
+  - message: (Fland) Linked artifact analyzer to console.
+    type: Fix
+  id: 407043
+  time: '2026-07-27T09:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5254
 Order: -1
