@@ -1,18 +1,4 @@
 Entries:
-- author: Littlemen/Romero
-  changes:
-  - message: The Eeep now recovers blood quickly.
-    type: Add
-  id: 406654
-  time: '2026-07-15T19:01:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5151
-- author: wonderfulnewworld
-  changes:
-  - message: Added Survival, KesslerSyndrome, and ShitStation to Dynamic and DynamicLP.
-    type: Add
-  id: 406655
-  time: '2026-07-15T19:01:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5078
 - author: Johnny
   changes:
   - message: Added reach into the shipyard (no it wont duplicate items or whatever).
@@ -2799,4 +2785,18 @@ Entries:
   id: 407053
   time: '2026-07-27T10:47:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5349
+- author: bynddark8, redmushie
+  changes:
+  - message: Introduces new clothing sprites for the CentComm Service Worker, Bartender, Chef and Janitor.
+    type: Add
+  id: 407054
+  time: '2026-07-27T10:47:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5039
+- author: bynddark8, redmushie
+  changes:
+  - message: Creates roleplay only ghost roles available at EOR for players to do menial tasks at CentComm.
+    type: Add
+  id: 407055
+  time: '2026-07-27T10:47:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5039
 Order: -1
