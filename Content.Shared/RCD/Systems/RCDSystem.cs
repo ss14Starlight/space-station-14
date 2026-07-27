@@ -22,6 +22,7 @@ using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using System.Linq;
+using Content.Shared._ES.Sparks;
 // Starlight Start
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Atmos.Components;
@@ -58,6 +59,7 @@ public sealed partial class RCDSystem : EntitySystem
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TagSystem _tags = default!;
+    [Dependency] private ESSparksSystem _esSparks = default!; // ES
     // Starlight Start
     [Dependency] private SharedAtmosPipeLayersSystem _pipeLayersSystem = default!;
     [Dependency] private IEntityManager _entityManager = default!;
@@ -135,6 +137,7 @@ public sealed partial class RCDSystem : EntitySystem
 
         // Set the current RCD prototype to the one supplied
         component.ProtoId = args.ProtoId;
+        _esSparks.DoSparks(uid, 1, user: args.Actor); // ES
         UpdateCachedPrototype(uid, component); // Starlight: RPD
 
         _adminLogger.Add(LogType.RCD, LogImpact.Low, $"{args.Actor} set RCD mode to: {prototype.Mode} : {prototype.Prototype}");
