@@ -44,20 +44,23 @@ public sealed partial class CosmicColossusComponent : Component
 
     [DataField] public EntProtoId EffigyPlaceAction = "ActionCosmicColossusEffigy";
 
-    [DataField] public EntityUid? EffigyPlaceActionEntity;
+    //[DataField]
+    public EntityUid? EffigyPlaceActionEntity;
 
-    [DataField]
+    //[DataField]
     public EntityUid? CurrentEffigy;
 
     [AutoPausedField, DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    public TimeSpan EffigyRechargeTimer = TimeSpan.MaxValue;
+    //public TimeSpan EffigyRechargeTimer = TimeSpan.MaxValue;
+    public TimeSpan? EffigyRechargeTimer;
 
     [DataField]
     public TimeSpan EffigyRechargeTime = TimeSpan.FromMinutes(4);
 
     [DataField] public EntProtoId HibernateAction = "ActionCosmicColossusHibernate";
 
-    [DataField] public EntityUid? HibernateActionEntity;
+    //[DataField]
+    public EntityUid? HibernateActionEntity;
 
     [DataField] public TimeSpan IngressDoAfter = TimeSpan.FromSeconds(4);
 

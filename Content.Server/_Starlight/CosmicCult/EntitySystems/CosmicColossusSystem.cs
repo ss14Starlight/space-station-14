@@ -17,8 +17,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Charges.Components;
-using Content.Shared.Charges.Systems;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
@@ -36,7 +34,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private ThrowingSystem _throw = default!;
-    [Dependency] private SharedChargesSystem _charges = default!;
+    //[Dependency] private SharedChargesSystem _charges = default!;
 
     public override void Initialize()
     {
@@ -94,7 +92,8 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         if (ent.Comp.Timed)
         {
             _actions.AddAction(ent, ref ent.Comp.EffigyPlaceActionEntity, ent.Comp.EffigyPlaceAction, ent);
-            ent.Comp.EffigyRechargeTimer = TimeSpan.MaxValue;//maxtime since the recharge should be set after the effigy dies.
+            //ent.Comp.EffigyRechargeTimer = TimeSpan.MaxValue;//maxtime since the recharge should be set after the effigy dies.
+            ent.Comp.EffigyRechargeTimer = null;//null in hopes of fixing shard 4
             Dirty(ent);
         }
 

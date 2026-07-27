@@ -61,7 +61,6 @@ public sealed partial class CosmicEffigySystem : EntitySystem
             Dirty(action, charges);
         }
         ent.Comp.Timed = false;//Flag for midround spawn; prevents death timer.
-        //ent.Comp.EffigyRechargeTimer = TimeSpan.MaxValue;//remove this in hope of fixing issue
         Dirty(ent);
     }
     private void OnEffigyTerminating(Entity<CosmicEffigyComponent> ent, ref EntityTerminatingEvent args)
@@ -96,27 +95,34 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             // Still waiting for recharge
-            if (_timing.CurTime < comp.EffigyRechargeTimer)
+            if (comp.EffigyRechargeTimer is null || _timing.CurTime < comp.EffigyRechargeTimer)
                 continue;
+
+            // Consume recharge timer
+            comp.EffigyRechargeTimer = null;
 
             // No action assigned
-            if (comp.EffigyPlaceActionEntity is not { } action)
+            if (comp.EffigyPlaceActionEntity is not { } action){
+                Dirty(uid, comp);
                 continue;
+                }
 
             // No LimitedCharges component
-            if (!TryComp<LimitedChargesComponent>(action, out var charges))
+            if (!TryComp<LimitedChargesComponent>(action, out var charges)){
+                Dirty(uid, comp);
                 continue;
+                }
 
             // Already charged
-            if (_charges.GetCurrentCharges((action, charges, null)) >= charges.MaxCharges)
-            continue;
+            if (_charges.GetCurrentCharges((action, charges, null)) >= charges.MaxCharges){
+                Dirty(uid, comp);
+                continue;
+                }
 
             // Restore ability
             _charges.SetCharges((action, charges), charges.MaxCharges);
             Dirty(action, charges);
-
-            // Stop this from firing every tick
-            comp.EffigyRechargeTimer = TimeSpan.MaxValue;
+            // Save consumed recharge timer state
             Dirty(uid, comp);
         }
     }
