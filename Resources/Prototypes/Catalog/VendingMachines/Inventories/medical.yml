@@ -44,9 +44,6 @@
   id: NanoMedPlusInventory
   #region Starlight - reverts Wizden NanoMed inventory changes
   startingInventory:
-    # Medical Essential Gear
-    ClothingBeltMedicalFilled: 2
-    # Shared Essential
     HandheldHealthAnalyzer: 3
     ClothingBeltMedical: 3
     ClothingBeltMedicalEMT: 2
