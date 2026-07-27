@@ -86,7 +86,7 @@
 - type: entity
   parent: Ticket
   id: TicketNT
-  description: 'A piece of white paper with printed number and NT logo.'
+  description: 'A piece of paper with printed number and NT logo.'
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/ticket.rsi
