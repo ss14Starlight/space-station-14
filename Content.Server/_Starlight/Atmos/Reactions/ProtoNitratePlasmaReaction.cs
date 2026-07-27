@@ -84,7 +84,7 @@ public sealed partial class ProtoNitratePlasmaReaction : IGasReactionEffect
 			decomposeZXA = (rate); ///Allows you to turn water vapor into plasma.
 		}
 
-        var production = ( (decomposeTrit * 1.25f) + (decomposeFrez * 0.03f) + (decomposeHeal * .1f) + (decomposeNitr * 5f) + (decomposeHNob * .2f) + (decomposeANob * 1f) + (decomposeHalon * .5f) + (decomposeZauker * 15f) + (decomposeZXA * .5f) );	
+        var production = ( (decomposeTrit * 1.25f) + (decomposeFrez * 0.03f) + (decomposeHeal * .1f) + (decomposeNitr * 5f) + (decomposeHNob * .2f) + (decomposeANob * 1f) + (decomposeHalon * .5f) + (decomposeZauker * 15f) + (decomposeZXA * .5f) );
 
         if (production < 0.1f)
             return ReactionResult.NoReaction;
