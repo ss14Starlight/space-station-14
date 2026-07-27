@@ -1,6 +1,6 @@
 using Content.Server.Power.Components;
 
-namespace Content.Server.Power.Components
+namespace Content.Server._Starlight.Power.Pow3r
 {
     /// <summary>
     ///     Optional companion to <see cref="PowerNetworkBatteryComponent"/>.
