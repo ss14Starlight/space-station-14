@@ -59,7 +59,7 @@ public sealed partial class PluoxTritFire : IGasReactionEffect
 
 ///Don't burn fuel that doesnt exist.
 
-        burn = Math.Min(burn, Math.Min(initialHydrogenMoles, initialPluoxMoles * 2f));
+        burn = Math.Min(burn, Math.Min(initialTritiumMoles, initialPluoxMoles * 2f));
 
 		mixture.AdjustMoles(Gas.Tritium, -burn);
 		mixture.AdjustMoles(Gas.Pluoxium, -burn * 0.5f);
