@@ -23,7 +23,7 @@ public sealed partial class PluoxPlasmaFire : IGasReactionEffect
 ///Check pluox flat concentration relative to fuel, Co2 contribuites to reduce threshold for intentional reaction.
 
         var pluoxSat = (initialPluoxMoles + initialCo2moles);
-		var pluoxRatio = (initialPluoxMoles + (initialCo2moles * 0.5f)) / initialTritiumMoles;
+		var pluoxRatio = (initialPluoxMoles + (initialCo2moles * 0.5f)) / initialPlasmaMoles;
 
 ///Too much pluox? Ignite! It's super oxygen and doesnt care about current temperature.
 
