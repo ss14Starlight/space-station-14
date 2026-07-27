@@ -79,7 +79,7 @@
     # Starlight Start
     damageOnTurn:
       types:
-        Blunt: 5
+        Blunt: 4
     maxAllowedDamage: 100
     # Starlight End
     container:
