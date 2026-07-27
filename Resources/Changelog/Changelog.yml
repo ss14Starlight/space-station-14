@@ -1,11 +1,4 @@
 ﻿Entries:
-- author: Quantum-cross
-  changes:
-  - message: Hot gas now looks hot!
-    type: Add
-  id: 8920
-  time: '2025-09-04T03:17:39.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/39107
 - author: jkwookee
   changes:
   - message: QM Golden Knuckledusters can be properly obtained as a Syndicate steal
