@@ -26,6 +26,9 @@
 - type: Tag
   id: AvianFood
 
+- type: Tag 
+  id: AtmosFireHelmet
+
 - type: Tag
   id: BibleThwackRemovable
 
@@ -434,6 +437,9 @@
 
 - type: Tag
   id: PowerCageOmega
+
+- type: Tag 
+  id: MetalHydrogenHelmet
 
 - type: Tag
   id: Magazine60mmRocket
