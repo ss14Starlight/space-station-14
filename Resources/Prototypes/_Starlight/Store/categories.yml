@@ -31,6 +31,10 @@
   name: store-category-service-clown
 
 - type: storeCategory
+  id: SLMime
+  name: store-category-service-mime
+
+- type: storeCategory
   id: SLSecurity
   name: store-category-security-main
 

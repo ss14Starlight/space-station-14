@@ -27,6 +27,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.UnitTesting;
+using Content.Shared._Starlight.Hands; // Starlight
 
 namespace Content.IntegrationTests.Tests.Interaction;
 
@@ -123,6 +124,7 @@ public abstract partial class InteractionTest
     protected SharedUserInterfaceSystem SUiSys = default!;
     protected SharedCombatModeSystem SCombatMode = default!;
     protected SharedGunSystem SGun = default!;
+    protected PredictedHandsSystem PredictedHandSys = default!; // Starlight
 
     // CLIENT dependencies
     protected IEntityManager CEntMan = default!;
@@ -175,7 +177,7 @@ public abstract partial class InteractionTest
     [SetUp]
     public virtual async Task Setup()
     {
-        Pair = await PoolManager.GetServerClient(Settings);
+        Pair = await PoolManager.GetServerClient(Settings, new NUnitTestContextWrap(TestContext.CurrentContext, TestContext.Out));
 
         // server dependencies
         SEntMan = Server.ResolveDependency<IEntityManager>();
@@ -198,6 +200,7 @@ public abstract partial class InteractionTest
         SUiSys = SEntMan.System<SharedUserInterfaceSystem>();
         SCombatMode = SEntMan.System<SharedCombatModeSystem>();
         SGun = SEntMan.System<SharedGunSystem>();
+        PredictedHandSys = SEntMan.System<PredictedHandsSystem>(); // Starlight
 
         // client dependencies
         CEntMan = Client.ResolveDependency<IEntityManager>();

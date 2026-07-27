@@ -8,6 +8,8 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.GameTicking.Rules;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using System.Linq;
+using Content.Server.Chat.Managers;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -17,6 +19,10 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
     [Dependency] private IRobustRandom _random = default!;
+    // Starlight begin
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private IChatManager _chat = default!;
+    // Starlight end
 
     protected override void Added(EntityUid uid, DynamicRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
@@ -24,6 +30,11 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
 
         component.Budget = _random.Next(component.StartingBudgetMin, component.StartingBudgetMax);
         component.NextRuleTime = Timing.CurTime + _random.Next(component.MinRuleInterval, component.MaxRuleInterval);
+        // Starlight begin - If in lobby, add them now so we can metagame!
+        if (_ticker.RunLevel != GameRunLevel.PreRoundLobby) return;
+        component.LastBudgetUpdate = Timing.CurTime;
+        Execute((uid, component));
+        // Starlight end
     }
 
     protected override void Started(EntityUid uid, DynamicRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -32,6 +43,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
 
         // Since we don't know how long until this rule is activated, we need to
         // set the last budget update to now so it doesn't immediately give the component a bunch of points.
+        if (_ticker.RunLevel == GameRunLevel.PreRoundLobby) return; // Starlight - Don't add them twice!
         component.LastBudgetUpdate = Timing.CurTime;
         Execute((uid, component));
     }
@@ -75,15 +87,24 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
         return _entityTable.GetSpawns(entity.Comp.Table, ctx: ctx);
     }
 
+    // Starlight, added variant budget
     /// <summary>
     /// Updates the budget of the provided dynamic rule component based on the amount of time since the last update
     /// multiplied by the <see cref="DynamicRuleComponent.BudgetPerSecond"/> value.
+    /// After the budget has reached <see cref="DynamicRuleComponent.VariantBudgetThreshold"/> value,
+    /// the budget will increase at the rate specified by <see cref="DynamicRuleComponent.VariantBudgetPerSecond"/> instead.
     /// </summary>
     private void UpdateBudget(Entity<DynamicRuleComponent> entity)
     {
         var duration = (float)(Timing.CurTime - entity.Comp.LastBudgetUpdate).TotalSeconds;
 
-        entity.Comp.Budget += duration * entity.Comp.BudgetPerSecond;
+        #region Starlight
+        // If the budget has reached or exceeded the variant threshold, we use the variant budget per second, otherwise we use the normal budget per second.
+        if (entity.Comp.Budget >= entity.Comp.VariantBudgetThreshold)
+            entity.Comp.Budget += duration * entity.Comp.VariantBudgetPerSecond;
+        else
+            entity.Comp.Budget += duration * entity.Comp.BudgetPerSecond;
+        #endregion
         entity.Comp.LastBudgetUpdate = Timing.CurTime;
     }
 
@@ -127,6 +148,17 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
         }
 
         //entity.Comp.Rules.AddRange(executedRules); // Starlight - comment
+
+        // Starlight begin
+        if (_ticker.RunLevel != GameRunLevel.PreRoundLobby) return executedRules;
+
+        List<string> ruleIdList = [];
+        foreach (var meta in executedRules.Select(MetaData))
+            if(meta.EntityPrototype is not null) ruleIdList.Add(meta.EntityPrototype.ID);
+
+        _chat.SendAdminAnnouncement($"Dynamic roundstart rules: {string.Join(", ", ruleIdList)}.");
+        // Starlight end
+
         return executedRules;
     }
 

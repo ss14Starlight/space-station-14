@@ -1,13 +1,15 @@
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Utility;
 using Content.Shared.Explosion;
 
 namespace Content.IntegrationTests.Tests.Explosion;
 
-public sealed class ExplosionPrototypeTest
+public sealed class ExplosionPrototypeTest : GameTest
 {
     [Test]
     public async Task ValidateExplosionPrototypes()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
         var entMan = server.EntMan;
         var protoMan = server.ProtoMan;
@@ -22,7 +24,5 @@ public sealed class ExplosionPrototypeTest
                 Assert.That(proto._tileBreakChance, Has.Length.EqualTo(proto._tileBreakIntensity.Length), $"Malformed tile break chance definitions for explosion prototype: {proto.ID}");
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

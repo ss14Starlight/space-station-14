@@ -69,7 +69,7 @@ public sealed partial class ATMSystem : SharedATMSystem
             var newBalance = balance += diff;
             _playerResources.TryUpdateResource(args.User, "credits", diff);
             QueueDel(ent);
-            _uiSystem.SetUiState(args.Target.Value, ATMUIKey.Key, new ATMBuiState() { Balance = (int)newBalance });
+            _uiSystem.SetUiState(args.Target.Value, ATMUIKey.Key, new ATMBuiState() { Balance = (int)newBalance! });
             _audioSystem.PlayPvs(atm.DepositSound, args.Target.Value);
         }
     }

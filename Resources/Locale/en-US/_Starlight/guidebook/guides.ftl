@@ -150,6 +150,7 @@ guide-entry-sl-service-sop-genproc-intro = General Procedures
 guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 guide-entry-sl-service-sop-lawyer = Lawyer
+guide-entry-sl-service-sop-reporter = Reporter
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
@@ -157,6 +158,7 @@ guide-entry-devil = Devil
 
 guide-entry-sl-deepfried-recipes = Deep Fried
 guide-entry-sl-dough-recipes = Dough
+guide-entry-sl-ice-cream-recipes = Ice Cream Maker
 
 # Plumbing guides
 guide-entry-plumbing = Plumbing

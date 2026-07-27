@@ -34,6 +34,11 @@
     - id: CommunicationBlackout
     - id: NightShift
     - id: SyndicateDeadDrop
+    - id: NanoChatSpamTiny
+    - id: NanoChatSpamLowPop
+    - id: NanoChatSpamMidPop
+    - id: NanoChatSpamHighPop
+    - id: NanoChatSpamUltraPop
     # Starlight End
     - id: MalignRiftSpawn # Funky
 
@@ -61,10 +66,10 @@
     - id: LoneOpsSpawn
     - id: WizardSpawn
     - id: AbductorsSpawn # Starlight start
-    - id: SubXenoborgs
-    - id: TerrorSpidersSpawn
+    #- id: SubXenoborgs
+    #- id: TerrorSpidersSpawn
     - id: RailroadingTerminator
-    - id: Brighteye
+    #- id: Brighteye # Brighteye is disabled until more work is put in.
     - id: ColossusSpawn # Starlight end
     - id: EeepEvent # imp
     - !type:NestedSelector
@@ -662,7 +667,7 @@
         - CantBecomeRevolutionary
       # Starlight-end
   - type: DynamicRuleCost
-    cost: 75
+    cost: 100 # Starlight
 
 - type: entity
   parent: BaseTraitorRule

@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Shared.Maps;
@@ -9,11 +10,12 @@ using Robust.Shared.Utility;
 
 namespace Content.IntegrationTests.Tests._Starlight.Power;
 
-public sealed class GridPowerTests
+[Parallelizable(ParallelScope.All)]
+public sealed class GridPowerTests : GameTest
 {
     private const string EmptyMap = "Empty";
 
-    private static readonly ResPath[] GridPaths =
+    private static readonly ResPath[] _gridPaths =
     [
         // NT-CC
         new("/Maps/_Starlight/Shuttles/CC-NT/CBURN.yml"),
@@ -77,7 +79,10 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/barge.yml"),
         new("/Maps/_Starlight/Shuttles/Munchies.yml"),
         new("/Maps/_Starlight/Shuttles/Mini_Ingeniator.yml"),
+        new("/Maps/_Starlight/Shuttles/Bumblebee.yml"),
         new("/Maps/_Starlight/Shuttles/Comet.yml"),
+        new("/Maps/_Starlight/Shuttles/Honeybee.yml"),
+        new("/Maps/_Starlight/Shuttles/GasTransport.yml"),
 
         // Syndicate
         new("/Maps/_Starlight/Shuttles/blackhorse.yml"),
@@ -108,14 +113,14 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml"),
         new("/Maps/_Starlight/Shuttles/ss_ana.yml"),
         new("/Maps/_Starlight/Test/SL_admin_test_arena.yml"),
-        new("/Maps/_Starlight/Shuttles/MedTak-AV-40.yml"),
-        new("/Maps/_Starlight/EventMaps/MedTakPointAlpha.yml")
+        new("/Maps/_Starlight/MedTak/MedTak-AV-40.yml"),
+        new("/Maps/_Starlight/MedTak/MedTakPointAlpha.yml")
     ];
 
-    [Test, TestCaseSource(nameof(GridPaths))]
+    [Test, TestCaseSource(nameof(_gridPaths))]
     public async Task TestGridApcLoad(ResPath gridFilePath)
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { });
+        var pair = Pair;
         var server = pair.Server;
 
         var entMan = server.EntMan;
@@ -166,7 +171,5 @@ public sealed class GridPowerTests
             if (mapId != MapId.Nullspace)
                 mapSystem.DeleteMap(mapId!);
         });
-
-        await pair.CleanReturnAsync();
     }
 }

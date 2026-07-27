@@ -77,7 +77,7 @@
             - CantBecomeRevolutionary
           # Starlight-end
     - type: DynamicRuleCost
-      cost: 125 # They're not that special.
+      cost: 100 # They're not that special.
 
 - type: entity
   parent: BaseGameRule
