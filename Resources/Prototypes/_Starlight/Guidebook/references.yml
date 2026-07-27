@@ -5,35 +5,6 @@
   filterEnabled: True
 
 - type: guideEntry
-  id: FoodRecipes
-  name: guide-entry-foodrecipes
-  text: "/ServerInfo/Guidebook/Service/FoodRecipes.xml"
-  filterEnabled: True
-  children:
-  - PizzaRecipes
-  - SavoryRecipes
-  - BreadRecipes
-  - DoughRecipes
-  - BreakfastRecipes
-  - MothRecipes
-  - PastaRecipes
-  - DessertRecipes
-  - SoupRecipes
-  - PieRecipes
-  - BarsAndCookiesRecipes
-  - CakeRecipes
-  - SaladRecipes
-  - DeepFriedRecipes
-  - OtherRecipes
-  - MedicinalRecipes
-  - SecretRecipes
-
-- type: guideEntry
-  id: DoughRecipes
-  name: guide-entry-sl-dough-recipes
-  text: "/ServerInfo/_Starlight/Guidebook/Service/DoughRecipes.xml"
-
-- type: guideEntry
   id: IceCreamRecipes
   name: guide-entry-sl-ice-cream-recipes
   text: "/ServerInfo/_Starlight/Guidebook/Service/IceCreamMakerRecipes.xml"
