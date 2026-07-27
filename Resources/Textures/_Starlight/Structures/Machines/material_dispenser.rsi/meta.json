@@ -7,8 +7,34 @@
         "y": 32
     },
     "states": [
-        {
-            "name": "material_dispenser"
-        }
+      {
+        "name": "base"
+      },
+      {
+        "name": "active",
+        "delays": [
+          [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        ]
+      },
+      {
+        "name": "overlay_active",
+        "delays": [
+          [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        ]
+      }
     ]
 }

@@ -31,4 +31,6 @@ public sealed partial class MaterialDispenserComponent : Component
 
     [DataField] public int CrateMaterialAmount = 5;
 
+    [DataField] public EntProtoId TicketProtoId = "SalvageTicket";
+
 }

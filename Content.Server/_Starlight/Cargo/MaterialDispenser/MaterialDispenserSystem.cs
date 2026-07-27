@@ -3,6 +3,7 @@ using Content.Server._Starlight.Cargo.TamperSeal.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Materials;
 using Content.Server.Popups;
+using Content.Server.Stack;
 using Content.Server.Station.Systems;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._Starlight.Cargo.MaterialDispenser;
@@ -38,6 +39,7 @@ public sealed class MaterialDispenserSystem : EntitySystem
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private PricingSystem _pricingSystem = default!;
     [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private StackSystem _stack = default!;
 
 
     /// <inheritdoc/>
@@ -77,13 +79,15 @@ public sealed class MaterialDispenserSystem : EntitySystem
 
 
         var item = Spawn(ent.Comp.CrateId, new EntityCoordinates(ent.Owner, 0, 0));
-
+        var ticketCount = 0;
         foreach (var material in ent.Comp.Buffer)
         {
+            ticketCount += material.Value;
             var spawnedMats = _materialStorageSystem.SpawnMultipleFromMaterial(material.Value, material.Key, Transform(item).Coordinates);
 
             foreach (var spawnedMat in spawnedMats) _storageSystem.Insert(spawnedMat, item);
         }
+        var tickets = _stack.SpawnMultipleAtPosition(ent.Comp.TicketProtoId, ticketCount, new EntityCoordinates(ent.Owner, 0, 0));
 
         ent.Comp.Buffer.Clear();
 
