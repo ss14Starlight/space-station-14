@@ -33,9 +33,6 @@
     nameSegments:
     - NamesETOLast
     nameFormat: name-format-eto-operative
-  - type: NpcFactionMember
-    factions:
-    - ETO
 
 - type: startingGear
   id: ETOOperativeGearRifle
@@ -102,9 +99,6 @@
     nameSegments:
     - NamesETOLast
     nameFormat: name-format-eto-operative
-  - type: NpcFactionMember
-    factions:
-    - ETO
 
 - type: startingGear
   id: ETOOperativeGearSMG
@@ -171,9 +165,6 @@
     nameSegments:
     - NamesETOSpecialistLast
     nameFormat: name-format-eto-special
-  - type: NpcFactionMember
-    factions:
-    - ETO
 
 - type: startingGear
   id: ETOOperativeGearCorpsman
@@ -241,9 +232,6 @@
     nameSegments:
     - NamesETOLeaderLast
     nameFormat: name-format-eto-leader
-  - type: NpcFactionMember
-    factions:
-    - ETO
 
 - type: startingGear
   id: ETOOperativeGearLead
@@ -310,9 +298,6 @@
     nameSegments:
     - NamesETOSpecialistLast
     nameFormat: name-format-eto-special
-  - type: NpcFactionMember
-    factions:
-    - ETO
 
 - type: startingGear
   id: ETOOperativeGearCombatTech
