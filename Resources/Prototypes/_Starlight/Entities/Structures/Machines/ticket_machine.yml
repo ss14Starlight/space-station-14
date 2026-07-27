@@ -169,6 +169,8 @@
   parent: TicketMachineFilled
   suffix: HOP, Filled, White
   components:
+  - type: TicketMachine
+    ticketProtoId: "TicketNT"
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
 
@@ -229,7 +231,7 @@
     access: [["ChiefEngineer"]]
 
 - type: entity
-  id: TicketMachineWardenAtmos
+  id: TicketMachineAtmos
   parent: TicketMachineFilledCyan
   suffix: Atmos, Filled, Cyan
   components:
@@ -256,4 +258,4 @@
   - type: ContainerFill
     containers:
       TicketMachinePaper:
-        - LabellerRefillPaper
+        - LabellerRefillPaper999
