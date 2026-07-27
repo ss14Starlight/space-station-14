@@ -241,10 +241,43 @@
   cost:
     WizCoin: 0
   categories:
-  - SpellbookUtility
+  - SpellbookWar
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookCryomancer
+  name: spellbook-cryomancer-name
+  description: spellbook-cryomancer-desc
+  priority: 12
+  productEntity: ClothingOuterSoftsuitWizardFire
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  disableRefund: true
+
+- type: listing
+  id: SpellbookFreezeRune
+  name: spellbook-freezerune-name
+  description: spellbook-freezerune-desc
+  priority: 13
+  productAction: ActionFreezeRune
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer
+

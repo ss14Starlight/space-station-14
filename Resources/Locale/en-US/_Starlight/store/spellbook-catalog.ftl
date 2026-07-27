@@ -37,3 +37,9 @@ spellbook-igniterune-desc = Place a magical rune under your feet that ignites an
 
 spellbook-firearrow-name = Fire Arrow
 spellbook-firearrow-desc = Fire an extremely fast arrow of fire, quick to recharge.
+
+spellbook-cryomancer-name = The Cryomancer path
+spellbook-cryomancer-desc = A set of armor and spells fit for a master Cryomancer. The cold takes all and you today you will make sure of that.
+
+spellbook-freezerune-name = Freeze Rune
+spellbook-freezerune-desc = A rune that appears where the caster wishes, freezes in place anyone who walks on it.

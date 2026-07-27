@@ -17,12 +17,12 @@
     sentence: action-speech-spell-explosionrune
     tts: action-speech-spell-explosionrune-tts
     modifier: Spell
-  - type: EorgPreventAction # Starlight
+  - type: EorgPreventAction
 
 - type: entity
   parent: ActionIgniteRune
   id: ActionIgniteRuneWiz
-  name: Incendiary Rune
+  name: incendiary rune
   description: Summons a rune that ignites if used.
   components:
   - type: SpeakOnAction
@@ -39,7 +39,7 @@
 - type: entity
   parent: ExplosionRune
   id: ExplosionRuneWiz
-  name: Explosion Rune
+  name: explosion rune
   components:
     - type: Explosive
       explosionType: Default
@@ -50,3 +50,43 @@
       sprite: Structures/Magic/Cult/trap.rsi
       layers:
         - state: trap
+
+- type: entity
+  parent: BaseRuneAction
+  id: ActionFreezeRune
+  name: Freeze Rune
+  description: Summons a rune that will freeze in place anyone who walks on it.
+  components:
+  - type: TargetAction
+    checkCanAccess: false
+    range: 15
+    useDelay: 30
+    icon:
+        sprite: Structures/Magic/Cult/rune.rsi
+        state: cult4
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: FreezeRuneWiz
+  - type: SpeakOnAction
+    sentence: action-speech-spell-explosionrune
+    tts: action-speech-spell-explosionrune-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  parent: CollideRune
+  id: FreezeRuneWiz
+  name: freeze rune
+  components:
+    - type: Ensnaring
+      freeTime: 3
+      walkSpeed: 0
+      breakoutTime: 9
+      sprintSpeed: 0
+      staminaDamage: 0
+      ensnareSound: /Audio/_Starlight/Effects/Shadekin/nullphase.ogg
+    - type: Sprite
+      sprite: Structures/Magic/Cult/rune.rsi
+      layers:
+        - state: cult4
+        - color: '#00AEFF'
