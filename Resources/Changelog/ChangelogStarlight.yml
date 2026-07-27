@@ -1,67 +1,4 @@
 Entries:
-- author: Littlemen/Romero
-  changes:
-  - message: Loadout option for officers to replace their taser/dominator for the Peacekeeper.
-    type: Add
-  id: 406603
-  time: '2026-07-12T23:16:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5068
-- author: Littlemen/Romero
-  changes:
-  - message: the security flare gun.
-    type: Remove
-  id: 406604
-  time: '2026-07-12T23:16:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5068
-- author: Pastres
-  changes:
-  - message: Adds sprite for Vox space hazard hardsuit.
-    type: Tweak
-  id: 406605
-  time: '2026-07-12T23:57:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5112
-- author: Conflee
-  changes:
-  - message: Added 34 Posters and 14 Signs. 22 of the posters are for the Prison Colony, and have a RandomPosterPrison spawn marker. 7 Locker Room signs and 7 Breakroom signs. Misc other posters added to Contraband and Legit pools. Mugshot background poster for Security decorating.
-    type: Add
-  id: 406606
-  time: '2026-07-13T07:56:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5123
-- author: SevenShades
-  changes:
-  - message: Added a new set of large diagonal decals.
-    type: Add
-  id: 406607
-  time: '2026-07-13T08:30:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5120
-- author: SevenShades
-  changes:
-  - message: Edited some existing diagonal decals to improve tiling.
-    type: Tweak
-  id: 406608
-  time: '2026-07-13T08:30:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5120
-- author: ku-mo
-  changes:
-  - message: Role time requirements no longer display as "unknown" for roles you already meet the playtime for.
-    type: Fix
-  id: 406609
-  time: '2026-07-13T08:55:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5107
-- author: Conflee
-  changes:
-  - message: Added Locker Fills for the Clown and Mime's lockers. These can now be mapped into their respective room(s) at mapper's discretion. They contain a spare uniform, some funny items, and a very rare chance for their job lizard plushie.
-    type: Add
-  id: 406610
-  time: '2026-07-13T09:21:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5065
-- author: Conflee
-  changes:
-  - message: Added the 'get out of jail free' card. This is a joke item that can be found 50% of the time in the Clown or Mime's locker, as well as in maints lockers and the toy chest.
-    type: Add
-  id: 406611
-  time: '2026-07-13T09:21:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5065
 - author: SevenShades & Ilya246
   changes:
   - message: Added logic to allow drawing diagonals on mass scanners.
@@ -2799,4 +2736,67 @@ Entries:
   id: 407002
   time: '2026-07-26T17:35:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5334
+- author: Orhu
+  changes:
+  - message: (Hotel) Added a new Lawyer's Office near Courtroom.
+    type: Add
+  id: 407003
+  time: '2026-07-27T07:45:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5271
+- author: Orhu
+  changes:
+  - message: (Hotel) Added Stir Stir to Genpop.
+    type: Add
+  id: 407004
+  time: '2026-07-27T07:45:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5271
+- author: Orhu
+  changes:
+  - message: (Hotel) Added Flippers to Courtroom.
+    type: Add
+  id: 407005
+  time: '2026-07-27T07:45:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5271
+- author: Orhu
+  changes:
+  - message: (Hotel) Added vend of silence to Mime Room.
+    type: Add
+  id: 407006
+  time: '2026-07-27T07:45:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5271
+- author: Orhu
+  changes:
+  - message: (Hotel) Added ice cream maker to Kitchen.
+    type: Add
+  id: 407007
+  time: '2026-07-27T07:45:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5271
+- author: Orhu
+  changes:
+  - message: (Hotel) Added ticket machine to HOP.
+    type: Add
+  id: 407008
+  time: '2026-07-27T07:45:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5271
+- author: Orhu
+  changes:
+  - message: (Hotel) Made one of the bookshelves in Library guaranteed to have all guidebooks.
+    type: Tweak
+  id: 407009
+  time: '2026-07-27T07:45:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5271
+- author: Orhu
+  changes:
+  - message: (Hotel) Placed a station beacon in Washroom.
+    type: Tweak
+  id: 407010
+  time: '2026-07-27T07:45:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5271
+- author: Orhu
+  changes:
+  - message: (Hotel) Placed a defib in Brigmed.
+    type: Fix
+  id: 407011
+  time: '2026-07-27T07:45:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5271
 Order: -1
