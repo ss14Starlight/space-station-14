@@ -12,7 +12,6 @@
     - map: [ "enum.TicketVisualLayers.Number1" ]
       sprite: _Starlight/Structures/Machines/ticket_machine.rsi
       color: "#863E11"
-      offset: 0, 0
     - map: [ "enum.TicketVisualLayers.Number2" ]
       sprite: _Starlight/Structures/Machines/ticket_machine.rsi
       color: "#863E11"
