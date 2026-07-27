@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/11/2026 04:12:32
-  entityCount: 36603
+  time: 07/25/2026 03:44:17
+  entityCount: 36605
 maps:
 - 1
 grids:
@@ -16360,7 +16360,7 @@ entities:
       pos: 33.5,-28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -197038.6
+      secondsUntilStateChange: -197858.08
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16402,7 +16402,7 @@ entities:
       pos: 37.5,18.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -252717.14
+      secondsUntilStateChange: -253536.62
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16449,7 +16449,7 @@ entities:
       pos: -18.5,-39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -248869.12
+      secondsUntilStateChange: -249688.61
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16582,7 +16582,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -252664.58
+      secondsUntilStateChange: -253484.06
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18265,7 +18265,7 @@ entities:
       pos: 52.5,-0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -250096.02
+      secondsUntilStateChange: -250915.5
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18590,7 +18590,7 @@ entities:
       pos: 40.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -247562.69
+      secondsUntilStateChange: -248382.17
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18619,7 +18619,7 @@ entities:
       pos: -22.5,26.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -563328.5
+      secondsUntilStateChange: -564148
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19300,7 +19300,7 @@ entities:
       pos: -13.5,-45.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -248867.72
+      secondsUntilStateChange: -249687.2
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19527,7 +19527,7 @@ entities:
       pos: 29.5,-42.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -263830.22
+      secondsUntilStateChange: -264649.7
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19667,7 +19667,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -662157.3
+      secondsUntilStateChange: -662976.8
       state: Opening
   - uid: 653
     components:
@@ -19679,7 +19679,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -662159.94
+      secondsUntilStateChange: -662979.44
       state: Opening
   - uid: 654
     components:
@@ -19691,7 +19691,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -662158.8
+      secondsUntilStateChange: -662978.3
       state: Opening
   - uid: 655
     components:
@@ -19702,7 +19702,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -662158
+      secondsUntilStateChange: -662977.5
       state: Opening
   - uid: 656
     components:
@@ -118432,16 +118432,6 @@ entities:
     - type: Transform
       pos: -40.573044,-46.42997
       parent: 2
-- proto: FoodRicePork
-  entities:
-  - uid: 13610
-    components:
-    - type: Transform
-      pos: -12.522015,20.564886
-      parent: 2
-    - type: CollisionWake
-      enabled: False
-    - type: Conveyed
 - proto: FoodSaladWatermelonFruitBowl
   entities:
   - uid: 13611
@@ -170259,6 +170249,13 @@ entities:
     - type: Transform
       pos: 46.953617,-5.0500402
       parent: 2
+- proto: IceCreamMaker
+  entities:
+  - uid: 36604
+    components:
+    - type: Transform
+      pos: -12.5,20.5
+      parent: 2
 - proto: IceCrust
   entities:
   - uid: 19899
@@ -177197,7 +177194,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -226561.97
+      secondsUntilStateChange: -227381.45
       state: Opening
     - type: Airlock
       autoClose: False
@@ -201182,6 +201179,13 @@ entities:
     - type: Transform
       pos: -21.5,13.5
       parent: 2
+- proto: SpawnMobMonkeyStirStir
+  entities:
+  - uid: 36605
+    components:
+    - type: Transform
+      pos: 26.5,-7.5
+      parent: 29394
 - proto: SpawnMobMouse
   entities:
   - uid: 23925
@@ -212038,6 +212042,13 @@ entities:
     - type: Transform
       pos: -24.5,-29.5
       parent: 2
+- proto: VendingMachineMime
+  entities:
+  - uid: 25429
+    components:
+    - type: Transform
+      pos: -29.5,-47.5
+      parent: 2
 - proto: VendingMachineNutri
   entities:
   - uid: 25413
@@ -212158,15 +212169,15 @@ entities:
       parent: 2
 - proto: VendingMachineTheater
   entities:
+  - uid: 13610
+    components:
+    - type: Transform
+      pos: -30.5,-42.5
+      parent: 2
   - uid: 25428
     components:
     - type: Transform
       pos: -7.5,-56.5
-      parent: 2
-  - uid: 25429
-    components:
-    - type: Transform
-      pos: -29.5,-47.5
       parent: 2
 - proto: VendingMachineVendomat
   entities:
