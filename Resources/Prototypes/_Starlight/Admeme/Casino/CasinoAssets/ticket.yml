@@ -32,13 +32,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 1
-        reagents:
-        - ReagentId: Gold
-          Quantity: 1
   - type: Material
   - type: PhysicalComposition
     materialComposition:
