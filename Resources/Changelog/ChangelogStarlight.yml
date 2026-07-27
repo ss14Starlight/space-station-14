@@ -1,69 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Oasis) Added a missing station beacon to Cryosleep.
-    type: Add
-  id: 406625
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Moved the nearby NanoMed band-aid into the washroom.
-    type: Tweak
-  id: 406626
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Linked all of the AI's turrets to both turret controls to make it less confusing for both AI and Command why not all of the turrets are deployed.
-    type: Tweak
-  id: 406627
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Added way more cryogenic sleep units to Cryosleep.
-    type: Tweak
-  id: 406628
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Replaced one of the double windoors for Science's artifact chambers with a regular door.
-    type: Tweak
-  id: 406629
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Linked the southern artifact analysis console to its artifact analyzer pad.
-    type: Fix
-  id: 406630
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Fixed a bunch of Upside down latejoin spawnpoints by Arrivals.
-    type: Fix
-  id: 406631
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Wiring and distro/waste piping for NTR & NCT offices.
-    type: Fix
-  id: 406632
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
-  - message: (Oasis) Erroneous Vault beacon in Cargo Bay removed.
-    type: Fix
-  id: 406633
-  time: '2026-07-13T21:43:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5083
-- author: Caws
-  changes:
   - message: (Oasis) Removed a roundstart turbo charger from NT Career Office, replaced with a regular charger and cell recharger.
     type: Remove
   id: 406634
@@ -2799,4 +2736,67 @@ Entries:
   id: 407024
   time: '2026-07-27T08:21:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5255
+- author: Orhu
+  changes:
+  - message: (Cluster) Added Stir Stir to Genpop.
+    type: Add
+  id: 407025
+  time: '2026-07-27T08:22:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5270
+- author: Orhu
+  changes:
+  - message: (Cluster) Added Flippers to Courtroom.
+    type: Add
+  id: 407026
+  time: '2026-07-27T08:22:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5270
+- author: Orhu
+  changes:
+  - message: (Cluster) Added vend of silence to Mime/Clown room.
+    type: Add
+  id: 407027
+  time: '2026-07-27T08:22:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5270
+- author: Orhu
+  changes:
+  - message: (Cluster) Added windows to catch trash ejecting from Disposals.
+    type: Tweak
+  id: 407028
+  time: '2026-07-27T08:22:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5270
+- author: Orhu
+  changes:
+  - message: (Cluster) Added a button to HOP's Office for the ticket machine.
+    type: Tweak
+  id: 407029
+  time: '2026-07-27T08:22:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5270
+- author: Orhu
+  changes:
+  - message: (Cluster) Made one of the bookshelves in the library guaranteed to spawn with all guidebooks.
+    type: Tweak
+  id: 407030
+  time: '2026-07-27T08:22:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5270
+- author: Orhu
+  changes:
+  - message: (Cluster) Placed a station beacon in the washroom.
+    type: Tweak
+  id: 407031
+  time: '2026-07-27T08:22:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5270
+- author: Orhu
+  changes:
+  - message: (Cluster) Connected the disposals chute south of Botany to disposals.
+    type: Fix
+  id: 407032
+  time: '2026-07-27T08:22:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5270
+- author: Orhu
+  changes:
+  - message: (Cluster) Fixed disposals piping that caused looping.
+    type: Fix
+  id: 407033
+  time: '2026-07-27T08:22:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5270
 Order: -1
