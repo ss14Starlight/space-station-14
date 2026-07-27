@@ -5,7 +5,8 @@ namespace Content.Shared._Starlight.CosmicCult.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class CosmicEffigyComponent : Component
 {
-    [DataField]
+//    [DataField]
+//    [ViewVariables]
     public EntityUid? Colossus;
 }
 
