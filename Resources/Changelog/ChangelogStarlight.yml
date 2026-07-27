@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Loadout cyber legs are now their budget variants instead. You'll need to replace them if you currently have them equipped on your character.
-    type: Tweak
-  id: 406652
-  time: '2026-07-15T12:20:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5131
-- author: wonderfulnewworld
-  changes:
   - message: Fixed other cyberlegs not taking damage on EMP.
     type: Fix
   id: 406653
@@ -2799,4 +2792,11 @@ Entries:
   id: 407051
   time: '2026-07-27T10:11:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5295
+- author: Crimsonblod
+  changes:
+  - message: Corgi body temperature raised by 1.5 degrees.
+    type: Tweak
+  id: 407052
+  time: '2026-07-27T10:47:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5350
 Order: -1
