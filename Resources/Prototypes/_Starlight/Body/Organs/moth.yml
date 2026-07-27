@@ -23,6 +23,7 @@
       - ClothMade
       - Paper
       - Pill
+      - IceCream
   - type: SolutionContainerManager
     solutions:
       stomach:

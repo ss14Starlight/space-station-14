@@ -10,6 +10,7 @@
     noRot: true
     layers:
     - state: dispenser
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
     - state: dispenser-screen
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -76,10 +77,13 @@
     noRot: false
     layers:
     - state: wallmount
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
     - state: wallmount-screen
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: WallMount
+  - type: CollideOnAnchor
+    enable: false
   - type: Physics
     canCollide: false
   - type: PlumbingSmartDispenser

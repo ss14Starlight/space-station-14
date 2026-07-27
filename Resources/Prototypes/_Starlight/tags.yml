@@ -123,10 +123,13 @@
   id: CentcommVibroblade
 
 - type: Tag
-  id: CombatRemote # Tag: used on the RemoteSignallerCombat
+  id: CheapInsulatedFabric
 
 - type: Tag
-  id: CheapInsulatedFabric
+  id: CheapSunglasses #used in the security mime mask crafting graph
+
+- type: Tag
+  id: ChonoLoke
 
 - type: Tag
   id: Cleanade
@@ -153,9 +156,6 @@
   id: ClarkeTreads
 
 - type: Tag
-  id: ChonoLoke
-
-- type: Tag
   id: ClownKudzu
 
 - type: Tag
@@ -165,10 +165,16 @@
   id: CombatMech
 
 - type: Tag
+  id: CombatRemote # Tag: used on the RemoteSignallerCombat
+
+- type: Tag
   id: Compy
 
 - type: Tag
   id: Condiment
+
+- type: Tag
+  id: CrispyRiceBar
 
 - type: Tag
   id: CyberHandItem
@@ -282,6 +288,9 @@
   id: Grenade120mm # Ammo: Magazine120mmGrenadeBlast, ShuttleGunNTSFCyerxa120mm
 
 - type: Tag
+  id: GrenadeLessLethal #Ammo for the peacekeeper
+
+- type: Tag
   id: GygaxArmor
 
 - type: Tag
@@ -309,6 +318,9 @@
   id: GygaxTargetingControlModule
 
 - type: Tag
+  id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
+
+- type: Tag
   id: HiltPlasteel
 
 - type: Tag
@@ -316,6 +328,9 @@
 
 - type: Tag
   id: HuntedTraitBackground
+
+- type: Tag
+  id: IceCream
 
 - type: Tag
   id: ImprovisedAmmoBox
@@ -489,6 +504,9 @@
 
 - type: Tag
   id: MicroManipulatorStockPart
+
+- type: Tag
+  id: MimeMask #used in the security mime mask crafting graph
 
 - type: Tag
   id: ModularBarrel

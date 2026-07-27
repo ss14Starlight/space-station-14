@@ -83,6 +83,8 @@
   - Pirate
   - Blackstar
   - MedTak
+  - Casino
+  - Visitor
   - ETO
 
 - type: accessGroup
@@ -99,3 +101,7 @@
   id: Pirate
   tags:
   - Pirate
+
+- type: accessLevel
+  id: Visitor
+  name: id-card-access-level-visitor

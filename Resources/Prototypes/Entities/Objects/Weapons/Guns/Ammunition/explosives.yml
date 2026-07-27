@@ -55,10 +55,10 @@
     size: Small
   - type: Sprite
 
-- type: entity #Starlight Used for peacekeeper
+- type: entity
   id: GrenadeBaton
-  name: Baton grenade
-  description: Crack Skulls, break jaws.
+  name: baton grenade
+  description: Crack skulls, break jaws. # Starlight-edit
   parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
@@ -72,6 +72,11 @@
   - type: SpentAmmoVisuals
     state: baton
     suffix: false
+  # Starlight-start
+  - type: Tag
+    tags:
+    - GrenadeLessLethal
+  # Starlight-end
 
 - type: entity
   id: GrenadeBlast
@@ -90,10 +95,10 @@
     state: blast
     suffix: false
 
-- type: entity #Starlight Used for Peacekeeper and Paddy
+- type: entity
   id: GrenadeFlash
-  name: Flash grenade
-  description: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+  name: flash grenade
+  description: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE # Starlight
   parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
@@ -107,6 +112,11 @@
   - type: SpentAmmoVisuals
     state: flash
     suffix: false
+  # Starlight-start
+  - type: Tag
+    tags:
+    - GrenadeLessLethal
+  # Starlight-end
 
 - type: entity
   id: GrenadeFrag
