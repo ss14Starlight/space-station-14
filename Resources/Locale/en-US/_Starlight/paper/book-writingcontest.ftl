@@ -1058,4 +1058,75 @@ book-confession = <i> A loose piece of paper falls out into your hand as you fli
 
           Forgive me. I’m just so hungry.
 
+book-life-of-a-clown: All day, everyday. Everyday was hell. People looked at me everywhere I went. They were all plotting- plotting to kill me and take my cheese… I just knew it… I was an adherent of the Honkmother, and everyone hated me because of it. It saddened me. I was just being myself, expressing myself in the only way I knew how. I wanted to make little kids laugh, to make people happy, and I’m being ostracized for it… I had friends, I was popular. Now, just because I wanted to squeeze my nose and go honk, people hated me…
+          I went to get my groceries. I was mocked and stared at. I just… There were three men and a woman. They stalked me through each aisle, following me from afar… Each time I looked to a new person for help, they ignored me. I grabbed my icecream, pistachio flavored. I smiled, imagining myself on my couch, eating my favorite ice cream!
+          “Of course a clown buys pistachio…” I heard from behind me. I turned around. A woman and her child. She cringed as she saw my face.
+          I ran away, going to the pasta aisle. I picked out fettucini, my favorite shape.
+          “Fucking clowns…” I heard, whispered under someone’s breath. I turned around. I was met with the same kind of face. A man looked at me with utter disdain and disgust.
+          Again, I ran away, tears streaming down my cheeks. The group of people still following, stalking me through the store. I just wanted to hide, to get away from it all. Everywhere I went there were people glaring at me, spitting at my honking feet as I walked by. No where was safe. I wrapped my arms around myself, closing myself off from the world. I paid for the groceries and left. Even the cashier glared at me, disgusted by my very presence.
+          I began to walk home, but the streets weren't safe for clowns, and everyone knew where I was at all times. I looked behind me as I marched home. They were still following me…
+          I opened the door to my apartment, immediately closing it behind me. I was safe, relatively. My landlord was still on my ass, upping my rent due to “recent economical upturns”, whatever that meant. I lived on Mars, everyone was poor here. Some more than others…
+          I walked to my couch, plopping on it and screaming into my pillow. It felt nice to finally air out my frustrations. I cried to the Honkmother, asking her for guidance. What was I to do? I sniffled up the tears and grabbed my ice cream, digging into it like an animal. Then I heard a knock on the door. I wasn’t expecting visitors… I ignored it, going back to my ice cream. Then another knock, harder this time. Then another, and another. Harder each and every time. I got scared. What did they want?
+          “Open up the door, or we’ll do it for you clown!”
+          I froze… dropping my spoon on the floor. Then the door came down…
+          I tried talking to the police after the assault. I called and called, each time barely able to keep the shakes in check, but everytime when they looked me up in the system, they hung up. I even tried going to the precinct in person, but there I was denied even quicker. What was I supposed to do…
+          This was the life of a clown…
+
+book-unnamed-god: "Theological Studies — The unnamed God"
+          By Dr Marcel Marceau
+
+
+
+
+          As I'm sure many will know, even without in-depth study into Theology, many individuals worship the "Honk Mother", the supposed patron god of clowns.
+
+          However, the clown god is not the topic of this study. Rather, I have decided to investigate a deity so few consider the theoretical existence of the 'Mime god'
+
+          From my own investigations, I have confirmed that a Deity of such a nature could exist in some form, although it is very complex to describe.
+
+          The start of my research was a long process of interviewing many mimes. Most of them were rather confused by my questioning, but after a great number of attempts, I found a small troupe of mimes who did have solid information. After a few failed tries at interpreting their performative gestures, I deciphered what they were attempting to convey to me.
+
+          Their god, so far as I can understand, does not have a name, as a name would mean it could be spoken, which thus would require sound. As such, many of its worshipers simply refer to it with the simple gesture of performing a Shushing motion with their hands.
+
+          With this knowledge in mind, I believe that many artifacts belonging to this religion have previously been uncovered by some of my fellow researchers in the archaeology department, the most interesting of which being a golden mask that has still yet to be identified.
+
+          From talking with said colleagues, I have been able to gain even further information on what i believe to be this semi-lost deity.
+          Their discoveries show multiple civilizations have previously been found with matching depictions of an unidentified entity that i personally believe is this mysterious mime god.
+
+          Whilst I am unable to include an image due to the confidentiality of ongoing research, one of my colleagues, Dr Chaplin, has provided a verbal description of the murals based on their own in-depth studies.
+          Dr Chaplin has assured me that this description matches all recorded instances of the mural as it is universally identical in all its depictions across the various planets it has been found on.
+
+          "The being is depicted in a neutral pose, standing upright, feet together, one arm behind its back and the other performing the shushing gesture on a mask or face. Attempting to decipher details of that nature is often quite challenging on murals after all..."
+          - C. Chaplin.
+
+          I hypothesize these murals are where the few mimes who know of the god chose to adopt its
+          "Name" from the gesture depicted upon them.
+          Whether the gesture came first or the murals did is a question for another time.
+          A major roadblock in attempting to further study this deity is that I still cannot fully verify how it was worshiped, as no mural ever includes text of any form.
+
+          I shall continue to investigate further. I suspect that the Golden Mask could be the key to finally discovering the truth behind this forgotten god.
+
+
+          _______________
+
+          I have little time
+
+          One of the other researchers put on that golden mask we found at one of the digs sites.
+          I don't know why he did. Company policy clearly states to not interact with unidentified artifacts after the past incident with that "nuclear artifact", but i digress.
+          The fact of the matter is he put on that mask, and it made him turn completely rabid.
+
+          Doctor Richards was near instantly decapitated with a shovel. I watched his head sail skywards in a bloody arc before it landed in one of the dig sites.
+          An intern was the next victim.
+          The same shovel that had just made my coworker's head into a macabre firework was buried in his guts whilst he was still reeling from seeing Richards' fate.
+          I was running by that point. I saw the security team rushing in to respond, but the gunfire stopped a while ago.
+
+          I hope they managed to put down Marcel, but something tells me they likely did not.
+
+          If anyone finds this and finds that golden mask, destroy it if you can.
+          I don't know what that thing is but it turned a man i knew as a pacifistic theologian into a monster capable of cutting someone's head off with a blunt shovel.
+
+          I can hear the door to the room I have hidden inside being struck. I will do my best to fight back, but I don't like my odds.
+
+          Charles Chaplain signing off for the last time.
+
 
