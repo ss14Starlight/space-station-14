@@ -19,10 +19,10 @@ public sealed partial class PluoxPlasmaFire : IGasReactionEffect
 		var initialCo2moles = mixture.GetMoles(Gas.CarbonDioxide);
 		var initialPlasmaMoles = mixture.GetMoles(Gas.Plasma);
         var temperature = mixture.Temperature;
-		
+
 ///Check pluox flat concentration relative to fuel, Co2 contribuites to reduce threshold for intentional reaction.
 
-		var pluoxRatio = (initialPluoxMoles + (initialCo2moles * 0.5f)) / initialPlasmaMoles;		
+		var pluoxRatio = (initialPluoxMoles + (initialCo2moles * 0.5f)) / initialPlasmaMoles;
 
 ///Too much pluox? Ignite! It's super oxygen and doesnt care about current temperature.
 
@@ -48,7 +48,7 @@ public sealed partial class PluoxPlasmaFire : IGasReactionEffect
         var burn = (0f);
 
         if (rate < 0.0001f)
-            return ReactionResult.NoReaction;     
+            return ReactionResult.NoReaction;
 
 ///At a certain rate the reaction gets slower unless cooled to prevent insanity.
 
@@ -65,7 +65,7 @@ public sealed partial class PluoxPlasmaFire : IGasReactionEffect
 
 		var energyReleased = (Atmospherics.FirePlasmaEnergyReleased * burn);
 
-///While generic conversion interactions make sense to me, the exact mechanics of fire and fire visuals, do not.		
+///While generic conversion interactions make sense to me, the exact mechanics of fire and fire visuals, do not.
 
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)
