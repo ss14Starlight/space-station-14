@@ -3,6 +3,7 @@
   parent: BaseItem
   id: TicketGold
   description: 'A golden ticket with printed number and Casino logo.'
+  suffix: ADMEME
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/ticket.rsi
