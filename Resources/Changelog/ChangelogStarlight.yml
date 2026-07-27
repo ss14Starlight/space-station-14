@@ -1,48 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: Added reach into the shipyard (no it wont duplicate items or whatever).
-    type: Add
-  id: 406656
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) Nuclear fabricator in atmospherics.
-    type: Add
-  id: 406657
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) A way to deal with anomalies has been added.
-    type: Add
-  id: 406658
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) Ticket machines for mining and salvage were added.
-    type: Add
-  id: 406659
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) Medical has a dispenser and a techfab now.
-    type: Add
-  id: 406660
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) HV Cables have been added to all docks so they can use the dock connection ports.
-    type: Add
-  id: 406661
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
   - message: (Reach) Something something biogenerator in botany.
     type: Add
   id: 406662
@@ -2799,4 +2757,46 @@ Entries:
   id: 407055
   time: '2026-07-27T10:47:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5039
+- author: wonderfulnewworld, DuckManZach, mirrorcult, Nemanja, Flareguy, sowelipililimute, Centronias, jessicamaybe
+  changes:
+  - message: Added interaction particles to add clarity to what people are doing.
+    type: Add
+  id: 407056
+  time: '2026-07-27T11:23:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5338
+- author: wonderfulnewworld, DuckManZach, mirrorcult, Nemanja, Flareguy, sowelipililimute, Centronias, jessicamaybe
+  changes:
+  - message: Many electrical things will spark when damaged.
+    type: Add
+  id: 407057
+  time: '2026-07-27T11:23:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5338
+- author: wonderfulnewworld, DuckManZach, mirrorcult, Nemanja, Flareguy, sowelipililimute, Centronias, jessicamaybe
+  changes:
+  - message: Added sparks for RCDs/RPDs/RPLDs, Bluespace/Redspace, portals, and welders turning on!
+    type: Add
+  id: 407058
+  time: '2026-07-27T11:23:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5338
+- author: wonderfulnewworld, DuckManZach, mirrorcult, Nemanja, Flareguy, sowelipililimute, Centronias, jessicamaybe
+  changes:
+  - message: Pulling now has a unique particle effect.
+    type: Add
+  id: 407059
+  time: '2026-07-27T11:23:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5338
+- author: wonderfulnewworld, DuckManZach, mirrorcult, Nemanja, Flareguy, sowelipililimute, Centronias, jessicamaybe
+  changes:
+  - message: Changed the sound for closing airlocks.
+    type: Tweak
+  id: 407060
+  time: '2026-07-27T11:23:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5338
+- author: wonderfulnewworld, DuckManZach, mirrorcult, Nemanja, Flareguy, sowelipililimute, Centronias, jessicamaybe
+  changes:
+  - message: Doafters now have a smooth fade in and fadeout animation.
+    type: Tweak
+  id: 407061
+  time: '2026-07-27T11:23:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5338
 Order: -1
