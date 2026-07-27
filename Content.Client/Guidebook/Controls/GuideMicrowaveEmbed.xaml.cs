@@ -265,7 +265,7 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
             if (reactant.Catalyst)
             {
                 liquidNameMsg.AddText(" ");
-                liquidNameMsg.AddText("(catalyst)");
+                liquidNameMsg.AddText(Loc.GetString("guidebook-microwave-reagent-catalyst-label"));
             }
 
             var liquidNameLabel = new RichTextLabel();
