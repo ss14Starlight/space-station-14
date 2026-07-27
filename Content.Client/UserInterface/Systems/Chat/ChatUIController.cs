@@ -816,7 +816,7 @@ public sealed partial class ChatUIController : UIController
                 chatChannel = ChatSelectChannel.Dead;
         }
 
-        return (chatChannel, text[1..].TrimStart(), null, null, language); //Starlight edit
+        return (chatChannel, text, null, null, language); //Starlight edit - Whispering is weird just parse out the comma later...
     }
 
     public void SendMessage(ChatBox box, ChatSelectChannel channel)
