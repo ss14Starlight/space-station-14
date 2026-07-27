@@ -5,7 +5,7 @@
         "y":32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6; Cas states: Discord @vincolan",
+    "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6; Cas states based on icon state and remaked by: Discord @vincolan",
   "states": [
     {
       "name": "icon"
