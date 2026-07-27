@@ -48,13 +48,6 @@ public sealed partial class PluoxPlasmaFire : IGasReactionEffect
         if (rate < 0.0001f)
             return ReactionResult.NoReaction;
 
-///Don't burn fuel that doesnt exist.
-
-        if (rate > initialPlasmaMoles)
-		{
-			rate = (initialPlasmaMoles);
-		}
-
 ///At a certain rate the reaction gets slower unless cooled to prevent insanity.
 
         if (rate > 1f)
@@ -63,6 +56,10 @@ public sealed partial class PluoxPlasmaFire : IGasReactionEffect
 		{
             burn = (rate);
 		}
+
+///Don't burn fuel that doesnt exist.
+
+        burn = Math.Min(burn, Math.Min(initialPlasmaMoles, initialPluoxMoles * 2f));
 
 		mixture.AdjustMoles(Gas.Plasma, -burn);
 		mixture.AdjustMoles(Gas.Pluoxium, -burn * 0.5f);

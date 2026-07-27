@@ -48,13 +48,6 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
         if (rate < 0.0001f)
             return ReactionResult.NoReaction;
 
-///Don't burn fuel that doesnt exist.
-
-        if (rate > initialHydrogenMoles)
-		{
-			rate = (initialHydrogenMoles);
-		}
-
 ///At a certain rate the reaction gets slower unless cooled to prevent insanity.
 
         if (rate > 1f)
@@ -63,6 +56,10 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
 		{
             burn = (rate);
 		}
+
+///Don't burn fuel that doesnt exist.
+
+        burn = Math.Min(burn, Math.Min(initialHydrogenMoles, initialPluoxMoles * 2f));
 
 		mixture.AdjustMoles(Gas.Hydrogen, -burn);
 		mixture.AdjustMoles(Gas.Pluoxium, -burn * 0.5f);
