@@ -26,9 +26,6 @@ public sealed partial class WeatherMarkerSystem : EntitySystem
     /// </summary>
     private void OnMapInit(EntityUid uid, WeatherMarkerComponent comp, MapInitEvent args)
     {
-        if(_netManager.IsClient)
-            return;
-
         var mapId = Transform(uid).MapID;
 
         // sanity check for invalid map & not despawning in spawn menu
