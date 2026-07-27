@@ -27,3 +27,18 @@
   - type: ConditionalSpawner
     prototypes:
     - MobMonkeyStirStir
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobPenguinFlippers
+  name: Rt Hon. Flippers Spawner
+  suffix: Law Pet
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: penguin
+      sprite: Mobs/Animals/penguin.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobPenguinFlippers

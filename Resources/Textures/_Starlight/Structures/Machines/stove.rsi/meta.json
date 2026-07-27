@@ -5,22 +5,27 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station, modified by Starlight, enabled state modified by slycoolgamer",
+    "copyright": "State based copyright",
     "states": [
         {
-            "name": "base"
+            "name": "base",
+            "copyright": "Taken from Paradise Station, modified by Starlight"
         },
         {
-            "name": "broken"
+            "name": "broken",
+            "copyright": "Taken from Paradise Station, modified by Starlight"
         },
         {
-            "name": "icon"
+            "name": "icon",
+            "copyright": "Taken from Paradise Station, modified by Starlight"
         },
         {
-            "name": "on"
+            "name": "on",
+            "copyright": "Taken from Paradise Station, modified by Starlight"
         },
         {
-            "name": "enabled"
+            "name": "enabled",
+            "copyright": "Taken from Paradise Station, modified by Starlight, enabled state modified by slycoolgamer"
         }
-      ]
-    }
+    ]
+}

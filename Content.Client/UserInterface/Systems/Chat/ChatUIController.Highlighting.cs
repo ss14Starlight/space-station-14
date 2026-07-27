@@ -4,6 +4,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Content.Shared.CCVar;
 using Content.Client.CharacterInfo;
+using Content.Client._Starlight.TextToSpeech;
 using static Content.Client.CharacterInfo.CharacterInfoSystem;
 
 namespace Content.Client.UserInterface.Systems.Chat;
@@ -33,6 +34,7 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
 
     private bool _autoFillHighlightsEnabled;
     private string _autoHighlights = ""; // Starlight
+    private CharacterData? _cachedCharacterData; // Starlight
 
     /// <summary>
     ///     The boolean that keeps track of the 'OnCharacterUpdated' event, whenever it's a player attaching or opening the character info panel.
@@ -40,6 +42,17 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
     private bool _charInfoIsAttach = false;
 
     public event Action<string>? HighlightsUpdated;
+    // Starlight Start
+    /// <summary>
+    ///     Event triggered when the auto-fill highlights list is updated.
+    /// </summary>
+    public event Action<string>? AutoHighlightsUpdated;
+
+    /// <summary>
+    ///     The current active auto-fill highlights list, or empty if disabled.
+    /// </summary>
+    public string AutoHighlights => _autoFillHighlightsEnabled ? _autoHighlights : string.Empty;
+    // Starlight End
 
     private void InitializeHighlights()
     {
@@ -50,7 +63,10 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
             if (value)
                 UpdateAutoFillHighlights();
             else
+            {
                 ReloadHighlights();
+                AutoHighlightsUpdated?.Invoke(AutoHighlights);
+            }
         }, true);
         // Starlight End
 
@@ -80,10 +96,24 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         if (!_autoFillHighlightsEnabled)
             return;
 
-        // If auto highlights are enabled generate a request for new character info
-        // that will be used to determine the highlights.
-        _charInfoIsAttach = true;
-        _characterInfo?.RequestCharacterInfo(); // Starlight
+        // Starlight start
+        _autoHighlights = string.Empty;
+        ReloadHighlights();
+        AutoHighlightsUpdated?.Invoke(AutoHighlights);
+
+        if (_cachedCharacterData != null && _cachedCharacterData.Value.Entity == _player.LocalEntity)
+        {
+            _charInfoIsAttach = true;
+            OnCharacterUpdated(_cachedCharacterData.Value);
+        }
+        else
+        {
+            // If auto highlights are enabled generate a request for new character info
+            // that will be used to determine the highlights.
+            _charInfoIsAttach = true;
+            _characterInfo?.RequestCharacterInfo();
+        }
+        // Starlight end
     }
 
     // Starlight Start
@@ -157,6 +187,8 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
 
     private void OnCharacterUpdated(CharacterData data)
     {
+        _cachedCharacterData = data; // Starlight
+
         // If _charInfoIsAttach is false then the opening of the character panel was the one
         // to generate the event, dismiss it.
         if (!_charInfoIsAttach)
@@ -192,7 +224,28 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         // Starlight Start
         _autoHighlights = newHighlights;
         ReloadHighlights();
+        AutoHighlightsUpdated?.Invoke(AutoHighlights);
         // Starlight End
         _charInfoIsAttach = false;
     }
+
+    // Starlight start
+    /// <summary>
+    ///     Clears the active TTS speech queue.
+    /// </summary>
+    public void ClearTTSQueue()
+    {
+        if (_ent.TrySystem<TextToSpeechSystem>(out var tts))
+            tts.ClearQueue();
+    }
+
+    /// <summary>
+    ///     Sets the mute state of a TTS radio channel.
+    /// </summary>
+    public void SetTTSChannelMuted(Robust.Shared.Prototypes.ProtoId<Content.Shared.Radio.RadioChannelPrototype> channelId, bool muted)
+    {
+        if (_ent.TrySystem<TextToSpeechStreamSystem>(out var ttsStream))
+            ttsStream.SetChannelMuted(channelId, muted);
+    }
+    // Starlight end
 }

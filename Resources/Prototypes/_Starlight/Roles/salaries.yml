@@ -65,6 +65,7 @@
 
     Visitor: 0
     Prisoner: 0
+    StirStir: 0
 
 - type: SalaryRoleBonus
   id: BlackOpsBonus
