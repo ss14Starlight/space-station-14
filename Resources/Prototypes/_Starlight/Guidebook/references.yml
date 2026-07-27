@@ -32,7 +32,7 @@
   id: DoughRecipes
   name: guide-entry-sl-dough-recipes
   text: "/ServerInfo/_Starlight/Guidebook/Service/DoughRecipes.xml"
-  
+
 - type: guideEntry
   id: IceCreamRecipes
   name: guide-entry-sl-ice-cream-recipes
