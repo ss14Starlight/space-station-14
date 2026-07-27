@@ -1,5 +1,5 @@
 ghost-role-information-eto-operative-name = E.T.O Footman
-ghost-role-information-eto-operative-description = You are a freedom fighter, tasked with liberating this world from the clutches of the TSF's tynaical rule, follow your leader and release the weak from the grasp of the overpowering.
+ghost-role-information-eto-operative-description = You are a freedom fighter, tasked with liberating this world from the clutches of the TSF's tyranical rule, follow your leader and release the weak from the grasp of the overpowering.
 ghost-role-information-eto-corpsman-name = E.T.O Corpsman
 ghost-role-information-eto-corpsman-description = You are the freedom fighters medic, keep them alive and ensure health is there for all.
 ghost-role-information-eto-combattech-name = E.T.O Combat Technician
