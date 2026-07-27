@@ -22,8 +22,8 @@ public sealed partial class PluoxTritFire : IGasReactionEffect
 
 ///Check pluox flat concentration relative to fuel, Co2 contribuites to reduce threshold for intentional reaction.
 
-        var pluoxSat = (initialPluoxMoles + initialCo2moles);
-		var pluoxRatio = (initialPluoxMoles + (initialCo2moles * 0.5f)) / initialTritiumMoles;
+        var pluoxSat = ((initialCo2moles * 0.5f));
+		var pluoxRatio = (pluoxSat / initialTritiumMoles);
 
 ///Too much pluox? Ignite! It's super oxygen and doesnt care about current temperature.
 
@@ -47,6 +47,13 @@ public sealed partial class PluoxTritFire : IGasReactionEffect
 
         if (rate < 0.0001f)
             return ReactionResult.NoReaction;
+
+///Don't burn fuel that doesnt exist.
+
+        if (rate > initialTritiumMoles)
+		{
+			rate = (initialTritiumMoles);
+		}
 
 ///At a certain rate the reaction gets slower unless cooled to prevent insanity.
 

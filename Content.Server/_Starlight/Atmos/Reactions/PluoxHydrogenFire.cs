@@ -22,8 +22,8 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
 
 ///Check pluox flat concentration relative to fuel, Co2 contribuites to reduce threshold for intentional reaction.
 
-        var pluoxSat = (initialPluoxMoles + initialCo2moles);
-		var pluoxRatio = (initialPluoxMoles + (initialCo2moles * 0.5f)) / initialHydrogenMoles;
+        var pluoxSat = (initialPluoxMoles + (initialCo2moles * 0.5f));
+		var pluoxRatio = (pluoxSat / initialHydrogenMoles);
 
 ///Too much pluox? Ignite! It's super oxygen and doesnt care about current temperature.
 
@@ -47,6 +47,13 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
 
         if (rate < 0.0001f)
             return ReactionResult.NoReaction;
+
+///Don't burn fuel that doesnt exist.
+
+        if (rate > initialHydrogenMoles)
+		{
+			rate = (initialHydrogenMoles);
+		}
 
 ///At a certain rate the reaction gets slower unless cooled to prevent insanity.
 
