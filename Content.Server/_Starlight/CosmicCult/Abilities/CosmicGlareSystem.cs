@@ -46,7 +46,6 @@ public sealed partial class CosmicGlareSystem : EntitySystem
     private void OnCosmicGlare(Entity<CosmicCultComponent> uid, ref EventCosmicGlare args)
     {
         var pos = Transform(uid).Coordinates;
-        var empPower = 2.5f;
 
         foreach (var entity in _lookup.GetEntitiesIntersecting(pos))
             if (HasComp<NullSpaceBlockerComponent>(entity))
@@ -57,7 +56,7 @@ public sealed partial class CosmicGlareSystem : EntitySystem
 
         _audio.PlayPvs(uid.Comp.GlareSFX, uid);
         Spawn(uid.Comp.GlareVFX, pos);
-        _emp.EmpPulse(pos, empPower, 5000f, empPower * TimeSpan.FromSeconds(2));
+        _emp.EmpPulse(pos, uid.Comp.CosmicGlareRange, 5000f, uid.Comp.CosmicGlareDuration);
         _cult.MalignEcho(uid);
         args.Handled = true;
 
