@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (Reach) Made AI Core command locked.
-    type: Tweak
-  id: 406664
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
   - message: (Reach) Moved telecomms to CE office.
     type: Tweak
   id: 406665
@@ -2799,4 +2792,11 @@ Entries:
   id: 407063
   time: '2026-07-27T16:24:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5361
+- author: neomoth
+  changes:
+  - message: The limit of how many DAGD's can appear in a round has been lowered from 3 to 1.
+    type: Tweak
+  id: 407064
+  time: '2026-07-27T16:42:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5356
 Order: -1
