@@ -425,7 +425,7 @@ namespace Content.Server.RoundEnd
         #region Starlight
         private void StartCallVote()
         {
-            var options = new VoteOptions() { DisplayVotes = true, Duration = TimeSpan.FromSeconds(30), VoterEligibility = VoteManager.VoterEligibility.Crew, Title = Loc.GetString("round-end-system-shuttle-auto-called-call-vote")};
+            var options = new VoteOptions() { DisplayVotes = true, Duration = TimeSpan.FromSeconds(30), VoterEligibility = VoteManager.VoterEligibility.NonAntag, Title = Loc.GetString("round-end-system-shuttle-auto-called-call-vote")};
             options.SetInitiatorOrServer(null);
             options.Options.Add(("Yes", 0));
             options.Options.Add(("No", 1));

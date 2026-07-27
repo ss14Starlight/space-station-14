@@ -13,9 +13,6 @@ using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Server.Mind;
-using Content.Server.NukeOps;
-using Content.Shared._Starlight.CosmicCult.Components;
-using Content.Shared.NukeOps;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
 using Content.Shared.Voting;
@@ -468,25 +465,16 @@ namespace Content.Server.Voting.Managers
                     return false;
             }
 
-            if (eligibility == VoterEligibility.Crew)
+            if (eligibility == VoterEligibility.NonAntag)
             {
-                if (player.AttachedEntity == null) // Ghosts dont count
+                if (player.AttachedEntity == null)
                     return false;
 
-                // Exclude nuke operatives and cultists
-                if (_entityManager.HasComponent<NukeOperativeComponent>(player.AttachedEntity)||_entityManager.HasComponent<CosmicCultComponent>(player.AttachedEntity)) // LOL no
+                if (!_entityManager.System<MindSystem>().TryGetMind(player, out var mindId, out _))
                     return false;
 
-                if (!_entityManager.System<MindSystem>().TryGetMind(player, out var mindId, out _)) // Get mind for job check
+                if (_entityManager.System<SharedRoleSystem>().MindIsAntagonist(mindId))
                     return false;
-
-                var jobSystem = _entityManager.System<SharedJobSystem>();
-                if (!jobSystem.MindTryGetJob(mindId, out var job)) // Get job
-                    return false;
-
-                if (!_prototypeManager.TryIndex<JobPrototype>(job.ID, out var jobProto) || !jobProto.SetPreference) // Is job in the selection menu?
-                    return false;
-
 
             }
             // End Starlight - Cosmic Cult & Crew
@@ -590,7 +578,7 @@ namespace Content.Server.Voting.Managers
             GhostMinimumPlaytime, // Player needs to be a ghost, with a minimum playtime and deathtime as defined by votekick CCvars.
             MinimumPlaytime, //Player needs to have a minimum playtime and deathtime as defined by votekick CCvars.
             CosmicCult, // Starlight - Cosmic Cult
-            Crew // Starlight - Only crew members
+            NonAntag // Starlight - Exclude antags
         }
 
         #endregion
