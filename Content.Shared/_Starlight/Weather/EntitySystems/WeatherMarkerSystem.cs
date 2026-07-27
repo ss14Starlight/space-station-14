@@ -31,12 +31,9 @@ public sealed partial class WeatherMarkerSystem : EntitySystem
 
         var mapId = Transform(uid).MapID;
 
-        // sanity check for invalid map
+        // sanity check for invalid map & not despawning in spawn menu
         if (mapId == MapId.Nullspace)
-        {
-            QueueDel(uid);
             return;
-        }
 
         // apply weather
         Timer.Spawn(comp.Delay, () => _weather.TryAddWeather(mapId, comp.Weather, out _, comp.Duration));
