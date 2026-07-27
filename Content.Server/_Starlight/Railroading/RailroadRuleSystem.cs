@@ -231,10 +231,10 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
                 else
                     ruleEnt.Comp.PoolByObjective.Add(objectiveProtoId, [(card.Owner, card.Comp, ruleOwner)]);
             }
-            else
-            {
-                ruleEnt.Comp.Pool.Add((card.Owner, card.Comp, ruleOwner));
-            }
+        }
+        else
+        {
+            ruleEnt.Comp.Pool.Add((card.Owner, card.Comp, ruleOwner));
         }
     }
 

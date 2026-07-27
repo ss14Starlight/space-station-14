@@ -76,6 +76,12 @@
     traversalSpeed: 10
     exitDistanceMultiplier: 1.5
     exitSpeedMultiplier: 1
+    # Starlight Start
+    damageOnTurn:
+      types:
+        Blunt: 4
+    maxAllowedDamage: 100
+    # Starlight End
     container:
       occludes: true
       showEnts: false

@@ -1,20 +1,23 @@
 {
     "version": 1,
     "license": "CC-BY-NC-SA-3.0",
-    "copyright": "made by maxxorion for nuclear14",
+    "copyright": "State based copyright",
     "size": {
-      "x": 32,
-      "y": 32
+        "x": 32,
+        "y": 32
     },
     "states": [
         {
-            "name": "frame"
+            "name": "frame",
+            "copyright": "made by maxxorion for nuclear14"
         },
         {
-            "name": "glow"
+            "name": "glow",
+            "copyright": "made by maxxorion for nuclear14"
         },
         {
-            "name": "base"
+            "name": "base",
+            "copyright": "made by maxxorion for nuclear14"
         }
     ]
 }

@@ -2051,3 +2051,44 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSeaBunny
+  name: sea bunny plushie
+  description: A squishy bunny, looks like it wants to be worn!
+  components:
+  - type: Item
+    size: Small
+    sprite: &sprite _Starlight/Objects/Fun/Plushies/sea_bunny.rsi
+  - type: Sprite
+    sprite: *sprite
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: &sound /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: *sound
+  - type: EmitSoundOnActivate
+    sound:
+      path: *sound
+  - type: EmitSoundOnTrigger
+    sound:
+      path: *sound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: *sound
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: *sound
+  - type: Clothing
+    quickEquip: false
+    sprite: *sprite
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
