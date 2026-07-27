@@ -131,7 +131,7 @@
 - type: entity
   id: TicketMachineFilledOrange
   parent: TicketMachine
-  suffix: Filled. Orange
+  suffix: Filled, Orange
   components:
   - type: TicketMachine
     ticketProtoId: "TicketOrange"
