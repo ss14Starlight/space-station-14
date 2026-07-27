@@ -19,25 +19,25 @@
   A highly potent super-nitrater. Can be used to massively increase the lifespan of nitrogen based internals.
 
   Ulnitranium can be produced by combining 2 nitrous oxide with 1 nitrogen under 273 K and either exposing the mix to radiation or introducing tritium which will be converted to hydrogen.
-  
+
   ## ZXA
   <Box>
     <GuideEntityEmbed Entity="ZXACanister" Caption=""/>
   </Box>
 
   A universal sleeping agent which works on all organic lifeforms. Has minor genetic regeneration properties.
-  
+
   ZXA can be produced combining 1 BZ, 1 nitrous oxide, with a water vapor catalyst that is slowly consumed. Similar to its precursor BZ, it forms faster at lower pressures and can cause decomposition of the nitrous oxide when there is too much BZ.
-  
+
   ## Halon
   <Box>
     <GuideEntityEmbed Entity="HalonCanister" Caption=""/>
   </Box>
 
   An incredibly thin gas that has unique fire suppressing properties.
-  
+
   When exposed to fire halon will immediately bind with the oxygen, turning both into carbon dioxide while massively cooling the area.
-  
+
   Halon can be made by electrolyzing BZ.
-  
+
 </Document>
