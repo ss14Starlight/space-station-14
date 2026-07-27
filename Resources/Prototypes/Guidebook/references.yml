@@ -25,6 +25,7 @@
   - PizzaRecipes
   - SavoryRecipes
   - BreadRecipes
+  - DoughRecipes # Starlight-edit
   - BreakfastRecipes
   - MothRecipes
   - PastaRecipes
@@ -55,6 +56,12 @@
   id: BreadRecipes
   name: guide-entry-bread-recipes
   text: "/ServerInfo/Guidebook/Service/BreadRecipes.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: DoughRecipes # Starlight-add
+  name: guide-entry-sl-dough-recipes
+  text: "/ServerInfo/_Starlight/Guidebook/Service/DoughRecipes.xml"
   filterEnabled: True
 
 - type: guideEntry
