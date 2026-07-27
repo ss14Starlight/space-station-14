@@ -92,8 +92,6 @@ public sealed partial class RCDSystem : EntitySystem
         // Starlight End
     }
 
-    public void SetSelectedLayer(Entity<RCDComponent> ent, AtmosPipeLayer layer) => ent.Comp.LastSelectedLayer = layer;
-
     #region Event handling
 
     private void OnMapInit(EntityUid uid, RCDComponent component, MapInitEvent args)
@@ -930,6 +928,12 @@ public sealed partial class RCDSystem : EntitySystem
             return RpdMode.Free; // default to Free mode
 
         return component.CurrentMode;
+    }
+
+    public void SetSelectedLayer(Entity<RCDComponent> ent, AtmosPipeLayer layer)
+    {
+        ent.Comp.LastSelectedLayer = layer;
+        Dirty(ent);
     }
     // Starlight End: RPD
 
