@@ -281,21 +281,19 @@ public sealed partial class EmergencyShuttleSystem
             //Starlight edit start - Add ERT shuttles to whitelist on beacon
             // Guarantees that emergency shuttle arrives first before anyone else can FTL.
             while (query.MoveNext(out var comp, out _))
+            {
                 if (Deleted(comp.Entity) || !comp.MapEntity.HasValue || Deleted(comp.MapEntity))
                     continue;
 
                 var mapId = Transform(comp.MapEntity.Value).MapID;
                 if (_shuttle.TryAddFTLDestination(mapId, true, false, false, out var ftlDestinationComponent))
                 {
-                    var whitelistInst = new EntityWhitelist
-                    {
-                        Tags = new() { "ERTShuttle" }
-                    };
+                    var whitelistInst = new EntityWhitelist { Tags = new() { "ERTShuttle" } };
                     _shuttle.SetFTLWhitelist((comp.MapEntity.Value, ftlDestinationComponent), whitelistInst);
                 }
             }
-            //Starlight-edit end
         }
+            //Starlight-edit end
     }
 
     private void OnEmergencyRepealAll(EntityUid uid, EmergencyShuttleConsoleComponent component, EmergencyShuttleRepealAllMessage args)
