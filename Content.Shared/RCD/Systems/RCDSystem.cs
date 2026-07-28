@@ -37,6 +37,7 @@ using Content.Shared._Starlight.Atmos;
 using Content.Shared._Starlight.Atmos.Components;
 using Content.Shared.Prototypes;
 using Content.Shared._Starlight.Plumbing.Components;
+using Content.Shared.Doors.Components;
 // Starlight End
 
 namespace Content.Shared.RCD.Systems;
@@ -640,6 +641,7 @@ public sealed partial class RCDSystem : EntitySystem
         // Check rule: The tile is unoccupied
         var isWindow = prototype.ConstructionRules.Contains(RcdConstructionRule.IsWindow);
         var isCatwalk = prototype.ConstructionRules.Contains(RcdConstructionRule.IsCatwalk);
+        var isAirlock = prototype.ConstructionRules.Contains(RcdConstructionRule.IsAirlock); // Starlight: airlocks can be built over firelocks
         // Starlight Start: RPLD
         var isPlumbingMachinePlacement = component.IsRPLD
             && prototype.Prototype != null
@@ -653,6 +655,10 @@ public sealed partial class RCDSystem : EntitySystem
         {
             if (isWindow && HasComp<SharedCanBuildWindowOnTopComponent>(ent))
                 continue;
+            // Starlight Start: Airlocks can be built on a tile that already holds a firelock (any variant)
+            if (isAirlock && HasComp<FirelockComponent>(ent))
+                continue;
+            // Starlight End
             // Starlight Start: RPLD
             if (isPlumbingMachinePlacement && Transform(ent).Anchored && HasComp<PlumbingConnectorAppearanceComponent>(ent))
             {
