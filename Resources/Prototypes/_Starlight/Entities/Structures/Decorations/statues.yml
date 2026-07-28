@@ -73,8 +73,35 @@
     "In reaching to the future, we must never forget those who came before us."
     - TSF representative Kennedy Sunderland
   components:
+    - type: Openable
+      openOnActivate: true
+      closeable: false
+      sound:
+        path: /Audio/Effects/curtain_openclose.ogg
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.OpenableVisuals.Opened:
+          enum.OpenableVisuals.Layer:
+            True: { state: open }
+            False: { state: closed }
     - type: Sprite
+      snapCardinals: true
+      noRot: true
       sprite: _Starlight/Structures/Decorations/Statues(3x2).rsi
-      state: endymion
-      drawdepth: Mobs
-      offset: "0.0,0.5"
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-1.0,-1.0,0.49,0.49"
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MidImpassable
+            - LowImpassable
+    - type: Pullable
+    - type: Tag
+      tags:
+        - Structure

@@ -8,8 +8,14 @@
   },
   "states": [
     {
-      "name": "endymion",
-      "copyright": "TBD"
+      "name": "open",
+      "copyright": "TBD",
+      "directions": 1
+    },
+    {
+      "name": "closed",
+      "copyright": "TBD",
+      "directions": 1
     }
   ]
 }
