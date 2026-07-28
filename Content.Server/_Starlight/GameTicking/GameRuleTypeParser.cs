@@ -11,7 +11,6 @@ using Robust.Shared.Toolshed.TypeParsers;
 
 namespace Content.Server._Starlight.GameTicking;
 
-// This whole fucking file sucks turbo ass.
 public sealed partial class GameRuleTypeParser : TypeParser<GameRuleProtoId>
 {
     [Dependency] private IPrototypeManager _proto = default!;
