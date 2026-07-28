@@ -149,7 +149,8 @@ public sealed class JobTest : GameTest
 
         pair.AssertJob(Captain);
 
-        await pair.RunTicksSync(1);
+        // await pair.Client.WaitPost(() => ((IClientNetManager) pair.Client.NetMan).ClientDisconnect("JobWeightTest cleanup")); // Starlight: No, don't make the pair require dirtying.
+        // await pair.RunTicksSync(1); // Starlight
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
     }

@@ -15,6 +15,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Numerics;
+using Content.Client._Starlight.RCD.Systems;
 using static Robust.Client.Placement.PlacementManager;
 using Content.Shared.Atmos.EntitySystems;
 
@@ -50,10 +51,8 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     private const float GuideRadius = 0.05f;
     private const float GuideOffset = 0.125f;
 
-    private EntityCoordinates _mouseCoordsRaw = default;
+    private EntityCoordinates _mouseCoordsRaw;
     private AtmosPipeLayer _currentLayer = AtmosPipeLayer.Primary;
-    private EntityUid? _lastLayerSyncEntity = null;
-    private AtmosPipeLayer? _lastLayerSynced = null;
     private Color _guideColor = new(0, 0, 0.5785f);
 
     public AlignRPDAtmosPipeLayers(PlacementManager pMan) : base(pMan)
@@ -204,13 +203,10 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         }
 
         // Update layer if changed
-        if (newLayer != _currentLayer)
-            _currentLayer = newLayer;
+        _currentLayer = newLayer;
 
         if (rcd.CurrentMode == RpdMode.Free)
-        {
-            UpdateSelectedLayer(heldEntity.Value, _currentLayer);
-        }
+            UpdateSelectedLayer(heldEntity.Value, rcd, newLayer);
 
         UpdatePlacer(_currentLayer);
     }
@@ -224,14 +220,13 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     //   sends that exact layer as RPDSelectedLayerEvent.
     // - Server stores it on the held RCDComponent (LastSelectedLayer)
     //   and uses it directly during placement in Free mode.
-    private void UpdateSelectedLayer(EntityUid heldEntity, AtmosPipeLayer layer)
+    private void UpdateSelectedLayer(EntityUid heldEntity, RCDComponent rcd, AtmosPipeLayer layer)
     {
-        if (_lastLayerSyncEntity != heldEntity || _lastLayerSynced != layer)
-        {
-            _lastLayerSyncEntity = heldEntity;
-            _lastLayerSynced = layer;
-            _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
-        }
+        if (rcd.LastSelectedLayer == layer)
+            return;
+
+        _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
+        _rcdSystem.SetSelectedLayer((heldEntity, rcd), layer);
     }
 
     private void UpdatePlacer(AtmosPipeLayer layer)
