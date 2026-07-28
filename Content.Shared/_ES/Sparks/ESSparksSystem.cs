@@ -84,7 +84,8 @@ public sealed partial class ESSparksSystem : EntitySystem
         comp.LastSparkTime = _timing.CurTime;
 
         var coords = Transform(source).Coordinates;
-        _adminLogger.Add(LogType.Sparks, LogImpact.Low, $"{ToPrettyString(source)} spawned {number} sparks at {coords}"); // Starlight
+        var sparkLabel = number == 1 ? "spark" : "sparks"; // Starlight
+        _adminLogger.Add(LogType.Sparks, LogImpact.Low, $"{ToPrettyString(source)} spawned {number} {sparkLabel} at {coords}"); // Starlight
         DoSparks(coords, number, sparksPrototype, user, source, tileFireChance);
     }
 
