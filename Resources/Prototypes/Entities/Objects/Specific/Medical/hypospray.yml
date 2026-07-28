@@ -715,7 +715,7 @@
     allowedModes:
     - HyposprayInjectMode
     - HypopenDynamicMode
-    showInteractionParticles : false
+    showInteractionParticles : false # Starlight
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice # A new shitcurity meta
