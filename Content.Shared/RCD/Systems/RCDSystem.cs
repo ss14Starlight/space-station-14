@@ -656,11 +656,9 @@ public sealed partial class RCDSystem : EntitySystem
         {
             if (isWindow && HasComp<SharedCanBuildWindowOnTopComponent>(ent))
                 continue;
-            // Starlight Start: Airlocks can be built on a tile that already holds a firelock (any variant)
+            // Starlight Start: Airlocks and Firelocks can be built on top of one another
             if (isAirlock && HasComp<FirelockComponent>(ent))
                 continue;
-            // Starlight End
-            // Starlight Start: Firelocks can be built on a tile that already holds an airlock (any variant)
             if (isFirelock && HasComp<AirlockComponent>(ent))
                 continue;
             // Starlight End
