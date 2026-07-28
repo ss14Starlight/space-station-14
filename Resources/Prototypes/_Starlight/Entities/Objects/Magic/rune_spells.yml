@@ -46,6 +46,8 @@
       totalIntensity: 20
       intensitySlope: 5
       maxIntensity: 4
+      tileBreakChance: [0]
+      tileBreakIntensity: [0]
     - type: Sprite
       sprite: Structures/Magic/Cult/trap.rsi
       layers:
@@ -61,8 +63,7 @@
     useDelay: 30
     icon:
         sprite: Structures/Magic/Cult/rune.rsi
-        state: cult6
-        color: '#FF770055'
+        state: cult4
   - type: TargetAction
     range: 10
     checkCanAccess: false
@@ -71,6 +72,8 @@
       prototypes:
       - id: FreezeRuneWiz
         amount: 1
+      - id: FreezeRune2Wiz
+        amount: 1
   - type: SpeakOnAction
     sentence: action-speech-spell-explosionrune
     tts: action-speech-spell-explosionrune-tts
@@ -78,19 +81,35 @@
   - type: EorgPreventAction
 
 - type: entity
-  parent: CollideRune
+  parent: StunRune
   id: FreezeRuneWiz
   name: freeze rune
   components:
-    - type: Ensnaring
-      freeTime: 3
-      walkSpeed: 0
-      breakoutTime: 9
-      sprintSpeed: 0
-      staminaDamage: 0
-      ensnareSound: /Audio/_Starlight/Effects/Shadekin/nullphase.ogg
+    - type: TriggerOnCollide
+      fixtureID: rune
+      maxTriggers: 1
+    - type: StunOnCollide
+      stunAmount: 10
+      knockdownAmount: 10
+      fixture: rune
     - type: Sprite
       sprite: Structures/Magic/Cult/rune.rsi
       layers:
-        - state: cult4
-        - color: '#00AEFF'
+      - state: cult4
+      - color: '#a0d8ef'
+
+- type: entity
+  parent: CollideRune
+  id: FreezeRune2Wiz
+  name: freeze rune
+  components:
+    - type: Explosive
+      explosionType: Cryo
+      totalIntensity: 1
+      intensitySlope: 0
+      maxIntensity: 7
+    - type: Sprite
+      sprite: Structures/Magic/Cult/rune.rsi
+      layers:
+      - state: cult4
+
