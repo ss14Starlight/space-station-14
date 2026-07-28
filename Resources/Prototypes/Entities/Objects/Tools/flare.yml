@@ -75,7 +75,7 @@
         minDuration: 0.001
         maxDuration: 0.001
         startValue: 1.0 #SL
-        endValue: 2.0 #SL 
+        endValue: 2.0 #SL
         property: Energy
         isLooped: true
       - !type:FadeBehaviour # fade out radius as it burns out
