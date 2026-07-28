@@ -69,6 +69,8 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         if (performerXform.MapID == MapId.Nullspace || targetXform.MapID == MapId.Nullspace)
             return;
 
+        // if the interaction is happening across parent boundaries (ie inhand or in a bag or something)
+        // override it with an inhand particle effect
         if (performerXform.ParentUid != targetXform.ParentUid)
         {
             if (type == StellarInteractionParticleType.Pull)
@@ -90,9 +92,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         if (used is { } usedEntity && Exists(usedEntity) && TryComp<SpriteComponent>(usedEntity, out var usedSprite))
         {
             _sprite.CopySprite((usedEntity, usedSprite), particle);
-            // ES START
             _sprite.SetDrawDepth(particle, (int) Shared.DrawDepth.DrawDepth.Effects);
-            // ES END
         }
 
         var sprite = Comp<SpriteComponent>(particle);
