@@ -1,11 +1,4 @@
 Entries:
-- author: DreadfulTaco
-  changes:
-  - message: Added two mutations, cinnaflare and spearmint.
-    type: Add
-  id: 406683
-  time: '2026-07-16T12:50:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4974
 - author: Arkanic
   changes:
   - message: Massive reduction in serverside AI lag, something like 150x time reduction in certain scenarios.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407082
   time: '2026-07-28T13:38:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5382
+- author: Mack
+  changes:
+  - message: Form text input will no longer close when clicking away.
+    type: Fix
+  id: 407083
+  time: '2026-07-28T14:26:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5378
 Order: -1
