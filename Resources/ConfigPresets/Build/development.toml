@@ -2,7 +2,7 @@
 # Straight in-game baby
 lobbyenabled = false
 # Dev map for faster loading & convenience
-map = "Dev"
+map = "DevMetalHydrogen"
 role_timers = false
 admin_job_tracking = true
 role_loadout_timers = false
@@ -33,7 +33,7 @@ expedition_cooldown = 30.0
 [shuttle]
 grid_fill = false
 auto_call_time = 0
-emergency = true
+emergency = false
 arrivals = false
 preload_grids = false
 

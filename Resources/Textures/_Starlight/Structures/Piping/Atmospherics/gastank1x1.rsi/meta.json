@@ -1,0 +1,16 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 64
+    },
+    "copyright": "State based copyright",
+    "license": "CC-BY-SA-3.0",
+    "states": [
+        {
+            "name": "gastank",
+            "copyright": "Created by @ya3.14a (Discord)",
+            "license": "CC-BY-SA-4.0"
+        }
+    ]
+}

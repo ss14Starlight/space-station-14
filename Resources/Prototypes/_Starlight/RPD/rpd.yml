@@ -295,6 +295,20 @@
   fx: EffectRCDConstruct0
 
 - type: rcd
+  id: GasTankSmall
+  category: InterfacesStorage
+  sprite:
+    sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi
+    state: gastank
+  mode: ConstructObject
+  prototype: GasPipeTankSmall
+  cost: 5
+  delay: 0
+  rotation: User
+  hasLayers: true
+  fx: EffectRCDConstruct0
+
+- type: rcd
   id: RadiatorBend
   category: AtmosphericUtility
   sprite: /Textures/_Starlight/Interface/Radial/RPD/radiator_bend.png

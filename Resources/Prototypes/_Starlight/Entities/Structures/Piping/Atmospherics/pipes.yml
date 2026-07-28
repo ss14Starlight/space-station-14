@@ -1,3 +1,5 @@
+# Subfloor gas tank BEGIN
+
 - type: entity
   parent: GasPipeSansLayers
   id: GasPipeSubfloorTank
@@ -11,13 +13,13 @@
     drawdepth: ThinPipe
     layers:
       - state: pipeFourway
-        map: [ "enum.SubfloorLayers.FirstLayer" ]
+        map: [ "enum.PipeVisualLayers.Pipe" ]
       - sprite: _Starlight/Structures/Piping/Atmospherics/subfloortank.rsi
         state: subFloorTank
-        map: [ "enum.PipeVisualLayers.Pipe" ]
+        map: [ "enum.SubfloorLayers.FirstLayer" ]
   - type: AtmosPipeLayers
     spriteLayersRsiPaths:
-      enum.SubfloorLayers.FirstLayer:
+      enum.PipeVisualLayers.Pipe:
         Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
         Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
@@ -107,3 +109,125 @@
   - type: Construction
     graph: GasPipeSubfloorTank
     node: tankAlt4
+
+# Subfloor gas tank END
+# Above-floor 1x1 gas tank BEGIN
+
+- type: entity
+  parent: GasPipeSansLayers
+  id: GasPipeTankSmall
+  name: gas tank
+  description: A gas tank. Gets in your way, but can store more than those silly subfloor ones.
+  placement:
+    mode: AlignAtmosPipeLayers
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+      drawdepth: ThinPipe
+      offset: 0,0.5
+      layers:
+        - state: pipeFourway
+          offset: 0,-0.5
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi
+          state: gastank
+          map: [ "enum.SubfloorLayers.FirstLayer" ]
+    - type: AtmosPipeLayers
+      spriteLayersRsiPaths:
+        enum.PipeVisualLayers.Pipe:
+          Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+          Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+          Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+          Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+          Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+      alternativePrototypes:
+        Primary: GasPipeTankSmall
+        Secondary: GasPipeTankSmallAlt1
+        Tertiary: GasPipeTankSmallAlt2
+        Quaternary: GasPipeTankSmallAlt3
+        Quinary: GasPipeTankSmallAlt4
+    - type: SubFloorHide
+      blockInteractions: false
+      blockAmbience: false
+      visibleLayers:
+        - enum.SubfloorLayers.FirstLayer
+    - type: StaticPrice
+      price: 75
+    - type: PipeAppearance
+      extraColoredLayers:
+        - enum.SubfloorLayers.FirstLayer
+    - type: Tag
+      tags:
+        - Pipe
+        - Unstackable
+    - type: NodeContainer
+      nodes:
+        pipe:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: Fourway
+          volume: 2000
+    - type: Construction
+      graph: GasPipeTankSmall
+      node: tank
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+        - 90
+        - -90
+        - 180
+    - type: GuideHelp
+      guides:
+        - Pipes
+        - PipeNetworks
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankSmall]
+  id: GasPipeTankSmallAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt1
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+    - type: Construction
+      graph: GasPipeTankSmall
+      node: tankAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankSmall]
+  id: GasPipeTankSmallAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt2
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+    - type: Construction
+      graph: GasPipeTankSmall
+      node: tankAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankSmall]
+  id: GasPipeTankSmallAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt3
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+    - type: Construction
+      graph: GasPipeTankSmall
+      node: tankAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankSmall]
+  id: GasPipeTankSmallAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt4
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+    - type: Construction
+      graph: GasPipeTankSmall
+      node: tankAlt4
+
+# Above-floor 1x1 gas tank END

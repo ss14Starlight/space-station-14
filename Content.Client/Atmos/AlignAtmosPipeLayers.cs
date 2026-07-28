@@ -199,15 +199,28 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
             if (newProto.TryGetComponent<SpriteComponent>(out var sprite, _entityManager.ComponentFactory))
             {
                 var textures = new List<IDirectionalTextureProvider>();
+                var offsets = new List<Vector2>(); // Starlight: per-layer offset, since CurrentTextures drops it
 
                 foreach (var spriteLayer in sprite.AllLayers)
                 {
                     if (spriteLayer.ActualRsi?.Path != null && spriteLayer.RsiState.Name != null)
+                    {
                         textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name)));
+                        offsets.Add(sprite.Offset + ((SpriteComponent.Layer)spriteLayer).Offset); // Starlight
+                    }
                 }
 
                 pManager.CurrentTextures = textures;
+
+                // Starlight: reapply each layer's own offset to the ghost, since CurrentTextures drops it.
+                if (pManager.CurrentPlacementOverlayEntity is { } overlay
+                    && _entityManager.TryGetComponent<SpriteComponent>(overlay, out var overlaySprite))
+                {
+                    for (var i = 0; i < offsets.Count; i++)
+                        _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, offsets[i]);
+                }
             }
+            // Starlight END
         }
     }
 
