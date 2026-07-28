@@ -37,6 +37,8 @@
   - type: Damageable
     damageModifierSet: Vulpkanin
     # Starlight Start
+  - type: Smeller
+    perception: Partial
   - type: UserInterface
     interfaces:
       enum.ScentSniffUiKey.Key:

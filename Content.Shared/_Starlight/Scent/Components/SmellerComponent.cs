@@ -60,4 +60,15 @@ public sealed partial class SmellerComponent : Component
 
     [DataField]
     public TimeSpan SniffDelay = TimeSpan.FromSeconds(1.5);
+
+    // Partial perceivers see markers for less of their life, even less for container-sourced
+    // markers, and lose all perception while breathing internals.
+    [DataField, AutoNetworkedField]
+    public ScentPerception Perception = ScentPerception.Full;
+}
+
+public enum ScentPerception : byte
+{
+    Full,
+    Partial,
 }

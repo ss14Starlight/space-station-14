@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Scent.Components;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
@@ -17,6 +18,7 @@ public sealed class ScentTrackingSystem : EntitySystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedInternalsSystem _internals = default!;
 
     private const string FadeAnimationKey = "scent-marker-fade";
 
@@ -25,6 +27,13 @@ public sealed class ScentTrackingSystem : EntitySystem
     private const float MaxAlpha = 127f / 255f;
     private const float MinScale = 32f / 96f;
     private const float MaxScale = 1.25f;
+
+    // A Partial perceiver sees markers for less of their true life. A Full perceiver sees the
+    // true ExpiresAt.
+    private const float PartialVisibleFraction = 0.5f;
+
+    // Container-sourced markers render smaller for any observer, Full or Partial.
+    private const float ContainedSizeFraction = 0.25f;
 
     public override void Initialize()
     {
@@ -40,7 +49,7 @@ public sealed class ScentTrackingSystem : EntitySystem
         if (_player.LocalSession?.AttachedEntity != uid)
             return;
 
-        RefreshAllMarkers(component.TrackedScentId);
+        RefreshAllMarkers(component);
     }
 
     private void OnMarkerStartup(Entity<ScentMarkerComponent> ent, ref ComponentStartup args)
@@ -60,31 +69,50 @@ public sealed class ScentTrackingSystem : EntitySystem
     // silently undo our filter without re-firing ScentMarkerComponent's own ComponentStartup.
     private void ApplyFilterForLocalPlayer(Entity<ScentMarkerComponent> ent)
     {
-        if (_player.LocalSession?.AttachedEntity is not { } local ||
-            !TryComp<SmellerComponent>(local, out var smeller))
-        {
-            return;
-        }
-
-        ApplyFilter(ent, smeller.TrackedScentId);
+        if (TryGetLocalSmeller(out var smeller))
+            ApplyFilter(ent, smeller);
     }
 
-    private void RefreshAllMarkers(string? trackedScentId)
+    // Resolves the local player's own SmellerComponent, if they have one attached.
+    private bool TryGetLocalSmeller(out SmellerComponent smeller)
+    {
+        if (_player.LocalSession?.AttachedEntity is { } local && TryComp(local, out SmellerComponent? comp))
+        {
+            smeller = comp;
+            return true;
+        }
+
+        smeller = default!;
+        return false;
+    }
+
+    private void RefreshAllMarkers(SmellerComponent smeller)
     {
         var query = EntityQueryEnumerator<ScentMarkerComponent>();
         while (query.MoveNext(out var uid, out var marker))
         {
-            ApplyFilter((uid, marker), trackedScentId);
+            ApplyFilter((uid, marker), smeller);
         }
     }
 
-    private void ApplyFilter(Entity<ScentMarkerComponent> ent, string? trackedScentId)
+    private void ApplyFilter(Entity<ScentMarkerComponent> ent, SmellerComponent smeller)
     {
         if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
 
-        var visible = trackedScentId == null || ent.Comp.ScentId == trackedScentId;
+        var visible = !IsPerceptionBlocked(smeller) &&
+                      !(smeller.Perception == ScentPerception.Partial && ent.Comp.WasContained) &&
+                      (smeller.TrackedScentId == null || ent.Comp.ScentId == smeller.TrackedScentId);
         _sprite.SetVisible((ent.Owner, sprite), visible);
+    }
+
+    // A Partial perceiver loses all scent perception while breathing internals.
+    private bool IsPerceptionBlocked(SmellerComponent smeller)
+    {
+        if (smeller.Perception != ScentPerception.Partial)
+            return false;
+
+        return _player.LocalSession?.AttachedEntity is { } local && _internals.AreInternalsWorking(local);
     }
 
     // ExpiresAt is an absolute timestamp. Re-running this on PVS re-entry or a merge picks up
@@ -99,13 +127,13 @@ public sealed class ScentTrackingSystem : EntitySystem
         _animation.Stop(ent.Owner, FadeAnimationKey);
 
         var strength = Math.Clamp(ent.Comp.Strength, 0f, 1f);
-        var scale = MathHelper.Lerp(MinScale, MaxScale, strength);
+        var scale = MathHelper.Lerp(MinScale, MaxScale, GetPerceivedSizeStrength(ent, strength));
         _sprite.SetScale((ent.Owner, sprite), new Vector2(scale, scale));
 
         var startAlpha = MathHelper.Lerp(MinAlpha, MaxAlpha, strength);
         var startColor = GetScentColor(ent.Comp.ScentId).WithAlpha(startAlpha);
         var endColor = Color.Gray.WithAlpha(0f);
-        var remaining = MathF.Max(0.1f, (float)(ent.Comp.ExpiresAt - _timing.CurTime).TotalSeconds);
+        var remaining = MathF.Max(0.1f, (float)(GetPerceivedExpiry(ent) - _timing.CurTime).TotalSeconds);
 
         var animation = new Animation
         {
@@ -127,6 +155,30 @@ public sealed class ScentTrackingSystem : EntitySystem
         };
 
         _animation.Play(ent.Owner, animation, FadeAnimationKey);
+    }
+
+    // A Full perceiver sees the true ExpiresAt. A Partial perceiver sees markers fade out
+    // earlier.
+    private TimeSpan GetPerceivedExpiry(Entity<ScentMarkerComponent> ent)
+    {
+        if (!TryGetLocalSmeller(out var smeller) ||
+            smeller.Perception != ScentPerception.Partial ||
+            ent.Comp.TotalDuration <= TimeSpan.Zero)
+        {
+            return ent.Comp.ExpiresAt;
+        }
+
+        var spawnedAt = ent.Comp.ExpiresAt - ent.Comp.TotalDuration;
+        return spawnedAt + (ent.Comp.TotalDuration * PartialVisibleFraction);
+    }
+
+    // Affects the visual scale of an emission.
+    private float GetPerceivedSizeStrength(Entity<ScentMarkerComponent> ent, float strength)
+    {
+        if (!ent.Comp.WasContained)
+            return strength;
+
+        return strength * ContainedSizeFraction;
     }
 
     // Convert.ToUInt32 is blocked by the client sandbox and kills the client silently on startup.

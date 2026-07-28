@@ -1,3 +1,4 @@
+using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.DoAfter;
 using Content.Server.Forensics;
@@ -14,8 +15,10 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Inventory;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Zombies;
 using Robust.Shared.Audio.Systems;
@@ -39,6 +42,7 @@ public sealed class ScentSystem : SharedScentSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
@@ -408,6 +412,9 @@ public sealed class ScentSystem : SharedScentSystem
     {
         var (uid, scent, xform) = ent;
 
+        if (IsSealed(uid))
+            return;
+
         if (TryMergeIntoExisting(ent))
             return;
 
@@ -417,12 +424,32 @@ public sealed class ScentSystem : SharedScentSystem
         var markerComp = Comp<ScentMarkerComponent>(marker);
         markerComp.ScentId = scentId;
         markerComp.ExpiresAt = _timing.CurTime + decayTime;
+        markerComp.TotalDuration = decayTime;
+        markerComp.WasContained = IsContained(xform);
         Dirty(marker, markerComp);
 
         var despawn = Comp<TimedDespawnComponent>(marker);
         despawn.Lifetime = (float)decayTime.TotalSeconds;
 
         scent.LastMarkerEntity = marker;
+    }
+
+    // Fully encased in pressure-protective gear - a sealed hardsuit/EVA setup. Nothing is
+    // actually escaping into the room.
+    private bool IsSealed(EntityUid uid)
+    {
+        var headSealed = _inventory.TryGetSlotEntity(uid, "head", out var head) &&
+                          HasComp<PressureProtectionComponent>(head!.Value);
+        var outerSealed = _inventory.TryGetSlotEntity(uid, "outerClothing", out var outer) &&
+                           HasComp<PressureProtectionComponent>(outer!.Value);
+
+        return headSealed && outerSealed;
+    }
+
+    // Is this entity's immediate parent an airtight container (locker, crate)?
+    private bool IsContained(TransformComponent xform)
+    {
+        return TryComp<EntityStorageComponent>(xform.ParentUid, out var storage) && storage.Airtight;
     }
 
     // Only merges into our own chain tail, never any other nearby marker. Revisiting an old spot
@@ -445,6 +472,8 @@ public sealed class ScentSystem : SharedScentSystem
 
         marker.Strength = Math.Min(1f, marker.Strength + scent.MergeStrengthStep);
         marker.ExpiresAt = _timing.CurTime + decayTime;
+        marker.TotalDuration = decayTime;
+        marker.WasContained = IsContained(xform);
         Dirty(tail, marker);
 
         if (TryComp<TimedDespawnComponent>(tail, out var despawn))

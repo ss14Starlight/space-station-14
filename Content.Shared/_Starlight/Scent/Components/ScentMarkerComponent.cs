@@ -19,4 +19,13 @@ public sealed partial class ScentMarkerComponent : Component
     // How pooled this marker is, 0-1. Maps to alpha/scale client-side.
     [DataField, AutoNetworkedField]
     public float Strength;
+
+    // The decay time actually used for this marker's current life. ExpiresAt - TotalDuration
+    // gives the moment this life cycle started, used to compute elapsed fraction client-side.
+    [DataField, AutoNetworkedField]
+    public TimeSpan TotalDuration;
+
+    // Whether the emitter was inside an airtight container at the moment of this emission.
+    [DataField, AutoNetworkedField]
+    public bool WasContained;
 }
