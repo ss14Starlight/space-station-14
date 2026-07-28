@@ -1,11 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Locale comment formatting.
-    type: Fix
-  id: 406674
-  time: '2026-07-16T11:22:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5153
 - author: Swonki
   changes:
   - message: derelict salvage cyborg is now whitelisted for its mining module.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407073
   time: '2026-07-28T08:04:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5353
+- author: Caws
+  changes:
+  - message: Added Weather Markers, a simple system for roundstart weather on maps.
+    type: Add
+  id: 407074
+  time: '2026-07-28T08:42:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5283
 Order: -1
