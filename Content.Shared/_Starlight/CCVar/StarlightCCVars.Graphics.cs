@@ -15,7 +15,6 @@ public sealed partial class StarlightCCVars
 
 /// <summary>
 /// Client-side interaction particle visibility.
-/// Explicit values are important because this is archived.
 /// </summary>
 public enum InteractionParticleMode
 {
