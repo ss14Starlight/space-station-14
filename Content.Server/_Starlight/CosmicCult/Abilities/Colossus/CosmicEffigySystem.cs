@@ -58,7 +58,7 @@ public sealed partial class CosmicEffigySystem : EntitySystem
             _charges.SetCharges((action, charges), 0);
             Dirty(action, charges);
         }
-        ent.Comp.Timed = false;//Flag for midround spawn; prevents death timer.
+        ent.Comp.Timed = false; // Flag for midround spawn; prevents death timer.
         Dirty(ent);
     }
     private void OnEffigyTerminating(Entity<CosmicEffigyComponent> ent, ref EntityTerminatingEvent args)
