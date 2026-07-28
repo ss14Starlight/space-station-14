@@ -1,13 +1,6 @@
 Entries:
 - author: Spaghetti-Bit
   changes:
-  - message: Avali nanite shield breaks after taking a total of 50 damage, or heal a total of 50 damage.
-    type: Tweak
-  id: 406691
-  time: '2026-07-17T09:28:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5142
-- author: Spaghetti-Bit
-  changes:
   - message: Avali guidebook entry, removing the weapon knockback mention. Explains the nanite shell technology.
     type: Tweak
   id: 406692
@@ -2799,4 +2792,11 @@ Entries:
   id: 407090
   time: '2026-07-28T15:17:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5375
+- author: Caws
+  changes:
+  - message: (Boxcars) Removed Boxcars from the game files.
+    type: Remove
+  id: 407091
+  time: '2026-07-28T15:34:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5376
 Order: -1
