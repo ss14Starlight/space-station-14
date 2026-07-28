@@ -224,6 +224,9 @@
       conditions:
         - !type:HolidayActiveCondition
           holiday: FestiveSeason
+    - id: EndymionMonumentFlatpack #event thing
+    - id: PrintedDocumentEndymionMemorial
+    - id: Multitool
     # Starlight End
 
 - type: entity
