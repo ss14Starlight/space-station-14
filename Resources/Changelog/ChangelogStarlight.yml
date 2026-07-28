@@ -1,11 +1,4 @@
 Entries:
-- author: Teddiousbear
-  changes:
-  - message: Enabled magboots now prevent FTL knockdown.
-    type: Add
-  id: 406670
-  time: '2026-07-16T08:27:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5061
 - author: Sparlight
   changes:
   - message: Patch packs and pills can now be named separately from their contents in the chemmaster UI.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407069
   time: '2026-07-28T07:23:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5365
+- author: DocMoth
+  changes:
+  - message: Adds the Magic Crayon back to loadouts.
+    type: Tweak
+  id: 407070
+  time: '2026-07-28T08:04:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5355
 Order: -1
