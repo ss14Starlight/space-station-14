@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
-using Content.IntegrationTests.Fixtures.Attributes;
+using Content.IntegrationTests.Pair;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
