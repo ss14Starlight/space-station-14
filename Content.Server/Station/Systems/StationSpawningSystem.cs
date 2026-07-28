@@ -390,7 +390,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 
     #region Starlight - Loadout stuff
 
-    // Shitty helper method to stop LoadoutSystem's MapInit callback from working if spawning through this system.
+    // Helper method to stop LoadoutSystem's MapInit callback from working if spawning through this system.
     public EntityUid SLSpawn(string prototype, EntityCoordinates coords)
     {
         var uid = Spawn(prototype, [], false);
