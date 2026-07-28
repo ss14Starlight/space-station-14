@@ -1,27 +1,32 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station 13",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "vampire_well_fed"
+            "name": "vampire_well_fed",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "vampire_fed"
+            "name": "vampire_fed",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "vampire_hungry"
+            "name": "vampire_hungry",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "vampire_starving",
-            "delays": [ [0.3, 0.3] ]
+            "delays": [ [0.3, 0.3] ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "vampire_fat"
+            "name": "vampire_fat",
+            "copyright": "Taken from Paradise Station 13"
         }
     ]
 }

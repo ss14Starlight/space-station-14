@@ -898,14 +898,14 @@
     layers:
       - state: grenade
   - type: Projectile
-    deleteOnCollide: false
+    deleteOnCollide: true # Starlight change (oversight imo)
     damage:
       types:
-        Blunt: 1
+        Blunt: 15 # Starlight change
     soundHit:
       path: /Audio/Effects/gen_hit.ogg
   - type: StaminaDamageOnCollide
-    damage: 80
+    damage: 65 # Starlight change
 
 - type: entity
   id: BulletGrenadeBlast

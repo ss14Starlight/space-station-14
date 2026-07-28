@@ -138,7 +138,10 @@ public sealed class JobRequirementsTest
 
         await pair.Client.WaitAssertion(() =>
         {
-            cPref.UpdateCharacter(humanoidZero.WithAge(age).WithJobPreferences(priorities.Keys), 0);
+            cPref.UpdateCharacter(humanoidZero
+                .WithSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies)
+                .WithAge(age)
+                .WithJobPreferences(priorities.Keys), 0);
             cPref.UpdateJobPriorities(priorities);
         });
 
@@ -197,7 +200,9 @@ public sealed class JobRequirementsTest
 
         await pair.Client.WaitAssertion(() =>
         {
-            humanoidZero = humanoidZero.WithJobPreferences(priorities.Keys);
+            humanoidZero = humanoidZero
+                .WithSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies)
+                .WithJobPreferences(priorities.Keys);
             cPref.UpdateCharacter(humanoidZero.WithAge(75), 0);
             var maxSlots = cPref.Settings?.MaxCharacterSlots ?? 30;
             for (var i = 1; i < maxSlots; i++)
