@@ -1,0 +1,21 @@
+# advanced APC
+- type: entity
+  id: APCAdvancedElectronics
+  parent: BaseElectronics
+  name: advanced APC electronics
+  description: Circuit used to construct an advanced APC.
+  components:
+    - type: Tag
+      tags:
+        - ApcAdvancedElectronics # for construction graph
+        - RamChip # FH
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: engineering
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 100
+      chemicalComposition:
+        Silicon: 20
+    - type: StaticPrice
+      price: 68
