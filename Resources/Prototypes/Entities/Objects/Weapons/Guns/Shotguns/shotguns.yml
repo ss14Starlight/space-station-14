@@ -91,11 +91,11 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    # size: Large # Starlight Edit
+    # size: Large # Starlight Edit: Removed
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
-    # Starlight edit Start
+    # Starlight edit Start: Removed
     # quickEquip: false
     # slots:
     # - Back
