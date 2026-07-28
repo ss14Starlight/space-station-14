@@ -34,6 +34,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Systems;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
@@ -103,6 +104,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     [Dependency] private VisibilitySystem _visibility = default!;
     [Dependency] private LanguageSystem _languageSystem = default!;
     [Dependency] private WeatherSystem _weather = default!;
+    [Dependency] private NpcFactionSystem _faction = default!;
 
     private ISawmill _sawmill = default!;
     private TimeSpan _t3RevealDelay = default!;
@@ -202,6 +204,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             while (query.MoveNext(out var cultist, out var cultComp))
             {
                 EnsureComp<CosmicStarMarkComponent>(cultist);
+                _faction.RemoveFaction(cultist, "NanoTrasen");
+                _faction.AddFaction(cultist, "CosmicCult");
             }
 
             var sender = Loc.GetString("cosmiccult-announcement-sender");
@@ -780,6 +784,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-short-briefing"), Color.FromHex("#cae8e8"), null);
 
         var cultComp = EnsureComp<CosmicCultComponent>(uid);
+        //_faction.AddFaction(uid, "CosmicCult");
+
         cultComp.EntropyBudget = 10; // pity balance
         EnsureComp<IntrinsicRadioReceiverComponent>(uid);
         TransferCultAssociation(converter, uid);
@@ -927,6 +933,9 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     {
         if (AssociatedGamerule(uid) is not { } cult)
             return;
+
+        _faction.RemoveFaction(uid.Owner, "CosmicCult");
+        _faction.AddFaction(uid.Owner, "NanoTrasen");
 
         var wasSteward = HasComp<CosmicCultLeadComponent>(uid);
         var cosmicGamerule = cult.Comp;

@@ -24,9 +24,15 @@
         true
       NavSmash: !type:Bool
         true
+  - type: CosmicCultFaction
+  - type: ShowAntagIcons
   - type: NpcFactionMember
     factions:
     - SimpleHostile
+    - CosmicCult
+  - type: CosmicCultExamine
+    cultistText: cosmic-examine-text-cultentity
+    othersText: cosmic-examine-text-entities
   - type: Tag
     tags:
     - DoorBumpOpener

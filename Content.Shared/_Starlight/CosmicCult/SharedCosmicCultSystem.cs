@@ -21,8 +21,10 @@ public abstract partial class SharedCosmicCultSystem : EntitySystem
 
         SubscribeLocalEvent<CosmicCultComponent, ComponentGetStateAttemptEvent>(OnCosmicCultCompGetStateAttempt);
         SubscribeLocalEvent<CosmicCultLeadComponent, ComponentGetStateAttemptEvent>(OnCosmicCultCompGetStateAttempt);
+
         SubscribeLocalEvent<CosmicCultComponent, ComponentStartup>(DirtyCosmicCultComps);
         SubscribeLocalEvent<CosmicCultLeadComponent, ComponentStartup>(DirtyCosmicCultComps);
+        SubscribeLocalEvent<CosmicCultFactionComponent, ComponentStartup>(OnCosmicFactionStartup);
     }
 
     public bool EntityIsCultist(EntityUid user)
@@ -30,8 +32,27 @@ public abstract partial class SharedCosmicCultSystem : EntitySystem
             && (HasComp<CosmicCultComponent>(user)
             || _role.MindHasRole<CosmicCultRoleComponent>(mind));
 
-    public bool EntitySeesCult(EntityUid user)
-        => EntityIsCultist(user) || HasComp<GhostComponent>(user) || HasComp<ShowNullSpaceComponent>(user);
+    private void OnCosmicFactionStartup(EntityUid uid, CosmicCultFactionComponent comp, ComponentStartup ev)
+    {
+        Dirty(uid, comp);
+
+        var cosmicCultComps = AllEntityQuery<CosmicCultComponent>();
+        while (cosmicCultComps.MoveNext(out var ent, out var cultComp))
+        {
+            Dirty(ent, cultComp);
+        }
+
+        var cosmicCultLeadComps = AllEntityQuery<CosmicCultLeadComponent>();
+        while (cosmicCultLeadComps.MoveNext(out var ent, out var leadComp))
+        {
+            Dirty(ent, leadComp);
+        }
+    }
+
+    public bool EntitySeesCult(EntityUid user) => EntityIsCultist(user) 
+    || HasComp<CosmicCultFactionComponent>(user) 
+    || HasComp<GhostComponent>(user)
+    || HasComp<ShowNullSpaceComponent>(user);
 
     /// <summary>
     /// Determines if a Cosmic Cult Lead component should be sent to the client.
@@ -82,3 +103,4 @@ public abstract partial class SharedCosmicCultSystem : EntitySystem
         }
     }
 }
+
