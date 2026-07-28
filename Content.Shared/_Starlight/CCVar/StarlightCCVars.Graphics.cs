@@ -8,7 +8,6 @@ public sealed partial class StarlightCCVars
 
     /// <summary>
     /// Whether hand, item, and pulling interaction particles are displayed.
-    /// Does not affect spark effects.
     /// </summary>
     public static readonly CVarDef<bool> InteractionParticlesEnabled =
         CVarDef.Create("opt.interaction_particles_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
