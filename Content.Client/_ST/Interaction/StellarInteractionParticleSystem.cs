@@ -5,8 +5,10 @@
 using System.Numerics;
 using Content.Client._Moffstation.Interaction;
 using Content.Shared._ST.Interaction;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -21,7 +23,9 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
     [Dependency] private AnimationPlayerSystem _animation = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private TransformSystem _xform = default!;
+    [Dependency] private IConfigurationManager _cfg = default!; // Starlight
 
+    private bool _interactionParticlesEnabled; // Starlight
     private const string AnimateKey = "particle-animation";
 
     private static readonly Dictionary<StellarInteractionParticleType, EntProtoId> InteractionParticleIds = new ()
@@ -35,11 +39,16 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
     {
         base.Initialize();
 
+    Subs.CVar(_cfg, StarlightCCVars.InteractionParticlesEnabled, value => _interactionParticlesEnabled = value, true); // Starlight, interaction particle config
+
         SubscribeAllEvent<StellarInteractionParticleEvent>(OnInteractionParticle);
     }
 
     private void OnInteractionParticle(StellarInteractionParticleEvent ev)
     {
+        if (!_interactionParticlesEnabled) // Starlight, check if interaction particles are enabled
+            return; // Starlight, if not, don't display them!
+
         var performer = GetEntity(ev.Performer);
         var used = GetEntity(ev.Used);
         var target = GetEntity(ev.Target);
