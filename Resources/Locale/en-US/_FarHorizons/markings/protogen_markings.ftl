@@ -170,13 +170,20 @@ marking-ProtoCycloriteMediumArmor-medium = Standard Protogen-Cyclorite Cyberneti
 
 marking-ProtoAvaliVisor = Avali Visor
 marking-ProtoAvaliVisor-visor = Avali Visor
+marking-ProtoAvaliVisorLightless = Avali Visor w/o Lights
+marking-ProtoAvaliVisorColorable = Avali Visor w/ Colorable Screen
 marking-ProtoAvaliLEDFace = Default Avali LEDs
 marking-ProtoAvaliLEDFace-face = Default Avali LEDs
+marking-ProtoAvaliLEDFaceSquare = Square Avali LEDs
+marking-ProtoAvaliLEDFaceCircular = Circular Avali LEDs
+marking-ProtoAvaliLEDFaceDiagonal = Diagonal Avali LEDs
+marking-ProtoAvaliLEDFaceStraight = Straight Avali LEDs
 marking-ProtoAvaliLights = Circular LEDs
 marking-ProtoAvaliLights-body = Circular LEDs
 marking-ProtoAvaliWings = Hardlight Avali Wings
 marking-ProtoAvaliWings-wings = Hardlight Avali Wings
 
+marking-ProtoAvaliLightArmor = Light Protogen-Avali Cybernetics
 marking-ProtoAvaliMediumArmor = Standard Protogen-Avali Cybernetics
 marking-ProtoAvaliMediumArmor-medium = Standard Protogen-Avali Cybernetics
 

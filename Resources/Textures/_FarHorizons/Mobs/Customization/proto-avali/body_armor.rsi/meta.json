@@ -7,6 +7,11 @@
         {
             "name": "medium",
             "directions": 4
+        },
+        {
+            "name": "light",
+            "directions": 4,
+            "copyright": "Based off of Killer Tamashi's (Discord) work, edited by Spaghetti-Bit"
         }
     ]
 }

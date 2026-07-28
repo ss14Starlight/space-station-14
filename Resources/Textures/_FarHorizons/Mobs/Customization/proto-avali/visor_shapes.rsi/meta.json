@@ -6,7 +6,18 @@
     "states": [
         {
             "name": "visor",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Killer Tamashi's (discord) work, edited by Spaghetti-Bit"
+        },
+        {
+            "name": "visorlightless",
+            "directions": 4,
+            "copyright": "Based off Killer Tamashi's (discord) work, edited by Spaghetti-Bit"
+        },
+        {
+            "name": "visorcolorable",
+            "directions": 4,
+            "copyright": "Based off Killer Tamashi's (discord) work, edited by Spaghetti-Bit"
         }
     ]
 }
