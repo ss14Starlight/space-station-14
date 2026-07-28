@@ -20,6 +20,6 @@ public sealed class CosmicDoorSystem : EntitySystem
         if (args.State != DoorState.Open)
             return;
 
-        _door.SetNextStateChange(ent,ent.Comp.AutoCloseDelay);
+        _door.SetNextStateChange(ent, ent.Comp.AutoCloseDelay);
     }
 }

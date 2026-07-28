@@ -68,20 +68,20 @@ public sealed partial class CosmicEffigySystem : EntitySystem
     // detect if linked effigy has died crit so on
     private void OnEffigyDestroyed(Entity<CosmicEffigyComponent> ent, ref CosmicEffigyDestroyedEvent args)
     {
-    if (ent.Comp.Colossus is not { } colossusUid)
-        return;
+        if (ent.Comp.Colossus is not { } colossusUid)
+            return;
 
-    if (!TryComp<CosmicColossusComponent>(colossusUid, out var colossus))
-        return;
+        if (!TryComp<CosmicColossusComponent>(colossusUid, out var colossus))
+            return;
 
-    //Remove reference to the destroyed effigy
-    if (colossus.CurrentEffigy == ent.Owner)
-        colossus.CurrentEffigy = null;
+        //Remove reference to the destroyed effigy
+        if (colossus.CurrentEffigy == ent.Owner)
+            colossus.CurrentEffigy = null;
 
-    // Start the recharge timer, vanishing of effigy + time
-    colossus.EffigyRechargeTimer = _timing.CurTime + colossus.EffigyRechargeTime;
-    // Update networked component state
-    Dirty(colossusUid, colossus);
+        // Start the recharge timer, vanishing of effigy + time
+        colossus.EffigyRechargeTimer = _timing.CurTime + colossus.EffigyRechargeTime;
+        // Update networked component state
+        Dirty(colossusUid, colossus);
     }
 
     public override void Update(float frameTime)
@@ -100,22 +100,25 @@ public sealed partial class CosmicEffigySystem : EntitySystem
             comp.EffigyRechargeTimer = null;
 
             // No action assigned
-            if (comp.EffigyPlaceActionEntity is not { } action){
+            if (comp.EffigyPlaceActionEntity is not { } action)
+            {
                 Dirty(uid, comp);
                 continue;
-                }
+            }
 
             // No LimitedCharges component
-            if (!TryComp<LimitedChargesComponent>(action, out var charges)){
+            if (!TryComp<LimitedChargesComponent>(action, out var charges))
+            {
                 Dirty(uid, comp);
                 continue;
-                }
+            }
 
             // Already charged
-            if (_charges.GetCurrentCharges((action, charges, null)) >= charges.MaxCharges){
+            if (_charges.GetCurrentCharges((action, charges, null)) >= charges.MaxCharges)
+            {
                 Dirty(uid, comp);
                 continue;
-                }
+            }
 
             // Restore ability
             _charges.SetCharges((action, charges), charges.MaxCharges);

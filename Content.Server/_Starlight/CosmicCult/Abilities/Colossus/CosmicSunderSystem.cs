@@ -24,7 +24,7 @@ public sealed partial class CosmicSunderSystem : EntitySystem
         var target = _transform.ToMapCoordinates(args.Target);
 
         if (!_occluder.InRangeUnoccluded(origin, target, 0f, ignoreTouching: true))//0f zero range since yml has the range
-        return;
+            return;
 
         args.Handled = true;
 

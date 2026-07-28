@@ -338,8 +338,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
                 return;
 
             var picked = args.Winner == null
-                ? (EntityUid) _rand.Pick(args.Winners)
-                : (EntityUid) args.Winner;
+                ? (EntityUid)_rand.Pick(args.Winners)
+                : (EntityUid)args.Winner;
 
             if (!IsValidStewardCandidate(picked))
             {
@@ -378,7 +378,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     private void OnGodSpawn(Entity<CosmicGodComponent> uid, ref ComponentInit args)
     {
-        _sound.DispatchStationEventMusic(uid, _victoryMusic, StationEventMusicType.CosmicCult );
+        _sound.DispatchStationEventMusic(uid, _victoryMusic, StationEventMusicType.CosmicCult);
         var query = QueryActiveRules();
         while (query.MoveNext(out var ruleUid, out _, out var cultRule, out _))
         {
