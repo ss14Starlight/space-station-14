@@ -1,13 +1,6 @@
 Entries:
 - author: DreadfulTaco
   changes:
-  - message: Added ice cream maker machine.
-    type: Add
-  id: 406678
-  time: '2026-07-16T12:50:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4974
-- author: DreadfulTaco
-  changes:
   - message: Added an ice cream maker circuit board available at the circuit fabricator.
     type: Add
   id: 406679
@@ -2799,4 +2792,11 @@ Entries:
   id: 407077
   time: '2026-07-28T09:56:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5374
+- author: redmushie
+  changes:
+  - message: RPDs and RPLDs now actually respect the layer you clicked on.
+    type: Fix
+  id: 407078
+  time: '2026-07-28T11:04:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5347
 Order: -1
