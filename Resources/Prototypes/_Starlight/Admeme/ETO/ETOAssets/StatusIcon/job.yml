@@ -46,9 +46,9 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconETOCrackhead
+  id: JobIconETOMartyr
   icon:
     sprite: /Textures/_Starlight/Admeme/ETO/etojobicons.rsi
     state: ETO_Martyr
-  jobName: job-name-eto-crackhead
+  jobName: job-name-eto-martyr
   allowSelection: false
