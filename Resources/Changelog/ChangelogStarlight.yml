@@ -1,27 +1,6 @@
 Entries:
 - author: DreadfulTaco
   changes:
-  - message: Added an ice cream maker circuit board available at the circuit fabricator.
-    type: Add
-  id: 406679
-  time: '2026-07-16T12:50:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4974
-- author: DreadfulTaco
-  changes:
-  - message: Added a new cargo order for the ice cream machine.
-    type: Add
-  id: 406680
-  time: '2026-07-16T12:50:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4974
-- author: DreadfulTaco
-  changes:
-  - message: Added 32 flavors of ice cream to make.
-    type: Add
-  id: 406681
-  time: '2026-07-16T12:50:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4974
-- author: DreadfulTaco
-  changes:
   - message: Added two round start plants, cinnamon and mint.
     type: Add
   id: 406682
@@ -2799,4 +2778,25 @@ Entries:
   id: 407078
   time: '2026-07-28T11:04:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5347
+- author: neomoth
+  changes:
+  - message: Fix chat prefixes showing up in some message types.
+    type: Fix
+  id: 407079
+  time: '2026-07-28T12:45:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5364
+- author: neomoth
+  changes:
+  - message: Fix language prefix not being parsed out of the message when tabbed into the radio chat.
+    type: Fix
+  id: 407080
+  time: '2026-07-28T12:45:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5364
+- author: neomoth
+  changes:
+  - message: Fix TTS vocalizing language prefixes.
+    type: Fix
+  id: 407081
+  time: '2026-07-28T12:45:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5364
 Order: -1
