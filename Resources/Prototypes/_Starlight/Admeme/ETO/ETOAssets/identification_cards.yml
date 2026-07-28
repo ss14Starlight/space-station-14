@@ -21,7 +21,7 @@
 - type: entity
   parent: ETOIDCard
   id: ETOIDCardTeamLead
-  name: E.T.O Team Lead ID card
+  name: ETO Team Lead ID card
   components:
   - type: Sprite
     layers:
@@ -36,7 +36,7 @@
 - type: entity
   parent: ETOIDCard
   id: ETOIDCardCorpsman
-  name: E.T.O Corpsman ID card
+  name: ETO Corpsman ID card
   components:
   - type: Sprite
     layers:
@@ -51,7 +51,7 @@
 - type: entity
   parent: ETOIDCard
   id: ETOIDCardCombatTech
-  name: E.T.O Combat Technician ID card
+  name: ETO Combat Technician ID card
   components:
   - type: Sprite
     layers:
@@ -66,7 +66,7 @@
 - type: entity
   parent: ETOIDCard
   id: ETOIDCardDemo
-  name: E.T.O Demolitionist ID card
+  name: ETO Demolitionist ID card
   components:
   - type: Sprite
     layers:
@@ -80,8 +80,8 @@
 
 - type: entity
   parent: ETOIDCard
-  id: ETOIDCardCrackhead
-  name: E.T.O Martyr ID card
+  id: ETOIDCardMartyr
+  name: ETO Martyr ID card
   components:
   - type: Sprite
     layers:
@@ -90,13 +90,13 @@
         offset: *icon-offset
         state: ETO_Martyr
   - type: IdCard
-    jobTitle: job-name-eto-crackhead
-    jobIcon: JobIconETOCrackhead
+    jobTitle: job-name-eto-martyr
+    jobIcon: JobIconETOMartyr
 
 - type: entity
   parent: ETOIDCard
   id: ETOIDCardFootman
-  name: E.T.O Footman ID card
+  name: ETO Footman ID card
   components:
   - type: Sprite
     layers:
