@@ -150,7 +150,8 @@ public sealed class JobTest : GameTest
 
         pair.AssertJob(Captain);
 
-        // Starlight: Removed 2 lines that caused pair to require dirtying
+        // await pair.Client.WaitPost(() => ((IClientNetManager) pair.Client.NetMan).ClientDisconnect("JobWeightTest cleanup")); // Starlight: No, don't make the pair require dirtying.
+        // await pair.RunTicksSync(1); // Starlight
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
     }
