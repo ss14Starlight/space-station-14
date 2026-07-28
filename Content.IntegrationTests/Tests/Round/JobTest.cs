@@ -50,16 +50,6 @@ public sealed class JobTest : GameTest
         InLobby = true
     };
 
-    // Starlight START: Separate settings for JobWeightTest to dirty the pair
-    public static PoolSettings Disconnected => new()
-    {
-        DummyTicker = false,
-        Connected = true,
-        InLobby = true,
-        Dirty = true,
-    };
-    // Starlight END
-
     /// <summary>
     /// Simple test that checks that starting the round spawns the player into the test map as a passenger.
     /// </summary>
@@ -131,7 +121,6 @@ public sealed class JobTest : GameTest
     /// get their preferred job.
     /// </summary>
     [Test]
-    [PairConfig(nameof(Disconnected))] // Starlight: Needs to dirty pair
     public async Task JobWeightTest()
     {
         var pair = Pair;
@@ -161,8 +150,7 @@ public sealed class JobTest : GameTest
 
         pair.AssertJob(Captain);
 
-        await pair.Client.WaitPost(() => ((IClientNetManager) pair.Client.NetMan).ClientDisconnect("JobWeightTest cleanup"));
-        await pair.RunTicksSync(1);
+        // Starlight: Removed 2 lines that caused pair to require dirtying
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
     }
