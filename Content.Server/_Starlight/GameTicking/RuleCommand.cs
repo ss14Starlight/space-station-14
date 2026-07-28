@@ -21,7 +21,7 @@ public sealed class RuleCommand : ToolshedCommand
     public IEnumerable<EntityUid> GetRulesOfType(IInvocationContext ctx, GameRuleProtoId ruleId)
     {
         _ticker ??= GetSys<GameTicker>();
-        var rules = _ticker.GetAddedGameRules().Where(x => MetaData(x).EntityPrototype!.ID == ruleId.ProtoId).ToList(); // Why the fuck would this ever be null.
+        var rules = _ticker.GetAddedGameRules().Where(x => MetaData(x).EntityPrototype!.ID == ruleId.ProtoId).ToList();
         if(rules.Count == 0) ctx.WriteMarkup($"[color=gold]No rules with protoId \"{ruleId.ProtoId.Id}\" found, returned list is empty.[/color]");
         return rules;
     }
