@@ -1,11 +1,4 @@
 Entries:
-- author: Arkanic
-  changes:
-  - message: Massive reduction in serverside AI lag, something like 150x time reduction in certain scenarios.
-    type: Fix
-  id: 406684
-  time: '2026-07-16T12:50:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5117
 - author: Littlemen/Romero
   changes:
   - message: Dragon doesnt feel the bloodloss anymore, he is just built different.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407083
   time: '2026-07-28T14:26:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5378
+- author: OMEGA
+  changes:
+  - message: The RCD can now build airlocks and firelocks on top of each other.
+    type: Tweak
+  id: 407084
+  time: '2026-07-28T14:26:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5377
 Order: -1
