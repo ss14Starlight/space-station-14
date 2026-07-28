@@ -27,10 +27,11 @@ public sealed partial class ContentWarningPopup : FancyWindow
 
     private void InitWindow()
     {
+        // Starlight BEGIN: Dynamic year calculation
         var year = DateTime.Now.Year;
         year += 500;
-
         ContentWarningBodyIntro.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("content-warning-introduction", ("year", year.ToString()))));
+        // Starlight END
 
 		ContentWarningBodyInfo.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("content-warning-information")));
 
