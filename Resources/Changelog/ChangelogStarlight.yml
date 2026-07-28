@@ -1,18 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: Patch packs now show the correct number of patches in them in the chemmaster UI.
-    type: Fix
-  id: 406672
-  time: '2026-07-16T10:45:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5144
-- author: Sparlight
-  changes:
-  - message: Patch packs now make the correct number of patches when patches are already in the pack.
-    type: Fix
-  id: 406673
-  time: '2026-07-16T10:45:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5144
 - author: STARLIGHT TEAM
   changes:
   - message: Locale comment formatting.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407071
   time: '2026-07-28T08:04:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5362
+- author: Caws
+  changes:
+  - message: (Cluster) Fixed a turnstile that was facing the wrong way in Genpop.
+    type: Fix
+  id: 407072
+  time: '2026-07-28T08:04:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5353
+- author: Caws
+  changes:
+  - message: (Cluster) Removed firelocks on top of turnstiles in Security.
+    type: Remove
+  id: 407073
+  time: '2026-07-28T08:04:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5353
 Order: -1
