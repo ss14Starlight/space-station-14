@@ -1,13 +1,6 @@
 Entries:
 - author: DreadfulTaco
   changes:
-  - message: Fixed Avali, Lizards, and Moths to be able to eat ice cream.
-    type: Fix
-  id: 406694
-  time: '2026-07-17T12:12:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5166
-- author: DreadfulTaco
-  changes:
   - message: Added more ice cream supplies to ChefVends, and to the ice cream starter crate.
     type: Tweak
   id: 406695
@@ -2799,4 +2792,11 @@ Entries:
   id: 407093
   time: '2026-07-28T15:53:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5345
+- author: RedSpeeds
+  changes:
+  - message: Allow ERT Shuttle to FTL to CC after EOR.
+    type: Tweak
+  id: 407094
+  time: '2026-07-28T17:19:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5312
 Order: -1
