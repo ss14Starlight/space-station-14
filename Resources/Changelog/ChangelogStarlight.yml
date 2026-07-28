@@ -1,11 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: (Cluster) Overhauled piping network.
-    type: Tweak
-  id: 406706
-  time: '2026-07-18T11:29:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5183
 - author: neomoth
   changes:
   - message: Fix a small bug where upon relogging with a pulled-down mask, a popup would show up saying you need to pull it down when trying to eat/drink despite it already being down.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407105
   time: '2026-07-28T20:17:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5329
+- author: Infiniteb1u3
+  changes:
+  - message: new shuttle JSS-MED Apotherkerin to Shipyard console.
+    type: Add
+  id: 407106
+  time: '2026-07-28T21:00:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5169
 Order: -1
