@@ -196,6 +196,8 @@
   cost: 4
   delay: 3
   collisionMask: FullTileMask
+  rules: # Starlight
+    - IsFirelock # Starlight
   rotation: Camera
   fx: EffectRCDConstruct3
 

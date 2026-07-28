@@ -148,6 +148,7 @@ public enum RcdConstructionRule : byte
     IsWindow,                   // The entity is a window and can be built on grilles
     IsCatwalk,                  // The entity is a catwalk
     IsAirlock,                  // The entity is an airlock and can be built on tiles occupied by firelocks
+    IsFirelock,                 // The entity is a firelock and can be built on tiles occupied by airlocks
 }
 
 public enum RcdRotation : byte

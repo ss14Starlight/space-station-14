@@ -642,6 +642,7 @@ public sealed partial class RCDSystem : EntitySystem
         var isWindow = prototype.ConstructionRules.Contains(RcdConstructionRule.IsWindow);
         var isCatwalk = prototype.ConstructionRules.Contains(RcdConstructionRule.IsCatwalk);
         var isAirlock = prototype.ConstructionRules.Contains(RcdConstructionRule.IsAirlock); // Starlight: airlocks can be built over firelocks
+        var isFirelock = prototype.ConstructionRules.Contains(RcdConstructionRule.IsFirelock); // Starlight: firelocks can be built over airlocks
         // Starlight Start: RPLD
         var isPlumbingMachinePlacement = component.IsRPLD
             && prototype.Prototype != null
@@ -657,6 +658,10 @@ public sealed partial class RCDSystem : EntitySystem
                 continue;
             // Starlight Start: Airlocks can be built on a tile that already holds a firelock (any variant)
             if (isAirlock && HasComp<FirelockComponent>(ent))
+                continue;
+            // Starlight End
+            // Starlight Start: Firelocks can be built on a tile that already holds an airlock (any variant)
+            if (isFirelock && HasComp<AirlockComponent>(ent))
                 continue;
             // Starlight End
             // Starlight Start: RPLD
