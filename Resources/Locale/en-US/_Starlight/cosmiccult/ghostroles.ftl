@@ -8,7 +8,7 @@ ghost-role-information-theunknown-rules = ...
 
 ghost-role-information-cosmic-oracle-name = Malign Oracle
 ghost-role-information-cosmic-oracle-description = A vessel of the Astral Murmur. Offer guidance and revelation to the Cosmic Cult, aiding them as they usher in the inevitable end.
-ghost-role-information-cosmic-oracle-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] aligned with the Cosmic Cult. Communicate through the Astral Murmur, follow the wishes of your cosmic allies
+ghost-role-information-cosmic-oracle-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] aligned with the Cosmic Cult. Communicate through the Astral Murmur and follow the wishes of your cosmic allies.
 
 # COLOSSUS
 
