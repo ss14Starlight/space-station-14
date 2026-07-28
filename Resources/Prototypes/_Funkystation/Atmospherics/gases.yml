@@ -49,7 +49,7 @@
   name: gases-hydrogen
   specificHeat: 15
   heatCapacityRatio: 1.405
-  molarMass: 32
+  molarMass: 1
   color: fffaf0
   reagent: Hydrogen
   pricePerMole: 1.2

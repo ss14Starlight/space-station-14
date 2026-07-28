@@ -1,46 +1,55 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Edit by Conflee, originals Taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi and modified by Swept, transparency tweaked by Ubaser.",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "full"
+      "name": "full",
+      "copyright": "Originals taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi and modified by Swept, transparency tweaked by Ubaser, edit by Conflee"
     },
     {
       "name": "barwindow0",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Originals taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi and modified by Swept, transparency tweaked by Ubaser, edit by Conflee"
     },
     {
       "name": "barwindow1",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Originals taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi and modified by Swept, transparency tweaked by Ubaser, edit by Conflee"
     },
     {
       "name": "barwindow2",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Originals taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi and modified by Swept, transparency tweaked by Ubaser, edit by Conflee"
     },
     {
       "name": "barwindow3",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Originals taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi and modified by Swept, transparency tweaked by Ubaser, edit by Conflee"
     },
     {
       "name": "barwindow4",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Originals taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi and modified by Swept, transparency tweaked by Ubaser, edit by Conflee"
     },
     {
       "name": "barwindow5",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Originals taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi and modified by Swept, transparency tweaked by Ubaser, edit by Conflee"
     },
     {
       "name": "barwindow6",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Originals taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi and modified by Swept, transparency tweaked by Ubaser, edit by Conflee"
     },
     {
       "name": "barwindow7",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Originals taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/raw/99cc2ab62d65a3a7b554dc7b21ff5f57c835f973/icons/turf/walls.dmi and modified by Swept, transparency tweaked by Ubaser, edit by Conflee"
     }
   ]
 }

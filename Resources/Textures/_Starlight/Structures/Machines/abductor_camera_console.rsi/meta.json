@@ -4,12 +4,11 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "Taked From TG Station",
+  "copyright": "State based copyright",
   "license": "CC-BY-SA-3.0",
   "states": [
     {
       "name": "console",
-      "directions": 1,
       "delays": [
         [
           0.08,
@@ -37,7 +36,8 @@
           0.08,
           0.08
         ]
-      ]
+      ],
+      "copyright": "Taken From TG Station"
     }
   ]
 }
