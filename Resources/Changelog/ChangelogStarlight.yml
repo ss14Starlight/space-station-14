@@ -1,11 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: derelict salvage cyborg is now whitelisted for its mining module.
-    type: Fix
-  id: 406675
-  time: '2026-07-16T11:22:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5152
 - author: neomoth
   changes:
   - message: Fixes Tippy being killed and never ever showing up again if you disconnect and reconnect without relaunching the game.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407074
   time: '2026-07-28T08:42:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5283
+- author: VBlankFF
+  changes:
+  - message: Parasitic anomalies given by artifacts no longer fail to give the pulse action if the character had been given a parasitic anomaly earlier in the round.
+    type: Fix
+  id: 407075
+  time: '2026-07-28T09:06:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5369
 Order: -1
