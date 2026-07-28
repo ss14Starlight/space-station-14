@@ -12,7 +12,11 @@
   - ERTJanitor
   - CBURN
   - CentralCommandOperator # Starlight start
-  - CentralCommandGreenShield # Starlight end
+  - CentralCommandGreenShield
+  - CentCommServiceWorker
+  - CentCommChef
+  - CentCommBartender
+  - CentCommJanitor # Starlight end
   blacklist:
     components:
     - AntagImmune
