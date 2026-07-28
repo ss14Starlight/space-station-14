@@ -75,7 +75,7 @@
       - id: FreezeRune2Wiz
         amount: 1
   - type: SpeakOnAction
-    sentence: action-speech-spell-explosionrune
+    sentence: action-speech-spell-explosionrune  #to do
     tts: action-speech-spell-explosionrune-tts
     modifier: Spell
   - type: EorgPreventAction

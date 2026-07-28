@@ -281,3 +281,19 @@
     whitelist:
       - SpellbookCryomancer
 
+- type: listing
+  id: SpellbookFrozenTome
+  name: spellbook-frozentome-name
+  description: spellbook-frozentome-desc
+  priority: 14
+  productEntity: WeaponFrozentome
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer

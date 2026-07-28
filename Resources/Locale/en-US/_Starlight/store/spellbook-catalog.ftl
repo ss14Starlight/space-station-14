@@ -42,4 +42,7 @@ spellbook-cryomancer-name = The Cryomancer path
 spellbook-cryomancer-desc = A set of armor and spells fit for a master Cryomancer. The cold takes all and you today you will make sure of that.
 
 spellbook-freezerune-name = Freeze Rune
-spellbook-freezerune-desc = A rune that appears where the caster wishes, freezes in place anyone who walks on it.
+spellbook-freezerune-desc = A rune that appears where the caster wishes, freezes in place and damage anyone who walks on it.
+
+spellbook-frozentome-name = The Frozen Tome
+spellbook-frozentome-desc = An ancient tome rich in cryo magic, allows the wielder to cast a ray of frost.
