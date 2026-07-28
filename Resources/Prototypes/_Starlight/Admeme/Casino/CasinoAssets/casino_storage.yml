@@ -6,11 +6,11 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _Starlight/Structures/Storage/closet.rsi
+    sprite: _Starlight/Admeme/Casino/Objects/casino_locker.rsi
   - type: EntityStorageVisuals
-    stateBaseClosed: casino
-    stateDoorOpen: casino_open
-    stateDoorClosed: casino_door
+    stateBaseClosed: generic
+    stateDoorOpen: generic_open
+    stateDoorClosed: generic_door
   - type: AccessReader
     access: [["Casino"]]
 

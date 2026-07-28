@@ -5,13 +5,13 @@
   description: A casino chip. Only worth what the house says it is.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Misc/casino_chips.rsi
+    sprite: _Starlight/Admeme/Casino/Objects/casino_chips.rsi
     state: chips-0
     layers:
     - state: chips-0
       map: ["base"]
   - type: Item
-    sprite: _Starlight/Objects/Misc/casino_chips.rsi
+    sprite: _Starlight/Admeme/Casino/Objects/casino_chips.rsi
     size: Tiny
   - type: Appearance
   - type: UserInterface
