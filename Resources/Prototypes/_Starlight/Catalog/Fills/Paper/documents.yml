@@ -495,3 +495,14 @@
   components:
     - type: Paper
       content: doc-text-printer-station-location
+
+#endymion event lore stuff
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentEndymionMemorial
+  name: Endymion Memorial Unveiled
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-endymion-memorial
