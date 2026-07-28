@@ -53,7 +53,6 @@ public sealed partial class CosmicEffigySystem : EntitySystem
             effigyComp.Colossus = ent.Owner;
 
         ent.Comp.CurrentEffigy = effigy;
-        //ent.Comp.EffigyAvailable = false;
         if (ent.Comp.EffigyPlaceActionEntity is { } action && TryComp<LimitedChargesComponent>(action, out var charges))
         {
             _charges.SetCharges((action, charges), 0);
