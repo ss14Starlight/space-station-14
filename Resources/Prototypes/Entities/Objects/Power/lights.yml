@@ -273,7 +273,7 @@
   - type: LightBulb
     color: "#EEEEFF"
     lightEnergy: 1
-    lightRadius: 15
+    lightRadius: 13 #SL Edit
     lightSoftness: 0.9
     BurningTemperature: 350
     PowerUse: 12
