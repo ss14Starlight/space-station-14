@@ -19,6 +19,6 @@ self-backpack-category-spy-description =
     Don't like showing yourself out in the open? Well, aslong
     as you achieve you're goal of liberation, these tools will work.
     Includes: A bag full of chameleon gear, a camera bug,
-    chameleon controller implant, a fake mindshield implant.
+    chameleon controller implant, a dna scrambler implant.
 
 self-toolbox-name = SELF Supplies
