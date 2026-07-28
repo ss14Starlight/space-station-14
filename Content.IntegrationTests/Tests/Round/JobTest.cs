@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
-using Content.IntegrationTests.Pair;
+using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
@@ -49,6 +49,16 @@ public sealed class JobTest : GameTest
         Connected = true,
         InLobby = true
     };
+
+    // Starlight START: Separate settings for JobWeightTest to dirty the pair
+    public static PoolSettings Disconnected => new()
+    {
+        DummyTicker = false,
+        Connected = true,
+        InLobby = true,
+        Dirty = true,
+    };
+    // Starlight END
 
     /// <summary>
     /// Simple test that checks that starting the round spawns the player into the test map as a passenger.
@@ -121,6 +131,7 @@ public sealed class JobTest : GameTest
     /// get their preferred job.
     /// </summary>
     [Test]
+    [PairConfig(nameof(Disconnected))] // Starlight: Needs to dirty pair
     public async Task JobWeightTest()
     {
         var pair = Pair;
