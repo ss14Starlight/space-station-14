@@ -1,8 +1,5 @@
 # PLEASE, KEEP THIS FILE ALPHABETIZED
 - type: Tag
-  id: AnomalyCoreShadow
-
-- type: Tag
   id: AbductedTraitBackground
 
 - type: Tag
@@ -13,6 +10,12 @@
 
 - type: Tag
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
+
+- type: Tag
+  id: AnomalyCoreShadow
+
+- type: Tag
+  id: ApcAdvancedElectronics # ConstructionGraph: APC
 
 - type: Tag
   id: Arachnid
