@@ -40,7 +40,7 @@ public sealed class RuleCommand : ToolshedCommand
         _ticker ??= GetSys<GameTicker>();
         if (HasComp<EndedGameRuleComponent>(uid))
         {
-            ctx.WriteMarkup($"[color=red]Game rule {EntityManager.ToPrettyString(uid)} is already ended.[/color]");
+            ctx.WriteMarkup($"[color=red]Game rule {EntityManager.ToPrettyString(uid)} has already ended.[/color]");
             return uid;
         }
         _ticker.EndGameRule(uid);
