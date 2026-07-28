@@ -23,7 +23,8 @@ public sealed partial class CosmicSunderSystem : EntitySystem
         var origin = _transform.GetMapCoordinates(ent);
         var target = _transform.ToMapCoordinates(args.Target);
 
-        if (!_occluder.InRangeUnoccluded(origin, target, 0f, ignoreTouching: true))//0f zero range since yml has the range
+        // Range is validated by the action prototype; this only checks line of sight.
+        if (!_occluder.InRangeUnoccluded(origin, target, 0f, ignoreTouching: true))
             return;
 
         args.Handled = true;

@@ -784,6 +784,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-short-briefing"), Color.FromHex("#cae8e8"), null);
 
         var cultComp = EnsureComp<CosmicCultComponent>(uid);
+        //i would like them to be roundstart with the flag, but might lead to mobs targeting cultists roundstart.
         //_faction.AddFaction(uid, "CosmicCult");
 
         cultComp.EntropyBudget = 10; // pity balance

@@ -14,7 +14,6 @@ public sealed partial class CosmicHibernateSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    //[Dependency] private SharedChargesSystem _charges = default!;
 
     public override void Initialize()
     {

@@ -65,7 +65,7 @@ public sealed partial class CosmicEffigySystem : EntitySystem
     {
         RaiseLocalEvent(ent.Owner, new CosmicEffigyDestroyedEvent());
     }
-    // detect if linked effigy has died crit so on
+    //detect if linked effigy has decayed,crit,or deleted
     private void OnEffigyDestroyed(Entity<CosmicEffigyComponent> ent, ref CosmicEffigyDestroyedEvent args)
     {
         if (ent.Comp.Colossus is not { } colossusUid)
@@ -92,14 +92,11 @@ public sealed partial class CosmicEffigySystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var comp))
         {
-            // Still waiting for recharge
             if (comp.EffigyRechargeTimer is null || _timing.CurTime < comp.EffigyRechargeTimer)
                 continue;
 
-            // Consume recharge timer
             comp.EffigyRechargeTimer = null;
 
-            // No action assigned
             if (comp.EffigyPlaceActionEntity is not { } action)
             {
                 Dirty(uid, comp);

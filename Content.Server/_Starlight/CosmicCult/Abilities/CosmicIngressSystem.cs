@@ -88,10 +88,8 @@ public sealed partial class CosmicIngressSystem : EntitySystem
         var comp = ent.Comp;
         var coordinates = Transform(target).Coordinates;
 
-        //Play the force ingress effect first
         _audio.PlayPvs(comp.IngressSfx, ent);
         Spawn(comp.CultVfx, coordinates);
-        // Remove all existing doors on the tile
         foreach (var entity in _lookup.GetEntitiesIntersecting(coordinates))
         {
             if (HasComp<DoorComponent>(entity))
@@ -99,10 +97,8 @@ public sealed partial class CosmicIngressSystem : EntitySystem
         }
         // Spawn corrupted replacement
         var malignDoor = Spawn("DoorCosmicCult", coordinates);
-        //Pry open the new malign door
-        if (TryComp<DoorComponent>(malignDoor, out var door))
-        {
+
+        if (TryComp<DoorComponent>(malignDoor, out _))
             _door.StartOpening(malignDoor);
-        }
     }
 }
