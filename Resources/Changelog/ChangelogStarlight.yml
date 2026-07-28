@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: (Reach) SMES arent looped anymore so power issues wont suddenly arise.
-    type: Fix
-  id: 406669
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
 - author: Teddiousbear
   changes:
   - message: Enabled magboots now prevent FTL knockdown.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407068
   time: '2026-07-28T07:23:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5371
+- author: neomoth
+  changes:
+  - message: Fix being able to examine access on a PDA/ID that is out of reach or that can't be interacted with (e.g. in someone's strip menu).
+    type: Fix
+  id: 407069
+  time: '2026-07-28T07:23:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5365
 Order: -1
