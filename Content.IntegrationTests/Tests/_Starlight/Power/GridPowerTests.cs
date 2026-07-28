@@ -83,6 +83,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/Shipyard/Comet.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/GasTransport.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/Honeybee.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/JSS_MED_Apotherkerin.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/Mini_Ingeniator.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/Munchies.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/pioneer.yml"),
