@@ -1,23 +1,27 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Original sprites by Vermidia and modified by SpaceRox1244. Positions updated by mikeysaurus",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "paper"
+      "name": "paper",
+      "copyright": "Original sprites by Vermidia and modified by SpaceRox1244. Positions updated by mikeysaurus"
     },
     {
-      "name": "bounty"
+      "name": "bounty",
+      "copyright": "Original sprites by Vermidia and modified by SpaceRox1244. Positions updated by mikeysaurus"
     },
     {
-      "name": "captains_paper"
+      "name": "captains_paper",
+      "copyright": "Original sprites by Vermidia and modified by SpaceRox1244. Positions updated by mikeysaurus"
     },
     {
-      "name": "invoice"
+      "name": "invoice",
+      "copyright": "Original sprites by Vermidia and modified by SpaceRox1244. Positions updated by mikeysaurus"
     }
   ]
 }

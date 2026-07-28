@@ -20,7 +20,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.25
+          radius: 0.45 # Starlight, don't clip through walls
         hard: true
         restitution: 0.0
         density: 100

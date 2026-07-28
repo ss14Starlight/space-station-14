@@ -3163,7 +3163,7 @@
     implicitHeatRegulation: 250 # Add implicit heat regulation because they lacked it for some reason
     sweatHeatRegulation: 500 # Allow corgis to sweat, i dont know if dogs sweat but i am not implementing a different way of regulation just for them
     shiveringHeatRegulation: 500 # Allow corgis to shiver to warm up
-    normalBodyTemperature: 310.15 # Same as human
+    normalBodyTemperature: 311.45 # Slightly higher than human
     thermalRegulationTemperatureThreshold: 2 # Same as human
   # Starlight End
 

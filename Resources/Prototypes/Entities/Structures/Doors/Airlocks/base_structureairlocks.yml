@@ -187,11 +187,11 @@
     - Airlocks
     - WirePanels
     - Networking
-# ES START
+  # ES START
   - type: ESSparkOnHit
     prob: 0.25
     count: 2
-# ES END
+  # ES END
   placement:
     mode: SnapgridCenter
 

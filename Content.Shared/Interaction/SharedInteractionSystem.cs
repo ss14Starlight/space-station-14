@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared._ST.Interaction; // Stellar - Interaction particles
+using Content.Shared._ST.Interaction;
 using Content.Shared._FarHorizons.Util;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
