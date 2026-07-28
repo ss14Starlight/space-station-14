@@ -1,102 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: (Reach) Moved telecomms to CE office.
-    type: Tweak
-  id: 406665
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) Science can finally print circuitboards.
-    type: Tweak
-  id: 406666
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) Replaced the magnet with a salvage vendor.
-    type: Tweak
-  id: 406667
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) Science spawns with artifact now.
-    type: Fix
-  id: 406668
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) SMES arent looped anymore so power issues wont suddenly arise.
-    type: Fix
-  id: 406669
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Teddiousbear
-  changes:
-  - message: Enabled magboots now prevent FTL knockdown.
-    type: Add
-  id: 406670
-  time: '2026-07-16T08:27:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5061
-- author: Sparlight
-  changes:
-  - message: Patch packs and pills can now be named separately from their contents in the chemmaster UI.
-    type: Add
-  id: 406671
-  time: '2026-07-16T10:45:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5144
-- author: Sparlight
-  changes:
-  - message: Patch packs now show the correct number of patches in them in the chemmaster UI.
-    type: Fix
-  id: 406672
-  time: '2026-07-16T10:45:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5144
-- author: Sparlight
-  changes:
-  - message: Patch packs now make the correct number of patches when patches are already in the pack.
-    type: Fix
-  id: 406673
-  time: '2026-07-16T10:45:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5144
-- author: STARLIGHT TEAM
-  changes:
-  - message: Locale comment formatting.
-    type: Fix
-  id: 406674
-  time: '2026-07-16T11:22:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5153
-- author: Swonki
-  changes:
-  - message: derelict salvage cyborg is now whitelisted for its mining module.
-    type: Fix
-  id: 406675
-  time: '2026-07-16T11:22:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5152
-- author: neomoth
-  changes:
-  - message: Fixes Tippy being killed and never ever showing up again if you disconnect and reconnect without relaunching the game.
-    type: Fix
-  id: 406676
-  time: '2026-07-16T11:59:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5143
-- author: neomoth
-  changes:
-  - message: FINALLY fixes a visual bug with secure crates that made the paper label sprite always visible even when no label is attached.
-    type: Fix
-  id: 406677
-  time: '2026-07-16T11:59:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5143
-- author: DreadfulTaco
-  changes:
-  - message: Added ice cream maker machine.
-    type: Add
-  id: 406678
-  time: '2026-07-16T12:50:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4974
 - author: DreadfulTaco
   changes:
   - message: Added an ice cream maker circuit board available at the circuit fabricator.
@@ -2799,4 +2701,102 @@ Entries:
   id: 407064
   time: '2026-07-27T16:42:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5356
+- author: Conflee
+  changes:
+  - message: Made disposals 25% as lethal as before.
+    type: Tweak
+  id: 407065
+  time: '2026-07-28T06:45:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5372
+- author: wonderfulnewworld
+  changes:
+  - message: Sparks are now logged.
+    type: Add
+  id: 407066
+  time: '2026-07-28T07:23:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5371
+- author: wonderfulnewworld
+  changes:
+  - message: RCD/RPD/RPLDs now only spark once, when creating an object.
+    type: Tweak
+  id: 407067
+  time: '2026-07-28T07:23:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5371
+- author: wonderfulnewworld
+  changes:
+  - message: Stun Baton sparks are smaller now.
+    type: Tweak
+  id: 407068
+  time: '2026-07-28T07:23:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5371
+- author: neomoth
+  changes:
+  - message: Fix being able to examine access on a PDA/ID that is out of reach or that can't be interacted with (e.g. in someone's strip menu).
+    type: Fix
+  id: 407069
+  time: '2026-07-28T07:23:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5365
+- author: DocMoth
+  changes:
+  - message: Adds the Magic Crayon back to loadouts.
+    type: Tweak
+  id: 407070
+  time: '2026-07-28T08:04:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5355
+- author: Spaghetti-Bit & ya3.14a
+  changes:
+  - message: "After some investments into making PPE more comfortable to wear for our avian coworkers, we've changed gas mask fittings for avali & resomi: Gas mask, security gas mask, security bio mask."
+    type: Tweak
+  id: 407071
+  time: '2026-07-28T08:04:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5362
+- author: Caws
+  changes:
+  - message: (Cluster) Fixed a turnstile that was facing the wrong way in Genpop.
+    type: Fix
+  id: 407072
+  time: '2026-07-28T08:04:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5353
+- author: Caws
+  changes:
+  - message: (Cluster) Removed firelocks on top of turnstiles in Security.
+    type: Remove
+  id: 407073
+  time: '2026-07-28T08:04:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5353
+- author: Caws
+  changes:
+  - message: Added Weather Markers, a simple system for roundstart weather on maps.
+    type: Add
+  id: 407074
+  time: '2026-07-28T08:42:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5283
+- author: VBlankFF
+  changes:
+  - message: Parasitic anomalies given by artifacts no longer fail to give the pulse action if the character had been given a parasitic anomaly earlier in the round.
+    type: Fix
+  id: 407075
+  time: '2026-07-28T09:06:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5369
+- author: STARLIGHT TEAM
+  changes:
+  - message: Metal hydrogen formation chance doubled.
+    type: Tweak
+  id: 407076
+  time: '2026-07-28T09:24:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5359
+- author: OMEGA
+  changes:
+  - message: Post lights can now be deconstructed with the RCD.
+    type: Tweak
+  id: 407077
+  time: '2026-07-28T09:56:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5374
+- author: redmushie
+  changes:
+  - message: RPDs and RPLDs now actually respect the layer you clicked on.
+    type: Fix
+  id: 407078
+  time: '2026-07-28T11:04:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5347
 Order: -1

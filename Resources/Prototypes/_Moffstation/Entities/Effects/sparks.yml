@@ -73,3 +73,4 @@
     radius: 8
     energy: 4
     color: "#960202"
+  - type: PortalBlacklist # Starlight
