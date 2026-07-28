@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: '(Starboard) Added the following to the BSO room: Combat medkit, recharger, cell recharger, AAC tablet.'
-    type: Add
-  id: 406697
-  time: '2026-07-18T10:44:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5177
-- author: Caws
-  changes:
   - message: (Starboard) Salvage dock has been extended (the sticky-out bit on the dock no longer stops you from docking).
     type: Tweak
   id: 406698
@@ -2799,4 +2792,11 @@ Entries:
   id: 407096
   time: '2026-07-28T19:29:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5384
+- author: wonderfulnewworld
+  changes:
+  - message: Secret doors no longer display an interaction particle.
+    type: Tweak
+  id: 407097
+  time: '2026-07-28T19:29:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5385
 Order: -1
