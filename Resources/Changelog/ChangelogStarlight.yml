@@ -1,13 +1,6 @@
 Entries:
 - author: Sparlight
   changes:
-  - message: Patch packs and pills can now be named separately from their contents in the chemmaster UI.
-    type: Add
-  id: 406671
-  time: '2026-07-16T10:45:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5144
-- author: Sparlight
-  changes:
   - message: Patch packs now show the correct number of patches in them in the chemmaster UI.
     type: Fix
   id: 406672
@@ -2799,4 +2792,11 @@ Entries:
   id: 407070
   time: '2026-07-28T08:04:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5355
+- author: Spaghetti-Bit & ya3.14a
+  changes:
+  - message: "After some investments into making PPE more comfortable to wear for our avian coworkers, we've changed gas mask fittings for avali & resomi: Gas mask, security gas mask, security bio mask."
+    type: Tweak
+  id: 407071
+  time: '2026-07-28T08:04:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5362
 Order: -1
