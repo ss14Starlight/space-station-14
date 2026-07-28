@@ -1,13 +1,6 @@
 Entries:
 - author: DreadfulTaco
   changes:
-  - message: Added two round start plants, cinnamon and mint.
-    type: Add
-  id: 406682
-  time: '2026-07-16T12:50:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4974
-- author: DreadfulTaco
-  changes:
   - message: Added two mutations, cinnaflare and spearmint.
     type: Add
   id: 406683
@@ -2799,4 +2792,11 @@ Entries:
   id: 407081
   time: '2026-07-28T12:45:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5364
+- author: redmushie
+  changes:
+  - message: RCD now spawns the correct post light variant.
+    type: Fix
+  id: 407082
+  time: '2026-07-28T13:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5382
 Order: -1
