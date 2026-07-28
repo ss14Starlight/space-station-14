@@ -172,7 +172,7 @@
   suffix: SRV, Filled, Green
   components:
   - type: AccessReader
-    access: [["Service"]]
+    access: [["HeadOfPersonnel"]]
 
 - type: entity
   id: TicketMachineQM
@@ -204,7 +204,7 @@
   suffix: Atmos, Filled, Cyan
   components:
   - type: AccessReader
-    access: [["Atmospherics"]]
+    access: [["ChiefEngineer"]]
 
 - type: entity
   id: TicketMachineRD
