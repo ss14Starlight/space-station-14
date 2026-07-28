@@ -1,67 +1,4 @@
 Entries:
-- author: Littlemen/Romero
-  changes:
-  - message: Dragon doesnt feel the bloodloss anymore, he is just built different.
-    type: Tweak
-  id: 406685
-  time: '2026-07-16T16:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5129
-- author: Rinary
-  changes:
-  - message: Removed peacemaker grenade launcher due to broken balance.
-    type: Remove
-  id: 406686
-  time: '2026-07-16T18:23:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5157
-- author: Arkanic
-  changes:
-  - message: Fix disposals deleting people.
-    type: Fix
-  id: 406687
-  time: '2026-07-17T08:48:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5164
-- author: TaserTheFox
-  changes:
-  - message: Fixed loc spam with the RCD families UI.
-    type: Fix
-  id: 406688
-  time: '2026-07-17T08:48:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5165
-- author: TaserTheFox
-  changes:
-  - message: Fixed missing loc strings in spray painter.
-    type: Fix
-  id: 406689
-  time: '2026-07-17T09:13:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5162
-- author: Spaghetti-Bit
-  changes:
-  - message: Removed Avali large caliber weapon knockback.
-    type: Tweak
-  id: 406690
-  time: '2026-07-17T09:28:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5142
-- author: Spaghetti-Bit
-  changes:
-  - message: Avali nanite shield breaks after taking a total of 50 damage, or heal a total of 50 damage.
-    type: Tweak
-  id: 406691
-  time: '2026-07-17T09:28:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5142
-- author: Spaghetti-Bit
-  changes:
-  - message: Avali guidebook entry, removing the weapon knockback mention. Explains the nanite shell technology.
-    type: Tweak
-  id: 406692
-  time: '2026-07-17T09:28:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5142
-- author: Rinary
-  changes:
-  - message: Fixed bug when unban did not register with NullLink, so unbanned player can't join on different servers.
-    type: Fix
-  id: 406693
-  time: '2026-07-17T11:05:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5167
 - author: DreadfulTaco
   changes:
   - message: Fixed Avali, Lizards, and Moths to be able to eat ice cream.
@@ -2799,4 +2736,67 @@ Entries:
   id: 407084
   time: '2026-07-28T14:26:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5377
+- author: Wizden Team
+  changes:
+  - message: Inflatables can now be sourced from emergency lockers.
+    type: Add
+  id: 407085
+  time: '2026-07-28T14:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5357
+- author: Wizden Team
+  changes:
+  - message: Conducting gloves to Uplink for 1 TC.
+    type: Add
+  id: 407086
+  time: '2026-07-28T14:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5357
+- author: Wizden Team
+  changes:
+  - message: Most outer clothing can now only hold small Items.
+    type: Tweak
+  id: 407087
+  time: '2026-07-28T14:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5357
+- author: Wizden Team
+  changes:
+  - message: Fixed Det coat armor values.
+    type: Fix
+  id: 407088
+  time: '2026-07-28T14:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5357
+- author: Wizden Team
+  changes:
+  - message: Explosion Resistance has been removed from the web vest.
+    type: Tweak
+  id: 407089
+  time: '2026-07-28T14:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5357
+- author: OMEGA
+  changes:
+  - message: When refilling RPD, RPLD or experimental variants of them, the correct name now displays.
+    type: Tweak
+  id: 407090
+  time: '2026-07-28T15:17:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5375
+- author: Caws
+  changes:
+  - message: (Boxcars) Removed Boxcars from the game files.
+    type: Remove
+  id: 407091
+  time: '2026-07-28T15:34:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5376
+- author: Wayiscute, Caws
+  changes:
+  - message: Added the new advanced APC, which supports up to 90kW of power draw, has a larger internal battery, and responds better to sudden changes in power demand. Unlockable by researching the "Power Generation" technology.
+    type: Add
+  id: 407092
+  time: '2026-07-28T15:53:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5345
+- author: Wayiscute, Caws
+  changes:
+  - message: Regular APC electronics have been made slightly more expensive in order to discourage APC stacking.
+    type: Tweak
+  id: 407093
+  time: '2026-07-28T15:53:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5345
 Order: -1
