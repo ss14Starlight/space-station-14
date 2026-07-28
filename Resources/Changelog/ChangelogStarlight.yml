@@ -1,11 +1,4 @@
 Entries:
-- author: DreadfulTaco
-  changes:
-  - message: Added more ice cream supplies to ChefVends, and to the ice cream starter crate.
-    type: Tweak
-  id: 406695
-  time: '2026-07-17T12:12:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5166
 - author: Caws
   changes:
   - message: (Starboard) Brigmedic now has doors connecting to the main hallway so that Brigmedics don't need to walk all the way around from Maintenance. These doors also allow Paramedics to deliver Security to Brigmedic without having to go around as well.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407094
   time: '2026-07-28T17:19:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5312
+- author: redmushie
+  changes:
+  - message: Issue where AI could teleport to the Monument.
+    type: Fix
+  id: 407095
+  time: '2026-07-28T17:51:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5342
 Order: -1
