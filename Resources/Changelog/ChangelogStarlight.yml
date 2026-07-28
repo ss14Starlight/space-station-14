@@ -1,39 +1,4 @@
 Entries:
-- author: Littlemen/Romero
-  changes:
-  - message: Dragon doesnt feel the bloodloss anymore, he is just built different.
-    type: Tweak
-  id: 406685
-  time: '2026-07-16T16:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5129
-- author: Rinary
-  changes:
-  - message: Removed peacemaker grenade launcher due to broken balance.
-    type: Remove
-  id: 406686
-  time: '2026-07-16T18:23:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5157
-- author: Arkanic
-  changes:
-  - message: Fix disposals deleting people.
-    type: Fix
-  id: 406687
-  time: '2026-07-17T08:48:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5164
-- author: TaserTheFox
-  changes:
-  - message: Fixed loc spam with the RCD families UI.
-    type: Fix
-  id: 406688
-  time: '2026-07-17T08:48:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5165
-- author: TaserTheFox
-  changes:
-  - message: Fixed missing loc strings in spray painter.
-    type: Fix
-  id: 406689
-  time: '2026-07-17T09:13:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5162
 - author: Spaghetti-Bit
   changes:
   - message: Removed Avali large caliber weapon knockback.
@@ -2799,4 +2764,39 @@ Entries:
   id: 407084
   time: '2026-07-28T14:26:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5377
+- author: Wizden Team
+  changes:
+  - message: Inflatables can now be sourced from emergency lockers.
+    type: Add
+  id: 407085
+  time: '2026-07-28T14:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5357
+- author: Wizden Team
+  changes:
+  - message: Conducting gloves to Uplink for 1 TC.
+    type: Add
+  id: 407086
+  time: '2026-07-28T14:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5357
+- author: Wizden Team
+  changes:
+  - message: Most outer clothing can now only hold small Items.
+    type: Tweak
+  id: 407087
+  time: '2026-07-28T14:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5357
+- author: Wizden Team
+  changes:
+  - message: Fixed Det coat armor values.
+    type: Fix
+  id: 407088
+  time: '2026-07-28T14:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5357
+- author: Wizden Team
+  changes:
+  - message: Explosion Resistance has been removed from the web vest.
+    type: Tweak
+  id: 407089
+  time: '2026-07-28T14:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5357
 Order: -1
