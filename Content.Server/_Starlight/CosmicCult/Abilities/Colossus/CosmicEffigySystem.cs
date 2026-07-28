@@ -50,17 +50,15 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         var effigy = Spawn(ent.Comp.EffigyPrototype, pos);
 
         if (TryComp<CosmicEffigyComponent>(effigy, out var effigyComp))
-        {
             effigyComp.Colossus = ent.Owner;
-        }
+
         ent.Comp.CurrentEffigy = effigy;
-        //ent.Comp.EffigyAvailable = false;
         if (ent.Comp.EffigyPlaceActionEntity is { } action && TryComp<LimitedChargesComponent>(action, out var charges))
         {
             _charges.SetCharges((action, charges), 0);
             Dirty(action, charges);
         }
-        ent.Comp.Timed = false;//Flag for midround spawn; prevents death timer.
+        ent.Comp.Timed = false; // Flag for midround spawn; prevents death timer.
         Dirty(ent);
     }
     private void OnEffigyTerminating(Entity<CosmicEffigyComponent> ent, ref EntityTerminatingEvent args)
