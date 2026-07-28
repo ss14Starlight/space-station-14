@@ -252,6 +252,9 @@
   id: EmergencyWelder
 
 - type: Tag
+  id: ERTShuttle
+
+- type: Tag
   id: Felionoid
 
 - type: Tag
