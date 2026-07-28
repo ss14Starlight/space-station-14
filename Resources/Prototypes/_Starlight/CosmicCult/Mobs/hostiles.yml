@@ -8,6 +8,14 @@
     baseWalkSpeed: 3
     baseSprintSpeed: 3
     weightlessModifier: 1
+  - type: NoSlip
+  - type: ProtectedFromStepTriggers
+  - type: IgnoreSpiderWeb
+  - type: Insulated
+  - type: StatusEffects
+    allowed:
+    - Stunned
+    - Stutter
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -119,6 +127,27 @@
   components:
   - type: Physics
     bodyStatus: OnGround
+  - type: NpcFactionMember
+    factions:
+    - CosmicCult
+  - type: TypingIndicator
+    proto: CosmicTyping
+  - type: LanguageKnowledge
+    speaks:
+    - Cosmic
+    understands:
+    - Cosmic
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-cosmic-oracle-name
+    description: ghost-role-information-cosmic-oracle-description
+    rules: ghost-role-information-cosmic-oracle-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonistFlock
+  - type: GhostTakeoverAvailable
+  
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicLodestar ]
