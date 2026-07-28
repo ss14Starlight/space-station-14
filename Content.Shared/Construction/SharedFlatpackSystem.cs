@@ -98,7 +98,7 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
         // make it ignore ghosts
         // Starlight-start
         if (_entityLookup.GetEntitiesIntersecting(coords, LookupFlags.Dynamic | LookupFlags.Static)
-            .Any(entity => entity != uid && (!_tag.HasTag(entity, "Table") || !ent.Comp.AllowUnpackOnTables)))
+            .Any(entity => entity != uid && (!_tag.HasTag(entity, "Table") || !ent.Comp.AllowUnpackOnTables) && !_tag.HasTag(entity, "Ghost")))
         // Starlight-end
         {
             // this popup is on the server because the predicts on the intersection is crazy
