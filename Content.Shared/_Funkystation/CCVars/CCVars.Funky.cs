@@ -1,4 +1,3 @@
-// SPDX-FileCopyrightText: 2026 taydeo <tay@funkystation.org>
 
 using Robust.Shared.Configuration;
 
