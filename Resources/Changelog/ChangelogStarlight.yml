@@ -1,34 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Salvage dock has been extended (the sticky-out bit on the dock no longer stops you from docking).
-    type: Tweak
-  id: 406698
-  time: '2026-07-18T10:44:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5177
-- author: Caws
-  changes:
-  - message: (Starboard) The sticky-out bit on the Salvage dock now aligns with the Salvage shuttle's blast doors.
-    type: Tweak
-  id: 406699
-  time: '2026-07-18T10:44:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5177
-- author: Caws
-  changes:
-  - message: (Starboard) Mining's dock has been extended so that it doesn't block Salvage from docking.
-    type: Tweak
-  id: 406700
-  time: '2026-07-18T10:44:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5177
-- author: Caws
-  changes:
-  - message: (Starboard) Fixed the rotation of a wallmounted NanoMed that would dispense items into a wall.
-    type: Fix
-  id: 406701
-  time: '2026-07-18T10:44:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5177
-- author: Caws
-  changes:
   - message: (Starboard) Fixed the BSO's room having a big ERROR in it.
     type: Fix
   id: 406702
@@ -2799,4 +2771,32 @@ Entries:
   id: 407097
   time: '2026-07-28T19:29:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5385
+- author: Conflee
+  changes:
+  - message: Changed saturation of colored light tubes and bulbs to be 20% less saturated. Barely noticeable, but it blows out colors a bit less and is less painful to look at.
+    type: Tweak
+  id: 407098
+  time: '2026-07-28T19:57:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5368
+- author: Conflee
+  changes:
+  - message: Fixed 'spotlights' over some light sources like Exterior Lights, Floodlights, and Flares. Exterior Lights still have a spotlight, but it is smaller. Floodlights only have a spotlight in a fully lit room, and it is very small. Any light can have a spotlight if light stacking happens, but this reduces their occurrence in normal gameplay.
+    type: Fix
+  id: 407099
+  time: '2026-07-28T19:57:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5368
+- author: Conflee
+  changes:
+  - message: Fixed ghosts not being able to see the new additive lighting effects.
+    type: Fix
+  id: 407100
+  time: '2026-07-28T19:57:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5368
+- author: Conflee
+  changes:
+  - message: Lighting from sparks are less bright, so they should in theory not hurt Shadekin- or if they do, they will hurt less than before.
+    type: Tweak
+  id: 407101
+  time: '2026-07-28T19:57:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5368
 Order: -1
