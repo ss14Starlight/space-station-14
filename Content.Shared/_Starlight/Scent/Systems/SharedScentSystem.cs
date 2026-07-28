@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Scent.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 
@@ -12,6 +13,7 @@ public abstract class SharedScentSystem : EntitySystem
     [Dependency] protected readonly SharedActionsSystem Actions = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
+    [Dependency] protected readonly MobStateSystem MobState = default!;
 
     public override void Initialize()
     {
@@ -69,6 +71,9 @@ public abstract class SharedScentSystem : EntitySystem
     // Not the voluntary sneeze action. Locks out Toggle Smelling for 'lockout'.
     public void ForceSneeze(Entity<SmellerComponent> ent, TimeSpan lockout)
     {
+        if (MobState.IsDead(ent.Owner))
+            return;
+
         if (TryComp<ActionComponent>(ent.Comp.ToggleActionEntity, out var toggleAction) &&
             Actions.IsCooldownActive(toggleAction))
         {
