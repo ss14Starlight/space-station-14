@@ -36,12 +36,12 @@ job-name-medtak-pilot = MedTak Pilot
 job-name-medtak-security = MedTak Security
 job-name-medtak-borg = MedTak Silicon
 
-job-name-eto-lead = E.T.O Team Lead
-job-name-eto-corpsman = E.T.O Corpsman
-job-name-eto-combattech = E.T.O Combat Technician
-job-name-eto-demo = E.T.O Demolitionist
-job-name-eto-crackhead = E.T.O Martyr
-job-name-eto-operative = E.T.O Footman
+job-name-eto-lead = ETO Team Lead
+job-name-eto-corpsman = ETO Corpsman
+job-name-eto-combattech = ETO Combat Technician
+job-name-eto-demo = ETO Demolitionist
+job-name-eto-martyr = ETO Martyr
+job-name-eto-operative = ETO Footman
 
 job-greet-information-rules = {$jobRules}
 
