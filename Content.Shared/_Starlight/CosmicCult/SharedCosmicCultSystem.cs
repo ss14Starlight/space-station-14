@@ -47,7 +47,7 @@ public abstract partial class SharedCosmicCultSystem : EntitySystem
         }
     }
 
-    public bool EntitySeesCult(EntityUid user) => 
+    public bool EntitySeesCult(EntityUid user) =>
     EntityIsCultist(user)
     || HasComp<CosmicCultFactionComponent>(user)
     || HasComp<GhostComponent>(user)
