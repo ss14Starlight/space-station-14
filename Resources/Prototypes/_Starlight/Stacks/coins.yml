@@ -7,5 +7,5 @@
 - type: stack
   id: CasinoChip
   name: stack-casino-chip
-  icon: { sprite: /Textures/_Starlight/Objects/Misc/casino_chips.rsi, state: chips-0 }
+  icon: { sprite: _Starlight/Objects/Misc/casino_chips.rsi, state: chips-0 }
   spawn: CasinoChip

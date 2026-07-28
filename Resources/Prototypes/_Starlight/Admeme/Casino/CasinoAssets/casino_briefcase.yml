@@ -6,7 +6,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _Starlight/Objects/Storage/casino_briefcase.rsi
+    sprite: _Starlight/Admeme/Casino/Objects/casino_briefcase.rsi
     layers:
     - state: icon
       map: [ base ]
@@ -14,7 +14,7 @@
       map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
   - type: Item
-    sprite: _Starlight/Objects/Storage/casino_briefcase.rsi
+    sprite: _Starlight/Admeme/Casino/Objects/casino_briefcase.rsi
   - type: Lock
   - type: LockVisuals
   - type: AccessReader
