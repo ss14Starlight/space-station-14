@@ -1478,18 +1478,45 @@ namespace Content.Shared.Interaction
             if (!interactionParticles || HasComp<VirtualItemComponent>(uidB))
                 return;
 
+            #region Starlight
+            var particleType = interactionParticleType; // Starlight
+
+            // Determine this at the source so the server knows that the event is private.
+            // The client system retains the same check as a fallback.
+            if (particleType != StellarInteractionParticleType.Pull &&
+                Transform(uidA).ParentUid != Transform(uidB.Value).ParentUid)
+            {
+                particleType = StellarInteractionParticleType.InHand;
+            }
+
+            var particleEvent = new StellarInteractionParticleEvent(GetNetEntity(uidA), GetNetEntity(used), GetNetEntity(uidB.Value), !_net.IsServer, particleType);
+            #endregion
+
             if (_net.IsServer)
             {
+
+                #region Starlight
+                if (particleType == StellarInteractionParticleType.InHand)
+                {
+                    // Predicted actions already produced the local client's particle.
+                    // For a non-predicted action, send it only to the actor.
+                    if (!predicted)
+                        RaiseNetworkEvent(particleEvent, Filter.Entities(uidA));
+
+                    return;
+                }
+                #endregion
+
                 var filter = predicted
                     ? Filter.PvsExcept(uidA, entityManager: EntityManager)
                     : Filter.Pvs(uidA, entityManager: EntityManager);
 
-                RaiseNetworkEvent(new StellarInteractionParticleEvent(GetNetEntity(uidA), GetNetEntity(used), GetNetEntity(uidB.Value), false, interactionParticleType), filter);
+                RaiseNetworkEvent(particleEvent, filter); // Starlight
             }
             else if (_gameTiming.IsFirstTimePredicted)
             {
-                var evt = new StellarInteractionParticleEvent(GetNetEntity(uidA), GetNetEntity(used), GetNetEntity(uidB.Value), true, interactionParticleType);
-                RaiseLocalEvent(evt);
+                //var evt = new StellarInteractionParticleEvent(GetNetEntity(uidA), GetNetEntity(used), GetNetEntity(uidB.Value), true, interactionParticleType); // Starlight
+                RaiseLocalEvent(particleEvent); // Starlight
             }
             // End Stellar/ES Additions - Interaction particles
         }

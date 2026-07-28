@@ -68,5 +68,9 @@ ui-options-admin-ghost-script-tooltip =
     Path is relative to your launcher's data directory, typically inside AppData on Windows or .local/share on Linux.
 
 # Graphics
-ui-options-interaction-particles = Show interaction particles
-ui-options-interaction-particles-tooltip = Shows hand, item, and pulling effects when characters interact.
+ui-options-interaction-particles = Interaction particles:
+ui-options-interaction-particles-all = All, including your inventory actions
+ui-options-interaction-particles-without-inhand = All except in-hand and inventory
+ui-options-interaction-particles-none = None
+ui-options-interaction-particles-tooltip =
+    In-hand and inventory particles are only shown for actions performed by your character.
