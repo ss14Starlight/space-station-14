@@ -488,5 +488,7 @@ public enum LogType
     #region Starlight log flags
     Railroading = 1000,
     BugReport = 1001,
+    RoundstartRulesAdded = 1002,
+    Sparks = 1003,
     #endregion
 }

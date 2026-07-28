@@ -60,9 +60,14 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
         // Starlight start
         // Handle non-job role time requirements
-        var roleName = protoManager.TryIndex<PlayTimeTrackerPrototype>(proto, out var tracker)
-            ? tracker.LocalizedName
-            : Loc.GetString(proto);
+        string roleName;
+        PlayTimeTrackerPrototype? tracker = null;
+        if (jobProto is not null && protoManager.TryIndex<JobPrototype>(jobProto, out var indexedJobName))
+            roleName = indexedJobName.LocalizedName;
+        else if (protoManager.TryIndex(proto, out tracker))
+            roleName = tracker.LocalizedName;
+        else
+            roleName = Loc.GetString(proto);
 
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-not-too-high" : "role-timer-role-sufficient",

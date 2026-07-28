@@ -110,6 +110,26 @@
     Steel: 100
 
 - type: latheRecipe
+  id: LeftLegCyberBudget
+  result: LeftLegCyberBudget
+  categories:
+  - Cyberlimbs
+  completetime: 2.5
+  materials:
+    Plastic: 150
+    Steel: 150
+
+- type: latheRecipe
+  id: RightLegCyberBudget
+  result: RightLegCyberBudget
+  categories:
+  - Cyberlimbs
+  completetime: 2.5
+  materials:
+    Plastic: 150
+    Steel: 150
+
+- type: latheRecipe
   id: LeftLegCyber
   result: LeftLegCyber
   categories:

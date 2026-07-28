@@ -1,0 +1,184 @@
+- type: voice
+  id: borgColorfingert
+  voice: 1000
+  name: tts-voice-name-0
+  sex: Unsexed
+  silicon: true
+  copyright: Colorfinger
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: borgMozillaAu1
+  voice: 1001
+  name: tts-voice-name-1
+  sex: Unsexed
+  silicon: true
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: borgMozillaAu2
+  voice: 1002
+  name: tts-voice-name-2
+  sex: Unsexed
+  silicon: true
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: borgTalkBox
+  voice: 1005
+  name: tts-voice-name-1005
+  sex: Unsexed
+  silicon: true
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: borgXoan
+  voice: 1007
+  name: tts-voice-name-7
+  sex: Male
+  silicon: true
+  copyright: Xoan
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: borgMozillaAu29
+  voice: 1008
+  name: tts-voice-name-1008
+  sex: Female
+  silicon: true
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: borgMozillaAu30
+  voice: 1009
+  name: tts-voice-name-1009
+  sex: Female
+  silicon: true
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: borgMozillaAu31
+  voice: 1010
+  name: tts-voice-name-1010
+  sex: Female
+  silicon: true
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: johnson
+  voice: 1011
+  name: tts-voice-name-1011
+  sex: Male
+  silicon: true
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: calmAutomated
+  voice: 1012
+  name: tts-voice-name-1012
+  sex: Male
+  silicon: true
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: silicon
+  voice: 1013
+  name: tts-voice-name-1013
+  sex: Male
+  silicon: true
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: maxcap
+  voice: 1014
+  name: tts-voice-name-1014
+  sex: Female
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: polito
+  voice: 1015
+  name: tts-voice-name-1015
+  sex: Female
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: sarahborg
+  voice: 1016
+  name: tts-voice-name-1016
+  sex: Female
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: trashbot
+  voice: 1017
+  name: tts-voice-name-1017
+  sex: Female
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: botboy
+  voice: 1018
+  name: tts-voice-name-1018
+  sex: Male
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: johnborgman
+  voice: 1019
+  name: tts-voice-name-1019
+  sex: Male
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: speekinspel
+  voice: 1020
+  name: tts-voice-name-1020
+  sex: Male
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: vocoder
+  voice: 1021
+  name: tts-voice-name-1021
+  sex: Male
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: wardbot
+  voice: 1022
+  name: tts-voice-name-1022
+  sex: Male
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: chip
+  voice: 1023
+  name: tts-voice-name-1023
+  sex: Unsexed
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.

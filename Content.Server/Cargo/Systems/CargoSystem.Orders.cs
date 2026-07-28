@@ -1,6 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Numerics;
 using Content.Server.Cargo.Components;
+using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.Prototypes;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -96,7 +100,7 @@ namespace Content.Server.Cargo.Systems
                 return;
 
             var orderId = GenerateOrderId(orderDatabase);
-            var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account, GetNetEntity(stationUid.Value)); // Starlight: +stationUid
+            var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account, GetNetEntity(stationUid.Value), slip.Product, product.GasType, product.GasMoles, product.GasTemperature); // Starlight
 
             if (!TryAddOrder(stationUid.Value, ent.Comp.Account, data, orderDatabase))
             {
@@ -193,7 +197,9 @@ namespace Content.Server.Cargo.Systems
             }
 
             // Invalid order
-            if (!_protoMan.HasIndex<EntityPrototype>(order.ProductId))
+            if (!(order.ProductId.HasValue || order.GasType.HasValue) || // Starlight since they are both nullable now
+                (order.ProductId.HasValue && !_protoMan.HasIndex<EntityPrototype>(order.ProductId.Value)) || // Starlight
+                (order.GasType.HasValue && !_protoMan.HasIndex(order.GasType))) // Starlight: Check gas too
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
                 PlayDenySound(uid, component);
@@ -285,10 +291,50 @@ namespace Content.Server.Cargo.Systems
             _listEnts.Clear();
             GetTradeStations(stationData, ref _listEnts);
             EntityUid? tradeDestination = null;
+            var orderSlipPrinted = new HashSet<EntityUid>(); // Starlight
 
             // Try to fulfill from any station where possible, if the pad is not occupied.
             foreach (var trade in _listEnts)
             {
+                // Starlight BEGIN: Gas orders
+                if (order.GasType != null)
+                {
+                    var gasTanks = GetCargoGasPallets(trade, BuySellType.Buy);
+                    _random.Shuffle(gasTanks);
+                    var freeTanks = GetFreeCargoGasPallets(gasTanks,
+                        Enum.Parse<Gas>(order.GasType.Value.Id), order.GasMoles, order.GasTemperature,
+                        order.OrderQuantity);
+
+                    // Not enough room? Fail.
+                    if (freeTanks.Count < order.OrderQuantity)
+                        continue;
+
+                    tradeDestination = trade;
+                    foreach (var gasTank in freeTanks)
+                    {
+                        if (order.NumDispatched >= order.OrderQuantity)
+                            break;
+
+                        // Dispatch to this tank ONCE. It is already repeated in the "freeTanks" list if the order will
+                        // fit multiple times.
+                        var gas = new GasMixture(gasTank.Component.Air.Volume) { Temperature = order.GasTemperature };
+                        gas.SetMoles(Enum.Parse<Gas>(order.GasType.Value.Id), order.GasMoles);
+                        _atmosphereSystem.Merge(gasTank.Component.Air, gas);
+
+                        // Print one order slip at this gas tank only if we haven't already.
+                        // This prevents printing 30 slips at once; cargo only needs 1 signed anyways..
+                        if (orderSlipPrinted.Add(gasTank.Entity))
+                            CreateOrderSlip(order, account,
+                                new EntityCoordinates(gasTank.Entity, Vector2.Zero),
+                                orderDatabase.PrinterOutput, null, order.ProductName);
+
+                        order.NumDispatched++;
+                    }
+
+                    break;
+                }
+                // Starlight END: Gas orders
+
                 var tradePads = GetCargoPallets(trade, BuySellType.Buy);
                 _random.Shuffle(tradePads);
 
@@ -406,7 +452,7 @@ namespace Content.Server.Cargo.Systems
 
             var targetAccount = component.Mode == CargoOrderConsoleMode.SendToPrimary ? bank.PrimaryAccount : component.Account;
 
-            var data = new CargoOrderData(GenerateOrderId(orderDatabase), product.Product, product.Name, product.Cost, args.Amount, args.Requester, args.Reason, component.Account, GetNetEntity(stationUid.Value)); // Starlight: +stationUid
+            var data = new CargoOrderData(GenerateOrderId(orderDatabase), product.Product, product.Name, product.Cost, args.Amount, args.Requester, args.Reason, component.Account, GetNetEntity(stationUid.Value), args.CargoProductId, product.GasType, product.GasMoles, product.GasTemperature); // Starlight
 
             if (!TryAddOrder(stationUid.Value, targetAccount, data, orderDatabase))
             {
@@ -544,7 +590,7 @@ namespace Content.Server.Cargo.Systems
 
         public bool AddAndApproveOrder(
             EntityUid dbUid,
-            string spawnId,
+            EntProtoId? spawnId, // Starlight
             string name,
             int cost,
             int qty,
@@ -553,13 +599,17 @@ namespace Content.Server.Cargo.Systems
             string dest,
             StationCargoOrderDatabaseComponent component,
             ProtoId<CargoAccountPrototype> account,
-            Entity<StationDataComponent> stationData
-        )
+            Entity<StationDataComponent> stationData,
+            ProtoId<CargoProductPrototype> cargoProductId, // Starlight
+            ProtoId<GasPrototype>? gasType, // Starlight
+            float gasMoles, // Starlight
+            float gasTemperature) // Starlight
         {
-            DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(spawnId));
+            DebugTools.Assert(!spawnId.HasValue || _protoMan.HasIndex<EntityPrototype>(spawnId));
+            DebugTools.Assert(!gasType.HasValue || _protoMan.HasIndex(gasType));
             // Make an order
             var id = GenerateOrderId(component);
-            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account, GetNetEntity(stationData.Owner)); // Starlight: +stationUid
+            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account, GetNetEntity(stationData.Owner), cargoProductId, gasType, gasMoles, gasTemperature); // Starlight
 
             // Approve it now
             order.SetApproverData(dest, sender);
@@ -649,35 +699,10 @@ namespace Content.Server.Cargo.Systems
             // Ensure the item doesn't start anchored
             _transformSystem.Unanchor(item, Transform(item));
 
-            // Create a sheet of paper to write the order details on
-            var printed = Spawn(paperProto, spawn);
-            if (TryComp<PaperComponent>(printed, out var paper))
-            {
-                // fill in the order data
-                var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", order.OrderId));
-                _metaSystem.SetEntityName(printed, val);
-
-                var accountProto = _protoMan.Index(account);
-                _paperSystem.SetContent((printed, paper),
-                    Loc.GetString(
-                        "cargo-console-paper-print-text",
-                        ("orderNumber", order.OrderId),
-                        ("itemName", MetaData(item).EntityName),
-                        ("orderQuantity", order.OrderQuantity),
-                        ("requester", order.Requester),
-                        ("reason", string.IsNullOrWhiteSpace(order.Reason) ? Loc.GetString("cargo-console-paper-reason-default") : order.Reason),
-                        ("account", Loc.GetString(accountProto.Name)),
-                        ("accountcode", Loc.GetString(accountProto.Code)),
-                        ("approver", string.IsNullOrWhiteSpace(order.Approver) ? Loc.GetString("cargo-console-paper-approver-default") : order.Approver)));
-
-                // attempt to attach the label to the item
-                if (TryComp<PaperLabelComponent>(item, out var label))
-                {
-                    _slots.TryInsert(item, label.LabelSlot, printed, null);
-                }
-            }
-
             // Starlight BEGIN
+            // Create a sheet of paper to write the order details on
+            CreateOrderSlip(order, account, spawn, paperProto, item, MetaData(item).EntityName); // Replaced with method
+
             // If the entity does not support tamper seals, do not apply one.
             if (!TryComp<TamperSealableComponent>(item, out var tamperSealable))
                 return true;
@@ -709,6 +734,41 @@ namespace Content.Server.Cargo.Systems
             return true;
             // Starlight END
         }
+
+        #region Starlight
+
+        private void CreateOrderSlip(CargoOrderData order, ProtoId<CargoAccountPrototype> account,
+            EntityCoordinates spawn, string? paperProto, EntityUid? item, string name)
+        {
+            var printed = Spawn(paperProto, spawn);
+            if (TryComp<PaperComponent>(printed, out var paper))
+            {
+                // fill in the order data
+                var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", order.OrderId));
+                _metaSystem.SetEntityName(printed, val);
+
+                var accountProto = _protoMan.Index(account);
+                _paperSystem.SetContent((printed, paper),
+                    Loc.GetString(
+                        "cargo-console-paper-print-text",
+                        ("orderNumber", order.OrderId),
+                        ("itemName", name),
+                        ("orderQuantity", order.OrderQuantity),
+                        ("requester", order.Requester),
+                        ("reason", string.IsNullOrWhiteSpace(order.Reason) ? Loc.GetString("cargo-console-paper-reason-default") : order.Reason),
+                        ("account", Loc.GetString(accountProto.Name)),
+                        ("accountcode", Loc.GetString(accountProto.Code)),
+                        ("approver", string.IsNullOrWhiteSpace(order.Approver) ? Loc.GetString("cargo-console-paper-approver-default") : order.Approver)));
+
+                // attempt to attach the label to the item
+                if (item.HasValue && TryComp<PaperLabelComponent>(item, out var label))
+                {
+                    _slots.TryInsert(item.Value, label.LabelSlot, printed, null);
+                }
+            }
+        }
+
+        #endregion
 
         public List<ProtoId<CargoProductPrototype>> GetAvailableProducts(Entity<CargoOrderConsoleComponent> ent)
         {

@@ -321,3 +321,84 @@
   - type: BlockWeather
   - type: Ricochetable
     chance: 0.4
+
+# Honeypots BEGIN
+# I tried inheritance on these guys, but ran into various things not inheriting, so YAML anchors it is.
+
+# Solid wall
+
+## Normal
+- type: entity
+  parent: [MarkerBase, WallSolid]
+  id: WallSolidHoneypot
+  description: &honeypotDesc Notifies admins when it gets damaged. Can be destroyed as normal.
+  suffix: &honeypotSuffix Honeypot
+  components:
+    - type: TimedDespawn
+      lifetime: 2.1
+    - type: SpawnOnDespawn
+      prototype: MobQuartzCrab
+    - type: ReplaceOnInit
+      proto: WallSolid
+      overrides: &honeypotOverrides
+        - type: AdminNotifyOnDamage
+          subject: "honeypot"
+    - &solidWallSprite
+      type: Sprite
+      sprite: Structures/Walls/solid.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: &scale 1.25,1.25
+        - state: full
+
+## Indestructible
+- type: entity
+  parent: [MarkerBase, WallSolid]
+  id: WallSolidHoneypotIndestructible
+  description: &honeypotDescIndestructible Notifies admins when it gets damaged and is secretly indestructible.
+  suffix: &honeypotSuffixIndestructible Honeypot, Indestructible
+  components:
+    - type: ReplaceOnInit
+      proto: WallSolid
+      overrides: &honeypotOverridesIndestructible
+        - type: AdminNotifyOnDamage
+          subject: "honeypot"
+        - type: Destructible
+          thresholds: []
+    - *solidWallSprite
+
+# Reinforced wall
+
+## Normal
+- type: entity
+  parent: [MarkerBase, WallReinforced]
+  id: WallReinforcedHoneypot
+  description: *honeypotDesc
+  suffix: *honeypotSuffix
+  components:
+    - type: ReplaceOnInit
+      proto: WallReinforced
+      overrides: *honeypotOverrides
+    - &reinforcedWallSprite
+      type: Sprite
+      sprite: Structures/Walls/solid.rsi
+      layers:
+        - sprite: _Starlight/Markers/cross.rsi
+          state: orange
+          scale: *scale
+        - state: rgeneric
+
+## Indestructible
+- type: entity
+  parent: [MarkerBase, WallReinforced]
+  id: WallReinforcedHoneypotIndestructible
+  description: *honeypotDescIndestructible
+  suffix: *honeypotSuffixIndestructible
+  components:
+    - type: ReplaceOnInit
+      proto: WallReinforced
+      overrides: *honeypotOverridesIndestructible
+    - *reinforcedWallSprite
+
+# Honeypots END
