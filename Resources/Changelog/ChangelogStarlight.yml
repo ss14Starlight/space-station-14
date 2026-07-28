@@ -1,11 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: FINALLY fixes a visual bug with secure crates that made the paper label sprite always visible even when no label is attached.
-    type: Fix
-  id: 406677
-  time: '2026-07-16T11:59:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5143
 - author: DreadfulTaco
   changes:
   - message: Added ice cream maker machine.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407076
   time: '2026-07-28T09:24:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5359
+- author: OMEGA
+  changes:
+  - message: Post lights can now be deconstructed with the RCD.
+    type: Tweak
+  id: 407077
+  time: '2026-07-28T09:56:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5374
 Order: -1
