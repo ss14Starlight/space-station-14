@@ -127,9 +127,7 @@
   components:
   - type: Physics
     bodyStatus: OnGround
-  - type: NpcFactionMember
-    factions:
-    - CosmicCult
+  - type: AntagImmune
   - type: TypingIndicator
     proto: CosmicTyping
   - type: LanguageKnowledge
