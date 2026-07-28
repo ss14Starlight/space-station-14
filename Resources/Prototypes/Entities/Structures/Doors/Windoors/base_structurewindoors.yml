@@ -178,6 +178,11 @@
   - type: Tag #Starlight -- minimum arming distance
     tags:
       - BulletUnarmedCollide #Starlight -- Make bullet pre-arming not phase through windoors
+  # ES Start
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
+  # ES End
 
 - type: entity
   id: BaseSecureWindoor
