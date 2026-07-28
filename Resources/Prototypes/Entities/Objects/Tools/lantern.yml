@@ -39,8 +39,8 @@
       delay: 1
     - type: PointLight
       enabled: false
-      radius: 3
-      energy: 2.5
+      radius: 4 #SL Edit 3 -> 4
+      energy: 1.5 #SL Edit 2.5 -> 1.5
       color: "#FFC458"
       netsync: false
     - type: Appearance
