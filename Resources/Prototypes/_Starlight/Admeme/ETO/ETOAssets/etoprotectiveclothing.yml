@@ -3,8 +3,8 @@
 - type: entity
   parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseETOContraband]
   id: ClothingOuterVestWebETOBase
-  name: E.T.O Web Vest
-  description: A Protective vest built for E.T.O Members, allows you to stay light on your feet.
+  name: ETO Web Vest
+  description: A Protective vest built for ETO Members, allows you to stay light on your feet.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/armour/etovest.rsi
@@ -28,8 +28,8 @@
 - type: entity
   parent: [ClothingOuterVestWebETOBase, BaseETOContraband] #web vest so it should have some pockets for ammo
   id: ClothingOuterVestWebETOCorpsman
-  name: E.T.O Medical Vest
-  description: A Protective vest built for E.T.O Corpsmen, allows you to stay light on your feet and get to those in need.
+  name: ETO Medical Vest
+  description: A Protective vest built for ETO Corpsmen, allows you to stay light on your feet and get to those in need.
   components:
     - type: Sprite
       sprite: _Starlight/Admeme/ETO/clothing/armour/etomedicvest.rsi
@@ -51,7 +51,7 @@
 - type: entity
   parent: [ClothingOuterVestWebETOBase, BaseETOContraband] #web vest so it should have some pockets for ammo
   id: ClothingOuterVestWebETOLead
-  name: E.T.O Lead Web Vest
+  name: ETO Lead Web Vest
   description: A highly protective Web Vest designed for the Team Leader, Death to our enemy, freedom to their slaves.
   components:
     - type: Sprite
@@ -74,7 +74,7 @@
 - type: entity
   parent: [ClothingOuterVestWebETOBase, BaseETOContraband] #web vest so it should have some pockets for ammo
   id: ClothingOuterVestWebETOCombatTech
-  name: E.T.O Combat Technician Vest
+  name: ETO Combat Technician Vest
   description: A sturdy vest ripped off of an advanced Engineers hardsuit, protects the body but weighs down the user.
   components:
     - type: Sprite
@@ -100,8 +100,8 @@
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseETOContraband]
   id: ClothingHeadHelmetETO
-  name: E.T.O Operative Helmet
-  description: A helmet designed for E.T.O Operatives, providing good skull protection and a good way to tell who your pals are.
+  name: ETO Operative Helmet
+  description: A helmet designed for ETO Operatives, providing good skull protection and a good way to tell who your pals are.
   components:
   - type: Armor
     modifiers:
@@ -118,7 +118,7 @@
 - type: entity
   parent: [ClothingHeadBase, BaseETOContraband]
   id: ClothingHeadETOEvaHelmet
-  name: E.T.O Space Hazard Helmet
+  name: ETO Space Hazard Helmet
   description: A Space certified helmet designed to work with most space certified softsuits, has some added ballistic protection to keep you alive.
   components:
   - type: Sprite
@@ -161,7 +161,7 @@
 - type: entity
   parent: [ BaseETOContraband, ClothingOuterEVASuitBase ]
   id: ClothingOuterSoftsuitETO
-  name: E.T.O Space Hazard suit
+  name: ETO Space Hazard suit
   description: A Lightweight EVA Suit padded with ballistic protection, slows you down but keeps you alive.
   components:
   - type: Sprite
