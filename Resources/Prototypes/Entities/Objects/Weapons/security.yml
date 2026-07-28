@@ -90,6 +90,7 @@
   # ES START
   - type: ESSparkOnItemToggle
     count: 1
+    sparkPrototype: SLEffectSparksBaton # Starlight, smaller sparks
   # ES END
   - type: StaminaDamageOnHit
     damage: 35
