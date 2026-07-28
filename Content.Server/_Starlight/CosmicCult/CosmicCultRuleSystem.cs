@@ -934,9 +934,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         if (AssociatedGamerule(uid) is not { } cult)
             return;
 
-        _faction.RemoveFaction(uid.Owner, "CosmicCult");
-        _faction.AddFaction(uid.Owner, "NanoTrasen");
-
         var wasSteward = HasComp<CosmicCultLeadComponent>(uid);
         var cosmicGamerule = cult.Comp;
 
@@ -952,6 +949,9 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             UpdateCultData(cosmicGamerule.MonumentInGame);
             return;
         }
+        
+        _faction.RemoveFaction(uid.Owner, "CosmicCult");
+        _faction.AddFaction(uid.Owner, "NanoTrasen");
 
         if (wasSteward)
         {
