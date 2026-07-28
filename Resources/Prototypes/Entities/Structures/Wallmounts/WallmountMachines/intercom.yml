@@ -116,6 +116,7 @@
 
 - type: entity
   id: IntercomAssembly
+  parent: BaseWallmountMetallic
   name: intercom assembly
   description: An intercom. It doesn't seem very helpful right now.
   components:
@@ -127,6 +128,19 @@
     - state: panel
       visible: false
       map: [ "wires" ]
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+          params:
+            volume: -4
   - type: Appearance
   - type: GenericVisualizer
     visuals:
