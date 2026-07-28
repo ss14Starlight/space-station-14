@@ -147,7 +147,6 @@
     mindRoles:
     - MindRoleGhostRoleTeamAntagonistFlock
   - type: GhostTakeoverAvailable
-  
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicLodestar ]
