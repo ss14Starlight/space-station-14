@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'B'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_delta.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_delta.yml
         - type: StationCargoShuttle
           path: /Maps/_Starlight/Shuttles/cargo_silica.yml
         - type: StationJobs
