@@ -137,7 +137,7 @@ public sealed partial class RCDSystem : EntitySystem
 
         // Set the current RCD prototype to the one supplied
         component.ProtoId = args.ProtoId;
-        _esSparks.DoSparks(uid, 1, user: args.Actor); // ES
+        //_esSparks.DoSparks(uid, 1, user: args.Actor); // ES - Starlight, we don't need sparks on RCD construct selection
         UpdateCachedPrototype(uid, component); // Starlight: RPD
 
         _adminLogger.Add(LogType.RCD, LogImpact.Low, $"{args.Actor} set RCD mode to: {prototype.Mode} : {prototype.Prototype}");
