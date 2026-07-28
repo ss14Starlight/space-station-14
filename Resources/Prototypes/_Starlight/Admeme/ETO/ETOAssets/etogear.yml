@@ -1,7 +1,7 @@
 - type: entity
   parent: [ClothingEyesBase, BaseETOContraband]
   id: ClothingEyesSunGlassesETO
-  name: E.T.O Operative Glasses
+  name: ETO Operative Glasses
   description: Sunglasses modified with the ability to see who's who.
   components:
   - type: Sprite
@@ -17,8 +17,8 @@
 - type: entity
   parent: [ClothingHeadset, BaseETOContraband]
   id: ClothingHeadsetETO
-  name: E.T.O Operative Headset
-  description: A headset supplied to E.T.O Operatives to maintain communication through battle.
+  name: ETO Operative Headset
+  description: A headset supplied to ETO Operatives to maintain communication through battle.
   components:
   - type: ContainerFill
     containers:
@@ -34,8 +34,8 @@
 - type: entity
   parent: [ClothingHeadset, BaseETOContraband]
   id: ClothingHeadsetETOSpecialist
-  name: E.T.O Specialist Headset
-  description: A headset supplied to E.T.O Specialists to do what they do best.
+  name: ETO Specialist Headset
+  description: A headset supplied to ETO Specialists to do what they do best.
   components:
   - type: ContainerFill
     containers:
@@ -51,7 +51,7 @@
 - type: entity
   parent: [ ClothingMaskGas, BaseETOContraband ]
   id: ClothingMaskGasETOLead
-  name: E.T.O Lead Gas Mask
+  name: ETO Lead Gas Mask
   description: A mask best fit for a lead terrorist. Protects the wearer from pot shots, but won't keep you alive alone. Modified with an Admin and Health hud to show you health and the allegience of those around you.
   components:
   - type: Sprite
@@ -89,8 +89,8 @@
 - type: entity
   parent: [ ClothingMaskGas, BaseETOContraband ]
   id: ClothingMaskGasETO
-  name: E.T.O Operative Mask
-  description: Standard E.T.O Operative mask, has some ballistic reinforcement to keep your face from being swiss cheesed all the time, but won't keep you alive alone.
+  name: ETO Operative Mask
+  description: Standard ETO Operative mask, has some ballistic reinforcement to keep your face from being swiss cheesed all the time, but won't keep you alive alone.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/etomaskgrunt.rsi
@@ -120,7 +120,7 @@
 - type: entity
   parent: [ ClothingMaskGas, BaseETOContraband ]
   id: ClothingMaskGasETOCorpsman
-  name: E.T.O Corpsman Gas Mask
+  name: ETO Corpsman Gas Mask
   description: A Mask fit for the corpsman, modified with a MedHud to show a holographic heads up of the health of your fellow team members.
   components:
   - type: Sprite

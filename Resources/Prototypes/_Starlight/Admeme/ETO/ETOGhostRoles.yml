@@ -1,6 +1,6 @@
 - type: entity
   id: RandomHumanoidSpawnerETOOperativeRifle
-  name: E.T.O Rifle Operative
+  name: ETO Rifle Operative
   suffix: Admeme
   components:
   - type: Sprite
@@ -66,7 +66,7 @@
 
 - type: entity
   id: RandomHumanoidSpawnerETOOperativeSMG
-  name: E.T.O SMG Operative
+  name: ETO SMG Operative
   suffix: Admeme
   components:
   - type: Sprite
@@ -132,7 +132,7 @@
 
 - type: entity
   id: RandomHumanoidSpawnerETOOCorpsman
-  name: E.T.O Corpsman Operative
+  name: ETO Corpsman Operative
   suffix: Admeme
   components:
   - type: Sprite
@@ -199,7 +199,7 @@
 
 - type: entity
   id: RandomHumanoidSpawnerETOLead
-  name: E.T.O Team Lead
+  name: ETO Team Lead
   suffix: Admeme
   components:
   - type: Sprite
@@ -265,7 +265,7 @@
 
 - type: entity
   id: RandomHumanoidSpawnerETOOCombatTech
-  name: E.T.O Combat Technician
+  name: ETO Combat Technician
   suffix: Admeme
   components:
   - type: Sprite

@@ -2,7 +2,7 @@
 - type: entity
   parent: [ ParamedicPDA ]
   id: ETOCorpsmanPDA
-  name: E.T.O Corpsman PDA
+  name: ETO Corpsman PDA
   description: Nobody dies on your watch, atleast not your team.
   components:
   - type: Appearance
@@ -25,7 +25,7 @@
 - type: entity
   parent: [ ParamedicPDA ]
   id: ETOTeamLeadPDA
-  name: E.T.O Team Lead PDA
+  name: ETO Team Lead PDA
   description: Lead the Team, Fight against the corporate giants. Death to our enemy, Freedom to their slaves.
   components:
   - type: Appearance
@@ -48,7 +48,7 @@
 - type: entity
   parent: BasePDA
   id: ETOOperativePDA
-  name: E.T.O Operative PDA
+  name: ETO Operative PDA
   description: Fight for freedom, Fight for the people.
   components:
   - type: Appearance
@@ -71,7 +71,7 @@
 - type: entity
   parent: BasePDA
   id: ETOOperativePDACombatTech
-  name: E.T.O Combat Technician PDA
+  name: ETO Combat Technician PDA
   description: Built the pillars that support our cause, break the chains that hold us back.
   components:
   - type: Appearance
@@ -93,8 +93,8 @@
 
 - type: entity
   parent: BasePDA
-  id: ETOOperativePDACrackhead
-  name: E.T.O Martyr PDA
+  id: ETOOperativePDAMartyr
+  name: ETO Martyr PDA
   description: Remember who you fight for, remember who you are.
   components:
   - type: Appearance
@@ -103,7 +103,7 @@
        !type:String
        pda-ETOMartyr
   - type: Pda
-    id: ETOIDCardCrackhead
+    id: ETOIDCardMartyr
   - type: PdaBorderColor
     accentVColor: "#3b2905"
     borderColor: "#3b2905"
@@ -117,7 +117,7 @@
 - type: entity
   parent: BasePDA
   id: ETOOperativePDADemo
-  name: E.T.O Demolitionist PDA
+  name: ETO Demolitionist PDA
   description: Blow apart their walls, Free those oppressed by your enemies.
   components:
   - type: Appearance

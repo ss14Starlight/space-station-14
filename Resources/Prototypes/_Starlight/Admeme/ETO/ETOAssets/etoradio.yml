@@ -1,8 +1,8 @@
 - type: entity
   parent: [EncryptionKey, BaseETOContraband]
   id: EncryptionKeyETO
-  name: E.T.O encryption key
-  description: An encryption key used by E.T.O Operatives.
+  name: ETO encryption key
+  description: An encryption key used by ETO Operatives.
   components:
     - type: EncryptionKey
       channels:
