@@ -18,7 +18,7 @@
   category: Lighting
   sprite: /Textures/_Starlight/Interface/Radial/RCD/small_light_post.png
   mode: ConstructObject
-  prototype: LightPostSmall
+  prototype: PoweredLightPostSmall
   cost: 3
   delay: 2
   collisionMask: MachineMask
