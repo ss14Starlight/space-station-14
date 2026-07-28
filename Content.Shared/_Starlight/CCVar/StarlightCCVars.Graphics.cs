@@ -10,7 +10,7 @@ public sealed partial class StarlightCCVars
     /// Controls which interaction particles are displayed.
     /// </summary>
     public static readonly CVarDef<int> InteractionParticlesMode =
-        CVarDef.Create("opt.interaction_particles_mode", (int) InteractionParticleMode.All, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("opt.interaction_particles_mode", (int) InteractionParticleMode.WithoutInHand, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
 
 /// <summary>
