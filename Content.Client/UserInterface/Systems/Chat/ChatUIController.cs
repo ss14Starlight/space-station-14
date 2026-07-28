@@ -782,7 +782,7 @@ public sealed partial class ChatUIController : UIController
         {
             language = foundLanguage;
             if (foundLanguage.ChatPrefix is null)
-                throw new Exception("how the genuine fuck did you trigger this without there being a prefix");
+                throw new Exception("Chat prefix is null? This should be impossible");
             var pfxLength = foundLanguage.ChatPrefix.Length + 1;
             if (text.Length < pfxLength + 1) return (ChatSelectChannel.None, text, null, null, foundLanguage);
             modText = text[pfxLength..];
