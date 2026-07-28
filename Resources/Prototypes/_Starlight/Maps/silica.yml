@@ -16,7 +16,7 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_silica.yml
         - type: StationCargoShuttle
-          path: /Maps/_Starlight/Shuttles/cargo_silica.yml
+          path: /Maps/_Starlight/Shuttles/Cargo/cargo_silica.yml
         - type: StationJobs
           availableJobs:
             #service
