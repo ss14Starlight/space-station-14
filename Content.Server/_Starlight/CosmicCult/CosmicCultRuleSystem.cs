@@ -949,7 +949,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             UpdateCultData(cosmicGamerule.MonumentInGame);
             return;
         }
-        
+
         _faction.RemoveFaction(uid.Owner, "CosmicCult");
         _faction.AddFaction(uid.Owner, "NanoTrasen");
 

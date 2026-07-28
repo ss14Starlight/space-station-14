@@ -18,10 +18,8 @@ public abstract partial class SharedCosmicCultSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<CosmicCultComponent, ComponentGetStateAttemptEvent>(OnCosmicCultCompGetStateAttempt);
         SubscribeLocalEvent<CosmicCultLeadComponent, ComponentGetStateAttemptEvent>(OnCosmicCultCompGetStateAttempt);
-
         SubscribeLocalEvent<CosmicCultComponent, ComponentStartup>(DirtyCosmicCultComps);
         SubscribeLocalEvent<CosmicCultLeadComponent, ComponentStartup>(DirtyCosmicCultComps);
         SubscribeLocalEvent<CosmicCultFactionComponent, ComponentStartup>(OnCosmicFactionStartup);
@@ -49,8 +47,8 @@ public abstract partial class SharedCosmicCultSystem : EntitySystem
         }
     }
 
-    public bool EntitySeesCult(EntityUid user) => EntityIsCultist(user) 
-    || HasComp<CosmicCultFactionComponent>(user) 
+    public bool EntitySeesCult(EntityUid user) => EntityIsCultist(user)
+    || HasComp<CosmicCultFactionComponent>(user)
     || HasComp<GhostComponent>(user)
     || HasComp<ShowNullSpaceComponent>(user);
 

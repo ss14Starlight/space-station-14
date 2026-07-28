@@ -92,11 +92,9 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         if (ent.Comp.Timed)
         {
             _actions.AddAction(ent, ref ent.Comp.EffigyPlaceActionEntity, ent.Comp.EffigyPlaceAction, ent);
-            //ent.Comp.EffigyRechargeTimer = TimeSpan.MaxValue;//maxtime since the recharge should be set after the effigy dies.
-            ent.Comp.EffigyRechargeTimer = null;//null in hopes of fixing shard 4
+            ent.Comp.EffigyRechargeTimer = null;
             Dirty(ent);
         }
-
         _actions.AddAction(ent, ref ent.Comp.HibernateActionEntity, ent.Comp.HibernateAction, ent);
     }
 
