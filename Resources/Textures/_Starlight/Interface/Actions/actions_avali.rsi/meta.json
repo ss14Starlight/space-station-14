@@ -18,6 +18,9 @@
 		},
 		{
 			"name": "heal-nanites"
+		},
+		{
+			"name": "shield-nanites"
 		}
 	]
 }
