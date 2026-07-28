@@ -48,8 +48,8 @@
   - type: PointLight
     enabled: false
     color: "#FF8080"
-    radius: 1.0
-    energy: 9.0
+    radius: 3.0 #SL Edit 1.0 -> 3.0
+    energy: 2.0 #SL Edit 9.0 -> 2.0
     netsync: false
   - type: IgnitionSource
     temperature: 1000

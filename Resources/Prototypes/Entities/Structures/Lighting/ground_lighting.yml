@@ -32,7 +32,7 @@
         - BulletImpassable
   - type: PointLight
     radius: 10
-    energy: 2.5
+    energy: 2 # SL Edit 2.5 -> 2
     softness: 0.9
     color: "#EEEEFF"
   - type: Anchorable
@@ -151,7 +151,7 @@
     state: base
   - type: PointLight
     enabled: true
-    radius: 15
+    radius: 13 #SL Edit 15 -> 13
     energy: 1
     softness: 0.9
     color: "#EEEEFF"
