@@ -1,27 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (Reach) Science can finally print circuitboards.
-    type: Tweak
-  id: 406666
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) Replaced the magnet with a salvage vendor.
-    type: Tweak
-  id: 406667
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
-  - message: (Reach) Science spawns with artifact now.
-    type: Fix
-  id: 406668
-  time: '2026-07-16T08:27:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5109
-- author: Johnny
-  changes:
   - message: (Reach) SMES arent looped anymore so power issues wont suddenly arise.
     type: Fix
   id: 406669
@@ -2799,4 +2778,25 @@ Entries:
   id: 407065
   time: '2026-07-28T06:45:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5372
+- author: wonderfulnewworld
+  changes:
+  - message: Sparks are now logged.
+    type: Add
+  id: 407066
+  time: '2026-07-28T07:23:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5371
+- author: wonderfulnewworld
+  changes:
+  - message: RCD/RPD/RPLDs now only spark once, when creating an object.
+    type: Tweak
+  id: 407067
+  time: '2026-07-28T07:23:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5371
+- author: wonderfulnewworld
+  changes:
+  - message: Stun Baton sparks are smaller now.
+    type: Tweak
+  id: 407068
+  time: '2026-07-28T07:23:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5371
 Order: -1
