@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station 13, [bloodpool, shadow_box_atack_effect, bloodspike] added by DocMoth from Starlight",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
@@ -19,7 +19,8 @@
                     0.3,
                     0.3
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "blood_barrier_ent",
@@ -29,7 +30,8 @@
                     0.3,
                     0.3
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "vampout",
@@ -48,7 +50,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "vampin",
@@ -67,7 +70,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "drainbeam",
@@ -106,10 +110,12 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "shadow_snare_base"
+            "name": "shadow_snare_base",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "pylon",
@@ -128,7 +134,8 @@
                     0.3,
                     0.3
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "mist_in",
@@ -149,7 +156,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "mist_out",
@@ -162,7 +170,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "shadow_box_atack_effect",
@@ -192,7 +201,8 @@
                     0.1,
                     2
                 ]
-            ]
+            ],
+            "copyright": "Sprites by DocMoth from Starlight"
         },
         {
             "name": "rallyoverlay",
@@ -214,14 +224,17 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "schizo",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "immobilized"
+            "name": "immobilized",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "demonic_grasp",
@@ -242,7 +255,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "bloodspike",
@@ -254,7 +268,8 @@
                     0.05,
                     1
                 ]
-            ]
+            ],
+            "copyright": "Sprites by DocMoth from Starlight"
         },
         {
             "name": "bloodpool",
@@ -268,7 +283,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Sprites by DocMoth from Starlight"
         },
         {
             "name": "blood_bond",
@@ -282,7 +298,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise Station 13"
         }
     ]
 }
