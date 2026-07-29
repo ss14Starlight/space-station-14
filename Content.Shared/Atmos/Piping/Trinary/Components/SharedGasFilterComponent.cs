@@ -10,14 +10,13 @@ namespace Content.Shared.Atmos.Piping.Trinary.Components
         Key,
     }
 
-    // Starlight edit- adapted for multiple gases
     [Serializable, NetSerializable]
     public sealed class GasFilterBoundUserInterfaceState : BoundUserInterfaceState
     {
         public string FilterLabel { get; }
         public float TransferRate { get; }
         public bool Enabled { get; }
-        public HashSet<Gas> FilteredGases { get; set; }
+        public HashSet<Gas> FilteredGases { get; set; } // Starlight edit- adapted for multiple gases
 
 
         public GasFilterBoundUserInterfaceState(string filterLabel, float transferRate, bool enabled, HashSet<Gas> filteredGases)
@@ -25,7 +24,7 @@ namespace Content.Shared.Atmos.Piping.Trinary.Components
             FilterLabel = filterLabel;
             TransferRate = transferRate;
             Enabled = enabled;
-            FilteredGases = filteredGases;
+            FilteredGases = filteredGases; // Starlight edit- adapted for multiple gases
         }
     }
 

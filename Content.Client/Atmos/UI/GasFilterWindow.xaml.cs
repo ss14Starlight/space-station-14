@@ -155,51 +155,50 @@ namespace Content.Client.Atmos.UI
         }
 
 
-        #region Starlight
-        // public void SetGasFiltered(string? id, string name)
-        // {
-        //     CurrentGasId = id;
-        //     CurrentGasLabel.Text = Loc.GetString("comp-gas-filter-ui-filter-gas-current") + $" {name}";
-        //     GasList.ClearSelected();
-        //     SelectGasButton.Disabled = true;
-        // }
+        /* Starlight BEGIN
+        public void SetGasFiltered(string? id, string name)
+        {
+            CurrentGasId = id;
+            CurrentGasLabel.Text = Loc.GetString("comp-gas-filter-ui-filter-gas-current") + $" {name}";
+            GasList.ClearSelected();
+            SelectGasButton.Disabled = true;
+        }
 
-        // public void PopulateGasList(IEnumerable<GasPrototype> gases)
-        // {
-        //     GasList.Add(new ItemList.Item(GasList)
-        //     {
-        //         Metadata = null,
-        //         Text = Loc.GetString("comp-gas-filter-ui-filter-gas-none")
-        //     });
+        public void PopulateGasList(IEnumerable<GasPrototype> gases)
+        {
+            GasList.Add(new ItemList.Item(GasList)
+            {
+                Metadata = null,
+                Text = Loc.GetString("comp-gas-filter-ui-filter-gas-none")
+            });
 
-        //     foreach (var gas in gases)
-        //     {
-        //         var gasName = Loc.GetString(gas.Name);
-        //         GasList.Add(GetGasItem(gas.ID, gasName, GasList));
-        //     }
-        // }
+            foreach (var gas in gases)
+            {
+                var gasName = Loc.GetString(gas.Name);
+                GasList.Add(GetGasItem(gas.ID, gasName, GasList));
+            }
+        }
 
-        // private static ItemList.Item GetGasItem(string id, string name, ItemList itemList)
-        // {
-        //     return new(itemList)
-        //     {
-        //         Metadata = id,
-        //         Text = name
-        //     };
-        // }
+        private static ItemList.Item GetGasItem(string id, string name, ItemList itemList)
+        {
+            return new(itemList)
+            {
+                Metadata = id,
+                Text = name
+            };
+        }
 
-        // private void GasListOnItemSelected(ItemList.ItemListSelectedEventArgs obj)
-        // {
-        //     SelectedGas = (string) obj.ItemList[obj.ItemIndex].Metadata!;
-        //     if(SelectedGas != CurrentGasId) SelectGasButton.Disabled = false;
-        // }
+        private void GasListOnItemSelected(ItemList.ItemListSelectedEventArgs obj)
+        {
+            SelectedGas = (string) obj.ItemList[obj.ItemIndex].Metadata!;
+            if(SelectedGas != CurrentGasId) SelectGasButton.Disabled = false;
+        }
 
-        // private void GasListOnItemDeselected(ItemList.ItemListDeselectedEventArgs obj)
-        // {
-        //     SelectedGas = CurrentGasId;
-        //     SelectGasButton.Disabled = true;
-        // }
-
-        #endregion
+        private void GasListOnItemDeselected(ItemList.ItemListDeselectedEventArgs obj)
+        {
+            SelectedGas = CurrentGasId;
+            SelectGasButton.Disabled = true;
+        }
+        Starlight END*/
     }
 }
