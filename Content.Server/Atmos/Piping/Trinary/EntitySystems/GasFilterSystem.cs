@@ -94,7 +94,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 _atmosphereSystem.Merge(inletNode.Air, returned);
                 // starlight edit end - fix subtick
 
-                _ambientSoundSystem.SetAmbience(uid, wantsToFilter.TotalMoles > 0f);
+                _ambientSoundSystem.SetAmbience(uid, actuallyFiltered.TotalMoles > 0f); // starlight edit - fix subtick
             }
 
             _atmosphereSystem.Merge(outletNode.Air, removed);
