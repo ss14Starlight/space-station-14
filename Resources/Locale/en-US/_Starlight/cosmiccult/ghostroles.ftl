@@ -9,7 +9,7 @@ ghost-role-information-theunknown-rules = ...
 
 ghost-role-information-cosmic-minion-description = Cosmic Cult Minion
     You are a manifestation of the Cosmic Cult.
-    
+
     Aid your maker and fellow minions in spreading corruption and entropy.
     Protect your allies, destroy those who oppose the Cosmic Cult, and further the goals of your cosmic master.
 

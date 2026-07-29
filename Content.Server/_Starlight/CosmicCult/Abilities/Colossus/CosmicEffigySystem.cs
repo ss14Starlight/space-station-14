@@ -78,8 +78,7 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         //Remove reference to the destroyed effigy
         if (colossus.CurrentEffigy == ent.Owner)
             colossus.CurrentEffigy = null;
-        
-        //notify the player of lost effigy
+
         _popup.PopupEntity(Loc.GetString("ghost-role-colossus-effigy-lost"),colossusUid,colossusUid,PopupType.LargeCaution);
 
         // Start the recharge timer, vanishing of effigy + time

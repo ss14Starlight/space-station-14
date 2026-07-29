@@ -32,8 +32,6 @@
         true
   - type: CosmicCultFaction
   - type: CosmicMinion
-  #- type: CosmicCult # shows just coscult but also makes them an full cultists.
-  #- type: ShowAntagIcons # shows all icons
   - type: NpcFactionMember
     factions:
     - SimpleHostile
