@@ -455,6 +455,7 @@
     noRot: true
     layers:
     - state: dispenser
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
     - state: dispenser-unshaded
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -471,7 +472,6 @@
     blockAmbience: false
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
-    - enum.SubfloorLayers.SecondLayer
   - type: PointLight
     radius: 1.2
     energy: 3.0
