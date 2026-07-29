@@ -41,17 +41,17 @@ tilemap:
   63: FloorDarkPavementVertical
   97: FloorDarkPlastic
   21: FloorDesertAstroSand
-  10: FloorDevAtmospherics
-  8: FloorDevCargo
-  5: FloorDevCommand
-  4: FloorDevDoor
-  7: FloorDevEngineering
-  2: FloorDevFloor
-  6: FloorDevMaintenance
-  16: FloorDevMedical
-  9: FloorDevSalvage
-  11: FloorDevSecurity
-  12: FloorDevService
+  10: Plating
+  8: Plating
+  5: Plating
+  4: Plating
+  7: Plating
+  2: Plating
+  6: Plating
+  16: Plating
+  9: Plating
+  11: Plating
+  12: Plating
   18: FloorFreezer
   72: FloorGlass
   64: FloorGlassPlasmaReinforced
@@ -168135,8 +168135,6 @@ entities:
       pos: 5.5,-71.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 120
     - type: AtmosPipeColor
@@ -171184,8 +171182,6 @@ entities:
       pos: 1.5,-71.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 120
     - type: AtmosPipeColor
