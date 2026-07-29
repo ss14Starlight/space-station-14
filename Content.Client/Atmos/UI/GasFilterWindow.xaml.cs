@@ -59,7 +59,7 @@ namespace Content.Client.Atmos.UI
                 SetFilterRate.Disabled = true;
             };
 
-            #region Starlight
+            // Starlight start
             var atmosphereSystem = _entityManager.System<SharedAtmosphereSystem>();
             var allGases = Enum.GetValues<Gas>();
             SetSize = new Vector2(520, 456);
@@ -109,7 +109,7 @@ namespace Content.Client.Atmos.UI
                 _gasControls.Add(value, gasButton);
                 _gases.AddChild(gasButton);
             }
-            #endregion
+            // Starlight end
         }
 
         public void SetTransferRate(float rate)

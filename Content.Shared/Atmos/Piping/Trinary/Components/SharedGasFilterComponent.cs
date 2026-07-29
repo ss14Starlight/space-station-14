@@ -51,7 +51,7 @@ namespace Content.Shared.Atmos.Piping.Trinary.Components
     }
 
     [Serializable, NetSerializable]
-    public sealed class GasFilterSelectGasMessage(HashSet<Gas> gases /*Starlight: Multiple gases*/) : BoundUserInterfaceMessage
+    public sealed class GasFilterSelectGasMessage(HashSet<Gas> gases) : BoundUserInterfaceMessage // Starlight: Multiple gases
     {
         public readonly HashSet<Gas> Gases = gases; // Starlight
     }
