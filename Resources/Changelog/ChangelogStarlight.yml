@@ -1,34 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Cluster) Overhauled piping network.
-    type: Tweak
-  id: 406706
-  time: '2026-07-18T11:29:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5183
-- author: neomoth
-  changes:
-  - message: Fix a small bug where upon relogging with a pulled-down mask, a popup would show up saying you need to pull it down when trying to eat/drink despite it already being down.
-    type: Fix
-  id: 406707
-  time: '2026-07-18T11:49:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5178
-- author: OMEGA
-  changes:
-  - message: (Bagel) Guidebook crates, and light switch system to Library.
-    type: Add
-  id: 406708
-  time: '2026-07-18T12:18:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5130
-- author: OMEGA
-  changes:
-  - message: (Bagel) Small room for miners, with a ticket machine and shuttle console.
-    type: Add
-  id: 406709
-  time: '2026-07-18T12:18:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5130
-- author: OMEGA
-  changes:
   - message: (Bagel) External dock for Mining and Salvage shuttles.
     type: Add
   id: 406710
@@ -2799,4 +2771,32 @@ Entries:
   id: 407105
   time: '2026-07-28T20:17:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5329
+- author: Infiniteb1u3
+  changes:
+  - message: new shuttle JSS-MED Apotherkerin to Shipyard console.
+    type: Add
+  id: 407106
+  time: '2026-07-28T21:00:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5169
+- author: OMEGA
+  changes:
+  - message: Removed hull plates blocking TEG's cold loop from cooling.
+    type: Fix
+  id: 407107
+  time: '2026-07-29T08:55:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5389
+- author: SeaTheProto
+  changes:
+  - message: allow Dominator, Miniature Energy Gun, Proto-5x, and the X-01's disabling settings to work with pacifism. Pacifists rejoice!
+    type: Tweak
+  id: 407108
+  time: '2026-07-29T08:55:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5394
+- author: wonderfulnewworld
+  changes:
+  - message: Interaction particles are now optional via options menu.
+    type: Tweak
+  id: 407109
+  time: '2026-07-29T09:17:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5386
 Order: -1

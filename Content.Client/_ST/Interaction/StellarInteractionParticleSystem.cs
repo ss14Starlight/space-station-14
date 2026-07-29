@@ -41,7 +41,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
     {
         base.Initialize();
 
-    Subs.CVar(_cfg, StarlightCCVars.InteractionParticlesMode, value => _interactionParticleMode = (InteractionParticleMode) value, true); // Starlight, interaction particle config
+        Subs.CVar(_cfg, StarlightCCVars.InteractionParticlesMode, value => _interactionParticleMode = (InteractionParticleMode) value, true); // Starlight, interaction particle config
 
         SubscribeAllEvent<StellarInteractionParticleEvent>(OnInteractionParticle);
     }
