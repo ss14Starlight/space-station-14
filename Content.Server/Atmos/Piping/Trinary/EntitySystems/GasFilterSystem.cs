@@ -298,6 +298,14 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private static string ListGases(GasFilterSelectGasMessage args) => string.Join(", ", args.Gases);
 
+        public void Set(EntityUid uid, GasFilterComponent component, bool value)
+        {
+            if (component.Enabled == value) return;
+            component.Enabled = value;
+            UpdateAppearance(uid, component);
+            DirtyUI(uid, component);
+        }
+
         #endregion
     }
 }
