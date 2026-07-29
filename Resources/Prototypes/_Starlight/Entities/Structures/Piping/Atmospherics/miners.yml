@@ -1,0 +1,149 @@
+# Funky gases START
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerBZ
+  name: BZ gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: BZ
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerHealium
+  name: healium gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: Healium
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerNitrium
+  name: nitrium gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: Nitrium
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerPluoxium
+  name: pluoxium gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: Pluoxium
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerHydrogen
+  name: hydrogen gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: Hydrogen
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerHyperNoblium
+  name: hyper-noblium gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: HyperNoblium
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerProtoNitrate
+  name: proto-nitrate gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: ProtoNitrate
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerZauker
+  name: zauker gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: Zauker
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerHalon
+  name: halon gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: Halon
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerHelium
+  name: helium gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: Helium
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerAntiNoblium
+  name: anti-noblium gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: AntiNoblium
+      maxExternalPressure: 4500
+
+# Funky gases END
+# Starlight gases START
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerUlnitranium
+  name: ulnitranium gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: Ulnitranium
+      maxExternalPressure: 4500
+
+- type: entity
+  parent: GasMinerBase
+  id: GasMinerZXA
+  name: ZXA gas miner
+  categories: [ DoNotMap ]
+  suffix: 4500kPa, DO NOT MAP
+  components:
+    - type: GasMiner
+      spawnGas: ZXA
+      maxExternalPressure: 4500
+
+# Starlight gases END

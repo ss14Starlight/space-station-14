@@ -173,7 +173,7 @@
 - type: entity
   parent: RevolverCapGun
   id: RevolverCapGunFake
-  suffix: Fake
+  suffix: Lethal # Starlight - Fake -> Lethal to make it obvious to mappers which one shoots actual bullets
   components:
   - type: RevolverAmmoProvider
     whitelist:

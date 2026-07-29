@@ -219,7 +219,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         LanguagePrototype language;
 
         if (message.Text.StartsWith(SharedLanguageSystem.ChatPrefixChar))
+        {
             language = _language.GetLanguageFromPrefix(source, ref message.Text, out _, true);
+            // remove prefix from tts property. luckily this is being done before anything else so i get to just set it directly, yay me!
+            message.Tts = message.Text;
+        }
         else language = languageOverride ?? _language.GetLanguage(source);
         // Starlight end
 
