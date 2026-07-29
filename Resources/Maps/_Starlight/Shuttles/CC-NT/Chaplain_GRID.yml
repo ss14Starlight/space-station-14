@@ -5,7 +5,7 @@ meta:
   forkId: starlight
   forkVersion: fa8e239d0a543c6b28095c43a0c08e188d953310
   time: 10/07/2025 21:52:20
-  entityCount: 516
+  entityCount: 517
 maps: []
 grids:
 - 2
@@ -3735,5 +3735,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-11.5
+      parent: 2
+- proto: SpawnPointERTChaplain
+  entities:
+  - uid: 532
+    components:
+    - type: Transform
+      pos: 0.5,2.5
       parent: 2
 ...
