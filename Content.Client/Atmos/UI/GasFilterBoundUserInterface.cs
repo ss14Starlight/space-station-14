@@ -35,6 +35,7 @@ namespace Content.Client.Atmos.UI
 
             _window.StatusChanged += OnToggleStatusButtonPressed;
             _window.FilterTransferRateChanged += OnFilterTransferRatePressed;
+            _window.GasSelectionChanged += OnGasSelectionChanged;
             // _window.SelectGasPressed += OnSelectGasPressed;
         }
 
@@ -82,20 +83,7 @@ namespace Content.Client.Atmos.UI
             _window.Title = (cast.FilterLabel);
             _window.SetFilterStatus(cast.Enabled);
             _window.SetTransferRate(cast.TransferRate);
-            #region Starlight
-            _window.GasSelectionChanged += OnGasSelectionChanged;
-            // if (cast.FilteredGases is not null)
-            // {
-            //     var atmos = EntMan.System<AtmosphereSystem>();
-            //     var gas = atmos.GetGas((Gas) cast.FilteredGas);
-            //     var gasName = Loc.GetString(gas.Name);
-            //     _window.SetGasFiltered(gas.ID, gasName);
-            // }
-            // else
-            // {
-            //     _window.SetGasFiltered(null, Loc.GetString("comp-gas-filter-ui-filter-gas-none"));
-            // }
-            #endregion
+            _window.UpdateState(cast); // Starlight add
         }
 
         private void OnGasSelectionChanged(HashSet<Gas> selectedGases) => SendMessage(new GasFilterSelectGasMessage(selectedGases)); // Starlight add

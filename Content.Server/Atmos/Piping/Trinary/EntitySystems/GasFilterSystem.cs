@@ -31,9 +31,15 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
         [Dependency] private SharedPopupSystem _popupSystem = default!;
         [Dependency] private NodeContainerSystem _nodeContainer = default!;
 
+        #region Starlight
+        [Dependency] private ILogManager _logManager = default!;
+        private ISawmill _sawmill = default!;
+        #endregion
+
         public override void Initialize()
         {
             base.Initialize();
+            _sawmill = _logManager.GetSawmill("atmos.gas_filter"); // Starlight add
 
             SubscribeLocalEvent<GasFilterComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<GasFilterComponent, AtmosDeviceUpdateEvent>(OnFilterUpdated);
@@ -232,7 +238,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 }
                 else
                 {
-                    Log.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with (an) invalid ID(s): {ListGases(args) /*Starlight*/}");
+                    _sawmill.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with (an) invalid ID(s): {ListGases(args) /*Starlight*/}");
                 }
             }
             else
