@@ -161,21 +161,21 @@ namespace Content.Client.Decals
         {
             var chunkCollection = gridComp.ChunkCollection.ChunkCollection;
 
-            foreach (var (indices, diff) in diffs)
+            foreach (var (index, diff) in diffs)
             {
-                if (!chunkCollection.TryGetValue(indices, out var chunk))
+                if (!chunkCollection.TryGetValue(index, out var chunk))
                 {
                     // We should always have this chunk already but if something desynced, don't crash, just start
                     // a fresh chunk from the diff and let the next full resync correct anything missed.
                     chunk = new DecalChunk();
-                    chunkCollection[indices] = chunk;
+                    chunkCollection[index] = chunk;
                 }
 
                 foreach (var removedId in diff.Removed)
                 {
                     if (chunk.Decals.ContainsKey(removedId))
                     {
-                        OnDecalRemoved(gridId, removedId, gridComp, indices, chunk);
+                        OnDecalRemoved(gridId, removedId, gridComp, index, chunk);
                         gridComp.DecalIndex.Remove(removedId);
                     }
                 }
@@ -183,7 +183,7 @@ namespace Content.Client.Decals
                 foreach (var (decalId, decal) in diff.Upserted)
                 {
                     chunk.Decals[decalId] = decal;
-                    gridComp.DecalIndex[decalId] = indices;
+                    gridComp.DecalIndex[decalId] = index;
                 }
             }
         }

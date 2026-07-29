@@ -48,9 +48,9 @@ namespace Content.Server.Decals
             public readonly HashSet<uint> Removed = [];
         }
 
-        private readonly Dictionary<NetEntity, Dictionary<Vector2i, ChunkDelta>> _chunkDeltas = new();
+        private readonly Dictionary<NetEntity, Dictionary<Vector2i, ChunkDelta>> _chunkDeltas = [];
 
-        private ChunkDelta GetChunkDelta(NetEntity grid, Vector2i chunkIndices)
+        private ChunkDelta GetChunkDelta(NetEntity grid, Vector2i chunkIndex)
         {
             if (!_chunkDeltas.TryGetValue(grid, out var perChunk))
             {
@@ -58,25 +58,25 @@ namespace Content.Server.Decals
                 _chunkDeltas[grid] = perChunk;
             }
 
-            if (!perChunk.TryGetValue(chunkIndices, out var delta))
+            if (!perChunk.TryGetValue(chunkIndex , out var delta))
             {
                 delta = new ChunkDelta();
-                perChunk[chunkIndices] = delta;
+                perChunk[chunkIndex] = delta;
             }
 
             return delta;
         }
 
-        private void RecordUpsertDelta(EntityUid uid, Vector2i chunkIndices, uint decalId, Decal decal)
+        private void RecordUpsertDelta(EntityUid uid, Vector2i chunkIndex, uint decalId, Decal decal)
         {
-            var delta = GetChunkDelta(GetNetEntity(uid), chunkIndices);
+            var delta = GetChunkDelta(GetNetEntity(uid), chunkIndex);
             delta.Removed.Remove(decalId);
             delta.Upserted[decalId] = decal;
         }
 
-        private void RecordRemovalDelta(EntityUid uid, Vector2i chunkIndices, uint decalId)
+        private void RecordRemovalDelta(EntityUid uid, Vector2i chunkIndex, uint decalId)
         {
-            var delta = GetChunkDelta(GetNetEntity(uid), chunkIndices);
+            var delta = GetChunkDelta(GetNetEntity(uid), chunkIndex);
             delta.Upserted.Remove(decalId);
             delta.Removed.Add(decalId);
         }
@@ -682,8 +682,8 @@ namespace Content.Server.Decals
             var diffChunks = _chunkViewerPool.Get();   // Starlight: chunks the session already has -> diff only
             foreach (var (netGrid, gridChunks) in chunksInRange)
             {
-                var newFull = _chunkIndexPool.Get();
-                var newDiff = _chunkIndexPool.Get();
+                var newFull = _chunkIndexPool.Get(); // Starlight Edit: newFull -> newFull
+                var newDiff = _chunkIndexPool.Get(); // Starlight
                 _dirtyChunks.TryGetValue(netGrid, out var dirtyChunks);
 
                 if (!previouslySent.TryGetValue(netGrid, out var previousChunks))
