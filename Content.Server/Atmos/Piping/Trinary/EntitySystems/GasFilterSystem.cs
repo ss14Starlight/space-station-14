@@ -81,10 +81,10 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             var removed = inletNode.Air.RemoveVolume(transferVol);
 
-            if (filter.FilteredGases.Count > 0)
+            if (filter.FilteredGases.Count > 0) // Starlight
             {
                 var wantsToFilter = new GasMixture(removed.Volume) { Temperature = removed.Temperature };
-                SetMixture(filter, removed, wantsToFilter);
+                SetMixture(filter, removed, wantsToFilter); // Starlight - moved logic to helper function
 
                 // starlight edit start - fix subtick
                 var filterVolume = GetTransferRate(filter, args, wantsToFilter, filterNode);
@@ -231,14 +231,14 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             {
                 if (args.Gases.All(gas => Enum.IsDefined(gas))) // Starlight
                 {
-                    filter.FilteredGases = args.Gases; // Starlight
+                    filter.FilteredGases = args.Gases; // Starlight: multiple gases
                     _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
-                        $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to {ListGases(args) /*Starlight*/}");
+                        $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to {ListGases(args) /*Starlight: updated logging*/}");
                     DirtyUI(uid, filter);
                 }
                 else
                 {
-                    _sawmill.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with (an) invalid ID(s): {ListGases(args) /*Starlight*/}");
+                    _sawmill.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with (an) invalid ID(s): {ListGases(args)}"); // Starlight: Updated logging
                 }
             }
             else

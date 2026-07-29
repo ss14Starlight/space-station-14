@@ -26,12 +26,12 @@ namespace Content.Client.Atmos.UI
         private readonly ButtonGroup _buttonGroup = new();
 
         public bool FilterStatus = true;
-        public HashSet<Gas> SelectedGases = new(); // Starlight edit
-        // public string? CurrentGasId
+        public HashSet<Gas> SelectedGases = new(); // Starlight
+        // public string? CurrentGasId // Starlight
 
-        public event Action? StatusChanged; // Starlight edit
+        public event Action? StatusChanged; // Starlight
         public event Action<string>? FilterTransferRateChanged;
-        // public event Action? SelectGasPressed;
+        // public event Action? SelectGasPressed; // Starlight
 
         #region Starlight
         [Dependency] private IEntityManager _entityManager = default!;
@@ -50,7 +50,7 @@ namespace Content.Client.Atmos.UI
             IoCManager.InjectDependencies(this); // Starlight add
 
             ToggleStatusButton.OnPressed += _ => SetFilterStatus(!FilterStatus);
-            ToggleStatusButton.OnPressed += _ => StatusChanged?.Invoke();
+            ToggleStatusButton.OnPressed += _ => StatusChanged?.Invoke(); // Starlight
 
             FilterTransferRateInput.OnTextChanged += _ => SetFilterRate.Disabled = false;
             SetFilterRate.OnPressed += _ =>
@@ -130,6 +130,7 @@ namespace Content.Client.Atmos.UI
             }
         }
 
+        #region Starlight
         public void UpdateState(GasFilterBoundUserInterfaceState state)
         {
             _isUpdatingState = true;
@@ -153,7 +154,7 @@ namespace Content.Client.Atmos.UI
                 button.Pressed = SelectedGases.Contains(gas);
             }
         }
-
+        #endregion
 
         /* Starlight BEGIN
         public void SetGasFiltered(string? id, string name)
