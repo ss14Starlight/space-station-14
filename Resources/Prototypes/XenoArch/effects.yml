@@ -141,8 +141,8 @@
       weight: 2.0
     - id: XenoArtifactAccessCommand
       weight: 2.0
-    - id: XenoArtifactAccessAll
-      weight: 1.0
+    #- id: XenoArtifactAccessAll #AA is probably too much
+    #  weight: 1.0
 
 - type: entityTable
   id: XenoArtifactEffectsHandheldOnlyTable
