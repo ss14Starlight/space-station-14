@@ -470,6 +470,7 @@
   - type: SubFloorHide
     blockInteractions: false
     blockAmbience: false
+    allowAnchoringUnderCover: true
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: PointLight

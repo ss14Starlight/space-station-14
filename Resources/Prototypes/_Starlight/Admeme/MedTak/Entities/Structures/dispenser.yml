@@ -82,6 +82,8 @@
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: WallMount
+  - type: SubFloorHide
+    allowAnchoringUnderCover: false
   - type: CollideOnAnchor
     enable: false
   - type: Physics
