@@ -30,3 +30,4 @@ action-speech-spell-iginiterune = ARDE VIVAT !!
 action-speech-spell-iginiterune-tts = ARDE VIVAT!!
 action-speech-spell-firearrow = FLAGRA !
 action-speech-spell-firearrow-tts = FLAGRA!!
+action-speech-spell-frozentome = GLACIA !!

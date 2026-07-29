@@ -1833,3 +1833,7 @@
     impactFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_blue
+  - type: TriggerOnHitscanFired
+  - type: SpeakOnTrigger
+    text: action-speech-spell-frozentome
+    targetUser: true
