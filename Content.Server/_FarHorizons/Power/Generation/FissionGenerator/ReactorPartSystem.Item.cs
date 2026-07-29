@@ -13,7 +13,7 @@ public sealed partial class ReactorPartSystem
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private SharedPointLightSystem _lightSystem = default!;
 
-    private float _burnDiv => (ReactorPartBurnTemp - ReactorPartHotTemp) / 5; // The 5 is how much heat damage insulated gloves protect from
+    private static float BurnDiv(ReactorPartComponent component) => (component.BurnTemp - component.HotTemp) / 5; // The 5 is how much heat damage insulated gloves protect from
 
     public override void Initialize()
     {
@@ -96,9 +96,9 @@ public sealed partial class ReactorPartSystem
                     break;
             }
 
-            if (comp.Temperature > Atmospherics.T0C + ReactorPartBurnTemp)
+            if (comp.Temperature > Atmospherics.T0C + comp.BurnTemp)
                 args.PushMarkup(Loc.GetString("reactor-part-burning"));
-            else if (comp.Temperature > Atmospherics.T0C + ReactorPartHotTemp)
+            else if (comp.Temperature > Atmospherics.T0C + comp.HotTemp)
                 args.PushMarkup(Loc.GetString("reactor-part-hot"));
         }
     }
@@ -146,15 +146,15 @@ public sealed partial class ReactorPartSystem
         component.Temperature -= DeltaT;
         if (!gasMix.Immutable) // This prevents it from heating up space itself
             // This viloates COE, but if energy is conserved, then pulling out a hot rod will instantly turn the room into an oven
-            gasMix.Temperature += 0.1f * DeltaT * component.ThermalMass / _atmosphereSystem.GetHeatCapacity(gasMix, false);
+            gasMix.Temperature += component.SpaceHeatTransferRate * DeltaT * component.ThermalMass / _atmosphereSystem.GetHeatCapacity(gasMix, false);
 
         var burncomp = EnsureComp<DamageOnInteractComponent>(uid);
 
-        burncomp.IsDamageActive = component.Temperature > Atmospherics.T0C + ReactorPartHotTemp;
+        burncomp.IsDamageActive = component.Temperature > Atmospherics.T0C + component.HotTemp;
 
         if (burncomp.IsDamageActive)
         {
-            var damage = Math.Max((component.Temperature - Atmospherics.T0C - ReactorPartHotTemp) / _burnDiv, 0);
+            var damage = Math.Min(Math.Max((component.Temperature - Atmospherics.T0C - component.HotTemp) / BurnDiv(component), 0),component.MaxBurnDamage);
 
             // Giant string of if/else that makes sure it will interfere only as much as it needs to
             if (burncomp.Damage == null)

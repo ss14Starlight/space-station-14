@@ -39,10 +39,8 @@ public sealed class CorporealCommand : ToolshedCommand
         ghost.AlwaysVisible = true;
         ghost.BypassGhostChat = true;
         EntityManager.Dirty(uid, ghost);
-        EnsureComp<SpeechComponent>(uid);
         EnsureComp<EmotingComponent>(uid);
         EnsureComp<VocalComponent>(uid);
-        EnsureComp<TextToSpeechComponent>(uid);
         ToggleVisibility(uid, true);
         _ghost.CorporealStateChanged(uid, true);
         return uid;
@@ -77,7 +75,6 @@ public sealed class CorporealCommand : ToolshedCommand
         ghost.AlwaysVisible = false;
         ghost.BypassGhostChat = false;
         EntityManager.Dirty(uid, ghost);
-        RemComp<SpeechComponent>(uid);
         RemComp<EmotingComponent>(uid);
         RemComp<VocalComponent>(uid);
         ToggleVisibility(uid, false);
