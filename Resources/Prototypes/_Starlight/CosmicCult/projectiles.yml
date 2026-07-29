@@ -65,7 +65,7 @@
     damage:
       types:
         Cold: 12
-        Structural: 2
+        Structural: 5
     soundHit:
       path: /Audio/_Starlight/CosmicCult/projectile_razor_hit.ogg
       params:
