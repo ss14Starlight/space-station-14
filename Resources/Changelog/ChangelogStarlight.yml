@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Bagel) External dock for Mining and Salvage shuttles.
-    type: Add
-  id: 406710
-  time: '2026-07-18T12:18:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5130
-- author: OMEGA
-  changes:
   - message: (Bagel) Coroner, Roboticist and Surgeon lockers.
     type: Add
   id: 406711
@@ -2799,4 +2792,11 @@ Entries:
   id: 407109
   time: '2026-07-29T09:17:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5386
+- author: wonderfulnewworld
+  changes:
+  - message: Hypopens and microinjectors (so just the hyperzine one) no longer have interaction particles.
+    type: Tweak
+  id: 407110
+  time: '2026-07-29T11:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5388
 Order: -1
