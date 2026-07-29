@@ -5,6 +5,12 @@ chat-radio-message-wrap = [color={$color}]{$channel} [bold]{$name}[/bold] {$verb
 
 # Starlight-edit: Languages
 chat-radio-message-wrap-bold = [color={$color}]{$channel} [bold]{$name}[/bold] {$verb}, "[/color][font="{$fontType}" size={$fontSize}][color={$languageColor}][bold]{$message}[/bold][/font][/color][color={$color}]"[/color]
+# Starlight-edit: command
+chat-radio-message-wrap-command = [color={$color}]{$channel} [bold]{$name}[/bold] {$verb}, "[/color][font="{$fontType}" size={$fontSize}][color={$languageColor}][head=2][bold]{$message}[/bold][/head][/font][/color][color={$color}]"[/color]
+
+# Starlight-edit: inactive/active
+headset-loud-mode-examine-active = The headset's loudmode speaker is [color=green]ACTIVE[/color].
+headset-loud-mode-examine-inactive = The headset's loudmode speaker is [color=red]INACTIVE[/color]. 
 
 examine-headset-default-channel = Use {$prefix} for the default channel ([color={$color}]{$channel}[/color]).
 
