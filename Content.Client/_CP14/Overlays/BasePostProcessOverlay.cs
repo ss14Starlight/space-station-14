@@ -41,7 +41,7 @@ public sealed class CP14BasePostProcessOverlay : Overlay
         if (args.Viewport.Eye != eyeComp.Eye)
             return false;
 
-        if (!_lightManager.Enabled || !eyeComp.Eye.DrawLight || !eyeComp.Eye.DrawFov)
+        if (!_lightManager.Enabled || !eyeComp.Eye.DrawLight) // SL Edit made visible to ghosts
             return false;
 
         var playerEntity = _playerManager.LocalSession?.AttachedEntity;

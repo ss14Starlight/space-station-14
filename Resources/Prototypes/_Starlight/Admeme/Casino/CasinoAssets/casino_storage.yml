@@ -1,0 +1,35 @@
+- type: entity
+  parent: LockerBaseSecure
+  id: LockerCasino
+  name: casino vault locker
+  description: A black and gold locker for the house's chips. Casino staff only.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Admeme/Casino/Objects/casino_locker.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: generic
+    stateDoorOpen: generic_open
+    stateDoorClosed: generic_door
+  - type: AccessReader
+    access: [["Casino"]]
+
+- type: entity
+  parent: LockerCasino
+  id: LockerCasinoFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: CasinoChip10000
+          amount: 1
+        - id: CasinoChip5000
+          amount: 1
+        - id: CasinoChip2500
+          amount: 2
+        - id: CasinoChip1000
+          amount: 3
+        - id: CasinoChipCase
+          amount: 1
