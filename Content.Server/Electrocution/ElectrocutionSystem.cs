@@ -357,7 +357,7 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
 
     private bool DoCommonElectrocutionAttempt(EntityUid uid, EntityUid? sourceUid, ref float siemensCoefficient, bool ignoreInsulation = false)
     {
-        TrySpark(uid, sourceUid); // ES
+        // TrySpark(uid, sourceUid); // ES // Starlight: This causes SMs to self-ignite
 
         var attemptEvent = new ElectrocutionAttemptEvent(uid, sourceUid, siemensCoefficient,
             ignoreInsulation ? SlotFlags.NONE : ~SlotFlags.POCKET);
