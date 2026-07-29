@@ -4,7 +4,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
-    weight: 3.5
+    weight: 2 #Starlight 3.5 -> 2, showing up almost every round gets tiring
     earliestStart: 25
     reoccurrenceDelay: 40
     minimumPlayers: 30

@@ -22,7 +22,6 @@ namespace Content.Server._Starlight.Plumbing.Nodes;
 public partial class PlumbingNode : PipeNode
 {
     private static readonly ProtoId<TagPrototype> _plumbingDuctTag = "PlumbingDuct";
-    private static readonly Dictionary<(EntityUid Owner, string NodeName, PipeDirection Direction), EntityUid> _selectedDuctByMachineSide = new();
 
     /// <summary>
     ///     The <see cref="IPlumbingNet"/> this plumbing duct is part of.
@@ -55,6 +54,7 @@ public partial class PlumbingNode : PipeNode
         var nodeName = Name ?? "__unnamed";
 
         var manifoldSystem = entMan.System<PlumbingManifoldSystem>();
+        var selectedDuctByMachineSide = manifoldSystem.SelectedDuctByMachineSide;
         if (manifoldSystem.TryGetBridgedNodes(Owner, nodeName, nodeQuery, out var bridgedNodes))
         {
             foreach (var siblingNode in bridgedNodes)
@@ -115,11 +115,11 @@ public partial class PlumbingNode : PipeNode
 
                 if (firstConnectedCandidate == null)
                 {
-                    _selectedDuctByMachineSide.Remove(sideKey);
+                    selectedDuctByMachineSide.Remove(sideKey);
                     continue;
                 }
 
-                _selectedDuctByMachineSide[sideKey] = firstConnectedCandidate.Owner;
+                selectedDuctByMachineSide[sideKey] = firstConnectedCandidate.Owner;
                 CurrentPipeLayer = firstConnectedCandidate.CurrentPipeLayer;
                 selectedByDirection[direction] = firstConnectedCandidate;
             }
@@ -158,7 +158,7 @@ public partial class PlumbingNode : PipeNode
                     var machineNodeName = pipe.Name ?? "__unnamed";
                     var machineSide = direction.GetOpposite();
                     var machineSideKey = (pipe.Owner, machineNodeName, machineSide);
-                    if (_selectedDuctByMachineSide.TryGetValue(machineSideKey, out var selectedDuct) &&
+                    if (selectedDuctByMachineSide.TryGetValue(machineSideKey, out var selectedDuct) &&
                         selectedDuct != Owner)
                         continue;
 

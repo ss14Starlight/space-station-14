@@ -781,8 +781,11 @@ public sealed partial class ChatUIController : UIController
         if (TryGetLanguage(ref text, out var foundLanguage))
         {
             language = foundLanguage;
-            if(text.Length<5) return (ChatSelectChannel.None, text, null, null, foundLanguage);
-            modText = text[4..];
+            if (foundLanguage.ChatPrefix is null)
+                throw new Exception("Chat prefix is null? This should be impossible");
+            var pfxLength = foundLanguage.ChatPrefix.Length + 1;
+            if (text.Length < pfxLength + 1) return (ChatSelectChannel.None, text, null, null, foundLanguage);
+            modText = text[pfxLength..];
         }
         //Starlight end
 
@@ -816,6 +819,15 @@ public sealed partial class ChatUIController : UIController
                 chatChannel = ChatSelectChannel.Dead;
         }
 
+        // Starlight begin
+        if (chatChannel == ChatSelectChannel.Whisper && text.StartsWith('+')) // TRIM AHEAD
+        {
+            var idx = text.IndexOf(',');
+            text = text.Remove(idx, 1);
+            return (chatChannel, text, null, null, language);
+        }
+        // Starlight end
+
         return (chatChannel, text[1..].TrimStart(), null, null, language); //Starlight edit
     }
 
@@ -832,7 +844,7 @@ public sealed partial class ChatUIController : UIController
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        (var prefixChannel, text, var _, var _, _) = SplitInputContents(text); // Starlight edit
+        (var prefixChannel, text, var _, var _, var language) = SplitInputContents(text); // Starlight edit
 
         // Check if message is longer than the character limit
         if (text.Length > MaxMessageLength)
@@ -847,8 +859,14 @@ public sealed partial class ChatUIController : UIController
             channel = prefixChannel;
         else if (channel == ChatSelectChannel.Radio)
         {
-            // radio must have prefix as it goes through the say command.
-            text = $";{text}";
+            // Starlight begin
+            if (language?.ChatPrefix is not null)
+            {
+                var pfxLength = language.ChatPrefix.Length + 1;
+                text = text.Insert(pfxLength, ";");
+            }
+            else text = $";{text}";
+            // Starlight end
         }
 
         _manager.SendMessage(text, prefixChannel == 0 ? channel : prefixChannel);
