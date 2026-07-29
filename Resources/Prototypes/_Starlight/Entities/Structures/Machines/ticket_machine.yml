@@ -151,65 +151,9 @@
     access: [["HeadOfPersonnel"]]
 
 - type: entity
-  id: TicketMachineCMO
-  parent: TicketMachineFilledBlue
-  suffix: CMO, Filled, Blue
-  components:
-  - type: AccessReader
-    access: [["ChiefMedicalOfficer"]]
-
-- type: entity
-  id: TicketMachineWarden
-  parent: TicketMachineFilledRed
-  suffix: Warden, Filled, Red
-  components:
-  - type: AccessReader
-    access: [["Armory"]]
-
-- type: entity
-  id: TicketMachineService
-  parent: TicketMachineFilledGreen
-  suffix: SRV, Filled, Green
-  components:
-  - type: AccessReader
-    access: [["HeadOfPersonnel"]]
-
-- type: entity
   id: TicketMachineQM
   parent: TicketMachineFilledBrown
   suffix: QM, Filled, Brown
   components:
   - type: AccessReader
     access: [["Quartermaster"]]
-
-- type: entity
-  id: TicketMachineCEOrange
-  parent: TicketMachineFilledOrange
-  suffix: CE, Filled, Orange
-  components:
-  - type: AccessReader
-    access: [["ChiefEngineer"]]
-
-- type: entity
-  id: TicketMachineCEYellow
-  parent: TicketMachineFilledYellow
-  suffix: CE, Filled, Yellow
-  components:
-  - type: AccessReader
-    access: [["ChiefEngineer"]]
-
-- type: entity
-  id: TicketMachineAtmos
-  parent: TicketMachineFilledCyan
-  suffix: Atmos, Filled, Cyan
-  components:
-  - type: AccessReader
-    access: [["ChiefEngineer"]]
-
-- type: entity
-  id: TicketMachineRD
-  parent: TicketMachineFilledPurple
-  suffix: RD, Filled, Purple
-  components:
-  - type: AccessReader
-    access: [["ResearchDirector"]]
