@@ -1240,7 +1240,7 @@
   minLimit: 0
   loadouts:
     - BotanistBandana
-    -
+
 - type: loadoutGroup
   id: XenobotanistJumpsuit
   name: loadout-group-xenobotanist-jumpsuit
