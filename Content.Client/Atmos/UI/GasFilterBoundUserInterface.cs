@@ -23,6 +23,7 @@ namespace Content.Client.Atmos.UI
         {
         }
 
+        // Starlight edit
         protected override void Open()
         {
             base.Open();
@@ -30,11 +31,11 @@ namespace Content.Client.Atmos.UI
             var atmosSystem = EntMan.System<AtmosphereSystem>();
 
             _window = this.CreateWindow<GasFilterWindow>();
-            _window.PopulateGasList(atmosSystem.Gases);
+            // _window.PopulateGasList(atmosSystem.Gases);
 
-            _window.ToggleStatusButtonPressed += OnToggleStatusButtonPressed;
+            _window.StatusChanged += OnToggleStatusButtonPressed;
             _window.FilterTransferRateChanged += OnFilterTransferRatePressed;
-            _window.SelectGasPressed += OnSelectGasPressed;
+            // _window.SelectGasPressed += OnSelectGasPressed;
         }
 
         private void OnToggleStatusButtonPressed()
@@ -50,23 +51,23 @@ namespace Content.Client.Atmos.UI
             SendMessage(new GasFilterChangeRateMessage(rate));
         }
 
-        private void OnSelectGasPressed()
-        {
-            if (_window is null)
-                return;
+        // private void OnSelectGasPressed()
+        // {
+        //     if (_window is null)
+        //         return;
 
-            if (_window.SelectedGas is null)
-            {
-                SendMessage(new GasFilterSelectGasMessage(null));
-            }
-            else
-            {
-                if (!Enum.TryParse<Gas>(_window.SelectedGas, out var gas))
-                    return;
+        //     if (_window.SelectedGas is null)
+        //     {
+        //         SendMessage(new GasFilterSelectGasMessage(null));
+        //     }
+        //     else
+        //     {
+        //         if (!Enum.TryParse<Gas>(_window.SelectedGas, out var gases))
+        //             return;
 
-                SendMessage(new GasFilterSelectGasMessage(gas));
-            }
-        }
+        //         SendMessage(new GasFilterSelectGasMessage(gases));
+        //     }
+        // }
 
         /// <summary>
         /// Update the UI state based on server-sent info
@@ -81,18 +82,23 @@ namespace Content.Client.Atmos.UI
             _window.Title = (cast.FilterLabel);
             _window.SetFilterStatus(cast.Enabled);
             _window.SetTransferRate(cast.TransferRate);
-            if (cast.FilteredGas is not null)
-            {
-                var atmos = EntMan.System<AtmosphereSystem>();
-                var gas = atmos.GetGas((Gas) cast.FilteredGas);
-                var gasName = Loc.GetString(gas.Name);
-                _window.SetGasFiltered(gas.ID, gasName);
-            }
-            else
-            {
-                _window.SetGasFiltered(null, Loc.GetString("comp-gas-filter-ui-filter-gas-none"));
-            }
+            #region Starlight
+            _window.GasSelectionChanged += OnGasSelectionChanged;
+            // if (cast.FilteredGases is not null)
+            // {
+            //     var atmos = EntMan.System<AtmosphereSystem>();
+            //     var gas = atmos.GetGas((Gas) cast.FilteredGas);
+            //     var gasName = Loc.GetString(gas.Name);
+            //     _window.SetGasFiltered(gas.ID, gasName);
+            // }
+            // else
+            // {
+            //     _window.SetGasFiltered(null, Loc.GetString("comp-gas-filter-ui-filter-gas-none"));
+            // }
+            #endregion
         }
+
+        private void OnGasSelectionChanged(HashSet<Gas> selectedGases) => SendMessage(new GasFilterSelectGasMessage(selectedGases)); // Starlight add
 
         protected override void Dispose(bool disposing)
         {

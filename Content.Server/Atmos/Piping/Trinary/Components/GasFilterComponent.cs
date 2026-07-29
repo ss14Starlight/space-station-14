@@ -23,7 +23,9 @@ namespace Content.Server.Atmos.Piping.Trinary.Components
         [DataField]
         public float MaxTransferRate = Atmospherics.MaxTransferRate;
 
+        #region Starlight
         [DataField]
-        public Gas? FilteredGas;
+        public HashSet<Gas> FilteredGases = new();
+        #endregion
     }
 }
