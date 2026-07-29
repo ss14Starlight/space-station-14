@@ -13,6 +13,7 @@
       - Crayon
       - Paper
       - AvianFood
+      - IceCream
   - type: SolutionContainerManager
     solutions:
       stomach:

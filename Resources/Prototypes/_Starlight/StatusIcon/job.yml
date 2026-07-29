@@ -2,7 +2,7 @@
   parent: JobIcon
   id: JobIconIAA
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: &starlight-job-icon-rsi /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: IAA
   jobName: job-name-iaa
 
@@ -10,7 +10,7 @@
   parent: JobIcon
   id: JobIconMagistrate
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Magistrate
   jobName: job-name-magistrate
 
@@ -18,7 +18,7 @@
   parent: JobIcon
   id: JobIconBlueShield
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: BlueShield
   jobName: job-name-blueshield
 
@@ -26,7 +26,7 @@
   parent: JobIcon
   id: JobIconNTNCBlueShield
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: NTNCBlueShield
   jobName: job-name-ntncblueshield
 
@@ -34,7 +34,7 @@
   parent: JobIcon
   id: JobIconCCGreenShield
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: CCGreenShield
   jobName: job-name-greenshield
 
@@ -42,7 +42,7 @@
   parent: JobIcon
   id: JobIconSurgeon
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Surgeon
   jobName: job-name-surgeon
 
@@ -50,7 +50,7 @@
   parent: JobIcon
   id: JobIconSalvageLead
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: SalvageLead
   jobName: job-name-salvagelead
 
@@ -58,7 +58,7 @@
   parent: JobIcon
   id: JobIconSalvageSpecialist
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: SalvageSpecialist
   jobName: job-name-salvagespec
 
@@ -66,7 +66,7 @@
   parent: JobIcon
   id: JobIconMailTech
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: MailTech
   jobName: job-name-mailtech
 
@@ -74,7 +74,7 @@
   parent: JobIcon
   id: JobIconDutyOfficer
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: DutyOfficer
   jobName: job-name-dutyofficer
 
@@ -82,7 +82,7 @@
   parent: JobIcon
   id: JobIconPerformer
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Performer
   jobName: job-name-performer
 
@@ -90,7 +90,7 @@
   parent: JobIcon
   id: JobIconCentralCommandOfficial #Starlight
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: CentComm
   jobName: job-name-centcomm
 
@@ -98,7 +98,7 @@
   parent: JobIcon
   id: JobIconDecimus
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Decimus
   jobName: job-name-Decimus
 
@@ -106,7 +106,7 @@
   parent: JobIcon
   id: JobIconNanoTrasenSpecialForces
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: NTSF
   jobName: job-name-NTSF
 
@@ -114,7 +114,7 @@
   parent: JobIcon
   id: JobIconCentralCommandOperator
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: CentCommOperator
   jobName: job-name-centcommoperator
 
@@ -122,7 +122,7 @@
   parent: JobIcon
   id: JobIconCommander
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Commander
   jobName: job-name-Commander
 
@@ -130,7 +130,7 @@
   parent: JobIcon
   id: JobIconSyndicateAgent
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: SyndicateAgent
   jobName: job-name-SyndicateAgent
 
@@ -138,71 +138,15 @@
   parent: JobIcon
   id: JobIconOperative
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Operative
   jobName: job-name-Operative
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconSyndicate-Security
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: SyndicateSecurity
-  jobName: job-name-Syndicate-Security
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicate-Warden
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: SyndicateWarden
-  jobName: job-name-Syndicate-Warden
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicate-Science
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: SyndicateScience
-  jobName: job-name-Syndicate-Science
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicate-Chef
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: SyndicateChef
-  jobName: job-name-Syndicate-Chef
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicate-Engineer
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: SyndicateEngineer
-  jobName: job-name-Syndicate-Engineer
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicate-Cargo
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: SyndicateCargo
-  jobName: job-name-Syndicate-Cargo
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicate-Janitor
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: SyndicateJanitor
-  jobName: job-name-Syndicate-Janitor
-
-- type: jobIcon
-  parent: JobIcon
   id: JobIconSoviet
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Soviet
   jobName: job-name-Soviet
 
@@ -210,7 +154,7 @@
   parent: JobIcon
   id: JobIconTSF
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: TSF
   jobName: job-name-TSF
 
@@ -218,15 +162,47 @@
   parent: JobIcon
   id: JobIconTSFOfficer
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: TSFOfficer
   jobName: job-name-TSF-officer
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconNanotrasenCareerTrainer
+  id: JobIconCCServiceWorker
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CCServiceWorker
+  jobName: job-name-cc-serviceworker
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCCChef
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CCChef
+  jobName: job-name-cc-chef
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCCBartender
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CCBartender
+  jobName: job-name-cc-bartender
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCCJanitor
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CCJanitor
+  jobName: job-name-cc-janitor
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconNanotrasenCareerTrainer
+  icon:
+    sprite: *starlight-job-icon-rsi
     state: NanoTrasenCareerTrainer
   jobName: job-name-nct
 
@@ -236,7 +212,7 @@
   parent: JobIcon
   id: JobIconBlackstar
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Blackstar
   jobName: job-name-blackstar
 
@@ -246,7 +222,7 @@
   parent: JobIcon
   id: JobIconSkub
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Skub
   allowSelection: false
 
@@ -254,7 +230,7 @@
   parent: JobIcon
   id: JobIconCultistChaplain
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: CultistChaplain
   allowSelection: false
 
@@ -262,7 +238,7 @@
   parent: JobIcon
   id: JobIconXenoborg
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Xenoborg
   jobName: chat-radio-xenoborg
 
@@ -270,6 +246,6 @@
   parent: JobIcon
   id: JobIconXenoborgMothership
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: *starlight-job-icon-rsi
     state: Mothership
   jobName: chat-radio-mothership

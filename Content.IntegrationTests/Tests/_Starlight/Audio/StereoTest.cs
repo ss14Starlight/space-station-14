@@ -1,5 +1,7 @@
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Content.IntegrationTests.Fixtures;
 using Content.Shared.Audio;
 using Robust.Client.Audio;
@@ -44,6 +46,7 @@ public sealed class StereoTest : GameTest
             new ResPath("/Audio/_Starlight/Misc/sov_win.ogg"), // Global
             new ResPath("/Audio/_Starlight/Thaven/moods_changed.ogg"), // Global
             new ResPath("/Audio/_Starlight/Effects/vampire/sound_hallucinations_im_here1.ogg"), // Global
+            new ResPath("/Audio/_Starlight/CosmicCult/caustic_shift.ogg"), // Global
         ];
 
     public List<ResPath> IgnoredPaths = [
@@ -73,9 +76,10 @@ public sealed class StereoTest : GameTest
 
         var audioRoot = new ResPath("/Audio/");
 
-        var badFiles = new Dictionary<string, string>();
+        var badFiles = new ConcurrentDictionary<string, string>();
+        var readErrors = new ConcurrentBag<string>();
 
-        var ambienceTracks = new List<ResPath>();
+        var ambienceTracks = new HashSet<ResPath>();
         foreach (var ambience in protoMan.EnumeratePrototypes<AmbientMusicPrototype>())
         {
             switch (ambience.Sound)
@@ -85,7 +89,7 @@ public sealed class StereoTest : GameTest
                         break;
 
                     var slothCud = protoMan.Index<SoundCollectionPrototype>(collection.Collection);
-                    ambienceTracks.AddRange(slothCud.PickFiles);
+                    ambienceTracks.UnionWith(slothCud.PickFiles);
                     break;
                 case SoundPathSpecifier path:
                     ambienceTracks.Add(path.Path);
@@ -93,19 +97,24 @@ public sealed class StereoTest : GameTest
             }
         }
 
-        foreach (var file in resMan.ContentFindFiles(audioRoot))
+        var filesToCheck = resMan.ContentFindFiles(audioRoot)
+            .Where(file =>
+            {
+                if (ambienceTracks.Contains(file))
+                    return false; // Ambience tracks can be stereo, so we skip them.
+
+                // We can ignore some files/paths if we want to, for example if they are stereo on purpose or if we just don't care about them.
+                if (IgnoredFiles.Contains(file) || IgnoredPaths.Any(p => file.ToString().StartsWith(p.ToString())))
+                    return false;
+
+                var ext = file.Extension.ToLowerInvariant();
+                return ext is "ogg" or "wav";
+            })
+            .ToList();
+
+        Parallel.ForEach(filesToCheck, file =>
         {
-            if (ambienceTracks.Contains(file))
-                continue; // Ambience tracks can be stereo, so we skip them.
-
-            // We can ignore some files/paths if we want to, for example if they are stereo on purpose or if we just don't care about them.
-            if (IgnoredFiles.Contains(file) || IgnoredPaths.Any(p => file.ToString().StartsWith(p.ToString())))
-                continue;
-
             var ext = file.Extension.ToLowerInvariant();
-            if (ext is not "ogg" and not "wav")
-                continue;
-
             try
             {
                 using var stream = resMan.ContentFileRead(file);
@@ -119,10 +128,11 @@ public sealed class StereoTest : GameTest
             }
             catch (Exception e)
             {
-                Assert.Fail($"Failed to read audio file {file}: {e}");
+                readErrors.Add($"Failed to read audio file {file}: {e}");
             }
-        }
+        });
 
+        Assert.That(readErrors, Is.Empty, string.Join('\n', readErrors));
         Assert.That(badFiles, Is.Empty, "Some audio is invalid:\n" + string.Join('\n', badFiles.Select(p => $"{p.Key}: {p.Value}"))
         );
     }

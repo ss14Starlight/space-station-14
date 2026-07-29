@@ -10,11 +10,12 @@ using Robust.Shared.Utility;
 
 namespace Content.IntegrationTests.Tests._Starlight.Power;
 
+[Parallelizable(ParallelScope.All)]
 public sealed class GridPowerTests : GameTest
 {
     private const string EmptyMap = "Empty";
 
-    private static readonly ResPath[] GridPaths =
+    private static readonly ResPath[] _gridPaths =
     [
         // NT-CC
         new("/Maps/_Starlight/Shuttles/CC-NT/CBURN.yml"),
@@ -78,7 +79,10 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/barge.yml"),
         new("/Maps/_Starlight/Shuttles/Munchies.yml"),
         new("/Maps/_Starlight/Shuttles/Mini_Ingeniator.yml"),
+        new("/Maps/_Starlight/Shuttles/Bumblebee.yml"),
         new("/Maps/_Starlight/Shuttles/Comet.yml"),
+        new("/Maps/_Starlight/Shuttles/Honeybee.yml"),
+        new("/Maps/_Starlight/Shuttles/GasTransport.yml"),
 
         // Syndicate
         new("/Maps/_Starlight/Shuttles/blackhorse.yml"),
@@ -113,7 +117,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/MedTak/MedTakPointAlpha.yml")
     ];
 
-    [Test, TestCaseSource(nameof(GridPaths))]
+    [Test, TestCaseSource(nameof(_gridPaths))]
     public async Task TestGridApcLoad(ResPath gridFilePath)
     {
         var pair = Pair;

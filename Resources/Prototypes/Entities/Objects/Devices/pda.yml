@@ -100,7 +100,6 @@
   - type: UserInterface
     interfaces:
       enum.PdaUiKey.Key:
-        requireInputValidation: false #Starlight pAI can open PDAs, see PR #3272
         type: PdaBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
@@ -1138,6 +1137,10 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: CartridgeLoader # Starlight
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - AstroNavCartridge
 
 - type: entity
   parent: [ BasePDA, BaseSyndicateContraband ]

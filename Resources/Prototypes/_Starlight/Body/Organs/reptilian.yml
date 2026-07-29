@@ -13,6 +13,7 @@
       - Pill
       - Crayon
       - Paper
+      - IceCream
   - type: SolutionContainerManager
     solutions:
       stomach:

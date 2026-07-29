@@ -6,7 +6,7 @@
   parent: BaseStructure
   components:
   - type: Sprite
-    sprite: Structures/Lighting/LightPosts/small_light_post.rsi
+    sprite: _Starlight/Structures/Lighting/LightPosts/small_light_post.rsi # Starlight
     snapCardinals: true
     drawdepth: Objects
     noRot: true
@@ -40,6 +40,10 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: RCDDeconstructable
+    cost: 4
+    delay: 2
+    fx: EffectRCDDeconstruct2
   - type: Destructible
     thresholds:
     - trigger:
@@ -75,7 +79,7 @@
   parent: LightPostSmall
   components:
   - type: Sprite
-    sprite: Structures/Lighting/LightPosts/small_light_post.rsi
+    sprite: _Starlight/Structures/Lighting/LightPosts/small_light_post.rsi # Starlight
     state: empty
   - type: PointLight
     enabled: false
