@@ -1,0 +1,42 @@
+﻿# Jumpsuit
+- type: loadout
+  id: XenobotanistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientist
+
+- type: loadout
+  id: XenobotanistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtScientist
+
+- type: loadout
+  id: XenobotanistOveralls
+  equipment:
+    jumpsuit: ClothingUniformOveralls
+
+# Back
+- type: loadout
+  id: XenobotanistBackpack
+  equipment:
+    back: ClothingBackpackScience
+
+- type: loadout
+  id: XenobotanistSatchel
+  equipment:
+    back: ClothingBackpackSatchelScience
+
+- type: loadout
+  id: XenobotanistDuffel
+  equipment:
+    back: ClothingBackpackDuffelScience
+
+# Outer clothing
+- type: loadout
+  id: XenobotanistApron
+  equipment:
+    outerClothing: ClothingOuterApronBotanist
+
+- type: loadout
+  id: XenobotanistWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterHydro

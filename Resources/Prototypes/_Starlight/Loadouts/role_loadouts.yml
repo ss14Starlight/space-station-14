@@ -355,3 +355,22 @@
   - SurvivalExtended
   - GroupSpeciesBreathTool
   - GroupTankHarness
+
+- type: roleLoadout
+  id: JobXenobotanist
+  groups:
+    - GroupTankHarness
+    - XenobotanistHead
+    - XenobotanistJumpsuit
+    - XenobotanistOuterClothing
+    - ScientistBackpack
+    - ScientistGloves
+    - ScientistShoes
+    - Glasses
+    - Survival
+    - Trinkets
+    - Scarves
+    - Pins
+    - Pens
+    - ScienceJobTrinkets
+    - GroupSpeciesBreathTool

@@ -19,3 +19,4 @@ job-description-zookeeper = Put on a joyful display of cute animals and space ca
 job-description-nct = Your job is to try to assist as many crew members as possible regardless of department. You are NOT permitted to give command staff advice on any command SOP questions or aid in legal advice.
 job-description-stirstir = A disreputable monkey who should not be trusted. A real cell stuffer.
 job-description-prisoner = You are a corporate owned prisoner serving out a sentence in a hard labor colony.
+job-description-xenobotanist = You are a researcher who studies the life cycle of plants and produces experimental materials.

@@ -1049,3 +1049,21 @@
     job: CBURN
   - type: NanoChatCard # CD
     listNumber: false
+
+- type: entity
+  parent: [ IDCardStandard, BaseScienceContraband ]
+  id: XenobotanistIDCard
+  name: Xenobotanist ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: stripe_top
+          color: *color-science-top
+        - state: stripe_bottom
+          color: *color-service-bottom
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: XenoBotanist
+    - type: PresetIdCard
+      job: Xenobotanist

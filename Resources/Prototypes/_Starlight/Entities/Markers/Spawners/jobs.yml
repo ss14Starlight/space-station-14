@@ -190,3 +190,16 @@
       - state: green
       - state: nct
       - state: jobicon
+
+- type: entity
+  id: SpawnPointXenobotanist
+  parent: SpawnPointJobBase
+  name: xenobotanist
+  components:
+    - type: SpawnPoint
+      job_id: xenobotanist
+    - type: Sprite
+      layers:
+        - state: green
+        - state: xenobotanist
+        - state: jobicon

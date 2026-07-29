@@ -1,0 +1,30 @@
+- type: job
+  id: Xenobotanist
+  name: job-name-xenobotanist
+  description: job-description-xenobotanist
+  playTimeTracker: JobXenobotanist
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 14400 # 4 hrs
+    - !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 7200 # 2 hrs
+  startingGear: XenobotanistGear
+  icon: JobIconXenobotanist
+  supervisors: job-supervisors-rd
+  access:
+    - Research
+    - Maintenance
+    - Hydroponics
+
+- type: startingGear
+  id: XenobotanistGear
+  equipment:
+    id: BotanistPDA
+    belt: ClothingBeltPlantFilled
+
+- type: chameleonOutfit
+  id: XenobotanistChameleonOutfit
+  job: Xenobotanist
+  equipment: {} # may someone tell me what these are supposed to look like when chameleon'd

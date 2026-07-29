@@ -138,3 +138,9 @@ loadout-group-NanotrasenCareerTrainer-eyewear = NanoTrasen Career Trainer eyewea
 
 # Security
 loadout-group-warden-neck = Warden neck
+
+# Xenobotanist
+loadout-group-xenobotanist-head = Xenobotanist head
+loadout-group-xenobotanist-jumpsuit = Xenobotanist jumpsuit
+loadout-group-xenobotanist-outerclothing = Xenobotanist outer clothing
+

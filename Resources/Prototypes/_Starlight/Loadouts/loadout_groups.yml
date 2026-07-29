@@ -1233,3 +1233,27 @@
   minLimit: 0
   loadouts:
   - LizardPlushieTechnicalAssistant
+
+- type: loadoutGroup
+  id: XenobotanistHead
+  name: loadout-group-xenobotanist-head
+  minLimit: 0
+  loadouts:
+    - BotanistBandana
+    -
+- type: loadoutGroup
+  id: XenobotanistJumpsuit
+  name: loadout-group-xenobotanist-jumpsuit
+  loadouts:
+      - ScientistJumpsuit
+      - ScientistJumpskirt
+      - BotanistOveralls
+
+- type: loadoutGroup
+  id: XenobotanistOuterClothing
+  name: loadout-group-xenobotanist-outerclothing
+  minLimit: 0
+  loadouts:
+      - BotanistApron
+
+

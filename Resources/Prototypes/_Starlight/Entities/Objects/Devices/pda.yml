@@ -983,3 +983,22 @@
   components:
   - type: Pda
     id: CentCommIDCardJanitor
+
+- type: entity
+  parent: BasePDA
+  id: XenoBotanistPDA
+  name: Xeno botany PDA
+  description: It's covered with an unknown gooey substance & smells like dirt.
+  components:
+    - type: Pda
+      id: XenobotanistIDCard
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-xenobotanist
+    - type: PdaBorderColor
+      borderColor: "#d7d7d0"
+      accentVColor: "#8900c9"
+    - type: Icon
+      state: pda-xenobotanist

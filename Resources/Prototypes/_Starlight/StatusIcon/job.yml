@@ -249,3 +249,11 @@
     sprite: *starlight-job-icon-rsi
     state: Mothership
   jobName: chat-radio-mothership
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconXenobotanist
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: XenoBotanist
+  jobName: Xenobotanist

@@ -1,5 +1,6 @@
 job-name-assistant = Assistant
 job-name-stirstir = Stir Stir
+job-name-xenobotanist = Xenobotanist
 
 # Role timers - Apparently someone from upstream will cut us if these aren't alphabetical?
 JobBlueShield = BlueShield Officer
