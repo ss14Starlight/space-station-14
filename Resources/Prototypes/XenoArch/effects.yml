@@ -127,19 +127,6 @@
       weight: 4.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 4.0
-
-- type: entityTable
-  id: XenoArtifactEffectsHandheldOnlyTable
-  table: !type:GroupSelector
-    children:
-    #- id: XenoArtifactBecomeRandomInstrument
-    #  weight 10.0 # removed until we have value-based system
-    #- id: XenoArtifactGun
-    #  weight 4.0 #it conflicts with default interaction - it should activate artifact nodes
-    - id: XenoArtifactOmnitool
-      weight: 10.0
-    - id: XenoArtifactDrill
-      weight: 10.0
     - id: XenoArtifactAccessEngineering
       weight: 2.0
     - id: XenoArtifactAccessScience # this is nearly useless for most people who can obtain it
@@ -156,6 +143,19 @@
       weight: 2.0
     - id: XenoArtifactAccessAll
       weight: 1.0
+
+- type: entityTable
+  id: XenoArtifactEffectsHandheldOnlyTable
+  table: !type:GroupSelector
+    children:
+    #- id: XenoArtifactBecomeRandomInstrument
+    #  weight 10.0 # removed until we have value-based system
+    #- id: XenoArtifactGun
+    #  weight 4.0 #it conflicts with default interaction - it should activate artifact nodes
+    - id: XenoArtifactOmnitool
+      weight: 10.0
+    - id: XenoArtifactDrill
+      weight: 10.0
 
 - type: entity
   id: BaseXenoArtifactEffect
