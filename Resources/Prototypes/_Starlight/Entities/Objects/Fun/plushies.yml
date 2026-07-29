@@ -2100,7 +2100,7 @@
   description: A scruffy purple spider. Looks like he's happy to be here!
   components:
   - type: Sprite
-    sprite: Objects/Fun/Plushies/arachnid.rsi
+    sprite: _Starlight/Objects/Fun/Plushies/pholcus_plushie.rsi
     state: icon
   - type: EmitSoundOnUse
     sound: 
