@@ -10,7 +10,7 @@ chat-radio-message-wrap-command = [color={$color}]{$channel} [bold]{$name}[/bold
 
 # Starlight-edit: inactive/active
 headset-loud-mode-examine-active = The headset's loudmode speaker is [color=green]ACTIVE[/color].
-headset-loud-mode-examine-inactive = The headset's loudmode speaker is [color=red]INACTIVE[/color]. 
+headset-loud-mode-examine-inactive = The headset's loudmode speaker is [color=red]INACTIVE[/color].
 
 examine-headset-default-channel = Use {$prefix} for the default channel ([color={$color}]{$channel}[/color]).
 

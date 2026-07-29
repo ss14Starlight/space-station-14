@@ -5,6 +5,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Clothing;
 using Robust.Shared.Utility;
+using Content.Shared.Examine;
 
 namespace Content.Shared.Radio.EntitySystems;
 
