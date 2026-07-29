@@ -115,7 +115,6 @@
   - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 100
-    pacifismAllowedMode: true
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: DisablerBolt
@@ -194,7 +193,6 @@
     access: [["Security"], ["Cadet"]]
   - type: BatteryAmmoProvider
     proto: DisablerBolt
-    pacifismAllowedMode: true
     fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:
@@ -266,7 +264,6 @@
   - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 40
-    pacifismAllowedMode: true
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: DisablerBolt
