@@ -25,5 +25,20 @@ namespace Content.Server.Atmos.Piping.Trinary.Components
 
         [DataField]
         public HashSet<Gas> FilteredGases = new(); // Starlight: multiple
-    }
+
+        #region Starlight
+
+        /// Legacy field definition that may be set on older maps. Value appended to FilteredGases and cleared.
+        [DataField("filteredGas")] private Gas? _filteredGasObsolete;
+
+        /// Handles FilteredGas => FilteredGases migration.
+        void ISerializationHooks.AfterDeserialization()
+        {
+            if (_filteredGasObsolete == null) return;
+            FilteredGases.Add(_filteredGasObsolete.Value);
+            _filteredGasObsolete = null;
+        }
+
+        #endregion
+}
 }
