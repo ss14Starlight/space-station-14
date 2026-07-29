@@ -1,35 +1,43 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station 13",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "enthrall"
+            "name": "enthrall",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "pacify"
+            "name": "pacify",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "decoy"
+            "name": "decoy",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "thralls_up"
+            "name": "thralls_up",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "hysteria"
+            "name": "hysteria",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "blood_bond"
+            "name": "blood_bond",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "communication"
+            "name": "communication",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "subspace_swap"
+            "name": "subspace_swap",
+            "copyright": "Taken from Paradise Station 13"
         }
     ]
 }
