@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Bagel) Small room for miners, with a ticket machine and shuttle console.
-    type: Add
-  id: 406709
-  time: '2026-07-18T12:18:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5130
-- author: OMEGA
-  changes:
   - message: (Bagel) External dock for Mining and Salvage shuttles.
     type: Add
   id: 406710
@@ -2799,4 +2792,11 @@ Entries:
   id: 407108
   time: '2026-07-29T08:55:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5394
+- author: wonderfulnewworld
+  changes:
+  - message: Interaction particles are now optional via options menu.
+    type: Tweak
+  id: 407109
+  time: '2026-07-29T09:17:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5386
 Order: -1
