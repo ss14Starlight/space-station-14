@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Bagel) Air alarms added across station.
-    type: Add
-  id: 406713
-  time: '2026-07-18T12:18:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5130
-- author: OMEGA
-  changes:
   - message: (Bagel) Rearranged and redecorated Engineering.
     type: Tweak
   id: 406714
@@ -2799,4 +2792,11 @@ Entries:
   id: 407112
   time: '2026-07-29T13:45:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5390
+- author: redmushie
+  changes:
+  - message: Electrocution no longer causes the target to emit sparks. This would cause Supermatter tritium to ignite.
+    type: Remove
+  id: 407113
+  time: '2026-07-29T15:46:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5397
 Order: -1
