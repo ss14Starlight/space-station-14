@@ -224,7 +224,10 @@
       conditions:
         - !type:HolidayActiveCondition
           holiday: FestiveSeason
-    - id: EndymionMonumentFlatpack #event thing
+    - !type:GroupSelector #event thing
+      children:
+      - id: EndymionMonumentFlatpack
+      - id: EndymionStatueFlatpack
     - id: PrintedDocumentEndymionMemorial
     - id: Multitool
     # Starlight End

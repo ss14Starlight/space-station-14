@@ -65,7 +65,7 @@
             - MidImpassable
 
 - type: entity
-  id: EndymionMemorial
+  id: EndymionMemorial1
   parent: BaseStructure
   name: Endymion Memorial
   description: |
@@ -88,7 +88,7 @@
     - type: Sprite
       snapCardinals: true
       noRot: true
-      sprite: _Starlight/Structures/Decorations/Statues(3x2).rsi
+      sprite: _Starlight/Structures/Decorations/Statues(3x2)/Endymion1.rsi
     - type: Fixtures
       fixtures:
         fix1:
@@ -105,3 +105,39 @@
     - type: Tag
       tags:
         - Structure
+
+- type: entity
+  id: EndymionMemorial2
+  parent: EndymionMemorial1
+  components:
+    - type: Sprite
+      snapCardinals: true
+      noRot: true
+      sprite: _Starlight/Structures/Decorations/Statues(3x2)/Endymion2.rsi
+
+- type: entity
+  id: EndymionStatue1
+  parent: BaseStructure
+  name: Endymion Statue
+  description: |
+    A memorial commissioned in 2143 to commemorate the lives lost aboard the Endymion and Selene, carved from a recovered fragment of the ships' hull and shaped into their likeness. The names of the lost crew are carved on it.
+    "In reaching to the future, we must never forget those who came before us."
+    - TSF representative Kennedy Sunderland
+  components:
+    - type: Sprite
+      noRot: true
+      sprite: _Starlight/Structures/Decorations/Statues.rsi
+      state: endymion1
+      drawdepth: Mobs
+      offset: "0.0,0.5"
+
+- type: entity
+  id: EndymionStatue2
+  parent: EndymionStatue1
+  components:
+    - type: Sprite
+      noRot: true
+      sprite: _Starlight/Structures/Decorations/Statues.rsi
+      state: endymion2
+      drawdepth: Mobs
+      offset: "0.0,0.5"
