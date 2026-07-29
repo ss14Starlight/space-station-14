@@ -633,11 +633,6 @@
     - state: microstimpen
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: Injector # Starlight start
-    solutionName: pen # This section's really only here so we can make the microinjector not have interaction particles
-    currentTransferAmount: null
-    activeModeProtoId: HyposprayInjectMode
-    allowedModes:
-    - HyposprayInjectMode
     showInteractionParticles: false # Starlight end
   - type: SolutionContainerManager
     solutions:
