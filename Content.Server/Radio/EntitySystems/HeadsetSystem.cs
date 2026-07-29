@@ -72,7 +72,7 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
         }
         //Starlight begin
         if (args.UsingCustomChannel && args.CustomChannel is not null)
-            _radio.SendCustomRadioMessage(uid, args.Message.Text, args.CustomChannel, component.Headset, args.Language, loudMode); // Custom channel data is already confirmed to exist on this headset
+            _radio.SendCustomRadioMessage(uid, args.Message.Text, args.CustomChannel, component.Headset, args.Language, loudMode: loudMode); // Custom channel data is already confirmed to exist on this headset
         //Starlight end
     }
 
