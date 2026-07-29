@@ -31,7 +31,9 @@
       NavSmash: !type:Bool
         true
   - type: CosmicCultFaction
-  - type: ShowAntagIcons
+  - type: CosmicMinion
+  #- type: CosmicCult # shows just coscult but also makes them an full cultists.
+  #- type: ShowAntagIcons # shows all icons
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -121,11 +123,11 @@
   - type: TypingIndicator
     proto: CosmicTyping
   - type: GhostRole
-    name: ghost-role-information-cosmic-oracle-name
-    description: ghost-role-information-cosmic-oracle-description
-    rules: ghost-role-information-cosmic-oracle-rules
+    name: ghost-role-information-cosmic-custodian-name
+    description: ghost-role-information-cosmic-custodian-description
+    rules: ghost-role-information-cosmic-custodian-rules
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonistFlock
+    - MindRoleCosmicMinion
   - type: MeleeWeapon
     altDisarm: false
     animation: WeaponArcCosmic
@@ -159,7 +161,7 @@
     description: ghost-role-information-cosmic-oracle-description
     rules: ghost-role-information-cosmic-oracle-rules
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonistFlock
+    - MindRoleCosmicMinion
   - type: MeleeWeapon
     altDisarm: false
     animation: WeaponArcCosmic
@@ -190,7 +192,7 @@
     description: ghost-role-information-cosmic-lodestar-description
     rules: ghost-role-information-cosmic-lodestar-rules
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonistFlock
+    - MindRoleCosmicMinion
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound

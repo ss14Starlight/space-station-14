@@ -14,3 +14,21 @@
   name: ghost-role-information-colossus-name
   antagonist: true
   objective: ghost-role-colossus-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 43200 #12h
+  - !type:RoleTimeRequirement
+    role: JobBorg
+    time: 7200
+  playTimeTracker: AntagCosmicColossus
+
+- type: antag
+  id: CosmicAntagMinion
+  name: ghost-role-information-cosmic-minion-name
+  antagonist: true
+  setPreference: true
+  objective: ghost-role-information-cosmic-minion-description
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 21600 # 6h
+  playTimeTracker: AntagCosmicMinion

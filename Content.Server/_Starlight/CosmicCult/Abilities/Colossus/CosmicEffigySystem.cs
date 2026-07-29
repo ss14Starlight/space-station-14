@@ -4,6 +4,7 @@ using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
+using Content.Shared.Popups;
 using Content.Shared.Warps;
 using Content.Server._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components;
@@ -77,6 +78,9 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         //Remove reference to the destroyed effigy
         if (colossus.CurrentEffigy == ent.Owner)
             colossus.CurrentEffigy = null;
+        
+        //notify the player of lost effigy
+        _popup.PopupEntity(Loc.GetString("ghost-role-colossus-effigy-lost"),colossusUid,colossusUid,PopupType.LargeCaution);
 
         // Start the recharge timer, vanishing of effigy + time
         colossus.EffigyRechargeTimer = _timing.CurTime + colossus.EffigyRechargeTime;
@@ -120,6 +124,8 @@ public sealed partial class CosmicEffigySystem : EntitySystem
             // Restore ability
             _charges.SetCharges((action, charges), charges.MaxCharges);
             Dirty(action, charges);
+            _popup.PopupEntity(Loc.GetString("ghost-role-colossus-effigy-ready"),uid,uid,
+            PopupType.LargeCaution);
             // Save consumed recharge timer state
             Dirty(uid, comp);
         }

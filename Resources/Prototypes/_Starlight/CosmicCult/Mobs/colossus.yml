@@ -2,7 +2,7 @@
   parent: [ BaseSimpleMob, FlyingMobBase ]
   abstract: true
   id: MobCosmicColossusBase
-  name: entropic colossus
+  name: Entropic Colossus
   description: A colossal monstrosity of malign plating and dendritic infestation.
   components:
   - type: FTLSmashImmune
