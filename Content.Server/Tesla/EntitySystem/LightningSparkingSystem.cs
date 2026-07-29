@@ -24,7 +24,7 @@ public sealed partial class LightningSparkingSystem : EntitySystem
     {
         _appearance.SetData(uid.Owner, TeslaCoilVisuals.Lightning, true);
         uid.Comp.LightningEndTime = _gameTiming.CurTime + TimeSpan.FromSeconds(uid.Comp.LightningTime);
-        uid.Comp.IsSparking = true;
+        uid.Comp.IsSparking = false;
     }
 
     public override void Update(float frameTime)
