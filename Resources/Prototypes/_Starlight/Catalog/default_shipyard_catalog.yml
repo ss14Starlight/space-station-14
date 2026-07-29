@@ -98,6 +98,15 @@
   shuttlePath: /Maps/_Starlight/Shuttles/ReachButShipyard.yml
 
 - type: vessel
+  id: Apotherkerin
+  name: JSS-MED Apotherkerin
+  description: A compact vessel designed for chemistry and botany, comes with a chemistry lab, a hydroponics area and mutation room. Requires external sources of air.
+  price: 40000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/JSS_MED_Apotherkerin.yml
+
+- type: vessel
   id: Bumblebee
   name: NTS "Bumblebee" Flores
   description: A medium sized botany shuttle made for advance farming operations, comes with two mutation rooms.
