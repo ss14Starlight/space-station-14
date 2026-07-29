@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Bagel) Guidebook crates, and light switch system to Library.
-    type: Add
-  id: 406708
-  time: '2026-07-18T12:18:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5130
-- author: OMEGA
-  changes:
   - message: (Bagel) Small room for miners, with a ticket machine and shuttle console.
     type: Add
   id: 406709
@@ -2799,4 +2792,11 @@ Entries:
   id: 407107
   time: '2026-07-29T08:55:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5389
+- author: SeaTheProto
+  changes:
+  - message: allow Dominator, Miniature Energy Gun, Proto-5x, and the X-01's disabling settings to work with pacifism. Pacifists rejoice!
+    type: Tweak
+  id: 407108
+  time: '2026-07-29T08:55:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5394
 Order: -1
