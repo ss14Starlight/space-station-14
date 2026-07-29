@@ -425,7 +425,7 @@ namespace Content.Server.RoundEnd
         #region Starlight
         private void StartCallVote()
         {
-            var options = new VoteOptions() { DisplayVotes = true, Duration = TimeSpan.FromSeconds(30), VoterEligibility = VoteManager.VoterEligibility.NonAntag, Title = Loc.GetString("round-end-system-shuttle-auto-called-call-vote")};
+            var options = new VoteOptions() { DisplayVotes = false, Duration = TimeSpan.FromSeconds(30), VoterEligibility = VoteManager.VoterEligibility.NonAntag, Title = Loc.GetString("round-end-system-shuttle-auto-called-call-vote")};
             options.SetInitiatorOrServer(null);
             options.Options.Add(("Yes", 0));
             options.Options.Add(("No", 1));
@@ -435,19 +435,17 @@ namespace Content.Server.RoundEnd
             {
                 if (args.Winner == null)
                 {
-                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
                     _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-tie"));
                     return;
                 }
 
                 if ((int)args.Winner == 0)
                 {
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-recall"));
+                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
                 }
                 else
                 {
-                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-norecall"));
+                    _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-result-no", ("minutes",_cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime))));
                 }
             };
         }
