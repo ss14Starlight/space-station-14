@@ -1,9 +1,10 @@
 using Content.Shared.Atmos;
+using Robust.Shared.Serialization;
 
 namespace Content.Server.Atmos.Piping.Trinary.Components
 {
     [RegisterComponent]
-    public sealed partial class GasFilterComponent : Component
+    public sealed partial class GasFilterComponent : Component, ISerializationHooks // Starlight: serialisation for legacy mapped gas filters
     {
         [DataField]
         public bool Enabled = true;
@@ -27,6 +28,7 @@ namespace Content.Server.Atmos.Piping.Trinary.Components
         public HashSet<Gas> FilteredGases = new(); // Starlight: multiple
 
         #region Starlight
+
 
         /// Legacy field definition that may be set on older maps. Value appended to FilteredGases and cleared.
         [DataField("filteredGas")] private Gas? _filteredGasObsolete;
