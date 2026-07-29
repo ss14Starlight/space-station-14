@@ -1,11 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Fix a small bug where upon relogging with a pulled-down mask, a popup would show up saying you need to pull it down when trying to eat/drink despite it already being down.
-    type: Fix
-  id: 406707
-  time: '2026-07-18T11:49:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5178
 - author: OMEGA
   changes:
   - message: (Bagel) Guidebook crates, and light switch system to Library.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407106
   time: '2026-07-28T21:00:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5169
+- author: OMEGA
+  changes:
+  - message: Removed hull plates blocking TEG's cold loop from cooling.
+    type: Fix
+  id: 407107
+  time: '2026-07-29T08:55:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5389
 Order: -1
