@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Bagel) Small conveyor belt at Cargo front, skates to Mail room.
-    type: Add
-  id: 406712
-  time: '2026-07-18T12:18:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5130
-- author: OMEGA
-  changes:
   - message: (Bagel) Air alarms added across station.
     type: Add
   id: 406713
@@ -2799,4 +2792,11 @@ Entries:
   id: 407111
   time: '2026-07-29T11:59:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5393
+- author: joshujo
+  changes:
+  - message: Gas filters can now filter multiple gases.
+    type: Add
+  id: 407112
+  time: '2026-07-29T13:45:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5390
 Order: -1
