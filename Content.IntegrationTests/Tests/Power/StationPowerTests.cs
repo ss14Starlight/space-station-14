@@ -62,7 +62,6 @@ public sealed class StationPowerTests : GameTest
         "StarlightElkridge",
         "StarlightFland",
         "StarlightHotel",
-        "StarlightNovoLobster",
         "StarlightOasis",
         "StarlightPacked",
         "StarlightReach",
