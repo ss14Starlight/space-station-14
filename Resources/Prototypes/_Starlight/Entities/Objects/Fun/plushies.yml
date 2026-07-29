@@ -2114,9 +2114,9 @@
   - type: EmitSoundOnCollide
     sound: /Audio/Voice/Arachnid/arachnid_chitter.ogg
   - type: Edible
-    useSound: /Audio/Voice/Arachnid/arachnid_chitter.ogg
+    useSound: /Audio/Voice/Arachnid/arachnid_scream.ogg
   - type: MeleeWeapon
-    soundHit: /Audio/Voice/Arachnid/arachnid_chitter.ogg
+    soundHit: /Audio/Voice/Arachnid/arachnid_scream.ogg
   - type: Clothing
     quickEquip: false
     sprite: _Starlight\Objects\Fun\Plushies\pholcus_plushie.rsi
