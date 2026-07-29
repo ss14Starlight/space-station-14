@@ -7,7 +7,7 @@ ghost-role-information-theunknown-rules = ...
 
 # CosmicMinions
 
-ghost-role-antag-information-minion-name = Cosmic Minion
+ghost-role-information-cosmic-minion-name = Cosmic Minion
 
 ghost-role-information-cosmic-minion-description = Cosmic Cult Minion
     You are a manifestation of the Cosmic Cult.

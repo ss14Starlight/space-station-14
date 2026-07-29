@@ -231,6 +231,4 @@ cosmiccult-silicon-freedom-fallback-briefing =
 cosmiccult-silicon-effigy-exists =
     Your vessel strains under the presence of an existing effigy.
 
-roles-antag-cosmic-minion-name = Cosmic Minion
-
 cosmiccult-leader-abandonment-message = Your chosen enlightened has forsaken the grand design. You must empower another!

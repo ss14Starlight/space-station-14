@@ -40,6 +40,7 @@
     allowMovement: true
     allowSpeech: true
     makeSentient: false
+    name: ghost-role-information-cosmic-minion-name
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-cultentity
     othersText: cosmic-examine-text-entities
