@@ -173,7 +173,7 @@ namespace Content.Client.Decals
 
                 foreach (var removedId in diff.Removed)
                 {
-                    if (chunk.Decals.Remove(removedId))
+                    if (chunk.Decals.ContainsKey(removedId))
                     {
                         OnDecalRemoved(gridId, removedId, gridComp, indices, chunk);
                         gridComp.DecalIndex.Remove(removedId);
