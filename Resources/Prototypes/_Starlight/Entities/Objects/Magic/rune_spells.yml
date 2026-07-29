@@ -60,7 +60,7 @@
   description: Summons a rune that will freeze in place anyone who walks on it.
   components:
   - type: Action
-    useDelay: 30
+    useDelay: 25
     icon:
         sprite: Structures/Magic/Cult/rune.rsi
         state: cult4

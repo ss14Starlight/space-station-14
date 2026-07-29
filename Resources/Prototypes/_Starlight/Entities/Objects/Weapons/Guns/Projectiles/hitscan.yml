@@ -1822,7 +1822,7 @@
     damage:
       types:
         Cold: 50
-        Structural: 100
+        Structural: 150
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi

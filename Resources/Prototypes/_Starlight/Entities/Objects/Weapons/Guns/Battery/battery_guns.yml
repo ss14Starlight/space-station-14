@@ -1156,7 +1156,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/frozenbeam.ogg
   - type: Battery
     maxCharge: 100
     startingCharge: 100
