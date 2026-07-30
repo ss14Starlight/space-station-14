@@ -416,7 +416,7 @@
       - id: SawImprov
       - id: HydroponicsToolMiniHoe
       - id: EmeraldLizitar
-      - id: AmethystLizitar 
+      - id: AmethystLizitar
         weight: .8 #starlight
       - id: ClothingHandsKnuckleDusters
       - !type:NestedSelector
