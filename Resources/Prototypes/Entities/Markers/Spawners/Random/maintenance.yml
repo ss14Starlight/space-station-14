@@ -389,7 +389,10 @@
         weight: .8
       - id: ClothingOuterArmorMakeshift
       - id: WeaponMeleeSwitchblade
-      - id: SpearSteel #Starlight End:
+      - id: SpearSteel 
+      - id: EmeraldLizitar
+      - id: AmethystLizitar 
+        weight: .8 #Starlight End:
     # Rare Group
     - !type:GroupSelector
       weight: 5
