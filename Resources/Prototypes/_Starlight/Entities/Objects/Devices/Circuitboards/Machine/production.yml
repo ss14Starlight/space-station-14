@@ -1352,3 +1352,71 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+
+- type: entity
+  id: CommandTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseCommandContraband]
+  name: command techfab machine board
+  description: A machine printed circuit board for a command techfab.
+  components:
+    - type: Sprite
+      state: command
+    - type: MachineBoard
+      prototype: CommandTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: NanoTrasenTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseNanoTrasenContraband]
+  name: NanoTrasen techfab machine board
+  description: A machine printed circuit board for a NanoTrasen techfab.
+  components:
+    - type: Sprite
+      state: command
+    - type: MachineBoard
+      prototype: NanoTrasenTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: CentralCommandTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseCentcommContraband]
+  name: Central Command techfab machine board
+  description: A machine printed circuit board for a Central Command techfab.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: CentralCommandTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: SyndicateTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseSyndicateContraband]
+  name: Syndicate techfab machine board
+  description: A machine printed circuit board for a Syndicate techfab.
+  components:
+    - type: Sprite
+      state: cpu_syndicate
+    - type: MachineBoard
+      prototype: SyndicateTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker

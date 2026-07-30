@@ -185,7 +185,7 @@
   description: Prints equipment for use by the station's service department.
   components:
   - type: Sprite
-    sprite: Structures/Machines/techfab.rsi
+    sprite: syndicateStructures/Machines/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -310,6 +310,294 @@
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+  - type: MaterialStorage
+    whitelist: *StandardMaterialWhitelist
+  - type: OreSiloClient
+
+# Command, paperwork stuff, mostly
+- type: entity
+  id: CommandTechFab
+  parent: BaseLatheLube
+  name: command techfab
+  description: Prints equipment for use by the station's command department.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: command
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: CommandTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    - PaperworkStatic
+    - TowelsStatic
+    - BasicChemistryStatic
+    - LightsStatic
+    - ServiceStatic
+    - CassetteTape
+    - TapeRecorder
+    - TopicalsStatic
+    - AACTabletStatic
+    dynamicPacks:
+    - StarlightAutolatheLootable
+    - StarlightProtolatheLootable
+    - Instruments
+    - WirelessCameraHandheld
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    # If you somehow manage to emag it, cool, I guess
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic
+  - type: MaterialStorage
+    whitelist: *StandardMaterialWhitelist
+  - type: OreSiloClient
+
+# NanoTrasen; don't know where this'd get used, but can't hurt to have
+- type: entity
+  id: NanoTrasenTechFab
+  parent: BaseLatheLube
+  name: NanoTrasen techfab
+  description: Prints equipment for use by NanoTrasen.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: nanotrasen
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: NanoTrasenTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    # It's just everything
+    - ToolsStatic
+    - PartsStatic
+    - AtmosStatic
+    - CablesStatic
+    - PaperworkStatic
+    - TowelsStatic
+    - CargoStatic
+    - LightsStatic
+    - ServiceStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+    - CassetteTape
+    - TapeRecorder
+    - NullSpaceDrainer
+    - ScienceBlueSpaceStatic
+    - ChemistryStatic
+    - SecurityEquipmentStatic
+    - NullSpaceDrainer
+    - SecurityPracticeStatic
+    - StarlightSecurityAmmoStatic
+    - SecurityWeaponsStatic
+    - TopicalsStatic
+    - ChemistryStatic
+    - MedicalStatic
+    - RollerBedsStatic
+    - MedicalClothingStatic
+    - EmptyMedkitsStatic
+    - StarlightMedicalStatic
+    - AACTabletStatic
+    dynamicPacks:
+    - StarlightAutolatheLootable
+    - StarlightProtolatheLootable
+    - StarlightSecurityTechFabLootable
+    - ScienceBlueSpace
+    - AdvancedTools
+    - ScienceEquipment
+    - ScienceExplosives
+    - ScienceClothing
+    - PowerCells
+    - ScienceWeapons
+    - Mining
+    - AtmosTools
+    - EngineeringWeapons
+    - Chemistry
+    - Janitor
+    - Instruments
+    - Equipment
+    - StarlightScienceWeapons
+    - WirelessCameraHandheld
+    - SecurityScienceBlueSpace
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
+    - SecurityDisablers
+    - StarlightDefenseStatic
+    - StarlightSecurityEquipment
+    - StarlightSecurityBoards
+    - StarlightSecurityExplosives
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityWeapons
+    - SecurityDisablers
+    - SecurityCyberLimbs
+    - SecurityImplants
+    - StarlightSecurityMechsWeapons
+    - StarlightSurgeryDynamic
+    - StarlightAutomendersDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
+    - StarlightMedicalTechFabLootable
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSyndicateModulesSecfab
+    - StarlightSyndicateAmmoStatic
+    - StarlightSecurityAmmoEmagStatic
+    - StarlightSecurityGrenadesEmag
+    - SyndicateAmmoStatic
+  - type: MaterialStorage
+    whitelist: *StandardMaterialWhitelist
+  - type: OreSiloClient
+
+# Central Command, same as the NT one
+- type: entity
+  id: CentralCommandTechFab
+  parent: NanoTrasenTechFab
+  name: Central Command techfab
+  description: Prints equipment for use by Central Command.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: centralcommand
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: CentralCommandTechFabCircuitboard
+
+# Syndicate, similar to the other two, should probably only be mapped on event stuff
+- type: entity
+  id: SyndicateTechFab
+  parent: BaseLatheLube
+  name: Syndicate techfab
+  description: Prints equipment for use by the Syndicate.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: syndicate
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: NanoTrasenTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    # It's just everything
+    - ToolsStatic
+    - PartsStatic
+    - AtmosStatic
+    - CablesStatic
+    - PaperworkStatic
+    - TowelsStatic
+    - CargoStatic
+    - LightsStatic
+    - ServiceStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+    - CassetteTape
+    - TapeRecorder
+    - NullSpaceDrainer
+    - ScienceBlueSpaceStatic
+    - ChemistryStatic
+    - SecurityEquipmentStatic
+    - NullSpaceDrainer
+    - SecurityPracticeStatic
+    - StarlightSecurityAmmoStatic
+    - SecurityWeaponsStatic
+    - TopicalsStatic
+    - ChemistryStatic
+    - MedicalStatic
+    - RollerBedsStatic
+    - MedicalClothingStatic
+    - EmptyMedkitsStatic
+    - StarlightMedicalStatic
+    - AACTabletStatic
+    # Its main difference is it gets the syndicate stuff in its static packs.
+    - StarlightSyndicateModulesSecfab
+    - StarlightSyndicateAmmoStatic
+    - StarlightSecurityAmmoEmagStatic
+    - StarlightSecurityGrenadesEmag
+    - SyndicateAmmoStatic
+    dynamicPacks:
+    - StarlightAutolatheLootable
+    - StarlightProtolatheLootable
+    - StarlightSecurityTechFabLootable
+    - ScienceBlueSpace
+    - AdvancedTools
+    - ScienceEquipment
+    - ScienceExplosives
+    - ScienceClothing
+    - PowerCells
+    - ScienceWeapons
+    - Mining
+    - AtmosTools
+    - EngineeringWeapons
+    - Chemistry
+    - Janitor
+    - Instruments
+    - Equipment
+    - StarlightScienceWeapons
+    - WirelessCameraHandheld
+    - SecurityScienceBlueSpace
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
+    - SecurityDisablers
+    - StarlightDefenseStatic
+    - StarlightSecurityEquipment
+    - StarlightSecurityBoards
+    - StarlightSecurityExplosives
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityWeapons
+    - SecurityDisablers
+    - SecurityCyberLimbs
+    - SecurityImplants
+    - StarlightSecurityMechsWeapons
+    - StarlightSurgeryDynamic
+    - StarlightAutomendersDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
+    - StarlightMedicalTechFabLootable
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
