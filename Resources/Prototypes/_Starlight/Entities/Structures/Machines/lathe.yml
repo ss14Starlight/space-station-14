@@ -70,7 +70,7 @@
   description: Prints equipment for use by the station's supply department.
   components:
   - type: Sprite
-    sprite: Structures/Machines/techfab.rsi
+    sprite: _Starlight/Structures/Machines/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
