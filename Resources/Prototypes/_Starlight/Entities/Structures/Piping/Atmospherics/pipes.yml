@@ -123,15 +123,18 @@
   components:
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
-      drawdepth: ThinPipe
-      offset: 0,0.5
+      drawdepth: LargeObjects
+      offset: 0,0.55
       layers:
-        - state: pipeFourway
-          offset: 0,-0.5
+        - state: pipeFourway # The four pipes coming out at the base
+          offset: 0,-0.55
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi
-          state: gastank
+          state: gas_tank # The tank, recolored with spray painter
           map: [ "enum.SubfloorLayers.FirstLayer" ]
+        - sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi
+          state: gas_tank_overlay # The hazard stripes + warning triangle, not recolored
+          map: [ "enum.SubfloorLayers.SecondLayer" ]
     - type: AtmosPipeLayers
       spriteLayersRsiPaths:
         enum.PipeVisualLayers.Pipe:
@@ -151,6 +154,7 @@
       blockAmbience: false
       visibleLayers:
         - enum.SubfloorLayers.FirstLayer
+        - enum.SubfloorLayers.SecondLayer
     - type: StaticPrice
       price: 75
     - type: PipeAppearance
@@ -188,7 +192,6 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
-      drawdepth: ThinPipeAlt1
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
     - type: Construction
       graph: GasPipeTankSmall
@@ -200,7 +203,6 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
-      drawdepth: ThinPipeAlt2
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
     - type: Construction
       graph: GasPipeTankSmall
@@ -212,7 +214,6 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
-      drawdepth: ThinPipeAlt3
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
     - type: Construction
       graph: GasPipeTankSmall
@@ -224,7 +225,6 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
-      drawdepth: ThinPipeAlt4
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
     - type: Construction
       graph: GasPipeTankSmall

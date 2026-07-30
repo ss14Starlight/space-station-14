@@ -299,7 +299,7 @@
   category: InterfacesStorage
   sprite:
     sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi
-    state: gastank
+    state: gas_tank_icon
   mode: ConstructObject
   prototype: GasPipeTankSmall
   cost: 5
