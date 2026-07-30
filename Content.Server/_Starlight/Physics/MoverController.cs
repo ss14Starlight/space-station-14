@@ -2,7 +2,9 @@ using System.Collections.Concurrent;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Movement;
+using Content.Shared._Starlight.RedundantMovement;
 using Content.Shared._Starlight.Sound;
 using Content.Shared.Maps;
 using Content.Shared.Movement.Components;
@@ -10,7 +12,6 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
-using Content.Shared._Starlight.CCVar;
 using Prometheus;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
@@ -972,4 +973,53 @@ public sealed partial class SLMoverController : SharedMoverController
         && (ftl.State & (FTLState.Starting | FTLState.Travelling | FTLState.Arriving)) != 0x0)
             || HasComp<PreventPilotComponent>(shuttleUid);
 
+    protected override void HandleDirChange(EntityUid entity, Direction dir, ushort subTick, bool state)
+    {
+        // i'm just going to drop the movement packets on the server for testing
+        // ideally we'd not send them in the first place but that requires a change to robust
+        // which means i can't access my cvar that is in content, unless we do something a tiny bit cursed
+        // (cancel InputSystem.HandleInputCommand by returning false from HandleCmdMessage in the input cmd handlers,
+        // and then separately do all the functionality of it except for actually sending the net message)
+        if (_cfg.GetCVar(RedundantMovementCVars.Enabled))
+        {
+            return;
+        }
+
+        base.HandleDirChange(entity, dir, subTick, state);
+    }
+
+    protected override void HandleRunChange(EntityUid uid, ushort subTick, bool walking)
+    {
+        if (_cfg.GetCVar(RedundantMovementCVars.Enabled))
+        {
+            return;
+        }
+
+        base.HandleRunChange(uid, subTick, walking);
+    }
+
+    public void OnMoveButtonChange(EntityUid entity, MoveButtons changedButton, bool pressed, ushort subtick)
+    {
+        // we call straight through to the base method here so our override doesn't skip it
+        switch (changedButton)
+        {
+            case MoveButtons.Up:
+                base.HandleDirChange(entity, Direction.North, subtick, pressed);
+                break;
+            case MoveButtons.Down:
+                base.HandleDirChange(entity, Direction.South, subtick, pressed);
+                break;
+            case MoveButtons.Left:
+                base.HandleDirChange(entity, Direction.West, subtick, pressed);
+                break;
+            case MoveButtons.Right:
+                base.HandleDirChange(entity, Direction.East, subtick, pressed);
+                break;
+            case MoveButtons.Walk:
+                base.HandleRunChange(entity, subtick, pressed);
+                break;
+            default:
+                throw new ArgumentException("Unknown button", nameof(changedButton));
+        }
+    }
 }
