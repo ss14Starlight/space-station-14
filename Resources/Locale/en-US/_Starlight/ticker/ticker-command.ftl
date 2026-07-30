@@ -6,5 +6,5 @@ command-description-ticker-restartroundnow =
     Ends the round and returns to lobby.
 command-description-ticker-cancelrestart =
     Cancels the round restart timer.
-command-description-ticker-cancelpostend =
+command-description-ticker-cancelpostround =
     Cancels the post-end state and returns to being considered in-round.
