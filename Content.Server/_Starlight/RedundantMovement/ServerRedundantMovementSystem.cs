@@ -2,7 +2,6 @@
 using Content.Server._Starlight.Physics;
 using Content.Shared._Starlight.RedundantMovement;
 using Content.Shared.Movement.Systems;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -11,24 +10,33 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.RedundantMovement;
 
-public sealed partial class ServerRedundantMovementSystem : EntitySystem
+public sealed partial class ServerRedundantMovementManager : IServerRedundantMovementManager
 {
-    [Dependency] private INetManager _netManager = default!;
-    [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
-    [Dependency] private SLMoverController _mover = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private readonly Dictionary<ICommonSession, SessionTracker> _trackers = [];
 
-    public override void Initialize()
+    public void Initialize()
     {
-        UpdatesBefore.Add(typeof(SLMoverController));
         _netManager.RegisterNetMessage<RedundantMovementMessage>(HandleMovementMessage, accept: NetMessageAccept.Server);
         _netManager.RegisterNetMessage<RedundantMovementAckMessage>(accept: NetMessageAccept.Client);
     }
 
-    public override void Update(float frameTime)
+    private void HandleMovementMessage(RedundantMovementMessage msg)
+    {
+        var channel = _playerManager.GetSessionByChannel(msg.MsgChannel);
+        if (channel == null) return;
+        if (!_trackers.TryGetValue(channel, out var tracker))
+            _trackers.Add(channel, tracker = new());
+
+        tracker.Ingest(msg.TickData);
+
+        _netManager.ServerSendMessage(new RedundantMovementAckMessage() { Tick = msg.SentTick }, msg.MsgChannel);
+    }
+
+    public void ApplyInput(GameTick tick, SLMoverController mover)
     {
         if (!_cfg.GetCVar(RedundantMovementCVars.Enabled))
         {
@@ -36,11 +44,6 @@ public sealed partial class ServerRedundantMovementSystem : EntitySystem
             return;
         }
 
-        ApplyInput(_timing.CurTick);
-    }
-
-    public void ApplyInput(GameTick tick)
-    {
         foreach (var (session, tracker) in _trackers)
         {
             if (!tracker.TryFetch(tick, out var data)) continue;
@@ -58,7 +61,7 @@ public sealed partial class ServerRedundantMovementSystem : EntitySystem
                     var toCheck = (MoveButtons)(1 << i);
                     if ((changedButtons & toCheck) != 0)
                     {
-                        _mover.OnMoveButtonChange(entity, toCheck, (toCheck & buttons) != 0, subtick);
+                        mover.OnMoveButtonChange(entity, toCheck, (toCheck & buttons) != 0, subtick);
                     }
                 }
             }
@@ -73,19 +76,7 @@ public sealed partial class ServerRedundantMovementSystem : EntitySystem
         }
     }
 
-    private void HandleMovementMessage(RedundantMovementMessage msg)
-    {
-        var channel = _playerManager.GetSessionByChannel(msg.MsgChannel);
-        if (channel == null) return;
-        if (!_trackers.TryGetValue(channel, out var tracker))
-            _trackers.Add(channel, tracker = new());
-
-        tracker.Ingest(msg.TickData);
-
-        _netManager.ServerSendMessage(new RedundantMovementAckMessage() { Tick = msg.SentTick }, msg.MsgChannel);
-    }
-
-    private sealed class SessionTracker
+    public sealed class SessionTracker
     {
         private readonly Queue<TickInputData> _queue = [];
         private GameTick _mostRecentTick;
@@ -131,5 +122,22 @@ public sealed partial class ServerRedundantMovementSystem : EntitySystem
             data = default;
             return false;
         }
+    }
+}
+
+public sealed partial class ServerRedundantMovementSystem : EntitySystem
+{
+    [Dependency] private IServerRedundantMovementManager _manager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SLMoverController _mover = default!;
+
+    public override void Initialize()
+    {
+        UpdatesBefore.Add(typeof(SLMoverController));
+    }
+
+    public override void Update(float frameTime)
+    {
+        _manager.ApplyInput(_timing.CurTick, _mover);
     }
 }

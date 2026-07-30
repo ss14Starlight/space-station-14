@@ -10,24 +10,54 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.RedundantMovement;
 
+public sealed partial class ClientRedundantMovementManager : IClientRedundantMovementManager
+{
+    [Dependency] private INetManager _netManager = default!;
+
+    public GameTick ServerAckTick { get; set; }
+
+    public void Initialize()
+    {
+        _netManager.RegisterNetMessage<RedundantMovementMessage>(accept: NetMessageAccept.Server);
+        _netManager.RegisterNetMessage<RedundantMovementAckMessage>(HandleMovementAckMessage, accept: NetMessageAccept.Client);
+    }
+
+    private void HandleMovementAckMessage(RedundantMovementAckMessage msg)
+    {
+        if (ServerAckTick < msg.Tick)
+            ServerAckTick = msg.Tick;
+    }
+
+    public void SendTickData(GameTick tick, IEnumerable<TickInputData> data)
+    {
+        var msg = new RedundantMovementMessage()
+        {
+            SentTick = tick,
+        };
+
+        msg.TickData.AddRange(data);
+
+        _netManager.ClientSendMessage(msg);
+    }
+}
+
 public sealed partial class ClientRedundantMovementSystem : EntitySystem
 {
     [Dependency] private InputSystem _input = default!;
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IClientRedundantMovementManager _manager = default!;
 
     private MoveButtons _inputState = MoveButtons.None;
     private GameTick _lastSentTick = GameTick.Zero;
-    private GameTick _serverAckTick = GameTick.Zero;
     private readonly Queue<TickInputData> _storedInputData = [];
     private readonly List<InputChange> _frameChanges = [];
 
     public override void Initialize()
     {
-        _netManager.RegisterNetMessage<RedundantMovementMessage>(accept: NetMessageAccept.Server);
-        _netManager.RegisterNetMessage<RedundantMovementAckMessage>(HandleMovementAckMessage, accept: NetMessageAccept.Client);
-    
+        _manager.ServerAckTick = GameTick.Zero;
+
         CommandBinds.Builder
             .Bind(EngineKeyFunctions.MoveUp, new MovementInputHandler(this, MoveButtons.Up))
             .Bind(EngineKeyFunctions.MoveDown, new MovementInputHandler(this, MoveButtons.Down))
@@ -39,18 +69,23 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
 
     public override void Shutdown()
     {
-        base.Shutdown();
         CommandBinds.Unregister<ClientRedundantMovementSystem>();
     }
 
     public override void Update(float frameTime)
     {
+        if (!_cfg.GetCVar(RedundantMovementCVars.Enabled))
+            return;
+
         var tick = _timing.CurTick;
 
         if (tick <= _lastSentTick)
             return;
 
         _lastSentTick = tick;
+
+        if (!_netManager.IsConnected)
+            return;
 
         var thisTickInput = new TickInputData(tick, _inputState, _frameChanges.ToArray());
         _frameChanges.Clear();
@@ -63,26 +98,14 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
 
         // remove all packets that were acknowledged by the server
         // they no longer need to be sent
+        var serverAckTick = _manager.ServerAckTick;
         while (_storedInputData.TryPeek(out var data))
         {
-            if (data.Tick > _serverAckTick) break;
+            if (data.Tick > serverAckTick) break;
             _storedInputData.Dequeue();
         }
 
-        var msg = new RedundantMovementMessage()
-        {
-            SentTick = tick,
-        };
-
-        msg.TickData.AddRange(_storedInputData);
-
-        _netManager.ClientSendMessage(msg);
-    }
-
-    private void HandleMovementAckMessage(RedundantMovementAckMessage msg)
-    {
-        if (_serverAckTick < msg.Tick)
-            _serverAckTick = msg.Tick;
+        _manager.SendTickData(tick, _storedInputData);
     }
 
     private void OnInputChange(MoveButtons newInput, ushort subtick)
