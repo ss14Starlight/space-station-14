@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/25/2026 07:59:22
-  entityCount: 271
+  time: 07/30/2026 03:36:06
+  entityCount: 272
 maps: []
 grids:
 - 1
@@ -159,7 +159,7 @@ entities:
           0,-3:
             0: 13107
           0,-2:
-            0: 28979
+            0: 28723
           0,-5:
             0: 13312
         uniqueMixes:
@@ -736,40 +736,6 @@ entities:
     - type: ContainedSolution
       containerName: food
       container: 82
-  - uid: 86
-    components:
-    - type: MetaData
-      name: solution - food
-    - type: Transform
-      parent: 85
-    - type: Solution
-      solution:
-        maxVol: 15
-        name: food
-        reagents:
-        - data: []
-          ReagentId: BatteryAcid
-          Quantity: 15
-    - type: ContainedSolution
-      containerName: food
-      container: 85
-  - uid: 88
-    components:
-    - type: MetaData
-      name: solution - glass
-    - type: Transform
-      parent: 87
-    - type: Solution
-      solution:
-        maxVol: 10
-        name: glass
-        reagents:
-        - data: []
-          ReagentId: Silicon
-          Quantity: 10
-    - type: ContainedSolution
-      containerName: glass
-      container: 87
   - uid: 92
     components:
     - type: MetaData
@@ -951,17 +917,21 @@ entities:
     - type: ContainedSolution
       containerName: battery
       container: 116
-- proto: ActionSleep
-  entities:
-  - uid: 120
-    components:
-    - type: Transform
-      parent: 119
-    - type: Action
-      originalIconColor: '#FFFFFFFF'
-      container: 119
 - proto: AirAlarm
   entities:
+  - uid: 88
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-2.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 174
+      - 214
+      - 211
+    - type: Fixtures
+      fixtures: {}
   - uid: 270
     components:
     - type: Transform
@@ -975,19 +945,6 @@ entities:
       - 212
       - 268
       - 210
-    - type: Fixtures
-      fixtures: {}
-  - uid: 271
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-2.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 214
-      - 174
-      - 211
     - type: Fixtures
       fixtures: {}
 - proto: AirCanister
@@ -1135,7 +1092,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 271
+      - 88
   - uid: 268
     components:
     - type: Transform
@@ -1177,6 +1134,18 @@ entities:
       fingerprints: []
 - proto: AtmosDeviceFanDirectional
   entities:
+  - uid: 87
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-17.5
+      parent: 1
+  - uid: 89
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-17.5
+      parent: 1
   - uid: 126
     components:
     - type: Transform
@@ -1191,35 +1160,24 @@ entities:
       parent: 1
 - proto: Bed
   entities:
+  - uid: 84
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
+- proto: BedsheetBrown
+  entities:
   - uid: 119
     components:
     - type: Transform
-      pos: 1.5,-1.5
+      pos: 0.48140812,-1.461976
       parent: 1
-    - type: HealOnBuckle
-      sleepAction: 120
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 120
-- proto: BedsheetBrown
-  entities:
-  - uid: 128
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,-1.5
-      parent: 1
-    - type: Physics
-      canCollide: False
 - proto: BoxLightMixed
   entities:
   - uid: 129
     components:
     - type: Transform
-      pos: 1.3203125,-1.6504354
+      pos: 0.42244792,-1.1596284
       parent: 1
 - proto: ButtonFrameGrey
   entities:
@@ -1240,6 +1198,24 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-5.5
+      parent: 1
+  - uid: 207
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-16.5
+      parent: 1
+  - uid: 271
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-16.5
+      parent: 1
+  - uid: 272
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-16.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -1984,6 +1960,14 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeStraightAlt4
   entities:
+  - uid: 86
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-1.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 188
     components:
     - type: Transform
@@ -2152,14 +2136,6 @@ entities:
       color: '#0055CCFF'
 - proto: GasValveAlt4
   entities:
-  - uid: 207
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-1.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 208
     components:
     - type: Transform
@@ -2201,7 +2177,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 271
+      - 88
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubberAlt4
@@ -2235,7 +2211,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 271
+      - 88
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GeneratorBasic15kW
@@ -2280,49 +2256,12 @@ entities:
       fingerprints: []
 - proto: Gyroscope
   entities:
-  - uid: 84
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-1.5
-      parent: 1
-    - type: PointLight
-      enabled: True
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 85
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 89
-          - 87
-- proto: GyroscopeMachineCircuitboard
-  entities:
   - uid: 85
     components:
     - type: Transform
-      parent: 84
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          temperature: 293.15
-          canReact: True
-          maxVol: 0
-          name: food
-          reagents: []
-      containers:
-      - food
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@food: !type:ContainerSlot
-          ent: 86
+      rot: 3.141592653589793 rad
+      pos: 1.5,-1.5
+      parent: 1
 - proto: KitchenMicrowave
   entities:
   - uid: 55
@@ -2410,14 +2349,6 @@ entities:
       parent: 69
     - type: Stack
       count: 4
-    - type: Physics
-      canCollide: False
-  - uid: 89
-    components:
-    - type: Transform
-      parent: 84
-    - type: Stack
-      count: 3
     - type: Physics
       canCollide: False
   - uid: 103
@@ -2616,22 +2547,6 @@ entities:
       containers:
         solution@glass: !type:ContainerSlot
           ent: 59
-  - uid: 87
-    components:
-    - type: Transform
-      parent: 84
-    - type: Stack
-      count: 2
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - glass
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@glass: !type:ContainerSlot
-          ent: 88
 - proto: SheetSteel1
   entities:
   - uid: 16
@@ -2873,8 +2788,52 @@ entities:
       parent: 1
 - proto: SignalButtonDirectional
   entities:
+  - uid: 120
+    components:
+    - type: MetaData
+      name: Shuttles Toggle Button
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-16.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        104:
+        - - Pressed
+          - Toggle
+        81:
+        - - Pressed
+          - Toggle
+        75:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
+  - uid: 128
+    components:
+    - type: MetaData
+      name: Shuttles Toggle Button
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-16.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        104:
+        - - Pressed
+          - Toggle
+        81:
+        - - Pressed
+          - Toggle
+        75:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 226
     components:
+    - type: MetaData
+      name: Lights Button
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,-16.5
