@@ -17,7 +17,7 @@ RELEASE_DIR = "release"
 # Forks should change these to publish to their own infrastructure.
 #
 ROBUST_CDN_URL = "https://ss14cdn.projectphoenix.space/"
-FORK_ID = os.environ["FORK_ID"]
+FORK_ID = "phoenixstation"
 
 def main():
     parser = argparse.ArgumentParser()
