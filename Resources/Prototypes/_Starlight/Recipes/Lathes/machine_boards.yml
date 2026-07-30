@@ -17,3 +17,28 @@
   parent: [ BaseGoldCircuitboardRecipeHigh, BaseEngineeringMachineRecipeCategory ]
   id: SMESHyperAdvancedMachineCircuitboard
   result: SMESHyperAdvancedMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: CargoTechFabCircuitboard
+  result: CargoTechFabCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: EngineeringTechFabCircuitboard
+  result: EngineeringTechFabCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: ServiceTechFabCircuitboard
+  result: ServiceTechFabCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: ScienceTechFabCircuitboard
+  result: ScienceTechFabCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: CommandTechFabCircuitboard
+  result: CommandTechFabCircuitboard
