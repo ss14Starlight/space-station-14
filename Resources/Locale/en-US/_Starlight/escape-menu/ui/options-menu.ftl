@@ -36,6 +36,11 @@ ui-options-ranged-sight-offset = Sights Basic Offset
 ui-options-sight-main-color = Sight Main Color
 ui-options-sight-second-color = Sight Second Color
 
+## General
+
+ui-options-general-ghost-themes = Ghost Themes
+ui-options-general-ghost-themes-force-tester = Force display the Tester tab in the Ghost Themes menu
+
 ## Admin
 
 ui-options-admin-ghost-hud = Admin Ghost HUD
@@ -61,3 +66,7 @@ ui-options-admin-ghost-script-label = aghost Script
 ui-options-admin-ghost-script-tooltip =
     The name of the script you want to automatically run when becoming admin ghost, either by command or by observing from lobby.
     Path is relative to your launcher's data directory, typically inside AppData on Windows or .local/share on Linux.
+
+# Graphics
+ui-options-interaction-particles = Show interaction particles
+ui-options-interaction-particles-tooltip = Shows hand, item, and pulling effects when characters interact.

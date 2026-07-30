@@ -54,12 +54,12 @@
 
 - type: vessel
   id: CargoGas
-  name: CS-2P6 "Plasma"
+  name: CS-4T9 "Tanker"
   description: A small sized cargo shuttle 'borrowed' from another station that is able to hold gas.
-  price: 26410
+  price: 21500
   category: Small
   group: Cargo
-  shuttlePath: /Maps/_Starlight/Shuttles/cargo_plasma.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/GasTransport.yml
 
 - type: vessel
   id: Pioneer
@@ -80,6 +80,15 @@
   shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml
 
 - type: vessel
+  id: Honeybee
+  name: NTS "Honeybee" Mini-Flores
+  description: A small sized botany shuttle made for advanced farming operations, comes with one mutation room.
+  price: 30000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Honeybee.yml
+
+- type: vessel
   id: Reach
   name: SS-Reach III
   description: A large station vessel made for skeleton crews that we decided to allow stations to buy.
@@ -87,3 +96,21 @@
   category: Humongous
   group: Command
   shuttlePath: /Maps/_Starlight/Shuttles/ReachButShipyard.yml
+
+- type: vessel
+  id: Apotherkerin
+  name: JSS-MED Apotherkerin
+  description: A compact vessel designed for chemistry and botany, comes with a chemistry lab, a hydroponics area and mutation room. Requires external sources of air.
+  price: 40000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/JSS_MED_Apotherkerin.yml
+
+- type: vessel
+  id: Bumblebee
+  name: NTS "Bumblebee" Flores
+  description: A medium sized botany shuttle made for advance farming operations, comes with two mutation rooms.
+  price: 60000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Bumblebee.yml

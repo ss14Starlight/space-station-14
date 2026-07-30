@@ -80,7 +80,7 @@
 - type: entity
   parent: [ BaseWeaponLauncher,  BaseSecurityContraband ]
   id: WeaponLauncherPeacekeeper
-  name: Peacekeeper
+  name: peacekeeper
   description: A multi purpose single-shot grenade launcher with a break-open action.
   components:
   - type: Sprite
@@ -93,6 +93,23 @@
     slots:
     - Back
     - suitStorage
+  - type: KnockbackByUserTag # Fun for everyone
+    doestContain:
+      Skating:
+        knockback: 5
+        staminaMultiplier: 0
+      Rodentia:
+        knockback: 5
+        staminaMultiplier: 0
+      Resomi:
+        knockback: 2
+        staminaMultiplier: 0
+      Avali:
+        knockback: 1
+        staminaMultiplier: 0
+      Felionoid:
+        knockback: 1
+        staminaMultiplier: 0
   - type: Item
     size: Large
     shape:
@@ -104,7 +121,7 @@
         priority: 1
         whitelist:
           tags:
-          - Grenade
+          - GrenadeLessLethal
         startingItem: GrenadeBaton
   - type: ContainerContainer
     containers:
@@ -127,3 +144,4 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+

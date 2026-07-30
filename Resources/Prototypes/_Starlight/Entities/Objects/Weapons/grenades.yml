@@ -73,11 +73,18 @@
     visuals: {}
   - type: TriggerOnSpawn
   - type: TimerTrigger
+    beepSound:
+      path: /Audio/Effects/beep1.ogg
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 0.5
     delay: 1.5
+
   - type: ProjectileGrenade
     triggerKey: timer
-    fillPrototype: PelletClusterRubber
-    capacity: 15
+    fillPrototype: PelletClusterLesserRubber
+    capacity: 30
   - type: EmitSoundOnTrigger
     keysIn:
     - timer

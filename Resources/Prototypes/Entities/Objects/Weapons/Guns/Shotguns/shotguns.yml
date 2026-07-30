@@ -1,32 +1,31 @@
 - type: entity
   name: BaseWeaponShotgun
   parent: BaseItem
-  id: BaseWeaponShotgunAny
+  id: BaseWeaponShotgunAny # Starlight Edit: BaseWeaponShotgun -> BaseWeaponShotgunAny
   description: A rooty tooty point and shooty.
   abstract: true
   components:
+  # Starlight Start
   - type: RestrictByUserTag
     doestContain:
     - Abductor
     messages:
     - abductor-gun-restricted-1
-  - type: KnockbackByUserTag # Starlight
+  - type: KnockbackByUserTag
     doestContain:
       Skating:
         knockback: 2
         staminaMultiplier: 50
       Rodentia:
         knockback: 3
-        staminaMultiplier: 20
+        staminaMultiplier: 30
       Resomi:
         knockback: 3
-        staminaMultiplier: 20
-      Avali:
-        knockback: 1 # half of what resomi take
-        staminaMultiplier: 20
+        staminaMultiplier: 30
       Felionoid:
         knockback: 1.5 #half of what resomi take
-        staminaMultiplier: 20
+        staminaMultiplier: 30
+  # Starlight End
   - type: Sprite
     layers:
     - state: icon
@@ -51,6 +50,16 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  # Starlight edit Start: Removed
+  # - type: BallisticAmmoProvider
+  #   whitelist:
+  #     tags:
+  #     - ShellShotgun
+  #   capacity: 7
+  #   proto: ShellShotgun
+  #   soundInsert:
+  #     path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  # Starlight edit End
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -58,18 +67,19 @@
       firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 500
-  # starlight start
+  # Starlight Start
   - type: ContainerFill
     containers:
       firing_pin:
       - FiringPin
   - type: FiringPinHolder
     supportedPins: [ Rifle, GunUpgrade ]
-  # starlight end
+  # Starlight End
 
 - type: entity
   name: Bulldog
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSyndicateContraband]
+  # Don't parent to BaseWeaponShotgun because it differs significantly # Starlight Edit: Nuh uh
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSyndicateContraband] # Starlight Edit: BaseItem -> BaseWeaponShotgunAny
   id: WeaponShotgunBulldog
   description: An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids. Takes 12 gauge shells. # Starlight: .50 -> 12 gauge
   components:
@@ -81,16 +91,30 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    # size: Large # Starlight Edit: Removed
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
-  - type: GunRequiresWield
+    # Starlight edit Start: Removed
+    # quickEquip: false
+    # slots:
+    # - Back
+    # - suitStorage
+    # Starlight edit End
+  - type: AmmoCounter
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    spread: 15
+    spread: 15 # Starlight
     fireRate: 2
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+    # Starlight edit Start: Removed
+    # soundGunshot:
+    #   path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    # soundEmpty:
+    #   path: /Audio/Weapons/Guns/Empty/empty.ogg
+    # Starlight edit End
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -107,8 +131,8 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container # starlight
-  - type: ChamberMagazineAmmoProvider
+      firing_pin: !type:Container # Starlight
+  - type: ChamberMagazineAmmoProvider # Starlight Edit: MagazineAmmoProvider -> ChamberMagazineAmmoProvider
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -129,7 +153,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    spread: 10
+    spread: 10 # Starlight
     fireRate: 3
   - type: GunSpreadModifier
     spread: 0.6
@@ -151,16 +175,18 @@
     proto: ShellShotgunBeanbag
 
 - type: entity
-  name: Sentiel
+  name: Sentiel # Starlight Edit: Enforcer -> Sentiel
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunEnforcer
   description: A premium semi-automatic shotgun, and the pride of all security forces. Takes 12 gauge shells. # Starlight: .50 -> 12 gauge
   components: # intend for Enforcer to have wider choke for semi-auto function
+  # Starlight Start
   - type: Gun
     spread: 15
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  # Starlight End
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Clothing
@@ -168,12 +194,12 @@
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
-    capacity: 4 #Starlight 7-> 4
+    capacity: 4 # Starlight
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
 - type: entity
   parent: WeaponShotgunEnforcer
-  id: WeaponShotgunSentielRubber
+  id: WeaponShotgunSentielRubber # Starlight Edit: Enforcer -> Sentiel
   suffix: Non-Lethal
   components:
   - type: BallisticAmmoProvider
@@ -187,15 +213,21 @@
   components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
-  - type: Gun
-    spread: 5
-    pump: true
-    fireRate: 1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: Gun
+    fireRate: 1
+    # Starlight Start
+    spread: 5
+    pump: true
+    # Starlight End
+  # Starlight edit Start: Removed
+  # - type: GunSpreadModifier
+  #   spread: 0.6
+  # Starlight edit End
   - type: Tag
     tags:
     - WeaponShotgunKammerer
@@ -216,7 +248,7 @@
     - 0,0,2,0
     sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
   - type: Gun
-    spread: 40
+    spread: 40 # Starlight
     fireRate: 3
   - type: GunSpreadModifier
     spread: 1.4
@@ -258,7 +290,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
   - type: Gun
-    spread: 51
+    spread: 51 # Starlight
     fireRate: 4
   - type: BallisticAmmoProvider
     capacity: 1
@@ -280,7 +312,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    spread: 15
+    spread: 15 # Starlight
     fireRate: 2
   - type: BallisticAmmoProvider
     capacity: 1
@@ -301,7 +333,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    spread: 30
+    spread: 30 # Starlight
     fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
   - type: BallisticAmmoProvider
     capacity: 1
