@@ -456,7 +456,6 @@
     - SalvageSecurityWeapons
     - SecurityDisablers
     - StarlightDefenseStatic # starlight start
-    - SecurityCyberLimbs
     - StarlightSecurityEquipment
     - StarlightSecurityBoards
     - StarlightSecurityExplosives
@@ -464,9 +463,9 @@
     - StarlightSecurityWeapons
     - SecurityDisablers
     - SecurityCyberLimbs
-    - SecurityImplants # 🌟Starlight🌟
+    - SecurityImplants
     - StarlightSecurityMechsWeapons
-    - StarlightSecurityTechFabLootable
+    - StarlightSecurityTechFabLootable # Starlight end
   #region Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:
@@ -556,6 +555,14 @@
     - Chemistry
     - StarlightBudgetCyberOrgansDynamic
     - StarlightMedicalTechFabLootable
+  - type: EmagLatheRecipes # Starlight start
+    emagStaticPacks:
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic
+    emagDynamicPacks:
+    - SecurityCyberLimbs
+    - SecurityImplants # Starlight end
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
