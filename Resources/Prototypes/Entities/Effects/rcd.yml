@@ -17,9 +17,10 @@
   - type: AnimationPlayer
   # Moffstation - Start - More sparks
   - type: ESSparkOnTrigger
-    sparkPrototype: MoffEffectSparksWelding
-  - type: RepeatingTrigger
-    delay: 1
+    count: 2 # Starlight, less sparks
+    sparkPrototype: SLEffectSparksRCD # Starlight, a little smaller
+  #- type: RepeatingTrigger # Starlight, we only need this once, no doublespark
+  #  delay: 1 # Starlight
   - type: TriggerOnSpawn
   # Moffstation - End
 
