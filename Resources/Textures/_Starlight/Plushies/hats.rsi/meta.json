@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by seam_less (Discord) for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "beret"
+    },
+    {
+      "name": "cap"
+    },
+    {
+      "name": "captain_cap"
+    },
+    {
+      "name": "chef"
+    },
+    {
+      "name": "clown"
+    },
+    {
+      "name": "detective_hat"
+    },
+    {
+      "name": "doc_cap"
+    },
+    {
+      "name": "gray_cap"
+    },
+    {
+      "name": "hardhat"
+    },
+    {
+      "name": "helmet"
+    },
+    {
+      "name": "hop_cap"
+    },
+    {
+      "name": "hos_cap"
+    },
+    {
+      "name": "paramed_cap"
+    },
+    {
+      "name": "tophat"
+    },
+    {
+      "name": "warden_cap"
+    }
+  ]
+}

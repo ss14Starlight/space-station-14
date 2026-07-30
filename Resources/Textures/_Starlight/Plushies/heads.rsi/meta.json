@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "arachnid",
+      "copyright": "Made by PixelTheKermit (GitHub) for Starlight"
+    },
+    {
+      "name": "bird",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "cat",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "human",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "lizard",
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432"
+    },
+    {
+      "name": "moth",
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432"
+    },
+    {
+      "name": "shadekin",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "vox",
+      "copyright": "Made by LinkUyx#6557 (Discord) for Starlight"
+    },
+    {
+      "name": "vulp",
+      "copyright": "Based on sprites by deltaVelocity, edited by Conf (Starlight)"
+    }
+  ]
+}

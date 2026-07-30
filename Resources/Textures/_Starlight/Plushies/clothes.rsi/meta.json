@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by seam_less (Discord) for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "atmosian"
+    },
+    {
+      "name": "bartender"
+    },
+    {
+      "name": "botanity"
+    },
+    {
+      "name": "boxer"
+    },
+    {
+      "name": "captain"
+    },
+    {
+      "name": "cargo_tech"
+    },
+    {
+      "name": "chaplain"
+    },
+    {
+      "name": "chef"
+    },
+    {
+      "name": "chemist"
+    },
+    {
+      "name": "chief_engineer"
+    },
+    {
+      "name": "clown"
+    },
+    {
+      "name": "cmo"
+    },
+    {
+      "name": "detective"
+    },
+    {
+      "name": "hop"
+    },
+    {
+      "name": "hos"
+    },
+    {
+      "name": "janitor"
+    },
+    {
+      "name": "jumpsuit"
+    },
+    {
+      "name": "lawyer"
+    },
+    {
+      "name": "librarian"
+    },
+    {
+      "name": "mail_tech"
+    },
+    {
+      "name": "medical_doctor"
+    },
+    {
+      "name": "medical_intern"
+    },
+    {
+      "name": "mime"
+    },
+    {
+      "name": "musician"
+    },
+    {
+      "name": "pants"
+    },
+    {
+      "name": "paramedic"
+    },
+    {
+      "name": "quartermaster"
+    },
+    {
+      "name": "research_assistant"
+    },
+    {
+      "name": "research_director"
+    },
+    {
+      "name": "salvager"
+    },
+    {
+      "name": "scientist"
+    },
+    {
+      "name": "security_cadet"
+    },
+    {
+      "name": "security_officer"
+    },
+    {
+      "name": "service_worker"
+    },
+    {
+      "name": "shirt"
+    },
+    {
+      "name": "shoes"
+    },
+    {
+      "name": "station_engineer"
+    },
+    {
+      "name": "suit"
+    },
+    {
+      "name": "sweater"
+    },
+    {
+      "name": "tanktop"
+    },
+    {
+      "name": "technical_assistant"
+    },
+    {
+      "name": "tie"
+    },
+    {
+      "name": "turtle_neck"
+    },
+    {
+      "name": "warden"
+    },
+    {
+      "name": "zookeeper"
+    }
+  ]
+}

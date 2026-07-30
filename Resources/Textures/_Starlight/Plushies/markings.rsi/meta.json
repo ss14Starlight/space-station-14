@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "diona_hair",
+      "copyright": "Made by Deos#5630 (Discord) for Starlight"
+    },
+    {
+      "name": "eye_patch",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "eye_scar",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "long_hair",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "short_hair",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "slick_hair",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "spikey_hair",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "vox_hair",
+      "copyright": "Made by LinkUyx#6557 (Discord) for Starlight"
+    }
+  ]
+}

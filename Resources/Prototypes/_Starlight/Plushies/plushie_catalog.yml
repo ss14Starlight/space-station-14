@@ -1,0 +1,329 @@
+- type: plushieCatalog
+  id: Default
+  limits:
+    slots: 4
+    maxOffset: 10
+    phrases: 4
+    phraseLength: 60
+    spriteSize: 32
+
+  tints:
+  - id: body
+    name: Body & fur
+    palette:
+    - "#e8d5b7"
+    - "#c9a37a"
+    - "#8d6547"
+    - "#5c4433"
+    - "#cfd6dd"
+    - "#8fb6a2"
+    - "#b98ba8"
+    - "#6f7fa8"
+  - id: hair
+    name: Hair & marks
+    palette:
+    - "#2b2b2f"
+    - "#6b4a2f"
+    - "#c8a24a"
+    - "#d6d6d6"
+    - "#8c3b3b"
+    - "#3f6b8c"
+    - "#5a3b6b"
+    - "#3f7a55"
+  - id: cloth
+    name: Clothes
+    palette:
+    - "#cfd6dd"
+    - "#9aa4b0"
+    - "#5b6472"
+    - "#2f3742"
+    - "#7d5a3c"
+    - "#3f6b8c"
+    - "#7a3b46"
+    - "#4f7a52"
+
+  sounds:
+  - id: squeak
+    name: Squeak
+    note: classic plushie
+    sound:
+      collection: ToySqueak
+  - id: squeeze
+    name: Squeeze
+    note: soft air
+    sound:
+      path: /Audio/Effects/squeak1.ogg
+  - id: honk
+    name: Honk
+    note: loud
+    sound:
+      path: /Audio/Items/Toys/pushHornHonk.ogg
+  - id: chirp
+    name: Chirp
+    note: bright
+    sound:
+      path: /Audio/Animals/nymph_chirp.ogg
+  - id: purr
+    name: Purr
+    note: low, warm
+    sound:
+      path: /Audio/_FarHorizons/Voice/Proto/Felionoid/cat_purr1.ogg
+  - id: rattle
+    name: Rattle
+    note: beads inside
+    sound:
+      path: /Audio/Items/Toys/rattle.ogg
+  - id: bell
+    name: Bell
+    note: single ring
+    sound:
+      path: /Audio/Items/desk_bell_ring.ogg
+  - id: boop
+    name: Boop
+    note: short blip
+    sound:
+      path: /Audio/Effects/Diseases/beepboop.ogg
+
+  # bottom to top
+  layers:
+  - id: base
+    name: Body
+    rsi: _Starlight/Plushies/bases.rsi
+    tint: body
+    required: true
+    offsettable: false
+    sprites:
+    - id: base_1
+      name: Base 1
+
+  - id: tails
+    name: Tail
+    rsi: _Starlight/Plushies/tails.rsi
+    tint: body
+    sprites:
+    - id: arachnid
+      name: Arachnid
+      species: arachnid
+    - id: bird
+      name: Bird
+      species: bird
+    - id: cat
+      name: Cat
+      species: cat
+    - id: lizard
+      name: Lizard
+      species: lizard
+    - id: moth
+      name: Moth
+      species: moth
+    - id: vox
+      name: Vox
+      species: vox
+    - id: vulp
+      name: Vulp
+      species: vulp
+
+  - id: heads
+    name: Head
+    rsi: _Starlight/Plushies/heads.rsi
+    tint: body
+    required: true
+    offsettable: false
+    sprites:
+    - id: arachnid
+      name: Arachnid
+      species: arachnid
+    - id: bird
+      name: Bird
+      species: bird
+    - id: cat
+      name: Cat
+      species: cat
+    - id: human
+      name: Human
+    - id: lizard
+      name: Lizard
+      species: lizard
+    - id: moth
+      name: Moth
+      species: moth
+    - id: shadekin
+      name: Shadekin
+    - id: vox
+      name: Vox
+      species: vox
+    - id: vulp
+      name: Vulp
+      species: vulp
+
+  - id: ears
+    name: Ears
+    rsi: _Starlight/Plushies/ears.rsi
+    tint: body
+    sprites:
+    - id: bunny
+      name: Bunny
+    - id: cat
+      name: Cat
+      species: cat
+    - id: elf
+      name: Elf
+    - id: vulp
+      name: Vulp
+      species: vulp
+
+  - id: clothes
+    name: Clothes
+    rsi: _Starlight/Plushies/clothes.rsi
+    tint: cloth
+    sprites:
+    - id: atmosian
+      name: Atmosian
+    - id: bartender
+      name: Bartender
+    - id: botanity
+      name: Botanity
+    - id: boxer
+      name: Boxer
+    - id: captain
+      name: Captain
+    - id: cargo_tech
+      name: Cargo Tech
+    - id: chaplain
+      name: Chaplain
+    - id: chef
+      name: Chef
+    - id: chemist
+      name: Chemist
+    - id: chief_engineer
+      name: Chief Engineer
+    - id: clown
+      name: Clown
+    - id: cmo
+      name: CMO
+    - id: detective
+      name: Detective
+    - id: hop
+      name: HoP
+    - id: hos
+      name: HoS
+    - id: janitor
+      name: Janitor
+    - id: jumpsuit
+      name: Jumpsuit
+    - id: lawyer
+      name: Lawyer
+    - id: librarian
+      name: Librarian
+    - id: mail_tech
+      name: Mail Tech
+    - id: medical_doctor
+      name: Medical Doctor
+    - id: medical_intern
+      name: Medical Intern
+    - id: mime
+      name: Mime
+    - id: musician
+      name: Musician
+    - id: pants
+      name: Pants
+    - id: paramedic
+      name: Paramedic
+    - id: quartermaster
+      name: Quartermaster
+    - id: research_assistant
+      name: Research Assistant
+    - id: research_director
+      name: Research Director
+    - id: salvager
+      name: Salvager
+    - id: scientist
+      name: Scientist
+    - id: security_cadet
+      name: Security Cadet
+    - id: security_officer
+      name: Security Officer
+    - id: service_worker
+      name: Service Worker
+    - id: shirt
+      name: Shirt
+    - id: shoes
+      name: Shoes
+    - id: station_engineer
+      name: Station Engineer
+    - id: suit
+      name: Suit
+    - id: sweater
+      name: Sweater
+    - id: tanktop
+      name: Tanktop
+    - id: technical_assistant
+      name: Technical Assistant
+    - id: tie
+      name: Tie
+    - id: turtle_neck
+      name: Turtle Neck
+    - id: warden
+      name: Warden
+    - id: zookeeper
+      name: Zookeeper
+
+  - id: markings
+    name: Hair & marks
+    rsi: _Starlight/Plushies/markings.rsi
+    tint: hair
+    sprites:
+    - id: diona_hair
+      name: Diona Hair
+    - id: eye_patch
+      name: Eye Patch
+      untinted: true
+    - id: eye_scar
+      name: Eye Scar
+      untinted: true
+    - id: long_hair
+      name: Long Hair
+    - id: short_hair
+      name: Short Hair
+    - id: slick_hair
+      name: Slick Hair
+    - id: spikey_hair
+      name: Spikey Hair
+    - id: vox_hair
+      name: Vox Quills
+      species: vox
+
+  - id: hats
+    name: Hat
+    rsi: _Starlight/Plushies/hats.rsi
+    sprites:
+    - id: beret
+      name: Beret
+    - id: cap
+      name: Cap
+    - id: captain_cap
+      name: Captain Cap
+    - id: chef
+      name: Chef
+    - id: clown
+      name: Clown
+    - id: detective_hat
+      name: Detective Hat
+    - id: doc_cap
+      name: Doctor's Cap
+    - id: gray_cap
+      name: Gray Cap
+    - id: hardhat
+      name: Hardhat
+    - id: helmet
+      name: Helmet
+    - id: hop_cap
+      name: Hop Cap
+    - id: hos_cap
+      name: Hos Cap
+    - id: paramed_cap
+      name: Paramedic Cap
+    - id: tophat
+      name: Tophat
+    - id: warden_cap
+      name: Warden Cap

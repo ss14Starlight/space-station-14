@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bunny",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "cat",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "elf",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "vulp",
+      "copyright": "Based on sprites by deltaVelocity, edited by Conf (Starlight)"
+    }
+  ]
+}
