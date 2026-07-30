@@ -133,7 +133,7 @@
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: engineering
+    - state: engi
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -185,7 +185,7 @@
   description: Prints equipment for use by the station's service department.
   components:
   - type: Sprite
-    sprite: syndicateStructures/Machines/techfab.rsi
+    sprite: _Starlight/Structures/Machines/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
