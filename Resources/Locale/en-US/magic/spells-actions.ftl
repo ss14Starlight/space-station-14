@@ -31,3 +31,5 @@ action-speech-spell-iginiterune-tts = ARDE VIVAT!!
 action-speech-spell-firearrow = FLAGRA !
 action-speech-spell-firearrow-tts = FLAGRA!!
 action-speech-spell-frozentome = GLACIA !!
+action-speech-spell-summonice  = IN IMPERIUM MUEM, GLACIES !!
+action-speech-spell-summonice-tts = IN IMPERIUM MUEM GLAKIES!!

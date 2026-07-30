@@ -1,0 +1,43 @@
+- type: entity
+  parent: BaseRuneAction
+  id: ActionRuneSummonIce
+  name: Summon ice sculpture
+  description: Summons an ice familiar after two seconds.
+  components:
+  - type: Action
+    useDelay: 5
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: sculptureicon
+  - type: TargetAction
+    range: 10
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: RuneSummonIce
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summonice
+    tts: action-speech-spell-summonice-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  id: RuneSummonIce
+  parent: BaseRune
+  name: summoning pentagram
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Magic/summoning.rsi
+      layers:
+        - state: summonice
+    - type: TriggerOnSpawn
+    - type: TimerTrigger
+      delay: 2
+    - type: TimedDespawn
+      lifetime: 2.2
+    - type: SpawnOnTrigger
+      keysIn:
+      - timer
+      proto: GrenadeStinger

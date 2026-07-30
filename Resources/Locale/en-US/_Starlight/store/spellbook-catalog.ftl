@@ -46,3 +46,6 @@ spellbook-freezerune-desc = A rune that appears where the caster wishes, freezes
 
 spellbook-frozentome-name = The Frozen Tome
 spellbook-frozentome-desc = An ancient tome rich in cryo magic, allows the wielder to cast a ray of frost.
+
+spellbook-icesculpture-name = Summon Ice Sculpture
+spellbook-icesculpture-desc = Draws a magical rune that summons a ice sculpture after two seconds.

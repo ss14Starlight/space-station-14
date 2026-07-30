@@ -297,3 +297,20 @@
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookIceSculpture
+  name: spellbook-icesculpture-name
+  description: spellbook-icesculpture-desc
+  priority: 15
+  productAction: ActionRuneSummonIce
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer
