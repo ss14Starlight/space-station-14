@@ -85,7 +85,7 @@
     - type: Speech
       speechVerb: Moth
       speechSounds: Squeak
-      allowedEmotes: ['Chitter', 'Squeak', 'FlapWings', 'Threatens']
+      allowedEmotes: ['Chitter', 'Squeak', 'FlapWings']
     - type: LanguageKnowledge
       speaks:
       - Mothroach
