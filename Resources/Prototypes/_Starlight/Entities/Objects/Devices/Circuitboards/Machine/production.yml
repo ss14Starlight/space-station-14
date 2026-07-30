@@ -1304,7 +1304,7 @@
 # Departmental Techfabs
 - type: entity
   id: CargoTechFabCircuitboard
-  parent: BaseMachineCircuitboard
+  parent: [BaseMachineCircuitboard, BaseCargoContraband]
   name: cargo techfab machine board
   description: A machine printed circuit board for a cargo techfab.
   components:
@@ -1312,6 +1312,23 @@
       state: supply
     - type: MachineBoard
       prototype: CargoTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: EngineeringTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseEngineeringContraband]
+  name: engineering techfab machine board
+  description: A machine printed circuit board for an engineering techfab.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: EngineeringTechFab
       stackRequirements:
         Manipulator: 4
       tagRequirements:

@@ -447,7 +447,8 @@
     - NullSpaceDrainer
     - SecurityPracticeStatic
     - StarlightSecurityAmmoStatic
-    - SecurityWeaponsStatic # Starlight end
+    - SecurityWeaponsStatic
+    - TapeRecorder # Starlight end
     dynamicPacks:
     - SecurityScienceBlueSpace # Stalright
     - SalvageSecurityBoards

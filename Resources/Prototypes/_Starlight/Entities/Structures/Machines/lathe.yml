@@ -95,6 +95,7 @@
     - PaperworkStatic
     - CargoStatic
     - MaterialsStatic
+    - BasicChemistryStatic
     - LightsStatic
     - PowerCellsStatic
     - ElectronicsStatic
@@ -111,9 +112,71 @@
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
   - type: MaterialStorage
-    whitelist: *StandardMaterialWhitelist
+    whitelist: &StandardMaterialWhitelist
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
   - type: OreSiloClient
 
+# Cargo
+- type: entity
+  id: EngineeringTechFab
+#  categories: [ ShouldMapStation ] # Commented out for now, but once it's mapped on every station, un-comment
+  parent: BaseLatheLube
+  name: engineering techfab
+  description: Prints equipment for use by the station's engineering department.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: cargo
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: EngineeringTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    # Static stuff that Engineering could reasonable use
+    - ToolsStatic
+    - PartsStatic
+    - AtmosStatic
+    - CablesStatic
+    - MaterialsStatic
+    - BasicChemistryStatic
+    - LightsStatic
+    - ServiceStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+    dynamicPacks:
+    - StarlightAutolatheLootable
+    - StarlightProtolatheLootable
+    - AdvancedTools
+    - PowerCells
+    - AtmosTools
+    - EngineeringWeapons
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    # Engi can get the basic emag interactions
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic
+  - type: MaterialStorage
+    whitelist: &StandardMaterialWhitelist
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
 
 ##
 # Just here to keep track of packs and stuff
@@ -126,7 +189,7 @@
     - TowelsStatic
     - CargoStatic
     - MaterialsStatic
-    - BasicChemistryStatic
+    - BasicChemistryStatic # Everyone could use this, honestly
     - RollerBedsStatic
     - LightsStatic
     - ServiceStatic
@@ -156,7 +219,6 @@
     dynamicPacks:
     # Protolathe
     - ScienceBlueSpace
-    - ScienceDarkBreacher
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
