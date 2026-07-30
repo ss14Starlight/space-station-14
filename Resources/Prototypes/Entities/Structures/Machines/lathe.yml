@@ -311,9 +311,10 @@
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
-    emagStaticPacks: # Starlight
-    - StarlightDangerousLawboards # Starlight
-    - StarlightSyndicateVendorBoards # Starlight
+    emagStaticPacks: # Starlight start
+    - StarlightDangerousLawboards
+    - StarlightSyndicateVendorBoards
+    - StarlightLatheBoardsEmag # Starlight end
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
