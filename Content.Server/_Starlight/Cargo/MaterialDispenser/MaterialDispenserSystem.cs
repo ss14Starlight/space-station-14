@@ -79,15 +79,12 @@ public sealed class MaterialDispenserSystem : EntitySystem
 
 
         var item = Spawn(ent.Comp.CrateId, new EntityCoordinates(ent.Owner, 0, 0));
-        var ticketCount = 0;
         foreach (var material in ent.Comp.Buffer)
         {
-            ticketCount += material.Value;
             var spawnedMats = _materialStorageSystem.SpawnMultipleFromMaterial(material.Value, material.Key, Transform(item).Coordinates);
 
             foreach (var spawnedMat in spawnedMats) _storageSystem.Insert(spawnedMat, item);
         }
-        var tickets = _stack.SpawnMultipleAtPosition(ent.Comp.TicketProtoId, ticketCount, new EntityCoordinates(ent.Owner, 0, 0));
 
         ent.Comp.Buffer.Clear();
 

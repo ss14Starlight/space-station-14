@@ -247,7 +247,12 @@ namespace Content.Server.Lathe
                     var result = Spawn(resultProto, transform);
                     if (TryComp<LatheLinkingComponent>(uid, out var linking) && linking.LinkedEntity != null)
                     {
-                        if (!_materialStorage.TryInsertMaterialEntity(uid, result, (EntityUid)linking.LinkedEntity)) _stack.TryMergeToContacts(result);
+                        var tickets = Spawn(currentRecipe.TicketProtoId, Transform(linking.LinkedEntity.Value).Coordinates);
+                        _stack.TryMergeToContacts(tickets);
+                        if (!_materialStorage.TryInsertMaterialEntity(uid, result, (EntityUid)linking.LinkedEntity))
+                        {
+                            _stack.TryMergeToContacts(result);
+                        }
                     }
                     else _stack.TryMergeToContacts(result);
                     //Starlight End

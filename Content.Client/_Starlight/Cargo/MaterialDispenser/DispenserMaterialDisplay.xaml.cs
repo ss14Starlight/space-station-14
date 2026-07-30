@@ -66,7 +66,7 @@ public sealed partial class DispenserMaterialDisplay : PanelContainer
     public void PopulateButtons(int maxEjectableSheets)
     {
         Content.Children.Clear();
-        int[] sheetsToEjectArray = { 1, 5, 10 };
+        int[] sheetsToEjectArray = { 1, 5, 10, 30, 90 };
 
         for (var i = 0; i < sheetsToEjectArray.Length; i++)
         {
