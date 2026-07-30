@@ -840,6 +840,8 @@ namespace Content.Server.GameTicking
         /// </summary>
         public void CancelPostRound(ICommonSession? canceller = null)
         {
+            if (RunLevel != GameRunLevel.PostRound)
+                throw new Exception("Not in post-round.");
             if (DummyTicker) return;
             _sawmill.Info("Never mind actually, round end was cancelled!");
             _adminLogger.Add(LogType.AdminCommands, LogImpact.Extreme,

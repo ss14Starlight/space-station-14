@@ -38,7 +38,7 @@ public sealed partial class TriggerSystem
             return;
 
         var xform = Transform(target.Value);
-        SpawnTriggerHelper((target.Value, xform), ent.Comp.Proto, ent.Comp.UseMapCoords, ent.Comp.Predicted);
+        SpawnTriggerHelper((target.Value, xform), ent.Comp.Proto, ent.Comp.UseMapCoords, ent.Comp.Predicted, ent.Comp.Overrides); // Starlight edit
     }
 
     private void HandleSpawnTableOnTrigger(Entity<SpawnEntityTableOnTriggerComponent> ent, ref TriggerEvent args)
