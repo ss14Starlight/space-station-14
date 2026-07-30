@@ -1335,3 +1335,20 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+
+- type: entity
+  id: ScienceTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseScienceContraband]
+  name: science techfab machine board
+  description: A machine printed circuit board for a science techfab.
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: ScienceTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker

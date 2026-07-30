@@ -105,6 +105,7 @@
     - StarlightProtolatheLootable
     - Mining
     - SalvageSecurityWeapons # It's just the pkas + firing pin
+    - Equipment
   - type: EmagLatheRecipes
     emagStaticPacks:
     # Cargo can get the basic emag interactions
@@ -119,7 +120,7 @@
         - Ingot
   - type: OreSiloClient
 
-# Cargo
+# Engineering
 - type: entity
   id: EngineeringTechFab
 #  categories: [ ShouldMapStation ] # Commented out for now, but once it's mapped on every station, un-comment
@@ -132,7 +133,7 @@
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: cargo
+    - state: engineering
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -164,6 +165,7 @@
     - PowerCells
     - AtmosTools
     - EngineeringWeapons
+    - Equipment
   - type: EmagLatheRecipes
     emagStaticPacks:
     # Engi can get the basic emag interactions
@@ -171,11 +173,145 @@
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
   - type: MaterialStorage
-    whitelist: &StandardMaterialWhitelist
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
+  - type: OreSiloClient
+
+# Service - Woah, bold statement there...
+- type: entity
+  id: ServiceTechFab
+#  categories: [ ShouldMapStation ] # Commented out for now, but once it's mapped on every station, un-comment
+  parent: BaseLatheLube
+  name: service techfab
+  description: Prints equipment for use by the station's service department.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: service
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ServiceTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    # Static stuff that Service could reasonable use
+    - ToolsStatic
+    - PartsStatic
+    - CablesStatic
+    - PaperworkStatic
+    - TowelsStatic
+    - MaterialsStatic
+    - LightsStatic
+    - ServiceStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+    - CassetteTape
+    - TapeRecorder
+    dynamicPacks:
+    - StarlightAutolatheLootable
+    - StarlightProtolatheLootable
+    - Janitor
+    - Instruments
+    - WirelessCameraHandheld
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    # Engi can get the basic emag interactions
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic
+  - type: MaterialStorage
+    whitelist: *StandardMaterialWhitelist
+  - type: OreSiloClient
+
+- type: entity
+  id: ScienceTechFab
+#  categories: [ ShouldMapStation ] # Commented out for now, but once it's mapped on every station, un-comment
+  parent: BaseLatheLube
+  name: science techfab
+  description: Prints equipment for use by the station's research department.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: sci
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ScienceTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    # Science, being the universal "give me tool" place, can get most things in their lathe's static packs
+    - ToolsStatic
+    - PartsStatic
+    - AtmosStatic
+    - CablesStatic
+    - PaperworkStatic
+    - TowelsStatic
+    - CargoStatic
+    - MaterialsStatic
+    - RollerBedsStatic
+    - LightsStatic
+    - ServiceStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+    - CassetteTape
+    - TapeRecorder
+    - NullSpaceDrainer
+    - ScienceBlueSpaceStatic
+    - ChemistryStatic
+    dynamicPacks:
+    - StarlightAutolatheLootable
+    - StarlightProtolatheLootable
+    # We do want to encourage delivery to other departments though, so they'll lose quite a few dynamic packs; they can keep the service gear though, since the service fab will doubtless be looted constantly
+    - ScienceBlueSpace
+    - ScienceEquipment
+    - ScienceExplosives
+    - ScienceClothing
+    - PowerCells
+    - ScienceWeapons
+    - Chemistry
+    - Janitor
+    - Instruments
+    - Equipment
+    - StarlightScienceWeapons
+    - WirelessCameraHandheld
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    # They can keep the "best thing to emag" trait
+    - StarlightSurgeryDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityExplosives
+    - StarlightSecurityEquipment
+    - StarlightSecurityWeapons
+    - StarlightDefenseStatic
+    emagStaticPacks:
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic
+  - type: MaterialStorage
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
 
 ##
@@ -217,6 +353,8 @@
     - StarlightMedicalStatic # Starlight
     - AACTabletStatic # Moffstation - AAC tablet
     dynamicPacks:
+    # Autolathe
+    - StarlightAutolatheLootable
     # Protolathe
     - ScienceBlueSpace
     - AdvancedTools
