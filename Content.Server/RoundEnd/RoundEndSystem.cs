@@ -312,28 +312,7 @@ namespace Content.Server.RoundEnd
             ExpectedCountdownEnd = null;
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
             _gameTicker.EndRound();
-            _countdownTokenSource?.Cancel();
-            _countdownTokenSource = new();
-
-            countdownTime ??= TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
-            int time;
-            string unitsLocString;
-            if (countdownTime.Value.TotalSeconds < 60)
-            {
-                time = countdownTime.Value.Seconds;
-                unitsLocString = "eta-units-seconds";
-            }
-            else
-            {
-                time = countdownTime.Value.Minutes;
-                unitsLocString = "eta-units-minutes";
-            }
-            _chatManager.DispatchServerAnnouncement(
-                Loc.GetString(
-                    "round-end-system-round-restart-eta-announcement",
-                    ("time", time),
-                    ("units", Loc.GetString(unitsLocString))));
-            Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
+            StartRestartTimer(countdownTime);
         }
 
         /// <summary>
@@ -418,6 +397,74 @@ namespace Content.Server.RoundEnd
                 : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
             return AutoCallStartTime + TimeSpan.FromMinutes(autoCalledBefore);
         }
+
+        #region Starlight
+
+        /// <summary>
+        /// Cancels the round restart timer, allowing the round to stay in post-round indefinitely.
+        /// </summary>
+        /// <param name="canceller">The session that caused the timer to be canceled, if applicable.</param>
+        public void CancelRoundRestartTimer(ICommonSession? canceller = null)
+        {
+            if (_gameTicker.RunLevel != GameRunLevel.PostRound)
+                return;
+
+            if (_countdownTokenSource is null)
+                return;
+
+            _countdownTokenSource.Cancel();
+            _countdownTokenSource = null;
+            _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
+                $"Round restart timer was delayed{(canceller is not null ? $" by {canceller.Name}." : ".")}");
+            _chatManager.SendAdminAnnouncement(
+                $"Round restart timer was delayed{(canceller is not null ? $" by {canceller.Name}!" : "!")}");
+        }
+
+        /// <summary>
+        /// Starts the round restart timer, making the game return
+        /// to <see cref="GameRunLevel.PreRoundLobby"/> after it expires.
+        /// </summary>
+        public void StartRestartTimer(TimeSpan? countdownTime = null)
+        {
+            _countdownTokenSource?.Cancel();
+            _countdownTokenSource = new CancellationTokenSource();
+
+            countdownTime ??= TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
+            int time;
+            string unitsLocString;
+            if (countdownTime.Value.TotalDays >= 1)
+            {
+                time = (int) countdownTime.Value.TotalDays;
+                unitsLocString = "eta-units-days";
+            }
+            else if (countdownTime.Value.TotalHours >= 1)
+            {
+                time = (int) countdownTime.Value.TotalHours;
+                unitsLocString = "eta-units-hours";
+            }
+            else if (countdownTime.Value.TotalMinutes >= 1)
+            {
+                time = (int) countdownTime.Value.TotalMinutes;
+                unitsLocString = "eta-units-minutes";
+            }
+            else
+            {
+                time = (int) countdownTime.Value.TotalSeconds;
+                unitsLocString = "eta-units-seconds";
+            }
+
+            _chatManager.DispatchServerAnnouncement(
+                Loc.GetString(
+                    "round-end-system-round-restart-eta-announcement",
+                    ("time", time),
+                    ("units", Loc.GetString(unitsLocString))));
+            Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
+        }
+
+        public bool IsRestartTimerActive() =>
+            _gameTicker.RunLevel == GameRunLevel.PostRound && _countdownTokenSource is not null;
+
+        #endregion
     }
 
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs
