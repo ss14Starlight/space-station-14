@@ -107,7 +107,7 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
             return;
         }
         if (args.Handled)
-        return;
+            return;
         args.Handled = true;
 
         var evt = new MalignFragmentationEvent(ent, target);
@@ -145,7 +145,7 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
     private void OnFragmentBorg(Entity<BorgChassisComponent> ent, ref MalignFragmentationEvent args)
     {
         if (args.Handled)
-        return;
+            return;
 
         HandleFragmentSilicon(ent.Owner, ref args);
     }
@@ -153,7 +153,7 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
     private void OnFragmentIPC(Entity<IPCBrainHolderComponent> ent, ref MalignFragmentationEvent args)
     {
         if (args.Handled)
-        return;
+            return;
 
         HandleFragmentSilicon(ent.Owner, ref args);
     }
@@ -198,7 +198,7 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
     private void OnFragmentAi(Entity<SiliconLawUpdaterComponent> ent, ref MalignFragmentationEvent args)
     {
         if (args.Handled)
-        return;
+            return;
 
         _container.TryGetContainer(args.Target, "circuit_holder", out var container);
         if (container == null)
