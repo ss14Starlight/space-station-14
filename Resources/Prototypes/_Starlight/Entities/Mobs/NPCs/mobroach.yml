@@ -11,7 +11,7 @@
   categories: [ HideSpawnMenu ]
   name: makeshift cuffs
   parent: BorgHolocuffs
-  description: Makeshift and shoddy, be there sure is a lot of them.
+  description: Makeshift and shoddy, but there sure is a lot of them.
   components:
     - type: Handcuff
       breakoutTime: 3
@@ -48,8 +48,8 @@
   - type: ItemBorgModule
     hands:
     - item: BorgMegaSprayBottle
-    - item: SoapSyndie
     - item: MobRoachCuffs
+    - item: SoapSyndie
       hand:
         emptyLabel: borg-slot-soap-empty
         emptyRepresentative: SoapSyndie
