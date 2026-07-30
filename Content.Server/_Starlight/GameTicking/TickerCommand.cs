@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
@@ -13,6 +14,7 @@ public sealed class TickerCommand : ToolshedCommand
 {
     private GameTicker? _ticker;
     private RoundEndSystem? _end;
+    private AutoDiscordLogSystem? _log;
 
     /// <summary>
     /// End round without starting the restart timer.
@@ -94,6 +96,8 @@ public sealed class TickerCommand : ToolshedCommand
     public void CancelPostRound(IInvocationContext ctx)
     {
         _ticker ??= GetSys<GameTicker>();
+        _log ??= GetSys<AutoDiscordLogSystem>();
+        _log.LogToDiscord($"Round end was cancelled by {ctx.Session?.Name ?? "unknown"}");
         _ticker.CancelPostRound(ctx.Session);
         ctx.WriteLine("Post-round has been cancelled.");
     }
