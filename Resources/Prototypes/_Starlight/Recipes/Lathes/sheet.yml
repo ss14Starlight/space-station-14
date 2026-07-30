@@ -37,3 +37,12 @@
   materials:
     Plasma: 2000
     Diamond: 50
+
+- type: latheRecipe
+  id: SheetCoalPlastic
+  printTicket: true
+  result: SheetPlastic1
+  completetime: 2
+  materials:
+    RawSalt: 500
+    Coal: 300
