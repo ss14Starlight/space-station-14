@@ -517,7 +517,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
-    board: NanoTrasenTechFabCircuitboard
+    board: SyndicateTechFabCircuitboard
   - type: Lathe
     idleState: icon
     runningState: icon

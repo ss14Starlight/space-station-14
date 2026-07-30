@@ -340,8 +340,7 @@
         presets:
         - Greenshift
         - Sandbox
-    - id: JawsOfLifeMed
-    - id: EngineeringTechFabFlatpack #Starlight end
+    - id: JawsOfLifeMed #Starlight end
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
