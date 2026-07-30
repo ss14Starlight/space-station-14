@@ -242,6 +242,7 @@ ghost-role-information-nukeop-reinforcement-name = Nuclear Operative
 ghost-role-information-nukeop-reinforcement-description = The nuclear operatives need reinforcements. You, a reserve agent, will help them.
 ghost-role-information-nukeop-reinforcement-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the nuclear operatives who summoned you.
 
+#Starlight: mobroach
 ghost-role-information-syndicate-mothroach-reinforcement-name = Syndicate Mobroach
 ghost-role-information-syndicate-mothroach-reinforcement-description = Someone needs reinforcements. You, a trained mobroach, will help them.
 

@@ -47,7 +47,7 @@
     - state: icon-light-replacer
   - type: ItemBorgModule
     hands:
-    - item: SprayBottleSpaceCleaner
+    - item: BorgMegaSprayBottle
     - item: SoapSyndie
     - item: MobRoachCuffs
       hand:
@@ -142,7 +142,7 @@
       name: ghost-role-information-monkey-name
       description: ghost-role-information-monkey-description
       rules: ghost-role-information-syndicate-reinforcement-rules
-      important: true # SL
+      important: true
       mindRoles:
       - MindRoleGhostRoleSoloAntagonist
       raffle:
