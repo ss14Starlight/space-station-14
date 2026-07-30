@@ -69,6 +69,7 @@ public sealed partial class RCDSystem : EntitySystem
     private readonly ProtoId<RCDPrototype> _deconstructTileProto = "DeconstructTile";
     private readonly ProtoId<RCDPrototype> _deconstructLatticeProto = "DeconstructLattice";
     private static readonly ProtoId<TagPrototype> CatwalkTag = "Catwalk";
+    private static readonly ProtoId<TagPrototype> _unstackableTag = "Unstackable"; // Starlight edit
 
     private HashSet<EntityUid> _intersectingEntities = new();
 
@@ -642,6 +643,12 @@ public sealed partial class RCDSystem : EntitySystem
             && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var constructionProto)
             && constructionProto.HasComponent<PlumbingConnectorAppearanceComponent>(_entityManager.ComponentFactory);
         // Starlight End: RPLD
+        // Starlight Start: RPD
+        var isUnstackablePlacement = prototype.Prototype != null
+             && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var constructionRpdProto)
+             && constructionRpdProto.TryGetComponent<TagComponent>(out var buildTags, _entityManager.ComponentFactory)
+             && _tags.HasTag(buildTags, _unstackableTag);
+        // Starlight End: RPD
         _intersectingEntities.Clear();
         _lookup.GetLocalEntitiesIntersecting(gridUid, position, _intersectingEntities, -0.05f, LookupFlags.Uncontained);
 
@@ -665,6 +672,16 @@ public sealed partial class RCDSystem : EntitySystem
 
                 return false;
             }
+
+            // Starlight Start: RPD
+            if (_tags.HasTag(ent, _unstackableTag) && isUnstackablePlacement)
+            {
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-cannot-build-on-occupied-tile-message"), uid, user);
+
+                return false;
+            }
+            // Starlight End: RPD
 
             if (prototype.CollisionMask != CollisionGroup.None && TryComp<FixturesComponent>(ent, out var fixtures))
             {
