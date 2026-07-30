@@ -416,7 +416,8 @@
       - id: SawImprov
       - id: HydroponicsToolMiniHoe
       - id: EmeraldLizitar
-      - id: AmethystLizitar .8 #starlight
+      - id: AmethystLizitar 
+        weight: .8 #starlight
       - id: ClothingHandsKnuckleDusters
       - !type:NestedSelector
         tableId: AllToyWeaponsTable
