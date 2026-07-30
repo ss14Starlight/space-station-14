@@ -1,0 +1,21 @@
+- type: entity
+  parent: BriefcaseBase
+  id: CasinoChipCase
+  name: casino chip case
+  description: A black case trimmed in gold. Lockable, so the float arrives at the table intact.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Admeme/Casino/Objects/casino_briefcase.rsi
+    layers:
+    - state: icon
+      map: [ base ]
+    - state: locked
+      map: [ "enum.LockVisualLayers.Lock" ]
+      shader: unshaded
+  - type: Item
+    sprite: _Starlight/Admeme/Casino/Objects/casino_briefcase.rsi
+  - type: Lock
+  - type: LockVisuals
+  - type: AccessReader
+    access: [["Casino"]]
