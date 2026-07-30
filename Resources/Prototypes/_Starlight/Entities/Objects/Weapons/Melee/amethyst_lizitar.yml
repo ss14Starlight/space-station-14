@@ -23,4 +23,4 @@
     limit: 5
     reagents:
     - ReagentId: JuiceThatMakesYouHew
-      Quantity: !
+      Quantity: 1
