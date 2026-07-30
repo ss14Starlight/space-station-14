@@ -260,12 +260,14 @@
     - Zombie
     - Abductor
     - Dragon
+    - Wizard
     - Gorilla
     - DungeonSoviet
     - DungeonSyndicate
     - Abyss
     - AllHostile
     - SimpleHostile
+    - SimpleNeutral
     - PetsNT
     - Mouse
     - HonkHostile

@@ -34,7 +34,6 @@
   - type: CosmicMinion
   - type: NpcFactionMember
     factions:
-    - SimpleHostile
     - CosmicCult
   - type: GhostRole
     allowMovement: true

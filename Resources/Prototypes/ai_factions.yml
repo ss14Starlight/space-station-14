@@ -44,6 +44,7 @@
   - Gorilla
   - Abductor # starlight
   - Pirate # starlight
+  - CosmicCult # starlight
 
 - type: npcFaction
   id: Mouse
@@ -72,6 +73,7 @@
   - HonkHostile
   - Gorilla
   - Abductor # starlight
+  - CosmicCult # starlight
 
 - type: npcFaction
   id: SimpleHostile
@@ -97,6 +99,7 @@
   - Gorilla
   - Abductor # starlight
   - Pirate # starlight
+  - CosmicCult # starlight
 
 - type: npcFaction
   id: SimpleNeutral
@@ -145,6 +148,7 @@
   # - Xenoborg # Starlight
   - Gorilla
   - Pirate # starlight
+  - CosmicCult # starlight
 
 - type: npcFaction
   id: Zombie
@@ -211,6 +215,7 @@
   - Gorilla
   - Abductor # starlight
   - Pirate # starlight
+  - CosmicCult # starlight
 
 - type: npcFaction
   id: Wizard
