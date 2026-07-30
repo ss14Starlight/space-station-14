@@ -139,8 +139,8 @@
     - type: GhostRole
       prob: 0.05
       makeSentient: true
-      name: ghost-role-information-monkey-name
-      description: ghost-role-information-monkey-description
+      name: ghost-role-information-syndicate-mothroach-reinforcement-name
+      description: ghost-role-information-syndicate-mothroach-reinforcement-description
       rules: ghost-role-information-syndicate-reinforcement-rules
       important: true
       mindRoles:
