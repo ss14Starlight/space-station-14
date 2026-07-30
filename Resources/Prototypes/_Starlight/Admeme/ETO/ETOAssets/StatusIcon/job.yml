@@ -4,7 +4,7 @@
   icon:
     sprite: /Textures/_Starlight/Admeme/ETO/etojobicons.rsi
     state: ETO_Leader
-  jobName: job-name-eto-leader
+  jobName: job-name-eto-lead
   allowSelection: false
 
 - type: jobIcon

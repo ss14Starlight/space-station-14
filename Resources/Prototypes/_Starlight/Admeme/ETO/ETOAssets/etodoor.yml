@@ -12,7 +12,7 @@
 - type: entity
   parent: DoorElectronics
   id: DoorElectronicsETO
-  suffix: Robotics, Locked
+  suffix: ETO, Locked
   components:
   - type: AccessReader
     access: [["ETO"]]

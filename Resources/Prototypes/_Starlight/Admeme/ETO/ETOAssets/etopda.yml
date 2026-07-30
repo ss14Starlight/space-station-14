@@ -72,7 +72,7 @@
   parent: BasePDA
   id: ETOOperativePDACombatTech
   name: ETO Combat Technician PDA
-  description: Built the pillars that support our cause, break the chains that hold us back.
+  description: Build the pillars that support our cause, break the chains that hold us back.
   components:
   - type: Appearance
     appearanceDataInit:

@@ -59,7 +59,7 @@
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etolead.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etocombat.rsi
+    sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etolead.rsi
 
 - type: entity
   parent: ClothingUniformBase

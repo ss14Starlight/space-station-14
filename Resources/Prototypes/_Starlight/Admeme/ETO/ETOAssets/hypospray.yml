@@ -2,7 +2,7 @@
   parent: [ AdvancedJetInjector, BaseETOContraband ]
   id: ETOMartyrInjector
   name: Combat Stimulant Injector
-  description: A modified Jet Injector that allows for fast injections of combat stims, not exactly perfect but allows for your crackhead to excell in what they do best, being a crackhead.
+  description: A modified Jet Injector that allows for fast injections of combat stims, not exactly perfect but allows for the Martyr to excell in what they do best, being a crackhead.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/crackheadjetinjector.rsi
