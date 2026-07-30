@@ -26,6 +26,7 @@ public sealed partial class GraphicsTab : Control
         Control.AddOption(new OptionFullscreen(Control, _cfg, FullscreenCheckBox));
         Control.AddOption(new OptionLightingQuality(Control, _cfg, DropDownLightingQuality));
         Control.AddOption(new OptionParticleQuality(Control, _cfg, DropDownParticleQuality)); // _Starfall: Particle quality.
+        Control.AddOptionCheckBox(StarlightCCVars.InteractionParticlesEnabled, InteractionParticlesCheckBox); // Starlight, interaction particles
 
         Control.AddOptionDropDown(
             CVars.DisplayUIScale,

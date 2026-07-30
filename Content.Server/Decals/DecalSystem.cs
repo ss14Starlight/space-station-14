@@ -40,6 +40,48 @@ namespace Content.Server.Decals
 
         private readonly Dictionary<NetEntity, HashSet<Vector2i>> _dirtyChunks = new();
         private readonly Dictionary<ICommonSession, Dictionary<NetEntity, HashSet<Vector2i>>> _previousSentChunks = new();
+
+        // Starlight Start: Record of which decals were added/changed or removed in each chunk since the last PVS batch.
+        private sealed class ChunkDelta
+        {
+            public readonly Dictionary<uint, Decal> Upserted = [];
+            public readonly HashSet<uint> Removed = [];
+        }
+
+        private readonly Dictionary<NetEntity, Dictionary<Vector2i, ChunkDelta>> _chunkDeltas = [];
+
+        private ChunkDelta GetChunkDelta(NetEntity grid, Vector2i chunkIndex)
+        {
+            if (!_chunkDeltas.TryGetValue(grid, out var perChunk))
+            {
+                perChunk = [];
+                _chunkDeltas[grid] = perChunk;
+            }
+
+            if (!perChunk.TryGetValue(chunkIndex , out var delta))
+            {
+                delta = new ChunkDelta();
+                perChunk[chunkIndex] = delta;
+            }
+
+            return delta;
+        }
+
+        private void RecordUpsertDelta(EntityUid uid, Vector2i chunkIndex, uint decalId, Decal decal)
+        {
+            var delta = GetChunkDelta(GetNetEntity(uid), chunkIndex);
+            delta.Removed.Remove(decalId);
+            delta.Upserted[decalId] = decal;
+        }
+
+        private void RecordRemovalDelta(EntityUid uid, Vector2i chunkIndex, uint decalId)
+        {
+            var delta = GetChunkDelta(GetNetEntity(uid), chunkIndex);
+            delta.Upserted.Remove(decalId);
+            delta.Removed.Add(decalId);
+        }
+        // Starlight End
+
         private static readonly Vector2 _boundsMinExpansion = new(0.01f, 0.01f);
         private static readonly Vector2 _boundsMaxExpansion = new(1.01f, 1.01f);
         // Starlight Start
@@ -145,6 +187,7 @@ namespace Content.Server.Decals
                     newComp.DecalIndex[newDecalId] = chunkIndices;
                     toRemove.Add(oldDecalId);
                     movedDecals = true; // Starlight
+                    RecordUpsertDelta(ev.Grid, chunkIndices, newDecalId, decal); // Starlight
                 }
 
                 // Starlight Start: Avoid creating and dirtying chunks if nothing happened.
@@ -156,6 +199,7 @@ namespace Content.Server.Decals
                 {
                     oldChunk.Decals.Remove(oldDecalId);
                     oldComp.DecalIndex.Remove(oldDecalId);
+                    RecordRemovalDelta(ev.OldGrid, chunkIndices, oldDecalId); // Starlight
                 }
 
                 DirtyChunk(ev.Grid, chunkIndices, newChunk!); // Starlight Edit: Only dirty the new chunk if we moved a decal into it.
@@ -212,6 +256,7 @@ namespace Content.Server.Decals
                 {
                     grid.DecalIndex.Remove(decalId);
                     chunk.Decals.Remove(decalId);
+                    RecordRemovalDelta(args.Entity, indices, decalId); // Starlight
                 }
 
                 DirtyChunk(args.Entity, indices, chunk);
@@ -320,6 +365,14 @@ namespace Content.Server.Decals
             }
         }
 
+        // Starlight Start
+        protected override void OnDecalRemoved(EntityUid gridId, uint decalId, DecalGridComponent component, Vector2i indices, DecalChunk chunk)
+        {
+            base.OnDecalRemoved(gridId, decalId, component, indices, chunk);
+            RecordRemovalDelta(gridId, indices, decalId);
+        }
+        // Starlight End
+
         protected override void DirtyChunk(EntityUid uid, Vector2i chunkIndices, DecalChunk chunk)
         {
             var id = GetNetEntity(uid);
@@ -360,6 +413,7 @@ namespace Content.Server.Decals
             chunk.Decals[decalId] = decal;
             comp.DecalIndex[decalId] = chunkIndices;
             DirtyChunk(gridId.Value, chunkIndices, chunk);
+            RecordUpsertDelta(gridId.Value, chunkIndices, decalId, decal); // Starlight
 
             return true;
         }
@@ -464,6 +518,7 @@ namespace Content.Server.Decals
             chunk.Decals[decalId] = modified;
             // Starlight edit End
             DirtyChunk(gridId, indices, chunk);
+            RecordUpsertDelta(gridId, indices, decalId, modified); // Starlight
             return true;
         }
 
@@ -513,6 +568,7 @@ namespace Content.Server.Decals
             {
                 DirtyChangedGrids(); // Starlight: Send decals when PVS is disabled.
                 _dirtyChunks.Clear();
+                _chunkDeltas.Clear(); // Starlight
                 return;
             }
 
@@ -540,6 +596,7 @@ namespace Content.Server.Decals
             // } // Starlight Edit
 
             _dirtyChunks.Clear();
+            _chunkDeltas.Clear(); // Starlight
         }
 
         // Starlight Start: For sending decals when PVS is disabled.
@@ -621,20 +678,29 @@ namespace Content.Server.Decals
             }
             // Starlight End
 
-            var updatedChunks = _chunkViewerPool.Get();
+            var fullChunks = _chunkViewerPool.Get();   // Starlight: chunks the session hasn't seen before -> full snapshot
+            var diffChunks = _chunkViewerPool.Get();   // Starlight: chunks the session already has -> diff only
             foreach (var (netGrid, gridChunks) in chunksInRange)
             {
-                var newChunks = _chunkIndexPool.Get();
+                var newFull = _chunkIndexPool.Get(); // Starlight Edit: newFull -> newFull
+                var newDiff = _chunkIndexPool.Get(); // Starlight
                 _dirtyChunks.TryGetValue(netGrid, out var dirtyChunks);
 
                 if (!previouslySent.TryGetValue(netGrid, out var previousChunks))
-                    newChunks.UnionWith(gridChunks);
+                    newFull.UnionWith(gridChunks); // Starlight Edit: newChunks -> newFull
                 else
                 {
                     foreach (var index in gridChunks)
                     {
-                        if (!previousChunks.Contains(index) || dirtyChunks != null && dirtyChunks.Contains(index))
-                            newChunks.Add(index);
+                        // Starlight edit Start
+                        var known = previousChunks.Contains(index);
+                        var dirty = dirtyChunks != null && dirtyChunks.Contains(index);
+
+                        if (!known)
+                            newFull.Add(index); // Chunk just entered view session has nothing to diff against.
+                        else if (dirty)
+                            newDiff.Add(index); // Already known, only send what changed.
+                        // Starlight edit End
                     }
 
                     previousChunks.Clear();
@@ -643,10 +709,17 @@ namespace Content.Server.Decals
 
                 previouslySent[netGrid] = gridChunks;
 
-                if (newChunks.Count == 0)
-                    _chunkIndexPool.Return(newChunks);
+                // Starlight edit Start
+                if (newFull.Count == 0)
+                    _chunkIndexPool.Return(newFull);
                 else
-                    updatedChunks[netGrid] = newChunks;
+                    fullChunks[netGrid] = newFull;
+
+                if (newDiff.Count == 0)
+                    _chunkIndexPool.Return(newDiff);
+                else
+                    diffChunks[netGrid] = newDiff;
+                // Starlight edit End
             }
 
             // Starlight Start: Clear the dictionary.
@@ -655,7 +728,7 @@ namespace Content.Server.Decals
             // Starlight End
 
             //send all gridChunks to client
-            SendChunkUpdates(player, updatedChunks, staleChunks);
+            SendChunkUpdates(player, fullChunks, diffChunks, staleChunks); // Starlight Edit: updatedChunks -> fullChunks, diffChunks
         }
 
         private void ReturnToPool(Dictionary<NetEntity, HashSet<Vector2i>> chunks)
@@ -672,11 +745,14 @@ namespace Content.Server.Decals
 
         private void SendChunkUpdates(
             ICommonSession session,
-            Dictionary<NetEntity, HashSet<Vector2i>> updatedChunks,
+            Dictionary<NetEntity, HashSet<Vector2i>> fullChunks, // Starlight Edit: updatedChunks -> fullChunks
+            Dictionary<NetEntity, HashSet<Vector2i>> diffChunks, // Starlight
             Dictionary<NetEntity, HashSet<Vector2i>> staleChunks)
         {
-            var updatedDecals = new Dictionary<NetEntity, Dictionary<Vector2i, DecalChunk>>();
-            foreach (var (netGrid, chunks) in updatedChunks)
+            // Starlight edit Start: updatedDecals -> fullChunks
+            var fullData = new Dictionary<NetEntity, Dictionary<Vector2i, DecalChunk>>();
+            foreach (var (netGrid, chunks) in fullChunks)
+            // Starlight edit End
             {
                 var gridId = GetEntity(netGrid);
 
@@ -692,13 +768,45 @@ namespace Content.Server.Decals
                             ? chunk
                             : new());
                 }
-                updatedDecals[netGrid] = gridChunks;
+                fullData[netGrid] = gridChunks;
             }
 
-            if (updatedDecals.Count != 0 || staleChunks.Count != 0)
-                RaiseNetworkEvent(new DecalChunkUpdateEvent{Data = updatedDecals, RemovedChunks = staleChunks}, session);
+            // Starlight Start: Build diffs for chunks the session already has instead of resending them whole.
+            var diffData = new Dictionary<NetEntity, Dictionary<Vector2i, DecalChunkDiff>>();
+            foreach (var (netGrid, chunks) in diffChunks)
+            {
+                if (!_chunkDeltas.TryGetValue(netGrid, out var perChunkDeltas))
+                    continue; // Marked dirty but nothing recorded shouldn't normally happen so just skip
 
-            ReturnToPool(updatedChunks);
+                Dictionary<Vector2i, DecalChunkDiff>? gridDiffs = null;
+                foreach (var indices in chunks)
+                {
+                    if (!perChunkDeltas.TryGetValue(indices, out var delta))
+                        continue;
+
+                    if (delta.Upserted.Count == 0 && delta.Removed.Count == 0)
+                        continue;
+
+                    gridDiffs ??= [];
+                    gridDiffs[indices] = new DecalChunkDiff
+                    {
+                        Upserted = new Dictionary<uint, Decal>(delta.Upserted),
+                        Removed = [.. delta.Removed],
+                    };
+                }
+
+                if (gridDiffs is { Count: > 0 })
+                    diffData[netGrid] = gridDiffs;
+            }
+            // Starlight End
+
+            // Starlight edit Start
+            if (fullData.Count != 0 || diffData.Count != 0 || staleChunks.Count != 0)
+                RaiseNetworkEvent(new DecalChunkUpdateEvent { Data = fullData, Diffs = diffData, RemovedChunks = staleChunks }, session);
+            // Starlight edit End
+
+            ReturnToPool(fullChunks); // Starlight Edit: updatedChunks -> fullChunks
+            ReturnToPool(diffChunks); // Starlight
             ReturnToPool(staleChunks);
         }
 
