@@ -652,7 +652,7 @@
   parent: PosterBase
   id: PosterEndymion3
   name: "Bluespace is safe!"
-  description: "But you should remember that 1 milligram is 1,000,000 nanograms. Just in case."
+  description: "Just remember—1 milligram is 1,000,000 nanograms. You don't want to repeat that mistake!"
   components:
     - type: Sprite
       sprite: _Starlight/Structures/Wallmounts/posters/endymion3.rsi
