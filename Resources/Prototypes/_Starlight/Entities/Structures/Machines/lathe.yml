@@ -58,3 +58,169 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
+
+# Departmental Techfabs
+
+# Cargo
+- type: entity
+  id: CargoTechFab
+#  categories: [ ShouldMapStation ] # Commented out for now, but once it's mapped on every station, un-comment
+  parent: BaseLatheLube
+  name: cargo techfab
+  description: Prints equipment for use by the station's supply department.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: cargo
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: CargoTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    # Static stuff that Cargo could reasonable use
+    - ToolsStatic
+    - PartsStatic
+    - CablesStatic
+    - PaperworkStatic
+    - CargoStatic
+    - MaterialsStatic
+    - LightsStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+    - ServiceStatic
+    dynamicPacks:
+    - StarlightAutolatheLootable
+    - StarlightProtolatheLootable
+    - Mining
+    - SalvageSecurityWeapons # It's just the pkas + firing pin
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    # Cargo can get the basic emag interactions
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic
+  - type: MaterialStorage
+    whitelist: *StandardMaterialWhitelist
+  - type: OreSiloClient
+
+
+##
+# Just here to keep track of packs and stuff
+    staticPacks:
+    - ToolsStatic
+    - PartsStatic
+    - AtmosStatic
+    - CablesStatic
+    - PaperworkStatic
+    - TowelsStatic
+    - CargoStatic
+    - MaterialsStatic
+    - BasicChemistryStatic
+    - RollerBedsStatic
+    - LightsStatic
+    - ServiceStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+    - CassetteTape
+    - TapeRecorder
+    # Protolathe
+    - NullSpaceDrainer
+    - ScienceBlueSpaceStatic
+    - ChemistryStatic
+    # Security
+    - SecurityEquipmentStatic
+    - NullSpaceDrainer
+    - SecurityPracticeStatic
+    - StarlightSecurityAmmoStatic
+    - SecurityWeaponsStatic
+    # Medical
+    - TopicalsStatic
+    - ChemistryStatic
+    - MedicalStatic
+    - RollerBedsStatic
+    - MedicalClothingStatic
+    - EmptyMedkitsStatic
+    - StarlightMedicalStatic # Starlight
+    - AACTabletStatic # Moffstation - AAC tablet
+    dynamicPacks:
+    # Protolathe
+    - ScienceBlueSpace
+    - ScienceDarkBreacher
+    - AdvancedTools
+    - ScienceEquipment
+    - ScienceExplosives
+    - ScienceClothing
+    - PowerCells
+    - ScienceWeapons
+    - Mining # In: Cargo
+    - AtmosTools
+    - EngineeringWeapons
+    - Chemistry
+    - Janitor
+    - Instruments
+    - Equipment
+    - StarlightProtolatheLootable # Everything can get this, why not
+    - StarlightScienceWeapons
+    - WirelessCameraHandheld # MOFFSTATION CHANGE - Adds wireless handheld camera
+    # Security
+    - SecurityScienceBlueSpace
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
+    - SecurityDisablers
+    - StarlightDefenseStatic
+    - SecurityCyberLimbs
+    - StarlightSecurityEquipment
+    - StarlightSecurityBoards
+    - StarlightSecurityExplosives
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityWeapons
+    - SecurityDisablers
+    - SecurityCyberLimbs
+    - SecurityImplants
+    - StarlightSecurityMechsWeapons
+    - StarlightSecurityTechFabLootable
+    # Medical
+    - StarlightSurgeryDynamic
+    - StarlightAutomendersDynamic # Starlight-edit
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - Chemistry
+    - StarlightBudgetCyberOrgansDynamic
+    - StarlightMedicalTechFabLootable
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    # All of these are the protolathe, there's no emag dynamic packs for anything else
+    - StarlightSurgeryDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityExplosives
+    - StarlightSecurityEquipment
+    - StarlightSecurityWeapons
+    - StarlightDefenseStatic
+    emagStaticPacks:
+    # Protolathe
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic
+    # Security
+    - StarlightSyndicateModulesSecfab
+    - StarlightSyndicateAmmoStatic
+    - StarlightSecurityAmmoEmagStatic
+    - StarlightSecurityGrenadesEmag
+    - SyndicateAmmoStatic
+##

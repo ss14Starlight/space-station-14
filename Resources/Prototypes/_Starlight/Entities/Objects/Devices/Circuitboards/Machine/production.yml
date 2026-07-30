@@ -1300,3 +1300,21 @@
         GlassBeaker:
           amount: 1
           defaultPrototype: Beaker
+
+# Departmental Techfabs
+- type: entity
+  id: CargoTechFabCircuitboard
+  parent: BaseMachineCircuitboard
+  name: cargo techfab machine board
+  description: A machine printed circuit board for a cargo techfab.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: CargoTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
