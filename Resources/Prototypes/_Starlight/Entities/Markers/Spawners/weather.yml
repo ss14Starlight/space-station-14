@@ -1,0 +1,175 @@
+- type: entity
+  id: WeatherMarkerBase
+  name: Weather Marker
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Marker
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Tag
+    tags:
+    - ForceFixRotations
+
+# Wet Weather
+- type: entity
+  id: WeatherMarkerRain
+  parent: WeatherMarkerBase
+  suffix: Rain
+  description: "A little perichor for the soul."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherRain
+    delay: 0
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: rain
+
+- type: entity
+  id: WeatherMarkerStorm
+  parent: WeatherMarkerBase
+  suffix: Rainstorm
+  description: "It was a dark and stormy night..."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherStorm
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: storm
+
+- type: entity
+  id: WeatherMarkerHail
+  parent: WeatherMarkerBase
+  suffix: Hail
+  description: "Mostly not deadly."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherHail
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: hail
+
+- type: entity
+  id: WeatherMarkerSnowfallLight
+  parent: WeatherMarkerBase
+  suffix: "Snowfall, Light"
+  description: "A light dusting of snow."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherSnowfallLight
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: snowfall_light
+
+- type: entity
+  id: WeatherMarkerSnowfallMedium
+  parent: WeatherMarkerBase
+  suffix: "Snowfall, Medium"
+  description: "A large helping of snow."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherSnowfallMedium
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: snowfall_med
+
+- type: entity
+  id: WeatherMarkerSnowfallHeavy
+  parent: WeatherMarkerBase
+  suffix: "Snowfall, Whiteout"
+  description: "A howling blizzard with white-out conditions."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherSnowfallHeavy
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: snowfall_heavy
+
+- type: entity
+  id: WeatherMarkerSnowLobster
+  parent: WeatherMarkerBase
+  suffix: "Snowfall, Heavy"
+  description: "Heavy snow with light fog."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherSnowfallLobster
+    delay: 0
+  - type: Sprite
+    sprite: /Textures/_Starlight/Effects/weather.rsi
+    state: snowfall_lobster
+
+# Dry Weather
+- type: entity
+  id: WeatherMarkerAshfallLight
+  parent: WeatherMarkerBase
+  suffix: "Ashfall, Light"
+  description: "Maybe volcanic, definitely disasterous."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherAshfallLight
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: ashfall_light
+
+- type: entity
+  id: WeatherMarkerAshfallHeavy
+  parent: WeatherMarkerBase
+  suffix: "Ashfall, Heavy"
+  description: "Don't breath this!"
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherAshfallHeavy
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: ashfall_heavy
+
+- type: entity
+  id: WeatherMarkerFallout
+  parent: WeatherMarkerBase
+  suffix: Fallout
+  description: "Crawl out through the fallout."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherFallout
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: fallout
+
+- type: entity
+  id: WeatherMarkerSandstorm
+  parent: WeatherMarkerBase
+  suffix: "Sandstorm, Light"
+  description: "Music not included."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherSandstorm
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: sandstorm
+
+- type: entity
+  id: WeatherMarkerSandstormHeavy
+  parent: WeatherMarkerBase
+  suffix: "Sandstorm, Heavy"
+  description: "It'll get everywhere."
+  components:
+  - type: Transform
+  - type: WeatherMarker
+    weather: WeatherSandstormHeavy
+  - type: Sprite
+    sprite: /Textures/Effects/weather.rsi
+    state: sandstorm_heavy

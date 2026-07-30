@@ -36,6 +36,11 @@ ui-options-ranged-sight-offset = Sights Basic Offset
 ui-options-sight-main-color = Sight Main Color
 ui-options-sight-second-color = Sight Second Color
 
+## General
+
+ui-options-general-ghost-themes = Ghost Themes
+ui-options-general-ghost-themes-force-tester = Force display the Tester tab in the Ghost Themes menu
+
 ## Admin
 
 ui-options-admin-ghost-hud = Admin Ghost HUD
@@ -65,3 +70,7 @@ ui-options-admin-ghost-script-tooltip =
 ## Theme
 
 ui-options-hud-theme-mpurp = M-Purp
+
+# Graphics
+ui-options-interaction-particles = Show interaction particles
+ui-options-interaction-particles-tooltip = Shows hand, item, and pulling effects when characters interact.
