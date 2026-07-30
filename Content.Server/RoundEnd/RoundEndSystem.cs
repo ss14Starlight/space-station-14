@@ -312,7 +312,7 @@ namespace Content.Server.RoundEnd
             ExpectedCountdownEnd = null;
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
             _gameTicker.EndRound();
-            StartRestartTimer(countdownTime);
+            StartRestartTimer(countdownTime); // Starlight
         }
 
         /// <summary>
