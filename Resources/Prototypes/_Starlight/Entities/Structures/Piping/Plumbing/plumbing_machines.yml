@@ -450,6 +450,8 @@
   name: plumbing smart dispenser
   description: Pulls in all reagents from its inlets and stores up to 200u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power.
   components:
+  - type: Transform
+    noRot: true
   - type: Sprite
     sprite: _Starlight/Structures/Machines/smart_dispenser.rsi
     noRot: true

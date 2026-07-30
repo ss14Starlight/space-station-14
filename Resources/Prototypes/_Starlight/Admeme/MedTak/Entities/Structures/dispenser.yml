@@ -72,6 +72,8 @@
   description: A wallmount smart dispenser filled with a broad set of medical reagents.
   suffix: Filled
   components:
+  - type: Transform
+    noRot: false
   - type: Sprite
     sprite: _Starlight/Admeme/MedTak/Objects/dispenser.rsi
     noRot: false
