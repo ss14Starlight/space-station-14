@@ -14,8 +14,3 @@
   id: StarlightLatheBoardsEmag
   recipes:
   - ProtolatheMachineCircuitboard
-  - CargoTechFabCircuitboard
-  - EngineeringTechFabCircuitboard
-  - ServiceTechFabCircuitboard
-  - ScienceTechFabCircuitboard
-  - CommandTechFabCircuitboard

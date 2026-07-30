@@ -118,6 +118,8 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: StealTarget
+    stealGroup: DepartmentalTechFabCircuitboard
   - type: OreSiloClient
 
 # Engineering
@@ -174,6 +176,8 @@
     - StarlightSyndicateAmmoStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
+  - type: StealTarget
+    stealGroup: DepartmentalTechFabCircuitboard
   - type: OreSiloClient
 
 # Service - Woah, bold statement there...
@@ -313,6 +317,8 @@
     - StarlightSyndicateAmmoStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
+  - type: StealTarget
+    stealGroup: DepartmentalTechFabCircuitboard
   - type: OreSiloClient
 
 # Command, paperwork stuff, mostly
@@ -363,6 +369,8 @@
     - StarlightSyndicateAmmoStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
+  - type: StealTarget
+    stealGroup: DepartmentalTechFabCircuitboard
   - type: OreSiloClient
 
 # NanoTrasen; don't know where this'd get used, but can't hurt to have

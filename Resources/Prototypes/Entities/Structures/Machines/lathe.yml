@@ -477,6 +477,8 @@
     - SyndicateAmmoStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
+  - type: StealTarget # Starlight
+    stealGroup: MedicalSecurityTechFabCircuitboard # Starlight
   - type: OreSiloClient
 
 - type: entity
@@ -566,7 +568,7 @@
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
-    stealGroup: MedicalTechFabCircuitboard
+    stealGroup: MedicalSecurityTechFabCircuitboard # Starlight
   - type: OreSiloClient
 
 - type: entity

@@ -210,11 +210,11 @@
     state: icon
 
 - type: stealTargetGroup
-  id: MedicalTechFabCircuitboard
-  name: steal-target-groups-medical-tech-fab-circuitboard
+  id: MedicalSecurityTechFabCircuitboard # Starlight, combined with security
+  name: steal-target-groups-medical-security-tech-fab-circuitboard # Starlight
   sprite:
-    sprite: Objects/Misc/module.rsi
-    state: medical
+    sprite: _Starlight/Objects/Misc/techfabstealobjective.rsi # Starlight
+    state: medicalsecurity # Starlight
 
 - type: stealTargetGroup
   id: ClothingHeadsetAltMedical
