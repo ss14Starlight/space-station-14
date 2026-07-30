@@ -20,7 +20,7 @@
     - back
   - type: DisarmMalus
   - type: InjectOnHit
-    limit: 55
+    limit: 5
     reagents:
     - ReagentId: JuiceThatMakesYouWeh
       Quantity: 1
