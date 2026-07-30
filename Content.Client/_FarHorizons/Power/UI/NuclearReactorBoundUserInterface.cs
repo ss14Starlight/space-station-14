@@ -42,6 +42,7 @@ public sealed partial class NuclearReactorBoundUserInterface : BoundUserInterfac
         _window.ItemActionButtonPressed += OnActionButtonPressed;
         _window.EjectButtonPressed += OnEjectButtonPressed;
         _window.ControlRodModify += OnControlRodModify;
+        _window.AckButtonPressed += OnAckButtonPressed;
 
         Update();
     }
@@ -73,5 +74,12 @@ public sealed partial class NuclearReactorBoundUserInterface : BoundUserInterfac
         if (_window is null) return;
 
         SendPredictedMessage(new ReactorControlRodModifyMessage(amount));
+    }
+
+    private void OnAckButtonPressed()
+    {
+        if (_window is null) return;
+
+        SendPredictedMessage(new ReactorAlarmAckMessage());
     }
 }

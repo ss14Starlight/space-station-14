@@ -168,6 +168,8 @@
   cost: 4
   delay: 4
   collisionMask: FullTileMask
+  rules: # Starlight
+    - IsAirlock # Starlight
   rotation: Camera
   fx: EffectRCDConstruct4
 
@@ -180,6 +182,8 @@
   cost: 4
   delay: 4
   collisionMask: FullTileMask
+  rules: # Starlight
+    - IsAirlock # Starlight
   rotation: Camera
   fx: EffectRCDConstruct4
 
@@ -192,6 +196,8 @@
   cost: 4
   delay: 3
   collisionMask: FullTileMask
+  rules: # Starlight
+    - IsFirelock # Starlight
   rotation: Camera
   fx: EffectRCDConstruct3
 
