@@ -11,4 +11,3 @@ chat-radio-global = Global
 chat-radio-aspace = Aspace
 chat-radio-medtak = MedTak
 chat-radio-medtak-borg = MedTak Silicon
-chat-radio-eto = E.T.O

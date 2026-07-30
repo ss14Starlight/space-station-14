@@ -1,0 +1,525 @@
+
+- type: entity
+  name: PS RPD
+  id: WeaponLightMachineGunRPD
+  parent: [BaseWeaponLightMachineGun, BaseSecurityContraband]
+  description: A relic of the past, a weapon previously designed by the Soviet union during the glory days of the Old World, feeds from both .20 and .30 rifle drum magazines.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi # Starlight-edit
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 10000
+  # Starlight-start
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
+    quickEquip: false
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/m41_cock.ogg
+    soundBoltClosed:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+    soundBoltOpened:
+      path: /Audio/Weapons/Guns/Cock/shotgun_open.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleHeavyDrumFMJ
+        insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+        whitelist:
+          tags:
+            - MagazineLightRifleHeavyDrum
+            - MagazineLightRifleDrum
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: HeldSpeedModifier
+  - type: GunWieldBonus
+    minAngle: -11
+    maxAngle: -8
+  - type: Gun
+    minAngle: 21
+    maxAngle: 32
+    fireRate: 6.5
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/l6.ogg
+      params:
+        volume: -5
+
+- type: entity
+  name: Triple Action Thunder
+  parent: [BaseWeaponSniper, BaseETOContraband]
+  id: WeaponPistolTripleThunder
+  description: A Heavily modified Jungle Hawk that feeds from an internal magazine, holds .60 Antimaterial rounds and rips apart anything that stands in your way.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+    - type: Clothing
+      sprite: _Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi
+    - type: Gun
+      fireRate: 3
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        path: /Audio/_Starlight/Weapons/Guns/Gunshots/deagle.ogg
+      minAngle: 0
+      maxAngle: 10
+      angleIncrease: 2
+      angleDecay: 4
+    - type: BallisticAmmoProvider
+      capacity: 1
+      proto: CartridgeAntiMateriel
+      whitelist:
+        tags:
+          - CartridgeAntiMateriel
+    - type: Item
+      size: Small #Magazine location makes it bigger but should still fit in a pocket. (This basically serves to keep people from putting it in a boot/stacking them as easily)
+      shape:
+        - 0,0,1,0
+        - 0,1,1,1
+
+- type: entity
+  name: PS G36 "Freedom Fighter"
+  parent: [BaseETOContraband, BaseWeaponRifle]
+  id: WeaponRifleG36ETO
+  description: An old world rifle designed for the old wars, chambers in .30 rifle rounds and hits like a car. This one has been adorned in E.T.O colours, becoming a symbol of freedom. Death to our enemy, freedom to their slaves.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
+  - type: GunWieldBonus
+    minAngle: -13
+    maxAngle: -10
+  - type: Gun
+    minAngle: 13
+    maxAngle: 17
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleFMJ
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot ""
+      gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+
+- type: entity
+  parent: BaseMagazineLightRifle
+  id: MagazineLightRifleHeavyDrum
+  name: "LMG Drum Magazine (.30 rifle any)"
+  description: A Drum magazine containing a 100-round belt of linked .30 rifle rounds, used by light machine guns such as the RPD. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightRifleHeavyDrum
+  - type: BallisticAmmoProvider
+    proto: null
+    capacity: 100
+  - type: Item
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineLightRifle
+  id: MagazineLightRifleHeavyDrumSP
+  name: "LMG Drum Magazine (.30 rifle SP)"
+  description: A Drum magazine containing a 100-round belt of linked .30 rifle rounds, used by light machine guns such as the RPD. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightRifleHeavyDrum
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleSP
+    capacity: 100
+  - type: Item
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineLightRifle
+  id: MagazineLightRifleHeavyDrumFMJ
+  name: "LMG Drum Magazine (.30 rifle FMJ)"
+  description: A Drum magazine containing a 100-round belt of linked .30 rifle rounds, used by light machine guns such as the RPD. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightRifleHeavyDrum
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleFMJ
+    capacity: 100
+  - type: Item
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineLightRifleDrum
+  name: "LMG Drum Magazine (.20 rifle)"
+  parent: [ BaseMagazineRifle, BaseSecurityContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightRifleDrum
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRifle
+    capacity: 100
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineLightRifleDrum
+  id: MagazineLightRifleDrumFMJ
+  name: "LMG Drum Magazine (.20 rifle FMJ)"
+  description: A Drum magazine containing a 100-round belt of linked .20 rifle rounds, used by light machine guns such as the RPD. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightRifleDrum
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleFMJ
+    capacity: 100
+  - type: Item
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineLightRifleDrum
+  id: MagazineLightRifleDrumSP
+  name: "LMG Drum Magazine (.20 rifle SP)"
+  description: A Drum magazine containing a 100-round belt of linked .20 rifle rounds, used by light machine guns such as the RPD. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightRifleDrum
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleSP
+    capacity: 100
+  - type: Item
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
+
+
+- type: entity
+  parent: [BaseHypospray, BaseETOContraband]
+  id: HyposprayETO
+  name: E.T.O Modified Hypospray
+  description: A jury-rigged Hypospray modified to work with even the most minimal of medical training.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    layers:
+    - state: hypo
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: hypo_fill1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: RefillableSolution
+    solution: hypospray
+  - type: UseDelay
+    delay: 0.5
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: Hypospray
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: hypo_fill
+    solutionName: hypospray
+
+- type: entity
+  parent: [ AdvancedJetInjector, BaseETOContraband ]
+  id: AdmemeCombatStimInjector
+  name: Perfect Combat Stimulant Injector
+  description: A Combat Stim that allows you to hit hard, and die slow.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/crackheadjetinjector.rsi
+    layers:
+    - state: jetinjector_base
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: jetinjector_filled1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Item
+    sprite: _Starlight/Admeme/ETO/crackheadjetinjector.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 10
+        - ReagentId: Stimulants
+          Quantity: 10
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Stimulants
+        Quantity: 2
+      - ReagentId: Omnizine
+        Quantity: 2
+      - ReagentId: Ichor
+        Quantity: 2
+
+
+- type: entity
+  parent: [ AdvancedJetInjector, BaseETOContraband ]
+  id: JugCombatStimInjector
+  name: Juggernaut Combat Stimulant Injector
+  description: A Modified Jet Injector that produces its own combat solution, capable of keeping you fast, and alive.
+  components:
+  - type: Sprite
+    sprite: c:\Users\fishw\OneDrive\Desktop\stimlit\space-station-14-FISH\Resources\Textures\_Starlight\Objects\Specific\Medical\medipen.rsicrackheadjetinjector.rsi
+    layers:
+    - state: jetinjector_base
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: jetinjector_filled1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Item
+    sprite: c:\Users\fishw\OneDrive\Desktop\stimlit\space-station-14-FISH\Resources\Textures\_Starlight\Objects\Specific\Medical\medipen.rsicrackheadjetinjector.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 10
+        - ReagentId: Stimulants
+          Quantity: 10
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Stimulants
+        Quantity: 0.25
+      - ReagentId: Omnizine
+        Quantity: 0.25
+      - ReagentId: Ichor
+        Quantity: 0.25
+
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseETOContraband]
+  id: ClothingEyesGlassesETOCorpsman
+  name: E.T.O Corpsman Glasses
+  description: A set of glasses that were modified using a stolen Medhud, protects you from flashes and even shows you who's who!
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
+  - type: FlashImmunity
+  - type: SolutionScanner
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+    damageContainers:
+      - Biological
+      - Hybrid # Protogens
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+
+- type: entity
+  parent: [ClothingEyesBase, BaseETOContraband]
+  id: ClothingEyesGlassesETOLead
+  name: E.T.O Team Lead Glasses
+  description: Glasses fit for a leader, protects you from flashes and shows you who's who.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/blueshield.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/blueshield.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - IPC
+    - Hybrid
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+    - IPC
+    - Hybrid
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+
+### reskins/eto variants
+
+- type: entity
+  name: PS Taiga-10 "Dumpster Diver"
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseETOContraband]
+  id: WeaponShotgunTaigaETO
+  description: A shotgun designed by Private Servitude, chambered in 12 gauge and feeds from 12 Gauge drum magazines. Capable of firing semi-auto or full auto. This one's seen better days, and has a deformed bolt, causing it to chamber way slower than normal.
+  components:
+  - type: Item
+    sprite: _Starlight/Admeme/ETO/weapons/saigaeto/saigaetoinhand.rsi
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/weapons/saigaeto/saigaeto.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    spread: 30
+    fireRate: 0.7
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+  - type: Clothing
+    sprite: _Starlight/Admeme/ETO/weapons/saigaeto/saigaeto.rsi
+  - type: GunRequiresWield
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShotgun
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
+  - type: ChamberMagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

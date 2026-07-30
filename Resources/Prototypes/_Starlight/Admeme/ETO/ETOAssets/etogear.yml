@@ -29,7 +29,7 @@
     state: icon
   - type: Clothing
     sprite: _Starlight/Admeme/ETO/etoheadset.rsi
-    state: equipped-EARS
+    equippedState: equipped-EARS
 
 - type: entity
   parent: [ClothingHeadset, BaseETOContraband]
@@ -46,7 +46,7 @@
     state: icon_alt
   - type: Clothing
     sprite: _Starlight/Admeme/ETO/etoheadset.rsi
-    state: alt-equipped-EARS
+    equippedState: alt-equipped-EARS
 
 - type: entity
   parent: [ ClothingMaskGas, BaseETOContraband ]

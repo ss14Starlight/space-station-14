@@ -20,8 +20,8 @@
   name: chat-radio-eto
   keycode: '1'
   frequency: 1883
-  color: "#c5be14" # Starlight
+  color: "#c5be14"
   longRange: true
   icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: unknown
+    sprite: _Starlight/Admeme/ETO/etojobicons.rsi
+    state: ETO
