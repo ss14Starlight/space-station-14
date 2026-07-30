@@ -64,6 +64,8 @@
       amount: 100
     Iron:
       amount: 20
+    Uranium:
+      amount: 50
   effects:
     - !type:SpawnEntity
       entity: EmeraldLizitar
@@ -80,6 +82,8 @@
       amount: 100
     Iron:
       amount: 20
+    Uranium:
+      amount: 50
   effects:
     - !type:SpawnEntity
       entity: AmethystLizitar
