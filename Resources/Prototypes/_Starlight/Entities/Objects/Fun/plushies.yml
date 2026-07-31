@@ -152,19 +152,6 @@
 
 - type: entity
   parent: BaseMothPlushie
-  id: MozanPlush
-  name: Mozan plushie
-  description: Just like the real thing, it squeaks if you poke it.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
-    state: icon
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
-
-- type: entity
-  parent: BaseMothPlushie
   id: PlushieKoni
   name: koni plushie
   description: Some sort of moth-cat hybrid. You can't help but find it really cute. Can squeak and meow!
