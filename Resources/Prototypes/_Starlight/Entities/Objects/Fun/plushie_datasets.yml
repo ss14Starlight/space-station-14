@@ -53,12 +53,6 @@
     count: 7
 
 - type: localizedDataset
-  id: PlushiesRedwoods
-  values:
-    prefix: plushie-redwoods-
-    count: 8
-
-- type: localizedDataset
   id: PlushiesBrighteyes
   values:
     prefix: plushie-brighteyes-
