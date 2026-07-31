@@ -5,7 +5,7 @@
         "y": 32
     },
     "copyright": "State based copyright",
-    "license": "Custom license",
+    "license": "Custom",
     "states": [
         {
             "name": "subFloorTank",
