@@ -65,12 +65,6 @@
     count: 6
 
 - type: localizedDataset
-  id: PlushiesGlados
-  values:
-    prefix: plushie-glados-
-    count: 9
-
-- type: localizedDataset
   id: PlushiesWEH
   values:
     prefix: plushie-weh-
@@ -164,10 +158,4 @@
   id: PlushiesEinalia
   values:
     prefix: plushie-einalia-
-    count: 6
-
-- type: localizedDataset
-  id: PlushiesLiz
-  values:
-    prefix: plushie-liz-
     count: 6
