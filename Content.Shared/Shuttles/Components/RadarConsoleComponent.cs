@@ -5,7 +5,7 @@ using Content.Shared._Starlight.Astronav;
 namespace Content.Shared.Shuttles.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedRadarConsoleSystem), typeof(AstroNavSystem))]
+[Access(typeof(SharedRadarConsoleSystem), typeof(AstroNavSystem))] // Starlight-edit
 [AutoGenerateComponentPause] // Starlight
 public sealed partial class RadarConsoleComponent : Component
 {

@@ -20,7 +20,7 @@ public sealed partial class AstroNavCartridgeSystem : EntitySystem
     private void OnCartridgeAdded(Entity<AstroNavCartridgeComponent> ent, ref CartridgeAddedEvent args)
     {
         EnsureComp<HandheldGPSComponent>(args.Loader);
-        EnsureComp<AstroNavComponent>(args.Loader);
+        EnsureComp<AstroNavComponent>(args.Loader); // Starlight-edit
     }
 
     private void OnCartridgeRemoved(Entity<AstroNavCartridgeComponent> ent, ref CartridgeRemovedEvent args)
@@ -29,7 +29,7 @@ public sealed partial class AstroNavCartridgeSystem : EntitySystem
         if (!_cartridgeLoaderSystem.HasProgram<AstroNavCartridgeComponent>(args.Loader))
         {
             RemComp<HandheldGPSComponent>(args.Loader);
-            RemComp<AstroNavComponent>(args.Loader);
+            RemComp<AstroNavComponent>(args.Loader); // Starlight-edit
         }
     }
 }
