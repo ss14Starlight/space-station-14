@@ -1,13 +1,6 @@
 Entries:
 - author: Spaghetti-Bit
   changes:
-  - message: Taser Bolts no longer go through windows.
-    type: Tweak
-  id: 406757
-  time: '2026-07-20T20:54:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5200
-- author: Spaghetti-Bit
-  changes:
   - message: Laser Carbine has inhand sprites again.
     type: Fix
   id: 406758
@@ -2799,4 +2792,11 @@ Entries:
   id: 407156
   time: '2026-07-31T11:23:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5216
+- author: Fasuh
+  changes:
+  - message: Fixed RPD allowing to build more than one atmos device per tile.
+    type: Fix
+  id: 407157
+  time: '2026-07-31T12:05:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5416
 Order: -1
