@@ -29,30 +29,15 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
 
         var numberOfPipeLayers = GetNumberOfPipeLayers(uid, out _);
 
-        // Insert connection nubs right after the main pipe layer instead of appending them at the
-        // end, so they don't render on top of layers added after it (e.g. a machine/tank body).
-        _sprite.LayerMapTryGet((uid, sprite), PipeVisualLayers.Pipe, out var pipeIndex, false);
-
         foreach (var layerKey in Enum.GetValues<PipeConnectionLayer>())
         {
             for (byte i = 0; i < numberOfPipeLayers; i++)
             {
                 var layerName = layerKey.ToString() + i.ToString();
-
-                if (!_sprite.LayerMapTryGet((uid, sprite), layerName, out var layer, false))
-                {
-                    layer = pipeIndex + 1;
-                    _sprite.AddBlankLayer((uid, sprite), layer);
-                    _sprite.LayerMapSet((uid, sprite), layerName, layer);
-                }
-
+                var layer = _sprite.LayerMapReserve((uid, sprite), layerName);
                 _sprite.LayerSetRsi((uid, sprite), layer, component.Sprite[i].RsiPath);
                 _sprite.LayerSetRsiState((uid, sprite), layer, component.Sprite[i].RsiState);
                 _sprite.LayerSetDirOffset((uid, sprite), layer, ToOffset(layerKey));
-
-                // Nubs should stay grounded even if the whole sprite is offset (e.g. a tank body
-                // sticking up out of its tile), so cancel out the sprite-level offset per-layer.
-                _sprite.LayerSetOffset((uid, sprite), layer, -sprite.Offset);
             }
         }
     }
