@@ -971,7 +971,6 @@
     - PipeSensor
     - GasTankSubfloor
     - GasTankTall
-    - GasTankTallHazard
     - Deconstruct
     - AirAlarm
     - AirSensor

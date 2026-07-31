@@ -771,8 +771,10 @@
     - GasPipeTankSubfloorAlt2
     - GasPipeTankSubfloorAlt3
     - GasPipeTankSubfloorAlt4
+
 # Subfloor gas tank END
 # Tall gas tank BEGIN
+
 - type: construction
   id: GasPipeTankTall
   graph: GasPipeTankTall
@@ -861,4 +863,5 @@
     - GasPipeTankTallAlt2
     - GasPipeTankTallAlt3
     - GasPipeTankTallAlt4
+
 # Tall gas tank END
