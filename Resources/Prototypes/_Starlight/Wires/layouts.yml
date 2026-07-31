@@ -56,6 +56,17 @@
   id: AirlockBlackstar
 
 - type: wireLayout
+  id: SmartFridge
+  dummyWires: 3
+  wires:
+    - !type:PowerWireAction
+    - !type:AccessWireAction
+      electrify: true
+    - !type:SpeechWireAction
+    - !type:AiInteractWireAction
+    - !type:LogWireAction
+
+- type: wireLayout
   id: ComputerAiLockable
   dummyWires: 2
   wires:
