@@ -1251,29 +1251,6 @@
 
 - type: entity
   parent: BaseResomiPlushie
-  id: PlushieRhea
-  name: rhea plushie
-  description: Our beloved Urlunete Salvie is now made out of pure polyester! Hug them while fucking over xenos.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/rhea_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/rhea_plushie.rsi
-    state: icon
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesRhea
-      - type: TextToSpeech
-        voice: slr2
-
-- type: entity
-  parent: BaseResomiPlushie
   id: PlushieRemiie
   name: remiie plushie
   description: Beta sector's favourite veteran head of personnel! Now turned into a marketable plushie and is extremely huggable!
