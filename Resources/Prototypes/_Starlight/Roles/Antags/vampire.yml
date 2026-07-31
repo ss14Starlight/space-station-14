@@ -1,6 +1,6 @@
 - type: antag
   id: Vampire
-  name: roles-antag-vamire-name
+  name: roles-antag-vampire-name
   antagonist: true
   setPreference: true
   objective: roles-antag-vampire-description
@@ -12,6 +12,20 @@
     - IPC
     inverted: true
   playTimeTracker: AntagVampire
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Vampire
+  prefRoles:
+  - Vampire
+  allowNonHumans: true
+  tags:
+    - CantBecomeRevolutionary
+  blacklist:
+    components:
+    - AntagImmune
+  mindRoles:
+  - MindRoleVampire
 
 - type: antag
   id: Thrall

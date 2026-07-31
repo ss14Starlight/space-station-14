@@ -17,6 +17,12 @@ namespace Content.IntegrationTests.Tests.Fluids;
 [TestOf(typeof(SpreaderSystem))]
 public sealed class FluidSpill : GameTest
 {
+    #region Starlight
+    public override PoolSettings PoolSettings => new()
+        {
+            Dirty = true,
+        };
+    #endregion
     private static PuddleComponent? GetPuddle(IEntityManager entityManager, Entity<MapGridComponent> mapGrid, Vector2i pos)
     {
         return GetPuddleEntity(entityManager, mapGrid, pos)?.Comp;
