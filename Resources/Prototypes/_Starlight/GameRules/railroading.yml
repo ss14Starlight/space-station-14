@@ -85,7 +85,7 @@
         - RRCardWar
 
 - type: entity
-  parent: BaseGameRule
+  parent: RailroadingAntagLow
   id: RailroadingAntagMedium
   components:
     - type: StationEvent
@@ -94,16 +94,9 @@
       minimumPlayers: 40
       duration: 1
       MaxOccurrences: 2
-    - type: RailroadRule
-      preSpawnDelay: 10
-      delay: 10
-      cards:
-        # antagonists
-        - RRCardCriminal
-        - RRCardWar
 
 - type: entity
-  parent: BaseGameRule
+  parent: RailroadingAntagLow
   id: RailroadingAntagHigh
   components:
     - type: StationEvent
@@ -111,16 +104,9 @@
       weight: 20
       minimumPlayers: 60
       duration: 1
-    - type: RailroadRule
-      preSpawnDelay: 10
-      delay: 10
-      cards:
-        # antagonists
-        - RRCardCriminal
-        - RRCardWar
 
 - type: entity
-  parent: BaseGameRule
+  parent: RailroadingAntagLow
   id: RailroadingAntagExtreme
   components:
     - type: StationEvent
@@ -128,14 +114,6 @@
       weight: 40
       minimumPlayers: 80
       duration: 1
-    - type: RailroadRule
-      preSpawnDelay: 10
-      delay: 10
-      cards:
-        # antagonists
-        - RRCardCriminal
-        - RRCardWar
-
 - type: entity
   parent: BaseGameRule
   id: RailroadingMinor
