@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Bagel) Rearranged and redecorated Engineering.
-    type: Tweak
-  id: 406714
-  time: '2026-07-18T12:18:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5130
-- author: OMEGA
-  changes:
   - message: (Bagel) Rearranged and redecorated Robotics.
     type: Tweak
   id: 406715
@@ -2799,4 +2792,11 @@ Entries:
   id: 407113
   time: '2026-07-29T15:46:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5397
+- author: DocMoth, Forrestgod
+  changes:
+  - message: Changed the Shading for the AI Core.
+    type: Tweak
+  id: 407114
+  time: '2026-07-31T06:39:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5410
 Order: -1
