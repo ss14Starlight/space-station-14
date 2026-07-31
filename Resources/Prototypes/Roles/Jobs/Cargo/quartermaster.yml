@@ -22,7 +22,6 @@
   startingGear: QuartermasterGear
   icon: "JobIconQuartermaster" #Starlight
   supervisors: job-supervisors-captain
-  canBeAntag: false
   access:
   - Cargo
   - Salvage

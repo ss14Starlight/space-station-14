@@ -120,12 +120,34 @@ WeaponRifleM90GrenadeLauncher : WeaponRifleLawbringer
 #2026-07-03 - Migrated the M-90gl bundle to a new rifle grenade bundle
 ClothingBackpackDuffelSyndicateFilledCarbine: ClothingBackpackDuffelSyndicateFilledRifleGrenade
 
-#2026-07-11 - Removing the sec flaregun for the Peacekeeper
-WeaponFlareGunSecurity: null
+#2026-07-04 - Renaming all the derelict Xenoborg IDs
+SpawnPointGhostXenoBorgHeavyDerelict: SpawnPointGhostDerelictHeavyXenoborg
+SpawnPointGhostXenoBorgEngiDerelict: SpawnPointGhostDerelictEngiXenoborg
+SpawnPointGhostXenoBorgScoutDerelict: SpawnPointGhostDerelictScoutXenoborg
+SpawnPointGhostXenoBorgStealthDerelict: SpawnPointGhostDerelictStealthXenoborg
+SpawnPointGhostXenoBorgiDerelict: SpawnPointGhostDerelictXenoBorgi
+XenoBorgiDerelictBase: DerelictXenoBorgiBase
+XenoBorgiDerelict: DerelictXenoBorgi
+XenoborgEngiDerelict: DerelictEngiXenoborg
+XenoborgHeavyDerelict: DerelictHeavyXenoborg
+XenoborgScoutDerelict: DerelictScoutXenoborg
+XenoborgStealthDerelict: DerelictStealthXenoborg
+PlayerXenoBorgHeavyDerelict: PlayerDerelictHeavyXenoborg
+PlayerXenoBorgEngiDerelict: PlayerDerelictEngiXenoborg
+PlayerXenoBorgScoutDerelict: PlayerDerelictScoutXenoborg
+PlayerXenoBorgStealthDerelict: PlayerDerelictStealthXenoborg
+PlayerXenoBorgHeavyDerelictGhostRole: PlayerDerelictHeavyXenoborgGhostRole
+PlayerXenoBorgEngiDerelictGhostRole: PlayerDerelictEngiXenoborgGhostRole
+PlayerXenoBorgScoutDerelictGhostRole: PlayerDerelictScoutXenoborgGhostRole
+PlayerXenoBorgStealthDerelictGhostRole: PlayerDerelictStealthXenoborgGhostRole
+PlayerXenoBorgiDerelictGhostRole: PlayerDerelictXenoBorgiGhostRole
 
 #2026-07-09 - PR #2597 removed the ability to toggle Thrusters, meaning Thruster [Off] can never be turned on again
 ThrusterOff: Thruster
 GyroscopeOff: Gyroscope
+
+#2026-07-11 - Removing the sec flaregun for the Peacekeeper
+WeaponFlareGunSecurity: null
 
 #2026-07-12
 CargoGasPallet: CargoGasPalletSell
