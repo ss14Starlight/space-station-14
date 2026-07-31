@@ -2,14 +2,14 @@
   id: MagazinePistolSubMachineGunBottomMountedDD
   name: DD-22 magazine (.35 auto bottom-mounted)
   parent: [ BaseItem, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD22, holds .35 auto.
+  description: A unique 64-round magazine that loads into the DD22, holds .35 auto.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: null # Starlight
+    proto: null
     whitelist:
       tags:
       - CartridgePistol
@@ -32,16 +32,15 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDSP
-  name: P.S DD-22 magazine (.35 SP bottom-mounted)
+  name: PS DD-22 magazine (.35 SP bottom-mounted)
   parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD-22, holds .35 auto.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistolSP # Starlight
+    proto: CartridgePistolSP
     whitelist:
       tags:
       - CartridgePistol
@@ -58,16 +57,15 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDFMJ
-  name: P.S DD-22 magazine (.35 FMJ bottom-mounted)
+  name: PS DD-22 magazine (.35 FMJ bottom-mounted)
   parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD-22, holds .35 auto.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistolFMJ # Starlight
+    proto: CartridgePistolFMJ
     whitelist:
       tags:
       - CartridgePistol
@@ -84,16 +82,15 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDHP
-  name: P.S DD-22 magazine (.35 HP bottom-mounted)
+  name: PS DD-22 magazine (.35 HP bottom-mounted)
   parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD-22, holds .35 auto.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistolHP # Starlight
+    proto: CartridgePistolHP
     whitelist:
       tags:
       - CartridgePistol
@@ -103,23 +100,22 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-
   - type: Appearance
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
+
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDAP
-  name: P.S DD-22 magazine (.35 AP bottom-mounted)
+  name: PS DD-22 magazine (.35 AP bottom-mounted)
   parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD-22, holds .35 auto.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistolAP # Starlight
+    proto: CartridgePistolAP
     whitelist:
       tags:
       - CartridgePistol
@@ -136,16 +132,15 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDPractice
-  name: P.S DD-22 magazine (.35 Practice bottom-mounted)
+  name: PS DD-22 magazine (.35 Practice bottom-mounted)
   parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD-22, holds .35 auto.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistolPractice # Starlight
+    proto: CartridgePistolPractice
     whitelist:
       tags:
       - CartridgePistol
@@ -162,16 +157,15 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDIncendiary
-  name: P.S DD-22 magazine (.35 Incendiary bottom-mounted)
+  name: PS DD-22 magazine (.35 Incendiary bottom-mounted)
   parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD-22, holds .35 auto.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistolIncendiary # Starlight
+    proto: CartridgePistolIncendiary
     whitelist:
       tags:
       - CartridgePistol
@@ -188,16 +182,15 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDUranium
-  name: P.S DD-22 magazine (.35 Uranium bottom-mounted)
+  name: PS DD-22 magazine (.35 Uranium bottom-mounted)
   parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD-22, holds .35 auto.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistolUranium # Starlight
+    proto: CartridgePistolUranium
     whitelist:
       tags:
       - CartridgePistol
@@ -214,16 +207,16 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDImprovised
-  name: P.S DD-22 magazine (.35 Improvised bottom-mounted)
+  name: PS DD-22 magazine (.35 Improvised bottom-mounted)
   parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD-22, holds .35 auto. For some reason, an idiot decided to fill this one with improvised rounds.
+  description: A unique 64-round magazine that loads into the DD-22, holds .35 ammo. Some idiot filled this one with improvised rounds.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistolImprovised # Starlight
+    proto: CartridgePistolImprovised
     whitelist:
       tags:
       - CartridgePistol
@@ -241,16 +234,16 @@
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDAntimaterial
   suffix: Admeme
-  name: P.S DD-22 magazine (.60 Antimaterial bottom-mounted)
+  name: PS DD-22 magazine (.60 Antimaterial bottom-mounted)
   parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD-22, usually holds .35 auto, however this magazine was modified to hold Antimaterial rounds, you've got no clue how it works and you're scared to see the outcome.
+  description: A unique 64-round magazine that loads into the DD-22, usually holds .35 auto, however this magazine was modified to hold Antimaterial rounds, you've got no clue how it works and you're scared to see the outcome.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeAntiMateriel # Starlight
+    proto: CartridgeAntiMateriel
     whitelist:
       tags:
       - CartridgeAntiMateriel
@@ -267,16 +260,16 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDRubber
-  name: P.S DD-22 magazine (.35 Rubber bottom-mounted)
+  name: PS DD-22 magazine (.35 Rubber bottom-mounted)
   parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-  description: A Unique 64 round magazine that loads into the DD-22, holds .35 auto.
+
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistolRubber # Starlight
+    proto: CartridgePistolRubber
     whitelist:
       tags:
       - CartridgePistol

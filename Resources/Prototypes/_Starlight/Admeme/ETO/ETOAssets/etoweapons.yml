@@ -1,8 +1,8 @@
 - type: entity
-  name: P.S Z46
+  name: PS Z46
   parent: [BaseSecurityContraband, BaseWeaponRifle]
   id: WeaponRifleZ46
-  description: A Private Servitude Designed Rifle that was built to compete with the arms race, chambers in .30 rifle rounds and hits like a car.
+  description: A Private Servitude designed rifle that was built to compete with the arms race, chambers in .30 rifle rounds and hits like a car.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/weapons/g36/g36.rsi
@@ -64,7 +64,7 @@
     supportedPins: [ Rifle, GunUpgrade ]
 
 - type: entity
-  name: P.S Z77 T1
+  name: PS Z77 T1
   parent: [BaseWeaponRifle, BaseSecurityContraband]
   id: WeaponRifleZ77T1
   description: A battle rifle designed by Private Servitude, takes .20 rifle rounds.
@@ -119,7 +119,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container # starlight
+      firing_pin: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -127,10 +127,10 @@
   - type: Appearance
 
 - type: entity
-  name: P.S DD-22 Dryson
+  name: PS DD-22 Dryson
   parent: [BaseWeaponSubMachineGun, BaseSecuritySalvageContraband]
   id: WeaponSubMachineGunDD22
-  description: Designed by Private Servitude, while it shares some similarities with the AKMS, though it was made by an entirely different company. Chambers in .35 Rounds and feeds from a unique bottom mounted magazine.
+  description: Designed by Private Servitude, while it shares some similarities with the AKMS, it was made by an entirely different company. Chambers in .35 Rounds and feeds from a unique bottom mounted magazine.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/weapons/bizon.rsi
@@ -145,11 +145,11 @@
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -19
-    maxAngle: -20
+    maxAngle: -24
   - type: Gun
     minAngle: 21
     maxAngle: 32
-    fireRate: 6
+    fireRate: 4.5
     availableModes:
     - FullAuto
     - SemiAuto
@@ -182,7 +182,7 @@
   - type: Appearance
 
 - type: entity
-  name: P.S Taiga-10
+  name: PS Taiga-10
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunTaiga
   description: A shotgun designed by Private Servitude, chambered in 12 gauge and feeds from 12 Gauge drum magazines. Can switch between semi-auto and full auto.
@@ -198,7 +198,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
     spread: 30
-    fireRate: 2
+    fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -222,7 +222,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container # starlight
+      firing_pin: !type:Container
   - type: ChamberMagazineAmmoProvider
   - type: MagazineVisuals
     magState: mag
@@ -231,14 +231,14 @@
   - type: Appearance
 
 - type: entity
-  name: P.S-75 Auto
+  name: PS-75 Auto
   parent: [BaseWeaponPistol, BaseSecurityContraband]
   id: WeaponPistol75auto
-  description: A Handgun with an ergonomic design, feeds from .35 pistol magazines and can fire in full-auto if the time calls for it. # Starlight
+  description: A handgun with an ergonomic design, feeds from .35 pistol magazines and can fire in full-auto if the time calls for it.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/weapons/cz75.rsi
-  - type: Gun # Starlight start
+  - type: Gun
     fireRate: 6
     selectedMode: SemiAuto
     availableModes:
@@ -246,19 +246,19 @@
       - FullAuto
       - Burst
     shotsPerBurst: 4
-    burstCooldown: 0.35 # Starlight end
+    burstCooldown: 0.35
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolHighCapacityFMJ # Starlight, starts with the high capacity now
+        startingItem: MagazinePistolHighCapacityFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
             - MagazinePistol
-            - MagazinePistolHighCapacitySP # Starlight, they couldn't actually use this before because Capacity without SP *doesn't exist as a tag*
+            - MagazinePistolHighCapacitySP
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -270,4 +270,4 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container # starlight
+      firing_pin: !type:Container

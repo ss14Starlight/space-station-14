@@ -3,8 +3,8 @@
 - type: entity
   parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseETOContraband]
   id: ClothingOuterVestWebETOBase
-  name: ETO Web Vest
-  description: A Protective vest built for ETO Members, allows you to stay light on your feet.
+  name: ETO web vest
+  description: A protective vest built for ETO Members, allows you to stay light on your feet.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/armour/etovest.rsi
@@ -15,21 +15,19 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6 #ballistic plates = better protection
+        Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.9
-    # Starlight-start
-    staminaModifier: 0.55
-    # Starlight-end
+      staminaModifier: 0.55
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
 - type: entity
-  parent: [ClothingOuterVestWebETOBase, BaseETOContraband] #web vest so it should have some pockets for ammo
+  parent: [ClothingOuterVestWebETOBase, BaseETOContraband]
   id: ClothingOuterVestWebETOCorpsman
-  name: ETO Medical Vest
-  description: A Protective vest built for ETO Corpsmen, allows you to stay light on your feet and get to those in need.
+  name: ETO medical vest
+  description: A protective vest built for ETO Corpsmen, allows you to stay light on your feet and get to those in need.
   components:
     - type: Sprite
       sprite: _Starlight/Admeme/ETO/clothing/armour/etomedicvest.rsi
@@ -40,7 +38,7 @@
     - type: Armor
       modifiers:
         coefficients:
-          Blunt: 0.7 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
+          Blunt: 0.7
           Slash: 0.7
           Piercing: 0.6
           Heat: 0.9
@@ -49,9 +47,9 @@
       damageCoefficient: 0.9
 
 - type: entity
-  parent: [ClothingOuterVestWebETOBase, BaseETOContraband] #web vest so it should have some pockets for ammo
+  parent: [ClothingOuterVestWebETOBase, BaseETOContraband]
   id: ClothingOuterVestWebETOLead
-  name: ETO Lead Web Vest
+  name: ETO lead web vest
   description: A highly protective Web Vest designed for the Team Leader, Death to our enemy, freedom to their slaves.
   components:
     - type: Sprite
@@ -63,7 +61,7 @@
     - type: Armor
       modifiers:
         coefficients:
-          Blunt: 0.7 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
+          Blunt: 0.7
           Slash: 0.6
           Piercing: 0.3
           Heat: 0.9
@@ -72,9 +70,9 @@
       damageCoefficient: 0.9
 
 - type: entity
-  parent: [ClothingOuterVestWebETOBase, BaseETOContraband] #web vest so it should have some pockets for ammo
+  parent: [ClothingOuterVestWebETOBase, BaseETOContraband]
   id: ClothingOuterVestWebETOCombatTech
-  name: ETO Combat Technician Vest
+  name: ETO combat technician vest
   description: A sturdy vest ripped off of an advanced Engineers hardsuit, protects the body but weighs down the user.
   components:
     - type: Sprite
@@ -86,7 +84,7 @@
     - type: Armor
       modifiers:
         coefficients:
-          Blunt: 0.55 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
+          Blunt: 0.55
           Slash: 0.55
           Piercing: 0.5
           Heat: 0.9
@@ -100,7 +98,7 @@
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseETOContraband]
   id: ClothingHeadHelmetETO
-  name: ETO Operative Helmet
+  name: ETO operative helmet
   description: A helmet designed for ETO Operatives, providing good skull protection and a good way to tell who your pals are.
   components:
   - type: Armor
@@ -118,8 +116,8 @@
 - type: entity
   parent: [ClothingHeadBase, BaseETOContraband]
   id: ClothingHeadETOEvaHelmet
-  name: ETO Space Hazard Helmet
-  description: A Space certified helmet designed to work with most space certified softsuits, has some added ballistic protection to keep you alive.
+  name: ETO space hazard helmet
+  description: A space certified helmet designed to work with most space certified softsuits, has some added ballistic protection to keep you alive.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/armour/etoevahelmet.rsi
@@ -143,7 +141,6 @@
   - type: IngestionBlocker
   - type: Tag
     tags:
-    - WhitelistChameleon
     - HelmetEVA
   - type: StaticPrice
     price: 1000
@@ -161,17 +158,17 @@
 - type: entity
   parent: [ BaseETOContraband, ClothingOuterEVASuitBase ]
   id: ClothingOuterSoftsuitETO
-  name: ETO Space Hazard suit
+  name: ETO space hazard suit
   description: A Lightweight EVA Suit padded with ballistic protection, slows you down but keeps you alive.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/armour/etoevasuit.rsi
   - type: Clothing
     sprite: _Starlight/Admeme/ETO/clothing/armour/etoevasuit.rsi
-    equipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    equipDelay: 1 #starlight
-    unequipDelay: 1 #starlight
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 1
+    unequipDelay: 1
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
@@ -182,14 +179,10 @@
         Piercing: 0.5
         Heat: 0.6
         Cold: 0.7
-        Shock: 0.9
-        Radiation: 0.7
-        Caustic: 0.5
     staminaModifier: 0.2
-  - type: HardsuitChemicalImmunity
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.8
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: Tag
     tags:

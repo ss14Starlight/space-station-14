@@ -1,7 +1,7 @@
 - type: entity
   parent: [ClothingEyesBase, BaseETOContraband]
   id: ClothingEyesSunGlassesETO
-  name: ETO Operative Glasses
+  name: ETO operative glasses
   description: Sunglasses modified with the ability to see who's who.
   components:
   - type: Sprite
@@ -17,7 +17,7 @@
 - type: entity
   parent: [ClothingHeadset, BaseETOContraband]
   id: ClothingHeadsetETO
-  name: ETO Operative Headset
+  name: ETO operative headset
   description: A headset supplied to ETO Operatives to maintain communication through battle.
   components:
   - type: ContainerFill
@@ -34,7 +34,7 @@
 - type: entity
   parent: [ClothingHeadset, BaseETOContraband]
   id: ClothingHeadsetETOSpecialist
-  name: ETO Specialist Headset
+  name: ETO specialist headset
   description: A headset supplied to ETO Specialists to do what they do best.
   components:
   - type: ContainerFill
@@ -51,7 +51,7 @@
 - type: entity
   parent: [ ClothingMaskGas, BaseETOContraband ]
   id: ClothingMaskGasETOLead
-  name: ETO Lead Gas Mask
+  name: ETO lead gas mask
   description: A mask best fit for a lead terrorist. Protects the wearer from pot shots, but won't keep you alive alone. Modified with an Admin and Health hud to show you health and the allegience of those around you.
   components:
   - type: Sprite
@@ -65,9 +65,6 @@
       - Biological
       - IPC
       - Hybrid
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -89,16 +86,13 @@
 - type: entity
   parent: [ ClothingMaskGas, BaseETOContraband ]
   id: ClothingMaskGasETO
-  name: ETO Operative Mask
+  name: ETO operative mask
   description: Standard ETO Operative mask, has some ballistic reinforcement to keep your face from being swiss cheesed all the time, but won't keep you alive alone.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/etomaskgrunt.rsi
   - type: Clothing
     sprite: _Starlight/Admeme/ETO/clothing/etomaskgrunt.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: HideLayerClothing
     slots:
     - Hair
@@ -120,16 +114,13 @@
 - type: entity
   parent: [ ClothingMaskGas, BaseETOContraband ]
   id: ClothingMaskGasETOCorpsman
-  name: ETO Corpsman Gas Mask
+  name: ETO corpsman gas mask
   description: A Mask fit for the corpsman, modified with a MedHud to show a holographic heads up of the health of your fellow team members.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/etomaskcorpsman.rsi
   - type: Clothing
     sprite: _Starlight/Admeme/ETO/clothing/etomaskcorpsman.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
   - type: ShowHealthBars
     damageContainers:
       - Biological
@@ -154,7 +145,7 @@
   parent: [BaseHardBomb, BaseETOContraband]
   id: ETOBomb
   name: PS-3ETO
-  description: A modified Syndicate bomb that packs a larger punch, capable of blowing apart your objective! Modified with magnetic straps to allow for one to attach it to their back.
+  description: A modified bomb that packs a larger punch, capable of blowing apart your objective! Modified with magnetic straps to allow for one to attach it to their back.
   components:
     - type: Sprite
       sprite: _Starlight/Admeme/ETO/etobomb.rsi
@@ -199,12 +190,10 @@
       totalIntensity: 20000.0
       intensitySlope: 10
       maxIntensity: 75
-    - type: StaticPrice
-      price: 10000 # Good luck!
 
 - type: entity
   parent: [BaseHardBomb, BaseETOContraband]
-  id: ETONuke
+  id: ETOBetterBomb
   name: PS-21ETO "Planet Buster"
   description: A bomb of mass destruction, capable of ripping apart even the most fortified structures."Death to my enemy, Freedom to their slaves."
   components:
@@ -248,8 +237,6 @@
       softness: 1
     - type: Explosive
       explosionType: HardBomb
-      totalIntensity: 200000.0
+      totalIntensity: 500000.0
       intensitySlope: 10
       maxIntensity: 75
-    - type: StaticPrice
-      price: 10000 # Good luck!

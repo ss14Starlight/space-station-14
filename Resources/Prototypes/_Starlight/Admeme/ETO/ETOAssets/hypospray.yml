@@ -1,8 +1,8 @@
 - type: entity
   parent: [ AdvancedJetInjector, BaseETOContraband ]
   id: ETOMartyrInjector
-  name: Combat Stimulant Injector
-  description: A modified Jet Injector that allows for fast injections of combat stims, not exactly perfect but allows for the Martyr to excell in what they do best, being a crackhead.
+  name: combat stimulant injector
+  description: A modified jet injector that allows for fast injections of combat stims, not exactly perfect but allows for the Martyr to excell in what they do best, being a crackhead.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/crackheadjetinjector.rsi
@@ -37,7 +37,7 @@
 - type: entity
   parent: [ChemicalMedipen, BaseETOContraband]
   id: CombatMedipenETO
-  name: Dilluted Combat Medipen
+  name: dilluted combat medipen
   description: A weaker, less effective version of the standard combat medipen, still fixes most forms of damage but some of the solution only works below 50 total damage.
   components:
   - type: Item
@@ -72,5 +72,3 @@
           Quantity: 15
         - ReagentId: TranexamicAcid
           Quantity: 5
-  - type: StaticPrice
-    price: 1500

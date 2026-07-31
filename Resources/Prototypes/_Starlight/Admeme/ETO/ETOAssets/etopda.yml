@@ -25,8 +25,8 @@
 - type: entity
   parent: [ ParamedicPDA ]
   id: ETOTeamLeadPDA
-  name: ETO Team Lead PDA
-  description: Lead the Team, Fight against the corporate giants. Death to our enemy, Freedom to their slaves.
+  name: ETO Team lead PDA
+  description: Lead the Team, fight against the corporate giants. Death to our enemy, freedom to their slaves.
   components:
   - type: Appearance
     appearanceDataInit:
@@ -49,7 +49,7 @@
   parent: BasePDA
   id: ETOOperativePDA
   name: ETO Operative PDA
-  description: Fight for freedom, Fight for the people.
+  description: Fight for freedom, fight for the people.
   components:
   - type: Appearance
     appearanceDataInit:
@@ -71,7 +71,7 @@
 - type: entity
   parent: BasePDA
   id: ETOOperativePDACombatTech
-  name: ETO Combat Technician PDA
+  name: ETO Combat technician PDA
   description: Build the pillars that support our cause, break the chains that hold us back.
   components:
   - type: Appearance

@@ -1,4 +1,12 @@
 - type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsETO
+  suffix: ETO, Locked
+  components:
+  - type: AccessReader
+    access: [["ETO"]]
+
+- type: entity
   parent: AirlockServiceLocked
   id: AirlockETOLocked
   suffix: ETO, Locked
@@ -8,11 +16,3 @@
       board: [ DoorElectronicsETO ]
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/etodoor.rsi
-
-- type: entity
-  parent: DoorElectronics
-  id: DoorElectronicsETO
-  suffix: ETO, Locked
-  components:
-  - type: AccessReader
-    access: [["ETO"]]
