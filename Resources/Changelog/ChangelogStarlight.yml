@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie, JohnnyMalawny
   changes:
-  - message: Bulk gas ordering directly from the ATS, no canisters needed!
-    type: Add
-  id: 406772
-  time: '2026-07-21T11:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5127
-- author: redmushie, JohnnyMalawny
-  changes:
   - message: Bulk cooled plasma ordering for maximum storage efficiency.
     type: Add
   id: 406773
@@ -2799,4 +2792,11 @@ Entries:
   id: 407171
   time: '2026-07-31T15:09:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5202
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added Lancer Solo Strike as an arcade machine.
+    type: Add
+  id: 407172
+  time: '2026-07-31T15:09:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5195
 Order: -1
