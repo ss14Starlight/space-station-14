@@ -1,13 +1,6 @@
 Entries:
 - author: Littlemen/Romero
   changes:
-  - message: tacticool legpouch for your peacekeeper ammo.
-    type: Add
-  id: 406766
-  time: '2026-07-20T23:45:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5168
-- author: Littlemen/Romero
-  changes:
   - message: several bugfixes and balance changes.
     type: Tweak
   id: 406767
@@ -2799,4 +2792,11 @@ Entries:
   id: 407165
   time: '2026-07-31T13:34:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5242
+- author: wonderfulnewworld, DuckManZach
+  changes:
+  - message: Overhauled the antag menu, sorting by faction, adding a search bar, and overall modernizing the design.
+    type: Tweak
+  id: 407166
+  time: '2026-07-31T14:29:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5290
 Order: -1
