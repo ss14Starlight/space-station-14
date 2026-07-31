@@ -3155,7 +3155,7 @@
       Dead: CorgiDead
   - type: Blindable # why is this not base?
   - type: Emoting
-  - type: Scent 
+  - type: Scent
   - type: Smeller
   - type: ThermalRegulator # Lower radiated heat, Corgis are smaller so their body surface area is also smaller.
     metabolismHeat: 400 # half of human's
