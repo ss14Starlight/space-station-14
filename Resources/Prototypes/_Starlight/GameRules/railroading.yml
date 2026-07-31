@@ -75,7 +75,7 @@
       weight: 3
       minimumPlayers: 10
       duration: 1
-      MaxOccurrences: 1
+      maxOccurrences: 1
     - type: DynamicRuleCost
       cost: 75
     - type: RailroadRule
@@ -97,7 +97,7 @@
       weight: 10
       minimumPlayers: 40
       duration: 1
-      MaxOccurrences: 2
+      maxOccurrences: 2
 
 - type: entity
   parent: RailroadingAntagLow
