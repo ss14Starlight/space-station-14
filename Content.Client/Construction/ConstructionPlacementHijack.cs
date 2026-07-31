@@ -10,6 +10,8 @@ namespace Content.Client.Construction
 {
     public sealed class ConstructionPlacementHijack : PlacementHijack
     {
+        [Dependency] private IEntityManager _entityManager = default!; // Starlight
+        private readonly SpriteSystem _spriteSystem; // Starlight
         private readonly ConstructionSystem _constructionSystem;
         private readonly ConstructionPrototype? _prototype;
 
@@ -20,6 +22,8 @@ namespace Content.Client.Construction
 
         public ConstructionPlacementHijack(ConstructionSystem constructionSystem, ConstructionPrototype? prototype)
         {
+            IoCManager.InjectDependencies(this); // Starlight
+            _spriteSystem = _entityManager.System<SpriteSystem>(); // Starlight
             _constructionSystem = constructionSystem;
             _prototype = prototype;
             CanRotate = prototype?.CanRotate ?? true;
@@ -39,7 +43,7 @@ namespace Content.Client.Construction
         /// <inheritdoc />
         public override bool HijackDeletion(EntityUid entity)
         {
-            if (IoCManager.Resolve<IEntityManager>().HasComponent<ConstructionGhostComponent>(entity))
+            if (_entityManager.HasComponent<ConstructionGhostComponent>(entity)) // Starlight
             {
                 _constructionSystem.ClearGhost(entity.GetHashCode());
             }
@@ -70,12 +74,10 @@ namespace Content.Client.Construction
             }
 
             // Fix per-layer/sprite Offset being lost by manually applying it to the ghost layers directly.
-            var entMan = IoCManager.Resolve<IEntityManager>();
-            if (proto.TryGetComponent<SpriteComponent>(out var sprite, entMan.ComponentFactory)
+            if (proto.TryGetComponent<SpriteComponent>(out var sprite, _entityManager.ComponentFactory)
                 && manager.CurrentPlacementOverlayEntity is { } overlay
-                && entMan.TryGetComponent<SpriteComponent>(overlay, out var overlaySprite))
+                && _entityManager.TryGetComponent<SpriteComponent>(overlay, out var overlaySprite))
             {
-                var sprites = entMan.System<SpriteSystem>();
                 var i = 0;
 
                 foreach (var layer in sprite.AllLayers)
@@ -83,7 +85,7 @@ namespace Content.Client.Construction
                     if (layer.ActualRsi?.Path == null || layer.RsiState.Name == null)
                         continue;
 
-                    sprites.LayerSetOffset((overlay, overlaySprite), i, sprite.Offset + ((SpriteComponent.Layer)layer).Offset);
+                    _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, sprite.Offset + ((SpriteComponent.Layer)layer).Offset);
                     i++;
                 }
 
