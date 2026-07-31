@@ -20,6 +20,21 @@
     time: 5h # Starlight
   playTimeTracker: AntagSELFAgent
 
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: SELFAgent
+  prefRoles:
+  - SELFAgent
+  allowNonHumans: true
+  startingGear: SELFAgentGear
+  blacklist:
+    components:
+    - AntagImmune
+  mindRoles:
+  - MindRoleSELFAgent
+  briefing:
+    sound: "/Audio/_Starlight/Ambience/Antag/self_greeting.ogg"
+
 - type: startingGear
   id: SELFAgentGear
   storage:

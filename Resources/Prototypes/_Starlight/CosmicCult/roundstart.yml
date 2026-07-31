@@ -1,13 +1,13 @@
 - type: entity
-  parent: BaseGameRule
+  parent: BaseRoundstartAntagRule
   id: CosmicCult
   components:
   - type: CosmicCultRule
   - type: GameRule
     minPlayers: 20
     delay:
-      min: 60
-      max: 120
+      min: 240
+      max: 420
   - type: AntagObjectives
     objectives:
     - CosmicFinalityObjective
@@ -16,18 +16,13 @@
     - CosmicEntropyObjective
     - CosmicChaplainObjective
   - type: AntagSelection
-    definitions:
-    - prefRoles: [ CosmicAntagCultist ]
-      min: 2
-      max: 6
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: CosmicAntagCultist
       playerRatio: 10
-      blacklist:
-        components:
-        - AntagImmune
-        - BibleUser
-      components:
-      - type: CosmicCult
-      mindRoles:
-      - MindRoleCosmicCult
+      range:
+        min: 2
+        max: 6
   - type: DynamicRuleCost
     cost: 200

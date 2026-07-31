@@ -37,6 +37,7 @@ using Content.Shared._Starlight.Atmos;
 using Content.Shared._Starlight.Atmos.Components;
 using Content.Shared.Prototypes;
 using Content.Shared._Starlight.Plumbing.Components;
+using Content.Shared.Doors.Components;
 // Starlight End
 
 namespace Content.Shared.RCD.Systems;
@@ -543,7 +544,7 @@ public sealed partial class RCDSystem : EntitySystem
         if (charges == 0)
         {
             if (popMsgs)
-                _popup.PopupClient(Loc.GetString("rcd-component-no-ammo-message"), uid, user);
+                _popup.PopupClient(Loc.GetString("rcd-component-no-ammo-message", ("device", Name(uid))), uid, user); // Starlight-edit: name the actual device (RCD/RPD/RPLD)
 
             return false;
         }
@@ -551,7 +552,7 @@ public sealed partial class RCDSystem : EntitySystem
         if (prototype.Cost > charges)
         {
             if (popMsgs)
-                _popup.PopupClient(Loc.GetString("rcd-component-insufficient-ammo-message"), uid, user);
+                _popup.PopupClient(Loc.GetString("rcd-component-insufficient-ammo-message", ("device", Name(uid))), uid, user); // Starlight-edit: name the actual device (RCD/RPD/RPLD)
 
             return false;
         }
@@ -640,6 +641,8 @@ public sealed partial class RCDSystem : EntitySystem
         // Check rule: The tile is unoccupied
         var isWindow = prototype.ConstructionRules.Contains(RcdConstructionRule.IsWindow);
         var isCatwalk = prototype.ConstructionRules.Contains(RcdConstructionRule.IsCatwalk);
+        var isAirlock = prototype.ConstructionRules.Contains(RcdConstructionRule.IsAirlock); // Starlight: airlocks can be built over firelocks
+        var isFirelock = prototype.ConstructionRules.Contains(RcdConstructionRule.IsFirelock); // Starlight: firelocks can be built over airlocks
         // Starlight Start: RPLD
         var isPlumbingMachinePlacement = component.IsRPLD
             && prototype.Prototype != null
@@ -653,6 +656,12 @@ public sealed partial class RCDSystem : EntitySystem
         {
             if (isWindow && HasComp<SharedCanBuildWindowOnTopComponent>(ent))
                 continue;
+            // Starlight Start: Airlocks and Firelocks can be built on top of one another
+            if (isAirlock && HasComp<FirelockComponent>(ent))
+                continue;
+            if (isFirelock && HasComp<AirlockComponent>(ent))
+                continue;
+            // Starlight End
             // Starlight Start: RPLD
             if (isPlumbingMachinePlacement && Transform(ent).Anchored && HasComp<PlumbingConnectorAppearanceComponent>(ent))
             {
@@ -932,6 +941,12 @@ public sealed partial class RCDSystem : EntitySystem
             return RpdMode.Free; // default to Free mode
 
         return component.CurrentMode;
+    }
+
+    public void SetSelectedLayer(Entity<RCDComponent> ent, AtmosPipeLayer layer)
+    {
+        ent.Comp.LastSelectedLayer = layer;
+        Dirty(ent);
     }
     // Starlight End: RPD
 
