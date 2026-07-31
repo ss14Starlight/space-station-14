@@ -99,6 +99,7 @@ namespace Content.Server.Construction
             ConstructionGraphPrototype graph,
             ConstructionGraphEdge edge,
             ConstructionGraphNode targetNode,
+            ConstructionPrototype constructionPrototype, // Starlight edit
             EntityCoordinates coords,
             Angle angle = default)
         {
@@ -269,6 +270,17 @@ namespace Content.Server.Construction
                 return null;
             }
 
+            // Starlight edit start
+            foreach (var condition in constructionPrototype.Conditions)
+            {
+                if (!condition.Condition(user, coords, angle.GetCardinalDir()))
+                {
+                    FailCleanup();
+                    return null;
+                }
+            }
+            // Starlight edit end
+
             var newEntityProto = graph.Nodes[edge.Target].Entity.GetId(null, user, new(EntityManager));
             var newEntity = SpawnAttachedTo(newEntityProto, coords, rotation: angle);
 
@@ -391,6 +403,7 @@ namespace Content.Server.Construction
                     constructionGraph,
                     edge,
                     targetNode,
+                    constructionPrototype, // Starlight edit
                     Transform(user).Coordinates) is not { Valid: true } item)
                 return false;
 
@@ -531,6 +544,7 @@ namespace Content.Server.Construction
                     constructionGraph,
                     edge,
                     targetNode,
+                    constructionPrototype, // Starlight edit
                     GetCoordinates(ev.Location),
                     constructionPrototype.CanRotate ? ev.Angle : Angle.Zero) is not {Valid: true} structure)
             {
