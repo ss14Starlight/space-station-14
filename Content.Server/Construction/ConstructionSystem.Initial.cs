@@ -275,6 +275,9 @@ namespace Content.Server.Construction
             {
                 if (!condition.Condition(user, coords, angle.GetCardinalDir()))
                 {
+                    var message = condition.GenerateGuideEntry()?.Localization
+                                  ?? "construction-system-construct-conditions-not-met";
+                    _popup.PopupEntity(Loc.GetString(message), user, user);
                     FailCleanup();
                     return null;
                 }
@@ -473,6 +476,11 @@ namespace Content.Server.Construction
             {
                 if (!condition.Condition(user, location, ev.Angle.GetCardinalDir()))
                 {
+                    // Starlight edit start
+                    var message = condition.GenerateGuideEntry()?.Localization
+                                  ?? "construction-system-construct-conditions-not-met";
+                    _popup.PopupEntity(Loc.GetString(message), user, user);
+                    // Starlight edit end
                     Cleanup();
                     return;
                 }
