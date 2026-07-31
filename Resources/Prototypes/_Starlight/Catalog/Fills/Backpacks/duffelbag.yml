@@ -120,27 +120,6 @@
         - id: RemoteSignaller #SL EDIT
 
 - type: entity
-  parent: ClothingBackpackChameleon
-  id: ClothingBackpackChameleonFillAgent
-  suffix: Fill, Chameleon, Syndie
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: ChameleonAgentPDA
-        - id: ClothingUniformJumpsuitChameleon
-        - id: ClothingOuterChameleon
-        - id: ClothingNeckChameleon
-        - id: ClothingMaskGasChameleon
-        - id: ClothingHeadHatChameleon
-        - id: ClothingHandsChameleon
-        - id: ClothingEyesChameleon
-        - id: ClothingHeadsetChameleon
-        - id: ClothingShoesChameleon
-        - id: ClothingMiscChameleon
-
-- type: entity
   parent: ClothingBackpackDuffelSyndicateBundleDeluxe
   id: ClothingBackpackDuffelSyndicateFilledRifleGrenade
   name: firepower support bundle

@@ -4,7 +4,7 @@
     - survival
   name: survival-title
   showInVote: true # 🌟Starlight🌟
-  minPlayers: 10
+  minPlayers: 15 # Starlight
   description: survival-description
   rules:
     - MeteorSwarmScheduler
@@ -21,7 +21,7 @@
     - meteorhell
   name: kessler-syndrome-title
   showInVote: true # 🌟Starlight🌟
-  minPlayers: 10
+  minPlayers: 15 # Starlight
   description: kessler-syndrome-description
   rules:
     - KesslerSyndromeScheduler
@@ -35,7 +35,7 @@
   alias:
   - all
   name: all-at-once-title
-  minPlayers: 50 # Starlight
+  minPlayers: 60 # Starlight
   description: all-at-once-description
   showInVote: false
   rules:
@@ -54,7 +54,7 @@
     - ShitStationEventScheduler # Starlight, ShitStation
     - Vampire #Starlight
     - SiliconLiberation #Starlight
-    - Brighteye #Starlight
+    - SubBrighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
     - CosmicCult #Starlight
     #- TerrorSpidersSpawn # Starlight
@@ -70,7 +70,7 @@
   name: aller-at-once-title
   description: aller-at-once-description
   showInVote: false #Please god dont do this
-  minPlayers: 50 # Starlight
+  minPlayers: 60 # Starlight
   rules:
     - Nukeops
     - Traitor
@@ -96,7 +96,7 @@
     - SLChangeling # Starlight
     - Vampire #Starlight
     - SiliconLiberation #Starlight
-    - Brighteye #Starlight
+    - SubBrighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
     - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
@@ -113,7 +113,7 @@
   name: extended-title
   showInVote: true # 🌟Starlight🌟
   description: extended-description
-  minPlayers: 4
+  minPlayers: 0 # Starlight
   rules:
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
@@ -141,7 +141,7 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
-  minPlayers: 15 # 🌟Starlight🌟
+  minPlayers: 40 # 🌟Starlight🌟
   voteCooldown: 0 # Starlight, this one actually can roll back to back.
   rules:
   - SLDynamicRule # Starlight, we have a modified scheduler.
@@ -159,7 +159,7 @@
     - sekrit
   name: secret-title
   showInVote: true
-  minPlayers: 4
+  minPlayers: 5 # Starlight
   description: secret-description
   rules:
     - Secret
@@ -183,7 +183,7 @@
     - tator
   name: traitor-title
   description: traitor-description
-  minPlayers: 0 # 🌟Starlight🌟
+  minPlayers: 5 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
@@ -240,7 +240,7 @@
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Revolutionary
-  - SubGamemodesRuleLessThieves # Starlight. 3 max thieves on revs, so they can't be guaranteed an Emag.
+  - SubGamemodesRuleConversion # Starlight. 3 max thieves on revs, so they can't be guaranteed an Emag.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler # Starlight
@@ -269,7 +269,7 @@
     - xenoborgs
   name: xenoborgs-title
   description: xenoborgs-description
-  minPlayers: 20 # 🌟Starlight🌟
+  minPlayers: 30 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   - Xenoborgs
