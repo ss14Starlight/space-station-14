@@ -1,0 +1,128 @@
+# Subfloor gas tank BEGIN
+- type: constructionGraph
+  id: GasPipeSubfloorTank
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: tank
+      steps:
+      - material: Steel
+        amount: 5
+        doAfter: 1
+
+    - to: tankAlt1
+      steps:
+      - material: Steel
+        amount: 5
+        doAfter: 1
+
+    - to: tankAlt2
+      steps:
+      - material: Steel
+        amount: 5
+        doAfter: 1
+
+    - to: tankAlt3
+      steps:
+      - material: Steel
+        amount: 5
+        doAfter: 1
+
+    - to: tankAlt4
+      steps:
+      - material: Steel
+        amount: 5
+        doAfter: 1
+
+  - node: tank
+    entity: GasPipeSubfloorTank
+    actions:
+    - !type:SetAnchor
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: tankAlt1
+    entity: GasPipeSubfloorTankAlt1
+    actions:
+    - !type:SetAnchor
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: tankAlt2
+    entity: GasPipeSubfloorTankAlt2
+    actions:
+    - !type:SetAnchor
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: tankAlt3
+    entity: GasPipeSubfloorTankAlt3
+    actions:
+    - !type:SetAnchor
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: tankAlt4
+    entity: GasPipeSubfloorTankAlt4
+    actions:
+    - !type:SetAnchor
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+# Subfloor gas tank END
