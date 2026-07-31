@@ -163,6 +163,7 @@
     - AtmosTools
     - EngineeringWeapons
     - Equipment
+    - StarlightEngineeringBoards
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
