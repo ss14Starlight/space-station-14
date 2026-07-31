@@ -689,25 +689,6 @@
   - sprite: _FarHorizons/Mobs/Customization/proto-avali/visor_shapes.rsi
     state: visor
 
-#Begin Starlight
-- type: marking
-  id: ProtoAvaliVisorLightless
-  bodyPart: FaceCover
-  markingCategory: FaceCover
-  speciesRestriction: [ProtoAvali]
-  sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-avali/visor_shapes.rsi
-    state: visorlightless
-
-- type: marking
-  id: ProtoAvaliVisorColorable
-  bodyPart: FaceCover
-  markingCategory: FaceCover
-  speciesRestriction: [ProtoAvali]
-  sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-avali/visor_shapes.rsi
-    state: visorcolorable
-#end Starlight
 - type: marking
   id: ProtoAvaliLEDFace
   bodyPart: FaceCoverCover
@@ -716,44 +697,6 @@
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_face.rsi
     state: face
-
-#Begin Starlight
-- type: marking
-  id: ProtoAvaliLEDFaceCircular
-  bodyPart: FaceCoverCover
-  markingCategory: FaceCoverCover
-  speciesRestriction: [ProtoAvali]
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
-    state: circular
-
-- type: marking
-  id: ProtoAvaliLEDFaceDiagonal
-  bodyPart: FaceCoverCover
-  markingCategory: FaceCoverCover
-  speciesRestriction: [ProtoAvali]
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
-    state: diagonal
-
-- type: marking
-  id: ProtoAvaliLEDFaceSquare
-  bodyPart: FaceCoverCover
-  markingCategory: FaceCoverCover
-  speciesRestriction: [ProtoAvali]
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
-    state: square
-
-- type: marking
-  id: ProtoAvaliLEDFaceStraight
-  bodyPart: FaceCoverCover
-  markingCategory: FaceCoverCover
-  speciesRestriction: [ProtoAvali]
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
-    state: straight
-#end Starlight
 
 - type: marking
   id: ProtoAvaliLights

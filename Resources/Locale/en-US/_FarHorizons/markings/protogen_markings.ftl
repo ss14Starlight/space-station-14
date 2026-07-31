@@ -170,27 +170,13 @@ marking-ProtoCycloriteMediumArmor-medium = Standard Protogen-Cyclorite Cyberneti
 
 marking-ProtoAvaliVisor = Avali Visor
 marking-ProtoAvaliVisor-visor = Avali Visor
-marking-ProtoAvaliVisorLightless = Avali Visor w/o Lights
-marking-ProtoAvaliVisorLightless-lightless = Avali Visor w/o Lights
-marking-ProtoAvaliVisorColorable = Avali Visor w/ Colorable Screen
-marking-ProtoAvaliVisorColorable-colorable = Avali Visor w/ Colorable Screen
 marking-ProtoAvaliLEDFace = Default Avali LEDs
 marking-ProtoAvaliLEDFace-face = Default Avali LEDs
-marking-ProtoAvaliLEDFaceSquare = Square Avali LEDs
-marking-ProtoAvaliLEDFaceSquare-square = Square Avali LEDs
-marking-ProtoAvaliLEDFaceCircular = Circular Avali LEDs
-marking-ProtoAvaliLEDFaceCircular-circular = Circular Avali LEDs
-marking-ProtoAvaliLEDFaceDiagonal = Diagonal Avali LEDs
-marking-ProtoAvaliLEDFaceDiagonal-diagonal = Diagonal Avali LEDs
-marking-ProtoAvaliLEDFaceStraight = Straight Avali LEDs
-marking-ProtoAvaliLEDFaceStraight-straight = Straight Avali LEDs
 marking-ProtoAvaliLights = Circular LEDs
 marking-ProtoAvaliLights-body = Circular LEDs
 marking-ProtoAvaliWings = Hardlight Avali Wings
 marking-ProtoAvaliWings-wings = Hardlight Avali Wings
 
-marking-ProtoAvaliLightArmor = Light Protogen-Avali Cybernetics
-marking-ProtoAvaliLightArmor-light = Light Protogen-Avali Cybernetics
 marking-ProtoAvaliMediumArmor = Standard Protogen-Avali Cybernetics
 marking-ProtoAvaliMediumArmor-medium = Standard Protogen-Avali Cybernetics
 
@@ -204,3 +190,19 @@ marking-ProtoLagomorphVisor = Lagomorph Visor
 marking-ProtoLagomorphVisor-visor = Lagomorph Visor
 marking-ProtoLagomorphLEDFace = Default Lagomorph LEDs
 marking-ProtoLagomorphLEDFace-face = Default Lagomorph LEDs
+
+# Starlight
+marking-ProtoAvaliLightArmor = Light Protogen-Avali Cybernetics
+marking-ProtoAvaliLightArmor-light = Light Protogen-Avali Cybernetics
+marking-ProtoAvaliLEDFaceSquare = Square Avali LEDs
+marking-ProtoAvaliLEDFaceSquare-square = Square Avali LEDs
+marking-ProtoAvaliLEDFaceCircular = Circular Avali LEDs
+marking-ProtoAvaliLEDFaceCircular-circular = Circular Avali LEDs
+marking-ProtoAvaliLEDFaceDiagonal = Diagonal Avali LEDs
+marking-ProtoAvaliLEDFaceDiagonal-diagonal = Diagonal Avali LEDs
+marking-ProtoAvaliLEDFaceStraight = Straight Avali LEDs
+marking-ProtoAvaliLEDFaceStraight-straight = Straight Avali LEDs
+marking-ProtoAvaliVisorLightless = Avali Visor w/o Lights
+marking-ProtoAvaliVisorLightless-lightless = Avali Visor w/o Lights
+marking-ProtoAvaliVisorColorable = Avali Visor w/ Colorable Screen
+marking-ProtoAvaliVisorColorable-colorable = Avali Visor w/ Colorable Screen
