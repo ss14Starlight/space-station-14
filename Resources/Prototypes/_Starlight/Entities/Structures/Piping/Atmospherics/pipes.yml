@@ -123,8 +123,9 @@
   components:
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
-      drawdepth: LargeObjects
+      drawdepth: Mobs
       offset: 0,0.55
+      noRot: true
       layers:
         - state: pipeFourway # The four pipes coming out at the base
           offset: 0,-0.55
@@ -135,6 +136,28 @@
         - sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi
           state: gas_tank_overlay # The hazard stripes + warning triangle, not recolored
           map: [ "enum.SubfloorLayers.SecondLayer" ]
+    - type: SpriteFade
+    - type: Transform
+      noRot: true
+    - type: Item
+      allowDirectHandPickup: false
+    - type: Physics
+      canCollide: true
+      bodyType: static
+    - type: CollideOnAnchor
+      enable: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.27
+            position: 0,0.25
+          density: 500
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
     - type: AtmosPipeLayers
       spriteLayersRsiPaths:
         enum.PipeVisualLayers.Pipe:
