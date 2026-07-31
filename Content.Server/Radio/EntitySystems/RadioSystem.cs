@@ -476,11 +476,15 @@ public sealed partial class RadioSystem : EntitySystem
         if ((language.Speech.ObfuscationFont ?? false) && !obfuscated)
             fonttype = speech.FontId;
 
-        return Loc.GetString(loudMode ? "chat-radio-message-wrap-command" :speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap", // starlight edit: loud mode
+        bool isYelling = false;
+        if (speech.ID == "DefaultExclamationStrong")
+            isYelling = true;
+
+        return Loc.GetString(loudMode ? "chat-radio-message-wrap-command" : speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap", // starlight edit: loud mode
                 ("color", channel.Color),
                 ("languageColor", languageColor),
                 ("fontType", fonttype),
-                ("fontSize", language.Speech.FontSize ?? speech.FontSize),
+                ("fontSize", isYelling ? speech.FontSize : language.Speech.FontSize ?? speech.FontSize),
                 ("verb", Loc.GetString(verbId)),
                 ("channel", $"\\[{channel.LocalizedName}\\]"),
                 ("name", namestring),
@@ -514,11 +518,15 @@ public sealed partial class RadioSystem : EntitySystem
         if ((language.Speech.ObfuscationFont ?? false) && !obfuscated)
             fonttype = speech.FontId;
 
+        bool isYelling = false;
+        if (speech.ID == "DefaultExclamationStrong")
+            isYelling = true;
+
         return Loc.GetString(loudMode ? "chat-radio-message-wrap-command" : speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
             ("languageColor", languageColor),
             ("fontType", fonttype),
-            ("fontSize", language.Speech.FontSize ?? speech.FontSize),
+            ("fontSize", isYelling ? speech.FontSize : language.Speech.FontSize ?? speech.FontSize),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", namestring),
