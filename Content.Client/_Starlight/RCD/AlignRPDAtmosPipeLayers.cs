@@ -270,6 +270,8 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
                 {
                     for (var i = 0; i < offsets.Count; i++)
                         _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, offsets[i]);
+
+                    overlaySprite.NoRotation = sprite.NoRotation;
                 }
             }
         }

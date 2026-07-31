@@ -221,6 +221,8 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
                 {
                     for (var i = 0; i < offsets.Count; i++)
                         _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, offsets[i]);
+
+                    overlaySprite.NoRotation = sprite.NoRotation;
                 }
                 // Starlight END
             }

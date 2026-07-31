@@ -175,6 +175,7 @@
       blockAmbience: false
       visibleLayers:
         - enum.SubfloorLayers.FirstLayer
+        - enum.SubfloorLayers.SecondLayer
     - type: StaticPrice
       price: 75
     - type: PipeAppearance
