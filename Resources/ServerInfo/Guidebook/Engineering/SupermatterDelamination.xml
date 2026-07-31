@@ -1,0 +1,63 @@
+<Document>
+  # Supermatter Delamination
+
+  Supermatter delamination occurs when the crystal exceeds its ability to maintain structural recovery.
+
+  During this event, the crystal enters an uncontrolled instability state and begins producing additional reaction byproducts, accelerating the failure process.
+
+  ## Emergency Response
+
+  If engineering personnel fail to maintain minimum operational standards, immediate corrective action is required.
+
+  Follow Nanotrasen Engineering emergency procedures.
+
+  ## Delamination Prevention
+
+  Priority actions:
+
+  1. Remove destabilizing components.
+
+  <Box>
+    <GuideEntityEmbed Entity="Emitter" Caption="Emitter" />
+  </Box>
+
+  2. Remove unsuitable chamber conditions and correct their source.
+
+  <Box>
+    <GuideEntityEmbed Entity="ThermiteFire" Caption="Atmospheric Hazard" />
+  </Box>
+
+  3. Deploy Nanotrasen standard-issued metal foam containment equipment.
+
+  <Box>
+    <GuideEntityEmbed Entity="MetalFoamGrenade" Caption="Metal Foam Grenade" />
+  </Box>
+
+  Failure to stabilize the Supermatter will result in a complete cascade event.
+
+  ## Final Emergency Procedures
+
+  If delamination cannot be stopped:
+
+  1. Inform the crew of possible Supermatter failure.
+  2. Advise evacuation to emergency shelters or shuttle evacuation.
+  3. Distribute approved protective equipment.
+  4. Prepare engineering equipment for post-event recovery operations.
+
+  ## Delamination Cleanup
+
+  <Box>
+    <GuideEntityEmbed Entity="cascade1" Caption="Cascade Crystal" />
+  </Box>
+
+  Once the Supermatter reaches critical instability, the original crystal structure will collapse and transform into cascade crystals.
+
+  Cascade crystals rapidly expand and replace surrounding structures with their altered crystalline structure.
+
+  These structures cannot be removed with standard tools.
+
+  Specialized Nanotrasen engineering equipment is required for safe removal.
+
+  Personnel should avoid unnecessary interaction with cascade structures until the area has been declared safe.
+
+</Document>

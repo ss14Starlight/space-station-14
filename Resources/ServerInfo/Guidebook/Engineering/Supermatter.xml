@@ -1,0 +1,60 @@
+<Document>
+  # Supermatter Crystal
+
+  <Box>
+    <GuideEntityEmbed Entity="SupermatterCrystal" />
+  </Box>
+
+  <Box>
+    <GuideEntityEmbed Entity="SignRadiation" />
+    <GuideEntityEmbed Entity="SignRadiation" />
+  </Box>
+
+  ## Overview
+
+  The Supermatter Crystal is an advanced crystalline material capable of converting applied energy and structural stress into multiple useful outputs.
+
+  Unlike conventional generators, the Supermatter does not produce electrical power directly. Instead, energy is harvested from the reactions caused by controlled interaction with the crystal.
+
+  The exact mechanisms behind Supermatter behaviour remain partially unknown. Current research indicates that the crystal interacts with environmental conditions and external energy sources in complex ways.
+
+  ## Power Harvesting
+
+  Controlled Supermatter stress allows engineers to harvest energy from the resulting reactions.
+
+  One observed reaction produces high-energy radiation.
+
+  <Box>
+    <GuideEntityEmbed Entity="RadiationCollectorFullTank" />
+  </Box>
+
+  Radiation collectors convert this emitted radiation into usable electrical power.
+
+  Another observed reaction involves the accumulation of electrical charge within the crystal.
+
+  <Box>
+    <GuideEntityEmbed Entity="TeslaCoil" />
+  </Box>
+
+  Tesla coils allow this stored electrical energy to be transferred into the station power network.
+
+  ## Gas Harvesting
+
+  Supermatter reactions also produce gaseous byproducts.
+
+  Damaged or stressed crystal material releases oxygen and tritium as part of its structural decomposition process.
+
+  These gases can be collected and processed for station use, providing Atmospherics with a continuous supply of valuable resources.
+
+  ## Minimal Operating Standards
+
+  A stable Supermatter installation must maintain:
+
+  - Active cooling
+  - Overpressure prevention measures
+  - Continuous atmospheric supply
+
+  Failure to maintain these conditions represents a significant risk to station safety.
+
+  Standard atmospheric conditions have been observed to provide a stable operating environment. Alterations should only be performed with appropriate justification and careful consideration.
+</Document>
