@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie, JohnnyMalawny
   changes:
-  - message: Bulk cooled plasma ordering for maximum storage efficiency.
-    type: Add
-  id: 406773
-  time: '2026-07-21T11:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5127
-- author: redmushie, JohnnyMalawny
-  changes:
   - message: (ATS) Distro and waste redone to match docking port standard layers.
     type: Tweak
   id: 406774
@@ -2799,4 +2792,11 @@ Entries:
   id: 407172
   time: '2026-07-31T15:09:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5195
+- author: Teddiousbear, Limblesstar
+  changes:
+  - message: Four New Dumplings.
+    type: Add
+  id: 407173
+  time: '2026-07-31T15:33:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5424
 Order: -1
