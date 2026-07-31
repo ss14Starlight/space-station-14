@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
@@ -74,12 +75,10 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             var removed = inletNode.Air.RemoveVolume(transferVol);
 
-            if (filter.FilteredGas.HasValue)
+            if (filter.FilteredGases.Count > 0) // Starlight
             {
                 var wantsToFilter = new GasMixture(removed.Volume) { Temperature = removed.Temperature };
-
-                wantsToFilter.SetMoles(filter.FilteredGas.Value, removed.GetMoles(filter.FilteredGas.Value));
-                removed.SetMoles(filter.FilteredGas.Value, 0f);
+                SetMixture(filter, removed, wantsToFilter); // Starlight - moved logic to helper function
 
                 // starlight edit start - fix subtick
                 var filterVolume = GetTransferRate(filter, args, wantsToFilter, filterNode);
@@ -95,7 +94,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 _atmosphereSystem.Merge(inletNode.Air, returned);
                 // starlight edit end - fix subtick
 
-                _ambientSoundSystem.SetAmbience(uid, wantsToFilter.TotalMoles > 0f); // starlight edit - fix subtick
+                _ambientSoundSystem.SetAmbience(uid, actuallyFiltered.TotalMoles > 0f); // starlight edit - fix subtick
             }
 
             _atmosphereSystem.Merge(outletNode.Air, removed);
@@ -191,7 +190,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 return;
 
             _userInterfaceSystem.SetUiState(uid, GasFilterUiKey.Key,
-                new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGas));
+                new GasFilterBoundUserInterfaceState(MetaData(uid).EntityName, filter.TransferRate, filter.Enabled, filter.FilteredGases)); // Starlight
         }
 
         private void UpdateAppearance(EntityUid uid, GasFilterComponent? filter = null)
@@ -222,23 +221,23 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private void OnSelectGasMessage(EntityUid uid, GasFilterComponent filter, GasFilterSelectGasMessage args)
         {
-            if (args.Gas.HasValue)
+            if (args.Gases.Count > 0) // Starlight
             {
-                if (Enum.IsDefined(typeof(Gas), args.Gas))
+                if (args.Gases.All(gas => Enum.IsDefined(gas))) // Starlight
                 {
-                    filter.FilteredGas = args.Gas;
+                    filter.FilteredGases = args.Gases; // Starlight: multiple gases
                     _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
-                        $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to {args.Gas.ToString()}");
+                        $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to {ListGases(args)}"); // Starlight: Updated logging
                     DirtyUI(uid, filter);
                 }
                 else
                 {
-                    Log.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with an invalid ID: {args.Gas}");
+                    Log.Warning($"{ToPrettyString(uid)} received GasFilterSelectGasMessage with (an) invalid ID(s): {ListGases(args)}"); // Starlight: Updated logging
                 }
             }
             else
             {
-                filter.FilteredGas = null;
+                filter.FilteredGases.Clear(); // Starlight
                 _adminLogger.Add(LogType.AtmosFilterChanged, LogImpact.Medium,
                     $"{ToPrettyString(args.Actor):player} set the filter on {ToPrettyString(uid):device} to none");
                 DirtyUI(uid, filter);
@@ -283,5 +282,30 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             args.DeviceFlipped = inlet != null && filterNode != null && inlet.CurrentPipeDirection.ToDirection() == filterNode.CurrentPipeDirection.ToDirection().GetClockwise90Degrees();
         }
+
+        #region Starlight
+
+        private void SetMixture(GasFilterComponent component, GasMixture removed, GasMixture wantsToFilter)
+        {
+            foreach (Gas gas in component.FilteredGases)
+            {
+                var moles = removed.GetMoles(gas);
+
+                wantsToFilter.SetMoles(gas, moles);
+                removed.SetMoles(gas, 0f);
+            }
+        }
+
+        private static string ListGases(GasFilterSelectGasMessage args) => string.Join(", ", args.Gases);
+
+        public void Set(EntityUid uid, GasFilterComponent component, bool value)
+        {
+            if (component.Enabled == value) return;
+            component.Enabled = value;
+            UpdateAppearance(uid, component);
+            DirtyUI(uid, component);
+        }
+
+        #endregion
     }
 }
