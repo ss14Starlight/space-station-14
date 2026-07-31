@@ -30,36 +30,33 @@
   objective: ghost-role-colossus-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 43200 #12h
+    time: 43200
   - !type:RoleTimeRequirement
     role: JobBorg
     time: 7200
   playTimeTracker: AntagCosmicColossus
 
-- type: antag
-  id: CosmicAntagMinion
-  name: ghost-role-information-cosmic-minion-name
-  antagonist: true
-  setPreference: true
-  objective: ghost-role-information-cosmic-minion-description
-  requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 21600 # 6h
-  playTimeTracker: AntagCosmicMinion
-
 - type: antagSpecifier
   parent: RestrictedAntag
   id: CosmicAntagColossus
   spawnerPrototype: SpawnPointCosmicColossus
+  pickPlayer: false
   briefing:
     text: ghost-role-colossus-briefing
     color: CadetBlue
     sound: /Audio/_Starlight/CosmicCult/antag_cosmic_briefing.ogg
-  pickPlayer: false
   components:
   - type: CosmicColossus
     timed: true
   mindRoles:
   - MindRoleCosmicColossus
 
-
+- type: antag
+  id: CosmicAntagMinion
+  name: ghost-role-information-cosmic-minion-name
+  antagonist: true
+  objective: ghost-role-information-cosmic-minion-description
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 21600
+  playTimeTracker: AntagCosmicMinion

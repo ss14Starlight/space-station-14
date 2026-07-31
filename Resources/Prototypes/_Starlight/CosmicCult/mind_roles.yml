@@ -13,7 +13,9 @@
     briefing: cosmiccult-role-short-briefing
 
 - type: entity
-  parent: BaseMindRoleAntag
+#  parent: BaseMindRoleAntag
+  parent: MindRoleGhostRoleTeamAntagonist
+#  parent: [ BaseMindRoleAntag, MindRoleGhostRoleNeutral ]
   id: MindRoleCosmicColossus
   name: Colossus Role
   components:

@@ -12,7 +12,8 @@
     allowSpeech: true
     allowMovement: true
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleCosmicColossus # just this gives the time limit but wont give the notification, cant have both aswell
+    - MindRoleGhostRoleTeamAntagonist # if this is commented out i wont get chat notifactions
   - type: Sprite
     layers:
     - sprite: _Starlight/CosmicCult/Mobs/colossus.rsi
