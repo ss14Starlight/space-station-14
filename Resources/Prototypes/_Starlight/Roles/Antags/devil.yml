@@ -15,7 +15,7 @@
   playTimeTracker: AntagDevil
 
 - type: antagSpecifier
-  parent: RestrictedAntag
+  parent: DevilRestrictedAntag
   id: Devil
   prefRoles:
   - Devil

@@ -125,7 +125,7 @@
 
 - type: entity
   parent: BaseGameRule
-  id: SubGamemodesRuleLessThieves
+  id: SubGamemodesRuleConversion
   components:
   - type: SubGamemodes
     rules:

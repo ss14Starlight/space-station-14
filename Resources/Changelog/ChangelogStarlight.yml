@@ -1,158 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: (Hotel) Re-added fireaxe, oxygen and nitrogen tanks into to Atmos.
-    type: Fix
-  id: 406734
-  time: '2026-07-18T18:53:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5150
-- author: OMEGA
-  changes:
-  - message: (Hotel) Distro and Waste pipe changes to Brigmed, Disposals, Botany.
-    type: Fix
-  id: 406735
-  time: '2026-07-18T18:53:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5150
-- author: rtasva
-  changes:
-  - message: 'Leth: Added Kiki to Botany.'
-    type: Add
-  id: 406736
-  time: '2026-07-19T08:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5189
-- author: rtasva
-  changes:
-  - message: 'Leth: Updated fax machines to new color coded standard.'
-    type: Tweak
-  id: 406737
-  time: '2026-07-19T08:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5189
-- author: rtasva
-  changes:
-  - message: 'Leth: You no longer have to climb on top of a table to access the Supermatter APC.'
-    type: Fix
-  id: 406738
-  time: '2026-07-19T08:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5189
-- author: mikeysaurus
-  changes:
-  - message: Department remote shuttle consoles have been renamed to explicitly identify them as remote shuttle consoles.
-    type: Tweak
-  id: 406739
-  time: '2026-07-19T09:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5196
-- author: Johnny
-  changes:
-  - message: Lapsi now squish when hugged.
-    type: Add
-  id: 406740
-  time: '2026-07-20T09:13:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5207
-- author: Johnny
-  changes:
-  - message: Lapsi no longer do normal hug sound.
-    type: Remove
-  id: 406741
-  time: '2026-07-20T09:13:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5207
-- author: neomoth
-  changes:
-  - message: Non-admins can no longer interact with the recruitment console at Central Command. Tiders lose.
-    type: Fix
-  id: 406742
-  time: '2026-07-20T13:41:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5213
-- author: neomoth
-  changes:
-  - message: Grenade Penguins no longer take spacing damage (lack of air, temperature, barotrauma, etc).
-    type: Tweak
-  id: 406743
-  time: '2026-07-20T14:06:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5210
-- author: neomoth
-  changes:
-  - message: Game now actually checks for TemperatureImmunityComponent so that it does what it's supposed to do.
-    type: Fix
-  id: 406744
-  time: '2026-07-20T14:06:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5210
-- author: RedSpeeds
-  changes:
-  - message: Fixed custom names not applying to humanoid jobs.
-    type: Fix
-  id: 406745
-  time: '2026-07-20T15:13:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5203
-- author: STARLIGHT TEAM
-  changes:
-  - message: Fixed an issue where Changelings would appear as flash-proof when examined when using Augmented Eyesight.
-    type: Fix
-  id: 406746
-  time: '2026-07-20T15:29:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5192
-- author: Conflee
-  changes:
-  - message: Fixed incorrect sprite sheet layout for Laspi's Gummy Cat Tail.
-    type: Fix
-  id: 406747
-  time: '2026-07-20T15:52:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5217
-- author: Conflee
-  changes:
-  - message: Added Stir Stir the Prisoner Monkey. Pun Pun's shifty cousin, they are a ghost role that will be mapped into Genpop. They require 15 minutes of Security playtime, to dissuade shittery. Is an Advanced Monkey, so they have 2 hands but can not vent crawl. Needed for a future Traitor objective to kill Stir Stir, which would be easier if the Traitor lets themselves be arrested for a minor crime.
-    type: Add
-  id: 406748
-  time: '2026-07-20T16:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5208
-- author: Beptol & RedSpeeds
-  changes:
-  - message: Added a victory song to cultist win.
-    type: Add
-  id: 406749
-  time: '2026-07-20T18:18:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5205
-- author: Rhetorica
-  changes:
-  - message: Reporter salary now 46 credits (previously 0).
-    type: Add
-  id: 406750
-  time: '2026-07-20T20:20:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5206
-- author: Rhetorica
-  changes:
-  - message: Psychologist salary now 76 credits (previously 0).
-    type: Add
-  id: 406751
-  time: '2026-07-20T20:20:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5206
-- author: Rhetorica
-  changes:
-  - message: Boxer salary now 23 credits, like Performer (previously 0).
-    type: Add
-  id: 406752
-  time: '2026-07-20T20:20:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5206
-- author: Rhetorica
-  changes:
-  - message: Zookeeper salary now 34 credits (previously 0).
-    type: Add
-  id: 406753
-  time: '2026-07-20T20:20:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5206
-- author: Rhetorica
-  changes:
-  - message: Station AI salary now 149 credits, 1 credit lower than Captain, so SELF has something to whine about (previously 155).
-    type: Tweak
-  id: 406754
-  time: '2026-07-20T20:20:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5206
-- author: RedSpeeds
-  changes:
-  - message: Added Wrench and Network Configurator to reporters.
-    type: Add
-  id: 406755
-  time: '2026-07-20T20:54:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5201
 - author: Spaghetti-Bit
   changes:
   - message: Disabler Bolts now go through windows.
@@ -2799,4 +2645,158 @@ Entries:
   id: 407133
   time: '2026-07-31T07:57:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5398
+- author: Hot Mic
+  changes:
+  - message: "Added a new Shuttle to Shipyard Console; \"Harm's Space Truck\", a $15050 Spesos Space Truck for classic truck hauling across the known sectors. It also carries an IFF console for whatever reason. Size: 20x5."
+    type: Add
+  id: 407134
+  time: '2026-07-31T09:29:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5311
+- author: Sparlight
+  changes:
+  - message: Scent system.
+    type: Add
+  id: 407135
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: Sparlight
+  changes:
+  - message: Various canine creatures can now smell things.
+    type: Add
+  id: 407136
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: Sparlight
+  changes:
+  - message: Vulpkanins can now smell things.
+    type: Add
+  id: 407137
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: Sparlight
+  changes:
+  - message: All humanoids and generally 'playable' mobs have scents.
+    type: Add
+  id: 407138
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: Sparlight
+  changes:
+  - message: Soap can be used to clean smell off of objects and to change your own scent.
+    type: Add
+  id: 407139
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: Sparlight
+  changes:
+  - message: Foams, smoke grenades, capsaicin oil, and black pepper can be used to force a smeller to sneeze, paralyzing their olfactory senses, and causing them to lose track of their currently-tracked smell.
+    type: Add
+  id: 407140
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: wonderfulnewworld
+  changes:
+  - message: Added Dynamic and DynamicLP to Alpha and Beta's Secret pools respectively.
+    type: Add
+  id: 407141
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: The Head of Personnel, Internal Affairs Agents, and Paramedics can now roll Devil.
+    type: Add
+  id: 407142
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Initial Infecteds now scale based on player ratio, meaning there should be less of them on Beta. Alpha is always above the number where 6 would spawn anyways, so this doesn't affect Alpha.
+    type: Add
+  id: 407143
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Mining Specialists can no longer roll Vampire and Changeling.
+    type: Remove
+  id: 407144
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Roboticists can no longer roll SELF.
+    type: Remove
+  id: 407145
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Chemists can no longer roll Initial Infected.
+    type: Remove
+  id: 407146
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Reduced scaling for Traitors, Vampires, Changelings, Thieves, SELF, Head Revolutionaries, and Devils by ~20% across the board, dependent on their specific gamemodes/subgamemodes.
+    type: Tweak
+  id: 407147
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Reduced TraitorLess, Nukeops, Revolutionary, and Cosmic Cult chance in Dynamic, giving it to Vampire instead.
+    type: Tweak
+  id: 407148
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Slightly increased VampireLess and SLChangelingLess's Dynamic Cost.
+    type: Tweak
+  id: 407149
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Slightly lowered SLDynamic's variant budget threshold.
+    type: Tweak
+  id: 407150
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Dynamic gets budget slighly less quickly.
+    type: Tweak
+  id: 407151
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Slightly decreased Dynamic's maximum budget.
+    type: Tweak
+  id: 407152
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Ninjas are slightly less common in Dynamic.
+    type: Tweak
+  id: 407153
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: Slightly decreased spawn chance of midrounds (both types) in dynamic.
+    type: Tweak
+  id: 407154
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: wonderfulnewworld
+  changes:
+  - message: There can now be 1 more Devil.
+    type: Tweak
+  id: 407155
+  time: '2026-07-31T10:03:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5278
 Order: -1
