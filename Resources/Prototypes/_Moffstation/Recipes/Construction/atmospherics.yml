@@ -28,8 +28,8 @@
   conditions:
   - !type:NoUnstackableInTile
   alternativePrototypes:
-  - GasMolarMixer
-  - GasMolarMixerAlt1
-  - GasMolarMixerAlt2
-  - GasMolarMixerAlt3
-  - GasMolarMixerAlt4
+  - GasMolarMixerFlipped
+  - GasMolarMixerFlippedAlt1
+  - GasMolarMixerFlippedAlt2
+  - GasMolarMixerFlippedAlt3
+  - GasMolarMixerFlippedAlt4
