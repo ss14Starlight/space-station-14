@@ -1,0 +1,67 @@
+﻿- type: guideEntry
+  id: CorporateLaw
+  name: guide-entry-corporate-law
+  priority: 4
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CorporateLaw.xml"
+  children:
+  - TreatmentOfPrisoners
+  - SearchAndSeizure
+  - Permits
+  - Implantation
+  - Sentencing
+  - Parole
+  - LegalRepresentation
+  - PenalCode
+  - CivilCode
+  - CrimeList
+  - SupernaturalEntities
+
+- type: guideEntry
+  id: TreatmentOfPrisoners
+  name: guide-entry-treatment-of-prisoners
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/TreatmentOfPrisoners.xml"
+
+- type: guideEntry
+  id: SearchAndSeizure
+  name: guide-entry-search-and-seizure
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/SearchAndSeizure.xml"
+
+- type: guideEntry
+  id: Permits
+  name: guide-entry-permits
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/PermitClause.xml"
+
+- type: guideEntry
+  id: Implantation
+  name: guide-entry-implantation
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/Implantation.xml"
+
+- type: guideEntry
+  id: Sentencing
+  name: guide-entry-sentencing
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/Sentencing.xml"
+
+- type: guideEntry
+  id: Parole
+  name: guide-entry-parole
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/Parole.xml"
+
+- type: guideEntry
+  id: LegalRepresentation
+  name: guide-entry-legal-representation
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/LegalRepresentation.xml"
+
+- type: guideEntry
+  id: PenalCode
+  name: guide-entry-penal-code
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/PenalCode.xml"
+
+- type: guideEntry
+  id: CivilCode
+  name: guide-entry-civil-code
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CivilCode.xml"
+
+- type: guideEntry
+  id: CrimeList
+  name: guide-entry-crime-list
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CrimeList.xml"

@@ -6,10 +6,13 @@
   children:
   - Controls
   - CharacterCreation
+  - RoleplayGuideIntro
+  - SS14
 
 - type: guideEntry
   id: Controls
   name: guide-entry-controls
+  priority: 1
   text: "/ServerInfo/Guidebook/NewPlayer/Controls/Controls.xml"
   children:
   - Radio
@@ -22,6 +25,7 @@
 - type: guideEntry
   id: CharacterCreation
   name: guide-entry-charactercreation
+  priority: 2
   text: "/ServerInfo/Guidebook/NewPlayer/CharacterCreation.xml"
   children:
   - YourFirstCharacter

@@ -363,7 +363,7 @@
       color: "#f7d61a"
   - type: GuideHelp
     guides:
-    - SpaceLaw
+    - CorporateLaw # Starlight
 
 - type: entity
   parent: BookBase

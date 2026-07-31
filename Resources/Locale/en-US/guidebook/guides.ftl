@@ -94,7 +94,7 @@ guide-entry-criminal-records = Criminal Records
 guide-entry-command = Command
 guide-entry-service = Service
 
-guide-entry-newplayer = New? Start here!
+guide-entry-newplayer = How To Play SS14
 guide-entry-charactercreation = Creating Characters
 guide-entry-species = Species
 guide-entry-yourfirstcharacter = Your First Character
