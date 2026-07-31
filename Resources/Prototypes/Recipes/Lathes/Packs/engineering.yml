@@ -63,8 +63,8 @@
   - PowerDrill
   - WelderExperimental
   - JawsOfLife
-  - Fulton
-  - FultonBeacon
+  #- Fulton # Starlight, moved to science
+  #- FultonBeacon # Starlight, moved to science
 
 - type: latheRecipePack
   id: AtmosTools

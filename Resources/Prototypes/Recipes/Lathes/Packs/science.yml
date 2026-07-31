@@ -24,6 +24,8 @@
   - DeviceQuantumSpinInverter
   - DeviceDesynchronizer
   - ClothingBackpackHarmpack
+  - Fulton # Starlight, moved from engineering
+  - FultonBeacon # Starlight, moved from engineering
 
 - type: latheRecipePack
   id: ScienceClothing
