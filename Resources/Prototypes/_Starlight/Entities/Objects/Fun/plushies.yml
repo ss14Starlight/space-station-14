@@ -1334,9 +1334,9 @@
   components:
     - type: Item
       size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/glados_plushie.rsi
+      sprite: _Starlight/Objects/Fun/Plushies/weh_plushie.rsi
     - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/glados_plushie.rsi
+      sprite: _Starlight/Objects/Fun/Plushies/weh_plushie.rsi
       state: icon
     - type: ItemToggle
       onUse: false
