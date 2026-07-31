@@ -1,53 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: (Hotel) Re-added fireaxe, oxygen and nitrogen tanks into to Atmos.
-    type: Fix
-  id: 406734
-  time: '2026-07-18T18:53:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5150
-- author: OMEGA
-  changes:
-  - message: (Hotel) Distro and Waste pipe changes to Brigmed, Disposals, Botany.
-    type: Fix
-  id: 406735
-  time: '2026-07-18T18:53:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5150
-- author: rtasva
-  changes:
-  - message: 'Leth: Added Kiki to Botany.'
-    type: Add
-  id: 406736
-  time: '2026-07-19T08:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5189
-- author: rtasva
-  changes:
-  - message: 'Leth: Updated fax machines to new color coded standard.'
-    type: Tweak
-  id: 406737
-  time: '2026-07-19T08:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5189
-- author: rtasva
-  changes:
-  - message: 'Leth: You no longer have to climb on top of a table to access the Supermatter APC.'
-    type: Fix
-  id: 406738
-  time: '2026-07-19T08:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5189
-- author: mikeysaurus
-  changes:
-  - message: Department remote shuttle consoles have been renamed to explicitly identify them as remote shuttle consoles.
-    type: Tweak
-  id: 406739
-  time: '2026-07-19T09:03:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5196
-- author: Johnny
-  changes:
-  - message: Lapsi now squish when hugged.
-    type: Add
-  id: 406740
-  time: '2026-07-20T09:13:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5207
 - author: Johnny
   changes:
   - message: Lapsi no longer do normal hug sound.
@@ -2799,4 +2750,53 @@ Entries:
   id: 407133
   time: '2026-07-31T07:57:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5398
+- author: Hot Mic
+  changes:
+  - message: "Added a new Shuttle to Shipyard Console; \"Harm's Space Truck\", a $15050 Spesos Space Truck for classic truck hauling across the known sectors. It also carries an IFF console for whatever reason. Size: 20x5."
+    type: Add
+  id: 407134
+  time: '2026-07-31T09:29:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5311
+- author: Sparlight
+  changes:
+  - message: Scent system.
+    type: Add
+  id: 407135
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: Sparlight
+  changes:
+  - message: Various canine creatures can now smell things.
+    type: Add
+  id: 407136
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: Sparlight
+  changes:
+  - message: Vulpkanins can now smell things.
+    type: Add
+  id: 407137
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: Sparlight
+  changes:
+  - message: All humanoids and generally 'playable' mobs have scents.
+    type: Add
+  id: 407138
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: Sparlight
+  changes:
+  - message: Soap can be used to clean smell off of objects and to change your own scent.
+    type: Add
+  id: 407139
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
+- author: Sparlight
+  changes:
+  - message: Foams, smoke grenades, capsaicin oil, and black pepper can be used to force a smeller to sneeze, paralyzing their olfactory senses, and causing them to lose track of their currently-tracked smell.
+    type: Add
+  id: 407140
+  time: '2026-07-31T09:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5175
 Order: -1
