@@ -77,12 +77,6 @@
     count: 8
 
 - type: localizedDataset
-  id: PlushiesKilla
-  values:
-    prefix: plushie-killa-
-    count: 5
-
-- type: localizedDataset
   id: PlushiesEina
   values:
     prefix: plushie-eina-

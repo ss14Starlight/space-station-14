@@ -1339,30 +1339,6 @@
         voice: kassssandra
 
 - type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieKilla
-  name: killa plushie
-  description: Looks like a cheap knockoff, it has visibly loose stitching
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/killa_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/killa_plushie.rsi
-    layers:
-      - state: KillaTamalePlush
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-    - type: DatasetVocalizer
-      dataset: PlushiesKilla
-    - type: TextToSpeech
-      voice: mozillaAu7
-
-- type: entity
   parent: BasePlushie
   id: PlushieFixes
   name: fixes plushie
