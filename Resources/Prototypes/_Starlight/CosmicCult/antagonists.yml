@@ -9,6 +9,20 @@
     time: 86400 # 24h i really just want people to read the guidebook please please please
   guides: [ CosmicCult ]
 
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: CosmicAntagCultist
+  prefRoles:
+  - CosmicAntagCultist
+  blacklist:
+    components:
+    - AntagImmune
+    - BibleUser
+  components:
+  - type: CosmicCult
+  mindRoles:
+  - MindRoleCosmicCult
+
 - type: antag
   id: CosmicAntagColossus
   name: ghost-role-information-colossus-name
@@ -32,3 +46,20 @@
   - !type:OverallPlaytimeRequirement
     time: 21600 # 6h
   playTimeTracker: AntagCosmicMinion
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: CosmicAntagColossus
+  spawnerPrototype: SpawnPointCosmicColossus
+  briefing:
+    text: ghost-role-colossus-briefing
+    color: CadetBlue
+    sound: /Audio/_Starlight/CosmicCult/antag_cosmic_briefing.ogg
+  pickPlayer: false
+  components:
+  - type: CosmicColossus
+    timed: true
+  mindRoles:
+  - MindRoleCosmicColossus
+
+

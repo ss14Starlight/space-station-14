@@ -3,7 +3,7 @@
   id: SLDynamicRule
   components:
   - type: GameRule
-    minPlayers: 15 # Realistically you won't get many good gamemodes rolling with less than 15 players.
+    minPlayers: 40
   - type: DynamicRule
     startingBudgetMin: 250 # 200's a bit too low, can't even roll most minor antags alongside anything but traitor.
     startingBudgetMax: 550
@@ -23,22 +23,20 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 15
         - id: DynamicSurvivalEventScheduler
           weight: 5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 10
+            min: 15
         - id: DynamicKesslerSyndromeEventScheduler
           weight: 1
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 10
+            min: 15
         - id: DynamicShitStationEventScheduler
           weight: 3
           conditions:
@@ -56,6 +54,8 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: Nukeops
           weight: 12.5
           conditions:
@@ -105,21 +105,29 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: VampireLess
           prob: 0.15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 25
         - id: SLChangeling
           prob: 0.15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 25
         - id: SiliconLiberation
           prob: 0.15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: SubWizard
           prob: 0.05
           conditions:
@@ -135,6 +143,14 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+        #- id: SubBrighteye
+        #  prob: 0.05
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
+        #  - !type:PlayerCountCondition
+        #    min: 20
       # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky!
       - !type:GroupSelector
         children:
@@ -144,6 +160,8 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: NukeopsLate
           weight: 9
           prob: 0.50 # Have a 50% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
@@ -172,7 +190,7 @@
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
-          weight: 5
+          weight: 4
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
@@ -197,6 +215,8 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 25
         - id: SLChangelingLess
           weight: 6
           prob: 0.50
@@ -206,12 +226,16 @@
           - !type:MutuallyExclusiveRuleCondition
             rules:
             - SLChangeling # Don't double changelings
+          - !type:PlayerCountCondition
+            min: 25
         - id: SiliconLiberation
           weight: 8
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: SubWizard
           weight: 5
           prob: 0.50
@@ -229,6 +253,15 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+        #- id: SubBrighteye
+        #  weight: 5
+        #  prob: 0.50
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
+        #  - !type:PlayerCountCondition
+        #    min: 20
       # Midround rules
       - !type:GroupSelector
         conditions:
@@ -298,10 +331,12 @@
             min: 10
           - !type:RoundDurationCondition
             min: 1200 # 20 minutes
-        #- id: Brighteye # Brighteye is disabled until more work is put in.
+        #- id: BrighteyeSpawn
         #  weight: 1
         #  conditions:
         #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
         #  - !type:PlayerCountCondition
         #    min: 20
         #  - !type:RoundDurationCondition
@@ -328,7 +363,7 @@
   id: SLDynamicRuleLP
   components:
   - type: GameRule
-    minPlayers: 15
+    minPlayers: 40
   - type: DynamicRule
     startingBudgetMin: 200 # Beta can have a lower threshold.
     startingBudgetMax: 400
@@ -348,22 +383,20 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 15
         - id: DynamicSurvivalEventScheduler
           weight: 3
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 10
+            min: 15
         - id: DynamicKesslerSyndromeEventScheduler
           weight: 1
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 10
+            min: 15
         - id: DynamicShitStationEventScheduler
           weight: 2
           conditions:
@@ -381,12 +414,16 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: Vampire # We can count Vampires as being a major on Beta.
           weight: 23
           prob: 0.75
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 25
         - id: Nukeops
           weight: 7
           conditions:
@@ -436,16 +473,22 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: SLChangeling
           prob: 0.15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 25
         - id: SiliconLiberation
           prob: 0.15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: SubWizard
           prob: 0.05
           conditions:
@@ -461,6 +504,14 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+        #- id: SubBrighteye
+        #  prob: 0.05
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
+        #  - !type:PlayerCountCondition
+        #    min: 20
       # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky! Beta edition.
       - !type:GroupSelector
         children:
@@ -473,6 +524,8 @@
           - !type:MutuallyExclusiveRuleCondition
             rules:
             - Traitor # This is the most likely scenario; we don't want 24 traitors.
+          - !type:PlayerCountCondition
+            min: 5
         - id: NukeopsLate
           weight: 7
           prob: 0.50
@@ -529,6 +582,8 @@
           - !type:MutuallyExclusiveRuleCondition
             rules:
             - Vampire # Beta exclusive
+          - !type:PlayerCountCondition
+            min: 25
         - id: SLChangelingLess
           weight: 6
           prob: 0.50
@@ -538,12 +593,16 @@
           - !type:MutuallyExclusiveRuleCondition
             rules:
             - SLChangeling # Don't double changelings
+          - !type:PlayerCountCondition
+            min: 25
         - id: SiliconLiberation
           weight: 8
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: SubWizard
           weight: 5
           prob: 0.50
@@ -561,6 +620,15 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+        #- id: SubBrighteye
+        #  weight: 5
+        #  prob: 0.50
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
+        #  - !type:PlayerCountCondition
+        #    min: 20
       # Midround rules, same as Alpha, because Beta has no differences on these normally anyways
       - !type:GroupSelector
         conditions:
@@ -630,10 +698,12 @@
             min: 10
           - !type:RoundDurationCondition
             min: 1200 # 20 minutes
-        #- id: Brighteye # Starlight - disabled from rolling
+        #- id: BrighteyeSpawn
         #  weight: 1
         #  conditions:
         #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
         #  - !type:PlayerCountCondition
         #    min: 20
         #  - !type:RoundDurationCondition
