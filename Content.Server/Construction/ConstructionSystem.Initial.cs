@@ -371,8 +371,15 @@ namespace Content.Server.Construction
 
             foreach (var condition in constructionPrototype.Conditions)
             {
+                // Starlight edit start
                 if (!condition.Condition(user, user.ToCoordinates(0, 0), Direction.South))
+                {
+                    var message = condition.GenerateGuideEntry()?.Localization
+                                  ?? "construction-system-construct-conditions-not-met";
+                    _popup.PopupEntity(Loc.GetString(message), user, user);
                     return false;
+                }
+                // Starlight edit end
             }
 
             if (pathFind == null)
