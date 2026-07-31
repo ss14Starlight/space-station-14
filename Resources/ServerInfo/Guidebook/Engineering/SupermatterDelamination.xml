@@ -47,16 +47,25 @@
   ## Delamination Cleanup
 
   <Box>
-    <GuideEntityEmbed Entity="cascade1" Caption="Cascade Crystal" />
+    <GuideEntityEmbed Entity="Cascad1" Caption="Cascade Crystal" />
   </Box>
 
   Once the Supermatter reaches critical instability, the original crystal structure will collapse and transform into cascade crystals.
 
   Cascade crystals rapidly expand and replace surrounding structures with their altered crystalline structure.
 
-  These structures cannot be removed with standard tools.
+  Due to their hardened structure, cascade crystals cannot be efficiently removed using standard maintenance tools.
 
-  Specialized Nanotrasen engineering equipment is required for safe removal.
+  Removal requires appropriate heavy-duty equipment capable of breaking the crystalline structure.
+
+  Approved equipment includes:
+
+  <Box>
+    <GuideEntityEmbed Entity="FireAxe" Caption="Fire Axe" />
+    <GuideEntityEmbed Entity="HammerBreachingNT" Caption="Nanotrasen Breaching Hammer" />
+  </Box>
+
+  Emergency tools such as crowbars may damage cascade crystals, but are considered inefficient and should only be used when approved equipment is unavailable.
 
   Personnel should avoid unnecessary interaction with cascade structures until the area has been declared safe.
 

@@ -359,17 +359,10 @@
   name: guide-entry-supermatter
   text: "/ServerInfo/Guidebook/Engineering/Supermatter.xml"
   children:
-  - SupermatterBehaviour
-  - SupermatterDelamination
-  - SupermatterAdvancedSupermatterHandling
-
-- type: guideEntry
-  id: SupermatterBehaviour
-  name: guide-entry-supermatter-behaviour
-  text: "/ServerInfo/Guidebook/Engineering/SupermatterBehaviour.xml"
-  children:
   - SupermatterStability
   - SupermatterStructuralRecovery
+  - SupermatterDelamination
+  - SupermatterAdvancedSupermatterHandling
 
 - type: guideEntry
   id: SupermatterStability

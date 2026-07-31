@@ -3,27 +3,27 @@
 
   The Supermatter Crystal interacts strongly with the properties of its surrounding atmosphere.
 
-  Research indicates that certain atmospheric compositions can influence the behaviour and output characteristics of the crystal.
+  Research indicates that atmospheric composition can influence the behaviour and output characteristics of the crystal.
 
-  Nanotrasen research logs show promising results from controlled experimentation.
+  Nanotrasen research archives contain numerous controlled experiments investigating these interactions.
 
   Advanced experimentation should only be performed by qualified senior Atmospheric Technicians and Engineering personnel.
 
-  Experiments exceeding established safety parameters must be conducted with appropriate authorization and risk assessment.
+  Experiments exceeding established safety parameters require appropriate authorization and risk assessment.
 
   Unsafe experimentation may result in catastrophic consequences.
 
+  ---
 
+  # NT-SRD Supermatter Experiment Archive
 
-  # NT-ESRD Experimental Archive
-
-  [color=orange]Nanotrasen Experimental Supermatter Research Division[/color]
+  [color=orange]Nanotrasen Supermatter Research Division (SRD)[/color]
 
   Classification: Internal Engineering Research Documentation
 
   The following documents contain selected Supermatter experiments conducted under Nanotrasen Engineering supervision.
 
-  Experimental results may only be reproduced by authorized personnel with appropriate engineering clearance.
+  Experimental procedures may only be reproduced by authorized personnel with appropriate engineering clearance.
 
   Portions of this document have been removed under corporate information protection policy.
 
@@ -32,78 +32,116 @@
   ## Experiment SM-T1
 
   [color=cyan]Experiment Lead:[/color]
+
   NT-CE-TY-TY-TY
 
   [color=cyan]Experiment Handler:[/color]
+
   NT-AT-LS
 
-  [color=cyan]Experiment Difficulty:[/color]
-  Suitable for Junior Atmospheric Technicians with Chief Engineer supervision.
+  [color=cyan]Experiment Authorization:[/color]
+
+  Junior Atmospheric Technician with Chief Engineer supervision.
 
   [color=cyan]Testing Facility:[/color]
-  Pre-installed Nanotrasen Station [color=#000000]████████████[/color]
 
-  Station Classification:
-  Standard issue Supermatter chamber.
+  Nanotrasen Supermatter Research Facility [color=#000000]████████████[/color]
+
+  Facility contained a purpose-built experimental Supermatter chamber.
+
+  Chamber construction followed standard Nanotrasen engineering specifications.
+
+  ---
 
   [color=orange]Experiment Configuration[/color]
 
+  Chamber Design:
+
+  Purpose-built experimental chamber.
+
   Chamber Size:
-  Standard issue.
+
+  Standard issue dimensions.
 
   Chamber Atmosphere:
+
   Oxygen.
 
-  Coolant:
+  Cooling Atmosphere:
+
   Oxygen.
 
   Installed Cooling:
+
   - Two sets of two Passive Vents.
   - Three radiator units per side.
 
   Additional Cooling:
+
   - Freezer temperature set to 150 K.
   - Direct passive vent connection.
 
   Electrical Disturbance Countermeasures:
+
   - Two grounding rods.
 
-  Safe Stress Emitter Limit:
+  Safe Emitter Configuration:
+
   Two emitters.
 
-  Experimental Stress Limit:
+  Experimental Emitter Configuration:
+
   Six emitters.
-
-  [color=orange]Automation Recommendations[/color]
-
-  Air Alarm automation is strongly advised.
-
-  Scrubber configuration:
-  Remove all gases except Oxygen.
-
-  [color=orange]Project Summary[/color]
-
-  Experiment demonstrated stable operation with profitable power harvesting potential.
-
-  Moderate radiation output was recorded.
-
-  Recommended harvesting configuration:
-  - Four emitters.
-  - Six NT Radiation Collectors.
-
-  Alternative coolant gases may be considered. Nitrogen coolant substitution showed comparable stability.
 
   ---
 
-  ## Project SM-Zero
+  [color=orange]Automation Configuration[/color]
+
+  Air Alarm automation for emitters is strongly advised.
+
+  Scrubber configuration:
+
+  Remove all gases except Oxygen.
+
+  ---
+
+  [color=orange]Experiment Results[/color]
+
+  Stable operation achieved.
+
+  Moderate radiation output recorded.
+
+  Recommended harvesting configuration:
+
+  - Four emitters.
+  - Six Radiation Collectors.
+
+  Alternative cooling atmospheres may be considered.
+
+  Nitrogen substitution demonstrated comparable stability.
+
+  ---
+
+  [color=orange]Project Summary[/color]
+
+  Experiment demonstrated profitable power harvesting potential while maintaining acceptable operational stability.
+
+  Further testing approved under controlled conditions.
+
+  ---
+
+  ## Experiment SM-Z0
 
   [color=cyan]Experiment Lead:[/color]
+
   NT-CE-LS
 
   [color=cyan]Experiment Handler:[/color]
+
   NT-CE-LS
 
-  [color=cyan]Experiment Difficulty:[/color]
+  [color=cyan]Experiment Authorization:[/color]
+
   Senior Atmospheric Technician clearance.
 
   [color=cyan]Recommended Facilities:[/color]
@@ -113,63 +151,88 @@
   - Facility designation [color=#000000]████████[/color]
   - Facility designation [color=#000000]████████[/color]
 
-  Both facilities contained legacy or modified Supermatter chamber layouts.
+  Both facilities contained modified or legacy Supermatter chamber layouts.
+
+  ---
 
   [color=orange]Experiment Configuration[/color]
 
   Chamber Temperature:
+
   Below 70 K.
 
-  Pressure Supply:
-  Oxygen — 200 kPa.
+  Initial Chamber Pressure:
+
+  200 kPa Oxygen atmosphere.
 
   Experimental Atmosphere:
+
   Primarily Oxygen with approximately one tenth Nitrogen.
 
-  Coolant:
+  Cooling Atmosphere:
+
   - Oxygen.
   - Tritium.
   - Nitrogen.
 
-  Overpressure Countermeasures:
-  - Inlet Valve configured at 300 kPa.
-  - Signal valve controlled by operational procedure.
-
   Cooling System:
-  Three parallel radiator branches.
 
-  Six radiators installed per branch.
+  - Three parallel radiator branches.
+  - Six radiators installed per branch.
 
   Additional Cooling:
-  Three freezers connected directly through passive vent systems.
 
-  [color=orange]Automation Recommendations[/color]
+  - Three freezers connected directly through passive vent systems.
+
+  Overpressure Countermeasures:
+
+  - Inlet valve configured at 300 kPa.
+  - Signal valve controlled by operational procedure.
+
+  Electrical Disturbance Countermeasures:
+
+  - Two grounding rods.
+
+  ---
+
+  [color=orange]Automation Configuration[/color]
 
   Required automation:
+
   - Pressure floor monitoring.
   - Temperature-sensitive emitter activation.
 
+  Emitter activation should be separated into multiple stages.
+
+  ---
+
   [color=orange]Experiment Results[/color]
 
-  Safe emitter limit:
+  Safe Emitter Configuration:
+
   Six emitters.
 
-  Estimated safe emitter limit:
+  Estimated Safe Emitter Configuration:
+
   Sixteen emitters.
 
   Emitters used during testing:
+
   Thirty-two emitters.
 
   [color=red]CRITICAL EVENT:[/color]
 
   Geiger monitoring equipment reached maximum measurement capacity.
 
-  Immediate increase of radiation shielding was required.
-
-  Emitter activation should be separated into multiple stages to prevent rapid stress escalation.
+  Radiation shielding was increased immediately.
 
   Maximum recorded output:
+
   11.3 MW.
+
+  ---
+
+  [color=orange]Project Summary[/color]
 
   Experiment demonstrated exceptional profitability with significant operational risk.
 
@@ -180,35 +243,54 @@
   ## Experiment SM-ZS-LS
 
   [color=cyan]Experiment Lead:[/color]
+
   [color=#000000]████████████[/color]
 
   [color=cyan]Experiment Handler:[/color]
+
   [color=#000000]████████████[/color]
 
-  [color=cyan]Experiment Difficulty:[/color]
+  [color=cyan]Experiment Authorization:[/color]
+
   Experimental clearance only.
+
+  ---
+
+  [color=orange]Experiment Configuration[/color]
+
+  Cooling Atmosphere:
+
+  - Zauker.
+  - Healium.
+  - Protonitrate.
+  - Frezon.
+
+  Chamber maintained under extreme cryogenic conditions.
+
+  Experimental atmosphere information:
+
+  [color=#000000]████████████████████████[/color]
+
+  ---
+
+  [color=orange]Experiment Results[/color]
 
   Initial observations indicate possible interaction between Supermatter and rare atmospheric compounds.
 
   Results suggest possible applications for self-sustaining Supermatter systems intended for long-duration space operations.
 
   Project sponsorship:
-  SYN[color=#000000]████████████[/color]
 
-  [color=orange]Experimental Configuration[/color]
+  [color=#000000]████████████[/color]
 
-  Coolant:
-  - ZK.
-  - HEA.
-  - PRO.
+  ---
 
-  Chamber maintained under extreme cryogenic conditions.
+  [color=orange]Project Summary[/color]
 
   Preliminary results indicate potential improvements for future propulsion and energy research.
 
   [color=red]NOTICE:[/color]
 
-  Remaining documentation has been removed under NT-ESRD security directive.
-
+  Remaining documentation has been removed under SRD-14 security protocol.
 
 </Document>

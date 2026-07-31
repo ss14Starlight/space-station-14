@@ -2,12 +2,9 @@
   # Supermatter Crystal
 
   <Box>
-    <GuideEntityEmbed Entity="SupermatterCrystal" />
-  </Box>
-
-  <Box>
-    <GuideEntityEmbed Entity="SignRadiation" />
-    <GuideEntityEmbed Entity="SignRadiation" />
+    <GuideEntityEmbed Entity="SignRadiation" Caption="" />
+    <GuideEntityEmbed Entity="SupermatterCrystal" Caption="Supermatter Crystal" />
+    <GuideEntityEmbed Entity="SignRadiation" Caption="" />
   </Box>
 
   ## Overview
@@ -52,7 +49,7 @@
 
   - Active cooling
   - Overpressure prevention measures
-  - Continuous atmospheric supply
+  - Stable atmospheric supply
 
   Failure to maintain these conditions represents a significant risk to station safety.
 
