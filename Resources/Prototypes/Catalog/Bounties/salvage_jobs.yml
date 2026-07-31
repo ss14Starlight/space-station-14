@@ -63,21 +63,6 @@
       tags:
       - OreSilver
 
-- type: cargoBounty
-  id: BountySalvageOreAbyssium
-  reward: 7500
-  description: bounty-description-salvage-ore-abyssium
-  group: SalvageJobTier1
-  sprite:
-    sprite: _Starlight/Objects/Materials/ore.rsi
-    state: abyssium
-  entries:
-  - name: bounty-item-ore-abyssium
-    amount: 10
-    whitelist:
-      tags:
-      - OreAbyssium
-
 # Tier 2
 
 - type: cargoBounty

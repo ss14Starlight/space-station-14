@@ -346,7 +346,7 @@
   name: karelian pastries
   parent: FoodMealBase
   id: FoodKarelianPastries
-  description: Actually named karjalanpiirakka, a tradition food from old world Finland. Kind of odd, but filling and delicious
+  description: Actually named karjalanpiirakka, a traditional food from old world Finland. Kind of odd, but filling and delicious
   components:
     - type: FlavorProfile
       flavors:

@@ -931,6 +931,7 @@
   group: Savory
   solids:
     FoodDoughSlice: 2
+    FoodPlateSmall: 1
   reagents:
     Rice: 10
     Milk: 10
