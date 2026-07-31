@@ -177,7 +177,7 @@
         - enum.SubfloorLayers.FirstLayer
         - enum.SubfloorLayers.SecondLayer
     - type: StaticPrice
-      price: 75
+      price: 290
     - type: PipeAppearance
       extraColoredLayers:
         - enum.SubfloorLayers.FirstLayer
