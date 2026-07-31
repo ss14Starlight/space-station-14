@@ -10,17 +10,11 @@ namespace Content.Server._Starlight.StationEvents.Components;
 [RegisterComponent, Access(typeof(VentSpawnRule))]
 public sealed partial class VentSpawnRuleComponent : Component
 {
-    /// <summary>
-    /// If true, we'll insert entity in selected vent after antag selection.
-    /// </summary>
-    [DataField]
-    public bool InsertInVent = true;
-
     public List<(MapCoordinates Coords, EntityUid Uid)> ValidLocations = new();
 
     /// <summary>
     /// Location that was picked.
     /// </summary>
     [DataField]
-    public Dictionary<EntityUid, (MapCoordinates Coords, EntityUid Uid)> Vent = new();
+    public Dictionary<string, (MapCoordinates Coords, EntityUid Uid)> Vent = new();
 }

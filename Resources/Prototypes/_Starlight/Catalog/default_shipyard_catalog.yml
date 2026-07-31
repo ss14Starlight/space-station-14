@@ -114,3 +114,12 @@
   category: Medium
   group: Civilian
   shuttlePath: /Maps/_Starlight/Shuttles/Bumblebee.yml
+
+- type: vessel
+  id: SpaceTruck
+  name: Harm's Space Truck
+  description: A small sized space truck. This one has a legal IFF console on board... no one knows why it's installed or why it's on sale.
+  price: 15050
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/SpaceTruck.yml
