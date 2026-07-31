@@ -26,6 +26,7 @@
   - Holoprojector
   - WetFloorSign
   - WireBrush
+  - MaterialDurathread # Starlight
 
 - type: latheRecipePack
   id: ServiceBoardsStatic
