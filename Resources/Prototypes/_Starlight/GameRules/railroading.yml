@@ -76,6 +76,8 @@
       minimumPlayers: 10
       duration: 1
       MaxOccurrences: 1
+    - type: DynamicRuleCost
+      cost: 75
     - type: RailroadRule
       preSpawnDelay: 10
       delay: 10
@@ -88,6 +90,8 @@
   parent: RailroadingAntagLow
   id: RailroadingAntagMedium
   components:
+    - type: DynamicRuleCost
+      cost: 125
     - type: StationEvent
       earliestStart: 1
       weight: 10
@@ -99,6 +103,8 @@
   parent: RailroadingAntagLow
   id: RailroadingAntagHigh
   components:
+    - type: DynamicRuleCost
+      cost: 175
     - type: StationEvent
       earliestStart: 1
       weight: 20
@@ -109,11 +115,14 @@
   parent: RailroadingAntagLow
   id: RailroadingAntagExtreme
   components:
+    - type: DynamicRuleCost
+      cost: 200
     - type: StationEvent
       earliestStart: 1
       weight: 40
       minimumPlayers: 80
       duration: 1
+
 - type: entity
   parent: BaseGameRule
   id: RailroadingMinor
