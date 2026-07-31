@@ -7,6 +7,7 @@
   - type: DynamicRule
     startingBudgetMin: 250 # 200's a bit too low, can't even roll most minor antags alongside anything but traitor.
     startingBudgetMax: 525
+    budgetPerSecond: 0.075
     variantBudgetThreshold: 300 # When the budget reaches this threshold, the variant budget per second will be used instead of the normal budget per second. Aka, stop hoarding your budget!!!
     maxRuleInterval: 1500
     minRuleInterval: 750
@@ -383,6 +384,7 @@
   - type: DynamicRule
     startingBudgetMin: 200 # Beta can have a lower threshold.
     startingBudgetMax: 400
+    budgetPerSecond: 0.075
     variantBudgetThreshold: 300
     maxRuleInterval: 1800
     minRuleInterval: 1200 # 20-30 mins as opposed to alpha's 15-25.
