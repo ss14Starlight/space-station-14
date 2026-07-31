@@ -26,7 +26,7 @@
     antags:
     - !type:LinearAntagCount
       proto: Thief
-      playerRatio: 26 # Starlight
+      playerRatio: 31.2 # Starlight
       range:
         min: 1
         max: 6 # Starlight
@@ -45,7 +45,7 @@
     antags:
     - !type:LinearAntagCount
       proto: Wizard
-      playerRatio: 55
+      playerRatio: 66
       range:
         min: 1
         max: 4 # Starlight end

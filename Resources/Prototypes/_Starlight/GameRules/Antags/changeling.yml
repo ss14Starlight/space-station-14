@@ -11,7 +11,7 @@
     antags:
     - !type:LinearAntagCount
       proto: SLChangeling
-      playerRatio: 26
+      playerRatio: 31.2
       range:
         min: 1
         max: 6
@@ -34,11 +34,11 @@
     antags:
     - !type:LinearAntagCount
       proto: SLChangeling
-      playerRatio: 35
+      playerRatio: 42
       range:
         min: 1
         max: 4
   - type: DynamicRuleCost
-    cost: 75
+    cost: 100
 
 

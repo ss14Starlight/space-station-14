@@ -19,9 +19,9 @@
     antags:
     - !type:LinearAntagCount
       proto: Devil
-      playerRatio: 50
+      playerRatio: 60
       range:
         min: 1
-        max: 2
+        max: 3
   - type: DynamicRuleCost
     cost: 100

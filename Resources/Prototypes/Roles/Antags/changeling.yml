@@ -17,7 +17,7 @@
   # Starlight end
 
 - type: antagSpecifier
-  parent: RestrictedAntag
+  parent: ChangelingRestrictedAntag # Starlight
   id: Changeling
   prefRoles: [ Changeling ]
   briefing:

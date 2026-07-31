@@ -21,7 +21,7 @@
   playTimeTracker: AntagSELFAgent
 
 - type: antagSpecifier
-  parent: RestrictedAntag
+  parent: SelfRestrictedAntag
   id: SELFAgent
   prefRoles:
   - SELFAgent
