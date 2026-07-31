@@ -1,4 +1,4 @@
 - type: latheRecipePack
-  id: StarlightContainers
+  id: StarlightContainersStatic
   recipes:
   - Bucket

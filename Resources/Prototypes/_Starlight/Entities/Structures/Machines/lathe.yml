@@ -95,10 +95,8 @@
     - PaperworkStatic
     - CargoStatic
     - MaterialsStatic
-    - BasicChemistryStatic
-    - LightsStatic
     - PowerCellsStatic
-    - StarlightContainers
+    - StarlightContainersStatic
     dynamicPacks:
     - StarlightAutolatheLootable
     - StarlightProtolatheLootable
@@ -107,7 +105,6 @@
     - Equipment
   - type: EmagLatheRecipes
     emagStaticPacks:
-    # Cargo can get the basic emag interactions
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
@@ -154,9 +151,8 @@
     - AtmosStatic
     - CablesStatic
     - MaterialsStatic
-    - BasicChemistryStatic
     - LightsStatic
-    - StarlightContainers
+    - StarlightContainersStatic
     - PowerCellsStatic
     - ElectronicsStatic
     dynamicPacks:
@@ -169,7 +165,6 @@
     - Equipment
   - type: EmagLatheRecipes
     emagStaticPacks:
-    # Engi can get the basic emag interactions
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
@@ -208,14 +203,13 @@
     staticPacks:
     # Static stuff that Service could reasonable use
     - ToolsStatic
-    - PartsStatic
-    - CablesStatic
     - PaperworkStatic
     - TowelsStatic
+    - BasicChemistryStatic
     - MaterialsStatic
     - LightsStatic
     - ServiceStatic
-    - StarlightContainers
+    - StarlightContainersStatic
     - PowerCellsStatic
     - CassetteTape
     - TapeRecorder
@@ -227,7 +221,6 @@
     - WirelessCameraHandheld
   - type: EmagLatheRecipes
     emagStaticPacks:
-    # Engi can get the basic emag interactions
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
@@ -268,13 +261,9 @@
     - CablesStatic
     - PaperworkStatic
     - TowelsStatic
-    - CargoStatic
     - MaterialsStatic
-    - RollerBedsStatic
-    - LightsStatic
-    - StarlightContainers
+    - StarlightContainersStatic
     - PowerCellsStatic
-    - ElectronicsStatic
     - CassetteTape
     - TapeRecorder
     - NullSpaceDrainer
@@ -348,9 +337,6 @@
     staticPacks:
     - PaperworkStatic
     - TowelsStatic
-    - BasicChemistryStatic
-    - LightsStatic
-    - StarlightContainers
     - CassetteTape
     - TapeRecorder
     - TopicalsStatic
@@ -408,7 +394,7 @@
     - CargoStatic
     - LightsStatic
     - ServiceStatic
-    - StarlightContainers
+    - StarlightContainersStatic
     - PowerCellsStatic
     - ElectronicsStatic
     - CassetteTape
@@ -540,7 +526,7 @@
     - CargoStatic
     - LightsStatic
     - ServiceStatic
-    - StarlightContainers
+    - StarlightContainersStatic
     - PowerCellsStatic
     - ElectronicsStatic
     - CassetteTape
