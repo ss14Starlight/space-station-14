@@ -672,15 +672,6 @@
     state: medium
 
 - type: marking
-  id: ProtoAvaliLightArmor
-  bodyPart: BodyCover
-  markingCategory: BodyCover
-  speciesRestriction: [ProtoAvali]
-  sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-avali/body_armor.rsi
-    state: light
-
-- type: marking
   id: ProtoAvaliVisor
   bodyPart: FaceCover
   markingCategory: FaceCover
