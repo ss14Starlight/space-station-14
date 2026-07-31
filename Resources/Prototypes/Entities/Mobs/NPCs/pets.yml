@@ -423,6 +423,12 @@
       Male: Dog
       Female: Dog
       Unsexed: Dog
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
+  - type: Smeller
+  - type: Scent
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs
@@ -549,6 +555,12 @@
       Female: Dog
       Unsexed: Dog
   - type: Emoting
+  - type: Smeller
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
+  - type: Scent
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs
