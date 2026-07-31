@@ -1,0 +1,15 @@
+- type: latheRecipePack
+  id: StarlightCargoToolsStatic
+  recipes:
+  - VoiceSensor
+  - Wirecutter
+  - Screwdriver
+  - Welder
+  - Wrench
+  - CrowbarGreen
+  - Multitool
+  - FlashlightLantern
+  - HandheldGPSBasic
+  - CargoBelt
+  - ClothingOuterVestTank
+  - HandheldStationMap

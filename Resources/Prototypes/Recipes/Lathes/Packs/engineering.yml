@@ -47,15 +47,13 @@
   - CellRechargerCircuitboard
   - WeaponCapacitorRechargerCircuitboard
   - FreezerElectronics
-  # Starlight-start
-  - MassDriverCircuitboard
-  - MassDriverComputerCircuitboard
-  # Starlight-end
 
 - type: latheRecipePack
   id: EngineeringBoardsStatic
   recipes:
   - SpaceHeaterMachineCircuitBoard
+  - MassDriverCircuitboard # Starlight
+  - MassDriverComputerCircuitboard # Starlight
 
 ## Dynamic
 

@@ -89,7 +89,7 @@
     runningState: icon
     staticPacks:
     # Static stuff that Cargo could reasonable use
-    - ToolsStatic
+    - StarlightCargoToolsStatic
     - PartsStatic
     - CablesStatic
     - PaperworkStatic
@@ -202,7 +202,6 @@
     runningState: icon
     staticPacks:
     # Static stuff that Service could reasonable use
-    - ToolsStatic
     - PaperworkStatic
     - TowelsStatic
     - LightsStatic
