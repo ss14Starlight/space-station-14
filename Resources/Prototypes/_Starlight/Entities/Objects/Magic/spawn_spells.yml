@@ -5,7 +5,7 @@
   description: Summons an ice familiar after two seconds.
   components:
   - type: Action
-    useDelay: 5
+    useDelay: 60
     icon:
         sprite: _Starlight/Objects/Magic/magicactions.rsi
         state: sculptureicon
@@ -40,4 +40,4 @@
     - type: SpawnOnTrigger
       keysIn:
       - timer
-      proto: GrenadeStinger
+      proto: SummonIceSculpture
