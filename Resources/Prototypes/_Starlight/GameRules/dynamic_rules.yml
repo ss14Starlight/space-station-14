@@ -6,7 +6,7 @@
     minPlayers: 40
   - type: DynamicRule
     startingBudgetMin: 250 # 200's a bit too low, can't even roll most minor antags alongside anything but traitor.
-    startingBudgetMax: 550
+    startingBudgetMax: 500
     variantBudgetThreshold: 300 # When the budget reaches this threshold, the variant budget per second will be used instead of the normal budget per second. Aka, stop hoarding your budget!!!
     maxRuleInterval: 1500
     minRuleInterval: 750
@@ -167,7 +167,7 @@
             min: 5
         - id: VampireLess
           weight: 10
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -178,7 +178,7 @@
             min: 25
         - id: NukeopsLate
           weight: 9
-          prob: 0.50 # Have a 50% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
+          prob: 0.40 # Have a 50% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -189,7 +189,7 @@
             min: 20
         - id: Revolutionary
           weight: 9
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -197,7 +197,7 @@
             min: 15
         - id: CosmicCult
           weight: 9
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -205,7 +205,7 @@
             min: 20
         - id: WizardDuel
           weight: 4
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -278,18 +278,21 @@
         children:
         - id: SleeperAgents
           weight: 15
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
             min: 1500 # 25 minutes
         - id: DragonSpawn
           weight: 15
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: NinjaSpawn
           weight: 15
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
@@ -305,6 +308,7 @@
             min: 1200 # 20 minutes
         - id: ParadoxCrisisSpawn
           weight: 10
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -313,6 +317,7 @@
             min: 1800 # 30 minutes
         - id: LoneOpsSpawn
           weight: 5
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
@@ -321,6 +326,7 @@
             min: 3000 # 50 minutes
         - id: WizardSpawn
           weight: 1
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:MutuallyExclusiveRuleCondition
@@ -351,6 +357,7 @@
         #    min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
@@ -359,6 +366,7 @@
             min: 1200 # 20 minutes
         - id: ColossusSpawn
           weight: 4.5
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
@@ -536,7 +544,7 @@
             min: 5
         - id: VampireLess
           weight: 6
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -547,7 +555,7 @@
             min: 25
         - id: NukeopsLate
           weight: 6
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -558,7 +566,7 @@
             min: 20
         - id: Revolutionary
           weight: 6
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -566,7 +574,7 @@
             min: 15
         - id: CosmicCult
           weight: 6
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -574,7 +582,7 @@
             min: 20
         - id: WizardDuel
           weight: 4
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -645,18 +653,21 @@
         children:
         - id: SleeperAgents
           weight: 15
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
             min: 1500 # 25 minutes
         - id: DragonSpawn
           weight: 15
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: NinjaSpawn
           weight: 15
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
@@ -672,6 +683,7 @@
             min: 1200 # 20 minutes
         - id: ParadoxCrisisSpawn
           weight: 10
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -680,6 +692,7 @@
             min: 1800 # 30 minutes
         - id: LoneOpsSpawn
           weight: 5
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
@@ -688,6 +701,7 @@
             min: 3000 # 50 minutes
         - id: WizardSpawn
           weight: 1
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:MutuallyExclusiveRuleCondition
@@ -718,6 +732,7 @@
         #    min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
@@ -726,6 +741,7 @@
             min: 1200 # 20 minutes
         - id: ColossusSpawn
           weight: 4.5
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
