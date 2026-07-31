@@ -1,25 +1,4 @@
 Entries:
-- author: Littlemen/Romero
-  changes:
-  - message: stinger does a lot less stamina and only 1 blunt.
-    type: Tweak
-  id: 406769
-  time: '2026-07-20T23:45:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5168
-- author: Mack
-  changes:
-  - message: Enable/Disable verb to handheld crew monitors for alerts.
-    type: Add
-  id: 406770
-  time: '2026-07-21T00:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5170
-- author: Mack
-  changes:
-  - message: Confusing Activate/Deactivate verb from handheld crew monitors.
-    type: Remove
-  id: 406771
-  time: '2026-07-21T00:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5170
 - author: redmushie, JohnnyMalawny
   changes:
   - message: Bulk gas ordering directly from the ATS, no canisters needed!
@@ -2799,4 +2778,25 @@ Entries:
   id: 407168
   time: '2026-07-31T14:29:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5300
+- author: Johnny
+  changes:
+  - message: Added a way for SELF to choose and change their loadouts based off what they wanted to do.
+    type: Add
+  id: 407169
+  time: '2026-07-31T15:09:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5202
+- author: Johnny
+  changes:
+  - message: Removed the large 5x5 storage implanter SELF got round-start.
+    type: Remove
+  id: 407170
+  time: '2026-07-31T15:09:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5202
+- author: Johnny
+  changes:
+  - message: Changed the name of the SELF implanter to a different name (cause it wasnt used by self anymore).
+    type: Tweak
+  id: 407171
+  time: '2026-07-31T15:09:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5202
 Order: -1
