@@ -59,7 +59,7 @@ namespace Content.Client.Construction
 
             manager.CurrentTextures = SpriteComponent.GetPrototypeTextures(proto, IoCManager.Resolve<IResourceCache>()).ToList();
 
-            // Starlight BEGIN
+            // Starlight START
 
             // Make the whole thing transparent just like a placed ghost. It's impossible to see e.g. pipes if they're
             // obscured by the main sprite body.

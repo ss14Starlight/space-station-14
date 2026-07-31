@@ -54,9 +54,10 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
         _pipeLayersSystem = _entityManager.System<SharedAtmosPipeLayersSystem>();
         _spriteSystem = _entityManager.System<SpriteSystem>();
 
-        // Starlight: Make atmos ghosts transparent to prevent big sprites from blocking visibility of their own pipes.
+        // Starlight START: Make atmos ghosts transparent to prevent big sprites from blocking visibility of their own pipes.
         ValidPlaceColor = ValidPlaceColor.WithAlpha(0.5f);
         InvalidPlaceColor = InvalidPlaceColor.WithAlpha(0.5f);
+        // Starlight END
     }
 
     /// <inheritdoc/>
@@ -207,8 +208,8 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
 
                 foreach (var spriteLayer in sprite.AllLayers)
                 {
-                    if (spriteLayer.ActualRsi?.Path == null || spriteLayer.RsiState.Name == null) continue;
-                    textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name)));
+                    if (spriteLayer.ActualRsi?.Path == null || spriteLayer.RsiState.Name == null) continue; // Starlight: Inverted & continue
+                    textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name))); // Starlight
                     offsets.Add(sprite.Offset + ((SpriteComponent.Layer)spriteLayer).Offset); // Starlight: Save each layers' offset
                 }
 
