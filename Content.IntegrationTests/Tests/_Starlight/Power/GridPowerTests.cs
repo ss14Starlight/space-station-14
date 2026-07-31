@@ -84,6 +84,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/JSS_MED_Apotherkerin.yml"),
         new("/Maps/_Starlight/Shuttles/Honeybee.yml"),
         new("/Maps/_Starlight/Shuttles/GasTransport.yml"),
+        new("/Maps/_Starlight/Shuttles/SpaceTruck.yml"),
 
         // Syndicate
         new("/Maps/_Starlight/Shuttles/blackhorse.yml"),
