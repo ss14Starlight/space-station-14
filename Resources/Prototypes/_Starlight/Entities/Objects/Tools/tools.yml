@@ -970,7 +970,6 @@
     - PassiveGate
     - PipeSensor
     - GasTankSubfloor
-    - GasTankTall
     - Deconstruct
     - AirAlarm
     - AirSensor

@@ -253,18 +253,18 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
             if (newProto.TryGetComponent<SpriteComponent>(out var sprite, _entityManager.ComponentFactory))
             {
                 var textures = new List<IDirectionalTextureProvider>();
-                var offsets = new List<Vector2>(); // Starlight: per-layer offset, since CurrentTextures drops it
+                var offsets = new List<Vector2>(); // Per-layer offset
 
                 foreach (var spriteLayer in sprite.AllLayers)
                 {
                     if (spriteLayer.ActualRsi?.Path == null || spriteLayer.RsiState.Name == null) continue;
                     textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name)));
-                    offsets.Add(sprite.Offset + ((SpriteComponent.Layer)spriteLayer).Offset); // Starlight
+                    offsets.Add(sprite.Offset + ((SpriteComponent.Layer)spriteLayer).Offset); // Save each layer's offset
                 }
 
                 pManager.CurrentTextures = textures;
 
-                // Reapply each layer's own offset to the ghost, since CurrentTextures drops it.
+                // Reapply each layer's own offset to the ghost.
                 if (pManager.CurrentPlacementOverlayEntity is { } overlay
                     && _entityManager.TryGetComponent<SpriteComponent>(overlay, out var overlaySprite))
                 {

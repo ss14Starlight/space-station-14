@@ -289,21 +289,7 @@
   mode: ConstructObject
   prototype: GasPipeTankSubfloor
   cost: 5
-  delay: 0
-  rotation: User
-  hasLayers: true
-  fx: EffectRCDConstruct0
-
-- type: rcd
-  id: GasTankTall
-  category: InterfacesStorage
-  sprite:
-    sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi
-    state: gas_tank_icon
-  mode: ConstructObject
-  prototype: GasPipeTankTall
-  cost: 10
-  delay: 3
+  delay: 2
   rotation: User
   hasLayers: true
   fx: EffectRCDConstruct0

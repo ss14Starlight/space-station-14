@@ -335,7 +335,7 @@ namespace Content.Client.Construction
                         targetSprite.Offset + ((SpriteComponent.Layer)targetSprite[i]).Offset); // Starlight
                 }
 
-                sprite.NoRotation = targetSprite.NoRotation; // Starlight: Fix NoRotation not being respected
+                sprite.NoRotation = targetSprite.NoRotation; // Starlight: Fix NoRotation also being ignored.
                 Del(dummy);
             }
             else

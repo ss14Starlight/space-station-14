@@ -54,8 +54,7 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
         _pipeLayersSystem = _entityManager.System<SharedAtmosPipeLayersSystem>();
         _spriteSystem = _entityManager.System<SpriteSystem>();
 
-        // Starlight: ghosts using this mode (spawn menu, RPD, construction) are otherwise fully opaque,
-        // same problem as ConstructionPlacementHijack.StartHijack fixes for the construction-menu path.
+        // Starlight: Make atmos ghosts transparent to prevent big sprites from blocking visibility of their own pipes.
         ValidPlaceColor = ValidPlaceColor.WithAlpha(0.5f);
         InvalidPlaceColor = InvalidPlaceColor.WithAlpha(0.5f);
     }
@@ -204,26 +203,26 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
             if (newProto.TryGetComponent<SpriteComponent>(out var sprite, _entityManager.ComponentFactory))
             {
                 var textures = new List<IDirectionalTextureProvider>();
-                var offsets = new List<Vector2>(); // Starlight: per-layer offset, since CurrentTextures drops it
+                var offsets = new List<Vector2>(); // Starlight: Per-layer offset
 
                 foreach (var spriteLayer in sprite.AllLayers)
                 {
                     if (spriteLayer.ActualRsi?.Path == null || spriteLayer.RsiState.Name == null) continue;
                     textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name)));
-                    offsets.Add(sprite.Offset + ((SpriteComponent.Layer)spriteLayer).Offset); // Starlight
+                    offsets.Add(sprite.Offset + ((SpriteComponent.Layer)spriteLayer).Offset); // Starlight: Save each layers' offset
                 }
 
                 pManager.CurrentTextures = textures;
 
-                // Starlight: reapply each layer's own offset to the ghost, since CurrentTextures drops it.
+                // Starlight START: Reapply each layer's own offset to the ghost.
                 if (pManager.CurrentPlacementOverlayEntity is { } overlay
                     && _entityManager.TryGetComponent<SpriteComponent>(overlay, out var overlaySprite))
                 {
                     for (var i = 0; i < offsets.Count; i++)
                         _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, offsets[i]);
                 }
+                // Starlight END
             }
-            // Starlight END
         }
     }
 

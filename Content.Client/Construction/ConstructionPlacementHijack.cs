@@ -87,7 +87,7 @@ namespace Content.Client.Construction
                     i++;
                 }
 
-                // Starlight: Fix NoRotation also being forgotten.
+                // Fix NoRotation also being ignored.
                 overlaySprite.NoRotation = sprite.NoRotation;
             }
             // Starlight END
