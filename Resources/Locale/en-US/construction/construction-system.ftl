@@ -7,5 +7,5 @@ construction-system-inside-container = You can't build while you're there!
 construction-system-cannot-start = You cannot craft this!
 
 # Starlight edit start
-construction-system-construct-conditions-not-met = Construction conditions are no longer met.
+construction-system-construct-conditions-not-met = Construction conditions are not met.
 # Starlight edit end
