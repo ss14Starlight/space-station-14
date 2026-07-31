@@ -1,13 +1,6 @@
 Entries:
 - author: Spaghetti-Bit
   changes:
-  - message: Laser Carbine has inhand sprites again.
-    type: Fix
-  id: 406758
-  time: '2026-07-20T20:54:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5200
-- author: Spaghetti-Bit
-  changes:
   - message: Practice disabler has inhand sprites again.
     type: Fix
   id: 406759
@@ -2799,4 +2792,11 @@ Entries:
   id: 407157
   time: '2026-07-31T12:05:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5416
+- author: Fasuh
+  changes:
+  - message: Fixed Construction menu allowing for overlapping atmos devices.
+    type: Fix
+  id: 407158
+  time: '2026-07-31T12:05:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5427
 Order: -1
