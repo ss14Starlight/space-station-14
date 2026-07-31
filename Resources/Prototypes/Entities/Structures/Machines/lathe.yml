@@ -292,6 +292,7 @@
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
     - StarlightVendorBoards # Starlight
+    - ElectronicsStatic # Starlight
     dynamicPacks:
     - SecurityScienceBlueSpace # Starlight
     - StarlightShuttleBoards # Starlight
