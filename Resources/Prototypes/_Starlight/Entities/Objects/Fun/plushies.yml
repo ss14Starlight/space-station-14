@@ -150,32 +150,6 @@
         voice: ICASSP105
 
 - type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieKiller
-  name: killer plushie
-  description: The corpsman that lives up to his name, being the first or the last thing you see depending on which side of the fence you stand on. The volume setting appears to be stuck on max..
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/killer_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/killer_plushie.rsi
-    layers:
-      - state: icon
-      - state: icon-unshaded
-        shader: unshaded
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesKiller
-      - type: TextToSpeech
-        voice: ICASSP136
-
-- type: entity
   parent: PlushieHuman
   id: PlushieAmali
   name: amali plushie
@@ -349,7 +323,6 @@
       clothingVisuals:
         head:
           - state: equipped-HELMET
-
 
 - type: entity
   parent: BasePlushie
@@ -1372,7 +1345,6 @@
           dataset: PlushiesRufia
         - type: TextToSpeech
           voice: mozillaAu13
-
 
 # will reenable when i get a batter sprite ## got a better sprite, so reenabling
 - type: entity
