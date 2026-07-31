@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie, JohnnyMalawny
   changes:
-  - message: (ATS) Distro and waste redone to match docking port standard layers.
-    type: Tweak
-  id: 406774
-  time: '2026-07-21T11:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5127
-- author: redmushie, JohnnyMalawny
-  changes:
   - message: (ATS) All docks have distro/waste connections for shuttles to replenish air.
     type: Tweak
   id: 406775
@@ -2799,4 +2792,11 @@ Entries:
   id: 407173
   time: '2026-07-31T15:33:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5424
+- author: RedSpeeds
+  changes:
+  - message: Fixed Smartfridge not having wires.
+    type: Fix
+  id: 407174
+  time: '2026-07-31T18:13:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5421
 Order: -1
