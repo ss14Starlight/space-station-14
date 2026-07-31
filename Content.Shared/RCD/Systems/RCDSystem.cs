@@ -37,6 +37,7 @@ using Content.Shared._Starlight.Atmos;
 using Content.Shared._Starlight.Atmos.Components;
 using Content.Shared.Prototypes;
 using Content.Shared._Starlight.Plumbing.Components;
+using Content.Shared.Doors.Components;
 // Starlight End
 
 namespace Content.Shared.RCD.Systems;
@@ -137,7 +138,7 @@ public sealed partial class RCDSystem : EntitySystem
 
         // Set the current RCD prototype to the one supplied
         component.ProtoId = args.ProtoId;
-        _esSparks.DoSparks(uid, 1, user: args.Actor); // ES
+        //_esSparks.DoSparks(uid, 1, user: args.Actor); // ES - Starlight, we don't need sparks on RCD construct selection
         UpdateCachedPrototype(uid, component); // Starlight: RPD
 
         _adminLogger.Add(LogType.RCD, LogImpact.Low, $"{args.Actor} set RCD mode to: {prototype.Mode} : {prototype.Prototype}");
@@ -364,6 +365,7 @@ public sealed partial class RCDSystem : EntitySystem
 
         // Try to start the do after
         var effect = Spawn(effectPrototype, location);
+        _adminLogger.Add(LogType.RCD, LogImpact.Low, $"{ToPrettyString(user):user} spawned {ToPrettyString(effect):effect} with {ToPrettyString(uid):rcd/rpd/rpld} at {location}"); // Starlight, effect logging
         var ev = new RCDDoAfterEvent(GetNetCoordinates(location), component.ConstructionDirection, placementLayer, component.ProtoId, cost, GetNetEntity(effect));      // Starlight Edit: Include layer as well in snapshot at start so finalize uses consistent placement state.
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, delay, ev, uid, target: args.Target, used: uid)
@@ -639,6 +641,8 @@ public sealed partial class RCDSystem : EntitySystem
         // Check rule: The tile is unoccupied
         var isWindow = prototype.ConstructionRules.Contains(RcdConstructionRule.IsWindow);
         var isCatwalk = prototype.ConstructionRules.Contains(RcdConstructionRule.IsCatwalk);
+        var isAirlock = prototype.ConstructionRules.Contains(RcdConstructionRule.IsAirlock); // Starlight: airlocks can be built over firelocks
+        var isFirelock = prototype.ConstructionRules.Contains(RcdConstructionRule.IsFirelock); // Starlight: firelocks can be built over airlocks
         // Starlight Start: RPLD
         var isPlumbingMachinePlacement = component.IsRPLD
             && prototype.Prototype != null
@@ -652,6 +656,12 @@ public sealed partial class RCDSystem : EntitySystem
         {
             if (isWindow && HasComp<SharedCanBuildWindowOnTopComponent>(ent))
                 continue;
+            // Starlight Start: Airlocks and Firelocks can be built on top of one another
+            if (isAirlock && HasComp<FirelockComponent>(ent))
+                continue;
+            if (isFirelock && HasComp<AirlockComponent>(ent))
+                continue;
+            // Starlight End
             // Starlight Start: RPLD
             if (isPlumbingMachinePlacement && Transform(ent).Anchored && HasComp<PlumbingConnectorAppearanceComponent>(ent))
             {
@@ -785,7 +795,7 @@ public sealed partial class RCDSystem : EntitySystem
         {
             case RcdMode.ConstructTile:
                 _mapSystem.SetTile(gridUid, mapGrid, position, new Tile(_tileDefMan[prototype.Prototype].TileId));
-                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to set grid: {gridUid} {position} to {prototype.Prototype}");
+                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used {ToPrettyString(uid):rcd} to set grid: {gridUid} {position} to {prototype.Prototype}"); // Starlight, RCD uid
                 break;
 
             case RcdMode.ConstructObject:
@@ -830,7 +840,7 @@ public sealed partial class RCDSystem : EntitySystem
                                 if (Exists(conflict) && HasComp<RCDDeconstructableComponent>(conflict))
                                 {
                                     _adminLogger.Add(LogType.RCD, LogImpact.Medium,
-                                        $"{ToPrettyString(user):user} RPD/RPLD replaced {ToPrettyString(conflict.Value)} at {position}");
+                                        $"{ToPrettyString(user):user} used {ToPrettyString(uid):rpd/rpld} to replace {ToPrettyString(conflict.Value)} at {position}");
                                     Del(conflict.Value);
                                     _audio.PlayPvs(component.SuccessSound, uid);
                                 }
@@ -867,7 +877,7 @@ public sealed partial class RCDSystem : EntitySystem
                         _transform.AnchorEntity(ent, entXformPost);
                 }
 
-                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to spawn {ToPrettyString(ent)} at {position} on grid {gridUid}");
+                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used {ToPrettyString(uid):rcd} to spawn {ToPrettyString(ent)} at {position} on grid {gridUid}"); // Starlight, RCD uid
                 break;
 
             case RcdMode.Deconstruct:
@@ -877,12 +887,12 @@ public sealed partial class RCDSystem : EntitySystem
                     // Deconstruct tile (either converts the tile to lattice, or removes lattice)
                     var tileDef = (_turf.GetContentTileDefinition(tile).ID != "Lattice") ? new Tile(_tileDefMan["Lattice"].TileId) : Tile.Empty;
                     _mapSystem.SetTile(gridUid, mapGrid, position, tileDef);
-                    _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to set grid: {gridUid} tile: {position} open to space");
+                    _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used {ToPrettyString(uid):rcd} to set grid: {gridUid} tile: {position} open to space"); // Starlight, RCD uid
                 }
                 else
                 {
                     // Deconstruct object
-                    _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to delete {ToPrettyString(target):target}");
+                    _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used {ToPrettyString(uid):rcd} to delete {ToPrettyString(target):target}"); // Starlight, RCD uid
                     QueueDel(target);
                 }
 
@@ -931,6 +941,12 @@ public sealed partial class RCDSystem : EntitySystem
             return RpdMode.Free; // default to Free mode
 
         return component.CurrentMode;
+    }
+
+    public void SetSelectedLayer(Entity<RCDComponent> ent, AtmosPipeLayer layer)
+    {
+        ent.Comp.LastSelectedLayer = layer;
+        Dirty(ent);
     }
     // Starlight End: RPD
 
