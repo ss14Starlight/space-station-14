@@ -9,9 +9,9 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesCombat
     id: CentcomPDA
-    ears: ClothingHeadsetCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     belt: BoxFolderCentComClipboardThreePapers
-    pocket1: WeaponDisablerAdvanced
+    pocket1: WeaponDisabler
     pocket2: WeaponRevolverMateba
   inhand:
   - MindShieldImplanter
@@ -27,8 +27,8 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesCombat
     id: CentcomPDA
-    ears: ClothingHeadsetCentCom
-    pocket1: WeaponDisablerAdvanced
+    ears: ClothingHeadsetAltAdminCentCom
+    pocket1: WeaponDisabler
     pocket2: FlashlightSeclite
     suitstorage: OxygenTankFilled
   inhand:
@@ -36,22 +36,24 @@
 - type: startingGear
 # This loadout is meant for very specific circumstances, or if the relevant character will remain on CentComm.
 # Due to the items inside, any character ON STATION with this loadout should have ERT Sec guards.
-# Example usage: In-character investigations ordeals with corrupt command (in-character, not OOC rulebreaks.)
+# This explicitly now targets a role as CC Security division
   id: CentcomOfficerGear
   equipment:
-    jumpsuit: ClothingUniformJumpskirtCentcomFormalDress
+    jumpsuit: ClothingUniformJumpskirtCentcommSecurityFormalWear
     back: ClothingBackpackSatchelHoldingCentcomOfficerFilled
     shoes: ClothingShoesBootsJackFilled
     head: ClothingHeadHatCentcomcap
     mask: ClothingMaskGasCentcom
+    neck: ClothingNeckCloakCCSDFireline
     outerClothing: ClothingOuterArmorCentcommCarapace
     gloves: ClothingHandsGlovesCombat
     eyes: ClothingEyesGlassesCentComm
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltCentComSec
     belt: ClothingBeltSheathFilled
-    pocket1: WeaponDisablerAdvanced
-    pocket2: WeaponRevolverMateba
+    pocket1: WeaponDisabler
+    pocket2: WeaponEnergyMagnumGunGreenshield
+    suitstorage: WeaponRifleL10
   inhand:
   - MindShieldImplanter
   - DeathRattleImplanterCentcomm

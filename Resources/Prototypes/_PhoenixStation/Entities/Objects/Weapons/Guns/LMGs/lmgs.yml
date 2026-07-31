@@ -1,0 +1,21 @@
+- type: entity
+  name: M492-CC Smart LMG
+  id: WeaponLightMachineGunM492CC
+  parent: [WeaponLightMachineGunM492, BaseCentcommContraband]
+  description: A greener varient of the smart LMG issued to stations. If this is in use, something is horribly wrong. Uses .30 ammo.
+  components:
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleIncendiary
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+      gun_magazine:
+        name: Magazine
+        startingItem: LightRifleHeavyMagazineIncendiary
+        whitelist:
+          tags:
+            - LightRifleHeavy

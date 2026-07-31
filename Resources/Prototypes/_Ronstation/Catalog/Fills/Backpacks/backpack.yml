@@ -17,6 +17,8 @@
     - id: MagazineMagnumAP
     - id: MagazineMagnumAP
     - id: MagazineMagnumAP
+    - id: ClothingEyesGlassesCentComm
+    - id: ClothingEyesHudCentComm
 # Filled modsuit for ERT leader admeme, 12 gauge speedloaders
 - type: entity
   parent: ClothingBackpackERTLeader
@@ -31,7 +33,7 @@
       - id: DoubleEmergencyNitrogenTankFilled
       - id: DoubleEmergencyOxygenTankFilled
       - id: Flash
-      - id: ClothingEyesHudCentComm # For Shadekins!
+      - id: ClothingEyesHudCentComm
       - id: SpeedLoaderMagnumAP
       - id: SpeedLoaderMagnumAP
       - id: SpeedLoaderShotgunIncendiary

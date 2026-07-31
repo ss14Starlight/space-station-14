@@ -1,5 +1,6 @@
 # This was written by Atakku over the span of three commits; latest version was Ronstation Commit 3e48a3f.
 # Some changes have been made to 'modernize' it in a sense, mostly just additions.
+# General CC character, rather than head of a CC department
 - type: entity
   id: ClothingBackpackSatchelHoldingCentcomFormalFilled
   parent: ClothingBackpackSatchelHolding
@@ -10,15 +11,18 @@
       - id: ToolDebug
       - id: WelderExperimental
       - id: RCDExperimental
+      - id: RPDExperimental
+      - id: RPLDExperimental
       - id: Multitool
       - id: BoxFolderCentComClipboardThreePapers
       - id: BoxSurvivalNonBreatherExtended
       - id: DoubleEmergencyNitrogenTankFilled
       - id: DoubleEmergencyOxygenTankFilled
-      - id: TelescopicBaton
-      - id: SpeedLoaderMagnumAP
-      - id: SpeedLoaderMagnumAP
+      - id: SpeedLoaderMagnumSP
+      - id: SpeedLoaderMagnumSP
+      - id: ClothingEyesHudCentComm
 # Written by Semper based off of Atakku's original code, further modified from contribution to Ronstation
+# This explicitly now targets a role as CC Security division
 - type: entity
   id: ClothingBackpackSatchelHoldingCentcomOfficerFilled
   parent: ClothingBackpackSatchelHolding
@@ -26,9 +30,13 @@
   components:
   - type: StorageFill
     contents:
+      - id: RubberStampCSD
+      - id: BoxStampsCCAdministrative
       - id: ToolDebug
       - id: WelderExperimental
       - id: RCDExperimental
+      - id: RPDExperimental
+      - id: RPLDExperimental
       - id: Multitool
       - id: BoxSurvivalNonBreatherExtended
       - id: DoubleEmergencyNitrogenTankFilled
@@ -36,10 +44,18 @@
       - id: AgentIDCard
       - id: BoxFolderCentComClipboardThreePapers
       - id: WeaponDisablerSMG
-      - id: TelescopicBaton
       - id: BoxHandcuff
       - id: Flash
       - id: FlashlightSeclite
-      - id: SpeedLoaderMagnum
-      - id: SpeedLoaderMagnum
-      - id: SpeedLoaderMagnum
+      - id: MagazineDMRIncendiary
+      - id: MagazineDMRIncendiary
+      - id: MagazineDMRIncendiary
+      - id: MagazineDMRIncendiary
+      - id: ClothingEyesHudCentComm
+      - id: BodyBagCCFolded
+      - id: BodyBagCCFolded
+      - id: BodyBagCCFolded
+      - id: WeaponLightMachineGunM492CC
+      - id: LightRifleHeavyMagazineIncendiary
+      - id: LightRifleHeavyMagazineIncendiary
+      - id: ClothingOuterHardsuitCCSDExperimental

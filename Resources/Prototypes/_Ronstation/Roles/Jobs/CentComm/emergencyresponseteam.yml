@@ -3,14 +3,14 @@
   id: ERTEngineerAdmemeGearEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTEngineer
-    back: ClothingModsuitERTEngineerFilled
+    back: ClothingBackpackRTEngineerFilled
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesMeson
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTEngineer
     id: ERTEngineerPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     belt: ClothingBeltChiefEngineerFilled
     pocket1: LanternFlash
     pocket2: FlashlightSeclite
@@ -30,8 +30,8 @@
     outerClothing: ClothingOuterHardsuitERTLeader
     neck: ClothingDogTags
     id: ERTLeaderPDA
-    ears: ClothingHeadsetAltCentCom
-    belt: ClothingBeltAssaultFilled
+    ears: ClothingHeadsetAltAdminCentCom
+    belt: ClothingBeltNTNCRigFilled
     pocket1: WeaponRevolverMatebaAP
     pocket2: FlashlightSeclite
     suitstorage: WeaponShotgunCombat
@@ -43,7 +43,7 @@
   id: ERTLeaderAdmemeRifleEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
-    back: ClothingModsuitERTLeaderXL8Filled
+    back: ClothingBackpackERTLeaderXL8Filled
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesCentComm
@@ -51,11 +51,11 @@
     outerClothing: ClothingOuterHardsuitERTLeader
     neck: ClothingDogTags
     id: ERTLeaderPDA
-    ears: ClothingHeadsetAltCentCom
-    belt: ClothingBeltAssaultFilled
+    ears: ClothingHeadsetAltAdminCentCom
+    belt: ClothingBeltNTNCRigFilled
     pocket1: WeaponRevolverMatebaAP
     pocket2: FlashlightSeclite
-    suitstorage: WeaponRifleAnnie # Its the Annie. If you've never had the pleasure of using it, its an amazing rifle
+    suitstorage: WeaponRifleLecterXL8
   inhand:
     - MindShieldImplanter
     - DeathRattleImplanterCentcomm
