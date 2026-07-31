@@ -101,4 +101,4 @@
           color: "#ffd700"
     - type: GuideHelp
       guides:
-        - secure-terminal
+        - secure-terminal-guide
