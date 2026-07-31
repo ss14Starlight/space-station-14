@@ -1,20 +1,6 @@
 Entries:
 - author: Littlemen/Romero
   changes:
-  - message: several bugfixes and balance changes.
-    type: Tweak
-  id: 406767
-  time: '2026-07-20T23:45:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5168
-- author: Littlemen/Romero
-  changes:
-  - message: baton does less stamina and more blunt.
-    type: Tweak
-  id: 406768
-  time: '2026-07-20T23:45:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5168
-- author: Littlemen/Romero
-  changes:
   - message: stinger does a lot less stamina and only 1 blunt.
     type: Tweak
   id: 406769
@@ -2799,4 +2785,18 @@ Entries:
   id: 407166
   time: '2026-07-31T14:29:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5290
+- author: wonderfulnewworld, luegamer, Nyxilath
+  changes:
+  - message: Added phenylpiperidine, a hard-to-make narcotic chemical that can be carefully crystalized for selling.
+    type: Add
+  id: 407167
+  time: '2026-07-31T14:29:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5300
+- author: wonderfulnewworld, luegamer, Nyxilath
+  changes:
+  - message: Walter can now be butchered for a singular phenylpiperidine crystal.
+    type: Add
+  id: 407168
+  time: '2026-07-31T14:29:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5300
 Order: -1
