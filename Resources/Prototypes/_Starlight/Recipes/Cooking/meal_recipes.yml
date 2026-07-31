@@ -879,3 +879,61 @@
   reagents:
     IceCream: 15
     Cream: 5
+
+#dumplings
+- type: microwaveMealRecipe
+  id: RecipePelmeni
+  name: pelmeni
+  result: FoodPelmeni
+  time: 15
+  group: Savory
+  solids:
+    FoodDoughSlice: 2
+    FoodMeatCutletCooked: 2
+    FoodOnionSlice: 2
+    FoodPlateSmall: 1
+  reagents:
+    TableSalt: 5
+    Blackpepper: 5
+
+- type: microwaveMealRecipe
+  id: RecipeEmpanadas
+  name: empanadas
+  result: FoodEmpanadas
+  time: 15
+  group: Savory
+  solids:
+    FoodDoughSlice: 2
+    FoodMeatCutletCooked: 2
+    FoodPotato: 1
+    FoodCheeseSlice: 1
+    FoodPlateSmall: 1
+
+- type: microwaveMealRecipe
+  id: RecipeCrabRangoons
+  name: crab rangoons
+  result: FoodCrabRangoons
+  time: 15
+  group: Savory
+  solids:
+    FoodDoughSlice: 2
+    FoodMeatCrab: 2
+    FoodCheeseSlice: 1
+    FoodPlateSmall: 1
+  reagents:
+    Cream: 10
+
+- type: microwaveMealRecipe
+  id: RecipeKarelianPastries
+  name: karelian pastries
+  result: FoodKarelianPastries
+  time: 15
+  group: Savory
+  solids:
+    FoodDoughSlice: 2
+    FoodPlateSmall: 1
+  reagents:
+    Rice: 10
+    Milk: 10
+    Water: 10
+    TableSalt: 5

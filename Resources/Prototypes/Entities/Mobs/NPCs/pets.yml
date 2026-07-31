@@ -595,6 +595,8 @@
     spawned:
     - id: FoodMeat
       amount: 3
+    - id: PhenylpiperidineSolidified # Moffstation - Waltuh
+      amount: 1 # Moffstation - Waltuh
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-dog

@@ -1961,6 +1961,11 @@
       - !type:AdjustReagent
         reagent: MindbreakerToxin
         amount: -3.0
+      # Moffstation Start - Phenylpiperidine (Fentanyl)
+      - !type:AdjustReagent
+        reagent: Phenylpiperidine
+        amount: -3.0
+      # Moffstation End
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
