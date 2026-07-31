@@ -2,3 +2,5 @@
   id: StarlightContainersStatic
   recipes:
   - Bucket
+  - Jug
+  - ChemistryEmptyBottle01

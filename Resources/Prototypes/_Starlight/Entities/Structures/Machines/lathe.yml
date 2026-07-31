@@ -205,7 +205,6 @@
     - ToolsStatic
     - PaperworkStatic
     - TowelsStatic
-    - BasicChemistryStatic
     - MaterialsStatic
     - LightsStatic
     - ServiceStatic
@@ -260,12 +259,9 @@
     - AtmosStatic
     - CablesStatic
     - PaperworkStatic
-    - TowelsStatic
     - MaterialsStatic
     - StarlightContainersStatic
     - PowerCellsStatic
-    - CassetteTape
-    - TapeRecorder
     - NullSpaceDrainer
     - ScienceBlueSpaceStatic
     - ChemistryStatic
@@ -401,7 +397,6 @@
     - TapeRecorder
     - NullSpaceDrainer
     - ScienceBlueSpaceStatic
-    - ChemistryStatic
     - SecurityEquipmentStatic
     - NullSpaceDrainer
     - SecurityPracticeStatic
@@ -533,7 +528,6 @@
     - TapeRecorder
     - NullSpaceDrainer
     - ScienceBlueSpaceStatic
-    - ChemistryStatic
     - SecurityEquipmentStatic
     - NullSpaceDrainer
     - SecurityPracticeStatic

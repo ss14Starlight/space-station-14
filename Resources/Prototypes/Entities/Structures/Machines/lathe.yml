@@ -142,7 +142,7 @@
     - RollerBedsStatic
     - LightsStatic
     - ServiceStatic
-    - StarlightContainers # Starlight
+    - StarlightContainersStatic # Starlight
     - PowerCellsStatic
     - ElectronicsStatic
     # Starlight Start
