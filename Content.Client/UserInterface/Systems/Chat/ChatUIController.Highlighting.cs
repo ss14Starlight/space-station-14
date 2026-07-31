@@ -21,6 +21,14 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
     private static readonly Regex StartDoubleQuote = new("\"$");
     private static readonly Regex EndDoubleQuote = new("^\"|(?<=^@)\"");
     private static readonly Regex StartAtSign = new("^@");
+    // Starlight Start
+    private const int MinNamePartHighlightLength = 2;
+    private static readonly Regex ParenthesesRegex = new(@"\s*\(.*?\)\s*");
+    private static readonly HashSet<string> IgnoredNameParts = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "the", "of", "and", "a", "an", "in", "on", "at", "to", "for", "with"
+    };
+    // Starlight End
 
     /// <summary>
     ///     The list of words to be highlighted in the chatbox.
@@ -196,24 +204,55 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
 
         var (_, job, _, _, entityName) = data;
 
-        // Mark this entity's name as our character name for the "UpdateHighlights" function.
-        var newHighlights = "@" + entityName;
+        // Starlight Start
+        // Clean the entity name by removing any parenthesized details (like " (Si-8545)" or " (Ghost)").
+        var cleanName = ParenthesesRegex.Replace(entityName, "").Trim();
 
-        // Subdivide the character's name based on spaces or hyphens so that every word gets highlighted.
-        if (newHighlights.Count(c => (c == ' ' || c == '-')) == 1)
-            newHighlights = newHighlights.Replace("-", "\n@").Replace(" ", "\n@");
+        // Collect name highlights in a list.
+        var nameParts = new List<string>();
 
-        // If the character has a name with more than one hyphen assume it is a lizard name and extract the first and
-        // last name eg. "Eats-The-Food" -> "@Eats" "@Food"
-        if (newHighlights.Count(c => c == '-') > 1)
-            newHighlights = newHighlights.Split('-')[0] + "\n@" + newHighlights.Split('-')[^1];
+        if (cleanName.Length >= MinNamePartHighlightLength)
+        {
+            nameParts.Add(cleanName);
 
-        //Starlight begin
-        // If the character has a name with a single comma, assume it is an Avali name and extract the name and
-        // pack name eg. "Bird, Testdev Pack" -> "@Bird" "@Testdev Pack"
-        if (newHighlights.Count(c => c == ',') == 1)
-            newHighlights = newHighlights.Split(',')[0] + "\n@" + newHighlights.Split(',')[1].TrimStart(' ');
-        //Starlight end
+            void AddPart(string part)
+            {
+                var trimmedPart = part.Trim().Trim('"');
+                if (trimmedPart.Length >= MinNamePartHighlightLength && !trimmedPart.All(char.IsDigit) && !IgnoredNameParts.Contains(trimmedPart))
+                    nameParts.Add(trimmedPart);
+            }
+
+            // If the character has a name with a single comma, assume it is an Avali name and extract the name and pack name eg. "Bird, Testdev Pack" -> "Bird" "Testdev Pack"
+            if (cleanName.Count(c => c == ',') == 1)
+            {
+                var split = cleanName.Split(',');
+                AddPart(split[0]);
+                AddPart(split[1]);
+            }
+            // Subdivide the name based on spaces (but only if it does not contain a comma)
+            else if (cleanName.Contains(' ') && !cleanName.Contains(','))
+            {
+                foreach (var part in cleanName.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    AddPart(part);
+                }
+            }
+            // If the character has one or more hyphens, split them and extract the first and last components (e.g., "Eats-Food" -> "Eats", "Food"; "Eats-The-Food" -> "Eats", "Food")
+            else if (cleanName.Contains('-'))
+            {
+                var split = cleanName.Split('-', StringSplitOptions.RemoveEmptyEntries);
+                if (split.Length > 0)
+                {
+                    AddPart(split[0]);
+                    if (split.Length > 1)
+                        AddPart(split[^1]);
+                }
+            }
+        }
+
+        // Wrap each name part in @ and double quotes to ensure whole-word matching and prevent single characters from matching substrings (e.g. "@B" -> "@"B"").
+        var newHighlights = string.Join("\n", nameParts.Select(part => $"@\"{part}\""));
+        // Starlight End
 
         // Convert the job title to kebab-case and use it as a key for the loc file.
         var jobKey = job.Replace(' ', '-').ToLower();
