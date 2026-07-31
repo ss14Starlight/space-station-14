@@ -1,60 +1,4 @@
 Entries:
-- author: Littlemen/Romero
-  changes:
-  - message: tacticool legpouch for your peacekeeper ammo.
-    type: Add
-  id: 406766
-  time: '2026-07-20T23:45:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5168
-- author: Littlemen/Romero
-  changes:
-  - message: several bugfixes and balance changes.
-    type: Tweak
-  id: 406767
-  time: '2026-07-20T23:45:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5168
-- author: Littlemen/Romero
-  changes:
-  - message: baton does less stamina and more blunt.
-    type: Tweak
-  id: 406768
-  time: '2026-07-20T23:45:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5168
-- author: Littlemen/Romero
-  changes:
-  - message: stinger does a lot less stamina and only 1 blunt.
-    type: Tweak
-  id: 406769
-  time: '2026-07-20T23:45:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5168
-- author: Mack
-  changes:
-  - message: Enable/Disable verb to handheld crew monitors for alerts.
-    type: Add
-  id: 406770
-  time: '2026-07-21T00:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5170
-- author: Mack
-  changes:
-  - message: Confusing Activate/Deactivate verb from handheld crew monitors.
-    type: Remove
-  id: 406771
-  time: '2026-07-21T00:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5170
-- author: redmushie, JohnnyMalawny
-  changes:
-  - message: Bulk gas ordering directly from the ATS, no canisters needed!
-    type: Add
-  id: 406772
-  time: '2026-07-21T11:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5127
-- author: redmushie, JohnnyMalawny
-  changes:
-  - message: Bulk cooled plasma ordering for maximum storage efficiency.
-    type: Add
-  id: 406773
-  time: '2026-07-21T11:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5127
 - author: redmushie, JohnnyMalawny
   changes:
   - message: (ATS) Distro and waste redone to match docking port standard layers.
@@ -2799,4 +2743,60 @@ Entries:
   id: 407165
   time: '2026-07-31T13:34:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5242
+- author: wonderfulnewworld, DuckManZach
+  changes:
+  - message: Overhauled the antag menu, sorting by faction, adding a search bar, and overall modernizing the design.
+    type: Tweak
+  id: 407166
+  time: '2026-07-31T14:29:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5290
+- author: wonderfulnewworld, luegamer, Nyxilath
+  changes:
+  - message: Added phenylpiperidine, a hard-to-make narcotic chemical that can be carefully crystalized for selling.
+    type: Add
+  id: 407167
+  time: '2026-07-31T14:29:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5300
+- author: wonderfulnewworld, luegamer, Nyxilath
+  changes:
+  - message: Walter can now be butchered for a singular phenylpiperidine crystal.
+    type: Add
+  id: 407168
+  time: '2026-07-31T14:29:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5300
+- author: Johnny
+  changes:
+  - message: Added a way for SELF to choose and change their loadouts based off what they wanted to do.
+    type: Add
+  id: 407169
+  time: '2026-07-31T15:09:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5202
+- author: Johnny
+  changes:
+  - message: Removed the large 5x5 storage implanter SELF got round-start.
+    type: Remove
+  id: 407170
+  time: '2026-07-31T15:09:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5202
+- author: Johnny
+  changes:
+  - message: Changed the name of the SELF implanter to a different name (cause it wasnt used by self anymore).
+    type: Tweak
+  id: 407171
+  time: '2026-07-31T15:09:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5202
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added Lancer Solo Strike as an arcade machine.
+    type: Add
+  id: 407172
+  time: '2026-07-31T15:09:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5195
+- author: Teddiousbear, Limblesstar
+  changes:
+  - message: Four New Dumplings.
+    type: Add
+  id: 407173
+  time: '2026-07-31T15:33:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5424
 Order: -1
