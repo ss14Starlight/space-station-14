@@ -75,8 +75,8 @@
       - id: FreezeRune2Wiz
         amount: 1
   - type: SpeakOnAction
-    sentence: action-speech-spell-explosionrune  #to do
-    tts: action-speech-spell-explosionrune-tts
+    sentence: action-speech-spell-freezerune
+    tts: action-speech-spell-freezerune-tts
     modifier: Spell
   - type: EorgPreventAction
 
@@ -93,13 +93,12 @@
       knockdownAmount: 10
       fixture: rune
     - type: Sprite
-      sprite: Structures/Magic/Cult/rune.rsi
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
       layers:
-      - state: cult4
-      - color: '#a0d8ef'
+      - state: icerune
 
 - type: entity
-  parent: CollideRune
+  parent: ExplosionRune
   id: FreezeRune2Wiz
   name: freeze rune
   components:
@@ -109,7 +108,7 @@
       intensitySlope: 0
       maxIntensity: 7
     - type: Sprite
-      sprite: Structures/Magic/Cult/rune.rsi
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
       layers:
-      - state: cult4
+      - state: icerune
 

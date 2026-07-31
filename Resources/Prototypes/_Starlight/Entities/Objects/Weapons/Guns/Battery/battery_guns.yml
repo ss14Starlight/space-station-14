@@ -1166,3 +1166,11 @@
   - type: BatteryAmmoProvider
     proto: FreezeRayWiz
     fireCost: 1
+  - type: RestrictByUserTag
+    contains:
+    - Wizard
+    messages:
+    - wizard-item-restricted-1
+    - wizard-item-restricted-2
+    - wizard-item-restricted-3
+    - wizard-item-restricted-4
