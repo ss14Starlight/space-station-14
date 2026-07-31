@@ -68,6 +68,76 @@
 
 - type: entity
   parent: BaseGameRule
+  id: RailroadingAntagLow
+  components:
+    - type: StationEvent
+      earliestStart: 1
+      weight: 3
+      minimumPlayers: 10
+      duration: 1
+      MaxOccurrences: 1
+    - type: RailroadRule
+      preSpawnDelay: 10
+      delay: 10
+      cards:
+        # antagonists
+        - RRCardCriminal
+        - RRCardWar
+
+- type: entity
+  parent: BaseGameRule
+  id: RailroadingAntagMedium
+  components:
+    - type: StationEvent
+      earliestStart: 1
+      weight: 10
+      minimumPlayers: 40
+      duration: 1
+      MaxOccurrences: 2
+    - type: RailroadRule
+      preSpawnDelay: 10
+      delay: 10
+      cards:
+        # antagonists
+        - RRCardCriminal
+        - RRCardWar
+
+- type: entity
+  parent: BaseGameRule
+  id: RailroadingAntagHigh
+  components:
+    - type: StationEvent
+      earliestStart: 1
+      weight: 20
+      minimumPlayers: 60
+      duration: 1
+    - type: RailroadRule
+      preSpawnDelay: 10
+      delay: 10
+      cards:
+        # antagonists
+        - RRCardCriminal
+        - RRCardWar
+
+- type: entity
+  parent: BaseGameRule
+  id: RailroadingAntagExtreme
+  components:
+    - type: StationEvent
+      earliestStart: 1
+      weight: 40
+      minimumPlayers: 80
+      duration: 1
+    - type: RailroadRule
+      preSpawnDelay: 10
+      delay: 10
+      cards:
+        # antagonists
+        - RRCardCriminal
+        - RRCardWar
+
+- type: entity
+  parent: BaseGameRule
   id: RailroadingMinor
   components:
   - type: StationEvent
@@ -81,8 +151,8 @@
     cards:
     # antagonists
 
-    - RRCardCriminal
-    - RRCardWar
+    #- RRCardCriminal Move to new gamerule
+    #- RRCardWar
 
     # open mail
 

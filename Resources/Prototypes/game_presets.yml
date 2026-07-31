@@ -100,6 +100,7 @@
     - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
+    - RailroadingAntagExtreme # Starlight
     - CosmicCult # Starlight
     #- TerrorSpidersSpawn # Starlight
     - Devil # Starlight
@@ -150,6 +151,7 @@
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation
   - RailroadingMinor # Starlight, railroading
+  - RailroadingAntagMedium #Starlight, antag railroad cards
 
 - type: gamePreset
   id: Secret
@@ -193,6 +195,7 @@
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation
   - RailroadingMinor # 🌟Starlight🌟
+  - RailroadingAntagMedium # 🌟Starlight🌟
 
 
 - type: gamePreset

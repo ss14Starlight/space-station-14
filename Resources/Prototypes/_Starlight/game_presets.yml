@@ -192,6 +192,7 @@
     - LoneOpsSpawn
     - RailroadingTerminator
     - RailroadingMinor
+    - RailroadingAntagHigh
     - Devil
     - CosmicCult
 
@@ -214,6 +215,7 @@
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - RailroadingMinor # 🌟Starlight🌟
+  - RailroadingAntagMedium
 
 - type: gamePreset
   id: DynamicLP
@@ -231,3 +233,4 @@
   - SpaceTrafficControlEventScheduler # No event/meteor schedulers, since we handle that in dynamic too.
   - BasicRoundstartVariation
   - RailroadingMinor
+  - RailroadingAntagLow
