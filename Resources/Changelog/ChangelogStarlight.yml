@@ -1,13 +1,6 @@
 Entries:
 - author: Spaghetti-Bit
   changes:
-  - message: Disabler Bolts now go through windows.
-    type: Tweak
-  id: 406756
-  time: '2026-07-20T20:54:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5200
-- author: Spaghetti-Bit
-  changes:
   - message: Taser Bolts no longer go through windows.
     type: Tweak
   id: 406757
@@ -2799,4 +2792,11 @@ Entries:
   id: 407155
   time: '2026-07-31T10:03:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5278
+- author: RedSpeeds
+  changes:
+  - message: Added automatic recall/no recall vote upon round end.
+    type: Add
+  id: 407156
+  time: '2026-07-31T11:23:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5216
 Order: -1
