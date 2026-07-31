@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -198,6 +199,7 @@ public sealed partial class TemperatureSystem
 
     private void EnqueueDamage(Entity<TemperatureDamageComponent> ent, ref OnTemperatureChangeEvent args)
     {
+        if (HasComp<TemperatureImmunityComponent>(ent)) return; // Starlight
         if (ShouldUpdateDamage.Add(ent) && !ent.Comp.TakingDamage)
             ent.Comp.LastUpdate = _gameTiming.CurTime;
     }
