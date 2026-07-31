@@ -124,8 +124,6 @@
           prob: 0.35
         - id: RubberStampBrigmedic
           amount: 2
-        - id: PlushieMorgana
-        - id: PlushieKiller
         - id: JawsOfLifeMed #Starlight
         - id: JawsOfLifeMed #Starlight
 
