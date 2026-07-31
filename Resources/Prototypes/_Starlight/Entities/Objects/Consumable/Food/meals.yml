@@ -357,7 +357,7 @@
       trash:
       - FoodPlateSmall
     - type: Sprite
-      sprite: _Starlight/Objects/Consumable/Food/karelian_pastries.rsi
+      sprite: _Starlight/Objects/Consumable/Food/karelian_Pastries.rsi
       layers:
         - state: karelian_pastries
     - type: SolutionContainerManager
