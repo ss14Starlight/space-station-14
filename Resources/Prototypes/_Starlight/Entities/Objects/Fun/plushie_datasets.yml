@@ -71,12 +71,6 @@
     count: 6
 
 - type: localizedDataset
-  id: PlushiesMalachi
-  values:
-    prefix: plushie-malachi-
-    count: 10
-
-- type: localizedDataset
   id: PlushiesBrighteyes
   values:
     prefix: plushie-brighteyes-

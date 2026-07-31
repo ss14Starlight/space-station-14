@@ -1273,29 +1273,6 @@
         voice: slr2
 
 - type: entity
-  parent: BaseResomiPlushie # Temporary until I make a Avali plushie base...... fml
-  id: PlushieMalachi
-  name: malachi plushie
-  description: Small but can REALLY fuck up your mischiefs and now she watches you as a plushie, a reminder that she is still there.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/malachi_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/malachi_plushie.rsi
-    state: icon
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesMalachi
-      - type: TextToSpeech
-        voice: slr3
-
-- type: entity
   parent: BaseResomiPlushie
   id: PlushieRemiie
   name: remiie plushie
