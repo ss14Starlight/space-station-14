@@ -54,7 +54,7 @@ namespace Content.IntegrationTests.Tests.DeviceNetwork
             var pair = Pair;
             var server = pair.Server;
 
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var deviceNetSystem = entityManager.EntitySysManager.GetEntitySystem<DeviceNetworkSystem>();
             var deviceNetTestSystem = entityManager.EntitySysManager.GetEntitySystem<DeviceNetworkTestSystem>();
@@ -115,7 +115,7 @@ namespace Content.IntegrationTests.Tests.DeviceNetwork
             var testMap = await pair.CreateTestMap();
             var coordinates = testMap.GridCoords;
 
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var deviceNetSystem = entityManager.EntitySysManager.GetEntitySystem<DeviceNetworkSystem>();
             var deviceNetTestSystem = entityManager.EntitySysManager.GetEntitySystem<DeviceNetworkTestSystem>();
@@ -198,7 +198,7 @@ namespace Content.IntegrationTests.Tests.DeviceNetwork
             var testMap = await pair.CreateTestMap();
             var coordinates = testMap.GridCoords;
 
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var deviceNetSystem = entityManager.EntitySysManager.GetEntitySystem<DeviceNetworkSystem>();
             var deviceNetTestSystem = entityManager.EntitySysManager.GetEntitySystem<DeviceNetworkTestSystem>();

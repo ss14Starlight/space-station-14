@@ -35,7 +35,7 @@ public sealed class PowerStateTest : GameTest
         var pair = Pair;
         var server = pair.Server;
 
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapManager = server.ResolveDependency<SharedMapSystem>();
         var entManager = server.ResolveDependency<IEntityManager>();
         var mapSys = entManager.System<SharedMapSystem>();
 
@@ -77,7 +77,7 @@ public sealed class PowerStateTest : GameTest
         var pair = Pair;
         var server = pair.Server;
 
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapManager = server.ResolveDependency<SharedMapSystem>();
         var entManager = server.ResolveDependency<IEntityManager>();
         var mapSys = entManager.System<SharedMapSystem>();
 
@@ -128,7 +128,7 @@ public sealed class PowerStateTest : GameTest
         var pair = Pair;
         var server = pair.Server;
 
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapManager = server.ResolveDependency<SharedMapSystem>();
         var entManager = server.ResolveDependency<IEntityManager>();
         var mapSys = entManager.System<SharedMapSystem>();
 

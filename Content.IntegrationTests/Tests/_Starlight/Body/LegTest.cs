@@ -37,7 +37,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
             AppearanceComponent appearance = null;
 
             var entityManager = server.ResolveDependency<IEntityManager>();
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<SharedMapSystem>();
             var appearanceSystem = entityManager.System<SharedAppearanceSystem>();
             var xformSystem = entityManager.System<SharedTransformSystem>();
 

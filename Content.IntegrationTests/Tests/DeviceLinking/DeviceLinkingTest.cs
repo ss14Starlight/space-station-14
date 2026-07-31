@@ -36,7 +36,7 @@ public sealed class DeviceLinkingTest : GameTest
         var pair = Pair;
         var server = pair.Server;
         var compFact = server.ResolveDependency<IComponentFactory>();
-        var mapMan = server.ResolveDependency<IMapManager>();
+        var mapMan = server.ResolveDependency<SharedMapSystem>();
         var mapSys = server.System<SharedMapSystem>();
         var deviceLinkSys = server.System<DeviceLinkSystem>();
 

@@ -148,7 +148,7 @@ public sealed class CargoTest : GameTest
 
         var entManager = server.ResolveDependency<IEntityManager>();
         var mapSystem = server.System<SharedMapSystem>();
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapManager = server.ResolveDependency<SharedMapSystem>();
         var protoManager = server.ResolveDependency<IPrototypeManager>();
         var componentFactory = server.ResolveDependency<IComponentFactory>();
         var whitelist = entManager.System<EntityWhitelistSystem>();

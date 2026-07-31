@@ -33,7 +33,7 @@ public sealed class DockTest : GameTest
         var map = await pair.CreateTestMap();
 
         var entManager = server.ResolveDependency<IEntityManager>();
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapManager = server.ResolveDependency<SharedMapSystem>();
         var dockingSystem = entManager.System<DockingSystem>();
         var mapSystem = entManager.System<SharedMapSystem>();
         var xformSystem = entManager.System<SharedTransformSystem>();

@@ -24,7 +24,7 @@ namespace Content.IntegrationTests.Tests
 
             var pair = Pair;
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<SharedMapSystem>();
             var sEntities = server.ResolveDependency<IEntityManager>();
             var mapLoader = sEntities.System<MapLoaderSystem>();
             var mapSystem = sEntities.System<SharedMapSystem>();
