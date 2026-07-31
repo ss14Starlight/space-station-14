@@ -32,15 +32,17 @@ All Keycard Authentication Devices on the station are identical; they are not ti
 
 Each [color=#ffd700]Main Communications Console[/color] and each [color=#ffd700]Keycard Authentication Device[/color] can only contribute [bold]one authorization per request[/bold]. Once a device has been used to authorise a proposal, it is locked out for that request; a second person cannot use the same device to co-authorize and will need to find a different [color=#ffd700]Keycard Authentication Device[/color] or [color=#ffd700]Main Communications Console[/color].
 
+Additionally, each individual command member can only authorize [bold]once per request[/bold].
+
 Once all required co-authorizations are collected, the terminal begins its activation countdown. The request will then activate automatically when the timer runs out, unless it requires approval from Central Command.
 
-If the timer for collecting co-authorizations runs out before everyone has authorized, the proposal is cancelled and any held fee is refunded. As a general rule, you have [bold]30 seconds[/bold] to get everyone to co-authorize.
+If the timer for collecting co-authorizations runs out before everyone has authorized, the proposal is cancelled and any held fee is refunded. As a general rule, you have [bold]30 seconds[/bold] to get everyone to co-authorize, though certain requests (such as the Nuclear Response Team) have no co-authorization time limit.
 
 ## A Few Things Worth Knowing
 
 - [bold]Canceling a request[/bold] can be done by any command member through the console; not just the person who started it.
 - Some requests require [bold]Central Command[/bold] approval before they activate, regardless of how many command staff have authorized. If no Central Command members are available, certain requests will bypass this and proceed automatically.
-- Shuttles can be [bold]recalled[/bold] if they block evac or are no longer needed, once a short cooldown has elapsed.
+- Armories and pods can be [bold]recalled[/bold] if they block evac or are no longer needed, once a short cooldown has elapsed.
 - If both consoles are destroyed or otherwise unavailable, the Captain's locker contains a [bold]Communications Computer Board[/bold] that can be used to build a replacement.
 - If the terminal cannot be used at all, a [bold]fax[/bold] to Central Command is the next best option. As a last resort, the [bold]red phone[/bold] in the Captain's office provides a direct line, though this should only be used if nothing else is available.
 

@@ -27,7 +27,6 @@
     - "Captain / HoS (1)"
     - "Captain / HoS (2)"
   cooldownSecs: 3600
-  authTimer: 30
 
 # ── ERT Security ─────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -272,7 +271,6 @@
     - "Captain / HoS / NTR (1)"
     - "Captain / HoS / NTR (2)"
   cooldownSecs: 0
-  authTimer: 30
 
 # ── End Violet ─────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -320,7 +318,6 @@
     - "Captain / HoS / RD (1)"
     - "Captain / HoS / RD (2)"
   cooldownSecs: 0
-  authTimer: 30
 #region Armory
 
 # ── Gamma Armory ──────────────────────────────────────────────────────────────
