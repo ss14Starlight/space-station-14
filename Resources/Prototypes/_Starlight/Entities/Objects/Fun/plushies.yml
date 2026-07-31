@@ -1250,29 +1250,6 @@
         voice: mozillaAu16
 
 - type: entity
-  parent: BaseResomiPlushie
-  id: PlushieRemiie
-  name: remiie plushie
-  description: Beta sector's favourite veteran head of personnel! Now turned into a marketable plushie and is extremely huggable!
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/remiie_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/remiie_plushie.rsi
-    state: icon
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesRemiie
-      - type: TextToSpeech
-        voice: slr4
-
-- type: entity
   parent: BaseFelionoidPlushie
   id: PlushieBrighteyes
   name: brighteyes plushie
