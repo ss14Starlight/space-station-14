@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Client.Lobby;
 using Content.Server.Antag;
 using Content.Server.GameTicking;
@@ -8,15 +9,22 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Content.Shared.Antag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
-namespace Content.IntegrationTests.Tests.Round;
+namespace Content.IntegrationTests.Tests._Starlight.Round;
 
 [TestFixture]
-public sealed class CharacterSelectionTest
+public sealed class CharacterSelectionTest : GameTest
 {
+    public override PoolSettings PoolSettings => new()
+        {
+            DummyTicker = false,
+            Connected = true,
+            InLobby = true,
+        };
     // this map has slots for captain, mime, unlimited passengers, and no clowns
     private const string Map = "CharacterSelectionTestMap";
 
@@ -26,32 +34,29 @@ public sealed class CharacterSelectionTest
     [TestPrototypes]
     private static readonly string Prototypes = $@"
 - type: entity
-  parent: BaseTraitorRule
+  parent: [ BaseTraitorRule, BaseRoundstartAntagRule ]
   id: {TraitorsMode}
   components:
   - type: GameRule
-    minPlayers: 0
+    minPlayers: 1
     delay:
       min: 5
       max: 10
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ Traitor ]
-      max: 99
+    antags:
+    - !type:LinearAntagCount
+      proto: Traitor
       playerRatio: 1
-      blacklist:
-        components:
-        - AntagImmune
-      lateJoinAdditional: true
-      mindRoles:
-      - MindRoleTraitor
+      range:
+        min: 1
+        max: 99
 
 - type: gamePreset
   id: {TraitorsMode}
   name: traitor-title
   description: traitor-description
   showInVote: false
+  minPlayers: 1
   rules:
   - {TraitorsMode}
 
@@ -78,6 +83,7 @@ public sealed class CharacterSelectionTest
     private static readonly ProtoId<JobPrototype> Mime = "Mime";
     private static readonly ProtoId<JobPrototype> Clown = "Clown";
     private static readonly ProtoId<AntagPrototype> Traitor = "Traitor";
+    private static readonly ProtoId<AntagSpecifierPrototype> TraitorSpecifier = "Traitor";
 
     // helper structs for test case definition readability
     public sealed class TestCharacter
@@ -327,12 +333,7 @@ public sealed class CharacterSelectionTest
     [TestCaseSource(nameof(SelectionTestCases))]
     public async Task SelectionTest(SelectionTestData data)
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true,
-        });
+        var pair = Pair;
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, Map);
 
         var ticker = pair.Server.System<GameTicker>();
@@ -385,26 +386,32 @@ public sealed class CharacterSelectionTest
         {
             Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.JoinedGame));
             pair.AssertJob(data.ExpectedJob.ToString(), pair.Player!);
+
             var antagSystem = pair.Server.System<AntagSelectionSystem>();
-            var antags = antagSystem.GetPreSelectedAntagDefinitions(pair.Player);
+            var antags = antagSystem.GetPreSelectedAntagSpecifiers(pair.Player).ToList();
+
             if (data.ExpectTraitor)
             {
-                Assert.That(antags.Count, Is.EqualTo(1));
-                Assert.That(antags.First().MindRoles.Count, Is.EqualTo(1));
-                Assert.That(antags.First().MindRoles.First(), Is.EqualTo("MindRoleTraitor"));
+                Assert.That(antags, Has.Count.EqualTo(1));
+                Assert.That(antags[0], Is.EqualTo(TraitorSpecifier));
             }
             else
             {
-                Assert.That(antags.Count, Is.EqualTo(0));
+                Assert.That(antags, Has.Count.Zero);
             }
+
             var humanoidAppearanceSystem = pair.Server.System<HumanoidAppearanceSystem>();
             var spawnedProfile = humanoidAppearanceSystem.GetBaseProfile(pair.Player!.AttachedEntity.Value);
             spawnedProfile.AssertEquals(expectedCharacterProfile); //Starlight FUCK IT WE ASSERT.
             //Assert.That(spawnedProfile.MemberwiseEquals(expectedCharacterProfile), Is.True);
         }
 
-        await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.CleanReturnAsync();
+        await pair.Server.WaitPost(() =>
+        {
+            // Do not leak OopsAllTraitors into the next pooled test.
+            ticker.SetGamePreset("Sandbox");
+            ticker.RestartRound();
+        });
     }
 
     // Run multiple round starts with the same set of characters, all of which are valid to select,
@@ -417,12 +424,7 @@ public sealed class CharacterSelectionTest
     [Test]
     public async Task VarietyTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            InLobby = true,
-        });
+        var pair = Pair;
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, Map);
 
         var ticker = pair.Server.System<GameTicker>();
@@ -476,7 +478,11 @@ public sealed class CharacterSelectionTest
         }
         Assert.That(selectedCharacterSlots, Has.Count.EqualTo(cPref.Preferences.Characters.Count));
 
-        await pair.CleanReturnAsync();
+        await pair.Server.WaitPost(() =>
+        {
+            // Do not leak OopsAllTraitors into the next pooled test.
+            ticker.SetGamePreset("Sandbox");
+        });
     }
 
 }
