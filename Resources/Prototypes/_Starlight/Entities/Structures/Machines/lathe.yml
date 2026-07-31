@@ -99,7 +99,7 @@
     - LightsStatic
     - PowerCellsStatic
     - ElectronicsStatic
-    - ServiceStatic
+    - StarlightContainers
     dynamicPacks:
     - StarlightAutolatheLootable
     - StarlightProtolatheLootable
@@ -157,7 +157,7 @@
     - MaterialsStatic
     - BasicChemistryStatic
     - LightsStatic
-    - ServiceStatic
+    - StarlightContainers
     - PowerCellsStatic
     - ElectronicsStatic
     dynamicPacks:
@@ -216,6 +216,7 @@
     - MaterialsStatic
     - LightsStatic
     - ServiceStatic
+    - StarlightContainers
     - PowerCellsStatic
     - ElectronicsStatic
     - CassetteTape
@@ -273,7 +274,7 @@
     - MaterialsStatic
     - RollerBedsStatic
     - LightsStatic
-    - ServiceStatic
+    - StarlightContainers
     - PowerCellsStatic
     - ElectronicsStatic
     - CassetteTape
@@ -351,7 +352,7 @@
     - TowelsStatic
     - BasicChemistryStatic
     - LightsStatic
-    - ServiceStatic
+    - StarlightContainers
     - CassetteTape
     - TapeRecorder
     - TopicalsStatic
@@ -409,6 +410,7 @@
     - CargoStatic
     - LightsStatic
     - ServiceStatic
+    - StarlightContainers
     - PowerCellsStatic
     - ElectronicsStatic
     - CassetteTape
@@ -540,6 +542,7 @@
     - CargoStatic
     - LightsStatic
     - ServiceStatic
+    - StarlightContainers
     - PowerCellsStatic
     - ElectronicsStatic
     - CassetteTape
