@@ -435,7 +435,7 @@ namespace Content.Server.RoundEnd
             {
                 if (args.Winner == null)
                 {
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-tie"));
+                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
                     return;
                 }
 
