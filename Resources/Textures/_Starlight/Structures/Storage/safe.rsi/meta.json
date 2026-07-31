@@ -1,20 +1,23 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation: https://github.com/tgstation/tgstation/commit/53e475cfcda48d2b3f5fc3f75e06b5d61b4d7a15",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Taken from tgstation: https://github.com/tgstation/tgstation/commit/53e475cfcda48d2b3f5fc3f75e06b5d61b4d7a15"
     },
     {
-      "name": "closed"
+      "name": "closed",
+      "copyright": "Taken from tgstation: https://github.com/tgstation/tgstation/commit/53e475cfcda48d2b3f5fc3f75e06b5d61b4d7a15"
     },
     {
-      "name": "open"
+      "name": "open",
+      "copyright": "Taken from tgstation: https://github.com/tgstation/tgstation/commit/53e475cfcda48d2b3f5fc3f75e06b5d61b4d7a15"
     },
     {
       "name": "spark",
@@ -25,7 +28,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Taken from tgstation: https://github.com/tgstation/tgstation/commit/53e475cfcda48d2b3f5fc3f75e06b5d61b4d7a15"
     }
   ]
 }
