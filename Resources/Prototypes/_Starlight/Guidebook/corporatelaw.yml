@@ -4,16 +4,14 @@
   priority: 4
   text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CorporateLaw.xml"
   children:
+  - CrimeList
   - TreatmentOfPrisoners
   - SearchAndSeizure
   - Permits
-  - Implantation
-  - Sentencing
-  - Parole
   - LegalRepresentation
   - PenalCode
   - CivilCode
-  - CrimeList
+  - Jurisdiction
   - SupernaturalEntities
 
 - type: guideEntry
@@ -50,18 +48,41 @@
   id: LegalRepresentation
   name: guide-entry-legal-representation
   text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/LegalRepresentation.xml"
+  children:
+  - PleaBargains
 
 - type: guideEntry
   id: PenalCode
   name: guide-entry-penal-code
   text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/PenalCode.xml"
+  children:
+  - Sentencing
+  - Implantation
+  - Parole
 
 - type: guideEntry
   id: CivilCode
   name: guide-entry-civil-code
   text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CivilCode.xml"
+  children:
+  - PettyDisputes
 
 - type: guideEntry
   id: CrimeList
   name: guide-entry-crime-list
   text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CrimeList.xml"
+
+- type: guideEntry
+  id: Jurisdiction
+  name: guide-entry-jurisdiction
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/Jurisdiction.xml"
+
+- type: guideEntry
+  id: PettyDisputes
+  name: guide-entry-petty-disputes
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/PettyDisputes.xml"
+
+- type: guideEntry
+  id: PleaBargains
+  name: guide-entry-plea-bargains
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/PleaBargains.xml"

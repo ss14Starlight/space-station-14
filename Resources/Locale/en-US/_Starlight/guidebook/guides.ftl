@@ -190,3 +190,6 @@ guide-entry-legal-representation = Legal Representation
 guide-entry-penal-code = Penal Code
 guide-entry-civil-code = Civil Code
 guide-entry-crime-list = Crime List
+guide-entry-jurisdiction = Jurisdiction
+guide-entry-petty-disputes = Petty Disputes
+guide-entry-plea-bargains = Plea Bargains
