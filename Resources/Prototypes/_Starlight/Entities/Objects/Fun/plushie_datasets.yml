@@ -63,3 +63,9 @@
   values:
     prefix: plushie-nebula-
     count: 8
+
+- type: localizedDataset
+  id: PlushiesEinalia
+  values:
+    prefix: plushie-einalia-
+    count: 6

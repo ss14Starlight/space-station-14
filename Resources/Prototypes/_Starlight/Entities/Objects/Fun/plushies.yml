@@ -1380,6 +1380,29 @@
       soundHit:
         collection: FootstepClown
 
+- type: entity
+  parent: BaseResomiPlushie
+  id: PlushieEinalia
+  name: einalia plushie
+  description: A marketable plushie of one of the shortest officers in NT's Security division. The two amber eyes on its face feel as if they're boring into your soul.
+  components:
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/einalia_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/einalia_plushie.rsi
+      state: icon
+    - type: ItemToggle
+      onUse: false
+      verbToggleOn: plushie-voicebox-activate
+      verbToggleOff: plushie-voicebox-deactivate
+    - type: ComponentToggler
+      components:
+        - type: DatasetVocalizer
+          dataset: PlushiesEinalia
+        - type: TextToSpeech
+          voice: ICASSP30
+
 # Large blue shark plushie
 - type: entity
   parent: BasePlushie
