@@ -98,7 +98,6 @@
     - BasicChemistryStatic
     - LightsStatic
     - PowerCellsStatic
-    - ElectronicsStatic
     - StarlightContainers
     dynamicPacks:
     - StarlightAutolatheLootable
@@ -218,7 +217,6 @@
     - ServiceStatic
     - StarlightContainers
     - PowerCellsStatic
-    - ElectronicsStatic
     - CassetteTape
     - TapeRecorder
     dynamicPacks:
