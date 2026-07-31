@@ -5,7 +5,3 @@ construction-system-construct-no-materials = You don't have the materials to bui
 construction-system-already-building = You are already building that!
 construction-system-inside-container = You can't build while you're there!
 construction-system-cannot-start = You cannot craft this!
-
-# Starlight edit start
-construction-system-construct-conditions-not-met = Construction conditions are not met.
-# Starlight edit end
