@@ -1492,7 +1492,7 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Salvage
-- proto: ComputerShuttle
+- proto: CompuerShuttleSalvage
   entities:
   - uid: 200
     components:

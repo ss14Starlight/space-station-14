@@ -54,3 +54,12 @@
 - type: wireLayout
   parent: Airlock
   id: AirlockBlackstar
+
+- type: wireLayout
+  id: ComputerAiLockable
+  dummyWires: 2
+  wires:
+    - !type:AccessWireAction
+      electrify: true
+    - !type:PowerWireAction
+    - !type:AiInteractWireAction
