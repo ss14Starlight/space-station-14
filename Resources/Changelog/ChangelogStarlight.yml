@@ -1,34 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Hotel) Two Roboticist lockers.
-    type: Add
-  id: 406728
-  time: '2026-07-18T18:53:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5150
-- author: OMEGA
-  changes:
-  - message: (Hotel) Two Surgeon lockers.
-    type: Add
-  id: 406729
-  time: '2026-07-18T18:53:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5150
-- author: OMEGA
-  changes:
-  - message: (Hotel) One exosuit fabricator to make space for Roboticist lockers.
-    type: Remove
-  id: 406730
-  time: '2026-07-18T18:53:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5150
-- author: OMEGA
-  changes:
-  - message: (Hotel) Hydroponic trays to Botany.
-    type: Tweak
-  id: 406731
-  time: '2026-07-18T18:53:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5150
-- author: OMEGA
-  changes:
   - message: (Hotel) Added meteor shielding to tools room, aligning with surrounding area.
     type: Tweak
   id: 406732
@@ -2799,4 +2771,32 @@ Entries:
   id: 407127
   time: '2026-07-31T06:39:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4958
+- author: Hot Mic
+  changes:
+  - message: Replaced the sprite for the Ticket. New Ticket sprite made by Yosif.
+    type: Tweak
+  id: 407128
+  time: '2026-07-31T07:09:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5326
+- author: Hot Mic
+  changes:
+  - message: Added new variants for Ticket colors. New colors for each department!
+    type: Add
+  id: 407129
+  time: '2026-07-31T07:09:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5326
+- author: Hot Mic
+  changes:
+  - message: Added new variants for Ticket Machines. Mappers rejoice!
+    type: Add
+  id: 407130
+  time: '2026-07-31T07:09:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5326
+- author: Hot Mic
+  changes:
+  - message: Added new Gold Ticket and Casino Ticket Machine for Gamorrah Space Casino Event. Gamba and Sec team rejoice!
+    type: Add
+  id: 407131
+  time: '2026-07-31T07:09:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5326
 Order: -1
