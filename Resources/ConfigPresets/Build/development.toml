@@ -33,7 +33,7 @@ expedition_cooldown = 30.0
 [shuttle]
 grid_fill = false
 auto_call_time = 0
-emergency = false
+emergency = true
 arrivals = false
 preload_grids = false
 
