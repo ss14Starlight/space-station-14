@@ -127,7 +127,7 @@
       offset: 0,0.55
       noRot: true
       layers:
-        - state: pipeUnaryConnectors # The four pipes coming out at the base
+        - state: pipeUnaryConnectors # The pipe(s) coming out at the base
           offset: 0,-0.55
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi

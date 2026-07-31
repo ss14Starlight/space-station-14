@@ -69,7 +69,7 @@ namespace Content.Client.Construction
                 mode.InvalidPlaceColor = mode.InvalidPlaceColor.WithAlpha(0.5f);
             }
 
-            // Starlight: Fix per-layer/sprite Offset being lost by manually applying it to the ghost layers directly.
+            // Fix per-layer/sprite Offset being lost by manually applying it to the ghost layers directly.
             var entMan = IoCManager.Resolve<IEntityManager>();
             if (proto.TryGetComponent<SpriteComponent>(out var sprite, entMan.ComponentFactory)
                 && manager.CurrentPlacementOverlayEntity is { } overlay
