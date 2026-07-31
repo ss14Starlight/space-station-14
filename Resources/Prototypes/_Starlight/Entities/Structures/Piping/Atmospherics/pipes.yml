@@ -4,7 +4,7 @@
   parent: GasPipeSansLayers
   id: GasPipeSubfloorTank
   name: subfloor gas tank
-  description: A gas tank built into the subfloor for convenient gas storage when above-floor space is at a premium. I wonder how much it can store?
+  description: A 750L gas tank built into the subfloor. Perfect when space is at a premium.
   placement:
     mode: AlignAtmosPipeLayers
   components:
@@ -12,7 +12,7 @@
     sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
     drawdepth: ThinPipe
     layers:
-      - state: pipeFourway
+      - state: pipeHalf
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - sprite: _Starlight/Structures/Piping/Atmospherics/subfloortank.rsi
         state: subFloorTank
@@ -45,8 +45,8 @@
       pipe:
         !type:PipeNode
         nodeGroupID: Pipe
-        pipeDirection: Fourway
-        volume: 1000
+        pipeDirection: South
+        volume: 750
   - type: Construction
     graph: GasPipeSubfloorTank
     node: tank
@@ -117,7 +117,7 @@
   parent: GasPipeSansLayers
   id: GasPipeTankSmall
   name: gas tank
-  description: A gas tank. Gets in your way, but can store more than those silly subfloor ones.
+  description: A gas tank. Stores 2000L of your gassiest gases.
   placement:
     mode: AlignAtmosPipeLayers
   components:
@@ -127,7 +127,7 @@
       offset: 0,0.55
       noRot: true
       layers:
-        - state: pipeFourway # The four pipes coming out at the base
+        - state: pipeHalf # The four pipes coming out at the base
           offset: 0,-0.55
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi
@@ -138,7 +138,7 @@
           map: [ "enum.SubfloorLayers.SecondLayer" ]
     - type: SpriteFade
     - type: Transform
-      noRot: true
+#      noRot: true
     - type: Item
       allowDirectHandPickup: false
     - type: Physics
@@ -192,7 +192,7 @@
         pipe:
           !type:PipeNode
           nodeGroupID: Pipe
-          pipeDirection: Fourway
+          pipeDirection: South
           volume: 2000
     - type: Construction
       graph: GasPipeTankSmall
