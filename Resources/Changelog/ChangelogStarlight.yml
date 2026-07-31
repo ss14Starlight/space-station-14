@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Hotel) Re-added fireaxe, oxygen and nitrogen tanks into to Atmos.
-    type: Fix
-  id: 406734
-  time: '2026-07-18T18:53:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5150
-- author: OMEGA
-  changes:
   - message: (Hotel) Distro and Waste pipe changes to Brigmed, Disposals, Botany.
     type: Fix
   id: 406735
@@ -2799,4 +2792,11 @@ Entries:
   id: 407133
   time: '2026-07-31T07:57:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5398
+- author: Hot Mic
+  changes:
+  - message: "Added a new Shuttle to Shipyard Console; \"Harm's Space Truck\", a $15050 Spesos Space Truck for classic truck hauling across the known sectors. It also carries an IFF console for whatever reason. Size: 20x5."
+    type: Add
+  id: 407134
+  time: '2026-07-31T09:29:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5311
 Order: -1
