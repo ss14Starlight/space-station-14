@@ -62,8 +62,8 @@
   - type: Action
     useDelay: 25
     icon:
-        sprite: Structures/Magic/Cult/rune.rsi
-        state: cult4
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: icerune
   - type: TargetAction
     range: 10
     checkCanAccess: false
@@ -98,14 +98,18 @@
       - state: icerune
 
 - type: entity
-  parent: ExplosionRune
+  parent: CollideRune
   id: FreezeRune2Wiz
   name: freeze rune
   components:
+    - type: TriggerOnCollide
+      fixtureID: rune
+      maxTriggers: 1
+    - type: ExplodeOnTrigger
     - type: Explosive
       explosionType: Cryo
       totalIntensity: 1
-      intensitySlope: 0
+      intensitySlope: 0.1
       maxIntensity: 7
     - type: Sprite
       sprite: _Starlight/Objects/Magic/magicactions.rsi

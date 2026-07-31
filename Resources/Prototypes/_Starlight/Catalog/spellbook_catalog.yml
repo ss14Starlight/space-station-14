@@ -254,7 +254,7 @@
   name: spellbook-cryomancer-name
   description: spellbook-cryomancer-desc
   priority: 12
-  productEntity: ClothingOuterSoftsuitWizardFire
+  productEntity: ClothingOuterSoftsuitWizardFrost
   cost:
     WizCoin: 15
   categories:

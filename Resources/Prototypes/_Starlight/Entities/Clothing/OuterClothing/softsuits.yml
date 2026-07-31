@@ -190,3 +190,42 @@
     - wizard-item-restricted-2
     - wizard-item-restricted-3
     - wizard-item-restricted-4
+
+- type: entity
+  parent: ClothingOuterSoftsuitWizardFire
+  id: ClothingOuterSoftsuitWizardFrost
+  name: wizard cryomancer robes
+  description: A magical robe weaved from the most ancient of ice, befitting the most talented of cryomancers.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Suits/wizardfrost.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Suits/wizardfrost.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.2
+        Piercing: 0.70
+        Heat: 0.6
+        Cold: 0.01
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetsoftsuitWizardFrost
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: PointLight
+    radius: 4
+    energy: 5
+    color: "#2CDDF5"
