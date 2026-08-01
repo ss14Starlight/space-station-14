@@ -11,7 +11,7 @@ public sealed class CCVars_Funky
     /// If the content warning should be displayed.
     /// </summary>
     public static readonly CVarDef<bool> ContentWarningDisplay =
-        CVarDef.Create("cw.display", true, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("cw.display", false, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// If ignoring the content warning should kick you from the server.
