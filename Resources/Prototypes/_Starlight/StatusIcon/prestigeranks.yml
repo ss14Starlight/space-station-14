@@ -8,7 +8,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconMasterBotanist
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -17,7 +17,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconBrigmedicalSpecialist
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -26,7 +26,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconAdmiral
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -35,7 +35,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconCargoSpecialist
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -44,7 +44,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconMessOfficer
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -53,7 +53,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconChemicalSpecialist
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -62,7 +62,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconMasterEngineer
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -71,7 +71,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconChiefSteward
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -80,7 +80,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconChiefOfSecurity
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -89,7 +89,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconInternalAffairsOfficer
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -98,7 +98,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconMasterJanitor
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -107,7 +107,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconMedicalSpecialist
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -116,7 +116,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconProtocolCommissar
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -125,7 +125,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconQuartermasterGeneral
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -134,7 +134,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconChiefOfResearch
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -143,7 +143,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconModelSalvageLead
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -152,7 +152,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconModelSalvager
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -161,7 +161,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconMasterScientist
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -170,7 +170,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconModelOfficer
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -179,7 +179,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconEngineeringSpecialist
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -188,7 +188,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconSpecialistSurgeon
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -197,7 +197,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconModelWarden
   icon:
     sprite: *starlight-prestige-ranks-rsi
@@ -206,7 +206,7 @@
   allowSelection: false
 
 - type: jobIcon
-  parent: jobIcon
+  parent: JobIcon
   id: JobIconAtmosphericSpecialist
   icon:
     sprite: *starlight-prestige-ranks-rsi
