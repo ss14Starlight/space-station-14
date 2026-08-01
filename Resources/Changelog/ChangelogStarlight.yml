@@ -1,20 +1,6 @@
 Entries:
 - author: Turk1shcat
   changes:
-  - message: Added a new vendor for mimes! Still needs to be mapped.
-    type: Add
-  id: 406786
-  time: '2026-07-21T13:06:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5139
-- author: Turk1shcat
-  changes:
-  - message: Added a new set of tools found in the new vendor. Too bad you can't see them.
-    type: Add
-  id: 406787
-  time: '2026-07-21T13:06:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5139
-- author: Turk1shcat
-  changes:
   - message: The Security mime mask is now craftable with a normal mime mask and cheap sunglasses.
     type: Tweak
   id: 406788
@@ -2799,4 +2785,18 @@ Entries:
   id: 407185
   time: '2026-08-01T11:09:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5352
+- author: neomoth
+  changes:
+  - message: Fixed a bug where starting gear was seemingly trying to equip twice. This probably fixes something somewhere.
+    type: Fix
+  id: 407186
+  time: '2026-08-01T11:09:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5332
+- author: neomoth
+  changes:
+  - message: Fixed a bug where the second pass of starting gear would be given a second time when rolling an antag.
+    type: Fix
+  id: 407187
+  time: '2026-08-01T11:09:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5332
 Order: -1
