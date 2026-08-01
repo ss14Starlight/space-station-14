@@ -88,6 +88,9 @@ public sealed class ChatHighlightTest : GameTest
         // Auto:
         Assert.That(activeHighlights, Contains.Item("Captain"));
         Assert.That(activeHighlights, Contains.Item("(?<!\\w)Cap(?!\\w)")); // "Cap" becomes regex-escaped and word-bounded
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John\ Doe(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Doe(?!\w)"));
 
         // 5. Disable auto-fill highlights and verify auto-filled highlights are removed
         _configManager.SetCVar(CCVars.ChatAutoFillHighlights, false);
@@ -151,5 +154,208 @@ public sealed class ChatHighlightTest : GameTest
         Assert.That(activeHighlights, Contains.Item("rev"));
         Assert.That(activeHighlights, Contains.Item("Captain"));
         Assert.That(activeHighlights, Contains.Item("(?<!\\w)Cap(?!\\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John\ Doe(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Doe(?!\w)"));
+    }
+
+    [Test]
+    [RunOnSide(Side.Client)]
+    public async Task TestBorgNameHighlights()
+    {
+        var chatController = _uiManager.GetUIController<ChatUIController>();
+        _configManager.SetCVar(CCVars.ChatAutoFillHighlights, true);
+
+        var characterData = new CharacterInfoSystem.CharacterData(
+            default,
+            "Cyborg",
+            new Dictionary<string, List<Shared.Objectives.ObjectiveInfo>>(),
+            null,
+            "C-3-D2 (Si-8545)"
+        );
+
+        InvokeOnCharacterUpdated(chatController, characterData);
+
+        var highlightsField = chatController.GetType().GetField(
+            "_highlights",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        Assert.That(highlightsField, Is.Not.Null);
+        var activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
+
+        // Verify that the full clean name "C-3-D2" and the last part "D2" are highlighted as whole words
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)C-3-D2(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)D2(?!\w)"));
+
+        // Verify that the single character parts ("C", "3") and the parenthesized suffix are NOT highlighted
+        foreach (var highlight in activeHighlights)
+        {
+            Assert.That(highlight, Is.Not.Contains("(?<!\\w)C(?!\\w)"));
+            Assert.That(highlight, Is.Not.Contains("(?<!\\w)3(?!\\w)"));
+            Assert.That(highlight, Is.Not.Contains("Si-8545"));
+        }
+    }
+
+    [Test]
+    [RunOnSide(Side.Client)]
+    public async Task TestSpeciesNameHighlightsAvali()
+    {
+        var chatController = _uiManager.GetUIController<ChatUIController>();
+        _configManager.SetCVar(CCVars.ChatAutoFillHighlights, true);
+
+        var highlightsField = chatController.GetType().GetField(
+            "_highlights",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        Assert.That(highlightsField, Is.Not.Null);
+
+        // 1. Avali Name (comma-separated pack name)
+        var avaliData = new CharacterInfoSystem.CharacterData(
+            default,
+            "Avali",
+            new Dictionary<string, List<Shared.Objectives.ObjectiveInfo>>(),
+            null,
+            "Bird, Testdev Pack"
+        );
+        InvokeOnCharacterUpdated(chatController, avaliData);
+        var activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Bird,\ Testdev\ Pack(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Bird(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Testdev\ Pack(?!\w)"));
+
+        // 1b. Eats-Food, Clan (Avali name with single hyphen first part)
+        var eatingData = new CharacterInfoSystem.CharacterData(
+            default,
+            "Avali",
+            new Dictionary<string, List<Shared.Objectives.ObjectiveInfo>>(),
+            null,
+            "Eats-Food, Clan"
+        );
+        InvokeOnCharacterUpdated(chatController, eatingData);
+        activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Eats-Food,\ Clan(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Eats-Food(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Clan(?!\w)"));
+        // Hyphen parts of the comma-based components must NOT be split further (e.g. "Eats" and "Food" must not be in activeHighlights)
+        foreach (var highlight in activeHighlights)
+        {
+            Assert.That(highlight, Is.Not.EqualTo(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Eats(?!\w)"));
+            Assert.That(highlight, Is.Not.EqualTo(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Food(?!\w)"));
+        }
+
+        // 1c. Alpha-Beta-Gamma-Delta, Clan (Avali name with multi-hyphen first part)
+        var aibcData = new CharacterInfoSystem.CharacterData(
+            default,
+            "Avali",
+            new Dictionary<string, List<Shared.Objectives.ObjectiveInfo>>(),
+            null,
+            "Alpha-Beta-Gamma-Delta, Clan"
+        );
+        InvokeOnCharacterUpdated(chatController, aibcData);
+        activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Alpha-Beta-Gamma-Delta,\ Clan(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Alpha-Beta-Gamma-Delta(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Clan(?!\w)"));
+        // Hyphen parts must NOT be split further
+        foreach (var highlight in activeHighlights)
+        {
+            Assert.That(highlight, Is.Not.EqualTo(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Alpha(?!\w)"));
+            Assert.That(highlight, Is.Not.EqualTo(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Beta(?!\w)"));
+            Assert.That(highlight, Is.Not.EqualTo(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Gamma(?!\w)"));
+            Assert.That(highlight, Is.Not.EqualTo(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Delta(?!\w)"));
+        }
+    }
+
+    [Test]
+    [RunOnSide(Side.Client)]
+    public async Task TestSpeciesNameHighlightsLizard()
+    {
+        var chatController = _uiManager.GetUIController<ChatUIController>();
+        _configManager.SetCVar(CCVars.ChatAutoFillHighlights, true);
+
+        var highlightsField = chatController.GetType().GetField(
+            "_highlights",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        Assert.That(highlightsField, Is.Not.Null);
+
+        // 2. Lizard Name (multiple hyphens - first and last parts are split, middle connector "The" is ignored)
+        var lizardData = new CharacterInfoSystem.CharacterData(
+            default,
+            "Reptilian",
+            new Dictionary<string, List<Shared.Objectives.ObjectiveInfo>>(),
+            null,
+            "Eats-The-Food"
+        );
+        InvokeOnCharacterUpdated(chatController, lizardData);
+        var activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Eats-The-Food(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Eats(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Food(?!\w)"));
+        foreach (var highlight in activeHighlights)
+        {
+            Assert.That(highlight, Is.Not.Contains("(?<!\\w)The(?!\\w)"));
+        }
+    }
+
+    [Test]
+    [RunOnSide(Side.Client)]
+    public async Task TestSpeciesNameHighlightsParentheses()
+    {
+        var chatController = _uiManager.GetUIController<ChatUIController>();
+        _configManager.SetCVar(CCVars.ChatAutoFillHighlights, true);
+
+        var highlightsField = chatController.GetType().GetField(
+            "_highlights",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        Assert.That(highlightsField, Is.Not.Null);
+
+        // 3. Parentheses removal (e.g. John Doe (Ghost))
+        var ghostData = new CharacterInfoSystem.CharacterData(
+            default,
+            "Human",
+            new Dictionary<string, List<Shared.Objectives.ObjectiveInfo>>(),
+            null,
+            "John Doe (Ghost)"
+        );
+        InvokeOnCharacterUpdated(chatController, ghostData);
+        var activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John\ Doe(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Doe(?!\w)"));
+        foreach (var highlight in activeHighlights)
+        {
+            Assert.That(highlight, Is.Not.Contains("Ghost"));
+        }
+    }
+
+    [Test]
+    [RunOnSide(Side.Client)]
+    public async Task TestSpeciesNameHighlightsQuotes()
+    {
+        var chatController = _uiManager.GetUIController<ChatUIController>();
+        _configManager.SetCVar(CCVars.ChatAutoFillHighlights, true);
+
+        var highlightsField = chatController.GetType().GetField(
+            "_highlights",
+            BindingFlags.NonPublic | BindingFlags.Instance
+        );
+        Assert.That(highlightsField, Is.Not.Null);
+
+        // 4. Quotes handling (e.g. John \"Johnny\" Doe)
+        var quoteData = new CharacterInfoSystem.CharacterData(
+            default,
+            "Human",
+            new Dictionary<string, List<Shared.Objectives.ObjectiveInfo>>(),
+            null,
+            "John \"Johnny\" Doe"
+        );
+        InvokeOnCharacterUpdated(chatController, quoteData);
+        var activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John\ ""Johnny""\ Doe(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Johnny(?!\w)"));
+        Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Doe(?!\w)"));
     }
 }

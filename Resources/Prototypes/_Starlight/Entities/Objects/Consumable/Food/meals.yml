@@ -247,3 +247,128 @@
   - type: Tag
     tags:
     - Meat
+
+- type: entity
+  name: pelmeni
+  parent: FoodMealBase
+  id: FoodPelmeni
+  description: A delicious Russian Dumpling, made with love
+  components:
+    - type: FlavorProfile
+      flavors:
+        - meaty
+        - chewy
+    - type: Edible
+      transferAmount: 3
+      trash:
+      - FoodPlateSmall
+    - type: Sprite
+      sprite: _Starlight/Objects/Consumable/Food/pelmeni.rsi
+      layers:
+        - state: pelmeni
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 24
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 16
+            - ReagentId: Protein
+              Quantity: 8
+    - type: Tag
+      tags:
+        - Meat
+
+- type: entity
+  name: empanadas
+  parent: FoodMealBase
+  id: FoodEmpanadas
+  description: Just like mama used to make
+  components:
+    - type: FlavorProfile
+      flavors:
+        - meaty
+        - cheesy
+    - type: Edible
+      transferAmount: 3
+      trash:
+      - FoodPlateSmall
+    - type: Sprite
+      sprite: _Starlight/Objects/Consumable/Food/empanadas.rsi
+      layers:
+        - state: empanadas
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 24
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 16
+            - ReagentId: Protein
+              Quantity: 8
+    - type: Tag
+      tags:
+        - Meat
+
+- type: entity
+  name: crab rangoons
+  parent: FoodMealBase
+  id: FoodCrabRangoons
+  description: Now made with real crab!
+  components:
+    - type: FlavorProfile
+      flavors:
+        - meaty
+        - crabby
+        - cheesy
+    - type: Edible
+      transferAmount: 3
+      trash:
+      - FoodPlateSmall
+    - type: Sprite
+      sprite: _Starlight/Objects/Consumable/Food/crab_rangoons.rsi
+      layers:
+        - state: crab_rangoons
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 24
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 16
+            - ReagentId: Protein
+              Quantity: 8
+    - type: Tag
+      tags:
+        - Meat
+
+- type: entity
+  name: karelian pastries
+  parent: FoodMealBase
+  id: FoodKarelianPastries
+  description: Actually named karjalanpiirakka, a traditional food from old world Finland. Kind of odd, but filling and delicious
+  components:
+    - type: FlavorProfile
+      flavors:
+        - chewy
+        - savory
+    - type: Edible
+      transferAmount: 3
+      trash:
+      - FoodPlateSmall
+    - type: Sprite
+      sprite: _Starlight/Objects/Consumable/Food/karelian_Pastries.rsi
+      layers:
+        - state: karelian_pastries
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 24
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 16
+            - ReagentId: Protein
+              Quantity: 8
+    - type: Tag
+      tags:
+        - Meat

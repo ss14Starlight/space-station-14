@@ -1,5 +1,5 @@
 - type: antagSpecifier
-  parent: RestrictedAntag
+  parent: ChangelingRestrictedAntag
   id: SLChangeling
   prefRoles: [ Changeling ]
   briefing:

@@ -226,7 +226,7 @@
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
   - type: DynamicRuleCost
-    cost: 100
+    cost: 125 # Starlight
 
 - type: entity
   parent: [ BaseTraitorRule, BaseRoundstartAntagRule ]
@@ -242,7 +242,7 @@
     antags:
     - !type:LinearAntagCount
       proto: Traitor
-      playerRatio: 12 # Starlight
+      playerRatio: 14.5 # Starlight
       range:
         min: 1
         max: 24 # Starlight
@@ -274,7 +274,7 @@
     antags:
     - !type:LinearAntagCount
       proto: Changeling
-      playerRatio: 26 # Starlight
+      playerRatio: 31.2 # Starlight
       range:
         min: 1
         max: 6 # Starlight
@@ -303,7 +303,7 @@
     antags:
     - !type:LinearAntagCount
       proto: HeadRev
-      playerRatio: 15
+      playerRatio: 18 # Starlight
       range:
         min: 2 # Starlight
         max: 3
@@ -368,6 +368,7 @@
     antags:
     - !type:LinearAntagCount
       proto: InitialInfected
+      playerRatio: 18 # Starlight
       range:
         min: 1
         max: 6
@@ -433,6 +434,11 @@
   - Traitor
   - Thief
   - HeadRev
+  - Changeling # Starlight start
+  - CosmicAntagCultist
+  - Devil
+  - SELFAgent
+  - Vampire # Starlight end
 
 # event schedulers
 
