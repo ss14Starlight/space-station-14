@@ -39,6 +39,7 @@
     - id: NanoChatSpamMidPop
     - id: NanoChatSpamHighPop
     - id: NanoChatSpamUltraPop
+    - id: FullMoonHowl
     # Starlight End
     - id: MalignRiftSpawn # Funky
 
