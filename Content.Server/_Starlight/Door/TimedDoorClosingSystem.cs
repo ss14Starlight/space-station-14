@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Door.Components;
+using Content.Shared._Starlight.Door;
 using Content.Shared.Doors;
 using Content.Server.Doors.Systems;
 using Content.Shared.Doors.Components;
