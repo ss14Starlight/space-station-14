@@ -158,6 +158,8 @@ public sealed partial class RevenantComponent : Component
     public float ChillFrezonPerTile = 2f;
 
     #endregion
+    
+    #endregion
 
     #region Overload Lights Ability
     /// <summary>
