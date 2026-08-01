@@ -245,9 +245,9 @@ namespace Content.Server.Lathe
                     if (_container.IsEntityInContainer(uid))
                         transform = Transform(_container.GetContainingContainers(uid).Last().Owner).Coordinates;
                     var result = Spawn(resultProto, transform);
-                    if (TryComp<LatheLinkingComponent>(uid, out var linking) && linking.LinkedEntity != null)
+                    if (TryComp<LatheLinkingComponent>(uid, out var linking) && linking.LinkedEntity != null && !linking.Ejecting)
                     {
-                        var tickets = Spawn(currentRecipe.TicketProtoId, Transform(linking.LinkedEntity.Value).Coordinates);
+                        var tickets = Spawn(currentRecipe.TicketProtoId, transform);
                         _stack.TryMergeToContacts(tickets);
                         if (!_materialStorage.TryInsertMaterialEntity(uid, result, (EntityUid)linking.LinkedEntity))
                         {

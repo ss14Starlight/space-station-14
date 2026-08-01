@@ -1,0 +1,9 @@
+﻿<PanelContainer xmlns="https://spacestation14.io"
+                SizeFlagsStretchRatio="8"
+                HorizontalExpand="True"
+                VerticalExpand="True">
+    <BoxContainer Orientation="Horizontal" Name="ButtonBox" Visible="False">
+        <Button MinSize="80 0" Name="LinkingEjectButton" Access="Public" Text="Eject" ToggleMode="True" StyleClasses="OpenRight" />
+        <Button MinSize="80 0" Name="LinkingTransferButton" Access="Public" Text="DeviceName" ToggleMode="True" StyleClasses="OpenLeft" Pressed="True"/>
+    </BoxContainer>
+</PanelContainer>

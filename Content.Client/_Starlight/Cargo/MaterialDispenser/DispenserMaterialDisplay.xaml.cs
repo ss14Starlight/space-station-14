@@ -24,7 +24,6 @@ public sealed partial class DispenserMaterialDisplay : PanelContainer
     public event Action<string, int>? OnAmountButton;
 
     private int _volume;
-    private readonly EntityUid _ent;
     public readonly string Material;
 
     public DispenserMaterialDisplay(string material, int volume)

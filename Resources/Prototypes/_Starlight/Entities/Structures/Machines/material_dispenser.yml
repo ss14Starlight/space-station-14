@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: MachineMaterialDispenser
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: Industrial Material Silo
+  name: Material packer
   description: An advanced machine, capable of distributing materials into crates.
   components:
     - type: Sprite

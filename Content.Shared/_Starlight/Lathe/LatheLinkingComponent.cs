@@ -16,4 +16,6 @@ public sealed partial class LatheLinkingComponent : Component
 
     [DataField] public ProtoId<SinkPortPrototype> SinkPort = "LatheReceiver";
 
+    [DataField] public bool Ejecting;
+
 }
