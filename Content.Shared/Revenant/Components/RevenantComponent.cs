@@ -116,7 +116,7 @@ public sealed partial class RevenantComponent : Component
     public float DefileEffectChance = 0.5f;
     #endregion
 
-    //Creates a large patch of ice around the revenant with each tile of ice having freezon
+    #region Starlight
     #region Chill of the grave Ability
     /// <summary>
     /// The amount of essence that is needed to use the ability.
