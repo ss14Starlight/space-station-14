@@ -1,9 +1,11 @@
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Scent.Components;
+using Content.Shared.Storage.Components;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Animations;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using System.Globalization;
 using System.Numerics;
@@ -42,6 +44,14 @@ public sealed class ScentTrackingSystem : EntitySystem
         SubscribeLocalEvent<SmellerComponent, AfterAutoHandleStateEvent>(OnSmellerState);
         SubscribeLocalEvent<ScentMarkerComponent, ComponentStartup>(OnMarkerStartup);
         SubscribeLocalEvent<ScentMarkerComponent, AfterAutoHandleStateEvent>(OnMarkerState);
+        SubscribeLocalEvent<SmellerComponent, EntGotInsertedIntoContainerMessage>(OnOwnEnclosureChanged);
+        SubscribeLocalEvent<SmellerComponent, EntGotRemovedFromContainerMessage>(OnOwnEnclosureChanged);
+    }
+
+    private void OnOwnEnclosureChanged<T>(Entity<SmellerComponent> ent, ref T args)
+    {
+        if (_player.LocalSession?.AttachedEntity == ent.Owner)
+            RefreshAllMarkers(ent.Comp);
     }
 
     private void OnSmellerState(EntityUid uid, SmellerComponent component, ref AfterAutoHandleStateEvent args)
@@ -102,8 +112,37 @@ public sealed class ScentTrackingSystem : EntitySystem
 
         var visible = !IsPerceptionBlocked(smeller) &&
                       !(smeller.Perception == ScentPerception.Partial && ent.Comp.WasContained) &&
+                      !(smeller.Perception == ScentPerception.Partial && IsOutsideOwnEnclosure(ent)) &&
                       (smeller.TrackedScentId == null || ent.Comp.ScentId == smeller.TrackedScentId);
         _sprite.SetVisible((ent.Owner, sprite), visible);
+    }
+
+    // A Partial perceiver inside an airtight container can't perceive markers outside it. A Full
+    // perceiver is unaffected.
+    private bool IsOutsideOwnEnclosure(Entity<ScentMarkerComponent> ent)
+    {
+        if (!TryGetOwnEnclosure(out var enclosure))
+            return false;
+
+        return !TryComp<TransformComponent>(ent.Owner, out var markerXform) ||
+               markerXform.ParentUid != enclosure;
+    }
+
+    // Resolves the airtight container the local player is currently inside, if any.
+    private bool TryGetOwnEnclosure(out EntityUid enclosure)
+    {
+        enclosure = default;
+
+        if (_player.LocalSession?.AttachedEntity is not { } local ||
+            !TryComp<TransformComponent>(local, out var localXform) ||
+            !TryComp<EntityStorageComponent>(localXform.ParentUid, out var storage) ||
+            !storage.Airtight)
+        {
+            return false;
+        }
+
+        enclosure = localXform.ParentUid;
+        return true;
     }
 
     // A Partial perceiver loses all scent perception while breathing internals.
