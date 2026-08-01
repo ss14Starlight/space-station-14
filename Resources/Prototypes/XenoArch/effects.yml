@@ -128,17 +128,17 @@
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 4.0
     - id: XenoArtifactAccessEngineering
-      weight: 1.5
+      weight: 91.5
     - id: XenoArtifactAccessScience # this is nearly useless for most people who can obtain it
-      weight: 2.0
+      weight: 92.0
     - id: XenoArtifactAccessCargo
-      weight: 1.5
+      weight: 91.5
     - id: XenoArtifactAccessService
-      weight: 1.5
+      weight: 91.5
     - id: XenoArtifactAccessSecurity
-      weight: 1.5
+      weight: 91.5
     - id: XenoArtifactAccessMedical
-      weight: 1.5
+      weight: 91.5
     - id: XenoArtifactAccessCommand
       weight: 1.0
     #- id: XenoArtifactAccessAll #AA is probably too much
@@ -1398,114 +1398,87 @@
   parent: BaseOneTimeXenoArtifactEffect
   description: Gains Engineering and Atmospherics access
   components:
-  - type: XAEApplyComponents
-    applyIfAlreadyHave: true
-    refreshOnReactivate: true
-    components:
-    - type: Access
-      tags:
-      - Engineering
-      - Atmospherics
+  - type: XAEGainAccess
+    accesses:
+    - Engineering
+    - Atmospherics
+    
 
 - type: entity
   id: XenoArtifactAccessScience
   parent: BaseOneTimeXenoArtifactEffect
   description: Gains Research and Robotics access
   components:
-  - type: XAEApplyComponents
-    applyIfAlreadyHave: true
-    refreshOnReactivate: true
-    components:
-    - type: Access
-      tags:
-      - Research
-      - Robotics
+  - type: XAEGainAccess
+    accesses:
+    - Research
+    - Robotics
 
 - type: entity
   id: XenoArtifactAccessCargo
   parent: BaseOneTimeXenoArtifactEffect
   description: Gains Cargo accesses
   components:
-  - type: XAEApplyComponents
-    applyIfAlreadyHave: true
-    refreshOnReactivate: true
-    components:
-    - type: Access
-      tags:
-      - Salvage
-      - Mining
-      - Mail
-      - Cargo
+  - type: XAEGainAccess
+    accesses:
+    - Salvage
+    - Mining
+    - Mail
+    - Cargo
 
 - type: entity
   id: XenoArtifactAccessService
   parent: BaseOneTimeXenoArtifactEffect
   description: Gains Service accesses
   components:
-  - type: XAEApplyComponents
-    applyIfAlreadyHave: true
-    refreshOnReactivate: true
-    components:
-    - type: Access
-      tags:
-      - Bar
-      - Kitchen
-      - Hydroponics
-      - Service
-      - Janitor
-      - Theatre
-      - Chapel
-      - Lawyer
+  - type: XAEGainAccess
+    accesses:
+    - Bar
+    - Kitchen
+    - Hydroponics
+    - Service
+    - Janitor
+    - Theatre
+    - Chapel
+    - Lawyer
 
 - type: entity
   id: XenoArtifactAccessSecurity
   parent: BaseOneTimeXenoArtifactEffect
   description: Gains Security accesses
   components:
-  - type: XAEApplyComponents
-    applyIfAlreadyHave: true
-    refreshOnReactivate: true
-    components:
-    - type: Access
-      tags:
-      - Security
-      - Armory
-      - Brig
-      - Detective
-      - Cryogenics
-      - Brigmedic
-      - Cadet
-      - GenpopEnter
-      - GenpopLeave
+  - type: XAEGainAccess
+    accesses:
+    - Security
+    - Armory
+    - Brig
+    - Detective
+    - Cryogenics
+    - Brigmedic
+    - Cadet
+    - GenpopEnter
+    - GenpopLeave
 
 - type: entity
   id: XenoArtifactAccessMedical
   parent: BaseOneTimeXenoArtifactEffect
   description: Gains Medical accesses
   components:
-  - type: XAEApplyComponents
-    applyIfAlreadyHave: true
-    refreshOnReactivate: true
-    components:
-    - type: Access
-      tags:
-      - Medical
-      - Chemistry
-      - Surgery
-      - Paramedic
+  - type: XAEGainAccess
+    accesses:
+    - Medical
+    - Chemistry
+    - Surgery
+    - Paramedic
 
 - type: entity
   id: XenoArtifactAccessCommand
   parent: BaseOneTimeXenoArtifactEffect
   description: Gains Command access
   components:
-  - type: XAEApplyComponents
-    applyIfAlreadyHave: true
-    refreshOnReactivate: true
-    components:
-    - type: Access
-      tags:
-      - Command
+  - type: XAEGainAccess
+    accesses:
+    - Command
 
 - type: entity
   id: XenoArtifactAccessAll
@@ -1519,3 +1492,6 @@
     - type: Access
       groups:
       - AllAccess
+  - type: XAEGainAccess # Just to add the DoorBumpOpener tag
+    accesses:
+    - Command 
