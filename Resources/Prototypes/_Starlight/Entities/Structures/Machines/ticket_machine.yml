@@ -61,7 +61,7 @@
 - type: entity
   id: TicketMachineFilled
   parent: TicketMachine
-  suffix: Filled
+  suffix: Filled, White
   components:
   - type: ContainerFill
     containers:
@@ -69,9 +69,91 @@
         - LabellerRefillPaper
 
 - type: entity
+  id: TicketMachineFilledRed
+  parent: TicketMachineFilled
+  suffix: Filled, Red
+  components:
+  - type: TicketMachine
+    ticketProtoId: "TicketRed"
+
+- type: entity
+  id: TicketMachineFilledBlue
+  parent: TicketMachineFilled
+  suffix: Filled, Blue
+  components:
+  - type: TicketMachine
+    ticketProtoId: "TicketBlue"
+
+- type: entity
+  id: TicketMachineFilledCyan
+  parent: TicketMachineFilled
+  suffix: Filled, Cyan
+  components:
+  - type: TicketMachine
+    ticketProtoId: "TicketCyan"
+
+- type: entity
+  id: TicketMachineFilledGreen
+  parent: TicketMachineFilled
+  suffix: Filled, Green
+  components:
+  - type: TicketMachine
+    ticketProtoId: "TicketGreen"
+
+- type: entity
+  id: TicketMachineFilledBrown
+  parent: TicketMachineFilled
+  suffix: Filled, Brown
+  components:
+  - type: TicketMachine
+    ticketProtoId: "TicketBrown"
+
+- type: entity
+  id: TicketMachineFilledOrange
+  parent: TicketMachineFilled
+  suffix: Filled, Orange
+  components:
+  - type: TicketMachine
+    ticketProtoId: "TicketOrange"
+
+- type: entity
+  id: TicketMachineFilledYellow
+  parent: TicketMachineFilled
+  suffix: Filled, Yellow
+  components:
+  - type: TicketMachine
+    ticketProtoId: "TicketYellow"
+
+- type: entity
+  id: TicketMachineFilledPurple
+  parent: TicketMachineFilled
+  suffix: Filled, Purple
+  components:
+  - type: TicketMachine
+    ticketProtoId: "TicketPurple"
+
+- type: entity
   id: TicketMachineHOP
   parent: TicketMachineFilled
-  suffix: HOP, Filled
+  suffix: HOP, Filled, White
+  components:
+  - type: TicketMachine
+    ticketProtoId: "TicketNT"
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+
+- type: entity
+  id: TicketMachineHOPBlue
+  parent: TicketMachineFilledBlue
+  suffix: HOP, Filled, Blue
   components:
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
+
+- type: entity
+  id: TicketMachineQM
+  parent: TicketMachineFilledBrown
+  suffix: QM, Filled, Brown
+  components:
+  - type: AccessReader
+    access: [["Quartermaster"]]
