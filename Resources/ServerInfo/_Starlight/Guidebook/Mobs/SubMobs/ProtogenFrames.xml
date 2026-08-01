@@ -30,7 +30,7 @@
   </Box>
 
   The Basic-Class medium frame boasts the following specs.
-  - Receive [color=#65807d]10% less slash damage[/color] and [color=#FF3636]5% less blunt damage[/color].
+  - Receive [color=#65807d]10% less slash damage[/color], [color=#FF3636]5% less blunt damage[/color], and [color=#b9bf93]5% less pierce damage[/color].
   - Gain a [color=#fc0303]-5% sprint modifier[/color].
   <Box>
     <GuideEntityEmbed Entity="ClothingOuterArmorProtogenMediumMagic" Caption="Hecate-Class"/>

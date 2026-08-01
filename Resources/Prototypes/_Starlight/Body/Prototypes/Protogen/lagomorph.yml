@@ -21,9 +21,9 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtogenHeart
+        heart: OrganProtoLagomorphHeart
         lungs: OrganProtogenLungs
-        stomach: OrganProtogenStomach
+        stomach: OrganProtoLagomorphStomach
         liver: OrganProtogenLiver
         kidneys: OrganProtogenKidneys
         cavity: null

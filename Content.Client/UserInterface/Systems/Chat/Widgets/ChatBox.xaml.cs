@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Content.Client.UserInterface.Systems.Chat.Controls;
 using Content.Shared.Chat;
@@ -20,13 +21,16 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 [Virtual]
 public partial class ChatBox : UIWidget
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    private const int FormattedMessageDefaultCapacity = 3; // Starlight
+
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private readonly ISawmill _sawmill;
     private readonly ChatUIController _controller;
 
     public bool Main { get; set; }
+    public ChatSelectChannel? MainChannel { get; set; } // Starlight
 
     public ChatSelectChannel SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
     public RichTextLabel SelectedLanguage => LanguageNotifier; // Starlight
@@ -44,10 +48,16 @@ public partial class ChatBox : UIWidget
         ChatInput.ChannelSelector.OnChannelSelect += OnChannelSelect;
         ChatInput.FilterButton.Popup.OnChannelFilter += OnChannelFilter;
         ChatInput.FilterButton.Popup.OnNewHighlights += OnNewHighlights;
+        // Starlight start
+        ChatInput.FilterButton.Popup.OnClearTTSQueue += OnClearTTSQueue;
+        ChatInput.FilterButton.Popup.OnTTSMuteStateChanged += OnTTSMuteStateChanged;
+        // Starlight end
         _controller = UserInterfaceManager.GetUIController<ChatUIController>();
         _controller.MessageAdded += OnMessageAdded;
         _controller.HighlightsUpdated += OnHighlightsUpdated;
+        _controller.AutoHighlightsUpdated += OnAutoHighlightsUpdated; // Starlight
         _controller.RegisterChat(this);
+        ChatInput.FilterButton.Popup.UpdateAutoHighlights(_controller.AutoHighlights); // Starlight
     }
 
     private void OnTextEntered(LineEditEventArgs args)
@@ -77,6 +87,16 @@ public partial class ChatBox : UIWidget
     {
         ChatInput.FilterButton.Popup.UpdateHighlights(highlights);
     }
+
+    // Starlight start
+    /// <summary>
+    ///     Event handler triggered when the auto-fill highlights list is updated in the controller.
+    /// </summary>
+    private void OnAutoHighlightsUpdated(string autoHighlights)
+    {
+        ChatInput.FilterButton.Popup.UpdateAutoHighlights(autoHighlights);
+    }
+    // Starlight end
 
     private void OnChannelSelect(ChatSelectChannel channel)
     {
@@ -131,7 +151,7 @@ public partial class ChatBox : UIWidget
 
     public void AddLine(string message, Color color)
     {
-        var formatted = new FormattedMessage(3);
+        var formatted = new FormattedMessage(FormattedMessageDefaultCapacity);
         formatted.PushColor(color);
         formatted.AddMarkupPermissive(message);
         formatted.Pop();
@@ -228,9 +248,36 @@ public partial class ChatBox : UIWidget
 
         if (!disposing) return;
         _controller.UnregisterChat(this);
+        // Starlight start
+        _controller.MessageAdded -= OnMessageAdded;
+        _controller.HighlightsUpdated -= OnHighlightsUpdated;
+        _controller.AutoHighlightsUpdated -= OnAutoHighlightsUpdated;
+        // Starlight end
         ChatInput.Input.OnTextEntered -= OnTextEntered;
         ChatInput.Input.OnKeyBindDown -= OnInputKeyBindDown;
         ChatInput.Input.OnTextChanged -= OnTextChanged;
         ChatInput.ChannelSelector.OnChannelSelect -= OnChannelSelect;
+        // Starlight start
+        ChatInput.FilterButton.Popup.OnClearTTSQueue -= OnClearTTSQueue;
+        ChatInput.FilterButton.Popup.OnTTSMuteStateChanged -= OnTTSMuteStateChanged;
+        // Starlight end
     }
+
+    // Starlight start
+    /// <summary>
+    ///     Event handler triggered when the clear TTS queue button is pressed.
+    /// </summary>
+    private void OnClearTTSQueue()
+    {
+        _controller.ClearTTSQueue();
+    }
+
+    /// <summary>
+    ///     Event handler triggered when a TTS channel's mute state is toggled.
+    /// </summary>
+    private void OnTTSMuteStateChanged(Robust.Shared.Prototypes.ProtoId<Content.Shared.Radio.RadioChannelPrototype> channelId, bool muted)
+    {
+        _controller.SetTTSChannelMuted(channelId, muted);
+    }
+    // Starlight end
 }

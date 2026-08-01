@@ -7,15 +7,15 @@ namespace Content.Client._Starlight.Antags.Vampires;
 /// <summary>
 /// Client-side system for smooth vampire beams visualization
 /// </summary>
-public sealed class VampireDrainBeamSystem : EntitySystem
+public sealed partial class VampireDrainBeamSystem : EntitySystem
 {
     private enum BeamKind
     {
         Drain,
     }
 
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private EntityQuery<VampireBeamVisualComponent> _beamVisualQuery;
 

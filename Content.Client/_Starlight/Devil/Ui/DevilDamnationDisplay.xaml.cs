@@ -11,17 +11,25 @@ namespace Content.Client._Starlight.Devil.Ui;
 public sealed partial class DevilDamnationDisplay : Control
 {
     private Color BenefitColor = Color.FromHex("#3d000a");
-    private Color DisadvantageColour = Color.FromHex("#032b01");
+    private Color BenefitUnavailableColor = Color.FromHex("#2a0c11");
 
-    public DevilDamnationDisplay(DamnationPrototype damnation)
+    private Color DisadvantageColor = Color.FromHex("#032b01");
+    private Color DisadvantageUnavailableColor = Color.FromHex("#010f00");
+
+    public DevilDamnationDisplay((DamnationPrototype, int) damnationMeta)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
+        var damnation = damnationMeta.Item1;
+        var uses = damnationMeta.Item2;
+
         var damnationTitle = Loc.GetString("devil-damnations-ui-damnation-name", ("name", damnation.Name));
-        var damnationCost = Loc.GetString("devil-damnations-ui-cost", ("cost", damnation.Cost));
+        var damnationCost = Loc.GetString("devil-damnations-ui-cost", ("cost", damnation.Cost), ("uses", uses), ("maxuses", damnation.MaxUses == -1 ? "infinite" : damnation.MaxUses));
         var damnationDescription = damnation.Description;
-        var damnationBackgroundColor = damnation.Cost >= 0 ? DisadvantageColour : BenefitColor;
+        var damnationBackgroundColor = (damnation.MaxUses > uses || damnation.MaxUses == -1) ?
+            ((damnation.Cost >= 0) ? DisadvantageColor : BenefitColor) :
+            ((damnation.Cost >= 0) ? DisadvantageUnavailableColor : BenefitUnavailableColor);
 
         DamnationTitle.Title = damnationTitle;
         DamnationCost.SetMarkup(damnationCost);

@@ -322,8 +322,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: CargoShuttleConsoleCircuitboard
-  name: cargo shuttle console board
-  description: A computer printed circuit board for a cargo shuttle console.
+  name: remote cargo shuttle console board # Starlight begin
+  description: A computer printed circuit board for a remote cargo shuttle console. # Starlight end
   components:
   - type: Sprite
     state: cpu_supply

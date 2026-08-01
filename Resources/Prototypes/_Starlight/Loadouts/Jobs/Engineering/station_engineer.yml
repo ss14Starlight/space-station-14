@@ -1,0 +1,4 @@
+- type: loadout
+  id: WindbreakerEngineering
+  equipment:
+    outerClothing: ClothingOuterWindbreakerEngineering

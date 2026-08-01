@@ -24,19 +24,19 @@ namespace Content.Server.Anomaly.Effects;
 // Far Horizons - made partial
 public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly AnomalySystem _anomaly = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly JitteringSystem _jitter = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly StunSystem _stun = default!;
-    [Dependency] private readonly ActionGrantSystem _actionGrant = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private AnomalySystem _anomaly = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private JitteringSystem _jitter = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private StunSystem _stun = default!;
+    [Dependency] private ActionGrantSystem _actionGrant = default!;
 
     private readonly Color _messageColor = Color.FromSrgb(new Color(201, 22, 94));
 
@@ -259,11 +259,14 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             var componentType = comp.Value.Component.GetType();
             if (add)
             {
-                EntityManager.AddComponent(target, comp.Value);
                 if (comp.Value.Component is ActionGrantComponent actionGrantComp &&
                     TryComp<ActionGrantComponent>(target, out var oldComp))
                 {
                     _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
+                }
+                else
+                {
+                    EntityManager.AddComponent(target, comp.Value);
                 }
 
                 continue;

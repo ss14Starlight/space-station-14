@@ -5,9 +5,9 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Client._Starlight.Mech.Equipment.Systems;
 
-public sealed class MechAirHornSystem : SharedMechAirHornSystem
+public sealed partial class MechAirHornSystem : SharedMechAirHornSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     protected override void OnHonkHorn(EntityUid uid, MechAirHornComponent comp, MechActivateAirHornEvent args)
     {

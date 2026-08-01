@@ -8,12 +8,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Drowsiness;
 
-public sealed class DrowsinessSystem : SharedDrowsinessSystem
+public sealed partial class DrowsinessSystem : SharedDrowsinessSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!; // Starlight
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private StunSystem _stunSystem = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()

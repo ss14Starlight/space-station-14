@@ -37,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandProtogen
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandProtogen
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegProtogen
       connections:

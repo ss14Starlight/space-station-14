@@ -8,11 +8,11 @@ using Robust.Shared.Physics.Events;
 
 namespace Content.Shared._Starlight.Chemistry;
 
-public sealed class SharedOnCollideSystem : EntitySystem
+public sealed partial class SharedOnCollideSystem : EntitySystem
 {
-    [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainers = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private ReactiveSystem _reactiveSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainers = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     public override void Initialize()
     {

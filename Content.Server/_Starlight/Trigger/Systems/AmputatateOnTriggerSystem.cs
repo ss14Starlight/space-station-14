@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Medical.Limbs;
-using Content.Server.Administration.Systems;
+using Content.Shared._Starlight;
 using Content.Shared._Starlight.Trigger.Components.Effects;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -11,12 +11,12 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Starlight.Trigger.Systems;
 
-public sealed class AmputatateOnTriggerSystem : XOnTriggerSystem<AmputatateOnTriggerComponent>
+public sealed partial class AmputatateOnTriggerSystem : XOnTriggerSystem<AmputatateOnTriggerComponent>
 {
-    [Dependency] private readonly LimbSystem _limbSystem = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private LimbSystem _limbSystem = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private StarlightEntitySystem _entitySystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
     protected override void OnTrigger(Entity<AmputatateOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
         // Override the normal target if we target the container

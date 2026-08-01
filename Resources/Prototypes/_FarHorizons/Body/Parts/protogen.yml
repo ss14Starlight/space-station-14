@@ -178,41 +178,41 @@
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: "r_hand"
 
-- type: entity
-  id: LeftLegProtoVulp
-  name: left proto-vulp leg # Starlight, quotation marks removed
-  parent: LeftLegProtogen
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
-    state: "l_leg"
+#- type: entity # Starlight start, we don't use these due to them breaking displacement maps. Someone else can try fixing them in the future...
+#  id: LeftLegProtoVulp
+#  name: left proto-vulp leg # Starlight, quotation marks removed
+#  parent: LeftLegProtogen
+#  components:
+#  - type: Sprite
+#    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi # Starlight, let's try just using the normal legs...
+#    state: "l_leg"
 
-- type: entity
-  id: RightLegProtoVulp
-  name: right proto-vulp leg # Starlight, quotation marks removed
-  parent: RightLegProtogen
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
-    state: "r_leg"
+#- type: entity
+#  id: RightLegProtoVulp
+#  name: right proto-vulp leg # Starlight, quotation marks removed
+#  parent: RightLegProtogen
+#  components:
+#  - type: Sprite
+#    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi # Starlight, let's try just using the normal feet...
+#    state: "r_leg"
 
-- type: entity
-  id: LeftFootProtoVulp
-  name: left proto-vulp foot # Starlight, quotation marks removed
-  parent: LeftFootProtogen
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
-    state: "l_foot"
+#- type: entity
+#-  id: LeftFootProtoVulp
+#  name: left proto-vulp foot # Starlight, quotation marks removed
+#  parent: LeftFootProtogen
+#  components:
+#  - type: Sprite
+#    sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi # Starlight, let's try just using the normal feet...
+#    state: "l_foot"
 
-- type: entity
-  id: RightFootProtoVulp
-  name: right proto-vulp foot # Starlight, quotation marks removed
-  parent: RightFootProtogen
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
-    state: "r_foot"
+#- type: entity
+#  id: RightFootProtoVulp
+#  name: right proto-vulp foot # Starlight, quotation marks removed
+#  parent: RightFootProtogen
+#  components:
+#  - type: Sprite
+#    sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi # Starlight, let's try just using the normal legs...
+#    state: "r_foot" # Starlight end
 
 #### Vox ####
 

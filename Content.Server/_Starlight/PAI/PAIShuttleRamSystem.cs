@@ -10,19 +10,19 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Events;
 
-namespace Content.Server.PAI;
+namespace Content.Server._Starlight.PAI;
 
 /// <summary>
 /// Ejects a PAI from the shuttle console when the shuttle rams another grid hard enough.
 /// The PAI is physically thrown clear. Also prevents the PAI being deleted when the console is destroyed.
 /// Uses event-driven collision detection via StartCollideEvent — no per-tick polling.
 /// </summary>
-public sealed class PAIShuttleRamSystem : EntitySystem
+public sealed partial class PAIShuttleRamSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ShuttleConsoleSystem _shuttleConsole = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ShuttleConsoleSystem _shuttleConsole = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     private const float MinVelocityEpsilon = 0.01f;
 

@@ -187,6 +187,23 @@
           0.3
         ]
       ]
+    },
+    {
+      "name": "pda-decimus",
+      "copyright": "StygianEagle",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "pda-ntsf",
+      "copyright": "StygianEagle, tgstation",
+      "delays": [
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      ]
     }
   ]
 }

@@ -7,10 +7,10 @@ using Content.Shared.Power.Components;
 
 namespace Content.Server._Impstation.Trigger.Systems;
 
-public sealed class TriggerOnBatteryFullSystem : EntitySystem
+public sealed partial class TriggerOnBatteryFullSystem : EntitySystem
 {
-    [Dependency] private readonly TriggerSystem _trigger = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
+    [Dependency] private BatterySystem _battery = default!;
 
     public override void Initialize()
     {

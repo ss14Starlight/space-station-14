@@ -146,12 +146,12 @@
 
 #SELF
 - type: entity
-  id: SELFStorageImplanter
-  name: S.E.L.F storage implanter
+  id: BluespaceStorageImplanter
+  name: bluespace storage implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter
-    implant: SELFStorageImplant
+    implant: BluespaceStorageImplant
 # Traitor Mind control
 - type: entity
   id: MindControlImplanter
@@ -160,23 +160,6 @@
   components:
     - type: Implanter
       implant: MindControlImplant
-
-#MedTak
-- type: entity
-  id: MedTakMindShieldImplanter
-  name: MedTak mindshield implanter
-  parent: MindShieldImplanter
-  components:
-  - type: Implanter
-    implant: MedTakMindShieldImplant
-
-- type: entity
-  id: MedTakDeathRattleImplanter
-  name: MedTak beacon implanter
-  parent: BaseImplantOnlyImplanter
-  components:
-  - type: Implanter
-    implant: DeathRattleImplantMedTak
 
 #Station
 - type: entity

@@ -71,6 +71,11 @@
       effects:
       - !type:SatiateThirst
         factor: 4 # Coconut water is 94% water
+      - !type:SatiateHunger # Starlight start, diona stuff
+        factor: 2 # I'm not going to make it do MORE than normal water like coconut water, but it can be equal as a nod to that.
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ] # Starlight end
 
 - type: reagent
   id: CreamOfCoconut
@@ -366,6 +371,16 @@
   flavor: fizzy
   color: "#619494"
   fizziness: 0.8
+  metabolisms: # Starlight start, diona stuff
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:SatiateHunger
+        factor: 1.5 # it's not pure water
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ] # Starlight end
 
 - type: reagent
   id: SoyLatte
@@ -424,6 +439,16 @@
   flavor: tonicwater
   color: "#0064C8"
   fizziness: 0.4
+  metabolisms: # Starlight start, diona stuff
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:SatiateHunger
+        factor: 1.5 # it's not pure water
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ] # Starlight end
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/tonicglass.rsi
     state: icon_empty
@@ -445,7 +470,7 @@
   boilingPoint: 100.0
   meltingPoint: 0.0
   friction: 0.4
-  # Starlight edit start - Make Water work like Ipecac for Dwarfs, but even worse
+  # Starlight edit start - Make Water work like Ipecac for Dwarfs, but even worse, also let Diona treat water as food
   metabolisms:
     Drink:
       effects:
@@ -459,6 +484,11 @@
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         probability: 0.5
+      - !type:SatiateHunger
+        factor: 2
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ]
   # Starlight edit end
     Gas:
       effects:
@@ -490,6 +520,13 @@
       effects:
       - !type:SatiateThirst
         factor: 3 # Slightly worse for quenching thirst than just straight water
+      # Starlight start, diona can eat ice too, ig, just make it a little worse
+      - !type:SatiateHunger
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ]
+      # Starlight end
   plantMetabolism:
   - !type:PlantAdjustWater
     amount: 1 # The internet tells me I should avoid watering plants with ice, but mostly because of temperature, so this value being the same as water should probably be fine?

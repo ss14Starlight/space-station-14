@@ -6,15 +6,17 @@ using Content.Server.Atmos.Components;
 using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server._Starlight.Shuttles;
-using Content.Shared.Starlight.CCVar;
+using Content.Server.Spawners.Components;
+using Content.Server.Spawners.EntitySystems;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
 using Content.Shared.Audio;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
-using Content.Shared.Temperature.Components;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -22,27 +24,29 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
+using Robust.Shared.Serialization.Markdown.Mapping;
 
 namespace Content.Server._Starlight.CosmicCult;
 
-public sealed class MonumentSystem : SharedMonumentSystem
+public sealed partial class MonumentSystem : SharedMonumentSystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly CosmicCorruptingSystem _corrupting = default!;
-    [Dependency] private readonly CosmicCultRuleSystem _cosmicRule = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly ServerGlobalSoundSystem _sound = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private CosmicCorruptingSystem _corrupting = default!;
+    [Dependency] private CosmicCultRuleSystem _cosmicRule = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private ServerGlobalSoundSystem _sound = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SpawnOnDespawnSystem _sod = default!;
 
     private static readonly EntProtoId _cosmicGod = "MobCosmicGodSpawn";
     private static readonly EntProtoId _monumentCollider = "MonumentCollider";
@@ -95,8 +99,19 @@ public sealed class MonumentSystem : SharedMonumentSystem
                     victoryComp.Victory = true;
                 }
 
-                Spawn(_cosmicGod, Transform(uid).Coordinates);
+                var spawnUid = Spawn(_cosmicGod, Transform(uid).Coordinates);
                 comp.CurrentState = FinaleState.Victory;
+
+                // add override to make sure cosmic god ends round
+                if (TryComp<SpawnOnDespawnComponent>(spawnUid, out var spawnComp))
+                    _sod.SetOverrides((spawnUid, spawnComp), new ComponentRegistry(
+                        new Dictionary<string, EntityPrototype.ComponentRegistryEntry>
+                        {
+                            {
+                                "CosmicGod", new EntityPrototype.ComponentRegistryEntry(
+                                    new CosmicGodComponent { TriggerRoundEnd = true }, new MappingDataNode())
+                            }
+                        }));
             }
         }
 
@@ -307,16 +322,16 @@ public sealed class MonumentSystem : SharedMonumentSystem
         }
     }
 
-    public void SetCanTierUp(Entity<MonumentComponent> ent, bool canTierUp)
+    public static void SetCanTierUp(Entity<MonumentComponent> ent, bool canTierUp)
         => ent.Comp.CanTierUp = canTierUp;
 
-    public void SetTargetProgess(Entity<MonumentComponent> ent, int targetProgress)
+    public static void SetTargetProgess(Entity<MonumentComponent> ent, int targetProgress)
         => ent.Comp.TargetProgress = targetProgress;
 
-    public void Disable(Entity<MonumentComponent> ent)
+    public static void Disable(Entity<MonumentComponent> ent)
         => ent.Comp.Enabled = false;
 
-    public void Enable(Entity<MonumentComponent> ent)
+    public static void Enable(Entity<MonumentComponent> ent)
         => ent.Comp.Enabled = true;
 
     public void MonumentTier1(Entity<MonumentComponent> uid)
@@ -415,8 +430,6 @@ public sealed class MonumentSystem : SharedMonumentSystem
         {
             EnsureComp<PressureImmunityComponent>(cultist);
             EnsureComp<TemperatureImmunityComponent>(cultist);
-
-            _damage.SetDamageContainerID(cultist, "BiologicalMetaphysical");
 
             foreach (var influenceProto in _protoMan.EnumeratePrototypes<InfluencePrototype>().Where(influenceProto => influenceProto.Tier == 3))
             {

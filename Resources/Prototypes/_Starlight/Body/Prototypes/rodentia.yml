@@ -1,0 +1,81 @@
+﻿- type: entity
+  id: CheekStorage
+  name: cheek storage
+  description: The cheeks of an animal, capable of storing small objects.
+  components:
+    - type: Storage
+      clickInsert: false
+      grid:
+        - 0,0,1,1
+      maxItemSize: Small
+      blacklist:
+        components:
+          - Sharp
+          - MindContainer
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: [ ]
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: Dumpable
+
+- type: body
+  id: Rodentia
+  name: "rodentia"
+  root: torso
+  slots:
+    head:
+      part: HeadRodentia
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganRodentiaEyes
+        tongue: OrganHumanTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoRodentia
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganRodentiaHeart
+        lungs: OrganHumanLungs
+        stomach: OrganRodentiaStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganAnimalKidneys
+        cavity: null
+    right arm:
+      part: RightArmRodentia
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmRodentia
+      connections:
+      - left hand
+    right hand:
+      part: RightHandRodentia
+      organs:
+        hand_implant: null
+    left hand:
+      part: LeftHandRodentia
+      organs:
+        hand_implant: null
+    right leg:
+      part: RightLegRodentia
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegRodentia
+      connections:
+      - left foot
+    right foot:
+      part: RightFootRodentia
+    left foot:
+      part: LeftFootRodentia

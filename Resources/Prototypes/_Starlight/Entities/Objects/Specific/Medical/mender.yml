@@ -67,6 +67,9 @@
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
       path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
+  - type: RefillReagentFilter
+    reagents:
+    - Bicaridine
 
 - type: entity
   suffix: Filled
@@ -113,6 +116,9 @@
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
       path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
+  - type: RefillReagentFilter
+    reagents:
+    - Dermaline
 
 - type: entity
   suffix: Filled

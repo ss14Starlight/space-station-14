@@ -300,3 +300,41 @@
     - type: HideLayerClothing
       layers:
         Hair: HEAD
+
+#Greenshield Officer
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetRaid ]
+  id: ClothingHeadHelmetGreenshield
+  categories: [ DoNotMap ]
+  name: Greenshield helmet
+  description: A special helmet worn by Greenshield Officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Helmets/greenshield_helmet.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Helmets/greenshield_helmet.rsi
+    - type: Tag
+      tags:
+        - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ChangelingClothingHeadHelmet
+  name: chitinous helmet
+  description: An all-consuming chitinous mass of armor.
+  suffix: Unremoveable
+  components:
+  - type: Sprite
+    sprite: Changeling/ling_armor_helmet.rsi
+  - type: Clothing
+    sprite: Changeling/ling_armor_helmet.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8 # Starlight start
+        Slash: 0.8 # It makes you instantly a target, so it should provide some actual defense.
+        Piercing: 0.85
+        Heat: 0.8 # Starlight end
+  - type: Unremoveable

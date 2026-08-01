@@ -1,7 +1,10 @@
-using System.Numerics; // _Starlight
-using Content.Shared.Shuttles.Components; // _Starlight
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
+#region Starlight
+using Content.Shared._Starlight.Shuttles.Components;
+using System.Numerics;
+using Content.Shared.Shuttles.Components;
+#endregion
 
 namespace Content.Shared.Shuttles.BUIStates;
 

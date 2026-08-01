@@ -21,17 +21,17 @@ using Robust.Shared.Player;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
-public sealed class BatteryWeaponFireModesSystem : EntitySystem
+public sealed partial class BatteryWeaponFireModesSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
 
 #region Starlight
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private INetManager _net = default!;
 #endregion Starlight
 
     public override void Initialize()

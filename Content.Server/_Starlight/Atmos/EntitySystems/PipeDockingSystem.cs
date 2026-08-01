@@ -5,7 +5,7 @@ using Content.Shared.NodeContainer;
 using Content.Shared.Atmos;
 using Robust.Shared.Map.Components;
 using Content.Server.NodeContainer.EntitySystems;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 
 namespace Content.Server._Starlight.Atmos.EntitySystems;
@@ -13,13 +13,13 @@ namespace Content.Server._Starlight.Atmos.EntitySystems;
 /// <summary>
 /// Allows pipes to connect over docks.
 /// </summary>
-public sealed class PipeDockingSystem : EntitySystem
+public sealed partial class PipeDockingSystem : EntitySystem
 {
     #region Dependencies
 
-    [Dependency] public readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
+    [Dependency] public SharedMapSystem _mapSystem = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private NodeGroupSystem _nodeGroupSystem = default!;
 
     private readonly List<PipeNode> _dockAPipes = [];
     private readonly List<PipeNode> _dockBPipes = [];

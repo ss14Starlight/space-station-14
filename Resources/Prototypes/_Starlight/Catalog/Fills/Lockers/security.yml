@@ -1,8 +1,10 @@
 - type: entity
-  parent: [GunSafeBaseSecure, BaseRestrictedContraband]
+  parent: [GunSafeBaseArmorySL, BaseRestrictedContraband]
   id: GunSafeEnergySniper
   name: LWAP safe
   components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: lwap_gunsafe_doors
   - type: Contraband
     allowedDepartments: [ Security ]
   - type: EntityTableContainerFill
@@ -127,61 +129,14 @@
         - id: JawsOfLifeMed #Starlight
         - id: JawsOfLifeMed #Starlight
 
-
 - type: entity
-  id: LockerWardenLargeFilled
-  suffix: Filled
-  parent: LockerWardenLarge
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: FlashlightSeclite
-          amount: 2
-        - id: WeaponEnergyShotgun
-        - id: WeaponDisabler
-          amount: 2
-        - id: ClothingBeltSecurityFilled
-          amount: 2
-        - id: Flash
-          amount: 2
-        - id: ClothingEyesGlassesSecurity
-          amount: 2
-        - id: ClothingEyesHudSecurity
-          amount: 2
-        - id: ClothingHandsGlovesCombat
-          amount: 2
-        - id: ClothingHeadsetSecurityWarden
-          amount: 2
-        - id: ClothingShoesBootsJack
-          amount: 2
-        - id: ClothingOuterCoatWarden
-          amount: 2
-        - id: ClothingOuterWinterWarden
-          amount: 2
-        - id: BoxWardenStamps
-        - id: DoorRemoteArmory
-          amount: 2
-        - id: HoloprojectorSecurity
-          amount: 2
-        - id: BookSpaceLaw
-          amount: 2
-        - id: ClothingBackpackElectropack
-          amount: 4
-        - id: RemoteSignaller
-          amount: 4
-        - id: Binoculars
-          amount: 2
-        - id: NeuralLinkDisruptor
-          amount: 2
-
-- type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband]
   id: GunSafeHeavyWeapons # To save remapping
   name: DMR safe
   description: Contains a set of L10 DMRs
   components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: dmr_gunsafe_doors
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
@@ -196,12 +151,14 @@
           amount: 1
 
 - type: entity
-  parent: [GunSafe, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband]
   id: GunSafeLMG
   categories: [ DoNotMap ]
   name: heavy weapon safe
   description: For when talking it out just isn't enough.
   components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: lmg_gunsafe_doors
   - type: AccessReader
     access: [["Armory"]]
   - type: EntityTableContainerFill

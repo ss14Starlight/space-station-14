@@ -3,9 +3,9 @@ using Content.Shared._Starlight.IoC;
 namespace Content.Server._Starlight.IoC;
 
 [Obsolete]
-public sealed class SLIoCSystem : SharedSLIoCSystem
+public sealed partial class SLIoCSystem : SharedSLIoCSystem
 {
-    [Dependency] private readonly IDependencyCollection _dependency = default!;
+    [Dependency] private IDependencyCollection _dependency = default!;
 
     public override void ServerInitIoC()
     {

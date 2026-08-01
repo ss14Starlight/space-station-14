@@ -1,7 +1,7 @@
 using Content.Shared.Store;
 using Robust.Shared.Player;
 
-namespace Content.Server.Store.Conditions;
+namespace Content.Server._Starlight.Store.Conditions;
 
 /// <summary>
 /// Only allows a listing to be purchased if population is at a certain number.

@@ -9,14 +9,14 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Actions.EntitySystems;
 
-public sealed class ZoomiesSystem : SharedZoomiesSystem
+public sealed partial class ZoomiesSystem : SharedZoomiesSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ActionsSystem _action = default!;
-    [Dependency] private readonly AlertsSystem _alert = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly ThirstSystem _thirst = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ActionsSystem _action = default!;
+    [Dependency] private AlertsSystem _alert = default!;
+    [Dependency] private MovementSpeedModifierSystem _speed = default!;
+    [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private ThirstSystem _thirst = default!;
 
     public override void Initialize()
     {

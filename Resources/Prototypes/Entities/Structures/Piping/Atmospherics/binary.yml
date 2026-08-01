@@ -101,6 +101,18 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+    prefix: device-address-prefix-gas-pump
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+  - type: GasPressurePumpSignal
   # Starlight end
   - type: GuideHelp
     guides:
@@ -169,19 +181,24 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_pump.ogg
-    - type: DeviceNetwork
-      deviceNetId: AtmosDevices
-      receiveFrequencyId: AtmosMonitor
-      transmitFrequencyId: AtmosMonitor
-      sendBroadcastAttemptEvent: true
-      examinableAddress: true
-      prefix: device-address-prefix-volume-pump
-    - type: WiredNetworkConnection
+        # Starlight: Replaced DeviceNetwork, see Starlight block
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlTransit
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-volume-pump
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: GasVolumePumpSignal
     # Starlight end
     - type: GuideHelp
       guides:
@@ -518,6 +535,7 @@
 - type: entity
   parent: GasVentPump
   id: GasDualPortVentPump
+  categories: [ DoNotMap ] # Starlight - Blacklisted by WizDen for mapping, extremely easy to use wrong, best to just not map them at all.
   name: dual-port air vent
   description: Has a valve and a pump attached to it. There are two ports, one is an input for releasing air, the other is an output when siphoning.
   placement:

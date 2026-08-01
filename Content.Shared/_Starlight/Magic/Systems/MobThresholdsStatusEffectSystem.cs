@@ -4,16 +4,15 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared._Starlight.Magic.Components;
-using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 
 namespace Content.Shared._Starlight.Magic.Systems;
 
-public sealed class MobThresholdStatusEffectSystem : EntitySystem
+public sealed partial class MobThresholdStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly MobThresholdSystem _mobthresholds = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private MobThresholdSystem _mobthresholds = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {

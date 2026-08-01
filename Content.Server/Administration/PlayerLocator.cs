@@ -70,13 +70,13 @@ namespace Content.Server.Administration
         Task<LocatedPlayerData?> LookupIdAsync(NetUserId userId, CancellationToken cancel = default);
     }
 
-    internal sealed class PlayerLocator : IPlayerLocator, IDisposable, IPostInjectInit
+    internal sealed partial class PlayerLocator : IPlayerLocator, IDisposable, IPostInjectInit
     {
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-        [Dependency] private readonly IServerDbManager _db = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
-        [Dependency] private readonly IConnectionManager _connectionManager = default!; // Starlight
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IConfigurationManager _configurationManager = default!;
+        [Dependency] private IServerDbManager _db = default!;
+        [Dependency] private ILogManager _logManager = default!;
+        [Dependency] private IConnectionManager _connectionManager = default!; // Starlight
 
         private readonly HttpClient _httpClient = new();
         private ISawmill _sawmill = default!;

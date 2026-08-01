@@ -37,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandReptilian
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandReptilian
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegReptilian
       connections:

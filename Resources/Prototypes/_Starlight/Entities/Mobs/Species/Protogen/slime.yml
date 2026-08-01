@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  parent: BaseMobProtogen
   id: BaseMobProtoSlimePerson
   name: Urist McSlimester
   abstract: true
@@ -29,7 +29,8 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-  - type: Absorbable
+  - type: InteractionPopup
+    interactSuccessSound: /Audio/Voice/Slime/slime_squish.ogg
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Slime/parts.rsi
     state: full
@@ -134,7 +135,7 @@
   - type: Wagging
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoSlimePerson
   categories: [ HideSpawnMenu ]
   components:

@@ -1,55 +1,55 @@
 # This file, as well as contents of this directory in general, is a copy of Resources/Audio/Voice/Vulpkanin and Resources/Audio/_Starlight/Effects with minor edits
 - files: ["dog_bark1.ogg"]
   license: "CC0-1.0"
-  copyright: "Original sound by abhisheky948 at https://freesound.org/people/abhisheky948/sounds/625497/ - added robotics effect by princess_gurchi"
+  copyright: "Original sound by abhisheky948 at https://freesound.org/people/abhisheky948/sounds/625497/ - applied robotic voice"
   source: "https://freesound.org/people/abhisheky948/sounds/625497/"
 
 - files: ["dog_bark2.ogg"]
   license: "CC0-1.0"
-  copyright: "Original sound by michael_grinnell at https://freesound.org/people/michael_grinnell/sounds/464400/ - added robotics effect by princess_gurchi"
+  copyright: "Original sound by michael_grinnell at https://freesound.org/people/michael_grinnell/sounds/464400/ - applied robotic voice"
   source: "https://freesound.org/people/michael_grinnell/sounds/464400/"
 
 - files: ["dog_bark3.ogg"]
   license: "CC0-1.0"
-  copyright: "Original sound by Geoff-Bremner-Audio at https://freesound.org/people/Geoff-Bremner-Audio/sounds/688201/ - added robotics effect by princess_gurchi"
+  copyright: "Original sound by Geoff-Bremner-Audio at https://freesound.org/people/Geoff-Bremner-Audio/sounds/688201/ - applied robotic voice"
   source: "https://freesound.org/people/Geoff-Bremner-Audio/sounds/688201/"
 
 - files: ["yip.ogg"]
   license: "CC0-1.0"
-  copyright: "Modified from 'Video Game Squeak' by freesound user 'Breviceps'. The original audio was converted from WAV to OGG format - added robotics effect by princess_gurchi"
+  copyright: "Modified from 'Video Game Squeak' by freesound user 'Breviceps'. The original audio was converted from WAV to OGG format - applied robotic voice"
   source: "https://freesound.org/people/Breviceps/sounds/468442/"
 
 - files: ["growl1.ogg", "growl2.ogg", "growl3.ogg"]
   license: "CC-BY-SA-3.0"
-  copyright: 'by ParadiseSS13 - added robotics effect by princess_gurchi'
+  copyright: 'by ParadiseSS13 - applied robotic voice'
   source: "https://github.com/ParadiseSS13/Paradise/commit/4ec5d79e97bc88bdca8c89c1da9378a798e18350"
 
 - files: ["howl.ogg"]
   license: "CC-BY-SA-3.0"
-  copyright: 'by ParadiseSS13  - added robotics effect by princess_gurchi'
+  copyright: 'by ParadiseSS13  - applied robotic voice'
   source: "https://github.com/ParadiseSS13/Paradise/commit/4ec5d79e97bc88bdca8c89c1da9378a798e18350"
 
 - files: ["dog_snarl1.ogg", "dog_snarl2.ogg", "dog_snarl3.ogg"]
   license: "CC0-1.0"
-  copyright: "Original sound by https://freesound.org/people/strongbot/sounds/341090/ - cut out three clips of dog snarling, cleaned up, converted to ogg - added robotics effect by princess_gurchi"
+  copyright: "Original sound by https://freesound.org/people/strongbot/sounds/341090/ - cut out three clips of dog snarling, cleaned up, converted to ogg - applied robotic voice"
   source: "https://freesound.org/people/strongbot/sounds/341090/"
 
 - files: ["vulp_scream1.ogg", "vulp_scream2.ogg", "vulp_scream3.ogg", "vulp_scream4.ogg"]
   license: "CC0-1.0"
-  copyright: "Original sound by https://freesound.org/people/lordomega/sounds/514959/ - cut out four clips, cleaned up, converted to ogg - added robotics effect by princess_gurchi"
+  copyright: "Original sound by https://freesound.org/people/lordomega/sounds/514959/ - cut out four clips, cleaned up, converted to ogg - applied robotic voice"
   source: "https://freesound.org/people/lordomega/sounds/514959/"
 
 - files: ["vulp_yawn1.ogg"]
   license: "CC0-1.0"
-  copyright: "Original sound by https://freesound.org/people/jinxycat49/sounds/490164/, cleaned up, cut, converted to ogg - added robotics effect by princess_gurchi"
+  copyright: "Original sound by https://freesound.org/people/jinxycat49/sounds/490164/, cleaned up, cut, converted to ogg - applied robotic voice"
   source: "https://freesound.org/people/jinxycat49/sounds/490164/"
 
 - files: ["vulp_yawn2.ogg"]
   license: "CC0-1.0"
-  copyright: "Original sound by https://freesound.org/people/qubodup/sounds/827660/, cleaned up, cut, converted to ogg - added robotics effect by princess_gurchi"
+  copyright: "Original sound by https://freesound.org/people/qubodup/sounds/827660/, cleaned up, cut, converted to ogg - applied robotic voice"
   source: "https://freesound.org/people/qubodup/sounds/827660/"
 
 - files: ["vulp_sneeze.ogg"]
   license: "CC0-1.0"
-  copyright: "Original sound by blukotek on freesound.org, Modified by Minemoder5000 on github by cleaning the audio, cropping, and re-encoding to Ogg Vorbis - added robotics effect by princess_gurchi"
+  copyright: "Original sound by blukotek on freesound.org, Modified by Minemoder5000 on github by cleaning the audio, cropping, and re-encoding to Ogg Vorbis - applied robotic voice"
   source: "https://freesound.org/people/blukotek/sounds/424949/"

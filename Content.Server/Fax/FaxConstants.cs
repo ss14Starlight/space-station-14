@@ -32,6 +32,9 @@ public static class FaxConstants
     public const string FaxPaperLockedData = "fax_data_locked";
 
     #region Starlight
+    public const string FaxGroupIdData = "fax_data_group_id"; // ProtoId<FaxGroupPrototype>
+    public const string FaxOrderData = "fax_data_order"; // Ordering within its group
+
     // Cargo Slips Data
     public const string FaxSlipProduct = "fax_slip_product_id";
     public const string FaxSlipRequester = "fax_slip_requester";

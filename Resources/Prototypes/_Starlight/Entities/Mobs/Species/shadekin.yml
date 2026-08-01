@@ -47,11 +47,11 @@
       damage:
         types:
           Slash: 5
-    - type: FlashModifier
-      modifier: 2
     - type: Damageable
       damageContainer: Biological
       damageModifierSet: Shadekin
+    - type: Deathgasp
+      damageType: Bloodloss
     - type: Reactive
       groups:
         Flammable: [Touch]

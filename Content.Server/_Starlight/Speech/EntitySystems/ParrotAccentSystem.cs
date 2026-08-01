@@ -11,7 +11,7 @@ public sealed partial class ParrotAccentSystem : EntitySystem
     [GeneratedRegex("[^A-Za-z0-9 -]")]
     private static partial Regex WordCleanupRegex();
 
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

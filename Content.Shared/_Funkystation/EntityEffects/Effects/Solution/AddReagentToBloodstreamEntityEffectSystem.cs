@@ -9,7 +9,7 @@ namespace Content.Shared.EntityEffects.Effects.Solution;
 
 public sealed partial class AddReagentToBloodstreamSystem : EntityEffectSystem<BloodstreamComponent, AddReagentToBloodstream>
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<AddReagentToBloodstream> args)
     {

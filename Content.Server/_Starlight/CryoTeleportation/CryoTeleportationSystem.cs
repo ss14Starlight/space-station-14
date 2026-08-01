@@ -3,8 +3,8 @@ using Content.Shared._Starlight.Polymorph.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.GameTicking;
-using Content.Shared.Starlight.CryoTeleportation;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CryoTeleportation;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -21,18 +21,18 @@ using Content.Shared.Station.Components;
 
 namespace Content.Server._Starlight.CryoTeleportation;
 
-public sealed class CryoTeleportationSystem : EntitySystem
+public sealed partial class CryoTeleportationSystem : EntitySystem
 {
-    [Dependency] private readonly CryostorageSystem _cryostorage = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly IPlayerManager _playerMan = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private CryostorageSystem _cryostorage = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private IPlayerManager _playerMan = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     public TimeSpan _nextTick = TimeSpan.Zero;
     private readonly TimeSpan _refreshCooldown = TimeSpan.FromSeconds(5);

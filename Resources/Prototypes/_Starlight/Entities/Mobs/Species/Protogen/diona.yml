@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McPlantster
-  parent: [BaseMobProtogen, BaseSpeciesPickupableHuge]
+  parent: [BaseSpeciesPickupableHuge, BaseMobProtogen]
   id: BaseMobProtoDiona
   abstract: true
   components:
@@ -19,7 +19,6 @@
       Male: ProtoDionaMSounds
       Female: ProtoDionaFSounds
       Unsexed: ProtoDionaMSounds
-  - type: Absorbable
   - type: Tag
     tags:
     - CanPilot
@@ -43,6 +42,8 @@
   - type: Body
     prototype: ProtoDiona
     requiredLegs: 2
+  - type: BodyEmotes
+    soundsId: DionaBodyEmotes
   - type: Damageable
     damageContainer: Hybrid
     damageModifierSet: ProtoDiona
@@ -125,7 +126,8 @@
   - type: IgnoreKudzu
   - type: IgniteOnHeatDamage
     fireStacks: 1
-    threshold: 12
+    maxFireStacks: 3
+    threshold: 30
   - type: GibAction
     actionPrototype: DionaGibAction
     allowedStates:
@@ -139,9 +141,18 @@
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
   - type: Rootable
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+    - Floral
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Critical
+      250: Dead
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoDiona
   categories: [ HideSpawnMenu ]
   components:

@@ -1,6 +1,5 @@
 using Content.Client.Lobby;
 using Content.Shared._NullLink;
-using Content.Shared.CCVar;
 using Content.Shared.NullLink.CCVar;
 using Robust.Client.State;
 using Robust.Shared.Configuration;
@@ -9,13 +8,13 @@ using static Content.Shared._NullLink.NullLink;
 
 namespace Content.Client._NullLink;
 
-public sealed class HubSystem : EntitySystem
+public sealed partial class HubSystem : EntitySystem
 {
     private static readonly TimeSpan _delay = TimeSpan.FromSeconds(14);
 
-    [Dependency] private readonly IStateManager _state = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IStateManager _state = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private bool _inLobby;
     private TimeSpan _lastSent;

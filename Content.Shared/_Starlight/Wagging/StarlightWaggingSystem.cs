@@ -1,15 +1,15 @@
-﻿using Content.Shared._Starlight.Humanoid.Markings;
+﻿using Content.Shared.Humanoid.Markings;
 using Content.Shared.Actions;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Markings;
+using Content.Shared._Starlight.Humanoid.Markings;
 using Content.Shared.Wagging;
 
 namespace Content.Shared._Starlight.Wagging;
 
-public sealed class StarlightWaggingSystem : EntitySystem
+public sealed partial class StarlightWaggingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly StarlightMarkingSystem _starlightMarking = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private StarlightMarkingSystem _starlightMarking = default!;
 
     public override void Initialize()
     {

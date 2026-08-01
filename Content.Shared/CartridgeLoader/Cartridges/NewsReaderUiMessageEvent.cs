@@ -18,5 +18,9 @@ public enum NewsReaderUiAction
 {
     Next,
     Prev,
-    NotificationSwitch
+    NotificationSwitch,
+    // Starlight-edit: start
+    Like,
+    Dislike
+    // Straight-edit: end
 }

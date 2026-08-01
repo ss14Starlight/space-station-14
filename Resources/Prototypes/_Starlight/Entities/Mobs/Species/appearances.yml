@@ -202,3 +202,31 @@
     - Snout
     - HeadTop
     - HeadSide
+
+- type: entity
+  save: false
+  parent: [BaseSpeciesDummy, BaseInventoryRodentia]
+  id: AppearanceRodentia
+  categories: [ HideSpawnMenu ]
+  description: A dummy rodentia meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Rodentia
+    undergarmentTop: UndergarmentTopTanktopRodentia
+    undergarmentBottom: UndergarmentBottomBoxersRodentia
+    hideLayersOnEquip:
+    - Hair
+    - HeadTop
+    - HeadSide
+    - Snout
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: hair
+      FacialHair:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: facialhair

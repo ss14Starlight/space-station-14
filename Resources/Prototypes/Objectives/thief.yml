@@ -54,17 +54,6 @@
 
 - type: entity
   parent: BaseThiefStealCollectionObjective
-  id: FigurineStealCollectionObjective
-  components:
-  - type: StealCondition
-    stealGroup: Figurines
-    minCollectionSize: 10
-    maxCollectionSize: 18 #will be limited to the number of figures on the station anyway.
-  - type: Objective
-    difficulty: 0.7 #Starlight edit, youre fighting others for em
-
-- type: entity
-  parent: BaseThiefStealCollectionObjective
   id: HeadCloakStealCollectionObjective
   components:
   - type: StealCondition
@@ -239,14 +228,14 @@
 
 - type: entity
   parent: BaseThiefStealObjective
-  id: MedicalTechFabCircuitboardStealObjective
+  id: SecureTechFabCircuitboardStealObjective # Starlight, given to command-sec instead
   components:
   - type: NotJobRequirement
-    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist ] # Starlight. Rest of med.
+    jobs: [ Captain, HeadOfPersonnel, ResearchDirector, ChiefEngineer, ChiefMedicalOfficer, Quartermaster, NanoTrasenRepresentative, Magistrate, BlueShield, HeadOfSecurity, Warden, Brigmedic, Detective, DutyOfficer, SecurityOfficer, SecurityCadet ] # Starlight, combined with security
   - type: StealCondition
-    stealGroup: MedicalTechFabCircuitboard
+    stealGroup: SecureTechFabCircuitboard # Starlight, given to command-sec instead
   - type: Objective
-    difficulty: 1
+    difficulty: 1.4 # Starlight, good luck
 
 - type: entity
   parent: BaseThiefStealObjective

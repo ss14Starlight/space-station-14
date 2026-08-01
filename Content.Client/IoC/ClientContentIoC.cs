@@ -29,7 +29,7 @@ using Content.Shared.Chat;
 using Content.Shared.IoC;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Content.Client._NullLink;
 using Content.Client._Starlight.Achievement;
 using Content.Client._Starlight.Shaders;

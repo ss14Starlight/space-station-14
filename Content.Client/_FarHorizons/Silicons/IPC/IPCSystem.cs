@@ -10,12 +10,12 @@ namespace Content.Client._FarHorizons.Silicons.IPC;
 
 public sealed partial class IPCSystem : SharedIPCSystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly MobStateSystem _state = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private MobStateSystem _state = default!;
 
     protected override void UpdateThermals(float frameTime) {}
 }

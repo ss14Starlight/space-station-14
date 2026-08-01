@@ -11,26 +11,29 @@ using Content.Shared.Gibbing.Components;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Mind;
 using NetCord;
+using Content.Shared.Objectives.Systems;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.Random;
 // Starlight start
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
 using Robust.Shared.Prototypes;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Server._Starlight.Objectives.Components;
+using Content.Shared._Starlight.Overlay.Components;
 // Starlight end
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComponent>
+public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComponent>
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly CloningSystem _cloning = default!;
-    [Dependency] private readonly SuitSensorSystem _sensor = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!; // SL add
-    [Dependency] private readonly IPrototypeManager _proto = default!; // SL add
-    [Dependency] private readonly IComponentFactory _componentFactory = default!; // SL add
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private CloningSystem _cloning = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SuitSensorSystem _sensor = default!;
+    [Dependency] private IChatManager _chatManager = default!; // SL add
+    [Dependency] private IPrototypeManager _proto = default!; // SL add
+    [Dependency] private IComponentFactory _componentFactory = default!; // SL add
 
     public override void Initialize()
     {
@@ -65,9 +68,6 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
     // we have to do the spawning here so we can transfer the mind to the correct entity and can assign the objectives correctly
     private void OnAntagSelectEntity(Entity<ParadoxCloneRuleComponent> ent, ref AntagSelectEntityEvent args)
     {
-        if (args.Session?.AttachedEntity is not { } spawner)
-            return;
-
         if (ent.Comp.OriginalBody != null) // target was overridden, for example by admin antag control
         {
             if (Deleted(ent.Comp.OriginalBody.Value) || !_mind.TryGetMind(ent.Comp.OriginalBody.Value, out var originalMindId, out var _))
@@ -86,7 +86,8 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
             if (allAliveHumanoids.Count == 0)
             {
                 Log.Warning("Could not find any alive players to create a paradox clone from!");
-                _chatManager.DispatchServerMessage(args.Session, Loc.GetString("alerts-error-failed-to-spawn-ghost-role")); // SL edit
+                if (args.Session is { } session) // Starlight
+                    _chatManager.DispatchServerMessage(args.Session, Loc.GetString("alerts-error-failed-to-spawn-ghost-role")); // SL edit
                 _chatManager.SendAdminAnnouncement($"Player {args.Session} tried to claim Paradox Clone ghost role and it failed to spawn."); // SL edit
                 return;
             }
@@ -97,7 +98,8 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
             if (randomHumanoidMind is null)
             {
                 Log.Warning("Exhausted all alive players while searching for a valid target. Failed to create paradox clone.");
-                _chatManager.DispatchServerMessage(args.Session, Loc.GetString("alerts-error-failed-to-spawn-ghost-role"));
+                if (args.Session is { } session) // Starlight
+                    _chatManager.DispatchServerMessage(args.Session, Loc.GetString("alerts-error-failed-to-spawn-ghost-role"));
                 _chatManager.SendAdminAnnouncement($"Player {args.Session} tried to claim Paradox Clone ghost role and it failed to spawn.");
                 return;
             }
@@ -107,7 +109,7 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
 
         }
 
-        if (ent.Comp.OriginalBody == null || !_cloning.TryCloning(ent.Comp.OriginalBody.Value, _transform.GetMapCoordinates(spawner), ent.Comp.Settings, out var clone))
+        if (ent.Comp.OriginalBody == null || !_cloning.TryCloning(ent.Comp.OriginalBody.Value, args.Coords, ent.Comp.Settings, out var clone))
         {
             Log.Error($"Unable to make a paradox clone of entity {ToPrettyString(ent.Comp.OriginalBody)}");
             return;

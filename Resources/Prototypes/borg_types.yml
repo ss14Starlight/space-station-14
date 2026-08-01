@@ -29,6 +29,16 @@
   petSuccessString: petting-success-generic-cyborg
   petFailureString: petting-failure-generic-cyborg
 
+  # Starlight BEGIN
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgResearch
+        - ResearchDirector
+  # Starlight END
 
 # Engineering borg
 - type: borgType
@@ -55,7 +65,7 @@
   - Engineering
   - Science
 
-  # Starlight start: Engiborg hud
+  # Starlight start: Engiborg hud, access
   addComponents:
   - type: ShowHealthBars
     damageContainers:
@@ -64,6 +74,13 @@
     - IPC
     - Hybrid
   - type: ShowAccessReaderSettings
+  - type: Access
+    groups:
+      - CyborgAllAccess
+    tags:
+      - Borg
+      - BorgEngineering
+      - ChiefEngineer
   # Starlight end
 
   # Visual
@@ -123,6 +140,15 @@
   - !type:DepartmentTimeRequirement
     department: Cargo
     time: 5400 # 1 hour 30 minutes in Cargo
+
+  addComponents:
+  - type: Access
+    groups:
+      - CyborgAllAccess
+    tags:
+      - Borg
+      - BorgCargo
+      - Quartermaster
   # Starlight-end
 
 
@@ -158,6 +184,16 @@
   # Pet
   petSuccessString: petting-success-janitor-cyborg
   petFailureString: petting-failure-janitor-cyborg
+
+  # Starlight BEGIN
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgService
+  # Starlight END
 
 
 # Medical borg
@@ -195,6 +231,13 @@
     damageContainers:
     - Biological
     - Hybrid # Starlight, Protogens
+  - type: Access # Starlight BEGIN
+    groups:
+      - CyborgAllAccess
+    tags:
+      - Borg
+      - BorgMedical
+      - ChiefMedicalOfficer # Starlight END
 
   # Visual
   inventoryTemplateId: borgDutch
@@ -254,3 +297,13 @@
   # Pet
   petSuccessString: petting-success-service-cyborg
   petFailureString: petting-failure-service-cyborg
+
+  # Starlight BEGIN
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgService
+  # Starlight END

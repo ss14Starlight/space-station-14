@@ -74,6 +74,7 @@
     castShadows: false
     enabled: false
   - type: ActiveInputMover # Starlight
+  - type: Speech # Starlight, only adds speech bubble while typing
 
 # proto for player ghosts specifically
 - type: entity
@@ -88,8 +89,6 @@
   - type: ComplexInteraction # Starlight-start
   - type: RadarConsole
     followEntity: true
-  - type: ActivatableUI
-    key: enum.RadarConsoleUiKey.Key
   - type: UserInterface
     interfaces:
         enum.RadarConsoleUiKey.Key:

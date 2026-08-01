@@ -10,10 +10,10 @@ namespace Content.Server._Starlight.Shipyard.Commands;
 /// Purchases a shuttle and docks it to a station.
 /// </summary>
 [AdminCommand(AdminFlags.Fun)]
-public sealed class PurchaseShuttleCommand : IConsoleCommand
+public sealed partial class PurchaseShuttleCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
 
     public string Command => "purchaseshuttle";
     public string Description => Loc.GetString("cmd-purchaseshuttle-desc");

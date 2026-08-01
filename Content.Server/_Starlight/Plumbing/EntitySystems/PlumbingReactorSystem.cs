@@ -25,18 +25,18 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     target quantities, and then fully reacts the buffer and moves products to output container.
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingReactorSystem : EntitySystem
+public sealed partial class PlumbingReactorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly ChemicalReactionSystem _reactionSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly PlumbingPullSystem _pullSystem = default!;
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private ChemicalReactionSystem _reactionSystem = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private PlumbingPullSystem _pullSystem = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     /// <summary>
     ///     Temperature tolerance for considering target reached (in Kelvin).

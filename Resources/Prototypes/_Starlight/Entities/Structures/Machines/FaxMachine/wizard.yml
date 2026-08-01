@@ -1,0 +1,31 @@
+# Group
+- type: faxGroup
+  id: FaxGroupWizard
+  name: fax-group-wizard
+  order: 1900
+  color: "#ff00ff"
+  selectable: false
+
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineWizardBase
+  suffix: "Wizard"
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#ff00ff"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineWizardBase
+  id: FaxMachineWizardYeOleWizardFaxer
+  suffix: "Wizard: Ye Ol'e Wizard Faxer"
+  components:
+    - type: FaxMachine
+      group: FaxGroupWizard
+      name: "Ye Ol'e Wizard Faxer" # This is the one on the wizard shuttle.
+      order: 100

@@ -48,14 +48,30 @@
     RLeg: MobLagomorphRLeg
     LFoot: MobLagomorphLFoot
     RFoot: MobLagomorphRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobProtoLagomorphMarkingLimits
   points:
-    Special:
-      points: 4
+    FaceCover:
+      points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor, ProtoLagomorphVisor, ProtogenLights, ProtoLagomorphLEDFace ]
+      defaultMarkings: [ ProtoLagomorphVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoLagomorphLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenLights ]
     Hair:
       points: 1
       required: false

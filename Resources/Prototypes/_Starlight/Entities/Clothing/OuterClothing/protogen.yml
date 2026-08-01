@@ -9,6 +9,8 @@
     sprite: Clothing/OuterClothing/Armor/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/security.rsi # Just a placeholder, since it's overwritten below.
+    slots:
+    - outerClothing2
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Mecha/mechmove03.ogg
   - type: ArmorSparkEffect
@@ -85,7 +87,8 @@
     modifiers:
       coefficients:
         Slash: 0.90 # Slash can be higher, it's fine.
-        Blunt: 0.95 # We're not getting Pierce armor.
+        Blunt: 0.95 # We're not getting more Pierce armor.
+        Piercing: 0.95 # If you want 5% for 5%...
   - type: ClothingSpeedModifier # Starlight start
     walkModifier: 1
     sprintModifier: 0.95 # Not really a good tradeoff, but it's still not weightless...
@@ -206,7 +209,7 @@
   id: ChangelingClothingProtogenArmor
   name: Basic-Class light protogen frame
   description: Comes in-built with light armor plating to shield the cybernetics within. Removal of this would require killing you.
-  suffix: Unremoveable
+  suffix: Changeling
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi

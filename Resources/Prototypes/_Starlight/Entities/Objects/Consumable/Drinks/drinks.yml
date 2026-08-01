@@ -33,6 +33,7 @@
 - type: entity
   parent: DrinkWaterBottleFull
   id: DrinkWaterBottleEmpty
+  suffix: Empty
   name: water bottle
   description: Simple clean water of unknown origin. You think that maybe you don't want to know it.
   components:

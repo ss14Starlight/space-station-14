@@ -22,11 +22,11 @@ namespace Content.Server.Light.EntitySystems;
 /// <summary>
 ///     System for the PoweredLightComponents
 /// </summary>
-public sealed class PoweredLightSystem : SharedPoweredLightSystem
+public sealed partial class PoweredLightSystem : SharedPoweredLightSystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!; // SL
-    [Dependency] private readonly ChatSystem _chat = default!; // SL
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // SL
+    [Dependency] private GameTicker _gameTicker = default!; // SL
+    [Dependency] private ChatSystem _chat = default!; // SL
+    [Dependency] private AlertLevelSystem _alertLevel = default!; // SL
 
     public override void Initialize()
     {

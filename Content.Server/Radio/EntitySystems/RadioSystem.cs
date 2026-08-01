@@ -4,7 +4,6 @@ using Content.Server._Starlight.Radio.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
-using Content.Server.Starlight.TTS;
 using Content.Server.VoiceMask;
 using Content.Shared;
 using Content.Shared._Starlight.Language;
@@ -24,7 +23,7 @@ using Content.Shared.Roles;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Speech;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -37,7 +36,8 @@ using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Radio;
 using Content.Shared._Starlight.Language.Components;
-using Content.Shared.Ghost; //Starlight
+using Content.Shared.Ghost;
+using Content.Server._Starlight.TextToSpeech; //Starlight
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -47,15 +47,15 @@ namespace Content.Server.Radio.EntitySystems;
 // Far Horizons - made partial
 public sealed partial class RadioSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly IReplayRecordingManager _replay = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly RadioChimeSystem _chime = default!; //🌟Starlight🌟
-    [Dependency] private readonly LanguageSystem _language = default!; // Starlight
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private IReplayRecordingManager _replay = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private RadioChimeSystem _chime = default!; //🌟Starlight🌟
+    [Dependency] private LanguageSystem _language = default!; // Starlight
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -435,6 +435,8 @@ public sealed partial class RadioSystem : EntitySystem
         }
 
         jobName ??= "";
+
+        jobName = FormattedMessage.EscapeStringParameter(jobName); // Starlight: Prevent markup injection
 
         return (iconId, jobName);
     }

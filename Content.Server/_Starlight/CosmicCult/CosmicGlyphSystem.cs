@@ -13,15 +13,15 @@ using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.CosmicCult;
 
-public sealed class CosmicGlyphSystem : EntitySystem
+public sealed partial class CosmicGlyphSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedCosmicCultSystem _cosmicCult = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
 
     private readonly HashSet<Entity<CosmicCultComponent>> _cultists = [];
     private readonly HashSet<Entity<HumanoidAppearanceComponent>> _humanoids = [];

@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Economy;
+namespace Content.Shared._Starlight.Economy;
 
 /// <summary>
 /// Prototype that defines a price category range for price generation

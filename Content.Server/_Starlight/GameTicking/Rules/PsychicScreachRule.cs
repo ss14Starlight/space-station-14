@@ -6,6 +6,7 @@ using Content.Server.GameTicking;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.StationEvents.Components;
+using Content.Server.StationEvents.Events;
 using Content.Server.Stunnable;
 using Content.Shared._FarHorizons.Silicons.Glitching;
 using Content.Shared.Administration.Components;
@@ -25,20 +26,20 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._Starlight.GameTicking.Rules;
 
-public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleComponent>
+public sealed partial class PsychicScreachRule : StationEventSystem<PsychicScreachRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly PoweredLightSystem _light = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
-    [Dependency] private readonly VomitSystem _vomitSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
-    [Dependency] private readonly GlitchingSystem _glitching = default!; // Far Horizons
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private PoweredLightSystem _light = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private StunSystem _stunSystem = default!;
+    [Dependency] private StatusEffectsSystem _statusEffect = default!;
+    [Dependency] private VomitSystem _vomitSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private SharedBatterySystem _batterySystem = default!;
+    [Dependency] private GlitchingSystem _glitching = default!; // Far Horizons
 
     protected override void Started(EntityUid uid, PsychicScreachRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

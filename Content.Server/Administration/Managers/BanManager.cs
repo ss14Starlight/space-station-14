@@ -34,7 +34,7 @@ using Content.Server.Discord;
 using Content.Server.Connection;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.Helpers;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared;
 using CCVars = Content.Shared.CCVar.CCVars;
 using Starlight.NullLink;
@@ -47,21 +47,21 @@ namespace Content.Server.Administration.Managers;
 
 public sealed partial class BanManager : IBanManager, IPostInjectInit
 {
-    [Dependency] private readonly IActorRouter _actor = default!; // nulllink
-    [Dependency] private readonly IConnectionManager _connectionManager = default!; // Starlight
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly ServerDbEntryManager _entryManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly ILocalizationManager _localizationManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
-    [Dependency] private readonly ITaskManager _taskManager = default!;
-    [Dependency] private readonly UserDbDataManager _userDbData = default!;
+    [Dependency] private IActorRouter _actor = default!; // nulllink
+    [Dependency] private IConnectionManager _connectionManager = default!; // Starlight
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private ServerDbEntryManager _entryManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private ILocalizationManager _localizationManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
+    [Dependency] private ITaskManager _taskManager = default!;
+    [Dependency] private UserDbDataManager _userDbData = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -309,37 +309,20 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     #region Starlight
 
-    public async Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime)
+    public async Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime, string? project = null, string? server = null)
     {
         if (_actor.TryGetServerGrain(out var serverGrain))
         {
-            if (await serverGrain.RequestBanById(banId) is { } networkBan)
-            {
-                var unbans = networkBan.Unban;
-                unbans.Add(new AdminUnban(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
-                var newBan = new AdminBan()
-                {
-                    Id = networkBan.Id,
-                    UserId = networkBan.UserId,
-                    Address = networkBan.Address,
-                    HWId = networkBan.HWId,
-                    BanTime = networkBan.BanTime,
-                    ExpirationTime = networkBan.ExpirationTime,
-                    RoundId = networkBan.RoundId,
-                    PlayTimeAtNote = networkBan.PlayTimeAtNote,
-                    Reason = networkBan.Reason,
-                    Severity = networkBan.Severity,
-                    BanningAdmin = networkBan.BanningAdmin,
-                    Unban = unbans,
-                    Role = networkBan.Role,
-                    ExemptFlags = networkBan.ExemptFlags,
-                    ProjectName = networkBan.ProjectName,
-                    ServerName = networkBan.ServerName
-                };
-                await serverGrain.AddOrUpdateBan(newBan);
-            }
+            var unban = new AdminUnban(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server);
+            await serverGrain.AddUnban(banId, unban, project, server);
         }
 
+        if (project != null && server != null)
+        {
+            var localBan = await _db.GetServerBanAsync(banId);
+            if (localBan == null || localBan.Unban != null)
+                return;
+        }
         await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
     }
 
@@ -566,7 +549,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                     ProjectName = networkBan.ProjectName,
                     ServerName = networkBan.ServerName
                 };
-                await serverGrain.AddOrUpdateBan(networkBan);
+                await serverGrain.AddOrUpdateBan(newBan);
             }
         }
 
@@ -622,17 +605,17 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             : null;
     }
 
-    public bool IsRoleBanned(ICommonSession player, List<ProtoId<JobPrototype>> jobs)
+    public bool IsRoleBanned(ICommonSession player, params List<ProtoId<JobPrototype>> jobs)
     {
-        return IsRoleBanned(player, jobs, PrefixJob);
+        return IsRoleBanned<JobPrototype>(player, PrefixJob,jobs);
     }
 
-    public bool IsRoleBanned(ICommonSession player, List<ProtoId<AntagPrototype>> antags)
+    public bool IsRoleBanned(ICommonSession player, params List<ProtoId<AntagPrototype>> antags)
     {
-        return IsRoleBanned(player, antags, PrefixAntag);
+        return IsRoleBanned<AntagPrototype>(player, PrefixAntag, antags);
     }
 
-    private bool IsRoleBanned<T>(ICommonSession player, List<ProtoId<T>> roles, string prefix) where T : class, IPrototype
+    private bool IsRoleBanned<T>(ICommonSession player, string prefix, params List<ProtoId<T>> roles) where T : class, IPrototype
     {
         var bans = GetRoleBans(player.UserId);
 

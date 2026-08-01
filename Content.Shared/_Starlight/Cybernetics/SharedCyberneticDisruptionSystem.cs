@@ -17,13 +17,13 @@ public abstract partial class SharedCyberneticDisruptionSystem : EntitySystem
 {
     public static readonly EntProtoId DisruptionId = "StatusEffectCyberneticDisruption";
 
-    [Dependency] protected readonly IGameTiming GameTiming = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] protected readonly AlertsSystem Alerts = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] protected IGameTiming GameTiming = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] protected AlertsSystem Alerts = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

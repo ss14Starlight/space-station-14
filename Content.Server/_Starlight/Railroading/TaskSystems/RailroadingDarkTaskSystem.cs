@@ -1,18 +1,19 @@
 using Content.Server._Starlight.Objectives.Events;
-using Content.Server._Starlight.Shadekin;
-using Content.Shared._Starlight.Railroading;
+using Content.Server._Starlight.Shadekin.Components;
+using Content.Shared._Starlight.Abstract;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared.Abilities.Goliath;
 using Content.Shared.Objectives;
 using Content.Shared.Station.Components;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.TaskSystems;
 
 public sealed partial class RailroadDarkTaskSystem : AccUpdateEntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
+    [Dependency] private IRobustRandom _random = default!;
     public override void Initialize()
     {
         base.Initialize();

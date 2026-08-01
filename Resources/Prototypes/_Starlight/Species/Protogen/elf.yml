@@ -49,14 +49,30 @@
     RLeg: MobElfRLeg
     LFoot: MobElfLFoot
     RFoot: MobElfRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobProtoElfMarkingLimits
   points:
-    Special:
-      points: 4
+    FaceCover:
+      points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor, ProtogenVisorRound, ProtogenLights, ProtogenLEDFaceRound ]
+      defaultMarkings: [ ProtogenVisorRound ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenLEDFaceRound ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenLights ]
     Hair:
       points: 1
       required: false

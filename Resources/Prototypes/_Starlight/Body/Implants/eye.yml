@@ -53,6 +53,9 @@
   - type: FunctionalOrgan
     comps:
     - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Hybrid # Protogens
     - type: ShowHealthIcons
 
 - type: entity
@@ -92,6 +95,9 @@
   - type: FunctionalOrgan
     comps:
     - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Hybrid # Protogens
     - type: ShowHealthIcons
     - type: ShowJobIcons
     - type: ShowMindShieldIcons

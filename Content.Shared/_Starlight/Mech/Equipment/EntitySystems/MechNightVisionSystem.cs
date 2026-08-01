@@ -2,17 +2,17 @@ using Content.Shared.Actions;
 using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared._Starlight.Mech.Equipment.Components;
+using Content.Shared._Starlight.Overlay.Components;
 
 namespace Content.Shared._Starlight.Mech.Equipment.EntitySystems;
 
 /// <summary>
 ///
 /// </summary>
-public sealed class MechNightVisionSystem : EntitySystem
+public sealed partial class MechNightVisionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {

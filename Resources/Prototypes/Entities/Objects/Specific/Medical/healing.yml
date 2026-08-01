@@ -36,8 +36,8 @@
       sprite: Objects/Specific/Medical/medical.rsi
   - type: Healing
     damageContainers:
-      - Biological
-      - Hybrid # Starlight
+    - Biological
+    - Hybrid   # Starlight
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -86,8 +86,8 @@
     heldPrefix: regenerative-mesh
   - type: Healing
     damageContainers:
-      - Biological
-      - Hybrid # Starlight
+    - Biological
+    - Hybrid   # Starlight
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -136,8 +136,8 @@
     heldPrefix: brutepack
   - type: Healing
     damageContainers:
-      - Biological
-      - Hybrid # Starlight
+    - Biological
+    - Hybrid   # Starlight
     delay: 1.6 # STARLIGHT
     damage:
       groups:
@@ -184,8 +184,8 @@
     storedRotation: -90
   - type: Healing
     damageContainers:
-      - Biological
-      - Hybrid # Starlight
+    - Biological
+    - Hybrid   # Starlight
     delay: 1.6 # STARLIGHT
     damage:
       groups:
@@ -232,8 +232,8 @@
     state: bloodpack
   - type: Healing
     damageContainers:
-      - Biological
-      - Hybrid # Starlight
+    - Biological
+    - Hybrid   # Starlight
     damage:
       types:
         Bloodloss: -0.5 #lowers bloodloss damage
@@ -270,37 +270,37 @@
   name: tourniquet
   description: Stops bleeding! Hopefully.
   components:
-    - type: Tag
-      tags:
-        - SecBeltEquip
-        - Tourniquet
-    - type: Sprite
-      state: tourniquet
-    - type: Item
-      heldPrefix: tourniquet
-    - type: Healing
-      damageContainers:
-        - Biological
-        - Hybrid # Starlight
-      damage:
+  - type: Tag
+    tags:
+    - SecBeltEquip
+    - Tourniquet
+  - type: Sprite
+    state: tourniquet
+  - type: Item
+    heldPrefix: tourniquet
+  - type: Healing
+    damageContainers:
+    - Biological
+    - Hybrid     # Starlight
+    damage:
       #region Starlight
       #  groups:
       #    Brute: 5 # removed: doing brute damage means that putting on a tourniquet makes you bleed (??)
       #endregion Starlight
-        types:
-          Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
-      bloodlossModifier: -10 # Tourniquets stop bleeding
-      delay: 0.5
-      healingBeginSound:
-        path: "/Audio/Items/Medical/brutepack_begin.ogg"
-        params:
-          volume: 1.0
-          variation: 0.125
-      healingEndSound:
-        path: "/Audio/Items/Medical/brutepack_end.ogg"
-        params:
-          volume: 1.0
-          variation: 0.125
+      types:
+        Asphyxiation: 5   # Essentially Stopping all blood reaching a part of your body
+    bloodlossModifier: -10   # Tourniquets stop bleeding
+    delay: 0.5
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
 
 - type: entity
   name: roll of gauze
@@ -322,8 +322,8 @@
     node: gauze
   - type: Healing
     damageContainers:
-      - Biological
-      - Hybrid # Starlight
+    - Biological
+    - Hybrid   # Starlight
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -376,7 +376,7 @@
   id: HealingToolbox
   name: healing toolbox
   description: A powerful toolbox imbued with robust energy. It can heal your wounds and fill you with murderous intent.
-  categories: [ DoNotMap ]
+  categories: [DoNotMap]
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/healing_toolbox.rsi
@@ -810,30 +810,30 @@
   parent: Pill
   id: PillAmbuzol
   components:
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Ambuzol
-              Quantity: 10
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Ambuzol
+          Quantity: 10
 
 - type: entity
   name: ambuzol plus pill
   parent: Pill
   id: PillAmbuzolPlus
   components:
-    - type: Pill
-      pillType: 2
-    - type: Sprite
-      state: pill3
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: AmbuzolPlus
-              Quantity: 5
+  - type: Pill
+    pillType: 2
+  - type: Sprite
+    state: pill3
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: AmbuzolPlus
+          Quantity: 5
 
 - type: entity
   parent: PillCanister
@@ -882,7 +882,14 @@
         - id: OminousPill # Starlight start
           weight: 0.375
           amount: !type:RangeNumberSelector
-            range: 0, 3 # Starlight end
+            range: 1, 3
+        - id: WeirdPill
+          weight: 0.5
+          amount: *Range1to6
+        - id: GoldenPill
+          weight: 0.25
+          amount: !type:RangeNumberSelector
+            range: 1, 2  # Starlight end
 
 # Syringes
 - type: entity
@@ -1002,8 +1009,8 @@
       injector:
         maxVol: 15
         reagents:
-          - ReagentId: Ambuzol
-            Quantity: 15
+        - ReagentId: Ambuzol
+          Quantity: 15
 
 - type: entity
   suffix: sigynate
@@ -1017,8 +1024,8 @@
       injector:
         maxVol: 15
         reagents:
-          - ReagentId: Sigynate
-            Quantity: 15
+        - ReagentId: Sigynate
+          Quantity: 15
 
 - type: entity
   suffix: ethylredoxrazine
@@ -1032,8 +1039,8 @@
       injector:
         maxVol: 15
         reagents:
-          - ReagentId: Ethylredoxrazine
-            Quantity: 15
+        - ReagentId: Ethylredoxrazine
+          Quantity: 15
 
 - type: entity
   suffix: phalanximine
@@ -1047,8 +1054,8 @@
       injector:
         maxVol: 15
         reagents:
-          - ReagentId: Phalanximine
-            Quantity: 15
+        - ReagentId: Phalanximine
+          Quantity: 15
 
 - type: entity
   suffix: saline
@@ -1062,8 +1069,8 @@
       injector:
         maxVol: 15
         reagents:
-          - ReagentId: Saline
-            Quantity: 15
+        - ReagentId: Saline
+          Quantity: 15
 
 #this is where all the syringes are so i didn't know where to put it
 - type: entity
@@ -1113,6 +1120,7 @@
     - id: PillPotassiumIodide
     - id: PillTricordrazine
     - id: StrangePill
+    - id: WeirdPill # Starlight
 
 - type: entityTable
   id: RandomSafeSyringeTable
@@ -1129,43 +1137,3 @@
     - id: SyringeSaline
     - id: SyringeSigynate
     - id: SyringeTranexamicAcid
-
-
-### SL start
-
-- type: entity
-  name: pill
-  suffix: Psicodine 10u
-  parent: Pill
-  id: PillPsicodine
-  components:
-  - type: Pill
-    pillType: 2
-  - type: Sprite
-    state: pill3
-  - type: Label
-    currentLabel: reagent-label-psicodine-10 # Starlight
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Psicodine
-          Quantity: 10
-
-- type: entity
-  name: pill canister
-  parent: PillCanister
-  id: PillCanisterPsicodine
-  suffix: Psicodine 10u, 5
-  components:
-  - type: Label
-    currentLabel: reagent-label-psicodine-10 # Starlight
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: PillPsicodine
-          amount: 5
-
-### SL end

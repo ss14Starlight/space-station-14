@@ -693,7 +693,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Vampire, Protogen ] # SL - add Vampire  / FH - add Protogen
+          type: [ Animal, Vox, Vampire, Rodentia, Protogen ] # SL - add Vampire, Rodentia / FH - add Protogen
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -703,12 +703,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Protogen ] # SL - add Vampire  / FH - add Protogen
+          type: [ Animal, Vox, Plant, Vampire, Rodentia, Protogen ] # Starlight - add Vampire, Rodentia / FH - add Protogen
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Protogen ] # SL - add Vampire  / FH - add Protogen
+          type: [ Animal, Vox, Plant, Vampire, Rodentia, Protogen ] # Starlight - add Vampire, Rodentia / FH - add Protogen
           inverted: true
         damage:
           types:
@@ -735,7 +735,7 @@
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Vampire ]
+          type: [ Vampire, Rodentia ] # Starlight - add Vampire, Rodentia
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent #FH

@@ -84,6 +84,22 @@ stack-interdynebrutepack = {$amount ->
     [1] interdynebrutepack
     *[other] interdynebrutepacks
 }
+stack-deforestointment = {$amount ->
+    [1] deforestointment
+    *[other] deforestointments
+}
+stack-deforestbrutepack = {$amount ->
+    [1] deforestbrutepack
+    *[other] deforestbrutepacks
+}
+stack-goldointment = {$amount ->
+    [1] goldointment
+    *[other] goldointments
+}
+stack-goldbrutepack = {$amount ->
+    [1] goldbrutepack
+    *[other] goldbrutepacks
+}
 stack-redpunctpack = {$amount ->
     [1] redpunctpack
     *[other] redpunctpacks
@@ -115,6 +131,11 @@ stack-ticket = {$amount ->
 stack-wizcoin = {$amount ->
     [1] wizcoin
     *[other] wizcoins
+}
+
+stack-casino-chip = {$amount ->
+    [1] casino chip
+    *[other] casino chips
 }
 
 stack-abyssium-ore = {$amount ->

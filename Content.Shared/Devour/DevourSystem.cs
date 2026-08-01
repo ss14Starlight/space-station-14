@@ -21,17 +21,17 @@ using Content.Shared.Damage.Components;
 
 namespace Content.Shared.Devour;
 
-public sealed class DevourSystem : EntitySystem
+public sealed partial class DevourSystem : EntitySystem
 {
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageSystem = default!; //Starlight
-    [Dependency] private readonly MobThresholdSystem _thresholdSystem = default!; //Starlight
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private DamageableSystem _damageSystem = default!; //Starlight
+    [Dependency] private MobThresholdSystem _thresholdSystem = default!; //Starlight
 
     public override void Initialize()
     {

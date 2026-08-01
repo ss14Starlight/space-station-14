@@ -48,15 +48,31 @@
     RLeg: MobAvaliRLeg
     LFoot: MobAvaliLFoot
     RFoot: MobAvaliRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobProtoAvaliMarkingLimits
   onlyWhitelisted: true
   points:
-    Special:
-      points: 4
+    FaceCover:
+      points: 1
       required: true
-      defaultMarkings: [ ProtoAvaliMediumArmor, ProtoAvaliVisor, ProtoAvaliLights, ProtoAvaliLEDFace ]
+      defaultMarkings: [ ProtoAvaliVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoAvaliLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoAvaliMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoAvaliLights ]
     Hair:
       points: 1
       required: false

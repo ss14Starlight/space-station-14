@@ -8,8 +8,8 @@
       connections:
       - torso
       organs:
-        eyes: OrganSlimePeepoids # Starlight
-        tongue: OrganSlimeSlurpoid # Starlight
+        eyes: OrganProtoSlimePeepoids # To heal cellular
+        tongue: OrganProtoSlimeSlurpoid # To heal cellular
         eye_implant: null
     torso:
       part: TorsoSlime
@@ -19,9 +19,9 @@
       - right leg
       - left leg
       organs:
-        heart: OrganSlimeHeart
+        heart: OrganProtoSlimeHeart
         core: SentientProtoSlimeCore # So they can eat ramchips.
-        lungs: OrganSlimeLungs
+        lungs: OrganProtoSlimeLungs # To heal cellular
         cavity: null
         brain_implant: null # 🌟Starlight🌟
     right arm:

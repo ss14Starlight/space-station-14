@@ -2,6 +2,7 @@
   id: SentientSlimeCore
   parent: [BaseItem, BaseOrganBrain]
   name: sentient slime core
+  suffix: Slime
   description: "The source of incredible, unending gooeyness."
   components:
     - type: Sprite
@@ -31,6 +32,7 @@
   id: OrganSlimeLungs
   parent: [BaseHumanOrgan, BaseOrganLungs]
   name: slime gas sacs
+  suffix: Slime
   description: "Collects nitrogen, which slime cells use for maintenance."
   components:
   - type: Sprite
@@ -70,6 +72,7 @@
   id: OrganSlimeHeart
   parent: [BaseHumanOrgan, BaseOrganHeart]
   name: slime circulator
+  suffix: Slime
   description: "A little circulator what makes the fluid move through the slime body."
   components:
   - type: Sprite
@@ -92,6 +95,7 @@
   id: OrganSlimePeepoids
   parent: [BaseHumanOrgan, BaseOrganEyes]
   name: peepoids
+  suffix: Slime
   description: "Primitive and goopy, but more or less just as good as the human equivalent."
   components:
   - type: Sprite
@@ -109,6 +113,7 @@
   id: OrganSlimeSlurpoid
   parent: OrganHumanTongue
   name: slurpoid
+  suffix: Slime
   description: "It has all the consistency of gelatin."
   components:
   - type: Sprite

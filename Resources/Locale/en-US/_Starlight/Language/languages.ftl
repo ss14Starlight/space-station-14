@@ -141,3 +141,6 @@ language-Carpmind-description = Various fishy minds.
 
 language-Xenomind-name = Hivemind
 language-Xenomind-description = Various minds of xenos and terrors.
+
+language-Squeakish-name = Squeakish
+language-Squeakish-description = The language of the Rodentia, made up of a series of chirps and squeaks.

@@ -94,8 +94,8 @@
         - MedTekCartridgeStealObjective
         - AstroNavCartridgeStealObjective
         - ClothingOuterHardsuitVoidParamedStealObjective
-        - MedicalTechFabCircuitboardStealObjective
-        - SecurityTechFabCircuitboardStealObjective
+        - SecureTechFabCircuitboardStealObjective
+        - DepartmentalTechFabCircuitboardStealObjective
         - PTechCircuitboardStealObjective
         - ClothingHeadsetAltMedicalStealObjective
         - ClothingHeadsetAltCommandStealObjective # Captain, NT Rep...
@@ -104,6 +104,7 @@
         - ExpeditionsCircuitboardStealObjective
         - SalvageShuttleConsoleCircuitboardStealObjective
         - MiningShuttleConsoleCircuitboardStealObjective
+        - ShipyardCircuitboardStealObjective
         - CargoShuttleCircuitboardStealObjective
         - CommsComputerCircuitboardStealObjective
         - IDCardComputerCircuitboardStealObjective

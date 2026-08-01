@@ -1,9 +1,7 @@
 using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared._NullLink;
 using Robust.Shared.Player;
 using Starlight.NullLink.Event;
-using Content.Shared.NullLink.CCVar;
 
 namespace Content.Server._NullLink.PlayerData;
 

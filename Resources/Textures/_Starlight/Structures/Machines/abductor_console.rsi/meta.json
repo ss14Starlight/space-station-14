@@ -4,12 +4,11 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "Taked From Paradise Station",
+  "copyright": "State based copyright",
   "license": "CC-BY-SA-3.0",
   "states": [
     {
       "name": "console",
-      "directions": 1,
       "delays": [
         [
           0.2,
@@ -19,7 +18,8 @@
           0.2,
           0.2
         ]
-      ]
+      ],
+      "copyright": "Taken From Paradise Station"
     }
   ]
 }

@@ -5,10 +5,10 @@ using Content.Shared.Humanoid;
 
 namespace Content.Shared._Starlight.Cybernetics;
 
-public sealed class HitscanCyberneticDisruptionSystem : EntitySystem
+public sealed partial class HitscanCyberneticDisruptionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedCyberneticDisruptionSystem _disrupt = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedCyberneticDisruptionSystem _disrupt = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

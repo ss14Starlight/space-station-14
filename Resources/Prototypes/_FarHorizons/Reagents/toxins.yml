@@ -37,6 +37,7 @@
       - !type:ModifyBleed #smth smth burns you from the inside so it stops internal bleeding, clearly.
         amount: -0.5
       - !type:SatiateHunger
+        factor: 1 # yummy
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Protogen ]

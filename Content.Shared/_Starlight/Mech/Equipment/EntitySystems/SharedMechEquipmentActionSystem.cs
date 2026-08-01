@@ -7,7 +7,7 @@ namespace Content.Shared._Starlight.Mech.Equipment.EntitySystems;
 public abstract partial class SharedMechEquipmentActionSystem : EntitySystem
 {
 
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {

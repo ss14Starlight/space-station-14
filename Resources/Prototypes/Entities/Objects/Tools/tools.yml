@@ -376,13 +376,19 @@
     - HVCable
     - CableTerminal
     - Deconstruct
+    #Starlight start
+    - FirelockEdge
+    - LightPostSmall
+    #Starlight end
   - type: LimitedCharges
     maxCharges: 30
   - type: Sprite
     sprite: Objects/Tools/rcd.rsi
     state: icon
-  - type: Item
-    size: Normal
+  - type: Item #SL
+    size: Small
+    shape:
+    - 0,0,1,1
   - type: Clothing
     sprite: Objects/Tools/rcd.rsi
     quickEquip: false
@@ -548,7 +554,11 @@
   - type: StaticPrice
     price: 25
   - type: Shovel
-
+  # 🌟Starlight-start🌟
+  - type: Tool
+    qualities:
+      - Digging
+  # 🌟Starlight-end🌟
 - type: entity
   parent: BaseItem
   id: RollingPin

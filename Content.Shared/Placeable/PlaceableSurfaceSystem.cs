@@ -7,11 +7,11 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Placeable;
 
-public sealed class PlaceableSurfaceSystem : EntitySystem
+public sealed partial class PlaceableSurfaceSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
 
     public override void Initialize()
     {
@@ -74,6 +74,9 @@ public sealed class PlaceableSurfaceSystem : EntitySystem
         _transformSystem.SetCoordinates(args.Used,
             surface.PlaceCentered ? Transform(uid).Coordinates.Offset(surface.PositionOffset) : args.ClickLocation);
 
+        // ES START
+        args.SpawnInteractionParticles = false;
+        // ES END
         args.Handled = true;
     }
 

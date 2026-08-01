@@ -10,11 +10,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Antags.Vampires;
 
-public sealed class VampireSystem : EntitySystem
+public sealed partial class VampireSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private static readonly ProtoId<FactionIconPrototype> _thrallIcon = "VampireThrallIcon";
     private static readonly ProtoId<FactionIconPrototype> _masterIcon = "VampireFaction";

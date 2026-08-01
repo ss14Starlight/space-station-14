@@ -17,6 +17,10 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
     public event Action? OnPrevButtonPressed;
 
     public event Action? OnNotificationSwithPressed;
+    //Starlight-edit: start
+    public event Action? OnLikeButtonPressed;
+    public event Action? OnDislikeButtonPressed;
+    //Starlight-edit: end
 
     public NewsReaderUiFragment()
     {
@@ -25,14 +29,25 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
         Next.OnPressed += _ => OnNextButtonPressed?.Invoke();
         Prev.OnPressed += _ => OnPrevButtonPressed?.Invoke();
         NotificationSwitch.OnPressed += _ => OnNotificationSwithPressed?.Invoke();
+        // Starlight-edit: start
+        Like.OnPressed += _ => OnLikeButtonPressed?.Invoke();
+        Dislike.OnPressed += _ => OnDislikeButtonPressed?.Invoke();
+        // Starlight-edit: end
     }
 
-    public void UpdateState(NewsArticle article, int targetNum, int totalNum, bool notificationOn)
+    public void UpdateState(NewsArticle article, int targetNum, int totalNum, bool notificationOn, bool hasReacted)
     {
         PageNum.Visible = true;
         PageText.Visible = true;
         ShareTime.Visible = true;
         Author.Visible = true;
+        // Starlight-edit: start
+        Like.Visible = true;
+        Dislike.Visible = true;
+        Views.Visible = true;
+        ReactionsSeparator.Visible = true;
+        ViewsSeparator.Visible = true;
+        // Starlight-edit: end
 
         PageName.Text = article.Title;
         PageText.SetMessage(FormattedMessage.FromMarkupPermissive(article.Content), UserFormattableTags.BaseAllowedTags);
@@ -46,7 +61,14 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
 
         var author = Loc.GetString("news-read-ui-author-prefix") + " " + (article.Author ?? Loc.GetString("news-read-ui-no-author"));
         Author.SetMessage(FormattedMessage.FromMarkupPermissive(author), UserFormattableTags.BaseAllowedTags);
+        // Starlight-edit: start
+        Like.Text = Loc.GetString("news-read-ui-like-text", ("count", article.Likes));
+        Dislike.Text = Loc.GetString("news-read-ui-dislike-text", ("count", article.Dislikes));
+        Views.SetMarkup(Loc.GetString("news-read-ui-views-text", ("count", article.Views)));
 
+        Like.Disabled = hasReacted;
+        Dislike.Disabled = hasReacted;
+        // Starlight-edit: end
         Prev.Disabled = targetNum <= 1;
         Next.Disabled = targetNum >= totalNum;
     }
@@ -57,7 +79,15 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
         PageText.Visible = false;
         ShareTime.Visible = false;
         Author.Visible = false;
-
+        // Starlight-edit: start
+        Like.Visible = false;
+        Dislike.Visible = false;
+        Views.Visible = false;
+        ReactionsSeparator.Visible = false;
+        ViewsSeparator.Visible = false;
+        Like.Disabled = false;
+        Dislike.Disabled = false;
+        // Starlight-edit: end
         PageName.Text = Loc.GetString("news-read-ui-not-found-text");
 
         NotificationSwitch.Text = Loc.GetString(notificationOn ? "news-read-ui-notification-on" : "news-read-ui-notification-off");

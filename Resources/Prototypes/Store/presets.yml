@@ -17,6 +17,7 @@
     - UplinkJob
     - UplinkCybernetics
     - UplinkPointless
+    - UplinkDAGD # funkystation
     currencyWhitelist:
     - Telecrystal
     balance:

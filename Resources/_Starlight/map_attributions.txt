@@ -109,7 +109,7 @@
 - files: ["breaker.yml"]
   authors: Starlight Team
 
-- files: ["KillerTamashi-SecShuttle.yml"]
+- files: ["pursuit.yml"]
   authors: KillerTheFlareon
 
 # nuclear op maps

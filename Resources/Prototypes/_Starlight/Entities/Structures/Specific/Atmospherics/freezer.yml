@@ -21,6 +21,8 @@
 - type: entity
   parent: [AirSensorFreezerBase, GasDualPortVentPump]
   id: GasDualPortVentPumpFreezer
+  categories: [ DoNotMap ] # Starlight - Blacklisted by WizDen for mapping, extremely easy to use wrong, best to just not map them at all.
+  suffix: "DO NOT MAP, Freezer Atmosphere" # Starlight - manual suffix due to category inheritance weirdness
   components:
   - type: AtmosPipeLayers
     spriteRsiPaths: {}

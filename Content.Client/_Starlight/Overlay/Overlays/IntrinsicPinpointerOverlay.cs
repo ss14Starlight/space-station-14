@@ -4,7 +4,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.Overlay.Overlays;

@@ -6,9 +6,9 @@ using JetBrains.Annotations;
 namespace Content.Shared.Kitchen.EntitySystems;
 
 [UsedImplicitly]
-public abstract class SharedReagentGrinderSystem : EntitySystem
+public abstract partial class SharedReagentGrinderSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainersSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainersSystem = default!;
 
     /// <summary>
     /// Gets the solutions from an entity using the specified Grinder program.

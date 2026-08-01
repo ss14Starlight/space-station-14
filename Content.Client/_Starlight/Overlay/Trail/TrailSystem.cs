@@ -1,21 +1,19 @@
-using System.Diagnostics;
 using Content.Client._Starlight.Shaders;
-using Content.Client._Starlight.Trail;
 using Content.Shared._Starlight.Trail;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 
 namespace Content.Client._Starlight.Overlay.Trail;
 
-public sealed class TrailSystem : EntitySystem
+public sealed partial class TrailSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly IStarlightShaderManager _shaderMan = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private IStarlightShaderManager _shaderMan = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private TrailOverlay _overlay = default!;
     private bool _enabled = true;

@@ -6,6 +6,10 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
+#region Starlight
+using Content.Shared._Starlight.Fax;
+#endregion
+
 namespace Content.Shared.Fax.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -76,7 +80,7 @@ public sealed partial class FaxMachineComponent : Component
     /// Known faxes in network by address with fax names
     /// </summary>
     [ViewVariables]
-    public Dictionary<string, string> KnownFaxes { get; } = new();
+    public Dictionary<string, KnownFax> KnownFaxes { get; } = new(); // Starlight: string => KnownFax
 
     /// <summary>
     /// Print queue of the incoming message
@@ -136,6 +140,39 @@ public sealed partial class FaxMachineComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId PrintOfficePaperId = "PaperOffice";
+
+    #region Starlight
+    /// <summary>
+    /// The current group the fax machine appears in. Affects the color and ordering in the fax machine UI.
+    /// </summary>
+    [DataField("group")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<FaxGroupPrototype>? CurrentGroup { get; set; }
+
+    /// <summary>
+    /// An intrinsic group this fax machine belongs to, if any. If this is set, the fax machine can always be configured
+    /// to be part of that group, even if the group itself is not normally accessible.
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<FaxGroupPrototype>? IntrinsicGroup { get; set; }
+
+    /// <summary>
+    /// Whether this fax machine is locked to its intrinsic group when configuring it. Emagging unlocks this.
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool IntrinsicLocked { get; set; }
+
+    /// <summary>
+    /// The order of this fax machine within its group. Lower values mean higher up in the list.
+    /// A non-zero means other uncategorized fax machines can have it adjusted to show up before others.
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Order { get; set; } = 1_000;
+
+    #endregion
 }
 
 [DataDefinition]

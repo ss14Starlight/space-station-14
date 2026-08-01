@@ -4,11 +4,18 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 
 namespace Content.Server._Starlight.Connection;
+
+public enum ConntrackStatus
+{
+    NotApplicable,
+    Resolved,
+    Failed,
+}
 
 /// <summary>
 /// Resolves the real client IP via a conntrack-agent running on the Kubernetes node.
@@ -69,6 +76,8 @@ public sealed class ConntrackResolver
         _subnets = list;
     }
 
+    public bool IsSnatAddress(IPAddress address) => IsInAnySubnet(address);
+
     private bool IsInAnySubnet(IPAddress address)
     {
         foreach (var (network, prefixLength) in _subnets)
@@ -125,17 +134,17 @@ public sealed class ConntrackResolver
     /// Resolves the real client IP via the conntrack-agent.
     /// If the source address falls within any configured node subnet, queries
     /// <c>http://{srcIp}:{port}/conntrack?port={masqPort}</c> (with brackets for IPv6).
-    /// Returns the real IP if SNAT was detected, or <c>null</c> if no resolution was
-    /// needed (source is outside all subnets), the feature is disabled, or an error occurred.
     /// </summary>
-    public async Task<IPAddress?> ResolveRealIp(IPEndPoint masqueradeEndpoint)
+    public async Task<(ConntrackStatus Status, IPAddress? Ip)> ResolveRealIp(IPEndPoint masqueradeEndpoint)
     {
         if (!_enabled || _subnets.Count == 0)
-            return null;
+            return (ConntrackStatus.NotApplicable, null);
 
         if (!IsInAnySubnet(masqueradeEndpoint.Address))
-            return null;
+            return (ConntrackStatus.NotApplicable, null);
 
+        // Past this point the source IS a node/masquerade address, so any failure below is a real failure:
+        // returning the node IP would be wrong, so we report Failed and let the caller fall back.
         try
         {
             var host = FormatHostForUrl(masqueradeEndpoint.Address);
@@ -147,7 +156,7 @@ public sealed class ConntrackResolver
             {
                 _sawmill.Warning("Conntrack agent on {Node} returned HTTP {StatusCode}",
                     masqueradeEndpoint.Address, response.StatusCode);
-                return null;
+                return (ConntrackStatus.Failed, null);
             }
 
             var json = await response.Content.ReadAsStringAsync(cts.Token);
@@ -157,44 +166,45 @@ public sealed class ConntrackResolver
             {
                 _sawmill.Warning("Conntrack agent on {Node} returned unparseable response",
                     masqueradeEndpoint.Address);
-                return null;
+                return (ConntrackStatus.Failed, null);
             }
 
             if (result.Error is not null)
             {
                 _sawmill.Warning("Conntrack agent on {Node} error: {Error}",
                     masqueradeEndpoint.Address, result.Error);
-                return null;
+                return (ConntrackStatus.Failed, null);
             }
 
             if (result.Ip is null)
             {
-                // No SNAT detected — use original IP as-is.
-                return null;
+                _sawmill.Warning("Conntrack agent on {Node} found no entry for masquerade port {Port}",
+                    masqueradeEndpoint.Address, masqueradeEndpoint.Port);
+                return (ConntrackStatus.Failed, null);
             }
 
             if (IPAddress.TryParse(result.Ip, out var realIp))
             {
                 _sawmill.Verbose("Resolved real IP for masquerade port {Port} via node {Node}",
                     masqueradeEndpoint.Port, masqueradeEndpoint.Address);
-                return realIp;
+                return (ConntrackStatus.Resolved, realIp);
             }
 
             _sawmill.Warning("Conntrack agent on {Node} returned invalid IP format",
                 masqueradeEndpoint.Address);
-            return null;
+            return (ConntrackStatus.Failed, null);
         }
         catch (OperationCanceledException)
         {
             _sawmill.Warning("Conntrack resolution timed out for port {Port} via node {Node}",
                 masqueradeEndpoint.Port, masqueradeEndpoint.Address);
-            return null;
+            return (ConntrackStatus.Failed, null);
         }
         catch (Exception ex)
         {
             _sawmill.Warning("Conntrack resolution via node {Node} failed: {Error}",
                 masqueradeEndpoint.Address, ex.Message);
-            return null;
+            return (ConntrackStatus.Failed, null);
         }
     }
 

@@ -14,14 +14,14 @@ using Robust.Shared.Containers;
 
 namespace Content.Server.Atmos.EntitySystems
 {
-    public sealed class BarotraumaSystem : EntitySystem
+    public sealed partial class BarotraumaSystem : EntitySystem
     {
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger= default!;
-        [Dependency] private readonly InventorySystem _inventorySystem = default!;
-        [Dependency] private readonly SharedTransformSystem _sharedTransformSystem = default!; // Starlight
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private DamageableSystem _damageableSystem = default!;
+        [Dependency] private AlertsSystem _alertsSystem = default!;
+        [Dependency] private IAdminLogManager _adminLogger= default!;
+        [Dependency] private InventorySystem _inventorySystem = default!;
+        [Dependency] private SharedTransformSystem _sharedTransformSystem = default!; // Starlight
 
         private const float UpdateTimer = 1f;
         private float _timer;
@@ -71,7 +71,7 @@ namespace Content.Server.Atmos.EntitySystems
             //{
             //    UpdateCachedResistances(args.Equipee, barotrauma);
             //}
-            if (!TryComp<BarotraumaComponent>(args.Equipee, out var barotrauma))
+            if (!TryComp<BarotraumaComponent>(args.EquipTarget, out var barotrauma))
                 return;
 
             // Check for alternative slots too, since we're supporting that now.
@@ -79,20 +79,20 @@ namespace Content.Server.Atmos.EntitySystems
                 !barotrauma.AlternativeProtectionSlots.Any(group => group.Contains(args.Slot)))
                 return;
 
-            UpdateCachedResistances(args.Equipee, barotrauma);
+            UpdateCachedResistances(args.EquipTarget, barotrauma);
             #endregion
         }
 
         private void OnPressureProtectionUnequipped(EntityUid uid, PressureProtectionComponent pressureProtection, GotUnequippedEvent args)
         {
-            if (!TryComp<BarotraumaComponent>(args.Equipee, out var barotrauma))
+            if (!TryComp<BarotraumaComponent>(args.EquipTarget, out var barotrauma))
                 return;
 
             if (!barotrauma.ProtectionSlots.Contains(args.Slot) &&
                 !barotrauma.AlternativeProtectionSlots.Any(group => group.Contains(args.Slot)))
                 return;
 
-            UpdateCachedResistances(args.Equipee, barotrauma);
+            UpdateCachedResistances(args.EquipTarget, barotrauma);
         }
 
         /// <summary>

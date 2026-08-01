@@ -9,6 +9,7 @@
   access:
   - Chapel
   - Maintenance
+  - Service # Starlight
   special:
   - !type:AddComponentSpecial
     components:
