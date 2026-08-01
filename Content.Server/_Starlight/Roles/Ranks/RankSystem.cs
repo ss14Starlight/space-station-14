@@ -54,8 +54,11 @@ public sealed partial class RankSystem : EntitySystem
                 highestRank = rank;
         }
 
-        if (highestRank!= null)
+        if (highestRank != null)
+        {
             idCard.Comp.JobTitle = highestRank.Name;
+            idCard.Comp.JobIcon = highestRank.Icon;
+        }
 
     }
 }

@@ -1,4 +1,5 @@
 using Content.Shared._NullLink;
+using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Roles.Ranks;
@@ -17,6 +18,9 @@ public sealed partial class RankPrototype : IPrototype
 
     [DataField]
     public Priority Priority = Priority.VeryLow;
+
+    [DataField(required: true)]
+    public JobIconPrototype Icon { get; private set; } = default!;
 }
 
 public enum Priority
