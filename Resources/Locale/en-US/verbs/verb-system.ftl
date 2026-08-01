@@ -29,6 +29,8 @@ verb-categories-select-type = Select Type
 verb-categories-fax = Set Destination
 verb-categories-power-level = Power Level
 verb-categories-adjust = Adjust
+# Starlight-edit: VerbCategory.Switch had no entry, so the category header rendered as its raw key
+verb-categories-switch = Switch
 
 verb-common-toggle-light = Toggle light
 verb-common-close = Close
