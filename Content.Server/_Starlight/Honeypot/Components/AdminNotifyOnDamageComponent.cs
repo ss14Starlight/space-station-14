@@ -12,4 +12,7 @@ public sealed partial class AdminNotifyOnDamageComponent : Component
     /// What to call the subject in the admin notification.
     /// </summary>
     [DataField] public string Subject = "entity";
+
+    public DateTimeOffset time = DateTimeOffset.Now.AddSeconds(-15);
+    public int NotifyCooldown = 15;
 }
