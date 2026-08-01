@@ -317,6 +317,12 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             await serverGrain.AddUnban(banId, unban, project, server);
         }
 
+        if (project != null && server != null)
+        {
+            var localBan = await _db.GetServerBanAsync(banId);
+            if (localBan == null || localBan.Unban != null)
+                return;
+        }
         await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
     }
 
@@ -599,17 +605,17 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             : null;
     }
 
-    public bool IsRoleBanned(ICommonSession player, List<ProtoId<JobPrototype>> jobs)
+    public bool IsRoleBanned(ICommonSession player, params List<ProtoId<JobPrototype>> jobs)
     {
-        return IsRoleBanned(player, jobs, PrefixJob);
+        return IsRoleBanned<JobPrototype>(player, PrefixJob,jobs);
     }
 
-    public bool IsRoleBanned(ICommonSession player, List<ProtoId<AntagPrototype>> antags)
+    public bool IsRoleBanned(ICommonSession player, params List<ProtoId<AntagPrototype>> antags)
     {
-        return IsRoleBanned(player, antags, PrefixAntag);
+        return IsRoleBanned<AntagPrototype>(player, PrefixAntag, antags);
     }
 
-    private bool IsRoleBanned<T>(ICommonSession player, List<ProtoId<T>> roles, string prefix) where T : class, IPrototype
+    private bool IsRoleBanned<T>(ICommonSession player, string prefix, params List<ProtoId<T>> roles) where T : class, IPrototype
     {
         var bans = GetRoleBans(player.UserId);
 

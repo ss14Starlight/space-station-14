@@ -26,42 +26,24 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
         SubscribeLocalEvent<VentSpawnRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterSelection);
     }
 
-    protected override void Started(EntityUid uid, VentSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    protected override void Added(EntityUid uid, VentSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        base.Started(uid, comp, gameRule, args);
+        base.Added(uid, comp, gameRule, args);
 
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
-        var station = stationEvent.TargetStation;
-        if (station is null && !TryGetRandomStation(out station))
-        {
-            ForceEndSelf(uid);
-            return;
-        }
-
-        var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
-        while (locations.MoveNext(out var loc, out _, out var transform))
-        {
-            if (!transform.Anchored || !HasComp<VentCrawlEntryComponent>(loc) ||
-                !TryComp<VentCrawlTubeComponent>(loc, out var tube) ||
-                !tube.Connected)
-            {
-                continue;
-            }
-
-            if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
-                comp.ValidLocations.Add((_transform.GetMapCoordinates(transform), loc));
-        }
-
-        if (comp.ValidLocations.Count == 0)
-            ForceEndSelf(uid);
+        // Prime potential locations early, but do not end the rule if none are found yet.
+        // Some maps can still be finalizing vent connectivity when the rule is added.
+        RebuildValidLocations(uid, comp);
     }
 
     private void OnSelectLocation(Entity<VentSpawnRuleComponent> ent, ref AntagSelectLocationEvent args)
     {
+        if (ent.Comp.ValidLocations.Count == 0)
+            RebuildValidLocations(ent, ent.Comp);
+
         if (ent.Comp.ValidLocations.Count == 0) return;
 
         var pair = ent.Comp.ValidLocations[RobustRandom.Next(ent.Comp.ValidLocations.Count)];
-        ent.Comp.Vent[args.Entity] = pair;
+        ent.Comp.Vent[args.Antag.ID] = pair;
         args.Coordinates.Add(pair.Coords);
 
         Sawmill.Info($"Picked location {pair.Coords} for {ToPrettyString(ent.Owner):rule}");
@@ -69,8 +51,7 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
 
     private void OnAfterSelection(Entity<VentSpawnRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
-        if (!ent.Comp.InsertInVent) return;
-        if (!ent.Comp.Vent.TryGetValue(args.EntityUid, out var vent))
+        if (!ent.Comp.Vent.TryGetValue(args.Def.ID, out var vent))
             return;
 
         if (TryInsertInVent(args.EntityUid, vent))
@@ -81,7 +62,7 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
         while (ent.Comp.ValidLocations.Count > 0)
         {
             vent = ent.Comp.ValidLocations[RobustRandom.Next(ent.Comp.ValidLocations.Count)];
-            ent.Comp.Vent[args.EntityUid] = vent;
+            ent.Comp.Vent[args.Def.ID] = vent;
             _transform.SetMapCoordinates(args.EntityUid, vent.Coords);
 
             if (TryInsertInVent(args.EntityUid, vent))
@@ -96,12 +77,55 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
     private bool TryInsertInVent(EntityUid uid, (MapCoordinates Coords, EntityUid Uid) vent)
     {
         if (!HasComp<VentCrawlEntryComponent>(vent.Uid) ||
-            !TryComp<VentCrawlTubeComponent>(vent.Uid, out var tube) ||
-            !tube.Connected)
+            !HasComp<VentCrawlTubeComponent>(vent.Uid))
         {
             return false;
         }
 
         return _ventCrawl.TryInsert(vent.Uid, uid);
+    }
+
+    private void RebuildValidLocations(EntityUid uid, VentSpawnRuleComponent comp)
+    {
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
+            return;
+
+        var station = stationEvent.TargetStation;
+        if (station is null)
+        {
+            if (!TryGetRandomStation(out station))
+            {
+                ForceEndSelf(uid);
+                return;
+            }
+
+            stationEvent.TargetStation = station;
+        }
+
+        comp.ValidLocations.Clear();
+        AddValidLocations(comp, station.Value, requireConnected: true);
+
+        if (comp.ValidLocations.Count > 0)
+            return;
+
+        // Really stupid way to resolve a race condition but "if it fails, try again"
+        AddValidLocations(comp, station.Value, requireConnected: false);
+    }
+
+    private void AddValidLocations(VentSpawnRuleComponent comp, EntityUid station, bool requireConnected)
+    {
+        var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
+        while (locations.MoveNext(out var loc, out _, out var transform))
+        {
+            if (!transform.Anchored || !HasComp<VentCrawlEntryComponent>(loc) ||
+                !TryComp<VentCrawlTubeComponent>(loc, out var tube) ||
+                (requireConnected && !tube.Connected))
+            {
+                continue;
+            }
+
+            if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
+                comp.ValidLocations.Add((_transform.GetMapCoordinates(transform), loc));
+        }
     }
 }
