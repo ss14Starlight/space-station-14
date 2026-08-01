@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie, JohnnyMalawny
   changes:
-  - message: (ATS) All docks have distro/waste connections for shuttles to replenish air.
-    type: Tweak
-  id: 406775
-  time: '2026-07-21T11:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5127
-- author: redmushie, JohnnyMalawny
-  changes:
   - message: (ATS) Cargo shuttle docks also have gas buying/selling pipes for shuttles to pipe from and into.
     type: Tweak
   id: 406776
@@ -2799,4 +2792,11 @@ Entries:
   id: 407174
   time: '2026-07-31T18:13:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5421
+- author: Xale
+  changes:
+  - message: Kiki now uses female reptilian voice emotes, instead of male.
+    type: Fix
+  id: 407175
+  time: '2026-08-01T08:51:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5436
 Order: -1
