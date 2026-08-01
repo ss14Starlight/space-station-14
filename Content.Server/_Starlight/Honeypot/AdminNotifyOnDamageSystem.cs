@@ -27,7 +27,7 @@ public sealed partial class AdminNotifyOnDamageSystem : EntitySystem
     {
         var posFound = _transform.TryGetMapOrGridCoordinates(entity, out var gridPos);
         if (!args.DamageIncreased) return;
-        if (_gameTiming.CurTime.Subtract(entity.Comp.LastNotif) < entity.Comp.NotifyCooldown) return;
+        if (_gameTiming.CurTime - entity.Comp.LastNotif < entity.Comp.NotifyCooldown) return;
         entity.Comp.LastNotif = _gameTiming.CurTime;
 
         // Send the actual alert message.
