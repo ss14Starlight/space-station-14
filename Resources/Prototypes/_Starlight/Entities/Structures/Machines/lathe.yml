@@ -337,6 +337,7 @@
     - TapeRecorder
     - TopicalsStatic
     - AACTabletStatic
+    - StarlightCommandSuppliesStatic
     dynamicPacks:
     - StarlightAutolatheLootable
     - StarlightProtolatheLootable
