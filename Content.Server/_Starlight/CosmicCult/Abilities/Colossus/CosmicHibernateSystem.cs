@@ -27,6 +27,7 @@ public sealed partial class CosmicHibernateSystem : EntitySystem
             return;
 
         args.Handled = true;
+
         var comp = ent.Comp;
         comp.Hibernating = true;
         comp.HibernationTimer = comp.HibernationWait + _timing.CurTime;
