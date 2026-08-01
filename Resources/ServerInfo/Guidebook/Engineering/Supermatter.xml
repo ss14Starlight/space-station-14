@@ -71,7 +71,7 @@
   Grounding systems are required to safely discharge this energy and prevent uncontrolled electrical events.
 
   <Box>
-    <GuideEntityEmbed Entity="GroundingRod" Caption="Grounding Rod" />
+    <GuideEntityEmbed Entity="TeslaGroundingRod" Caption="Grounding Rod" />
   </Box>
 
   ## Radiation Shielding
@@ -81,7 +81,7 @@
   Radiation shielding and monitoring systems must be maintained to protect station personnel and equipment.
 
   <Box>
-    <GuideEntityEmbed Entity= "ReinforcedUraniumWindow" Caption="Radiation Shielding" />
+    <GuideEntityEmbed Entity="ReinforcedUraniumWindow" Caption="Radiation Shielding" />
   </Box>
 
   Standard station atmospheric conditions have proven to be a reliable operating environment.
