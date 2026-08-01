@@ -196933,7 +196933,6 @@ entities:
   - uid: 30445
     components:
     - type: Transform
-      rot: -12.566370614359172 rad
       pos: 52.5,-5.5
       parent: 2
 - proto: PlumbingTank

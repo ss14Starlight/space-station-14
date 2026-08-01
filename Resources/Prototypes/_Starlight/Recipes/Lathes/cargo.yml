@@ -1,0 +1,7 @@
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: CargoBelt
+  result: ClothingBeltCargo
+  materials:
+    Cloth: 100
+    Steel: 50
