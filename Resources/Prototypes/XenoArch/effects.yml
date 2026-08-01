@@ -128,17 +128,17 @@
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 4.0
     - id: XenoArtifactAccessEngineering
-      weight: 91.5
+      weight: 1.5
     - id: XenoArtifactAccessScience # this is nearly useless for most people who can obtain it
-      weight: 92.0
+      weight: 2.0
     - id: XenoArtifactAccessCargo
-      weight: 91.5
+      weight: 1.5
     - id: XenoArtifactAccessService
-      weight: 91.5
+      weight: 1.5
     - id: XenoArtifactAccessSecurity
-      weight: 91.5
+      weight: 1.5
     - id: XenoArtifactAccessMedical
-      weight: 91.5
+      weight: 1.5
     - id: XenoArtifactAccessCommand
       weight: 1.0
     #- id: XenoArtifactAccessAll #AA is probably too much
