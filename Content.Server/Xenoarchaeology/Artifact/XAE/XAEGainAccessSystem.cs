@@ -19,17 +19,9 @@ public sealed partial class XAEGainAccessSystem : BaseXAESystem<XAEGainAccessCom
     {
         // Give the artifact an AccessComponent if it lacks one, else get the existing AccessComponent
         var component = EnsureComp<AccessComponent>(args.Artifact);
-
         var beforeLength = component.Tags.Count;
-
-        // Adds the new accesses to the artifact
-        foreach (var access in ent.Comp.Accesses)
-        {
-            component.Tags.Add(access);
-        }
-
+        component.Tags.UnionWith(ent.Comp.Accesses);
         _tag.AddTag(args.Artifact, ent.Comp.DoorBumpTag);
-
         if (beforeLength != component.Tags.Count)
         {
             Dirty(args.Artifact, component);
