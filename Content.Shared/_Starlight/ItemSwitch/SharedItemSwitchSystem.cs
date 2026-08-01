@@ -136,24 +136,13 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         };
         RaiseLocalEvent(uid, ref attempt);
 
-        // Close whatever screen is open before the outgoing state's ActivatableUI is removed.
-        // Anyone who had it open is remembered so the incoming state can reopen for them, making
-        // a switch read as the screen changing rather than the device shutting off.
-        var reopenFor = new List<EntityUid>();
-        if (TryComp<ActivatableUIComponent>(uid, out var activatable) && activatable.Key != null)
-        {
-            reopenFor.AddRange(_ui.GetActors(uid, activatable.Key));
-            _ui.CloseUi(uid, activatable.Key);
-        }
-
-        if (ent.Comp.States.TryGetValue(ent.Comp.State, out var prevState) && prevState.RemoveComponents && prevState.Components is not null)
-            EntityManager.RemoveComponents(ent, prevState.Components);
-
-        if (state.Components is not null)
-            EntityManager.AddComponents(ent, state.Components);
-
         if (!comp.Predictable) predicted = false;
 
+        // Bail before anything is mutated. This check used to sit after the component swap, so a
+        // cancelled switch left the entity holding the incoming state's components while
+        // comp.State still named the outgoing one -- and, once a UI close was added here, with its
+        // screen shut too. Nothing cancels this event today, but the trap was waiting for whoever
+        // first did.
         if (attempt.Cancelled)
         {
             if (predicted)
@@ -170,6 +159,22 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
             return false;
         }
 
+        // Close whatever screen is open before the outgoing state's ActivatableUI is removed.
+        // Anyone who had it open is remembered so the incoming state can reopen for them, making
+        // a switch read as the screen changing rather than the device shutting off.
+        var reopenFor = new List<EntityUid>();
+        if (TryComp<ActivatableUIComponent>(uid, out var activatable) && activatable.Key != null)
+        {
+            reopenFor.AddRange(_ui.GetActors(uid, activatable.Key));
+            _ui.CloseUi(uid, activatable.Key);
+        }
+
+        if (ent.Comp.States.TryGetValue(ent.Comp.State, out var prevState) && prevState.RemoveComponents && prevState.Components is not null)
+            EntityManager.RemoveComponents(ent, prevState.Components);
+
+        if (state.Components is not null)
+            EntityManager.AddComponents(ent, state.Components);
+
         if (predicted)
             _audio.PlayPredicted(state.SoundStateActivate, uid, user);
         else
@@ -179,8 +184,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         UpdateVisuals((uid, comp), key);
         Dirty(uid, comp);
 
-        // Reopen on the incoming state's key for whoever had the old screen up. After the
-        // cancelled check, so a refused switch leaves the device closed rather than springing open.
+        // Reopen on the incoming state's key for whoever had the old screen up.
         if (reopenFor.Count > 0 && TryComp<ActivatableUIComponent>(uid, out var newActivatable) && newActivatable.Key != null)
         {
             foreach (var actor in reopenFor)
