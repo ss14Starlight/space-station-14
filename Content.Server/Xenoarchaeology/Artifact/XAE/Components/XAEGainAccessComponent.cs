@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Access;
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Xenoarchaeology.Artifact.XAE.Components;
@@ -13,5 +14,10 @@ public sealed partial class XAEGainAccessComponent : Component
     /// The accesses the artifact will have.
     /// </summary>
     [DataField] public HashSet<ProtoId<AccessLevelPrototype>> Accesses = new();
+
+    /// <summary>
+    /// Tag applied to the artifact so it can open doors matching its granted accesses when it bumps into them.
+    /// </summary>
+    [DataField] public ProtoId<TagPrototype> DoorBumpTag = "DoorBumpOpener";
 }
 

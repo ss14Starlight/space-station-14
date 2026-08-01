@@ -28,8 +28,7 @@ public sealed partial class XAEGainAccessSystem : BaseXAESystem<XAEGainAccessCom
             component.Tags.Add(access);
         }
 
-        // Is there no better way to do this?
-        _tag.AddTag(args.Artifact, new ProtoId<TagPrototype>("DoorBumpOpener"));
+        _tag.AddTag(args.Artifact, ent.Comp.DoorBumpTag);
 
         if (beforeLength != component.Tags.Count)
         {
