@@ -29,15 +29,37 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
 
         var numberOfPipeLayers = GetNumberOfPipeLayers(uid, out _);
 
+        // Starlight START
+        // Insert connection nubs right after the main pipe layer instead of appending them at the
+        // end, so they don't render on top of layers added after it (e.g. a machine/tank body).
+        _sprite.LayerMapTryGet((uid, sprite), PipeVisualLayers.Pipe, out var pipeIndex, false);
+        // Starlight END
+
         foreach (var layerKey in Enum.GetValues<PipeConnectionLayer>())
         {
             for (byte i = 0; i < numberOfPipeLayers; i++)
             {
                 var layerName = layerKey.ToString() + i.ToString();
-                var layer = _sprite.LayerMapReserve((uid, sprite), layerName);
+
+                // Starlight START
+                if (!_sprite.LayerMapTryGet((uid, sprite), layerName, out var layer, false))
+                {
+                    layer = pipeIndex + 1;
+                    _sprite.AddBlankLayer((uid, sprite), layer);
+                    _sprite.LayerMapSet((uid, sprite), layerName, layer);
+                }
+                // Starlight END
+
                 _sprite.LayerSetRsi((uid, sprite), layer, component.Sprite[i].RsiPath);
                 _sprite.LayerSetRsiState((uid, sprite), layer, component.Sprite[i].RsiState);
                 _sprite.LayerSetDirOffset((uid, sprite), layer, ToOffset(layerKey));
+
+                // Starlight START
+                // The generated pipe inlet/outlets don't have the correct offset, but we can simply use the inverse
+                // of the whole sprite offset to fix that. This fixes things like large tanks where the body sprite
+                // and "the tile" are offset from one another.
+                _sprite.LayerSetOffset((uid, sprite), layer, -sprite.Offset);
+                // Starlight END
             }
         }
     }
