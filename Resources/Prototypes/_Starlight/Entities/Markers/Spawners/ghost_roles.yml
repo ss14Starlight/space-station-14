@@ -76,7 +76,7 @@
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
-  id: SpawnPointGhostXenoBorgHeavyDerelict
+  id: SpawnPointGhostDerelictHeavyXenoborg
   components:
     - type: GhostRole
       name: ghostrole-information-derelict-heavy-xenoborg-name
@@ -88,7 +88,7 @@
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
-  id: SpawnPointGhostXenoborgEngiDerelict
+  id: SpawnPointGhostDerelictEngiXenoborg
   components:
     - type: GhostRole
       name: ghostrole-information-derelict-engi-xenoborg-name
@@ -100,7 +100,7 @@
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
-  id: SpawnPointGhostXenoborgScoutDerelict
+  id: SpawnPointGhostDerelictScoutXenoborg
   components:
     - type: GhostRole
       name: ghostrole-information-derelict-scout-xenoborg-name
@@ -112,7 +112,7 @@
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
-  id: SpawnPointGhostXenoborgStealthDerelict
+  id: SpawnPointGhostDerelictStealthXenoborg
   components:
     - type: GhostRole
       name: ghostrole-information-derelict-stealth-xenoborg-name
@@ -124,7 +124,7 @@
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictBorgi
-  id: SpawnPointGhostXenoBorgiDerelict
+  id: SpawnPointGhostDerelictXenoBorgi
   components:
     - type: GhostRole
       name: ghostrole-information-derelict-borgi-xenoborg-name

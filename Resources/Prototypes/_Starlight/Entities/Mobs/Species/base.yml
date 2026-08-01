@@ -248,6 +248,7 @@
     - Boop
   # Starlight End
   - type: CosmicCenserTarget # Stellar - Cosmic Cult
+  - type: Scent # Starlight - smell system
 
 - type: entity
   save: false
