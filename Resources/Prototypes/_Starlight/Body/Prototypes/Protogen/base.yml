@@ -4,7 +4,7 @@
   root: torso
   slots:
     head:
-      part: HeadProtogen
+      part: HeadNeocyte
       connections:
       - torso
       organs:
@@ -14,7 +14,7 @@
         eye_implant: null
         brain_implant: null
     torso:
-      part: TorsoProtogen
+      part: TorsoNeocyte
       connections:
       - right arm
       - left arm
@@ -28,19 +28,19 @@
         kidneys: OrganProtogenKidneys
         cavity: null
     right arm:
-      part: RightArmProtogen
+      part: RightArmNeocyte
       connections:
       - right hand
     left arm:
-      part: LeftArmProtogen
+      part: LeftArmNeocyte
       connections:
       - left hand
     right hand:
-      part: RightHandProtogen
+      part: RightHandNeocyte
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandProtogen
+      part: LeftHandNeocyte
       organs:
         hand_implant: null
     right leg:
