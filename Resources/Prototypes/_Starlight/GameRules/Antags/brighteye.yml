@@ -1,0 +1,90 @@
+# Brighteye
+- type: entity
+  abstract: true
+  parent: BaseGameRule
+  id: BaseBrighteyeRule
+  components:
+  - type: GameRule
+    minPlayers: 20
+  - type: RuleGrids
+  - type: BrighteyeRule
+  - type: SubRule
+    table: !type:GroupSelector
+      children:
+      - id: TheDarkHideoutSpawn
+      - id: TheDarkGardenSpawn
+  - type: AntagLoadProfileRule
+    speciesHardOverride: Shadekin
+    applyCharacterProfile: true
+  - type: AntagObjectives
+    objectives:
+    - BrighteyeSurviveObjective
+    - BrighteyePortalObjective
+  - type: SubGamemodes
+    rules:
+    - id: RailroadingBrighteye
+  - type: DynamicRuleCost
+    cost: 125
+
+- type: entity
+  parent: [BaseBrighteyeRule, BaseRoundstartAntagRule]
+  id: SubBrighteye
+  components:
+  - type: AntagSelection
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: Brighteye
+      playerRatio: 65
+      range:
+        min: 1
+        max: 3
+
+- type: entity
+  parent: [BaseBrighteyeRule, BaseAntagGhostRoleRule]
+  id: BrighteyeSpawn
+  components:
+  - type: StationEvent
+    weight: 1
+    earliestStart: 10
+    reoccurrenceDelay: 20
+    minimumPlayers: 20
+    duration: null
+  - type: AntagSelection
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: Brighteye
+      playerRatio: 75
+      range:
+        min: 1
+        max: 3
+
+# This is used for admin/tools to spawn the dark without any antag.
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkMap
+  components:
+  - type: StationEvent
+  - type: SubRule
+    table: !type:GroupSelector
+      children:
+        - id: TheDarkHideoutSpawn
+        - id: TheDarkGardenSpawn
+
+# Dark Maps
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkHideoutSpawn
+  components:
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/TheDark/Hideout.yml
+    mapTag: TheDark
+
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkGardenSpawn
+  components:
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/TheDark/Garden.yml
+    mapTag: TheDark

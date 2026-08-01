@@ -7,12 +7,12 @@ uniform highp float Zoom;
 //Variables for controlling the falloff of the additive lighting effect.
 uniform highp float CircleRadius; //= 420.0;
 uniform highp float CircleMinDist; //= 0.0;
-uniform highp float CirclePow; //= 1.0;
+uniform highp float CirclePow; //= 0.20; // Starlight
 uniform highp float CircleMax; //= 4.0;
-uniform highp float CircleMult; //= 0.25;
+uniform highp float CircleMult; //= 0.2; // Starlight
 uniform highp float FalloffClampMin; //= 0.075;
 uniform highp float FalloffClampMax; //= 1.0;
-uniform highp float FalloffStrength; //= 0.75;
+uniform highp float FalloffStrength; //= 0.8; // Starlight
 uniform highp float FalloffPow; //= 3.0;
 uniform highp float HDR; //= 1.5;
 

@@ -21,6 +21,12 @@ public sealed class UseInHandEvent : HandledEntityEventArgs
     /// </summary>
     public bool ApplyDelay = true;
 
+    #region Starlight
+    /// <summary>
+    /// Whether this use should display interaction particles.
+    /// </summary>
+    public bool ShowInteractionParticles = true;
+    #endregion
     public UseInHandEvent(EntityUid user)
     {
         User = user;
