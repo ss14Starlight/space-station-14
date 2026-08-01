@@ -646,7 +646,7 @@ entities:
     - type: Transform
       pos: 0.5,20.5
       parent: 1
-- proto: ComputerShuttle
+- proto: ComputerShuttleSecurity
   entities:
   - uid: 81
     components:
