@@ -1,25 +1,4 @@
 Entries:
-- author: SpaghettiBit
-  changes:
-  - message: Stunprods now spawn without a cell.
-    type: Tweak
-  id: 406791
-  time: '2026-07-21T14:05:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5154
-- author: SpaghettiBit
-  changes:
-  - message: The NT paper jockeys have been granted one (1) singular voucher of happiness, their cane now has the ability to self recharge, no you cannot remove the cell.
-    type: Tweak
-  id: 406792
-  time: '2026-07-21T14:05:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5154
-- author: Vincolan
-  changes:
-  - message: Added Casino PDA.
-    type: Add
-  id: 406793
-  time: '2026-07-22T07:41:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5173
 - author: Vincolan
   changes:
   - message: Added Casino Dealer, Security, Owner and manager ID.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407190
   time: '2026-08-01T14:40:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5406
+- author: Xale
+  changes:
+  - message: Monkeys now have access to voice emotes in the emote wheel.
+    type: Add
+  id: 407191
+  time: '2026-08-01T14:40:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5435
+- author: Xale
+  changes:
+  - message: Monkeys now get the quick action to scream.
+    type: Add
+  id: 407192
+  time: '2026-08-01T14:40:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5435
+- author: Xale
+  changes:
+  - message: Monkeys now have sound for some emotes such as scream, clap, salute, and whistle.
+    type: Add
+  id: 407193
+  time: '2026-08-01T14:40:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5435
 Order: -1
