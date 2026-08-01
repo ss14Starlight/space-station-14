@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Changed most of the music in jukebox to hopefully be quieter.
-    type: Tweak
-  id: 406799
-  time: '2026-07-22T08:18:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5231
 - author: Caws
   changes:
   - message: Performers now have service access just like other theatre staff.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407198
   time: '2026-08-01T15:45:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5443
+- author: Spaghett-Bit & ya3.14a
+  changes:
+  - message: The ATS guild has approved a shipment of higher-grade AstroNav programs to the Paramedic, Engineers, CE, Mining Specialists, and Salvage Specialists. The new features include an In-Built Mass scanner, however the compact nature of the PDA causes the range to be rather short.
+    type: Add
+  id: 407199
+  time: '2026-08-01T16:05:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5299
 Order: -1
