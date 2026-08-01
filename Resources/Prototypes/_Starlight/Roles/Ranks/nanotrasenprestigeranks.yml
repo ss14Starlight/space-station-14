@@ -1,5 +1,5 @@
 ﻿- type: rank
   id: ProtocolCommissar
-  name: ProtocolCommissar
+  name: job-name-protocolcommissar
   requirement: NTRPrestigeReq
   priority: High

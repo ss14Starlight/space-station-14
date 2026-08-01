@@ -1,0 +1,5 @@
+﻿- type: rank
+  id: MasterScientist
+  name: job-name-masterscientist
+  requirement: SciencePrestigeReq
+  priority: High

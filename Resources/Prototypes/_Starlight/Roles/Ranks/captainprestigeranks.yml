@@ -1,5 +1,5 @@
 ﻿- type: rank
   id: Admiral
-  name: Admiral
+  name: job-name-admiral
   requirement: CaptainPrestigeReq
   priority: High

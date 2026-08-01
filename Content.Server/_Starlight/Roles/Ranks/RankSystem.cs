@@ -3,7 +3,9 @@ using Content.Server.Access.Systems;
 using Content.Shared._Starlight.Roles.Ranks;
 using Content.Shared.GameTicking;
 using Content.Shared.Roles;
+using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Roles.Ranks;
 
@@ -54,5 +56,6 @@ public sealed partial class RankSystem : EntitySystem
 
         if (highestRank!= null)
             idCard.Comp.JobTitle = highestRank.Name;
+
     }
 }

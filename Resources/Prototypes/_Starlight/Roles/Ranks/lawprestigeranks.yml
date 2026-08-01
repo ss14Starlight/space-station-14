@@ -1,11 +1,11 @@
 ﻿- type: rank
   id: InternalAffairsOfficer
-  name: Internal Affairs Officer
+  name: job-name-internalaffairsofficer
   requirement: LawPrestigeReq
   priority: High
 
 - type: rank
   id: GrandMagistrate
-  name: Grand Magistrate
+  name: job-name-grandmagistrate
   requirement: LawPrestigeReq
   priority: High

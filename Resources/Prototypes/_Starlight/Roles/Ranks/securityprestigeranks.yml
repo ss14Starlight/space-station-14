@@ -1,29 +1,29 @@
 ﻿- type: rank
   id: ModelOfficer
-  name: Model Officer
+  name: job-name-modelofficer
   requirement: SecurityPrestigeReq
   priority: High
 
 - type: rank
   id: DutySpecialist
-  name: Duty Specialist
+  name: job-name-dutyspecialist
   requirement: SecurityPrestigeReq
   priority: High
 
 - type: rank
   id: BrigmedicalSpecialist
-  name: Brigmedical Specialist
+  name: job-name-brigmedicalspecialist
   requirement: SecurityPrestigeReq
   priority: High
 
 - type: rank
   id: ModelWarden
-  name: Model Warden
+  name: job-name-modelwarden
   requirement: SecurityPrestigeReq
   priority: High
 
 - type: rank
   id: ChiefOfSecurity
-  name: Chief of Security
+  name: job-name-chiefofsecurity
   requirement: SecurityPrestigeReq
   priority: High

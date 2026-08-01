@@ -1,23 +1,23 @@
 ﻿- type: rank
   id: MedicalSpecialist
-  name: Medical Specialist
+  name: job-name-medicalspecialist
   requirement: MedicalPrestigeReq
   priority: High
 
 - type: rank
   id: SpecialistSurgeon
-  name: Specialist Surgeon
+  name: job-name-specialistsurgeon
   requirement: MedicalPrestigeReq
   priority: High
 
 - type: rank
   id: ChemicalSpecialist
-  name: Chemical Specialist
+  name: job-name-chemicalspecialist
   requirement: MedicalPrestigeReq
   priority: High
 
 - type: rank
   id: SurgeonGeneral
-  name: Surgeon General
+  name: job-name-surgeongeneral
   requirement: MedicalPrestigeReq
   priority: High

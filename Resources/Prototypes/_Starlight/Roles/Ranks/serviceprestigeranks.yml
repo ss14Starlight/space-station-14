@@ -1,29 +1,29 @@
 ﻿- type: rank
   id: MasterJanitor
-  name: Master Janitor
+  name: job-name-masterjanitor
   requirement: ServicePrestigeReq
   priority: High
 
 - type: rank
   id: MasterBartender
-  name: Master Bartender
+  name: job-name-masterbartender
   requirement: ServicePrestigeReq
   priority: High
 
 - type: rank
   id: MessOfficer
-  name: Mess Officer
+  name: job-name-messofficer
   requirement: ServicePrestigeReq
   priority: High
 
 - type: rank
-  id: DoctorBotany
-  name: Master Botanist
+  id: MasterBotanist
+  name: job-name-masterbotanist
   requirement: ServicePrestigeReq
   priority: High
 
 - type: rank
   id: ChiefSteward
-  name: Chief Steward
+  name: job-name-chiefsteward
   requirement: ServicePrestigeReq
   priority: High
