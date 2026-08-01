@@ -1520,6 +1520,13 @@
   - type: Tag
     tags:
       - Monkey
+  - type: Vocal
+    sounds:
+      Male: Monkey
+      Female: Monkey
+      Unsexed: Monkey
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
 
 - type: Tag
   id: Monkey
@@ -1542,6 +1549,13 @@
     - Ancestor
     - GalacticCommon
   - type: VentCrawler # Starlight
+  - type: Vocal
+    sounds:
+      Male: Monkey
+      Female: Monkey
+      Unsexed: Monkey
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
   # Starlight-End
   - type: NameIdentifier
     group: Monkey
