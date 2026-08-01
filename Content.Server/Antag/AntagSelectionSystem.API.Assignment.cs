@@ -107,9 +107,10 @@ public sealed partial class AntagSelectionSystem
         if (selectedProfile != null)
             return IsProfileValidForAntag(player, selectedProfile, definition);
 
-        // Non-humanoid antag bodies legitimately have no character profile. A humanoid body
-        // should always retain the profile used to spawn it; accepting a missing profile here
-        // would bypass species and preference validation.
+        // Bodies without HumanoidAppearanceComponent have no character profile to
+        // validate and are allowed through here. Humanoid bodies must have a recoverable
+        // profile so profile-specific antag requirements, including species restrictions
+        // and preferences, cannot be bypassed.
         if (!TryComp<HumanoidAppearanceComponent>(antagEntity, out var humanoid))
             return true;
 
