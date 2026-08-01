@@ -1,0 +1,106 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "MasterBartender",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "MasterBotanist",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "BrigmedicalSpecialist",
+            "copyright": "PuroSlavKing (Github)"
+        },
+        {
+            "name": "Admiral",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "CargoSpecialist",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "MessOfficer",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "ChemicalSpecialist",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "MasterEngineer",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "ChiefSteward",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "ChiefOfSecurity",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "InternalAffairsOfficer",
+            "copyright": "Chim"
+        },
+        {
+            "name": "MasterJanitor",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "MedicalSpecialist",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "ProtocolCommissar",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, wonderfulnewworld"
+        },
+        {
+            "name": "QuartermasterGeneral",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "ChiefOfResearch",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "ModelSalvageLead",
+            "copyright": "mikeysaurus"
+        },
+        {
+            "name": "ModelSalvager",
+            "copyright": "mikeysaurus"
+        },
+        {
+            "name": "MasterScientist",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "ModelOfficer",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "EngineeringSpecialist",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "SpecialistSurgeon",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "ModelWarden",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "AtmosphericSpecialist",
+            "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        }
+    ]
+}
