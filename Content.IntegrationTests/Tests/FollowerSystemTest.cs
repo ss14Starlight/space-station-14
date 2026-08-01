@@ -1,5 +1,7 @@
+using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking;
 using Content.Shared.Follower;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
 using Robust.Shared.Map;
@@ -7,16 +9,23 @@ using Robust.Shared.Map;
 namespace Content.IntegrationTests.Tests;
 
 [TestFixture, TestOf(typeof(FollowerSystem))]
-public sealed class FollowerSystemTest
+public sealed class FollowerSystemTest : GameTest
 {
+    #region Starlight
+    public override PoolSettings PoolSettings => new()
+        {
+            Dirty = true,
+        };
+    #endregion
     /// <summary>
     ///     This test ensures that deleting a map while an entity follows another doesn't throw any exceptions.
     /// </summary>
     [Test]
     public async Task FollowerMapDeleteTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
+        server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
 
         var entMan = server.ResolveDependency<IEntityManager>();
         var mapMan = server.ResolveDependency<IMapManager>();
@@ -44,6 +53,6 @@ public sealed class FollowerSystemTest
 
             entMan.DeleteEntity(mapSys.GetMap(map));
         });
-        await pair.CleanReturnAsync();
+        server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
     }
 }

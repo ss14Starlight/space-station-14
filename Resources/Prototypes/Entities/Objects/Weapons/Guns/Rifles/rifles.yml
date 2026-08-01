@@ -17,12 +17,13 @@
         staminaMultiplier: 100
       Rodentia:
         knockback: 0.1
+        staminaMultiplier: 20
       Resomi:
         knockback: 0.1
-      Avali:
-        knockback: 0.05 # Bigger bird, more sturdy bones.. or something.
+        staminaMultiplier: 20
       Felionoid:
         knockback: 0.05 #half of what resomi take
+        staminaMultiplier: 20
   - type: Sprite
   - type: Item
     size: Huge

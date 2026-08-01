@@ -32,6 +32,7 @@ public sealed partial class LoadoutSystem : EntitySystem
 
         // Wait until the character has all their organs before we give them their loadout
         SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]); // Starlight: Added after: [typeof(SharedBodySystem)]
+        SubscribeLocalEvent<LoadoutComponent, StartingGearEquippedEvent>(OnStartingGearEquipped); // Starlight: post-spawn gear
     }
 
     public static string GetJobPrototype(string? loadout)
@@ -144,6 +145,7 @@ public sealed partial class LoadoutSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, LoadoutComponent component, MapInitEvent args)
     {
+        if (component.PostStationSpawn) return; // Starlight
         Equip(uid, component.StartingGear, component.RoleLoadout);
     }
 
@@ -199,4 +201,19 @@ public sealed partial class LoadoutSystem : EntitySystem
 
         return HumanoidCharacterProfile.Random();
     }
+
+    #region Starlight
+
+    private void OnStartingGearEquipped(Entity<LoadoutComponent> entity, ref StartingGearEquippedEvent ev)
+    {
+        if (entity.Comp.AppliedPostSpawnGear) return;
+        var postSpawnGear = entity.Comp.PostSpawnGear;
+        if (postSpawnGear is null) return;
+        var uid = entity.Owner;
+        if (entity.Comp.PostSpawnGear is null || postSpawnGear.Count <= 0) return;
+        _station.EquipStartingGear(uid, _random.Pick(postSpawnGear), false);
+        entity.Comp.AppliedPostSpawnGear = true;
+    }
+
+    #endregion Starlight
 }

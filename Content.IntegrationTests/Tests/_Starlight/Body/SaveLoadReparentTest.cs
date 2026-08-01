@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Containers;
@@ -11,7 +12,7 @@ using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests._Starlight.Body;
 
 [TestFixture]
-public sealed class SaveLoadReparentTest
+public sealed class SaveLoadReparentTest : GameTest
 {
     [TestPrototypes]
     private const string Prototypes = @"
@@ -26,7 +27,7 @@ public sealed class SaveLoadReparentTest
     [Test]
     public async Task Test()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var entities = server.ResolveDependency<IEntityManager>();
@@ -176,7 +177,5 @@ public sealed class SaveLoadReparentTest
                 entities.DeleteEntity(map);
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

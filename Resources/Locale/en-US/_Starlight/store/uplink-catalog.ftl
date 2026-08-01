@@ -157,3 +157,6 @@ uplink-syndicate-borgi-kitted-bundle-desc = A syndicate borgi, outfitted with an
 
 uplink-syndicate-borgi-speed-bundle-name = Speed Syndicate Borgi bundle
 uplink-syndicate-borgi-speed-bundle-desc = A syndicate borgi, with dagger modules and additional speed. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're the Borgi's best friends.
+
+uplink-chameleon-bundle-name = Chameleon Kit Crate
+uplink-chameleon-bundle-desc = A crate containing a backpack full of items that contain chameleon technology allowing you to disguise as pretty much anything on the station, and more!

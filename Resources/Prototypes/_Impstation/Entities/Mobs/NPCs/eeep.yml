@@ -113,6 +113,8 @@
       reagents:
       - ReagentId: ChloralHydrate
         Quantity: 200
+    bleedReductionAmount: 1
+    bloodRefreshAmount: 2
   - type: Sprite
     sprite: _Impstation/Mobs/Aliens/eeeplet.rsi
     noRot: true
@@ -194,7 +196,9 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ChloralHydrate
-        Quantity: 200
+        Quantity: 400
+    bleedReductionAmount: 1
+    bloodRefreshAmount: 4
   - type: Electrified
     requirePower: false
     shockDamage: 4
@@ -241,21 +245,21 @@
   - type: BatteryAmmoProvider
     proto: EeepGunBullet
     fireCost: 100
-  - type: BatterySelfRecharger
-    autoRechargeRate: 20
   - type: Battery
-    maxCharge: 1000
+    maxCharge: 3000 #Starlight 1000 -> 3000
     startingCharge: 1000
-  - type: LightningArcShooter
-    arcDepth: 2
-    maxLightningArc: 3
-    shootMinInterval: 10
-    shootMaxInterval: 15
-    shootRange: 5
-    lightningPrototype: Lightning
+#Starlight Removed, let the eep use their attacks to blow stuff up instead
+#  - type: LightningArcShooter
+#    arcDepth: 2
+#    maxLightningArc: 3
+#    shootMinInterval: 10
+#    shootMaxInterval: 15
+#    shootRange: 5
+#    lightningPrototype: Lightning
   - type: AnnounceOnSpawn
     message: eeep-spawn
     sender: eeep-spawn-sender
+    ignoreASpace: true # Starlight
     sound:
      path: /Audio/Effects/PowerSink/charge_fire.ogg
     color: yellow
@@ -266,3 +270,22 @@
     disableDuration: 20
   - type: Perishable
     rotAfter: 2000
+#region Starlight
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 6
+    baseWeightlessModifier: 0.6
+  - type: BatteryDrainer
+    fullDrain: true
+    drainTime: 4
+    sparkSound:
+     path: /Audio/Effects/PowerSink/charge_fire.ogg
+    minimumDrain: 1000
+  - type: AltFireMelee
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 8
+    useSound:
+      path: /Audio/Effects/tesla_consume.ogg
+#regionend Starlight

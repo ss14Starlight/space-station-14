@@ -2,6 +2,8 @@ using Content.Shared.Cargo.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using System.Text;
+using Content.Shared.Atmos.Prototypes;
+
 namespace Content.Shared.Cargo
 {
     [DataDefinition, NetSerializable, Serializable]
@@ -23,7 +25,7 @@ namespace Content.Shared.Cargo
         /// Prototype Id for the item to be created
         /// </summary>
         [DataField]
-        public string ProductId { get; private set; }
+        public EntProtoId? ProductId { get; private set; } // Starlight: possibly empty string => possibly null EntProtoId
 
         /// <summary>
         /// Prototype Name
@@ -64,11 +66,30 @@ namespace Content.Shared.Cargo
         /// <summary>
         /// The ID of the station this order belongs to.
         /// </summary>
-        [DataField]
-        public NetEntity StationId;
+        [DataField] public NetEntity StationId;
+
+        /// <summary>
+        /// The prototype ID of the ordered product.
+        /// </summary>
+        [DataField] public ProtoId<CargoProductPrototype> CargoProductId;
+
+        /// <summary>
+        /// The ordered gas, if it was a gas order.
+        /// </summary>
+        [DataField] public ProtoId<GasPrototype>? GasType;
+
+        /// <summary>
+        /// The amount of moles of gas were bought, if it was a gas order.
+        /// </summary>
+        [DataField] public float GasMoles;
+
+        /// <summary>
+        /// The temperature of the gas that was bought, if it was a gas order.
+        /// </summary>
+        [DataField] public float GasTemperature;
         #endregion
 
-        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId) // Starlight: +stationId
+        public CargoOrderData(int orderId, EntProtoId? productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<CargoProductPrototype> cargoProductId, ProtoId<GasPrototype>? gasType, float gasMoles, float gasTemp) // Starlight
         {
             OrderId = orderId;
             ProductId = productId;
@@ -78,7 +99,11 @@ namespace Content.Shared.Cargo
             Requester = requester;
             Reason = reason;
             Account = account;
-            StationId = stationId; // Starlight
+            StationId = stationId; // Starlight BEGIN
+            CargoProductId = cargoProductId;
+            GasType = gasType;
+            GasMoles = gasMoles;
+            GasTemperature = gasTemp; // Starlight END
         }
 
         public void SetApproverData(string? approver)

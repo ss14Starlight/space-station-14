@@ -117,6 +117,9 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     private readonly SoundSpecifier _tier2Sound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier2.ogg");
     private readonly SoundSpecifier _monumentAlert = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier_up.ogg");
 
+    private readonly SoundSpecifier _victoryMusic =
+        new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/caustic_shift.ogg");
+
     private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
     /// <summary>
@@ -371,6 +374,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     private void OnGodSpawn(Entity<CosmicGodComponent> uid, ref ComponentInit args)
     {
+        if (!uid.Comp.TriggerRoundEnd) return;
+        _sound.DispatchStationEventMusic(uid, _victoryMusic, StationEventMusicType.CosmicCult );
         var query = QueryActiveRules();
         while (query.MoveNext(out var ruleUid, out _, out var cultRule, out _))
         {
@@ -572,6 +577,13 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         {
             conversionComp.Converted += value;
         }
+    }
+
+    public void AdjustCultObjectiveChaplain(int value)
+    {
+        var query = EntityQueryEnumerator<CosmicChaplainConditionComponent>();
+        while (query.MoveNext(out _, out var chaplainConditionComp))
+            chaplainConditionComp.Converted += value;
     }
     #endregion
 
@@ -804,11 +816,17 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _mind.TryAddObjective(mindId, mind, "CosmicFinalityObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicMonumentObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicConversionObjective");
+        _mind.TryAddObjective(mindId, mind, "CosmicChaplainObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicEntropyObjective");
 
         _euiMan.OpenEui(new CosmicConvertedEui(), session);
 
-        RemComp<BibleUserComponent>(uid);
+
+        if (TryComp<BibleUserComponent>(uid, out var _))
+        {
+            AdjustCultObjectiveChaplain(1);
+            RemComp<BibleUserComponent>(uid);
+        }
 
         // Bright-eye Nerf - Yeah im not gona let them be immortal!
         if (TryComp<BrighteyeComponent>(uid, out var brighteye))
@@ -825,6 +843,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
         cult.Comp.TotalCult++;
         cult.Comp.Cultists.Add(uid);
+
 
         AdjustCultObjectiveConversion(1);
         UpdateCultData(cult.Comp.MonumentInGame);
@@ -956,6 +975,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             _mind.TryRemoveObjective(mindId, mind, conversionObjective.Value);
         if (_mind.TryFindObjective((mindId, mind), "CosmicEntropyObjective", out var entropyObjective) && entropyObjective != null)
             _mind.TryRemoveObjective(mindId, mind, entropyObjective.Value);
+        if (_mind.TryFindObjective((mindId, mind), "CosmicChaplainObjective", out var chaplainObjective) && chaplainObjective != null)
+            _mind.TryRemoveObjective(mindId, mind, chaplainObjective.Value);
 
         _role.MindRemoveRole<CosmicCultRoleComponent>(mindId);
         _role.MindRemoveRole<RoleBriefingComponent>(mindId);

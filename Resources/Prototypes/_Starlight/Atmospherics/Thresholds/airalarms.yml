@@ -20,3 +20,17 @@
     threshold: 0.45
   upperWarnAround: !type:AlarmThresholdSetting
     threshold: 0.8
+
+- type: alarmThreshold
+  id: stationUlnitranium
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 1.50
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: stationZXA
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.1
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.08

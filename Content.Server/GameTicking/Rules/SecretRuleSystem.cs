@@ -21,6 +21,10 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
+    // Starlight begin
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    // Starlight end
 
     private readonly Dictionary<string, int> _secretPresetCooldown = new();
     private string _ruleCompName = default!;
@@ -44,10 +48,14 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
         }
 
         Log.Info($"Selected {preset.ID} as the secret preset.");
+        if (_ticker.RunLevel == GameRunLevel.PreRoundLobby) _chatManager.SendAdminAnnouncement($"Round preset selected: Secret ({preset.ID})."); // Starlight
         _adminLogger.Add(LogType.EventStarted, $"Selected {preset.ID} as the secret preset.");
 
         foreach (var rule in preset.Rules)
         {
+            if (GameTicker.IsIgnored(rule))
+                continue;
+
             EntityUid ruleEnt;
 
             // if we're pre-round (i.e. will only be added)
@@ -149,20 +157,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
         if (selected == null)
             return false;
 
-        foreach (var ruleId in selected.Rules)
-        {
-            if (!_prototypeManager.TryIndex(ruleId, out EntityPrototype? rule)
-                || !rule.TryGetComponent(_ruleCompName, out GameRuleComponent? ruleComp))
-            {
-                Log.Error($"Encountered invalid rule {ruleId} in preset {selected.ID}");
-                return false;
-            }
-
-            if (ruleComp.MinPlayers > players && ruleComp.CancelPresetOnTooFewPlayers)
-                return false;
-        }
-
-        return true;
+        return players >= GameTicker.GetMinimumPlayerCount(selected);
     }
 
     #region Starlight
