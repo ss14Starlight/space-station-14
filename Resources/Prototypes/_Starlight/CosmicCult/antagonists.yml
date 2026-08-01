@@ -10,7 +10,7 @@
   guides: [ CosmicCult ]
 
 - type: antagSpecifier
-  parent: RestrictedAntag
+  parent: CosmicCultRestrictedAntag
   id: CosmicAntagCultist
   prefRoles:
   - CosmicAntagCultist

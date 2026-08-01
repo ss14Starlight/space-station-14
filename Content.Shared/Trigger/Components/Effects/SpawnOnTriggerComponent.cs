@@ -29,4 +29,13 @@ public sealed partial class SpawnOnTriggerComponent : BaseXOnTriggerComponent
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Predicted;
+
+    #region Starlight
+
+    /// <summary>
+    /// Component overrides for the spawned entity.
+    /// </summary>
+    [DataField] public ComponentRegistry? Overrides;
+
+    #endregion
 }

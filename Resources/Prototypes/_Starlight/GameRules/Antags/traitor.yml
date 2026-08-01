@@ -26,7 +26,7 @@
     antags:
     - !type:LinearAntagCount
       proto: Traitor
-      playerRatio: 21
+      playerRatio: 25.2
       range:
         min: 1
         max: 6
@@ -41,7 +41,7 @@
     antags:
     - !type:LinearAntagCount
       proto: Traitor
-      playerRatio: 17
+      playerRatio: 20.4
       range:
         min: 1
         max: 12

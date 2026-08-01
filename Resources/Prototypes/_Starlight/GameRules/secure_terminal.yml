@@ -63,7 +63,7 @@
   - type: StationEvent
   - type: RuleGrids
   - type: LoadMapRule
-    gridPath: /Maps/_Starlight/Shuttles/CC-NT/Chaplain_GRID.yml
+    gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Chaplain.yml
 
 # Spawners
 - type: entity
