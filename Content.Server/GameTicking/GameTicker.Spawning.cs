@@ -144,19 +144,6 @@ namespace Content.Server.GameTicking
                         profile)
                 );
 
-                // If the player is preselected for antags, filter out profiles that aren't requesting these antags.
-                var antags = _antagSelection.GetPreSelectedAntags(playerSession);
-                if (antags.Count > 0)
-                {
-                    // For each antag definition, make sure that at least one of the AntagPrototypes is in
-                    // the character's preferences.
-                    foreach (var antagSet in antags)
-                    {
-                        filteredPlayerProfiles =
-                            filteredPlayerProfiles.Where(profile => antagSet.Overlaps(profile.AntagPreferences));
-                    }
-                }
-
                 var finalPlayerProfiles = filteredPlayerProfiles.ToList();
                 if (finalPlayerProfiles.Count == 0)
                     continue;

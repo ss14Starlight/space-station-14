@@ -39,3 +39,21 @@
             - id: GraySlimeExtract
             - id: MonkeyCubeBox
             - id: XenobiologyConsoleCameraTagger
+
+- type: entity
+  parent: CrateScienceSecure
+  id: CrateStationAiUpload
+  name: station AI upload console crate
+  description: Contains the components for constructing a station AI upload console. Still requires manual linking to the core. Requires Science access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: StationAiUploadCircuitboard
+        - id: SheetSteel1
+          amount: 5
+        - id: SheetGlass1
+          amount: 2
+        - id: CableApcStack1
+          amount: 5
