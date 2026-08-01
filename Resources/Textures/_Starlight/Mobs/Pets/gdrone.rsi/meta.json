@@ -12,22 +12,22 @@
 			"directions": 4
 		},
 		{
-			"name": "equipped-NECK",
+			"name": "0-equipped-NECK",
 			"directions": 4
 		},
 		{
-			"name": "equipped-NECK-avali",
+			"name": "0-equipped-NECK-avali",
 			"directions": 4
 		},
 		{
 			"name": "icon"
 		},
 		{
-			"name": "inhand-right",
+			"name": "1-inhand-right",
 			"directions": 4
 		},
 		{
-			"name": "inhand-left",
+			"name": "1-inhand-left",
 			"directions": 4
 		}
 	]

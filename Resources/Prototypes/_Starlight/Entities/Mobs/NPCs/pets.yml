@@ -258,3 +258,90 @@
   - type: AutoImplant
     implants:
     - BluespaceImplant
+
+- type: entity
+  parent: BaseMob
+  id: MobGDrone
+  name: V.E.S.T.A.
+  description: A deployed avali ground drone. wip.
+  components:
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: MovedByPressure
+  - type: Physics
+    bodyType: KinematicController # Same for all inheritors
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - SiliconEmotes
+    - Unimplantable
+    - StunImmune
+  - type: Body
+    prototype: Bot
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Scratch
+    understands:
+    - GalacticCommon
+    - Scratch
+  - type: Pullable
+  - type: Emoting
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
+  - type: TypingIndicator
+    proto: robot
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSilicon
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Pets/gdrone.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: drone
+  - type: Item
+    size: Normal
+    heldPrefix: 1
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Pets/gdrone.rsi
+    equippedPrefix: 0
+    slots:
+    - NECK
+  - type: ZombieImmune
+  - type: InteractionPopup
+    interactSuccessString: petting-success-generic-cyborg
+    interactFailureString: petting-failure-generic-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: HTN
+    rootTask:
+      task: RuminantCompound
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Effects/chime.ogg
+      params:
+        volume: -4
+  - type: UseDelay
+    delay: 1.0
