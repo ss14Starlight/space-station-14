@@ -1,67 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Performers now have service access just like other theatre staff.
-    type: Fix
-  id: 406800
-  time: '2026-07-22T08:18:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5236
-- author: Johnny
-  changes:
-  - message: (Reach) Added ATMS cuz like money.
-    type: Add
-  id: 406801
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: Johnny
-  changes:
-  - message: (Reach) Added the prisoner monkey (forgot its name).
-    type: Add
-  id: 406802
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: Johnny
-  changes:
-  - message: (Reach) Added an EVA room near evac.
-    type: Add
-  id: 406803
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: Johnny
-  changes:
-  - message: (Reach) Added evacuation pods.
-    type: Add
-  id: 406804
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: Johnny
-  changes:
-  - message: (Reach) Added pipes in cargo dock for gas buying/selling.
-    type: Add
-  id: 406805
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: Johnny
-  changes:
-  - message: (Reach) Added a fireaxe into atmos.
-    type: Add
-  id: 406806
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: Johnny
-  changes:
-  - message: (Reach) Added mass scanners on the walls to show peeps where your driving!
-    type: Add
-  id: 406807
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: Johnny
-  changes:
-  - message: (Reach) Added BEAUTIFUL DIAGONAL TILES.
-    type: Add
-  id: 406808
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
 - author: Johnny
   changes:
   - message: (Reach) Removed some catwalks to see the BEAUTIFUL DIAGONAL TILES.
@@ -2799,4 +2736,67 @@ Entries:
   id: 407199
   time: '2026-08-01T16:05:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5299
+- author: wondefulnewworld
+  changes:
+  - message: Added departmental techfabs for every department except NT Personnel.
+    type: Add
+  id: 407200
+  time: '2026-08-01T19:14:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: wondefulnewworld
+  changes:
+  - message: Added admin-only NanoTrasen, Central Command, and Syndicate techfabs.
+    type: Add
+  id: 407201
+  time: '2026-08-01T19:14:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: wondefulnewworld
+  changes:
+  - message: You can now emag the medical techfab.
+    type: Add
+  id: 407202
+  time: '2026-08-01T19:14:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: wondefulnewworld
+  changes:
+  - message: Added departmental techfab flatpacks to each head's locker, and machine boards to their respective totes.
+    type: Add
+  id: 407203
+  time: '2026-08-01T19:14:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: wondefulnewworld
+  changes:
+  - message: Added a new steal objective for any 1 of the cargo, command, engineering, and science tech fab boards. Service excluded, since it's too easy.
+    type: Add
+  id: 407204
+  time: '2026-08-01T19:14:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: wondefulnewworld
+  changes:
+  - message: Added the generic electronics to the circuit imprinter.
+    type: Add
+  id: 407205
+  time: '2026-08-01T19:14:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: wondefulnewworld
+  changes:
+  - message: The base protolathe can no longer be printed in the circuit imprinter unless you emag it.
+    type: Remove
+  id: 407206
+  time: '2026-08-01T19:14:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: wondefulnewworld
+  changes:
+  - message: Moved the dark breacher to the circuit imprinter.
+    type: Tweak
+  id: 407207
+  time: '2026-08-01T19:14:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: wondefulnewworld
+  changes:
+  - message: Combined the medical and security tech fab board steal objectives.
+    type: Tweak
+  id: 407208
+  time: '2026-08-01T19:14:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5418
 Order: -1
