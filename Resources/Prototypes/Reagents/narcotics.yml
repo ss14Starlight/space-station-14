@@ -472,6 +472,13 @@
         - !type:ReagentCondition
           reagent: TearGas
           min: 4
+      # Starlight Begin
+      - !type:ForceSneeze
+        conditions:
+        - !type:ReagentCondition
+          reagent: TearGas
+          min: 4
+      # Starlight End
 
 - type: reagent
   id: Happiness

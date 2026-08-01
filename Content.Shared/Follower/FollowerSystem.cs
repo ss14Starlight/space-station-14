@@ -160,11 +160,7 @@ public sealed partial class FollowerSystem : EntitySystem
 
     private void OnFollowedPolymorphed(Entity<FollowedComponent> entity, ref PolymorphedEvent args)
     {
-        foreach (var follower in entity.Comp.Following)
-        {
-            // Stop following the target's old entity and start following the new one
-            StartFollowingEntity(follower, args.NewEntity);
-        }
+        TransferFollowers(entity.AsNullable(), args.NewEntity);
     }
 
     // TODO: Slartibarfast mentioned that ideally this should be generalized and made part of SetRelay in SharedMoverController.Relay.cs.
@@ -174,8 +170,7 @@ public sealed partial class FollowerSystem : EntitySystem
         if (args.NewRemoteEntity == null)
             return;
 
-        foreach (var follower in entity.Comp.Following)
-            StartFollowingEntity(follower, args.NewRemoteEntity.Value);
+        TransferFollowers(entity.AsNullable(), args.NewRemoteEntity.Value);
     }
 
     /// <summary>
@@ -290,6 +285,20 @@ public sealed partial class FollowerSystem : EntitySystem
         if (!deparent || !TryComp(uid, out TransformComponent? xform))
             return;
 
+        #region Starlight
+        // If the followed entity is already detached from any map/grid (e.g. map deletion teardown),
+        // trying to re-attach the follower will always fail and spam warnings.
+        if (TryComp(target, out TransformComponent? targetXform) && targetXform.MapUid == null)
+        {
+            _transform.DetachEntity(uid, xform);
+
+            if (!_netMan.IsClient)
+                QueueDel(uid);
+
+            return;
+        }
+        #endregion
+
         _transform.AttachToGridOrMap(uid, xform);
         if (xform.MapUid != null)
             return;
@@ -317,6 +326,21 @@ public sealed partial class FollowerSystem : EntitySystem
         {
             StopFollowingEntity(player, uid, followed);
         }
+    }
+
+    /// <summary>
+    ///     Moves every follower of <paramref name="from"/> over to <paramref name="to"/>.
+    ///     Use this when an entity is being replaced (polymorph, remote swap, ghost role spawn) and
+    ///     its watchers should ride along to the successor instead of being detached.
+    /// </summary>
+    public void TransferFollowers(Entity<FollowedComponent?> from, EntityUid to)
+    {
+        if (from.Owner == to || !Resolve(from, ref from.Comp, false))
+            return;
+
+        // Snapshot since HashSet is mutated down the line
+        foreach (var follower in from.Comp.Following.ToArray())
+            StartFollowingEntity(follower, to);
     }
 
     /// <summary>
