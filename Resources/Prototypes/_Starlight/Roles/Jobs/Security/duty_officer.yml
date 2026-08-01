@@ -10,7 +10,6 @@
   startingGear: DutyOfficerGear
   icon: "JobIconDutyOfficer"
   supervisors: job-supervisors-warden
-  canBeAntag: false
   access:
   - Security
   - Brig

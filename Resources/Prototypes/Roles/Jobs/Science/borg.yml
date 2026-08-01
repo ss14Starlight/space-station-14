@@ -11,7 +11,6 @@
     time: 5h
   weight: 10
   displayWeight: 1 # Starlight, we're reordering things
-  canBeAntag: false
   icon: JobIconStationAi
   supervisors: job-supervisors-nanotrasen # Starlight, listen to NT.
   jobEntity: StationAiBrain
@@ -32,7 +31,6 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10h
-  canBeAntag: false
   displayWeight: 0 # Starlight, we're reordering things
   icon: JobIconBorg
   supervisors: job-supervisors-station-ai # Starlight, listen to the AI.
