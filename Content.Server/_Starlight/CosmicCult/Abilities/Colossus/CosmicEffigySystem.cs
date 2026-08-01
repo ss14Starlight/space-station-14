@@ -98,34 +98,24 @@ public sealed partial class CosmicEffigySystem : EntitySystem
                 continue;
 
             comp.EffigyRechargeTimer = null;
+            Dirty(uid, comp);
 
             if (comp.EffigyPlaceActionEntity is not { } action)
-            {
-                Dirty(uid, comp);
                 continue;
-            }
 
             // No LimitedCharges component
             if (!TryComp<LimitedChargesComponent>(action, out var charges))
-            {
-                Dirty(uid, comp);
                 continue;
-            }
 
             // Already charged
             if (_charges.GetCurrentCharges((action, charges, null)) >= charges.MaxCharges)
-            {
-                Dirty(uid, comp);
                 continue;
-            }
 
             // Restore ability
             _charges.SetCharges((action, charges), charges.MaxCharges);
             Dirty(action, charges);
             _popup.PopupEntity(Loc.GetString("ghost-role-colossus-effigy-ready"), uid, uid,
             PopupType.LargeCaution);
-            // Save consumed recharge timer state
-            Dirty(uid, comp);
         }
     }
 
