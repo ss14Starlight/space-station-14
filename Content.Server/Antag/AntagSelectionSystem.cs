@@ -323,6 +323,21 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         _postSpawnRules = null; // Clear the list since it's been used up!
 
         #region Starlight
+        // No active rule may leave a queued vacancy behind after the post-spawn pass.
+        // Inactive rules keep their vacancies until AssignPreSelectedSessions runs when
+        // the rule starts, so delayed antags are not initialized ahead of schedule.
+        var pendingQuery = QueryActiveRules();
+        while (pendingQuery.MoveNext(out var pendingUid, out _, out var pendingComp, out _))
+        {
+            if (pendingComp.PendingReplacements.Count == 0 ||
+                HasComp<EndedGameRuleComponent>(pendingUid))
+            {
+                continue;
+            }
+
+            AssignPendingReplacements((pendingUid, pendingComp), players, players.Length);
+        }
+
         /*foreach (var antag in _delayedAntags)
         {
             if (!TryInitializeAntag(antag.gameRule, antag.antag, antag.player))
@@ -587,11 +602,18 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             #region Starlight
             EntityUid? antagEnt = null;
             HumanoidCharacterProfile? selectedProfile = null;
+            MapCoordinates? fallbackCoordinates = null;
 
             // Active off-station antags may be spawned immediately. Validate the entity and
             // exact selected profile before reserving a slot, so a bad spawn cannot consume it.
             if (antag.Active &&
-                TryGetAntagEntity(antag.GameRule, antag.Definition, player, out var spawnedEnt, out selectedProfile))
+                TryGetAntagEntity(
+                    antag.GameRule,
+                    antag.Definition,
+                    player,
+                    out var spawnedEnt,
+                    out selectedProfile,
+                    out fallbackCoordinates))
             {
                 if (!IsEntityValid(spawnedEnt.Value, antag.Definition) ||
                     !IsSelectedProfileValidForAntag(player, spawnedEnt.Value, selectedProfile, antag.Definition))
@@ -625,6 +647,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (antagEnt != null)
             #endregion
             {
+                #region Starlight
+                // GetAntagEntity only records fallback movement for an existing body.
+                // Apply it after validation succeeds so a rejected player is never teleported.
+                if (fallbackCoordinates is { } coordinates)
+                {
+                    var xform = Transform(antagEnt.Value);
+                    _transform.SetMapCoordinates((antagEnt.Value, xform), coordinates);
+                }
+                #endregion
+
                 InitializeAntag(antag.GameRule, antag.Definition, antagEnt.Value, player, selectedProfile); // Starlight
                 return true;
             }
@@ -903,7 +935,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         #endregion
 
         // Get a valid entity to initialize
-        if (!TryGetAntagEntity(gameRule, prototype, player, out var antagEnt, out var selectedProfile)) // Starlight
+        if (!TryGetAntagEntity(gameRule, prototype, player, out var antagEnt, out var selectedProfile, out var fallbackCoordinates)) // Starlight
         {
             DeSelectSession(gameRule, prototype, player);
             return false;
@@ -922,6 +954,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             return false;
         }
 
+        #region Starlight
+        // Delay fallback movement of an existing body until every entity and profile check
+        // has succeeded. This keeps a rejected crew member at their original location.
+        if (fallbackCoordinates is { } coordinates)
+        {
+            var xform = Transform(antagEnt.Value);
+            _transform.SetMapCoordinates((antagEnt.Value, xform), coordinates);
+        }
+        #endregion
+
         InitializeAntag(gameRule, prototype, antagEnt.Value, player, selectedProfile); // Starlight
         return true;
     }
@@ -930,9 +972,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         AntagSpecifierPrototype prototype,
         ICommonSession player,
         [NotNullWhen(true)]out EntityUid? antagEnt,
-        out HumanoidCharacterProfile? selectedProfile) // Starlight
+        out HumanoidCharacterProfile? selectedProfile,
+        out MapCoordinates? fallbackCoordinates) // Starlight
     {
-        antagEnt = GetAntagEntity(gameRule, prototype, player, out selectedProfile); // Starlight
+        antagEnt = GetAntagEntity(gameRule, prototype, player, out selectedProfile, out fallbackCoordinates); // Starlight
         return antagEnt != null;
     }
 
@@ -949,9 +992,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     private EntityUid? GetAntagEntity(Entity<AntagSelectionComponent> gameRule,
         AntagSpecifierPrototype prototype,
         ICommonSession player,
-        out HumanoidCharacterProfile? selectedProfile) // Starlight
+        out HumanoidCharacterProfile? selectedProfile,
+        out MapCoordinates? fallbackCoordinates) // Starlight
     {
         selectedProfile = null; // Starlight
+        fallbackCoordinates = null; // Starlight
 
         // If there's no valid position for us to be moved to, then just return the entity currently attached to the session.
         // We need a position to spawn a new entity so we can't spawn a new entity without a proper position.
@@ -970,9 +1015,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             return null;
         }
 
-        // Move our entity to the new coordinates we found!
-        var xform = Transform(uid);
-        _transform.SetMapCoordinates((uid, xform), coordinates.Value);
+        // Starlight, the caller moves an existing body only after entity and profile validation succeeds.
+        fallbackCoordinates = coordinates.Value; // Starlight
         return uid;
     }
 

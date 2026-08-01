@@ -156,19 +156,40 @@ namespace Content.Server.GameTicking
                     foreach (var antag in selectedAntags)
                     {
                         if (_prototypeManager.Resolve(antag, out var definition))
+                        {
                             selectedAntagDefinitions.Add(definition);
+                            continue;
+                        }
+
+                        _sawmill.Error($"Could not resolve pre-selected antag definition {antag} for {playerSession.Name}.");
+                        break;
                     }
 
-                    filteredPlayerProfiles = filteredPlayerProfiles.Where(profile =>
-                        selectedAntagDefinitions.Count == selectedAntags.Count &&
-                        selectedAntagDefinitions.All(definition =>
-                            _antagSelection.IsProfileValidForAntag(playerSession, profile, definition)));
+                    if (selectedAntagDefinitions.Count != selectedAntags.Count)
+                    {
+                        filteredPlayerProfiles = Enumerable.Empty<HumanoidCharacterProfile>();
+                    }
+                    else
+                    {
+                        filteredPlayerProfiles = filteredPlayerProfiles.Where(profile =>
+                            selectedAntagDefinitions.All(definition =>
+                                _antagSelection.IsProfileValidForAntag(playerSession, profile, definition)));
+                    }
                 }
                 #endregion
 
                 var finalPlayerProfiles = filteredPlayerProfiles.ToList();
                 if (finalPlayerProfiles.Count == 0)
+                #region Starlight
+                {
+                    var evNoProfile = new NoJobsAvailableSpawningEvent(playerSession);
+                    RaiseLocalEvent(evNoProfile);
+                    _chatManager.DispatchServerMessage(
+                        playerSession,
+                        Loc.GetString("game-ticker-player-no-valid-roundstart-character"));
                     continue;
+                }
+                #endregion
 
                 var profile = _robustRandom.Pick(finalPlayerProfiles); // Starlight
 

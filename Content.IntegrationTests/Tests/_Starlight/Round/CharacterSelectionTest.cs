@@ -440,8 +440,8 @@ public sealed class CharacterSelectionTest : GameTest
         {
             var antagSystem = Pair.Server.System<AntagSelectionSystem>();
             var definition = Pair.Server.ProtoMan.Index(InitialInfectedSpecifier);
-            var human = HumanoidCharacterProfile.RandomWithSpecies("Human").WithAntagPreferences([InitialInfected]);
-            var ipc = HumanoidCharacterProfile.RandomWithSpecies("IPC").WithAntagPreferences([InitialInfected]);
+            var human = HumanoidCharacterProfile.RandomWithSpecies("Human").AsEnabled().WithAntagPreferences([InitialInfected]);
+            var ipc = HumanoidCharacterProfile.RandomWithSpecies("IPC").AsEnabled().WithAntagPreferences([InitialInfected]);
 
             Assert.That(antagSystem.IsProfileValidForAntag(Pair.Player!, human, definition), Is.True);
             Assert.That(antagSystem.IsProfileValidForAntag(Pair.Player!, ipc, definition), Is.False);
