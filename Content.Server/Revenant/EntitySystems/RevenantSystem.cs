@@ -29,7 +29,7 @@ public sealed partial class RevenantSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private AlertsSystem _alerts = default!;
-    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!; // Starlight-edit
     [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private GameTicker _ticker = default!;
