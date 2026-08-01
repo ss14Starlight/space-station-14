@@ -3,7 +3,7 @@ using Content.Shared.Doors;
 using Content.Server.Doors.Systems;
 using Content.Shared.Doors.Components;
 
-namespace Content.Server.Starlight.Door;
+namespace Content.Server._Starlight.Door;
 
 public sealed class TimedDoorClosingSystem : EntitySystem
 {
