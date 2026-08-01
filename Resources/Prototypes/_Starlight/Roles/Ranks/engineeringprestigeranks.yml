@@ -3,15 +3,18 @@
   name: job-name-masterengineer
   requirement: EngineeringPrestigeReq
   priority: High
+  icon: "JobIconMasterEngineer"
 
 - type: rank
   id: AtmosphericSpecialist
   name: job-name-atmosphericspecialist
   requirement: EngineeringPrestigeReq
   priority: High
+  icon: "JobIconAtmosphericSpecialist"
 
 - type: rank
   id: EngineeringSpecialist
   name: job-name-engineeringspecialist
   requirement: EngineeringPrestigeReq
   priority: High
+  icon: "JobIconEngineeringSpecialist"

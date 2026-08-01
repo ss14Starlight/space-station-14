@@ -101,6 +101,28 @@
         {
             "name": "AtmosphericSpecialist",
             "copyright": "/tg/station113, https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi"
+        },
+        {
+            "name": "DutySpecialist",
+            "copyright": "BORT"
+        },
+        {
+            "name": "MailSpecialist",
+            "delays": [
+                [
+                    10,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
+            "copyright": "Happyrobot33, fqqf"
         }
     ]
 }

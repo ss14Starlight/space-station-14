@@ -3,3 +3,4 @@
   name: job-name-masterscientist
   requirement: SciencePrestigeReq
   priority: High
+  icon: "JobIconMasterScientist"

@@ -3,9 +3,11 @@
   name: job-name-internalaffairsofficer
   requirement: LawPrestigeReq
   priority: High
+  icon: "JobIconInternalAffairsOfficer"
 
 - type: rank
   id: GrandMagistrate
   name: job-name-grandmagistrate
   requirement: LawPrestigeReq
   priority: High
+  icon: "JobIconGrandMagistrate"

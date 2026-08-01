@@ -3,27 +3,32 @@
   name: job-name-cargospecialist
   requirement: CargoPrestigeReq
   priority: High
+  icon: "JobIconCargoSpecialist"
 
 - type: rank
   id: MailSpecialist
   name: job-name-mailspecialist
   requirement: CargoPrestigeReq
   priority: High
+  icon: "JobIconMailSpecialist"
 
 - type: rank
   id: ModelSalvager
   name: job-name-modelsalvager
   requirement: CargoPrestigeReq
   priority: High
+  icon: "JobIconModelSalvager"
 
 - type: rank
   id: ModelSalvageLead
   name: job-name-modelsalvagelead
   requirement: CargoPrestigeReq
   priority: High
+  icon: "JobIconModelSalvageLead"
 
 - type: rank
   id: QuartermasterGeneral
   name: job-name-quartermastergeneral
   requirement: CargoPrestigeReq
   priority: High
+  icon: "JobIconQuartermasterGeneral"

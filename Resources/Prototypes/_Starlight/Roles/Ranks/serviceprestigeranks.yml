@@ -3,27 +3,32 @@
   name: job-name-masterjanitor
   requirement: ServicePrestigeReq
   priority: High
+  icon: "JobIconMasterJanitor"
 
 - type: rank
   id: MasterBartender
   name: job-name-masterbartender
   requirement: ServicePrestigeReq
   priority: High
+  icon: "JobIconMasterBartender"
 
 - type: rank
   id: MessOfficer
   name: job-name-messofficer
   requirement: ServicePrestigeReq
   priority: High
+  icon: "JobIconMessOfficer"
 
 - type: rank
   id: MasterBotanist
   name: job-name-masterbotanist
   requirement: ServicePrestigeReq
   priority: High
+  icon: "JobIconMasterBotanist"
 
 - type: rank
   id: ChiefSteward
   name: job-name-chiefsteward
   requirement: ServicePrestigeReq
   priority: High
+  icon: "JobIconChiefSteward"

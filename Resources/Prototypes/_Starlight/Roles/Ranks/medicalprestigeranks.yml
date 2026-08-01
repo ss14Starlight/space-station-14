@@ -3,21 +3,25 @@
   name: job-name-medicalspecialist
   requirement: MedicalPrestigeReq
   priority: High
+  icon: "JobIconMedicalSpecialist"
 
 - type: rank
   id: SpecialistSurgeon
   name: job-name-specialistsurgeon
   requirement: MedicalPrestigeReq
   priority: High
+  icon: "JobIconSpecialistSurgeon"
 
 - type: rank
   id: ChemicalSpecialist
   name: job-name-chemicalspecialist
   requirement: MedicalPrestigeReq
   priority: High
+  icon: "JobIconChemicalSpecialist"
 
 - type: rank
   id: SurgeonGeneral
   name: job-name-surgeongeneral
   requirement: MedicalPrestigeReq
   priority: High
+  icon: "JobIconSurgeonGeneral"

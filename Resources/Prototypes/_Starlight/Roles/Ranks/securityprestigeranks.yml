@@ -3,27 +3,32 @@
   name: job-name-modelofficer
   requirement: SecurityPrestigeReq
   priority: High
+  icon: "JobIconModelOfficer"
 
 - type: rank
   id: DutySpecialist
   name: job-name-dutyspecialist
   requirement: SecurityPrestigeReq
   priority: High
+  icon: "JobIconDutySpecialist"
 
 - type: rank
   id: BrigmedicalSpecialist
   name: job-name-brigmedicalspecialist
   requirement: SecurityPrestigeReq
   priority: High
+  icon: "JobIconBrigmedicalSpecialist"
 
 - type: rank
   id: ModelWarden
   name: job-name-modelwarden
   requirement: SecurityPrestigeReq
   priority: High
+  icon: "JobIconModelWarden"
 
 - type: rank
   id: ChiefOfSecurity
   name: job-name-chiefofsecurity
   requirement: SecurityPrestigeReq
   priority: High
+  icon: "JobIconChiefOfSecurity"
