@@ -19,7 +19,7 @@
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.9
-      staminaModifier: 0.55
+    staminaModifier: 0.85
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -65,7 +65,7 @@
           Slash: 0.6
           Piercing: 0.3
           Heat: 0.9
-      staminaModifier: 0.85
+      staminaModifier: 0.75
     - type: ExplosionResistance
       damageCoefficient: 0.9
 
@@ -89,7 +89,7 @@
           Piercing: 0.5
           Heat: 0.9
           Radiation: 0.75
-      staminaModifier: 0.85
+      staminaModifier: 0.75
     - type: ExplosionResistance
       damageCoefficient: 0.9
     - type: ClothingSpeedModifier
