@@ -262,6 +262,11 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
         helper.WindowRoot = _uiManager.CreateWindowRoot(helper.ClydeWindow);
         helper.WindowRoot.AddChild(helper.Control);
 
+        // Starlight begin
+        helper.Control.RememberSelected.Disabled = true;
+        helper.Control.RememberSelected.Visible = false;
+        // Starlight end
+
         helper.Control.PopOut.Disabled = true;
         helper.Control.PopOut.Visible = false;
     }
@@ -388,11 +393,6 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
 
     public void Close()
     {
-        // Starlight begin
-        EnsurePanel(_ownerId);
-        Control?.SelectChannel(_ownerId);
-        // Starlight end
-
         Window?.Close();
 
         // popped-out window is being closed
@@ -400,6 +400,7 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
         {
             ClydeWindow.RequestClosed -= OnRequestClosed;
             ClydeWindow.Dispose();
+            ClydeWindow = null; // Starlight
             // need to dispose control cause we cant reattach it directly back to the window
             // but orphan panels first so -they- can get readded when the window is opened again
             if (Control != null)
@@ -413,6 +414,14 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
             // window wont be closed here so we will invoke ourselves
             OnClose?.Invoke();
         }
+
+        // Starlight begin
+        if (Control is not {Disposed: true})
+        {
+            EnsurePanel(_ownerId);
+            Control?.SelectChannel(_ownerId);
+        }
+        // Starlight end
     }
 
     public void ToggleWindow()
