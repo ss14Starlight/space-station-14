@@ -209,7 +209,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // Move ghosts that were watching the raffle on the spawner over to the freshly spawned antag.
         _follower.TransferFollowers(ent.Owner, uid.Value);
 
-        _ghostRole.UnregisterGhostRole((ent, Comp<GhostRoleComponent>(ent)));
+        _ghostRole.MarkGhostRoleTaken((ent, Comp<GhostRoleComponent>(ent))); // Starlight, use helper
     }
 
     private void OnSpawnComplete(PlayerSpawnCompleteEvent args)
@@ -778,6 +778,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// </summary>
     private void AssignPreSelectedSessions(Entity<AntagSelectionComponent> gameRule)
     {
+        var replacementCounts = new Dictionary<ProtoId<AntagSpecifierPrototype>, int>(); // Starlight
+
         foreach (var (proto, set) in gameRule.Comp.PreSelectedSessions)
         {
             // How did we even get here?
@@ -791,23 +793,46 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 if (!IsSessionValid(session, gameRule, def))
                 {
                     DeSelectSession(gameRule, proto, session, set);
-                    SpawnGhostRole(gameRule, def);
+                    //SpawnGhostRole(gameRule, def); // Starlight, delay this til later so we don't double spawn as a result of our second try later
+                    replacementCounts[proto] = replacementCounts.GetValueOrDefault(proto) + 1; // Starlight
                     continue;
                 }
 
-                TryInitializeAntag(gameRule, def, session);
+                #region Starlight
+                // Same reason as above
+                if (!TryInitializeAntag(gameRule, def, session))
+                {
+                    replacementCounts[proto] = replacementCounts.GetValueOrDefault(proto) + 1;
+                }
+                #endregion
             }
         }
 
         #region Starlight
         // "Try again" for late joiners, to try catching underrolled antags
+        var players = GetActivePlayers().ToArray();
+
         if (gameRule.Comp.LateJoinAdditional)
         {
-            var players = GetActivePlayers().ToArray();
             var weightedPool = GetWeightedPlayerPool(players);
 
             while (RobustRandom.TryPickAndTake(weightedPool, out var session))
                 TryAssignNextAvailableAntag(gameRule, session, players.Length);
+        }
+
+        // Only create replacements for vacancies that remain after the retry.
+        foreach (var (proto, vacancies) in replacementCounts)
+        {
+            if (!Proto.Resolve(proto, out var def))
+                continue;
+
+            var assigned = GetAssignedAntagCount(gameRule, proto);
+            var pendingGhostRoles = GetPendingAntagGhostRoleCount(gameRule, proto);
+            var target = GetTargetAntagCount(gameRule, players.Length, proto);
+
+            var replacements = Math.Min(vacancies, Math.Max(0, target - assigned - pendingGhostRoles));
+
+            SpawnGhostRoles(gameRule, def, replacements);
         }
         #endregion
 

@@ -184,13 +184,47 @@ public sealed partial class AntagSelectionSystem
         return !gameRule.Comp.AssignedMinds.TryGetValue(proto, out var assigned) ? 0 : assigned.Count;
     }
 
+    #region Starlight
+    /// <summary>
+    /// Gets the number of still-available ghost roles reserving slots for an antagonist type.
+    /// </summary>
+    [PublicAPI]
+    public int GetPendingAntagGhostRoleCount(
+        Entity<AntagSelectionComponent> gameRule,
+        ProtoId<AntagSpecifierPrototype> proto)
+    {
+        var count = 0;
+
+        foreach (var ghostRole in _ghostRole.GhostRoles)
+        {
+            if (ghostRole.Comp.Taken ||
+                !TryComp<GhostRoleAntagSpawnerComponent>(ghostRole.Owner, out var spawner) ||
+                spawner.Rule != gameRule.Owner ||
+                spawner.Definition != proto)
+            {
+                continue;
+            }
+
+            count++;
+        }
+
+        return count;
+    }
+    #endregion
+
     /// <summary>
     /// Checks if all antags of this specific type from this specific game rule have been assigned.
     /// </summary>
     [PublicAPI]
     public bool AllAntagsAssigned(Entity<AntagSelectionComponent> gameRule, AntagSpecifierPrototype proto, int players)
     {
-        return GetAssignedAntagCount(gameRule, proto) >= GetTargetAntagCount(gameRule, players, proto);
+        #region Starlight
+        var assigned = GetAssignedAntagCount(gameRule, proto);
+        var pendingGhostRoles = GetPendingAntagGhostRoleCount(gameRule, proto);
+
+        return assigned + pendingGhostRoles >= GetTargetAntagCount(gameRule, players, proto);
+        // return GetAssignedAntagCount(gameRule, proto) >= GetTargetAntagCount(gameRule, players, proto);
+        #endregion
     }
 
     /// <summary>
