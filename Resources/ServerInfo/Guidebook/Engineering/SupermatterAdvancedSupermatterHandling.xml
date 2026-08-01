@@ -5,7 +5,7 @@
 
   Research indicates that atmospheric composition can influence the behaviour and output characteristics of the crystal.
 
-  Nanotrasen research archives contain numerous controlled experiments investigating these interactions.
+  Nanotrasen research archives contain numerous controlled studies investigating these interactions.
 
   Advanced experimentation should only be performed by qualified senior Atmospheric Technicians and Engineering personnel.
 
@@ -20,14 +20,14 @@
 
   Classification: Internal Engineering Research Documentation
 
-  The following documents contain selected Supermatter experiments conducted under Nanotrasen Engineering supervision.
+  The following documents contain selected Supermatter experimental setups and research results conducted under Nanotrasen Engineering supervision.
 
   Experimental procedures may only be reproduced by authorized personnel with appropriate engineering clearance.
 
   Portions of this document have been removed under corporate information protection policy.
 
 
-  ## Experiment SM-T1
+  ## Experimental Setup SM-T1
 
   [color=cyan]Experiment Lead:[/color] NT-CE-TY-TY-TY
 
@@ -57,22 +57,19 @@
   Electrical Disturbance Countermeasures:
   - Two grounding rods.
 
-  Recommended Safe Emitter Limit:
-  Two emitters.
+  Recommended Safe Emitter Limit: Two emitters.
 
-  Tested Emitter Limit:
-  Six emitters.
+  Tested Emitter Limit: Six emitters.
 
 
   [color=orange]Control Systems[/color]
 
   Air Alarm automation for emitter control is strongly advised.
 
-  Scrubber configuration:
-  Remove all gases except Oxygen.
+  Scrubber configuration: Remove all gases except Oxygen.
 
 
-  [color=orange]Experiment Results[/color]
+  [color=orange]Experimental Results[/color]
 
   Stable operation achieved.
 
@@ -89,12 +86,12 @@
 
   [color=orange]Research Summary[/color]
 
-  Experiment demonstrated profitable power harvesting potential while maintaining acceptable operational stability.
+  This setup demonstrated profitable power harvesting potential while maintaining acceptable operational stability.
 
   Further testing approved under controlled conditions.
 
 
-  ## Experiment SM-Z0
+  ## Experimental Setup SM-Z0
 
   [color=cyan]Experiment Lead:[/color] NT-CE-LS
 
@@ -109,8 +106,7 @@
 
   Initial Chamber Pressure: 200 kPa Oxygen atmosphere.
 
-  Experimental Atmosphere:
-  Primarily Oxygen with approximately one tenth Nitrogen.
+  Experimental Atmosphere: Primarily Oxygen with approximately one tenth Nitrogen.
 
   Coolant Atmosphere:
   - Oxygen.
@@ -141,16 +137,13 @@
   Emitter activation should be separated into multiple stages to prevent rapid stress escalation.
 
 
-  [color=orange]Experiment Results[/color]
+  [color=orange]Experimental Results[/color]
 
-  Recommended Safe Emitter Limit:
-  Six emitters.
+  Recommended Safe Emitter Limit: Six emitters.
 
-  Estimated Maximum Stable Limit:
-  Sixteen emitters.
+  Estimated Maximum Stable Limit: Sixteen emitters.
 
-  Tested Emitter Limit:
-  Thirty-two emitters.
+  Tested Emitter Limit: Thirty-two emitters.
 
   [color=red]CRITICAL EVENT:[/color]
 
@@ -158,18 +151,17 @@
 
   Radiation shielding was increased immediately.
 
-  Maximum recorded output:
-  11.3 MW.
+  Maximum recorded output: 11.3 MW.
 
 
   [color=orange]Research Summary[/color]
 
-  Experiment demonstrated exceptional profitability with significant operational risk.
+  This setup demonstrated exceptional profitability with significant operational risk.
 
-  Further experiments require consultation with affected departments.
+  Further testing requires consultation with affected departments.
 
 
-  ## Experiment SM-ZS-LS
+  ## Experimental Setup SM-ZS-LS
 
   [color=cyan]Experiment Lead:[/color] [color=#000000]████████████[/color]
 
@@ -192,14 +184,13 @@
   [color=#000000]████████████████████████[/color]
 
 
-  [color=orange]Experiment Results[/color]
+  [color=orange]Experimental Results[/color]
 
   Initial observations indicate possible interaction between Supermatter and rare atmospheric compounds.
 
   Results suggest possible applications for self-sustaining Supermatter systems intended for long-duration space operations.
 
-  Project sponsorship:
-  [color=#000000]████████████[/color]
+  Project sponsorship: [color=#000000]████████████[/color]
 
 
   [color=orange]Research Summary[/color]
