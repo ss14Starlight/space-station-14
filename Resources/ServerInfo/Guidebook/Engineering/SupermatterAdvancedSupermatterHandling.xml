@@ -13,7 +13,6 @@
 
   Unsafe experimentation may result in catastrophic consequences.
 
-  ---
 
   # NT-SRD Supermatter Experiment Archive
 
@@ -27,83 +26,51 @@
 
   Portions of this document have been removed under corporate information protection policy.
 
-  ---
 
   ## Experiment SM-T1
 
-  [color=cyan]Experiment Lead:[/color]
+  [color=cyan]Experiment Lead:[/color] NT-CE-TY-TY-TY
 
-  NT-CE-TY-TY-TY
+  [color=cyan]Experiment Handler:[/color] NT-AT-LS
 
-  [color=cyan]Experiment Handler:[/color]
+  [color=cyan]Experiment Authorization:[/color] Junior Atmospheric Technician with Chief Engineer supervision.
 
-  NT-AT-LS
 
-  [color=cyan]Experiment Authorization:[/color]
+  [color=orange]Experimental Setup[/color]
 
-  Junior Atmospheric Technician with Chief Engineer supervision.
+  Chamber Design: Purpose-built experimental chamber.
 
-  [color=cyan]Testing Facility:[/color]
+  Chamber Size: Standard issue dimensions.
 
-  Nanotrasen Supermatter Research Facility [color=#000000]████████████[/color]
+  Chamber Atmosphere: Oxygen.
 
-  Facility contained a purpose-built experimental Supermatter chamber.
-
-  Chamber construction followed standard Nanotrasen engineering specifications.
-
-  ---
-
-  [color=orange]Experiment Configuration[/color]
-
-  Chamber Design:
-
-  Purpose-built experimental chamber.
-
-  Chamber Size:
-
-  Standard issue dimensions.
-
-  Chamber Atmosphere:
-
-  Oxygen.
-
-  Cooling Atmosphere:
-
-  Oxygen.
+  Coolant Atmosphere: Oxygen.
 
   Installed Cooling:
-
   - Two sets of two Passive Vents.
   - Three radiator units per side.
 
   Additional Cooling:
-
   - Freezer temperature set to 150 K.
   - Direct passive vent connection.
 
   Electrical Disturbance Countermeasures:
-
   - Two grounding rods.
 
-  Safe Emitter Configuration:
-
+  Recommended Safe Emitter Limit:
   Two emitters.
 
-  Experimental Emitter Configuration:
-
+  Tested Emitter Limit:
   Six emitters.
 
-  ---
 
-  [color=orange]Automation Configuration[/color]
+  [color=orange]Control Systems[/color]
 
-  Air Alarm automation for emitters is strongly advised.
+  Air Alarm automation for emitter control is strongly advised.
 
   Scrubber configuration:
-
   Remove all gases except Oxygen.
 
-  ---
 
   [color=orange]Experiment Results[/color]
 
@@ -112,112 +79,77 @@
   Moderate radiation output recorded.
 
   Recommended harvesting configuration:
-
   - Four emitters.
   - Six Radiation Collectors.
 
-  Alternative cooling atmospheres may be considered.
+  Alternative coolant atmospheres may be considered.
 
   Nitrogen substitution demonstrated comparable stability.
 
-  ---
 
-  [color=orange]Project Summary[/color]
+  [color=orange]Research Summary[/color]
 
   Experiment demonstrated profitable power harvesting potential while maintaining acceptable operational stability.
 
   Further testing approved under controlled conditions.
 
-  ---
 
   ## Experiment SM-Z0
 
-  [color=cyan]Experiment Lead:[/color]
+  [color=cyan]Experiment Lead:[/color] NT-CE-LS
 
-  NT-CE-LS
+  [color=cyan]Experiment Handler:[/color] NT-CE-LS
 
-  [color=cyan]Experiment Handler:[/color]
+  [color=cyan]Experiment Authorization:[/color] Senior Atmospheric Technician clearance.
 
-  NT-CE-LS
 
-  [color=cyan]Experiment Authorization:[/color]
+  [color=orange]Experimental Setup[/color]
 
-  Senior Atmospheric Technician clearance.
+  Chamber Temperature: Below 70 K.
 
-  [color=cyan]Recommended Facilities:[/color]
-
-  Pre-existing Nanotrasen facilities:
-
-  - Facility designation [color=#000000]████████[/color]
-  - Facility designation [color=#000000]████████[/color]
-
-  Both facilities contained modified or legacy Supermatter chamber layouts.
-
-  ---
-
-  [color=orange]Experiment Configuration[/color]
-
-  Chamber Temperature:
-
-  Below 70 K.
-
-  Initial Chamber Pressure:
-
-  200 kPa Oxygen atmosphere.
+  Initial Chamber Pressure: 200 kPa Oxygen atmosphere.
 
   Experimental Atmosphere:
-
   Primarily Oxygen with approximately one tenth Nitrogen.
 
-  Cooling Atmosphere:
-
+  Coolant Atmosphere:
   - Oxygen.
   - Tritium.
   - Nitrogen.
 
   Cooling System:
-
   - Three parallel radiator branches.
   - Six radiators installed per branch.
 
   Additional Cooling:
-
   - Three freezers connected directly through passive vent systems.
 
   Overpressure Countermeasures:
-
   - Inlet valve configured at 300 kPa.
   - Signal valve controlled by operational procedure.
 
   Electrical Disturbance Countermeasures:
-
   - Two grounding rods.
 
-  ---
 
-  [color=orange]Automation Configuration[/color]
+  [color=orange]Control Systems[/color]
 
   Required automation:
-
   - Pressure floor monitoring.
   - Temperature-sensitive emitter activation.
 
-  Emitter activation should be separated into multiple stages.
+  Emitter activation should be separated into multiple stages to prevent rapid stress escalation.
 
-  ---
 
   [color=orange]Experiment Results[/color]
 
-  Safe Emitter Configuration:
-
+  Recommended Safe Emitter Limit:
   Six emitters.
 
-  Estimated Safe Emitter Configuration:
-
+  Estimated Maximum Stable Limit:
   Sixteen emitters.
 
-  Emitters used during testing:
-
+  Tested Emitter Limit:
   Thirty-two emitters.
 
   [color=red]CRITICAL EVENT:[/color]
@@ -227,39 +159,28 @@
   Radiation shielding was increased immediately.
 
   Maximum recorded output:
-
   11.3 MW.
 
-  ---
 
-  [color=orange]Project Summary[/color]
+  [color=orange]Research Summary[/color]
 
   Experiment demonstrated exceptional profitability with significant operational risk.
 
   Further experiments require consultation with affected departments.
 
-  ---
 
   ## Experiment SM-ZS-LS
 
-  [color=cyan]Experiment Lead:[/color]
+  [color=cyan]Experiment Lead:[/color] [color=#000000]████████████[/color]
 
-  [color=#000000]████████████[/color]
+  [color=cyan]Experiment Handler:[/color] [color=#000000]████████████[/color]
 
-  [color=cyan]Experiment Handler:[/color]
+  [color=cyan]Experiment Authorization:[/color] Experimental clearance only.
 
-  [color=#000000]████████████[/color]
 
-  [color=cyan]Experiment Authorization:[/color]
+  [color=orange]Experimental Setup[/color]
 
-  Experimental clearance only.
-
-  ---
-
-  [color=orange]Experiment Configuration[/color]
-
-  Cooling Atmosphere:
-
+  Coolant Atmosphere:
   - Zauker.
   - Healium.
   - Protonitrate.
@@ -268,10 +189,8 @@
   Chamber maintained under extreme cryogenic conditions.
 
   Experimental atmosphere information:
-
   [color=#000000]████████████████████████[/color]
 
-  ---
 
   [color=orange]Experiment Results[/color]
 
@@ -280,12 +199,10 @@
   Results suggest possible applications for self-sustaining Supermatter systems intended for long-duration space operations.
 
   Project sponsorship:
-
   [color=#000000]████████████[/color]
 
-  ---
 
-  [color=orange]Project Summary[/color]
+  [color=orange]Research Summary[/color]
 
   Preliminary results indicate potential improvements for future propulsion and energy research.
 

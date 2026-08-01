@@ -1,48 +1,46 @@
 <Document>
   # Supermatter Delamination
 
-  Supermatter delamination occurs when the crystal exceeds its ability to maintain structural recovery.
+  Delamination occurs when the Supermatter can no longer recover from the amount of stress applied to it.
 
-  During this event, the crystal enters an uncontrolled instability state and begins producing additional reaction byproducts, accelerating the failure process.
+  When recovery fails, the crystal enters an unstable state where damage accelerates faster than the crystal can repair itself.
+
+  A delamination event is considered a critical station emergency.
 
   ## Emergency Response
 
-  If engineering personnel fail to maintain minimum operational standards, immediate corrective action is required.
-
-  Follow Nanotrasen Engineering emergency procedures.
-
-  ## Delamination Prevention
+  If a Supermatter begins to destabilize, engineering personnel should immediately attempt to reduce stress on the crystal.
 
   Priority actions:
 
-  1. Remove destabilizing components.
+  1. Disable destabilizing equipment.
 
   <Box>
     <GuideEntityEmbed Entity="Emitter" Caption="Emitter" />
   </Box>
 
-  2. Remove unsuitable chamber conditions and correct their source.
+  2. Correct dangerous chamber conditions.
 
   <Box>
     <GuideEntityEmbed Entity="ThermiteFire" Caption="Atmospheric Hazard" />
   </Box>
 
-  3. Deploy Nanotrasen standard-issued metal foam containment equipment.
+  3. Deploy containment measures if required.
 
   <Box>
     <GuideEntityEmbed Entity="MetalFoamGrenade" Caption="Metal Foam Grenade" />
   </Box>
 
-  Failure to stabilize the Supermatter will result in a complete cascade event.
+  Failure to stabilize the crystal will result in complete structural collapse.
 
   ## Final Emergency Procedures
 
-  If delamination cannot be stopped:
+  If delamination cannot be prevented:
 
-  1. Inform the crew of possible Supermatter failure.
-  2. Advise evacuation to emergency shelters or shuttle evacuation.
+  1. Notify the crew of the ongoing Supermatter emergency.
+  2. Recommend evacuation procedures.
   3. Distribute approved protective equipment.
-  4. Prepare engineering equipment for post-event recovery operations.
+  4. Prepare engineering equipment for post-event cleanup.
 
   ## Delamination Cleanup
 
@@ -50,23 +48,21 @@
     <GuideEntityEmbed Entity="Cascad1" Caption="Cascade Crystal" />
   </Box>
 
-  Once the Supermatter reaches critical instability, the original crystal structure will collapse and transform into cascade crystals.
+  During complete failure, the original Supermatter crystal collapses and transforms into cascade crystals.
 
-  Cascade crystals rapidly expand and replace surrounding structures with their altered crystalline structure.
+  Cascade crystals are extremely hardened structures that expand through surrounding materials.
 
-  Due to their hardened structure, cascade crystals cannot be efficiently removed using standard maintenance tools.
-
-  Removal requires appropriate heavy-duty equipment capable of breaking the crystalline structure.
+  Due to their structure, they require heavy-duty tools for efficient removal.
 
   Approved equipment includes:
 
   <Box>
     <GuideEntityEmbed Entity="FireAxe" Caption="Fire Axe" />
-    <GuideEntityEmbed Entity="HammerBreachingNT" Caption="Nanotrasen Breaching Hammer" />
+    <GuideEntityEmbed Entity="HammerBreachingNT" Caption="Breaching Hammer" />
   </Box>
 
-  Emergency tools such as crowbars may damage cascade crystals, but are considered inefficient and should only be used when approved equipment is unavailable.
+  Emergency tools may damage cascade crystals, but are not considered suitable for cleanup operations.
 
-  Personnel should avoid unnecessary interaction with cascade structures until the area has been declared safe.
+  Personnel should avoid entering affected areas until the cascade has been fully removed and the area declared safe.
 
 </Document>

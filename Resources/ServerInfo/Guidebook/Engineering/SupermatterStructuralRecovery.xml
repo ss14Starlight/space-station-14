@@ -1,15 +1,38 @@
 <Document>
   # Supermatter Structural Recovery
 
-  When the Supermatter Crystal becomes damaged, microscopic fractures form within its structure.
+  The Supermatter crystal continuously repairs structural damage over time.
 
-  These fractures expose new layers of the crystal, causing damaged material to separate and decompose.
+  Damage to the crystal creates unstable areas within its structure. These areas break down and release gaseous byproducts.
 
-  This decomposition releases gaseous byproducts, primarily oxygen and tritium.
+  <Box>
+    <GuideEntityEmbed Entity="SupermatterCrystal" Caption="Surface damage caused by stress." />
+  </Box>
 
-  The Supermatter demonstrates a natural self-repairing behaviour, gradually closing these structural imperfections over time.
+  ## Structural Recovery
 
-  The mechanism behind this regenerative process is not fully understood.
+  After taking damage, the crystal gradually restores its structure.
 
-  Current research suggests the crystal actively reorganizes its internal structure to restore stability.
+  The recovery process is always active and cannot be completely stopped. However, certain rare atmospheric compounds can influence the recovery rate.
+
+  Some gases can increase structural recovery, while others can reduce it. These effects modify the recovery speed but do not prevent regeneration entirely.
+
+  As long as structural recovery matches or exceeds incoming damage, the crystal remains stable.
+
+  If damage exceeds the recovery rate, stability will continue to decrease until a delamination event occurs.
+
+  ## Gas Production
+
+  Damaged crystal material decomposes into Oxygen and Tritium.
+
+  These gases are released into the chamber while the crystal is under stress.
+
+  <Box>
+    <GuideEntityEmbed Entity="OxygenCanister" Caption="Oxygen" />
+    <GuideEntityEmbed Entity="TritiumCanister" Caption="Tritium" />
+  </Box>
+
+  Atmospherics can collect and process these gases for station use.
+
+  Higher stress levels create larger amounts of damaged material, increasing gas production while also increasing strain on the crystal.
 </Document>

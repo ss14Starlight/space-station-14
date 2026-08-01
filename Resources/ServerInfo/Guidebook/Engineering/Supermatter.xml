@@ -9,49 +9,82 @@
 
   ## Overview
 
-  The Supermatter Crystal is an advanced crystalline material capable of converting applied energy and structural stress into multiple useful outputs.
+  The Supermatter Crystal is a high-output energy source capable of supplying large amounts of power to a station.
 
-  Unlike conventional generators, the Supermatter does not produce electrical power directly. Instead, energy is harvested from the reactions caused by controlled interaction with the crystal.
+  Unlike conventional generators, it does not generate electricity directly. Instead, engineers harvest the energy released when the crystal is placed under controlled stress.
 
-  The exact mechanisms behind Supermatter behaviour remain partially unknown. Current research indicates that the crystal interacts with environmental conditions and external energy sources in complex ways.
+  In addition to producing energy, the crystal also generates useful gases, making it valuable for both Engineering and Atmospherics.
+
+  The exact mechanisms behind the Supermatter remain unknown. However, its behaviour is heavily influenced by the atmosphere surrounding it and requires continuous monitoring.
 
   ## Power Harvesting
 
-  Controlled Supermatter stress allows engineers to harvest energy from the resulting reactions.
+  Stress causes the Supermatter to release energy in multiple forms.
 
-  One observed reaction produces high-energy radiation.
-
-  <Box>
-    <GuideEntityEmbed Entity="RadiationCollectorFullTank" />
-  </Box>
-
-  Radiation collectors convert this emitted radiation into usable electrical power.
-
-  Another observed reaction involves the accumulation of electrical charge within the crystal.
+  One reaction emits high-energy radiation.
 
   <Box>
-    <GuideEntityEmbed Entity="TeslaCoil" />
+    <GuideEntityEmbed Entity="RadiationCollectorFullTank" Caption="Radiation Collector" />
   </Box>
 
-  Tesla coils allow this stored electrical energy to be transferred into the station power network.
+  Radiation Collectors convert this radiation into usable electrical power.
+
+  The crystal may also accumulate electrical charge.
+
+  <Box>
+    <GuideEntityEmbed Entity="TeslaCoil" Caption="Tesla Coil" />
+  </Box>
+
+  Tesla Coils safely transfer this electrical charge into the station's power network.
 
   ## Gas Harvesting
 
-  Supermatter reactions also produce gaseous byproducts.
+  When the Supermatter is exposed to stress, small fragments of its outer structure break away.
 
-  Damaged or stressed crystal material releases oxygen and tritium as part of its structural decomposition process.
+  <Box>
+    <GuideEntityEmbed Entity="OxygenCanister" Caption="Oxygen" />
+    <GuideEntityEmbed Entity="TritiumCanister" Caption="Tritium" />
+  </Box>
 
-  These gases can be collected and processed for station use, providing Atmospherics with a continuous supply of valuable resources.
+  These fragments naturally decompose into Oxygen and Tritium, providing Atmospherics with a renewable source of both gases.
 
-  ## Minimal Operating Standards
+    ## Minimum Operating Standards
 
-  A stable Supermatter installation must maintain:
+  A stable Supermatter installation requires three primary control systems:
 
-  - Active cooling
-  - Overpressure prevention measures
-  - Stable atmospheric supply
+  ## Gas Management
 
-  Failure to maintain these conditions represents a significant risk to station safety.
+  The chamber atmosphere must be actively managed to maintain safe operating conditions.
 
-  Standard atmospheric conditions have been observed to provide a stable operating environment. Alterations should only be performed with appropriate justification and careful consideration.
+  Required measures include:
+
+  - Active cooling systems.
+  - Pressure regulation and overpressure protection.
+  - Continuous monitoring of chamber atmosphere.
+
+  Temperature and pressure deviations can increase crystal stress and accelerate instability.
+
+  ## Electrical Grounding
+
+  Supermatter interactions can produce electrical charge accumulation.
+
+  Grounding systems are required to safely discharge this energy and prevent uncontrolled electrical events.
+
+  <Box>
+    <GuideEntityEmbed Entity="GroundingRod" Caption="Grounding Rod" />
+  </Box>
+
+  ## Radiation Shielding
+
+  Supermatter reactions can produce dangerous radiation levels.
+
+  Radiation shielding and monitoring systems must be maintained to protect station personnel and equipment.
+
+  <Box>
+    <GuideEntityEmbed Entity= "ReinforcedUraniumWindow" Caption="Radiation Shielding" />
+  </Box>
+
+  Standard station atmospheric conditions have proven to be a reliable operating environment.
+
+  Changes to chamber conditions should only be performed with proper planning and understanding of Supermatter behaviour.
 </Document>

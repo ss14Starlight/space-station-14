@@ -1,17 +1,61 @@
 <Document>
   # Supermatter Stability
 
-  The Supermatter Crystal is equipped with an internal stability monitoring system.
+  The Supermatter continuously monitors its own structural stability.
 
-  If the crystal's structural stability decreases below an acceptable threshold, the monitoring system will automatically issue warnings through station communication systems.
+  When stability falls below safe operating levels, the crystal automatically broadcasts warnings to the station's engineering radio network.
 
-  The Supermatter can be damaged through multiple forms of interaction.
+  Stability is influenced by the environment surrounding the crystal. Engineers should continuously monitor chamber conditions and respond to any unexpected changes.
 
-  Physical contact with the crystal is extremely hazardous. Direct interaction causes structural disturbance and contributes to destabilization.
+  ## Sources of Stress
 
-  High-energy sources, including emitter-based laser systems, can transfer enough energy into the crystal to cause instability.
+  The Supermatter becomes less stable whenever additional energy is introduced into the crystal.
 
-  Environmental conditions also influence crystal stability.
+  Common sources include:
 
-  Temperature, pressure, and atmospheric composition must be carefully monitored to maintain safe operation.
+  - High temperatures, above 350 K
+  - Overpressure, above 300 kPa
+  - Low pressure, below 50 kPa
+  - Emitter shots
+  - Laser impacts
+  - Physical contact with the crystal
+
+  As stress increases, the crystal becomes more difficult to control.
+
+  ## Chamber Conditions
+
+  The atmosphere surrounding the crystal plays a major role in maintaining stability.
+
+  Engineers should monitor:
+
+  - Temperature
+  - Pressure
+  - Atmospheric composition
+
+  Standard station atmospheric conditions have proven to be a reliable operating environment.
+
+  Significant changes should only be performed after careful planning.
+
+  ## Improving Stability
+
+  Proper chamber design improves the crystal's tolerance to changing operating conditions.
+
+  Cooling systems connected directly to the chamber should include overpressure countermeasures.
+
+  <Box>
+    <GuideEntityEmbed Entity="GasPressureRegulator" Caption="Pressure Regulator" />
+  </Box>
+
+  Pressure regulators can be connected to the cooling loop and chamber to prevent excessive pressure buildup.
+
+  Additional inlet valves provide further protection against overpressure events by allowing pressure to be controlled at multiple points within the system.
+
+  Higher-capacity cooling systems may also be installed.
+
+  <Box>
+    <GuideEntityEmbed Entity="GasThermoMachineHellfireFreezer" Caption="Hellfire Freezer" />
+  </Box>
+
+  Hellfire Freezers provide increased cooling capacity, allowing the system to remove heat more effectively and maintain the chamber closer to the desired temperature setpoint during high-stress operation.
+  
 </Document>
