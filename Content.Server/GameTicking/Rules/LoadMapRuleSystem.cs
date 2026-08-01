@@ -45,7 +45,13 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
 
         // Starlight start
         if (_cfg.GetCVar(StarlightCCVars.DisableLoadMapRule))
+        {
+            // If map loading is explicitly disabled, end the rule rather than leaving it partially initialized.
+            // This avoids dependent systems (e.g. antag spawn location selection via RuleGrids) running with no map data.
+            Log.Debug($"Immediately ending {ToPrettyString(uid):rule} as map loading is disabled by cvar.");
+            ForceEndSelf(uid, rule);
             return;
+        }
 
         if (comp.MapTag.HasValue && LoadMapTag(uid, comp, rule, args, comp.MapTag.Value))
             return;

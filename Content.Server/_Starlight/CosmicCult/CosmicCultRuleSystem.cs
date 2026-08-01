@@ -374,6 +374,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     private void OnGodSpawn(Entity<CosmicGodComponent> uid, ref ComponentInit args)
     {
+        if (!uid.Comp.TriggerRoundEnd) return;
         _sound.DispatchStationEventMusic(uid, _victoryMusic, StationEventMusicType.CosmicCult );
         var query = QueryActiveRules();
         while (query.MoveNext(out var ruleUid, out _, out var cultRule, out _))

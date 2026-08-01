@@ -91,9 +91,6 @@ namespace Content.Shared.Roles
         [DataField]
         public bool? OverrideConsoleVisibility { get; private set; } = null;
 
-        [DataField]
-        public bool CanBeAntag { get; private set; } = true;
-
         /// <summary>
         ///     STARLIGHT: Whether to bypass EOR pacification.
         /// </summary>
