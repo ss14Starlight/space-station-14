@@ -49,3 +49,6 @@ spellbook-frozentome-desc = An ancient tome rich in cryo magic, allows the wield
 
 spellbook-icesculpture-name = Summon Ice Sculpture
 spellbook-icesculpture-desc = Draws a magical rune that summons a ice sculpture after two seconds.
+
+spellbook-articglare-name = Artic Glare
+spellbook-articglare-desc = Show them the fury of the artic, freezing anyone in front of you.

@@ -91,3 +91,38 @@
     - state: firearrow
   - type: IgniteOnCollide
     fireStacks: 1
+
+- type: entity
+  id: ProjectileIceGlare
+  parent: BaseBulletTrigger
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/ice_anom.rsi
+    layers:
+    - state: bullet
+  - type: Projectile
+    damage:
+      types:
+        Cold: 10
+    soundHit:
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: StaminaDamageOnCollide
+    damage: 50
+  - type: ChangeTemperatureOnCollide
+    heat: -12000
+    ignoreHeatResistance: false
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: TimedDespawn
+    lifetime: 0.1
+  - type: IceTrail
+    spawnInterval: 0.05
+    iceChance: 1
+    iceEntityId: IceCrust
+    snowTileId: FloorSnow
+  - type: IceSpawnOnTrigger
+    radius: 2
+    requireHumanoid: true
+    iceChance: 1
+    iceEntityId: IceCrust
+    snowTileId: FloorSnow

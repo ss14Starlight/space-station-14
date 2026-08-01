@@ -74,3 +74,31 @@
     tts: action-speech-spell-firearrow-tts
     modifier: Spell
   - type: EorgPreventAction # Starlight
+
+- type: entity
+  parent: BaseAction
+  id: ActionArticGlare
+  name: Artic Glare
+  description: Glare at your enemies with the fury of the artic, freezing anyone close (short range spell).
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 120 #2 minutes
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: articglare
+  - type: TargetAction #instant
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:MultiProjectileSpellEvent
+      prototype: ProjectileIceGlare
+      projectileCount: 15
+      spreadDegrees: 120
+  - type: SpeakOnAction
+    sentence: action-speech-spell-articglare
+    tts: action-speech-spell-articglare-tts
+    modifier: Spell
+  - type: EorgPreventAction

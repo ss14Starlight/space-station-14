@@ -314,3 +314,20 @@
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookArticGlare
+  name: spellbook-articglare-name
+  description: spellbook-articglare-desc
+  priority: 16
+  productAction: ActionArticGlare
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer

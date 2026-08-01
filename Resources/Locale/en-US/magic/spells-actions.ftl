@@ -35,3 +35,5 @@ action-speech-spell-summonice  = IN IMPERIUM MUEM, GLACIES !!
 action-speech-spell-summonice-tts = IN IMPERIUM MUEM GLAKIES!!
 action-speech-spell-freezerune = INGELASCAS !
 action-speech-spell-freezerune-tts = INGELASCAS!!
+action-speech-spell-articglare = ULULATUS ARTICI !!
+action-speech-spell-articglare-tts = OULOULATOUS ARTIKI!!
