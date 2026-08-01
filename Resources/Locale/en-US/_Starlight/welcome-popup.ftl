@@ -13,6 +13,6 @@ content-warning-information =
 
     May also contain pixelated nudity and mature language or themes, especially in roleplay interactions.
 
-    Starlight Alpha, Beta, and Epsilon are Medium Roleplay servers, while Delta is Low Roleplay. Please make sure you've read the server rules and are playing in a way that fits the roleplay level of the server you're on. Inexperience is not a bad thing, as long as you're trying! For advice and tips, check the Roleplay Guides in the Guidebook or chat with other players in Discord.
+    Starlight Alpha and Beta are Medium Roleplay servers, Epsilon is High Roleplay, and Delta is Low Roleplay. Please make sure you've read the server rules and are playing in a way that fits the roleplay level of the server you're on. Inexperience is not a bad thing, as long as you're trying! For advice and tips, check the Roleplay Guides in the Guidebook or chat with other players in Discord.
 
 
