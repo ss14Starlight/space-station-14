@@ -1,0 +1,215 @@
+﻿- type: jobIcon
+  parent: JobIcon
+  id: JobIconMasterBartender
+  icon:
+    sprite: &starlight-prestige-ranks-rsi /Textures/_Starlight/Interface/Misc/prestige_icons.rsi
+    state: MasterBartender
+  jobName: job-name-masterbartender
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconMasterBotanist
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: MasterBotanist
+  jobName: job-name-masterbotanist
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconBrigmedicalSpecialist
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: BrigmedicalSpecialist
+  jobName: job-name-brigmedicalspecialist
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconAdmiral
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: Admiral
+  jobName: job-name-admiral
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconCargoSpecialist
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: CargoSpecialist
+  jobName: job-name-cargospecialist
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconMessOfficer
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: MessOfficer
+  jobName: job-name-messofficer
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconChemicalSpecialist
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: ChemicalSpecialist
+  jobName: job-name-chemicalspecialist
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconMasterEngineer
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: MasterEngineer
+  jobName: job-name-masterengineer
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconChiefSteward
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: ChiefSteward
+  jobName: job-name-chiefsteward
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconChiefOfSecurity
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: ChiefOfSecurity
+  jobName: job-name-chiefofsecurity
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconInternalAffairsOfficer
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: InternalAffairsOfficer
+  jobName: job-name-internalaffairsofficer
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconMasterJanitor
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: MasterJanitor
+  jobName: job-name-masterjanitor
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconMedicalSpecialist
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: MedicalSpecialist
+  jobName: job-name-medicalspecialist
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconProtocolCommissar
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: ProtocolCommissar
+  jobName: job-name-protocolcommissar
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconQuartermasterGeneral
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: QuartermasterGeneral
+  jobName: job-name-quartermastergeneral
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconChiefOfResearch
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: ChiefOfResearch
+  jobName: job-name-chiefofresearch
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconModelSalvageLead
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: ModelSalvageLead
+  jobName: job-name-modelsalvagelead
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconModelSalvager
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: ModelSalvager
+  jobName: job-name-modelsalvager
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconMasterScientist
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: MasterScientist
+  jobName: job-name-masterscientist
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconModelOfficer
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: ModelOfficer
+  jobName: job-name-modelofficer
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconEngineeringSpecialist
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: EngineeringSpecialist
+  jobName: job-name-engineeringspecialist
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconSpecialistSurgeon
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: SpecialistSurgeon
+  jobName: job-name-specialistsurgeon
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconModelWarden
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: ModelWarden
+  jobName: job-name-modelwarden
+  allowSelection: false
+
+- type: jobIcon
+  parent: jobIcon
+  id: JobIconAtmosphericSpecialist
+  icon:
+    sprite: *starlight-prestige-ranks-rsi
+    state: ChiefOfResearch
+  jobName: job-name-atmosphericspecialist
+  allowSelection: false
