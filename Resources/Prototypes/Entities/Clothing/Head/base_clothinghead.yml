@@ -68,7 +68,7 @@
   - type: PointLight
     enabled: false
     # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
     netsync: false
   - type: Appearance
@@ -223,7 +223,7 @@
   - type: PointLight
     enabled: false
     # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
     netsync: false
   - type: Appearance

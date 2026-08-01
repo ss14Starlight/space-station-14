@@ -450,7 +450,7 @@
     energy: 1 #Starlight
     offset: "0, 0.4"
     color: "#7CFC00"
-    mask: /Textures/Effects/LightMasks/double_cone.png
+    lightMask: ConeDouble
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: Battery
