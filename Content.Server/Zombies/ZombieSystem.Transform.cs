@@ -54,6 +54,7 @@ using Content.Server.Animals.Components;
 using Content.Shared.Animals;
 using Content.Shared.FixedPoint;
 using Content.Shared._Starlight.Changeling;
+using Content.Shared.Cuffs.Components;
 #endregion Starlight
 
 namespace Content.Server.Zombies;
@@ -354,6 +355,7 @@ public sealed partial class ZombieSystem
         // Sloth: What the fuck?
         // How long until compregistry lmao.
         RemComp<PullerComponent>(target);
+        RemComp<CuffableComponent>(target); // Starlight
 
         // No longer waiting to become a zombie:
         // Requires deferral because this is (probably) the event which called ZombifyEntity in the first place.
