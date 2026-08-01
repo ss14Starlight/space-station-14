@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseSpeciesPickupable, BaseMobProtogen]
+  parent: [BaseSpeciesPickupable, BaseMobNeocyte]
   id: BaseMobProtoFelionoid
   name: Urist McFelinster
   abstract: true

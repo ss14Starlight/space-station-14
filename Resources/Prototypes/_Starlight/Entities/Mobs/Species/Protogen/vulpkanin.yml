@@ -1,6 +1,6 @@
 - type: entity
-  parent: BaseMobProtogen
-  id: BaseMobProtoVulp
+  parent: BaseMobNeocyte
+  id: BaseMobNeoVulpkanin
   name: Urist McVulpster
   abstract: true
   components:

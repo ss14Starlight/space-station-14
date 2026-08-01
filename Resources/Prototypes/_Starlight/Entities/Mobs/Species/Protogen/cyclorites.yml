@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseSpeciesPickupableHuge, BaseMobProtogen]
+  parent: [BaseSpeciesPickupableHuge, BaseMobNeocyte]
   id: BaseMobProtoCyclorite
   name: Urist McCyclorister
   abstract: true

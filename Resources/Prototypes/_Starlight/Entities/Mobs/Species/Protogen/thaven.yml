@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  parent: BaseMobProtogen
+  parent: BaseMobNeocyte
   id: BaseMobProtoThaven
   name: Urist McEarster
   abstract: true

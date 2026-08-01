@@ -125,7 +125,7 @@
 #### VULPKANIN ####
 
 - type: entity
-  id: TorsoNeoVulp
+  id: TorsoNeoVulpkanin
   name: neo-vulp torso
   parent: TorsoNeocyte
   components:
@@ -134,7 +134,7 @@
     state: "torso_m"
 
 - type: entity
-  id: HeadNeoVulp
+  id: HeadNeoVulpkanin
   name: neo-vulp head
   parent: HeadNeocyte
   components:
@@ -143,7 +143,7 @@
     state: "head_m"
 
 - type: entity
-  id: LeftArmNeoVulp
+  id: LeftArmNeoVulpkanin
   name: left neo-vulp arm
   parent: LeftArmNeocyte
   components:
@@ -152,7 +152,7 @@
     state: "l_arm"
 
 - type: entity
-  id: RightArmNeoVulp
+  id: RightArmNeoVulpkanin
   name: right neo-vulp arm
   parent: RightArmNeocyte
   components:
@@ -161,7 +161,7 @@
     state: "r_arm"
 
 - type: entity
-  id: LeftHandNeoVulp
+  id: LeftHandNeoVulpkanin
   name: left neo-vulp hand
   parent: LeftHandNeocyte
   components:
@@ -170,7 +170,7 @@
     state: "l_hand"
 
 - type: entity
-  id: RightHandNeoVulp
+  id: RightHandNeoVulpkanin
   name: right neo-vulp hand
   parent: RightHandNeocyte
   components:

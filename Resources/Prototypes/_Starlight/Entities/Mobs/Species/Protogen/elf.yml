@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseMobProtogen
+  parent: BaseMobNeocyte
   id: BaseMobProtoElf
   name: Urist McElgister
   abstract: true

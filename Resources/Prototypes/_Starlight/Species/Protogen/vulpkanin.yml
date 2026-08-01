@@ -2,7 +2,7 @@
   id: ProtoVulp
   name: subspecies-name-protovulp
   roundStart: true
-  prototype: MobProtoVulp
+  prototype: MobNeoVulp
   sprites: MobProtoVulpSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobProtoVulpMarkingLimits

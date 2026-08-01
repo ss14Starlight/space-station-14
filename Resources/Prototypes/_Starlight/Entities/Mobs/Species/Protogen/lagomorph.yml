@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseMobProtogen
+  parent: BaseMobNeocyte
   id: BaseMobProtoLagomorph
   name: Urist McLagomorphster
   abstract: true

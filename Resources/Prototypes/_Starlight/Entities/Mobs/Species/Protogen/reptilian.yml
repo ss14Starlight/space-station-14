@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urisst' Mztosster
-  parent: BaseMobProtogen
+  parent: BaseMobNeocyte
   id: BaseMobProtoReptilian
   abstract: true
   components:

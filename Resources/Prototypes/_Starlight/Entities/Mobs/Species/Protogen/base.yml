@@ -1,6 +1,6 @@
 - type: entity
   parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge]
-  id: BaseMobProtogen
+  id: BaseMobNeocyte
   name: Urist McToaster
   abstract: true
   components:

@@ -2,7 +2,7 @@
   id: Protogen
   name: species-name-protogen
   roundStart: true
-  prototype: MobProtogen
+  prototype: MobNeocyte
   sprites: MobProtogenSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobProtogenMarkingLimits
