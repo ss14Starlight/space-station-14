@@ -18,11 +18,7 @@ public sealed partial class XAEGainAccessSystem : BaseXAESystem<XAEGainAccessCom
     protected override void OnActivated(Entity<XAEGainAccessComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
         // Give the artifact an AccessComponent if it lacks one, else get the existing AccessComponent
-        if (!TryComp(args.Artifact, out AccessComponent? component))
-        {
-            component = EntityManager.ComponentFactory.GetComponent<AccessComponent>();
-            AddComp(args.Artifact, component);
-        }
+        var component = EnsureComp<AccessComponent>(args.Artifact);
 
         var beforeLength = component.Tags.Count;
 
