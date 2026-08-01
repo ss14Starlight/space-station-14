@@ -80,3 +80,94 @@
   components:
   - type: Flatpack
     entity: IceCreamMaker
+
+# Departmental techfabs
+- type: entity
+  parent: [BaseFlatpack, BaseMedicalContraband]
+  id: MedicalTechFabFlatpack
+  name: medical techfab flatpack
+  description: A flatpack used for constructing a medical techfab.
+  components:
+  - type: Flatpack
+    entity: MedicalTechFabCircuitboard
+
+- type: entity
+  parent: [BaseFlatpack, BaseSecurityContraband]
+  id: SecurityTechFabFlatpack
+  name: security techfab flatpack
+  description: A flatpack used for constructing a security techfab.
+  components:
+  - type: Flatpack
+    entity: SecurityTechFabCircuitboard
+
+- type: entity
+  parent: [BaseFlatpack, BaseCargoContraband]
+  id: CargoTechFabFlatpack
+  name: cargo techfab flatpack
+  description: A flatpack used for constructing a cargo techfab.
+  components:
+  - type: Flatpack
+    entity: CargoTechFabCircuitboard
+
+- type: entity
+  parent: [BaseFlatpack, BaseEngineeringContraband]
+  id: EngineeringTechFabFlatpack
+  name: engineering techfab flatpack
+  description: A flatpack used for constructing an engineering techfab.
+  components:
+  - type: Flatpack
+    entity: EngineeringTechFabCircuitboard
+
+- type: entity
+  parent: [BaseFlatpack, BaseCivilianContraband]
+  id: ServiceTechFabFlatpack
+  name: service techfab flatpack
+  description: A flatpack used for constructing a service techfab.
+  components:
+  - type: Flatpack
+    entity: ServiceTechFabCircuitboard
+
+- type: entity
+  parent: [BaseFlatpack, BaseScienceContraband]
+  id: ScienceTechFabFlatpack
+  name: science techfab flatpack
+  description: A flatpack used for constructing a science techfab.
+  components:
+  - type: Flatpack
+    entity: ScienceTechFabCircuitboard
+
+- type: entity
+  parent: [BaseFlatpack, BaseCommandContraband]
+  id: CommandTechFabFlatpack
+  name: command techfab flatpack
+  description: A flatpack used for constructing a command techfab.
+  components:
+  - type: Flatpack
+    entity: CommandTechFabCircuitboard
+
+- type: entity
+  parent: [BaseFlatpack, BaseNanoTrasenContraband]
+  id: NanoTrasenTechFabFlatpack
+  name: NanoTrasen techfab flatpack
+  description: A flatpack used for constructing a NanoTrasen techfab.
+  components:
+  - type: Flatpack
+    entity: NanoTrasenTechFabCircuitboard
+
+- type: entity
+  parent: [BaseFlatpack, BaseCentcommContraband]
+  id: CentralCommandTechFabFlatpack
+  name: Central Command techfab flatpack
+  description: A flatpack used for constructing a Central Command techfab.
+  components:
+  - type: Flatpack
+    entity: CentralCommandTechFabCircuitboard
+
+- type: entity
+  parent: [BaseFlatpack, BaseSyndicateContraband]
+  id: SyndicateTechFabFlatpack
+  name: Syndicate techfab flatpack
+  description: A flatpack used for constructing a Syndicate techfab.
+  components:
+  - type: Flatpack
+    entity: SyndicateTechFabCircuitboard

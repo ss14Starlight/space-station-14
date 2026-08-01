@@ -41,4 +41,4 @@
     back:
     - AccessBreaker
     - EmagFREE
-    - SELFStorageImplanter
+    - ToolboxSELF
