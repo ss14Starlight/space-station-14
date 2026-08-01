@@ -1,81 +1,4 @@
 Entries:
-- author: redmushie, JohnnyMalawny
-  changes:
-  - message: Canned gas prices are now proportional to the amount of moles contained within for both the regular and liquid cooled variants.
-    type: Tweak
-  id: 406778
-  time: '2026-07-21T11:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5127
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Increased artillery projectile speeds.
-    type: Tweak
-  id: 406779
-  time: '2026-07-21T12:06:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5023
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Rebalanced all artillery weapons with more accurate damage values.
-    type: Tweak
-  id: 406780
-  time: '2026-07-21T12:06:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5023
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Fixed the Vanyek firing unintended follow-up shots.
-    type: Fix
-  id: 406781
-  time: '2026-07-21T12:06:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5023
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Overhauled the gunnery console UI to make it cleaner and easier to read.
-    type: Tweak
-  id: 406782
-  time: '2026-07-21T12:06:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5023
-- author: wonderfulnewworld
-  changes:
-  - message: Traitors are a little less common in dynamic.
-    type: Tweak
-  id: 406783
-  time: '2026-07-21T12:38:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5226
-- author: Turk1shcat
-  changes:
-  - message: Added a new mime mask found by snipping the manager wire of the autodrobe.
-    type: Add
-  id: 406784
-  time: '2026-07-21T13:06:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5139
-- author: Turk1shcat
-  changes:
-  - message: Added new sprites for the mime masks.
-    type: Add
-  id: 406785
-  time: '2026-07-21T13:06:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5139
-- author: Turk1shcat
-  changes:
-  - message: Added a new vendor for mimes! Still needs to be mapped.
-    type: Add
-  id: 406786
-  time: '2026-07-21T13:06:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5139
-- author: Turk1shcat
-  changes:
-  - message: Added a new set of tools found in the new vendor. Too bad you can't see them.
-    type: Add
-  id: 406787
-  time: '2026-07-21T13:06:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5139
-- author: Turk1shcat
-  changes:
-  - message: The Security mime mask is now craftable with a normal mime mask and cheap sunglasses.
-    type: Tweak
-  id: 406788
-  time: '2026-07-21T13:06:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5139
 - author: SpaghettiBit
   changes:
   - message: The ability to remove, insert, and replace cells from batons. Stunbatons and stunprods have a passive drain.
@@ -2799,4 +2722,81 @@ Entries:
   id: 407177
   time: '2026-08-01T09:32:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5403
+- author: wonderfulnewworld, mirrorcult
+  changes:
+  - message: Using items in hand or interacting with things in your pockets/bag/storage etc now has interaction particles that only you can see.
+    type: Add
+  id: 407178
+  time: '2026-08-01T10:25:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5339
+- author: wonderfulnewworld, mirrorcult
+  changes:
+  - message: You can now set interaction particle visibility to be all, except in-hand, or none. (Default set to except in-hand).
+    type: Tweak
+  id: 407179
+  time: '2026-08-01T10:25:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5339
+- author: redmushie
+  changes:
+  - message: Added a tall 2000L gas tank that can be built via construction menu and spray-painted to any pipe color.
+    type: Add
+  id: 407180
+  time: '2026-08-01T11:09:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5425
+- author: redmushie
+  changes:
+  - message: Reduced subfloor gas tank volume from 1000L to 750L.
+    type: Tweak
+  id: 407181
+  time: '2026-08-01T11:09:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5425
+- author: redmushie
+  changes:
+  - message: Reduced gas ports on subfloor gas tank from 4 to 1.
+    type: Tweak
+  id: 407182
+  time: '2026-08-01T11:09:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5425
+- author: redmushie
+  changes:
+  - message: Adjusted subfloor gas tank (de)construction steps to be a bit slower.
+    type: Tweak
+  id: 407183
+  time: '2026-08-01T11:09:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5425
+- author: neomoth
+  changes:
+  - message: Rodentias spitting out items is now predicted.
+    type: Add
+  id: 407184
+  time: '2026-08-01T11:09:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5352
+- author: neomoth
+  changes:
+  - message: The Great Un-Predictening of Throwing has been implemented. (Still predicted for you, but fixes items teleporting in the air when other players and some other things cause an item to be thrown).
+    type: Fix
+  id: 407185
+  time: '2026-08-01T11:09:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5352
+- author: neomoth
+  changes:
+  - message: Fixed a bug where starting gear was seemingly trying to equip twice. This probably fixes something somewhere.
+    type: Fix
+  id: 407186
+  time: '2026-08-01T11:09:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5332
+- author: neomoth
+  changes:
+  - message: Fixed a bug where the second pass of starting gear would be given a second time when rolling an antag.
+    type: Fix
+  id: 407187
+  time: '2026-08-01T11:09:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5332
+- author: Xale
+  changes:
+  - message: "'Wing fang chu' is now classified as meat food."
+    type: Fix
+  id: 407188
+  time: '2026-08-01T13:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5441
 Order: -1
