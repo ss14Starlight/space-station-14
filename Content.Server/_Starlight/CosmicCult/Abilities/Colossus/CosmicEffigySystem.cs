@@ -38,7 +38,7 @@ public sealed partial class CosmicEffigySystem : EntitySystem
     }
     private void OnColossusEffigy(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusEffigy args)
     {
-        if (ent.Comp.CurrentEffigy != null && EntityManager.EntityExists(ent.Comp.CurrentEffigy))
+        if (ent.Comp.CurrentEffigy != null && Exists(ent.Comp.CurrentEffigy))
         {
             _popup.PopupEntity(Loc.GetString("cosmiccult-silicon-effigy-exists"), ent, ent);
             return;
