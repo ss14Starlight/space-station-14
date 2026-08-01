@@ -61,11 +61,11 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         ent.Comp.Timed = false; // Flag for midround spawn; prevents death timer.
         Dirty(ent);
     }
-    private void OnEffigyTerminating(Entity<CosmicEffigyComponent> ent, ref EntityTerminatingEvent args)
-    {
+
+    private void OnEffigyTerminating(Entity<CosmicEffigyComponent> ent, ref EntityTerminatingEvent args) =>
         RaiseLocalEvent(ent.Owner, new CosmicEffigyDestroyedEvent());
-    }
-    //detect if linked effigy has decayed,crit,or deleted
+
+    /// Detect when the linked effigy gets decayed, crit, or otherwise deleted.
     private void OnEffigyDestroyed(Entity<CosmicEffigyComponent> ent, ref CosmicEffigyDestroyedEvent args)
     {
         if (ent.Comp.Colossus is not { } colossusUid)
