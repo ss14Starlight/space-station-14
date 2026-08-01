@@ -1,32 +1,4 @@
 Entries:
-- author: Vincolan
-  changes:
-  - message: Casino Pistol.
-    type: Add
-  id: 406795
-  time: '2026-07-22T07:41:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5173
-- author: Vincolan
-  changes:
-  - message: The house, Always wins.
-    type: Add
-  id: 406796
-  time: '2026-07-22T07:41:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5173
-- author: Vincolan
-  changes:
-  - message: Casino baton.
-    type: Add
-  id: 406797
-  time: '2026-07-22T07:41:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5173
-- author: Vincolan
-  changes:
-  - message: Casino access.
-    type: Add
-  id: 406798
-  time: '2026-07-22T07:41:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5173
 - author: Johnny
   changes:
   - message: Changed most of the music in jukebox to hopefully be quieter.
@@ -2799,4 +2771,32 @@ Entries:
   id: 407194
   time: '2026-08-01T15:08:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5444
+- author: Johnny
+  changes:
+  - message: Changed the SELF spy kit to not be chameleon based, instead having a storage implanter, stechkin, camera bug, and chameleon projector.
+    type: Tweak
+  id: 407195
+  time: '2026-08-01T15:45:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5443
+- author: Johnny
+  changes:
+  - message: Changed the SELF saboteur kit to use meson goggles and jaws of death.
+    type: Tweak
+  id: 407196
+  time: '2026-08-01T15:45:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5443
+- author: Johnny
+  changes:
+  - message: The "Base" kit of the SELF was removed.
+    type: Remove
+  id: 407197
+  time: '2026-08-01T15:45:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5443
+- author: Johnny
+  changes:
+  - message: The access breaker from the "base" kit of SELF was added as a normal equipment.
+    type: Add
+  id: 407198
+  time: '2026-08-01T15:45:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5443
 Order: -1
