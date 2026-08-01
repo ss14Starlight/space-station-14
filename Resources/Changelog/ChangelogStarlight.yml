@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie, JohnnyMalawny
   changes:
-  - message: (ATS) Cargo shuttle docks also have gas buying/selling pipes for shuttles to pipe from and into.
-    type: Tweak
-  id: 406776
-  time: '2026-07-21T11:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5127
-- author: redmushie, JohnnyMalawny
-  changes:
   - message: CS-4T9 "Tanker", perfect for gas hauling, is now available for purchase for the low low price of $21,500 at your local shipyard console!
     type: Add
   id: 406777
@@ -2799,4 +2792,11 @@ Entries:
   id: 407175
   time: '2026-08-01T08:51:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5436
+- author: neomoth
+  changes:
+  - message: Admin-spawned MobCosmicGod's will no longer prematurely end rounds where CosmicCultRule is active.
+    type: Fix
+  id: 407176
+  time: '2026-08-01T09:32:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5409
 Order: -1
