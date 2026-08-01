@@ -130,7 +130,7 @@
   id: DepartmentalTechFabCircuitboardStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Captain, HeadOfPersonnel, HeadOfSecurity, ResearchDirector, ChiefEngineer, ChiefMedicalOfficer, Quartermaster, NanoTrasenRepresentative, Magistrate, BlueShield, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, ResearchAssistant, Scientist, Roboticist, StationEngineer, AtmosphericTechnician, TechnicalAssistant ]
+    jobs: [ ChiefEngineer, ChiefMedicalOfficer, Quartermaster, ResearchDirector, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, ResearchAssistant, Scientist, Roboticist, StationEngineer, AtmosphericTechnician, TechnicalAssistant, MedicalDoctor, Paramedic, MedicalIntern, Surgeon, Chemist, Psychologist ]
   - type: StealCondition
     stealGroup: DepartmentalTechFabCircuitboard
   - type: Objective

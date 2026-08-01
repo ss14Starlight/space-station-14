@@ -13,3 +13,10 @@
   - CargoBelt
   - ClothingOuterVestTank
   - HandheldStationMap
+
+- type: latheRecipePack
+  id: StarlightCargoDynamic
+  recipes:
+  - Fulton
+  - FultonBeacon
+

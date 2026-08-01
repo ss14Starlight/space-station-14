@@ -234,6 +234,7 @@
     - StarlightProtolatheLootable # Starlight start
     - StarlightScienceWeapons
     - WirelessCameraHandheld # MOFFSTATION CHANGE - Adds wireless handheld camera
+    - StarlightCargoDynamic
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -480,7 +481,7 @@
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget # Starlight
-    stealGroup: MedicalSecurityTechFabCircuitboard # Starlight
+    stealGroup: SecureTechFabCircuitboard # Starlight
   - type: OreSiloClient
 
 - type: entity
@@ -570,7 +571,7 @@
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
-    stealGroup: MedicalSecurityTechFabCircuitboard # Starlight
+    stealGroup: DepartmentalTechFabCircuitboard # Starlight
   - type: OreSiloClient
 
 - type: entity

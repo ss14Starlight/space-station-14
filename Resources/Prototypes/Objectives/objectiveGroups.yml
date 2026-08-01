@@ -139,7 +139,7 @@
     SpyglassCaptainStealObjective: 0.7 #Cappy
     # Starlight-end
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med
-    MedicalSecurityTechFabCircuitboardStealObjective: 1 # Starlight, Medical -> MedicalSecurity
+    SecureTechFabCircuitboardStealObjective: 1 # Starlight, Medical -> Secure
     FireAxeStealObjective: 1                            #eng
     AmePartFlatpackStealObjective: 1
     ExpeditionsCircuitboardStealObjective: 1            #sup

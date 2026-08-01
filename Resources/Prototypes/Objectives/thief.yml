@@ -228,12 +228,12 @@
 
 - type: entity
   parent: BaseThiefStealObjective
-  id: MedicalSecurityTechFabCircuitboardStealObjective # Starlight, combined with security
+  id: SecureTechFabCircuitboardStealObjective # Starlight, given to command-sec instead
   components:
   - type: NotJobRequirement
-    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, HeadOfSecurity, Warden, Brigmedic, Detective, DutyOfficer, SecurityOfficer, SecurityCadet ] # Starlight, combined with security
+    jobs: [ Captain, HeadOfPersonnel, ResearchDirector, ChiefEngineer, ChiefMedicalOfficer, Quartermaster, NanoTrasenRepresentative, Magistrate, BlueShield, HeadOfSecurity, Warden, Brigmedic, Detective, DutyOfficer, SecurityOfficer, SecurityCadet ] # Starlight, combined with security
   - type: StealCondition
-    stealGroup: MedicalSecurityTechFabCircuitboard # Starlight, combined with security
+    stealGroup: SecureTechFabCircuitboard # Starlight, given to command-sec instead
   - type: Objective
     difficulty: 1.4 # Starlight, good luck
 

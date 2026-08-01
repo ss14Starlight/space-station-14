@@ -1389,6 +1389,7 @@
 
 - type: entity
   id: NanoTrasenTechFabCircuitboard
+  categories: [ DoNotMap ]
   parent: [BaseMachineCircuitboard, BaseNanoTrasenContraband]
   name: NanoTrasen techfab machine board
   description: A machine printed circuit board for a NanoTrasen techfab.
@@ -1406,6 +1407,7 @@
 
 - type: entity
   id: CentralCommandTechFabCircuitboard
+  categories: [ DoNotMap ]
   parent: [BaseMachineCircuitboard, BaseCentcommContraband]
   name: Central Command techfab machine board
   description: A machine printed circuit board for a Central Command techfab.
@@ -1423,6 +1425,7 @@
 
 - type: entity
   id: SyndicateTechFabCircuitboard
+  categories: [ DoNotMap ]
   parent: [BaseMachineCircuitboard, BaseSyndicateContraband]
   name: Syndicate techfab machine board
   description: A machine printed circuit board for a Syndicate techfab.

@@ -103,6 +103,7 @@
     - Mining
     - SalvageSecurityWeapons # It's just the pkas + firing pin
     - Equipment
+    - StarlightCargoDynamic
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
@@ -350,12 +351,13 @@
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget
-    stealGroup: DepartmentalTechFabCircuitboard
+    stealGroup: SecureTechFabCircuitboard
   - type: OreSiloClient
 
 # NanoTrasen; don't know where this'd get used, but can't hurt to have
 - type: entity
   id: NanoTrasenTechFab
+  categories: [ DoNotMap ]
   parent: BaseLatheLube
   name: NanoTrasen techfab
   description: Prints equipment for use by NanoTrasen.
@@ -450,6 +452,7 @@
     - StarlightImplantDynamic
     - StarlightBudgetCyberOrgansDynamic
     - StarlightMedicalTechFabLootable
+    - StarlightCargoDynamic
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
@@ -464,6 +467,7 @@
 # Central Command, same as the NT one
 - type: entity
   id: CentralCommandTechFab
+  categories: [ DoNotMap ]
   parent: NanoTrasenTechFab
   name: Central Command techfab
   description: Prints equipment for use by Central Command.
@@ -487,6 +491,7 @@
 # Syndicate, similar to the other two, should probably only be mapped on event stuff
 - type: entity
   id: SyndicateTechFab
+  categories: [ DoNotMap ]
   parent: BaseLatheLube
   name: Syndicate techfab
   description: Prints equipment for use by the Syndicate.
@@ -587,6 +592,7 @@
     - StarlightImplantDynamic
     - StarlightBudgetCyberOrgansDynamic
     - StarlightMedicalTechFabLootable
+    - StarlightCargoDynamic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
