@@ -1484,13 +1484,6 @@
   parent: BaseOneTimeXenoArtifactEffect
   description: Gains all access
   components:
-  - type: XAEApplyComponents
-    applyIfAlreadyHave: true
-    refreshOnReactivate: true
-    components:
-    - type: Access
-      groups:
-      - AllAccess
-  - type: XAEGainAccess # Just to add the DoorBumpOpener tag
-    accesses:
-    - Command
+  - type: XAEGainAccess
+    accessGroups:
+    - AllAccess

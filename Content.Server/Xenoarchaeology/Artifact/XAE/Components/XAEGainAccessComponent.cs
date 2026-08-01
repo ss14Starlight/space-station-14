@@ -16,6 +16,11 @@ public sealed partial class XAEGainAccessComponent : Component
     [DataField] public HashSet<ProtoId<AccessLevelPrototype>> Accesses = new();
 
     /// <summary>
+    /// The access groups the artifact will have.
+    /// </summary>
+    [DataField] public HashSet<ProtoId<AccessGroupPrototype>> AccessGroups = new();
+
+    /// <summary>
     /// Tag applied to the artifact so it can open doors matching its granted accesses when it bumps into them.
     /// </summary>
     [DataField] public ProtoId<TagPrototype> DoorBumpTag = "DoorBumpOpener";
