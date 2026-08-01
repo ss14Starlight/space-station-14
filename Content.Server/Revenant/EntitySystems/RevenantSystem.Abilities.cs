@@ -61,7 +61,7 @@ public sealed partial class RevenantSystem
         SubscribeLocalEvent<RevenantComponent, RevenantDefileActionEvent>(OnDefileAction);
         SubscribeLocalEvent<RevenantComponent, RevenantOverloadLightsActionEvent>(OnOverloadLightsAction);
         SubscribeLocalEvent<RevenantComponent, RevenantBlightActionEvent>(OnBlightAction);
-        SubscribeLocalEvent<RevenantComponent, RevenantChillActionEvent>(OnChillAction);
+        SubscribeLocalEvent<RevenantComponent, RevenantChillActionEvent>(OnChillAction); // Starlight-edit
         SubscribeLocalEvent<RevenantComponent, RevenantMalfunctionActionEvent>(OnMalfunctionAction);
     }
 
