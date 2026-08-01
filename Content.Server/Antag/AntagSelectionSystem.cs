@@ -81,6 +81,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private LoadoutSystem _loadout = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private PlayTimeTrackingSystem _playTime = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!; // Starlight
     [Dependency] private RoleSystem _role = default!;
     [Dependency] private TransformSystem _transform = default!;
 
@@ -111,6 +112,17 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// This is also used to check for errors during <see cref="GameRuleStartedEvent"/> to see if any players were assigned
     /// </summary>
     private List<(Entity<AntagSelectionComponent> gameRule, AntagSpecifierPrototype antag, ICommonSession player)> _delayedAntags = [];
+
+    #region Starlight
+    /// <summary>
+    /// Stores the initial stats of a game rule's antag selection, used for logging and debugging.
+    /// </summary>
+    private readonly record struct InitialAntagSelectionStats(
+            Entity<AntagSelectionComponent> GameRule,
+            AntagSpecifierPrototype Definition,
+            int Target,
+            int Eligible);
+    #endregion
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -237,6 +249,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             antag.PreSelectionsComplete = true;
         }
 
+        var selectionStats = GetInitialAntagSelectionStats(pool, _preSpawnRules); // Starlight
+
         // Pick a random player session and then try to assign the currently available antags from it!
         // This means each player has the same chance at rolling antag, with minimal alterations to the odds by number of antags selected.
         var weightedPool = GetWeightedPlayerPool(pool);
@@ -249,6 +263,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             args.PlayerPool.Remove(session);
             GameTicker.PlayerJoinGame(session);
         }
+
+        LogInitialAntagSelectionStats(selectionStats); // Starlight
 
         // Make ghost role spawners for any remaining rules!
         SpawnGhostRoles(_preSpawnRules);
@@ -288,6 +304,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
             AssignPendingReplacements((uid, component), players, args.Players.Length);
         }
+
+        var selectionStats = GetInitialAntagSelectionStats(args.Players, _postSpawnRules);
         #endregion
 
         // Pick a random player session and then try to assign the currently available antags from it!
@@ -297,6 +315,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         {
             AssignAntag(session, ref _postSpawnRules);
         }
+
+        LogInitialAntagSelectionStats(selectionStats); // Starlight
 
         // Make ghost role spawners for any remaining rules!
         SpawnGhostRoles(_postSpawnRules);
@@ -435,6 +455,67 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         return dict;
     }
+
+    #region Starlight
+    /// <summary>
+    /// Calculates the initial antag selection stats for a list of players and game rules.
+    /// </summary>
+    private List<InitialAntagSelectionStats> GetInitialAntagSelectionStats(
+        IEnumerable<ICommonSession> players,
+        List<AntagRule> rules)
+    {
+        var playerArray = players as ICommonSession[] ?? players.ToArray();
+        var stats = new List<InitialAntagSelectionStats>(rules.Count);
+
+        foreach (var rule in rules)
+        {
+            if (!rule.Definition.PickPlayer)
+                continue;
+
+            var eligible = 0;
+
+            foreach (var player in playerArray)
+            {
+                if (!CanBeAntag(player, rule.GameRule, rule.Definition))
+                    continue;
+
+                if (!_pref.TryGetCachedPreferences(player.UserId, out var preferences))
+                    continue;
+
+                var hasValidProfile = preferences.Characters.Values
+                    .OfType<HumanoidCharacterProfile>()
+                    .Any(profile =>
+                        profile.Enabled &&
+                        IsProfileValidForAntag(player, profile, rule.Definition));
+
+                if (hasValidProfile)
+                    eligible++;
+            }
+
+            stats.Add(new InitialAntagSelectionStats(rule.GameRule, rule.Definition, rule.Count, eligible));
+        }
+
+        return stats;
+    }
+
+    /// <summary>
+    /// Logs the initial antag selection stats for a list of game rules and their antag definitions.
+    /// </summary>
+    private void LogInitialAntagSelectionStats(IEnumerable<InitialAntagSelectionStats> stats)
+    {
+        foreach (var stat in stats)
+        {
+            var preselected = stat.GameRule.Comp.PreSelectedSessions.TryGetValue(stat.Definition.ID, out var sessions) ? sessions.Count : 0;
+            var unfilled = Math.Max(0, stat.Target - preselected);
+            var message = $"{stat.Definition.ID}: target={stat.Target}, eligible={stat.Eligible}, " +
+                $"preselected={preselected}, unfilled={unfilled}. " +
+                $"Gamerule: {ToPrettyString(stat.GameRule)}";
+
+            Log.Info(message);
+            _adminLogger.Add(LogType.AntagSelection, $"{message}");
+        }
+    }
+    #endregion
 
     private float GetWeight(ICommonSession player)
     {
