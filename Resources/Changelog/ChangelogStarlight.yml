@@ -1,11 +1,4 @@
 Entries:
-- author: Turk1shcat
-  changes:
-  - message: The Security mime mask is now craftable with a normal mime mask and cheap sunglasses.
-    type: Tweak
-  id: 406788
-  time: '2026-07-21T13:06:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5139
 - author: SpaghettiBit
   changes:
   - message: The ability to remove, insert, and replace cells from batons. Stunbatons and stunprods have a passive drain.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407187
   time: '2026-08-01T11:09:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5332
+- author: Xale
+  changes:
+  - message: "'Wing fang chu' is now classified as meat food."
+    type: Fix
+  id: 407188
+  time: '2026-08-01T13:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5441
 Order: -1
