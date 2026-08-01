@@ -12,6 +12,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
+using Content.Shared.Antag;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -136,7 +137,7 @@ namespace Content.Server.GameTicking
                 // Filter out job requirements
                 var filteredPlayerProfiles = playerProfiles.Values.Where(profile =>
                     JobRequirements.TryRequirementsMet(job.Value,
-                        _playerManager.GetSessionById(player),
+                        playerSession, // Starlight
                         null,
                         out _,
                         EntityManager,
@@ -144,11 +145,32 @@ namespace Content.Server.GameTicking
                         profile)
                 );
 
+                #region Starlight
+                // Your account may have several enabled characters, but only the character that
+                // satisfies every pre-selected antag may actually spawn. This also enforces
+                // profile-specific requirements such as Initial Infected's IPC restriction.
+                var selectedAntags = _antagSelection.GetPreSelectedAntagSpecifiers(playerSession);
+                if (selectedAntags.Count > 0)
+                {
+                    var selectedAntagDefinitions = new List<AntagSpecifierPrototype>();
+                    foreach (var antag in selectedAntags)
+                    {
+                        if (_prototypeManager.Resolve(antag, out var definition))
+                            selectedAntagDefinitions.Add(definition);
+                    }
+
+                    filteredPlayerProfiles = filteredPlayerProfiles.Where(profile =>
+                        selectedAntagDefinitions.Count == selectedAntags.Count &&
+                        selectedAntagDefinitions.All(definition =>
+                            _antagSelection.IsProfileValidForAntag(playerSession, profile, definition)));
+                }
+                #endregion
+
                 var finalPlayerProfiles = filteredPlayerProfiles.ToList();
                 if (finalPlayerProfiles.Count == 0)
                     continue;
 
-                var profile = _robustRandom.Pick(finalPlayerProfiles.ToList());
+                var profile = _robustRandom.Pick(finalPlayerProfiles); // Starlight
 
                 SpawnPlayer(playerSession, profile, station, job, false);
             }
