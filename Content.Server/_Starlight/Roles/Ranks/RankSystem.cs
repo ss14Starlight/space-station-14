@@ -1,5 +1,6 @@
 using Content.Server._NullLink.PlayerData;
 using Content.Server.Access.Systems;
+using Content.Shared._NullLink;
 using Content.Shared._Starlight.Roles.Ranks;
 using Content.Shared.GameTicking;
 using Content.Shared.Roles;
@@ -45,7 +46,10 @@ public sealed partial class RankSystem : EntitySystem
             if (!_prototype.TryIndex(rankId, out RankPrototype? rank))
                 continue;
 
-            if (!playerData.Roles.Overlaps(rank.Requirement.Roles))
+            if (!_prototype.TryIndex(rank.Requirement, out RoleRequirementPrototype? roleRequirement))
+                continue;
+
+            if (!playerData.Roles.Overlaps(roleRequirement.Roles))
                 return;
 
             highestRank ??= rank;

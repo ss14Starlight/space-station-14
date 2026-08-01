@@ -14,13 +14,13 @@ public sealed partial class RankPrototype : IPrototype
     public string Name { get; private set; } = string.Empty;
 
     [DataField(required: true)]
-    public RoleRequirementPrototype Requirement { get; private set; } = default!;
+    public ProtoId<RoleRequirementPrototype> Requirement { get; private set; } = default!;
 
     [DataField]
     public Priority Priority = Priority.VeryLow;
 
     [DataField(required: true)]
-    public JobIconPrototype Icon { get; private set; } = default!;
+    public ProtoId<JobIconPrototype> Icon { get; private set; } = default!;
 }
 
 public enum Priority
