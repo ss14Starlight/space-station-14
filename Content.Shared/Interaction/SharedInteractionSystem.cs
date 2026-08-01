@@ -1260,7 +1260,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(used, useMsg, true);
             if (useMsg.Handled)
             {
-                DoContactInteraction(user, used, null, true, useMsg); // ES - Interaction particles
+                DoContactInteraction(user, used, null, true, useMsg, interactionParticles: useMsg.ShowInteractionParticles); // ES - Interaction particles - Starlight, you can now disable them too
                 if (delayComponent != null && useMsg.ApplyDelay)
                     _useDelay.TryResetDelay((used, delayComponent));
                 return true;

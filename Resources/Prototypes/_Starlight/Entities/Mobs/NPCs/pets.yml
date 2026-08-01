@@ -74,6 +74,11 @@
     - AnomalyHost
   - type: Loadout
     prototypes: [ MobKoboldGear ]
+  - type: Vocal
+    sounds:
+      Male: MaleReptilian
+      Female: FemaleReptilian
+      Unsexed: FemaleReptilian
   - type: Grammar
     attributes:
       proper: true
