@@ -92,7 +92,7 @@
   id: Reach
   name: SS-Reach III
   description: A large station vessel made for skeleton crews that we decided to allow stations to buy.
-  price: 1500000
+  price: 700500
   category: Humongous
   group: Command
   shuttlePath: /Maps/_Starlight/Shuttles/ReachButShipyard.yml
