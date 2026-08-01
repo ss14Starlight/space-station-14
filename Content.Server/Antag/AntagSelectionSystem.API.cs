@@ -53,7 +53,7 @@ public sealed partial class AntagSelectionSystem
     }
 
     #region Starlight
-    private int GetEffectivePlayerCount(int activePlayers)
+    private int GetEffectivePlayerCountPlayerRatio(int activePlayers)
     {
         var onlinePlayers = _playerManager.Sessions.Length;
 
@@ -62,7 +62,7 @@ public sealed partial class AntagSelectionSystem
 
         var inactivePlayers = Math.Max(0, onlinePlayers - activePlayers);
 
-        // Count 60% of lobby/spectating/unready players.
+        // Count 25% of lobby/spectating/unready players.
         return activePlayers + (int)(inactivePlayers * _unreadyPlayerMultiplier);
     }
     #endregion
@@ -104,7 +104,7 @@ public sealed partial class AntagSelectionSystem
     {
         var runningCount = 0;
         var count = 0;
-        var effectivePlayers = GetEffectivePlayerCount(playerCount); // Starlight, effective players to include *some* people who don't ready up
+        var effectivePlayers = GetEffectivePlayerCountPlayerRatio(playerCount); // Starlight, effective players to include *some* people who don't ready up
 
         // We assume that antag definitions are prioritized by order, and take up slots that other roles may take.
         // I.E for Nukies, it selects 1 commander which takes up 10 players, then one corpsman which takes up another 10, then we select X nukies based on the remaining player count.
@@ -141,7 +141,7 @@ public sealed partial class AntagSelectionSystem
     public int GetTargetAntagCount(Entity<AntagSelectionComponent> gameRule, int playerCount, AntagSpecifierPrototype proto)
     {
         var runningCount = 0;
-        var effectivePlayers = GetEffectivePlayerCount(playerCount); // Starlight, effective players to include *some* people who don't ready up
+        var effectivePlayers = GetEffectivePlayerCountPlayerRatio(playerCount); // Starlight, effective players to include *some* people who don't ready up
 
         // We assume that antag definitions are prioritized by order, and take up slots that other roles may take.
         // I.E for Nukies, it selects 1 commander which takes up 10 players, then one corpsman which takes up another 10, then we select X nukies based on the remaining player count.

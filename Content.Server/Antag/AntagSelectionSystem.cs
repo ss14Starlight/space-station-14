@@ -338,6 +338,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         bool active)
     {
         var runningCount = 0;
+        var effectivePlayers = GetEffectivePlayerCountPlayerRatio(playerCount); // Starlight
 
         foreach (var antag in gameRule.Comp.Antags)
         {
@@ -348,7 +349,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             // We do it this way in case our resolve fails.
             //roles.Add((gameRule, proto, active, GetTargetAntagCount(antag, playerCount, ref runningCount)));
 
-            var count = GetTargetAntagCount(antag, playerCount, ref runningCount);
+            var count = GetTargetAntagCount(antag, effectivePlayers, ref runningCount);
             if (count <= 0)
                 continue;
 
@@ -361,6 +362,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         int playerCount)
     {
         var runningCount = 0;
+        var effectivePlayers = GetEffectivePlayerCountPlayerRatio(playerCount); // Starlight
         var antags = new List<AntagCount>(gameRule.Comp.Antags.Length);
 
         // We assume that antag definitions are prioritized by order, and take up slots that other roles may take.
@@ -371,7 +373,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!Proto.Resolve(antag.Proto, out var definition))
                 continue;
 
-            var count = GetTargetAntagCount(antag, playerCount, ref runningCount);
+            var count = GetTargetAntagCount(antag, effectivePlayers, ref runningCount); // Starlight
             if (count <= 0)
                 continue;
 
@@ -782,7 +784,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!Proto.Resolve(proto, out var def))
                 continue;
 
-            foreach (var session in set)
+            foreach (var session in set.ToArray()) // Starlight, we make a copy of the set so we can modify it while iterating to avoid an obscure error that makes it stop selecting people when it reaches someone who disconnected
             {
                 _adminLogger.Add(LogType.AntagSelection, $"Start trying to make {session} become the antagonist: {ToPrettyString(gameRule)}, {proto}");
 
@@ -796,6 +798,18 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 TryInitializeAntag(gameRule, def, session);
             }
         }
+
+        #region Starlight
+        // "Try again" for late joiners, to try catching underrolled antags
+        if (gameRule.Comp.LateJoinAdditional)
+        {
+            var players = GetActivePlayers().ToArray();
+            var weightedPool = GetWeightedPlayerPool(players);
+
+            while (RobustRandom.TryPickAndTake(weightedPool, out var session))
+                TryAssignNextAvailableAntag(gameRule, session, players.Length);
+        }
+        #endregion
 
         gameRule.Comp.AssignmentHandled = true;
     }
