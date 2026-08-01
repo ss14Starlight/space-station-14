@@ -159,11 +159,12 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
             return false;
         }
 
-        // Close whatever screen is open before the outgoing state's ActivatableUI is removed.
-        // Anyone who had it open is remembered so the incoming state can reopen for them, making
-        // a switch read as the screen changing rather than the device shutting off.
+        // Close whatever screen is open before this state's key takes over. Anyone who had it open
+        // is remembered so the incoming state can reopen for them, making a switch read as the
+        // screen changing rather than the device shutting off.
         var reopenFor = new List<EntityUid>();
-        if (TryComp<ActivatableUIComponent>(uid, out var activatable) && activatable.Key != null)
+        TryComp<ActivatableUIComponent>(uid, out var activatable);
+        if (activatable?.Key != null)
         {
             reopenFor.AddRange(_ui.GetActors(uid, activatable.Key));
             _ui.CloseUi(uid, activatable.Key);
@@ -175,6 +176,11 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         if (state.Components is not null)
             EntityManager.AddComponents(ent, state.Components);
 
+        // Retarget the prototype-declared ActivatableUI rather than swapping the component in and
+        // out with the rest of the state. See ItemSwitchState.ActivatableUiKey for why.
+        if (activatable != null && state.ActivatableUiKey != null)
+            activatable.Key = state.ActivatableUiKey;
+
         if (predicted)
             _audio.PlayPredicted(state.SoundStateActivate, uid, user);
         else
@@ -185,10 +191,10 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         Dirty(uid, comp);
 
         // Reopen on the incoming state's key for whoever had the old screen up.
-        if (reopenFor.Count > 0 && TryComp<ActivatableUIComponent>(uid, out var newActivatable) && newActivatable.Key != null)
+        if (reopenFor.Count > 0 && activatable?.Key != null)
         {
             foreach (var actor in reopenFor)
-                _ui.OpenUi(uid, newActivatable.Key, actor);
+                _ui.OpenUi(uid, activatable.Key, actor);
         }
 
         var switched = new ItemSwitchedEvent { Predicted = predicted, State = key, User = user };

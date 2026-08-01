@@ -43,30 +43,31 @@
           atmos: { state: atmos }
   - type: PowerCellDraw
     drawRate: 1.5
-  # Each mode swaps in its own console component and its own ActivatableUI key, so only one
-  # screen is ever live. onUse is off so that using it in hand opens the screen rather than
-  # switching mode -- mode is picked from the Switch verb category.
+  # Declared here rather than per mode. The key is only ever read from the prototype and is never
+  # networked, so an ActivatableUI added at runtime arrives on the client with no key at all.
+  # ItemSwitch retargets this one instead, via each state's activatableUiKey.
+  - type: ActivatableUI
+    key: enum.PowerMonitoringConsoleUiKey.Key
+    inHandsOnly: true
+    singleUser: true
+  # Each mode swaps in its own console component and points the ActivatableUI above at its own
+  # screen, so only one is ever live. onUse is off so that using it in hand opens the screen
+  # rather than switching mode -- mode is picked from the Switch verb category.
   - type: ItemSwitch
     onUse: false
     state: power
     states:
       power: !type:ItemSwitchState
         verb: verb-handheld-monitor-power
+        activatableUiKey: enum.PowerMonitoringConsoleUiKey.Key
         components:
         - type: PowerMonitoringConsole
         - type: PowerMonitoringCableNetworks
-        - type: ActivatableUI
-          key: enum.PowerMonitoringConsoleUiKey.Key
-          inHandsOnly: true
-          singleUser: true
       atmos: !type:ItemSwitchState
         verb: verb-handheld-monitor-atmos
+        activatableUiKey: enum.AtmosAlertsComputerUiKey.Key
         components:
         - type: AtmosAlertsComputer
-        - type: ActivatableUI
-          key: enum.AtmosAlertsComputerUiKey.Key
-          inHandsOnly: true
-          singleUser: true
   - type: UserInterface
     interfaces:
       enum.PowerMonitoringConsoleUiKey.Key:
