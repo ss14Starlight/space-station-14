@@ -1,32 +1,4 @@
 Entries:
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Rebalanced all artillery weapons with more accurate damage values.
-    type: Tweak
-  id: 406780
-  time: '2026-07-21T12:06:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5023
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Fixed the Vanyek firing unintended follow-up shots.
-    type: Fix
-  id: 406781
-  time: '2026-07-21T12:06:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5023
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Overhauled the gunnery console UI to make it cleaner and easier to read.
-    type: Tweak
-  id: 406782
-  time: '2026-07-21T12:06:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5023
-- author: wonderfulnewworld
-  changes:
-  - message: Traitors are a little less common in dynamic.
-    type: Tweak
-  id: 406783
-  time: '2026-07-21T12:38:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5226
 - author: Turk1shcat
   changes:
   - message: Added a new mime mask found by snipping the manager wire of the autodrobe.
@@ -2799,4 +2771,32 @@ Entries:
   id: 407179
   time: '2026-08-01T10:25:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5339
+- author: redmushie
+  changes:
+  - message: Added a tall 2000L gas tank that can be built via construction menu and spray-painted to any pipe color.
+    type: Add
+  id: 407180
+  time: '2026-08-01T11:09:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5425
+- author: redmushie
+  changes:
+  - message: Reduced subfloor gas tank volume from 1000L to 750L.
+    type: Tweak
+  id: 407181
+  time: '2026-08-01T11:09:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5425
+- author: redmushie
+  changes:
+  - message: Reduced gas ports on subfloor gas tank from 4 to 1.
+    type: Tweak
+  id: 407182
+  time: '2026-08-01T11:09:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5425
+- author: redmushie
+  changes:
+  - message: Adjusted subfloor gas tank (de)construction steps to be a bit slower.
+    type: Tweak
+  id: 407183
+  time: '2026-08-01T11:09:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5425
 Order: -1
