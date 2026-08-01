@@ -57,22 +57,22 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
     private void OnSpeak(EntityUid uid, WearingHeadsetComponent component, EntitySpokeEvent args)
     {
         #region Starlight
-        bool loudMode = false;
-        if(TryComp<HeadsetLoudModeComponent>(component.Headset, out var loudmode))
+        HeadsetLoudModeComponent? loudComp = null;
+        if(TryComp<HeadsetLoudModeComponent>(component.Headset, out var comp) && comp.Active)
         {
-            loudMode = loudmode.Active;
+            loudComp = comp;
         }
         #endregion Starlight
         if (args.Channel != null
             && TryComp(component.Headset, out EncryptionKeyHolderComponent? keys)
             && keys.Channels.Contains(args.Channel.ID))
         {
-            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset, args.Language, loudMode: loudMode); // Starlight-edit: This literally never specified language??? bruh.
+            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset, args.Language, loudComp: loudComp); // Starlight-edit: This literally never specified language??? bruh.
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
         //Starlight begin
         if (args.UsingCustomChannel && args.CustomChannel is not null)
-            _radio.SendCustomRadioMessage(uid, args.Message.Text, args.CustomChannel, component.Headset, args.Language, loudMode: loudMode); // Custom channel data is already confirmed to exist on this headset
+            _radio.SendCustomRadioMessage(uid, args.Message.Text, args.CustomChannel, component.Headset, args.Language, loudComp: loudComp); // Custom channel data is already confirmed to exist on this headset
         //Starlight end
     }
 
