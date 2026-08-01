@@ -35,6 +35,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NPC.Systems;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
@@ -118,6 +119,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     private readonly SoundSpecifier _tier3Sound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier3.ogg");
     private readonly SoundSpecifier _tier2Sound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier2.ogg");
     private readonly SoundSpecifier _monumentAlert = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier_up.ogg");
+    private static readonly ProtoId<NpcFactionPrototype> NanoTrasenFaction = "NanoTrasen";
+    private static readonly ProtoId<NpcFactionPrototype> CosmicCultFaction = "CosmicCult";
 
     private readonly SoundSpecifier _victoryMusic =
         new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/caustic_shift.ogg");
@@ -144,6 +147,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         SubscribeLocalEvent<CosmicGodComponent, ComponentInit>(OnGodSpawn);
         SubscribeLocalEvent<CosmicCultComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<CosmicCultLeadComponent, MindRemovedMessage>(HandleMindRemoved);
+        SubscribeLocalEvent<CosmicStarMarkComponent, ComponentInit>(OnStarMarkAdded);
 
         Subs.CVar(_config,
             StarlightCCVars.CosmicCultT2RevealDelaySeconds,
@@ -204,8 +208,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             while (query.MoveNext(out var cultist, out var cultComp))
             {
                 EnsureComp<CosmicStarMarkComponent>(cultist);
-                _faction.RemoveFaction(cultist, "NanoTrasen");
-                _faction.AddFaction(cultist, "CosmicCult");
             }
 
             var sender = Loc.GetString("cosmiccult-announcement-sender");
@@ -378,7 +380,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     private void OnGodSpawn(Entity<CosmicGodComponent> uid, ref ComponentInit args)
     {
-        _sound.DispatchStationEventMusic(uid, _victoryMusic, StationEventMusicType.CosmicCult);
         if (!uid.Comp.TriggerRoundEnd) return;
         _sound.DispatchStationEventMusic(uid, _victoryMusic, StationEventMusicType.CosmicCult );
         var query = QueryActiveRules();
@@ -592,6 +593,12 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     }
     #endregion
 
+    private void OnStarMarkAdded(Entity<CosmicStarMarkComponent> ent, ref ComponentInit args)
+    {
+        _faction.RemoveFaction(ent.Owner, NanoTrasenFaction);
+        _faction.AddFaction(ent.Owner, CosmicCultFaction);
+    }
+
     public void OnStartMonument(Entity<MonumentComponent> ent)
     {
         if (AssociatedGamerule(ent) is not { } cult)
@@ -786,8 +793,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-short-briefing"), Color.FromHex("#cae8e8"), null);
 
         var cultComp = EnsureComp<CosmicCultComponent>(uid);
-        //i would like them to be roundstart with the flag, but might lead to mobs targeting cultists roundstart.
-        //_faction.AddFaction(uid, "CosmicCult");
 
         cultComp.EntropyBudget = 10; // pity balance
         EnsureComp<IntrinsicRadioReceiverComponent>(uid);
@@ -797,6 +802,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         {
             cultComp.EntropyBudget = 48; // pity balance
             cultComp.Respiration = false;
+            
 
             foreach (var influenceProto in _protoMan.EnumeratePrototypes<InfluencePrototype>().Where(influenceProto => influenceProto.Tier == 3))
             {
@@ -953,8 +959,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             return;
         }
 
-        _faction.RemoveFaction(uid.Owner, "CosmicCult");
-        _faction.AddFaction(uid.Owner, "NanoTrasen");
+        _faction.RemoveFaction(uid.Owner, CosmicCultFaction);
+        _faction.AddFaction(uid.Owner, NanoTrasenFaction);
 
         if (wasSteward)
         {

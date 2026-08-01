@@ -113,19 +113,17 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
         var evt = new MalignFragmentationEvent(ent, target);
         RaiseLocalEvent(target, ref evt);
 
-        if (evt.Succeeded)
-        {
-            UnEmpower(ent);
-            _actions.RemoveAction(ent.Owner, ent.Comp.CosmicFragmentationActionEntity);
-            ent.Comp.ActionEntities.Remove(ent.Comp.CosmicFragmentationActionEntity);
-            ent.Comp.CosmicFragmentationActionEntity = null;
-        }
-        else
+         if (!evt.Succeeded)
         {
             _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), ent, ent);
-            RestoreFragmentationCharge(ent);
+            return;
         }
-        return;
+        
+        RestoreFragmentationCharge(ent);
+        UnEmpower(ent);
+        _actions.RemoveAction(ent.Owner, ent.Comp.CosmicFragmentationActionEntity);
+        ent.Comp.ActionEntities.Remove(ent.Comp.CosmicFragmentationActionEntity);
+        ent.Comp.CosmicFragmentationActionEntity = null;
     }
 
     private void RestoreFragmentationCharge(Entity<CosmicCultComponent> ent)
@@ -137,7 +135,6 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
             return;
 
         _charges.SetCharges((action, charges), 1);
-        Dirty(action, charges);
 
         _actionsSystem.SetCooldown(action, TimeSpan.Zero);
     }
@@ -163,7 +160,6 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
         if (!_mind.TryGetMind(ent, out var mindId, out var mind))
         {
             args.Handled = true;
-            args.Succeeded = false;
             return;
         }
 

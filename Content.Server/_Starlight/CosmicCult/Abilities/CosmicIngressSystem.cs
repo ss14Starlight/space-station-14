@@ -97,8 +97,6 @@ public sealed partial class CosmicIngressSystem : EntitySystem
         }
         // Spawn corrupted replacement
         var malignDoor = Spawn("DoorCosmicCult", coordinates);
-
-        if (TryComp<DoorComponent>(malignDoor, out _))
-            _door.StartOpening(malignDoor);
+        _door.StartOpening(malignDoor);
     }
 }
