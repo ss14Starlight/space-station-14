@@ -100,7 +100,6 @@ namespace Content.IntegrationTests.Tests.Damageable
             var server = pair.Server;
 
             var sEntityManager = server.ResolveDependency<IEntityManager>();
-            var sMapManager = server.ResolveDependency<SharedMapSystem>();
             var sPrototypeManager = server.ResolveDependency<IPrototypeManager>();
             var sEntitySystemManager = server.ResolveDependency<IEntitySystemManager>();
 
