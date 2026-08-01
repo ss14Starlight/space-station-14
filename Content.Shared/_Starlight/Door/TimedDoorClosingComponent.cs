@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Starlight.Doors.Components;
+namespace Content.Shared._Starlight.Door.Components;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class TimedDoorClosingComponent : Component

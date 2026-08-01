@@ -49,8 +49,8 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         _codeCondition.SetCompleted(ent.Owner, ent.Comp.EffigyObjective);
         var effigy = Spawn(ent.Comp.EffigyPrototype, pos);
 
-        if (TryComp<CosmicEffigyComponent>(effigy, out var effigyComp))
-            effigyComp.Colossus = ent.Owner;
+        var effigyComp = EnsureComp<CosmicEffigyComponent>(effigy);
+        effigyComp.Colossus = ent.Owner;
 
         ent.Comp.CurrentEffigy = effigy;
         if (ent.Comp.EffigyPlaceActionEntity is { } action && TryComp<LimitedChargesComponent>(action, out var charges))

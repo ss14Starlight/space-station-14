@@ -802,7 +802,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         {
             cultComp.EntropyBudget = 48; // pity balance
             cultComp.Respiration = false;
-            
 
             foreach (var influenceProto in _protoMan.EnumeratePrototypes<InfluencePrototype>().Where(influenceProto => influenceProto.Tier == 3))
             {

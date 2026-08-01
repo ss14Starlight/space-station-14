@@ -38,14 +38,14 @@ public abstract partial class SharedCosmicCultSystem : EntitySystem
     /// <summary>
     /// Determines if a Cosmic Cult Lead component should be sent to the client.
     /// </summary>
-    private void OnCosmicCultCompGetStateAttempt(EntityUid uid, CosmicCultLeadComponent comp, ref ComponentGetStateAttemptEvent args) => 
+    private void OnCosmicCultCompGetStateAttempt(EntityUid uid, CosmicCultLeadComponent comp, ref ComponentGetStateAttemptEvent args) =>
     args.Cancelled = !CanGetState(args.Player);
 
     /// <summary>
     /// Determines if a Cosmic Cultist component should be sent to the client.
     /// </summary>
     private void OnCosmicCultCompGetStateAttempt(EntityUid uid,
-    CosmicCultComponent comp, ref ComponentGetStateAttemptEvent args) => 
+    CosmicCultComponent comp, ref ComponentGetStateAttemptEvent args) =>
     args.Cancelled = !CanGetState(args.Player);
 
     /// <summary>

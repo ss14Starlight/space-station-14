@@ -118,7 +118,7 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), ent, ent);
             return;
         }
-        
+
         RestoreFragmentationCharge(ent);
         UnEmpower(ent);
         _actions.RemoveAction(ent.Owner, ent.Comp.CosmicFragmentationActionEntity);
