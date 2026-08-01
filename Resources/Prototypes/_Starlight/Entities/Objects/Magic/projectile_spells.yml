@@ -73,13 +73,13 @@
     sentence: action-speech-spell-firearrow
     tts: action-speech-spell-firearrow-tts
     modifier: Spell
-  - type: EorgPreventAction # Starlight
+  - type: EorgPreventAction
 
 - type: entity
   parent: BaseAction
   id: ActionArticGlare
   name: Artic Glare
-  description: Glare at your enemies with the fury of the artic, freezing anyone close (short range spell).
+  description: Glare at your enemies with the fury of the artic, freezing anyone close (short range spell, 2 min cooldown).
   components:
   - type: Magic
   - type: Action
@@ -89,7 +89,7 @@
     icon:
       sprite: _Starlight/Objects/Magic/magicactions.rsi
       state: articglare
-  - type: TargetAction #instant
+  - type: TargetAction
     range: 60
     checkCanAccess: false
   - type: WorldTargetAction
@@ -100,5 +100,30 @@
   - type: SpeakOnAction
     sentence: action-speech-spell-articglare
     tts: action-speech-spell-articglare-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionIceShard
+  name: Ice Shard
+  description: Throw a sharp shard of ice that will slice and freeze the first person it touches. (30 seconds cooldown)
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: iceshard
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileIceShard
+  - type: SpeakOnAction
+    sentence: action-speech-spell-iceshard
+    tts: action-speech-spell-iceshard-tts
     modifier: Spell
   - type: EorgPreventAction

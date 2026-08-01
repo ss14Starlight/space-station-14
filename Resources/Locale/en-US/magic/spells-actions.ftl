@@ -37,3 +37,5 @@ action-speech-spell-freezerune = INGELASCAS !
 action-speech-spell-freezerune-tts = INGELASCAS!!
 action-speech-spell-articglare = ULULATUS ARTICI !!
 action-speech-spell-articglare-tts = OULOULATOUS ARTIKI!!
+action-speech-spell-iceshard = ALGOR TE CAPIAT !
+action-speech-spell-iceshard-tts = ALGOT TEY CAPIAT!

@@ -331,3 +331,20 @@
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookIceShard
+  name: spellbook-iceshard-name
+  description: spellbook-iceshard-desc
+  priority: 17
+  productAction: ActionIceShard
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer

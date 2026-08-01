@@ -52,3 +52,6 @@ spellbook-icesculpture-desc = Draws a magical rune that summons a ice sculpture 
 
 spellbook-articglare-name = Artic Glare
 spellbook-articglare-desc = Show them the fury of the artic, freezing anyone in front of you.
+
+spellbook-iceshard-name = Ice Shard
+spellbook-iceshard-desc = Throw a sharp shard of ice that will slice and freeze the first person it touches.

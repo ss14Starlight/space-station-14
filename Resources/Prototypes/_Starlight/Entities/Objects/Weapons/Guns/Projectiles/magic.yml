@@ -126,3 +126,39 @@
     iceChance: 1
     iceEntityId: IceCrust
     snowTileId: FloorSnow
+
+- type: entity
+  id: ProjectileIceShard
+  parent: BaseBulletTrigger
+  name: ice shard
+  description: A freezing and razor sharp projectile of ice.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: iceshard
+  - type: Projectile
+    damage:
+      types:
+        Cold: 30
+        Slash: 50
+    soundHit:
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: PointLight
+    color: "#2CDDF5"
+    radius: 2.0
+    energy: 6.0
+  - type: ChangeTemperatureOnCollide
+    heat: -30000
+    ignoreHeatResistance: false
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: IceTrail
+    spawnInterval: 0.05
+    iceChance: 1
+    iceEntityId: IceCrust
+  - type: IceSpawnOnTrigger
+    radius: 3
+    requireHumanoid: true
+    iceChance: 1
+    iceEntityId: IceCrust
