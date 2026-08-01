@@ -5,7 +5,7 @@ namespace Content.Server._Starlight.Honeypot.Components;
 /// <summary>
 /// Turns an entity with a <see cref="DamageableComponent"/> into a honeypot that notifies admins on damage.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class AdminNotifyOnDamageComponent : Component
 {
     /// <summary>
@@ -13,6 +13,7 @@ public sealed partial class AdminNotifyOnDamageComponent : Component
     /// </summary>
     [DataField] public string Subject = "entity";
 
+    [AutoPausedField]
     public TimeSpan LastNotif;
     [DataField] public TimeSpan NotifyCooldown = TimeSpan.FromSeconds(15);
 }
