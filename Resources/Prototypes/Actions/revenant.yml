@@ -45,18 +45,6 @@
 
 - type: entity
   parent: BaseAction
-  id: ActionRevenantChill
-  name: Chill of the grave
-  description: Costs 50 Essence.
-  components:
-  - type: Action
-    useDelay: 15
-    icon: Interface/Actions/snowgrave.png
-  - type: InstantAction
-    event: !type:RevenantChillActionEvent
-
-- type: entity
-  parent: BaseAction
   id: ActionRevenantMalfunction
   name: Malfunction
   description: Costs 60 Essence.

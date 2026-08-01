@@ -9,6 +9,3 @@ revenant-blight-desc = Infects all nearby organisms with an infectious disease t
 
 revenant-malfunction-name = Malfunction
 revenant-malfunction-desc = Makes nearby electronics stop working properly. Using it leaves you vulnerable to attacks for a long period of time.
-
-revenant-chill-name = Chill of the grave
-revenant-chill-desc = Create a large patch of ice around you while cooling the area down.
