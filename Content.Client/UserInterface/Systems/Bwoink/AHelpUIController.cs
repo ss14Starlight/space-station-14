@@ -184,7 +184,13 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
 
         UIHelper.SendMessageAction = (userId, textMessage, playSound, adminOnly) => _bwoinkSystem?.Send(userId, textMessage, playSound, adminOnly);
         UIHelper.InputTextChanged += (channel, text) => _bwoinkSystem?.SendInputTextUpdated(channel, text.Length > 0);
-        UIHelper.OnClose += () => { SetAHelpPressed(false); };
+        // Starlight begin
+        UIHelper.OnClose += () =>
+        {
+            SetAHelpPressed(false);
+            UIHelper.Close();
+        };
+        // Starlight end
         UIHelper.OnOpen +=  () => { SetAHelpPressed(true); };
         SetAHelpPressed(UIHelper.IsOpen);
     }
@@ -197,6 +203,13 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
             return;
         }
         EnsureUIHelper();
+
+        // Starlight begin
+        localUser = UIHelper!.IsAdmin && UIHelper is AdminAHelpUIHandler { RememberSelected: true } aHelper
+            ? aHelper.SelectedPlayer ?? localUser
+            : localUser;
+        //Starlight end
+
         if (UIHelper!.IsOpen)
             return;
         UIHelper!.Open(localUser.Value, _discordRelayActive);
@@ -347,6 +360,8 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     public bool IsAdmin => true;
     public bool IsOpen => Window is { Disposed: false, IsOpen: true } || ClydeWindow is { IsDisposed: false };
     public bool EverOpened;
+    public bool RememberSelected => Window?.Bwoink.RememberSelected.Pressed ?? false; // Starlight
+    public NetUserId? SelectedPlayer; // Starlight
 
     public BwoinkWindow? Window;
     public WindowRoot? WindowRoot;
@@ -373,6 +388,11 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
 
     public void Close()
     {
+        // Starlight begin
+        EnsurePanel(_ownerId);
+        Control?.SelectChannel(_ownerId);
+        // Starlight end
+
         Window?.Close();
 
         // popped-out window is being closed
@@ -454,6 +474,14 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
             }
             panel.Visible = false;
         }
+
+        // Starlight begin
+        Control.ChannelSelector.OnSelectionChanged += inf =>
+        {
+            if (!IsOpen) return;
+            SelectedPlayer = inf?.SessionId ?? _ownerId;
+        };
+        // Starlight end
     }
 
     public void HideAllPanels()
@@ -485,6 +513,7 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     {
         EnsurePanel(uid);
         Control!.SelectChannel(uid);
+        SelectedPlayer = uid; // Starlight
     }
 
     public void Dispose()
