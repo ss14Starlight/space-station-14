@@ -135,7 +135,7 @@ namespace Content.Server.GameTicking
                 var playerProfiles = playerPrefs.GetAllEnabledProfilesForJob(job.Value);
 
                 // Filter out job requirements
-                var filteredPlayerProfiles = playerProfiles.Values.Where(profile =>
+                var jobValidPlayerProfiles = playerProfiles.Values.Where(profile => // Starlight
                     JobRequirements.TryRequirementsMet(job.Value,
                         playerSession, // Starlight
                         null,
@@ -143,7 +143,8 @@ namespace Content.Server.GameTicking
                         EntityManager,
                         _prototypeManager,
                         profile)
-                );
+                ).ToList(); // Starlight
+                var filteredPlayerProfiles = jobValidPlayerProfiles.AsEnumerable(); // Starlight
 
                 #region Starlight
                 // Your account may have several enabled characters, but only the character that
@@ -179,6 +180,20 @@ namespace Content.Server.GameTicking
                 #endregion
 
                 var finalPlayerProfiles = filteredPlayerProfiles.ToList();
+
+                #region Starlight
+                // If the assigned job still has a valid character, release only the failed antag
+                // reservation and fall back to normal spawning.
+                if (finalPlayerProfiles.Count == 0 &&
+                    selectedAntags.Count > 0 &&
+                    jobValidPlayerProfiles.Count > 0)
+                {
+                    var evInvalidAntagProfile = new NoJobsAvailableSpawningEvent(playerSession);
+                    RaiseLocalEvent(evInvalidAntagProfile);
+                    finalPlayerProfiles = jobValidPlayerProfiles;
+                }
+                #endregion
+
                 if (finalPlayerProfiles.Count == 0)
                 #region Starlight
                 {
