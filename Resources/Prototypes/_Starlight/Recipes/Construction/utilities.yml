@@ -684,8 +684,8 @@
 
 # Subfloor gas tank BEGIN
 - type: construction
-  id: GasPipeSubfloorTank
-  graph: GasPipeSubfloorTank
+  id: GasPipeTankSubfloor
+  graph: GasPipeTankSubfloor
   startNode: start
   targetNode: tank
   category: construction-category-utilities
@@ -694,16 +694,16 @@
   conditions:
     - !type:NoUnstackableInTile
   alternativePrototypes:
-    - GasPipeSubfloorTank
-    - GasPipeSubfloorTankAlt1
-    - GasPipeSubfloorTankAlt2
-    - GasPipeSubfloorTankAlt3
-    - GasPipeSubfloorTankAlt4
+    - GasPipeTankSubfloor
+    - GasPipeTankSubfloorAlt1
+    - GasPipeTankSubfloorAlt2
+    - GasPipeTankSubfloorAlt3
+    - GasPipeTankSubfloorAlt4
 
 - type: construction
-  id: GasPipeSubfloorTankAlt1
+  id: GasPipeTankSubfloorAlt1
   hide: true
-  graph: GasPipeSubfloorTank
+  graph: GasPipeTankSubfloor
   startNode: start
   targetNode: tankAlt1
   category: construction-category-utilities
@@ -712,16 +712,16 @@
   conditions:
     - !type:NoUnstackableInTile
   alternativePrototypes:
-    - GasPipeSubfloorTank
-    - GasPipeSubfloorTankAlt1
-    - GasPipeSubfloorTankAlt2
-    - GasPipeSubfloorTankAlt3
-    - GasPipeSubfloorTankAlt4
+    - GasPipeTankSubfloor
+    - GasPipeTankSubfloorAlt1
+    - GasPipeTankSubfloorAlt2
+    - GasPipeTankSubfloorAlt3
+    - GasPipeTankSubfloorAlt4
 
 - type: construction
-  id: GasPipeSubfloorTankAlt2
+  id: GasPipeTankSubfloorAlt2
   hide: true
-  graph: GasPipeSubfloorTank
+  graph: GasPipeTankSubfloor
   startNode: start
   targetNode: tankAlt2
   category: construction-category-utilities
@@ -730,16 +730,16 @@
   conditions:
     - !type:NoUnstackableInTile
   alternativePrototypes:
-    - GasPipeSubfloorTank
-    - GasPipeSubfloorTankAlt1
-    - GasPipeSubfloorTankAlt2
-    - GasPipeSubfloorTankAlt3
-    - GasPipeSubfloorTankAlt4
+    - GasPipeTankSubfloor
+    - GasPipeTankSubfloorAlt1
+    - GasPipeTankSubfloorAlt2
+    - GasPipeTankSubfloorAlt3
+    - GasPipeTankSubfloorAlt4
 
 - type: construction
-  id: GasPipeSubfloorTankAlt3
+  id: GasPipeTankSubfloorAlt3
   hide: true
-  graph: GasPipeSubfloorTank
+  graph: GasPipeTankSubfloor
   startNode: start
   targetNode: tankAlt3
   category: construction-category-utilities
@@ -748,16 +748,16 @@
   conditions:
     - !type:NoUnstackableInTile
   alternativePrototypes:
-    - GasPipeSubfloorTank
-    - GasPipeSubfloorTankAlt1
-    - GasPipeSubfloorTankAlt2
-    - GasPipeSubfloorTankAlt3
-    - GasPipeSubfloorTankAlt4
+    - GasPipeTankSubfloor
+    - GasPipeTankSubfloorAlt1
+    - GasPipeTankSubfloorAlt2
+    - GasPipeTankSubfloorAlt3
+    - GasPipeTankSubfloorAlt4
 
 - type: construction
-  id: GasPipeSubfloorTankAlt4
+  id: GasPipeTankSubfloorAlt4
   hide: true
-  graph: GasPipeSubfloorTank
+  graph: GasPipeTankSubfloor
   startNode: start
   targetNode: tankAlt4
   category: construction-category-utilities
@@ -766,9 +766,102 @@
   conditions:
     - !type:NoUnstackableInTile
   alternativePrototypes:
-    - GasPipeSubfloorTank
-    - GasPipeSubfloorTankAlt1
-    - GasPipeSubfloorTankAlt2
-    - GasPipeSubfloorTankAlt3
-    - GasPipeSubfloorTankAlt4
+    - GasPipeTankSubfloor
+    - GasPipeTankSubfloorAlt1
+    - GasPipeTankSubfloorAlt2
+    - GasPipeTankSubfloorAlt3
+    - GasPipeTankSubfloorAlt4
+
 # Subfloor gas tank END
+# Tall gas tank BEGIN
+
+- type: construction
+  id: GasPipeTankTall
+  graph: GasPipeTankTall
+  startNode: start
+  targetNode: tank
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+    - GasPipeTankTall
+    - GasPipeTankTallAlt1
+    - GasPipeTankTallAlt2
+    - GasPipeTankTallAlt3
+    - GasPipeTankTallAlt4
+
+- type: construction
+  id: GasPipeTankTallAlt1
+  hide: true
+  graph: GasPipeTankTall
+  startNode: start
+  targetNode: tankAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+    - GasPipeTankTall
+    - GasPipeTankTallAlt1
+    - GasPipeTankTallAlt2
+    - GasPipeTankTallAlt3
+    - GasPipeTankTallAlt4
+
+- type: construction
+  id: GasPipeTankTallAlt2
+  hide: true
+  graph: GasPipeTankTall
+  startNode: start
+  targetNode: tankAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+    - GasPipeTankTall
+    - GasPipeTankTallAlt1
+    - GasPipeTankTallAlt2
+    - GasPipeTankTallAlt3
+    - GasPipeTankTallAlt4
+
+- type: construction
+  id: GasPipeTankTallAlt3
+  hide: true
+  graph: GasPipeTankTall
+  startNode: start
+  targetNode: tankAlt3
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+    - GasPipeTankTall
+    - GasPipeTankTallAlt1
+    - GasPipeTankTallAlt2
+    - GasPipeTankTallAlt3
+    - GasPipeTankTallAlt4
+
+- type: construction
+  id: GasPipeTankTallAlt4
+  hide: true
+  graph: GasPipeTankTall
+  startNode: start
+  targetNode: tankAlt4
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+    - GasPipeTankTall
+    - GasPipeTankTallAlt1
+    - GasPipeTankTallAlt2
+    - GasPipeTankTallAlt3
+    - GasPipeTankTallAlt4
+
+# Tall gas tank END
