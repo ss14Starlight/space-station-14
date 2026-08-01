@@ -30,8 +30,6 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
         var numberOfPipeLayers = GetNumberOfPipeLayers(uid, out _);
 
         // Starlight START
-        // Insert connection nubs right after the main pipe layer instead of appending them at the
-        // end, so they don't render on top of layers added after it (e.g. a machine/tank body).
         _sprite.LayerMapTryGet((uid, sprite), PipeVisualLayers.Pipe, out var pipeIndex, false);
         // Starlight END
 
@@ -42,6 +40,7 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
                 var layerName = layerKey.ToString() + i.ToString();
 
                 // Starlight START
+                // The generated layer should go directly after the main pipe layer, not at the end, hence the pipeIndex+1.
                 if (!_sprite.LayerMapTryGet((uid, sprite), layerName, out var layer, false))
                 {
                     layer = pipeIndex + 1;
