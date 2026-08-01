@@ -21,6 +21,6 @@ public sealed class TimedDoorClosingSystem : EntitySystem
         if (args.State != DoorState.Open)
             return;
 
-        _door.SetNextStateChange(ent, ent.Comp.Delay);
+        _door.SetNextStateChange(ent, ent.Comp.AutoCloseDelay);
     }
 }
