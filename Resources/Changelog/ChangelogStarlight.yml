@@ -1,20 +1,6 @@
 Entries:
 - author: SpaghettiBit
   changes:
-  - message: The ability to remove, insert, and replace cells from batons. Stunbatons and stunprods have a passive drain.
-    type: Add
-  id: 406789
-  time: '2026-07-21T14:05:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5154
-- author: SpaghettiBit
-  changes:
-  - message: Removed the small-capacity cell from the stunprod crafting recipe.
-    type: Tweak
-  id: 406790
-  time: '2026-07-21T14:05:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5154
-- author: SpaghettiBit
-  changes:
   - message: Stunprods now spawn without a cell.
     type: Tweak
   id: 406791
@@ -2799,4 +2785,18 @@ Entries:
   id: 407188
   time: '2026-08-01T13:41:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5441
+- author: Mack
+  changes:
+  - message: The Plumbing Smart Dispenser will no longer be in the floor.
+    type: Fix
+  id: 407189
+  time: '2026-08-01T14:40:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5406
+- author: Mack
+  changes:
+  - message: The icon for the Plumbing Smart Dispenser will now appear correctly on the RPLD.
+    type: Fix
+  id: 407190
+  time: '2026-08-01T14:40:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5406
 Order: -1
