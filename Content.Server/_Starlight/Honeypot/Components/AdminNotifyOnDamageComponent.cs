@@ -14,5 +14,5 @@ public sealed partial class AdminNotifyOnDamageComponent : Component
     [DataField] public string Subject = "entity";
 
     public TimeSpan LastNotif;
-    [DataField] public int NotifyCooldown = 15;
+    [DataField] public TimeSpan NotifyCooldown = TimeSpan.FromSeconds(15);
 }
