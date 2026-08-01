@@ -1,18 +1,4 @@
 Entries:
-- author: redmushie, JohnnyMalawny
-  changes:
-  - message: Canned gas prices are now proportional to the amount of moles contained within for both the regular and liquid cooled variants.
-    type: Tweak
-  id: 406778
-  time: '2026-07-21T11:37:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5127
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Increased artillery projectile speeds.
-    type: Tweak
-  id: 406779
-  time: '2026-07-21T12:06:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5023
 - author: Scarlet Lightweaver.
   changes:
   - message: Rebalanced all artillery weapons with more accurate damage values.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407177
   time: '2026-08-01T09:32:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5403
+- author: wonderfulnewworld, mirrorcult
+  changes:
+  - message: Using items in hand or interacting with things in your pockets/bag/storage etc now has interaction particles that only you can see.
+    type: Add
+  id: 407178
+  time: '2026-08-01T10:25:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5339
+- author: wonderfulnewworld, mirrorcult
+  changes:
+  - message: You can now set interaction particle visibility to be all, except in-hand, or none. (Default set to except in-hand).
+    type: Tweak
+  id: 407179
+  time: '2026-08-01T10:25:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5339
 Order: -1
