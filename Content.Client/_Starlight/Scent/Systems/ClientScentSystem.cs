@@ -29,7 +29,7 @@ public sealed class ClientScentSystem : SharedScentSystem
 
     private void OnSmellerInit(EntityUid uid, SmellerComponent component, ComponentInit args)
     {
-        if (_player.LocalEntity == uid)
+        if (_player.LocalEntity == uid && !_overlayMan.HasOverlay<ScentPerceptionOverlay>())
             _overlayMan.AddOverlay(_overlay);
     }
 
@@ -46,7 +46,8 @@ public sealed class ClientScentSystem : SharedScentSystem
 
     private void OnPlayerAttached(EntityUid uid, SmellerComponent component, LocalPlayerAttachedEvent args)
     {
-        _overlayMan.AddOverlay(_overlay);
+        if (!_overlayMan.HasOverlay<ScentPerceptionOverlay>())
+            _overlayMan.AddOverlay(_overlay);
     }
 
     private void OnPlayerDetached(EntityUid uid, SmellerComponent component, LocalPlayerDetachedEvent args)

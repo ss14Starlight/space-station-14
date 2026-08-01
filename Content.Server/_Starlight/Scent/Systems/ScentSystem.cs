@@ -72,13 +72,17 @@ public sealed class ScentSystem : SharedScentSystem
         SubscribeLocalEvent<CleansScentComponent, CleanScentDoAfterEvent>(OnCleanScentDoAfter);
         SubscribeLocalEvent<CleansScentComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
 
-        SubscribeLocalEvent<DoorComponent, BeforeDoorOpenedEvent>(OnBeforeDoorOpened);
+        SubscribeLocalEvent<DoorComponent, DoorStateChangedEvent>(OnDoorStateChanged);
     }
 
-    // Normal interaction already deposits a scent trace on a door via ContactInteractionEvent.
-    // Bumping doesn't go through that pipeline at all, so it never did.
-    private void OnBeforeDoorOpened(EntityUid uid, DoorComponent component, BeforeDoorOpenedEvent args)
+    // DoorStateChangedEvent only fires once StartOpening genuinely succeeds (bolts, power, and
+    // access checks have all already passed), and now carries the user via a Starlight-side
+    // addition to SharedDoorSystem, so no separate pre-open hook or bridging state is needed.
+    private void OnDoorStateChanged(EntityUid uid, DoorComponent component, DoorStateChangedEvent args)
     {
+        if (args.State != DoorState.Opening)
+            return;
+
         if (args.User is not { } user || !_tags.HasTag(user, SharedDoorSystem.DoorBumpTag))
             return;
 

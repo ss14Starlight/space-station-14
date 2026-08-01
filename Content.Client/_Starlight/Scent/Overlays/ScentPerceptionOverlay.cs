@@ -80,6 +80,10 @@ public sealed class ScentPerceptionOverlay : Robust.Client.Graphics.Overlay
                 continue;
 
             var (position, rotation) = _transform.GetWorldPositionRotation(xform);
+
+            if (!args.WorldBounds.Contains(position))
+                continue;
+
             _sprite.RenderSprite((uid, sprite), worldHandle, eyeRotation, rotation, position);
         }
     }
