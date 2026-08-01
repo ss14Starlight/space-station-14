@@ -1402,7 +1402,6 @@
     accesses:
     - Engineering
     - Atmospherics
-    
 
 - type: entity
   id: XenoArtifactAccessScience
@@ -1494,4 +1493,4 @@
       - AllAccess
   - type: XAEGainAccess # Just to add the DoorBumpOpener tag
     accesses:
-    - Command 
+    - Command
