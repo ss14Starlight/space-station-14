@@ -13,6 +13,6 @@ public sealed partial class AdminNotifyOnDamageComponent : Component
     /// </summary>
     [DataField] public string Subject = "entity";
 
-    public DateTimeOffset time = DateTimeOffset.Now.AddSeconds(-15);
-    public int NotifyCooldown = 15;
+    public TimeSpan LastNotif;
+    [DataField] public int NotifyCooldown = 15;
 }

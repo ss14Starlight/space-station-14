@@ -2,6 +2,7 @@ using Content.Server._Starlight.Honeypot.Components;
 using Content.Server.Chat.Managers;
 using Content.Shared.Damage.Systems;
 using Robust.Server.GameObjects;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Honeypot;
@@ -13,6 +14,7 @@ public sealed partial class AdminNotifyOnDamageSystem : EntitySystem
 {
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {
@@ -26,10 +28,10 @@ public sealed partial class AdminNotifyOnDamageSystem : EntitySystem
         var posFound = _transform.TryGetMapOrGridCoordinates(entity, out var gridPos);
         if (!args.DamageIncreased) return;
 
-        if (DateTimeOffset.Now.Subtract(entity.Comp.time).TotalSeconds < entity.Comp.NotifyCooldown)
+        if (_gameTiming.CurTime.Subtract(entity.Comp.LastNotif) < TimeSpan.FromSeconds(entity.Comp.NotifyCooldown))
             return;
         else
-            entity.Comp.time = DateTimeOffset.Now;
+            entity.Comp.LastNotif = _gameTiming.CurTime;
 
         // Send the actual alert message.
         if (args.Origin != null)
