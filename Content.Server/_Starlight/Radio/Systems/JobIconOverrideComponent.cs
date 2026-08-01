@@ -12,7 +12,7 @@ public sealed partial class JobIconOverrideComponent : Component
 {
     [DataField] public ProtoId<JobIconPrototype> JobIconOverride = "JobIconAssistant";
 
-    [DataField] public LocId? JobTitleOverride = "job-name-assistant";
+    [DataField] public LocId JobTitleOverride = "job-name-assistant";
     public string LocalizedJobTitle =>
-        field ??= Loc.GetString(JobTitleOverride ?? string.Empty);
+        field ??= Loc.GetString(JobTitleOverride);
 }
