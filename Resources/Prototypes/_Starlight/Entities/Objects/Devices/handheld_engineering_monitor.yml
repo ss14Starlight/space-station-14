@@ -20,31 +20,29 @@
     layers:
     # Tablet shell.
     - state: tabletsol
-    # Lit screen. Hidden until the cell has charge, and the state is swapped to match
-    # whichever ItemSwitch mode is active below.
+    # Lit screen. Only shown while a screen is actually open, and the state is swapped to
+    # match whichever ItemSwitch mode is active below.
     - sprite: Objects/Specific/Engineering/handheldengineeringmonitor.rsi
       state: power
       shader: unshaded
       visible: false
       map: [ "screen" ]
   - type: Appearance
-  - type: BatteryVisuals
   - type: GenericVisualizer
     visuals:
-      enum.BatteryVisuals.State:
+      # Driven by ItemToggle, which ActivatableUIRequiresPowerCell activates while a screen is
+      # open. An idle monitor and a dead one therefore look identical: just the dark shell.
+      enum.ToggleableVisuals.Enabled:
         screen:
-          Full: { visible: true }
-          Neither: { visible: true }
-          Empty: { visible: false }
+          True: { visible: true }
+          False: { visible: false }
       # State names match the ItemSwitch mode keys, so the screen follows the mode directly.
       enum.SwitchableVisuals.Switched:
         screen:
           power: { state: power }
           atmos: { state: atmos }
-  # drawRate 0 means charge is only spent when a screen is opened (useCharge, inherited from
-  # BaseHandheldComputer), never continuously. Keeps a dropped monitor from draining its cell.
   - type: PowerCellDraw
-    drawRate: 0
+    drawRate: 1.5
   # Each mode swaps in its own console component and its own ActivatableUI key, so only one
   # screen is ever live. onUse is off so that using it in hand opens the screen rather than
   # switching mode -- mode is picked from the Switch verb category.
@@ -82,6 +80,10 @@
     - DeviceMonitoringAndControl
   - type: StaticPrice
     price: 250
+  # Lets it into the engineering toolbelt whitelist.
+  - type: Tag
+    tags:
+    - HandheldEngineeringMonitor
 
 - type: entity
   id: HandheldEngineeringMonitorEmpty

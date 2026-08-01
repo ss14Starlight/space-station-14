@@ -7,6 +7,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Popups;
+using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
@@ -20,6 +21,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedItemSystem _item = default!;
     [Dependency] private ClothingSystem _clothing = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     private EntityQuery<ItemSwitchComponent> _query;
 
@@ -134,6 +136,16 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         };
         RaiseLocalEvent(uid, ref attempt);
 
+        // Close whatever screen is open before the outgoing state's ActivatableUI is removed.
+        // Anyone who had it open is remembered so the incoming state can reopen for them, making
+        // a switch read as the screen changing rather than the device shutting off.
+        var reopenFor = new List<EntityUid>();
+        if (TryComp<ActivatableUIComponent>(uid, out var activatable) && activatable.Key != null)
+        {
+            reopenFor.AddRange(_ui.GetActors(uid, activatable.Key));
+            _ui.CloseUi(uid, activatable.Key);
+        }
+
         if (ent.Comp.States.TryGetValue(ent.Comp.State, out var prevState) && prevState.RemoveComponents && prevState.Components is not null)
             EntityManager.RemoveComponents(ent, prevState.Components);
 
@@ -166,6 +178,14 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         comp.State = key;
         UpdateVisuals((uid, comp), key);
         Dirty(uid, comp);
+
+        // Reopen on the incoming state's key for whoever had the old screen up. After the
+        // cancelled check, so a refused switch leaves the device closed rather than springing open.
+        if (reopenFor.Count > 0 && TryComp<ActivatableUIComponent>(uid, out var newActivatable) && newActivatable.Key != null)
+        {
+            foreach (var actor in reopenFor)
+                _ui.OpenUi(uid, newActivatable.Key, actor);
+        }
 
         var switched = new ItemSwitchedEvent { Predicted = predicted, State = key, User = user };
         RaiseLocalEvent(uid, ref switched);
