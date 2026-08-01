@@ -161,3 +161,26 @@ GasPipeSubfloorTankAlt1: GasPipeTankSubfloorAlt1
 GasPipeSubfloorTankAlt2: GasPipeTankSubfloorAlt2
 GasPipeSubfloorTankAlt3: GasPipeTankSubfloorAlt3
 GasPipeSubfloorTankAlt4: GasPipeTankSubfloorAlt4
+
+#2026-08-01 - Renamed most Protogen stuff to Neocyte
+PartProtogen: PartNeocyte
+TorsoProtogen: TorsoNeocyte
+HeadProtogen: HeadNeocyte
+LeftArmProtogen: LeftArmNeocyte
+RightArmProtogen: RightArmNeocyte
+LeftHandProtogen: LeftHandNeocyte
+RightHandProtogen: RightHandNeocyte
+LeftLegProtogen: LeftLegNeocyte
+RightLegProtogen: RightLegNeocyte
+LeftFootProtogen: LeftFootNeocyte
+RightFootProtogen: RightFootNeocyte
+TorsoProtoVulp: TorsoNeoVulp
+HeadProtoVulp: HeadNeoVulp
+LeftArmProtoVulp: LeftArmNeoVulp
+RightArmProtoVulp: RightArmNeoVulp
+LeftHandProtoVulp: LeftHandNeoVulp
+RightHandProtoVulp: RightHandNeoVulp
+LeftHandProtoVox: LeftHandNeoVox
+RightHandProtoVox: RightHandNeoVox
+LeftFootProtoVox: LeftFootNeoVox
+RightFootProtoVox: RightFootNeoVox

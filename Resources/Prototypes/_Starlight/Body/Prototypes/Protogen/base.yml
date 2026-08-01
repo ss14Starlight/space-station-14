@@ -44,14 +44,14 @@
       organs:
         hand_implant: null
     right leg:
-      part: RightLegProtogen
+      part: RightLegNeocyte
       connections:
       - right foot
     left leg:
-      part: LeftLegProtogen
+      part: LeftLegNeocyte
       connections:
       - left foot
     right foot:
-      part: RightFootProtogen
+      part: RightFootNeocyte
     left foot:
-      part: LeftFootProtogen
+      part: LeftFootNeocyte

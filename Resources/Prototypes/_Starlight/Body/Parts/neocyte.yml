@@ -87,8 +87,8 @@
     state: "r_hand"
 
 - type: entity
-  id: LeftLegProtogen
-  name: left protogen leg # Starlight, quotation marks removed
+  id: LeftLegNeocyte
+  name: left neocyte leg
   parent: [PartNeocyte, BaseLeftLeg]
   components:
   - type: Sprite
@@ -96,8 +96,8 @@
     state: "l_leg"
 
 - type: entity
-  id: RightLegProtogen
-  name: right protogen leg # Starlight, quotation marks removed
+  id: RightLegNeocyte
+  name: right neocyte leg
   parent: [PartNeocyte, BaseRightLeg]
   components:
   - type: Sprite
@@ -105,8 +105,8 @@
     state: "r_leg"
 
 - type: entity
-  id: LeftFootProtogen
-  name: left protogen foot # Starlight, quotation marks removed
+  id: LeftFootNeocyte
+  name: left neocyte foot
   parent: [PartNeocyte, BaseLeftFoot]
   components:
   - type: Sprite
@@ -114,8 +114,8 @@
     state: "l_foot"
 
 - type: entity
-  id: RightFootProtogen
-  name: right protogen foot # Starlight, quotation marks removed
+  id: RightFootNeocyte
+  name: right neocyte foot
   parent: [PartNeocyte, BaseRightFoot]
   components:
   - type: Sprite
@@ -125,8 +125,8 @@
 #### VULPKANIN ####
 
 - type: entity
-  id: TorsoProtoVulp
-  name: proto-vulp torso # Starlight, quotation marks removed
+  id: TorsoNeoVulp
+  name: neo-vulp torso
   parent: TorsoNeocyte
   components:
   - type: Sprite
@@ -134,8 +134,8 @@
     state: "torso_m"
 
 - type: entity
-  id: HeadProtoVulp
-  name: proto-vulp head # Starlight, quotation marks removed
+  id: HeadNeoVulp
+  name: neo-vulp head
   parent: HeadNeocyte
   components:
   - type: Sprite
@@ -143,8 +143,8 @@
     state: "head_m"
 
 - type: entity
-  id: LeftArmProtoVulp
-  name: left proto-vulp arm # Starlight, quotation marks removed
+  id: LeftArmNeoVulp
+  name: left neo-vulp arm
   parent: LeftArmNeocyte
   components:
   - type: Sprite
@@ -152,8 +152,8 @@
     state: "l_arm"
 
 - type: entity
-  id: RightArmProtoVulp
-  name: right proto-vulp arm # Starlight, quotation marks removed
+  id: RightArmNeoVulp
+  name: right neo-vulp arm
   parent: RightArmNeocyte
   components:
   - type: Sprite
@@ -161,8 +161,8 @@
     state: "r_arm"
 
 - type: entity
-  id: LeftHandProtoVulp
-  name: left proto-vulp hand # Starlight, quotation marks removed
+  id: LeftHandNeoVulp
+  name: left neo-vulp hand
   parent: LeftHandNeocyte
   components:
   - type: Sprite
@@ -170,55 +170,19 @@
     state: "l_hand"
 
 - type: entity
-  id: RightHandProtoVulp
-  name: right proto-vulp hand # Starlight, quotation marks removed
+  id: RightHandNeoVulp
+  name: right neo-vulp hand
   parent: RightHandNeocyte
   components:
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: "r_hand"
-
-#- type: entity # Starlight start, we don't use these due to them breaking displacement maps. Someone else can try fixing them in the future...
-#  id: LeftLegProtoVulp
-#  name: left proto-vulp leg # Starlight, quotation marks removed
-#  parent: LeftLegProtogen
-#  components:
-#  - type: Sprite
-#    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi # Starlight, let's try just using the normal legs...
-#    state: "l_leg"
-
-#- type: entity
-#  id: RightLegProtoVulp
-#  name: right proto-vulp leg # Starlight, quotation marks removed
-#  parent: RightLegProtogen
-#  components:
-#  - type: Sprite
-#    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi # Starlight, let's try just using the normal feet...
-#    state: "r_leg"
-
-#- type: entity
-#-  id: LeftFootProtoVulp
-#  name: left proto-vulp foot # Starlight, quotation marks removed
-#  parent: LeftFootProtogen
-#  components:
-#  - type: Sprite
-#    sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi # Starlight, let's try just using the normal feet...
-#    state: "l_foot"
-
-#- type: entity
-#  id: RightFootProtoVulp
-#  name: right proto-vulp foot # Starlight, quotation marks removed
-#  parent: RightFootProtogen
-#  components:
-#  - type: Sprite
-#    sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi # Starlight, let's try just using the normal legs...
-#    state: "r_foot" # Starlight end
 
 #### Vox ####
 
 - type: entity
-  id: LeftHandProtoVox
-  name: left proto-vox hand # Starlight, quotation marks removed
+  id: LeftHandNeoVox
+  name: left neo-vox hand
   parent: LeftHandNeocyte
   components:
   - type: Sprite
@@ -226,8 +190,8 @@
     state: "l_hand"
 
 - type: entity
-  id: RightHandProtoVox
-  name: right proto-vox hand # Starlight, quotation marks removed
+  id: RightHandNeoVox
+  name: right neo-vox hand
   parent: RightHandNeocyte
   components:
   - type: Sprite
@@ -235,18 +199,18 @@
     state: "r_hand"
 
 - type: entity
-  id: LeftFootProtoVox
-  name: left proto-vox foot # Starlight, quotation marks removed
-  parent: LeftFootProtogen
+  id: LeftFootNeoVox
+  name: left neo-vox foot
+  parent: LeftFootNeocyte
   components:
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
     state: "l_foot"
 
 - type: entity
-  id: RightFootProtoVox
-  name: right proto-vox foot # Starlight, quotation marks removed
-  parent: RightFootProtogen
+  id: RightFootNeoVox
+  name: right neo-vox foot
+  parent: RightFootNeocyte
   components:
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi

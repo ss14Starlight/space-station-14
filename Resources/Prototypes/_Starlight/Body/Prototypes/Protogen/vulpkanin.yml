@@ -4,7 +4,7 @@
   root: torso
   slots:
     head:
-      part: HeadProtoVulp
+      part: HeadNeoVulp
       connections:
       - torso
       organs:
@@ -14,7 +14,7 @@
         eye_implant: null
         brain_implant: null
     torso:
-      part: TorsoProtoVulp
+      part: TorsoNeoVulp
       connections:
       - right arm
       - left arm
@@ -28,19 +28,19 @@
         kidneys: OrganProtogenKidneys
         cavity: null
     right arm:
-      part: RightArmProtoVulp
+      part: RightArmNeoVulp
       connections:
       - right hand
     left arm:
-      part: LeftArmProtoVulp
+      part: LeftArmNeoVulp
       connections:
       - left hand
     right hand:
-      part: RightHandProtoVulp
+      part: RightHandNeoVulp
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandProtoVulp
+      part: LeftHandNeoVulp
       organs:
         hand_implant: null
     right leg:

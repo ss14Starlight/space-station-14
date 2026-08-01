@@ -36,11 +36,11 @@
       connections:
       - left hand
     right hand:
-      part: RightHandProtoVox
+      part: RightHandNeoVox
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandProtoVox
+      part: LeftHandNeoVox
       organs:
         hand_implant: null
     right leg:
@@ -52,6 +52,6 @@
       connections:
       - left foot
     right foot:
-      part: RightFootProtoVox
+      part: RightFootNeoVox
     left foot:
-      part: LeftFootProtoVox
+      part: LeftFootNeoVox
