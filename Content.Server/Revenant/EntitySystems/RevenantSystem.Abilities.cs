@@ -227,7 +227,11 @@ public sealed partial class RevenantSystem
         args.Handled = true;
     }
 
-    //Creates ice tiles and adds freezon per ice tile
+    #region Starlight
+    
+    ///<summary>
+    /// Creates ice tiles and adds freezon per ice tile
+    ///</summary>
     private void OnChillAction(EntityUid uid, RevenantComponent component, RevenantChillActionEvent args)
     {
         if (args.Handled)
@@ -278,6 +282,7 @@ public sealed partial class RevenantSystem
 
         return;
     }
+    #endregion
 
     private void OnDefileAction(EntityUid uid, RevenantComponent component, RevenantDefileActionEvent args)
     {
