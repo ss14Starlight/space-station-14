@@ -8,7 +8,7 @@
   showInVote: true
   rules:
     - CosmicCult
-    - SubGamemodesRuleLessThieves
+    - SubGamemodesRuleConversion
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation

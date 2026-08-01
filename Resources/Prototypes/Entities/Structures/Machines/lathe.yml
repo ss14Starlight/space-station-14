@@ -142,6 +142,7 @@
     - RollerBedsStatic
     - LightsStatic
     - ServiceStatic
+    - StarlightContainersStatic # Starlight
     - PowerCellsStatic
     - ElectronicsStatic
     # Starlight Start
@@ -217,7 +218,6 @@
     - ChemistryStatic
     dynamicPacks:
     - ScienceBlueSpace # Starlight
-    - ScienceDarkBreacher # Starlight
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -234,6 +234,7 @@
     - StarlightProtolatheLootable # Starlight start
     - StarlightScienceWeapons
     - WirelessCameraHandheld # MOFFSTATION CHANGE - Adds wireless handheld camera
+    - StarlightCargoDynamic
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -292,6 +293,7 @@
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
     - StarlightVendorBoards # Starlight
+    - ElectronicsStatic # Starlight
     dynamicPacks:
     - SecurityScienceBlueSpace # Starlight
     - StarlightShuttleBoards # Starlight
@@ -308,12 +310,14 @@
     - StarlightCircuitImprinterLootable
     - ReactorCircuitboards # FH edit
     - OublietteCircuitBoard # Starlight
+    - ScienceDarkBreacher # Starlight
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
-    emagStaticPacks: # Starlight
-    - StarlightDangerousLawboards # Starlight
-    - StarlightSyndicateVendorBoards # Starlight
+    emagStaticPacks: # Starlight start
+    - StarlightDangerousLawboards
+    - StarlightSyndicateVendorBoards
+    - StarlightLatheBoardsEmag # Starlight end
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -447,14 +451,14 @@
     - NullSpaceDrainer
     - SecurityPracticeStatic
     - StarlightSecurityAmmoStatic
-    - SecurityWeaponsStatic # Starlight end
+    - SecurityWeaponsStatic
+    - TapeRecorder # Starlight end
     dynamicPacks:
     - SecurityScienceBlueSpace # Stalright
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
     - SecurityDisablers
     - StarlightDefenseStatic # starlight start
-    - SecurityCyberLimbs
     - StarlightSecurityEquipment
     - StarlightSecurityBoards
     - StarlightSecurityExplosives
@@ -462,9 +466,9 @@
     - StarlightSecurityWeapons
     - SecurityDisablers
     - SecurityCyberLimbs
-    - SecurityImplants # 🌟Starlight🌟
+    - SecurityImplants
     - StarlightSecurityMechsWeapons
-    - StarlightSecurityTechFabLootable
+    - StarlightSecurityTechFabLootable # Starlight end
   #region Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:
@@ -476,6 +480,8 @@
     - SyndicateAmmoStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
+  - type: StealTarget # Starlight
+    stealGroup: SecureTechFabCircuitboard # Starlight
   - type: OreSiloClient
 
 - type: entity
@@ -554,10 +560,18 @@
     - Chemistry
     - StarlightBudgetCyberOrgansDynamic
     - StarlightMedicalTechFabLootable
+  - type: EmagLatheRecipes # Starlight start
+    emagStaticPacks:
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic
+    emagDynamicPacks:
+    - SecurityCyberLimbs
+    - SecurityImplants # Starlight end
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
-    stealGroup: MedicalTechFabCircuitboard
+    stealGroup: DepartmentalTechFabCircuitboard # Starlight
   - type: OreSiloClient
 
 - type: entity

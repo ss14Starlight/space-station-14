@@ -14,7 +14,7 @@
   playTimeTracker: AntagVampire
 
 - type: antagSpecifier
-  parent: RestrictedAntag
+  parent: VampireRestrictedAntag
   id: Vampire
   prefRoles:
   - Vampire

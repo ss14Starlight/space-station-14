@@ -44,6 +44,7 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
     private const float GuideRadius = 0.05f;
     private const float GuideOffset = 0.125f;
     // Carpmosia-end - 5 pipe layers
+    private const float AtmosGhostOpacity = 0.5f; // Starlight
 
     public AlignAtmosPipeLayers(PlacementManager pMan) : base(pMan)
     {
@@ -53,6 +54,11 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
         _transformSystem = _entityManager.System<SharedTransformSystem>();
         _pipeLayersSystem = _entityManager.System<SharedAtmosPipeLayersSystem>();
         _spriteSystem = _entityManager.System<SpriteSystem>();
+
+        // Starlight START: Make atmos ghosts transparent to prevent big sprites from blocking visibility of their own pipes.
+        ValidPlaceColor = ValidPlaceColor.WithAlpha(AtmosGhostOpacity);
+        InvalidPlaceColor = InvalidPlaceColor.WithAlpha(AtmosGhostOpacity);
+        // Starlight END
     }
 
     /// <inheritdoc/>
@@ -199,14 +205,27 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
             if (newProto.TryGetComponent<SpriteComponent>(out var sprite, _entityManager.ComponentFactory))
             {
                 var textures = new List<IDirectionalTextureProvider>();
+                var offsets = new List<Vector2>(); // Starlight: Per-layer offset
 
                 foreach (var spriteLayer in sprite.AllLayers)
                 {
-                    if (spriteLayer.ActualRsi?.Path != null && spriteLayer.RsiState.Name != null)
-                        textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name)));
+                    if (spriteLayer.ActualRsi?.Path == null || spriteLayer.RsiState.Name == null) continue; // Starlight: Inverted & continue
+                    textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name))); // Starlight
+                    offsets.Add(sprite.Offset + ((SpriteComponent.Layer)spriteLayer).Offset); // Starlight: Save each layers' offset
                 }
 
                 pManager.CurrentTextures = textures;
+
+                // Starlight START: Reapply each layer's own offset to the ghost.
+                if (pManager.CurrentPlacementOverlayEntity is { } overlay
+                    && _entityManager.TryGetComponent<SpriteComponent>(overlay, out var overlaySprite))
+                {
+                    for (var i = 0; i < offsets.Count; i++)
+                        _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, offsets[i]);
+
+                    overlaySprite.NoRotation = sprite.NoRotation;
+                }
+                // Starlight END
             }
         }
     }
