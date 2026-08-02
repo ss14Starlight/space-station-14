@@ -399,19 +399,8 @@
       stock: 1
 
 - type: listing
-  id: VendorPlushieGlados
-  productEntity: PlushieGlados
-  cost:
-    NTCredit: 20
-  categories:
-    - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-- type: listing
-  id: VendorPlushieWEH
-  productEntity: PlushieWEH
+  id: VendorPlushieBorg
+  productEntity: PlushieBorg
   cost:
     NTCredit: 20
   categories:

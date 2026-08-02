@@ -47,18 +47,6 @@
     count: 6
 
 - type: localizedDataset
-  id: PlushiesGlados
-  values:
-    prefix: plushie-glados-
-    count: 9
-
-- type: localizedDataset
-  id: PlushiesWEH
-  values:
-    prefix: plushie-weh-
-    count: 6
-
-- type: localizedDataset
   id: PlushiesRufia
   values:
     prefix: plushie-rufia-
