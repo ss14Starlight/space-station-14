@@ -348,3 +348,20 @@
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookIceOrb
+  name: spellbook-iceorb-name
+  description: spellbook-iceorb-desc
+  priority: 18
+  productAction: ActionIceOrb
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer

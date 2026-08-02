@@ -127,3 +127,27 @@
     tts: action-speech-spell-iceshard-tts
     modifier: Spell
   - type: EorgPreventAction
+
+- type: entity
+  parent: ActionFireball
+  id: ActionIceOrb
+  name: Heart of Winter
+  description: Unleash a slow moving orb of ice, the orb throws icy shards every seconds. Also destroys anything non living on impact. (3 min cooldown)
+  components:
+  - type: Action
+    useDelay: 180
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: iceorb
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileIceOrb
+      projectileSpeed: 2
+  - type: SpeakOnAction
+    sentence: action-speech-spell-iceorb
+    tts: action-speech-spell-iceorb-tts
+    modifier: Spell

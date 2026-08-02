@@ -39,3 +39,5 @@ action-speech-spell-articglare = ULULATUS ARTICI !!
 action-speech-spell-articglare-tts = OULOULATOUS ARTIKI!!
 action-speech-spell-iceshard = ALGOR TE CAPIAT !
 action-speech-spell-iceshard-tts = ALGOT TEY CAPIAT!
+action-speech-spell-iceorb = MORS FREGIDA EST !
+action-speech-spell-iceorb-tts = MORS FRIGUIDA ESTE!

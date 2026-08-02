@@ -18,6 +18,15 @@
     },
     {
       "name": "iceshard"
+    },
+    {
+      "name": "iceorb",
+      "delays": [
+       [
+        0.5,
+        0.5
+        ]
+       ]
     }
   ]
 }

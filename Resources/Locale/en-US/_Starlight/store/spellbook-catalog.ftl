@@ -55,3 +55,6 @@ spellbook-articglare-desc = Show them the fury of the artic, freezing anyone in 
 
 spellbook-iceshard-name = Ice Shard
 spellbook-iceshard-desc = Throw a sharp shard of ice that will slice and freeze the first person it touches.
+
+spellbook-iceorb-name = Heart of winter
+spellbook-iceorb-desc = Unleash a slow moving orb of ice, the orb periodicly throws shard around.
