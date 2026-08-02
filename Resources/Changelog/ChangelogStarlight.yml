@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (Reach) Removed some catwalks to see the BEAUTIFUL DIAGONAL TILES.
-    type: Remove
-  id: 406809
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: Johnny
-  changes:
   - message: (Reach) Piping in general hallways have been reworked to put vents in more accessible spots.
     type: Tweak
   id: 406810
@@ -2799,4 +2792,11 @@ Entries:
   id: 407208
   time: '2026-08-01T19:14:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: redmushie
+  changes:
+  - message: Fixed tall gas tank pipe connection visuals.
+    type: Fix
+  id: 407209
+  time: '2026-08-02T07:22:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5449
 Order: -1
