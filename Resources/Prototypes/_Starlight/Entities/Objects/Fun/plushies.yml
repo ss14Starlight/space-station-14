@@ -192,11 +192,11 @@
   description: Some sort of moth-cat hybrid. You can't help but find it really cute. Can squeak and meow!
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/koni_plush.rsi
+      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
       state: icon
     - type: Item
       size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/koni_plush.rsi
+      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
     - type: EmitSoundOnUse
       sound:
         collection: CatMothSounds
@@ -220,7 +220,7 @@
         collection: CatMothScreams
     - type: Clothing
       quickEquip: false
-      sprite: _Starlight/Objects/Fun/Plushies/koni_plush.rsi
+      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
       slots:
         - HEAD
       clothingVisuals:
