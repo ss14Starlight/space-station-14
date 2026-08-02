@@ -487,30 +487,6 @@
       CottonBurger: LizardPlushie
 
 - type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieRedwoods
-  name: redwoods plushie
-  description: From being turned into a female vulpkanin and into a marketable plushie, they really can't catch a break. Studies show hugging it improves morale.
-  components:
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/redwoods_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/redwoods_plushie.rsi
-      layers:
-        - state: icon
-    - type: ItemToggle
-      onUse: false
-      verbToggleOn: plushie-voicebox-activate
-      verbToggleOff: plushie-voicebox-deactivate
-    - type: ComponentToggler
-      components:
-        - type: DatasetVocalizer
-          dataset: PlushiesRedwoods
-        - type: TextToSpeech
-          voice: slr1
-
-- type: entity
   parent: BasePlushie
   id: PlushieDoxes #Weh!
   name: doxes-the-captain plushie

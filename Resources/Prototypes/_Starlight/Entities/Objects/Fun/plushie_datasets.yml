@@ -17,12 +17,6 @@
     count: 5
 
 - type: localizedDataset
-  id: PlushiesRedwoods
-  values:
-    prefix: plushie-redwoods-
-    count: 8
-
-- type: localizedDataset
   id: PlushiesVirus
   values:
     prefix: plushie-virus-

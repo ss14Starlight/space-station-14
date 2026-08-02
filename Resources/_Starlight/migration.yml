@@ -165,7 +165,7 @@ GasPipeSubfloorTankAlt4: GasPipeTankSubfloorAlt4
 #2026-08-01 - Plushie rework. Lots of maps used these for decor, so we'll swap removed plushies with another one so the space isn't left empty.
 AbductorPlushie: PlushieLizard
 PlushieAmali: PlushieLizard
-PlushieAsh: PlushieLizard
+PlushieAsh: PlushieVulp
 AxolotlPlushie: PlushieLizard
 PlushieBarfo: PlushieLizard
 BorbPlushie: PlushieLizard
@@ -193,7 +193,7 @@ PlushieKilla: PlushieLizard
 PlushieKiller: PlushieLizard
 PlushieKiosha: PlushieLizard
 KittenPlushie: PlushieLizard
-PlushieLance: PlushieLizard
+PlushieLance: PlushieVulp
 LivvyPlush: PlushieLizard
 PlushieMalachi: PlushieLizard
 PlushieMatthew: PlushieLizard
@@ -208,3 +208,4 @@ PlushieOp: PlushieLizard
 PlushiePercy: PlushieLizard
 PigPlushie: PlushieLizard
 PlushiePoley: PlushieLizardJobSalvagespecialist
+PlushieRedwoods: PlushieVulp
