@@ -36,7 +36,7 @@
           embedOnThrow: false
 
       unsheathed: !type:ItemSwitchState
-        verb: unsheath
+        verb: unsheathe
         sprite:
           sprite: _Starlight/Objects/Weapons/Melee/switchblade.rsi
           state: icon
