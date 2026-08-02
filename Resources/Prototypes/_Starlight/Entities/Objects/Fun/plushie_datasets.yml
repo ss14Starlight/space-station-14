@@ -21,9 +21,3 @@
   values:
     prefix: plushie-virus-
     count: 5
-
-- type: localizedDataset
-  id: PlushiesRhea
-  values:
-    prefix: plushie-rhea-
-    count: 6
