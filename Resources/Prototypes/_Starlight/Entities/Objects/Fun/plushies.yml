@@ -294,42 +294,6 @@
 
 - type: entity
   parent: BasePlushie
-  id: KittenPlushie
-  name: kitten plushie
-  description: A blue kitten! Just like they raise on Vernethauz II!
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/kitten_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/kitten_plushie.rsi
-    state: icon
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/Animals/cat_meow.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Animals/cat_meow2.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Animals/cat_meow.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Animals/cat_meow2.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/Items/Toys/toysqueak3.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/Animals/cat_hiss.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: KittenPlushie
-
-- type: entity
-  parent: BasePlushie
   id: PigPlushie
   name: pig plushie
   description: Head, round. Eyes, filled with optimism. Smells, kinda like bacon.

@@ -76,17 +76,6 @@
     stock: 1
 
 - type: listing
-  id: VendorPlushieKitten
-  productEntity: KittenPlushie
-  cost:
-    NTCredit: 16
-  categories:
-  - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
-
-- type: listing
   id: VendorPlushiePig
   productEntity: PigPlushie
   cost:
