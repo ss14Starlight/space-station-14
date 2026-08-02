@@ -223,7 +223,7 @@
 
 - type: listing
   id: VendorPlushiePanda
-  productEntity: PandaPlushie
+  productEntity: PlushiePanda
   cost:
     NTCredit: 20
   categories:

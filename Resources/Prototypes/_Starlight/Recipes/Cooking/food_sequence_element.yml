@@ -64,7 +64,7 @@
 
 #Panda Plushie
 - type: foodSequenceElement
-  id: PandaPlushie
+  id: PlushiePanda
   scale: 0.75, 0.75
   name: food-sequence-cotton-burger-content-plushie-panda
   sprites:
