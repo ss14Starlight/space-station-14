@@ -255,29 +255,6 @@
 
 #Marketable crewmember plushies
 - type: listing
-  id: VendorPlushieMorgana
-  productEntity: PlushieMorgana
-  cost:
-    NTCredit: 20
-  categories:
-  - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-
-- type: listing
-  id: VendorPlushieMorganaRound
-  productEntity: PlushieMorganaRound
-  cost:
-    NTCredit: 20
-  categories:
-  - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: VendorPlushieOog
   productEntity: PlushieOog
   cost:
