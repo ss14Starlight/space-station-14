@@ -74,32 +74,6 @@
         voice: ICASSP102
 
 - type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieLance
-  name: lance plushie
-  description: Turning the QM into a marketable plushie was not as profitable a venture as many in the cargo department had hoped
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
-    layers:
-      - state: icon
-      - state: icon-unshaded
-        shader: unshaded
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesLance
-      - type: TextToSpeech
-        voice: ICASSP105
-
-- type: entity
   parent: PlushieHuman
   id: PlushieOog
   name: oog-man plushie #I AM OOG-MAN

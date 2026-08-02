@@ -13,7 +13,7 @@
     - id: DoorRemoteCargo
     - id: AstroNavCartridge
     - id: ClothingHandsKnuckleDustersQM
-    - id: PlushieLance # Starlight start
+    # Starlight start
     - id: RadioHandheldExpedition
     - id: ClothingOuterHardsuitLuxmax
     - id: SalvageShuttleConsoleCircuitboard
@@ -55,7 +55,8 @@
       - !type:GamemodeCondition
         presets:
         - Greenshift
-        - Sandbox #Starlight end
+        - Sandbox
+    #Starlight end
 
 - type: entity
   id: LockerQuarterMasterFilled
