@@ -575,7 +575,7 @@
   components:
   - type: Item
     size: Small
-    sprite: &sprite _Starlight/Objects/Fun/Plushies/sea_bunny.rsi
+    sprite: &sprite _Starlight/Objects/Fun/Plushies/sea_bunny_plushie.rsi
   - type: Sprite
     sprite: *sprite
     state: icon

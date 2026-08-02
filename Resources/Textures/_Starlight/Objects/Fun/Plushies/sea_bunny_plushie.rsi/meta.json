@@ -11,21 +11,21 @@
     [
         {
             "name": "icon",
-            "copyright": "briochebear(discord)"
+            "copyright": "briochebear (Discord)"
         },
         {
             "name": "inhand-left",
-            "copyright": "briochebear(discord)",
+            "copyright": "briochebear (Discord)",
             "directions": 4
         },
         {
             "name": "inhand-right",
-            "copyright": "briochebear(discord)",
+            "copyright": "briochebear (Discord)",
             "directions": 4
         },
         {
             "name": "equipped-HELMET",
-            "copyright": "briochebear(discord)",
+            "copyright": "briochebear (Discord)",
             "directions": 4
         }
     ]
