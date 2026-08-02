@@ -3,6 +3,16 @@
   copyright: "Original sound by Radio TV Solutions"
   source: "https://www.youtube.com/watch?v=yaHrneT9BfU"
 
+- files: ["gnome_murderer.ogg"]
+  license: "CC0-1.0"
+  copyright: "Original sound by Radio TV Solutions"
+  source: "https://www.youtube.com/watch?v=yaHrneT9BfU"
+
+- files: ["gnome_stop.ogg"]
+  license: "CC0-1.0"
+  copyright: "Original sound by Radio TV Solutions"
+  source: "https://www.youtube.com/watch?v=yaHrneT9BfU"
+
 - files: ["panda_noise1.ogg"]
   license: "CC0-1.0"
   copyright: "None"

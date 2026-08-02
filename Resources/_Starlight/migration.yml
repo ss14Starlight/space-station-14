@@ -183,7 +183,7 @@ PlushieFixes: PlushieLizardJobChiefengineer
 SquishimsFrog: PlushieFrogSquishims # cleaned up ID
 PlushieGlados: PlushieBorg # made generic
 PlushieWEH: PlushieBorg # made generic
-GnomePlushie: PlushieLizard
+GnomePlushie: PlushieGnome # cleaned up ID
 GoatPlushie: PlushieLizard
 IanPlushie: ToyIan # upstream's is better
 LisaPlushie: ToyIan # upstream's is better
