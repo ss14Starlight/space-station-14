@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Fixed a missing disposals pipe by the stage, which caused trash that fell out of disposals to rip up the floor tiles.
-    type: Fix
-  id: 406820
-  time: '2026-07-23T09:42:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5233
-- author: Caws
-  changes:
   - message: Fixed a niche UI crash/flickering related to the new gases, Ulnitranium and ZXA, when using certain Atmos devices.
     type: Fix
   id: 406821
@@ -2799,4 +2792,11 @@ Entries:
   id: 407219
   time: '2026-08-02T11:44:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5450
+- author: redmushie
+  changes:
+  - message: Admin ghost PDA no longer shrinks the ghost mass scanner range.
+    type: Fix
+  id: 407220
+  time: '2026-08-02T17:12:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5470
 Order: -1
