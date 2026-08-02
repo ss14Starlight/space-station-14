@@ -145,7 +145,7 @@
   components: *subfloorAlt4
 
 # Subfloor gas tank (1500mol) END
-# Tall gas tank (1500mol) BEGIN
+# Tall gas tank (1000mol) BEGIN
 
 - type: entity
   parent: GasPipeTankTall
