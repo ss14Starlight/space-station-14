@@ -1,6 +1,6 @@
 <Document>
   # Neocytes
-<!-- Heavily modified from Far Horizons' version. No Synth, Damage values changes, etc. -->
+
   <Box>
     <GuideEntityEmbed Entity="AppearanceNeocyte" Caption=""/>
   </Box>

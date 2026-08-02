@@ -1,6 +1,6 @@
 <Document>
   # Neo-Kin
-<!-- Starlight, removed FH lore.-->
+
   <Box>
     <GuideEntityEmbed Entity="AppearanceNeoKin" Caption=""/>
   </Box>
