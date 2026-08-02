@@ -330,14 +330,3 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
-
-- type: listing
-  id: VendorPlushieRemiie
-  productEntity: PlushieRemiie
-  cost:
-    NTCredit: 20
-  categories:
-    - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1

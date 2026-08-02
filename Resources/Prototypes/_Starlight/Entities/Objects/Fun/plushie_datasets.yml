@@ -27,9 +27,3 @@
   values:
     prefix: plushie-rhea-
     count: 6
-
-- type: localizedDataset
-  id: PlushiesRemiie
-  values:
-    prefix: plushie-remiie-
-    count: 6
