@@ -4,6 +4,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.DeviceLinking;
 using Content.Shared.Radio.Components; // Moffstation - Alt click to lower volume.
 using Content.Shared.Verbs; // Moffstation - Alt click to lower volume.
 
@@ -22,6 +23,35 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         SubscribeLocalEvent<StationRadioReceiverComponent, PowerChangedEvent>(OnPowerChanged);
 
         SubscribeLocalEvent<StationRadioReceiverComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs); // Moffstation - Alt click to lower volume.
+    }
+
+    /// <summary>
+    /// Resolves whether Radio Rig is connected to a Radio Server that has power,
+    /// and whether or not it can broadcast.
+    /// </summary>
+    public bool TryGetLinkedPoweredServer(EntityUid uid, out EntityUid server)
+    {
+        server = default;
+
+        if (!TryComp<DeviceLinkSourceComponent>(uid, out var source))
+            return false;
+
+        foreach (var linkedRig in source.LinkedPorts.Keys)
+        {
+            if (!HasComp<RadioRigComponent>(linkedRig) || !TryComp<DeviceLinkSinkComponent>(linkedRig, out var sink))
+                continue;
+
+            foreach (var linkedServer in sink.LinkedSources)
+            {
+                if (!HasComp<StationRadioServerComponent>(linkedServer) || !_power.IsPowered(linkedServer))
+                    continue;
+
+                server = linkedServer;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args)

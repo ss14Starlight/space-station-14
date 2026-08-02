@@ -8,6 +8,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
+using Content.Shared._Goobstation.StationRadio.Systems;
 
 namespace Content.Shared._Goobstation.StationRadio.Systems;
 
@@ -17,6 +18,7 @@ public sealed partial class VinylPlayerSystem : EntitySystem
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private StationRadioReceiverSystem _stationRadio = default!;
 
     public override void Initialize()
     {
@@ -32,7 +34,7 @@ public sealed partial class VinylPlayerSystem : EntitySystem
         if (comp.SoundEntity != null && !args.Powered)
             comp.SoundEntity = _audio.Stop(comp.SoundEntity);
 
-        if (!CheckForRadioRig(uid))
+        if (!_stationRadio.TryGetLinkedPoweredServer(uid, out _))
             return;
 
         var query = EntityQueryEnumerator<StationRadioReceiverComponent>();

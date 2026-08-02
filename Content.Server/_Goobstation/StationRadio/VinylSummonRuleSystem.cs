@@ -4,7 +4,6 @@ using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared.Communications;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.DeviceLinking;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Random;
@@ -18,6 +17,7 @@ using Robust.Shared.Timing;
 using System.Linq;
 using Content.Shared.Radio.Components;
 using Content.Server.Chat.Systems;
+using Content.Shared._Goobstation.StationRadio.Systems;
 
 namespace Content.Server._Goobstation.StationRadio;
 
@@ -37,6 +37,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private SharedPopupSystem _popups = default!;
     [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private readonly StationRadioReceiverSystem _stationRadio = default!;
 
     private record struct TrackingData(EntityUid VinylPlayerUid, TimeSpan EndTime);
     private readonly Dictionary<EntityUid, TrackingData> _trackingVinyls = new();
@@ -82,7 +83,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         }
 
         // Check if vinyl player is connected to the radio system
-        if (!CheckForRadioConnection(playerUid))
+        if (!_stationRadio.TryGetLinkedPoweredServer(playerUid, out _))
         {
             _popups.PopupPredicted(Loc.GetString("vinyl-popout-no-radio-connection"), playerUid, null, PopupType.Medium);
             QueueSafeEject();
@@ -139,7 +140,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             }
 
             // Check if vinyl player is still connected to the radio system
-            if (!CheckForRadioConnection(data.VinylPlayerUid))
+            if (!_stationRadio.TryGetLinkedPoweredServer(data.VinylPlayerUid, out _))
             {
                 _trackingVinyls.Remove(vinylUid);
                 _popups.PopupPredicted(Loc.GetString("vinyl-popout-no-radio-connection"), data.VinylPlayerUid, null, PopupType.Medium);
@@ -225,31 +226,5 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
 
         // Assume it's a direct game rule entity ID
         return gameRuleIdentifier;
-    }
-
-    private bool CheckForRadioConnection(EntityUid uid)
-    {
-        if (!TryComp<DeviceLinkSourceComponent>(uid, out var source))
-            return false;
-
-        foreach (var linkedRig in source.LinkedPorts.Keys)
-        {
-            // Check if the radio rig is connected.
-            if (!HasComp<RadioRigComponent>(linkedRig)
-                || !TryComp<DeviceLinkSinkComponent>(linkedRig, out var sink))
-                continue;
-
-            // Check if the radio server is connected.
-            foreach (var linkedServer in sink.LinkedSources)
-            {
-                if (!TryComp<StationRadioServerComponent>(linkedServer, out var _)
-                    || !_power.IsPowered(linkedServer))
-                    continue;
-
-                return true;
-            }
-        }
-
-        return false;
     }
 }
