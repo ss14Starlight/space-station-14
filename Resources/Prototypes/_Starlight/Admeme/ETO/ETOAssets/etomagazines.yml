@@ -1,5 +1,5 @@
 - type: entity
-  id: MagazinePistolSubMachineGunBottomMountedDD
+  id: MagazinePistolSubMachineGunBottomMountedDDBase
   name: DD-22 magazine (.35 auto bottom-mounted)
   parent: [ BaseItem, BaseSecurityContraband ]
   description: A unique 64-round magazine that loads into the DD22, holds .35 auto.
@@ -14,6 +14,12 @@
       tags:
       - CartridgePistol
     capacity: 64
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/weapons/ammo/bizonmag.rsi
     layers:
@@ -33,11 +39,8 @@
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDSP
   name: PS DD-22 magazine (.35 SP bottom-mounted)
-  parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
   components:
-  - type: Tag
-    tags:
-      - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolSP
@@ -50,19 +53,12 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDFMJ
   name: PS DD-22 magazine (.35 FMJ bottom-mounted)
-  parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
   components:
-  - type: Tag
-    tags:
-      - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolFMJ
@@ -75,19 +71,12 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDHP
   name: PS DD-22 magazine (.35 HP bottom-mounted)
-  parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
   components:
-  - type: Tag
-    tags:
-      - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolHP
@@ -100,19 +89,12 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDAP
   name: PS DD-22 magazine (.35 AP bottom-mounted)
-  parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
   components:
-  - type: Tag
-    tags:
-      - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolAP
@@ -125,19 +107,12 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDPractice
   name: PS DD-22 magazine (.35 Practice bottom-mounted)
-  parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
   components:
-  - type: Tag
-    tags:
-      - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolPractice
@@ -150,19 +125,12 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDIncendiary
   name: PS DD-22 magazine (.35 Incendiary bottom-mounted)
-  parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
   components:
-  - type: Tag
-    tags:
-      - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolIncendiary
@@ -175,19 +143,12 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDUranium
   name: PS DD-22 magazine (.35 Uranium bottom-mounted)
-  parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
   components:
-  - type: Tag
-    tags:
-      - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolUranium
@@ -200,20 +161,13 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDImprovised
   name: PS DD-22 magazine (.35 Improvised bottom-mounted)
-  parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
   description: A unique 64-round magazine that loads into the DD-22, holds .35 ammo. Some idiot filled this one with improvised rounds.
   components:
-  - type: Tag
-    tags:
-      - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolImprovised
@@ -226,21 +180,14 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDAntimaterial
   suffix: Admeme
   name: PS DD-22 magazine (.60 Antimaterial bottom-mounted)
-  parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
   description: A unique 64-round magazine that loads into the DD-22, usually holds .35 auto, however this magazine was modified to hold Antimaterial rounds, you've got no clue how it works and you're scared to see the outcome.
   components:
-  - type: Tag
-    tags:
-      - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgeAntiMateriel
@@ -253,20 +200,12 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
 
 - type: entity
   id: MagazinePistolSubMachineGunBottomMountedDDRubber
   name: PS DD-22 magazine (.35 Rubber bottom-mounted)
-  parent: [ MagazinePistolSubMachineGunBottomMountedDD, BaseSecurityContraband ]
-
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
   components:
-  - type: Tag
-    tags:
-      - MagazinePistolSubMachineGunBottomMountedDD
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistolRubber
@@ -279,7 +218,3 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: Appearance
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
