@@ -13,7 +13,6 @@ namespace Content.Shared._Starlight.CosmicCult;
 public abstract partial class SharedCosmicCultSystem : EntitySystem
 {
     [Dependency] private SharedMindSystem _mind = default!;
-
     [Dependency] private SharedRoleSystem _role = default!;
 
     public override void Initialize()
