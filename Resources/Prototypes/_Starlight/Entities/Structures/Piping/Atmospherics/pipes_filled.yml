@@ -3,7 +3,8 @@
 - type: entity
   parent: GasPipeTankSubfloor
   id: GasPipeTankSubfloorFilledAir4500
-  suffix: Air, 4500kPa
+  suffix: DO NOT MAP, Air, 4500kPa
+  categories: [ DoNotMap ]
   components:
     - type: AtmosPipeLayers
       alternativePrototypes:
@@ -21,7 +22,7 @@
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir4500]
   id: GasPipeTankSubfloorFilledAir4500Alt1
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       drawdepth: ThinPipeAlt1
@@ -30,7 +31,7 @@
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledAir4500]
   id: GasPipeTankSubfloorFilledAir4500Alt2
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       drawdepth: ThinPipeAlt2
@@ -39,7 +40,7 @@
 - type: entity
   parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledAir4500]
   id: GasPipeTankSubfloorFilledAir4500Alt3
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       drawdepth: ThinPipeAlt3
@@ -48,7 +49,7 @@
 - type: entity
   parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledAir4500]
   id: GasPipeTankSubfloorFilledAir4500Alt4
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       drawdepth: ThinPipeAlt4
@@ -60,7 +61,8 @@
 - type: entity
   parent: GasPipeTankSubfloor
   id: GasPipeTankSubfloorFilledAir9000
-  suffix: Air, 9000kPa
+  suffix: DO NOT MAP, Air, 9000kPa
+  categories: [ DoNotMap ]
   components:
     - type: AtmosPipeLayers
       alternativePrototypes:
@@ -78,7 +80,7 @@
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir9000]
   id: GasPipeTankSubfloorFilledAir9000Alt1
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: ThinPipeAlt1
@@ -87,7 +89,7 @@
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledAir9000]
   id: GasPipeTankSubfloorFilledAir9000Alt2
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: ThinPipeAlt2
@@ -96,7 +98,7 @@
 - type: entity
   parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledAir9000]
   id: GasPipeTankSubfloorFilledAir9000Alt3
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: ThinPipeAlt3
@@ -105,7 +107,7 @@
 - type: entity
   parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledAir9000]
   id: GasPipeTankSubfloorFilledAir9000Alt4
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: ThinPipeAlt4
@@ -117,7 +119,8 @@
 - type: entity
   parent: GasPipeTankTall
   id: GasPipeTankTallFilledAir4500
-  suffix: Air, 4500kPa
+  suffix: DO NOT MAP, Air, 4500kPa
+  categories: [ DoNotMap ]
   components:
     - type: AtmosPipeLayers
       alternativePrototypes:
@@ -135,7 +138,7 @@
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir4500]
   id: GasPipeTankTallFilledAir4500Alt1
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
@@ -143,7 +146,7 @@
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankTallFilledAir4500]
   id: GasPipeTankTallFilledAir4500Alt2
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
@@ -151,7 +154,7 @@
 - type: entity
   parent: [GasPipeLayerAlt3, GasPipeTankTallFilledAir4500]
   id: GasPipeTankTallFilledAir4500Alt3
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
@@ -159,7 +162,7 @@
 - type: entity
   parent: [GasPipeLayerAlt4, GasPipeTankTallFilledAir4500]
   id: GasPipeTankTallFilledAir4500Alt4
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
@@ -170,7 +173,8 @@
 - type: entity
   parent: GasPipeTankTall
   id: GasPipeTankTallFilledAir9000
-  suffix: Air, 9000kPa
+  suffix: DO NOT MAP, Air, 9000kPa
+  categories: [ DoNotMap ]
   components:
     - type: AtmosPipeLayers
       alternativePrototypes:
@@ -188,7 +192,7 @@
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir9000]
   id: GasPipeTankTallFilledAir9000Alt1
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
@@ -196,7 +200,7 @@
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankTallFilledAir9000]
   id: GasPipeTankTallFilledAir9000Alt2
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
@@ -204,7 +208,7 @@
 - type: entity
   parent: [GasPipeLayerAlt3, GasPipeTankTallFilledAir9000]
   id: GasPipeTankTallFilledAir9000Alt3
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
@@ -212,7 +216,7 @@
 - type: entity
   parent: [GasPipeLayerAlt4, GasPipeTankTallFilledAir9000]
   id: GasPipeTankTallFilledAir9000Alt4
-  categories: [ HideSpawnMenu ]
+  categories: [ DoNotMap, HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
