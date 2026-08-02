@@ -113,7 +113,7 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
         var evt = new MalignFragmentationEvent(ent, target);
         RaiseLocalEvent(target, ref evt);
 
-         if (!evt.Succeeded)
+        if (!evt.Succeeded)
         {
             _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), ent, ent);
             return;
