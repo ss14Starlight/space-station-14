@@ -1,32 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Administration Glasses/hud, Skills Sunglasses/hud, and Central Command Glasses can now all see accesses present on a PDA/ID by examining it directly. Only CC Glasses can do this by examining a player holding a PDA/ID.
-    type: Add
-  id: 406813
-  time: '2026-07-23T08:49:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5181
-- author: Mack
-  changes:
-  - message: You can now see the pipes from plumbing compatible machines using a t-ray scanner.
-    type: Tweak
-  id: 406814
-  time: '2026-07-23T09:14:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5197
-- author: Johnny
-  changes:
-  - message: (CC_SC17) Added stasis beds to medbay.
-    type: Add
-  id: 406815
-  time: '2026-07-23T09:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5246
-- author: Johnny
-  changes:
-  - message: (CC_SC17) Added some BEAUTIFUL DIAGONAL TILES.
-    type: Add
-  id: 406816
-  time: '2026-07-23T09:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5246
 - author: Johnny
   changes:
   - message: (CC_SC17) Removed the research server in exchange for a mat silo.
@@ -2799,4 +2771,32 @@ Entries:
   id: 407212
   time: '2026-08-02T08:38:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5452
+- author: RedSpeeds
+  changes:
+  - message: Fixed Revolutionary comms key being available in a dungeon.
+    type: Fix
+  id: 407213
+  time: '2026-08-02T10:24:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5448
+- author: OMEGA
+  changes:
+  - message: Switchblades and box cutters now map to the right state.
+    type: Fix
+  id: 407214
+  time: '2026-08-02T10:54:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5447
+- author: OMEGA
+  changes:
+  - message: Items that use the switch system now display 'Switch', instead of 'fix-switchblade-switch-verbs'.
+    type: Fix
+  id: 407215
+  time: '2026-08-02T10:54:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5447
+- author: wonderfulnewworld
+  changes:
+  - message: Techfab flatpacks actually flatpacks techfab.
+    type: Fix
+  id: 407216
+  time: '2026-08-02T10:54:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5466
 Order: -1
