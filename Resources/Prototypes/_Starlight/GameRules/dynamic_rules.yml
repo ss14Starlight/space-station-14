@@ -59,7 +59,7 @@
             min: 5
         - id: Vampire
           weight: 15
-          prob: 0.90 # Vampire can have a small chance to fail too, it's the other "most likely" gamemode
+          prob: 0.90 # Vampire can have a slightly higher chance to fail than the other gamemodes, it's the other "most likely" gamemode
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
