@@ -422,30 +422,6 @@
           voice: mozillaAu14
 
 - type: entity
-  parent: PlushieHuman
-  id: PlushiePoley
-  name: poley plushie
-  description: Geniuine Worst Miner, But Best At Meatshield.
-  components:
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/poley_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/poley_plushie.rsi
-      layers:
-        - state: icon
-    - type: ItemToggle
-      onUse: false
-      verbToggleOn: plushie-voicebox-activate
-      verbToggleOff: plushie-voicebox-deactivate
-    - type: ComponentToggler
-      components:
-        - type: DatasetVocalizer
-          dataset: PlushiesPoley
-        - type: TextToSpeech
-          voice: mozillaAu15
-
-- type: entity
   parent: BasePlushie
   id: PlushieGalio #Weh!
   name: galio plushie
