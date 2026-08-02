@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._Starlight.Roles.Ranks;
 using Content.Server.Access.Systems;
 using Content.Server.Forensics;
 using Content.Shared.Access.Components;
@@ -41,6 +42,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IdCardSystem _idCard = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private RankSystem _rank = default!;
 
     public override void Initialize()
     {
@@ -54,6 +56,13 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     {
         if (!TryComp<StationRecordsComponent>(args.Station, out var stationRecords))
             return;
+
+        #region Starlight
+        // This is kind of janky, but basically to make ranks show up properly in the manifest, I have to run CreateGeneralRecord
+        // somewhere else, which creates a duplicate manifest entry. This prevents that.
+        if (_rank.TryGetHighestEligibleRank(args.Player.UserId, null, args.JobId, out _))
+            return;
+        #endregion
 
         CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
     }
