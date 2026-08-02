@@ -222,7 +222,6 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-# Clothing
 - type: listing
   id: VendorCatEars
   productEntity: ClothingHeadHatWhiteCatEars
