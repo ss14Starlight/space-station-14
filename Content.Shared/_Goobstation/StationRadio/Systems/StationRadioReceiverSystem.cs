@@ -168,7 +168,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         if (!comp.Active || !powered)
             return 0f;
 
-        return comp.LowVolume ? 0.1f : 1f;
+        return comp.LowVolume ? comp.LowVolumeGain : 1f;
     }
 
     private void OnGetAltVerbs(EntityUid uid, StationRadioReceiverComponent comp, GetVerbsEvent<AlternativeVerb> args)

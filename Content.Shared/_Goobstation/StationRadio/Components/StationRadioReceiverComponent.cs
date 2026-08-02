@@ -29,4 +29,10 @@ public sealed partial class StationRadioReceiverComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool LowVolume;
+
+    /// <summary>
+    /// How quiet the low volume setting on a Station Radio is. Default is 10%.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float LowVolumeGain = 0.1f;
 }
