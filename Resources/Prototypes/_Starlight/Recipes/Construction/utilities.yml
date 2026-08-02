@@ -780,7 +780,7 @@
   graph: GasPipeTankTall
   startNode: start
   targetNode: tank
-  category: construction-category-utilities
+  category: construction-category-atmospherics
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
