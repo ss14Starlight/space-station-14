@@ -52,7 +52,6 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             {
                 var hasComp = HasComp<StationRadioServerComponent>(linkedServer);
                 var powered = _power.IsPowered(linkedServer);
-                Log.Info($"[StationRadio] Candidate server {ToPrettyString(linkedServer)}: hasComp={hasComp}, powered={powered}");
 
                 if (!hasComp || !powered)
                     continue;
@@ -84,8 +83,6 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
     {
         if (_net.IsClient)
             return;
-
-        Log.Info($"[StationRadio] Playing {args.MediaPlayed} with offset {args.PlayOffset.TotalSeconds}s");
 
         var sound = _audio.PlayPvs(args.MediaPlayed, uid, comp.DefaultParams);
         if (sound == null)
