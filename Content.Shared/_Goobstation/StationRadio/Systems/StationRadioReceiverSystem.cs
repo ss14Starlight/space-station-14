@@ -186,7 +186,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
 
         args.Verbs.Add(new AlternativeVerb
         {
-            Text = comp.LowVolume ? "Lower Volume" : "Increase Volume",
+            Text = comp.LowVolume ? "Increase Volume" : "Decrease Volume",
             Act = () =>
             {
                 comp.LowVolume = !comp.LowVolume;
