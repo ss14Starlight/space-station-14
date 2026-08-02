@@ -5,12 +5,6 @@
     count: 6
 
 - type: localizedDataset
-  id: PlushiesOog
-  values:
-    prefix: plushie-oog-
-    count: 6
-
-- type: localizedDataset
   id: PlushiesPercy
   values:
     prefix: plushie-percy-
