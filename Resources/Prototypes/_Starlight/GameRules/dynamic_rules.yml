@@ -57,12 +57,15 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 5
-        - id: VampireLess
+        - id: Vampire
           weight: 15
           prob: 0.90 # Vampire can have a small chance to fail too, it's the other "most likely" gamemode
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - VampireLess
           - !type:PlayerCountCondition
             min: 25
         - id: Nukeops
@@ -175,11 +178,14 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Vampire
           - !type:PlayerCountCondition
             min: 25
         - id: NukeopsLate
           weight: 9
-          prob: 0.40 # Have a 50% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
+          prob: 0.40 # Have a 40% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
