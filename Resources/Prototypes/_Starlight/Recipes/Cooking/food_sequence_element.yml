@@ -17,14 +17,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
     state: icon
 
-#Lizard Mime Plushie
-- type: foodSequenceElement
-  id: PlushieMimeLizard
-  name: food-sequence-cotton-burger-content-plushie-mimelizard
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/mime_lizard_plushie.rsi
-    state: icon
-
 #Pig Plushie
 - type: foodSequenceElement
   id: PigPlushie
