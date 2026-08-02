@@ -77,3 +77,30 @@
   components:
     - type: Pda
       id: CasinoIDCardDealer
+
+- type: entity
+  parent: CasinoPDA
+  id: CasinoPDABrigmed
+  name: Gamorrah brigmedic PDA
+  description: Patch them up, send them back to the tables. The house always wins.
+  components:
+    - type: Pda
+      id: CasinoIDCardBrigmed
+    - type: CartridgeLoader
+      preinstalled:
+        - CrewManifestCartridge
+        - NotekeeperCartridge
+        - NanoTaskCartridge
+        - NewsReaderCartridge
+        - AstroNavCartridge
+        - NanoChatCartridge
+        - MedTekCartridge
+
+- type: entity
+  parent: CasinoPDA
+  id: CasinoPDATreasurer
+  name: Gamorrah treasurer PDA
+  description: Every chip counted, every credit accounted for. The house always wins.
+  components:
+    - type: Pda
+      id: CasinoIDCardTreasurer

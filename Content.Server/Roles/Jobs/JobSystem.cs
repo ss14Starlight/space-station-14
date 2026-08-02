@@ -25,7 +25,7 @@ public sealed partial class JobSystem : SharedJobSystem
 
     private void OnRoleAddedEvent(RoleAddedEvent args)
     {
-        MindOnDoGreeting(args.MindId, args.Mind, args);
+        if (!args.Silent) MindOnDoGreeting(args.MindId, args.Mind);
 
         if (args.RoleTypeUpdate)
             _roles.RoleUpdateMessage(args.Mind);
@@ -37,18 +37,17 @@ public sealed partial class JobSystem : SharedJobSystem
             _roles.RoleUpdateMessage(args.Mind);
     }
 
-    private void MindOnDoGreeting(EntityUid mindId, MindComponent component, RoleAddedEvent args)
+    // Starlght edit: remove need for RoleAddedEvent to be passed + make public
+    public void MindOnDoGreeting(EntityUid mindId, MindComponent component, bool skipRole = false)
     {
-        if (args.Silent)
-            return;
-
+    // Starlight end
         if (!_player.TryGetSessionById(component.UserId, out var session))
             return;
 
         if (!MindTryGetJob(mindId, out var prototype))
             return;
 
-        _chat.DispatchServerMessage(session, Loc.GetString("job-greet-introduce-job-name",
+        if (!skipRole) _chat.DispatchServerMessage(session, Loc.GetString("job-greet-introduce-job-name", // Starlight edit
             ("jobName", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(prototype.LocalizedName))));
 
         if (prototype.RequireAdminNotify)

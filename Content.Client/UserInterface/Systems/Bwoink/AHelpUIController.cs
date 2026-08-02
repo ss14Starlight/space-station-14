@@ -184,7 +184,13 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
 
         UIHelper.SendMessageAction = (userId, textMessage, playSound, adminOnly) => _bwoinkSystem?.Send(userId, textMessage, playSound, adminOnly);
         UIHelper.InputTextChanged += (channel, text) => _bwoinkSystem?.SendInputTextUpdated(channel, text.Length > 0);
-        UIHelper.OnClose += () => { SetAHelpPressed(false); };
+        // Starlight begin
+        UIHelper.OnClose += () =>
+        {
+            SetAHelpPressed(false);
+            UIHelper.Close();
+        };
+        // Starlight end
         UIHelper.OnOpen +=  () => { SetAHelpPressed(true); };
         SetAHelpPressed(UIHelper.IsOpen);
     }
@@ -197,6 +203,13 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
             return;
         }
         EnsureUIHelper();
+
+        // Starlight begin
+        localUser = UIHelper!.IsAdmin && UIHelper is AdminAHelpUIHandler { RememberSelected: true } aHelper
+            ? aHelper.SelectedPlayer ?? localUser
+            : localUser;
+        //Starlight end
+
         if (UIHelper!.IsOpen)
             return;
         UIHelper!.Open(localUser.Value, _discordRelayActive);
@@ -248,6 +261,11 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
 
         helper.WindowRoot = _uiManager.CreateWindowRoot(helper.ClydeWindow);
         helper.WindowRoot.AddChild(helper.Control);
+
+        // Starlight begin
+        helper.Control.RememberSelected.Disabled = true;
+        helper.Control.RememberSelected.Visible = false;
+        // Starlight end
 
         helper.Control.PopOut.Disabled = true;
         helper.Control.PopOut.Visible = false;
@@ -347,6 +365,8 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     public bool IsAdmin => true;
     public bool IsOpen => Window is { Disposed: false, IsOpen: true } || ClydeWindow is { IsDisposed: false };
     public bool EverOpened;
+    public bool RememberSelected => Window?.Bwoink.RememberSelected.Pressed ?? false; // Starlight
+    public NetUserId? SelectedPlayer; // Starlight
 
     public BwoinkWindow? Window;
     public WindowRoot? WindowRoot;
@@ -380,6 +400,7 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
         {
             ClydeWindow.RequestClosed -= OnRequestClosed;
             ClydeWindow.Dispose();
+            ClydeWindow = null; // Starlight
             // need to dispose control cause we cant reattach it directly back to the window
             // but orphan panels first so -they- can get readded when the window is opened again
             if (Control != null)
@@ -393,6 +414,14 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
             // window wont be closed here so we will invoke ourselves
             OnClose?.Invoke();
         }
+
+        // Starlight begin
+        if (Control is not {Disposed: true})
+        {
+            EnsurePanel(_ownerId);
+            Control?.SelectChannel(_ownerId);
+        }
+        // Starlight end
     }
 
     public void ToggleWindow()
@@ -454,6 +483,14 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
             }
             panel.Visible = false;
         }
+
+        // Starlight begin
+        Control.ChannelSelector.OnSelectionChanged += inf =>
+        {
+            if (!IsOpen) return;
+            SelectedPlayer = inf?.SessionId ?? _ownerId;
+        };
+        // Starlight end
     }
 
     public void HideAllPanels()
@@ -485,6 +522,7 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     {
         EnsurePanel(uid);
         Control!.SelectChannel(uid);
+        SelectedPlayer = uid; // Starlight
     }
 
     public void Dispose()

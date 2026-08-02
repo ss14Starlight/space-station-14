@@ -126,6 +126,10 @@
           completed:
             - !type:RaiseEvent
                 event: !type:MachineDeconstructedEvent
+          #Starlight start
+          conditions:
+            - !type:WirePanel
+          #Starlight end
           steps:
             - tool: Prying
               doAfter: 1

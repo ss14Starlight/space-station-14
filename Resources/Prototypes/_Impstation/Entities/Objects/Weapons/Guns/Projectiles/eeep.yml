@@ -7,7 +7,6 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 3
         Structural: 10
         Piercing: 5
-
+        Burn: 15 #Starlight
