@@ -1,11 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Disposal bins and the like now properly predict thrown items being inserted into them.
-    type: Add
-  id: 406811
-  time: '2026-07-22T20:54:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5179
 - author: 12tie
   changes:
   - message: New art for the railroad cards.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407210
   time: '2026-08-02T07:58:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5456
+- author: taydeo, Conflee
+  changes:
+  - message: Added a "Welcome to Starlight!" pop-up when a client joins the server for the first time, with useful information and content warnings.
+    type: Add
+  id: 407211
+  time: '2026-08-02T08:15:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5348
 Order: -1
