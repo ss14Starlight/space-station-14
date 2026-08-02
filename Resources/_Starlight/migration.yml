@@ -165,3 +165,4 @@ GasPipeSubfloorTankAlt4: GasPipeTankSubfloorAlt4
 #2026-08-01 - Plushie rework. Lots of maps use these for decor, so we'll replace it with a lizard plushie so the space isn't left empty.
 AbductorPlushie: PlushieLizard
 PlushieAmali: PlushieLizard
+PlushieAsh: PlushieLizard

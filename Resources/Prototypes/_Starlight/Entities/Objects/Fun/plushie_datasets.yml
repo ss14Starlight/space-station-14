@@ -53,12 +53,6 @@
     count: 6
 
 - type: localizedDataset
-  id: PlushiesAsh
-  values:
-    prefix: plushie-ash-
-    count: 6
-
-- type: localizedDataset
   id: PlushiesGlados
   values:
     prefix: plushie-glados-
