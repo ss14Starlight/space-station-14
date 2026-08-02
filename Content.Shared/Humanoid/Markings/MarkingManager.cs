@@ -18,6 +18,7 @@ namespace Content.Shared.Humanoid.Markings
         {
             _prototypeManager.PrototypesReloaded += OnPrototypeReload;
             CachePrototypes();
+            CacheMigrations(); // Starlight
         }
 
         private void CachePrototypes()
@@ -153,7 +154,15 @@ namespace Content.Shared.Humanoid.Markings
 
         public bool TryGetMarking(Marking marking, [NotNullWhen(true)] out MarkingPrototype? markingResult)
         {
-            return Markings.TryGetValue(marking.MarkingId, out markingResult);
+            #region Starlight
+            if (!TryResolveMarkingId(marking.MarkingId, out var markingId))
+            {
+                markingResult = null;
+                return false;
+            }
+
+            return Markings.TryGetValue(markingId, out markingResult);
+            #endregion
         }
 
         /// <summary>
@@ -189,8 +198,13 @@ namespace Content.Shared.Humanoid.Markings
 
         private void OnPrototypeReload(PrototypesReloadedEventArgs args)
         {
-            if (args.WasModified<MarkingPrototype>())
-                CachePrototypes();
+            #region Starlight
+            if (!args.WasModified<MarkingPrototype>())
+                return;
+
+            CachePrototypes();
+            CacheMigrations();
+            #endregion
         }
 
         public bool CanBeApplied(string species, Sex sex, Marking marking, IPrototypeManager? prototypeManager = null)

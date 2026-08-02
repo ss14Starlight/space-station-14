@@ -1,0 +1,49 @@
+# It's the same as map migrations, but for markings.
+# Pretty niche use case, but it allows us to rename markings without breaking existing characters.
+# Null still deletes the marking, like map migrations.
+
+# 2026-08-01 - Renamed Protogen markings to Neocyte
+ProtogenTail: NeocyteTail
+ProtogenTailBushy: NeocyteTailBushy
+ProtogenTailShark: NeocyteTailShark
+ProtogenEars: NeocyteEars
+TwoProtogenEars: TwoNeocyteEars
+ProtogenLights: NeocyteLights
+ProtogenVisor: NeocyteVisor
+ProtogenVisorRound: NeocyteVisorRound
+ProtogenLEDFace: NeocyteLEDFace
+ProtogenLEDFaceNoseless: NeocyteLEDFaceNoseless
+ProtogenLEDFaceRound: NeocyteLEDFaceRound
+ProtogenMediumArmor: NeocyteMediumArmor
+ProtoVulpPawSocksFeet: NeoVulpkaninPawSocksFeet
+ProtoVulpPawSocksLegs: NeoVulpkaninPawSocksLegs
+ProtoVulpVisor: NeoVulpkaninVisor
+ProtoVulpVisorFourEyes: NeoVulpkaninVisorFourEyes
+ProtoVulpSnoutLong: NeoVulpkaninSnoutLong
+ProtoVulpVisorSideWings: NeoVulpkaninVisorSideWings
+ProtoVulpMediumArmor: NeoVulpkaninMediumArmor
+ProtoVulpMediumArmorAngled: NeoVulpkaninMediumArmorAngled
+ProtoVulpLEDFace: NeoVulpkaninLEDFace
+ProtoVulpLEDFaceLong: NeoVulpkaninLEDFaceLong
+ProtoVulpLEDFaceFourEyes: NeoVulpkaninLEDFaceFourEyes
+ProtoVulpClaws: NeoVulpkaninClaws
+ProtoVulpClawsLong: NeoVulpkaninClawsLong
+ProtoVulpLights: NeoVulpkaninLights
+ProtoVulpLightsAngled: NeoVulpkaninLightsAngled
+ProtoVoxVisor: NeoVoxVisor
+ProtoVoxMediumArmor: NeoVoxMediumArmor
+ProtoVoxLEDFace: NeoVoxLEDFace
+ProtoVoxLights: NeoVoxLights
+ProtoVoxClaws: NeoVoxClaws
+ProtoThavenVisor: NeoThavenVisor
+ProtoThavenMediumArmor: NeoThavenMediumArmor
+ProtoThavenLEDFace: NeoThavenLEDFace
+ProtoThavenLights: NeoThavenLights
+ProtoSlimePersonMediumArmor: NeoSlimePersonMediumArmor
+ProtoSlimePersonVisor: NeoSlimePersonVisor
+ProtoSlimePersonLEDFace: NeoSlimePersonLEDFace
+ProtoSlimePersonLights: NeoSlimePersonLights
+ProtoKinMediumArmor: NeoKinMediumArmor
+ProtoKinVisor: NeoKinVisor
+ProtoKinLEDFace: NeoKinLEDFace
+ProtoKinLights: NeoKinLights

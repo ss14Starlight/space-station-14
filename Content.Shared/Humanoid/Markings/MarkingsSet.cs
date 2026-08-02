@@ -75,12 +75,12 @@ public sealed partial class MarkingSet
 
         foreach (var marking in markings)
         {
-            if (!markingManager.TryGetMarking(marking, out var prototype))
+            if (!markingManager.TryMigrateMarking(marking, out var migratedMarking, out var prototype)) // Starlight
             {
                 continue;
             }
 
-            AddBack(prototype.MarkingCategory, marking);
+            AddBack(prototype.MarkingCategory, migratedMarking); // Starlight
         }
     }
 
@@ -96,12 +96,12 @@ public sealed partial class MarkingSet
 
         foreach (var marking in markings)
         {
-            if (!markingManager.TryGetMarking(marking, out var prototype))
+            if (!markingManager.TryMigrateMarking(marking, out var migratedMarking, out var prototype)) // Starlight
             {
                 continue;
             }
 
-            AddBack(prototype.MarkingCategory, marking);
+            AddBack(prototype.MarkingCategory, migratedMarking); // Starlight
         }
     }
 
@@ -246,11 +246,13 @@ public sealed partial class MarkingSet
             var toRemove = new List<int>(); // Starlight - keep invalid indexes scoped to this category.
             for (var i = 0; i < list.Count; i++)
             {
-                if (!markingManager.TryGetMarking(list[i], out var marking))
+                if (!markingManager.TryMigrateMarking(list[i], out var migratedMarking, out var marking)) // Starlight
                 {
                     toRemove.Add(i);
                     continue;
                 }
+
+                list[i] = migratedMarking; // Starlight
 
                 // Starlight start - normalize old sprite-layer colors into shared color slots.
                 if (marking.ColorSlotCount != list[i].MarkingColors.Count)
