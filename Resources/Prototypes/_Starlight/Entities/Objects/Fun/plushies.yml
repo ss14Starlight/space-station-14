@@ -510,39 +510,6 @@
       path: /Audio/Effects/metal_thud2.ogg
 
 - type: entity
-  parent: BasePlushie
-  id: LivvyPlush
-  name: croft plushie
-  description: A retired CentComm Operator, now focusing on being adorable full time.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/livvy_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/livvy_plushie.rsi
-    state: icon
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/Voice/Slime/slime_squish.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Voice/Slime/slime_squish.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Voice/Slime/slime_squish.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Voice/Slime/slime_squish.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/Voice/Human/femalescream_4.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/Voice/Slime/slime_squish.ogg
-
-- type: entity
   parent: BaseMothPlushie
   id: MinaPlush
   name: minttongue plushie
