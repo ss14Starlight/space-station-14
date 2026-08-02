@@ -102,6 +102,7 @@
     name: vendor-hug-dispenser
     categories:
     - SLPlushies
+    - SLToy
     - SLSpecies
     - SLCrew
     - SLSecret

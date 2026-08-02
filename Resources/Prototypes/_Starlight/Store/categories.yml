@@ -4,7 +4,7 @@
 
 - type: storeCategory
   id: SLToys
-  name: Toys
+  name: store-category-plushie-toys
 
 - type: storeCategory
   id: SLSpecies
@@ -12,7 +12,7 @@
 
 - type: storeCategory
   id: SLCrew
-  name: Crew
+  name: store-category-plushie-crew
 
 - type: storeCategory
   id: SLChemistry
