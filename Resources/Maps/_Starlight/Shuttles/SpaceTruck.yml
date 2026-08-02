@@ -1804,8 +1804,8 @@ entities:
           endTime: 6153.3941473
           startTime: 4612.4620542
           length: 1.5
-    - type: EnergyColor
-      color: '#00FFFFFF'
+    - type: EnergySword
+      activatedColor: '#00FFFFFF'
     - type: ItemToggleSize
       deactivatedSize: Tiny
     - type: Physics
