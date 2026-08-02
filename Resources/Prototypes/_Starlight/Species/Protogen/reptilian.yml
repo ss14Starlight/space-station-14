@@ -2,10 +2,10 @@
   id: ProtoReptilian
   name: subspecies-name-protoreptilian
   roundStart: true
-  prototype: MobProtoReptilian
-  sprites: MobProtoReptilianSprites
+  prototype: MobNeoReptilian
+  sprites: MobNeoReptilianSprites
   defaultSkinTone: "#faf7f7"
-  markingLimits: MobProtoReptilianMarkingLimits
+  markingLimits: MobNeoReptilianMarkingLimits
   dollPrototype: AppearanceProtoReptilian
   skinColoration: Hues
   customName: true
@@ -18,9 +18,9 @@
   loadout: ProtogenLoadout
 
 - type: speciesBaseSprites
-  id: MobProtoReptilianSprites
+  id: MobNeoReptilianSprites
   sprites:
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Head: MobReptilianHead
     Hair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
@@ -44,7 +44,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoReptilianMarkingLimits
+  id: MobNeoReptilianMarkingLimits
   points:
     FaceCover:
       points: 1

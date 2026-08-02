@@ -2,10 +2,10 @@
   id: ProtoSlimePerson
   name: subspecies-name-protoslimeperson
   roundStart: true
-  prototype: MobProtoSlimePerson
-  sprites: MobProtoSlimePersonSprites
+  prototype: MobNeoSlimePerson
+  sprites: MobNeoSlimePersonSprites
   defaultSkinTone: "#b8b8b8"
-  markingLimits: MobProtoSlimePersonMarkingLimits
+  markingLimits: MobNeoSlimePersonMarkingLimits
   dollPrototype: AppearanceProtoSlimePerson
   skinColoration: Hues
   customName: true
@@ -19,11 +19,11 @@
   loadout: ProtogenLoadout
 
 - type: speciesBaseSprites
-  id: MobProtoSlimePersonSprites
+  id: MobNeoSlimePersonSprites
   sprites:
     Hair: MobSlimeMarkingAlfa
     Head: MobSlimeHead
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -44,7 +44,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoSlimePersonMarkingLimits
+  id: MobNeoSlimePersonMarkingLimits
   points:
     FaceCover:
       points: 1

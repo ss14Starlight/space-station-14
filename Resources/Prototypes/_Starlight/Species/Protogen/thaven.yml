@@ -2,10 +2,10 @@
   id: ProtoThaven
   name: subspecies-name-protothaven
   roundStart: true
-  prototype: MobProtoThaven
-  sprites: MobProtoThavenSprites
+  prototype: MobNeoThaven
+  sprites: MobNeoThavenSprites
   defaultSkinTone: "#ffffff"
-  markingLimits: MobProtoThavenMarkingLimits
+  markingLimits: MobNeoThavenMarkingLimits
   dollPrototype: AppearanceProtoThaven
   skinColoration: Hues
   customName: true
@@ -22,11 +22,11 @@
   loadout: ProtogenLoadout
 
 - type: speciesBaseSprites
-  id: MobProtoThavenSprites
+  id: MobNeoThavenSprites
   sprites:
     Hair: MobHumanoidAnyMarking
     Head: MobThavenHead
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -48,7 +48,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoThavenMarkingLimits
+  id: MobNeoThavenMarkingLimits
   points:
     FaceCover:
       points: 1

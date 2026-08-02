@@ -2,10 +2,10 @@
   id: ProtoMoth
   name: subspecies-name-protomoth
   roundStart: true
-  prototype: MobProtoMoth
-  sprites: MobProtoMothSprites
+  prototype: MobNeoMoth
+  sprites: MobNeoMothSprites
   defaultSkinTone: "#ffda93"
-  markingLimits: MobProtoMothMarkingLimits
+  markingLimits: MobNeoMothMarkingLimits
   dollPrototype: AppearanceProtoMoth
   skinColoration: Hues
   customName: true
@@ -18,10 +18,10 @@
   loadout: ProtogenLoadout
 
 - type: speciesBaseSprites
-  id: MobProtoMothSprites
+  id: MobNeoMothSprites
   sprites:
     Hair: MobHumanoidAnyMarking
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Head: MobMothHead
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
@@ -44,7 +44,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoMothMarkingLimits
+  id: MobNeoMothMarkingLimits
   onlyWhitelisted: true
   points:
     FaceCover:

@@ -2,7 +2,7 @@
   save: false
   name: Urisst' Mztosster
   parent: BaseMobNeocyte
-  id: BaseMobProtoReptilian
+  id: BaseMobNeoReptilian
   abstract: true
   components:
   - type: LanguageKnowledge

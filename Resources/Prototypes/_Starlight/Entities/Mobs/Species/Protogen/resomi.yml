@@ -1,7 +1,7 @@
 - type: entity
   name: Urist McRapster
   parent: [BaseSpeciesPickupable, BaseMobNeocyte, BaseColdBird]
-  id: BaseMobProtoResomi
+  id: BaseMobNeoResomi
   abstract: true
   components:
   - type: LanguageKnowledge

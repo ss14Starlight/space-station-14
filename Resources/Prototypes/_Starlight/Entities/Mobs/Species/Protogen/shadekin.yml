@@ -2,7 +2,7 @@
   save: false
   name: Urist McDuskin #pronounced Dusk-Kin
   parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies, BaseSpeciesPickupableHuge]
-  id: BaseMobProtoKin
+  id: BaseMobNeoKin
   abstract: true
   components:
     - type: LanguageKnowledge

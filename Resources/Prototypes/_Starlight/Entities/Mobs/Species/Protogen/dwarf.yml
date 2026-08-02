@@ -2,7 +2,7 @@
   save: false
   name: Urist McHandster The Proto-Dwarf
   parent: [BaseSpeciesPickupable, BaseMobNeocyte]
-  id: BaseMobProtoDwarf
+  id: BaseMobNeoDwarf
   abstract: true
   components:
   - type: LanguageKnowledge

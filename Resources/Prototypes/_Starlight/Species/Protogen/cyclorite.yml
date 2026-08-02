@@ -2,9 +2,9 @@
   id: ProtoCyclorite
   name: subspecies-name-protocyclorite
   roundStart: true
-  prototype: MobProtoCyclorite
-  sprites: MobProtoCycloriteSprites
-  markingLimits: MobProtoCycloriteMarkingLimits
+  prototype: MobNeoCyclorite
+  sprites: MobNeoCycloriteSprites
+  markingLimits: MobNeoCycloriteMarkingLimits
   dollPrototype: AppearanceProtoCyclorite
   defaultSkinTone: "#FFFFFF"
   skinColoration: Hues
@@ -24,9 +24,9 @@
   standardDensity: 110
 
 - type: speciesBaseSprites
-  id: MobProtoCycloriteSprites
+  id: MobNeoCycloriteSprites
   sprites:
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Head: MobCycloriteHead
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
@@ -50,7 +50,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoCycloriteMarkingLimits
+  id: MobNeoCycloriteMarkingLimits
   onlyWhitelisted: true
   points:
     FaceCover:

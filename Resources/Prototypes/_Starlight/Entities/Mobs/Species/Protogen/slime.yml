@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseMobNeocyte
-  id: BaseMobProtoSlimePerson
+  id: BaseMobNeoSlimePerson
   name: Urist McSlimester
   abstract: true
   components:

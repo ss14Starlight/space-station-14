@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseMobNeocyte
-  id: BaseMobProtoVox
+  id: BaseMobNeoVox
   name: Urist McVoxster
   abstract: true
   components:

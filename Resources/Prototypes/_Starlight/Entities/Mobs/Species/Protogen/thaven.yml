@@ -1,7 +1,7 @@
 - type: entity
   save: false
   parent: BaseMobNeocyte
-  id: BaseMobProtoThaven
+  id: BaseMobNeoThaven
   name: Urist McEarster
   abstract: true
   components:

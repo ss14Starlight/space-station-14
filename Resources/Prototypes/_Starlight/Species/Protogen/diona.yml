@@ -2,9 +2,9 @@
   id: ProtoDiona
   name: subspecies-name-protodiona
   roundStart: true
-  prototype: MobProtoDiona
-  sprites: MobProtoDionaSprites
-  markingLimits: MobProtoDionaMarkingLimits
+  prototype: MobNeoDiona
+  sprites: MobNeoDionaSprites
+  markingLimits: MobNeoDionaMarkingLimits
   dollPrototype: AppearanceProtoDiona
   defaultSkinTone: "#cdb369"
   skinColoration: Hues
@@ -26,9 +26,9 @@
   maxAge: 250
 
 - type: speciesBaseSprites
-  id: MobProtoDionaSprites
+  id: MobNeoDionaSprites
   sprites:
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Head: MobDionaHead
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -51,7 +51,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoDionaMarkingLimits
+  id: MobNeoDionaMarkingLimits
   onlyWhitelisted: true
   points:
     FaceCover:

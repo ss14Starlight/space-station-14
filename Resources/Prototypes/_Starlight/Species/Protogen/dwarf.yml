@@ -2,9 +2,9 @@
   id: ProtoDwarf
   name: subspecies-name-protodwarf
   roundStart: true
-  prototype: MobProtoDwarf
-  sprites: MobProtoHumanSprites
-  markingLimits: MobProtoDwarfMarkingLimits
+  prototype: MobNeoDwarf
+  sprites: MobNeoHumanSprites
+  markingLimits: MobNeoDwarfMarkingLimits
   dollPrototype: AppearanceProtoDwarf
   defaultSkinTone: "#666666"
   skinColoration: Hues
@@ -25,7 +25,7 @@
   maxAge: 200
 
 - type: markingPoints
-  id: MobProtoDwarfMarkingLimits
+  id: MobNeoDwarfMarkingLimits
   points:
     FaceCover:
       points: 1

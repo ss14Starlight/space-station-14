@@ -2,7 +2,7 @@
   save: false
   name: Urist McPlantster
   parent: [BaseSpeciesPickupableHuge, BaseMobNeocyte]
-  id: BaseMobProtoDiona
+  id: BaseMobNeoDiona
   abstract: true
   components:
   - type: LanguageKnowledge

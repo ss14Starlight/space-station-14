@@ -2,10 +2,10 @@
   id: ProtoLagomorph
   name: subspecies-name-protolagomorph
   roundStart: true
-  prototype: MobProtoLagomorph
-  sprites: MobProtoLagomorphSprites
+  prototype: MobNeoLagomorph
+  sprites: MobNeoLagomorphSprites
   defaultSkinTone: "#ffda93"
-  markingLimits: MobProtoLagomorphMarkingLimits
+  markingLimits: MobNeoLagomorphMarkingLimits
   dollPrototype: AppearanceProtoLagomorph
   skinColoration: Hues
   customName: true
@@ -28,11 +28,11 @@
   standardDensity: 17
 
 - type: speciesBaseSprites
-  id: MobProtoLagomorphSprites
+  id: MobNeoLagomorphSprites
   sprites:
     Hair: MobHumanoidAnyMarking
     Head: MobLagomorphHead
-    Eyes: MobProtogenEyes #looks odd, but this just removes eyes since they're replaced by the LEDs.
+    Eyes: MobNeocyteEyes #looks odd, but this just removes eyes since they're replaced by the LEDs.
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -54,7 +54,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoLagomorphMarkingLimits
+  id: MobNeoLagomorphMarkingLimits
   points:
     FaceCover:
       points: 1

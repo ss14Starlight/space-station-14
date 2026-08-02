@@ -2,7 +2,7 @@
   save: false
   name: Urist McAvalister
   parent: [ BaseSpeciesPickupable, BaseMobNeocyte, BaseColdBird ]
-  id: BaseMobProtoAvali
+  id: BaseMobNeoAvali
   abstract: true
   components:
     - type: LanguageKnowledge

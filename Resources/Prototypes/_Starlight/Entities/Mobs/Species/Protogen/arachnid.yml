@@ -2,7 +2,7 @@
   save: false
   name: Urist McWebster
   parent: BaseMobNeocyte
-  id: BaseMobProtoArachnid
+  id: BaseMobNeoArachnid
   abstract: true
   components:
   - type: LanguageKnowledge

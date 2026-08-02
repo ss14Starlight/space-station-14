@@ -2,9 +2,9 @@
   id: ProtoArachnid
   name: subspecies-name-protoarachnid
   roundStart: true
-  prototype: MobProtoArachnid
-  sprites: MobProtoArachnidSprites
-  markingLimits: MobProtoArachnidMarkingLimits
+  prototype: MobNeoArachnid
+  sprites: MobNeoArachnidSprites
+  markingLimits: MobNeoArachnidMarkingLimits
   dollPrototype: AppearanceProtoArachnid
   defaultSkinTone: "#385878"
   skinColoration: Hues
@@ -20,9 +20,9 @@
   - Unsexed
 
 - type: speciesBaseSprites
-  id: MobProtoArachnidSprites
+  id: MobNeoArachnidSprites
   sprites:
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Head: MobArachnidHead
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
@@ -45,7 +45,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoArachnidMarkingLimits
+  id: MobNeoArachnidMarkingLimits
   onlyWhitelisted: true
   points:
     FaceCover:

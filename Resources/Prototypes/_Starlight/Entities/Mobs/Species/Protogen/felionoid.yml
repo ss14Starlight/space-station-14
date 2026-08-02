@@ -1,6 +1,6 @@
 - type: entity
   parent: [BaseSpeciesPickupable, BaseMobNeocyte]
-  id: BaseMobProtoFelionoid
+  id: BaseMobNeoFelionoid
   name: Urist McFelinster
   abstract: true
   components:

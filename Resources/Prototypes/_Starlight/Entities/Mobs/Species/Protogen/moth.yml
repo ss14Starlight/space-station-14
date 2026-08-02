@@ -2,7 +2,7 @@
   save: false
   name: Urist McFluffster
   parent: BaseMobNeocyte
-  id: BaseMobProtoMoth
+  id: BaseMobNeoMoth
   abstract: true
   components:
   - type: LanguageKnowledge

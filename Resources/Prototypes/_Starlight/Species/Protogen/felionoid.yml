@@ -2,10 +2,10 @@
   id: ProtoFelionoid
   name: subspecies-name-protofelionoid
   roundStart: true
-  prototype: MobProtoFelionoid
-  sprites: MobProtoFelionoidSprites
+  prototype: MobNeoFelionoid
+  sprites: MobNeoFelionoidSprites
   defaultSkinTone: "#666666"
-  markingLimits: MobProtoFelionoidMarkingLimits
+  markingLimits: MobNeoFelionoidMarkingLimits
   dollPrototype: AppearanceProtoFelionoid
   skinColoration: Hues
   customName: true
@@ -25,9 +25,9 @@
   standardDensity: 45
 
 - type: speciesBaseSprites
-  id: MobProtoFelionoidSprites
+  id: MobNeoFelionoidSprites
   sprites:
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Head: MobFelionoidHead
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
@@ -51,7 +51,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoFelionoidMarkingLimits
+  id: MobNeoFelionoidMarkingLimits
   onlyWhitelisted: true
   points:
     FaceCover:

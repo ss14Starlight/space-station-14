@@ -2,9 +2,9 @@
   id: ProtoAvali
   name: subspecies-name-protoavali
   roundStart: true
-  prototype: MobProtoAvali
-  sprites: MobProtoAvaliSprites
-  markingLimits: MobProtoAvaliMarkingLimits
+  prototype: MobNeoAvali
+  sprites: MobNeoAvaliSprites
+  markingLimits: MobNeoAvaliMarkingLimits
   dollPrototype: AppearanceProtoAvali
   defaultSkinTone: "#D2B48C"
   skinColoration: Hues
@@ -29,9 +29,9 @@
   standardDensity: 11
 
 - type: speciesBaseSprites
-  id: MobProtoAvaliSprites
+  id: MobNeoAvaliSprites
   sprites:
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Head: MobAvaliHead
     Snout: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
@@ -54,7 +54,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoAvaliMarkingLimits
+  id: MobNeoAvaliMarkingLimits
   onlyWhitelisted: true
   points:
     FaceCover:

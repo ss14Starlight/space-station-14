@@ -2,10 +2,10 @@
   id: ProtoResomi
   name: subspecies-name-protoresomi
   roundStart: true
-  prototype: MobProtoResomi
-  sprites: MobProtoResomiSprites
+  prototype: MobNeoResomi
+  sprites: MobNeoResomiSprites
   defaultSkinTone: "#faf7f7"
-  markingLimits: MobProtoResomiMarkingLimits
+  markingLimits: MobNeoResomiMarkingLimits
   dollPrototype: AppearanceProtoResomi
   skinColoration: Hues
   customName: true
@@ -26,10 +26,10 @@
   loadout: ProtogenLoadout
 
 - type: speciesBaseSprites
-  id: MobProtoResomiSprites
+  id: MobNeoResomiSprites
   sprites:
     Hair: MobHumanoidAnyMarking
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Head: MobResomiHead
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
@@ -52,7 +52,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoResomiMarkingLimits
+  id: MobNeoResomiMarkingLimits
   onlyWhitelisted: true
   points:
     FaceCover:

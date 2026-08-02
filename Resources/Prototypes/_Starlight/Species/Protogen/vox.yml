@@ -2,10 +2,10 @@
   id: ProtoVox
   name: subspecies-name-protovox
   roundStart: true
-  prototype: MobProtoVox
-  sprites: MobProtoVoxSprites
+  prototype: MobNeoVox
+  sprites: MobNeoVoxSprites
   defaultSkinTone: "#6c741d"
-  markingLimits: MobProtoVoxMarkingLimits
+  markingLimits: MobNeoVoxMarkingLimits
   dollPrototype: AppearanceProtoVox
   skinColoration: Hues
   customName: true
@@ -20,11 +20,11 @@
   loadout: ProtogenLoadout
 
 - type: speciesBaseSprites
-  id: MobProtoVoxSprites
+  id: MobNeoVoxSprites
   sprites:
     Hair: MobHumanoidAnyMarking
     Head: MobVoxHead
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -46,7 +46,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoVoxMarkingLimits
+  id: MobNeoVoxMarkingLimits
   points:
     FaceCover:
       points: 1
@@ -100,5 +100,5 @@
       required: false
 
 - type: humanoidBaseSprite
-  id: MobProtoVoxMarkingMatchSkin
+  id: MobNeoVoxMarkingMatchSkin
   markingsMatchSkin: false

@@ -3,9 +3,9 @@
   name: subspecies-name-protovulp
   roundStart: true
   prototype: MobNeoVulp
-  sprites: MobProtoVulpSprites
+  sprites: MobNeoVulpkaninSprites
   defaultSkinTone: "#ffda93"
-  markingLimits: MobProtoVulpMarkingLimits
+  markingLimits: MobNeoVulpkaninMarkingLimits
   dollPrototype: AppearanceProtoVulp
   skinColoration: Hues
   customName: true
@@ -21,22 +21,22 @@
   standardDensity: 110
 
 - type: speciesBaseSprites
-  id: MobProtoVulpSprites
+  id: MobNeoVulpkaninSprites
   sprites:
     Hair: MobHumanoidAnyMarking
-    Head: MobProtoVulpHead
-    Eyes: MobProtogenEyes #looks odd, but this just removes eyes since they're replaced by the LEDs.
+    Head: MobNeoVulpkaninHead
+    Eyes: MobNeocyteEyes #looks odd, but this just removes eyes since they're replaced by the LEDs.
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
-    Chest: MobProtoVulpTorso
+    Chest: MobNeoVulpkaninTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
-    LArm: MobProtoVulpLArm
-    RArm: MobProtoVulpRArm
-    LHand: MobProtoVulpLHand
-    RHand: MobProtoVulpRHand
+    LArm: MobNeoVulpkaninLArm
+    RArm: MobNeoVulpkaninRArm
+    LHand: MobNeoVulpkaninLHand
+    RHand: MobNeoVulpkaninRHand
     LLeg: MobVulpkaninLLeg
     RLeg: MobVulpkaninRLeg
     LFoot: MobVulpkaninLFoot
@@ -47,7 +47,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoVulpMarkingLimits
+  id: MobNeoVulpkaninMarkingLimits
   points:
     FaceCover:
       points: 1
@@ -99,89 +99,89 @@
       required: false
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpMarkingMatchSkin
+  id: MobNeoVulpkaninMarkingMatchSkin
   markingsMatchSkin: false
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpHead
+  id: MobNeoVulpkaninHead
   baseSprite:
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpHeadMale
+  id: MobNeoVulpkaninHeadMale
   baseSprite:
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpHeadFemale
+  id: MobNeoVulpkaninHeadFemale
   baseSprite:
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: head_f
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpTorso
+  id: MobNeoVulpkaninTorso
   baseSprite:
     sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpTorsoMale
+  id: MobNeoVulpkaninTorsoMale
   baseSprite:
     sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpTorsoFemale
+  id: MobNeoVulpkaninTorsoFemale
   baseSprite:
     sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi # Let's give them a proper torso
     state: torso_f
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpLLeg
+  id: MobNeoVulpkaninLLeg
   baseSprite:
     sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi
     state: l_leg
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpLArm
+  id: MobNeoVulpkaninLArm
   baseSprite:
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: l_arm
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpLHand
+  id: MobNeoVulpkaninLHand
   baseSprite:
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: l_hand
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpLFoot
+  id: MobNeoVulpkaninLFoot
   baseSprite:
     sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
     state: l_foot
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpRLeg
+  id: MobNeoVulpkaninRLeg
   baseSprite:
     sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi # New legs. They're not actually used right now, but the framework's there for someone to finish the displacement map later.
     state: r_leg
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpRArm
+  id: MobNeoVulpkaninRArm
   baseSprite:
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: r_arm
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpRHand
+  id: MobNeoVulpkaninRHand
   baseSprite:
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: r_hand
 
 - type: humanoidBaseSprite
-  id: MobProtoVulpRFoot
+  id: MobNeoVulpkaninRFoot
   baseSprite:
     sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
     state: r_foot

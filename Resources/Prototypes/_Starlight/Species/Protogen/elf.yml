@@ -2,10 +2,10 @@
   id: ProtoElf
   name: subspecies-name-protoelf
   roundStart: true
-  prototype: MobProtoElf
-  sprites: MobProtoElfSprites
+  prototype: MobNeoElf
+  sprites: MobNeoElfSprites
   defaultSkinTone: "#ffda93"
-  markingLimits: MobProtoHumanMarkingLimits
+  markingLimits: MobNeoHumanMarkingLimits
   dollPrototype: AppearanceProtoElf
   skinColoration: Hues
   roundstartCyberwareCapacity: 6
@@ -28,7 +28,7 @@
 # in either the mob's starting marking prototype,
 # or it has to be added in C#.
 - type: speciesBaseSprites
-  id: MobProtoElfSprites
+  id: MobNeoElfSprites
   sprites:
     Tail: MobHumanoidAnyMarking
     Special: MobHumanoidAnyMarking
@@ -55,7 +55,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoElfMarkingLimits
+  id: MobNeoElfMarkingLimits
   points:
     FaceCover:
       points: 1

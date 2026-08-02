@@ -2,10 +2,10 @@
   id: ProtoKin
   name: subspecies-name-protokin
   roundStart: true
-  prototype: MobProtoKin
-  sprites: MobProtoKinSprites
+  prototype: MobNeoKin
+  sprites: MobNeoKinSprites
   defaultSkinTone: "#ffffff"
-  markingLimits: MobProtoKinMarkingLimits
+  markingLimits: MobNeoKinMarkingLimits
   dollPrototype: AppearanceProtoKin
   skinColoration: Hues
   customName: true
@@ -22,11 +22,11 @@
   loadout: ProtogenLoadout
 
 - type: speciesBaseSprites
-  id: MobProtoKinSprites
+  id: MobNeoKinSprites
   sprites:
     Hair: MobHumanoidAnyMarking
     Head: MobShadekinHead
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -48,7 +48,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoKinMarkingLimits
+  id: MobNeoKinMarkingLimits
   points:
     FaceCover:
       points: 1

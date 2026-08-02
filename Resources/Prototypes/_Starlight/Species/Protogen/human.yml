@@ -2,10 +2,10 @@
   id: ProtoHuman
   name: subspecies-name-protohuman
   roundStart: true
-  prototype: MobProtoHuman
-  sprites: MobProtoHumanSprites
+  prototype: MobNeoHuman
+  sprites: MobNeoHumanSprites
   defaultSkinTone: "#ffda93"
-  markingLimits: MobProtoHumanMarkingLimits
+  markingLimits: MobNeoHumanMarkingLimits
   dollPrototype: AppearanceProtoHuman
   skinColoration: Hues
   customName: true
@@ -15,10 +15,10 @@
   loadout: ProtogenLoadout
 
 - type: speciesBaseSprites
-  id: MobProtoHumanSprites
+  id: MobNeoHumanSprites
   sprites:
     Hair: MobHumanoidAnyMarking
-    Eyes: MobProtogenEyes
+    Eyes: MobNeocyteEyes
     Head: MobHumanHead
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
@@ -41,7 +41,7 @@
     BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
-  id: MobProtoHumanMarkingLimits
+  id: MobNeoHumanMarkingLimits
   points:
     FaceCover:
       points: 1
