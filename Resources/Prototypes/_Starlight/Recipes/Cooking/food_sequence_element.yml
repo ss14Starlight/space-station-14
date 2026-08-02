@@ -43,15 +43,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/mime_lizard_plushie.rsi
     state: icon
 
-#Axolotl Plushie
-- type: foodSequenceElement
-  id: AxolotlPlushie
-  scale: 0.75, 0.75
-  name: food-sequence-cotton-burger-content-plushie-axolotl
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/axolotl_plushie.rsi
-    state: icon
-
 #Borb Plushie
 - type: foodSequenceElement
   id: BorbPlushie
