@@ -1,0 +1,346 @@
+# Symptoms are the spliceable unit. A symptom knows nothing about which strain carries it,
+# so anything here can be combined with anything else.
+#
+# HARD RULE for the ambient tier: nothing in this file may deal lasting damage or
+# meaningfully impair a shift. Ambient strains exist to be visible and irritating, not
+# to hurt people. Anything genuinely dangerous belongs to an antagonist strain and goes
+# in its own file.
+
+- type: pathogenSymptom
+  id: Sneezing
+  name: pathogen-symptom-sneezing
+  minStage: 1
+  interval: 45
+  effects:
+  - !type:Emote
+    emote: Sneeze
+    showInChat: true
+    force: true
+
+- type: pathogenSymptom
+  id: Coughing
+  name: pathogen-symptom-coughing
+  minStage: 1
+  interval: 40
+  effects:
+  - !type:Emote
+    emote: Cough
+    showInChat: true
+    force: true
+
+- type: pathogenSymptom
+  id: Fatigue
+  name: pathogen-symptom-fatigue
+  minStage: 2
+  interval: 70
+  effects:
+  - !type:Emote
+    emote: Yawn
+    showInChat: true
+    force: true
+
+- type: pathogenSymptom
+  id: Chills
+  name: pathogen-symptom-chills
+  minStage: 2
+  interval: 55
+  stageScaling: 0.5
+  effects:
+  - !type:Jitter
+    time: 1.5
+    amplitude: 4
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-chills-popup
+
+# Flavour only. Deliberately has no mechanical effect at all; a strain needs symptoms
+# the host notices before the analyzer does, or nobody ever walks into virology.
+- type: pathogenSymptom
+  id: WateryEyes
+  name: pathogen-symptom-watery-eyes
+  minStage: 2
+  interval: 90
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-watery-eyes-popup
+
+- type: pathogenSymptom
+  id: Sniffles
+  name: pathogen-symptom-sniffles
+  minStage: 1
+  interval: 75
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-sniffles-popup
+
+- type: pathogenSymptom
+  id: Hiccups
+  name: pathogen-symptom-hiccups
+  minStage: 1
+  interval: 95
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-hiccups-popup
+
+- type: pathogenSymptom
+  id: MildStutter
+  name: pathogen-symptom-mild-stutter
+  minStage: 2
+  interval: 95
+  effects:
+  - !type:ModifyStatusEffect
+    effectProto: StatusEffectStutter
+    time: 3
+    type: Update
+
+- type: pathogenSymptom
+  id: SlurredSpeech
+  name: pathogen-symptom-slurred-speech
+  minStage: 2
+  interval: 110
+  effects:
+  - !type:ModifyStatusEffect
+    effectProto: StatusEffectSlurred
+    time: 3
+    type: Update
+
+- type: pathogenSymptom
+  id: Itching
+  name: pathogen-symptom-itching
+  minStage: 1
+  interval: 85
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-itching-popup
+
+- type: pathogenSymptom
+  id: MildDizziness
+  name: pathogen-symptom-mild-dizziness
+  minStage: 2
+  interval: 120
+  effects:
+  - !type:ModifyStatusEffect
+    effectProto: StatusEffectWoozy
+    time: 2
+    type: Update
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-mild-dizziness-popup
+
+- type: pathogenSymptom
+  id: HarmlessRash
+  name: pathogen-symptom-harmless-rash
+  minStage: 2
+  interval: 130
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-harmless-rash-popup
+
+- type: pathogenSymptom
+  id: MildSweating
+  name: pathogen-symptom-mild-sweating
+  minStage: 2
+  interval: 100
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-mild-sweating-popup
+
+# --- Emergent ---
+# Station-neglect symptoms: unpleasant, visible, and curable, but not antag-grade.
+# None of these alter transmission; spread stays tied to pathogen type.
+
+- type: pathogenSymptom
+  id: Headache
+  name: pathogen-symptom-headache
+  minStage: 1
+  interval: 90
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-headache-popup
+
+- type: pathogenSymptom
+  id: Nausea
+  name: pathogen-symptom-nausea
+  minStage: 1
+  interval: 100
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-nausea-popup
+
+- type: pathogenSymptom
+  id: MuscleAches
+  name: pathogen-symptom-muscle-aches
+  minStage: 2
+  interval: 95
+  effects:
+  - !type:MovementSpeedModifier
+    walkSpeedModifier: 0.85
+    sprintSpeedModifier: 0.85
+    time: 3
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-muscle-aches-popup
+
+- type: pathogenSymptom
+  id: Fever
+  name: pathogen-symptom-fever
+  minStage: 2
+  interval: 85
+  stageScaling: 0.25
+  effects:
+  - !type:AdjustTemperature
+    amount: 2000
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-fever-popup
+
+- type: pathogenSymptom
+  id: ShortBreath
+  name: pathogen-symptom-short-breath
+  minStage: 2
+  interval: 80
+  effects:
+  - !type:Emote
+    emote: Gasp
+    showInChat: true
+    force: true
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-short-breath-popup
+
+- type: pathogenSymptom
+  id: ShakyHands
+  name: pathogen-symptom-shaky-hands
+  minStage: 2
+  interval: 75
+  stageScaling: 0.35
+  effects:
+  - !type:Jitter
+    time: 3
+    amplitude: 8
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-shaky-hands-popup
+
+- type: pathogenSymptom
+  id: Hoarseness
+  name: pathogen-symptom-hoarseness
+  minStage: 2
+  interval: 110
+  effects:
+  - !type:ModifyStatusEffect
+    effectProto: StatusEffectStutter
+    time: 5
+    type: Update
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-hoarseness-popup
+
+- type: pathogenSymptom
+  id: BlurredVision
+  name: pathogen-symptom-blurred-vision
+  minStage: 3
+  interval: 120
+  effects:
+  - !type:GenericStatusEffect
+    key: TemporaryBlindness
+    component: TemporaryBlindness
+    time: 1
+    type: Update
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-blurred-vision-popup
+
+- type: pathogenSymptom
+  id: Clumsiness
+  name: pathogen-symptom-clumsiness
+  minStage: 2
+  interval: 115
+  effects:
+  - !type:ModifyStatusEffect
+    effectProto: StatusEffectFriction
+    time: 2
+    type: Update
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-clumsiness-popup
+
+- type: pathogenSymptom
+  id: Vomiting
+  name: pathogen-symptom-vomiting
+  minStage: 3
+  interval: 130
+  effects:
+  - !type:Vomit
+    probability: 0.35
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-vomiting-popup
+
+- type: pathogenSymptom
+  id: Nosebleed
+  name: pathogen-symptom-nosebleed
+  minStage: 3
+  interval: 135
+  effects:
+  - !type:ModifyBloodLevel
+    amount: -1
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-nosebleed-popup
+
+- type: pathogenSymptom
+  id: Drowsiness
+  name: pathogen-symptom-drowsiness
+  minStage: 2
+  interval: 120
+  effects:
+  - !type:ModifyStatusEffect
+    effectProto: StatusEffectDrowsiness
+    time: 4
+    type: Update
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-drowsiness-popup
+
+# --- Beneficial ---
+# Kept alongside the ambient set so the difference in scale stays obvious at a glance.
+
+- type: pathogenSymptom
+  id: MinorRegeneration
+  name: pathogen-symptom-minor-regeneration
+  minStage: 1
+  interval: 20
+  effects:
+  - !type:HealthChange
+    damage:
+      groups:
+        Brute: -1

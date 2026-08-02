@@ -1,0 +1,250 @@
+﻿# Archetypes, not strains. Each of these is a template used to roll a concrete strain at
+# a contamination milestone; the character stays fixed, the specifics do not.
+#
+# The point is that a strain has to be unknown until someone diagnoses it. A fixed strain
+# gets memorised in three or four shifts, after which nobody runs the diagnoser and
+# cataloguing rewards knowledge the player already had.
+#
+# Balance intent for the ambient set: irritating, visible, self-clearing. If any of these
+# ever ruin someone's shift, the numbers to change are the duration and prevalence ranges,
+# not the symptom pool. Nothing ambient may bypass protective equipment.
+
+- type: pathogenArchetype
+  id: SpaceCold
+  name: pathogen-name-space-cold
+  description: pathogen-desc-space-cold
+  pathogenType: Virus
+  seedWeight: 1.5
+  respawnOnExtinction: true
+  tier: Ambient
+  maxPrevalence: 0.10
+  coreSymptoms:
+  - Sneezing
+  symptomPool:
+  - Coughing
+  - Fatigue
+  - Chills
+  - WateryEyes
+  - Sniffles
+  - Hiccups
+  - MildDizziness
+  minExtraSymptoms: 1
+  maxExtraSymptoms: 2
+  minTransmissibility: 0.04
+  maxTransmissibility: 0.06
+  minSpreadRange: 1.5
+  maxSpreadRange: 2.0
+  minIncubation: 60
+  maxIncubation: 150
+  minStages: 2
+  maxStages: 3
+  minStageDelay: 90
+  maxStageDelay: 180
+  minDuration: 480
+  maxDuration: 900
+
+- type: pathogenArchetype
+  id: ThroatRot
+  name: pathogen-name-throat-rot
+  description: pathogen-desc-throat-rot
+  pathogenType: Bacteria
+  seedWeight: 1
+  respawnOnExtinction: true
+  tier: Ambient
+  maxPrevalence: 0.10
+  coreSymptoms:
+  - Coughing
+  symptomPool:
+  - Chills
+  - Fatigue
+  - WateryEyes
+  - Sniffles
+  - MildStutter
+  - SlurredSpeech
+  minExtraSymptoms: 1
+  maxExtraSymptoms: 2
+  minTransmissibility: 0.03
+  maxTransmissibility: 0.045
+  minSpreadRange: 1.5
+  maxSpreadRange: 2.0
+  minIncubation: 90
+  maxIncubation: 210
+  minStages: 2
+  maxStages: 3
+  minStageDelay: 120
+  maxStageDelay: 210
+  minDuration: 600
+  maxDuration: 1080
+
+# Fungus is environmental only. These authored transmission values stay at zero so the
+# strain can infect from rot and strain-pinned spore patches without passing between hosts.
+- type: pathogenArchetype
+  id: SporeBloom
+  name: pathogen-name-spore-bloom
+  description: pathogen-desc-spore-bloom
+  pathogenType: Fungus
+  seedWeight: 0.8
+  respawnOnExtinction: true
+  tier: Ambient
+  maxPrevalence: 0.08
+  coreSymptoms:
+  - WateryEyes
+  symptomPool:
+  - Sneezing
+  - Fatigue
+  - Chills
+  - Itching
+  - HarmlessRash
+  - MildSweating
+  minExtraSymptoms: 1
+  maxExtraSymptoms: 2
+  minTransmissibility: 0
+  maxTransmissibility: 0
+  minSpreadRange: 2.0
+  maxSpreadRange: 2.5
+  minIncubation: 120
+  maxIncubation: 240
+  minStages: 2
+  maxStages: 3
+  minStageDelay: 150
+  maxStageDelay: 240
+  minDuration: 720
+  maxDuration: 1200
+
+# --- Emergent ---
+# These are station-neglect outbreaks, not antagonist diseases. seedWeight 0 keeps them
+# out of ambient milestone selection until the contamination system deliberately spawns one.
+
+- type: pathogenArchetype
+  id: StationFever
+  name: pathogen-name-station-fever
+  description: pathogen-desc-station-fever
+  pathogenType: Virus
+  seedWeight: 0
+  respawnOnExtinction: false
+  tier: Emergent
+  protectionBypass: 0.4
+  maxPrevalence: 0.15
+  coreSymptoms:
+  - Fever
+  symptomPool:
+  - Headache
+  - MuscleAches
+  - ShortBreath
+  - ShakyHands
+  - Drowsiness
+  minExtraSymptoms: 2
+  maxExtraSymptoms: 3
+  minTransmissibility: 0.035
+  maxTransmissibility: 0.055
+  minSpreadRange: 1.5
+  maxSpreadRange: 2.0
+  minIncubation: 120
+  maxIncubation: 240
+  minStages: 3
+  maxStages: 3
+  minStageDelay: 120
+  maxStageDelay: 210
+  minDuration: 900
+  maxDuration: 1500
+
+- type: pathogenArchetype
+  id: GreyLung
+  name: pathogen-name-grey-lung
+  description: pathogen-desc-grey-lung
+  pathogenType: Bacteria
+  seedWeight: 0
+  respawnOnExtinction: false
+  tier: Emergent
+  protectionBypass: 0.4
+  maxPrevalence: 0.15
+  coreSymptoms:
+  - Coughing
+  - Hoarseness
+  symptomPool:
+  - Fever
+  - ShortBreath
+  - Fatigue
+  - BlurredVision
+  - Drowsiness
+  minExtraSymptoms: 1
+  maxExtraSymptoms: 3
+  minTransmissibility: 0.025
+  maxTransmissibility: 0.045
+  minSpreadRange: 1.5
+  maxSpreadRange: 2.0
+  minIncubation: 150
+  maxIncubation: 300
+  minStages: 3
+  maxStages: 3
+  minStageDelay: 150
+  maxStageDelay: 240
+  minDuration: 1080
+  maxDuration: 1800
+
+- type: pathogenArchetype
+  id: RedFlux
+  name: pathogen-name-red-flux
+  description: pathogen-desc-red-flux
+  pathogenType: Fungus
+  seedWeight: 0
+  respawnOnExtinction: false
+  tier: Emergent
+  protectionBypass: 0.5
+  maxPrevalence: 0.12
+  coreSymptoms:
+  - Nausea
+  symptomPool:
+  - Vomiting
+  - Fever
+  - Clumsiness
+  - Nosebleed
+  - MuscleAches
+  minExtraSymptoms: 2
+  maxExtraSymptoms: 3
+  # Fungus is environmental only; treatment contact and quarantine do not spread it.
+  minTransmissibility: 0
+  maxTransmissibility: 0
+  minSpreadRange: 2.0
+  maxSpreadRange: 2.5
+  minIncubation: 180
+  maxIncubation: 360
+  minStages: 3
+  maxStages: 3
+  minStageDelay: 180
+  maxStageDelay: 300
+  minDuration: 1200
+  maxDuration: 2100
+
+# --- Engineered ---
+# Reference implementation of a targeted beneficial strain. seedWeight 0 keeps it out of
+# ambient seeding, transmissibility 0 means it cannot spread on its own and has to be
+# administered deliberately, and immunityOnRecovery is off so the crew can be re-dosed.
+# Every range is fixed, because a product should come out the same every time.
+
+- type: pathogenArchetype
+  id: Vigor
+  name: pathogen-name-vigor
+  description: pathogen-desc-vigor
+  pathogenType: Virus
+  beneficial: true
+  seedWeight: 0
+  respawnOnExtinction: false
+  immunityOnRecovery: false
+  maxPrevalence: 1.0
+  coreSymptoms:
+  - MinorRegeneration
+  minExtraSymptoms: 0
+  maxExtraSymptoms: 0
+  minTransmissibility: 0
+  maxTransmissibility: 0
+  minSpreadRange: 0
+  maxSpreadRange: 0
+  minIncubation: 20
+  maxIncubation: 20
+  minStages: 1
+  maxStages: 1
+  minStageDelay: 60
+  maxStageDelay: 60
+  minDuration: 300
+  maxDuration: 300
