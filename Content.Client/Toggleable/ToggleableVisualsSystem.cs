@@ -131,6 +131,7 @@ public sealed partial class ToggleableVisualsSystem : VisualizerSystem<Toggleabl
             || !enabled)
             return;
 
+        // Starlight begin
         List<PrototypeLayerData>? layers;
 
         if (TryComp<WieldableComponent>(uid, out var wieldable))
@@ -145,6 +146,7 @@ public sealed partial class ToggleableVisualsSystem : VisualizerSystem<Toggleabl
         }
         else if (!component.InhandVisuals.TryGetValue(args.Location, out layers))
             return;
+        // Starlight end
 
         var modulateColor = AppearanceSystem.TryGetData<Color>(uid, ToggleableVisuals.Color, out var color, appearance);
 

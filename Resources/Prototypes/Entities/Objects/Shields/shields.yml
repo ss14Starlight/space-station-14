@@ -512,24 +512,22 @@
     - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
+      # SL begin
         left:
           - state: inhand-left-shield-base
             shader: unshaded
-          # SL begin
           - state: inhand-left-shield-overlay
             shader: unshaded
             map: [ "overlay" ]
-          # SL end
         right:
           - state: inhand-right-shield-base
             shader: unshaded
-          # SL begin
           - state: inhand-right-shield-overlay
             shader: unshaded
             map: [ "overlay" ]
-          # SL end
       modulateIgnoreLayers: [ "overlay" ]
       additionalLayers: [ "overlay" ]
+      # SL end
     - type: PointLight
       netsync: false
       enabled: false
