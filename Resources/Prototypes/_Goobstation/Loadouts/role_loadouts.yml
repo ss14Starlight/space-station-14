@@ -2,6 +2,8 @@
   id: JobRadioHost
   groups:
   - GroupTankHarness # for Vox
+  - RadioHostJumpsuit
+  - RadioHostOuterClothing
   - CommonBackpack
   - CivilianShoes
   - Survival
@@ -10,5 +12,4 @@
   - Pins
   - Pens
   - GroupSpeciesBreathTool
-  - Glasses
-  # TODO
+  - RadioHostGlasses

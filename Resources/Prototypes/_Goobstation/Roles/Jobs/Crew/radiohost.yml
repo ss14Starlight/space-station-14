@@ -14,18 +14,15 @@
   id: RadioHostGear
   equipment:
     ears: ClothingHeadsetAltRadioHost
-    eyes: ClothingEyesGlassesSunglasses
-    jumpsuit: ClothingUniformJumpsuitHawaiBlack
-    shoes: ClothingShoesColorBlack
-    back: ClothingBackpackSatchel
-    id: RadioHostPDA
+    belt: ClothingBeltStorageWaistbag
 
 - type: chameleonOutfit
   id: RadioHostChameleonOutfit
   job: RadioHost
   equipment:
     eyes: ClothingEyesGlassesCheapSunglasses
-    ear: ClothingHeadsetAltRadioHost
+    ears: ClothingHeadsetAltRadioHost
+    belt: ClothingBeltStorageWaistbag
     jumpsuit: ClothingUniformJumpsuitHawaiBlack
     shoes: ClothingShoesColorBlack
     id: RadioHostPDA
