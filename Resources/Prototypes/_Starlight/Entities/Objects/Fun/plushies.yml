@@ -130,42 +130,6 @@
 
 - type: entity
   parent: BasePlushie
-  id: RenaultPlushie
-  name: renault plushie
-  description: The Captain's trusty pet! The tail is so fluffy.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/renault_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/renault_plushie.rsi
-    state: icon
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/Animals/fox1.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Animals/fox2.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Animals/fox5.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Animals/fox8.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/Animals/fox_squeak.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/Animals/fox11.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: RenaultPlushie
-
-- type: entity
-  parent: BasePlushie
   id: SnailPlushie
   name: snail plushie
   description: Look at it go!

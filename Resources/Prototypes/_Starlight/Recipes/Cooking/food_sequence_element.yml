@@ -17,14 +17,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
     state: icon
 
-#Renault Plushie
-- type: foodSequenceElement
-  id: RenaultPlushie
-  name: food-sequence-cotton-burger-content-plushie-renault
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/renault_plushie.rsi
-    state: icon
-
 #Snail Plushie
 - type: foodSequenceElement
   id: SnailPlushie
