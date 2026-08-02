@@ -609,17 +609,6 @@
       stock: 1
 
 - type: listing
-  id: VendorPlushieBrighteyes
-  productEntity: PlushieBrighteyes
-  cost:
-    NTCredit: 20
-  categories:
-    - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-- type: listing
   id: VendorPlushieKilla
   productEntity: PlushieKilla
   cost:

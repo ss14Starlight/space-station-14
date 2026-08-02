@@ -125,12 +125,6 @@
     count: 10
 
 - type: localizedDataset
-  id: PlushiesBrighteyes
-  values:
-    prefix: plushie-brighteyes-
-    count: 10
-
-- type: localizedDataset
   id: PlushiesNebula
   values:
     prefix: plushie-nebula-
