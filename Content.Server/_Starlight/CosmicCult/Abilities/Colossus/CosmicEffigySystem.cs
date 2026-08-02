@@ -113,7 +113,6 @@ public sealed partial class CosmicEffigySystem : EntitySystem
 
             // Restore ability
             _charges.SetCharges((action, charges), charges.MaxCharges);
-            Dirty(action, charges);
             _popup.PopupEntity(Loc.GetString("ghost-role-colossus-effigy-ready"), uid, uid,
             PopupType.LargeCaution);
         }
