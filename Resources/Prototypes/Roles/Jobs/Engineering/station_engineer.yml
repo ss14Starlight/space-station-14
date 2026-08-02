@@ -16,6 +16,10 @@
   - External
   extendedAccess:
   - Atmospherics
+  # Starlight
+  ranks:
+    - EngineeringSpecialist
+  # StarlightEnd
 
 - type: startingGear
   id: StationEngineerGear
