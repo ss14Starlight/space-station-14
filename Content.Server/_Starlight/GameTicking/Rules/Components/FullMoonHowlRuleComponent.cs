@@ -1,6 +1,4 @@
 using Robust.Shared.Audio;
-using Robust.Shared.Prototypes;
-using Content.Shared.Tag;
 
 namespace Content.Server._Starlight.GameTicking.Rules.Components;
 
@@ -10,9 +8,10 @@ public sealed partial class FullMoonHowlRuleComponent : Component
     [DataField]
     public SoundSpecifier HowlSound = new SoundCollectionSpecifier("VulpkaninHowls");
 
+    /// <summary>
+    /// Eligible entities are matched by <see cref="Content.Shared.Inventory.InventoryComponent.SpeciesId"/>.
+    /// Vulpkanin and ProtoVulp both use "vulpkanin"; corgis/borgis use "dog"; puppies/McGriff use "puppy".
+    /// </summary>
     [DataField]
-    public HashSet<string> EligibleSpecies = new() { "Vulpkanin", "ProtoVulp" };
-
-    [DataField]
-    public HashSet<ProtoId<TagPrototype>> EligibleMobTags = new() { "DogEmotes" };
+    public HashSet<string> EligibleInventorySpecies = new() { "vulpkanin", "dog", "puppy" };
 }

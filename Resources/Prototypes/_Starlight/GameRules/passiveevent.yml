@@ -185,8 +185,7 @@
       maxDuration: 1
       maxOccurrences: 1
     - type: FullMoonHowlRule
-      eligibleSpecies:
-        - Vulpkanin
-        - ProtoVulp
-      eligibleMobTags:
-        - DogEmotes
+      eligibleInventorySpecies:
+        - vulpkanin
+        - dog
+        - puppy
