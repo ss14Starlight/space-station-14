@@ -23,12 +23,6 @@
     count: 6
 
 - type: localizedDataset
-  id: PlushiesKiller
-  values:
-    prefix: plushie-killer-
-    count: 8
-
-- type: localizedDataset
   id: PlushiesOp
   values:
     prefix: plushie-op-
@@ -106,8 +100,3 @@
     prefix: plushie-nebula-
     count: 8
 
-- type: localizedDataset
-  id: PlushiesKilla
-  values:
-    prefix: plushie-killa-
-    count: 5

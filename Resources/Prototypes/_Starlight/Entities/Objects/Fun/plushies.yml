@@ -124,32 +124,6 @@
         voice: ICASSP105
 
 - type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieKiller
-  name: killer plushie
-  description: The corpsman that lives up to his name, being the first or the last thing you see depending on which side of the fence you stand on. The volume setting appears to be stuck on max..
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/killer_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/killer_plushie.rsi
-    layers:
-      - state: icon
-      - state: icon-unshaded
-        shader: unshaded
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesKiller
-      - type: TextToSpeech
-        voice: ICASSP136
-
-- type: entity
   parent: PlushieHuman
   id: PlushieOog
   name: oog-man plushie #I AM OOG-MAN
@@ -1076,30 +1050,6 @@
         dataset: PlushiesNebula
       - type: TextToSpeech
         voice: kassssandra
-
-- type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieKilla
-  name: killa plushie
-  description: Looks like a cheap knockoff, it has visibly loose stitching
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/killa_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/killa_plushie.rsi
-    layers:
-      - state: KillaTamalePlush
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-    - type: DatasetVocalizer
-      dataset: PlushiesKilla
-    - type: TextToSpeech
-      voice: mozillaAu7
 
 # Large blue shark plushie
 - type: entity

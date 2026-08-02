@@ -322,17 +322,6 @@
     stock: 1
 
 - type: listing
-  id: VendorPlushieKiller
-  productEntity: PlushieKiller
-  cost:
-    NTCredit: 20
-  categories:
-  - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: VendorPlushieOog
   productEntity: PlushieOog
   cost:
@@ -478,17 +467,6 @@
 - type: listing
   id: VendorPlushieMalachi
   productEntity: PlushieMalachi
-  cost:
-    NTCredit: 20
-  categories:
-    - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-- type: listing
-  id: VendorPlushieKilla
-  productEntity: PlushieKilla
   cost:
     NTCredit: 20
   categories:
