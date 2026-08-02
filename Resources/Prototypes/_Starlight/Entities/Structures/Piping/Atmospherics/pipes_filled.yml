@@ -1,0 +1,220 @@
+# Subfloor gas tank (4500kPa) BEGIN
+
+- type: entity
+  parent: GasPipeTankSubfloor
+  id: GasPipeTankSubfloorFilledAir4500
+  suffix: Air, 4500kPa
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankSubfloorFilledAir4500
+        Secondary: GasPipeTankSubfloorFilledAir4500Alt1
+        Tertiary: GasPipeTankSubfloorFilledAir4500Alt2
+        Quaternary: GasPipeTankSubfloorFilledAir4500Alt3
+        Quinary: GasPipeTankSubfloorFilledAir4500Alt4
+    - type: PipePrefill
+      pressure: 4500
+      mixture:
+        Oxygen: 21
+        Nitrogen: 79
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir4500]
+  id: GasPipeTankSubfloorFilledAir4500Alt1
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt1
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledAir4500]
+  id: GasPipeTankSubfloorFilledAir4500Alt2
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt2
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledAir4500]
+  id: GasPipeTankSubfloorFilledAir4500Alt3
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt3
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledAir4500]
+  id: GasPipeTankSubfloorFilledAir4500Alt4
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt4
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+
+# Subfloor gas tank (4500kPa) END
+# Subfloor gas tank (9000kPa) BEGIN
+
+- type: entity
+  parent: GasPipeTankSubfloor
+  id: GasPipeTankSubfloorFilledAir9000
+  suffix: Air, 9000kPa
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankSubfloorFilledAir9000
+        Secondary: GasPipeTankSubfloorFilledAir9000Alt1
+        Tertiary: GasPipeTankSubfloorFilledAir9000Alt2
+        Quaternary: GasPipeTankSubfloorFilledAir9000Alt3
+        Quinary: GasPipeTankSubfloorFilledAir9000Alt4
+    - type: PipePrefill
+      pressure: 9000
+      mixture:
+        Oxygen: 21
+        Nitrogen: 79
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir9000]
+  id: GasPipeTankSubfloorFilledAir9000Alt1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: ThinPipeAlt1
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledAir9000]
+  id: GasPipeTankSubfloorFilledAir9000Alt2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: ThinPipeAlt2
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledAir9000]
+  id: GasPipeTankSubfloorFilledAir9000Alt3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: ThinPipeAlt3
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledAir9000]
+  id: GasPipeTankSubfloorFilledAir9000Alt4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: ThinPipeAlt4
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+
+# Subfloor gas tank (9000kPa) END
+# Tall gas tank (4500kPa) BEGIN
+
+- type: entity
+  parent: GasPipeTankTall
+  id: GasPipeTankTallFilledAir4500
+  suffix: Air, 4500kPa
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankTallFilledAir4500
+        Secondary: GasPipeTankTallFilledAir4500Alt1
+        Tertiary: GasPipeTankTallFilledAir4500Alt2
+        Quaternary: GasPipeTankTallFilledAir4500Alt3
+        Quinary: GasPipeTankTallFilledAir4500Alt4
+    - type: PipePrefill
+      pressure: 4500
+      mixture:
+        Oxygen: 21
+        Nitrogen: 79
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir4500]
+  id: GasPipeTankTallFilledAir4500Alt1
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankTallFilledAir4500]
+  id: GasPipeTankTallFilledAir4500Alt2
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledAir4500]
+  id: GasPipeTankTallFilledAir4500Alt3
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledAir4500]
+  id: GasPipeTankTallFilledAir4500Alt4
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+
+# Tall gas tank (4500kPa) END
+# Tall gas tank (9000kPa) BEGIN
+
+- type: entity
+  parent: GasPipeTankTall
+  id: GasPipeTankTallFilledAir9000
+  suffix: Air, 9000kPa
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankTallFilledAir9000
+        Secondary: GasPipeTankTallFilledAir9000Alt1
+        Tertiary: GasPipeTankTallFilledAir9000Alt2
+        Quaternary: GasPipeTankTallFilledAir9000Alt3
+        Quinary: GasPipeTankTallFilledAir9000Alt4
+    - type: PipePrefill
+      pressure: 9000
+      mixture:
+        Oxygen: 21
+        Nitrogen: 79
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir9000]
+  id: GasPipeTankTallFilledAir9000Alt1
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankTallFilledAir9000]
+  id: GasPipeTankTallFilledAir9000Alt2
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledAir9000]
+  id: GasPipeTankTallFilledAir9000Alt3
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledAir9000]
+  id: GasPipeTankTallFilledAir9000Alt4
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+
+# Tall gas tank (9000kPa) END
