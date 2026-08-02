@@ -25,30 +25,6 @@
 #end region
 
 - type: entity
-  parent: PlushieHuman
-  id: PlushieOp
-  name: op plushie
-  description: bnuny..... human?
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/op_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/op_plushie.rsi
-    layers:
-      - state: icon
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesOp
-      - type: TextToSpeech
-        voice: ICASSP133
-
-- type: entity
   parent: BaseMothPlushie
   id: PlushieMozan
   name: Mozan plushie
