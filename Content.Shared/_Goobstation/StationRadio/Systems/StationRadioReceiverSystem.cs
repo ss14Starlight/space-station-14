@@ -22,6 +22,8 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         SubscribeLocalEvent<StationRadioReceiverComponent, ActivateInWorldEvent>(OnRadioToggle);
         SubscribeLocalEvent<StationRadioReceiverComponent, PowerChangedEvent>(OnPowerChanged);
 
+        SubscribeLocalEvent<StationRadioServerComponent, PowerChangedEvent>(OnServerPowerChanged);
+
         SubscribeLocalEvent<StationRadioReceiverComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs); // Moffstation - Alt click to lower volume.
     }
 
@@ -43,7 +45,11 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
 
             foreach (var linkedServer in sink.LinkedSources)
             {
-                if (!HasComp<StationRadioServerComponent>(linkedServer) || !_power.IsPowered(linkedServer))
+                var hasComp = HasComp<StationRadioServerComponent>(linkedServer);
+                var powered = _power.IsPowered(linkedServer);
+                Log.Info($"[StationRadio] Candidate server {ToPrettyString(linkedServer)}: hasComp={hasComp}, powered={powered}");
+
+                if (!hasComp || !powered)
                     continue;
 
                 server = linkedServer;
@@ -86,6 +92,21 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             return;
 
         comp.SoundEntity = _audio.Stop(comp.SoundEntity);
+    }
+
+    /// <summary>
+    /// Stop broadcasting if the Radio Server loses power, despite the Vinyl Player and Rig still being powered.
+    /// </summary>
+    private void OnServerPowerChanged(EntityUid uid, StationRadioServerComponent comp, PowerChangedEvent args)
+    {
+        if (args.Powered)
+            return;
+
+        var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
+        while (query.MoveNext(out var receiver, out _))
+        {
+            RaiseLocalEvent(receiver, new StationRadioMediaStoppedEvent());
+        }
     }
 
     // Moffstation - Start - Alt click to lower volume.

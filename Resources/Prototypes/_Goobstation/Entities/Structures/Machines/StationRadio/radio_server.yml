@@ -34,6 +34,7 @@
     powerRequired: true
     broadcastChannel: RadioShow
     unobstructedRequired: true
+  - type: ApcPowerReceiver
 
 - type: entity
   id: StationRadioRig
