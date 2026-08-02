@@ -40,6 +40,8 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  ranks:
+    - GrandMagistrate
 
 - type: startingGear
   id: MagistrateGear

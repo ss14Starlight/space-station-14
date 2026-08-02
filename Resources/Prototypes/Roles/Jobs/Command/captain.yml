@@ -34,6 +34,10 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  # Starlight
+  ranks:
+    - Admiral
+  # StarlightEnd
 
 - type: startingGear
   id: CaptainGear

@@ -30,6 +30,8 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  ranks:
+    - BrigmedicalSpecialist
 
 - type: startingGear
   id: BrigmedicGear

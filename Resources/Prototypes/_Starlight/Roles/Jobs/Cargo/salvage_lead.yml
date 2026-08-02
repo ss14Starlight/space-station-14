@@ -24,6 +24,8 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  ranks:
+    - ModelSalvageLead
 
 - type: startingGear
   id: SalvageLeadGear

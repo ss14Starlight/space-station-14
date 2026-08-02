@@ -19,7 +19,10 @@
   extendedAccess:
   - Paramedic
   - Surgery
-  # Starlight End
+  ranks:
+    - ChemicalSpecialist
+  # StarlightEnd
+
 
 - type: startingGear
   id: ChemistGear

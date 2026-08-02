@@ -42,6 +42,10 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  # Starlight
+  ranks:
+    - SurgeonGeneral
+  # StarlightEnd
 
 - type: startingGear
   id: CMOGear

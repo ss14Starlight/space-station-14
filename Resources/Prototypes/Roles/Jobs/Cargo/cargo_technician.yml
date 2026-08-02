@@ -19,6 +19,10 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay
     prototype: BoxCardboard
+  # Starlight
+  ranks:
+    - CargoSpecialist
+  # StarlightEnd
 
 - type: startingGear
   id: CargoTechGear

@@ -17,6 +17,10 @@
   extendedAccess:
   - Hydroponics
   - Bar
+  # Starlight
+  ranks:
+    - MessOfficer
+  # StarlightEnd
 
 - type: startingGear
   id: ChefGear

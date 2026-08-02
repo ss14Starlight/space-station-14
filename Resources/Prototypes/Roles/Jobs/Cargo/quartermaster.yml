@@ -42,6 +42,10 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  # Starlight
+  ranks:
+  - QuartermasterGeneral
+  # StarlightEnd
 
 - type: startingGear
   id: QuartermasterGear

@@ -68,6 +68,10 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  # Starlight
+  ranks:
+    - ChiefSteward
+  # StarlightEnd
 
 - type: startingGear
   id: HoPGear

@@ -18,6 +18,8 @@
   extendedAccess:
   - Paramedic
   - Chemistry
+  ranks:
+    - SpecialistSurgeon
 
 - type: startingGear
   id: SurgeonGear

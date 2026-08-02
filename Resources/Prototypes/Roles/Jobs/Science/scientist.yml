@@ -17,6 +17,10 @@
   extendedAccess:
   - Robotics
   #endregion
+  # Starlight
+  ranks:
+    - MasterScientist
+  # StarlightEnd
 
 - type: startingGear
   id: ScientistGear

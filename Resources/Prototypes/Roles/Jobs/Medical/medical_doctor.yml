@@ -24,6 +24,10 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: DoctorDay
     prototype: WehMedipen
+  # Starlight
+  ranks:
+    - MedicalSpecialist
+  # StarlightEnd
 
 - type: startingGear
   id: DoctorGear

@@ -16,6 +16,8 @@
   - Maintenance
   - External
   - Cryogenics # Officer gets this for some reason, so making it consistent.
+  ranks:
+    - DutySpecialist
 
   special:
   - !type:AddImplantSpecial

@@ -46,6 +46,10 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  # Starlight
+  ranks:
+    - ChiefOfSecurity
+  # StarlightEnd
 
 - type: startingGear
   id: HoSGear

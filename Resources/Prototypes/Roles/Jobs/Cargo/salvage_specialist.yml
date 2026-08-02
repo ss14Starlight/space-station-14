@@ -25,6 +25,10 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  # Starlight
+  ranks:
+    - ModelSalvager
+  # StarlightEnd
 
 - type: startingGear
   id: SalvageSpecialistGear

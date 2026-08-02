@@ -18,6 +18,8 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay
     prototype: BoxCardboard
+  ranks:
+    - MailSpecialist
 
 - type: startingGear
   id: MailTechGear

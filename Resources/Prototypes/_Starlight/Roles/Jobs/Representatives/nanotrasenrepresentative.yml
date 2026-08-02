@@ -58,6 +58,8 @@
     - !type:AddComponentSpecial
       components:
         - type: CommandStaff
+  ranks:
+    - ProtocolCommissar
 
 - type: startingGear
   id: NanoTrasenRepresentativeGear

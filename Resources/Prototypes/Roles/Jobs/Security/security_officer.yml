@@ -19,6 +19,10 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  # Starlight
+  ranks:
+    - ModelOfficer
+  # StarlightEnd
 
 - type: startingGear
   id: SecurityOfficerGear

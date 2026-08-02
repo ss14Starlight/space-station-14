@@ -4,3 +4,10 @@
   requirement: SciencePrestigeReq
   priority: High
   icon: "JobIconMasterScientist"
+
+- type: rank
+  id: ChiefOfResearch
+  name: job-name-chiefofresearch
+  requirement: SciencePrestigeReq
+  priority: High
+  icon: "JobIconChiefOfResearch"

@@ -32,6 +32,10 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  # Starlight
+  ranks:
+    - ModelWarden
+  # StarlightEnd
 
 - type: startingGear
   id: WardenGear

@@ -17,6 +17,10 @@
   extendedAccess:
   - Kitchen
   - Hydroponics
+  # Starlight
+  ranks:
+    - MasterBartender
+  # StarlightEnd
 
 - type: startingGear
   id: BartenderGear

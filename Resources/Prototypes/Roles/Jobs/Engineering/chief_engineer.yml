@@ -41,6 +41,10 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  # Starlight
+  ranks:
+    - MasterEngineer
+  # StarlightEnd
 
 - type: startingGear
   id: ChiefEngineerGear

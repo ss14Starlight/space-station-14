@@ -17,6 +17,10 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FourTwenty
     prototype: CannabisSeeds
+  # Starlight
+  ranks:
+    - MasterBotanist
+  # StarlightEnd
 
 - type: startingGear
   id: BotanistGear

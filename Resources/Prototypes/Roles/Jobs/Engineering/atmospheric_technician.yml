@@ -20,6 +20,10 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FirefighterDay
     prototype: FireAxe
+  # Starlight
+  ranks:
+    - AtmosphericSpecialist
+  # StarlightEnd
 
 - type: startingGear
   id: AtmosphericTechnicianGear
