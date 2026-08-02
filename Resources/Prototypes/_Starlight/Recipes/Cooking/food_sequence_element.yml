@@ -25,15 +25,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/mime_lizard_plushie.rsi
     state: icon
 
-#Goat Plushie
-- type: foodSequenceElement
-  id: GoatPlushie
-  scale: 0.8, 0.8
-  name: food-sequence-cotton-burger-content-plushie-goat
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/goat_plushie.rsi
-    state: icon
-
 #Ian Plushie
 - type: foodSequenceElement
   id: StarlightIanPlushie

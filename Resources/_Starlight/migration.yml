@@ -181,6 +181,7 @@ PlushieLiz: PlushieLizard
 PlushieEmmie: PlushieLizard
 PlushieFixes: PlushieLizard
 SquishimsFrog: PlushieLizard
-PlushieGlados: PlushieBorg
-PlushieWEH: PlushieBorg
+PlushieGlados: PlushieBorg # made generic
+PlushieWEH: PlushieBorg # made generic
 GnomePlushie: PlushieLizard
+GoatPlushie: PlushieLizard
