@@ -110,7 +110,7 @@
 
 - type: listing
   id: VendorPlushieMozan
-  productEntity: MozanPlush
+  productEntity: PlushieMozan
   cost:
     NTCredit: 16
   categories:
