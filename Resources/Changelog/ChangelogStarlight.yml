@@ -1,18 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: (CC_SC17) Rotting corpse is gone now.
-    type: Remove
-  id: 406818
-  time: '2026-07-23T09:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5246
-- author: Johnny
-  changes:
-  - message: (CC_SC17) Cryopods now work.
-    type: Fix
-  id: 406819
-  time: '2026-07-23T09:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5246
 - author: Caws
   changes:
   - message: (Starboard) Fixed a missing disposals pipe by the stage, which caused trash that fell out of disposals to rip up the floor tiles.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407217
   time: '2026-08-02T11:44:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5468
+- author: Sparlight
+  changes:
+  - message: Bumping into doors now leaves scent traces, like interacting with them already does.
+    type: Tweak
+  id: 407218
+  time: '2026-08-02T11:44:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5450
+- author: Sparlight
+  changes:
+  - message: Individuals that can smell things can still smell while blinded.
+    type: Fix
+  id: 407219
+  time: '2026-08-02T11:44:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5450
 Order: -1
