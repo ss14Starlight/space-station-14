@@ -10,7 +10,7 @@ using Content.Shared.Roles.Components;
 
 #region Starlight
 using Content.Shared._Starlight.Antags.Vampires.Components;
-using Content.Shared._Starlight.CosmicCult; // Starlight edit
+using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Shared.Popups;
 using Content.Server._Starlight.Achievement;
