@@ -79,7 +79,6 @@
         head:
           - state: equipped-HELMET
 
-
 - type: entity
   parent: BasePlushie
   id: PandaPlushie
