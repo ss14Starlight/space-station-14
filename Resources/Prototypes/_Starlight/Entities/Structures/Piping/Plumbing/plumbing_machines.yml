@@ -621,13 +621,13 @@
   - type: StaticPrice
     price: 150
 # =============================================================================
-# Plumbing Filter - separates specific reagents into two outputs
+# Plumbing Filter - draws only specific reagents off a duct network
 # =============================================================================
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingFilter
   name: plumbing filter
-  description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
+  description: Draws up to 10 specific reagents off a duct network, holding 10u of each, and serves them to its outlet.
   components:
   - type: Physics
     bodyType: Static
@@ -636,29 +636,26 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: filter
-      map: [ "enum.SubfloorLayers.FirstLayer" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PlumbingVisuals.Running:
+        enum.PlumbingVisualLayers.Base:
+          True: { state: filter_working }
+          False: { state: filter }
   - type: PlumbingDevice
     updateInterval: 2
   - type: PlumbingInlet
     solutionName: buffer
   - type: PlumbingFilter
-    filterNodeName: outletFilter
-    passthroughNodeName: outletPassthrough
-    filteredSolutionName: bufferFiltered
-    passthroughSolutionName: buffer
   - type: Plungeable
   - type: PlumbingOutlet
     solutionName: buffer
-    outletNames:
-    - outletFilter
-    - outletPassthrough
   - type: SolutionContainerManager
     solutions:
       buffer:
-        maxVol: 40
-        canReact: false
-      bufferFiltered:
-        maxVol: 40
+        # 10 filtered reagents at 10u each.
+        maxVol: 100
         canReact: false
   - type: ExaminableSolution
     solution: buffer
@@ -668,11 +665,7 @@
         !type:PlumbingNode
         nodeGroupID: Plumbing
         pipeDirection: North
-      outletFilter:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: West
-      outletPassthrough:
+      outlet:
         !type:PlumbingNode
         nodeGroupID: Plumbing
         pipeDirection: South
@@ -684,8 +677,6 @@
         type: PlumbingFilterBoundUserInterface
   - type: ActivatableUI
     key: enum.PlumbingFilterUiKey.Key
-  - type: Flippable
-    mirrorEntity: PlumbingFilterFlipped
   - type: Destructible
     thresholds:
     - trigger:
@@ -694,43 +685,10 @@
       behaviors:
       - !type:SpillBehavior
         solution: buffer
-      - !type:SpillBehavior
-        solution: bufferFiltered
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: StaticPrice
     price: 125
-
-- type: entity
-  parent: PlumbingFilter
-  id: PlumbingFilterFlipped
-  suffix: Flipped
-  description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
-  components:
-  - type: Physics
-    bodyType: Static
-    canCollide: false
-  - type: Sprite
-    sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
-    layers:
-    - state: filterF
-      map: [ "enum.SubfloorLayers.FirstLayer" ]
-  - type: NodeContainer
-    nodes:
-      inlet:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: South
-      outletFilter:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: West
-      outletPassthrough:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: North
-  - type: Flippable
-    mirrorEntity: PlumbingFilter
 
 # =============================================================================
 # Plumbing Synthesizer - generates reagents from power

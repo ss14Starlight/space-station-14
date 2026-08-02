@@ -164,7 +164,6 @@
   sprite: /Textures/_Starlight/Interface/Radial/RPLD/filter.png
   mode: ConstructObject
   prototype: PlumbingFilter
-  mirrorPrototype: PlumbingFilterFlipped
   cost: 1
   delay: 0
   collisionMask: MachineMask

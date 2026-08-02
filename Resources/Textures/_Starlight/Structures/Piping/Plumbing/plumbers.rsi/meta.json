@@ -63,8 +63,34 @@
             "copyright": "TGStation"
         },
         {
-            "name": "filterF",
+            "name": "filter_working",
             "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
             "copyright": "TGStation"
         },
         {

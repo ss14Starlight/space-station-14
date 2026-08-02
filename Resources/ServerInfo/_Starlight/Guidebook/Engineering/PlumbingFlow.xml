@@ -28,12 +28,10 @@
   ## Reactor: Targeted Pulling
   The [color=#a4885c]Reactor[/color] is special, it pulls [bold]specific reagents[/bold] rather than everything. It fills each target reagent fully before moving to the next. If you set targets of 30u Iron and 20u Carbon, it will pull all 30u of Iron first, then pull Carbon.
 
-  ## Filter: Selective Routing
-  The [color=#a4885c]Filter[/color] has one inlet and two outlets. It classifies intake into separate filtered and passthrough lanes, then controls which reagents are available on which outlet:
-  - [bold]Filtered outlet[/bold]: Only provides the reagents you've selected.
-  - [bold]Passthrough outlet[/bold]: Only provides reagents you [italic]haven't[/italic] selected.
+  ## Filter: Selective Pulling
+  The [color=#a4885c]Filter[/color] pulls the same targeted way the reactor does. It has one inlet and one outlet, and only ever requests the reagents you've selected, so everything else stays on the network for machines further down the line.
 
-  Because the lanes are separate, passthrough buildup will not prevent filtered reagents from being pulled into the machine.
+  Unlike the reactor you don't set quantities, every selected reagent gets the same [bold]10u allowance[/bold] and its own room in the buffer.
 
   ## Pill Press: Mixing Mode
   In [color=#a4885c]mixing mode[/color], the pill press ignores its main inlet and instead pulls from its [color=#59e659]mixing inlets[/color]. Each mixing inlet pulls from its own separate network into a staging area. Once both staging areas have enough reagent, they combine and press a pill at the configured ratio.
