@@ -11,7 +11,7 @@
     removeEmpty: true
     solutionOnBody: false
     solution: Lung
-    metabolizerTypes: [ Slime ]
+    metabolizerTypes: [ Cyclorite ]
     groups:
     - id: Gas
       rateModifier: 100.0

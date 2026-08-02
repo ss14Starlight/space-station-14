@@ -3,7 +3,7 @@
   name: subspecies-name-neodwarf
   roundStart: true
   prototype: MobNeoDwarf
-  sprites: MobNeoHumanSprites
+  sprites: MobNeoDwarfSprites
   markingLimits: MobNeoDwarfMarkingLimits
   dollPrototype: AppearanceNeoDwarf
   defaultSkinTone: "#666666"
@@ -26,6 +26,33 @@
   profileMigration:
     oldSpecies:
     - ProtoDwarf
+
+- type: speciesBaseSprites
+  id: MobNeoDwarfSprites
+  sprites:
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Eyes: MobNeocyteEyes
+    Head: MobHumanHead
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobHumanTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    LArm: MobHumanLArm
+    RArm: MobHumanRArm
+    LHand: MobHumanLHand
+    RHand: MobHumanRHand
+    LLeg: MobHumanLLeg
+    RLeg: MobHumanRLeg
+    LFoot: MobHumanLFoot
+    RFoot: MobHumanRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobNeoDwarfMarkingLimits

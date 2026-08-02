@@ -242,7 +242,7 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Vox, Slime ]
+          type: [ Vox, Slime, Cyclorite, NeoVox ] # Starlight
       # Converts Nitrogen into Ammonia
       - !type:ModifyLungGas
         conditions:
