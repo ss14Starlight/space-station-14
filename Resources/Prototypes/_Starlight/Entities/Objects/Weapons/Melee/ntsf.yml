@@ -112,3 +112,5 @@
     energy: 3
     color: "#00CCFF"
     netsync: false
+  - type: UseDelay
+    delay: 1
