@@ -41,9 +41,6 @@ public sealed partial class PipePrefillSystem : EntitySystem
         if (!TryComp<NodeContainerComponent>(ent, out var nodeContainer))
             return;
 
-        // Force an update so the PipeNet actually exists before we try to mutate it.
-        _nodeGroup.ForceUpdate();
-
         var fractionTotal = 0f;
         foreach (var fraction in ent.Comp.Mixture.Values)
             fractionTotal += fraction;
@@ -57,6 +54,12 @@ public sealed partial class PipePrefillSystem : EntitySystem
         {
             if (node is not PipeNode pipeNode)
                 continue;
+
+            // Give this node a PipeNet immediately (no-op if it already has one) so its Air mixture
+            // actually exists before we mutate it, without forcing a full update of every other
+            // queued node group on the map. It'll get properly merged with any connected neighbours,
+            // gas and all, next time the node group system processes its queue.
+            _nodeGroup.CreateSingleNetImmediate(pipeNode);
 
             // Given the target pressure + our volume, calculate how many mols that would take to achieve.
             var totalMoles = ent.Comp.Pressure * pipeNode.Volume / (Atmospherics.R * ent.Comp.Temperature);
