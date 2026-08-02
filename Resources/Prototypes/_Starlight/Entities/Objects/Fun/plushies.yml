@@ -1,146 +1,4 @@
-# region crew plushies
-- type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieVanilla
-  name: vanilla plushie
-  description: She's a shy, affectionate, lovable fox!
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/vanilla_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/vanilla_plushie.rsi
-    layers:
-      - state: icon
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesVanilla
-      - type: TextToSpeech
-        voice: ICASSP96
-#end region
-
-- type: entity
-  parent: BaseMothPlushie
-  id: PlushieMozan
-  name: Mozan plushie
-  description: Just like the real thing, it squeaks if you poke it.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
-    state: icon
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
-
-- type: entity
-  parent: BaseMothPlushie
-  id: PlushieKoni
-  name: koni plushie
-  description: Some sort of moth-cat hybrid. You can't help but find it really cute. Can squeak and meow!
-  components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
-      state: icon
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
-    - type: EmitSoundOnUse
-      sound:
-        collection: CatMothSounds
-    - type: EmitSoundOnActivate
-      sound:
-        collection: CatMothSounds
-    - type: EmitSoundOnCollide
-      sound:
-        collection: CatMothSounds
-    - type: EmitSoundOnLand
-      sound:
-        collection: CatMothScreams
-    - type: EmitSoundOnTrigger
-      sound:
-        collection: CatMothSounds
-    - type: MeleeWeapon
-      soundHit:
-        collection: CatMothSounds
-    - type: Edible
-      useSound:
-        collection: CatMothScreams
-    - type: Clothing
-      quickEquip: false
-      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
-      slots:
-        - HEAD
-      clothingVisuals:
-        head:
-          - state: equipped-HELMET
-
-- type: entity
-  parent: BasePlushie
-  id: PandaPlushie
-  name: panda plushie
-  description: Large and in charge! Its paws and body are weighted with poly pellets. Holding it eases your stress and anxieties.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
-    state: icon
-  - type: Item
-    size: Normal
-    sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Starlight/Items/Toys/panda_noise2.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/_Starlight/Items/Toys/panda_noise2.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: PandaPlushie
-
-- type: entity
-  parent: BaseVulpkaninPlushie
-  id: VikaPviPlushie
-  name: vika plushie
-  description: Worst Centcomm Operator ever.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/vika_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/vika_plushie.rsi
-    state: icon
-
-- type: entity
-  parent: BaseBorgPlushie
-  id: PlushieBorg
-  name: borg plushie
-  description: A tiny plushie of an engineering cyborg, complete with tiny plastic tools.
-  components:
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
-      state: icon
-
+# Character Plushies
 - type: entity
   parent: BasePlushie
   id: PlushieGalio #Weh!
@@ -271,6 +129,124 @@
     - PlushieLizard
 
 - type: entity
+  parent: BaseMothPlushie
+  id: PlushieMozan
+  name: Mozan plushie
+  description: Just like the real thing, it squeaks if you poke it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
+
+- type: entity
+  parent: BaseMothPlushie
+  id: PlushieKoni
+  name: koni plushie
+  description: Some sort of moth-cat hybrid. You can't help but find it really cute. Can squeak and meow!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+      state: icon
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+    - type: EmitSoundOnUse
+      sound:
+        collection: CatMothSounds
+    - type: EmitSoundOnActivate
+      sound:
+        collection: CatMothSounds
+    - type: EmitSoundOnCollide
+      sound:
+        collection: CatMothSounds
+    - type: EmitSoundOnLand
+      sound:
+        collection: CatMothScreams
+    - type: EmitSoundOnTrigger
+      sound:
+        collection: CatMothSounds
+    - type: MeleeWeapon
+      soundHit:
+        collection: CatMothSounds
+    - type: Edible
+      useSound:
+        collection: CatMothScreams
+    - type: Clothing
+      quickEquip: false
+      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+      slots:
+        - HEAD
+      clothingVisuals:
+        head:
+          - state: equipped-HELMET
+
+# General Plushies
+- type: entity
+  parent: BasePlushie
+  id: PandaPlushie
+  name: panda plushie
+  description: Large and in charge! Its paws and body are weighted with poly pellets. Holding it eases your stress and anxieties.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Toys/panda_noise2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Items/Toys/panda_noise2.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PandaPlushie
+
+- type: entity
+  parent: BaseVulpkaninPlushie
+  id: VikaPviPlushie
+  name: vika plushie
+  description: Worst Centcomm Operator ever.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/vika_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/vika_plushie.rsi
+    state: icon
+
+- type: entity
+  parent: BaseBorgPlushie
+  id: PlushieBorg
+  name: borg plushie
+  description: A tiny plushie of an engineering cyborg, complete with tiny plastic tools.
+  components:
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
+      state: icon
+
+- type: entity
   parent: BaseShadekinPlushie
   id: PlushieVirus
   name: virus plushie
@@ -301,7 +277,6 @@
         - type: TextToSpeech
           voice: mozillaAu15
 
-# Large blue shark plushie
 - type: entity
   parent: BasePlushie
   id: PlushieLargeSoftShark
