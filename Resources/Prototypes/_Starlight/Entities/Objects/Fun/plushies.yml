@@ -638,6 +638,22 @@
         - state: equipped-HELMET
 
 - type: entity
+  parent: BaseShadekinPlushie
+  id: PlushieShadekin
+  name: shadekin plushie
+  description: A plushie of a Shadekin. It's very soft.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/shadekin_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/shadekin_plushie.rsi
+    state: icon
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieShadekin
+
+- type: entity
   parent: BasePlushie
   id: PlushieSus
   name: sus plushie

@@ -255,6 +255,17 @@
       stock: 1
 
 - type: listing
+  id: VendorPlushieShadekin
+  productEntity: PlushieShadekin
+  cost:
+    NTCredit: 20
+  categories:
+  - SLSpecies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: VendorPlushieSharkGrey
   productEntity: PlushieSharkGrey
   cost:
