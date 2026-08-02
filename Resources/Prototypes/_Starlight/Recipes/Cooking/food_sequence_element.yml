@@ -25,22 +25,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/mime_lizard_plushie.rsi
     state: icon
 
-#Ian Plushie
-- type: foodSequenceElement
-  id: StarlightIanPlushie
-  name: food-sequence-cotton-burger-content-plushie-ian
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/ian_plushie.rsi
-    state: icon
-
-#Lisa Plushie
-- type: foodSequenceElement
-  id: LisaPlushie
-  name: food-sequence-cotton-burger-content-plushie-lisa
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/lisa_plushie.rsi
-    state: icon
-
 #Kitten Plushie
 - type: foodSequenceElement
   id: KittenPlushie
