@@ -9,21 +9,21 @@
     "states": [
         {
             "name": "icon",
-            "copyright": "Edit (By Conflee and SanityGecko) of sprites taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432"
+            "copyright": "Character by SanityGecko (Discord), sprites by Conflee (GitHub) and SanityGecko, edits of sprites taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432"
         },
         {
             "name": "inhand-left",
-            "copyright": "Edit (By Conflee and SanityGecko) of in-hand lizard plushie sprites by KieueCaprie",
+            "copyright": "Character by SanityGecko (Discord), sprites by Conflee (GitHub) and SanityGecko, edits of in-hand lizard plushie sprites by KieueCaprie",
             "directions": 4
         },
         {
             "name": "inhand-right",
-            "copyright": "Edit (By Conflee and SanityGecko) of in-hand lizard plushie sprites by KieueCaprie",
+            "copyright": "Character by SanityGecko (Discord), sprites by Conflee (GitHub) and SanityGecko, edits of in-hand lizard plushie sprites by KieueCaprie",
             "directions": 4
         },
         {
             "name": "equipped-HELMET",
-            "copyright": "Edit (By Conflee and SanityGecko) of equipped-HELMET sprite made by Cinder",
+            "copyright": "Character by SanityGecko (Discord), sprites by Conflee (GitHub) and SanityGecko, edits of equipped-HELMET sprite made by Cinder",
             "directions": 4
         }
     ]
