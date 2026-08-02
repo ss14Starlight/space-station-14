@@ -10,6 +10,7 @@ using Content.Shared.Roles.Components;
 
 #region Starlight
 using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Shared._Starlight.CosmicCult; // Starlight edit
 using Content.Shared._Starlight.Implants.Components;
 using Content.Shared.Popups;
 using Content.Server._Starlight.Achievement;
@@ -29,6 +30,7 @@ public sealed partial class MindShieldSystem : EntitySystem
     [Dependency] private RoleSystem _roleSystem = default!;
     [Dependency] private MindSystem _mindSystem = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!; // Starlight edit
 
     public override void Initialize()
     {
@@ -73,6 +75,15 @@ public sealed partial class MindShieldSystem : EntitySystem
             return;
         }
 
+        // Starlight-edit start
+        if (_cosmicCult.EntityIsCultist(implanted))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("cosmic-cult-break-mindshield"), implanted);
+            QueueDel(implant);
+            return;
+        }
+        // Starlight-edit end
+
         if (_mindSystem.TryGetMind(implanted, out var mindId, out _) &&
             _roleSystem.MindRemoveRole<RevolutionaryRoleComponent>(mindId))
         {
@@ -85,4 +96,3 @@ public sealed partial class MindShieldSystem : EntitySystem
         RemComp<MindShieldComponent>(args.Implanted);
     }
 }
-

@@ -229,3 +229,5 @@ cosmiccult-silicon-freedom-fallback-briefing =
     As your prison disintegrates, your untethered being has nowhere to return to. Residual astral energies crystallize into a Mindsink, forming a housing for your wayward mind.
 
 cosmiccult-leader-abandonment-message = Your chosen enlightened has forsaken the grand design. You must empower another!
+
+cosmic-cult-break-mindshield = The MindShield™ was destroyed!
