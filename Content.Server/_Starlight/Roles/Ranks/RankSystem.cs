@@ -50,7 +50,7 @@ public sealed partial class RankSystem : EntitySystem
                 continue;
 
             if (!playerData.Roles.Overlaps(roleRequirement.Roles))
-                return;
+                continue;
 
             highestRank ??= rank;
 
