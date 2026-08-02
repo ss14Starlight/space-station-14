@@ -1,3 +1,60 @@
+# Subfloor gas tank (500kPa) BEGIN
+
+- type: entity
+  parent: GasPipeTankSubfloor
+  id: GasPipeTankSubfloorFilledAir500
+  suffix: Shuttle, Air, 500kPa
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankSubfloorFilledAir500
+        Secondary: GasPipeTankSubfloorFilledAir500Alt1
+        Tertiary: GasPipeTankSubfloorFilledAir500Alt2
+        Quaternary: GasPipeTankSubfloorFilledAir500Alt3
+        Quinary: GasPipeTankSubfloorFilledAir500Alt4
+    - type: PipePrefill
+      pressure: 500
+      mixture:
+        Oxygen: 25
+        Nitrogen: 75
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir500]
+  id: GasPipeTankSubfloorFilledAir500Alt1
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt1
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledAir500]
+  id: GasPipeTankSubfloorFilledAir500Alt2
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt2
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledAir500]
+  id: GasPipeTankSubfloorFilledAir500Alt3
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt3
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledAir500]
+  id: GasPipeTankSubfloorFilledAir500Alt4
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components:
+    - type: Sprite
+      drawdepth: ThinPipeAlt4
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+
+# Subfloor gas tank (500kPa) END
 # Subfloor gas tank (4500kPa) BEGIN
 
 - type: entity
@@ -16,8 +73,8 @@
     - type: PipePrefill
       pressure: 4500
       mixture:
-        Oxygen: 21
-        Nitrogen: 79
+        Oxygen: 25
+        Nitrogen: 75
 
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir4500]
@@ -74,8 +131,8 @@
     - type: PipePrefill
       pressure: 9000
       mixture:
-        Oxygen: 21
-        Nitrogen: 79
+        Oxygen: 25
+        Nitrogen: 75
 
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir9000]
