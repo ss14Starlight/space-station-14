@@ -126,7 +126,7 @@
 
 - type: entity
   id: TorsoNeoVulpkanin
-  name: neo-vulp torso
+  name: neo-vulpkanin torso
   parent: TorsoNeocyte
   components:
   - type: Sprite
@@ -135,7 +135,7 @@
 
 - type: entity
   id: HeadNeoVulpkanin
-  name: neo-vulp head
+  name: neo-vulpkanin head
   parent: HeadNeocyte
   components:
   - type: Sprite
@@ -144,7 +144,7 @@
 
 - type: entity
   id: LeftArmNeoVulpkanin
-  name: left neo-vulp arm
+  name: left neo-vulpkanin arm
   parent: LeftArmNeocyte
   components:
   - type: Sprite
@@ -153,7 +153,7 @@
 
 - type: entity
   id: RightArmNeoVulpkanin
-  name: right neo-vulp arm
+  name: right neo-vulpkanin arm
   parent: RightArmNeocyte
   components:
   - type: Sprite
@@ -162,7 +162,7 @@
 
 - type: entity
   id: LeftHandNeoVulpkanin
-  name: left neo-vulp hand
+  name: left neo-vulpkanin hand
   parent: LeftHandNeocyte
   components:
   - type: Sprite
@@ -171,7 +171,7 @@
 
 - type: entity
   id: RightHandNeoVulpkanin
-  name: right neo-vulp hand
+  name: right neo-vulpkanin hand
   parent: RightHandNeocyte
   components:
   - type: Sprite
