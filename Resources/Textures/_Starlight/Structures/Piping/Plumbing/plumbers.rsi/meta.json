@@ -63,7 +63,17 @@
             "copyright": "TGStation"
         },
         {
-            "name": "filter_working",
+            "name": "filterF",
+            "directions": 4,
+            "copyright": "TGStation"
+        },
+        {
+            "name": "filter_inline",
+            "directions": 4,
+            "copyright": "TGStation"
+        },
+        {
+            "name": "filter_inline_working",
             "directions": 4,
             "delays": [
                 [

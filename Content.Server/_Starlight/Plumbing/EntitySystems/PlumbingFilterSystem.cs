@@ -5,22 +5,22 @@ using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.FixedPoint;
 using Content.Shared.NodeContainer;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
-using SharedAppearanceSystem = Robust.Shared.GameObjects.SharedAppearanceSystem;
 
 namespace Content.Server._Starlight.Plumbing.EntitySystems;
 
 /// <summary>
 ///     Handles plumbing filter behavior and filter control UI.
-///     Filtering happens entirely on intake: only the reagents in the filter list are
-///     requested from the inlet network, so everything else stays on the network untouched.
-///     The buffer is then served to the outlet like any other plumbing source.
+///     Intake routing into filtered/passthrough lanes is handled here on device update.
+///     Outlets still enforce reagent restrictions by node:
+///     - Filter outlet: only allows pulling reagents matching the filter list
+///     - Passthrough outlet: only allows pulling reagents NOT matching the filter list
+///     Restriction is enforced via PlumbingPullAttemptEvent.
 /// </summary>
 [UsedImplicitly]
 public sealed partial class PlumbingFilterSystem : EntitySystem
@@ -31,13 +31,13 @@ public sealed partial class PlumbingFilterSystem : EntitySystem
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PlumbingFilterComponent, PlumbingDeviceUpdateEvent>(OnDeviceUpdate);
+        SubscribeLocalEvent<PlumbingFilterComponent, PlumbingPullAttemptEvent>(OnPullAttempt);
+    SubscribeLocalEvent<PlumbingFilterComponent, PlumbingDeviceUpdateEvent>(OnDeviceUpdate);
         SubscribeLocalEvent<PlumbingFilterComponent, PlumbingFilterToggleMessage>(OnToggle);
         SubscribeLocalEvent<PlumbingFilterComponent, PlumbingFilterAddReagentMessage>(OnAddReagent);
         SubscribeLocalEvent<PlumbingFilterComponent, PlumbingFilterRemoveReagentMessage>(OnRemoveReagent);
@@ -45,37 +45,58 @@ public sealed partial class PlumbingFilterSystem : EntitySystem
         SubscribeLocalEvent<PlumbingFilterComponent, BoundUIOpenedEvent>(OnUIOpened);
     }
 
-    private void OnDeviceUpdate(Entity<PlumbingFilterComponent> ent, ref PlumbingDeviceUpdateEvent args)
+    /// <summary>
+    ///     Handles pull attempts - restricts which reagents can be pulled based on outlet node.
+    /// </summary>
+    private void OnPullAttempt(Entity<PlumbingFilterComponent> ent, ref PlumbingPullAttemptEvent args)
     {
-        if (!ent.Comp.Enabled || ent.Comp.FilteredReagents.Count == 0)
+        // When disabled, block the filter outlet entirely — everything goes through passthrough
+        if (!ent.Comp.Enabled)
         {
-            SetRunning(ent, false);
+            if (args.NodeName == ent.Comp.FilterNodeName)
+                args.Cancelled = true;
             return;
         }
 
+        var isFilteredReagent = ent.Comp.FilteredReagents.Contains(args.ReagentPrototype);
+
+        if (args.NodeName == ent.Comp.FilterNodeName)
+        {
+            if (!isFilteredReagent)
+                args.Cancelled = true;
+        }
+        else if (args.NodeName == ent.Comp.PassthroughNodeName)
+        {
+            if (isFilteredReagent)
+                args.Cancelled = true;
+        }
+    }
+
+    private void OnDeviceUpdate(Entity<PlumbingFilterComponent> ent, ref PlumbingDeviceUpdateEvent args)
+    {
         if (!TryComp<PlumbingInletComponent>(ent.Owner, out var inlet))
             return;
 
-        if (!_solutionSystem.TryGetSolution(ent.Owner, inlet.SolutionName, out var solutionEnt, out var solution))
+        if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.FilteredSolutionName, out var filteredEnt, out var filteredSolution))
             return;
 
-        if (solution.AvailableVolume <= 0)
-        {
-            SetRunning(ent, false);
+        if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.PassthroughSolutionName, out var passthroughEnt, out var passthroughSolution))
             return;
-        }
+
+        if (filteredSolution.AvailableVolume <= 0 && passthroughSolution.AvailableVolume <= 0)
+            return;
 
         if (!TryComp<NodeContainerComponent>(ent.Owner, out var nodeContainer))
             return;
 
-        // round robin grabbing of reagents
-        var order = BuildRequestOrder(ent.Comp);
         var remaining = inlet.TransferAmount;
-        var totalPulled = FixedPoint2.Zero;
 
         foreach (var inletName in inlet.InletNames)
         {
-            if (remaining <= 0 || solution.AvailableVolume <= 0)
+            if (remaining <= 0)
+                break;
+
+            if (filteredSolution.AvailableVolume <= 0 && passthroughSolution.AvailableVolume <= 0)
                 break;
 
             if (!nodeContainer.Nodes.TryGetValue(inletName, out var node))
@@ -84,66 +105,20 @@ public sealed partial class PlumbingFilterSystem : EntitySystem
             if (node is not PlumbingNode plumbingNode || plumbingNode.PlumbingNet == null)
                 continue;
 
-            // 10u buffer for each filtered reagent
-            var requests = new Dictionary<string, FixedPoint2>();
-            foreach (var reagent in order)
-            {
-                var needed = ent.Comp.ReagentCapacity - solution.GetReagentQuantity(new ReagentId(reagent, null));
-                if (needed > 0)
-                    requests[reagent] = needed;
-            }
-
-            if (requests.Count == 0)
-                break;
-
-            var pulled = _pullSystem.PullSpecificReagents(
+            var roundRobinIndex = inlet.RoundRobinIndices.GetValueOrDefault(inletName, 0);
+            var (pulled, nextIndex) = _pullSystem.PullFromNetworkSplit(
                 ent.Owner,
                 plumbingNode.PlumbingNet,
-                solutionEnt.Value,
-                requests,
-                remaining);
+                filteredEnt.Value,
+                passthroughEnt.Value,
+                remaining,
+                roundRobinIndex,
+                ent.Comp.Enabled,
+                ent.Comp.FilteredReagents);
 
-            foreach (var amount in pulled.Values)
-            {
-                remaining -= amount;
-                totalPulled += amount;
-            }
+            inlet.RoundRobinIndices[inletName] = nextIndex;
+            remaining -= pulled;
         }
-
-        // Animation bool
-        SetRunning(ent, totalPulled > 0);
-    }
-
-    private void SetRunning(Entity<PlumbingFilterComponent> ent, bool running)
-        => _appearance.SetData(ent.Owner, PlumbingVisuals.Running, running);
-
-    /// <summary>
-    ///     Returns the filtered reagents, rotated by one each update.
-    /// </summary>
-    private static List<string> BuildRequestOrder(PlumbingFilterComponent comp)
-    {
-        var order = new List<string>(comp.FilteredReagents.Count);
-        foreach (var protoId in comp.FilteredReagents)
-        {
-            order.Add(protoId.Id);
-        }
-
-        // FilteredReagents is a set, so sort for a deterministic base order before rotating.
-        order.Sort(StringComparer.Ordinal);
-
-        var offset = comp.ReagentRoundRobinIndex % order.Count;
-        comp.ReagentRoundRobinIndex = (offset + 1) % order.Count;
-
-        if (offset == 0)
-            return order;
-
-        var rotated = new List<string>(order.Count);
-        for (var i = 0; i < order.Count; i++)
-        {
-            rotated.Add(order[(offset + i) % order.Count]);
-        }
-
-        return rotated;
     }
 
     private void OnToggle(Entity<PlumbingFilterComponent> ent, ref PlumbingFilterToggleMessage args)
@@ -152,9 +127,6 @@ public sealed partial class PlumbingFilterSystem : EntitySystem
         DirtyField(ent, ent.Comp, nameof(PlumbingFilterComponent.Enabled));
         ClickSound(ent.Owner);
         UpdateUI(ent);
-
-        if (!args.Enabled)
-            SetRunning(ent, false);
     }
 
     private void OnAddReagent(Entity<PlumbingFilterComponent> ent, ref PlumbingFilterAddReagentMessage args)
