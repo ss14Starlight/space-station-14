@@ -17,15 +17,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
     state: icon
 
-#Snail Plushie
-- type: foodSequenceElement
-  id: SnailPlushie
-  scale: 0.8, 0.8
-  name: food-sequence-cotton-burger-content-plushie-snail
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/snail_plushie.rsi
-    state: icon
-
 #Sus Plushie
 - type: foodSequenceElement
   id: SusPlushie

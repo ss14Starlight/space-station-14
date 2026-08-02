@@ -128,7 +128,6 @@
         - id: ClothingNeckCloakPan
       - id: ToyFigurineSkeleton
       - id: MysteryFigureBox
-      - id: SnailPlushie #starlight
       # Cult
       - !type:AllSelector
         children:
