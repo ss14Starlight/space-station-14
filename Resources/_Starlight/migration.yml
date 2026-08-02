@@ -162,7 +162,7 @@ GasPipeSubfloorTankAlt2: GasPipeTankSubfloorAlt2
 GasPipeSubfloorTankAlt3: GasPipeTankSubfloorAlt3
 GasPipeSubfloorTankAlt4: GasPipeTankSubfloorAlt4
 
-#2026-08-01 - Plushie rework. Lots of maps use these for decor, so we'll replace it with a lizard plushie so the space isn't left empty.
+#2026-08-01 - Plushie rework. Lots of maps use these for decor, replace removed plushies with a lizard plushie so the space isn't left empty.
 AbductorPlushie: PlushieLizard
 PlushieAmali: PlushieLizard
 PlushieAsh: PlushieLizard
@@ -174,4 +174,5 @@ SquishimsCow: PlushieLizard
 CreaturePlushie: PlushieLizard
 DeerPlushie: PlushieLizard
 OddDeerPlushie: PlushieLizard
-PlushieDoxesTheCaptain: PlushieDoxes # clean up ID
+PlushieDoxesTheCaptain: PlushieDoxes # cleaned up ID
+PlushieEina: PlushieLizard
