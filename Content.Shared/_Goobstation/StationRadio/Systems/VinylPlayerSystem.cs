@@ -9,6 +9,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Content.Shared._Goobstation.StationRadio.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Goobstation.StationRadio.Systems;
 
@@ -19,6 +20,7 @@ public sealed partial class VinylPlayerSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPowerReceiverSystem _power = default!;
     [Dependency] private StationRadioReceiverSystem _stationRadio = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -34,8 +36,12 @@ public sealed partial class VinylPlayerSystem : EntitySystem
         if (comp.SoundEntity != null && !args.Powered)
             comp.SoundEntity = _audio.Stop(comp.SoundEntity);
 
-        if (!_stationRadio.TryGetLinkedPoweredServer(uid, out _))
+        if (!_stationRadio.TryGetLinkedPoweredServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
+
+        serverComp.CurrentSong = null;
+        serverComp.PlaybackStartTime = null;
+        Dirty(server, serverComp);
 
         var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
         while (query.MoveNext(out var receiver, out _))
@@ -46,8 +52,12 @@ public sealed partial class VinylPlayerSystem : EntitySystem
 
     private void OnDestruction(EntityUid uid, VinylPlayerComponent comp, DestructionEventArgs args)
     {
-        if (!CheckForRadioRig(uid))
+        if (!_stationRadio.TryGetLinkedPoweredServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
+
+        serverComp.CurrentSong = null;
+        serverComp.PlaybackStartTime = null;
+        Dirty(server, serverComp);
 
         var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
         while (query.MoveNext(out var receiver, out var _))
@@ -69,8 +79,12 @@ public sealed partial class VinylPlayerSystem : EntitySystem
         var ev = new VinylInsertedEvent(args.Entity);
         RaiseLocalEvent(uid, ref ev);
 
-        if (!CheckForRadioRig(uid))
+        if (!_stationRadio.TryGetLinkedPoweredServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
+
+        serverComp.CurrentSong = vinylcomp.Song;
+        serverComp.PlaybackStartTime = _timing.CurTime;
+        Dirty(server, serverComp);
 
         var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
         while (query.MoveNext(out var receiver, out var receiverComponent))
@@ -89,8 +103,12 @@ public sealed partial class VinylPlayerSystem : EntitySystem
         var ev = new VinylRemovedEvent(args.Entity);
         RaiseLocalEvent(uid, ref ev);
 
-        if (!CheckForRadioRig(uid))
+        if (!_stationRadio.TryGetLinkedPoweredServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
+
+        serverComp.CurrentSong = null;
+        serverComp.PlaybackStartTime = null;
+        Dirty(server, serverComp);
 
         var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
         while (query.MoveNext(out var receiver, out var _))

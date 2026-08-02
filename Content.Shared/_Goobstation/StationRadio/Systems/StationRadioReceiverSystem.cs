@@ -6,7 +6,9 @@ using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Radio.Components; // Moffstation - Alt click to lower volume.
-using Content.Shared.Verbs; // Moffstation - Alt click to lower volume.
+using Content.Shared.Verbs;
+using Robust.Shared.Network;
+using Robust.Shared.Timing; // Moffstation - Alt click to lower volume.
 
 namespace Content.Shared._Goobstation.StationRadio.Systems;
 
@@ -14,6 +16,8 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IGameTiming _timing = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -21,6 +25,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         SubscribeLocalEvent<StationRadioReceiverComponent, StationRadioMediaStoppedEvent>(OnMediaStopped);
         SubscribeLocalEvent<StationRadioReceiverComponent, ActivateInWorldEvent>(OnRadioToggle);
         SubscribeLocalEvent<StationRadioReceiverComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<StationRadioReceiverComponent, MapInitEvent>(OnReceiverMapInit);
 
         SubscribeLocalEvent<StationRadioServerComponent, PowerChangedEvent>(OnServerPowerChanged);
 
@@ -77,17 +82,28 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
 
     private void OnMediaPlayed(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaPlayedEvent args)
     {
-        var startParams = comp.DefaultParams.WithVolume(-100f);
+        if (_net.IsClient)
+            return;
+
+        Log.Info($"[StationRadio] Playing {args.MediaPlayed} with offset {args.PlayOffset.TotalSeconds}s");
+
         var sound = _audio.PlayPvs(args.MediaPlayed, uid, comp.DefaultParams);
         if (sound == null)
             return;
 
         comp.SoundEntity = sound.Value.Entity;
-            _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)));
+
+        if (args.PlayOffset > TimeSpan.Zero)
+            _audio.SetPlaybackPosition(sound.Value.Entity, (float)args.PlayOffset.TotalSeconds);
+
+        _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)));
     }
 
     private void OnMediaStopped(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaStoppedEvent args)
     {
+        if (_net.IsClient)
+            return;
+
         if (comp.SoundEntity == null)
             return;
 
@@ -95,17 +111,57 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
     }
 
     /// <summary>
+    /// When a station radio is initialised, check any active Radio server for if there is an
+    /// active song playing. If there is, attempt to resume play.
+    /// </summary>
+    private void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent comp, MapInitEvent args)
+    {
+        if (_net.IsClient)
+            return;
+
+        var query = EntityQueryEnumerator<StationRadioServerComponent>();
+        while (query.MoveNext(out var server, out var serverComp))
+        {
+            if (serverComp.CurrentSong == null || serverComp.PlaybackStartTime == null || !_power.IsPowered(server))
+                continue;
+
+            var elapsed = _timing.CurTime - serverComp.PlaybackStartTime.Value;
+            RaiseLocalEvent(uid, new StationRadioMediaPlayedEvent(serverComp.CurrentSong, elapsed));
+            return;
+        }
+    }
+
+    /// <summary>
     /// Stop broadcasting if the Radio Server loses power, despite the Vinyl Player and Rig still being powered.
+    /// Resume play when the server power returns.
     /// </summary>
     private void OnServerPowerChanged(EntityUid uid, StationRadioServerComponent comp, PowerChangedEvent args)
     {
-        if (args.Powered)
+        if (_net.IsClient)
             return;
 
-        var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
-        while (query.MoveNext(out var receiver, out _))
+        if (!args.Powered)
         {
-            RaiseLocalEvent(receiver, new StationRadioMediaStoppedEvent());
+            var stopQuery = EntityQueryEnumerator<StationRadioReceiverComponent>();
+            while (stopQuery.MoveNext(out var receiver, out _))
+            {
+                RaiseLocalEvent(receiver, new StationRadioMediaStoppedEvent());
+            }
+            return;
+        }
+
+        if (comp.CurrentSong == null || comp.PlaybackStartTime == null)
+            return;
+
+        var elapsed = _timing.CurTime - comp.PlaybackStartTime.Value;
+
+        var playQuery = EntityQueryEnumerator<StationRadioReceiverComponent>();
+        while (playQuery.MoveNext(out var receiver, out var receiverComp))
+        {
+            if (receiverComp.SoundEntity.HasValue)
+                continue;
+
+            RaiseLocalEvent(receiver, new StationRadioMediaPlayedEvent(comp.CurrentSong, elapsed));
         }
     }
 
