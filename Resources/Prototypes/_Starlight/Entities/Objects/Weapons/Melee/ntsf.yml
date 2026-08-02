@@ -29,9 +29,7 @@
     autoAttack: true
     damage:
       types:
-        Slash: 12.5
-        Heat: 12.5
-        Structural: 120
+        Blunt: 4.5
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
       path: /Audio/_Starlight/Weapons/marriage_swing.ogg
@@ -46,6 +44,11 @@
       path: /Audio/_Starlight/Weapons/marriage_swing.ogg
       params:
         variation: 0.125
+    activatedDamage:
+      types:
+        Slash: 12.5
+        Heat: 12.5
+        Structural: 120
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
