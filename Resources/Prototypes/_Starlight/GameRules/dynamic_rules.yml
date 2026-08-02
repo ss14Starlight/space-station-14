@@ -57,18 +57,17 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 5
-        - id: Vampire
+        - id: VampireLess
           weight: 15
+          prob: 0.90 # Vampire can have a small chance to fail too, it's the other "most likely" gamemode
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:MutuallyExclusiveRuleCondition
-            rules:
-            - VampireLess
           - !type:PlayerCountCondition
             min: 25
         - id: Nukeops
           weight: 10
+          prob: 0.95 # Every main gamemode will have a very small chance to fail
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -76,6 +75,7 @@
             min: 20
         - id: Revolutionary
           weight: 10
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -83,6 +83,7 @@
             min: 15
         - id: CosmicCult
           weight: 10
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -90,6 +91,7 @@
             min: 20
         - id: Zombie
           weight: 10
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -97,6 +99,7 @@
             min: 20
         - id: WizardDuel
           weight: 10
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -172,9 +175,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:MutuallyExclusiveRuleCondition
-            rules:
-            - Vampire
           - !type:PlayerCountCondition
             min: 25
         - id: NukeopsLate
@@ -447,6 +447,7 @@
             min: 25
         - id: Nukeops
           weight: 7
+          prob: 0.95 # Every main gamemode will have a very small chance to fail
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -454,6 +455,7 @@
             min: 20
         - id: Revolutionary
           weight: 7
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -461,6 +463,7 @@
             min: 15
         - id: CosmicCult
           weight: 7
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -468,6 +471,7 @@
             min: 20
         - id: Zombie
           weight: 7
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -475,6 +479,7 @@
             min: 20
         - id: WizardDuel
           weight: 6
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
