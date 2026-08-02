@@ -430,14 +430,3 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
-
-- type: listing
-  id: VendorPlushieMalachi
-  productEntity: PlushieMalachi
-  cost:
-    NTCredit: 20
-  categories:
-    - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
