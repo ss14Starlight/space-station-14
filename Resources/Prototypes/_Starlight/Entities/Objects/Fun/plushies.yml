@@ -352,39 +352,6 @@
         - type: TextToSpeech
           voice: mozillaAu13
 
-
-# will reenable when i get a batter sprite ## got a better sprite, so reenabling
-- type: entity
-  parent: PlushieHuman
-  id: PlushieRomero
-  name: suspicious die-cast romero plushie
-  description: A steel cast "plushie" of an infamous Head of Security. He looks angry and has a faint smell of ash. His gun and knife are sold separetly.
-  components:
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/romero_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/romero_plushie.rsi
-      layers:
-        - state: icon
-    - type: MeleeWeapon
-      wideAnimationRotation: -135
-      damage:
-        types:
-          Blunt: 8
-      soundHit:
-        collection: MetalThud
-    - type: ItemToggle
-      onUse: false
-      verbToggleOn: plushie-voicebox-activate
-      verbToggleOff: plushie-voicebox-deactivate
-    - type: ComponentToggler
-      components:
-        - type: DatasetVocalizer
-          dataset: PlushiesRomero
-        - type: TextToSpeech
-          voice: mozillaAu14
-
 - type: entity
   parent: BasePlushie
   id: PlushieGalio #Weh!
