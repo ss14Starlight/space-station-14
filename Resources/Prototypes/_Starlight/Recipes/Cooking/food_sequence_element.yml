@@ -53,6 +53,15 @@
   - sprite: _Starlight/Objects/Fun/Plushies/frog_squishims_plushie.rsi
     state: icon
 
+#Goat Plushie
+- type: foodSequenceElement
+  id: PlushieGoat
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-goat
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/goat_plushie.rsi
+    state: icon
+
 #Gnome Plushie
 - type: foodSequenceElement
   id: PlushieGnome

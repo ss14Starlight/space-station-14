@@ -366,6 +366,42 @@
 
 - type: entity
   parent: BasePlushie
+  id: PlushieGoat
+  name: goat plushie
+  description: The best boy, the softest boy.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/goat_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/goat_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieGoat
+
+- type: entity
+  parent: BasePlushie
   id: PlushieGnome
   name: gnome plushie
   description: Rattles when you shake it. Smells like Fooberries.
