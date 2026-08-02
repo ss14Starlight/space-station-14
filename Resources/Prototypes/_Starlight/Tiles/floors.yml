@@ -920,3 +920,120 @@
   parent: FloorDevFloor
   name: tiles-floor-dev-service
   sprite: /Textures/_Starlight/Tiles/dev_service.png
+
+# Grass
+- type: tile
+  id: FloorJungleAstroGrassEdge
+  name: tiles-jungle-astro-grass #sl edit
+  parent: FloorGrassJungle
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_CP14/Tiles/GrassTall/single_edge.png
+    NorthEast: /Textures/_CP14/Tiles/GrassTall/single_edge.png
+    NorthWest: /Textures/_CP14/Tiles/GrassTall/single_edge.png
+    SouthWest: /Textures/_CP14/Tiles/GrassTall/single_edge.png
+    South: /Textures/_CP14/Tiles/GrassTall/double_edge.png
+    East: /Textures/_CP14/Tiles/GrassTall/double_edge.png
+    North: /Textures/_CP14/Tiles/GrassTall/double_edge.png
+    West: /Textures/_CP14/Tiles/GrassTall/double_edge.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemJungleAstroGrass
+  weather: false #Starlight-edit
+
+- type: tile
+  parent: FloorGrassDark
+  id: FloorDarkAstroGrassEdge
+  name: tiles-dark-astro-grass #sl edit
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_CP14/Tiles/GrassDark/single_edge.png
+    NorthEast: /Textures/_CP14/Tiles/GrassDark/single_edge.png
+    NorthWest: /Textures/_CP14/Tiles/GrassDark/single_edge.png
+    SouthWest: /Textures/_CP14/Tiles/GrassDark/single_edge.png
+    South: /Textures/_CP14/Tiles/GrassDark/double_edge.png
+    East: /Textures/_CP14/Tiles/GrassDark/double_edge.png
+    North: /Textures/_CP14/Tiles/GrassDark/double_edge.png
+    West: /Textures/_CP14/Tiles/GrassDark/double_edge.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemDarkAstroGrass
+  weather: false #Starlight-edit
+
+- type: tile
+  parent: FloorGrassLight
+  id: FloorLightAstroGrassEdge
+  name: tiles-light-astro-grass #sl edit
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_CP14/Tiles/GrassLight/single_edge.png
+    NorthEast: /Textures/_CP14/Tiles/GrassLight/single_edge.png
+    NorthWest: /Textures/_CP14/Tiles/GrassLight/single_edge.png
+    SouthWest: /Textures/_CP14/Tiles/GrassLight/single_edge.png
+    South: /Textures/_CP14/Tiles/GrassLight/double_edge.png
+    East: /Textures/_CP14/Tiles/GrassLight/double_edge.png
+    North: /Textures/_CP14/Tiles/GrassLight/double_edge.png
+    West: /Textures/_CP14/Tiles/GrassLight/double_edge.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemLightAstroGrass
+  weather: false #Starlight-edit
+
+- type: tile
+  id: FloorGrassClassic
+  name: tiles-planet-grass-classic-floor
+  sprite: /Textures/Tiles/Planet/Grass/grass.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: FloorDirt
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  itemDrop: FloorTileItemGrass
+  heatCapacity: 10000
+  weather: True
+
+- type: tile
+  id: FloorGrassClassicMowed
+  name: tiles-planet-grass-classic-floor-mowed
+  sprite: /Textures/Tiles/Planet/Grass/grass.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: FloorDirt
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  itemDrop: FloorTileItemGrass
+  heatCapacity: 10000
+  weather: false
+
+- type: tile
+  id: FloorAstroGrassClassic
+  name: tiles-astro-grass-classic
+  parent: FloorGrassClassic
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
+    NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png
+    NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png
+    SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png
+    South: /Textures/Tiles/Planet/Grass/double_edge.png
+    East: /Textures/Tiles/Planet/Grass/double_edge.png
+    North: /Textures/Tiles/Planet/Grass/double_edge.png
+    West: /Textures/Tiles/Planet/Grass/double_edge.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemGrass
+  weather: false #Starlight-edit
