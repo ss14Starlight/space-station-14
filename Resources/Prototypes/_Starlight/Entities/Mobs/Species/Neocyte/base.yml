@@ -4,6 +4,9 @@
   name: Urist McToaster
   abstract: true
   components:
+  - type: Neocyte
+    frameLoadoutGroup: NeocyteCybernetics
+    frameSlot: outerClothing2
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
