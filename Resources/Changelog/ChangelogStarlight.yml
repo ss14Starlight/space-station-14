@@ -1,11 +1,4 @@
 Entries:
-- author: 12tie
-  changes:
-  - message: New art for the railroad cards.
-    type: Tweak
-  id: 406812
-  time: '2026-07-23T08:07:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5259
 - author: neomoth
   changes:
   - message: Administration Glasses/hud, Skills Sunglasses/hud, and Central Command Glasses can now all see accesses present on a PDA/ID by examining it directly. Only CC Glasses can do this by examining a player holding a PDA/ID.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407211
   time: '2026-08-02T08:15:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5348
+- author: Glaud
+  changes:
+  - message: Fixed minor bugs in casino content.
+    type: Fix
+  id: 407212
+  time: '2026-08-02T08:38:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5452
 Order: -1
