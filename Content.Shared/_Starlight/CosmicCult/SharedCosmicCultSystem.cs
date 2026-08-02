@@ -43,9 +43,8 @@ public abstract partial class SharedCosmicCultSystem : EntitySystem
     /// <summary>
     /// Determines if a Cosmic Cultist component should be sent to the client.
     /// </summary>
-    private void OnCosmicCultCompGetStateAttempt(EntityUid uid,
-    CosmicCultComponent comp, ref ComponentGetStateAttemptEvent args) =>
-    args.Cancelled = !CanGetState(args.Player);
+    private void OnCosmicCultCompGetStateAttempt(EntityUid uid, CosmicCultComponent comp, ref ComponentGetStateAttemptEvent args) =>
+        args.Cancelled = !CanGetState(args.Player);
 
     /// <summary>
     /// The criteria that determine whether a Cult Member component should be sent to a client.
