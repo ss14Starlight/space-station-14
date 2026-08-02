@@ -165,12 +165,6 @@
   name: "vinyl: Space Jazz"
   description: A slow pace jazzy tune reminiscent of elevator music.
   components:
-  - type: Sprite
-    state: default
-    layers:
-    - state: default
-    - state: label
-      color: "#a490bf"
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/KevinMacleod/SpaceJazz.ogg
@@ -331,12 +325,6 @@
   name: "vinyl: Maxi"
   description: An exciting rock/metal song.
   components:
-  - type: Sprite
-    state: default
-    layers:
-    - state: default
-    - state: label
-      color: "#7b9d63"
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/goonstation/maxi.ogg
@@ -347,12 +335,6 @@
   name: "vinyl: Xtra"
   description: An exciting rock/metal song.
   components:
-  - type: Sprite
-    state: default
-    layers:
-    - state: default
-    - state: label
-      color: "#edc2d2"
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/goonstation/xtra.ogg
@@ -363,12 +345,6 @@
   name: "vinyl: Giga"
   description: An exciting rock/metal song.
   components:
-  - type: Sprite
-    state: default
-    layers:
-    - state: default
-    - state: label
-      color: "#0ae87c"
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/goonstation/giga.ogg
@@ -824,12 +800,6 @@
   name: "vinyl: Floaty"
   description: A slow pace hypnotic tune.
   components:
-  - type: Sprite
-    state: default
-    layers:
-    - state: default
-    - state: label
-      color: "#db9547"
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/goonstation/floaty.ogg
@@ -904,12 +874,6 @@
   name: "vinyl: Lay Egg Is True"
   description: A face pace electronic tune.
   components:
-  - type: Sprite
-    state: default
-    layers:
-    - state: default
-    - state: label
-      color: "#e5ef07"
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/goonstation/lay_egg_is_true.ogg
@@ -1128,12 +1092,6 @@
   name: "vinyl: Journey"
   description: A upbeat electronic tune.
   components:
-  - type: Sprite
-    state: default
-    layers:
-    - state: default
-    - state: label
-      color: "#037659"
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/OpenTTDJourney.ogg
@@ -1144,12 +1102,6 @@
   name: "forgotten vinyl"
   description: A song that we have all heard. Just not this bad...
   components:
-  - type: Sprite
-    state: default
-    layers:
-    - state: forgotten-vinyl-disc
-    - state: label
-      color: black
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/peakasshole.ogg
