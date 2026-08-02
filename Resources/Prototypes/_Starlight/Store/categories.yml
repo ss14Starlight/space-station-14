@@ -3,6 +3,10 @@
   name: store-category-plushies
 
 - type: storeCategory
+  id: SLToys
+  name: Toys
+
+- type: storeCategory
   id: SLSpecies
   name: store-category-plushie-species
 
