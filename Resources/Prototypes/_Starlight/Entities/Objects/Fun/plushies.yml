@@ -294,6 +294,42 @@
 
 - type: entity
   parent: BasePlushie
+  id: PlushieCreature
+  name: creature plushie
+  description: YIPPIE!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/creature_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/creature_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCreature
+
+- type: entity
+  parent: BasePlushie
   id: PlushieFrogSquishims
   name: frog squishims
   description: Round and soft and legally distinct!

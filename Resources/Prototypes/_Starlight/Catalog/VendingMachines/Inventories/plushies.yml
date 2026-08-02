@@ -167,6 +167,17 @@
     stock: 3
 
 - type: listing
+  id: VendorPlushieCreature
+  productEntity: PlushieCreature
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
   id: VendorPlushieFrog
   productEntity: PlushieFrogSquishims
   cost:
