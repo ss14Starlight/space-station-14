@@ -17,24 +17,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
     state: icon
 
-#Deer Plushie
-- type: foodSequenceElement
-  id: DeerPlushie
-  scale: 0.8, 0.8
-  name: food-sequence-cotton-burger-content-plushie-deer
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/deer_plushie.rsi
-    state: icon_no_eyebrows
-
-#Odd Deer Plushie
-- type: foodSequenceElement
-  id: OddDeerPlushie
-  scale: 0.8, 0.8
-  name: food-sequence-cotton-burger-content-plushie-deer
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/deer_plushie.rsi
-    state: icon_eyebrows
-
 #Lizard Mime Plushie
 - type: foodSequenceElement
   id: PlushieMimeLizard

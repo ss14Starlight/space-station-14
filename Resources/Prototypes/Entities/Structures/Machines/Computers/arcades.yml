@@ -231,8 +231,6 @@
     - id: PlushieVox
     - id: PlushieXeno
     # Starlight-start
-    - id: DeerPlushie
-    - id: OddDeerPlushie
     - id: VikaPviPlushie
     # Starlight-end
     - id: PlasticBanana

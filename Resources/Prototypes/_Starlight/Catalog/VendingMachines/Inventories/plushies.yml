@@ -54,17 +54,6 @@
     stock: 1
 
 - type: listing
-  id: VendorPlushieDeer
-  productEntity: DeerPlushie
-  cost:
-    NTCredit: 16
-  categories:
-  - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
-
-- type: listing
   id: VendorPlushieVika
   productEntity: VikaPviPlushie
   cost:

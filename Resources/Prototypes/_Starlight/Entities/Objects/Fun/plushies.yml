@@ -341,42 +341,6 @@
       CottonBurger: PandaPlushie
 
 - type: entity
-  parent: BasePlushie
-  id: DeerPlushie
-  name: deer plushie
-  description: A very ordinary deer plush, nothing unordinary about it.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/deer_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/deer_plushie.rsi
-    state: icon_no_eyebrows
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: DeerPlushie
-
-- type: entity
   parent: BaseLizardPlushie
   id: PlushieMimeLizard
   name: lizard mime plushie
@@ -390,42 +354,6 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieMimeLizard
-
-- type: entity
-  parent: BasePlushie
-  id: OddDeerPlushie
-  name: odd deer plushie
-  description: Shika noko noko noko koshi tan tan~
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/deer_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/deer_plushie.rsi
-    state: icon_eyebrows
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: OddDeerPlushie
 
 - type: entity
   parent: BaseVulpkaninPlushie
