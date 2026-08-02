@@ -55,7 +55,7 @@
 
 #Gnome Plushie
 - type: foodSequenceElement
-  id: GnomePlushie
+  id: PlushieGnome
   scale: 0.8, 0.8
   name: food-sequence-cotton-burger-content-plushie-gnome
   sprites:
@@ -69,4 +69,13 @@
   name: food-sequence-cotton-burger-content-plushie-panda
   sprites:
   - sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
+    state: icon
+
+#Sus Plushie
+- type: foodSequenceElement
+  id: PlushieSus
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-sus
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/sus_plushie.rsi
     state: icon

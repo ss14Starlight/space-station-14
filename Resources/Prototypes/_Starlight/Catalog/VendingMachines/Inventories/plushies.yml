@@ -266,6 +266,17 @@
     stock: 1
 
 - type: listing
+  id: VendorPlushieSus
+  productEntity: PlushieSus
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: VendorPlushieXeno
   productEntity: PlushieXeno
   cost:
