@@ -469,19 +469,6 @@
       path: /Audio/Effects/metal_thud2.ogg
 
 - type: entity
-  parent: BaseMothPlushie
-  id: MinaPlush
-  name: minttongue plushie
-  description: A member of CentComm's Administration Division, all dressed up in her old HoP uniform.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/mina_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/mina_plushie.rsi
-    state: icon
-
-- type: entity
   parent: BaseShadekinPlushie
   id: PlushieShadekin
   name: shadekin plushie
