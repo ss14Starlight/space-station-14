@@ -27,32 +27,6 @@
 
 - type: entity
   parent: BaseResomiPlushie
-  id: PlushieEmmie
-  name: emmie plushie
-  description: Such a cute little thing, dont you just want to protect it? You should, as it controls whether you keep your contract or not.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/emmie_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/emmie_plushie.rsi
-    layers:
-      - state: icon
-      - state: icon-unshaded
-        shader: unshaded
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesEmmie
-      - type: TextToSpeech
-        voice: ICASSP95
-
-- type: entity
-  parent: BaseResomiPlushie
   id: PlushieMorgana
   name: morgana plushie
   description: A bird flies to a mountain made of diamond every thousands years to sharpen its beak. When that mountain is, but a heap. That is when a single moment of eternity passes. Many say; that is a hell of a long time. I say; that is one hell of bird.
