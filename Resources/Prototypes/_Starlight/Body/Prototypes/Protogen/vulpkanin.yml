@@ -1,10 +1,10 @@
 - type: body
   id: NeoVulpkanin
-  name: neo-vulp # Starlight, quotation marks removed
+  name: neo-vulpkanin # Starlight, quotation marks removed
   root: torso
   slots:
     head:
-      part: HeadNeoVulp
+      part: HeadNeoVulpkanin
       connections:
       - torso
       organs:
@@ -14,7 +14,7 @@
         eye_implant: null
         brain_implant: null
     torso:
-      part: TorsoNeoVulp
+      part: TorsoNeoVulpkanin
       connections:
       - right arm
       - left arm
@@ -28,19 +28,19 @@
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmNeoVulp
+      part: RightArmNeoVulpkanin
       connections:
       - right hand
     left arm:
-      part: LeftArmNeoVulp
+      part: LeftArmNeoVulpkanin
       connections:
       - left hand
     right hand:
-      part: RightHandNeoVulp
+      part: RightHandNeoVulpkanin
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandNeoVulp
+      part: LeftHandNeoVulpkanin
       organs:
         hand_implant: null
     right leg:
