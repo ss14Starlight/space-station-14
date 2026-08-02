@@ -134,6 +134,17 @@
     stock: 1
 
 - type: listing
+  id: VendorPlushieAxolotl
+  productEntity: PlushieAxolotl
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
   id: VendorPlushieCarp
   productEntity: PlushieCarp
   cost:
