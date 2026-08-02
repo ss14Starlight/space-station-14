@@ -179,7 +179,7 @@ PlushieEina: PlushieLizard
 PlushieEinalia: PlushieLizard
 PlushieLiz: PlushieLizard
 PlushieEmmie: PlushieLizard
-PlushieFixes: PlushieLizard
+PlushieFixes: PlushieLizardJobChiefengineer
 SquishimsFrog: PlushieLizard
 PlushieGlados: PlushieBorg # made generic
 PlushieWEH: PlushieBorg # made generic
@@ -197,7 +197,7 @@ PlushieLance: PlushieVulp
 LivvyPlush: PlushieLizard
 PlushieMalachi: PlushieLizard
 PlushieMatthew: PlushieLizard
-PlushieMimeLizard: PlushieLizard
+PlushieMimeLizard: PlushieLizardJobMime # upstream's
 MinaPlush: PlushieMoth
 PlushieMorgana: PlushieLizard
 PlushieMorganaRound: PlushieLizard
@@ -216,3 +216,4 @@ PlushieRomero: ToyFigurineHeadOfSecurity
 PlushieRufia: PlushieVulp
 StalksPlush: PlushieLizard
 PlushieShadekin: PlushieLizardInversed
+SiffyPlush: PlushieLizardJobChiefengineer
