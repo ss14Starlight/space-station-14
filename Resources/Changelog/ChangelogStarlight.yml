@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: (Reach) Piping in general hallways have been reworked to put vents in more accessible spots.
-    type: Tweak
-  id: 406810
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
 - author: neomoth
   changes:
   - message: Disposal bins and the like now properly predict thrown items being inserted into them.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407209
   time: '2026-08-02T07:22:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5449
+- author: Caws
+  changes:
+  - message: (Shipyard) Due to the rising cost of manufacturing, Harm's 'Space Truck' has had its plastitanium walls replaced with regular reinforced walls. No refunds will be issued.
+    type: Tweak
+  id: 407210
+  time: '2026-08-02T07:58:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5456
 Order: -1
