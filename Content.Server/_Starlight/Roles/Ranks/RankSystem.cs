@@ -84,8 +84,8 @@ public sealed partial class RankSystem : EntitySystem
     {
         highestRank = null;
 
-        //if (!_linkPlayerManager.TryGetPlayerData(userId, out PlayerData? playerData))
-        //    return false;
+        if (!_linkPlayerManager.TryGetPlayerData(userId, out PlayerData? playerData))
+            return false;
 
         if (jobId != null && _prototype.TryIndex(jobId, out JobPrototype? jobPrototype))
             job = jobPrototype;
@@ -104,8 +104,8 @@ public sealed partial class RankSystem : EntitySystem
             if (!_prototype.TryIndex(rank.Requirement, out RoleRequirementPrototype? roleRequirement))
                 continue;
 
-            //if (!playerData.Roles.Overlaps(roleRequirement.Roles))
-            //    continue;
+            if (!playerData.Roles.Overlaps(roleRequirement.Roles))
+                continue;
 
             highestRank ??= rank;
 
