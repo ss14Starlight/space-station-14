@@ -9,6 +9,9 @@ using Content.Shared._Starlight.Scent.Components;
 using Content.Shared._Starlight.Scent.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.DoAfter;
+using Content.Shared.Doors;
+using Content.Shared.Doors.Components;
+using Content.Shared.Doors.Systems;
 using Content.Shared.Eye;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
@@ -19,6 +22,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
+using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Content.Shared.Zombies;
 using Robust.Shared.Audio.Systems;
@@ -43,6 +47,7 @@ public sealed class ScentSystem : SharedScentSystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly TagSystem _tags = default!;
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
@@ -66,6 +71,23 @@ public sealed class ScentSystem : SharedScentSystem
             before: [typeof(ForensicsSystem), typeof(IngestionSystem)]);
         SubscribeLocalEvent<CleansScentComponent, CleanScentDoAfterEvent>(OnCleanScentDoAfter);
         SubscribeLocalEvent<CleansScentComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
+
+        SubscribeLocalEvent<DoorComponent, DoorStateChangedEvent>(OnDoorStateChanged);
+    }
+
+    // Only fires once StartOpening succeeds, so bolted or access-denied bumps don't leave a trace.
+    private void OnDoorStateChanged(EntityUid uid, DoorComponent component, DoorStateChangedEvent args)
+    {
+        if (args.State != DoorState.Opening)
+            return;
+
+        if (args.User is not { } user || !_tags.HasTag(user, SharedDoorSystem.DoorBumpTag))
+            return;
+
+        if (!TryComp<ScentComponent>(user, out var scent) || scent.ScentId is not { } scentId)
+            return;
+
+        ApplyScentTrace(user, scentId, uid);
     }
 
     private void OnSniffObjectAction(Entity<SmellerComponent> ent, ref SniffObjectActionEvent args)
