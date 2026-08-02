@@ -153,17 +153,6 @@
     stock: 3
 
 - type: listing
-  id: VendorPlushieFrog
-  productEntity: SquishimsFrog
-  cost:
-    NTCredit: 16
-  categories:
-  - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
-
-- type: listing
   id: VendorPlushieSus
   productEntity: SusPlushie
   cost:

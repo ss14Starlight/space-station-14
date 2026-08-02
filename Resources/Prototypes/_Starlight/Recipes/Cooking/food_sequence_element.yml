@@ -94,15 +94,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/snail_plushie.rsi
     state: icon
 
-#Squishims Frog Plushie
-- type: foodSequenceElement
-  id: SquishimsFrog
-  scale: 0.5, 0.5
-  name: food-sequence-cotton-burger-content-plushie-frog
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/frog_squishims_plushie.rsi
-    state: icon
-
 #Sus Plushie
 - type: foodSequenceElement
   id: SusPlushie
