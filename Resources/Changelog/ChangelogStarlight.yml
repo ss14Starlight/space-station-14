@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Fixed a niche UI crash/flickering related to the new gases, Ulnitranium and ZXA, when using certain Atmos devices.
-    type: Fix
-  id: 406821
-  time: '2026-07-23T10:08:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5238
 - author: OMEGA
   changes:
   - message: (Silica) Roboticist lockers.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407220
   time: '2026-08-02T17:12:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5470
+- author: Princess-Cheeseballs
+  changes:
+  - message: Antag names will properly display at the end of round again.
+    type: Fix
+  id: 407221
+  time: '2026-08-02T17:42:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5467
 Order: -1
