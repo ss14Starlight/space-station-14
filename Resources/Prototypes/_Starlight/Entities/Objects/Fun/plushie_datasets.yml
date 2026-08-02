@@ -63,10 +63,3 @@
   values:
     prefix: plushie-remiie-
     count: 6
-
-- type: localizedDataset
-  id: PlushiesNebula
-  values:
-    prefix: plushie-nebula-
-    count: 8
-
