@@ -135,9 +135,3 @@
   values:
     prefix: plushie-killa-
     count: 5
-
-- type: localizedDataset
-  id: PlushiesLiz
-  values:
-    prefix: plushie-liz-
-    count: 6

@@ -585,14 +585,3 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
-
-- type: listing
-  id: VendorPlushieLiz
-  productEntity: PlushieLiz
-  cost:
-    NTCredit: 20
-  categories:
-    - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1

@@ -1445,29 +1445,6 @@
     soundHit:
       path: /Audio/Effects/Lightning/lightningshock.ogg
 
-- type: entity
-  parent: BaseResomiPlushie
-  id: PlushieLiz
-  name: liz plushie
-  description: It will not hesitate to call you stinky. smells horrible
-  components:
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/elizabeth_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/elizabeth_plushie.rsi
-      state: icon
-    - type: ItemToggle
-      onUse: false
-      verbToggleOn: plushie-voicebox-activate
-      verbToggleOff: plushie-voicebox-deactivate
-    - type: ComponentToggler
-      components:
-        - type: DatasetVocalizer
-          dataset: PlushiesLiz
-        - type: TextToSpeech
-          voice: ICASSP31
-
 # Large blue shark plushie
 - type: entity
   parent: BasePlushie
