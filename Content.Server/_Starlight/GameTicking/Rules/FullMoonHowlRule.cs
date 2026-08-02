@@ -63,7 +63,7 @@ public sealed partial class FullMoonHowlRule : StationEventSystem<FullMoonHowlRu
             if (!TryComp<HumanoidAppearanceComponent>(attached, out var humanoid))
                 return false;
 
-            return humanoid.Species == "Vulpkanin" || humanoid.Species == "ProtoVulp";
+            return component.EligibleSpecies.Contains(humanoid.Species);
         });
 
         // Location candidates are restricted to beacon entities on main station grids only.

@@ -7,4 +7,7 @@ public sealed partial class FullMoonHowlRuleComponent : Component
 {
     [DataField]
     public SoundSpecifier HowlSound = new SoundCollectionSpecifier("VulpkaninHowls");
+
+    [DataField]
+    public HashSet<string> EligibleSpecies = new() { "Vulpkanin", "ProtoVulp" };
 }
