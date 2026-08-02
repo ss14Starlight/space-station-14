@@ -1669,42 +1669,6 @@
       path: /Audio/Effects/Lightning/lightningshock.ogg
 
 - type: entity
-  parent: BasePlushie
-  id: PlushieBarfo
-  name: honking barfo plushie
-  description: Soft, squeezable, and suspiciously up to something. This pint-sized purrformer is extra fluffy for superior cuddles.
-  components:
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
-      state: icon
-    - type: EmitSoundOnUse
-      sound:
-        path: /Audio/Items/bikehorn.ogg
-    - type: EmitSoundOnLand
-      sound:
-        path: /Audio/Animals/cat_hiss.ogg
-    - type: EmitSoundOnActivate
-      sound:
-        path: /Audio/Animals/cat_meow.ogg
-    - type: EmitSoundOnTrigger
-      sound:
-        path: /Audio/_Starlight/Voice/Felionoid/cat_mew3.ogg
-    - type: EmitSoundOnCollide
-      sound:
-        path: /Audio/_Starlight/Voice/Felionoid/cat_scream3.ogg
-    - type: Edible
-      requiresSpecialDigestion: true
-      useSound:
-        path: /Audio/_Starlight/Voice/Felionoid/cat_scream2.ogg
-    - type: MeleeWeapon
-      wideAnimationRotation: 180
-      soundHit:
-        collection: FootstepClown
-
-- type: entity
   parent: BaseResomiPlushie
   id: PlushieEina
   name: eina plushie
