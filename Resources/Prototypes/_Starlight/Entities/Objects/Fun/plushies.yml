@@ -969,14 +969,14 @@
 - type: entity
   parent: BasePlushie
   id: PlushieLargeSoftShark
-  name: large blue shark soft toy
+  name: large blue shark soft plushie
   description: A large, soft, and cuddly shark plushie. Perfect for hugging!
   components:
     - type: Item
       size: Normal
-      sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark.rsi
+      sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
     - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark.rsi
+      sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
       state: icon
     # Shows cuddle message when used in hand
     - type: CuddleMessage
