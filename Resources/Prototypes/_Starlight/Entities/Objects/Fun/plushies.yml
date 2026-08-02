@@ -234,37 +234,6 @@
       state: icon
 
 - type: entity
-  parent: BaseShadekinPlushie
-  id: PlushieVirus
-  name: virus plushie
-  description: BEST SALESWOMAN, resgistered 2525, now in a pocket version! # spamton ass character :sob:
-  components:
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/virus_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/virus_plushie.rsi
-      layers:
-        - state: icon
-    - type: Clothing
-      sprite: _Starlight/Objects/Fun/Plushies/virus_plushie.rsi
-      slots:
-      - HEAD
-      clothingVisuals:
-        head:
-        - state: equipped-HELMET
-    - type: ItemToggle
-      onUse: false
-      verbToggleOn: plushie-voicebox-activate
-      verbToggleOff: plushie-voicebox-deactivate
-    - type: ComponentToggler
-      components:
-        - type: DatasetVocalizer
-          dataset: PlushiesVirus
-        - type: TextToSpeech
-          voice: mozillaAu15
-
-- type: entity
   parent: BasePlushie
   id: PlushieLargeSoftShark
   name: large blue shark soft plushie
