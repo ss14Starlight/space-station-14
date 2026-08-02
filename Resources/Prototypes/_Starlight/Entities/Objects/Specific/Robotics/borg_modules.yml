@@ -416,6 +416,8 @@
         components:
         - FaxableObject
   - type: ItemSlots
+  - type: ItemSlotQuickInsert
+    slot: Paper
   - type: ContainerContainer
     containers:
       Paper: !type:ContainerSlot
