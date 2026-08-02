@@ -1,0 +1,69 @@
+using Robust.Shared.Configuration;
+
+namespace Content.Shared._Starlight.CCVar;
+
+public sealed partial class StarlightCCVars
+{
+    public static readonly CVarDef<float> VirologyContaminationSampleInterval =
+        CVarDef.Create("virology.contamination_sample_interval", 10f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationRottingCorpse =
+        CVarDef.Create("virology.contamination_rotting_corpse", 3f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationRottenFood =
+        CVarDef.Create("virology.contamination_rotten_food", 1.5f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationOtherRot =
+        CVarDef.Create("virology.contamination_other_rot", 0.9f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationBiologicalPuddlePerUnit =
+        CVarDef.Create("virology.contamination_biological_puddle_per_unit", 0.06f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationBiologicalPuddleMaximum =
+        CVarDef.Create("virology.contamination_biological_puddle_maximum", 2.4f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationInfectionRadius =
+        CVarDef.Create("virology.contamination_infection_radius", 1.5f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationInfectionThreshold =
+        CVarDef.Create("virology.contamination_infection_threshold", 2.4f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationInfectionChanceScale =
+        CVarDef.Create("virology.contamination_infection_chance_scale", 1f / 60f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationPuddleInfectionChance =
+        CVarDef.Create("virology.contamination_puddle_infection_chance", 0.01f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologySporePatchChancePerSample =
+        CVarDef.Create("virology.spore_patch_chance_per_sample", 0.05f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologySporePatchLifetime =
+        CVarDef.Create("virology.spore_patch_lifetime", 600f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologySporePatchContamination =
+        CVarDef.Create("virology.spore_patch_contamination", 0.9f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologySporePatchInfectionChance =
+        CVarDef.Create("virology.spore_patch_infection_chance", 0.04f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyEmergentAntagChance =
+        CVarDef.Create("virology.emergent_antag_chance", 0.4f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyEmergentAntagPrevalenceCap =
+        CVarDef.Create("virology.emergent_antag_prevalence_cap", 0.08f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyEmergentAntagTransmissibilityMultiplier =
+        CVarDef.Create("virology.emergent_antag_transmissibility_multiplier", 0.7f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyEmergentAntagProtectionBypassMultiplier =
+        CVarDef.Create("virology.emergent_antag_protection_bypass_multiplier", 0.5f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyEmergentAntagStageDelayMultiplier =
+        CVarDef.Create("virology.emergent_antag_stage_delay_multiplier", 1.25f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> VirologyEmergentAntagMinExtraSymptoms =
+        CVarDef.Create("virology.emergent_antag_min_extra_symptoms", 1, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> VirologyEmergentAntagMaxExtraSymptoms =
+        CVarDef.Create("virology.emergent_antag_max_extra_symptoms", 2, CVar.SERVERONLY | CVar.ARCHIVE);
+}
