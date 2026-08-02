@@ -25,6 +25,7 @@ using Content.Shared._FarHorizons.Medical.ConditionalHealing;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Virology; // Starlight
 
 namespace Content.Shared.Medical.Healing;
 
@@ -158,6 +159,7 @@ public sealed partial class HealingSystem : EntitySystem
         }
 
         _audio.PlayPredicted(healing.HealingEndSound, target.Owner, args.User);
+        RaiseLocalEvent(new PathogenContactEvent(args.User, target.Owner)); // Starlight
 
         // Logic to determine the whether or not to repeat the healing action
         args.Repeat = HasDamage((args.Used.Value, healing), target) && !dontRepeat;

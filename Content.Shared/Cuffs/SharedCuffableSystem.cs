@@ -36,6 +36,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Silicons; // Starlight: BorgHandcuffComponent
+using Content.Shared._Starlight.Medical.Virology; // Starlight
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 using static Content.Shared.Stunnable.SharedStunSystem;
 
@@ -546,6 +547,9 @@ namespace Content.Shared.Cuffs
             RaiseLocalEvent(target, ref ev);
 
             UpdateHeldItems(target, handcuff, component);
+
+            if (result)
+                RaiseLocalEvent(new PathogenContactEvent(user, target)); // Starlight
 
             return result;
         }

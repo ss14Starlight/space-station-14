@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.Virology; // Starlight
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
@@ -595,6 +596,7 @@ public sealed partial class PullingSystem : EntitySystem
 
         RaiseLocalEvent(pullerUid, message);
         RaiseLocalEvent(pullableUid, message);
+        RaiseLocalEvent(new PathogenContactEvent(pullerUid, pullableUid)); // Starlight
 
         Dirty(pullerUid, pullerComp);
         Dirty(pullableUid, pullableComp);

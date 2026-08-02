@@ -9,6 +9,9 @@
   - type: Clothing
     sprite: Clothing/Mask/gas.rsi
   - type: BreathMask
+  # Starlight - gas-mask variants inherit pathogen filter classification.
+  - type: PathogenResistance
+    class: FilterMask
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Tag
@@ -140,6 +143,9 @@
   - type: Clothing
     sprite: Clothing/Mask/medical.rsi
   - type: BreathMask
+  # Starlight - supply interface only; it has no pathogen filter medium.
+  - type: PathogenResistance
+    class: SupplyMask
   - type: IngestionBlocker
   - type: Tag
     tags:
@@ -188,6 +194,9 @@
   - type: Clothing
     sprite: Clothing/Mask/breath.rsi
   - type: BreathMask
+  # Starlight - supply interface only; it has no pathogen filter medium.
+  - type: PathogenResistance
+    class: SupplyMask
   - type: IngestionBlocker
   - type: Tag
     tags:
@@ -363,6 +372,9 @@
         Caustic: 0.95 # I kind of just put this here so that it would show the infection resistance...
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.9 # Starlight end
+  # Starlight - sterile masks contain pathogen filter medium.
+  - type: PathogenResistance
+    class: FilterMask
 
 - type: entity
   parent: ClothingMaskBase

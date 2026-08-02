@@ -16,6 +16,9 @@
     modifiers: { }
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.8 # Starlight Edit, also removed the specific coefficients from the security and virology hoods
+  # Starlight - purpose-built filtered hood, inherited by every bio hood variant.
+  - type: PathogenResistance
+    class: BioHood
   - type: Tag
     tags:
 #Starlight
@@ -114,6 +117,8 @@
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/virology.rsi
 #Starlight
+  # Starlight - pathogen resistance inherited from ClothingHeadHatHoodBioGeneral; sealed
+  # gear is already total against airborne routes.
   - type: Tag
     tags:
     - CorgiWearable

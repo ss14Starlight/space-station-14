@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.Virology; // Starlight
 using Content.Shared.Bed.Sleep;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Components;
@@ -104,6 +105,7 @@ public sealed partial class InteractionPopupSystem : EntitySystem
 
             var ev = new InteractionSuccessEvent(user);
             RaiseLocalEvent(target, ref ev);
+            RaiseLocalEvent(new PathogenContactEvent(user, target)); // Starlight
         }
         else
         {

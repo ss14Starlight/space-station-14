@@ -34,6 +34,7 @@ using Content.Shared.Zombies;
 #region Starlight
 using Content.Shared._Starlight.ScanGate;
 using Content.Shared._Starlight.Body.Events;
+using Content.Shared._Starlight.Medical.Virology;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
 using Content.Shared._Starlight.Overlay.Components;
 #endregion
@@ -63,6 +64,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, SelfBeforeClimbEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, CoefficientQueryEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, ZombificationResistanceQueryEvent>(RelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, PathogenResistanceQueryEvent>(RelayInventoryEvent); // Starlight
         SubscribeLocalEvent<InventoryComponent, IsEquippingTargetAttemptEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, IsUnequippingTargetAttemptEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, ChameleonControllerOutfitSelectedEvent>(RefRelayInventoryEvent); // Starlight: Should be RefRelay

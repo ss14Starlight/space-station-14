@@ -1,5 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Movement.Systems;
+using Content.Shared._Starlight.Medical.Virology; // Starlight
 using Content.Shared.Chat;
 using Content.Shared.Effects;
 using Content.Shared.Physics; // Starlight-edit™
@@ -29,6 +30,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         base.Initialize();
 
         SubscribeLocalEvent<MeleeSpeechComponent, MeleeHitEvent>(OnSpeechHit);
+        SubscribeLocalEvent<MeleeWeaponComponent, MeleeHitEvent>(OnPathogenContact); // Starlight
     }
 
     protected override bool ArcRaySuccessful(EntityUid targetUid,
@@ -157,5 +159,18 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             _chat.TrySendInGameICMessage(args.User, comp.Battlecry, InGameICChatType.Speak, true, true, checkRadioPrefix: false);  //Speech that isn't sent to chat or adminlogs
         }
 
+    }
+
+    // Starlight: bacterial transmission follows completed physical contact.
+    private void OnPathogenContact(EntityUid uid, MeleeWeaponComponent comp, MeleeHitEvent args)
+    {
+        if (!args.IsHit)
+            return;
+
+        foreach (var target in args.HitEntities)
+        {
+            if (target != args.User)
+                RaiseLocalEvent(new PathogenContactEvent(args.User, target));
+        }
     }
 }

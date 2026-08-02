@@ -148,6 +148,9 @@
         Caustic: 0.9
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.9 # Starlight end
+  # Starlight - clean single-use contact barrier.
+  - type: PathogenResistance
+    class: SterileBarrier
 
 - type: entity
   parent: ClothingHandsButcherable
@@ -168,6 +171,9 @@
         Caustic: 0.9
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.9 # Starlight end
+  # Starlight - clean single-use contact barrier.
+  - type: PathogenResistance
+    class: SterileBarrier
 
 - type: entity
   parent: ClothingHandsButcherable

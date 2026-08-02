@@ -119,6 +119,9 @@
 #  - type: SlotBlock
 #    slots: [ears, eyes, mask]
   - type: BreathMask
+  # Starlight - pressure helmet is a supply interface, not a pathogen filter.
+  - type: PathogenResistance
+    class: SupplyMask
   - type: Item
     size: Normal
   - type: PressureProtection
@@ -158,6 +161,9 @@
 #  - type: SlotBlock
 #    slots: [ears, eyes, mask]
   - type: BreathMask
+  # Starlight - pressure helmet is a supply interface, not a pathogen filter.
+  - type: PathogenResistance
+    class: SupplyMask
   - type: Sprite
     state: icon # default state used by most inheritors
   - type: Clickable

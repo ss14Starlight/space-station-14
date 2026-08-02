@@ -25,6 +25,9 @@
     walkModifier: 0.95
     sprintModifier: 0.95
 #Starlight
+  # Starlight - purpose-built clean barrier, inherited by every bio suit variant.
+  - type: PathogenResistance
+    class: BioSuit
   - type: Tag
     tags:
     - CorgiWearable
@@ -109,6 +112,9 @@
     walkModifier: 0.95
     sprintModifier: 0.95
 #Starlight
+  # Starlight - not inherited; ClothingOuterBioGeneral is not a parent here.
+  - type: PathogenResistance
+    class: BioSuit
   - type: Tag
     tags:
     - CorgiWearable
@@ -126,6 +132,8 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/virology.rsi
 #Starlight
+  # Starlight - pathogen resistance inherited from ClothingOuterBioGeneral; sealed gear is
+  # already total against contact routes, so there is nothing left for this to improve on.
   - type: Tag
     tags:
     - CorgiWearable

@@ -116,6 +116,9 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
+  # Starlight - sealed against settling spores, but not a sterile contact barrier.
+  - type: PathogenResistance
+    class: SealedSuit
   - type: TemperatureProtection
     heatingCoefficient: 0.01
     coolingCoefficient: 0.01
@@ -188,6 +191,9 @@
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
+  # Starlight - sealed against settling spores, but not a sterile contact barrier.
+  - type: PathogenResistance
+    class: SealedSuit
   - type: TemperatureProtection
     heatingCoefficient: 0.01 # Not complete protection from fire
     coolingCoefficient: 0.01
