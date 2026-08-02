@@ -78,9 +78,6 @@
       children:
       - id: PlushieThrongler
       - id: PlushieGhostRevenant # You got the god roll, and failed
-#STARLIGHT-Start
-    - id: VikaPviPlushie
-#STARLIGHT-End
 
 # Weh!
 - type: entityTable

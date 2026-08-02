@@ -221,19 +221,6 @@
       CottonBurger: PandaPlushie
 
 - type: entity
-  parent: BaseVulpkaninPlushie
-  id: VikaPviPlushie
-  name: vika plushie
-  description: Worst Centcomm Operator ever.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/vika_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/vika_plushie.rsi
-    state: icon
-
-- type: entity
   parent: BaseBorgPlushie
   id: PlushieBorg
   name: borg plushie
