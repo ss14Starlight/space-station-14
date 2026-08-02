@@ -1,39 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: (Reach) Removed some catwalks to see the BEAUTIFUL DIAGONAL TILES.
-    type: Remove
-  id: 406809
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: Johnny
-  changes:
-  - message: (Reach) Piping in general hallways have been reworked to put vents in more accessible spots.
-    type: Tweak
-  id: 406810
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: neomoth
-  changes:
-  - message: Disposal bins and the like now properly predict thrown items being inserted into them.
-    type: Add
-  id: 406811
-  time: '2026-07-22T20:54:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5179
-- author: 12tie
-  changes:
-  - message: New art for the railroad cards.
-    type: Tweak
-  id: 406812
-  time: '2026-07-23T08:07:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5259
-- author: neomoth
-  changes:
-  - message: Administration Glasses/hud, Skills Sunglasses/hud, and Central Command Glasses can now all see accesses present on a PDA/ID by examining it directly. Only CC Glasses can do this by examining a player holding a PDA/ID.
-    type: Add
-  id: 406813
-  time: '2026-07-23T08:49:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5181
 - author: Mack
   changes:
   - message: You can now see the pipes from plumbing compatible machines using a t-ray scanner.
@@ -2799,4 +2764,39 @@ Entries:
   id: 407208
   time: '2026-08-01T19:14:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: redmushie
+  changes:
+  - message: Fixed tall gas tank pipe connection visuals.
+    type: Fix
+  id: 407209
+  time: '2026-08-02T07:22:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5449
+- author: Caws
+  changes:
+  - message: (Shipyard) Due to the rising cost of manufacturing, Harm's 'Space Truck' has had its plastitanium walls replaced with regular reinforced walls. No refunds will be issued.
+    type: Tweak
+  id: 407210
+  time: '2026-08-02T07:58:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5456
+- author: taydeo, Conflee
+  changes:
+  - message: Added a "Welcome to Starlight!" pop-up when a client joins the server for the first time, with useful information and content warnings.
+    type: Add
+  id: 407211
+  time: '2026-08-02T08:15:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5348
+- author: Glaud
+  changes:
+  - message: Fixed minor bugs in casino content.
+    type: Fix
+  id: 407212
+  time: '2026-08-02T08:38:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5452
+- author: RedSpeeds
+  changes:
+  - message: Fixed Revolutionary comms key being available in a dungeon.
+    type: Fix
+  id: 407213
+  time: '2026-08-02T10:24:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5448
 Order: -1

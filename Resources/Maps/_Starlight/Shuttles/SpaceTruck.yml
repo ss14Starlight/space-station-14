@@ -3513,7 +3513,7 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: WallPlastitanium
+- proto: WallReinforced
   entities:
   - uid: 232
     components:
