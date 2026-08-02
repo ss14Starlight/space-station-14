@@ -1,91 +1,69 @@
-# Gamerules
-- type: entity
-  parent: BaseGameRule
-  id: ERTChaplainSpawn
-  components:
-    - type: StationEvent
-    - type: AntagRandomSpawn
-    - type: AntagLoadProfileRule
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostERTChaplain
-          pickPlayer: false
-          startingGear: ERTChaplainGearEVA
-          roleLoadout:
-            - RoleSurvivalMilitaryDouble
-          components:
-            - type: BibleUser
-            - type: RandomMetadata
-              nameSegments:
-                - NamesMilitaryLast
-              nameFormat: name-format-ert-specialist
-            - type: AutoImplant
-              implants:
-                - MindShieldImplant
-                - DeathRattleImplantCentcomm
-            - type: SpawnOnTrigger
-              proto: ERTChaplainSpawnEffect
-            - type: TriggerOnSpawn
-          mindRoles:
-            - MindRoleGhostCorporateAligned
-
 - type: entity
   parent: BaseGameRule
   id: WarOpsERTSpawn
   components:
-    - type: StationEvent
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/WarOpsDroppod.yml
-    - type: FTLToStationRule
-      hyperspaceTime: 300
+  - type: StationEvent
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/WarOpsDroppod.yml
+  - type: FTLToStationRule
+    hyperspaceTime: 300
 
 - type: entity
   parent: BaseGameRule
   id: ERTCBURNSpawn
   components:
-    - type: StationEvent
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/CBURNDroppod.yml
-    - type: FTLToStationRule
-      hyperspaceTime: 300
+  - type: StationEvent
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/CBURNDroppod.yml
+  - type: FTLToStationRule
+    hyperspaceTime: 300
 
 - type: entity
   parent: BaseGameRule
   id: ERTEngiSpawn
   components:
-    - type: StationEvent
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml
+  - type: StationEvent
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml
 
 - type: entity
   parent: BaseGameRule
   id: ERTJaniSpawn
   components:
-    - type: StationEvent
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml
+  - type: StationEvent
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml
 
 - type: entity
   parent: BaseGameRule
   id: ERTMedSpawn
   components:
-    - type: StationEvent
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml
+  - type: StationEvent
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml
 
 - type: entity
   parent: BaseGameRule
   id: ERTSecSpawn
   components:
-    - type: StationEvent
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml
+  - type: StationEvent
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTChaplainSpawn
+  components:
+  - type: StationEvent
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Chaplain.yml
 
 # Spawners
 - type: entity
@@ -94,14 +72,14 @@
   name: ERT spawn point
   suffix: Leader, Armed, EVA
   components:
-    - type: Sprite
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: ertleadereva
-    - type: ConditionalSpawner
-      prototypes:
-        - RandomHumanoidSpawnerERTLeaderArmed
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: ertleadereva
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTLeaderArmed
 
 - type: entity
   id: SpawnPointGhostERTLeader
@@ -109,14 +87,14 @@
   name: ERT spawn point
   suffix: Leader
   components:
-    - type: Sprite
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: ertleader
-    - type: ConditionalSpawner
-      prototypes:
-        - RandomHumanoidSpawnerERTLeader
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: ertleader
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTLeader
 
 - type: entity
   id: SpawnPointGhostERTSecurityArmedEVA
@@ -124,14 +102,14 @@
   name: ERT spawn point
   suffix: Security, Armed, EVA
   components:
-    - type: Sprite
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: ertsecurityeva
-    - type: ConditionalSpawner
-      prototypes:
-        - RandomHumanoidSpawnerERTSecurityArmedRifle
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: ertsecurityeva
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTSecurityArmedRifle
 
 - type: entity
   id: SpawnPointGhostERTSecurity
@@ -139,14 +117,14 @@
   name: ERT spawn point
   suffix: Security
   components:
-    - type: Sprite
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: ertsecurity
-    - type: ConditionalSpawner
-      prototypes:
-        - RandomHumanoidSpawnerERTSecurity
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: ertsecurity
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTSecurity
 
 - type: entity
   id: SpawnPointGhostERTMedical
@@ -154,14 +132,14 @@
   name: ERT spawn point
   suffix: Medical
   components:
-    - type: Sprite
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: ertmedical
-    - type: ConditionalSpawner
-      prototypes:
-        - RandomHumanoidSpawnerERTMedical
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: ertmedical
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTMedical
 
 - type: entity
   id: SpawnPointGhostERTEngineerEVA
@@ -169,14 +147,14 @@
   name: ERT spawn point
   suffix: Engineer, EVA
   components:
-    - type: Sprite
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: ertengineereva
-    - type: ConditionalSpawner
-      prototypes:
-        - RandomHumanoidSpawnerERTEngineerEVA
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: ertengineereva
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTEngineerEVA
 
 - type: entity
   id: SpawnPointGhostERTJanitor
@@ -184,14 +162,14 @@
   name: ERT spawn point
   suffix: Janitor
   components:
-    - type: Sprite
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: ertjanitor
-    - type: ConditionalSpawner
-      prototypes:
-        - RandomHumanoidSpawnerERTJanitor
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: ertjanitor
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTJanitor
 
 - type: entity
   id: SpawnPointGhostERTMedicalArmedEVA
@@ -199,14 +177,14 @@
   name: ERT spawn point
   suffix: Medical, Armed, EVA
   components:
-    - type: Sprite
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: ertmedicaleva
-    - type: ConditionalSpawner
-      prototypes:
-        - RandomHumanoidSpawnerERTMedicalArmed
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: ertmedicaleva
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTMedicalArmed
 
 - type: entity
   id: SpawnPointGhostERTCBURN
@@ -214,14 +192,14 @@
   name: ERT spawn point
   suffix: CBURN
   components:
-    - type: Sprite
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: cburn
-    - type: ConditionalSpawner
-      prototypes:
-        - RandomHumanoidSpawnerCBURNUnit
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: cburn
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerCBURNUnit
 
 - type: entity
   id: SpawnPointGhostERTCBURNCorpsman
@@ -229,30 +207,29 @@
   name: ERT spawn point
   suffix: CBURN, Medical
   components:
-    - type: Sprite
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: cburn
-    - type: ConditionalSpawner
-      prototypes:
-        - RandomHumanoidSpawnerCBURNCorpsman
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: cburn
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerCBURNCorpsman
 
 - type: entity
-  categories: [HideSpawnMenu, Spawner]
-  parent: BaseAntagSpawner
   id: SpawnPointGhostERTChaplain
+  parent: MarkerBase
+  name: ERT spawn point
+  suffix: Chaplain
   components:
-    - type: GhostRole
-      name: ghost-role-information-ert-chaplain-name
-      description: ghost-role-information-ert-chaplain-description
-      rules: ghost-role-information-corporate-aligned-rules
-      mindRoles:
-        - MindRoleGhostCorporateAligned
-      raffle:
-        settings: short
-      job: ERTChaplain
-      important: true
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: chaplain
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTChaplain
 
 # Misc
 - type: entity
@@ -260,7 +237,7 @@
   parent: NoosphericVFX2
   id: ERTChaplainSpawnEffect
   components:
-    - type: EmitSoundOnTrigger
-      sound:
-        path: /Audio/_Starlight/CosmicCult/cleanse_deconversion.ogg
-    - type: TriggerOnSpawn
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/CosmicCult/cleanse_deconversion.ogg
+  - type: TriggerOnSpawn

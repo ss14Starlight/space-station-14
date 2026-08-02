@@ -4,43 +4,52 @@
         "x": 32,
         "y": 32
     },
-    "copyright": "Taked From TG Station",
+    "copyright": "State based copyright",
     "license": "CC-BY-SA-3.0",
-   "states": [
+    "states": [
         {
-            "name": "full"
+            "name": "full",
+            "copyright": "Taken From TG Station"
         },
         {
             "name": "state0",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken From TG Station"
         },
         {
             "name": "state1",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken From TG Station"
         },
         {
             "name": "state2",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken From TG Station"
         },
         {
             "name": "state3",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken From TG Station"
         },
         {
             "name": "state4",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken From TG Station"
         },
         {
             "name": "state5",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken From TG Station"
         },
         {
             "name": "state6",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken From TG Station"
         },
         {
             "name": "state7",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Taken From TG Station"
         }
     ]
 }

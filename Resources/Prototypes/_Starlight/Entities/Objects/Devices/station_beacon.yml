@@ -43,6 +43,22 @@
 # Cargo
 - type: entity
   parent: DefaultStationBeaconSupply
+  id: DefaultStationBeaconMailRoom
+  suffix: Mail Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-mail-room
+
+- type: entity
+  parent: DefaultStationBeaconSupply
+  id: DefaultStationBeaconMining
+  suffix: Mining
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-mining
+
+- type: entity
+  parent: DefaultStationBeaconSupply
   id: DefaultStationBeaconBreakroomCargo
   suffix: Cargo Break Room
   components:
@@ -67,6 +83,14 @@
     defaultText: station-beacon-nuclear-reactor
 
 # Medical
+- type: entity
+  parent: DefaultStationBeaconMedical
+  id: DefaultStationBeaconParamedic
+  suffix: Paramedic
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-paramedic
+
 - type: entity
   parent: DefaultStationBeaconMedical
   id: DefaultStationBeaconBreakroomMedical
@@ -109,6 +133,30 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-breakroom-service
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconClown
+  suffix: Clown
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-clown
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconMime
+  suffix: Mime
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-mime
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconMusician
+  suffix: Musician
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-musician
 
 - type: entity
   parent: DefaultStationBeaconService
