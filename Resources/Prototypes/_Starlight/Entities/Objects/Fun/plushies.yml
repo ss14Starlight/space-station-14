@@ -130,42 +130,6 @@
 
 - type: entity
   parent: BasePlushie
-  id: PigPlushie
-  name: pig plushie
-  description: Head, round. Eyes, filled with optimism. Smells, kinda like bacon.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/pig_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/pig_plushie.rsi
-    state: icon
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/Animals/pig_oink.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Animals/pig_oink.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Animals/pig_oink.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Animals/pig_oink.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/Items/Toys/toysqueak3.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/Animals/pig_oink.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: PigPlushie
-
-- type: entity
-  parent: BasePlushie
   id: RenaultPlushie
   name: renault plushie
   description: The Captain's trusty pet! The tail is so fluffy.

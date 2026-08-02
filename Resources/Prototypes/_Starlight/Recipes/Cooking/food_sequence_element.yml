@@ -17,15 +17,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
     state: icon
 
-#Pig Plushie
-- type: foodSequenceElement
-  id: PigPlushie
-  scale: 0.75, 0.75
-  name: food-sequence-cotton-burger-content-plushie-pig
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/pig_plushie.rsi
-    state: icon
-
 #Renault Plushie
 - type: foodSequenceElement
   id: RenaultPlushie
