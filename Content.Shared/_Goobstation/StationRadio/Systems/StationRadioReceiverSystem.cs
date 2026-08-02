@@ -121,13 +121,12 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
 
         if (!TryGetLinkedPoweredServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
-        
+
         if (serverComp.CurrentSong == null || serverComp.PlaybackStartTime == null)
             return;
 
         var elapsed = _timing.CurTime - serverComp.PlaybackStartTime.Value;
         RaiseLocalEvent(uid, new StationRadioMediaPlayedEvent(serverComp.CurrentSong, elapsed));
-        
     }
 
     /// <summary>
@@ -146,7 +145,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             {
                 if (!TryGetLinkedServer(receiver, out var linkedServer) || linkedServer != uid)
                     continue;
-                
+
                 RaiseLocalEvent(receiver, new StationRadioMediaStoppedEvent());
             }
             return;
