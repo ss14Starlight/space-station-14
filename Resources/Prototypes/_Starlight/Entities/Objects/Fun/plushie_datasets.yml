@@ -137,12 +137,6 @@
     count: 5
 
 - type: localizedDataset
-  id: PlushiesEinalia
-  values:
-    prefix: plushie-einalia-
-    count: 6
-
-- type: localizedDataset
   id: PlushiesLiz
   values:
     prefix: plushie-liz-
