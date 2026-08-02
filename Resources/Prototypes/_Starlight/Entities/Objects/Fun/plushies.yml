@@ -344,42 +344,6 @@
 
 - type: entity
   parent: BasePlushie
-  id: GnomePlushie
-  name: gnome plushie
-  description: Rattles when you shake it. Smells like Fooberries.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/gnome_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/gnome_plushie.rsi
-    state: icon
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Starlight/Items/Toys/gnome_hahe.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Starlight/Items/Toys/gnome_hahe.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/_Starlight/Items/Toys/gnome_hahe.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Starlight/Items/Toys/gnome_hahe.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/_Starlight/Items/Toys/gnome_stop.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/_Starlight/Items/Toys/gnome_murderer.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: GnomePlushie
-
-- type: entity
-  parent: BasePlushie
   id: GoatPlushie
   name: goat plushie
   description: The best boy, the softest boy.

@@ -65,17 +65,6 @@
     stock: 3
 
 - type: listing
-  id: VendorPlushieGnome
-  productEntity: GnomePlushie
-  cost:
-    NTCredit: 30
-  categories:
-  - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
-
-- type: listing
   id: VendorPlushieGoat
   productEntity: GoatPlushie
   cost:
