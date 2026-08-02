@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (CC_SC17) Removed the research server in exchange for a mat silo.
-    type: Remove
-  id: 406817
-  time: '2026-07-23T09:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5246
-- author: Johnny
-  changes:
   - message: (CC_SC17) Rotting corpse is gone now.
     type: Remove
   id: 406818
@@ -2799,4 +2792,11 @@ Entries:
   id: 407216
   time: '2026-08-02T10:54:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5466
+- author: wonderfulnewworld
+  changes:
+  - message: All antags in Dynamic/DynamicLP now have a small chance to fail to roll, so it's not guaranteed to always roll a roundstart antag.
+    type: Tweak
+  id: 407217
+  time: '2026-08-02T11:44:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5468
 Order: -1
