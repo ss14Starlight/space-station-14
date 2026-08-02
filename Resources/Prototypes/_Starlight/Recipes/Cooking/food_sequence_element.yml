@@ -43,14 +43,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/mime_lizard_plushie.rsi
     state: icon
 
-#Borb Plushie
-- type: foodSequenceElement
-  id: BorbPlushie
-  name: food-sequence-cotton-burger-content-plushie-borb
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/borb_plushie.rsi
-    state: icon
-
 #Creature Plushie
 - type: foodSequenceElement
   id: CreaturePlushie
