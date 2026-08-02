@@ -31,7 +31,7 @@
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
-    - map: [ "outerClothing2" ] # FH
+    - map: [ "outerClothing2" ] # FH + Starlight
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: [ "gloves" ]
     - map: [ "shoes" ]
@@ -219,7 +219,7 @@
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
-    - map: [ "outerClothing2" ] # FH
+    - map: [ "outerClothing2" ] # FH + Starlight
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: [ "gloves" ]
     - map: [ "shoes" ]

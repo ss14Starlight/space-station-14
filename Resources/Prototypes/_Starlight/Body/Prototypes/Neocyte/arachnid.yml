@@ -1,10 +1,10 @@
 - type: body
-  name: neo-reptile # Starlight, quotation marks removed
-  id: NeoReptilian # Starlight, ProtoReptile -> NeoReptilian
+  id: NeoArachnid
+  name: neo-arachnid
   root: torso
   slots:
     head:
-      part: HeadReptilian
+      part: HeadArachnid
       connections:
       - torso
       organs:
@@ -14,44 +14,44 @@
         eye_implant: null
         brain_implant: null
     torso:
-      part: TorsoReptilian
+      part: TorsoArachnid
       connections:
       - right arm
       - left arm
       - right leg
       - left leg
       organs:
-        heart: OrganNeocyteHeart
+        heart: OrganNeoArachnidHeart
         lungs: OrganNeocyteLungs
         stomach: OrganNeocyteStomach
         liver: OrganNeocyteLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmReptilian
+      part: RightArmArachnid
       connections:
       - right hand
     left arm:
-      part: LeftArmReptilian
+      part: LeftArmArachnid
       connections:
       - left hand
     right hand:
-      part: RightHandReptilian
+      part: RightHandArachnid
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandReptilian
+      part: LeftHandArachnid
       organs:
         hand_implant: null
     right leg:
-      part: RightLegReptilian
+      part: RightLegArachnid
       connections:
       - right foot
     left leg:
-      part: LeftLegReptilian
+      part: LeftLegArachnid
       connections:
       - left foot
     right foot:
-      part: RightFootReptilian
+      part: RightFootArachnid
     left foot:
-      part: LeftFootReptilian
+      part: LeftFootArachnid

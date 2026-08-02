@@ -1,4 +1,5 @@
 # PLEASE, KEEP THIS FILE ALPHABETIZED
+# Starlight, Neocyte tags moved to _Starlight/Species/Neocyte/tags.yml because they were all renamed.
 
 - type: Tag
   id: GasTurbineBlade
@@ -19,61 +20,7 @@
   id: OilPack
 
 - type: Tag
-  id: NeoArachnid
-
-- type: Tag
-  id: NeoAvali
-
-- type: Tag
-  id: NeoCyclorite # Starlight, Cyclops -> Cyclorite
-
-- type: Tag
-  id: NeoDwarf # Starlight, Dawi -> Dwarf
-
-- type: Tag
-  id: NeoDiona # Starlight, Dionae -> Diona
-
-- type: Tag
-  id: NeoFelionoid # Starlight, Feline -> Felionoid
-
-- type: Tag
-  id: NeoHuman # Starlight, Humie -> Human
-
-- type: Tag
-  id: NeoMoth
-
-- type: Tag
-  id: NeoReptilian # Starlight, ProtoReptile -> NeoReptilian
-
-- type: Tag
-  id: NeoResomi
-
-- type: Tag
-  id: NeoSlimePerson
-
-- type: Tag
-  id: NeoThaven
-
-- type: Tag
-  id: NeoVox
-
-- type: Tag
-  id: NeoVulpkanin
-
-- type: Tag
-  id: NeoKin
-
-- type: Tag
-  id: Neocyte
-
-- type: Tag
-  id: NeocyteCybernetics
-
-- type: Tag
   id: RamChip
 
 - type: Tag
   id: SiliconEmotesFH
-
-- type: Tag
-  id: TrueNeocyte

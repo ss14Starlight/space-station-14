@@ -1,57 +1,57 @@
 - type: body
-  id: NeoVox
-  name: neo-vox # Starlight, quotation marks removed
+  id: NeoResomi
+  name: neo-resomi
   root: torso
   slots:
     head:
-      part: HeadVox
+      part: HeadResomi
       connections:
       - torso
       organs:
         brain: OrganNeocyteBrain
-        eyes: OrganNeocyteEyes
-        tongue: OrganNeocyteTongue
+        eyes: OrganNeoResomiEyes
+        tongue: OrganNeocyteTongueForked
         eye_implant: null
-        brain_implant: null
+        brain_implant: BrainImplantNexus
     torso:
-      part: TorsoVox
+      part: TorsoResomi
       connections:
       - right arm
       - left arm
       - right leg
       - left leg
       organs:
-        heart: OrganNeoVoxHeart
-        lungs: OrganNeoVoxLungs # I can't imagine them NOT fixing their nitro dependancy. # Starlight edit, I can, plus they're the challenge species.
-        stomach: OrganNeoVoxStomach
+        heart: OrganNeoResomiHeart
+        lungs: OrganNeoResomiLungs
+        stomach: OrganNeocyteStomach
         liver: OrganNeocyteLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmVox
+      part: RightArmResomi
       connections:
       - right hand
     left arm:
-      part: LeftArmVox
+      part: LeftArmResomi
       connections:
       - left hand
     right hand:
-      part: RightHandNeoVox
+      part: RightHandResomi
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandNeoVox
+      part: LeftHandResomi
       organs:
         hand_implant: null
     right leg:
-      part: RightLegVox
+      part: RightLegResomi
       connections:
       - right foot
     left leg:
-      part: LeftLegVox
+      part: LeftLegResomi
       connections:
       - left foot
     right foot:
-      part: RightFootNeoVox
+      part: RightFootResomi
     left foot:
-      part: LeftFootNeoVox
+      part: LeftFootResomi

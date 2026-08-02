@@ -1,6 +1,6 @@
 - type: body
-  id: NeoDwarf # Starlight, name changed
-  name: neo-dwarf # Starlight, quotation marks removed, name changed
+  id: NeoHuman
+  name: neo-human
   root: torso
   slots:
     head:
@@ -21,10 +21,10 @@
       - right leg
       - left leg
       organs:
-        heart: OrganNeoDwarfHeart
+        heart: OrganNeocyteHeart
         lungs: OrganNeocyteLungs
-        stomach: OrganNeoDwarfStomach
-        liver: OrganNeoDwarfLiver
+        stomach: OrganNeocyteStomach
+        liver: OrganNeocyteLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:

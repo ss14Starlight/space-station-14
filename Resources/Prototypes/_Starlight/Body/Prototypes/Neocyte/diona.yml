@@ -1,6 +1,6 @@
 - type: body
-  id: NeoDiona # Starlight, name changed
-  name: neo-diona # Starlight, quotation marks removed, name changed
+  id: NeoDiona
+  name: neo-diona
   root: torso
   slots:
     head:

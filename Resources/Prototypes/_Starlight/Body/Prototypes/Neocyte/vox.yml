@@ -1,57 +1,57 @@
 - type: body
-  id: NeoKin
-  name: neokin # Starlight, quotation marks removed
+  id: NeoVox
+  name: neo-vox
   root: torso
   slots:
     head:
-      part: HeadShadekin
+      part: HeadVox
       connections:
       - torso
       organs:
         brain: OrganNeocyteBrain
-        eyes: OrganNeoKinEyes
-        tongue: OrganNeocyteTongueForked
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
-      part: TorsoShadekin
+      part: TorsoVox
       connections:
       - right arm
       - left arm
       - right leg
       - left leg
       organs:
-        heart: OrganNeocyteHeart
-        core: OrganShadekinCore
-        stomach: OrganNeocyteStomach
+        heart: OrganNeoVoxHeart
+        lungs: OrganNeoVoxLungs # I can't imagine them NOT fixing their nitro dependancy. # Starlight edit, I can, plus they're the challenge species.
+        stomach: OrganNeoVoxStomach
         liver: OrganNeocyteLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmShadekin
+      part: RightArmVox
       connections:
       - right hand
     left arm:
-      part: LeftArmShadekin
+      part: LeftArmVox
       connections:
       - left hand
     right hand:
-      part: RightHandShadekin
+      part: RightHandNeoVox
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandShadekin
+      part: LeftHandNeoVox
       organs:
         hand_implant: null
     right leg:
-      part: RightLegShadekin
+      part: RightLegVox
       connections:
       - right foot
     left leg:
-      part: LeftLegShadekin
+      part: LeftLegVox
       connections:
       - left foot
     right foot:
-      part: RightFootShadekin
+      part: RightFootNeoVox
     left foot:
-      part: LeftFootShadekin
+      part: LeftFootNeoVox

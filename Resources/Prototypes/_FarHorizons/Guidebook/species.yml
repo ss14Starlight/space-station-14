@@ -1,28 +1,4 @@
-- type: guideEntry
-  id: Neocyte
-  name: species-name-neocyte
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/Protogen.xml" # Moved to _Starlight due to the number of changes we have to make to them, so we'll maintain them on our own. (We'd pretty much have to <! -- --> comment every single line.)
-  children:
-  - NeocyteFrames # Starlight
-  - TrueNeocyte # Starlight, true Neocyte
-  - NeoElf # Starlight
-  - NeoArachnid
-  - NeoAvali
-  - NeoCyclorite # Starlight
-  - NeoDiona # Starlight
-  - NeoDwarf # Starlight
-  - NeoFelionoid # Starlight
-  - NeoHuman # Starlight
-  - NeoKin # Starlight, moved alphabetically
-  - NeoLagomorph # Starlight
-  - NeoSlimePerson
-  - NeoThaven # Starlight, moved alphabetically
-  - NeoMoth
-  - NeoReptilian # Starlight
-  - NeoResomi
-  - NeoVox
-  - NeoVulpkanin
-
+# Neocyte guide entry moved to _Starlight/Guidebook/species.yml because we renamed all of it.
 - type: guideEntry
   id: IPC
   name: species-name-ipc

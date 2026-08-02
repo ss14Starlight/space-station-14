@@ -2,7 +2,7 @@
   id: LizardChestDragonwings
   bodyPart: Tail
   markingCategory: Chest
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH
+  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # FH + Starlight
   sprites:
   - sprite: _Starlight/Mobs/Customization/reptilian.rsi
     state: body_dragonwings

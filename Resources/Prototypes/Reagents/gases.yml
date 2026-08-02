@@ -16,7 +16,7 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant, Neocyte ] # FH
+          type: [ Human, Animal, Rat, Plant, Neocyte ] # FH + Starlight
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -47,7 +47,7 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Neocyte ] # FH
+          type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Neocyte ] # FH + Starlight
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:

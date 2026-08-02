@@ -49,14 +49,14 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
     state: light
-  - type: Armor # Starlight start, no armor
+  - type: Armor
     modifiers:
       coefficients:
         Slash: 1.15
         Piercing: 1.15
   - type: ClothingSpeedModifier
     walkModifier: 1.05 # I mean, sure I guess.
-    sprintModifier: 1.05 #Speed for weakness. Worth the trade?
+    sprintModifier: 1.05 # Speed for weakness. Worth the trade?
 # No explosion resist. This armor is entirely for increasing your speed.
 
 - type: entity
@@ -89,7 +89,7 @@
         Slash: 0.90 # Slash can be higher, it's fine.
         Blunt: 0.95 # We're not getting more Pierce armor.
         Piercing: 0.95 # If you want 5% for 5%...
-  - type: ClothingSpeedModifier # Starlight start
+  - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 0.95 # Not really a good tradeoff, but it's still not weightless...
 
@@ -154,7 +154,7 @@
         Piercing: 0.90 # Can't have too high resistance to pierce due to guns.
   - type: ClothingSpeedModifier
     walkModifier: 0.85
-    sprintModifier: 0.75 #This is actually the combat frame.
+    sprintModifier: 0.75 # This is actually the combat frame.
   - type: ExplosionResistance
     damageCoefficient: 0.75
 

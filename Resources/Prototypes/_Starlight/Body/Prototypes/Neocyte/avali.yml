@@ -1,57 +1,57 @@
 - type: body
-  id: NeoMoth
-  name: neo-moth # Starlight, quotation marks removed
+  id: NeoAvali
+  name: neo-avali
   root: torso
   slots:
     head:
-      part: HeadMoth
+      part: HeadAvali
       connections:
       - torso
       organs:
         brain: OrganNeocyteBrain
         eyes: OrganNeocyteEyes
-        tongue: OrganNeocyteTongue
+        tongue: OrganNeocyteTongueForked
         eye_implant: null
-        brain_implant: null
+        brain_implant: BrainImplantNexus
     torso:
-      part: TorsoMoth
+      part: TorsoAvali
       connections:
       - right arm
       - left arm
       - right leg
       - left leg
       organs:
-        heart: OrganNeocyteHeart
+        heart: OrganNeoAvaliHeart
         lungs: OrganNeocyteLungs
-        stomach: OrganNeoMothStomach # Can eat everything.
-        liver: OrganNeocyteLiver
+        stomach: OrganNeoAvaliStomach
+        liver: OrganNeoAvaliLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmMoth
+      part: RightArmAvali
       connections:
       - right hand
     left arm:
-      part: LeftArmMoth
+      part: LeftArmAvali
       connections:
       - left hand
     right hand:
-      part: RightHandMoth
+      part: RightHandAvali
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandMoth
+      part: LeftHandAvali
       organs:
         hand_implant: null
     right leg:
-      part: RightLegMoth
+      part: RightLegAvali
       connections:
       - right foot
     left leg:
-      part: LeftLegMoth
+      part: LeftLegAvali
       connections:
       - left foot
     right foot:
-      part: RightFootMoth
+      part: RightFootAvali
     left foot:
-      part: LeftFootMoth
+      part: LeftFootAvali

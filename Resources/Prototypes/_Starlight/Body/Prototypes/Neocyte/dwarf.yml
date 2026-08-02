@@ -1,57 +1,57 @@
 - type: body
-  id: NeoAvali
-  name: neo-avali # Starlight, quotation marks removed
+  id: NeoDwarf
+  name: neo-dwarf
   root: torso
   slots:
     head:
-      part: HeadAvali
+      part: HeadHuman
       connections:
       - torso
       organs:
         brain: OrganNeocyteBrain
         eyes: OrganNeocyteEyes
-        tongue: OrganNeocyteTongueForked
+        tongue: OrganNeocyteTongue
         eye_implant: null
-        brain_implant: BrainImplantNexus
+        brain_implant: null
     torso:
-      part: TorsoAvali
+      part: TorsoHuman
       connections:
       - right arm
       - left arm
       - right leg
       - left leg
       organs:
-        heart: OrganNeoAvaliHeart
+        heart: OrganNeoDwarfHeart
         lungs: OrganNeocyteLungs
-        stomach: OrganNeoAvaliStomach
-        liver: OrganNeoAvaliLiver
+        stomach: OrganNeoDwarfStomach
+        liver: OrganNeoDwarfLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmAvali
+      part: RightArmHuman
       connections:
       - right hand
     left arm:
-      part: LeftArmAvali
+      part: LeftArmHuman
       connections:
       - left hand
     right hand:
-      part: RightHandAvali
+      part: RightHandHuman
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandAvali
+      part: LeftHandHuman
       organs:
         hand_implant: null
     right leg:
-      part: RightLegAvali
+      part: RightLegHuman
       connections:
       - right foot
     left leg:
-      part: LeftLegAvali
+      part: LeftLegHuman
       connections:
       - left foot
     right foot:
-      part: RightFootAvali
+      part: RightFootHuman
     left foot:
-      part: LeftFootAvali
+      part: LeftFootHuman

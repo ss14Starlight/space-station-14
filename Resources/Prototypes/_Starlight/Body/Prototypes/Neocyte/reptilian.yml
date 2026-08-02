@@ -1,10 +1,10 @@
 - type: body
-  id: NeoFelionoid # Starlight, name changed
-  name: neo-felionoid # Starlight, quotation marks removed, name changed
+  id: NeoReptilian
+  name: neo-reptilian
   root: torso
   slots:
     head:
-      part: HeadFelionoid
+      part: HeadReptilian
       connections:
       - torso
       organs:
@@ -14,7 +14,7 @@
         eye_implant: null
         brain_implant: null
     torso:
-      part: TorsoFelionoid
+      part: TorsoReptilian
       connections:
       - right arm
       - left arm
@@ -28,30 +28,30 @@
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmFelionoid
+      part: RightArmReptilian
       connections:
       - right hand
     left arm:
-      part: LeftArmFelionoid
+      part: LeftArmReptilian
       connections:
       - left hand
     right hand:
-      part: RightHandFelionoid
+      part: RightHandReptilian
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandFelionoid
+      part: LeftHandReptilian
       organs:
         hand_implant: null
     right leg:
-      part: RightLegFelionoid
+      part: RightLegReptilian
       connections:
       - right foot
     left leg:
-      part: LeftLegFelionoid
+      part: LeftLegReptilian
       connections:
       - left foot
     right foot:
-      part: RightFootFelionoid
+      part: RightFootReptilian
     left foot:
-      part: LeftFootFelionoid
+      part: LeftFootReptilian

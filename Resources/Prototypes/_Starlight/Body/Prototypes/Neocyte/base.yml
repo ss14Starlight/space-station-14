@@ -1,10 +1,10 @@
 - type: body
-  id: NeoVulpkanin
-  name: neo-vulpkanin # Starlight, quotation marks removed
+  id: Neocyte
+  name: neocyte
   root: torso
   slots:
     head:
-      part: HeadNeoVulpkanin
+      part: HeadNeocyte
       connections:
       - torso
       organs:
@@ -14,7 +14,7 @@
         eye_implant: null
         brain_implant: null
     torso:
-      part: TorsoNeoVulpkanin
+      part: TorsoNeocyte
       connections:
       - right arm
       - left arm
@@ -23,35 +23,35 @@
       organs:
         heart: OrganNeocyteHeart
         lungs: OrganNeocyteLungs
-        stomach: OrganNeocyteStomach # Dear god.. they can eat CHOCOLATE.
+        stomach: OrganNeocyteStomach
         liver: OrganNeocyteLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmNeoVulpkanin
+      part: RightArmNeocyte
       connections:
       - right hand
     left arm:
-      part: LeftArmNeoVulpkanin
+      part: LeftArmNeocyte
       connections:
       - left hand
     right hand:
-      part: RightHandNeoVulpkanin
+      part: RightHandNeocyte
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandNeoVulpkanin
+      part: LeftHandNeocyte
       organs:
         hand_implant: null
     right leg:
-      part: RightLegVulpkanin
+      part: RightLegNeocyte
       connections:
       - right foot
     left leg:
-      part: LeftLegVulpkanin
+      part: LeftLegNeocyte
       connections:
       - left foot
     right foot:
-      part: RightFootVulpkanin
+      part: RightFootNeocyte
     left foot:
-      part: LeftFootVulpkanin
+      part: LeftFootNeocyte

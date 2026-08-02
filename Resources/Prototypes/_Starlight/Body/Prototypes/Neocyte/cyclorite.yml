@@ -1,57 +1,57 @@
 - type: body
-  id: Neocyte
-  name: neocyte # Starlight, quotation marks removed
+  id: NeoCyclorite
+  name: neo-cyclorite
   root: torso
   slots:
     head:
-      part: HeadNeocyte
+      part: HeadCyclorite
       connections:
       - torso
       organs:
         brain: OrganNeocyteBrain
-        eyes: OrganNeocyteEyes
+        eyes: OrganNeoCycloriteEye
         tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
-      part: TorsoNeocyte
+      part: TorsoCyclorite
       connections:
       - right arm
       - left arm
       - right leg
       - left leg
       organs:
-        heart: OrganNeocyteHeart
-        lungs: OrganNeocyteLungs
+        heart: OrganNeoCycloriteHeart
+        lungs: OrganNeoCycloriteLungs
         stomach: OrganNeocyteStomach
         liver: OrganNeocyteLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmNeocyte
+      part: RightArmCyclorite
       connections:
       - right hand
     left arm:
-      part: LeftArmNeocyte
+      part: LeftArmCyclorite
       connections:
       - left hand
     right hand:
-      part: RightHandNeocyte
+      part: RightHandCyclorite
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandNeocyte
+      part: LeftHandCyclorite
       organs:
         hand_implant: null
     right leg:
-      part: RightLegNeocyte
+      part: RightLegCyclorite
       connections:
       - right foot
     left leg:
-      part: LeftLegNeocyte
+      part: LeftLegCyclorite
       connections:
       - left foot
     right foot:
-      part: RightFootNeocyte
+      part: RightFootCyclorite
     left foot:
-      part: LeftFootNeocyte
+      part: LeftFootCyclorite

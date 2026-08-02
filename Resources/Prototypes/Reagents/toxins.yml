@@ -741,7 +741,7 @@
       - !type:AdjustReagent #FH
         conditions: #FH
         - !type:MetabolizerTypeCondition #FH
-          type: [ Neocyte ] #FH
+          type: [ Neocyte ] # FH + Starlight
         reagent: Protein #FH
         amount: 0.5 #FH
       # Starlight-Start: Cyclorite Metabolism

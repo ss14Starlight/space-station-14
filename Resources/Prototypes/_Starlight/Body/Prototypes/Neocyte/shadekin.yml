@@ -1,20 +1,20 @@
 - type: body
-  id: NeoThaven
-  name: neo-thaven # Starlight, quotation marks removed
+  id: NeoKin
+  name: neokin
   root: torso
   slots:
     head:
-      part: HeadThaven
+      part: HeadShadekin
       connections:
       - torso
       organs:
-        brain: OrganThavenBrain
-        eyes: OrganNeocyteEyes
-        tongue: OrganNeocyteTongue
+        brain: OrganNeocyteBrain
+        eyes: OrganNeoKinEyes
+        tongue: OrganNeocyteTongueForked
         eye_implant: null
         brain_implant: null
     torso:
-      part: TorsoThaven
+      part: TorsoShadekin
       connections:
       - right arm
       - left arm
@@ -22,36 +22,36 @@
       - left leg
       organs:
         heart: OrganNeocyteHeart
-        lungs: OrganNeocyteLungs # I can't imagine them NOT fixing their nitro dependancy.
+        core: OrganShadekinCore
         stomach: OrganNeocyteStomach
         liver: OrganNeocyteLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmThaven
+      part: RightArmShadekin
       connections:
       - right hand
     left arm:
-      part: LeftArmThaven
+      part: LeftArmShadekin
       connections:
       - left hand
     right hand:
-      part: RightHandThaven
+      part: RightHandShadekin
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandThaven
+      part: LeftHandShadekin
       organs:
         hand_implant: null
     right leg:
-      part: RightLegThaven
+      part: RightLegShadekin
       connections:
       - right foot
     left leg:
-      part: LeftLegThaven
+      part: LeftLegShadekin
       connections:
       - left foot
     right foot:
-      part: RightFootThaven
+      part: RightFootShadekin
     left foot:
-      part: LeftFootThaven
+      part: LeftFootShadekin

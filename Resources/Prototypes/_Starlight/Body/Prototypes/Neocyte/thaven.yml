@@ -1,57 +1,57 @@
 - type: body
-  id: NeoArachnid
-  name: neo-arachnid # Starlight, quotation marks removed
+  id: NeoThaven
+  name: neo-thaven
   root: torso
   slots:
     head:
-      part: HeadArachnid
+      part: HeadThaven
       connections:
       - torso
       organs:
-        brain: OrganNeocyteBrain
+        brain: OrganThavenBrain
         eyes: OrganNeocyteEyes
         tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
-      part: TorsoArachnid
+      part: TorsoThaven
       connections:
       - right arm
       - left arm
       - right leg
       - left leg
       organs:
-        heart: OrganNeoArachnidHeart
+        heart: OrganNeocyteHeart
         lungs: OrganNeocyteLungs
         stomach: OrganNeocyteStomach
         liver: OrganNeocyteLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
-      part: RightArmArachnid
+      part: RightArmThaven
       connections:
       - right hand
     left arm:
-      part: LeftArmArachnid
+      part: LeftArmThaven
       connections:
       - left hand
     right hand:
-      part: RightHandArachnid
+      part: RightHandThaven
       organs:
         hand_implant: null
     left hand:
-      part: LeftHandArachnid
+      part: LeftHandThaven
       organs:
         hand_implant: null
     right leg:
-      part: RightLegArachnid
+      part: RightLegThaven
       connections:
       - right foot
     left leg:
-      part: LeftLegArachnid
+      part: LeftLegThaven
       connections:
       - left foot
     right foot:
-      part: RightFootArachnid
+      part: RightFootThaven
     left foot:
-      part: LeftFootArachnid
+      part: LeftFootThaven

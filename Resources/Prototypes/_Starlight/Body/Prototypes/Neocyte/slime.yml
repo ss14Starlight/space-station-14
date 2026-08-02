@@ -20,10 +20,10 @@
       - left leg
       organs:
         heart: OrganNeoSlimeHeart
-        core: SentientNeoSlimeCore # So they can eat ramchips.
+        core: SentientNeoSlimeCore
         lungs: OrganNeoSlimeLungs # To heal cellular
         cavity: null
-        brain_implant: null # 🌟Starlight🌟
+        brain_implant: null
     right arm:
       part: RightArmSlime
       connections:
@@ -34,12 +34,12 @@
       - left hand
     right hand:
       part: RightHandSlime
-      organs: # 🌟Starlight🌟
-        hand_implant: null # 🌟Starlight🌟
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandSlime
-      organs: # 🌟Starlight🌟
-        hand_implant: null # 🌟Starlight🌟
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegSlime
       connections:
