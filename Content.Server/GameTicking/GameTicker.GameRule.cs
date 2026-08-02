@@ -2,20 +2,38 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Administration;
+using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Prototypes;
+using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Localization;
 
 namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
+    readonly int _effectivePlayerCutoff = 30; // Starlight, the number of online players at which unready players start counting as effectively ready
+    readonly double _unreadyPlayerMultiplier = 0.60; // Starlight, the fraction of unready players that count as effectively ready when above the cutoff
+
+    /// <summary>
+    /// Designated game rule that spawns a fake antagonist to discourage metagaming.
+    /// Has to be a string since <see cref="EntProtoId"/> cannot be a const.
+    /// </summary>
+    public const string DummyGameRule = "DummyNonAntag";
+
     [ViewVariables] private readonly List<(TimeSpan, string)> _allPreviousGameRules = new();
+
+    /// <summary>
+    /// List of ignored game rules, these rules won't be spawned by normal means.
+    /// This list is populated by <see cref="CCVars.GameTickerIgnoredPresets"/>
+    /// </summary>
+    [ViewVariables] private string[] _ignoredRules = [];
+
+    [Dependency] private EntityWhitelistSystem _whitelist = null!;
 
     /// <summary>
     ///     A list storing the start times of all game rules that have been started this round.
@@ -52,6 +70,8 @@ public sealed partial class GameTicker
             string.Empty,
             $"listgamerules - {localizedHelp}",
             ListGameRuleCommand);
+
+        SubscribeLocalEvent<RoundStartAttemptEvent>(OnStartAttempt);
     }
 
     private void ShutdownGameRules()
@@ -67,7 +87,7 @@ public sealed partial class GameTicker
     /// start it yet, instead waiting until the rule is actually started by other code (usually roundstart)
     /// </summary>
     /// <returns>The entity for the added gamerule</returns>
-    public EntityUid AddGameRule(string ruleId, List<EntityUid>? siblings = null) // Starlight - add optional sibling list
+    public EntityUid AddGameRule([ForbidLiteral] string ruleId, List<EntityUid>? siblings = null) // Starlight - add optional sibling list
     {
         // Starlight Start: Check if any active game rule denies this rule from being added
         var activeRules = GetActiveGameRules();
@@ -115,10 +135,33 @@ public sealed partial class GameTicker
     }
 
     /// <summary>
+    /// Tries to add a gamerule to the current round, but ignores any <see cref="_ignoredRules"/>
+    /// </summary>
+    /// <param name="gameRule">Game rule entity that we are trying to spawn</param>
+    /// <returns>The entityUid of the spawned game rule, if it wasn't ignored.</returns>
+    public EntityUid? AddFilteredGameRule([ForbidLiteral] EntProtoId gameRule)
+    {
+        if (IsIgnored(gameRule))
+            return null;
+
+        return AddGameRule(gameRule);
+    }
+
+    /// <summary>
+    /// Checks if this GameRule should be ignored before a spawning attempt.
+    /// </summary>
+    /// <param name="gameRule">GameRule we are trying to validate</param>
+    /// <returns>True if the gamerule should be ignored and not spawned.</returns>
+    public bool IsIgnored([ForbidLiteral] EntProtoId gameRule)
+    {
+        return _ignoredRules.Contains(gameRule);
+    }
+
+    /// <summary>
     /// Game rules can be 'started' separately from being added. 'Starting' them usually
     /// happens at round start while they can be added and removed before then.
     /// </summary>
-    public bool StartGameRule(string ruleId)
+    public bool StartGameRule([ForbidLiteral] string ruleId)
     {
         return StartGameRule(ruleId, out _);
     }
@@ -127,7 +170,7 @@ public sealed partial class GameTicker
     /// Game rules can be 'started' separately from being added. 'Starting' them usually
     /// happens at round start while they can be added and removed before then.
     /// </summary>
-    public bool StartGameRule(string ruleId, out EntityUid ruleEntity)
+    public bool StartGameRule([ForbidLiteral] string ruleId, out EntityUid ruleEntity)
     {
         ruleEntity = AddGameRule(ruleId);
         return StartGameRule(ruleEntity);
@@ -241,7 +284,7 @@ public sealed partial class GameTicker
         return Resolve(ruleEntity, ref component) && !HasComp<EndedGameRuleComponent>(ruleEntity);
     }
 
-    public bool IsGameRuleAdded(string rule)
+    public bool IsGameRuleAdded([ForbidLiteral] string rule)
     {
         foreach (var ruleEntity in GetAddedGameRules())
         {
@@ -273,7 +316,7 @@ public sealed partial class GameTicker
         return Resolve(ruleEntity, ref component) && HasComp<ActiveGameRuleComponent>(ruleEntity);
     }
 
-    public bool IsGameRuleActive(string rule)
+    public bool IsGameRuleActive([ForbidLiteral] string rule)
     {
         foreach (var ruleEntity in GetActiveGameRules())
         {
@@ -343,6 +386,52 @@ public sealed partial class GameTicker
             StartGameRule(uid, rule);
         }
     }
+
+    private void OnStartAttempt(RoundStartAttemptEvent args)
+    {
+        if (args.Forced || args.Cancelled)
+            return;
+
+        var query = EntityQueryEnumerator<GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var gameRule))
+        {
+            var minPlayers = gameRule.MinPlayers;
+            var name = ToPrettyString(uid);
+
+            var effectivePlayers = GetEffectivePlayerCount(args.Players.Length); // Starlight, get effective players
+            if (effectivePlayers >= minPlayers) // Starlight, args.Players.Length -> effectivePlayers
+                continue;
+
+            if (gameRule.CancelPresetOnTooFewPlayers)
+            {
+                _chatManager.SendAdminAnnouncement(Loc.GetString("preset-not-enough-ready-players-sl", // Starlight
+                    ("readyPlayersCount", effectivePlayers), // Starlight
+                    ("minimumPlayers", minPlayers),
+                    ("presetName", name)));
+                args.Cancel();
+                //TODO remove this once announcements are logged
+                Log.Info($"Rule '{name}' requires {minPlayers} players, but only {effectivePlayers} are effectively ready."); //Starlight
+            }
+            else
+            {
+                EndGameRule(uid, gameRule);
+            }
+        }
+    }
+
+    #region Starlight
+    //Helper function for effective player count
+    private int GetEffectivePlayerCount(int activePlayers)
+    {
+        var onlinePlayers = PlayerGameStatuses.Count;
+
+        if (onlinePlayers < _effectivePlayerCutoff)
+            return activePlayers;
+
+        var unreadyPlayers = Math.Max(0, onlinePlayers - activePlayers);
+        return activePlayers + (int) Math.Floor(unreadyPlayers * _unreadyPlayerMultiplier);
+    }
+    #endregion
 
     #region Command Implementations
 
