@@ -8,6 +8,15 @@
   - Meat
   - Sausage
 
+#Abductor Plushie
+- type: foodSequenceElement
+  id: PlushieAbductor
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-abductor
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/abductor_plushie.rsi
+    state: icon
+
 #Panda Plushie
 - type: foodSequenceElement
   id: PandaPlushie

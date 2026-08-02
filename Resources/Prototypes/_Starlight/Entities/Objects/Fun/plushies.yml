@@ -186,6 +186,42 @@
 # General Plushies
 - type: entity
   parent: BasePlushie
+  id: PlushieAbductor
+  name: alien grey plushie # metashield
+  description: A silent grey alien with big black eyes, a staple of retro sci-fi where they kidnap and experiment on unsuspecting people. Thank goodness they're not real!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/abductor_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/abductor_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/taser_hit.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieAbductor
+
+- type: entity
+  parent: BasePlushie
   id: PandaPlushie
   name: panda plushie
   description: Large and in charge! Its paws and body are weighted with poly pellets. Holding it eases your stress and anxieties.

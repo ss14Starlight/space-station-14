@@ -123,6 +123,17 @@
 
 # General Plushies
 - type: listing
+  id: VendorPlushieAbductor
+  productEntity: PlushieAbductor
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: VendorPlushieCarp
   productEntity: PlushieCarp
   cost:
