@@ -10,6 +10,7 @@ using Content.Shared.Wieldable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Item.ItemToggle;
 /// <summary>
@@ -24,6 +25,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private EntityQuery<ItemToggleComponent> _query;
 
@@ -323,7 +325,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
     private void TurnOnOnWielded(Entity<ItemToggleComponent> ent, ref ItemWieldedEvent args)
     {
         // FIXME: for some reason both client and server play sound
-        TryActivate((ent, ent.Comp));
+        TryActivate((ent, ent.Comp), args.User);
     }
 
     public bool IsActivated(Entity<ItemToggleComponent?> ent)
@@ -350,7 +352,10 @@ public sealed partial class ItemToggleSystem : EntitySystem
         var (uid, comp) = ent;
         if (!args.Activated)
         {
-            comp.PlayingStream = _audio.Stop(comp.PlayingStream);
+            // TODO: Make an RT pull request adding a Stop method to the shared audio system to do this because clearly setting things to null on client here cause issues with prediction.
+            var maybeNoAudio = _audio.Stop(comp.PlayingStream);
+            if (!maybeNoAudio.HasValue && !_timing.IsFirstTimePredicted) return;
+            comp.PlayingStream = maybeNoAudio;
             return;
         }
 

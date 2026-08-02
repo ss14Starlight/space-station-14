@@ -90,9 +90,10 @@
         map: [ "blade" ]
   - type: Item
     sprite: Objects/Weapons/Melee/e_sword-inhands.rsi
-  - type: EnergySword
-    colorOptions:
-      - "#FFFF00"
+  # SL begin
+  - type: EnergyColor
+    color: "#FFFF00"
+  # SL end
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -115,6 +116,5 @@
   id: CyborgEnergySwordBlue
   suffix: For XenoBorgs
   components:
-  - type: EnergySword
-    colorOptions:
-    - "#2288ff" # can only be blue
+  - type: EnergyColor
+    color: "#2288ff"

@@ -486,29 +486,50 @@
       - type: DisarmMalus
         malus: 0.6
     - type: Sprite
-      sprite: Objects/Weapons/Melee/e_shield.rsi
+      sprite: _Starlight/Objects/Weapons/Melee/e_shield.rsi # SL
       layers:
         - state: eshield-icon
-        - state: eshield-on
+        - state: eshield-on-base # SL
           color: "#FFFFFF"
           visible: false
           shader: unshaded
           map: [ "shield" ]
+        # SL begin
+        - state: eshield-on-overlay
+          color: '#FFFFFF'
+          visible: false
+          shader: unshaded
+          map: [ "overlay" ]
+        # SL end
     - type: Item
       size: Small
-      sprite: Objects/Weapons/Melee/e_shield.rsi
+    # SL begin
+      sprite: _Starlight/Objects/Weapons/Melee/e_shield.rsi
       heldPrefix: eshield
+    # SL end
     - type: UseDelay
       delay: 0.5
     - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
         left:
-          - state: inhand-left-shield
+          - state: inhand-left-shield-base
             shader: unshaded
+          # SL begin
+          - state: inhand-left-shield-overlay
+            shader: unshaded
+            map: [ "overlay" ]
+          # SL end
         right:
-          - state: inhand-right-shield
+          - state: inhand-right-shield-base
             shader: unshaded
+          # SL begin
+          - state: inhand-right-shield-overlay
+            shader: unshaded
+            map: [ "overlay" ]
+          # SL end
+      modulateIgnoreLayers: [ "overlay" ]
+      additionalLayers: [ "overlay" ]
     - type: PointLight
       netsync: false
       enabled: false
@@ -572,6 +593,8 @@
         - Shield
     - type: Pierceable
       level: HardenedMetal
+    - type: EnergyColor
+      color: '#66b4fd'
     # Starlight-end
 
 - type: entity
