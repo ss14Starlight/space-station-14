@@ -15,6 +15,6 @@ food-sequence-cotton-burger-content-plushie-pig = pig
 food-sequence-cotton-burger-content-plushie-renault = yip
 food-sequence-cotton-burger-content-plushie-snail = snail
 food-sequence-cotton-burger-content-plushie-cow-squishims = cow
-food-sequence-cotton-burger-content-plushie-frog = frog
+food-sequence-cotton-burger-content-plushie-frog-squishims = froggy
 food-sequence-cotton-burger-content-plushie-sus = sus
 food-sequence-cotton-burger-content-plushie-shadekin = marr
