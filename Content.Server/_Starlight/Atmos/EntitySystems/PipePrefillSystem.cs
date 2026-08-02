@@ -47,6 +47,10 @@ public sealed partial class PipePrefillSystem : EntitySystem
         if (fractionTotal <= 0)
             return;
 
+        // No target? Do nothing.
+        if (!ent.Comp.TargetPressure.HasValue && !ent.Comp.TargetMoles.HasValue)
+            return;
+
         // Does this run for every node on an entity? Yes. Is that bad? Probably not. For example, if we would use this
         // on a gas mixer, that'd be both inlets and the outlet. No big deal if you ask me. (Though why you would want
         // to use this on multi-node entities is beyond me).
@@ -62,12 +66,16 @@ public sealed partial class PipePrefillSystem : EntitySystem
             _nodeGroup.CreateSingleNetImmediate(pipeNode);
 
             // Given the target pressure + our volume, calculate how many mols that would take to achieve.
-            var totalMoles = ent.Comp.Pressure * pipeNode.Volume / (Atmospherics.R * ent.Comp.Temperature);
+            var targetMoles = 0f;
+            if (ent.Comp.TargetMoles.HasValue)
+                targetMoles = ent.Comp.TargetMoles.Value;
+            if (ent.Comp.TargetPressure.HasValue)
+                targetMoles = ent.Comp.TargetPressure.Value * pipeNode.Volume / (Atmospherics.R * ent.Comp.Temperature);
 
             // Add one gas at a time, proportional to the relative mixture.
             var air = pipeNode.Air;
             foreach (var (gas, fraction) in ent.Comp.Mixture)
-                air.AdjustMoles(gas, totalMoles * fraction / fractionTotal);
+                air.AdjustMoles(gas, targetMoles * fraction / fractionTotal);
         }
     }
 

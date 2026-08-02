@@ -16,12 +16,17 @@ public sealed partial class PipePrefillComponent : Component
     [DataField(required: true)] public Dictionary<Gas, float> Mixture = new();
 
     /// <summary>
-    /// Target pressure, in kPa, at <see cref="Temperature"/> for the node or network's actual volume.
-    /// </summary>
-    [DataField] public float Pressure = Atmospherics.OneAtmosphere;
-
-    /// <summary>
     /// The temperature that the added mixture should be at.
     /// </summary>
     [DataField] public float Temperature = Atmospherics.T20C;
+
+    /// <summary>
+    /// Target total amount of mols to have at <see cref="Temperature"/>.
+    /// </summary>
+    [DataField] public float? TargetMoles;
+
+    /// <summary>
+    /// Target pressure, in kPa, at <see cref="Temperature"/>.
+    /// </summary>
+    [DataField] public float? TargetPressure;
 }
