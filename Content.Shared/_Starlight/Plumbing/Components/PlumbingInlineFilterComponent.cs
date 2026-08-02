@@ -20,17 +20,14 @@ public sealed partial class PlumbingInlineFilterComponent : Component
     ///     allowance to avoid clogging.so a plentiful reagent cannot crowd the rest out of the buffer.
     ///     Should be sized for <see cref="MaxFilteredReagents"/> * this value.
     /// </summary>
-    [DataField]
-    public FixedPoint2 ReagentCapacity = FixedPoint2.New(10);
+    [DataField] public FixedPoint2 ReagentCapacity = FixedPoint2.New(10);
 
-    [DataField, AutoNetworkedField]
-    public bool Enabled = true;
+    [DataField, AutoNetworkedField] public bool Enabled = true;
 
     /// <summary>
     ///     The reagent IDs to pull in from the pipenet.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public HashSet<ProtoId<ReagentPrototype>> FilteredReagents = new();
-    
+    [DataField, AutoNetworkedField] public HashSet<ProtoId<ReagentPrototype>> FilteredReagents = new();
+
     public int ReagentRoundRobinIndex;
 }
