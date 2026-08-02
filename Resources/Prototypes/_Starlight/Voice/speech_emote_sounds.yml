@@ -755,3 +755,27 @@
         volume: -6
     Salute:
       collection: Salutes
+
+- type: emoteSounds
+  id: Monkey
+  sounds:
+    Scream:
+      path: /Audio/Animals/monkey_scream.ogg
+      params:
+        variation: 0.125
+    Whistle:
+      collection: Whistles
+      params:
+        variation: 0.125
+    Snore:
+      collection: Snores
+      params:
+        pitch: 1.3
+        volume: -5
+        variation: 0.125
+    Gasp:
+      collection: MaleGasp
+      params:
+        pitch: 1.3
+        volume: -5
+        variation: 0.025

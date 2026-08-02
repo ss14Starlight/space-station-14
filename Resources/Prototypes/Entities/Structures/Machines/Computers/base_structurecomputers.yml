@@ -45,6 +45,7 @@
         whitelist:
           components:
           - PAI
+  - type: LockedWiresPanel
   # Starlight End
   - type: Appearance
   - type: GenericVisualizer
