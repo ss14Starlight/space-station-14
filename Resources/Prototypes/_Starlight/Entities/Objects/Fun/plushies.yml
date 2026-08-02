@@ -489,42 +489,6 @@
 
 - type: entity
   parent: BasePlushie
-  id: AbductorPlushie
-  name: abductor plushie
-  description: Careful, it might kidnap you. Like in one of those bad 2170's killer doll movies.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/abductor_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/abductor_plushie.rsi
-    state: icon
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Starlight/Misc/alien_teleport.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Starlight/Misc/alien_teleport.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/_Starlight/Misc/alien_teleport.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Starlight/Misc/alien_teleport.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/_Starlight/Misc/alien_teleport.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/Weapons/Guns/Hits/taser_hit.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: AbductorPlushie
-
-- type: entity
-  parent: BasePlushie
   id: AxolotlPlushie
   name: axolotl plushie
   description: Head empty. Absolutely zero thoughts behind their eyes.

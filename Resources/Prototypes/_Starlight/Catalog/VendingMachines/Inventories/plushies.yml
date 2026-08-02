@@ -342,17 +342,6 @@
     stock: 1
 
 - type: listing
-  id: VendorPlushieAbductor
-  productEntity: AbductorPlushie
-  cost:
-    NTCredit: 20
-  categories:
-  - SLSpecies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: VendorCatEars
   productEntity: ClothingHeadHatWhiteCatEars
   cost:

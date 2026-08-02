@@ -43,15 +43,6 @@
   - sprite: _Starlight/Objects/Fun/Plushies/mime_lizard_plushie.rsi
     state: icon
 
-#Abductor Plushie
-- type: foodSequenceElement
-  id: AbductorPlushie
-  scale: 0.8, 0.8
-  name: food-sequence-cotton-burger-content-plushie-abductor
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/abductor_plushie.rsi
-    state: icon
-
 #Axolotl Plushie
 - type: foodSequenceElement
   id: AxolotlPlushie
