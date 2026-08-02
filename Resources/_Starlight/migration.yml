@@ -166,11 +166,11 @@ GasPipeSubfloorTankAlt4: GasPipeTankSubfloorAlt4
 AbductorPlushie: PlushieAbductor # cleaned up ID
 PlushieAmali: PlushieLizard
 PlushieAsh: PlushieVulp
-AxolotlPlushie: PlushieAxolotl
+AxolotlPlushie: PlushieAxolotl # cleaned up ID
 PlushieBarfo: PlushieLizard
 BorbPlushie: PlushieLizard
 PlushieBrighteyes: PlushieLizard
-SquishimsCow: PlushieLizard
+SquishimsCow: PlushieCowSquishims # cleaned up ID
 CreaturePlushie: PlushieLizard
 DeerPlushie: PlushieLizard
 OddDeerPlushie: PlushieLizard

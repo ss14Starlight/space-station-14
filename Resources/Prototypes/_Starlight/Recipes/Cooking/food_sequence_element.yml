@@ -26,6 +26,15 @@
   - sprite: _Starlight/Objects/Fun/Plushies/axolotl_plushie.rsi
     state: icon
 
+#Cow Squishims Plushie
+- type: foodSequenceElement
+  id: PlushieCowSquishims
+  scale: 0.5, 0.5
+  name: food-sequence-cotton-burger-content-plushie-cow-squishims
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/cow_squishims_plushie.rsi
+    state: icon
+
 #Panda Plushie
 - type: foodSequenceElement
   id: PandaPlushie

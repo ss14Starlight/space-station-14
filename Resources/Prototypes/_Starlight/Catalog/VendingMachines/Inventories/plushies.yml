@@ -156,6 +156,17 @@
     stock: 3
 
 - type: listing
+  id: VendorPlushieCowSquishims
+  productEntity: PlushieCowSquishims
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
   id: VendorPlushieHampter
   productEntity: PlushieHampter
   cost:
