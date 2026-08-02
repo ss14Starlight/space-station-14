@@ -33,10 +33,9 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
     }
 
     /// <summary>
-    /// Resolves whether Radio Rig is connected to a Radio Server that has power,
-    /// and whether or not it can broadcast.
+    /// Resolves whether a Radio Rig is linked to a Radio Server.
     /// </summary>
-    public bool TryGetLinkedPoweredServer(EntityUid uid, out EntityUid server)
+    public bool TryGetLinkedServer(EntityUid uid, out EntityUid server)
     {
         server = default;
 
@@ -50,18 +49,22 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
 
             foreach (var linkedServer in sink.LinkedSources)
             {
-                var hasComp = HasComp<StationRadioServerComponent>(linkedServer);
-                var powered = _power.IsPowered(linkedServer);
-
-                if (!hasComp || !powered)
-                    continue;
+                if (!HasComp<StationRadioServerComponent>(linkedServer))
+                continue;
 
                 server = linkedServer;
                 return true;
             }
         }
-
         return false;
+    }
+
+    /// <summary>
+    /// Resolves whether Radio Rig is linked to a Radio Server that is powered and whether or not it can broadcast.
+    /// </summary>
+    public bool TryGetLinkedPoweredServer(EntityUid uid, out EntityUid server)
+    {
+        return TryGetLinkedServer(uid, out server) && _power.IsPowered(server);
     }
 
     private void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args)
@@ -116,16 +119,15 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        var query = EntityQueryEnumerator<StationRadioServerComponent>();
-        while (query.MoveNext(out var server, out var serverComp))
-        {
-            if (serverComp.CurrentSong == null || serverComp.PlaybackStartTime == null || !_power.IsPowered(server))
-                continue;
-
-            var elapsed = _timing.CurTime - serverComp.PlaybackStartTime.Value;
-            RaiseLocalEvent(uid, new StationRadioMediaPlayedEvent(serverComp.CurrentSong, elapsed));
+        if (!TryGetLinkedPoweredServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
-        }
+        
+        if (serverComp.CurrentSong == null || serverComp.PlaybackStartTime == null)
+            return;
+
+        var elapsed = _timing.CurTime - serverComp.PlaybackStartTime.Value;
+        RaiseLocalEvent(uid, new StationRadioMediaPlayedEvent(serverComp.CurrentSong, elapsed));
+        
     }
 
     /// <summary>
@@ -142,6 +144,9 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             var stopQuery = EntityQueryEnumerator<StationRadioReceiverComponent>();
             while (stopQuery.MoveNext(out var receiver, out _))
             {
+                if (!TryGetLinkedServer(receiver, out var linkedServer) || linkedServer != uid)
+                    continue;
+                
                 RaiseLocalEvent(receiver, new StationRadioMediaStoppedEvent());
             }
             return;
@@ -156,6 +161,9 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         while (playQuery.MoveNext(out var receiver, out var receiverComp))
         {
             if (receiverComp.SoundEntity.HasValue)
+                continue;
+
+            if (!TryGetLinkedServer(receiver, out var linkedServer) || linkedServer != uid)
                 continue;
 
             RaiseLocalEvent(receiver, new StationRadioMediaPlayedEvent(comp.CurrentSong, elapsed));
