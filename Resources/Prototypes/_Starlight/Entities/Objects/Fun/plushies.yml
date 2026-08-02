@@ -1207,15 +1207,15 @@
 
 - type: entity
   parent: BasePlushie
-  id: PlushieDoxesTheCaptain #Weh!
+  id: PlushieDoxes #Weh!
   name: doxes-the-captain plushie
   description: An adorable stuffed toy that resembles Doxes-the-Captain. "Captain's IP is 189.47.108.519!"
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/doxesthecaptain.rsi
+    sprite: _Starlight/Objects/Fun/Plushies/doxes_plushie.rsi
     state: icon
   - type: Item
-    sprite: _Starlight/Objects/Fun/Plushies/doxesthecaptain.rsi
+    sprite: _Starlight/Objects/Fun/Plushies/doxes_plushie.rsi
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Items/Toys/weh.ogg
@@ -1255,7 +1255,7 @@
           Quantity: 10
   - type: Clothing
     quickEquip: false
-    sprite: _Starlight/Objects/Fun/Plushies/doxesthecaptain.rsi
+    sprite: _Starlight/Objects/Fun/Plushies/doxes_plushie.rsi
     slots:
     - HEAD
   - type: Speech

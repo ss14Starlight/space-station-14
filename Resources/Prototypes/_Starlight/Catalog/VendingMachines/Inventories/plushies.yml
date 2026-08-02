@@ -510,8 +510,8 @@
       stock: 1
 
 - type: listing
-  id: VendorPlushieDoxesTheCaptain
-  productEntity: PlushieDoxesTheCaptain
+  id: VendorPlushieDoxes
+  productEntity: PlushieDoxes
   cost:
     NTCredit: 20
   categories:
