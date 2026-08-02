@@ -328,30 +328,6 @@
       sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
       state: icon
 
-### this is bricking the whole PR, ill fix later
-- type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieRufia
-  name: rufia plushie
-  description: You stare at the plushie and it stares back, its blue eyes trying to tell you something, reminding you that... there is no such thing as free healthcare.
-  components:
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/rufia_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/rufia_plushie.rsi
-      state: icon
-    - type: ItemToggle
-      onUse: false
-      verbToggleOn: plushie-voicebox-activate
-      verbToggleOff: plushie-voicebox-deactivate
-    - type: ComponentToggler
-      components:
-        - type: DatasetVocalizer
-          dataset: PlushiesRufia
-        - type: TextToSpeech
-          voice: mozillaAu13
-
 - type: entity
   parent: BasePlushie
   id: PlushieGalio #Weh!

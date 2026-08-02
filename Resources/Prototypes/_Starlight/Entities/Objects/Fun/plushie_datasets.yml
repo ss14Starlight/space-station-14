@@ -1,10 +1,4 @@
 - type: localizedDataset
-  id: PlushiesRufia
-  values:
-    prefix: plushie-rufia-
-    count: 6
-
-- type: localizedDataset
   id: PlushiesVanilla
   values:
     prefix: plushie-vanilla-
