@@ -1,8 +1,8 @@
 <Document>
-  # Proto-Human
+  # Neo-Human
 <!-- Starlight, renamed back to Human.-->
   <Box>
-    <GuideEntityEmbed Entity="AppearanceProtoHuman" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceNeoHuman" Caption=""/>
   </Box>
 
   Interestingly, the term "Neocyte" originates from a Human-created fictional species that shares the same appearance as what are refered to as simply "Neocytes"- those without a distinct species.

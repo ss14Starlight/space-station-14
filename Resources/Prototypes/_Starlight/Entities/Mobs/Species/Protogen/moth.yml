@@ -130,9 +130,9 @@
         visible: false
   - type: Vocal
     sounds:
-      Male: ProtoMothMSounds
-      Female: ProtoMothFSounds
-      Unsexed: ProtoMothMSounds
+      Male: NeoMothMSounds
+      Female: NeoMothFSounds
+      Unsexed: NeoMothMSounds
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
@@ -197,7 +197,7 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: AppearanceProtoMoth
+  id: AppearanceNeoMoth
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance

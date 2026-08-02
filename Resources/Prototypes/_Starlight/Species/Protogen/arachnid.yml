@@ -1,17 +1,17 @@
 - type: species
   id: NeoArachnid
-  name: subspecies-name-protoarachnid
+  name: subspecies-name-neoarachnid
   roundStart: true
   prototype: MobNeoArachnid
   sprites: MobNeoArachnidSprites
   markingLimits: MobNeoArachnidMarkingLimits
-  dollPrototype: AppearanceProtoArachnid
+  dollPrototype: AppearanceNeoArachnid
   defaultSkinTone: "#385878"
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
-  subspeciesName: subspecies-name-protoarachnid
+  subspeciesName: subspecies-name-neoarachnid
   loadout: NeocyteLoadout
   maleFirstNames: NamesArachnidFirst
   femaleFirstNames: NamesArachnidFirst
@@ -54,11 +54,11 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoArachnidVisor ]
+      defaultMarkings: [ NeoArachnidVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoArachnidLEDFace ]
+      defaultMarkings: [ NeoArachnidLEDFace ]
     BodyCover:
       points: 1
       required: true

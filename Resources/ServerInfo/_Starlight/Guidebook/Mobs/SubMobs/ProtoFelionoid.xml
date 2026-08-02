@@ -1,8 +1,8 @@
 <Document>
-  # Proto-Felionoid
+  # Neo-Felionoid
 <!-- Starlight, renamed back to Felionoid.-->
   <Box>
-    <GuideEntityEmbed Entity="AppearanceProtoFelionoid" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceNeoFelionoid" Caption=""/>
   </Box>
 
   ## Resistances

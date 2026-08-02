@@ -1,11 +1,11 @@
 <Document>
-  # Proto-Diona
+  # Neo-Diona
 <!-- Starlight, renamed back to Diona.-->
   <Box>
-    <GuideEntityEmbed Entity="AppearanceProtoDiona" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceNeoDiona" Caption=""/>
   </Box>
 
-  While a Proto-Diona is a rare sight to behold, it's not impossible. Transhumanism exists even among plant-like races, although the practice is typically shunned.
+  While a Neo-Diona is a rare sight to behold, it's not impossible. Transhumanism exists even among plant-like races, although the practice is typically shunned.
 
   ## Resistances
   - Receive [color=#ffa500]65% more heat damage[/color] and [color=#8147ff]30% more shock damage[/color].
@@ -15,5 +15,5 @@ In addition, while you may take more [color=#ffa500]heat damage[/color] than you
 
 While rooted, you're also [color=#fc0303]5% slower than base Diona[/color]. Guess the metal adds enough weight...
 
-[color=red]WARNING![/color] Splitting into nymphs as a Proto-Diona will [color=red]turn you back into a normal Diona![/color] Choose carefully, is it really worth it to lose your cybernetics?
+[color=red]WARNING![/color] Splitting into nymphs as a Neo-Diona will [color=red]turn you back into a normal Diona![/color] Choose carefully, is it really worth it to lose your cybernetics?
 </Document>

@@ -1,17 +1,17 @@
 - type: species
   id: NeoHuman
-  name: subspecies-name-protohuman
+  name: subspecies-name-neohuman
   roundStart: true
   prototype: MobNeoHuman
   sprites: MobNeoHumanSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobNeoHumanMarkingLimits
-  dollPrototype: AppearanceProtoHuman
+  dollPrototype: AppearanceNeoHuman
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
-  subspeciesName: subspecies-name-protohuman
+  subspeciesName: subspecies-name-neohuman
   loadout: NeocyteLoadout
   profileMigration:
     oldSpecies:

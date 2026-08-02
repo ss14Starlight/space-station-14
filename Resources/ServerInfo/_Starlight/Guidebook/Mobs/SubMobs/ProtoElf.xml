@@ -1,8 +1,8 @@
 <Document>
-  # Proto-Aielithii
+  # Neo-Aielithii
 
   <Box>
-    <GuideEntityEmbed Entity="AppearanceProtoElf" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceNeoElf" Caption=""/>
   </Box>
 
   ## Resistances

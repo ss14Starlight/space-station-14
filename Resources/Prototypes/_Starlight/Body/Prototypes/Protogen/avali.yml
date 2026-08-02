@@ -1,6 +1,6 @@
 - type: body
   id: NeoAvali
-  name: proto-avali # Starlight, quotation marks removed
+  name: neo-avali # Starlight, quotation marks removed
   root: torso
   slots:
     head:
@@ -21,10 +21,10 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtoAvaliHeart
+        heart: OrganNeoAvaliHeart
         lungs: OrganNeocyteLungs
-        stomach: OrganProtoAvaliStomach
-        liver: OrganProtoAvaliLiver
+        stomach: OrganNeoAvaliStomach
+        liver: OrganNeoAvaliLiver
         kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:

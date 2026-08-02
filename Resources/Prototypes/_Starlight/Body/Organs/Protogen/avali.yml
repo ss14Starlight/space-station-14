@@ -1,8 +1,8 @@
 - type: entity
-  id: OrganProtoAvaliStomach
+  id: OrganNeoAvaliStomach
   parent: OrganNeocyteStomach
   name: avali biological reactor
-  suffix: Proto-Avali
+  suffix: Neo-Avali
   components:
   - type: Stomach
     specialDigestible:
@@ -20,10 +20,10 @@
           Quantity: 5
 
 - type: entity
-  id: OrganProtoAvaliHeart
+  id: OrganNeoAvaliHeart
   parent: OrganNeocyteHeart
   name: avali cybernetic heart
-  suffix: Proto-Avali
+  suffix: Neo-Avali
   components:
   - type: Metabolizer
     maxReagents: 2
@@ -34,10 +34,10 @@
     - id: Narcotic
 
 - type: entity
-  id: OrganProtoAvaliLiver
+  id: OrganNeoAvaliLiver
   parent: OrganNeocyteLiver
   name: avali cybernetic liver
-  suffix: Proto-Avali
+  suffix: Neo-Avali
   components:
   - type: Metabolizer
     updateInterval: 1.5

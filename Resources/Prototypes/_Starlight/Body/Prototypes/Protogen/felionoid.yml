@@ -1,6 +1,6 @@
 - type: body
   id: NeoFelionoid # Starlight, name changed
-  name: proto-felionoid # Starlight, quotation marks removed, name changed
+  name: neo-felionoid # Starlight, quotation marks removed, name changed
   root: torso
   slots:
     head:

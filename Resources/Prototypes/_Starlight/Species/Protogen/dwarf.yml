@@ -1,17 +1,17 @@
 - type: species
   id: NeoDwarf
-  name: subspecies-name-protodwarf
+  name: subspecies-name-neodwarf
   roundStart: true
   prototype: MobNeoDwarf
   sprites: MobNeoHumanSprites
   markingLimits: MobNeoDwarfMarkingLimits
-  dollPrototype: AppearanceProtoDwarf
+  dollPrototype: AppearanceNeoDwarf
   defaultSkinTone: "#666666"
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
-  subspeciesName: subspecies-name-protodwarf
+  subspeciesName: subspecies-name-neodwarf
   loadout: NeocyteLoadout
   minWidth: 1.25
   defaultWidth: 1.25

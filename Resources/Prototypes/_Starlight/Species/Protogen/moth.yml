@@ -1,17 +1,17 @@
 - type: species
   id: NeoMoth
-  name: subspecies-name-protomoth
+  name: subspecies-name-neomoth
   roundStart: true
   prototype: MobNeoMoth
   sprites: MobNeoMothSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobNeoMothMarkingLimits
-  dollPrototype: AppearanceProtoMoth
+  dollPrototype: AppearanceNeoMoth
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
-  subspeciesName: subspecies-name-protomoth
+  subspeciesName: subspecies-name-neomoth
   maleFirstNames: NamesMothFirstMale
   femaleFirstNames: NamesMothFirstFemale
   lastNames: NamesMothLast
@@ -53,19 +53,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoMothVisor ]
+      defaultMarkings: [ NeoMothVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoMothLEDFace ]
+      defaultMarkings: [ NeoMothLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoMothMediumArmor ]
+      defaultMarkings: [ NeoMothMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoMothLights ]
+      defaultMarkings: [ NeoMothLights ]
     Hair:
       points: 1
       required: false

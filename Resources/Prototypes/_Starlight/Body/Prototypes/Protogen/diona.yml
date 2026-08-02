@@ -1,6 +1,6 @@
 - type: body
   id: NeoDiona # Starlight, name changed
-  name: proto-diona # Starlight, quotation marks removed, name changed
+  name: neo-diona # Starlight, quotation marks removed, name changed
   root: torso
   slots:
     head:
@@ -21,8 +21,8 @@
       - right leg
       - left leg
       organs:
-        stomach: OrganProtoDionaStomachNymph
-        lungs: OrganProtoDionaLungsNymph
+        stomach: OrganNeoDionaStomachNymph
+        lungs: OrganNeoDionaLungsNymph
         cavity: null
     right arm:
       part: RightArmDiona

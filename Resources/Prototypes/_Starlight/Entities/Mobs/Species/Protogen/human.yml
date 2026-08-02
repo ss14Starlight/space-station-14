@@ -51,7 +51,7 @@
 
 - type: entity
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
-  id: AppearanceProtoHuman
+  id: AppearanceNeoHuman
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance

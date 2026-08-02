@@ -1,8 +1,8 @@
 - type: entity
-  id: SentientProtoSlimeCore
+  id: SentientNeoSlimeCore
   parent: SentientSlimeCore
   name: augmented sentient slime core
-  suffix: Proto-Slime
+  suffix: Neo-Slime
   description: "The source of incredible, unending gooeyness."
   components:
     - type: Stomach
@@ -29,10 +29,10 @@
             Quantity: 10
 
 - type: entity
-  id: OrganProtoSlimeHeart
+  id: OrganNeoSlimeHeart
   parent: OrganSlimeHeart
   name: augmented slime circulator
-  suffix: Proto-Slime
+  suffix: Neo-Slime
   description: "A little circulator what makes the fluid move through the slime body."
   components:
   - type: Metabolizer
@@ -53,10 +53,10 @@
         Radiation: 10
 
 - type: entity
-  id: OrganProtoSlimeLungs
+  id: OrganNeoSlimeLungs
   parent: OrganSlimeLungs
   name: augmented slime gas sacs
-  suffix: Proto-Slime
+  suffix: Neo-Slime
   description: "Collects nitrogen, which slime cells use for maintenance."
   components:
   - type: OrganDamage
@@ -68,10 +68,10 @@
         Radiation: 30
 
 - type: entity
-  id: OrganProtoSlimePeepoids
+  id: OrganNeoSlimePeepoids
   parent: OrganSlimePeepoids
   name: augmented peepoids
-  suffix: Proto-Slime
+  suffix: Neo-Slime
   description: "Primitive and goopy, but more or less just as good as the human equivalent."
   components:
   - type: Sprite
@@ -94,10 +94,10 @@
         Caustic: 10
 
 - type: entity
-  id: OrganProtoSlimeSlurpoid
+  id: OrganNeoSlimeSlurpoid
   parent: OrganSlimeSlurpoid
   name: augmented slurpoid
-  suffix: Proto-Slime
+  suffix: Neo-Slime
   description: "It has all the consistency of gelatin."
   components:
   - type: Sprite

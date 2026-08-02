@@ -1,6 +1,6 @@
 - type: body
   id: NeoMoth
-  name: proto-moth # Starlight, quotation marks removed
+  name: neo-moth # Starlight, quotation marks removed
   root: torso
   slots:
     head:
@@ -23,7 +23,7 @@
       organs:
         heart: OrganNeocyteHeart
         lungs: OrganNeocyteLungs
-        stomach: OrganProtoMothStomach # Can eat everything.
+        stomach: OrganNeoMothStomach # Can eat everything.
         liver: OrganNeocyteLiver
         kidneys: OrganNeocyteKidneys
         cavity: null

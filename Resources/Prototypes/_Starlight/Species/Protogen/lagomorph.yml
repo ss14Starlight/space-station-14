@@ -1,17 +1,17 @@
 - type: species
   id: NeoLagomorph
-  name: subspecies-name-protolagomorph
+  name: subspecies-name-neolagomorph
   roundStart: true
   prototype: MobNeoLagomorph
   sprites: MobNeoLagomorphSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobNeoLagomorphMarkingLimits
-  dollPrototype: AppearanceProtoLagomorph
+  dollPrototype: AppearanceNeoLagomorph
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte # This is alternative version of other species. It will only be displayed in subspecies list
-  subspeciesName: subspecies-name-protolagomorph
+  subspeciesName: subspecies-name-neolagomorph
   loadout: NeocyteLoadout
   minAge: 22
   youngAge: 25
@@ -62,11 +62,11 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoLagomorphVisor ]
+      defaultMarkings: [ NeoLagomorphVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoLagomorphLEDFace ]
+      defaultMarkings: [ NeoLagomorphLEDFace ]
     BodyCover:
       points: 1
       required: true

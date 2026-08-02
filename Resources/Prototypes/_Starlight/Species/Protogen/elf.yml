@@ -1,16 +1,16 @@
 - type: species
   id: NeoElf
-  name: subspecies-name-protoelf
+  name: subspecies-name-neoelf
   roundStart: true
   prototype: MobNeoElf
   sprites: MobNeoElfSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobNeoHumanMarkingLimits
-  dollPrototype: AppearanceProtoElf
+  dollPrototype: AppearanceNeoElf
   skinColoration: Hues
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
-  subspeciesName: subspecies-name-protoelf
+  subspeciesName: subspecies-name-neoelf
   loadout: NeocyteLoadout
   lastNames: NamesLastElf
   naming: FirstLast

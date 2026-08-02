@@ -1,8 +1,8 @@
 <Document>
-  # Proto-Cyclorite
+  # Neo-Cyclorite
 <!-- Starlight, renamed back to Cyclorite.-->
   <Box>
-    <GuideEntityEmbed Entity="AppearanceProtoCyclorite" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceNeoCyclorite" Caption=""/>
   </Box>
 
   ## Resistances

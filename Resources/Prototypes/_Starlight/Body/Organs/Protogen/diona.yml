@@ -1,8 +1,8 @@
 - type: entity
-  id: OrganProtoDionaStomach
+  id: OrganNeoDionaStomach
   parent: OrganDionaStomach
   name: augmented stomach
-  suffix: Proto-Diona
+  suffix: Neo-Diona
   description: "The diona's equivalent of a stomach, it reeks of asparagus and vinegar."
   components:
   - type: Stomach
@@ -31,10 +31,10 @@
         Radiation: 10
 
 - type: entity
-  id: OrganProtoDionaLungs
+  id: OrganNeoDionaLungs
   parent: OrganDionaLungs
   name: diona augmented lungs
-  suffix: Proto-Diona
+  suffix: Neo-Diona
   description: "A spongy mess of slimy, leaf-like structures. Capable of breathing both carbon dioxide and oxygen."
   components:
   - type: OrganDamage
@@ -47,46 +47,46 @@
 
 # Organs that turn into nymphs on removal
 - type: entity
-  id: OrganProtoDionaStomachNymph
+  id: OrganNeoDionaStomachNymph
   categories: [ HideSpawnMenu ]
-  parent: OrganProtoDionaStomach
-  name: proto-diona nymph stomach
-  suffix: Proto-Diona Nymph
+  parent: OrganNeoDionaStomach
+  name: neo-diona nymph stomach
+  suffix: Neo-Diona Nymph
   description: "Gross. This is hard to stomach."
   components:
   - type: Nymph
-    entityPrototype: OrganProtoDionaNymphStomach
+    entityPrototype: OrganNeoDionaNymphStomach
 
 - type: entity
-  id: OrganProtoDionaNymphStomach
+  id: OrganNeoDionaNymphStomach
   categories: [ HideSpawnMenu ]
   parent: MobDionaNymphAccent
-  name: proto-diona nymph stomach
-  suffix: Proto-Diona Nymph
-  description: Contains the stomach of a formerly fully-formed Proto-Diona. It doesn't taste any better for it.
+  name: neo-diona nymph stomach
+  suffix: Neo-Diona Nymph
+  description: Contains the stomach of a formerly fully-formed Neo-Diona. It doesn't taste any better for it.
   components:
   - type: IsDeadIC
   - type: Body
     prototype: AnimalProtoNymphStomach
 
 - type: entity
-  id: OrganProtoDionaLungsNymph
+  id: OrganNeoDionaLungsNymph
   categories: [ HideSpawnMenu ]
-  parent: OrganProtoDionaLungs
-  name: proto-diona nymph lungs
-  suffix: Proto-Diona Nymph
+  parent: OrganNeoDionaLungs
+  name: neo-diona nymph lungs
+  suffix: Neo-Diona Nymph
   description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
   components:
   - type: Nymph
-    entityPrototype: OrganProtoDionaNymphLungs
+    entityPrototype: OrganNeoDionaNymphLungs
 
 - type: entity
-  id: OrganProtoDionaNymphLungs
+  id: OrganNeoDionaNymphLungs
   categories: [ HideSpawnMenu ]
   parent: MobDionaNymphAccent
-  name: proto-diona nymph lungs
-  suffix: Proto-Diona Nymph
-  description: Contains the lungs of a formerly fully-formed Proto-Diona. Breathtaking.
+  name: neo-diona nymph lungs
+  suffix: Neo-Diona Nymph
+  description: Contains the lungs of a formerly fully-formed Neo-Diona. Breathtaking.
   components:
   - type: IsDeadIC
   - type: Body

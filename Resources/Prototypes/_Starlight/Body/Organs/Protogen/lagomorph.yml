@@ -1,8 +1,8 @@
 - type: entity
-  id: OrganProtoLagomorphStomach
+  id: OrganNeoLagomorphStomach
   parent: OrganNeocyteStomach
   name: lagomorph biological reactor
-  suffix: Proto-Lagomorph
+  suffix: Neo-Lagomorph
   components:
   - type: Metabolizer
     updateInterval: 0.75
@@ -13,10 +13,10 @@
     - id: Drink
 
 - type: entity
-  id: OrganProtoLagomorphHeart
+  id: OrganNeoLagomorphHeart
   parent: OrganNeocyteHeart
   name: lagomorph cybernetic heart
-  suffix: Proto-Lagomorph
+  suffix: Neo-Lagomorph
   components:
   - type: Metabolizer
     updateInterval: 0.75

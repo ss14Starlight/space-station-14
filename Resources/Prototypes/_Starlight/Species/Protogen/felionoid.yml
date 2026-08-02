@@ -1,17 +1,17 @@
 - type: species
   id: NeoFelionoid
-  name: subspecies-name-protofelionoid
+  name: subspecies-name-neofelionoid
   roundStart: true
   prototype: MobNeoFelionoid
   sprites: MobNeoFelionoidSprites
   defaultSkinTone: "#666666"
   markingLimits: MobNeoFelionoidMarkingLimits
-  dollPrototype: AppearanceProtoFelionoid
+  dollPrototype: AppearanceNeoFelionoid
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
-  subspeciesName: subspecies-name-protofelionoid
+  subspeciesName: subspecies-name-neofelionoid
   loadout: NeocyteLoadout
   maleFirstNames: names_felionoid_prefix
   femaleFirstNames: names_felionoid_prefix
@@ -60,19 +60,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoFelionoidVisor ]
+      defaultMarkings: [ NeoFelionoidVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoFelionoidLEDFace ]
+      defaultMarkings: [ NeoFelionoidLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoFelionoidMediumArmor ]
+      defaultMarkings: [ NeoFelionoidMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoFelionoidLights ]
+      defaultMarkings: [ NeoFelionoidLights ]
     Hair:
       points: 1
       required: false

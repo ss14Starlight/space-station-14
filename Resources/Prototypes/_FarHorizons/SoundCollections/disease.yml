@@ -1,10 +1,10 @@
 - type: soundCollection
-  id: ProtoHumanMSneezes
+  id: NeoHumanMSneezes
   files:
     - /Audio/_FarHorizons/Voice/Proto/Human/male_sneeze_1.ogg
 
 - type: soundCollection
-  id: ProtoHumanFSneezes
+  id: NeoHumanFSneezes
   files:
     - /Audio/_FarHorizons/Voice/Proto/Human/female_sneeze_1.ogg
 
@@ -14,30 +14,30 @@
     - /Audio/_FarHorizons/Voice/Proto/Vox/vox_sneeze.ogg
 
 - type: soundCollection
-  id: ProtoHumanMCoughs
+  id: NeoHumanMCoughs
   files:
   - /Audio/_FarHorizons/Voice/Proto/Human/male_cough_1.ogg
   - /Audio/_FarHorizons/Voice/Proto/Human/male_cough_2.ogg
 
 - type: soundCollection
-  id: ProtoHumanFCoughs
+  id: NeoHumanFCoughs
   files:
   - /Audio/_FarHorizons/Voice/Proto/Human/female_cough_1.ogg
   - /Audio/_FarHorizons/Voice/Proto/Human/female_cough_2.ogg
 
 - type: soundCollection
-  id: ProtoArachnidCoughs
+  id: NeoArachnidCoughs
   files:
   - /Audio/_FarHorizons/Voice/Proto/Arachnid/arachnid_cough.ogg
 
 - type: soundCollection
-  id: ProtoCycloriteCoughs
+  id: NeoCycloriteCoughs
   files:
   - /Audio/_FarHorizons/Voice/Proto/Cyclorite/cough_1.ogg
   - /Audio/_FarHorizons/Voice/Proto/Cyclorite/cough_2.ogg
 
 - type: soundCollection
-  id: ProtoMothCoughs
+  id: NeoMothCoughs
   files:
   - /Audio/_FarHorizons/Voice/Proto/Moth/moth_cough.ogg
 
@@ -47,32 +47,32 @@
   - /Audio/_FarHorizons/Voice/Proto/Vox/vox_cough.ogg
 
 - type: soundCollection
-  id: ProtoHumanMYawn
+  id: NeoHumanMYawn
   files:
   - /Audio/_FarHorizons/Voice/Proto/Human/male_yawn_1.ogg
 
 - type: soundCollection
-  id: ProtoHumanFYawn
+  id: NeoHumanFYawn
   files:
   - /Audio/_FarHorizons/Voice/Proto/Human/female_yawn_1.ogg
 
 - type: soundCollection
-  id: ProtoArachnidYawn
+  id: NeoArachnidYawn
   files:
   - /Audio/_FarHorizons/Voice/Proto/Arachnid/arachnid_yawn.ogg
 
 - type: soundCollection
-  id: ProtoCycloriteYawn
+  id: NeoCycloriteYawn
   files:
   - /Audio/_FarHorizons/Voice/Proto/Cyclorite/yawn.ogg
 
 - type: soundCollection
-  id: ProtoMothYawn
+  id: NeoMothYawn
   files:
   - /Audio/_FarHorizons/Voice/Proto/Moth/moth_yawn.ogg
 
 - type: soundCollection
-  id: ProtoHumanSnores
+  id: NeoHumanSnores
   files:
   - /Audio/_FarHorizons/Voice/Proto/Human/snore1.ogg
   - /Audio/_FarHorizons/Voice/Proto/Human/snore2.ogg

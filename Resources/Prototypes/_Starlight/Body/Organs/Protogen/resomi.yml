@@ -1,8 +1,8 @@
 - type: entity
-  id: OrganProtoResomiEyes
+  id: OrganNeoResomiEyes
   parent: OrganNeocyteEyes
   name: resomi cybernetic eyes
-  suffix: Proto-Resomi
+  suffix: Neo-Resomi
   description: "These cybernetic eyes have great night vision for hunting prey in maintenance tunnels, but are very sensitive to bright flashes."
   components:
   - type: FunctionalOrgan
@@ -13,10 +13,10 @@
       modifier: 2
 
 - type: entity
-  id: OrganProtoResomiHeart
+  id: OrganNeoResomiHeart
   parent: OrganNeocyteHeart
   name: resomi cybernetic heart
-  suffix: Proto-Resomi
+  suffix: Neo-Resomi
   components:
   - type: Metabolizer
     maxReagents: 2
@@ -27,10 +27,10 @@
     - id: Narcotic
 
 - type: entity
-  id: OrganProtoResomiLungs
+  id: OrganNeoResomiLungs
   parent: OrganNeocyteLungs
   name: resomi cybernetic lungs
-  suffix: Proto-Resomi
+  suffix: Neo-Resomi
   description: Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system. #  Starlight, quotation marks removed
   components:
   - type: Metabolizer

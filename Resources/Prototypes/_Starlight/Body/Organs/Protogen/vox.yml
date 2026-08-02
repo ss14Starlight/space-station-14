@@ -2,7 +2,7 @@
   id: OrganNeoVoxStomach
   parent: OrganNeocyteStomach
   name: vox biological reactor
-  suffix: Proto-Vox
+  suffix: Neo-Vox
   components:
   - type: Metabolizer
     metabolizerTypes: [Vox] # They don't need animal since Vox inherits the same properties anyways.
@@ -26,7 +26,7 @@
   id: OrganNeoVoxHeart
   parent: [BaseNeocyteOrgan, OrganNeocyteHeart]
   name: vox cybernetic heart
-  suffix: Proto-Vox
+  suffix: Neo-Vox
   components:
   - type: Sprite
     state: heart-on
@@ -40,7 +40,7 @@
   id: OrganNeoVoxLungs
   parent: OrganNeocyteLungs
   name: vox cybernetic lungs
-  suffix: Proto-Vox
+  suffix: Neo-Vox
   description: Filters nitrogen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system. #  Starlight, quotation marks removed
   components:
   - type: Metabolizer

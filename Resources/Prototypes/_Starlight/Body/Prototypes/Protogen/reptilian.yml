@@ -1,5 +1,5 @@
 - type: body
-  name: proto-reptile # Starlight, quotation marks removed
+  name: neo-reptile # Starlight, quotation marks removed
   id: NeoReptilian # Starlight, ProtoReptile -> NeoReptilian
   root: torso
   slots:

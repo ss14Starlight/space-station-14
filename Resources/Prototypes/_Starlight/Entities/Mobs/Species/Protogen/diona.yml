@@ -16,9 +16,9 @@
     - Sylvan
   - type: Vocal
     sounds:
-      Male: ProtoDionaMSounds
-      Female: ProtoDionaFSounds
-      Unsexed: ProtoDionaMSounds
+      Male: NeoDionaMSounds
+      Female: NeoDionaFSounds
+      Unsexed: NeoDionaMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -153,7 +153,7 @@
 
 - type: entity
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
-  id: AppearanceProtoDiona
+  id: AppearanceNeoDiona
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance

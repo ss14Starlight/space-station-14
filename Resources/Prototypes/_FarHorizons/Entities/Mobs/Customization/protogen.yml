@@ -422,7 +422,7 @@
 #region RESOMI ####
 
 - type: marking
-  id: ProtoResomiMediumArmor
+  id: NeoResomiMediumArmor
   bodyPart: BodyCover
   markingCategory: BodyCover
   speciesRestriction: [NeoResomi]
@@ -431,7 +431,7 @@
     state: medium
 
 - type: marking
-  id: ProtoResomiVisor
+  id: NeoResomiVisor
   bodyPart: FaceCover
   markingCategory: FaceCover
   speciesRestriction: [NeoResomi]
@@ -440,7 +440,7 @@
     state: visor
 
 - type: marking
-  id: ProtoResomiLEDFace
+  id: NeoResomiLEDFace
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoResomi]
@@ -449,7 +449,7 @@
     state: face
 
 - type: marking
-  id: ProtoResomiLights
+  id: NeoResomiLights
   bodyPart: BodyCoverCover
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoResomi]
@@ -460,7 +460,7 @@
 #region REPTILIAN ####
 
 - type: marking
-  id: ProtoReptilianLEDFaceBoxy # Starlight, ProtoReptile -> NeoReptilian
+  id: NeoReptilianLEDFaceBoxy # Starlight, ProtoReptile -> NeoReptilian
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoReptilian, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
@@ -469,7 +469,7 @@
     state: boxy
 
 - type: marking
-  id: ProtoReptilianClaws # Starlight, ProtoReptile -> NeoReptilian
+  id: NeoReptilianClaws # Starlight, ProtoReptile -> NeoReptilian
   bodyPart: RHand
   markingCategory: Overlay
   speciesRestriction: [NeoReptilian] # Starlight, ProtoReptile -> NeoReptilian
@@ -480,7 +480,7 @@
 #region MOTH ####
 
 - type: marking
-  id: ProtoMothMediumArmor
+  id: NeoMothMediumArmor
   bodyPart: BodyCover
   markingCategory: BodyCover
   speciesRestriction: [NeoMoth]
@@ -489,7 +489,7 @@
     state: medium
 
 - type: marking
-  id: ProtoMothVisor
+  id: NeoMothVisor
   bodyPart: FaceCover
   markingCategory: FaceCover
   speciesRestriction: [NeoMoth]
@@ -498,7 +498,7 @@
     state: visor
 
 - type: marking
-  id: ProtoMothLEDFace
+  id: NeoMothLEDFace
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoMoth]
@@ -507,7 +507,7 @@
     state: face
 
 - type: marking
-  id: ProtoMothLights
+  id: NeoMothLights
   bodyPart: BodyCoverCover
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoMoth]
@@ -516,7 +516,7 @@
     state: body
 
 - type: marking
-  id: ProtoMothClaws
+  id: NeoMothClaws
   bodyPart: RHand
   markingCategory: Overlay
   speciesRestriction: [NeoMoth]
@@ -529,7 +529,7 @@
 #region FELINID ####
 
 - type: marking
-  id: ProtoFelionoidMediumArmor # Starlight, Feline -> Felionoid
+  id: NeoFelionoidMediumArmor # Starlight, Feline -> Felionoid
   bodyPart: BodyCover
   markingCategory: BodyCover
   speciesRestriction: [NeoFelionoid] # Starlight, Feline -> Felionoid
@@ -538,7 +538,7 @@
     state: medium
 
 - type: marking
-  id: ProtoFelionoidVisor # Starlight, Feline -> Felionoid
+  id: NeoFelionoidVisor # Starlight, Feline -> Felionoid
   bodyPart: FaceCover
   markingCategory: FaceCover
   speciesRestriction: [NeoFelionoid] # Starlight, Feline -> Felionoid
@@ -547,7 +547,7 @@
     state: visor
 
 - type: marking
-  id: ProtoFelionoidLEDFace # Starlight, Feline -> Felionoid
+  id: NeoFelionoidLEDFace # Starlight, Feline -> Felionoid
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoFelionoid] # Starlight, Feline -> Felionoid
@@ -556,7 +556,7 @@
     state: face
 
 - type: marking
-  id: ProtoFelionoidLights # Starlight, Feline -> Felionoid
+  id: NeoFelionoidLights # Starlight, Feline -> Felionoid
   bodyPart: BodyCoverCover
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoFelionoid] # Starlight, Feline -> Felionoid
@@ -565,7 +565,7 @@
     state: body
 
 - type: marking
-  id: ProtoFelionoidClaws # Starlight, Feline -> Felionoid
+  id: NeoFelionoidClaws # Starlight, Feline -> Felionoid
   bodyPart: RHand
   markingCategory: Overlay
   speciesRestriction: [NeoFelionoid] # Starlight, Feline -> Felionoid
@@ -578,7 +578,7 @@
 #region DIONA
 
 - type: marking
-  id: ProtoDionaMediumArmor # Starlight, Dionae -> Diona
+  id: NeoDionaMediumArmor # Starlight, Dionae -> Diona
   bodyPart: BodyCover
   markingCategory: BodyCover
   speciesRestriction: [NeoDiona] # Starlight, Dionae -> Diona
@@ -587,7 +587,7 @@
     state: medium
 
 - type: marking
-  id: ProtoDionaVisor # Starlight, Dionae -> Diona
+  id: NeoDionaVisor # Starlight, Dionae -> Diona
   bodyPart: FaceCover
   markingCategory: FaceCover
   speciesRestriction: [NeoDiona] # Starlight, Dionae -> Diona
@@ -596,7 +596,7 @@
     state: visor
 
 - type: marking
-  id: ProtoDionaLEDFace # Starlight, Dionae -> Diona
+  id: NeoDionaLEDFace # Starlight, Dionae -> Diona
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoDiona] # Starlight, Dionae -> Diona
@@ -605,7 +605,7 @@
     state: face
 
 - type: marking
-  id: ProtoDionaLights # Starlight, Dionae -> Diona
+  id: NeoDionaLights # Starlight, Dionae -> Diona
   bodyPart: BodyCoverCover
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoDiona] # Starlight, Dionae -> Diona
@@ -614,7 +614,7 @@
     state: body
 
 - type: marking
-  id: ProtoDionaVines # Starlight, Dionae -> Diona
+  id: NeoDionaVines # Starlight, Dionae -> Diona
   bodyPart: RHand
   markingCategory: Overlay
   speciesRestriction: [NeoDiona] # Starlight, Dionae -> Diona
@@ -625,7 +625,7 @@
 #region CYCLORITE
 
 - type: marking
-  id: ProtoCycloriteMediumArmor # Starlight, Cyclops -> Cyclorite
+  id: NeoCycloriteMediumArmor # Starlight, Cyclops -> Cyclorite
   bodyPart: BodyCover
   markingCategory: BodyCover
   speciesRestriction: [NeoCyclorite] # Starlight, Cyclops -> Cyclorite
@@ -634,7 +634,7 @@
     state: medium
 
 - type: marking
-  id: ProtoCycloriteVisor # Starlight, Cyclops -> Cyclorite
+  id: NeoCycloriteVisor # Starlight, Cyclops -> Cyclorite
   bodyPart: FaceCover
   markingCategory: FaceCover
   speciesRestriction: [NeoCyclorite] # Starlight, Cyclops -> Cyclorite
@@ -643,7 +643,7 @@
     state: visor
 
 - type: marking
-  id: ProtoCycloriteLEDFace # Starlight, Cyclops -> Cyclorite
+  id: NeoCycloriteLEDFace # Starlight, Cyclops -> Cyclorite
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoCyclorite] # Starlight, Cyclops -> Cyclorite
@@ -652,7 +652,7 @@
     state: face
 
 - type: marking
-  id: ProtoCycloriteLights # Starlight, Cyclops -> Cyclorite
+  id: NeoCycloriteLights # Starlight, Cyclops -> Cyclorite
   bodyPart: BodyCoverCover
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoCyclorite] # Starlight, Cyclops -> Cyclorite
@@ -663,7 +663,7 @@
 #region AVALI
 
 - type: marking
-  id: ProtoAvaliMediumArmor
+  id: NeoAvaliMediumArmor
   bodyPart: BodyCover
   markingCategory: BodyCover
   speciesRestriction: [NeoAvali]
@@ -672,7 +672,7 @@
     state: medium
 
 - type: marking
-  id: ProtoAvaliVisor
+  id: NeoAvaliVisor
   bodyPart: FaceCover
   markingCategory: FaceCover
   speciesRestriction: [NeoAvali]
@@ -681,7 +681,7 @@
     state: visor
 
 - type: marking
-  id: ProtoAvaliLEDFace
+  id: NeoAvaliLEDFace
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoAvali]
@@ -690,7 +690,7 @@
     state: face
 
 - type: marking
-  id: ProtoAvaliLights
+  id: NeoAvaliLights
   bodyPart: BodyCoverCover
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoAvali]
@@ -699,7 +699,7 @@
     state: body
 
 - type: marking
-  id: ProtoAvaliWings
+  id: NeoAvaliWings
   bodyPart: Tail
   markingCategory: Overlay
   speciesRestriction: [NeoAvali]
@@ -710,7 +710,7 @@
 #region ARACHNID
 
 - type: marking
-  id: ProtoArachnidVisor
+  id: NeoArachnidVisor
   bodyPart: FaceCover
   markingCategory: FaceCover
   speciesRestriction: [NeoArachnid]
@@ -719,7 +719,7 @@
     state: visor
 
 - type: marking
-  id: ProtoArachnidLEDFace
+  id: NeoArachnidLEDFace
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoArachnid]
@@ -730,7 +730,7 @@
 # Starlight start
 #region LAGOMORPH
 - type: marking
-  id: ProtoLagomorphVisor
+  id: NeoLagomorphVisor
   bodyPart: FaceCover
   markingCategory: FaceCover
   speciesRestriction: [Neocyte, NeoLagomorph]
@@ -739,7 +739,7 @@
     state: visor
 
 - type: marking
-  id: ProtoLagomorphLEDFace
+  id: NeoLagomorphLEDFace
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
   speciesRestriction: [Neocyte, NeoLagomorph]

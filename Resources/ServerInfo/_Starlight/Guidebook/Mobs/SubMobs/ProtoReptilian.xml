@@ -1,8 +1,8 @@
 <Document>
-  # Proto-Reptilian
+  # Neo-Reptilian
 
   <Box>
-    <GuideEntityEmbed Entity="AppearanceProtoReptilian" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceNeoReptilian" Caption=""/>
   </Box>
 
   ## Resistances

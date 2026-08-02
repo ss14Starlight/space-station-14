@@ -56,19 +56,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoKinVisor ]
+      defaultMarkings: [ NeoKinVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoKinLEDFace ]
+      defaultMarkings: [ NeoKinLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoKinMediumArmor ]
+      defaultMarkings: [ NeoKinMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoKinLights ]
+      defaultMarkings: [ NeoKinLights ]
     Hair:
       points: 1
       required: false

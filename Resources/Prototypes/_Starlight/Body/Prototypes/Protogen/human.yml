@@ -1,6 +1,6 @@
 - type: body
   id: NeoHuman # Starlight, renamed
-  name: proto-man # Starlight, quotation marks removed, name changed
+  name: neo-man # Starlight, quotation marks removed, name changed
   root: torso
   slots:
     head:

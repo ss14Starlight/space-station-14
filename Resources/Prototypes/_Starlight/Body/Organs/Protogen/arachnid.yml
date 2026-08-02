@@ -1,8 +1,8 @@
 - type: entity
-  id: OrganProtoArachnidHeart
+  id: OrganNeoArachnidHeart
   parent: [BaseNeocyteOrgan, OrganNeocyteHeart]
   name: arachnid cybernetic heart
-  suffix: Proto-Arachnid
+  suffix: Neo-Arachnid
   components:
   - type: Sprite
     state: heart-on

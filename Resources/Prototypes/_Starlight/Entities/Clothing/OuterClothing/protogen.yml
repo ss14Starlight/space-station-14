@@ -1,5 +1,5 @@
 # Moved here due to the significant changes we're making.
-#### Proto-Armor ####
+#### Neocyte Armor ####
 - type: entity
   parent: ClothingOuterBaseMedium
   id: ClothingOuterArmorNeocyteBase

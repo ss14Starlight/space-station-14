@@ -1,17 +1,17 @@
 - type: species
   id: NeoResomi
-  name: subspecies-name-protoresomi
+  name: subspecies-name-neoresomi
   roundStart: true
   prototype: MobNeoResomi
   sprites: MobNeoResomiSprites
   defaultSkinTone: "#faf7f7"
   markingLimits: MobNeoResomiMarkingLimits
-  dollPrototype: AppearanceProtoResomi
+  dollPrototype: AppearanceNeoResomi
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte # This is alternative version of other species. It will only be displayed in subspecies list
-  subspeciesName: subspecies-name-protoresomi
+  subspeciesName: subspecies-name-neoresomi
   maleFirstNames: names_resomi_first
   femaleFirstNames: names_resomi_first
   lastNames: names_resomi_packs
@@ -61,19 +61,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoResomiVisor ]
+      defaultMarkings: [ NeoResomiVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoResomiLEDFace ]
+      defaultMarkings: [ NeoResomiLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoResomiMediumArmor ]
+      defaultMarkings: [ NeoResomiMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoResomiLights ]
+      defaultMarkings: [ NeoResomiLights ]
     Hair:
       points: 1
       required: false

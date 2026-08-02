@@ -1,8 +1,8 @@
 <Document>
-  # Proto-Lagomorph
+  # Neo-Lagomorph
 
   <Box>
-    <GuideEntityEmbed Entity="AppearanceProtoLagomorph" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceNeoLagomorph" Caption=""/>
   </Box>
 
   ## Resistances

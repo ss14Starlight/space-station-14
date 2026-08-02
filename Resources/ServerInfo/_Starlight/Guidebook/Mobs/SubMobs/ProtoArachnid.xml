@@ -1,8 +1,8 @@
 <Document>
-  # Proto-Arachnid
+  # Neo-Arachnid
 
   <Box>
-    <GuideEntityEmbed Entity="AppearanceProtoArachnid" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceNeoArachnid" Caption=""/>
   </Box>
 
   ## Resistances

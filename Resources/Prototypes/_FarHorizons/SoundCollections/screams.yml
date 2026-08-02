@@ -1,21 +1,21 @@
 - type: soundCollection
-  id: ProtoArachnidScreams
+  id: NeoArachnidScreams
   files:
     - /Audio/_FarHorizons/Voice/Proto/Arachnid/arachnid_scream.ogg
 
 - type: soundCollection
-  id: ProtoAvaliScreams
+  id: NeoAvaliScreams
   files:
     - /Audio/_FarHorizons/Voice/Proto/Avali/avali_scream.ogg
 
 - type: soundCollection
-  id: ProtoCycloriteScreams
+  id: NeoCycloriteScreams
   files:
     - /Audio/_FarHorizons/Voice/Proto/Cyclorite/scream_1.ogg
     - /Audio/_FarHorizons/Voice/Proto/Cyclorite/scream_2.ogg
 
 - type: soundCollection
-  id: ProtoFelionoidScreams
+  id: NeoFelionoidScreams
   files:
     - /Audio/_FarHorizons/Voice/Proto/Felionoid/cat_scream1.ogg
     - /Audio/_FarHorizons/Voice/Proto/Felionoid/cat_scream2.ogg
@@ -23,7 +23,7 @@
     - /Audio/_FarHorizons/Voice/Proto/Felionoid/cat_scream4.ogg
 
 - type: soundCollection
-  id: ProtoHumanMScreams
+  id: NeoHumanMScreams
   files:
     - /Audio/_FarHorizons/Voice/Proto/Human/malescream_1.ogg
     - /Audio/_FarHorizons/Voice/Proto/Human/malescream_2.ogg
@@ -33,7 +33,7 @@
     - /Audio/_FarHorizons/Voice/Proto/Human/malescream_6.ogg
 
 - type: soundCollection
-  id: ProtoHumanFScreams
+  id: NeoHumanFScreams
   files:
     - /Audio/_FarHorizons/Voice/Proto/Human/femalescream_1.ogg
     - /Audio/_FarHorizons/Voice/Proto/Human/femalescream_2.ogg
@@ -42,7 +42,7 @@
     - /Audio/_FarHorizons/Voice/Proto/Human/femalescream_5.ogg
 
 - type: soundCollection
-  id: ProtoMothScreams
+  id: NeoMothScreams
   files:
     - /Audio/_FarHorizons/Voice/Proto/Moth/moth_scream.ogg
 

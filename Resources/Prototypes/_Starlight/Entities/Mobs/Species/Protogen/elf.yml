@@ -60,7 +60,7 @@
 
 - type: entity
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
-  id: AppearanceProtoElf
+  id: AppearanceNeoElf
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance

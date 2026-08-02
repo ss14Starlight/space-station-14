@@ -11,42 +11,42 @@
 
 - type: guideEntry
   id: NeoArachnid
-  name: subspecies-name-protoarachnid
+  name: subspecies-name-neoarachnid
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoArachnid.xml"
 
 - type: guideEntry
   id: NeoAvali
-  name: subspecies-name-protoavali
+  name: subspecies-name-neoavali
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoAvali.xml"
 
 - type: guideEntry
   id: NeoCyclorite
-  name: subspecies-name-protocyclorite
+  name: subspecies-name-neocyclorite
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoCyclorite.xml"
 
 - type: guideEntry
   id: NeoDiona
-  name: subspecies-name-protodiona
+  name: subspecies-name-neodiona
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoDiona.xml"
 
 - type: guideEntry
   id: NeoDwarf
-  name: subspecies-name-protodwarf
+  name: subspecies-name-neodwarf
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoDwarf.xml"
 
 - type: guideEntry
   id: NeoFelionoid
-  name: subspecies-name-protofelionoid
+  name: subspecies-name-neofelionoid
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoFelionoid.xml"
 
 - type: guideEntry
   id: NeoElf
-  name: subspecies-name-protoelf
+  name: subspecies-name-neoelf
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoElf.xml"
 
 - type: guideEntry
   id: NeoHuman
-  name: subspecies-name-protohuman
+  name: subspecies-name-neohuman
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoHuman.xml"
 
 - type: guideEntry
@@ -56,7 +56,7 @@
 
 - type: guideEntry
   id: NeoLagomorph
-  name: subspecies-name-protolagomorph
+  name: subspecies-name-neolagomorph
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoLagomorph.xml"
 
 - type: guideEntry
@@ -66,17 +66,17 @@
 
 - type: guideEntry
   id: NeoMoth
-  name: subspecies-name-protomoth
+  name: subspecies-name-neomoth
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoMoth.xml"
 
 - type: guideEntry
   id: NeoReptilian
-  name: subspecies-name-protoreptilian
+  name: subspecies-name-neoreptilian
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoReptilian.xml"
 
 - type: guideEntry
   id: NeoResomi
-  name: subspecies-name-protoresomi
+  name: subspecies-name-neoresomi
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoResomi.xml"
 
 - type: guideEntry

@@ -46,32 +46,32 @@
   text: subspecies-name-trueneocyte
 
 - type: quickPhrase
-  id: SpeciesProtohumanPhrase
+  id: SpeciesNeoHumanPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protohuman
+  text: subspecies-name-neohuman
 
 - type: quickPhrase
-  id: SpeciesProtodionaPhrase
+  id: SpeciesNeoDionaPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protodiona
+  text: subspecies-name-neodiona
 
 - type: quickPhrase
-  id: SpeciesProtoarachnidPhrase
+  id: SpeciesNeoArachnidPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protoarachnid
+  text: subspecies-name-neoarachnid
 
 - type: quickPhrase
-  id: SpeciesProtomothPhrase
+  id: SpeciesNeoMothPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protomoth
+  text: subspecies-name-neomoth
 
 - type: quickPhrase
-  id: SpeciesProtoreptilianPhrase
+  id: SpeciesNeoReptilianPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protoreptilian
+  text: subspecies-name-neoreptilian
 
 - type: quickPhrase
-  id: SpeciesProtoslimepersonPhrase
+  id: SpeciesNeoSlimePersonPhrase
   parent: SpeciesNeocytePhrase
   text: subspecies-name-neoslimeperson
 
@@ -81,14 +81,14 @@
   text: subspecies-name-neovulpkanin
 
 - type: quickPhrase
-  id: SpeciesProtoresomiPhrase
+  id: SpeciesNeoResomiPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protoresomi
+  text: subspecies-name-neoresomi
 
 - type: quickPhrase
-  id: SpeciesProtoavaliPhrase
+  id: SpeciesNeoAvaliPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protoavali
+  text: subspecies-name-neoavali
 
 - type: quickPhrase
   id: SpeciesNeoVoxPhrase
@@ -96,14 +96,14 @@
   text: subspecies-name-neovox
 
 - type: quickPhrase
-  id: SpeciesProtolagomorphPhrase
+  id: SpeciesNeoLagomorphPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protolagomorph
+  text: subspecies-name-neolagomorph
 
 - type: quickPhrase
-  id: SpeciesProtofelionoidPhrase
+  id: SpeciesNeoFelionoidPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protofelionoid
+  text: subspecies-name-neofelionoid
 
 - type: quickPhrase
   id: SpeciesNeoKinPhrase
@@ -116,11 +116,11 @@
   text: subspecies-name-neothaven
 
 - type: quickPhrase
-  id: SpeciesProtocycloritePhrase
+  id: SpeciesNeoCycloritePhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protocyclorite
+  text: subspecies-name-neocyclorite
 
 - type: quickPhrase
-  id: SpeciesProtoelfPhrase
+  id: SpeciesNeoElfPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protoelf
+  text: subspecies-name-neoelf

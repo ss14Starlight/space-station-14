@@ -1,6 +1,6 @@
 - type: body
   id: NeoCyclorite # Starlight, name changed
-  name: proto-cyclorite # Starlight, quotation marks removed, name changed
+  name: neo-cyclorite # Starlight, quotation marks removed, name changed
   root: torso
   slots:
     head:
@@ -9,7 +9,7 @@
       - torso
       organs:
         brain: OrganNeocyteBrain
-        eyes: OrganProtoCycloriteEye
+        eyes: OrganNeoCycloriteEye
         tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
@@ -21,8 +21,8 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtoCycloriteHeart # Starlight
-        lungs: OrganProtoCycloriteLungs # Starlight
+        heart: OrganNeoCycloriteHeart # Starlight
+        lungs: OrganNeoCycloriteLungs # Starlight
         stomach: OrganNeocyteStomach
         liver: OrganNeocyteLiver
         kidneys: OrganNeocyteKidneys

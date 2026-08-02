@@ -1,6 +1,6 @@
 - type: body
   id: NeoThaven
-  name: proto-thaven # Starlight, quotation marks removed
+  name: neo-thaven # Starlight, quotation marks removed
   root: torso
   slots:
     head:

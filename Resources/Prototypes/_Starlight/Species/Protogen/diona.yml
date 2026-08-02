@@ -1,11 +1,11 @@
 - type: species
   id: NeoDiona
-  name: subspecies-name-protodiona
+  name: subspecies-name-neodiona
   roundStart: true
   prototype: MobNeoDiona
   sprites: MobNeoDionaSprites
   markingLimits: MobNeoDionaMarkingLimits
-  dollPrototype: AppearanceProtoDiona
+  dollPrototype: AppearanceNeoDiona
   defaultSkinTone: "#cdb369"
   skinColoration: Hues
   customName: true
@@ -15,7 +15,7 @@
   naming: TheFirstofLast
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
-  subspeciesName: subspecies-name-protodiona
+  subspeciesName: subspecies-name-neodiona
   loadout: NeocyteLoadout
   standardSize: 200
   standardWeight: 145
@@ -60,19 +60,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoDionaVisor ]
+      defaultMarkings: [ NeoDionaVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoDionaLEDFace ]
+      defaultMarkings: [ NeoDionaLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoDionaMediumArmor ]
+      defaultMarkings: [ NeoDionaMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoDionaLights ]
+      defaultMarkings: [ NeoDionaLights ]
     Hair:
       points: 1
       required: false

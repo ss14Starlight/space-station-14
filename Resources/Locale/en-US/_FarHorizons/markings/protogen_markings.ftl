@@ -104,89 +104,89 @@ marking-NeoKinLights-body = Circular LEDs
 marking-NeoKinMediumArmor = Standard Neocyte-Kin Cybernetics
 marking-NeoKinMediumArmor-medium = Standard Neocyte-Kin Cybernetics
 
-marking-ProtoResomiVisor = Resomi Visor
-marking-ProtoResomiVisor-visor = Resomi Visor
-marking-ProtoResomiLEDFace = Default Resomi LEDs
-marking-ProtoResomiLEDFace-face = Default Resomi LEDs
-marking-ProtoResomiLights = Circular LEDs
-marking-ProtoResomiLights-body = Circular LEDs
+marking-NeoResomiVisor = Resomi Visor
+marking-NeoResomiVisor-visor = Resomi Visor
+marking-NeoResomiLEDFace = Default Resomi LEDs
+marking-NeoResomiLEDFace-face = Default Resomi LEDs
+marking-NeoResomiLights = Circular LEDs
+marking-NeoResomiLights-body = Circular LEDs
 
-marking-ProtoResomiMediumArmor = Standard Neocyte-Resomi Cybernetics
-marking-ProtoResomiMediumArmor-medium = Standard Neocyte-Resomi Cybernetics
+marking-NeoResomiMediumArmor = Standard Neocyte-Resomi Cybernetics
+marking-NeoResomiMediumArmor-medium = Standard Neocyte-Resomi Cybernetics
 
-marking-ProtoReptilianLEDFaceBoxy = Default Reptile LEDs
-marking-ProtoReptilianLEDFaceBoxy-boxy = Default Reptile LEDs
-marking-ProtoReptilianClaws = Long Reptile Claws
-marking-ProtoReptilianClaws-claws = Long Reptile Claws
+marking-NeoReptilianLEDFaceBoxy = Default Reptile LEDs
+marking-NeoReptilianLEDFaceBoxy-boxy = Default Reptile LEDs
+marking-NeoReptilianClaws = Long Reptile Claws
+marking-NeoReptilianClaws-claws = Long Reptile Claws
 
-marking-ProtoReptilianMediumArmor = Standard Neocyte-Reptile Cybernetics
-marking-ProtoReptilianMediumArmor-medium = Standard Neocyte-Reptile Cybernetics
+marking-NeoReptilianMediumArmor = Standard Neocyte-Reptile Cybernetics
+marking-NeoReptilianMediumArmor-medium = Standard Neocyte-Reptile Cybernetics
 
-marking-ProtoMothVisor = Moth Visor
-marking-ProtoMothVisor-visor = Moth Visor
-marking-ProtoMothLEDFace = Default Moth LEDs
-marking-ProtoMothLEDFace-face = Default Moth LEDs
-marking-ProtoMothLights = Circular LEDs
-marking-ProtoMothLights-body = Circular LEDs
-marking-ProtoMothClaws = Long Moth Claws
-marking-ProtoMothClaws-claws = Long Moth Claws
+marking-NeoMothVisor = Moth Visor
+marking-NeoMothVisor-visor = Moth Visor
+marking-NeoMothLEDFace = Default Moth LEDs
+marking-NeoMothLEDFace-face = Default Moth LEDs
+marking-NeoMothLights = Circular LEDs
+marking-NeoMothLights-body = Circular LEDs
+marking-NeoMothClaws = Long Moth Claws
+marking-NeoMothClaws-claws = Long Moth Claws
 
-marking-ProtoMothMediumArmor = Standard Neocyte-Moth Cybernetics
-marking-ProtoMothMediumArmor-medium = Standard Neocyte-Moth Cybernetics
+marking-NeoMothMediumArmor = Standard Neocyte-Moth Cybernetics
+marking-NeoMothMediumArmor-medium = Standard Neocyte-Moth Cybernetics
 
-marking-ProtoFelionoidVisor = Felionoid Visor
-marking-ProtoFelionoidVisor-visor = Felionoid Visor
-marking-ProtoFelionoidLEDFace = Default Felionoid LEDs
-marking-ProtoFelionoidLEDFace-face = Default Felionoid LEDs
-marking-ProtoFelionoidLights = Circular LEDs
-marking-ProtoFelionoidLights-body = Circular LEDs
-marking-ProtoFelionoidClaws = Long Felionoid Claws
-marking-ProtoFelionoidClaws-claws = Long Felionoid Claws
+marking-NeoFelionoidVisor = Felionoid Visor
+marking-NeoFelionoidVisor-visor = Felionoid Visor
+marking-NeoFelionoidLEDFace = Default Felionoid LEDs
+marking-NeoFelionoidLEDFace-face = Default Felionoid LEDs
+marking-NeoFelionoidLights = Circular LEDs
+marking-NeoFelionoidLights-body = Circular LEDs
+marking-NeoFelionoidClaws = Long Felionoid Claws
+marking-NeoFelionoidClaws-claws = Long Felionoid Claws
 
-marking-ProtoFelionoidMediumArmor = Standard Neocyte-Felionoid Cybernetics
-marking-ProtoFelionoidMediumArmor-medium = Standard Neocyte-Felionoid Cybernetics
+marking-NeoFelionoidMediumArmor = Standard Neocyte-Felionoid Cybernetics
+marking-NeoFelionoidMediumArmor-medium = Standard Neocyte-Felionoid Cybernetics
 
-marking-ProtoDionaVisor = Diona Visor
-marking-ProtoDionaVisor-visor = Diona Visor
-marking-ProtoDionaLEDFace = Default Diona LEDs
-marking-ProtoDionaLEDFace-face = Default Diona LEDs
-marking-ProtoDionaLights = Circular LEDs
-marking-ProtoDionaLights-body = Circular LEDs
-marking-ProtoDionaVines = Long Diona Vines
-marking-ProtoDionaVines-vines = Long Diona Vines
+marking-NeoDionaVisor = Diona Visor
+marking-NeoDionaVisor-visor = Diona Visor
+marking-NeoDionaLEDFace = Default Diona LEDs
+marking-NeoDionaLEDFace-face = Default Diona LEDs
+marking-NeoDionaLights = Circular LEDs
+marking-NeoDionaLights-body = Circular LEDs
+marking-NeoDionaVines = Long Diona Vines
+marking-NeoDionaVines-vines = Long Diona Vines
 
-marking-ProtoDionaMediumArmor = Standard Neocyte-Diona Cybernetics
-marking-ProtoDionaMediumArmor-medium = Standard Neocyte-Diona Cybernetics
+marking-NeoDionaMediumArmor = Standard Neocyte-Diona Cybernetics
+marking-NeoDionaMediumArmor-medium = Standard Neocyte-Diona Cybernetics
 
-marking-ProtoCycloriteVisor = Cyclorite Visor
-marking-ProtoCycloriteVisor-visor = Cyclorite Visor
-marking-ProtoCycloriteLEDFace = Default Cyclorite LEDs
-marking-ProtoCycloriteLEDFace-face = Default Cyclorite LEDs
-marking-ProtoCycloriteLights = Circular LEDs
-marking-ProtoCycloriteLights-body = Circular LEDs
+marking-NeoCycloriteVisor = Cyclorite Visor
+marking-NeoCycloriteVisor-visor = Cyclorite Visor
+marking-NeoCycloriteLEDFace = Default Cyclorite LEDs
+marking-NeoCycloriteLEDFace-face = Default Cyclorite LEDs
+marking-NeoCycloriteLights = Circular LEDs
+marking-NeoCycloriteLights-body = Circular LEDs
 
-marking-ProtoCycloriteMediumArmor = Standard Neocyte-Cyclorite Cybernetics
-marking-ProtoCycloriteMediumArmor-medium = Standard Neocyte-Cyclorite Cybernetics
+marking-NeoCycloriteMediumArmor = Standard Neocyte-Cyclorite Cybernetics
+marking-NeoCycloriteMediumArmor-medium = Standard Neocyte-Cyclorite Cybernetics
 
-marking-ProtoAvaliVisor = Avali Visor
-marking-ProtoAvaliVisor-visor = Avali Visor
-marking-ProtoAvaliLEDFace = Default Avali LEDs
-marking-ProtoAvaliLEDFace-face = Default Avali LEDs
-marking-ProtoAvaliLights = Circular LEDs
-marking-ProtoAvaliLights-body = Circular LEDs
-marking-ProtoAvaliWings = Hardlight Avali Wings
-marking-ProtoAvaliWings-wings = Hardlight Avali Wings
+marking-NeoAvaliVisor = Avali Visor
+marking-NeoAvaliVisor-visor = Avali Visor
+marking-NeoAvaliLEDFace = Default Avali LEDs
+marking-NeoAvaliLEDFace-face = Default Avali LEDs
+marking-NeoAvaliLights = Circular LEDs
+marking-NeoAvaliLights-body = Circular LEDs
+marking-NeoAvaliWings = Hardlight Avali Wings
+marking-NeoAvaliWings-wings = Hardlight Avali Wings
 
-marking-ProtoAvaliMediumArmor = Standard Neocyte-Avali Cybernetics
-marking-ProtoAvaliMediumArmor-medium = Standard Neocyte-Avali Cybernetics
+marking-NeoAvaliMediumArmor = Standard Neocyte-Avali Cybernetics
+marking-NeoAvaliMediumArmor-medium = Standard Neocyte-Avali Cybernetics
 
-marking-ProtoArachnidVisor = Arachnid Visor
-marking-ProtoArachnidVisor-visor = Arachnid Visor
-marking-ProtoArachnidLEDFace = Default Arachnid LEDs
-marking-ProtoArachnidLEDFace-face = Default Arachnid LEDs
+marking-NeoArachnidVisor = Arachnid Visor
+marking-NeoArachnidVisor-visor = Arachnid Visor
+marking-NeoArachnidLEDFace = Default Arachnid LEDs
+marking-NeoArachnidLEDFace-face = Default Arachnid LEDs
 
 # Starlight
-marking-ProtoLagomorphVisor = Lagomorph Visor
-marking-ProtoLagomorphVisor-visor = Lagomorph Visor
-marking-ProtoLagomorphLEDFace = Default Lagomorph LEDs
-marking-ProtoLagomorphLEDFace-face = Default Lagomorph LEDs
+marking-NeoLagomorphVisor = Lagomorph Visor
+marking-NeoLagomorphVisor-visor = Lagomorph Visor
+marking-NeoLagomorphLEDFace = Default Lagomorph LEDs
+marking-NeoLagomorphLEDFace-face = Default Lagomorph LEDs

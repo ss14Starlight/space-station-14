@@ -87,9 +87,9 @@
     disarmFailChance: 0.5 # 50 stamina damage with 50% chance
   - type: Vocal
     sounds:
-      Male: ProtoCycloriteMSounds
-      Female: ProtoCycloriteFSounds
-      Unsexed: ProtoCycloriteMSounds
+      Male: NeoCycloriteMSounds
+      Female: NeoCycloriteFSounds
+      Unsexed: NeoCycloriteMSounds
   - type: Inventory
     speciesId: cyclorite
     templateId: neocyclorite
@@ -147,7 +147,7 @@
 
 - type: entity
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
-  id: AppearanceProtoCyclorite
+  id: AppearanceNeoCyclorite
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance

@@ -71,9 +71,9 @@
         showInChat: false
   - type: Vocal
     sounds:
-      Male: ProtoFelionoidMSounds
-      Female: ProtoFelionoidFSounds
-      Unsexed: ProtoFelionoidMSounds
+      Male: NeoFelionoidMSounds
+      Female: NeoFelionoidFSounds
+      Unsexed: NeoFelionoidMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -139,7 +139,7 @@
 
 - type: entity
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
-  id: AppearanceProtoFelionoid
+  id: AppearanceNeoFelionoid
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance

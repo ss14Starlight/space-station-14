@@ -73,9 +73,9 @@
   - type: Wagging
   - type: Vocal
     sounds:
-      Male: ProtoReptilianMSounds
-      Female: ProtoReptilianFSounds
-      Unsexed: ProtoReptilianMSounds
+      Male: NeoReptilianMSounds
+      Female: NeoReptilianFSounds
+      Unsexed: NeoReptilianMSounds
   - type: Inventory
     speciesId: reptilian
     templateId: neocyte
@@ -109,9 +109,9 @@
 
 - type: entity
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
-  id: AppearanceProtoReptilian
+  id: AppearanceNeoReptilian
   categories: [ HideSpawnMenu ]
-  description: A dummy proto-reptile meant to be used in character setup.
+  description: A dummy neo-reptile meant to be used in character setup.
   components:
   - type: HumanoidAppearance
     species: NeoReptilian

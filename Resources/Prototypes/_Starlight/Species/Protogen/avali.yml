@@ -1,11 +1,11 @@
 - type: species
   id: NeoAvali
-  name: subspecies-name-protoavali
+  name: subspecies-name-neoavali
   roundStart: true
   prototype: MobNeoAvali
   sprites: MobNeoAvaliSprites
   markingLimits: MobNeoAvaliMarkingLimits
-  dollPrototype: AppearanceProtoAvali
+  dollPrototype: AppearanceNeoAvali
   defaultSkinTone: "#D2B48C"
   skinColoration: Hues
   customName: true
@@ -15,7 +15,7 @@
   naming: FirstLast
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
-  subspeciesName: subspecies-name-protoavali
+  subspeciesName: subspecies-name-neoavali
   loadout: NeocyteLoadout
   minAge: 20
   youngAge: 100
@@ -63,19 +63,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoAvaliVisor ]
+      defaultMarkings: [ NeoAvaliVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoAvaliLEDFace ]
+      defaultMarkings: [ NeoAvaliLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoAvaliMediumArmor ]
+      defaultMarkings: [ NeoAvaliMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoAvaliLights ]
+      defaultMarkings: [ NeoAvaliLights ]
     Hair:
       points: 1
       required: false
