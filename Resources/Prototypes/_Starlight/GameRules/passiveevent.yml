@@ -188,3 +188,5 @@
       eligibleSpecies:
         - Vulpkanin
         - ProtoVulp
+      eligibleMobTags:
+        - DogEmotes

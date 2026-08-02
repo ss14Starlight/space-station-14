@@ -7,6 +7,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Pinpointer;
 using Content.Shared.Station.Components;
+using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -17,6 +18,7 @@ namespace Content.Server._Starlight.GameTicking.Rules;
 public sealed partial class FullMoonHowlRule : StationEventSystem<FullMoonHowlRuleComponent>
 {
     [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     protected override void Started(EntityUid uid, FullMoonHowlRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -60,10 +62,17 @@ public sealed partial class FullMoonHowlRule : StationEventSystem<FullMoonHowlRu
             if (Transform(attached).MapID != mainStationMap)
                 return false;
 
-            if (!TryComp<HumanoidAppearanceComponent>(attached, out var humanoid))
-                return false;
+            if (TryComp<HumanoidAppearanceComponent>(attached, out var humanoid)
+                && component.EligibleSpecies.Contains(humanoid.Species))
+                return true;
 
-            return component.EligibleSpecies.Contains(humanoid.Species);
+            foreach (var tag in component.EligibleMobTags)
+            {
+                if (_tag.HasTag(attached, tag))
+                    return true;
+            }
+
+            return false;
         });
 
         // Location candidates are restricted to beacon entities on main station grids only.
