@@ -13,10 +13,11 @@ public sealed partial class EnergyColorComponent : Component
     [DataField("color"), AutoNetworkedField] public Color? ActiveColor;
 
     /// <summary>
-    /// A default list of colors to select from on MapInit.
+    /// A default list of colors to select from on MapInit if <see cref="ActiveColor"/> is null.
     /// </summary>
-    [DataField] public List<Color> ColorOptions =
-    new(){
+    // ReSharper disable once UseCollectionExpression - Client sandboxing skill issue.
+    [DataField] public List<Color> ColorOptions = new()
+    {
         Color.Tomato,
         Color.DodgerBlue,
         Color.Aqua,
@@ -25,7 +26,7 @@ public sealed partial class EnergyColorComponent : Component
     };
 
     /// <summary>
-    /// How fast the RGB will cycle.
+    /// How fast the RGB will make a full cycle per second (e.g. 1 = one full RGB cycle every second).
     /// </summary>
     [DataField, AutoNetworkedField] public float CycleRate = 1;
 
@@ -42,7 +43,7 @@ public sealed partial class EnergyColorComponent : Component
     /// <summary>
     /// Tool quality required to unlock hacking as an extra step.
     /// </summary>
-    [DataField, AutoNetworkedField] public ProtoId<ToolQualityPrototype>? UnlockQuality;
+    [DataField, AutoNetworkedField] public ProtoId<ToolQualityPrototype>? HackingUnlockQuality;
 
     /// <summary>
     /// Popup to indicate that hacking the tool is locked.

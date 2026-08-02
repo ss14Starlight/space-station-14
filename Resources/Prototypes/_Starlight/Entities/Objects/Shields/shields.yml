@@ -336,21 +336,19 @@
       - type: DisarmMalus
         malus: 0.6
     - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Melee/e_shield.rsi # SL
+      sprite: _Starlight/Objects/Weapons/Melee/e_shield.rsi
       layers:
         - state: eshield-icon
-        - state: eshield-on-base # SL
+        - state: eshield-on-base
           color: "#FFFFFF"
           visible: false
           shader: unshaded
           map: [ "shield" ]
-        # SL begin
         - state: eshield-on-overlay
           color: '#FFFFFF'
           visible: false
           shader: unshaded
           map: [ "overlay" ]
-        # SL end
     - type: Item
       size: Small
       sprite: _Starlight/Objects/Weapons/Melee/e_shield.rsi
@@ -471,7 +469,7 @@
     - type: EnergyColor
       color: "#9dfe9b"
       hackingLocked: true
-      unlockQuality: Cutting
+      hackingUnlockQuality: Cutting
     - type: UseDelay
       delay: 0.5
     - type: ToggleableVisuals

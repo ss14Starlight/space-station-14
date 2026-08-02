@@ -31,11 +31,8 @@ public sealed partial class EnergyColorSystem : EntitySystem
     private void OnMapInit(Entity<EnergyColorComponent> ent, ref MapInitEvent args)
     {
         if (ent.Comp.ColorOptions.Count > 0 && ent.Comp.ActiveColor is null)
-        {
             // Technically not required per se, but also no reason *not* to just predict it...
             ent.Comp.ActiveColor = _rand.PickPredicted(_timing, ent.Comp.ColorOptions);
-            Dirty(ent, ent.Comp); // Still gonna dirty it though just in case...
-        }
         UpdateAppearance(ent, ent.Comp);
     }
 
@@ -46,26 +43,25 @@ public sealed partial class EnergyColorSystem : EntitySystem
     {
         if (!ent.Comp.CanHack) return;
 
-        if (ent.Comp.UnlockQuality is not null)
-            if (_tool.HasQuality(args.Used, ent.Comp.UnlockQuality))
-            {
-                ent.Comp.HackingLocked = !ent.Comp.HackingLocked;
-                Dirty(ent, ent.Comp);
+        if (ent.Comp.HackingUnlockQuality is not null && _tool.HasQuality(args.Used, ent.Comp.HackingUnlockQuality))
+        {
+            ent.Comp.HackingLocked = !ent.Comp.HackingLocked;
+            Dirty(ent, ent.Comp);
 
-                if (ent.Comp.HackingLockStatePopup is not null)
-                    _popup.PopupPredicted(Loc.GetString(ent.Comp.HackingLockStatePopup, ("item", MetaData(ent).EntityName), ("state", ent.Comp.HackingLocked ? "activated" : "deactivated")),
-                        ent, args.User);
-                return;
-            }
-        if (ent.Comp.HackingLocked && _tool.HasQuality(args.Used, ent.Comp.HackingQuality))
+            if (ent.Comp.HackingLockStatePopup is not null)
+                _popup.PopupPredicted(Loc.GetString(ent.Comp.HackingLockStatePopup, ("item", MetaData(ent).EntityName), ("state", ent.Comp.HackingLocked ? "activated" : "deactivated")),
+                    ent, args.User);
+            return;
+        }
+
+        if (!_tool.HasQuality(args.Used, ent.Comp.HackingQuality)) return;
+        if (ent.Comp.HackingLocked)
         {
             if (ent.Comp.HackingLockedPopup is not null)
                 _popup.PopupPredicted(Loc.GetString(ent.Comp.HackingLockedPopup, ("item", MetaData(ent).EntityName)),
                     ent, args.User);
             return;
         }
-
-        if (!_tool.HasQuality(args.Used, ent.Comp.HackingQuality)) return;
         ent.Comp.Hacked = !ent.Comp.Hacked;
         Dirty(ent, ent.Comp);
 
@@ -81,6 +77,7 @@ public sealed partial class EnergyColorSystem : EntitySystem
     {
         if (!TryComp<AppearanceComponent>(uid, out var appearance)) return;
         _appearance.SetData(uid, ToggleableVisuals.Color, comp.ActiveColor ?? Color.White, appearance);
+
         if (!TryComp<RgbLightControllerComponent>(uid, out var rgb)) return;
         _rgb.SetCycleRate(uid, comp.CycleRate);
     }
