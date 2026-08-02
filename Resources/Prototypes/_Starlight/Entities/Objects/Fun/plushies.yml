@@ -74,30 +74,6 @@
         voice: ICASSP102
 
 - type: entity
-  parent: BaseResomiPlushie
-  id: PlushieKiosha
-  name: kiosha plushie
-  description: Everyone's favorite paramedic! How does it keep finding contraband?
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/kiosha_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/kiosha_plushie.rsi
-    layers:
-      - state: icon
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesKiosha
-      - type: TextToSpeech
-        voice: ICASSP104
-
-- type: entity
   parent: BaseVulpkaninPlushie
   id: PlushieLance
   name: lance plushie

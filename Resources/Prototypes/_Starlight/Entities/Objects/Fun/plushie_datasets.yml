@@ -11,12 +11,6 @@
     count: 9
 
 - type: localizedDataset
-  id: PlushiesKiosha
-  values:
-    prefix: plushie-kiosha-
-    count: 8
-
-- type: localizedDataset
   id: PlushiesLance
   values:
     prefix: plushie-lance-
