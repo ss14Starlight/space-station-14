@@ -27,8 +27,11 @@ public sealed partial class RadioSpeakerComponent : Component
     public bool Enabled;
 
     // Goobstation - Radio Host
+    /// <summary>
+    /// Whether or not a message is parsed through the radio when when sent in local chat.
+    /// </summary>
     [DataField, AutoNetworkedField]
-    public bool LouderSpeech;
+    public bool ParseRadioPrefix;
 
     /// <summary>
     /// Does the radio need to be on a power grid to work?

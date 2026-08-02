@@ -47,7 +47,7 @@
     board: StationRadioCircuitboard
   - type: RadioSpeaker
     powerRequired: true
-    louderSpeech: false
+    parseRadioPrefix: false
     enabled: true
     channels:
     - RadioShow
