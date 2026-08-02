@@ -1,32 +1,6 @@
 # region crew plushies
 - type: entity
   parent: BaseResomiPlushie
-  id: PlushieMatthew
-  name: matthew plushie
-  description: Such a cute little thing, dont you just want to protect it? Make sure your doing your job though, or it might bite! Smells oddly like root beer and ice cream.....
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/matthew_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/matthew_plushie.rsi
-    layers:
-      - state: icon
-      - state: icon-unshaded
-        shader: unshaded
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesMatthew
-      - type: TextToSpeech
-        voice: ICASSP94
-
-- type: entity
-  parent: BaseResomiPlushie
   id: PlushieMorgana
   name: morgana plushie
   description: A bird flies to a mountain made of diamond every thousands years to sharpen its beak. When that mountain is, but a heap. That is when a single moment of eternity passes. Many say; that is a hell of a long time. I say; that is one hell of bird.

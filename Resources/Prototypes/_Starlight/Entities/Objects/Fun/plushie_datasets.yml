@@ -1,10 +1,4 @@
 - type: localizedDataset
-  id: PlushiesMatthew
-  values:
-    prefix: plushie-matthew-
-    count: 8
-
-- type: localizedDataset
   id: PlushiesMorgana
   values:
     prefix: plushie-morgana-

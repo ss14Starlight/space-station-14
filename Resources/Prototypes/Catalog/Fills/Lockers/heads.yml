@@ -261,7 +261,6 @@
     - id: RCDAmmo
     - id: RubberStampCE
     - id: MetalFoamGrenade
-    - id: PlushieMatthew #starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
