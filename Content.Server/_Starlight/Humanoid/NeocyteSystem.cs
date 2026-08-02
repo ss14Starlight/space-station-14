@@ -3,6 +3,8 @@ using Content.Shared._Starlight.Humanoid;
 using Content.Shared.Clothing;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
+using Content.Shared.Inventory.Events;
+using Content.Shared.Polymorph;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
@@ -32,6 +34,9 @@ public sealed partial class NeocyteSystem : EntitySystem
         SubscribeLocalEvent<NeocyteComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<NeocyteComponent, StartingGearEquippedEvent>(OnStartingGearEquipped,
             after: [typeof(LoadoutSystem)]);
+        SubscribeLocalEvent<NeocyteComponent, DidEquipEvent>(OnDidEquip);
+        SubscribeLocalEvent<NeocyteComponent, PolymorphedEvent>(OnNeocytePolymorphed);
+        SubscribeLocalEvent<NeocyteFrameMemoryComponent, PolymorphedEvent>(OnFrameMemoryPolymorphed);
         SubscribeLocalEvent<NeocyteComponent, ComponentShutdown>(OnShutdown);
     }
 
@@ -65,12 +70,66 @@ public sealed partial class NeocyteSystem : EntitySystem
         EnsureFrame(entity);
     }
 
+    private void OnDidEquip(Entity<NeocyteComponent> entity, ref DidEquipEvent args)
+    {
+        if (args.Slot != entity.Comp.FrameSlot)
+            return;
+
+        RememberFrame(entity.Comp, args.Equipment);
+    }
+
+    private void OnNeocytePolymorphed(Entity<NeocyteComponent> entity, ref PolymorphedEvent args)
+    {
+        // On a normal revert, the memory component represents the frame from before the polymorph.
+        if (args.IsRevert && HasComp<NeocyteFrameMemoryComponent>(entity))
+            return;
+
+        if (_inventory.TryGetSlotEntity(entity, entity.Comp.FrameSlot, out var equippedFrame))
+            RememberFrame(entity.Comp, equippedFrame.Value);
+
+        CarryFrameMemory(args.NewEntity, entity.Comp.LastFramePrototype);
+    }
+
+    private void OnFrameMemoryPolymorphed(
+        Entity<NeocyteFrameMemoryComponent> entity,
+        ref PolymorphedEvent args)
+    {
+        // While transforming away, a current Neocyte form's actually equipped frame is the one that should be remembered, not the memory component's frame.
+        if (!args.IsRevert && HasComp<NeocyteComponent>(entity))
+            return;
+
+        CarryFrameMemory(args.NewEntity, entity.Comp.FramePrototype);
+    }
+
+    private void CarryFrameMemory(EntityUid target, EntProtoId? framePrototype)
+    {
+        if (framePrototype is not { } frame)
+            return;
+
+        EnsureComp<NeocyteFrameMemoryComponent>(target).FramePrototype = frame;
+
+        if (!TryComp(target, out NeocyteComponent? neocyte))
+            return;
+
+        neocyte.LastFramePrototype = frame;
+        EnsureFrame((target, neocyte));
+    }
+
     private void OnShutdown(Entity<NeocyteComponent> entity, ref ComponentShutdown args) => _pendingFrameChecks.Remove(entity);
 
     private void EnsureFrame(Entity<NeocyteComponent> entity)
     {
-        if (_inventory.TryGetSlotEntity(entity, entity.Comp.FrameSlot, out _))
+        if (_inventory.TryGetSlotEntity(entity, entity.Comp.FrameSlot, out var equippedFrame))
+        {
+            RememberFrame(entity.Comp, equippedFrame.Value);
             return;
+        }
+
+        if (entity.Comp.LastFramePrototype is { } lastFrame &&
+            TryEquipFrame(entity, lastFrame))
+        {
+            return;
+        }
 
         if (!_prototypeManager.TryIndex(entity.Comp.FrameLoadoutGroup, out var frameGroup))
         {
@@ -93,15 +152,32 @@ public sealed partial class NeocyteSystem : EntitySystem
         }
 
         var selectedFrame = _random.Pick(validFrames);
-        if (!_inventory.SpawnItemInSlot(
-                entity,
-                entity.Comp.FrameSlot,
-                selectedFrame,
-                silent: true,
-                force: true))
+        if (!TryEquipFrame(entity, selectedFrame))
         {
             Log.Error($"Failed to equip fallback Neocyte frame {selectedFrame} to {ToPrettyString(entity)}");
         }
+    }
+
+    private bool TryEquipFrame(Entity<NeocyteComponent> entity, string framePrototype)
+    {
+        if (!_inventory.SpawnItemInSlot(
+                entity,
+                entity.Comp.FrameSlot,
+                framePrototype,
+                silent: true,
+                force: true))
+        {
+            return false;
+        }
+
+        entity.Comp.LastFramePrototype = framePrototype;
+        return true;
+    }
+
+    private void RememberFrame(NeocyteComponent component, EntityUid frame)
+    {
+        if (MetaData(frame).EntityPrototype is { } prototype)
+            component.LastFramePrototype = prototype.ID;
     }
 
     /// <summary>

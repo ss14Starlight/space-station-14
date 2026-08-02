@@ -20,4 +20,10 @@ public sealed partial class NeocyteComponent : Component
     /// </summary>
     [DataField(required: true)]
     public string FrameSlot = string.Empty;
+
+    /// <summary>
+    /// The last frame equipped to this Neocyte. Kept while polymorphed so the same frame can be restored.
+    /// </summary>
+    [ViewVariables]
+    public EntProtoId? LastFramePrototype;
 }
