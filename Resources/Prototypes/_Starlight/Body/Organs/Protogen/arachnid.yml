@@ -1,6 +1,6 @@
 - type: entity
   id: OrganProtoArachnidHeart
-  parent: [BaseNeocyteOrgan, OrganProtogenHeart]
+  parent: [BaseNeocyteOrgan, OrganNeocyteHeart]
   name: arachnid cybernetic heart
   suffix: Proto-Arachnid
   components:

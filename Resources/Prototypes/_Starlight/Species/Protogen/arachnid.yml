@@ -18,6 +18,9 @@
   lastNames: NamesArachnidLast
   sexes:
   - Unsexed
+  profileMigration:
+    oldSpecies:
+    - ProtoArachnid
 
 - type: speciesBaseSprites
   id: MobNeoArachnidSprites

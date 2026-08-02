@@ -16,6 +16,9 @@
   femaleFirstNames: NamesMothFirstFemale
   lastNames: NamesMothLast
   loadout: NeocyteLoadout
+  profileMigration:
+    oldSpecies:
+    - ProtoMoth
 
 - type: speciesBaseSprites
   id: MobNeoMothSprites

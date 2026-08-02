@@ -106,9 +106,9 @@
   text: subspecies-name-protofelionoid
 
 - type: quickPhrase
-  id: SpeciesProtokinPhrase
+  id: SpeciesNeoKinPhrase
   parent: SpeciesNeocytePhrase
-  text: subspecies-name-protokin
+  text: subspecies-name-neokin
 
 - type: quickPhrase
   id: SpeciesNeoThavenPhrase

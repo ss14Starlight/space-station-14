@@ -289,31 +289,29 @@ public sealed partial class MarkingSet
                 continue;
             }
 
-            var index = 0;
-            while (points.Points > 0 || index < points.DefaultMarkings.Count)
+            #region Starlight
+            // Starlight, ensure default markings are applied, but only if the marking is valid and the category has points left
+            //var index = 0;
+
+            foreach (var defaultMarking in points.DefaultMarkings)
             {
-                if (index < points.DefaultMarkings.Count && markingManager.Markings.TryGetValue(points.DefaultMarkings[index], out var prototype)) //starlight: add index sanity check to avoid problems when removing markings
-                {
-                    var colors = MarkingColoring.GetMarkingLayerColors(
-                            prototype,
-                            skinColor,
-                            eyeColor,
-                            this
-                        );
-                    // begin starlight
-                    try {
-                        var marking = new Marking(points.DefaultMarkings[index], colors, false);
+                if (points.Points <= 0)
+                    break;
 
-                        AddBack(category, marking);
-                    } catch (System.ArgumentOutOfRangeException e) {
-                        // marking was deleted and cannot be added, let's purge it:
-                        points.DefaultMarkings.RemoveAt(index);
-                    }
-                    // end starlight
-                }
+                if (!markingManager.Markings.TryGetValue(defaultMarking, out var prototype))
+                    continue;
 
-                index++;
+                var colors = MarkingColoring.GetMarkingLayerColors(
+                    prototype,
+                    skinColor,
+                    eyeColor,
+                    this);
+
+                AddBack(
+                    category,
+                    new Marking(defaultMarking, colors, false));
             }
+            #endregion
         }
     }
 

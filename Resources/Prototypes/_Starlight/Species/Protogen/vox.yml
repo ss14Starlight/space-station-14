@@ -18,6 +18,9 @@
   femaleFirstNames: NamesVox
   naming: First
   loadout: NeocyteLoadout
+  profileMigration:
+    oldSpecies:
+    - ProtoVox
 
 - type: speciesBaseSprites
   id: MobNeoVoxSprites

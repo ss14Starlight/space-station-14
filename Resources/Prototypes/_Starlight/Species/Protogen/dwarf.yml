@@ -23,6 +23,9 @@
   youngAge: 50
   oldAge: 130
   maxAge: 200
+  profileMigration:
+    oldSpecies:
+    - ProtoDwarf
 
 - type: markingPoints
   id: MobNeoDwarfMarkingLimits

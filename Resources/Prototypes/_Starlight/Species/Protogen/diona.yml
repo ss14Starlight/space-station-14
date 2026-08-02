@@ -24,6 +24,9 @@
   youngAge: 40
   oldAge: 150
   maxAge: 250
+  profileMigration:
+    oldSpecies:
+    - ProtoDiona
 
 - type: speciesBaseSprites
   id: MobNeoDionaSprites

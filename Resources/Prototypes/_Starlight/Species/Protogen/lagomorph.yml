@@ -26,6 +26,9 @@
   standardSize: 150
   standardWeight: 40
   standardDensity: 17
+  profileMigration:
+    oldSpecies:
+    - ProtoLagomorph
 
 - type: speciesBaseSprites
   id: MobNeoLagomorphSprites

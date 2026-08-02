@@ -384,7 +384,7 @@
 #region SHADEKIN ####
 
 - type: marking
-  id: ProtoKinMediumArmor
+  id: NeoKinMediumArmor
   bodyPart: BodyCover
   markingCategory: BodyCover
   speciesRestriction: [NeoKin]
@@ -393,7 +393,7 @@
     state: medium
 
 - type: marking
-  id: ProtoKinVisor
+  id: NeoKinVisor
   bodyPart: FaceCover
   markingCategory: FaceCover
   speciesRestriction: [NeoKin]
@@ -402,7 +402,7 @@
     state: visor
 
 - type: marking
-  id: ProtoKinLEDFace
+  id: NeoKinLEDFace
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoKin]
@@ -411,7 +411,7 @@
     state: face
 
 - type: marking
-  id: ProtoKinLights
+  id: NeoKinLights
   bodyPart: BodyCoverCover
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoKin]

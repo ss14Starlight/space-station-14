@@ -81,7 +81,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, ActionLastResortEvent>(OnLastResort);
         SubscribeLocalEvent<ChangelingComponent, ActionLesserFormEvent>(OnLesserForm);
         SubscribeLocalEvent<ChangelingComponent, ActionSpacesuitEvent>(OnSpacesuit);
-        SubscribeLocalEvent<ChangelingComponent, ActionNeocyteDisguiseEvent>(OnProtogenDisguise); // Starlight
+        SubscribeLocalEvent<ChangelingComponent, ActionNeocyteDisguiseEvent>(OnNeocyteDisguise); // Starlight
         SubscribeLocalEvent<ChangelingComponent, ActionHivemindAccessEvent>(OnHivemindAccess);
         SubscribeLocalEvent<ChangelingComponent, FakeMindShieldToggleEvent>(OnFakeMindShieldToggle);
 
@@ -602,7 +602,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         PlayMeatySound(uid, comp);
     }
     #region Starlight
-    public void OnNeocyteDisguise(EntityUid uid, ChangelingComponent comp, ref ActionProtogenDisguiseEvent args)
+    public void OnNeocyteDisguise(EntityUid uid, ChangelingComponent comp, ref ActionNeocyteDisguiseEvent args)
     {
         if (!TryToggleItem(uid, NeocyteDisguisePrototype, comp, "outerClothing2"))
         {

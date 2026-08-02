@@ -20,6 +20,9 @@
   - Female
   - Unsexed
   loadout: NeocyteLoadout
+  profileMigration:
+    oldSpecies:
+    - ProtoThaven
 
 - type: speciesBaseSprites
   id: MobNeoThavenSprites

@@ -19,6 +19,9 @@
   standardSize: 170
   standardWeight: 75
   standardDensity: 110
+  profileMigration:
+    oldSpecies:
+    - ProtoVulp
 
 - type: speciesBaseSprites
   id: MobNeoVulpkaninSprites

@@ -9,7 +9,7 @@
       - torso
       organs:
         brain: OrganNeocyteBrain
-        eyes: OrganProtokinEyes
+        eyes: OrganNeoKinEyes
         tongue: OrganNeocyteTongueForked
         eye_implant: null
         brain_implant: null

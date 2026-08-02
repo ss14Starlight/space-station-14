@@ -17,6 +17,9 @@
   subspeciesOf: Neocyte
   subspeciesName: subspecies-name-neoslimeperson
   loadout: NeocyteLoadout
+  profileMigration:
+    oldSpecies:
+    - ProtoSlimePerson
 
 - type: speciesBaseSprites
   id: MobNeoSlimePersonSprites

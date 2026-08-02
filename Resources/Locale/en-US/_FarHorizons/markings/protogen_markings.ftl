@@ -94,15 +94,15 @@ marking-NeoSlimePersonLights-body = Circular LEDs
 marking-NeoSlimePersonMediumArmor = Standard Neocyte-Laspi Cybernetics
 marking-NeoSlimePersonMediumArmor-medium = Standard Neocyte-Laspi Cybernetics
 
-marking-ProtoKinVisor = Kin Visor
-marking-ProtoKinVisor-visor = Kin Visor
-marking-ProtoKinLEDFace = Default Kin LEDs
-marking-ProtoKinLEDFace-face = Default Kin LEDs
-marking-ProtoKinLights = Circular LEDs
-marking-ProtoKinLights-body = Circular LEDs
+marking-NeoKinVisor = Kin Visor
+marking-NeoKinVisor-visor = Kin Visor
+marking-NeoKinLEDFace = Default Kin LEDs
+marking-NeoKinLEDFace-face = Default Kin LEDs
+marking-NeoKinLights = Circular LEDs
+marking-NeoKinLights-body = Circular LEDs
 
-marking-ProtoKinMediumArmor = Standard Neocyte-Kin Cybernetics
-marking-ProtoKinMediumArmor-medium = Standard Neocyte-Kin Cybernetics
+marking-NeoKinMediumArmor = Standard Neocyte-Kin Cybernetics
+marking-NeoKinMediumArmor-medium = Standard Neocyte-Kin Cybernetics
 
 marking-ProtoResomiVisor = Resomi Visor
 marking-ProtoResomiVisor-visor = Resomi Visor

@@ -24,7 +24,7 @@
 
 - type: entity
   id: OrganNeoVoxHeart
-  parent: [BaseNeocyteOrgan, OrganProtogenHeart]
+  parent: [BaseNeocyteOrgan, OrganNeocyteHeart]
   name: vox cybernetic heart
   suffix: Proto-Vox
   components:

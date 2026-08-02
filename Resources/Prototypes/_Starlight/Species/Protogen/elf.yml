@@ -19,6 +19,9 @@
   youngAge: 100
   oldAge: 300
   maxAge: 400
+  profileMigration:
+    oldSpecies:
+    - ProtoElf
 
 
 # The lack of a layer means that

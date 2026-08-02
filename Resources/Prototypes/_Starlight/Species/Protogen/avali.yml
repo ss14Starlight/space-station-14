@@ -27,6 +27,9 @@
   standardSize: 150 # gives a range of 130-150cm and 27-31kg
   standardWeight: 31
   standardDensity: 11
+  profileMigration:
+    oldSpecies:
+    - ProtoAvali
 
 - type: speciesBaseSprites
   id: MobNeoAvaliSprites

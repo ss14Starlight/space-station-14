@@ -275,7 +275,7 @@
 - type: entity
   save: false
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
-  id: AppearanceProtoKin
+  id: AppearanceNeoKin
   categories: [HideSpawnMenu]
   description: A dummy neokin meant to be used in character setup.
   components:

@@ -1,17 +1,17 @@
 - type: species
   id: NeoKin
-  name: subspecies-name-protokin
+  name: subspecies-name-neokin
   roundStart: true
   prototype: MobNeoKin
   sprites: MobNeoKinSprites
   defaultSkinTone: "#ffffff"
   markingLimits: MobNeoKinMarkingLimits
-  dollPrototype: AppearanceProtoKin
+  dollPrototype: AppearanceNeoKin
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
-  subspeciesName: subspecies-name-protokin
+  subspeciesName: subspecies-name-neokin
   maleFirstNames: names_shadekin
   femaleFirstNames: names_shadekin
   naming: First
@@ -20,6 +20,9 @@
   youngAge: 100
   oldAge: 200
   loadout: NeocyteLoadout
+  profileMigration:
+    oldSpecies:
+    - ProtoKin
 
 - type: speciesBaseSprites
   id: MobNeoKinSprites

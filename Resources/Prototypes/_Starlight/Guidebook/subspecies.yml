@@ -51,7 +51,7 @@
 
 - type: guideEntry
   id: NeoKin
-  name: subspecies-name-protokin
+  name: subspecies-name-neokin
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoKin.xml"
 
 - type: guideEntry

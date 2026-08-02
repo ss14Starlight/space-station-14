@@ -16,6 +16,9 @@
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
   loadout: NeocyteLoadout
+  profileMigration:
+    oldSpecies:
+    - ProtoReptilian
 
 - type: speciesBaseSprites
   id: MobNeoReptilianSprites

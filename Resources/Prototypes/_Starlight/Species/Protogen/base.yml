@@ -13,6 +13,9 @@
   hasSubspecies: true # This is the "parent" species that will be displayed in species list as well as subspecies list
   subspeciesName: subspecies-name-trueneocyte # This name is dispayed when you're picking subspecies
   loadout: NeocyteLoadout
+  profileMigration:
+    oldSpecies:
+    - Protogen
 
 - type: speciesBaseSprites
   id: MobNeocyteSprites

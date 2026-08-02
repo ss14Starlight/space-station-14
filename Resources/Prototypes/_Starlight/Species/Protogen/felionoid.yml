@@ -23,6 +23,9 @@
   standardSize: 170
   standardWeight: 48
   standardDensity: 45
+  profileMigration:
+    oldSpecies:
+    - ProtoFelionoid
 
 - type: speciesBaseSprites
   id: MobNeoFelionoidSprites

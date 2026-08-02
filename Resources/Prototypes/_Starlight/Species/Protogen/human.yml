@@ -13,6 +13,9 @@
   subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protohuman
   loadout: NeocyteLoadout
+  profileMigration:
+    oldSpecies:
+    - ProtoHuman
 
 - type: speciesBaseSprites
   id: MobNeoHumanSprites

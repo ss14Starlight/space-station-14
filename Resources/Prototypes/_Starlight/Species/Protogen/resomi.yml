@@ -24,6 +24,9 @@
   standardWeight: 40
   standardDensity: 17
   loadout: NeocyteLoadout
+  profileMigration:
+    oldSpecies:
+    - ProtoResomi
 
 - type: speciesBaseSprites
   id: MobNeoResomiSprites
