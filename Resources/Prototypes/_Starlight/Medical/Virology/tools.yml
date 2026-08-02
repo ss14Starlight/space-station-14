@@ -1,0 +1,63 @@
+- type: entity
+  parent: BaseItem
+  id: PathogenContaminationScanner
+  name: contamination scanner
+  description: Maps biological contamination by station landmark and points toward its strongest active source.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    layers:
+    - state: icon
+    - state: analyzer
+      shader: unshaded
+  - type: Item
+    heldPrefix: analyzer
+    storedRotation: -90
+  - type: PathogenContaminationScanner
+  - type: UserInterface
+    interfaces:
+      enum.PathogenContaminationScannerUiKey.Key:
+        type: PathogenContaminationScannerBoundUserInterface
+  - type: ItemPrice
+    fallbackPrice: 80
+
+- type: entity
+  parent: BaseItem
+  id: PathogenDecontaminator
+  name: biological decontaminator
+  description: Sterilizes an active contamination source and lowers station contamination.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Janitorial/spray_bottle.rsi
+    state: cleaner_large
+  - type: Item
+    sprite: Objects/Specific/Janitorial/spray_bottle.rsi
+  - type: PathogenDecontaminator
+    suppressionDuration: 5m
+    cooldown: 3s
+  - type: ItemPrice
+    fallbackPrice: 100
+
+- type: entity
+  id: PathogenSporePatch
+  name: fungal spore patch
+  description: A vivid fungal reservoir spreading across the floor.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Fluids/puddle.rsi
+    state: splat0
+    drawdepth: Puddles
+    color: "#69d46fff"
+  - type: PointLight
+    color: "#69d46f"
+    radius: 1.2
+    energy: 0.45
+  - type: PathogenSporePatch
+  - type: TimedDespawn
+    lifetime: 600

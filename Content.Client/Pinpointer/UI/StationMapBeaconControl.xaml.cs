@@ -11,9 +11,11 @@ namespace Content.Client.Pinpointer.UI;
 public sealed partial class StationMapBeaconControl : Control, IComparable<StationMapBeaconControl>
 {
     public readonly EntityCoordinates BeaconPosition;
+    public readonly NetEntity Beacon;
     public Action<EntityCoordinates>? OnPressed;
     public string? Label => BeaconNameLabel.Text;
     private StyleBoxFlat _styleBox;
+    private readonly string _baseLabel;
     public Color Color => _styleBox.BackgroundColor;
 
     public StationMapBeaconControl(EntityUid mapUid, SharedNavMapSystem.NavMapBeacon beacon)
@@ -22,12 +24,21 @@ public sealed partial class StationMapBeaconControl : Control, IComparable<Stati
         IoCManager.InjectDependencies(this);
 
         BeaconPosition = new EntityCoordinates(mapUid, beacon.Position);
+        Beacon = beacon.NetEnt;
+        _baseLabel = beacon.Text;
 
         _styleBox = new StyleBoxFlat { BackgroundColor = beacon.Color };
         ColorPanel.PanelOverride = _styleBox;
-        BeaconNameLabel.Text = beacon.Text;
+        BeaconNameLabel.Text = _baseLabel;
 
         MainButton.OnPressed += args => OnPressed?.Invoke(BeaconPosition);
+    }
+
+    public void SetAnnotation(string annotation)
+    {
+        BeaconNameLabel.Text = string.IsNullOrWhiteSpace(annotation)
+            ? _baseLabel
+            : $"{_baseLabel} {annotation}";
     }
 
     public int CompareTo(StationMapBeaconControl? other)

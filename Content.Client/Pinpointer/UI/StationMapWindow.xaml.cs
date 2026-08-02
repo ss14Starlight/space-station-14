@@ -14,6 +14,8 @@ public sealed partial class StationMapWindow : FancyWindow
 
     private readonly List<StationMapBeaconControl> _buttons = new();
 
+    public NavMapControl MapControl => NavMapScreen; // Starlight
+
     public StationMapWindow()
     {
         RobustXamlLoader.Load(this);
@@ -73,5 +75,14 @@ public sealed partial class StationMapWindow : FancyWindow
 
         foreach (var button in _buttons)
             BeaconButtons.AddChild(button);
+    }
+
+    public void SetBeaconAnnotations(IReadOnlyDictionary<NetEntity, string> annotations)
+    {
+        foreach (var button in _buttons)
+        {
+            button.SetAnnotation(
+                annotations.GetValueOrDefault(button.Beacon, string.Empty));
+        }
     }
 }
