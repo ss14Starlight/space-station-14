@@ -1470,9 +1470,9 @@
   - 1.0
   - 1.0
   - 1.0
-  - 1.0 
   - 1.0
-  #SL End 
+  - 1.0
+  #SL End
   baseTurf: FloorDirt
   isSubfloor: true
   footstepSounds:
@@ -1492,9 +1492,9 @@
   - 1.0
   - 1.0
   - 1.0
-  - 1.0 
   - 1.0
-  #SL End 
+  - 1.0
+  #SL End
   baseTurf: FloorDirt
   isSubfloor: true
   footstepSounds:
@@ -1514,7 +1514,7 @@
   - 1.0
   - 1.0
   - 1.0 #SL
-  - 1.0 #SL 
+  - 1.0 #SL
   baseTurf: FloorDirt
   isSubfloor: true
   footstepSounds:
@@ -1533,7 +1533,7 @@
   - 1.0
   - 1.0
   - 1.0 #SL
-  - 1.0 #SL 
+  - 1.0 #SL
   baseTurf: FloorDirt
   isSubfloor: true
   footstepSounds:
@@ -1988,7 +1988,7 @@
   - 1.0
   - 1.0
   - 1.0 #SL
-  - 1.0 #SL 
+  - 1.0 #SL
   edgeSpritePriority: 1
   edgeSprites:
     SouthEast: /Textures/_CP14/Tiles/Grass/single_edge.png #SL Edit

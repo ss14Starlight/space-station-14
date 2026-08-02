@@ -301,7 +301,7 @@
         # Starlight End
 
 - type: entity
-  parent: BaseTreeConiferOld #SL 
+  parent: BaseTreeConiferOld #SL
   id: FloraTreeChristmas01
   name: christmas tree
   components:
@@ -309,7 +309,7 @@
     state: treechristmas01
 
 - type: entity
-  parent: BaseTreeConiferOld #SL 
+  parent: BaseTreeConiferOld #SL
   id: FloraTreeChristmas02
   suffix: Safe Presents
   name: christmas tree
@@ -357,7 +357,7 @@
         orGroup: present
 
 - type: entity
-  parent: BaseTreeConiferOld #SL 
+  parent: BaseTreeConiferOld #SL
   id: FloraTreeStumpConifer
   name: tree stump
   components:
