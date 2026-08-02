@@ -2,7 +2,7 @@
   # Proto-Thaven
 
   <Box>
-    <GuideEntityEmbed Entity="AppearanceProtoThaven" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceNeoThaven" Caption=""/>
   </Box>
 
   ## Resistances

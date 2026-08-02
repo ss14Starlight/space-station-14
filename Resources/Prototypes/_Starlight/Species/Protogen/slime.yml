@@ -1,12 +1,12 @@
 - type: species
-  id: ProtoSlimePerson
-  name: subspecies-name-protoslimeperson
+  id: NeoSlimePerson
+  name: subspecies-name-neoslimeperson
   roundStart: true
   prototype: MobNeoSlimePerson
   sprites: MobNeoSlimePersonSprites
   defaultSkinTone: "#b8b8b8"
   markingLimits: MobNeoSlimePersonMarkingLimits
-  dollPrototype: AppearanceProtoSlimePerson
+  dollPrototype: AppearanceNeoSlimePerson
   skinColoration: Hues
   customName: true
   minAge: 20
@@ -14,9 +14,9 @@
   oldAge: 100
   maxAge: 130
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
-  subspeciesName: subspecies-name-protoslimeperson
-  loadout: ProtogenLoadout
+  subspeciesOf: Neocyte
+  subspeciesName: subspecies-name-neoslimeperson
+  loadout: NeocyteLoadout
 
 - type: speciesBaseSprites
   id: MobNeoSlimePersonSprites
@@ -49,19 +49,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoSlimePersonVisor ]
+      defaultMarkings: [ NeoSlimePersonVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoSlimePersonLEDFace ]
+      defaultMarkings: [ NeoSlimePersonLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoSlimePersonMediumArmor ]
+      defaultMarkings: [ NeoSlimePersonMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLights ]
+      defaultMarkings: [ NeocyteLights ]
     Hair:
       points: 1
       required: false

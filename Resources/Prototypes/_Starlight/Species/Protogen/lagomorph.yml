@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoLagomorph
+  id: NeoLagomorph
   name: subspecies-name-protolagomorph
   roundStart: true
   prototype: MobNeoLagomorph
@@ -10,9 +10,9 @@
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen # This is alternative version of other species. It will only be displayed in subspecies list
+  subspeciesOf: Neocyte # This is alternative version of other species. It will only be displayed in subspecies list
   subspeciesName: subspecies-name-protolagomorph
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
   minAge: 22
   youngAge: 25
   oldAge: 70
@@ -67,11 +67,11 @@
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor ]
+      defaultMarkings: [ NeocyteMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLights ]
+      defaultMarkings: [ NeocyteLights ]
     Hair:
       points: 1
       required: false

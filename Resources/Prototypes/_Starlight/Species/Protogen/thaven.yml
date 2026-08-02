@@ -1,17 +1,17 @@
 - type: species
-  id: ProtoThaven
-  name: subspecies-name-protothaven
+  id: NeoThaven
+  name: subspecies-name-neothaven
   roundStart: true
   prototype: MobNeoThaven
   sprites: MobNeoThavenSprites
   defaultSkinTone: "#ffffff"
   markingLimits: MobNeoThavenMarkingLimits
-  dollPrototype: AppearanceProtoThaven
+  dollPrototype: AppearanceNeoThaven
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
-  subspeciesName: subspecies-name-protothaven
+  subspeciesOf: Neocyte
+  subspeciesName: subspecies-name-neothaven
   maleFirstNames: NamesThaven
   femaleFirstNames: NamesThaven
   naming: First
@@ -19,7 +19,7 @@
   - Male
   - Female
   - Unsexed
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
 
 - type: speciesBaseSprites
   id: MobNeoThavenSprites
@@ -53,19 +53,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoThavenVisor ]
+      defaultMarkings: [ NeoThavenVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoThavenLEDFace ]
+      defaultMarkings: [ NeoThavenLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoThavenMediumArmor ]
+      defaultMarkings: [ NeoThavenMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoThavenLights ]
+      defaultMarkings: [ NeoThavenLights ]
     Hair:
       points: 1
       required: false

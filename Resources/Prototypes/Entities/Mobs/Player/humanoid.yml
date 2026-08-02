@@ -3,24 +3,24 @@
 - type: randomHumanoidSettings
   id: EventHumanoid
   speciesBlacklist: # Starlight start
-    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
-    - ProtoDiona
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
-    - ProtoAvali
-    - ProtoFelionoid
-    - ProtoKin
-    - ProtoThaven
-    - ProtoCyclorite
-    - ProtoDwarf
-    - ProtoMoth
-    - ProtoSlimePerson
-    - ProtoLagomorph
-    - ProtoElf
-    - Protogen
-    - ProtoHuman # Starlight end
+    - NeoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
+    - NeoDiona
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
+    - NeoAvali
+    - NeoFelionoid
+    - NeoKin
+    - NeoThaven
+    - NeoCyclorite
+    - NeoDwarf
+    - NeoMoth
+    - NeoSlimePerson
+    - NeoLagomorph
+    - NeoElf
+    - Neocyte
+    - NeoHuman # Starlight end
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false

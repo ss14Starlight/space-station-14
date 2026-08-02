@@ -16,10 +16,10 @@
     - Chittin
   - type: IgnoreSpiderWeb
   - type: Body
-    prototype: ProtoArachnid
+    prototype: NeoArachnid
     requiredLegs: 2
   - type: HumanoidAppearance
-    species: ProtoArachnid
+    species: NeoArachnid
   - type: Sericulture
     productionLength: 2
     entityProduced: MaterialWebSilk1
@@ -36,9 +36,9 @@
     - DoorBumpOpener
     - SpiderCraft
     - AnomalyHost
-    - Protogen
+    - Neocyte
     - Arachnid
-    - ProtoArachnid
+    - NeoArachnid
     - SiliconEmotesFH
     - NotLabelable
   - type: Butcherable
@@ -66,7 +66,7 @@
         Quantity: 300
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoArachnid
+    damageModifierSet: NeoArachnid
   # Damage (Others)
   - type: MeleeWeapon
     animation: WeaponArcBite
@@ -134,7 +134,7 @@
         state: "creampie_arachnid"
         visible: false
   - type: Inventory
-    templateId: protoarachnid
+    templateId: neoarachnid
     speciesId: arachnid
 
 
@@ -144,7 +144,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoArachnid
+    species: NeoArachnid
   - type: Sprite
     layers:
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -196,5 +196,5 @@
         state: "creampie_arachnid"
         visible: false
   - type: Inventory
-    templateId: protoarachnid
+    templateId: neoarachnid
     speciesId: arachnid

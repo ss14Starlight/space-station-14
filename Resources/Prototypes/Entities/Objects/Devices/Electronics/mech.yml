@@ -14,7 +14,7 @@
     - type: Tag
       tags:
       - RipleyCentralControlModule
-      - RamChip #Protogen joke, makes them able to eat them. - FH
+      - RamChip #Neocyte joke, makes them able to eat them. - FH
     - type: GuideHelp
       guides:
       - Robotics
@@ -31,7 +31,7 @@
     - type: Tag
       tags:
       - RipleyPeripheralsControlModule
-      - RamChip #Protogen joke, makes them able to eat them. - FH
+      - RamChip #Neocyte joke, makes them able to eat them. - FH
     - type: GuideHelp
       guides:
       - Robotics
@@ -52,7 +52,7 @@
     - type: Tag
       tags:
       - HonkerCentralControlModule
-      - RamChip #Protogen joke, makes them able to eat them. - FH
+      - RamChip #Neocyte joke, makes them able to eat them. - FH
     - type: GuideHelp
       guides:
       - Robotics
@@ -69,7 +69,7 @@
     - type: Tag
       tags:
       - HonkerPeripheralsControlModule
-      - RamChip #Protogen joke, makes them able to eat them. - FH
+      - RamChip #Neocyte joke, makes them able to eat them. - FH
     - type: GuideHelp
       guides:
       - Robotics
@@ -86,7 +86,7 @@
     - type: Tag
       tags:
       - HonkerTargetingControlModule
-      - RamChip #Protogen joke, makes them able to eat them. - FH
+      - RamChip #Neocyte joke, makes them able to eat them. - FH
     - type: GuideHelp
       guides:
       - Robotics
@@ -107,7 +107,7 @@
     - type: Tag
       tags:
       - HamtrCentralControlModule
-      - RamChip #Protogen joke, makes them able to eat them. - FH
+      - RamChip #Neocyte joke, makes them able to eat them. - FH
     - type: GuideHelp
       guides:
       - Robotics
@@ -124,7 +124,7 @@
     - type: Tag
       tags:
       - HamtrPeripheralsControlModule
-      - RamChip #Protogen joke, makes them able to eat them. - FH
+      - RamChip #Neocyte joke, makes them able to eat them. - FH
     - type: GuideHelp
       guides:
       - Robotics

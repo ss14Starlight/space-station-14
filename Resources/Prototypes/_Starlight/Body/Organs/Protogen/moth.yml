@@ -3,7 +3,7 @@
   parent: [OrganAnimalStomach, BaseOrganStomach]
   name: moth biological reactor
   suffix: Proto-Moth
-  description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
+  description: Some call it over-engineered, but it's vital to the function of a neocyte. Turns organic matter into organic and electrical energy to power the neocyte's cybernetics and flesh. #  Starlight, quotation marks removed
   components:
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi

@@ -1,18 +1,18 @@
 - type: species
-  id: ProtoVulp
-  name: subspecies-name-protovulp
+  id: NeoVulpkanin
+  name: subspecies-name-neovulpkanin
   roundStart: true
-  prototype: MobNeoVulp
+  prototype: MobNeoVulpkanin
   sprites: MobNeoVulpkaninSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobNeoVulpkaninMarkingLimits
-  dollPrototype: AppearanceProtoVulp
+  dollPrototype: AppearanceNeoVulpkanin
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen # This is alternative version of other species. It will only be displayed in subspecies list
-  subspeciesName: subspecies-name-protovulp
-  loadout: ProtogenLoadout
+  subspeciesOf: Neocyte # This is alternative version of other species. It will only be displayed in subspecies list
+  subspeciesName: subspecies-name-neovulpkanin
+  loadout: NeocyteLoadout
   minHeight: 0.9
   defaultHeight: 1
   maxHeight: 1.2
@@ -52,19 +52,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoVulpVisor ]
+      defaultMarkings: [ NeoVulpkaninVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoVulpLEDFace ]
+      defaultMarkings: [ NeoVulpkaninLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoVulpMediumArmor ]
+      defaultMarkings: [ NeoVulpkaninMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoVulpLights ]
+      defaultMarkings: [ NeoVulpkaninLights ]
     Hair:
       points: 1
       required: false
@@ -77,7 +77,7 @@
     Tail:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenTail ]
+      defaultMarkings: [ NeocyteTail ]
     HeadTop:
       points: 1
       required: true

@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoAvali
+  id: NeoAvali
   name: subspecies-name-protoavali
   roundStart: true
   prototype: MobNeoAvali
@@ -14,9 +14,9 @@
   lastNames: names_avali_packs
   naming: FirstLast
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
+  subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protoavali
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
   minAge: 20
   youngAge: 100
   oldAge: 250

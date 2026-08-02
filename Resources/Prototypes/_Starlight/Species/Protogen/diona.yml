@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoDiona
+  id: NeoDiona
   name: subspecies-name-protodiona
   roundStart: true
   prototype: MobNeoDiona
@@ -14,9 +14,9 @@
   lastNames: NamesDionaLast
   naming: TheFirstofLast
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
+  subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protodiona
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
   standardSize: 200
   standardWeight: 145
   standardDensity: 130

@@ -45,9 +45,9 @@
     alternateState: Resomi_burning
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoResomi
+    damageModifierSet: NeoResomi
   - type: HumanoidAppearance
-    species: ProtoResomi
+    species: NeoResomi
     hideLayersOnEquip:
     - Special
     - Head
@@ -72,7 +72,7 @@
     sprite: _Starlight/Mobs/Species/Proto-Resomi/parts.rsi
     state: full
   - type: Body
-    prototype: ProtoResomi
+    prototype: NeoResomi
     requiredLegs: 2
   - type: Butcherable
     butcheringType: Spike
@@ -104,7 +104,7 @@
           state: inHand
   - type: Inventory
     speciesId: resomi #to be replaced with proto[species] when new sprites are made
-    templateId: protogen
+    templateId: neocyte
     displacements:
       jumpsuit:
         sizeMaps:
@@ -295,9 +295,9 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
-    - Protogen
+    - Neocyte
     - Resomi
-    - ProtoResomi
+    - NeoResomi
     - SiliconEmotesFH
     - NotLabelable
   - type: Vocal
@@ -313,7 +313,7 @@
   description: A dummy proto-resomi meant to be used in character setup.
   components:
   - type: HumanoidAppearance
-    species: ProtoResomi
+    species: NeoResomi
   - type: Sprite # Drawlayers. Top to bottom in order I believe.
     netsync: false
     layers:
@@ -368,7 +368,7 @@
       visible: false
   - type: Inventory
     speciesId: resomi #to be replaced with proto[species] when new sprites are made
-    templateId: protogen
+    templateId: neocyte
     displacements:
       jumpsuit:
         sizeMaps:

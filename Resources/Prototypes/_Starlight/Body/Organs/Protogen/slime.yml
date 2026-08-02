@@ -37,7 +37,7 @@
   components:
   - type: Metabolizer
     maxReagents: 6
-    metabolizerTypes: [ Slime, Protogen ]
+    metabolizerTypes: [ Slime, Neocyte ]
     removeEmpty: true
     groups:
     - id: Medicine

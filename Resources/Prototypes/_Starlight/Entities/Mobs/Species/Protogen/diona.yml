@@ -25,13 +25,13 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
-    - Protogen
+    - Neocyte
     - Diona
-    - ProtoDiona
+    - NeoDiona
     - SiliconEmotesFH
     - NotLabelable
   - type: HumanoidAppearance
-    species: ProtoDiona
+    species: NeoDiona
   - type: Hunger
     baseDecayRate: 0.0083
   - type: Thirst
@@ -40,13 +40,13 @@
     sprite: _FarHorizons/Mobs/Species/Proto-Dionae/parts.rsi
     state: full
   - type: Body
-    prototype: ProtoDiona
+    prototype: NeoDiona
     requiredLegs: 2
   - type: BodyEmotes
     soundsId: DionaBodyEmotes
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoDiona
+    damageModifierSet: NeoDiona
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -133,7 +133,7 @@
     allowedStates:
     - Dead
   - type: Inventory
-    templateId: protodiona
+    templateId: neodiona
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -152,14 +152,14 @@
       250: Dead
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
   id: AppearanceProtoDiona
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoDiona
+    species: NeoDiona
   - type: Inventory
-    templateId: protodiona
+    templateId: neodiona
     femaleDisplacements:
       jumpsuit:
         sizeMaps:

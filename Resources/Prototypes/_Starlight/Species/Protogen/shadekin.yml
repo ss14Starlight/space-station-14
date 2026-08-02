@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoKin
+  id: NeoKin
   name: subspecies-name-protokin
   roundStart: true
   prototype: MobNeoKin
@@ -10,7 +10,7 @@
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
+  subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protokin
   maleFirstNames: names_shadekin
   femaleFirstNames: names_shadekin
@@ -19,7 +19,7 @@
   maxAge: 300
   youngAge: 100
   oldAge: 200
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
 
 - type: speciesBaseSprites
   id: MobNeoKinSprites

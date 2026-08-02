@@ -31,9 +31,9 @@
         Asphyxiation: -1.0
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoDwarf
+    damageModifierSet: NeoDwarf
   - type: Body
-    prototype: ProtoDwarf
+    prototype: NeoDwarf
     requiredLegs: 2
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
@@ -51,12 +51,12 @@
   - type: ReplacementAccent
     accent: dwarf
   - type: HumanoidAppearance
-    species: ProtoDwarf
+    species: NeoDwarf
     hideLayersOnEquip:
     - Hair
     - Snout
   - type: Inventory
-    templateId: protogen
+    templateId: neocyte
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -71,19 +71,19 @@
     - AnomalyHost
     - NotLabelable
     - SiliconEmotesFH
-    - Protogen
+    - Neocyte
     - Dwarf
-    - ProtoDwarf
+    - NeoDwarf
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
   id: AppearanceProtoDwarf
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoDwarf
+    species: NeoDwarf
   - type: Inventory
-    templateId: protogen
+    templateId: neocyte
     femaleDisplacements:
       jumpsuit:
         sizeMaps:

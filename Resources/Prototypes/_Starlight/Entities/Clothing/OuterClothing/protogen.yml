@@ -2,7 +2,7 @@
 #### Proto-Armor ####
 - type: entity
   parent: ClothingOuterBaseMedium
-  id: ClothingOuterArmorProtogenBase
+  id: ClothingOuterArmorNeocyteBase
   abstract: true
   components:
   - type: Sprite
@@ -18,15 +18,15 @@
     size: Huge
   - type: Tag
     tags:
-    - ProtogenCybernetics
+    - NeocyteCybernetics
     - SurgeryCompatibleArmor
 
 
 # Light Frames
 - type: entity
-  parent: ClothingOuterArmorProtogenBase
-  id: ClothingOuterArmorProtogenLightBasic
-  name: Basic-Class light protogen frame
+  parent: ClothingOuterArmorNeocyteBase
+  id: ClothingOuterArmorNeocyteLightBasic
+  name: Basic-Class light neocyte frame
   description: Comes in-built with light armor plating to shield the cybernetics within. Removal of this would require killing you.
   components:
   - type: Sprite
@@ -41,9 +41,9 @@
     damageCoefficient: 0.95
 
 - type: entity
-  parent: ClothingOuterArmorProtogenBase
-  id: ClothingOuterArmorProtogenLightSpeed
-  name: Hermes-Class light protogen frame
+  parent: ClothingOuterArmorNeocyteBase
+  id: ClothingOuterArmorNeocyteLightSpeed
+  name: Hermes-Class light neocyte frame
   description: Augments your body's agility, at the cost of being incredibly susceptible to sharp objects. Removal of this would require killing you.
   components:
   - type: Sprite
@@ -60,24 +60,24 @@
 # No explosion resist. This armor is entirely for increasing your speed.
 
 - type: entity
-  parent: ClothingOuterArmorProtogenLightBasic
-  id: ClothingOuterArmorProtogenLightBasicUnremovable
+  parent: ClothingOuterArmorNeocyteLightBasic
+  id: ClothingOuterArmorNeocyteLightBasicUnremovable
   suffix: Unremovable
   components:
   - type: Unremoveable
 
 - type: entity
-  parent: ClothingOuterArmorProtogenLightSpeed
-  id: ClothingOuterArmorProtogenLightSpeedUnremovable
+  parent: ClothingOuterArmorNeocyteLightSpeed
+  id: ClothingOuterArmorNeocyteLightSpeedUnremovable
   suffix: Unremovable
   components:
   - type: Unremoveable
 
 # Medium Frames
 - type: entity
-  parent: ClothingOuterArmorProtogenBase
-  id: ClothingOuterArmorProtogenMediumBasic
-  name: Basic-Class medium protogen frame
+  parent: ClothingOuterArmorNeocyteBase
+  id: ClothingOuterArmorNeocyteMediumBasic
+  name: Basic-Class medium neocyte frame
   description: Comes in-built with moderate armor plating to shield the cybernetics within and protect the user. Removal of this would require killing you.
   components:
   - type: Sprite
@@ -94,9 +94,9 @@
     sprintModifier: 0.95 # Not really a good tradeoff, but it's still not weightless...
 
 - type: entity
-  parent: ClothingOuterArmorProtogenBase
-  id: ClothingOuterArmorProtogenMediumMagic
-  name: Hecate-Class medium protogen frame
+  parent: ClothingOuterArmorNeocyteBase
+  id: ClothingOuterArmorNeocyteMediumMagic
+  name: Hecate-Class medium neocyte frame
   description: Its self-cleansing module grants resistance to biological hazards. Removal of this would require killing you.
   components:
   - type: Sprite
@@ -123,24 +123,24 @@
     sprintModifier: 0.90 # Not too slow, and you get some niche resistances.
 
 - type: entity
-  parent: ClothingOuterArmorProtogenMediumBasic
-  id: ClothingOuterArmorProtogenMediumBasicUnremovable
+  parent: ClothingOuterArmorNeocyteMediumBasic
+  id: ClothingOuterArmorNeocyteMediumBasicUnremovable
   suffix: Unremovable
   components:
   - type: Unremoveable
 
 - type: entity
-  parent: ClothingOuterArmorProtogenMediumMagic
-  id: ClothingOuterArmorProtogenMediumMagicUnremovable
+  parent: ClothingOuterArmorNeocyteMediumMagic
+  id: ClothingOuterArmorNeocyteMediumMagicUnremovable
   suffix: Unremovable
   components:
   - type: Unremoveable
 
 # Heavy Frames
 - type: entity
-  parent: ClothingOuterArmorProtogenBase
-  id: ClothingOuterArmorProtogenHeavyBasic
-  name: Basic-Class heavy protogen frame
+  parent: ClothingOuterArmorNeocyteBase
+  id: ClothingOuterArmorNeocyteHeavyBasic
+  name: Basic-Class heavy neocyte frame
   description: Comes in-built with heavy armor plating for active combat scenarios. Very heavy. Removal of this would require killing you.
   components:
   - type: Sprite
@@ -159,9 +159,9 @@
     damageCoefficient: 0.75
 
 - type: entity
-  parent: [ClothingOuterArmorProtogenBase, AllowSuitStorageClothing]
-  id: ClothingOuterArmorProtogenHeavySpace
-  name: Nyx-Class heavy protogen frame
+  parent: [ClothingOuterArmorNeocyteBase, AllowSuitStorageClothing]
+  id: ClothingOuterArmorNeocyteHeavySpace
+  name: Nyx-Class heavy neocyte frame
   description: Comes in-built with heavy insulation for spacefaring. A bit weighty. Removal of this would require killing you.
   components:
   - type: Sprite
@@ -185,29 +185,29 @@
     damageCoefficient: 0.75
   - type: Tag
     tags:
-    - ProtogenCybernetics
+    - NeocyteCybernetics
     - SurgeryCompatibleArmor
     - SuitEVA
 
 - type: entity
-  parent: ClothingOuterArmorProtogenHeavyBasic
-  id: ClothingOuterArmorProtogenHeavyBasicUnremovable
+  parent: ClothingOuterArmorNeocyteHeavyBasic
+  id: ClothingOuterArmorNeocyteHeavyBasicUnremovable
   suffix: Unremovable
   components:
   - type: Unremoveable
 
 - type: entity
-  parent: ClothingOuterArmorProtogenHeavySpace
-  id: ClothingOuterArmorProtogenHeavySpaceUnremovable
+  parent: ClothingOuterArmorNeocyteHeavySpace
+  id: ClothingOuterArmorNeocyteHeavySpaceUnremovable
   suffix: Unremovable
   components:
   - type: Unremoveable
 
 # Changeling Disguise
 - type: entity
-  parent: ClothingOuterArmorProtogenBase
-  id: ChangelingClothingProtogenArmor
-  name: Basic-Class light protogen frame
+  parent: ClothingOuterArmorNeocyteBase
+  id: ChangelingClothingNeocyteArmor
+  name: Basic-Class light neocyte frame
   description: Comes in-built with light armor plating to shield the cybernetics within. Removal of this would require killing you.
   suffix: Changeling
   components:

@@ -15,7 +15,7 @@
     - Machine
     - Draconic
   - type: HumanoidAppearance
-    species: ProtoReptilian
+    species: NeoReptilian
     hideLayersOnEquip:
     - Snout
     - HeadTop
@@ -28,7 +28,7 @@
     sprite: _FarHorizons/Mobs/Species/Proto-Reptile/parts.rsi
     state: full
   - type: Body
-    prototype: ProtoReptilian
+    prototype: NeoReptilian
     requiredLegs: 2
   - type: Speech
     speechVerb: Robotic
@@ -44,7 +44,7 @@
   - type: LizardAccent
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoReptilian
+    damageModifierSet: NeoReptilian
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -78,7 +78,7 @@
       Unsexed: ProtoReptilianMSounds
   - type: Inventory
     speciesId: reptilian
-    templateId: protogen
+    templateId: neocyte
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -108,16 +108,16 @@
             state: mask
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
   id: AppearanceProtoReptilian
   categories: [ HideSpawnMenu ]
   description: A dummy proto-reptile meant to be used in character setup.
   components:
   - type: HumanoidAppearance
-    species: ProtoReptilian
+    species: NeoReptilian
   - type: Inventory
     speciesId: reptilian
-    templateId: protogen
+    templateId: neocyte
     femaleDisplacements:
       jumpsuit:
         sizeMaps:

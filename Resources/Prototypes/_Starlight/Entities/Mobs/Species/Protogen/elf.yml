@@ -30,14 +30,14 @@
         Blunt: 5
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoElf
+    damageModifierSet: NeoElf
   - type: HumanoidAppearance
-    species: ProtoElf
+    species: NeoElf
     hideLayersOnEquip:
     - Hair
     - Snout
   - type: Inventory
-    templateId: protogen
+    templateId: neocyte
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -54,19 +54,19 @@
     - SiliconEmotesFH
     - NotLabelable
     - Elf
-    - ProtoElf
-    - Protogen
+    - NeoElf
+    - Neocyte
 
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
   id: AppearanceProtoElf
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoElf
+    species: NeoElf
   - type: Inventory
-    templateId: protogen
+    templateId: neocyte
     femaleDisplacements:
       jumpsuit:
         sizeMaps:

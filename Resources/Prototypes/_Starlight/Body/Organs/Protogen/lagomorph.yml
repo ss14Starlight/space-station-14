@@ -1,6 +1,6 @@
 - type: entity
   id: OrganProtoLagomorphStomach
-  parent: OrganProtogenStomach
+  parent: OrganNeocyteStomach
   name: lagomorph biological reactor
   suffix: Proto-Lagomorph
   components:
@@ -14,14 +14,14 @@
 
 - type: entity
   id: OrganProtoLagomorphHeart
-  parent: OrganProtogenHeart
+  parent: OrganNeocyteHeart
   name: lagomorph cybernetic heart
   suffix: Proto-Lagomorph
   components:
   - type: Metabolizer
     updateInterval: 0.75
     maxReagents: 2
-    metabolizerTypes: [ Protogen ]
+    metabolizerTypes: [ Neocyte ]
     groups:
     - id: Medicine
     - id: Poison

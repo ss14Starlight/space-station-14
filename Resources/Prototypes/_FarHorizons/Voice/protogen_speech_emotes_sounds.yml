@@ -44,15 +44,15 @@
     Trill:
       collection: ProtoFelionoidTrill
     Bark:
-      collection: ProtoVulpBark
+      collection: NeoVulpkaninBark
     Yip:
-      collection: ProtoVulpYip
+      collection: NeoVulpkaninYip
     Whine:
       collection: Whine
     Growl:
-      collection: ProtoVulpGrowl
+      collection: NeoVulpkaninGrowl
     Howl:
-      collection: ProtoVulpHowl
+      collection: NeoVulpkaninHowl
     Liss:
       collection: ProtoReptilianHiss
     Lurr:
@@ -94,7 +94,7 @@
     Wurble:
       collection: ProtoShadekinWurble
     Snarl:
-      collection: ProtoVulpSnarls
+      collection: NeoVulpkaninSnarls
     ThavenGlub: # Starlight start
       collection: ThavenGlub
     ThavenHum:
@@ -118,7 +118,7 @@
     variation: 0.125
   sounds:
     Snarl:
-      collection: ProtoVulpSnarls
+      collection: NeoVulpkaninSnarls
     Marr:
       collection: ProtoShadekinMarr
     Wurble:
@@ -174,15 +174,15 @@
     Trill:
       collection: ProtoFelionoidTrill
     Bark:
-      collection: ProtoVulpBark
+      collection: NeoVulpkaninBark
     Yip:
-      collection: ProtoVulpYip
+      collection: NeoVulpkaninYip
     Whine:
       collection: Whine # Starlight
     Growl:
-      collection: ProtoVulpGrowl
+      collection: NeoVulpkaninGrowl
     Howl:
-      collection: ProtoVulpHowl
+      collection: NeoVulpkaninHowl
     Liss:
       collection: ProtoReptilianHiss
     Lurr:
@@ -274,25 +274,25 @@
 
 - type: emoteSounds
   parent: ProtoHumanMSounds
-  id: ProtoVulpMSounds
+  id: NeoVulpkaninMSounds
   sounds:
     Sneeze:
-      collection: ProtoVulpSneeze
+      collection: NeoVulpkaninSneeze
     Yawn:
-      collection: ProtoVulpYawns
+      collection: NeoVulpkaninYawns
     Scream:
-      collection: ProtoVulpScreams
+      collection: NeoVulpkaninScreams
 
 - type: emoteSounds
   parent: ProtoHumanFSounds
-  id: ProtoVulpFSounds
+  id: NeoVulpkaninFSounds
   sounds:
     Sneeze:
-      collection: ProtoVulpSneeze
+      collection: NeoVulpkaninSneeze
     Yawn:
-      collection: ProtoVulpYawns
+      collection: NeoVulpkaninYawns
     Scream:
-      collection: ProtoVulpScreams
+      collection: NeoVulpkaninScreams
 
 - type: emoteSounds
   parent: ProtoHumanMSounds
@@ -314,41 +314,41 @@
 
 - type: emoteSounds
   parent: ProtoHumanMSounds
-  id: ProtoVoxMSounds
+  id: NeoVoxMSounds
   sounds:
     Scream:
-      collection: ProtoVoxScreams
+      collection: NeoVoxScreams
     Laugh:
-      collection: ProtoVoxLaugh
+      collection: NeoVoxLaugh
     Crying:
-      collection: ProtoVoxCry
+      collection: NeoVoxCry
     Sigh:
-      collection: ProtoVoxSigh
+      collection: NeoVoxSigh
     Sneeze:
-      collection: ProtoVoxSneezes
+      collection: NeoVoxSneezes
     Cough:
-      collection: ProtoVoxCoughs
+      collection: NeoVoxCoughs
     Chitter:
-      collection: ProtoVoxChitter
+      collection: NeoVoxChitter
 
 - type: emoteSounds
   parent: ProtoHumanFSounds
-  id: ProtoVoxFSounds
+  id: NeoVoxFSounds
   sounds:
     Scream:
-      collection: ProtoVoxScreams
+      collection: NeoVoxScreams
     Laugh:
-      collection: ProtoVoxLaugh
+      collection: NeoVoxLaugh
     Crying:
-      collection: ProtoVoxCry
+      collection: NeoVoxCry
     Sigh:
-      collection: ProtoVoxSigh
+      collection: NeoVoxSigh
     Sneeze:
-      collection: ProtoVoxSneezes
+      collection: NeoVoxSneezes
     Cough:
-      collection: ProtoVoxCoughs
+      collection: NeoVoxCoughs
     Chitter:
-      collection: ProtoVoxChitter
+      collection: NeoVoxChitter
 
 - type: emoteSounds
   parent: ProtoHumanMSounds

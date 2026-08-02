@@ -31,10 +31,10 @@
     drawdepth: Mobs
     scale: 1, 1.05
   - type: Body
-    prototype: ProtoThaven
+    prototype: NeoThaven
     requiredLegs: 2
   - type: HumanoidAppearance
-    species: ProtoThaven
+    species: NeoThaven
     hideLayersOnEquip:
     - Hair
   - type: MeleeWeapon
@@ -67,9 +67,9 @@
         - MobLayer
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoThaven
+    damageModifierSet: NeoThaven
   - type: Inventory
-    templateId: protogen
+    templateId: neocyte
     displacements:
       jumpsuit:
         sizeMaps:
@@ -114,16 +114,16 @@
 
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
-  id: AppearanceProtoThaven
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
+  id: AppearanceNeoThaven
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoThaven
+    species: NeoThaven
   - type: Sprite
     scale: 1, 1
   - type: Inventory
-    templateId: protogen
+    templateId: neocyte
     displacements:
       jumpsuit:
         sizeMaps:

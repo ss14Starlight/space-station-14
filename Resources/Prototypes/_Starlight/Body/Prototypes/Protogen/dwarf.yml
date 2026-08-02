@@ -1,5 +1,5 @@
 - type: body
-  id: ProtoDwarf # Starlight, name changed
+  id: NeoDwarf # Starlight, name changed
   name: proto-dwarf # Starlight, quotation marks removed, name changed
   root: torso
   slots:
@@ -8,9 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongue
+        brain: OrganNeocyteBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
@@ -22,10 +22,10 @@
       - left leg
       organs:
         heart: OrganProtoDwarfHeart
-        lungs: OrganProtogenLungs
+        lungs: OrganNeocyteLungs
         stomach: OrganProtoDwarfStomach
         liver: OrganProtoDwarfLiver
-        kidneys: OrganProtogenKidneys
+        kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
       part: RightArmHuman

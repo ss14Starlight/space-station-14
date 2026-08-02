@@ -32,14 +32,14 @@
         Blunt: 5
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoHuman
+    damageModifierSet: NeoHuman
   - type: HumanoidAppearance
-    species: ProtoHuman
+    species: NeoHuman
     hideLayersOnEquip:
     - Hair
     - Snout
   - type: Inventory
-    templateId: protogen
+    templateId: neocyte
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -50,14 +50,14 @@
 
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
   id: AppearanceProtoHuman
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoHuman
+    species: NeoHuman
   - type: Inventory
-    templateId: protogen
+    templateId: neocyte
     femaleDisplacements:
       jumpsuit:
         sizeMaps:

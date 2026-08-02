@@ -693,7 +693,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Vampire, Rodentia, Protogen ] # SL - add Vampire, Rodentia / FH - add Protogen
+          type: [ Animal, Vox, Vampire, Rodentia, Neocyte ] # SL - add Vampire, Rodentia / FH - add Neocyte
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -703,12 +703,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Rodentia, Protogen ] # Starlight - add Vampire, Rodentia / FH - add Protogen
+          type: [ Animal, Vox, Plant, Vampire, Rodentia, Neocyte ] # Starlight - add Vampire, Rodentia / FH - add Neocyte
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Rodentia, Protogen ] # Starlight - add Vampire, Rodentia / FH - add Protogen
+          type: [ Animal, Vox, Plant, Vampire, Rodentia, Neocyte ] # Starlight - add Vampire, Rodentia / FH - add Neocyte
           inverted: true
         damage:
           types:
@@ -741,7 +741,7 @@
       - !type:AdjustReagent #FH
         conditions: #FH
         - !type:MetabolizerTypeCondition #FH
-          type: [ Protogen ] #FH
+          type: [ Neocyte ] #FH
         reagent: Protein #FH
         amount: 0.5 #FH
       # Starlight-Start: Cyclorite Metabolism

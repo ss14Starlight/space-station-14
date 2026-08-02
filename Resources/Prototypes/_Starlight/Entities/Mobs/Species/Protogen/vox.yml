@@ -17,7 +17,7 @@
     sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
     state: full
   - type: Body
-    prototype: ProtoVox
+    prototype: NeoVox
     requiredLegs: 2
   - type: Butcherable
     butcheringType: Spike
@@ -26,7 +26,7 @@
       amount: 5
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoVox
+    damageModifierSet: NeoVox
   - type: Destructible
     thresholds:
     - trigger:
@@ -147,7 +147,7 @@
       state: "creampie_vox" # Not default
       visible: false
   - type: HumanoidAppearance
-    species: ProtoVox
+    species: NeoVox
     hideLayersOnEquip:
     - Hair
     markingsDisplacement:
@@ -158,7 +158,7 @@
             state: hair
   - type: Inventory
     speciesId: vox #to be replaced with proto[species] when new sprites are made
-    templateId: protogen
+    templateId: neocyte
     displacements:
       jumpsuit:
         sizeMaps:
@@ -213,17 +213,17 @@
           state: hand_r
   - type: Vocal
     sounds:
-      Male: ProtoVoxMSounds
-      Female: ProtoVoxFSounds
-      Unsexed: ProtoVoxMSounds
+      Male: NeoVoxMSounds
+      Female: NeoVoxFSounds
+      Unsexed: NeoVoxMSounds
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: AppearanceProtoVox
+  id: AppearanceNeoVox
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoVox #to be replaced with proto[species] when new sprites are made
+    species: NeoVox #to be replaced with proto[species] when new sprites are made
     markingsDisplacement:
       Hair:
         sizeMaps:
@@ -281,10 +281,10 @@
       state: "creampie_vox" # Not default
       visible: false
   - type: Body
-    prototype: ProtoVox
+    prototype: NeoVox
   - type: Inventory
     speciesId: vox
-    templateId: protogen
+    templateId: neocyte
     displacements:
       jumpsuit:
         sizeMaps:

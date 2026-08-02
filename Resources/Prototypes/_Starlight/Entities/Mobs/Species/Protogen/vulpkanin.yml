@@ -54,12 +54,12 @@
     state: full
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoVulp
+    damageModifierSet: NeoVulpkanin
   - type: Body
-    prototype: ProtoVulp
+    prototype: NeoVulpkanin
     requiredLegs: 2
   - type: HumanoidAppearance
-    species: ProtoVulp
+    species: NeoVulpkanin
     hideLayersOnEquip:
     - Snout
     - SnoutCover
@@ -116,9 +116,9 @@
     maxZoom: "1.125, 1.125"
   - type: Vocal
     sounds:
-      Male: ProtoVulpMSounds
-      Female: ProtoVulpFSounds
-      Unsexed: ProtoVulpMSounds
+      Male: NeoVulpkaninMSounds
+      Female: NeoVulpkaninFSounds
+      Unsexed: NeoVulpkaninMSounds
   - type: MeleeWeapon # Starlight start
     soundHit:
       path: /Audio/Weapons/pierce.ogg
@@ -181,12 +181,12 @@
       visible: false
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
-  id: AppearanceProtoVulp
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
+  id: AppearanceNeoVulpkanin
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoVulp
+    species: NeoVulpkanin
     hideLayersOnEquip:
     - Snout
     - SnoutCover

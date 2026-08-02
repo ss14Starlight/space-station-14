@@ -1,5 +1,5 @@
 - type: body
-  id: ProtoMoth
+  id: NeoMoth
   name: proto-moth # Starlight, quotation marks removed
   root: torso
   slots:
@@ -8,9 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongue
+        brain: OrganNeocyteBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
@@ -21,11 +21,11 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtogenHeart
-        lungs: OrganProtogenLungs
+        heart: OrganNeocyteHeart
+        lungs: OrganNeocyteLungs
         stomach: OrganProtoMothStomach # Can eat everything.
-        liver: OrganProtogenLiver
-        kidneys: OrganProtogenKidneys
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
       part: RightArmMoth

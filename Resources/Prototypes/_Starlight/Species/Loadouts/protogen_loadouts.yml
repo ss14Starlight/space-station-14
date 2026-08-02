@@ -1,173 +1,173 @@
 - type: roleLoadout
-  id: ProtogenLoadout
+  id: NeocyteLoadout
   groups:
-  - ProtogenCybernetics
+  - NeocyteCybernetics
 
 - type: loadoutGroup
-  id: ProtogenCybernetics
-  name: loadout-group-protogen-cybernetics
+  id: NeocyteCybernetics
+  name: loadout-group-neocyte-cybernetics
   minLimit: 1
   defaultSelected: 1
   loadouts:
-  - ProtogenArmorLightBasic
-  - ProtogenArmorLightSpeed
-  - ProtogenArmorMediumBasic
-  - ProtogenArmorMediumMagic
-  - ProtogenArmorHeavyBasic
-  - ProtogenArmorHeavySpace
+  - NeocyteArmorLightBasic
+  - NeocyteArmorLightSpeed
+  - NeocyteArmorMediumBasic
+  - NeocyteArmorMediumMagic
+  - NeocyteArmorHeavyBasic
+  - NeocyteArmorHeavySpace
 
 - type: loadout
-  id: ProtogenArmorLightBasic
+  id: NeocyteArmorLightBasic
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenLightBasicUnremovable
+    outerClothing2: ClothingOuterArmorNeocyteLightBasicUnremovable
   effects:
   - !type:SpeciesLoadoutEffect
     species:
-    - Protogen
-    - ProtoElf
-    - ProtoArachnid
-    - ProtoAvali
-    - ProtoCyclorite
-    - ProtoDiona
-    - ProtoDwarf
-    - ProtoFelionoid
-    - ProtoHuman
-    - ProtoKin
-    - ProtoLagomorph
-    - ProtoSlimePerson
-    - ProtoThaven
-    - ProtoMoth
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
 
 - type: loadout
-  id: ProtogenArmorLightSpeed
+  id: NeocyteArmorLightSpeed
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenLightSpeedUnremovable
+    outerClothing2: ClothingOuterArmorNeocyteLightSpeedUnremovable
   effects:
   - !type:SpeciesLoadoutEffect
     species:
-    - Protogen
-    - ProtoElf
-    - ProtoArachnid
-    - ProtoAvali
-    - ProtoCyclorite
-    - ProtoDiona
-    - ProtoDwarf
-    - ProtoFelionoid
-    - ProtoHuman
-    - ProtoKin
-    - ProtoLagomorph
-    - ProtoSlimePerson
-    - ProtoThaven
-    - ProtoMoth
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
 
 - type: loadout
-  id: ProtogenArmorMediumBasic
+  id: NeocyteArmorMediumBasic
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenMediumBasicUnremovable
+    outerClothing2: ClothingOuterArmorNeocyteMediumBasicUnremovable
   effects:
   - !type:SpeciesLoadoutEffect
     species:
-    - Protogen
-    - ProtoElf
-    - ProtoArachnid
-    - ProtoAvali
-    - ProtoCyclorite
-    - ProtoDiona
-    - ProtoDwarf
-    - ProtoFelionoid
-    - ProtoHuman
-    - ProtoKin
-    - ProtoLagomorph
-    - ProtoSlimePerson
-    - ProtoThaven
-    - ProtoMoth
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
 
 - type: loadout
-  id: ProtogenArmorMediumMagic
+  id: NeocyteArmorMediumMagic
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenMediumMagicUnremovable
+    outerClothing2: ClothingOuterArmorNeocyteMediumMagicUnremovable
   effects:
   - !type:SpeciesLoadoutEffect
     species:
-    - Protogen
-    - ProtoElf
-    - ProtoArachnid
-    - ProtoAvali
-    - ProtoCyclorite
-    - ProtoDiona
-    - ProtoDwarf
-    - ProtoFelionoid
-    - ProtoHuman
-    - ProtoKin
-    - ProtoLagomorph
-    - ProtoSlimePerson
-    - ProtoThaven
-    - ProtoMoth
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
 
 - type: loadout
-  id: ProtogenArmorHeavyBasic
+  id: NeocyteArmorHeavyBasic
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenHeavyBasicUnremovable
+    outerClothing2: ClothingOuterArmorNeocyteHeavyBasicUnremovable
   effects:
   - !type:SpeciesLoadoutEffect
     species:
-    - Protogen
-    - ProtoElf
-    - ProtoArachnid
-    - ProtoAvali
-    - ProtoCyclorite
-    - ProtoDiona
-    - ProtoDwarf
-    - ProtoFelionoid
-    - ProtoHuman
-    - ProtoKin
-    - ProtoLagomorph
-    - ProtoSlimePerson
-    - ProtoThaven
-    - ProtoMoth
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
 
 - type: loadout
-  id: ProtogenArmorHeavySpace
+  id: NeocyteArmorHeavySpace
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenHeavySpaceUnremovable
+    outerClothing2: ClothingOuterArmorNeocyteHeavySpaceUnremovable
   effects:
   - !type:SpeciesLoadoutEffect
     species:
-    - Protogen
-    - ProtoElf
-    - ProtoArachnid
-    - ProtoAvali
-    - ProtoCyclorite
-    - ProtoDiona
-    - ProtoDwarf
-    - ProtoFelionoid
-    - ProtoHuman
-    - ProtoKin
-    - ProtoLagomorph
-    - ProtoSlimePerson
-    - ProtoThaven
-    - ProtoMoth
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin

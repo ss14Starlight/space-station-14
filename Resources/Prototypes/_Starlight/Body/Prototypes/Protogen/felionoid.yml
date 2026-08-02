@@ -1,5 +1,5 @@
 - type: body
-  id: ProtoFelionoid # Starlight, name changed
+  id: NeoFelionoid # Starlight, name changed
   name: proto-felionoid # Starlight, quotation marks removed, name changed
   root: torso
   slots:
@@ -8,9 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongue
+        brain: OrganNeocyteBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
@@ -21,11 +21,11 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtogenHeart
-        lungs: OrganProtogenLungs
-        stomach: OrganProtogenStomach
-        liver: OrganProtogenLiver
-        kidneys: OrganProtogenKidneys
+        heart: OrganNeocyteHeart
+        lungs: OrganNeocyteLungs
+        stomach: OrganNeocyteStomach
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
       part: RightArmFelionoid

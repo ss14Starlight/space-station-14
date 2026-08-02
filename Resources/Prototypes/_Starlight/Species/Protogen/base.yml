@@ -1,18 +1,18 @@
 - type: species
-  id: Protogen
-  name: species-name-protogen
+  id: Neocyte
+  name: species-name-neocyte
   roundStart: true
   prototype: MobNeocyte
   sprites: MobNeocyteSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobNeocyteMarkingLimits
-  dollPrototype: AppearanceProtogen
+  dollPrototype: AppearanceNeocyte
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
   hasSubspecies: true # This is the "parent" species that will be displayed in species list as well as subspecies list
-  subspeciesName: subspecies-name-trueprotogen # This name is dispayed when you're picking subspecies
-  loadout: ProtogenLoadout
+  subspeciesName: subspecies-name-trueneocyte # This name is dispayed when you're picking subspecies
+  loadout: NeocyteLoadout
 
 - type: speciesBaseSprites
   id: MobNeocyteSprites
@@ -46,19 +46,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenVisor ]
+      defaultMarkings: [ NeocyteVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLEDFace ]
+      defaultMarkings: [ NeocyteLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor ]
+      defaultMarkings: [ NeocyteMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLights ]
+      defaultMarkings: [ NeocyteLights ]
     Hair:
       points: 1
       required: false
@@ -71,11 +71,11 @@
     Tail:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenTail ]
+      defaultMarkings: [ NeocyteTail ]
     HeadTop:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenEars ]
+      defaultMarkings: [ NeocyteEars ]
     Head:
       points: 2
       required: false

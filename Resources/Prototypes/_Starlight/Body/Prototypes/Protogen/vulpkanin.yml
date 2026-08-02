@@ -1,5 +1,5 @@
 - type: body
-  id: ProtoVulp
+  id: NeoVulpkanin
   name: proto-vulp # Starlight, quotation marks removed
   root: torso
   slots:
@@ -8,9 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongue
+        brain: OrganNeocyteBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
@@ -21,11 +21,11 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtogenHeart
-        lungs: OrganProtogenLungs
-        stomach: OrganProtogenStomach # Dear god.. they can eat CHOCOLATE.
-        liver: OrganProtogenLiver
-        kidneys: OrganProtogenKidneys
+        heart: OrganNeocyteHeart
+        lungs: OrganNeocyteLungs
+        stomach: OrganNeocyteStomach # Dear god.. they can eat CHOCOLATE.
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
       part: RightArmNeoVulp

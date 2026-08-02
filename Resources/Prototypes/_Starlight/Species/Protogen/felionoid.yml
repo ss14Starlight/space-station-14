@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoFelionoid
+  id: NeoFelionoid
   name: subspecies-name-protofelionoid
   roundStart: true
   prototype: MobNeoFelionoid
@@ -10,9 +10,9 @@
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
+  subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protofelionoid
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
   maleFirstNames: names_felionoid_prefix
   femaleFirstNames: names_felionoid_prefix
   lastNames: names_felionoid_suffix

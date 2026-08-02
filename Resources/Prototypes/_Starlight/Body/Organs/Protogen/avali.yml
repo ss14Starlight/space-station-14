@@ -1,6 +1,6 @@
 - type: entity
   id: OrganProtoAvaliStomach
-  parent: OrganProtogenStomach
+  parent: OrganNeocyteStomach
   name: avali biological reactor
   suffix: Proto-Avali
   components:
@@ -21,13 +21,13 @@
 
 - type: entity
   id: OrganProtoAvaliHeart
-  parent: OrganProtogenHeart
+  parent: OrganNeocyteHeart
   name: avali cybernetic heart
   suffix: Proto-Avali
   components:
   - type: Metabolizer
     maxReagents: 2
-    metabolizerTypes: [Avali, Protogen]
+    metabolizerTypes: [Avali, Neocyte]
     groups:
     - id: Medicine
     - id: Poison
@@ -35,7 +35,7 @@
 
 - type: entity
   id: OrganProtoAvaliLiver
-  parent: OrganProtogenLiver
+  parent: OrganNeocyteLiver
   name: avali cybernetic liver
   suffix: Proto-Avali
   components:

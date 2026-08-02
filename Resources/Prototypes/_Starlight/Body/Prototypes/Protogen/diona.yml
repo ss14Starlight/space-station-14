@@ -1,5 +1,5 @@
 - type: body
-  id: ProtoDiona # Starlight, name changed
+  id: NeoDiona # Starlight, name changed
   name: proto-diona # Starlight, quotation marks removed, name changed
   root: torso
   slots:
@@ -9,8 +9,8 @@
       - torso
       organs:
         brain: OrganDionaBrainNymph
-        eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongue
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:

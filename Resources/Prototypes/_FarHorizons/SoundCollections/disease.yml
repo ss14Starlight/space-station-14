@@ -9,7 +9,7 @@
     - /Audio/_FarHorizons/Voice/Proto/Human/female_sneeze_1.ogg
 
 - type: soundCollection
-  id: ProtoVoxSneezes
+  id: NeoVoxSneezes
   files:
     - /Audio/_FarHorizons/Voice/Proto/Vox/vox_sneeze.ogg
 
@@ -42,7 +42,7 @@
   - /Audio/_FarHorizons/Voice/Proto/Moth/moth_cough.ogg
 
 - type: soundCollection
-  id: ProtoVoxCoughs
+  id: NeoVoxCoughs
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vox/vox_cough.ogg
 
@@ -79,18 +79,18 @@
   - /Audio/_FarHorizons/Voice/Proto/Human/snore3.ogg
 
 - type: soundCollection
-  id: ProtoVulpYawns
+  id: NeoVulpkaninYawns
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_yawn1.ogg
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_yawn2.ogg
 
 - type: soundCollection
-  id: ProtoVoxSneeze
+  id: NeoVoxSneeze
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vox/vox_sneeze.ogg
 
 - type: soundCollection
-  id: ProtoVulpSneeze
+  id: NeoVulpkaninSneeze
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_sneeze.ogg
 

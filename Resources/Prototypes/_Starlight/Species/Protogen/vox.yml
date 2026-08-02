@@ -1,23 +1,23 @@
 - type: species
-  id: ProtoVox
-  name: subspecies-name-protovox
+  id: NeoVox
+  name: subspecies-name-neovox
   roundStart: true
   prototype: MobNeoVox
   sprites: MobNeoVoxSprites
   defaultSkinTone: "#6c741d"
   markingLimits: MobNeoVoxMarkingLimits
-  dollPrototype: AppearanceProtoVox
+  dollPrototype: AppearanceNeoVox
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
-  subspeciesName: subspecies-name-protovox
+  subspeciesOf: Neocyte
+  subspeciesName: subspecies-name-neovox
   sexes:
   - Unsexed
   maleFirstNames: NamesVox
   femaleFirstNames: NamesVox
   naming: First
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
 
 - type: speciesBaseSprites
   id: MobNeoVoxSprites
@@ -51,19 +51,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoVoxVisor ]
+      defaultMarkings: [ NeoVoxVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoVoxLEDFace ]
+      defaultMarkings: [ NeoVoxLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoVoxMediumArmor ]
+      defaultMarkings: [ NeoVoxMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoVoxLights ]
+      defaultMarkings: [ NeoVoxLights ]
     Hair:
       points: 1
       required: false

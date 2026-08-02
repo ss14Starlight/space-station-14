@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoHuman
+  id: NeoHuman
   name: subspecies-name-protohuman
   roundStart: true
   prototype: MobNeoHuman
@@ -10,9 +10,9 @@
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
+  subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protohuman
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
 
 - type: speciesBaseSprites
   id: MobNeoHumanSprites
@@ -46,19 +46,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenVisorRound ]
+      defaultMarkings: [ NeocyteVisorRound ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLEDFaceRound ]
+      defaultMarkings: [ NeocyteLEDFaceRound ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor ]
+      defaultMarkings: [ NeocyteMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLights ]
+      defaultMarkings: [ NeocyteLights ]
     Hair:
       points: 1
       required: false

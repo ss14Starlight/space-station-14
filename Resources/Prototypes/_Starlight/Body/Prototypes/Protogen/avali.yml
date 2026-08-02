@@ -1,5 +1,5 @@
 - type: body
-  id: ProtoAvali
+  id: NeoAvali
   name: proto-avali # Starlight, quotation marks removed
   root: torso
   slots:
@@ -8,9 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongueForked
+        brain: OrganNeocyteBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongueForked
         eye_implant: null
         brain_implant: BrainImplantNexus
     torso:
@@ -22,10 +22,10 @@
       - left leg
       organs:
         heart: OrganProtoAvaliHeart
-        lungs: OrganProtogenLungs
+        lungs: OrganNeocyteLungs
         stomach: OrganProtoAvaliStomach
         liver: OrganProtoAvaliLiver
-        kidneys: OrganProtogenKidneys
+        kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
       part: RightArmAvali

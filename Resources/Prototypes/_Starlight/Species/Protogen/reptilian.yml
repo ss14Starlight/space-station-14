@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoReptilian
+  id: NeoReptilian
   name: subspecies-name-protoreptilian
   roundStart: true
   prototype: MobNeoReptilian
@@ -10,12 +10,12 @@
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
+  subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protoreptilian
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
 
 - type: speciesBaseSprites
   id: MobNeoReptilianSprites
@@ -49,7 +49,7 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtoVulpVisor ]
+      defaultMarkings: [ NeoVulpkaninVisor ]
     FaceCoverCover:
       points: 1
       required: true
@@ -57,11 +57,11 @@
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor ]
+      defaultMarkings: [ NeocyteMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLights ]
+      defaultMarkings: [ NeocyteLights ]
     Hair:
       points: 1
       required: false

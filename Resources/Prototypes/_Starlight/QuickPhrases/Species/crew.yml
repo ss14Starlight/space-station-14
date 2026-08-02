@@ -33,94 +33,94 @@
   parent: BaseCrewSpeciesPhrase
   text: species-name-ipc
 
-# Protogens and protogen subspecies
+# Neocytes and neocyte subspecies
 
 - type: quickPhrase
-  id: SpeciesProtogenPhrase
+  id: SpeciesNeocytePhrase
   parent: BaseCrewSpeciesPhrase
-  text: species-name-protogen
+  text: species-name-neocyte
 
 - type: quickPhrase
-  id: SpeciesTrueProtogenPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-trueprotogen
+  id: SpeciesTrueNeocytePhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-trueneocyte
 
 - type: quickPhrase
   id: SpeciesProtohumanPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protohuman
 
 - type: quickPhrase
   id: SpeciesProtodionaPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protodiona
 
 - type: quickPhrase
   id: SpeciesProtoarachnidPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protoarachnid
 
 - type: quickPhrase
   id: SpeciesProtomothPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protomoth
 
 - type: quickPhrase
   id: SpeciesProtoreptilianPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protoreptilian
 
 - type: quickPhrase
   id: SpeciesProtoslimepersonPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protoslimeperson
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoslimeperson
 
 - type: quickPhrase
-  id: SpeciesProtovulpPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protovulp
+  id: SpeciesNeoVulpkaninPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neovulpkanin
 
 - type: quickPhrase
   id: SpeciesProtoresomiPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protoresomi
 
 - type: quickPhrase
   id: SpeciesProtoavaliPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protoavali
 
 - type: quickPhrase
-  id: SpeciesProtovoxPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protovox
+  id: SpeciesNeoVoxPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neovox
 
 - type: quickPhrase
   id: SpeciesProtolagomorphPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protolagomorph
 
 - type: quickPhrase
   id: SpeciesProtofelionoidPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protofelionoid
 
 - type: quickPhrase
   id: SpeciesProtokinPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protokin
 
 - type: quickPhrase
-  id: SpeciesProtothavenPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protothaven
+  id: SpeciesNeoThavenPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neothaven
 
 - type: quickPhrase
   id: SpeciesProtocycloritePhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protocyclorite
 
 - type: quickPhrase
   id: SpeciesProtoelfPhrase
-  parent: SpeciesProtogenPhrase
+  parent: SpeciesNeocytePhrase
   text: subspecies-name-protoelf

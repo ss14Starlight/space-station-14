@@ -22,12 +22,12 @@
     - id: FoodMeatHuman
       amount: 10
   - type: HumanoidAppearance
-    species: ProtoCyclorite
+    species: NeoCyclorite
     hideLayersOnEquip:
     - Hair
     - Snout
   - type: Body
-    prototype: ProtoCyclorite
+    prototype: NeoCyclorite
     requiredLegs: 2
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
@@ -48,7 +48,7 @@
       300: Dead # 100 extra damage required to kill
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoCyclorite
+    damageModifierSet: NeoCyclorite
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -92,7 +92,7 @@
       Unsexed: ProtoCycloriteMSounds
   - type: Inventory
     speciesId: cyclorite
-    templateId: protocyclorite
+    templateId: neocyclorite
     displacements:
       jumpsuit:
         sizeMaps:
@@ -146,17 +146,17 @@
             state: outer
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
   id: AppearanceProtoCyclorite
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoCyclorite
+    species: NeoCyclorite
   - type: Body
-    prototype: ProtoCyclorite
+    prototype: NeoCyclorite
   - type: Inventory
     speciesId: cyclorite
-    templateId: protocyclorite
+    templateId: neocyclorite
     displacements:
       jumpsuit:
         sizeMaps:

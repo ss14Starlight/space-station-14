@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoMoth
+  id: NeoMoth
   name: subspecies-name-protomoth
   roundStart: true
   prototype: MobNeoMoth
@@ -10,12 +10,12 @@
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
+  subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protomoth
   maleFirstNames: NamesMothFirstMale
   femaleFirstNames: NamesMothFirstFemale
   lastNames: NamesMothLast
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
 
 - type: speciesBaseSprites
   id: MobNeoMothSprites

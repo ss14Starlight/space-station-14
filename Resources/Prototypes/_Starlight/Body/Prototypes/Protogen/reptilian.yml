@@ -1,6 +1,6 @@
 - type: body
   name: proto-reptile # Starlight, quotation marks removed
-  id: ProtoReptilian # Starlight, ProtoReptile -> ProtoReptilian
+  id: NeoReptilian # Starlight, ProtoReptile -> NeoReptilian
   root: torso
   slots:
     head:
@@ -8,9 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongue
+        brain: OrganNeocyteBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
@@ -21,11 +21,11 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtogenHeart
-        lungs: OrganProtogenLungs
-        stomach: OrganProtogenStomach
-        liver: OrganProtogenLiver
-        kidneys: OrganProtogenKidneys
+        heart: OrganNeocyteHeart
+        lungs: OrganNeocyteLungs
+        stomach: OrganNeocyteStomach
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
       part: RightArmReptilian

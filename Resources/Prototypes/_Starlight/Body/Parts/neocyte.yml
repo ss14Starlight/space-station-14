@@ -1,7 +1,7 @@
 - type: entity
   id: PartNeocyte
   parent: [BaseItem, BasePart]
-  name: protogen body part
+  name: neocyte body part
   abstract: true
   components:
   - type: Extractable

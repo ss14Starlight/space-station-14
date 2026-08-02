@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoDwarf
+  id: NeoDwarf
   name: subspecies-name-protodwarf
   roundStart: true
   prototype: MobNeoDwarf
@@ -10,9 +10,9 @@
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
+  subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protodwarf
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
   minWidth: 1.25
   defaultWidth: 1.25
   maxWidth: 1.5
@@ -30,19 +30,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenVisor ]
+      defaultMarkings: [ NeocyteVisor ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLEDFace ]
+      defaultMarkings: [ NeocyteLEDFace ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor ]
+      defaultMarkings: [ NeocyteMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLights ]
+      defaultMarkings: [ NeocyteLights ]
     Hair:
       points: 1
       required: false

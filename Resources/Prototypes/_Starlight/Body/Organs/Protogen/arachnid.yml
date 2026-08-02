@@ -1,6 +1,6 @@
 - type: entity
   id: OrganProtoArachnidHeart
-  parent: [BaseProtogenOrgan, OrganProtogenHeart]
+  parent: [BaseNeocyteOrgan, OrganProtogenHeart]
   name: arachnid cybernetic heart
   suffix: Proto-Arachnid
   components:
@@ -12,7 +12,7 @@
   - type: Metabolizer
     updateInterval: 1.5
     maxReagents: 2
-    metabolizerTypes: [ Arachnid, Protogen ]
+    metabolizerTypes: [ Arachnid, Neocyte ]
     groups:
     - id: Medicine
     - id: Poison

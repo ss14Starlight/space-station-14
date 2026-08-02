@@ -25,13 +25,13 @@
         - FootstepSound
         - DoorBumpOpener
         - AnomalyHost
-        - Protogen
+        - Neocyte
         - Avali
-        - ProtoAvali
+        - NeoAvali
         - SiliconEmotesFH
         - NotLabelable
     - type: HumanoidAppearance
-      species: ProtoAvali
+      species: NeoAvali
       hideLayersOnEquip:
       - Tail
       - HeadTop
@@ -47,7 +47,7 @@
       sprite: _FarHorizons/Mobs/Species/Proto-Avali/parts.rsi
       state: full
     - type: Body
-      prototype: ProtoAvali
+      prototype: NeoAvali
       requiredLegs: 2
     - type: Butcherable
       butcheringType: Spike
@@ -77,7 +77,7 @@
       baseWeightlessModifier: 1
     - type: Damageable
       damageContainer: Hybrid
-      damageModifierSet: ProtoAvali
+      damageModifierSet: NeoAvali
     - type: DamageVisuals
       damageOverlayGroups:
         Brute:
@@ -111,7 +111,7 @@
       stasisDamageReduction: 0.7
     - type: Inventory
       speciesId: avali
-      templateId: protogen
+      templateId: neocyte
       displacements:
         jumpsuit:
           sizeMaps:
@@ -140,16 +140,16 @@
               state: back
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
   id: AppearanceProtoAvali
   categories: [ HideSpawnMenu ]
   description: A dummy proto-avali meant to be used in character setup.
   components:
     - type: HumanoidAppearance
-      species: ProtoAvali
+      species: NeoAvali
     - type: Inventory
       speciesId: avali
-      templateId: protogen
+      templateId: neocyte
       displacements:
         jumpsuit:
           sizeMaps:

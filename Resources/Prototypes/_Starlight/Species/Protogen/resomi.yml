@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoResomi
+  id: NeoResomi
   name: subspecies-name-protoresomi
   roundStart: true
   prototype: MobNeoResomi
@@ -10,7 +10,7 @@
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen # This is alternative version of other species. It will only be displayed in subspecies list
+  subspeciesOf: Neocyte # This is alternative version of other species. It will only be displayed in subspecies list
   subspeciesName: subspecies-name-protoresomi
   maleFirstNames: names_resomi_first
   femaleFirstNames: names_resomi_first
@@ -23,7 +23,7 @@
   standardSize: 150
   standardWeight: 40
   standardDensity: 17
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
 
 - type: speciesBaseSprites
   id: MobNeoResomiSprites

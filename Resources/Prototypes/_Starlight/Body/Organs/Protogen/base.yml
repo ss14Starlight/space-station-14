@@ -1,5 +1,5 @@
 - type: entity
-  id: BaseProtogenOrgan
+  id: BaseNeocyteOrgan
   parent: BaseItem
   abstract: true
   components:
@@ -29,20 +29,20 @@
 
 
 - type: entity
-  id: OrganProtogenBrain
-  parent: [BaseOrganBrain, BaseProtogenOrgan]
+  id: OrganNeocyteBrain
+  parent: [BaseOrganBrain, BaseNeocyteOrgan]
   name: cybernetic brain
-  suffix: Protogen
+  suffix: Neocyte
   description: The source of incredible, unending intelligence. 01201020 02102111 01201210 02121012 20121210
   components:
   - type: Sprite
     state: brain
 
 - type: entity
-  id: OrganProtogenEyes
-  parent: [BaseProtogenOrgan, BaseOrganEyes]
+  id: OrganNeocyteEyes
+  parent: [BaseNeocyteOrgan, BaseOrganEyes]
   name: cybernetic eyes
-  suffix: Protogen
+  suffix: Neocyte
   description: It's still focusing on you.. Creepy.
   components:
   - type: Sprite
@@ -66,10 +66,10 @@
         Caustic: 10
 
 - type: entity
-  id: OrganProtogenTongue
-  parent: [BaseProtogenOrgan, BaseOrganTongue]
+  id: OrganNeocyteTongue
+  parent: [BaseNeocyteOrgan, BaseOrganTongue]
   name: cybernetic tongue
-  suffix: Protogen
+  suffix: Neocyte
   description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -84,30 +84,30 @@
         Caustic: 10
 
 - type: entity
-  id: OrganProtogenTongueForked
-  parent: [BaseProtogenOrgan, BaseOrganTongue]
+  id: OrganNeocyteTongueForked
+  parent: [BaseNeocyteOrgan, BaseOrganTongue]
   name: forked cybernetic tongue
-  suffix: Protogen
+  suffix: Neocyte
   description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. Now split in two. #  Starlight, quotation marks removed
   components:
   - type: Sprite
     state: tongueforked
 
 - type: entity
-  id: OrganProtogenEars
-  parent: [BaseProtogenOrgan, BaseOrganEars]
+  id: OrganNeocyteEars
+  parent: [BaseNeocyteOrgan, BaseOrganEars]
   name: cybernetic ears
-  suffix: Protogen
+  suffix: Neocyte
   description: Process audio at a higher quality than most humanoids, allowing for greater appreciation of techno music #  Starlight, quotation marks removed
   components:
   - type: Sprite
     state: ears
 
 - type: entity
-  id: OrganProtogenLungs
-  parent: [BaseProtogenOrgan, BaseOrganLungs]
+  id: OrganNeocyteLungs
+  parent: [BaseNeocyteOrgan, BaseOrganLungs]
   name: cybernetic lungs
-  suffix: Protogen
+  suffix: Neocyte
   description: Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -122,7 +122,7 @@
     removeEmpty: true
     solutionOnBody: false
     solution: Lung
-    metabolizerTypes: [ Protogen ]
+    metabolizerTypes: [ Neocyte ]
     groups:
     - id: Gas
       rateModifier: 100.0
@@ -149,17 +149,17 @@
         Radiation: 30
 
 - type: entity
-  id: OrganProtogenHeart
-  parent: [BaseProtogenOrgan, BaseOrganHeart]
+  id: OrganNeocyteHeart
+  parent: [BaseNeocyteOrgan, BaseOrganHeart]
   name: cybernetic heart
-  suffix: Protogen
+  suffix: Neocyte
   description: Doesn't actually need to beat, simply mimics the movement to provide comfort for the user.
   components:
   - type: Sprite
     state: heart-on
   - type: Metabolizer
     maxReagents: 2
-    metabolizerTypes: [Protogen]
+    metabolizerTypes: [Neocyte]
     groups:
     - id: Medicine
     - id: Poison
@@ -177,11 +177,11 @@
         Radiation: 10
 
 - type: entity
-  id: OrganProtogenStomach
+  id: OrganNeocyteStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
   name: biological reactor
-  suffix: Protogen
-  description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
+  suffix: Neocyte
+  description: Some call it over-engineered, but it's vital to the function of a neocyte. Turns organic matter into organic and electrical energy to power the neocyte's cybernetics and flesh. #  Starlight, quotation marks removed
   components:
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
@@ -213,10 +213,10 @@
         Radiation: 10
 
 - type: entity
-  id: OrganProtogenLiver
-  parent: [BaseProtogenOrgan, BaseOrganLiver]
+  id: OrganNeocyteLiver
+  parent: [BaseNeocyteOrgan, BaseOrganLiver]
   name: cybernetic liver
-  suffix: Protogen
+  suffix: Neocyte
   description: Pairing suggestion, a side of fermented RAM sticks and a nice CPU.
   components:
   - type: Sprite
@@ -226,7 +226,7 @@
     heldPrefix: liver
   - type: Metabolizer
     maxReagents: 1
-    metabolizerTypes: [Protogen]
+    metabolizerTypes: [Neocyte]
     groups:
     - id: Alcohol
   - type: OrganDamage
@@ -239,10 +239,10 @@
         Radiation: 30
 
 - type: entity
-  id: OrganProtogenKidneys
-  parent: [BaseProtogenOrgan, BaseOrganKidneys]
+  id: OrganNeocyteKidneys
+  parent: [BaseNeocyteOrgan, BaseOrganKidneys]
   name: cybernetic kidneys
-  suffix: Protogen
+  suffix: Neocyte
   description: Pumps toxins out of the bloodstream and serves as a minor biological battery for electrical components #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -254,7 +254,7 @@
     heldPrefix: kidneys
   - type: Metabolizer
     maxReagents: 5
-    metabolizerTypes: [Protogen]
+    metabolizerTypes: [Neocyte]
     removeEmpty: true
   - type: OrganDamage
     damage:

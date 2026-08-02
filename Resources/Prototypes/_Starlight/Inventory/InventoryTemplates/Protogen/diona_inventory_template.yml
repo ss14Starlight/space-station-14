@@ -1,5 +1,5 @@
 - type: inventoryTemplate
-  id: protodiona # Starlight, dionae -> diona
+  id: neodiona # Starlight, dionae -> diona
   slots:
   - name: jumpsuit
     slotTexture: uniform
@@ -17,16 +17,16 @@
     displayName: Suit
     blacklist:
       tags:
-      - ProtogenCybernetics
+      - NeocyteCybernetics
   - name: outerClothing2
     slotTexture: suit
     slotFlags: OUTERCLOTHING2
     uiWindowPos: 1,1
     strippingWindowPos: 0,3
-    displayName: Protogen Cybernetics
+    displayName: Neocyte Cybernetics
     whitelist:
       tags:
-      - ProtogenCybernetics
+      - NeocyteCybernetics
   - name: gloves
     slotTexture: gloves
     slotFlags: GLOVES

@@ -32,7 +32,7 @@
     - type: Tag
       tags:
         - WallmountSubstationElectronics
-        - RamChip #Protogen joke, makes them able to eat them. - FH
+        - RamChip #Neocyte joke, makes them able to eat them. - FH
 
 # Wallmount Generator
 - type: entity

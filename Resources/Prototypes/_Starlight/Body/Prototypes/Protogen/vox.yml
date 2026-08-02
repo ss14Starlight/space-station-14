@@ -1,5 +1,5 @@
 - type: body
-  id: ProtoVox
+  id: NeoVox
   name: proto-vox # Starlight, quotation marks removed
   root: torso
   slots:
@@ -8,9 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongue
+        brain: OrganNeocyteBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
@@ -21,11 +21,11 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtoVoxHeart
-        lungs: OrganProtoVoxLungs # I can't imagine them NOT fixing their nitro dependancy. # Starlight edit, I can, plus they're the challenge species.
-        stomach: OrganProtoVoxStomach
-        liver: OrganProtogenLiver
-        kidneys: OrganProtogenKidneys
+        heart: OrganNeoVoxHeart
+        lungs: OrganNeoVoxLungs # I can't imagine them NOT fixing their nitro dependancy. # Starlight edit, I can, plus they're the challenge species.
+        stomach: OrganNeoVoxStomach
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
       part: RightArmVox

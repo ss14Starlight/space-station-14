@@ -1,13 +1,13 @@
 species-name-ipc = IPC
 
-species-name-protogen = Protogen
-guidebook-armor-protogen = Protogen Frames
-# Starlight, Protogen Frames, True Protogen, Proto Laspi, Human, Felionoid, Dwarf, and Cyclorite renamed
-subspecies-name-trueprotogen = True Protogen
-subspecies-name-protovulp = Proto-Vulpkanin
-subspecies-name-protovox = Proto-Vox
-subspecies-name-protothaven = Proto-Thaven
-subspecies-name-protoslimeperson = Proto-Laspi
+species-name-neocyte = Neocyte
+guidebook-armor-neocyte = Neocyte Frames
+# Starlight, Neocyte Frames, True Neocyte, Proto Laspi, Human, Felionoid, Dwarf, and Cyclorite renamed
+subspecies-name-trueneocyte = True Neocyte
+subspecies-name-neovulpkanin = Proto-Vulpkanin
+subspecies-name-neovox = Proto-Vox
+subspecies-name-neothaven = Proto-Thaven
+subspecies-name-neoslimeperson = Proto-Laspi
 subspecies-name-protokin = Proto-Kin
 subspecies-name-protoresomi = Proto-Resomi
 subspecies-name-protoreptilian = Proto-Reptilian
@@ -20,6 +20,6 @@ subspecies-name-protocyclorite = Proto-Cyclorite
 subspecies-name-protoavali = Proto-Avali
 subspecies-name-protoarachnid = Proto-Arachnid
 
-# Starlight Species added after Protogens
+# Starlight Species added after Neocytes
 subspecies-name-protoelf = Proto-Aielithii
 subspecies-name-protolagomorph = Proto-Lagomorph

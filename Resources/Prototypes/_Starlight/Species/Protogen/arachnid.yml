@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoArachnid
+  id: NeoArachnid
   name: subspecies-name-protoarachnid
   roundStart: true
   prototype: MobNeoArachnid
@@ -10,9 +10,9 @@
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
+  subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protoarachnid
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
   maleFirstNames: NamesArachnidFirst
   femaleFirstNames: NamesArachnidFirst
   lastNames: NamesArachnidLast
@@ -59,11 +59,11 @@
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor ]
+      defaultMarkings: [ NeocyteMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLights ]
+      defaultMarkings: [ NeocyteLights ]
     Hair:
       points: 1
       required: false

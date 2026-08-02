@@ -1,5 +1,5 @@
 - type: body
-  id: ProtoResomi
+  id: NeoResomi
   name: proto-resomi # Starlight, quotation marks removed
   root: torso
   slots:
@@ -8,9 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganProtogenBrain
+        brain: OrganNeocyteBrain
         eyes: OrganProtoResomiEyes
-        tongue: OrganProtogenTongueForked
+        tongue: OrganNeocyteTongueForked
         eye_implant: null
         brain_implant: BrainImplantNexus
     torso:
@@ -23,9 +23,9 @@
       organs:
         heart: OrganProtoResomiHeart
         lungs: OrganProtoResomiLungs
-        stomach: OrganProtogenStomach
-        liver: OrganProtogenLiver
-        kidneys: OrganProtogenKidneys
+        stomach: OrganNeocyteStomach
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
       part: RightArmResomi

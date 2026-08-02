@@ -1,23 +1,23 @@
 <Document>
-  # Protogen Frames
+  # Neocyte Frames
 
   <Box>
-    <GuideEntityEmbed Entity="ClothingOuterArmorProtogenMediumBasic" Caption="Protogen Frames"/>
+    <GuideEntityEmbed Entity="ClothingOuterArmorNeocyteMediumBasic" Caption="Neocyte Frames"/>
   </Box>
 
-  The foundation of a Protogen is their cybernetic frame, the thing that truly makes them distinct from their purely-biological brethren.
-  Currently, there are 6 Protogen frames approved for usage by NanoTrasen and Central Command. They have been split up into Light, Medium, and Heavy.
+  The foundation of a Neocyte is their cybernetic frame, the thing that truly makes them distinct from their purely-biological brethren.
+  Currently, there are 6 Neocyte frames approved for usage by NanoTrasen and Central Command. They have been split up into Light, Medium, and Heavy.
 
   ## Light Frames
   <Box>
-    <GuideEntityEmbed Entity="ClothingOuterArmorProtogenLightBasic" Caption="Basic-Class"/>
+    <GuideEntityEmbed Entity="ClothingOuterArmorNeocyteLightBasic" Caption="Basic-Class"/>
   </Box>
 
   The Basic-Class light frame boasts the following specs.
   - Receive [color=#65807d]5% less slash damage[/color], [color=#b9bf93]5% less pierce damage[/color], and [color=#fcc203]5% explosion resistance[/color].
 
   <Box>
-    <GuideEntityEmbed Entity="ClothingOuterArmorProtogenLightSpeed" Caption="Hermes-Class"/>
+    <GuideEntityEmbed Entity="ClothingOuterArmorNeocyteLightSpeed" Caption="Hermes-Class"/>
   </Box>
 
   The Hermes-Class light frame boasts the following specs.
@@ -26,14 +26,14 @@
 
   ## Medium Frames
   <Box>
-    <GuideEntityEmbed Entity="ClothingOuterArmorProtogenMediumBasic" Caption="Basic-Class"/>
+    <GuideEntityEmbed Entity="ClothingOuterArmorNeocyteMediumBasic" Caption="Basic-Class"/>
   </Box>
 
   The Basic-Class medium frame boasts the following specs.
   - Receive [color=#65807d]10% less slash damage[/color], [color=#FF3636]5% less blunt damage[/color], and [color=#b9bf93]5% less pierce damage[/color].
   - Gain a [color=#fc0303]-5% sprint modifier[/color].
   <Box>
-    <GuideEntityEmbed Entity="ClothingOuterArmorProtogenMediumMagic" Caption="Hecate-Class"/>
+    <GuideEntityEmbed Entity="ClothingOuterArmorNeocyteMediumMagic" Caption="Hecate-Class"/>
   </Box>
 
   The Hecate-Class medium frame boasts the following specs.
@@ -44,14 +44,14 @@
 
   ## Heavy Frames
   <Box>
-    <GuideEntityEmbed Entity="ClothingOuterArmorProtogenHeavyBasic" Caption="Basic-Class"/>
+    <GuideEntityEmbed Entity="ClothingOuterArmorNeocyteHeavyBasic" Caption="Basic-Class"/>
   </Box>
 
   The Basic-Class heavy frame boasts the following specs.
   - Receive [color=#65807d]25% less slash damage[/color], [color=#b9bf93]10% less pierce damage[/color], and[color=#FF3636]15% less blunt damage[/color], and [color=#fcc203]25% explosion resistance[/color].
   - Gain a [color=#fc0303]-25% sprint modifier[/color] and a [color=#fc0303]-15% walk modifier[/color].
   <Box>
-    <GuideEntityEmbed Entity="ClothingOuterArmorProtogenHeavySpace" Caption="Nyx-Class"/>
+    <GuideEntityEmbed Entity="ClothingOuterArmorNeocyteHeavySpace" Caption="Nyx-Class"/>
   </Box>
 
   The Nyx-Class heavy frame boasts the following specs.

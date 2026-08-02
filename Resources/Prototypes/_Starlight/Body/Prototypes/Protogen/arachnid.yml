@@ -1,5 +1,5 @@
 - type: body
-  id: ProtoArachnid
+  id: NeoArachnid
   name: proto-arachnid # Starlight, quotation marks removed
   root: torso
   slots:
@@ -8,9 +8,9 @@
       connections:
       - torso
       organs:
-        brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongue
+        brain: OrganNeocyteBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
@@ -22,10 +22,10 @@
       - left leg
       organs:
         heart: OrganProtoArachnidHeart
-        lungs: OrganProtogenLungs
-        stomach: OrganProtogenStomach
-        liver: OrganProtogenLiver
-        kidneys: OrganProtogenKidneys
+        lungs: OrganNeocyteLungs
+        stomach: OrganNeocyteStomach
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
       part: RightArmArachnid

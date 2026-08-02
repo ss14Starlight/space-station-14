@@ -38,7 +38,7 @@
     - /Audio/_FarHorizons/Voice/Proto/Reptilian/lizard_happy.ogg
 
 - type: soundCollection
-  id: ProtoVoxLaugh
+  id: NeoVoxLaugh
   files:
     - /Audio/_FarHorizons/Voice/Proto/Vox/vox_laugh.ogg
 
@@ -74,19 +74,19 @@
   - /Audio/_FarHorizons/Voice/Proto/Resomi/resomi_squawk_1.ogg
 
 - type: soundCollection
-  id: ProtoVulpBark
+  id: NeoVulpkaninBark
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/dog_bark1.ogg
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/dog_bark2.ogg
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/dog_bark3.ogg
 
 - type: soundCollection
-  id: ProtoVulpYip
+  id: NeoVulpkaninYip
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/yip.ogg
 
 - type: soundCollection
-  id: ProtoVulpHowl
+  id: NeoVulpkaninHowl
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/howl.ogg
 
@@ -97,14 +97,14 @@
   - /Audio/_FarHorizons/Voice/Proto/Felionoid/cat_growl2.ogg
 
 - type: soundCollection
-  id: ProtoVulpGrowl
+  id: NeoVulpkaninGrowl
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/growl1.ogg
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/growl2.ogg
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/growl3.ogg
 
 - type: soundCollection
-  id: ProtoVulpSnarls
+  id: NeoVulpkaninSnarls
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/dog_snarl1.ogg
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/dog_snarl2.ogg
@@ -151,7 +151,7 @@
   - /Audio/_FarHorizons/Voice/Proto/Moth/moth_chitter.ogg
 
 - type: soundCollection
-  id: ProtoVoxChitter
+  id: NeoVoxChitter
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vox/vox_chitter.ogg
 
@@ -211,7 +211,7 @@
     - /Audio/_FarHorizons/Voice/Proto/Moth/moth_sigh.ogg
 
 - type: soundCollection
-  id: ProtoVoxSigh
+  id: NeoVoxSigh
   files:
     - /Audio/_FarHorizons/Voice/Proto/Vox/vox_sigh.ogg
 
@@ -247,7 +247,7 @@
     - /Audio/_FarHorizons/Voice/Proto/Moth/moth_cry.ogg
 
 - type: soundCollection
-  id: ProtoVoxCry
+  id: NeoVoxCry
   files:
     - /Audio/_FarHorizons/Voice/Proto/Vox/vox_cry.ogg
 

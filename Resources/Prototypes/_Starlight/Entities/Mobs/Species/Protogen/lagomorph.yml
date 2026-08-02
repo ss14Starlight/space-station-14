@@ -26,12 +26,12 @@
       amount: 5
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoLagomorph
+    damageModifierSet: NeoLagomorph
   - type: Body
-    prototype: ProtoLagomorph
+    prototype: NeoLagomorph
     requiredLegs: 2
   - type: HumanoidAppearance
-    species: ProtoLagomorph
+    species: NeoLagomorph
     hideLayersOnEquip:
     - Hair
     - Snout
@@ -63,7 +63,7 @@
     allowExtendListenRange: true
   - type: Inventory
     speciesId: lagomorph #to be replaced with proto[species] when new sprites are made
-    templateId: protogen
+    templateId: neocyte
     displacements:
       jumpsuit:
         sizeMaps:
@@ -140,8 +140,8 @@
     - SiliconEmotesFH
     - NotLabelable
     - Lagomorph
-    - ProtoLagomorph
-    - Protogen
+    - NeoLagomorph
+    - Neocyte
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -149,7 +149,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoLagomorph
+    species: NeoLagomorph
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -201,7 +201,7 @@
       visible: false
   - type: Inventory
     speciesId: lagomorph #to be replaced with proto[species] when new sprites are made
-    templateId: protogen
+    templateId: neocyte
     displacements:
       jumpsuit:
         sizeMaps:

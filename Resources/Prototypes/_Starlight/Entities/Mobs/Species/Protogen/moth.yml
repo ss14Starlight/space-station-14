@@ -18,7 +18,7 @@
   - type: Jump
     action: JumpMoth
   - type: HumanoidAppearance
-    species: ProtoMoth
+    species: NeoMoth
     hideLayersOnEquip:
     - HeadTop
     - Hair
@@ -26,11 +26,11 @@
     sprite: _FarHorizons/Mobs/Species/Proto-Moth/parts.rsi
     state: full
   - type: Body
-    prototype: ProtoMoth
+    prototype: NeoMoth
     requiredLegs: 2
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoMoth
+    damageModifierSet: NeoMoth
   - type: ZombieAccentOverride
     accent: zombieMoth
   - type: Butcherable
@@ -141,7 +141,7 @@
     soundsId: MothBodyEmotes
   - type: Inventory
     speciesId: moth
-    templateId: protogen
+    templateId: neocyte
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -201,7 +201,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoMoth
+    species: NeoMoth
   - type: Sprite
     noRot: true
     drawdepth: Mobs
@@ -256,7 +256,7 @@
         visible: false
   - type: Inventory
     speciesId: moth
-    templateId: protogen
+    templateId: neocyte
     femaleDisplacements:
       jumpsuit:
         sizeMaps:

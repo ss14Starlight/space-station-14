@@ -1,5 +1,5 @@
 - type: body
-  id: ProtoThaven
+  id: NeoThaven
   name: proto-thaven # Starlight, quotation marks removed
   root: torso
   slots:
@@ -9,8 +9,8 @@
       - torso
       organs:
         brain: OrganThavenBrain
-        eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongue
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
         eye_implant: null
         brain_implant: null
     torso:
@@ -21,11 +21,11 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtogenHeart
-        lungs: OrganProtogenLungs # I can't imagine them NOT fixing their nitro dependancy.
-        stomach: OrganProtogenStomach
-        liver: OrganProtogenLiver
-        kidneys: OrganProtogenKidneys
+        heart: OrganNeocyteHeart
+        lungs: OrganNeocyteLungs # I can't imagine them NOT fixing their nitro dependancy.
+        stomach: OrganNeocyteStomach
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
         cavity: null
     right arm:
       part: RightArmThaven

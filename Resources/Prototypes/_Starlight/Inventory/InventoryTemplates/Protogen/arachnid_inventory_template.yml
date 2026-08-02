@@ -1,5 +1,5 @@
 - type: inventoryTemplate
-  id: protoarachnid
+  id: neoarachnid
   slots:
   - name: shoes
     slotTexture: shoes
@@ -117,16 +117,16 @@
     displayName: Suit
     blacklist:
       tags:
-      - ProtogenCybernetics
+      - NeocyteCybernetics
   - name: outerClothing2
     slotTexture: suit
     slotFlags: OUTERCLOTHING2
     uiWindowPos: 1,1
     strippingWindowPos: 3,2
-    displayName: Protogen Cybernetics
+    displayName: Neocyte Cybernetics
     whitelist:
       tags:
-      - ProtogenCybernetics
+      - NeocyteCybernetics
   - name: pocket1
     slotTexture: pocket
     fullTextureName: template_small

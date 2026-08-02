@@ -1,5 +1,5 @@
 - type: species
-  id: ProtoElf
+  id: NeoElf
   name: subspecies-name-protoelf
   roundStart: true
   prototype: MobNeoElf
@@ -9,9 +9,9 @@
   dollPrototype: AppearanceProtoElf
   skinColoration: Hues
   roundstartCyberwareCapacity: 6
-  subspeciesOf: Protogen
+  subspeciesOf: Neocyte
   subspeciesName: subspecies-name-protoelf
-  loadout: ProtogenLoadout
+  loadout: NeocyteLoadout
   lastNames: NamesLastElf
   naming: FirstLast
   customName: true
@@ -60,19 +60,19 @@
     FaceCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenVisorRound ]
+      defaultMarkings: [ NeocyteVisorRound ]
     FaceCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLEDFaceRound ]
+      defaultMarkings: [ NeocyteLEDFaceRound ]
     BodyCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor ]
+      defaultMarkings: [ NeocyteMediumArmor ]
     BodyCoverCover:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenLights ]
+      defaultMarkings: [ NeocyteLights ]
     Hair:
       points: 1
       required: false

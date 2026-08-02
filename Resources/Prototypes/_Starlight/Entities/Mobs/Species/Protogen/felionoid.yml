@@ -15,14 +15,14 @@
     - Nekomimetic
     - Cat
   - type: HumanoidAppearance
-    species: ProtoFelionoid
+    species: NeoFelionoid
     hideLayersOnEquip:
     - Hair
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Feline/parts.rsi
     state: fullcat
   - type: Body
-    prototype: ProtoFelionoid
+    prototype: NeoFelionoid
     requiredLegs: 2
   - type: OwOAccent
   - type: MobThresholds
@@ -41,7 +41,7 @@
       amount: 3
   - type: Damageable
     damageContainer: Hybrid
-    damageModifierSet: ProtoFelionoid
+    damageModifierSet: NeoFelionoid
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -81,7 +81,7 @@
     - DoorBumpOpener
     - AnomalyHost
     - Felionoid
-    - ProtoFelionoid
+    - NeoFelionoid
     - SiliconEmotesFH
     - NotLabelable
   - type: Fixtures
@@ -99,7 +99,7 @@
   - type: Wagging
   - type: Inventory
     speciesId: felionoid # Change when there's unique sprites
-    templateId: protogen
+    templateId: neocyte
     displacements:
       jumpsuit:
         sizeMaps:
@@ -138,16 +138,16 @@
             state: shoes
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
   id: AppearanceProtoFelionoid
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoFelionoid
+    species: NeoFelionoid
   - type: Body
-    prototype: ProtoFelionoid
+    prototype: NeoFelionoid
   - type: Inventory
-    templateId: protogen
+    templateId: neocyte
     speciesId: felionoid #Change when there's unique sprites
     displacements:
       jumpsuit:

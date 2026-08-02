@@ -40,7 +40,7 @@
       - !type:SatiateHunger
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Moth, Protogen ] # FH
+          type: [ Moth, Neocyte ] # FH
 
 - type: reagent
   id: BuzzochloricBees
