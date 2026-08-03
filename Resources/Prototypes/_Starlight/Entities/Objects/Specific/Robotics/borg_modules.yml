@@ -429,7 +429,7 @@
 - type: entity
   id: BorgModuleAdvancedPaperwork
   parent: [ BaseBorgModulePurrfus, BaseProviderBorgModule ]
-  name: advanced paperwork cyborg module
+  name: paperwork printing module
   description: A complete bureaucracy suite. Prints standard station forms, files them away, and faxes them out.
   components:
   - type: Sprite
