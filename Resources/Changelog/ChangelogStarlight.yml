@@ -1,95 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: (Reach) Removed some catwalks to see the BEAUTIFUL DIAGONAL TILES.
-    type: Remove
-  id: 406809
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: Johnny
-  changes:
-  - message: (Reach) Piping in general hallways have been reworked to put vents in more accessible spots.
-    type: Tweak
-  id: 406810
-  time: '2026-07-22T08:18:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5223
-- author: neomoth
-  changes:
-  - message: Disposal bins and the like now properly predict thrown items being inserted into them.
-    type: Add
-  id: 406811
-  time: '2026-07-22T20:54:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5179
-- author: 12tie
-  changes:
-  - message: New art for the railroad cards.
-    type: Tweak
-  id: 406812
-  time: '2026-07-23T08:07:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5259
-- author: neomoth
-  changes:
-  - message: Administration Glasses/hud, Skills Sunglasses/hud, and Central Command Glasses can now all see accesses present on a PDA/ID by examining it directly. Only CC Glasses can do this by examining a player holding a PDA/ID.
-    type: Add
-  id: 406813
-  time: '2026-07-23T08:49:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5181
-- author: Mack
-  changes:
-  - message: You can now see the pipes from plumbing compatible machines using a t-ray scanner.
-    type: Tweak
-  id: 406814
-  time: '2026-07-23T09:14:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5197
-- author: Johnny
-  changes:
-  - message: (CC_SC17) Added stasis beds to medbay.
-    type: Add
-  id: 406815
-  time: '2026-07-23T09:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5246
-- author: Johnny
-  changes:
-  - message: (CC_SC17) Added some BEAUTIFUL DIAGONAL TILES.
-    type: Add
-  id: 406816
-  time: '2026-07-23T09:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5246
-- author: Johnny
-  changes:
-  - message: (CC_SC17) Removed the research server in exchange for a mat silo.
-    type: Remove
-  id: 406817
-  time: '2026-07-23T09:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5246
-- author: Johnny
-  changes:
-  - message: (CC_SC17) Rotting corpse is gone now.
-    type: Remove
-  id: 406818
-  time: '2026-07-23T09:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5246
-- author: Johnny
-  changes:
-  - message: (CC_SC17) Cryopods now work.
-    type: Fix
-  id: 406819
-  time: '2026-07-23T09:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5246
-- author: Caws
-  changes:
-  - message: (Starboard) Fixed a missing disposals pipe by the stage, which caused trash that fell out of disposals to rip up the floor tiles.
-    type: Fix
-  id: 406820
-  time: '2026-07-23T09:42:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5233
-- author: Caws
-  changes:
-  - message: Fixed a niche UI crash/flickering related to the new gases, Ulnitranium and ZXA, when using certain Atmos devices.
-    type: Fix
-  id: 406821
-  time: '2026-07-23T10:08:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5238
 - author: OMEGA
   changes:
   - message: (Silica) Roboticist lockers.
@@ -2799,4 +2708,95 @@ Entries:
   id: 407208
   time: '2026-08-01T19:14:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5418
+- author: redmushie
+  changes:
+  - message: Fixed tall gas tank pipe connection visuals.
+    type: Fix
+  id: 407209
+  time: '2026-08-02T07:22:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5449
+- author: Caws
+  changes:
+  - message: (Shipyard) Due to the rising cost of manufacturing, Harm's 'Space Truck' has had its plastitanium walls replaced with regular reinforced walls. No refunds will be issued.
+    type: Tweak
+  id: 407210
+  time: '2026-08-02T07:58:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5456
+- author: taydeo, Conflee
+  changes:
+  - message: Added a "Welcome to Starlight!" pop-up when a client joins the server for the first time, with useful information and content warnings.
+    type: Add
+  id: 407211
+  time: '2026-08-02T08:15:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5348
+- author: Glaud
+  changes:
+  - message: Fixed minor bugs in casino content.
+    type: Fix
+  id: 407212
+  time: '2026-08-02T08:38:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5452
+- author: RedSpeeds
+  changes:
+  - message: Fixed Revolutionary comms key being available in a dungeon.
+    type: Fix
+  id: 407213
+  time: '2026-08-02T10:24:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5448
+- author: OMEGA
+  changes:
+  - message: Switchblades and box cutters now map to the right state.
+    type: Fix
+  id: 407214
+  time: '2026-08-02T10:54:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5447
+- author: OMEGA
+  changes:
+  - message: Items that use the switch system now display 'Switch', instead of 'fix-switchblade-switch-verbs'.
+    type: Fix
+  id: 407215
+  time: '2026-08-02T10:54:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5447
+- author: wonderfulnewworld
+  changes:
+  - message: Techfab flatpacks actually flatpacks techfab.
+    type: Fix
+  id: 407216
+  time: '2026-08-02T10:54:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5466
+- author: wonderfulnewworld
+  changes:
+  - message: All antags in Dynamic/DynamicLP now have a small chance to fail to roll, so it's not guaranteed to always roll a roundstart antag.
+    type: Tweak
+  id: 407217
+  time: '2026-08-02T11:44:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5468
+- author: Sparlight
+  changes:
+  - message: Bumping into doors now leaves scent traces, like interacting with them already does.
+    type: Tweak
+  id: 407218
+  time: '2026-08-02T11:44:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5450
+- author: Sparlight
+  changes:
+  - message: Individuals that can smell things can still smell while blinded.
+    type: Fix
+  id: 407219
+  time: '2026-08-02T11:44:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5450
+- author: redmushie
+  changes:
+  - message: Admin ghost PDA no longer shrinks the ghost mass scanner range.
+    type: Fix
+  id: 407220
+  time: '2026-08-02T17:12:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5470
+- author: Princess-Cheeseballs
+  changes:
+  - message: Antag names will properly display at the end of round again.
+    type: Fix
+  id: 407221
+  time: '2026-08-02T17:42:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5467
 Order: -1
