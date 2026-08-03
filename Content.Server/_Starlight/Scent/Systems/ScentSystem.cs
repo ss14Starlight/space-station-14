@@ -8,6 +8,7 @@ using Content.Shared._Starlight.Scent;
 using Content.Shared._Starlight.Scent.Components;
 using Content.Shared._Starlight.Scent.Systems;
 using Content.Shared.Atmos;
+using Content.Shared.Disposal.Unit;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
@@ -435,6 +436,9 @@ public sealed class ScentSystem : SharedScentSystem
         var (uid, scent, xform) = ent;
 
         if (IsSealed(uid))
+            return;
+
+        if (HasComp<BeingDisposedComponent>(uid))
             return;
 
         if (TryMergeIntoExisting(ent))
