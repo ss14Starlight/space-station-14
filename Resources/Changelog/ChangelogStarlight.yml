@@ -1,11 +1,4 @@
 Entries:
-- author: joshujo
-  changes:
-  - message: Post lights to RCD.
-    type: Add
-  id: 406843
-  time: '2026-07-24T17:28:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5262
 - author: CasaleBalthazar
   changes:
   - message: the molar gas mixer, a new type of gas mixer that respect the specified mix when mixing gases at different temperatures.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407242
   time: '2026-08-03T17:25:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5484
+- author: Conflee
+  changes:
+  - message: Fixed welcome popup buttons clipping.
+    type: Fix
+  id: 407243
+  time: '2026-08-03T17:25:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5483
 Order: -1
