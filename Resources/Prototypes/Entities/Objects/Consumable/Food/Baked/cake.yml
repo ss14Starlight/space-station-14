@@ -893,6 +893,7 @@
     tags:
     - Cake
     - Birthday
+    - Slice
   - type: Item
     heldPrefix: birthday-slice
 # Tastes like sweetness, cake, christmas.
