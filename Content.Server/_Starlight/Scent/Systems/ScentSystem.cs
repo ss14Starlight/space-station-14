@@ -476,16 +476,28 @@ public sealed class ScentSystem : SharedScentSystem
         return headSealed && outerSealed;
     }
 
-    // The airtight container (locker, crate) this entity's immediate parent is, if any.
+    // Checks all parents of the entity, so nested containment (e.g. a bag inside a crate)
+    // is still detected.
     private EntityUid? GetAirtightContainer(TransformComponent xform)
     {
-        return TryComp<EntityStorageComponent>(xform.ParentUid, out var storage) && storage.Airtight
-            ? xform.ParentUid
-            : null;
+        var parent = xform.ParentUid;
+
+        while (parent.IsValid())
+        {
+            if (TryComp<EntityStorageComponent>(parent, out var storage) && storage.Airtight)
+                return parent;
+
+            if (!TryComp<TransformComponent>(parent, out var parentXform))
+                break;
+
+            parent = parentXform.ParentUid;
+        }
+
+        return null;
     }
 
     // Suppressed everywhere in the gas pipe network except at a terminus (vent/scrubber), where
-    // the scent is reaching open air.
+    // the scent is genuinely reaching open air.
     private bool IsHiddenVentCrawl(EntityUid uid)
     {
         if (!TryComp<BeingVentCrawlComponent>(uid, out var ventCrawl))
