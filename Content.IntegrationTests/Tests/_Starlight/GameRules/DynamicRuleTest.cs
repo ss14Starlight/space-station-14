@@ -13,10 +13,10 @@ namespace Content.IntegrationTests.Tests._Starlight.GameRules;
 [TestOf(typeof(DynamicRuleSystem))]
 public sealed class DynamicRuleTest : GameTest
 {
-    private static readonly EntProtoId SequentialBudgetRule = "TestDynamicSequentialBudget";
-    private static readonly EntProtoId MutualExclusionRule = "TestDynamicMutualExclusion";
-    private static readonly EntProtoId CooldownRule = "TestDynamicCooldown";
-    private static readonly EntProtoId CooldownChildRule = "TestDynamicCooldownChild";
+    private const string SequentialBudgetRule = "TestDynamicSequentialBudget";
+    private const string MutualExclusionRule = "TestDynamicMutualExclusion";
+    private const string CooldownRule = "TestDynamicCooldown";
+    private const string CooldownChildRule = "TestDynamicCooldownChild";
 
     [TestPrototypes]
     private const string Prototypes = @"
@@ -211,7 +211,7 @@ public sealed class DynamicRuleTest : GameTest
             {
                 Assert.That(component.Rules, Has.Count.EqualTo(1));
                 Assert.That(GetPrototypeId(server.EntMan, component.Rules.Single()),
-                    Is.EqualTo(CooldownChildRule.Id));
+                    Is.EqualTo(CooldownChildRule));
             });
 
             // A cooldown applies to future Dynamic rounds, not later rolls in the current round.
@@ -247,7 +247,7 @@ public sealed class DynamicRuleTest : GameTest
 
             Assert.That(component.Rules, Has.Count.EqualTo(1));
             Assert.That(GetPrototypeId(server.EntMan, component.Rules.Single()),
-                Is.EqualTo(CooldownChildRule.Id));
+                Is.EqualTo(CooldownChildRule));
         });
     }
 
