@@ -1,11 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: Handheld crew monitors will once again eject the battery on alt-click.
-    type: Fix
-  id: 406836
-  time: '2026-07-24T10:20:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5263
 - author: Caws
   changes:
   - message: Increased the linking range for AI Upload computers from 20 to 200. Most maps with far away AI Uploads (Lobster, Hotel, Starboard, etc.) already did this manually, this just lets mappers do it without manual editing (and lets players re-link a broken AI Uploads without admin help).
@@ -2799,4 +2792,11 @@ Entries:
   id: 407235
   time: '2026-08-03T11:23:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5482
+- author: Johnny
+  changes:
+  - message: The head of security cannot be blind anymore.
+    type: Tweak
+  id: 407236
+  time: '2026-08-03T11:44:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5496
 Order: -1
