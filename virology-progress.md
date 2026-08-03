@@ -129,8 +129,10 @@ Updated: 2026-08-03
   capped at 1.8. These hygiene residues do not receive the biological-puddle minimum
   infection chance.
 - Loose discarded food wrappers, empty tins, broken dinnerware, peels, cobs, and pits
-  contribute 0.1 bacterial points each. Putting them in a trash bag or any other
-  container removes them from the next snapshot immediately.
+  contribute 0.1 bacterial points each. Contained organic trash stops contributing
+  immediately. Once flushed into the disposal network, the organic-trash classification
+  is recursively removed from the item and its contents, so material ejected into the
+  disposal room does not become a source again.
 - A hydroponics tray containing a dead plant contributes 0.75 fungal points until the
   plant matter is removed. Rotting organs and gibs remain covered by the existing 0.9
   generic-rot path.
@@ -464,6 +466,13 @@ Updated: 2026-08-03
 - The hygiene-source diff passes `git diff --check` and contains only the contamination
   sampler, its CVars/tests, food-waste tags, and this progress document. No casino or
   unrelated fork content is present, and no temporary command/debug lines remain.
+- The disposal follow-up keeps the narrow `OrganicTrash` classification at 0.1 points
+  rather than treating all baggable trash as biological contamination. A one-time
+  disposal transition recursively removes that tag, with no room-name, beacon-name,
+  pipe search, permanent marker, or additional sampler check.
+- The final organic-trash disposal build completes with 0 errors and the focused
+  contamination suite passes 20/20. The final diff contains no YAML changes because all
+  organic-trash prototypes remain exactly as committed and previously validated.
 
 ## Treatment Phase
 
@@ -523,9 +532,10 @@ History reconstruction verification:
 
 ## Next Phase
 
-1. Manually verify that loose food waste, food/mold spills, dead plants, and symptomatic
-   viral carriers appear at their configured values, then disappear on bagging, mopping,
-   plant removal, or recovery.
+1. Manually verify that loose organic trash contributes 0.1 each, contained trash
+   disappears from the next snapshot, and disposal-processed organic trash remains
+   excluded after reaching the disposal room. Also verify food/mold spills, dead plants,
+   and viral carriers.
 2. Manually verify the analyser interaction/report layout and the monitor's contamination
    bar, map framing, room list, live refresh, and suit-sensor filtering in a live client.
 3. Decide the permanent-immunity balance for treatment and live-vaccine recipients before

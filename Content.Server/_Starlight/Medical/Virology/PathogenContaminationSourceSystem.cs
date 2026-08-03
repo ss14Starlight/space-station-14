@@ -9,6 +9,7 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Coordinates.Helpers;
+using Content.Shared.Disposal.Unit;
 using Content.Shared.Fluids.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Interaction;
@@ -73,6 +74,7 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        SubscribeLocalEvent<BeingDisposedComponent, ComponentStartup>(OnBeingDisposed);
     }
 
     public override void Update(float frameTime)
@@ -278,6 +280,22 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
             }
 
             AddSource(uid, [PathogenType.Bacteria], contamination);
+        }
+    }
+
+    private void OnBeingDisposed(Entity<BeingDisposedComponent> entity, ref ComponentStartup args)
+    {
+        RemoveOrganicTrashTag(entity.Owner);
+    }
+
+    private void RemoveOrganicTrashTag(EntityUid uid)
+    {
+        _tags.RemoveTag(uid, OrganicTrashTag);
+
+        var children = Transform(uid).ChildEnumerator;
+        while (children.MoveNext(out var child))
+        {
+            RemoveOrganicTrashTag(child);
         }
     }
 

@@ -2,7 +2,10 @@ using System.Collections.Generic;
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Medical.Virology;
 using Content.Shared._Starlight.Medical.Virology;
+using Content.Shared.Disposal.Unit;
 using Content.Shared.Tag;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -13,6 +16,7 @@ public sealed class PathogenContaminationTests : GameTest
 {
     private static readonly ProtoId<PathogenArchetypePrototype> StationFever = "StationFever";
     private static readonly EntProtoId SporePatch = "PathogenSporePatch";
+    private static readonly EntProtoId BananaPeel = "TrashBananaPeel";
     private static readonly ProtoId<TagPrototype> OrganicTrashTag = "OrganicTrash";
     private static readonly EntProtoId[] OrganicTrashPrototypes =
     [
@@ -20,7 +24,7 @@ public sealed class PathogenContaminationTests : GameTest
         "FoodTinPeachesTrash",
         "FoodPlateTrash",
         "FoodBowlBigTrash",
-        "TrashBananaPeel",
+        BananaPeel,
         "FoodCornTrash",
         "FoodBungoPit",
         "TrashCherryPit",
@@ -103,6 +107,27 @@ public sealed class PathogenContaminationTests : GameTest
                     $"{prototypeId} should be sampled as organic trash");
             }
         });
+    }
+
+    [Test]
+    public async Task DisposalTransitionRemovesOrganicTrashTag()
+    {
+        var server = Pair.Server;
+        var entities = server.EntMan;
+        var tags = server.System<TagSystem>();
+        EntityUid trash = default;
+
+        await server.WaitAssertion(() =>
+        {
+            trash = entities.SpawnEntity(BananaPeel, MapCoordinates.Nullspace);
+            Assert.That(tags.HasTag(trash, OrganicTrashTag), Is.True);
+
+            entities.EnsureComponent<BeingDisposedComponent>(trash);
+
+            Assert.That(tags.HasTag(trash, OrganicTrashTag), Is.False);
+        });
+
+        await server.WaitPost(() => entities.DeleteEntity(trash));
     }
 
     [TestCase(2.3f, 2.4f, 0.016666667f, 0f, 0f)]
