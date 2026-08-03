@@ -54,8 +54,8 @@
   parent: BaseXenoborgsRule # Starlight
   id: SubXenoborgs
   components:
-  - type: XenoborgsRule
-  - type: RuleGrids
+  #- type: XenoborgsRule  # Starlight
+  #- type: RuleGrids  # Starlight
   - type: GameRule
     minPlayers: 20 # Starlight
     cancelPresetOnTooFewPlayers: false
