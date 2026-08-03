@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Swapped the Disabler Gun Safe to use Security access instead of Armory access. Disablers are starting loadout kit, and the safes are often mapped outside Armory in locker rooms etc. There's no reason to make Secoffs drag Warden from Genpop to open these.
-    type: Tweak
-  id: 406835
-  time: '2026-07-24T09:37:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5280
 - author: Mack
   changes:
   - message: Handheld crew monitors will once again eject the battery on alt-click.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407234
   time: '2026-08-03T10:53:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5465
+- author: Caws
+  changes:
+  - message: (Cork) Removed three erroneously mapped hot potatoes in a hot foot cart. These are not, in fact, warm potatoes but instead are very explosive potatoes. If you or a loved one was injured by one of these potatoes, please contact your station-side lawyer.
+    type: Remove
+  id: 407235
+  time: '2026-08-03T11:23:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5482
 Order: -1
