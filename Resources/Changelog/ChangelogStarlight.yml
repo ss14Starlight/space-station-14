@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: (ATS) Distro dock inlet regulators; prevents the ATS from giving all of its distro to a visiting shuttle.
-    type: Add
-  id: 406829
-  time: '2026-07-23T11:13:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5244
-- author: redmushie
-  changes:
   - message: (CS-4T9 Tanker) Updated buy/sell gas pipes to follow updated convention.
     type: Tweak
   id: 406830
@@ -2799,4 +2792,11 @@ Entries:
   id: 407228
   time: '2026-08-03T09:28:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5474
+- author: Musiklie
+  changes:
+  - message: Reduced the weight of the nightshift event by 60%.
+    type: Tweak
+  id: 407229
+  time: '2026-08-03T10:53:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5481
 Order: -1
