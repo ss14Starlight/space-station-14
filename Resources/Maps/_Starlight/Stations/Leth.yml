@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/03/2026 04:42:12
-  entityCount: 18203
+  time: 08/03/2026 04:53:20
+  entityCount: 18204
 maps:
 - 1
 grids:
@@ -11223,7 +11223,7 @@ entities:
       pos: 7.5,-88.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -180953.67
+      secondsUntilStateChange: -181157.22
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12469,7 +12469,7 @@ entities:
       pos: -11.5,-24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -94390.68
+      secondsUntilStateChange: -94594.23
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16907,12 +16907,12 @@ entities:
   - uid: 998
     components:
     - type: Transform
-      pos: 7.6219945,-36.303577
+      pos: 6.3939233,-36.24178
       parent: 2
   - uid: 999
     components:
     - type: Transform
-      pos: 7.257411,-36.23061
+      pos: 6.6595483,-36.49959
       parent: 2
   - uid: 1000
     components:
@@ -88350,6 +88350,13 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+- proto: LockerCoronerFilled
+  entities:
+  - uid: 15086
+    components:
+    - type: Transform
+      pos: 7.5,-36.5
+      parent: 2
 - proto: LockerDetectiveFilled
   entities:
   - uid: 12410
@@ -88681,6 +88688,18 @@ entities:
     - type: Transform
       pos: 44.5,-55.5
       parent: 2
+- proto: LockerRoboticistFilled
+  entities:
+  - uid: 17766
+    components:
+    - type: Transform
+      pos: 43.5,-39.5
+      parent: 2
+  - uid: 17767
+    components:
+    - type: Transform
+      pos: 45.5,-39.5
+      parent: 2
 - proto: LockerSalvageLeadFilledHardsuit
   entities:
   - uid: 12460
@@ -88758,6 +88777,13 @@ entities:
     components:
     - type: Transform
       pos: 52.5,-7.5
+      parent: 2
+- proto: LockerSurgeonFilled
+  entities:
+  - uid: 14793
+    components:
+    - type: Transform
+      pos: 4.5,-32.5
       parent: 2
 - proto: LockerWallMedicalFilled
   entities:
@@ -102781,10 +102807,10 @@ entities:
       parent: 2
 - proto: SpawnPointSurgeon
   entities:
-  - uid: 14793
+  - uid: 18204
     components:
     - type: Transform
-      pos: 4.5,-32.5
+      pos: 6.5,-33.5
       parent: 2
 - proto: SpawnPointTechnicalAssistant
   entities:
@@ -105254,11 +105280,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-23.5
-      parent: 2
-  - uid: 15086
-    components:
-    - type: Transform
-      pos: 7.5,-36.5
       parent: 2
   - uid: 15087
     components:
@@ -119276,18 +119297,6 @@ entities:
     components:
     - type: Transform
       pos: 37.5,6.5
-      parent: 2
-- proto: WardrobeRoboticsFilled
-  entities:
-  - uid: 17766
-    components:
-    - type: Transform
-      pos: 45.5,-39.5
-      parent: 2
-  - uid: 17767
-    components:
-    - type: Transform
-      pos: 43.5,-39.5
       parent: 2
 - proto: WarningAir
   entities:
