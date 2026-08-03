@@ -188,7 +188,7 @@
     - type: MeleeWeapon
       hidden: true
       attackRate: 1
-      bluntStaminaDamageFactor: 1.5
+      bluntStaminaDamageFactor: 2 # Raised from 1.5 to give it more nonlethal capacity.
       damage:
         types:
           Blunt: 20 # Lowered from 30 to 20 to emphasize it to be nonlethal and put it onpar with a truncheon.
