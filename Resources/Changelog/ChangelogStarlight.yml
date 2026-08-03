@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: Maximum atmospheric device output pressures have been reverted to their non-doubled levels.
-    type: Tweak
-  id: 406849
-  time: '2026-07-24T17:53:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5298
-- author: redmushie
-  changes:
   - message: Subfloor gas tanks that can store 1000L!
     type: Add
   id: 406850
@@ -2799,4 +2792,11 @@ Entries:
   id: 407248
   time: '2026-08-03T18:33:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5411
+- author: redmushie
+  changes:
+  - message: Mapping variants of subfloor- and tall gas tanks prefilled with air.
+    type: Add
+  id: 407249
+  time: '2026-08-03T18:52:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5473
 Order: -1
