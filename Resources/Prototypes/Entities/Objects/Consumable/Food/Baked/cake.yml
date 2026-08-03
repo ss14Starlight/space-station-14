@@ -874,6 +874,10 @@
     state: birthday
   - type: SliceableFood
     slice: FoodCakeBirthdaySlice
+  - type: Tag
+    tags:
+    - Cake
+    - Birthday
   - type: Item
     heldPrefix: birthday
 
@@ -885,6 +889,10 @@
   components:
   - type: Sprite
     state: birthday-slice
+  - type: Tag
+    tags:
+    - Cake
+    - Birthday
   - type: Item
     heldPrefix: birthday-slice
 # Tastes like sweetness, cake, christmas.
