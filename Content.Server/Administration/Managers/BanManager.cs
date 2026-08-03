@@ -605,17 +605,17 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             : null;
     }
 
-    public bool IsRoleBanned(ICommonSession player, List<ProtoId<JobPrototype>> jobs)
+    public bool IsRoleBanned(ICommonSession player, params List<ProtoId<JobPrototype>> jobs)
     {
-        return IsRoleBanned(player, jobs, PrefixJob);
+        return IsRoleBanned<JobPrototype>(player, PrefixJob,jobs);
     }
 
-    public bool IsRoleBanned(ICommonSession player, List<ProtoId<AntagPrototype>> antags)
+    public bool IsRoleBanned(ICommonSession player, params List<ProtoId<AntagPrototype>> antags)
     {
-        return IsRoleBanned(player, antags, PrefixAntag);
+        return IsRoleBanned<AntagPrototype>(player, PrefixAntag, antags);
     }
 
-    private bool IsRoleBanned<T>(ICommonSession player, List<ProtoId<T>> roles, string prefix) where T : class, IPrototype
+    private bool IsRoleBanned<T>(ICommonSession player, string prefix, params List<ProtoId<T>> roles) where T : class, IPrototype
     {
         var bans = GetRoleBans(player.UserId);
 

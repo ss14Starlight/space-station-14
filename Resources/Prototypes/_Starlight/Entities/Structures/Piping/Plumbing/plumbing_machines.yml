@@ -450,11 +450,14 @@
   name: plumbing smart dispenser
   description: Pulls in all reagents from its inlets and stores up to 200u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power.
   components:
+  - type: Transform
+    noRot: true
   - type: Sprite
     sprite: _Starlight/Structures/Machines/smart_dispenser.rsi
     noRot: true
     layers:
     - state: dispenser
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
     - state: dispenser-unshaded
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -469,9 +472,9 @@
   - type: SubFloorHide
     blockInteractions: false
     blockAmbience: false
+    allowAnchoringUnderCover: true
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
-    - enum.SubfloorLayers.SecondLayer
   - type: PointLight
     radius: 1.2
     energy: 3.0

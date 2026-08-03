@@ -14713,14 +14713,6 @@ entities:
     - type: Transform
       pos: 8.165495,9.925802
       parent: 1
-- proto: EncryptionKeySoviet
-  entities:
-  - uid: 2369
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 28.448889,24.579391
-      parent: 1
 - proto: ExosuitFabricatorMachineCircuitboard
   entities:
   - uid: 2371

@@ -1,4 +1,5 @@
-using Content.Shared.Arcade;
+using Content.Server._Starlight.Arcade.Systems;
+using Content.Shared.Arcade.BlockGame;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 using System.Linq;
@@ -42,6 +43,10 @@ public sealed partial class BlockGame
     /// </summary>
     private bool IsGameOver => _field.Any(block => block.Position.Y == 0);
 
+    /// <summary>
+    /// The amount of time that has passed since the active piece last moved vertically,
+    /// </summary>
+    private float _accumulatedFieldFrameTime;
 
     public BlockGame(EntityUid owner)
     {
@@ -60,7 +65,7 @@ public sealed partial class BlockGame
     /// </summary>
     public void StartGame()
     {
-        SendMessage(new BlockGameMessages.BlockGameSetScreenMessage(BlockGameMessages.BlockGameScreen.Game));
+        SendMessage(new BlockGameSetScreenMessage(BlockGameScreen.Game)); // Starlight-edit
 
         FullUpdate();
 
@@ -68,6 +73,11 @@ public sealed partial class BlockGame
         _running = true;
         _gameOver = false;
     }
+
+    #region Starlight
+    public void SetPlacement(HighScorePlacement placement)
+        => _highScorePlacement = placement;
+    #endregion
 
     /// <summary>
     /// Handles ending the game and updating the high scores.
@@ -77,13 +87,15 @@ public sealed partial class BlockGame
         _running = false;
         _gameOver = true;
 
-        if (_entityManager.TryGetComponent<BlockGameArcadeComponent>(_owner, out var cabinet)
-        && _entityManager.TryGetComponent<MetaDataComponent>(cabinet.Player, out var meta))
+        // Starlight-start
+        if (_entityManager.TryGetComponent<BlockGameArcadeComponent>(_owner, out var cabinet))
         {
-            _highScorePlacement = _arcadeSystem.RegisterHighScore(meta.EntityName, Points);
+            _arcadeSystem.LoseGame(cabinet.Player, _owner, Points);
             SendHighscoreUpdate();
         }
-        SendMessage(new BlockGameMessages.BlockGameGameOverScreenMessage(Points, _highScorePlacement?.LocalPlacement, _highScorePlacement?.GlobalPlacement));
+
+        SendMessage(new BlockGameGameOverScreenMessage(Points, _highScorePlacement?.LocalPlacement, _highScorePlacement?.GlobalPlacement));
+        // Starlight-end
     }
 
     /// <summary>
@@ -99,11 +111,6 @@ public sealed partial class BlockGame
 
         FieldTick(frameTime);
     }
-
-    /// <summary>
-    /// The amount of time that has passed since the active piece last moved vertically,
-    /// </summary>
-    private float _accumulatedFieldFrameTime;
 
     /// <summary>
     /// Handles timing the movements of the active game piece.
@@ -166,7 +173,8 @@ public sealed partial class BlockGame
         var pointsToAdd = 0;
         var consecutiveLines = 0;
         var clearedLines = 0;
-        for (var y = 0; y < 20; y++)
+        // Starlight-edit: use named playfield height constant
+        for (var y = 0; y < PlayfieldHeight; y++)
         {
             if (CheckLine(y))
             {
@@ -200,7 +208,8 @@ public sealed partial class BlockGame
     /// <param name="y">The position of the line to check.</param>
     private bool CheckLine(int y)
     {
-        for (var x = 0; x < 10; x++)
+        // Starlight-edit: use named playfield width constant
+        for (var x = 0; x < PlayfieldWidth; x++)
         {
             if (!_field.Any(b => b.Position.X == x && b.Position.Y == y))
                 return false;
@@ -243,7 +252,7 @@ public sealed partial class BlockGame
         NextPiece = GetRandomBlockGamePiece(_random);
         _holdBlock = false;
 
-        SendMessage(new BlockGameMessages.BlockGameVisualUpdateMessage(NextPiece.BlocksForPreview(), BlockGameMessages.BlockGameVisualType.NextBlock));
+        SendMessage(new BlockGameVisualUpdateMessage(NextPiece.BlocksForPreview(), BlockGameVisualType.NextBlock)); // Starlight-edit
     }
 
     /// <summary>

@@ -133,7 +133,12 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
         if (_playerManager.LocalSession?.AttachedEntity == null)
             return;
 
-        var msg = Loc.GetString("rcd-component-change-mode", ("mode", Loc.GetString(proto.SetName)));
+        // Starlight-start
+        // Equivalent to EntitySystem.Name(uid), which is unavailable here as this is not a system.
+        var device = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
+        // Starlight-end
+
+        var msg = Loc.GetString("rcd-component-change-mode", ("device", device), ("mode", Loc.GetString(proto.SetName))); // Starlight-edit: name the actual device
 
         if (proto.Mode is RcdMode.ConstructTile or RcdMode.ConstructObject)
         {
@@ -145,7 +150,7 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
                 name = entProto.Name;
             }
 
-            msg = Loc.GetString("rcd-component-change-build-mode", ("name", name));
+            msg = Loc.GetString("rcd-component-change-build-mode", ("device", device), ("name", name)); // Starlight-edit: name the actual device
         }
 
         // Popup message

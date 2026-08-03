@@ -122,7 +122,7 @@
 - type: entity
   id: ActionCosmicGlare
   name: Null Glare
-  description: Emit a horrific pulse of cosmic light, slowing and disorienting everyone around you. Its effects are amplified against silicon-based entities.
+  description: Emit a horrific electro-magnetic pulse of cosmic light, slowing and disorienting everyone around you. Its effects are amplified against silicon-based entities.
   components:
   - type: ConfirmableAction
     popup: cosmicability-glare-confirm
