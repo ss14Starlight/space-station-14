@@ -46,6 +46,7 @@
   - DiseaseSwab
   # Starlight - dedicated virology detection and sampling tools.
   - PathogenDetector
+  - PathogenAnalyzer
   - PathogenSwab
   - PathogenInjector
   - BodyBag

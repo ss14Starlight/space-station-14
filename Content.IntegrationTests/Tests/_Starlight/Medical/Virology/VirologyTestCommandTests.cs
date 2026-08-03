@@ -65,6 +65,7 @@ public sealed class VirologyTestCommandTests : GameTest
                 Is.SupersetOf(new[]
                 {
                     "PathogenDetector",
+                    "PathogenAnalyzer",
                     "PathogenSwab",
                     "ChemistryEmptyVialSmall",
                     "PathogenContaminationScanner",

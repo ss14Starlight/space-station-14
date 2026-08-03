@@ -1,0 +1,14 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               MinSize="430 380"
+               SetSize="500 560"
+               Title="{Loc pathogen-analyzer-window-title}">
+    <BoxContainer Orientation="Vertical" Margin="8 8 8 8" SeparationOverride="6">
+        <Label Name="TargetNameLabel" StyleClasses="LabelHeading" />
+        <Label Name="TargetKindLabel" StyleClasses="LabelSubText" />
+        <PanelContainer StyleClasses="LowDivider" />
+        <ScrollContainer VerticalExpand="True">
+            <BoxContainer Name="Results" Orientation="Vertical" SeparationOverride="6" />
+        </ScrollContainer>
+    </BoxContainer>
+</DefaultWindow>

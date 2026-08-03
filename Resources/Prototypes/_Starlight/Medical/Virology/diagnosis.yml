@@ -23,6 +23,29 @@
 
 - type: entity
   parent: BaseItem
+  id: PathogenAnalyzer
+  name: pathogen analyser
+  description: Scans patients, biological sources, cultures, and configured pathogen injectors.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    layers:
+    - state: icon
+    - state: analyzer
+      shader: unshaded
+  - type: Item
+    heldPrefix: analyzer
+    storedRotation: -90
+  - type: PathogenAnalyzer
+  - type: UserInterface
+    interfaces:
+      enum.PathogenAnalyzerUiKey.Key:
+        type: PathogenAnalyzerBoundUserInterface
+  - type: ItemPrice
+    fallbackPrice: 100
+
+- type: entity
+  parent: BaseItem
   id: PathogenSwab
   name: pathogen swab
   description: A sterile, single-use swab for collecting an anonymous biological specimen.

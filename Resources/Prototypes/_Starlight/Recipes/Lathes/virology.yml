@@ -17,6 +17,15 @@
     Plastic: 20
 
 - type: latheRecipe
+  id: PathogenAnalyzer
+  result: PathogenAnalyzer
+  categories:
+  - Tools
+  completetime: 4
+  materials:
+    Steel: 500
+
+- type: latheRecipe
   id: PathogenInjector
   result: PathogenInjector
   categories:

@@ -10,6 +10,38 @@ pathogen-detector-contamination-none = No active contamination source detected.
 pathogen-detector-contamination = {$type} source: {$distance} m {$direction}.
 pathogen-detector-contamination-located = {$type} source near {$beacon}: {$distance} m {$direction}.
 
+# Direct pathogen analyser
+pathogen-analyzer-window-title = Pathogen Analysis
+pathogen-analyzer-target-patient = Crew patient
+pathogen-analyzer-target-contaminationsource = Contamination source
+pathogen-analyzer-target-culture = Biological culture
+pathogen-analyzer-target-injector = Configured injector
+pathogen-analyzer-none = No pathogen detected in this target.
+pathogen-analyzer-unidentified = Unidentified pathogen detected
+pathogen-analyzer-incomplete = Complete diagnosis before detailed strain information can be displayed.
+pathogen-analyzer-context-patient = Current infection stage: {$stage}/{$maxStage}.
+pathogen-analyzer-context-source = Active environmental reservoir.
+pathogen-analyzer-context-viable-culture = Reusable viable culture.
+pathogen-analyzer-context-analysable-culture = Centrifuged culture ready for diagnosis.
+pathogen-analyzer-context-unprepared-culture = Unprepared specimen culture.
+pathogen-analyzer-context-injector = {$mode}; {$doses}/{$capacity} doses remain.
+pathogen-analyzer-injector-treatment = Treatment payload
+pathogen-analyzer-injector-live = Live-vaccine payload
+pathogen-analyzer-injector-beneficial = Beneficial culture payload
+pathogen-analyzer-injector-empty = Empty payload
+pathogen-analyzer-field-classification = Classification
+pathogen-analyzer-field-tier = Severity
+pathogen-analyzer-field-origin = Origin
+pathogen-analyzer-field-symptoms = Symptoms
+pathogen-analyzer-field-incubation = Incubation
+pathogen-analyzer-field-duration = Duration
+pathogen-analyzer-field-transmissibility = Transmissibility
+pathogen-analyzer-field-bypass = PPE bypass
+pathogen-analyzer-field-prevalence = Prevalence cap
+pathogen-tier-ambient = AMBIENT
+pathogen-tier-emergent = EMERGENT
+pathogen-tier-virulent = VIRULENT
+
 # Sampling and preparation
 pathogen-swab-filled-name = filled pathogen swab
 pathogen-swab-no-sample = No viable pathogen specimen can be collected from that.

@@ -411,6 +411,20 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Resolves the active strains currently carried by one sampled physical source.
+    /// A recognized source can return an empty list when no matching strain is active.
+    /// </summary>
+    public bool TryGetSourcePathogens(EntityUid source, out List<Pathogen> strains)
+    {
+        strains = new List<Pathogen>();
+        if (!_sources.TryGetValue(source, out var snapshot))
+            return false;
+
+        strains = GetSourceStrains(snapshot, GetActiveStrains());
+        return true;
+    }
+
     public bool TryGetBeaconGroups(
         EntityUid observer,
         out EntityUid grid,

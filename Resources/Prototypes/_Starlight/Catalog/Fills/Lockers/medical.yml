@@ -208,6 +208,7 @@
     - id: HandheldHealthAnalyzer
     - id: PathogenContaminationScanner
     - id: PathogenDecontaminator
+    - id: PathogenAnalyzer
     - id: PlushieLizardJobMedicaldoctor
       prob: 0.02
     - id: ChemistryBottleLaughter

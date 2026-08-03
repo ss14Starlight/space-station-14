@@ -199,12 +199,128 @@ public sealed class PathogenDiagnosisTests : GameTest
     }
 
     [Test]
+    public async Task AnalyzerReadsPatientsSourcesCulturesAndEveryInjectorPayload()
+    {
+        var server = Pair.Server;
+        var entities = server.EntMan;
+        var analyzerSystem = server.System<PathogenAnalyzerSystem>();
+        var registry = server.System<PathogenRegistrySystem>();
+        var pathogens = server.System<PathogenSystem>();
+        var treatment = server.System<PathogenTreatmentSystem>();
+
+        Pathogen treatmentStrain = default!;
+        Pathogen sourceStrain = default!;
+        Pathogen liveStrain = default!;
+        Pathogen beneficialStrain = default!;
+        EntityUid healthy = default;
+        EntityUid patient = default;
+        EntityUid source = default;
+        EntityUid culture = default;
+        EntityUid treatmentInjector = default;
+        EntityUid liveInjector = default;
+        EntityUid beneficialInjector = default;
+
+        await server.WaitPost(() =>
+        {
+            treatmentStrain = registry.Generate("SpaceCold")!;
+            sourceStrain = registry.Generate("SporeBloom")!;
+            liveStrain = registry.Generate("StationFever")!;
+            liveStrain.Tier = PathogenTier.Virulent;
+            beneficialStrain = registry.Generate("Vigor")!;
+
+            healthy = entities.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
+            patient = entities.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
+            source = entities.SpawnEntity("PathogenSporePatch", MapCoordinates.Nullspace);
+            culture = entities.SpawnEntity("PathogenViableCulture", MapCoordinates.Nullspace);
+            treatmentInjector = entities.SpawnEntity("PathogenInjector", MapCoordinates.Nullspace);
+            liveInjector = entities.SpawnEntity("PathogenInjector", MapCoordinates.Nullspace);
+            beneficialInjector = entities.SpawnEntity("PathogenInjector", MapCoordinates.Nullspace);
+
+            Assert.That(pathogens.TryInfect(patient, treatmentStrain.Id), Is.True);
+            entities.GetComponent<PathogenSporePatchComponent>(source).Strain = sourceStrain.Id;
+            entities.GetComponent<PathogenViableCultureComponent>(culture).Strain = treatmentStrain.Id;
+            Assert.That(
+                treatment.TryConfigureInjector(
+                    treatmentInjector,
+                    PathogenInjectorMode.Treatment,
+                    treatmentStrain.Id),
+                Is.True);
+            Assert.That(
+                treatment.TryConfigureInjector(
+                    liveInjector,
+                    PathogenInjectorMode.LiveVaccine,
+                    liveStrain.Id),
+                Is.True);
+            Assert.That(
+                treatment.TryConfigureInjector(
+                    beneficialInjector,
+                    PathogenInjectorMode.BeneficialStrain,
+                    beneficialStrain.Id),
+                Is.True);
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(analyzerSystem.CanScan(healthy), Is.True);
+            Assert.That(analyzerSystem.BuildState(healthy).Pathogens, Is.Empty);
+
+            var unidentified = analyzerSystem.BuildState(patient).Pathogens.Single();
+            Assert.Multiple(() =>
+            {
+                Assert.That(unidentified.FullyIdentified, Is.False);
+                Assert.That(unidentified.Heading, Does.Contain("Unidentified"));
+                Assert.That(unidentified.Heading, Does.Not.Contain(treatmentStrain.Designation));
+            });
+        });
+
+        await server.WaitPost(() =>
+        {
+            registry.IdentifyFully(treatmentStrain.Id);
+            registry.IdentifyFully(sourceStrain.Id);
+            registry.IdentifyFully(liveStrain.Id);
+            registry.IdentifyFully(beneficialStrain.Id);
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            var patientState = analyzerSystem.BuildState(patient);
+            var patientReading = patientState.Pathogens.Single();
+            var sourceState = analyzerSystem.BuildState(source);
+            var cultureState = analyzerSystem.BuildState(culture);
+            var treatmentState = analyzerSystem.BuildState(treatmentInjector);
+            var liveState = analyzerSystem.BuildState(liveInjector);
+            var beneficialState = analyzerSystem.BuildState(beneficialInjector);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(patientState.TargetKind, Is.EqualTo(PathogenAnalyzerTargetKind.Patient));
+                Assert.That(patientReading.FullyIdentified, Is.True);
+                Assert.That(patientReading.Heading, Is.EqualTo(treatmentStrain.Designation));
+                Assert.That(patientReading.Classification, Is.EqualTo("VIRAL"));
+                Assert.That(patientReading.Symptoms, Is.Not.Empty);
+                Assert.That(patientReading.Context, Does.Contain("stage"));
+
+                Assert.That(sourceState.TargetKind, Is.EqualTo(PathogenAnalyzerTargetKind.ContaminationSource));
+                Assert.That(sourceState.Pathogens.Single().Heading, Is.EqualTo(sourceStrain.Designation));
+                Assert.That(cultureState.TargetKind, Is.EqualTo(PathogenAnalyzerTargetKind.Culture));
+                Assert.That(cultureState.Pathogens.Single().Context, Does.Contain("viable culture"));
+
+                Assert.That(treatmentState.Pathogens.Single().Context, Does.Contain("Treatment payload"));
+                Assert.That(treatmentState.Pathogens.Single().Context, Does.Contain("5/5"));
+                Assert.That(liveState.Pathogens.Single().Context, Does.Contain("Live-vaccine payload"));
+                Assert.That(beneficialState.Pathogens.Single().Context, Does.Contain("Beneficial culture payload"));
+            });
+        });
+    }
+
+    [Test]
     public async Task DiagnosisPrototypesUseExistingMachinesAndBatchCentrifuge()
     {
         var server = Pair.Server;
         var entities = server.EntMan;
 
         EntityUid detector = default;
+        EntityUid analyzer = default;
         EntityUid swab = default;
         EntityUid diagnoser = default;
         EntityUid centrifuge = default;
@@ -213,6 +329,7 @@ public sealed class PathogenDiagnosisTests : GameTest
         await server.WaitPost(() =>
         {
             detector = entities.SpawnEntity("PathogenDetector", MapCoordinates.Nullspace);
+            analyzer = entities.SpawnEntity("PathogenAnalyzer", MapCoordinates.Nullspace);
             swab = entities.SpawnEntity("PathogenSwab", MapCoordinates.Nullspace);
             diagnoser = entities.SpawnEntity("DiseaseDiagnoser", MapCoordinates.Nullspace);
             centrifuge = entities.SpawnEntity("MachineCentrifuge", MapCoordinates.Nullspace);
@@ -224,6 +341,7 @@ public sealed class PathogenDiagnosisTests : GameTest
             Assert.Multiple(() =>
             {
                 Assert.That(entities.HasComponent<PathogenDetectorComponent>(detector), Is.True);
+                Assert.That(entities.HasComponent<PathogenAnalyzerComponent>(analyzer), Is.True);
                 Assert.That(entities.HasComponent<PathogenSwabComponent>(swab), Is.True);
                 Assert.That(entities.HasComponent<PathogenDiagnoserComponent>(diagnoser), Is.True);
                 Assert.That(entities.HasComponent<PathogenViableCultureComponent>(culture), Is.True);

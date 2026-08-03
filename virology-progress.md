@@ -199,6 +199,24 @@ Updated: 2026-08-03
   lathe. No map edit, crew-monitor server, health-analyzer change, or fixed console is
   required.
 
+### Direct pathogen analyser
+
+- Added a handheld pathogen analyser with the health analyser's direct-use workflow and
+  a short, interruptible adjacent scan.
+- It scans healthy or infected crew, active contamination sources, prepared and
+  unprepared cultures, viable cultures, and empty or configured pathogen injectors.
+- A negative target reports that no pathogen was detected. A strain that has not been
+  fully diagnosed is reported only as unidentified, without leaking its designation or
+  hidden statistics.
+- Fully identified strains display designation, classification, severity, origin,
+  symptoms, incubation, duration, transmissibility, PPE bypass, prevalence cap, and
+  target-specific context such as infection stage, culture state, injector mode, and
+  remaining doses.
+- Direct scans are observational and do not advance station-wide diagnosis progress or
+  consume cultures and injector doses.
+- The analyser is printable from the medical lathe and stocked in the ViroDrobe, filled
+  virologist locker, medical resupply pack, and admin test kit without requiring map edits.
+
 ### Admin live-testing environment
 
 - Added the admin-debug command `virotest`. It is unavailable to ordinary players and
@@ -396,6 +414,11 @@ Updated: 2026-08-03
 - The final treatment diff passes `git diff --check`. Its changed-path scan contains only
   virology systems, UI, tests, localization, prototypes, and their medical distribution;
   no casino files are present.
+- Pathogen-analyser YAML/prototype validation completed with 0 errors. The focused
+  analyser regression passes 1/1 and the full diagnosis group passes 5/5.
+- The complete post-analyser virology filter passes 31 tests with the known pooled spread
+  regression skipped. The client rebuild, including the analyser XAML and wrapped report
+  fields, completed with 0 errors; only existing repository warnings remain.
 
 ## Treatment Phase
 
@@ -455,14 +478,15 @@ History reconstruction verification:
 
 ## Next Phase
 
-1. Manually verify vaccinator insertion, busy/ejection feedback, automatic output ejection,
-   injector naming, dose display, and successful use on a matching patient.
-2. Decide the permanent-immunity balance for treatment and live-vaccine recipients before
+1. Replace the overlapping detector and contamination scanner with one handheld virology
+   monitor containing a station contamination bar, beacon-grouped room map, and a
+   suit-sensor sick-crew list that exposes names only.
+2. Manually verify analyser interaction feedback and report layout in a live client after
+   the unified monitor is complete.
+3. Decide the permanent-immunity balance for treatment and live-vaccine recipients before
    tuning production costs or batch sizes.
-3. Design beneficial strain content and balance separately; its injector route is ready,
+4. Design beneficial strain content and balance separately; its injector route is ready,
    but beneficial effects remain outside this phase.
-4. Revisit symptom composition, stage-3 distinction, jitter scaling, and the safe fast-test
-   interval after the treatment presentation pass.
 
 ## End-of-Phase Checklist
 

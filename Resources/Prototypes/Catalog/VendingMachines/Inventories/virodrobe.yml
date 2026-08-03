@@ -18,5 +18,6 @@
     PathogenContaminationScanner: 1
     PathogenDecontaminator: 1
     PathogenDetector: 2
+    PathogenAnalyzer: 2
     PathogenSwab: 12
     PathogenInjector: 6

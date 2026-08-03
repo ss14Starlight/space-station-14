@@ -10,6 +10,57 @@ namespace Content.Shared._Starlight.Medical.Virology;
 [RegisterComponent]
 public sealed partial class PathogenDetectorComponent : Component;
 
+/// <summary>
+/// Directly scans one nearby patient, contamination source, culture, or configured injector.
+/// </summary>
+[RegisterComponent]
+public sealed partial class PathogenAnalyzerComponent : Component
+{
+    [DataField]
+    public TimeSpan ScanTime = TimeSpan.FromSeconds(0.8);
+}
+
+[Serializable, NetSerializable]
+public enum PathogenAnalyzerUiKey : byte
+{
+    Key,
+}
+
+[Serializable, NetSerializable]
+public enum PathogenAnalyzerTargetKind : byte
+{
+    Patient,
+    ContaminationSource,
+    Culture,
+    Injector,
+}
+
+[Serializable, NetSerializable]
+public sealed class PathogenAnalyzerUiState(
+    string targetName,
+    PathogenAnalyzerTargetKind targetKind,
+    List<PathogenAnalyzerEntry> pathogens) : BoundUserInterfaceState
+{
+    public readonly string TargetName = targetName;
+    public readonly PathogenAnalyzerTargetKind TargetKind = targetKind;
+    public readonly List<PathogenAnalyzerEntry> Pathogens = pathogens;
+}
+
+[Serializable, NetSerializable]
+public readonly record struct PathogenAnalyzerEntry(
+    bool FullyIdentified,
+    string Heading,
+    string Context,
+    string Classification,
+    string Tier,
+    string Origin,
+    string Symptoms,
+    string Incubation,
+    string Duration,
+    string Transmissibility,
+    string ProtectionBypass,
+    string MaxPrevalence);
+
 [Serializable, NetSerializable]
 public enum PathogenDetectorUiKey : byte
 {
@@ -111,3 +162,6 @@ public sealed partial class PathogenSwabDoAfterEvent : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
 public sealed partial class PathogenDiagnoseDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class PathogenAnalyzerDoAfterEvent : SimpleDoAfterEvent;
