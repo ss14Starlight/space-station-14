@@ -17,6 +17,9 @@
       "name": "firearrow"
     },
     {
+      "name": "eruption"
+    },
+    {
       "name": "sculptureicon"
     },
     {
@@ -33,6 +36,25 @@
     },
     {
       "name": "icepillars"
+    },
+    {
+      "name": "eruptionrune",
+      "delays": [
+       [
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        10]
+            ]
+
     }
   ]
 }

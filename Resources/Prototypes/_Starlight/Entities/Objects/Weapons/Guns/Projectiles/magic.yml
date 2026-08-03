@@ -236,8 +236,45 @@
     damage:
       types:
         Piercing: 5
-        cold: 8
+        Cold: 8
   - type: TimedDespawn
     lifetime: 0.25
 
+- type: entity
+  parent: [ProjectileGrenadeBase]
+  id: EruptionBomb
+  name: unstable fire
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: eruptionbomb
+  - type: TriggerOnSpawn
+  - type: ProjectileGrenade
+    fillPrototype: ProjectileEruption
+    capacity: 20
+    triggerKey: trigger
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
+    positional: true
+  - type: TimedDespawn
+    lifetime: 0.1
 
+- type: entity
+  parent: PelletClusterIncendiary
+  id: ProjectileEruption
+  categories: [ HideSpawnMenu ]
+  name: pellet (ball, less lethal)
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 0
+        Heat: 10
+  - type: IgniteOnCollide
+    fireStacks: 1
+    count: 5
+  - type: TimedDespawn
+    lifetime: 0.25

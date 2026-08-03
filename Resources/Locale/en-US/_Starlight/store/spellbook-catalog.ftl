@@ -61,3 +61,6 @@ spellbook-iceorb-desc = Unleash a slow moving orb of ice, the orb periodicly thr
 
 spellbook-icepillars-name = Summon ice pillars
 spellbook-icepillars-desc = Summon a row of somewhat sturdy ice pillars in front of you, blocks projectiles but not lasers.
+
+spellbook-eruption-name = Eruption
+spellbook-eruption-desc = Summon a rune that after 2 seconds will start sending fiery shrapnels in a wide area.

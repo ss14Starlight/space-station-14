@@ -42,4 +42,6 @@ action-speech-spell-iceshard-tts = ALGOT TEY CAPIAT!
 action-speech-spell-iceorb = MORS FREGIDA EST !
 action-speech-spell-iceorb-tts = MORS FRIGUIDA ESTE!
 action-speech-spell-icepillars = TE EVOCO, GLACIES !
-action-speech-spell-icepillars-tts TE EBOCO, GLAKIES!!
+action-speech-spell-icepillars-tts = TE EBOCO, GLAKIES!!
+action-speech-spell-eruption = CONFLAGRATE !
+action-speech-spell-eruption-tts = CONFLAGRATE!!

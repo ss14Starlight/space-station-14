@@ -116,3 +116,48 @@
       layers:
       - state: icerune
 
+
+- type: entity
+  parent: ActionFreezeRune
+  id: ActionEruption
+  name: Eruption
+  description: Summon a rune that after 2 seconds will start sending fiery shrapnels in a wide area (40 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 40
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: eruption
+  - type: TargetAction
+    range: 16
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: EruptionRuneWiz
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-eruption
+    tts: action-speech-spell-eruption-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  parent: BaseRune
+  id: EruptionRuneWiz
+  name: eruption rune
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/magicactions.rsi
+    layers:
+    - state: eruptionrune
+  - type: PointLight
+    color: "#F5E12C"
+    radius: 1.0
+    energy: 6.0
+  - type: TimedDespawn
+    lifetime: 6
+  - type: RepeatingTrigger
+    delay: 1.5
+  - type: SpawnOnTrigger
+    proto: EruptionBomb
