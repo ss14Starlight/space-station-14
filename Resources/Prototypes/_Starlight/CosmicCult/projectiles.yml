@@ -66,7 +66,7 @@
       types:
         Cold: 12
         Structural: 5
-        Blunt: 5
+        Blunt: 3
     soundHit:
       path: /Audio/_Starlight/CosmicCult/projectile_razor_hit.ogg
       params:
