@@ -7,6 +7,7 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+      - NonLethalMech
 
 - type: entity
   id: IndustrialMech
@@ -172,7 +173,7 @@
       equipmentWhitelist:
         tags:
           - IndustrialMech
-          - CombatMech
+          - NonLethalMech
       baseState: base
       openState: base-open
       brokenState: base-broken
@@ -190,10 +191,10 @@
       bluntStaminaDamageFactor: 1.5
       damage:
         types:
-          Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. #
+          Blunt: 18 # Lowered from 30 to 18 to emphasize it to be nonlethal.
     - type: MovementSpeedModifier
       baseWalkSpeed: 2
-      baseSprintSpeed: 4
+      baseSprintSpeed: 3.6 # Lowered from 4 to 3.6 because its a biggin.
     - type: PointLight
       mask: /Textures/Effects/LightMasks/cone.png
       autoRot: true
@@ -224,6 +225,7 @@
       startingEquipment:
         - WeaponMechCombatDisabler
         - WeaponMechCombatFlashbangLauncher
+        - MechEquipmentSecGrabber
 
 # Clarke
 - type: entity

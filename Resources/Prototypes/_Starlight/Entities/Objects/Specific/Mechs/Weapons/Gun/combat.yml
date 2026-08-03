@@ -166,6 +166,8 @@
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
+    tags:
+    - NonLethalMech
   # end region
 
 - type: entity
@@ -184,6 +186,9 @@
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+  - type: Tag
+    tags:
+    - NonLethalMech
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
@@ -456,6 +461,8 @@
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
+    tags:
+    - NonLethalMech
   # end region
 
 - type: entity
