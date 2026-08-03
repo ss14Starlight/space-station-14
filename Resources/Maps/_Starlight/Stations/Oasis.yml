@@ -234861,20 +234861,6 @@ entities:
     - type: Transform
       pos: -37.366962,-67.73188
       parent: 2
-- proto: WeaponMechChainSword
-  entities:
-  - uid: 28975
-    components:
-    - type: Transform
-      pos: 50.56872,-16.33265
-      parent: 2
-- proto: WeaponMechCombatFiredartLaser
-  entities:
-  - uid: 28976
-    components:
-    - type: Transform
-      pos: 50.540943,-16.596539
-      parent: 2
 - proto: WeaponMeleeBoxcutter
   entities:
   - uid: 28977
