@@ -365,3 +365,20 @@
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookIcePillars
+  name: spellbook-icepillars-name
+  description: spellbook-icepillars-desc
+  priority: 19
+  productAction: ActionIcePillars
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer

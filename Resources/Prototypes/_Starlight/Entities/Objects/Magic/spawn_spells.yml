@@ -41,3 +41,27 @@
       keysIn:
       - timer
       proto: SummonIceSculpture
+
+- type: entity
+  parent: ActionForceWall
+  id: ActionIcePillars
+  name: Ice Pillars
+  description: Creates a row of ice pillars in front of you (20 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: icepillars
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: IcePillars
+      posData: !type:TargetInFront
+  - type: SpeakOnAction
+    sentence: action-speech-spell-icepillars
+    tts: action-speech-spell-icepillars-tts
+    modifier: Spell
+  - type: EorgPreventAction

@@ -41,3 +41,5 @@ action-speech-spell-iceshard = ALGOR TE CAPIAT !
 action-speech-spell-iceshard-tts = ALGOT TEY CAPIAT!
 action-speech-spell-iceorb = MORS FREGIDA EST !
 action-speech-spell-iceorb-tts = MORS FRIGUIDA ESTE!
+action-speech-spell-icepillars = TE EVOCO, GLACIES !
+action-speech-spell-icepillars-tts TE EBOCO, GLAKIES!!

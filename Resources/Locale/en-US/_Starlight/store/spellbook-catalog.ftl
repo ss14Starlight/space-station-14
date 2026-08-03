@@ -58,3 +58,6 @@ spellbook-iceshard-desc = Throw a sharp shard of ice that will slice and freeze 
 
 spellbook-iceorb-name = Heart of winter
 spellbook-iceorb-desc = Unleash a slow moving orb of ice, the orb periodicly throws shard around.
+
+spellbook-icepillars-name = Summon ice pillars
+spellbook-icepillars-desc = Summon a row of somewhat sturdy ice pillars in front of you, blocks projectiles but not lasers.
