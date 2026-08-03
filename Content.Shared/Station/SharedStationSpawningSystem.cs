@@ -364,10 +364,6 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
         foreach (var startingGear in allStartingGear)
         {
             #region Starlight
-            /*foreach (var (slotName, entProtos) in startingGear.Storage)
-            {
-                if (entProtos == null || entProtos.Count == 0)
-                    continue;*/
             EquipStorageGear(entity, startingGear, inventoryComp, priorityContext);
         }
         return true;
