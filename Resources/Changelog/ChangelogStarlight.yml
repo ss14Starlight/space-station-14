@@ -1,130 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: (Silica) Roboticist lockers.
-    type: Add
-  id: 406822
-  time: '2026-07-23T10:08:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5194
-- author: OMEGA
-  changes:
-  - message: (Silica) Overhauled piping networks.
-    type: Tweak
-  id: 406823
-  time: '2026-07-23T10:08:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5194
-- author: OMEGA
-  changes:
-  - message: (Silica) Additional Air Alarm coverage.
-    type: Tweak
-  id: 406824
-  time: '2026-07-23T10:08:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5194
-- author: OMEGA
-  changes:
-  - message: (Silica) Added freezers and heaters to atmos.
-    type: Tweak
-  id: 406825
-  time: '2026-07-23T10:08:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5194
-- author: joshujo
-  changes:
-  - message: pressure pumps now accept signals.
-    type: Add
-  id: 406826
-  time: '2026-07-23T10:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5172
-- author: joshujo
-  changes:
-  - message: volumetric pumps now accept signals.
-    type: Add
-  id: 406827
-  time: '2026-07-23T10:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5172
-- author: redmushie
-  changes:
-  - message: (ATS) Updated dock buy/sell pipes to follow updated convention.
-    type: Tweak
-  id: 406828
-  time: '2026-07-23T11:13:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5244
-- author: redmushie
-  changes:
-  - message: (ATS) Distro dock inlet regulators; prevents the ATS from giving all of its distro to a visiting shuttle.
-    type: Add
-  id: 406829
-  time: '2026-07-23T11:13:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5244
-- author: redmushie
-  changes:
-  - message: (CS-4T9 Tanker) Updated buy/sell gas pipes to follow updated convention.
-    type: Tweak
-  id: 406830
-  time: '2026-07-23T11:13:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5244
-- author: Caws
-  changes:
-  - message: 'Added station beacons for mappers to use: Mail Room, Mining, Paramedic, Clown, Mime, and Musician.'
-    type: Add
-  id: 406831
-  time: '2026-07-24T07:47:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5282
-- author: Conflee
-  changes:
-  - message: Added NaN% poster, immortalizing a round where Beta broke the entire power grid of a station by getting negative power, making station unfixable even with admin commands. Spawned from the Contraband Poster pool.
-    type: Add
-  id: 406832
-  time: '2026-07-24T08:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5277
-- author: Conflee
-  changes:
-  - message: Resprited all Gun Safes. They now have a marker indicating which type of gun is inside them, making it much easier to find the correct safe more quickly.
-    type: Tweak
-  id: 406833
-  time: '2026-07-24T09:37:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5280
-- author: Conflee
-  changes:
-  - message: Added Command, Lawyer, Syndicate, and Security access Gun Safes.
-    type: Add
-  id: 406834
-  time: '2026-07-24T09:37:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5280
-- author: Conflee
-  changes:
-  - message: Swapped the Disabler Gun Safe to use Security access instead of Armory access. Disablers are starting loadout kit, and the safes are often mapped outside Armory in locker rooms etc. There's no reason to make Secoffs drag Warden from Genpop to open these.
-    type: Tweak
-  id: 406835
-  time: '2026-07-24T09:37:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5280
-- author: Mack
-  changes:
-  - message: Handheld crew monitors will once again eject the battery on alt-click.
-    type: Fix
-  id: 406836
-  time: '2026-07-24T10:20:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5263
-- author: Caws
-  changes:
-  - message: Increased the linking range for AI Upload computers from 20 to 200. Most maps with far away AI Uploads (Lobster, Hotel, Starboard, etc.) already did this manually, this just lets mappers do it without manual editing (and lets players re-link a broken AI Uploads without admin help).
-    type: Tweak
-  id: 406837
-  time: '2026-07-24T10:21:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5286
-- author: Caws
-  changes:
-  - message: Added warm light tubes. Less harsh than sodium light tubes, but still very orange. Printable at autolathes.
-    type: Add
-  id: 406838
-  time: '2026-07-24T12:17:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5284
-- author: redmushie
-  changes:
-  - message: Observer ghosts now have typing indicators.
-    type: Add
-  id: 406839
-  time: '2026-07-24T12:39:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5294
 - author: Conflee, Sevenshades, Caws
   changes:
   - message: A Robotics-themed Surgery sign. Sprites by Conflee.
@@ -2799,4 +2673,130 @@ Entries:
   id: 407221
   time: '2026-08-02T17:42:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5467
+- author: Arkanic
+  changes:
+  - message: Fix railroading For Real For Real this time.
+    type: Fix
+  id: 407222
+  time: '2026-08-03T09:28:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5478
+- author: Caws
+  changes:
+  - message: Remade the Space Truck from scratch, which was needed because there were weird things saved to the old Space Truck's YML file like "a solution of grinded up HV and APC cables".
+    type: Tweak
+  id: 407223
+  time: '2026-08-03T09:28:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5480
+- author: Caws
+  changes:
+  - message: Removed the energy dagger that was mapped to the Space Truck's front cabin.
+    type: Remove
+  id: 407224
+  time: '2026-08-03T09:28:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5480
+- author: OMEGA
+  changes:
+  - message: (Bagel) The Right Honorable Flippers.
+    type: Add
+  id: 407225
+  time: '2026-08-03T09:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5474
+- author: OMEGA
+  changes:
+  - message: (Bagel) Departmental Lathes.
+    type: Add
+  id: 407226
+  time: '2026-08-03T09:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5474
+- author: OMEGA
+  changes:
+  - message: (Bagel) Distro and waste pipes added to all docks.
+    type: Add
+  id: 407227
+  time: '2026-08-03T09:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5474
+- author: OMEGA
+  changes:
+  - message: (Bagel) Buy and sell pipes added to cargo shuttle docks.
+    type: Add
+  id: 407228
+  time: '2026-08-03T09:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5474
+- author: Musiklie
+  changes:
+  - message: Reduced the weight of the nightshift event by 60%.
+    type: Tweak
+  id: 407229
+  time: '2026-08-03T10:53:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5481
+- author: OMEGA
+  changes:
+  - message: (Silica) The Right Honorable Flippers.
+    type: Add
+  id: 407230
+  time: '2026-08-03T10:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5465
+- author: OMEGA
+  changes:
+  - message: (Silica) Departmental Lathes.
+    type: Add
+  id: 407231
+  time: '2026-08-03T10:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5465
+- author: OMEGA
+  changes:
+  - message: (Silica) Distro and waste pipes added to all docks.
+    type: Add
+  id: 407232
+  time: '2026-08-03T10:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5465
+- author: OMEGA
+  changes:
+  - message: (Silica) Buy and sell pipes added to cargo shuttle docks.
+    type: Add
+  id: 407233
+  time: '2026-08-03T10:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5465
+- author: OMEGA
+  changes:
+  - message: (Silica) Scrubbers and vents cleaned up.
+    type: Fix
+  id: 407234
+  time: '2026-08-03T10:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5465
+- author: Caws
+  changes:
+  - message: (Cork) Removed three erroneously mapped hot potatoes in a hot foot cart. These are not, in fact, warm potatoes but instead are very explosive potatoes. If you or a loved one was injured by one of these potatoes, please contact your station-side lawyer.
+    type: Remove
+  id: 407235
+  time: '2026-08-03T11:23:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5482
+- author: Johnny
+  changes:
+  - message: The head of security cannot be blind anymore.
+    type: Tweak
+  id: 407236
+  time: '2026-08-03T11:44:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5496
+- author: Johnny
+  changes:
+  - message: Removed pirate access from borgs and CC personnel, no longer will CC have ties to pirate organizations.
+    type: Remove
+  id: 407237
+  time: '2026-08-03T12:05:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5492
+- author: Caws
+  changes:
+  - message: The Inspector now has a 6 round cylinder again (instead of 9), meaning it'll load properly from its 6-round speedloaders once more.
+    type: Tweak
+  id: 407238
+  time: '2026-08-03T13:36:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5472
+- author: Caws
+  changes:
+  - message: The Inspector's description states the correct cylinder capacity (previously said "8" despite holding 9 rounds, now says 6 rounds).
+    type: Fix
+  id: 407239
+  time: '2026-08-03T13:36:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5472
 Order: -1
