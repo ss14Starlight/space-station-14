@@ -1,20 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Silica) Overhauled piping networks.
-    type: Tweak
-  id: 406823
-  time: '2026-07-23T10:08:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5194
-- author: OMEGA
-  changes:
-  - message: (Silica) Additional Air Alarm coverage.
-    type: Tweak
-  id: 406824
-  time: '2026-07-23T10:08:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5194
-- author: OMEGA
-  changes:
   - message: (Silica) Added freezers and heaters to atmos.
     type: Tweak
   id: 406825
@@ -2799,4 +2785,18 @@ Entries:
   id: 407222
   time: '2026-08-03T09:28:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5478
+- author: Caws
+  changes:
+  - message: Remade the Space Truck from scratch, which was needed because there were weird things saved to the old Space Truck's YML file like "a solution of grinded up HV and APC cables".
+    type: Tweak
+  id: 407223
+  time: '2026-08-03T09:28:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5480
+- author: Caws
+  changes:
+  - message: Removed the energy dagger that was mapped to the Space Truck's front cabin.
+    type: Remove
+  id: 407224
+  time: '2026-08-03T09:28:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5480
 Order: -1
