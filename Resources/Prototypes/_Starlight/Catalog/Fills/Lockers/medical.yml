@@ -206,6 +206,8 @@
     - id: ClothingEyesHudMedical
     - id: ClothingBeltMedicalFilled
     - id: HandheldHealthAnalyzer
+    - id: PathogenContaminationScanner
+    - id: PathogenDecontaminator
     - id: PlushieLizardJobMedicaldoctor
       prob: 0.02
     - id: ChemistryBottleLaughter

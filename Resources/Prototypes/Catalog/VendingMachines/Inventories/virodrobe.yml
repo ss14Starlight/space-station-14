@@ -11,3 +11,11 @@
     ClothingBackpackVirology: 2
     ClothingBackpackSatchelVirology: 2
     ClothingBackpackDuffelVirology: 2
+    # Starlight - lets virology stand up its own lab on maps that were never given the
+    # machines, so the role never depends on a map being edited.
+    DiseaseDiagnoserFlatpack: 1
+    VaccinatorFlatpack: 1
+    PathogenContaminationScanner: 1
+    PathogenDecontaminator: 1
+    PathogenDetector: 2
+    PathogenSwab: 12

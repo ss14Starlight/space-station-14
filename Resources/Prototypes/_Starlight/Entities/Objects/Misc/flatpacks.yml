@@ -80,3 +80,24 @@
   components:
   - type: Flatpack
     entity: IceCreamMaker
+
+# Virology. Stocked in the ViroDrobe so the department can stand its own lab up on the
+# handful of maps that were never given a diagnoser or vaccinator, without those maps
+# needing to be edited.
+- type: entity
+  parent: BaseFlatpack
+  id: DiseaseDiagnoserFlatpack
+  name: disease diagnoser flatpack
+  description: A flatpack used for constructing a disease diagnoser.
+  components:
+  - type: Flatpack
+    entity: DiseaseDiagnoser
+
+- type: entity
+  parent: BaseFlatpack
+  id: VaccinatorFlatpack
+  name: vaccinator flatpack
+  description: A flatpack used for constructing a vaccinator.
+  components:
+  - type: Flatpack
+    entity: Vaccinator

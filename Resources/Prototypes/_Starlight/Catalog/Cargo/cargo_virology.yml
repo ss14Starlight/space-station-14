@@ -1,0 +1,26 @@
+# Universal fallback for virology equipment.
+#
+# Most stations already have a diagnoser and vaccinator mapped in, and the ViroDrobe
+# stocks flatpacks for the rest. These orders exist so the department is never blocked
+# on a map that has neither - Boxcars and StationBuilding today, plus anything added
+# later that forgets virology.
+
+- type: cargoProduct
+  id: DiseaseDiagnoserFlatpackPurchase
+  icon:
+    sprite: Structures/Machines/diagnoser.rsi
+    state: icon
+  product: DiseaseDiagnoserFlatpack
+  cost: 900
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: VaccinatorFlatpackPurchase
+  icon:
+    sprite: Structures/Machines/vaccinator.rsi
+    state: icon
+  product: VaccinatorFlatpack
+  cost: 900
+  category: cargoproduct-category-name-medical
+  group: market

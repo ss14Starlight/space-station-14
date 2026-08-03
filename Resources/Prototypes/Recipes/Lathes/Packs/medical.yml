@@ -44,6 +44,9 @@
   - Defibrillator
   - HandheldHealthAnalyzer
   - DiseaseSwab
+  # Starlight - dedicated virology detection and sampling tools.
+  - PathogenDetector
+  - PathogenSwab
   - BodyBag
   - WhiteCane
   - OffsetCane
