@@ -12,11 +12,11 @@ namespace Content.Shared._Starlight.Scent.Systems;
 // See ClientScentSystem for the concrete client-side subclass.
 public abstract class SharedScentSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedActionsSystem Actions = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
-    [Dependency] protected readonly MobStateSystem MobState = default!;
-    [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
+    [Dependency] protected SharedActionsSystem Actions = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
+    [Dependency] protected MobStateSystem MobState = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
 
     public override void Initialize()
     {
@@ -131,20 +131,20 @@ public abstract class SharedScentSystem : EntitySystem
         if (source is { } src)
         {
             if (hasOwner)
-                AdminLogger.Add(LogType.Scent,
+                _adminLogger.Add(LogType.Scent,
                     $"{ToPrettyString(smeller):user} sniffed {ToPrettyString(src):source} and {verb} following scent trace belonging to {ToPrettyString(owner):target}.");
             else
-                AdminLogger.Add(LogType.Scent,
+                _adminLogger.Add(LogType.Scent,
                     $"{ToPrettyString(smeller):user} sniffed {ToPrettyString(src):source} and {verb} following an untraceable scent trace.");
         }
         else if (hasOwner)
         {
-            AdminLogger.Add(LogType.Scent,
+            _adminLogger.Add(LogType.Scent,
                 $"{ToPrettyString(smeller):user} {verb} following scent trace belonging to {ToPrettyString(owner):target}.");
         }
         else
         {
-            AdminLogger.Add(LogType.Scent, $"{ToPrettyString(smeller):user} {verb} following an untraceable scent trace.");
+            _adminLogger.Add(LogType.Scent, $"{ToPrettyString(smeller):user} {verb} following an untraceable scent trace.");
         }
     }
 
@@ -180,7 +180,7 @@ public abstract class SharedScentSystem : EntitySystem
 
         // The generic action-use log already covers Action; this adds the on/off detail under Scent.
         var state = sniffing ? "on" : "off";
-        AdminLogger.Add(LogType.Scent, $"{ToPrettyString(ent.Owner):user} toggled sniffing {state}.");
+        _adminLogger.Add(LogType.Scent, $"{ToPrettyString(ent.Owner):user} toggled sniffing {state}.");
 
         Dirty(ent);
     }
