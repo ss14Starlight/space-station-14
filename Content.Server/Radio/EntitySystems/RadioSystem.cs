@@ -432,6 +432,14 @@ public sealed partial class RadioSystem : EntitySystem
             jobName = Loc.GetString(chassis?.LocalizedJobTitle ?? "job-name-borg"); // Starlight edit
         }
 
+        // Starlight START
+        if (TryComp<JobIconOverrideComponent>(messageSource, out var overrideComp))
+        {
+            iconId = overrideComp.JobIconOverride;
+            jobName = overrideComp.LocalizedJobTitle;
+        }
+        // Starlight END
+
         if (HasComp<StationAiHeldComponent>(messageSource) || (TryComp<StationAIShuntComponent>(messageSource, out var aiShunt) && aiShunt.Return.HasValue))
         {
             iconId = "JobIconStationAi";

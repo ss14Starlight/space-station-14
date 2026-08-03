@@ -1,81 +1,4 @@
 Entries:
-- author: Conflee, Sevenshades, Caws
-  changes:
-  - message: A Robotics-themed Surgery sign. Sprites by Conflee.
-    type: Add
-  id: 406840
-  time: '2026-07-24T14:51:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5285
-- author: Conflee, Sevenshades, Caws
-  changes:
-  - message: A Heat sign, for indicating heating rooms. Sprites by Sevenshades.
-    type: Add
-  id: 406841
-  time: '2026-07-24T14:51:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5285
-- author: joshujo
-  changes:
-  - message: Edge firelocks to RCD.
-    type: Add
-  id: 406842
-  time: '2026-07-24T17:28:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5262
-- author: joshujo
-  changes:
-  - message: Post lights to RCD.
-    type: Add
-  id: 406843
-  time: '2026-07-24T17:28:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5262
-- author: CasaleBalthazar
-  changes:
-  - message: the molar gas mixer, a new type of gas mixer that respect the specified mix when mixing gases at different temperatures.
-    type: Add
-  id: 406844
-  time: '2026-07-24T17:53:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5240
-- author: CasaleBalthazar
-  changes:
-  - message: renamed the gas mixer to volumetric gas mixer.
-    type: Tweak
-  id: 406845
-  time: '2026-07-24T17:53:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5240
-- author: CasaleBalthazar
-  changes:
-  - message: updated the guidebook entry on gas mixing/filtering.
-    type: Tweak
-  id: 406846
-  time: '2026-07-24T17:53:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5240
-- author: CrazyPhantom
-  changes:
-  - message: Ported Molar gas mixers.
-    type: Add
-  id: 406847
-  time: '2026-07-24T17:53:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5240
-- author: CrazyPhantom
-  changes:
-  - message: Added alt layers for molar gas mixers.
-    type: Add
-  id: 406848
-  time: '2026-07-24T17:53:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5240
-- author: redmushie
-  changes:
-  - message: Maximum atmospheric device output pressures have been reverted to their non-doubled levels.
-    type: Tweak
-  id: 406849
-  time: '2026-07-24T17:53:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5298
-- author: redmushie
-  changes:
-  - message: Subfloor gas tanks that can store 1000L!
-    type: Add
-  id: 406850
-  time: '2026-07-24T18:28:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5291
 - author: redmushie
   changes:
   - message: Gas storage sub-menu to RPD.
@@ -2799,4 +2722,81 @@ Entries:
   id: 407239
   time: '2026-08-03T13:36:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5472
+- author: Caws
+  changes:
+  - message: (Manor) Removed roundstart mech weapons from Armory.
+    type: Remove
+  id: 407240
+  time: '2026-08-03T17:25:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5484
+- author: Caws
+  changes:
+  - message: (Orwell) Removed roundstart mech weapons from Armory.
+    type: Remove
+  id: 407241
+  time: '2026-08-03T17:25:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5484
+- author: Caws
+  changes:
+  - message: (Starboard) Removed roundstart mech weapons from Armory.
+    type: Remove
+  id: 407242
+  time: '2026-08-03T17:25:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5484
+- author: Conflee
+  changes:
+  - message: Fixed welcome popup buttons clipping.
+    type: Fix
+  id: 407243
+  time: '2026-08-03T17:25:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5483
+- author: Johnny
+  changes:
+  - message: Added the little personnel grabber to the paddy mech, its able to finally grab prisoners and put it in a back cell!
+    type: Add
+  id: 407244
+  time: '2026-08-03T18:33:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5488
+- author: Johnny
+  changes:
+  - message: Changed the paddy mech to only be able to accept nonlethal mech armaments.
+    type: Tweak
+  id: 407245
+  time: '2026-08-03T18:33:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5488
+- author: Johnny
+  changes:
+  - message: Changed the paddy mech to do less blunt damage with its fist.
+    type: Tweak
+  id: 407246
+  time: '2026-08-03T18:33:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5488
+- author: Johnny
+  changes:
+  - message: Changed paddies melee to do more stamina damage, around same as a truncheon.
+    type: Tweak
+  id: 407247
+  time: '2026-08-03T18:33:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5488
+- author: Forrestgod
+  changes:
+  - message: 'Created a new Component: JobIconOverride, It lets admins override a job icon in the radio to whatever as well as the job title.'
+    type: Add
+  id: 407248
+  time: '2026-08-03T18:33:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5411
+- author: redmushie
+  changes:
+  - message: Mapping variants of subfloor- and tall gas tanks prefilled with air.
+    type: Add
+  id: 407249
+  time: '2026-08-03T18:52:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5473
+- author: wonderfulnewworld
+  changes:
+  - message: CE now gets an Engi Techfab Flatpack in their locker.
+    type: Fix
+  id: 407250
+  time: '2026-08-03T20:30:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5499
 Order: -1
