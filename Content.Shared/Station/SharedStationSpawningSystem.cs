@@ -402,9 +402,11 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
                                 spawnedEntity,
                                 priorityContext!))
                         {
-                            _adminLogger.Add(LogType.AntagSelection,
-                                LogImpact.Low,
-                                $"{ToPrettyString(entity):target} had antagonist gear {ToPrettyString(spawnedEntity):item} left on the ground because it could not fit in {ToPrettyString(slotEntity):storage}");
+                            TryPlacePriorityGearInHands(entity,
+                                spawnedEntity,
+                                slotName,
+                                priorityContext!,
+                                failedStorage: slotEntity.Value);
                         }
                     }
                     else
@@ -457,20 +459,49 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
         if (TryInsertEntireStorageItem(storage, gear, priorityContext))
             return true;
 
-        // Remove pre-existing contents one at a time, retrying after each removal.
+        // Displace pre-existing contents one at a time, retrying after each removal.
         // Gear issued during this same loadout is protected from being displaced by later gear.
+        // If placement never succeeds, restore every displaced item to its original grid location.
+        var displacedItems = new List<(EntityUid Item, ItemStorageLocation Location)>();
         foreach (var storedItem in storage.Comp.Container.ContainedEntities.ToArray())
         {
-            if (priorityContext.IssuedGear.Contains(storedItem))
+            if (priorityContext.IssuedGear.Contains(storedItem) ||
+                !storage.Comp.StoredItems.TryGetValue(storedItem, out var location))
+            {
                 continue;
+            }
 
             _xformSystem.DropNextTo(storedItem, entity);
+            displacedItems.Add((storedItem, location));
+
+            if (!TryInsertEntireStorageItem(storage, gear, priorityContext))
+                continue;
+
+            foreach (var (item, _) in displacedItems)
+            {
+                _adminLogger.Add(LogType.AntagSelection,
+                    LogImpact.Low,
+                    $"{ToPrettyString(entity):target} had {ToPrettyString(item):item} dropped from {ToPrettyString(storage):storage} to make room for antagonist gear {ToPrettyString(gear):item}");
+            }
+
+            return true;
+        }
+
+        foreach (var (item, location) in displacedItems)
+        {
+            if (_storage.InsertAt(storage.AsNullable(),
+                    item,
+                    location,
+                    out _,
+                    playSound: false,
+                    stackAutomatically: false))
+            {
+                continue;
+            }
+
             _adminLogger.Add(LogType.AntagSelection,
                 LogImpact.Low,
-                $"{ToPrettyString(entity):target} had {ToPrettyString(storedItem):item} dropped from {ToPrettyString(storage):storage} to make room for antagonist gear {ToPrettyString(gear):item}");
-
-            if (TryInsertEntireStorageItem(storage, gear, priorityContext))
-                return true;
+                $"{ToPrettyString(entity):target} had {ToPrettyString(item):item} left on the ground after it could not be restored to {ToPrettyString(storage):storage} following a failed attempt to make room for antagonist gear {ToPrettyString(gear):item}");
         }
 
         return false;
@@ -500,8 +531,13 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
     private bool TryPlacePriorityGearInHands(EntityUid entity,
         EntityUid gear,
         string slotName,
-        PriorityStorageEquipContext priorityContext)
+        PriorityStorageEquipContext priorityContext,
+        EntityUid? failedStorage = null)
     {
+        var storageFailure = failedStorage == null
+            ? $"their {slotName} slot had no storage"
+            : $"it could not fit in {ToPrettyString(failedStorage.Value):storage}";
+
         if (_handsQuery.TryComp(entity, out var hands))
         {
             if (_handsSystem.TryPickupAnyHand(entity,
@@ -513,7 +549,7 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
                 priorityContext.IssuedGear.Add(gear);
                 _adminLogger.Add(LogType.AntagSelection,
                     LogImpact.Low,
-                    $"{ToPrettyString(entity):target} had antagonist gear {ToPrettyString(gear):item} placed in a hand because their {slotName} slot had no storage");
+                    $"{ToPrettyString(entity):target} had antagonist gear {ToPrettyString(gear):item} placed in a hand because {storageFailure}");
                 return true;
             }
 
@@ -538,14 +574,14 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
                 priorityContext.IssuedGear.Add(gear);
                 _adminLogger.Add(LogType.AntagSelection,
                     LogImpact.Low,
-                    $"{ToPrettyString(entity):target} had {ToPrettyString(heldItem):item} dropped from a hand so antagonist gear {ToPrettyString(gear):item} could be held because their {slotName} slot had no storage");
+                    $"{ToPrettyString(entity):target} had {ToPrettyString(heldItem):item} dropped from a hand so antagonist gear {ToPrettyString(gear):item} could be held because {storageFailure}");
                 return true;
             }
         }
 
         _adminLogger.Add(LogType.AntagSelection,
             LogImpact.Low,
-            $"{ToPrettyString(entity):target} had antagonist gear {ToPrettyString(gear):item} left on the ground because their {slotName} slot had no storage and no hand could hold it");
+            $"{ToPrettyString(entity):target} had antagonist gear {ToPrettyString(gear):item} left on the ground because {storageFailure} and no hand could hold it");
         return false;
     }
     #endregion
