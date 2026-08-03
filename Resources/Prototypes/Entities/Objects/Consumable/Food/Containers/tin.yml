@@ -73,6 +73,7 @@
       Steel: 100
   - type: Tag
     tags:
+    - OrganicTrash
     - Trash
 
 # Tins

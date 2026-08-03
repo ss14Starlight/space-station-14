@@ -22,6 +22,27 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<float> VirologyContaminationBiologicalPuddleMaximum =
         CVarDef.Create("virology.contamination_biological_puddle_maximum", 2.4f, CVar.SERVERONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<float> VirologyContaminationFoodPuddlePerUnit =
+        CVarDef.Create("virology.contamination_food_puddle_per_unit", 0.03f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationFoodPuddleMaximum =
+        CVarDef.Create("virology.contamination_food_puddle_maximum", 1.2f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationMoldPuddlePerUnit =
+        CVarDef.Create("virology.contamination_mold_puddle_per_unit", 0.06f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationMoldPuddleMaximum =
+        CVarDef.Create("virology.contamination_mold_puddle_maximum", 1.8f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationOrganicTrash =
+        CVarDef.Create("virology.contamination_organic_trash", 0.1f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationDeadPlant =
+        CVarDef.Create("virology.contamination_dead_plant", 0.75f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationViralCarrier =
+        CVarDef.Create("virology.contamination_viral_carrier", 0.5f, CVar.SERVERONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<float> VirologyContaminationInfectionRadius =
         CVarDef.Create("virology.contamination_infection_radius", 1.5f, CVar.SERVERONLY | CVar.ARCHIVE);
 

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Medical.Virology;
 using Content.Shared._Starlight.Medical.Virology;
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -12,6 +13,18 @@ public sealed class PathogenContaminationTests : GameTest
 {
     private static readonly ProtoId<PathogenArchetypePrototype> StationFever = "StationFever";
     private static readonly EntProtoId SporePatch = "PathogenSporePatch";
+    private static readonly ProtoId<TagPrototype> OrganicTrashTag = "OrganicTrash";
+    private static readonly EntProtoId[] OrganicTrashPrototypes =
+    [
+        "FoodPacketBoritosTrash",
+        "FoodTinPeachesTrash",
+        "FoodPlateTrash",
+        "FoodBowlBigTrash",
+        "TrashBananaPeel",
+        "FoodCornTrash",
+        "FoodBungoPit",
+        "TrashCherryPit",
+    ];
 
     [Test]
     public void MilestonesAreOrderedAndOneShot()
@@ -52,8 +65,11 @@ public sealed class PathogenContaminationTests : GameTest
     [TestCase(0f, 0.06f, 2.4f, 0f)]
     [TestCase(20f, 0.06f, 2.4f, 1.2f)]
     [TestCase(100f, 0.06f, 2.4f, 2.4f)]
+    [TestCase(20f, 0.03f, 1.2f, 0.6f)]
+    [TestCase(100f, 0.03f, 1.2f, 1.2f)]
+    [TestCase(100f, 0.06f, 1.8f, 1.8f)]
     [TestCase(-10f, 0.06f, 2.4f, 0f)]
-    public void BiologicalPuddleContaminationIsBounded(
+    public void PuddleContaminationIsBounded(
         float volume,
         float perUnit,
         float maximum,
@@ -62,6 +78,31 @@ public sealed class PathogenContaminationTests : GameTest
         Assert.That(
             PathogenContaminationMath.PuddleContamination(volume, perUnit, maximum),
             Is.EqualTo(expected).Within(0.0001f));
+    }
+
+    [Test]
+    public async Task OrganicWastePrototypesCarryContaminationTag()
+    {
+        var server = Pair.Server;
+        var proto = server.ResolveDependency<IPrototypeManager>();
+
+        await server.WaitAssertion(() =>
+        {
+            foreach (var prototypeId in OrganicTrashPrototypes)
+            {
+                var prototype = proto.Index<EntityPrototype>(prototypeId);
+                Assert.That(
+                    prototype.TryGetComponent<TagComponent>(
+                        out var tags,
+                        server.EntMan.ComponentFactory),
+                    Is.True,
+                    $"{prototypeId} should have a Tag component");
+                Assert.That(
+                    tags!.Tags,
+                    Does.Contain(OrganicTrashTag),
+                    $"{prototypeId} should be sampled as organic trash");
+            }
+        });
     }
 
     [TestCase(2.3f, 2.4f, 0.016666667f, 0f, 0f)]

@@ -530,6 +530,9 @@
   id: OmniCyberEyes
 
 - type: Tag
+  id: OrganicTrash
+
+- type: Tag
   id: OvenMachineBoard
 
 - type: Tag

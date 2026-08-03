@@ -455,6 +455,7 @@
         - ItemMask
   - type: Tag
     tags:
+    - OrganicTrash
     - Recyclable
     - Trash
     - BananaPeel
@@ -1264,6 +1265,7 @@
     size: Tiny
   - type: Tag
     tags:
+      - OrganicTrash
       - Trash
   - type: SolutionContainerManager
     solutions:
@@ -2463,6 +2465,7 @@
     state: pit
   - type: Tag
     tags:
+    - OrganicTrash
     - Recyclable
     - Trash
   - type: SolutionContainerManager
@@ -2782,6 +2785,7 @@
     size: Tiny
   - type: Tag
     tags:
+    - OrganicTrash
     - Recyclable
     - Trash
   - type: SolutionContainerManager

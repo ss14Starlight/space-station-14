@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Atmos.Rotting;
+using Content.Server.Botany.Components;
 using Content.Server.GameTicking;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Medical.Virology;
@@ -11,10 +12,13 @@ using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Fluids.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Pinpointer;
+using Content.Shared.Tag;
 using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -30,6 +34,7 @@ namespace Content.Server._Starlight.Medical.Virology;
 public sealed partial class PathogenContaminationSourceSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private IGameTiming _timing = default!;
@@ -41,6 +46,7 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
     [Dependency] private PathogenTransmissionSystem _transmission = default!;
     [Dependency] private RottingSystem _rotting = default!;
     [Dependency] private SharedSolutionContainerSystem _solutions = default!;
+    [Dependency] private TagSystem _tags = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
     private readonly Dictionary<EntityUid, SourceSnapshot> _sources = new();
@@ -48,6 +54,10 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
     private readonly HashSet<EntityUid> _nearby = new();
 
     private static readonly EntProtoId SporePatchPrototype = "PathogenSporePatch";
+    private static readonly ProtoId<TagPrototype> OrganicTrashTag = "OrganicTrash";
+    private static readonly ProtoId<ReagentPrototype> NutrimentReagent = "Nutriment";
+    private static readonly ProtoId<ReagentPrototype> ProteinReagent = "Protein";
+    private static readonly ProtoId<ReagentPrototype> MoldReagent = "Mold";
     private static readonly PathogenType[] RotSignatures =
     [
         PathogenType.Bacteria,
@@ -111,6 +121,8 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
         TryCreateSporePatches();
         CollectRotSources();
         CollectPuddleSources();
+        CollectOrganicTrashSources();
+        CollectDeadPlantSources();
         CollectSporeSources();
 
         RefreshContamination();
@@ -130,6 +142,8 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
                 contributions[type] += share;
             }
         }
+
+        contributions[PathogenType.Virus] += GetViralCarrierContamination();
 
         _contamination.SetContamination(contributions);
     }
@@ -170,12 +184,24 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
 
     private void CollectPuddleSources()
     {
-        var perUnit = Math.Max(
+        var biologicalPerUnit = Math.Max(
             0f,
             _config.GetCVar(StarlightCCVars.VirologyContaminationBiologicalPuddlePerUnit));
-        var maximum = Math.Max(
+        var biologicalMaximum = Math.Max(
             0f,
             _config.GetCVar(StarlightCCVars.VirologyContaminationBiologicalPuddleMaximum));
+        var foodPerUnit = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationFoodPuddlePerUnit));
+        var foodMaximum = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationFoodPuddleMaximum));
+        var moldPerUnit = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationMoldPuddlePerUnit));
+        var moldMaximum = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationMoldPuddleMaximum));
 
         var query = EntityQueryEnumerator<PuddleComponent>();
         while (query.MoveNext(out var uid, out var puddle))
@@ -190,27 +216,121 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
             }
 
             var biologicalVolume = 0f;
+            var foodVolume = 0f;
+            var moldVolume = 0f;
             foreach (var quantity in solution.Contents)
             {
-                if (!_prototypes.TryIndex<ReagentPrototype>(quantity.Reagent.Prototype, out var reagent) ||
-                    reagent.Group != "Biological")
-                {
-                    continue;
-                }
+                var reagentId = quantity.Reagent.Prototype;
+                var volume = quantity.Quantity.Float();
 
-                biologicalVolume += quantity.Quantity.Float();
+                if (reagentId == NutrimentReagent || reagentId == ProteinReagent)
+                    foodVolume += volume;
+
+                if (reagentId == MoldReagent)
+                    moldVolume += volume;
+
+                if (_prototypes.TryIndex<ReagentPrototype>(reagentId, out var reagent) &&
+                    reagent.Group == "Biological")
+                {
+                    biologicalVolume += volume;
+                }
             }
 
-            var contamination = PathogenContaminationMath.PuddleContamination(
+            var biologicalContamination = PathogenContaminationMath.PuddleContamination(
                 biologicalVolume,
-                perUnit,
-                maximum);
+                biologicalPerUnit,
+                biologicalMaximum);
             AddSource(
                 uid,
                 [PathogenType.Bacteria],
-                contamination,
+                biologicalContamination,
                 isPuddle: true);
+
+            var foodContamination = PathogenContaminationMath.PuddleContamination(
+                foodVolume,
+                foodPerUnit,
+                foodMaximum);
+            AddSource(uid, [PathogenType.Bacteria], foodContamination);
+
+            var moldContamination = PathogenContaminationMath.PuddleContamination(
+                moldVolume,
+                moldPerUnit,
+                moldMaximum);
+            AddSource(uid, [PathogenType.Fungus], moldContamination);
         }
+    }
+
+    private void CollectOrganicTrashSources()
+    {
+        var contamination = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationOrganicTrash));
+
+        var query = EntityQueryEnumerator<TagComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var tags, out var transform))
+        {
+            if (transform.MapID == MapId.Nullspace ||
+                transform.GridUid is null ||
+                _containers.IsEntityInContainer(uid) ||
+                !_tags.HasTag(tags, OrganicTrashTag))
+            {
+                continue;
+            }
+
+            AddSource(uid, [PathogenType.Bacteria], contamination);
+        }
+    }
+
+    private void CollectDeadPlantSources()
+    {
+        var contamination = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationDeadPlant));
+
+        var query = EntityQueryEnumerator<PlantHolderComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var plant, out var transform))
+        {
+            if (!plant.Dead ||
+                plant.Seed is null ||
+                transform.MapID == MapId.Nullspace ||
+                transform.GridUid is null)
+            {
+                continue;
+            }
+
+            AddSource(uid, [PathogenType.Fungus], contamination);
+        }
+    }
+
+    private float GetViralCarrierContamination()
+    {
+        var perCarrier = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationViralCarrier));
+        if (perCarrier <= 0f)
+            return 0f;
+
+        var carriers = 0;
+        var query = EntityQueryEnumerator<PathogenInfectionComponent, MobStateComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var infections, out var mobState, out var transform))
+        {
+            if (mobState.CurrentState == MobState.Dead ||
+                transform.MapID == MapId.Nullspace ||
+                transform.GridUid is null)
+            {
+                continue;
+            }
+
+            if (infections.Infections.Any(infection =>
+                    infection.Stage >= 1 &&
+                    _registry.TryGetStrain(infection.Pathogen, out var strain) &&
+                    strain.PathogenType == PathogenType.Virus))
+            {
+                carriers++;
+            }
+        }
+
+        return carriers * perCarrier;
     }
 
     private void CollectSporeSources()

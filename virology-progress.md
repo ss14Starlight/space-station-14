@@ -124,6 +124,16 @@ Updated: 2026-08-03
 - Biological puddles, including blood and vomit, contribute a bacterial signature based
   on reagent volume, capped at 2.4 current points per puddle, and carry a small flat local
   infection chance.
+- Nutriment and protein left in floor puddles contribute a low bacterial signature,
+  capped at 1.2 current points per puddle. Mold reagent contributes a fungal signature,
+  capped at 1.8. These hygiene residues do not receive the biological-puddle minimum
+  infection chance.
+- Loose discarded food wrappers, empty tins, broken dinnerware, peels, cobs, and pits
+  contribute 0.1 bacterial points each. Putting them in a trash bag or any other
+  container removes them from the next snapshot immediately.
+- A hydroponics tray containing a dead plant contributes 0.75 fungal points until the
+  plant matter is removed. Rotting organs and gibs remain covered by the existing 0.9
+  generic-rot path.
 - Ordinary rot only becomes locally infectious above its configured source-point threshold.
   Puddles and fungal patches keep their configured minimum chance below that threshold.
 - Sources only carry currently active matching strains. Fungal patches pin the exact
@@ -153,7 +163,10 @@ Updated: 2026-08-03
   strain-pinned spore patch. A patch lasts up to ten minutes, contributes fungal
   contamination, can infect locally, and can be removed with either the decontaminator
   or any normal absorbent mop.
-- Environmental sources never use a viral signature.
+- Physical environmental sources never use a viral signature. Instead, each living,
+  symptomatic viral carrier on a station grid contributes 0.5 to the global viral
+  signature. This airborne reading has no fake surface source or room-map marker and
+  disappears when the carriers recover, die, or leave the station.
 - The monitor and decontaminator are stocked in the filled virologist locker and
   ViroDrobe, so no map edit is required.
 - Source sampling does not run in the lobby or after round end.
@@ -445,6 +458,12 @@ Updated: 2026-08-03
   Gamorrah, treasurer, and brigmed content is absent.
 - No temporary console commands, debug output, scripts, or generated test logs remain in
   the repository.
+- The lightweight hygiene-source phase builds with 0 errors. Focused contamination tests
+  pass 19/19 after correcting one test-only attempt to index abstract prototypes.
+  YAML/prototype validation completes with 0 errors.
+- The hygiene-source diff passes `git diff --check` and contains only the contamination
+  sampler, its CVars/tests, food-waste tags, and this progress document. No casino or
+  unrelated fork content is present, and no temporary command/debug lines remain.
 
 ## Treatment Phase
 
@@ -504,13 +523,16 @@ History reconstruction verification:
 
 ## Next Phase
 
-1. Manually verify the analyser interaction/report layout and the monitor's contamination
+1. Manually verify that loose food waste, food/mold spills, dead plants, and symptomatic
+   viral carriers appear at their configured values, then disappear on bagging, mopping,
+   plant removal, or recovery.
+2. Manually verify the analyser interaction/report layout and the monitor's contamination
    bar, map framing, room list, live refresh, and suit-sensor filtering in a live client.
-2. Decide the permanent-immunity balance for treatment and live-vaccine recipients before
+3. Decide the permanent-immunity balance for treatment and live-vaccine recipients before
    tuning production costs or batch sizes.
-3. Design beneficial strain content and balance separately; its injector route is ready,
+4. Design beneficial strain content and balance separately; its injector route is ready,
    but beneficial effects remain outside this phase.
-4. Revisit symptom composition, stage-3 distinction, jitter scaling, and the safe fast-test
+5. Revisit symptom composition, stage-3 distinction, jitter scaling, and the safe fast-test
    interval after the tool presentation pass.
 
 ## End-of-Phase Checklist
