@@ -160,7 +160,7 @@
 - type: entity
   parent: MobCosmicAstralAscended
   id: MobCosmicOracle
-  name: Malign Oracle
+  name: malign oracle
   description: An abomination wrought of malign mass. Its gaze seeks relentlessly.
   components:
   - type: MovementSpeedModifier
@@ -187,7 +187,7 @@
 - type: entity
   parent: MobCosmicAstralAscended
   id: MobCosmicLodestar
-  name: Malign Lodestar
+  name: malign lodestar
   description: An abomination wrought of malign mass. A searing light glimmers within.
   components:
   - type: Sprite
