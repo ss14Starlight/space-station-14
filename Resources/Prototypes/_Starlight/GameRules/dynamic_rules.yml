@@ -50,7 +50,7 @@
           max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
         children:
         - id: TraitorLess # We'll use TraitorLess instead of Traitor, at least on Alpha, since they tend to lump in with a lot of other things.
-          weight: 31
+          weight: 35
           prob: 0.80 # Give traitor a chance to fail, since it's so common. In essence, this means we have a chance at getting Extended.
           conditions:
           - !type:HasBudgetCondition
@@ -104,7 +104,7 @@
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
-          weight: 9
+          weight: 5
           prob: 0.95
           conditions:
           - !type:HasBudgetCondition
@@ -458,7 +458,7 @@
           max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
         children:
         - id: TraitorLess
-          weight: 40
+          weight: 41
           prob: 0.75 # Beta has an innate chance at Extended, so we give TraitorLes and Vampire a higher chance to fail to roll here. It roughly equals their Secret chance at Extended.
           conditions:
           - !type:HasBudgetCondition
@@ -466,7 +466,7 @@
           - !type:PlayerCountCondition
             min: 5
         - id: Vampire # We can count Vampires as being a major on Beta.
-          weight: 20
+          weight: 21
           prob: 0.75
           conditions:
           - !type:HasBudgetCondition
@@ -477,7 +477,7 @@
           - !type:PlayerCountCondition
             min: 25
         - id: Nukeops
-          weight: 6
+          weight: 7
           prob: 0.95 # Every main gamemode will have a very small chance to fail
           conditions:
           - !type:HasBudgetCondition
@@ -512,7 +512,7 @@
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
-          weight: 6
+          weight: 5
           prob: 0.95
           conditions:
           - !type:HasBudgetCondition
