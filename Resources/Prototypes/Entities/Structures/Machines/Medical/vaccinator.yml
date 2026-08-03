@@ -32,5 +32,5 @@
       machine_parts: !type:Container
       pathogen-culture: !type:ContainerSlot
       pathogen-catalyst: !type:ContainerSlot
-      pathogen-vessel: !type:ContainerSlot
+      pathogen-injector: !type:ContainerSlot
   - type: RequireProjectileTarget

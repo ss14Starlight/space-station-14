@@ -10,6 +10,7 @@ namespace Content.Client._Starlight.Medical.Virology;
 public sealed partial class PathogenVaccinatorWindow : DefaultWindow
 {
     public event Action<bool>? OnProduce;
+    public event Action<PathogenVaccinatorSlot>? OnEject;
 
     public PathogenVaccinatorWindow()
     {
@@ -17,13 +18,22 @@ public sealed partial class PathogenVaccinatorWindow : DefaultWindow
 
         ProduceButton.OnPressed += _ => OnProduce?.Invoke(false);
         ProduceLiveButton.OnPressed += _ => OnProduce?.Invoke(true);
+        EjectCultureButton.OnPressed += _ => OnEject?.Invoke(PathogenVaccinatorSlot.Culture);
+        EjectCatalystButton.OnPressed += _ => OnEject?.Invoke(PathogenVaccinatorSlot.Catalyst);
+        EjectInjectorButton.OnPressed += _ => OnEject?.Invoke(PathogenVaccinatorSlot.Injector);
     }
 
     public void UpdateState(PathogenVaccinatorUiState state)
     {
         StrainLabel.Text = state.Strain;
-        ProduceButton.Disabled = !state.HasCulture;
+        InjectorLabel.Text = state.Injector;
+        CatalystLabel.Text = state.Catalyst;
+        StatusLabel.Text = state.Status;
+        ProduceButton.Disabled = !state.CanProduce;
         ProduceLiveButton.Disabled = !state.CanMakeLive;
+        EjectCultureButton.Disabled = !state.CanEjectCulture;
+        EjectCatalystButton.Disabled = !state.CanEjectCatalyst;
+        EjectInjectorButton.Disabled = !state.CanEjectInjector;
         LiveHintLabel.Text = state.LiveBlockedReason;
         LiveHintLabel.Visible = state.LiveBlockedReason.Length > 0;
     }

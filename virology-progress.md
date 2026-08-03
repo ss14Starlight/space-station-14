@@ -1,6 +1,6 @@
 # Virology Development Progress
 
-Updated: 2026-07-27
+Updated: 2026-08-03
 
 ## Completed
 
@@ -237,7 +237,8 @@ Updated: 2026-07-27
 - Emergent disease is not an antagonist. It creates a manageable medical job after
   station neglect and should remain unpleasant but survivable.
 - Virulent disease is reserved for antagonist-level danger.
-- Beneficial disease work is postponed to a later phase.
+- Beneficial strain content and balance are postponed, but beneficial administration uses
+  the same discrete-dose injector infrastructure as treatment and live vaccines.
 - A host carries exactly one strain. Only a higher tier displaces it, and displacement
   grants immunity to the removed strain.
 - Identification is per runtime strain and station-wide, not per patient infection.
@@ -382,25 +383,49 @@ Updated: 2026-07-27
   instance started by this work, so its server and parent launcher were stopped. No
   `Content.Server` or `Content.Client` processes remain.
 - Unrelated pre-existing worktree changes were preserved.
+- Discrete-injector treatment tests pass 4/4. They cover dose consumption, cure and
+  immunity behavior, empty reuse, non-empty mixing rejection, shared beneficial/live
+  payload support, prototype slot configuration, delayed vaccinator completion, duplicate
+  start rejection, five-dose output, and automatic ejection.
+- The complete virology filter passes 30 tests with the known pooled spread regression
+  skipped; that spread regression passes independently. The focused vaccinator production
+  regression also passes independently.
+- Post-treatment YAML/prototype validation completed with 0 errors. The integration-test
+  rebuild completed the server and client projects with 0 errors; only existing repository
+  and dependency warnings remain.
+- The final treatment diff passes `git diff --check`. Its changed-path scan contains only
+  virology systems, UI, tests, localization, prototypes, and their medical distribution;
+  no casino files are present.
 
 ## Treatment Phase
 
-- Added strain-bearing antipathogen serum. Reagent data preserves the target strain when
-  serum is split, poured, injected, or transferred between compatible containers.
-- Added vaccinator culture, catalyst, and vessel inputs plus normal serum and virulent-only
-  live-vaccine production.
+- Replaced strain-bearing treatment reagents with one reusable, discrete-dose pathogen
+  injector. Payloads cannot be poured, split, diluted, metabolized, or mixed.
+- The same injector supports normal treatment, live vaccines, and beneficial strains.
+  Treatment batches contain five doses; live and beneficial payloads contain one dose.
+- A normal treatment dose cures the matching active strain or grants matching immunity.
+  A live dose creates the existing temporary immunity-shedding carrier, and a beneficial
+  dose deliberately applies its matching beneficial strain.
+- Doses are consumed only when administration successfully applies an effect. An exhausted
+  injector resets to its empty reusable state.
+- The vaccinator accepts viable culture, optional live-vaccine catalyst, and exactly one
+  empty pathogen injector. A filled injector is rejected before production starts, so two
+  payloads can never be mixed.
+- Production now finishes after the authored delay instead of creating output immediately
+  and treating the delay as a cooldown. A second run cannot begin while one is active.
+- Completed injectors are ejected onto the grid. Culture, catalyst, and injector slots also
+  have explicit UI ejection controls that remain locked while the machine is active.
+- Filled injector names and descriptions automatically show the strain designation,
+  payload use, and remaining dose count. They return to the generic empty identity when
+  exhausted.
+- Live-vaccine production remains restricted to virulent cultures, consumes one viroculum
+  catalyst on successful completion, and now checks line of sight while shedding immunity.
 - Added viroculum seeds and caps as the botany catalyst for live vaccine synthesis.
-- Added live-vaccine administration and temporary carrier shedding that grants nearby crew
-  immunity to the matching strain.
 - Added ViroDrobe, cargo, medical-lathe, locker, and flatpack distribution so the complete
   virology workflow does not depend on map edits.
-- Current treatment review found follow-up defects that must be fixed before manual testing:
-  inserted vaccinator items have no ejection path; mini-vials are accepted despite being
-  too small for a 25u batch; the production delay acts as a cooldown after immediate output;
-  the live-vaccine pulse ignores walls; the live route silently consumes a vessel; one
-  failure localization key is missing; and treatment has no focused integration tests.
-- Treatment comments and the player-facing reagent description still incorrectly say the
-  strain belongs to the vial, although it now belongs to the reagent data.
+- Empty injectors are stocked in the ViroDrobe and admin test kit and are printable from
+  the medical lathe. Obsolete antipathogen reagent data and treatment-vessel prototypes
+  were removed.
 
 ## Reconstructed Git History
 
@@ -430,25 +455,14 @@ History reconstruction verification:
 
 ## Next Phase
 
-Keep the live environment closed until treatment is repaired and covered automatically:
-
-1. Add explicit vaccinator slot state and ejection controls for culture, catalyst, and
-   finished vessels.
-2. Reject undersized or non-empty vessels before insertion, add the missing feedback, and
-   make the normal and live production delays complete before creating output.
-3. Decide whether live vaccine should consume a vessel, then make the UI and implementation
-   follow the same rule.
-4. Apply obstruction checks to immunity shedding and confirm whether recipient immunity is
-   intended to remain permanent after the carrier stops shedding.
-5. Add focused treatment tests covering insertion and ejection, batch capacity, timing,
-   serum transfer, matching and mismatched strains, cure/immunity, and live-vaccine range.
-6. Rerun YAML validation, builds, prototype serialization, focused treatment tests, and the
-   complete virology suite before any manual treatment pass.
-7. Keep symptom testing separate. Revisit symptom composition, stage-3 distinction, jitter
-   scaling, and the safe fast-test interval after the core diagnosis/treatment loop is stable.
-
-Beneficial strains remain deliberately postponed until the core diagnosis/cure loop is
-stable.
+1. Manually verify vaccinator insertion, busy/ejection feedback, automatic output ejection,
+   injector naming, dose display, and successful use on a matching patient.
+2. Decide the permanent-immunity balance for treatment and live-vaccine recipients before
+   tuning production costs or batch sizes.
+3. Design beneficial strain content and balance separately; its injector route is ready,
+   but beneficial effects remain outside this phase.
+4. Revisit symptom composition, stage-3 distinction, jitter scaling, and the safe fast-test
+   interval after the treatment presentation pass.
 
 ## End-of-Phase Checklist
 

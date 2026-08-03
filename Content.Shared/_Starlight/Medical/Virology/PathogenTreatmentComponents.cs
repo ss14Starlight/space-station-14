@@ -4,35 +4,57 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Medical.Virology;
 
-// Cure and vaccine are deliberately the same product - antipathogen serum. It does not need
-// to know which job it is doing: someone carrying the strain is cured, someone who is not
-// becomes immune. See PathogenCureData for how the serum carries its strain.
-
 /// <summary>
-/// A live attenuated dose. Administering it makes the recipient a walking source of
-/// immunity rather than of disease - see <see cref="PathogenVaccineCarrierComponent"/>.
-///
-/// Deliberately restricted to virulent strains. Prevalence caps mean an ambient or
-/// emergent strain never reaches more than 10-15% of the crew, so single doses are
-/// already adequate for them; only an antagonist strain outruns hand delivery.
+/// The biological payload installed in a pathogen injector. Doses are discrete; none of
+/// these use chemistry volume or metabolism.
 /// </summary>
-[RegisterComponent]
-public sealed partial class PathogenLiveVaccineComponent : Component
+public enum PathogenInjectorMode : byte
 {
-    [DataField(required: true)]
-    public int Strain;
+    Empty,
+    Treatment,
+    LiveVaccine,
+    BeneficialStrain,
+}
 
-    [DataField]
-    public TimeSpan ApplyTime = TimeSpan.FromSeconds(4);
+public enum PathogenAdministrationResult : byte
+{
+    Invalid,
+    Empty,
+    NoEffect,
+    Cured,
+    Vaccinated,
+    LiveVaccineApplied,
+    BeneficialStrainApplied,
 }
 
 /// <summary>
-/// Someone carrying a live vaccine. Periodically immunises nearby crew against one strain.
-///
-/// This is the contamination source system pointed the other way: instead of standing near
-/// something that infects you, you stand near someone who protects you. It deliberately
-/// does not go through the pathogen registry - a live vaccine is not an infection, it
-/// leaves no symptoms, and it must never be displaceable by a real strain.
+/// A reusable injector configured by a vaccinator for one strain and one purpose.
+/// Integer charges make every administration one complete dose.
+/// </summary>
+[RegisterComponent]
+public sealed partial class PathogenInjectorComponent : Component
+{
+    [DataField]
+    public PathogenInjectorMode Mode;
+
+    [DataField]
+    public int Strain;
+
+    [DataField]
+    public int Doses;
+
+    [DataField]
+    public int MaxDoses;
+
+    [DataField]
+    public TimeSpan ApplyTime = TimeSpan.FromSeconds(4);
+
+    public bool Empty => Mode == PathogenInjectorMode.Empty && Doses == 0;
+}
+
+/// <summary>
+/// Someone carrying a live vaccine. Periodically immunises unobstructed nearby crew
+/// against one strain, then stops shedding after <see cref="Duration"/>.
 /// </summary>
 [RegisterComponent]
 public sealed partial class PathogenVaccineCarrierComponent : Component
@@ -46,10 +68,6 @@ public sealed partial class PathogenVaccineCarrierComponent : Component
     [DataField]
     public TimeSpan Interval = TimeSpan.FromSeconds(5);
 
-    /// <summary>
-    /// How long the carrier keeps shedding immunity. Not permanent, so a single dose does
-    /// not immunise the whole station forever.
-    /// </summary>
     [DataField]
     public TimeSpan Duration = TimeSpan.FromMinutes(10);
 
@@ -61,32 +79,18 @@ public sealed partial class PathogenVaccineCarrierComponent : Component
 }
 
 /// <summary>
-/// Produces treatment doses from a loaded culture.
-///
-/// The culture is a template, not a consumable: it stays in the machine and doses are
-/// unlimited. The work is in getting the culture at all - two patient samples or a suited
-/// trip to a source - so metering doses on top of that would be grind rather than depth.
+/// Configures empty pathogen injectors from a reusable identified culture.
 /// </summary>
 [RegisterComponent]
 public sealed partial class PathogenVaccinatorComponent : Component
 {
     public const string CultureContainerId = "pathogen-culture";
     public const string CatalystContainerId = "pathogen-catalyst";
-    public const string VesselContainerId = "pathogen-vessel";
+    public const string InjectorContainerId = "pathogen-injector";
 
-    /// <summary>
-    /// One run fills a whole vial rather than producing a single dose, so treating a ward
-    /// is one press and a wait instead of twenty clicks.
-    /// </summary>
     [DataField]
     public TimeSpan ProduceTime = TimeSpan.FromSeconds(10);
 
-
-    /// <summary>
-    /// A live vaccine takes the same run time for a single dose. It costs a crop nobody
-    /// else grows and it is the station's answer to a bioterrorist, so it should never be
-    /// something you knock out casually.
-    /// </summary>
     [DataField]
     public TimeSpan LiveProduceTime = TimeSpan.FromSeconds(10);
 
@@ -97,10 +101,25 @@ public sealed partial class PathogenVaccinatorComponent : Component
     public ContainerSlot? CatalystContainer;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public ContainerSlot? VesselContainer;
+    public ContainerSlot? InjectorContainer;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan NextProduce;
+    public bool Producing;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan FinishTime;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public PathogenInjectorMode PendingMode;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public int PendingStrain;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public EntityUid? PendingInjector;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public EntityUid? PendingCatalyst;
 }
 
 [Serializable, NetSerializable]
@@ -110,22 +129,48 @@ public enum PathogenVaccinatorUiKey : byte
 }
 
 [Serializable, NetSerializable]
+public enum PathogenVaccinatorSlot : byte
+{
+    Culture,
+    Catalyst,
+    Injector,
+}
+
+[Serializable, NetSerializable]
 public sealed class PathogenVaccinatorUiState(
     string strain,
-    bool hasCulture,
+    string injector,
+    string catalyst,
+    string status,
+    string liveBlockedReason,
+    bool canProduce,
     bool canMakeLive,
-    string liveBlockedReason) : BoundUserInterfaceState
+    bool canEjectCulture,
+    bool canEjectCatalyst,
+    bool canEjectInjector) : BoundUserInterfaceState
 {
     public readonly string Strain = strain;
-    public readonly bool HasCulture = hasCulture;
-    public readonly bool CanMakeLive = canMakeLive;
+    public readonly string Injector = injector;
+    public readonly string Catalyst = catalyst;
+    public readonly string Status = status;
     public readonly string LiveBlockedReason = liveBlockedReason;
+    public readonly bool CanProduce = canProduce;
+    public readonly bool CanMakeLive = canMakeLive;
+    public readonly bool CanEjectCulture = canEjectCulture;
+    public readonly bool CanEjectCatalyst = canEjectCatalyst;
+    public readonly bool CanEjectInjector = canEjectInjector;
 }
 
 [Serializable, NetSerializable]
 public sealed class PathogenVaccinatorProduceMessage(bool live) : BoundUserInterfaceMessage
 {
     public readonly bool Live = live;
+}
+
+[Serializable, NetSerializable]
+public sealed class PathogenVaccinatorEjectMessage(PathogenVaccinatorSlot slot) : BoundUserInterfaceMessage
+{
+    public readonly PathogenVaccinatorSlot Slot = slot;
 }
 
 [Serializable, NetSerializable]

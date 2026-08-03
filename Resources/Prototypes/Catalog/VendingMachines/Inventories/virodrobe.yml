@@ -19,3 +19,4 @@
     PathogenDecontaminator: 1
     PathogenDetector: 2
     PathogenSwab: 12
+    PathogenInjector: 6

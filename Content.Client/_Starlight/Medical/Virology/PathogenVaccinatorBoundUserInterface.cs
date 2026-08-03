@@ -17,6 +17,7 @@ public sealed class PathogenVaccinatorBoundUserInterface(
 
         _window = this.CreateWindow<PathogenVaccinatorWindow>();
         _window.OnProduce += live => SendMessage(new PathogenVaccinatorProduceMessage(live));
+        _window.OnEject += slot => SendMessage(new PathogenVaccinatorEjectMessage(slot));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

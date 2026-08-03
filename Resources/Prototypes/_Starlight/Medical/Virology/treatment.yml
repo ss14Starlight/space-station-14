@@ -1,29 +1,18 @@
-# Treatment has no item of its own. The vaccinator fills whatever empty container you put in
-# it - syringe, beaker, vial - with antipathogen serum, and the serum carries its own strain
-# identity (see reagents.yml and PathogenCureData). So a syringe behaves like a syringe, a
-# hypospray like a hypospray, and nothing here has to special-case delivery.
-#
-# Cure and vaccine are one product on purpose. The serum reads the patient: someone carrying
-# the strain is cured, someone who is not becomes immune. Two products would have meant two
-# recipes and two machine outputs for a decision the player never actually makes.
-
-# Restricted to virulent strains. Prevalence caps mean ambient and emergent strains never
-# reach more than 10-15% of the crew, so hand-delivered doses already cover them - only an
-# antagonist strain outruns a virologist on foot.
+# One reusable injector carries every virology payload. The vaccinator assigns a runtime
+# strain, purpose, and integer dose count; chemistry volume and metabolism are not involved.
 - type: entity
   parent: BaseItem
-  id: PathogenLiveVaccineDose
-  name: live vaccine dose
-  description: An attenuated live culture. The recipient sheds immunity to anyone nearby instead of disease.
+  id: PathogenInjector
+  name: empty pathogen injector
+  description: A reusable injector awaiting configuration by a vaccinator.
   components:
   - type: Item
     size: Tiny
+    sprite: Objects/Specific/Medical/medipen.rsi
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     state: stimpen
-  - type: PathogenLiveVaccine
-    strain: 0
+  - type: PathogenInjector
   - type: Tag
     tags:
     - Recyclable
-    - Trash

@@ -47,6 +47,7 @@
   # Starlight - dedicated virology detection and sampling tools.
   - PathogenDetector
   - PathogenSwab
+  - PathogenInjector
   - BodyBag
   - WhiteCane
   - OffsetCane

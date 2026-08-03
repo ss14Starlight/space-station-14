@@ -56,6 +56,7 @@ public sealed partial class VirologyTestCommand : IConsoleCommand
     [
         "PathogenDetector",
         "PathogenSwab",
+        "PathogenInjector",
         "ChemistryEmptyVialSmall",
         "PathogenContaminationScanner",
         "PathogenDecontaminator",

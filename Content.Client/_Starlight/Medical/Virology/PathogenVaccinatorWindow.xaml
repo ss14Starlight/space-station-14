@@ -1,14 +1,31 @@
 <DefaultWindow xmlns="https://spacestation14.io"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-               MinSize="400 240"
-               SetSize="440 280"
+               MinSize="420 330"
+               SetSize="460 380"
                Title="{Loc pathogen-vaccinator-window-title}">
     <BoxContainer Orientation="Vertical" Margin="8 8 8 8" SeparationOverride="8">
         <Label Text="{Loc pathogen-vaccinator-culture-heading}" StyleClasses="LabelHeading" />
-        <Label Name="StrainLabel" HorizontalExpand="True" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Label Name="StrainLabel" HorizontalExpand="True" />
+            <Button Name="EjectCultureButton" Text="{Loc pathogen-vaccinator-eject}" />
+        </BoxContainer>
+
+        <Label Text="{Loc pathogen-vaccinator-injector-heading}" StyleClasses="LabelHeading" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Label Name="InjectorLabel" HorizontalExpand="True" />
+            <Button Name="EjectInjectorButton" Text="{Loc pathogen-vaccinator-eject}" />
+        </BoxContainer>
+
+        <Label Text="{Loc pathogen-vaccinator-catalyst-heading}" StyleClasses="LabelHeading" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Label Name="CatalystLabel" HorizontalExpand="True" />
+            <Button Name="EjectCatalystButton" Text="{Loc pathogen-vaccinator-eject}" />
+        </BoxContainer>
+
         <PanelContainer StyleClasses="LowDivider" />
+        <Label Name="StatusLabel" HorizontalExpand="True" />
         <Button Name="ProduceButton"
-                Text="{Loc pathogen-vaccinator-produce-treatment}"
+                Text="{Loc pathogen-vaccinator-produce-normal}"
                 HorizontalExpand="True" />
         <Button Name="ProduceLiveButton"
                 Text="{Loc pathogen-vaccinator-produce-live}"
