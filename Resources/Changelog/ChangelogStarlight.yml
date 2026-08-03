@@ -1,25 +1,4 @@
 Entries:
-- author: Conflee, Sevenshades, Caws
-  changes:
-  - message: A Robotics-themed Surgery sign. Sprites by Conflee.
-    type: Add
-  id: 406840
-  time: '2026-07-24T14:51:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5285
-- author: Conflee, Sevenshades, Caws
-  changes:
-  - message: A Heat sign, for indicating heating rooms. Sprites by Sevenshades.
-    type: Add
-  id: 406841
-  time: '2026-07-24T14:51:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5285
-- author: joshujo
-  changes:
-  - message: Edge firelocks to RCD.
-    type: Add
-  id: 406842
-  time: '2026-07-24T17:28:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5262
 - author: joshujo
   changes:
   - message: Post lights to RCD.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407239
   time: '2026-08-03T13:36:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5472
+- author: Caws
+  changes:
+  - message: (Manor) Removed roundstart mech weapons from Armory.
+    type: Remove
+  id: 407240
+  time: '2026-08-03T17:25:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5484
+- author: Caws
+  changes:
+  - message: (Orwell) Removed roundstart mech weapons from Armory.
+    type: Remove
+  id: 407241
+  time: '2026-08-03T17:25:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5484
+- author: Caws
+  changes:
+  - message: (Starboard) Removed roundstart mech weapons from Armory.
+    type: Remove
+  id: 407242
+  time: '2026-08-03T17:25:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5484
 Order: -1
