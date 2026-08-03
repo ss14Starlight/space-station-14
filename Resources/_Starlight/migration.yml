@@ -152,6 +152,9 @@ WeaponFlareGunSecurity: null
 #2026-07-12
 CargoGasPallet: CargoGasPalletSell
 
+#2026-07-30
+nullspaceanchor: NullspaceAnchor
+
 #2026-07-31 - Renamed subfloor gas tank proto to be more logical left-to-right since more tanks are being added
 GasPipeSubfloorTank: GasPipeTankSubfloor
 GasPipeSubfloorTankAlt1: GasPipeTankSubfloorAlt1
