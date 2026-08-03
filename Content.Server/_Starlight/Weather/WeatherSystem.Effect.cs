@@ -1,4 +1,4 @@
-using Content.Server._Starlight.Weather.Componants;
+using Content.Server._Starlight.Weather.Components;
 using Content.Shared._Starlight.Weather.Effects;
 using Content.Shared.Light.Components;
 using Content.Shared.Mobs.Components;

@@ -15,6 +15,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Numerics;
+using Content.Client._Starlight.RCD.Systems;
 using static Robust.Client.Placement.PlacementManager;
 using Content.Shared.Atmos.EntitySystems;
 
@@ -50,10 +51,8 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     private const float GuideRadius = 0.05f;
     private const float GuideOffset = 0.125f;
 
-    private EntityCoordinates _mouseCoordsRaw = default;
+    private EntityCoordinates _mouseCoordsRaw;
     private AtmosPipeLayer _currentLayer = AtmosPipeLayer.Primary;
-    private EntityUid? _lastLayerSyncEntity = null;
-    private AtmosPipeLayer? _lastLayerSynced = null;
     private Color _guideColor = new(0, 0, 0.5785f);
 
     public AlignRPDAtmosPipeLayers(PlacementManager pMan) : base(pMan)
@@ -204,13 +203,10 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         }
 
         // Update layer if changed
-        if (newLayer != _currentLayer)
-            _currentLayer = newLayer;
+        _currentLayer = newLayer;
 
         if (rcd.CurrentMode == RpdMode.Free)
-        {
-            UpdateSelectedLayer(heldEntity.Value, _currentLayer);
-        }
+            UpdateSelectedLayer(heldEntity.Value, rcd, newLayer);
 
         UpdatePlacer(_currentLayer);
     }
@@ -224,14 +220,13 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     //   sends that exact layer as RPDSelectedLayerEvent.
     // - Server stores it on the held RCDComponent (LastSelectedLayer)
     //   and uses it directly during placement in Free mode.
-    private void UpdateSelectedLayer(EntityUid heldEntity, AtmosPipeLayer layer)
+    private void UpdateSelectedLayer(EntityUid heldEntity, RCDComponent rcd, AtmosPipeLayer layer)
     {
-        if (_lastLayerSyncEntity != heldEntity || _lastLayerSynced != layer)
-        {
-            _lastLayerSyncEntity = heldEntity;
-            _lastLayerSynced = layer;
-            _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
-        }
+        if (rcd.LastSelectedLayer == layer)
+            return;
+
+        _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
+        _rcdSystem.SetSelectedLayer((heldEntity, rcd), layer);
     }
 
     private void UpdatePlacer(AtmosPipeLayer layer)
@@ -258,14 +253,26 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
             if (newProto.TryGetComponent<SpriteComponent>(out var sprite, _entityManager.ComponentFactory))
             {
                 var textures = new List<IDirectionalTextureProvider>();
+                var offsets = new List<Vector2>(); // Per-layer offset
 
                 foreach (var spriteLayer in sprite.AllLayers)
                 {
-                    if (spriteLayer.ActualRsi?.Path != null && spriteLayer.RsiState.Name != null)
-                        textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name)));
+                    if (spriteLayer.ActualRsi?.Path == null || spriteLayer.RsiState.Name == null) continue;
+                    textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name)));
+                    offsets.Add(sprite.Offset + ((SpriteComponent.Layer)spriteLayer).Offset); // Save each layer's offset
                 }
 
                 pManager.CurrentTextures = textures;
+
+                // Reapply each layer's own offset to the ghost.
+                if (pManager.CurrentPlacementOverlayEntity is { } overlay
+                    && _entityManager.TryGetComponent<SpriteComponent>(overlay, out var overlaySprite))
+                {
+                    for (var i = 0; i < offsets.Count; i++)
+                        _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, offsets[i]);
+
+                    overlaySprite.NoRotation = sprite.NoRotation;
+                }
             }
         }
     }
