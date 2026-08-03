@@ -498,7 +498,10 @@
   parent: ChemicalMedipen
   id: AirlossAutoInjector
   name: airloss auto-injector
-  description: A single-dose, non-refillable medipen containing saline and dexalin plus, used to quickly and easily treat blood loss and asphyxiation.
+  #starlight-start
+  #description: A single-dose, non-refillable medipen containing saline and dexalin plus, used to quickly and easily treat blood loss and asphyxiation.
+  description: A single-dose, non-refillable medipen containing respirazone, used to quickly and easily treat blood loss and asphyxiation.
+  #starlight-end
   components:
   - type: Item
     inhandVisuals:
@@ -524,12 +527,18 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 40
+        #starlight-start
+        #maxVol: 40
+        #reagents:
+        #- ReagentId: Saline
+        #  Quantity: 20
+        #- ReagentId: DexalinPlus
+        #  Quantity: 20
+        maxVol: 20
         reagents:
-        - ReagentId: Saline
-          Quantity: 20
-        - ReagentId: DexalinPlus
-          Quantity: 20
+          - ReagentId: Respirazone
+            Quantity: 20
+        #starlight-end
 
 - type: entity
   parent: ChemicalMedipen

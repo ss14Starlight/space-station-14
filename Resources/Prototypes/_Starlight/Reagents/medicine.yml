@@ -379,3 +379,41 @@
           reagent: Necrosol
           amount: -0.5
         # Starlight-End
+
+- type: reagent
+  id: Respirazone
+  name: reagent-name-respirazone
+  group: Medicine
+  desc: reagent-desc-respirazone
+  physicalDesc: reagent-physical-desc-cloudy
+  allowedDepartments:
+  - Medical
+  flavor: medicine
+  color: "#4FB2A5"
+  metabolisms:
+    Medicine:
+      effects:
+      # Universal airloss treatment replacing DexalinPlus + Saline.
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: -3.5
+            Bloodloss: -3
+      - !type:ModifyBloodLevel
+        amount: 3
+      # Flushes Heartbreaker Toxin from the bloodstream.
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: HeartbreakerToxin
+          min: 1
+        reagent: HeartbreakerToxin
+        amount: -3
+      # Starlight-Start: Cyclorite Metabolism
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Respirazone
+        amount: -0.5
+      # Starlight-End

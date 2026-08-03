@@ -160,3 +160,8 @@ reagent-desc-haloperidol = Removes most stimulating and hallucinogenic drugs. Re
 
 reagent-name-warfarin = warfarin
 reagent-desc-warfarin = Commonly used as an anticoagulant medication. Causes blood to have difficulty forming clots. Can cause internal bleeding when overdosed.
+
+# Starlight Start
+reagent-name-respirazone = respirazone
+reagent-desc-respirazone = Used in the treatment of severe respiratory distress and blood loss. Unlike conventional oxygenation medicines, it is compatible with a wide variety of species.
+# Starlight End
