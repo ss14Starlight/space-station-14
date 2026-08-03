@@ -267,7 +267,8 @@
     - id: RubberStampCE
     - id: MetalFoamGrenade
     - id: PlushieMatthew #starlight
-    - id: PrintedDocumentGreenshiftAlert # Starlight start
+    - id: EngineeringTechFabFlatpack # Starlight start
+    - id: PrintedDocumentGreenshiftAlert
       conditions:
       - !type:GamemodeCondition
         presets:
