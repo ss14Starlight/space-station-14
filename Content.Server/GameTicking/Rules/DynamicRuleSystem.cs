@@ -8,6 +8,7 @@ using Content.Shared.EntityTable.Conditions;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.GameTicking.Rules;
+using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
@@ -25,6 +26,9 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
     #region Starlight
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private IChatManager _chat = default!;
+    [Dependency] private readonly ILogManager _logManager = default!;
+
+    private ISawmill _sawmill = default!;
 
     private readonly Dictionary<EntProtoId, int> _ruleCooldowns = new();
     private readonly HashSet<EntProtoId> _roundCooldowns = new();
@@ -34,6 +38,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
     {
         base.Initialize();
 
+        _sawmill = _logManager.GetSawmill("dynamic");
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
     }
     #endregion
@@ -202,7 +207,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
                 if (cost.Cooldown > 0)
                 {
                     _ruleCooldowns[rule] = cost.Cooldown;
-                    Log.Info($"Rule {rule} added to the Dynamic cooldown for {cost.Cooldown} rounds.");
+                    _sawmill.Info($"Rule {rule} added to the Dynamic cooldown for {cost.Cooldown} rounds.");
                 }
                 #endregion
 
