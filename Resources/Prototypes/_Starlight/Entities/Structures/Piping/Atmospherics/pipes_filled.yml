@@ -294,7 +294,7 @@
   parent: GasPipeTankTall
   id: GasPipeTankTallFilledAir7500
   categories: [ DoNotMap ]
-  suffix: Air, 7500mol
+  suffix: Air, 7500mol, DO NOT MAP
   components:
     - type: AtmosPipeLayers
       alternativePrototypes:

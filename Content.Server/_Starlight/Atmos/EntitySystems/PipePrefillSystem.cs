@@ -3,6 +3,7 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Shared._Starlight.Atmos;
 using Content.Shared.Atmos;
 using Content.Shared.NodeContainer;
+using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.Atmos.EntitySystems;
 
@@ -21,20 +22,18 @@ public sealed partial class PipePrefillSystem : EntitySystem
         SubscribeLocalEvent<PipePrefillComponent, AnchorStateChangedEvent>(OnAnchorStateChanged);
     }
 
-    private void OnMapInit(Entity<PipePrefillComponent> ent, ref MapInitEvent args)
-    {
-        if (!Transform(ent).Anchored) return; // Not anchored = no pipenet
+    private void OnMapInit(Entity<PipePrefillComponent> ent, ref MapInitEvent args) =>
         PrefillPipeSegment(ent);
-    }
 
-    private void OnAnchorStateChanged(Entity<PipePrefillComponent> ent, ref AnchorStateChangedEvent args)
-    {
-        if (!args.Anchored) return; // Not anchored = no pipenet
+    private void OnAnchorStateChanged(Entity<PipePrefillComponent> ent, ref AnchorStateChangedEvent args) =>
         PrefillPipeSegment(ent);
-    }
 
     private void PrefillPipeSegment(Entity<PipePrefillComponent> ent)
     {
+        var xform = Transform(ent);
+        if (!xform.Anchored) return; // Not anchored = no pipenet
+        if (xform.MapID == MapId.Nullspace) return;
+        if (LifeStage(ent) < EntityLifeStage.MapInitialized) return;
         RemComp<PipePrefillComponent>(ent);
 
         // If we don't even have a node that *could* be part of a pipenet, just quit.
