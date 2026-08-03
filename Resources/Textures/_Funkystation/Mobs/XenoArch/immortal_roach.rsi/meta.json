@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-NC-SA-4.0",
+  "copyright": "Made by ratsmageddon for https://github.com/funky-station/funky-station",
+  "states": [
+    {
+      "name": "immortal_roach",
+      "directions": 4,
+      "delays": [
+        [
+          0.25,
+          0.25
+        ],
+        [
+          0.25,
+          0.25
+        ],
+        [
+          0.25,
+          0.25
+        ],
+        [
+          0.25,
+          0.25
+        ]
+      ]
+    },
+    {
+      "name": "immortal_roach_eyes",
+      "directions": 4,
+      "delays": [
+        [
+          0.25,
+          0.25
+        ],
+        [
+          0.25,
+          0.25
+        ],
+        [
+          0.25,
+          0.25
+        ],
+        [
+          0.25,
+          0.25
+        ]
+      ]
+    }
+
+  ]
+}

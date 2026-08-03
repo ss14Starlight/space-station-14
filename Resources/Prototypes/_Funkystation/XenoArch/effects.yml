@@ -1,0 +1,1254 @@
+# Mob Spawners
+
+- type: entity
+  id: XenoArtifactEffectSpaceTimeParadoxSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Metaphysical disturbance
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:AllSelector
+        children:
+        - id: MobParadoxArtifact
+        - id: EffectEmpPulse
+
+- type: entity
+  id: XenoArtifactEffectGooseSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+  - type: XenoArtifactNode
+    maxDurability: 3
+    maxDurabilityCanDecreaseBy:
+      min: 0
+      max: 2
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: MobGoose
+          weight: 100.0
+        - id: MobGooseGolden
+          weight: 20.0
+        - id: MobGooseUranium
+          weight: 20.0
+        - id: MobGoosePlasma
+          weight: 20.0
+        - id: GooseRune_drawing
+          weight: 1.0
+          amount: !type:ConstantNumberSelector
+            value: 2
+
+- type: entity
+  id: XenoArtifactEffectSkeletonGhostRoleSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XenoArtifactNode
+    depth: 2
+    durability: 1
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: MobSkeletonArtifact
+          weight: 5
+        - id: MobSkeletonPirate
+          weight: 1
+        - id: MobSkeletonBiker
+          weight: 1
+
+- type: entity
+  id: XenoArtifactInsectSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+    - type: XenoArtifactNode
+      maxDurability: 4
+      maxDurabilityCanDecreaseBy:
+        min: 1
+        max: 3
+    - type: XAEApplyComponents
+      applyIfAlreadyHave: true
+      refreshOnReactivate: true
+      components:
+        - type: EntityTableSpawner
+          deleteSpawnerAfterSpawn: false
+          table: !type:GroupSelector
+            children:
+            - id: MobButterfly
+              amount: !type:RangeNumberSelector
+                range: 1, 2
+            - id: MobMothroach
+              amount: !type:RangeNumberSelector
+                range: 1, 2
+            - id: MobBee
+              amount: !type:RangeNumberSelector
+                range: 2, 5
+
+- type: entity
+  id: XenoArtifactEffectRainbowMiceSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+  - type: XenoArtifactNode
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+        children:
+        - id: MobMouse
+          weight: 50
+        - id: MobMouseBlue
+          weight: 10
+        - id: MobMouseRed
+          weight: 10
+        - id: MobMousePurple
+          weight: 10
+        - id: MobMouseOrange
+          weight: 10
+        - id: MobMouseGreen
+          weight: 10
+        - id: MobMouseStealth
+          weight: 5
+        - id: MobMouseRGB
+          weight: 5
+        - id: MobMouseSnouse
+          weight: 5
+        - id: MobMouseBurnt
+          weight: 1
+
+- type: entity
+  id: XenoArtifactPetLikeSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation #Funky Edit add more mystery to sci
+  components:
+    - type: XenoArtifactNode
+      maxDurability: 4
+      maxDurabilityCanDecreaseBy:
+        min: 0
+        max: 3
+    - type: XAEApplyComponents
+      applyIfAlreadyHave: true
+      refreshOnReactivate: true
+      components:
+        - type: EntityTableSpawner
+          deleteSpawnerAfterSpawn: false
+          table: !type:GroupSelector
+            children:
+              - id: MobCorgiMouse
+                prob: 0.2
+              - id: MobCatShadow
+                prob: 0.1
+              - id: MobCorgiPuppy
+                amount: !type:RangeNumberSelector
+                  range: 1, 2
+              - id: MobCatKitten
+                amount: !type:RangeNumberSelector
+                  range: 1, 2
+              - id: MobCat
+                amount: !type:RangeNumberSelector
+                  range: 1, 2
+              - id: MobHamster
+                amount: !type:RangeNumberSelector
+                  range: 1, 2
+
+- type: entity
+  id: XenoArtifactEffectAbominationSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+    - type: XAEApplyComponents
+      applyIfAlreadyHave: true
+      refreshOnReactivate: true
+      components:
+        - type: EntityTableSpawner
+          deleteSpawnerAfterSpawn: false
+          table: !type:AllSelector
+            children:
+              - id: MobAbomination
+                amount: !type:RangeNumberSelector
+                  range: 1, 2
+
+- type: entity
+  id: XenoArtifactEffectXenoSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+    - type: XAEApplyComponents
+      applyIfAlreadyHave: true
+      refreshOnReactivate: true
+      components:
+        - type: EntityTableSpawner
+          deleteSpawnerAfterSpawn: false
+          table: !type:AllSelector
+            children:
+              - id: SpawnMobXenoEasy
+                amount: !type:RangeNumberSelector
+                  range: 1, 2
+
+- type: entity
+  id: XenoArtifactEffectCorgiGhostRoleSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Bluespace disturbance
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:AllSelector
+        children:
+          - id: SparlightMobUristMcCorgi
+          - id: SparlightMobUristMcCorgi
+
+- type: entity
+  id: XenoArtifactEffectCowSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: MobCow
+          weight: 20
+        - id: MobCowChocolate
+          weight: 10
+        - id: MobCowStrawberry
+          weight: 10
+        - id: MobCowBanana
+          weight: 10
+        - id: MobCowPilk
+          weight: 5
+
+- type: entity
+  id: XenoArtifactEffectFleshMonsterSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+        children:
+        - id: MobFleshLover
+          weight: 20
+        - id: MobFleshGolem
+          weight: 20
+        - id: MobFleshClamp
+          weight: 20
+        - id: MobFleshJared
+          weight: 20
+        - id: FleshKudzu
+          weight: 1
+
+- type: entity
+  id: XenoArtifactEffectReagentSlimeSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+        children:
+        - id: ReagentSlime
+        - id: ReagentSlimeBeer
+        - id: ReagentSlimePax
+        - id: ReagentSlimeNocturine
+        - id: ReagentSlimeTHC
+        - id: ReagentSlimeBicaridine
+        - id: ReagentSlimeToxin
+        - id: ReagentSlimeNapalm
+        - id: ReagentSlimeOmnizine
+        - id: ReagentSlimeMuteToxin
+        - id: ReagentSlimeNorepinephricAcid
+        - id: ReagentSlimeEphedrine
+        - id: ReagentSlimeRobustHarvest
+
+- type: entity
+  id: XenoArtifactEffectUristMcStoneSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: UristMcStone
+
+- type: entity
+  id: XenoArtifactEffectTotallyNormalHorseSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: MobTotallyNormalHorse
+
+- type: entity
+  id: XenoArtifactEffectStargazerSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: MobStargazer
+
+- type: entity
+  id: XenoArtifactEffectZleebSpawn
+  parent: BaseXenoArtifactEffect
+  description: Bluespace disturbance
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:AllSelector
+        children:
+          - id: MobZleeb
+          - id: MechZleeb
+
+# Item Spawners
+
+- type: entity
+  id: XenoArtifactEffectMiniTeslaSpawn
+  parent: BaseXenoArtifactEffect
+  description: Dangerous electromagnetic interference
+  components:
+  - type: XenoArtifactNode
+    depth: 2
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: BaseEnergyBallTemporary
+          weight: 1
+
+- type: entity
+  id: XenoArtifactEffectFrenchFoodSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: FoodCheeseSlice
+          weight: 20
+        - id: FoodBreadBaguetteSlice
+          weight: 20
+        - id: FoodBreadBaguette
+          weight: 10
+        - id: FoodBakedCroissant
+          weight: 10
+        - id: FoodBakedCroissantCotton
+          weight: 10
+        - id: FoodMealOmelette
+          weight: 5
+        - id: MobSnail
+          weight: 1
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 25
+      canReact: false
+    possibleChemicals:
+    - Wine
+
+- type: entity
+  id: XenoArtifactEffectFoodIngredientSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+  - type: XenoArtifactNode
+    depth: 1
+    durability: 1
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: FoodCheeseSlice
+          weight: 20
+        - id: ReagentContainerRice
+          weight: 20
+        - id: ReagentContainerSugar
+          weight: 20
+        - id: ReagentContainerFlour
+          weight: 20
+        - id: ReagentContainerCornmeal
+          weight: 20
+        - id: FoodShakerPepper
+          weight: 20
+        - id: FoodShakerSalt
+          weight: 20
+        - id: DrinkMilkCarton
+          weight: 10
+        - id: FoodButter
+          weight: 10
+
+- type: entity
+  id: XenoArtifactEffectItalianFoodSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+    - type: XAEApplyComponents
+      applyIfAlreadyHave: true
+      refreshOnReactivate: true
+      components:
+        - type: EntityTableSpawner
+          deleteSpawnerAfterSpawn: false
+          table: !type:GroupSelector
+            children:
+              - id: FoodNoodlesBoiled
+                weight: 20
+              - id: FoodMeatMeatball
+                weight: 20
+              - id: FoodPizzaVegetableSlice
+                weight: 10
+              - id: FoodPizzaMoldySlice
+                weight: 10
+              - id: FoodPizzaUraniumSlice
+                weight: 10
+              - id: FoodPizzaDonkpocketSlice
+                weight: 10
+              - id: FoodPizzaMeatSlice
+                weight: 10
+              - id: FoodPizzaPineappleSlice
+                weight: 10
+              - id: FoodPizzaDankSlice
+                weight: 10
+              - id: FoodPizzaMargheritaSlice
+                weight: 10
+              - id: FoodPizzaArnoldSlice
+                weight: 10
+              - id: FoodPizzaCottonSlice
+                weight: 10
+              - id: FoodDonkpocketPizza
+                weight: 10
+              - id: FoodNoodlesCopy
+                weight: 5
+
+- type: entity
+  id: XenoArtifactEffectOrganSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+    - type: XAEApplyComponents
+      applyIfAlreadyHave: true
+      refreshOnReactivate: true
+      components:
+        - type: EntityTableSpawner
+          deleteSpawnerAfterSpawn: false
+          table: !type:GroupSelector
+            children:
+              - id: OrganHumanLungs
+                weight: 5
+              - id: OrganHumanEars
+                weight: 5
+              - id: OrganHumanEyes
+                weight: 5
+              - id: OrganHumanLiver
+                weight: 5
+              - id: OrganHumanHeart
+                weight: 1
+              - id: OrganHumanBrain
+                weight: 1
+    - type: XAECreatePuddle
+      chemAmount:
+        min: 1
+        max: 3
+      chemicalSolution:
+        maxVol: 100
+        canReact: false
+      possibleChemicals:
+        - Blood
+
+- type: entity
+  id: XenoArtifactEffectCorpseSpawn
+  parent: BaseXenoArtifactEffect
+  description: Bluespace disturbance
+  components:
+    - type: XAEApplyComponents
+      applyIfAlreadyHave: true
+      refreshOnReactivate: true
+      components:
+        - type: EntityTableSpawner
+          deleteSpawnerAfterSpawn: false
+          table: !type:GroupSelector
+            children:
+              - id: SalvageHumanCorpse
+    - type: XAECreatePuddle
+      chemAmount:
+        min: 1
+        max: 3
+      chemicalSolution:
+        maxVol: 100
+        canReact: false
+      possibleChemicals:
+        - Blood
+
+- type: entity
+  id: XenoArtifactEffectBurgerSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+    - type: XAEApplyComponents
+      applyIfAlreadyHave: true
+      refreshOnReactivate: true
+      components:
+        - type: EntityTableSpawner
+          deleteSpawnerAfterSpawn: false
+          table: !type:GroupSelector
+            children:
+              - id: FoodBurgerRobot
+                weight: 5
+              - id: FoodBurgerBaseball
+                weight: 5
+              - id: FoodBurgerMime
+                weight: 5
+              - id: FoodBurgerGhost
+                weight: 5
+              - id: FoodBurgerCorgi
+                weight: 5
+              - id: FoodBurgerEmpowered
+                weight: 5
+              - id: FoodBurgerClown
+                weight: 5
+              - id: FoodBurgerSpell
+                weight: 5
+
+- type: entity
+  id: XenoArtifactEffectBreakfastSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+    - type: XAEApplyComponents
+      applyIfAlreadyHave: true
+      refreshOnReactivate: true
+      components:
+        - type: EntityTableSpawner
+          deleteSpawnerAfterSpawn: false
+          table: !type:GroupSelector
+            children:
+              - id: FoodBakedPancake
+                weight: 5
+              - id: FoodBakedPancakeCc
+                weight: 5
+              - id: FoodBakedPancakeBb
+                weight: 5
+              - id: FoodBakedWaffle
+                weight: 5
+              - id: FoodBakedWaffleSoylent
+                weight: 5
+              - id: FoodBakedWaffleSoy
+                weight: 5
+              - id: FoodMealFriedegg
+                weight: 4
+              - id: FoodMealEggsbenedict
+                weight: 3
+              - id: FoodBakedWaffleRoffle
+                weight: 2
+              - id: FoodBreakfastEnglish
+                weight: 1
+              - id: FoodBreakfastEnglish
+                weight: 1
+        - type: XAECreatePuddle
+          chemAmount:
+            min: 1
+            max: 3
+          chemicalSolution:
+            maxVol: 25
+            canReact: false
+          possibleChemicals:
+            - Syrup
+
+- type: entity
+  id: XenoArtifactEffectWeirdEggsSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 2, 3
+        children:
+        - id: ReagentEggChlorineTrifluoride
+          weight: 5
+        - id: ReagentEggFlour
+          weight: 5
+        - id: ReagentEggFersilicite
+          weight: 5
+        - id: ReagentEggHealium
+          weight: 5
+        - id: ReagentEggBeer
+          weight: 5
+        - id: ReagentEggSpaceLube
+          weight: 5
+        - id: ReagentEggMopwata
+          weight: 5
+        - id: ReagentEggMindbreakerToxin
+          weight: 5
+        - id: ReagentEggCaninase
+          weight: 5
+        - id: ReagentEggWine
+          weight: 5
+        - id: ReagentEggHistamine
+          weight: 5
+        - id: ReagentEggMuteToxin
+          weight: 5
+        - id: ReagentEggChloralHydrate
+          weight: 5
+        - id: ReagentEggSpaceCleaner
+          weight: 5
+        - id: ReagentEggHonk
+          weight: 5
+        - id: ReagentEggIpecac
+          weight: 5
+        - id: ReagentEggVomit
+          weight: 5
+        - id: ReagentEggNothing
+          weight: 5
+        - id: ReagentEggTHC
+          weight: 5
+        - id: ReagentEggWeldingFuel
+          weight: 5
+        - id: ReagentEggFelinase
+          weight: 5
+        - id: ReagentEggThermite
+          weight: 5
+        - id: ReagentEggDevilsKiss
+          weight: 5
+        - id: ReagentEggAntifreeze
+          weight: 5
+        - id: ReagentEggCarpotoxin
+          weight: 5
+        - id: ReagentEggCogni
+          weight: 5
+        - id: Legg
+          weight: 5
+
+- type: entity
+  id: XenoArtifactEffectGameItems
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: d4Dice
+          weight: 20
+        - id: d6Dice
+          weight: 20
+        - id: d8Dice
+          weight: 20
+        - id: d10Dice
+          weight: 20
+        - id: d12Dice
+          weight: 20
+        - id: d20Dice
+          weight: 20
+        - id: PercentileDie
+          weight: 20
+        - id: PaperCNCSheet
+          weight: 20
+        - id: PaperCNCSheet
+          weight: 20
+        - id: Pen
+          weight: 20
+        - id: ParchisBoard
+          weight: 10
+        - id: BackgammonBoard
+          weight: 10
+        - id: ChessBoard
+          weight: 10
+        - id: CheckerBoard
+          weight: 10
+        - id: CyberPen
+          weight: 1
+
+- type: entity
+  id: XenoArtifactEffectVampireItems
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
+        children:
+        - id: CandlePurpleInfinite
+          weight: 50
+        - id: CandleBlackInfinite
+          weight: 50
+        - id: CandleRedInfinite
+          weight: 50
+        - id: CandleBlueInfinite
+          weight: 50
+        - id: CandleInfinite
+          weight: 50
+        - id: CandleGreenInfinite
+          weight: 50
+        - id: Bloodpack1
+          weight: 25
+        - id: DrinkDemonsBlood
+          weight: 25
+        - id: DrinkBloodGlass
+          weight: 25
+        - id: FoodBloodTomato
+          weight: 10
+        - id: OrganBloodsuckerLiver
+          weight: 1
+        - id: OrganBloodsuckerStomach
+          weight: 1
+        - id: OrganBloodsuckerHeart
+          weight: 1
+
+- type: entity
+  id: XenoArtifactEffectGlowingOrbSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Artifact fragmentation
+  components:
+  - type: XenoArtifactNode
+    depth: 2
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: GlowingOrb
+          weight: 1
+
+- type: entity
+  id: XenoArtifactEffectAtmosStoneSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Artifact fragmentation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: GassyStoneWaterVapor
+          weight: 20
+        - id: GassyStoneCarbonDioxide
+          weight: 20
+        - id: GassyStoneAmmonia
+          weight: 20
+        - id: GassyStonePlasma
+          weight: 10
+        - id: GassyStoneNitrousOxide
+          weight: 10
+        - id: GassyStoneFrezon
+          weight: 5
+        - id: GassyStoneBZ
+          weight: 5
+        - id: GassyStoneTritium
+          weight: 1
+        - id: GassyStoneHealium
+          weight: 1
+
+- type: entity
+  id: XenoArtifactEffectEndlessPitcherSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Artifact fragmentation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: PitcherEndlessWater
+          weight: 20
+        - id: PitcherEndlessBlood
+          weight: 20
+        - id: PitcherEndlessCopperBlood
+          weight: 20
+        - id: PitcherEndlessIce
+          weight: 15
+        - id: PitcherEndlessSyrup
+          weight: 15
+        - id: PitcherEndlessVodka
+          weight: 15
+        - id: PitcherEndlessRum
+          weight: 15
+        - id: PitcherEndlessJuiceCarrot
+          weight: 10
+        - id: PitcherEndlessRice
+          weight: 10
+        - id: PitcherEndlessAmmonia
+          weight: 10
+        - id: PitcherEndlessHappiness
+          weight: 5
+        - id: PitcherEndlessNothing
+          weight: 5
+        - id: PitcherEndlessOil
+          weight: 5
+        - id: PitcherEndlessSpaceLube
+          weight: 1
+
+- type: entity
+  id: XenoArtifactEffectToolboxOfHoldingSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Artifact fragmentation
+  components:
+  - type: XenoArtifactNode
+    depth: 2
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: ToolboxOfHolding
+          weight: 1
+
+- type: entity
+  id: XenoArtifactEffectGravityItemsSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Artifact fragmentation
+  components:
+  - type: XenoArtifactNode
+    depth: 2
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: TrashBananaPeelGravityWell
+          weight: 1
+        - id: ToyFigurineMimeReverseGravityWell
+          weight: 1
+
+- type: entity
+  id: XenoArtifactEffectTransmutationGlassSpawn
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Artifact fragmentation
+  components:
+  - type: XenoArtifactNode
+    depth: 2
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: TransmutationGlass
+          weight: 1
+
+# Gas Spawners
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHealium
+  parent: BaseXenoArtifactEffect
+  description: Expels a mystery gas
+  components:
+  - type: XAECreateGas
+    gases:
+      Healium: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHydrogen
+  parent: BaseXenoArtifactEffect
+  description: Expels a mystery gas
+  components:
+  - type: XAECreateGas
+    gases:
+      Hydrogen: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHalon
+  parent: BaseXenoArtifactEffect
+  description: Expels a mystery gas
+  components:
+  - type: XAECreateGas
+    gases:
+      Halon: 300
+
+- type: entity
+  id: XenoArtifactEffectCreationGasHelium
+  parent: BaseXenoArtifactEffect
+  description: Expels a mystery gas
+  components:
+  - type: XAECreateGas
+    gases:
+      Helium: 300
+
+# Food Reagent Spawners
+
+- type: entity
+  id: XenoArtifactMilkPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 200
+      canReact: false
+    possibleChemicals:
+    - Milk
+
+- type: entity
+  id: XenoArtifactMilkSoyPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 200
+      canReact: false
+    possibleChemicals:
+    - MilkSoy
+
+- type: entity
+  id: XenoArtifactMilkChocolatePuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 200
+      canReact: false
+    possibleChemicals:
+    - MilkChocolate
+
+- type: entity
+  id: XenoArtifactMilkStrawberryPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 200
+      canReact: false
+    possibleChemicals:
+    - MilkStrawberry
+
+- type: entity
+  id: XenoArtifactMilkBananaPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 200
+      canReact: false
+    possibleChemicals:
+    - MilkBanana
+
+- type: entity
+  id: XenoArtifactEggPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Egg
+
+- type: entity
+  id: XenoArtifactEnzymePuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 50
+      canReact: false
+    possibleChemicals:
+    - Enzyme
+
+- type: entity
+  id: XenoArtifactSoysaucePuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Soysauce
+
+- type: entity
+  id: XenoArtifactMustardPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Mustard
+
+- type: entity
+  id: XenoArtifactKetchupPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Ketchup
+
+- type: entity
+  id: XenoArtifactHotsaucePuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Hotsauce
+
+- type: entity
+  id: XenoArtifactOilOlivePuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - OilOlive
+
+- type: entity
+  id: XenoArtifactVodkaPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Vodka
+
+- type: entity
+  id: XenoArtifactFourteenLokoPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - FourteenLoko
+
+- type: entity
+  id: XenoArtifactVitaminPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Vitamin
+
+- type: entity
+  id: XenoArtifactOilPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Oil
+
+- type: entity
+  id: XenoArtifactHistaminePuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - Histamine
+
+- type: entity
+  id: XenoArtifactMindbreakerToxinPuddle
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous inorganic creation
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    chemicalSolution:
+      maxVol: 100
+      canReact: false
+    possibleChemicals:
+    - MindbreakerToxin
+
+# Polymophs
+
+- type: entity
+  id: XenoArtifactSkeletonization
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Metaphysical disturbance
+  components:
+  - type: XAEPolymorph
+    polymorphPrototypeName: WizardForcedSkeleton
+    range: 5

@@ -1,0 +1,15 @@
+- type: entity
+  parent: MobSkeletonCloset
+  id: MobSkeletonArtifact
+  name: strange skeleton
+  components:
+  - type: GhostRole
+    name: ghost-role-information-arti-skeleton-name
+    description: ghost-role-information-arti-skeleton-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
+    raffle:
+      settings: default
+  - type: Loadout
+    prototypes: [NothingButSlippers]

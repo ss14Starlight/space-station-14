@@ -1,0 +1,109 @@
+- type: entity
+  parent: [ BaseMob, MobCombat ]
+  id: MobTotallyNormalHorse
+  name: parade
+  description: It is not two people in a costume. It is not two people in a costume. Oh god, It is not two people in a costume.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Funkystation/Mobs/XenoArch/arti_horse.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: horse_passive
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 250
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FloorOcclusion
+  - type: ComplexInteraction
+  - type: MobState
+  - type: Pullable
+  - type: ZombieImmune
+  - type: Climbing
+  - type: Damageable
+    damageModifierSet: Skeleton
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 3
+            max: 5
+          MaterialCloth1:
+            min: 2
+            max: 3
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: horse_passive
+      Dead:
+        Base: horse_passive
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      100: Dead
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+      path: /Audio/Weapons/punch3.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 20
+        Structural: 20
+  - type: NPCRetaliation
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: NormalHorseHTN
+    blackboard:
+      NavSmash: !type:Bool
+        true
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+
+- type: htnCompound
+  id: NormalHorseHTN #Custom HTN just for this mob. Stands perfectly still until attacked
+  branches:
+    - tasks:
+      - !type:HTNCompoundTask
+        task: MeleeCombatCompound
+    - tasks:
+      - !type:HTNPrimitiveTask
+        operator: !type:SetFloatOperator
+          targetKey: IdleTime
+          amount: 1 #Supposed to be stationary
+      - !type:HTNPrimitiveTask
+        operator: !type:WaitOperator
+          key: IdleTime
+        preconditions:
+        - !type:KeyExistsPrecondition
+          key: IdleTime

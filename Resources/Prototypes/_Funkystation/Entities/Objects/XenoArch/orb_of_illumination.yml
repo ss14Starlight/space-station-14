@@ -1,0 +1,54 @@
+- type: entity
+  parent: BaseItem
+  id: GlowingOrb
+  name: glowing orb
+  description: A bright orb of light. It seems fragile.
+  suffix: ARTIFACT
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Objects/XenoArch/glowing_orb.rsi
+    state: icon
+  - type: Item
+    sprite: _Funkystation/Objects/XenoArch/glowing_orb.rsi
+    size: Tiny
+  - type: PointLight
+    softness: 0.5
+    energy: 6
+    color: '#8AC4C3'
+    radius: 3
+    enabled: True
+  - type: Damageable
+    damageModifierSet: FlimsyGlass
+  - type: Injurable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassCrack
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Ectoplasm:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 5 # so fragile it smashes when thrown
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5

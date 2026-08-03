@@ -1,0 +1,176 @@
+- type: entity
+  parent: BaseItem
+  id: GassyStoneBase
+  name: strange stone
+  description: A small stone that is exceptionally dry to the touch. Despite having no pores, it seems to be emitting a small amount of gas.
+  suffix: ARTIFACT
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Objects/XenoArch/atmos_stone.rsi
+    state: icon
+  - type: Item
+    sprite: _Funkystation/Objects/XenoArch/atmos_stone.rsi
+    size: Tiny
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/metal_slam4.ogg
+      params:
+        volume: -2
+  - type: Damageable
+    damageModifierSet: Rock
+  - type: Injurable
+    damageContainer: Inorganic
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneWaterVapor
+  suffix: Water Vapor
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: WaterVapor
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneTritium
+  suffix: Tritium
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: Tritium
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneCarbonDioxide
+  suffix: Carbon Dioxide
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: CarbonDioxide
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStonePlasma
+  suffix: Plasma
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: Plasma
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneAmmonia
+  suffix: Ammonia
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: Ammonia
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneNitrousOxide
+  suffix: Nitrous Oxide
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: NitrousOxide
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneFrezon
+  suffix: Frezon
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: Frezon
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneBZ
+  suffix: BZ
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: BZ
+
+- type: entity
+  parent: GassyStoneBase
+  id: GassyStoneHealium
+  suffix: Healium
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:CreateGas
+        gas: Healium

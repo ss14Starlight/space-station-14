@@ -1,0 +1,59 @@
+- type: reagent
+  id: MilkChocolate
+  name: reagent-name-milk-chocolate
+  group: Drinks
+  desc: reagent-desc-milk-chocolate
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: milk
+  color: "#81522D"
+  recognizable: true
+  plantMetabolism:
+  - !type:PlantAdjustNutrition
+    amount: 0.1
+  - !type:PlantAdjustWater
+    amount: 0.9
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+
+- type: reagent
+  id: MilkStrawberry
+  name: reagent-name-milk-strawberry
+  group: Drinks
+  desc: reagent-desc-milk-strawberry
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: milk
+  color: "#FFA5C6"
+  recognizable: true
+  plantMetabolism:
+  - !type:PlantAdjustNutrition
+    amount: 0.1
+  - !type:PlantAdjustWater
+    amount: 0.9
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+
+- type: reagent
+  id: MilkBanana
+  name: reagent-name-milk-banana
+  group: Drinks
+  desc: reagent-desc-milk-banana
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: milk
+  color: "#FFF7AD"
+  recognizable: true
+  plantMetabolism:
+  - !type:PlantAdjustNutrition
+    amount: 0.1
+  - !type:PlantAdjustWater
+    amount: 0.9
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 4

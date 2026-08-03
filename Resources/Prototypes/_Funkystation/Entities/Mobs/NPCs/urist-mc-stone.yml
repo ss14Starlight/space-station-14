@@ -1,0 +1,90 @@
+- type: entity
+  parent: [ BaseMob, MobCombat ]
+  id: UristMcStone
+  name: Firstborn
+  description: Recovered rubble has been radiometrically dated to be older than current estimates of the age of the universe. The seams and cracks lining its body are not due to natural erosion but instead show repeated patterns as if it were a language carved into the stone.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Funkystation/Mobs/XenoArch/urist_mc_stone.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: urist_mc_stone
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: urist_mc_stone_unshaded
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 250
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FloorOcclusion
+  - type: ComplexInteraction
+  - type: MobState
+  - type: Pullable
+  - type: ZombieImmune
+  - type: Climbing
+  - type: Damageable
+    damageModifierSet: Rock
+  - type: Injurable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: urist_mc_stone
+      Dead:
+        Base: urist_mc_stone
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      190: Critical
+      200: Dead
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+      path: /Audio/Weapons/punch3.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 20
+        Structural: 20
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.7
+    baseSprintSpeed: 0.7
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepStoneScrape
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound

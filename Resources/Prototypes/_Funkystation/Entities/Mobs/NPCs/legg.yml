@@ -1,0 +1,80 @@
+# Blame Miish for this creature
+
+- type: entity
+  parent: [ BaseMob, MobCombat ]
+  id: Legg
+  name: legg
+  description: With a hardened shell and a scowl on their face, a legg is not one to be messed with.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Mobs/XenoArch/legg.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: icon
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: legg-moving
+    noMovementLayers:
+      movement:
+        state: legg
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 1
+        mask:
+        - MobMask
+        layer:
+        - Opaque
+  - type: MobState
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Egg
+          Quantity: 6
+  - type: Pullable
+  - type: ZombieImmune
+  - type: Climbing
+  - type: Damageable
+  - type: Injurable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: legg
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1: Critical
+      2: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 1
+    animation: WeaponArcFist
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: HTN
+    rootTask:
+      task: IdleCompound

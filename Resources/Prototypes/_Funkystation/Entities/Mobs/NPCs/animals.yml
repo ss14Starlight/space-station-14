@@ -1,0 +1,606 @@
+#Rainbow Mice
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseBlue
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Mobs/Animals/mouse_blue.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-blue
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-blue
+    noMovementLayers:
+      movement:
+        state: mouse-blue
+  - type: Clothing
+    sprite: _Funkystation/Mobs/Animals/mouse_blue.rsi
+    equippedPrefix: blue
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-blue
+      Critical:
+        Base: dead-blue
+      Dead:
+        Base: splat-blue
+  - type: Item
+    size: Tiny
+    heldPrefix: blue
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseRed
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Funkystation/Mobs/Animals/mouse_red.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-red
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-red
+    noMovementLayers:
+      movement:
+        state: mouse-red
+  - type: Clothing
+    sprite: _Funkystation/Mobs/Animals/mouse_red.rsi
+    equippedPrefix: red
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-red
+      Critical:
+        Base: dead-red
+      Dead:
+        Base: splat-red
+  - type: Item
+    size: Tiny
+    heldPrefix: red
+
+- type: entity
+  parent: MobMouse
+  id: MobMousePurple
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Mobs/Animals/mouse_purple.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-purple
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-purple
+    noMovementLayers:
+      movement:
+        state: mouse-purple
+  - type: Clothing
+    sprite: _Funkystation/Mobs/Animals/mouse_purple.rsi
+    equippedPrefix: purple
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-purple
+      Critical:
+        Base: dead-purple
+      Dead:
+        Base: splat-purple
+  - type: Item
+    size: Tiny
+    heldPrefix: purple
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseOrange
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Mobs/Animals/mouse_orange.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-orange
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-orange
+    noMovementLayers:
+      movement:
+        state: mouse-orange
+  - type: Clothing
+    sprite: _Funkystation/Mobs/Animals/mouse_orange.rsi
+    equippedPrefix: orange
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-orange
+      Critical:
+        Base: dead-orange
+      Dead:
+        Base: splat-orange
+  - type: Item
+    size: Tiny
+    heldPrefix: orange
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseGreen
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Mobs/Animals/mouse_green.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-green
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-green
+    noMovementLayers:
+      movement:
+        state: mouse-green
+  - type: Clothing
+    sprite: _Funkystation/Mobs/Animals/mouse_green.rsi
+    equippedPrefix: green
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-green
+      Critical:
+        Base: dead-green
+      Dead:
+        Base: splat-green
+  - type: Item
+    size: Tiny
+    heldPrefix: green
+
+#Weird Mice
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseBurnt
+  description: Flammable. Squeak!
+  suffix: FIRE!
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Mobs/Animals/mouse_burnt.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-burnt
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-burnt
+    noMovementLayers:
+      movement:
+        state: mouse-burnt
+  - type: Clothing
+    sprite: _Funkystation/Mobs/Animals/mouse_burnt.rsi
+    equippedPrefix: burnt
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-burnt
+      Critical:
+        Base: dead-burnt
+      Dead:
+        Base: splat-burnt
+  - type: Item
+    size: Tiny
+    heldPrefix: burnt
+  - type: AlwaysHot
+  - type: IgnitionSource #Todo make this fucker light you on fire if you touch them
+    temperature: 800
+    ignited: true
+  - type: FireProtection
+    reduction: 1 #Its on fire constantly
+  - type: PointLight
+    color: Red
+    radius: 3
+    energy: 4
+    netsync: false
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseRGB
+  suffix: RGB
+  components:
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+  - type: RgbLightController
+    layers: [ 0 ]
+
+- type: entity
+  parent: MobMouse1
+  id: MobMouseStealth
+  suffix: Stealth
+  components:
+  - type: Stealth
+    hadOutline: true
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.15 # Its a mouse it should still be able to be found decently easy
+    movementVisibilityRate: 0.20
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseSnouse
+  name: snouse
+  description: Developed by Interdyne as one of their many attempts to stifle the ever-present problem of pests on agri-worlds, the Snouse is a transgenic organism intended to interfere and mingle with existing rodent populations. Populations of these were released into farming communities alongside Snoths in hopes they would pass on the snail genes, making future generations of pests unable to escape from traps and other forms of pest control. Unfortunately, this attempt proved futile as the hardened shells of these organisms made them resistant to commonly available mousetraps. Interdyne then moved onto their next attempt at solving the pest problem, the meowl.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Mobs/Animals/snouse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: snouse
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: snouse
+    noMovementLayers:
+      movement:
+        state: snouse
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: snouse
+      Critical:
+        Base: crit-snouse
+      Dead:
+        Base: dead-snouse
+
+#Special Cows
+
+- type: entity
+  name: chocolate cow
+  parent: MobCow
+  id: MobCowChocolate
+  description: Moo.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: cow
+        sprite: _Funkystation/Mobs/Animals/chocolate_cow.rsi
+  - type: SolutionManager
+    solutions:
+    - SolutionUdderChocolate
+  - type: Udder
+    reagentId: MilkChocolate
+    quantityPerUpdate: 25
+    growthDelay: 30
+  - type: Butcherable
+    spawned:
+    - id: FoodSnackChocolateBar
+      amount: 5
+
+- type: entity
+  parent: SolutionLarge
+  id: SolutionUdderChocolate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: udder
+    solution:
+      reagents:
+      - ReagentId: MilkChocolate
+        Quantity: 30
+
+- type: entity
+  name: strawberry cow
+  parent: MobCow
+  id: MobCowStrawberry
+  description: Moo.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cow
+      sprite: _Funkystation/Mobs/Animals/strawberry_cow.rsi
+  - type: SolutionManager
+    solutions:
+    - SolutionUdderStrawberry
+  - type: Udder
+    reagentId: MilkStrawberry
+    quantityPerUpdate: 25
+    growthDelay: 30
+  - type: Butcherable
+    spawned:
+    - id: FoodFrozenSandwichStrawberry #Change to actual strawberries if someone implments them
+      amount: 2
+
+- type: entity
+  parent: SolutionLarge
+  id: SolutionUdderStrawberry
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: udder
+    solution:
+      reagents:
+      - ReagentId: MilkStrawberry
+        Quantity: 30
+
+- type: entity
+  name: banana cow
+  parent: MobCow
+  id: MobCowBanana
+  description: Moo.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cow
+      sprite: _Funkystation/Mobs/Animals/banana_cow.rsi
+  - type: SolutionManager
+    solutions:
+    - SolutionUdderBanana
+  - type: Udder
+    reagentId: MilkBanana
+    quantityPerUpdate: 25
+    growthDelay: 30
+  - type: Butcherable
+    spawned:
+    - id: FoodBanana
+      amount: 5
+    - id: TrashBananaPeel
+      amount: 5
+
+- type: entity
+  parent: SolutionLarge
+  id: SolutionUdderBanana
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: udder
+    solution:
+      reagents:
+      - ReagentId: MilkBanana
+        Quantity: 30
+
+- type: entity
+  parent: MobCow
+  id: MobCowPilk
+  description: Moo.
+  suffix: Pilk
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cow
+      sprite: Mobs/Animals/cow.rsi
+  - type: SolutionManager
+    solutions:
+    - SolutionUdderPilk
+  - type: Udder
+    reagentId: Pilk
+    quantityPerUpdate: 25
+    growthDelay: 30
+
+- type: entity
+  parent: SolutionLarge
+  id: SolutionUdderPilk
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: udder
+    solution:
+      reagents:
+      - ReagentId: Pilk
+        Quantity: 30
+
+#Devil Birds
+
+- type: entity
+  name: goose
+  parent: MobGoose
+  id: MobGooseGolden
+  description: Its stomach and mind are an enigma beyond human comprehension.
+  suffix: GOLD
+  components:
+  - type: ExaminableHunger
+  - type: EggLayer
+    eggSpawn:
+    - id: WeirdEggGold
+
+- type: entity
+  name: goose
+  parent: MobGoose
+  id: MobGooseUranium
+  description: Its stomach and mind are an enigma beyond human comprehension.
+  suffix: URANIUM
+  components:
+  - type: ExaminableHunger
+  - type: EggLayer
+    eggSpawn:
+    - id: WeirdEggUranium
+
+- type: entity
+  name: goose
+  parent: MobGoose
+  id: MobGoosePlasma
+  description: Its stomach and mind are an enigma beyond human comprehension.
+  suffix: PLASMA
+  components:
+  - type: ExaminableHunger
+  - type: EggLayer
+    eggSpawn:
+    - id: WeirdEggPlasma
+
+- type: entity
+  name: servant of Nar'sie
+  parent: MobGoose
+  id: MobGooseNarsie
+  description: A damned beast that yearns for blood.
+  suffix: EVIL
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: goosenarsie
+      sprite: _Funkystation/Mobs/Animals/goose.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: goosenarsie
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.01
+  - type: CombatMode
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+      path: /Audio/Weapons/punch3.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 12
+        Structural: 20
+        Heat: 12
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-narsie-goose-name
+    description: ghost-role-information-narsie-goose-description
+    rules: ghost-role-information-narsie-goose-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - BloodCultist
+
+- type: entity
+  parent: BaseStructure
+  id: GooseRune_drawing
+  name: "goose rune"
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Mobs/Animals/goose.rsi
+    state: GooseNarsieSummon
+  - type: TimedSpawner
+    prototypes:
+    - MobGooseNarsie
+    intervalSeconds: 1.8
+    minimumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: MobMeowl
+  name: meowl
+  description: The peak of evolution, the most efficient pest hunter any side of the galaxy. Considered highly invasive on every planet.
+  parent: [SimpleMobBase, FlyingMobBase]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      sprite: _Funkystation/Mobs/Animals/meowl.rsi
+      state: meowl
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: DamageStateVisuals
+    states:
+     Alive:
+       Base: meowl
+     Critical:
+       Base: dead
+     Dead:
+       Base: dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: Speech
+    speechSounds: Cat
+    speechVerb: SmallMob
+#    allowedEmotes: ['Purr','Mew','Meow','Hiss']
+    allowedEmotes: ['Hiss']
+  - type: ReplacementAccent
+    accent: cat
+  - type: InteractionPopup
+    successChance: 0.6
+    interactSuccessString: petting-success-cat
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 75
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Slash: 5
+        Piercing: 5
+  - type: StaminaDamageOnHit
+    damage: 8 #as strong as boxing gloves. HOLY SHIT THERES A BIRDCAT IN MY FACE AAHGAH GET IT OFF GET IT OFF
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: MobPrice
+    price: 1000
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+    # Goob/EE Thermal Vision is AGPL. Commenting out for now incase Goob/EE thermal vision gets ported. Though more likely that it has to be rebuilt from the ground up.
+#  - type: ThermalVision
+#    color: "#b8b8b8"
+#    activateSound: null
+#    deactivateSound: null
+#    lightRadius: 2
+  - type: NpcFactionMember
+    factions:
+    - PetsNT #makes them hunt mice
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NPCRetaliation #bird talon with cat fangs plus wings equals don't fuck with them
+  - type: GhostRole
+    prob: 0.25
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-meowl-name
+    description: ghost-role-information-meowl-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgentHarmless
+  - type: GhostTakeoverAvailable

@@ -1,0 +1,221 @@
+#Fluids
+
+- type: xenoArchTrigger
+  id: TriggerVodka
+  tip: artifact-trigger-hint-vodka
+  components:
+  - type: XATReactive
+    reagents:
+    - Vodka
+
+- type: xenoArchTrigger
+  id: TriggerMilk
+  tip: artifact-trigger-hint-milk
+  components:
+  - type: XATReactive
+    reagents:
+    - Milk
+    - MilkGoat
+    - MilkChocolate
+    - MilkStrawberry
+    - MilkBanana
+
+- type: xenoArchTrigger
+  id: TriggerBleach
+  tip: artifact-trigger-hint-bleach
+  components:
+  - type: XATReactive
+    reagents:
+    - Bleach
+
+- type: xenoArchTrigger
+  id: TriggerCleaner
+  tip: artifact-trigger-hint-surfactant
+  components:
+  - type: XATReactive
+    reagents:
+    - SpaceCleaner
+
+- type: xenoArchTrigger
+  id: TriggerMutagen
+  tip: artifact-trigger-hint-unstable-mutagen
+  components:
+  - type: XATReactive
+    reagents:
+    - UnstableMutagen
+
+- type: xenoArchTrigger
+  id: TriggerCoffee
+  tip: artifact-trigger-hint-coffee
+  components:
+  - type: XATReactive
+    reagents:
+    - Coffee
+    - CafeLatte
+
+- type: xenoArchTrigger
+  id: TriggerLube
+  tip: artifact-trigger-hint-lube
+  components:
+  - type: XATReactive
+    reagents:
+    - SpaceLube
+
+- type: xenoArchTrigger
+  id: TriggerLSD
+  tip: artifact-trigger-hint-lsd
+  components:
+  - type: XATReactive
+    reagents:
+    - MindbreakerToxin
+    - SpaceDrugs
+
+- type: xenoArchTrigger
+  id: TriggerCopper
+  tip: artifact-trigger-copper
+  components:
+  - type: XATReactive
+    reagents:
+    - Copper
+    - CopperBlood
+
+- type: xenoArchTrigger
+  id: TriggerEgg
+  tip: artifact-trigger-hint-egg
+  components:
+  - type: XATReactive
+    reagents:
+    - Egg
+
+- type: xenoArchTrigger
+  id: TriggerWine
+  tip: artifact-trigger-hint-wine
+  components:
+  - type: XATReactive
+    reagents:
+    - Wine
+
+- type: xenoArchTrigger
+  id: TriggerBeer
+  tip: artifact-trigger-hint-beer
+  components:
+  - type: XATReactive
+    reagents:
+    - Beer
+
+- type: xenoArchTrigger
+  id: TriggerCitrus
+  tip: artifact-trigger-hint-citrus
+  components:
+  - type: XATReactive
+    reagents:
+    - Lemonade
+    - JuiceLemon
+    - LemonLime
+    - LemonLimeCranberry
+    - JuiceLime
+    - OrangeLimeSoda
+
+- type: xenoArchTrigger
+  id: TriggerSilicon
+  tip: artifact-trigger-hint-silicon
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: BorgChassis
+    radius: 2
+  - type: XATReactive
+    reagents:
+    - Silicon
+
+- type: xenoArchTrigger
+  id: TriggerMatch
+  tip: artifact-trigger-hint-match
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: Matchstick
+    radius: 2
+  - type: XATReactive
+    reagents:
+    - Phosphorus
+
+#Components
+
+- type: xenoArchTrigger
+  id: TriggerGeiger
+  tip: artifact-trigger-hint-geiger
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: Geiger
+    radius: 2
+
+- type: xenoArchTrigger
+  id: TriggerRadio
+  tip: artifact-trigger-hint-radio
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: RadioSpeaker
+    radius: 2
+
+- type: xenoArchTrigger
+  id: TriggerFlashImmunity
+  tip: artifact-trigger-hint-flash-immunity
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: FlashImmunity
+    radius: 2
+
+- type: xenoArchTrigger
+  id: TriggerTechnologyDisk
+  tip: artifact-trigger-hint-tech-disc
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: TechnologyDisk
+    radius: 2
+
+- type: xenoArchTrigger
+  id: TriggerPaper
+  tip: artifact-trigger-hint-paper
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: Paper
+    radius: 2
+
+- type: xenoArchTrigger
+  id: TriggerBattery
+  tip: artifact-trigger-hint-battery
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: Battery
+    radius: 2
+
+- type: xenoArchTrigger
+  id: TriggerAnomScanner
+  tip: artifact-trigger-hint-anom-scanner
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: AnomalyScanner
+    radius: 2
+
+- type: xenoArchTrigger
+  id: TriggerLightbulb
+  tip: artifact-trigger-hint-light-bulb
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: LightBulb
+    radius: 2
+
+- type: xenoArchTrigger
+  id: TriggerPAI
+  tip: artifact-trigger-hint-pai
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: PAI
+    radius: 2
+
+- type: xenoArchTrigger
+  id: TriggerDice
+  tip: artifact-trigger-hint-dice
+  components:
+  - type: XATCompNearby
+    requireComponentWithName: Dice
+    radius: 2

@@ -1,0 +1,45 @@
+- type: entity
+  parent: BaseMob
+  id: MobParadoxArtifact
+  name: space-time paradox
+  suffix: "ARTIFACT"
+  description: A big ball of wibbly wobbly, timey wimey stuff.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: Mobs/Aliens/paradox_clone.rsi
+      state: paradox
+      shader: unshaded
+  - type: RotationVisuals
+    horizontalRotation: 90
+  - type: Speech
+    speechSounds: Alto
+  - type: HTN
+    rootTask:
+      task: ArtifactParadoxHTN
+    blackboard:
+      MinimumIdleTime: !type:Single
+        2
+      MaximumIdleTime: !type:Single
+        2
+      Count: !type:Single
+        2
+  - type: TimedDespawn
+    lifetime: 6
+
+- type: htnCompound
+  id: ArtifactParadoxHTN
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:SpeakOperator
+        speech: !type:SingleSpeakOperatorSpeech
+          line: "OH GOD WHERE AM I"
+        cooldown: 5
+
+    - !type:HTNPrimitiveTask
+      operator: !type:SpeakOperator
+        speech: !type:SingleSpeakOperatorSpeech
+          line: "HELP ME HELP ME HELP ME!!"
+        cooldown: 5

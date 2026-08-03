@@ -1,0 +1,47 @@
+# Used with permission from Sparlight
+- type: entity
+  parent: MobCorgiBase
+  id: SparlightMobUristMcCorgi
+  name: Extradimensional Corgi
+  description: Now THIS is a rare sight to see!
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Mobs/XenoArch/urist_mc_corgi.rsi
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: urist
+  - type: Tag
+    tags:
+    - VimPilot
+    - CanPilot
+    - AnomalyHost
+    - DoorBumpOpener
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: urist
+      Critical:
+        Base: urist
+      Dead:
+        Base: urist_dead
+  - type: Hands
+    activeHandId: Right
+    hands:
+      Right:
+        location: Right
+  - type: Puller
+  - type: Stripping
+  - type: ComplexInteraction
+  - type: Grammar
+    attributes:
+      gender: epicene # Gender neutral
+      proper: true
+  - type: GhostRole
+    name: ghost-role-information-arti-corgi-name
+    description: ghost-role-information-arti-corgi-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
+    raffle:
+      settings: default

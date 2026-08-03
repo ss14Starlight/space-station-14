@@ -1,0 +1,48 @@
+- type: entity
+  name: hardened roach
+  parent: SimpleMobBase
+  id: ImmortalRoach
+  description: With an extremely robust carapace this foul creature is considered neigh invulnerable. Spacing is recommended.
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Funkystation/Mobs/XenoArch/immortal_roach.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: immortal_roach
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: immortal_roach_eyes
+      shader: unshaded
+  - type: Item
+    size: Tiny
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: MouseCompound
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 20
+  - type: Hunger
+    baseDecayRate: 0.25
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      10000000: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 0.7
+    baseSprintSpeed : 1
