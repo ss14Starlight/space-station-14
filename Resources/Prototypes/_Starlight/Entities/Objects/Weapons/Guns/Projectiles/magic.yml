@@ -177,8 +177,8 @@
     damage:
       types:
         Cold: 50
-        Slash: 0
-        Structural: 1000 #mechslopus deletus
+        Slash: 100 #more because too easy to tank?
+        Structural: 800 #mechslopus deletus
     soundHit:
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
   - type: PointLight
@@ -188,11 +188,56 @@
   - type: TimedDespawn
     lifetime: 20
   - type: RepeatingTrigger
-    delay: 1
-  - type: ProjectileGrenade #doesnt seem to work
-    fillPrototype: PelletClusterRubber
-    capacity: 6
-    randomAngle: false
-    TriggerKey: RepeatingTrigger
+    delay: 1.5
+  - type: SpawnOnTrigger
+    proto: Icefragbomb
+  - type: IceTrail
+    spawnInterval: 0.05
+    iceChance: 1
+    iceEntityId: IceCrust
+  - type: IceSpawnOnTrigger
+    radius: 3
+    requireHumanoid: true
+    iceChance: 1
+    iceEntityId: IceCrust
 
-    #option 1 is having the projectile spawn the projectiles themselves, either using projectilegrenade or spawnontrigger, option 2 is having the projectile spawn other proto that are grenades and explode instantly
+- type: entity
+  parent: [ProjectileGrenadeBase]
+  id: Icefragbomb
+  name: ice bomb
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/ice_anom.rsi
+    layers:
+    - state: bullet
+  - type: TriggerOnSpawn
+  - type: ProjectileGrenade
+    fillPrototype: projectileIceFrag
+    capacity: 30
+    triggerKey: trigger
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Effects/glass_break1.ogg
+    positional: true
+  - type: Stealth
+    minVisibility: -1
+    lastVisibility: -1
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  parent: PelletClusterLessLethal
+  id: projectileIceFrag
+  categories: [ HideSpawnMenu ]
+  name: pellet (ball, less lethal)
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 5
+        cold: 8
+  - type: TimedDespawn
+    lifetime: 0.25
+
+
