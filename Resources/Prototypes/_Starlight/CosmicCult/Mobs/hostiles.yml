@@ -132,7 +132,7 @@
     damage:
       types:
         Cold: 5
-        Piercing: 5
+        Blunt: 5
         Slash: 5
         Structural: 10
     soundHit:
@@ -167,6 +167,7 @@
       types:
         Asphyxiation: 10
         Cold: 5
+        Blunt: 5
         Structural: 5
     soundHit:
       path: /Audio/_Starlight/CosmicCult/cosmiclance_hit.ogg
