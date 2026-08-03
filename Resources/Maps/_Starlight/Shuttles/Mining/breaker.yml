@@ -826,7 +826,7 @@ entities:
     - type: Transform
       pos: 7.5,9.5
       parent: 1
-- proto: ComputerShuttle
+- proto: ComputerShuttleMining
   entities:
   - uid: 96
     components:

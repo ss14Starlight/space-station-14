@@ -902,7 +902,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,5.5
       parent: 181
-- proto: ComputerShuttle
+- proto: ComputerShuttleMining
   entities:
   - uid: 156
     components:

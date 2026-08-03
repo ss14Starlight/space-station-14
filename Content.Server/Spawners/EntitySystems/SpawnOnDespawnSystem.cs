@@ -1,13 +1,15 @@
 using Content.Server.Spawners.Components;
+using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
 using Robust.Shared.Map; // Starlight
 
 namespace Content.Server.Spawners.EntitySystems;
 
-public sealed class SpawnOnDespawnSystem : EntitySystem
+public sealed partial class SpawnOnDespawnSystem : EntitySystem // Starlight edit
 {
-    private readonly Queue<(EntProtoId Prototype, EntityCoordinates Coordinates)> _queuedSpawns = new(); // Starlight
+    [Dependency] private TransformSystem _xform = default!; // Starlight
+    private readonly Queue<(EntProtoId Prototype, EntityCoordinates Coordinates, ComponentRegistry? overrides)> _queuedSpawns = new(); // Starlight
 
     public override void Initialize()
     {
@@ -24,8 +26,9 @@ public sealed class SpawnOnDespawnSystem : EntitySystem
         // Spawn queued entities after all deletions are processed
         while (_queuedSpawns.Count > 0)
         {
-            var (prototype, coordinates) = _queuedSpawns.Dequeue();
-            Spawn(prototype, coordinates);
+            var (prototype, coordinates, overrides) = _queuedSpawns.Dequeue();
+            var uid = Spawn(prototype, overrides);
+            _xform.SetCoordinates(uid, coordinates);
         }
     }
     // Starlight End
@@ -35,11 +38,18 @@ public sealed class SpawnOnDespawnSystem : EntitySystem
         if (!TryComp(uid, out TransformComponent? xform))
             return;
 
-        _queuedSpawns.Enqueue((comp.Prototype, xform.Coordinates)); // Starlight Edit: Queue the spawn to occur after the entity is fully deleted
+        _queuedSpawns.Enqueue((comp.Prototype, xform.Coordinates, comp.Overrides)); // Starlight Edit: Queue the spawn to occur after the entity is fully deleted
     }
 
     public void SetPrototype(Entity<SpawnOnDespawnComponent> entity, EntProtoId prototype)
     {
         entity.Comp.Prototype = prototype;
     }
+
+    #region Starlight
+
+    public void SetOverrides(Entity<SpawnOnDespawnComponent> entity, ComponentRegistry? overrides) =>
+        entity.Comp.Overrides = overrides;
+
+    #endregion
 }
