@@ -17,8 +17,20 @@
   - type: Appearance
   - type: Machine
     board: VaccinatorMachineCircuitboard
+  # Starlight - produces treatment doses from a loaded culture. The culture is a template
+  # that stays in the machine, so doses are unlimited; the work was getting the culture.
+  - type: PathogenVaccinator
+  - type: UserInterface
+    interfaces:
+      enum.PathogenVaccinatorUiKey.Key:
+        type: PathogenVaccinatorBoundUserInterface
+  - type: ActivatableUI
+    key: enum.PathogenVaccinatorUiKey.Key
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
+      pathogen-culture: !type:ContainerSlot
+      pathogen-catalyst: !type:ContainerSlot
+      pathogen-vessel: !type:ContainerSlot
   - type: RequireProjectileTarget

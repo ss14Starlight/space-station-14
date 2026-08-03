@@ -9,6 +9,9 @@
     CarrotSeeds: 5
     CabbageSeeds: 5
     ChanterelleSeeds: 5
+    # Starlight - virology's live vaccine catalyst. Stocked thinly on purpose; botany has
+    # to deliberately give up tray space for a crop nothing else uses.
+    ViroculumSeeds: 2
     CherrySeeds: 5
     ChiliSeeds: 5
     CocoaSeeds: 3

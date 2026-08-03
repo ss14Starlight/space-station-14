@@ -1,0 +1,65 @@
+# Viroculum cap - the botany input for live vaccine production.
+#
+# Deliberately grown for nothing else. Virology needs botany to plant it on their behalf,
+# which is the point: a live vaccine is the station's answer to a bioterrorist and it should
+# take two departments to produce.
+#
+# Tuned to be genuinely awkward: slow to mature, short-lived, thirsty, hungry, and narrow on
+# temperature. A botanist has to mean it.
+
+- type: seed
+  id: viroculum
+  name: seeds-viroculum-name
+  noun: seeds-noun-spores
+  displayName: seeds-viroculum-display-name
+  plantRsi: Objects/Specific/Hydroponics/chanterelle.rsi
+  packetPrototype: ViroculumSeeds
+  productPrototypes:
+  - FoodViroculumCap
+  lifespan: 20
+  maturation: 30
+  production: 20
+  yield: 2
+  potency: 1
+  growthStages: 3
+  lightTolerance: 2
+  waterConsumption: 1.2
+  nutrientConsumption: 1.0
+  idealHeat: 283
+  heatTolerance: 5
+  idealLight: 2
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 50
+
+- type: entity
+  parent: SeedBase
+  id: ViroculumSeeds
+  name: packet of viroculum spores
+  description: A sealed packet of laboratory-grade fungal spores. Notoriously fussy to raise.
+  components:
+  - type: Seed
+    seedId: viroculum
+
+- type: entity
+  parent: FoodProduceBase
+  id: FoodViroculumCap
+  name: viroculum cap
+  description: A pale, dense mushroom cap used as a growth medium for live vaccine culture.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - bitter
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/chanterelle.rsi
+  - type: Produce
+    seedId: viroculum
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1

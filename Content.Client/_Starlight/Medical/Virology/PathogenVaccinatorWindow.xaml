@@ -1,0 +1,18 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               MinSize="400 240"
+               SetSize="440 280"
+               Title="{Loc pathogen-vaccinator-window-title}">
+    <BoxContainer Orientation="Vertical" Margin="8 8 8 8" SeparationOverride="8">
+        <Label Text="{Loc pathogen-vaccinator-culture-heading}" StyleClasses="LabelHeading" />
+        <Label Name="StrainLabel" HorizontalExpand="True" />
+        <PanelContainer StyleClasses="LowDivider" />
+        <Button Name="ProduceButton"
+                Text="{Loc pathogen-vaccinator-produce-treatment}"
+                HorizontalExpand="True" />
+        <Button Name="ProduceLiveButton"
+                Text="{Loc pathogen-vaccinator-produce-live}"
+                HorizontalExpand="True" />
+        <Label Name="LiveHintLabel" HorizontalExpand="True" StyleClasses="LabelSubText" />
+    </BoxContainer>
+</DefaultWindow>
