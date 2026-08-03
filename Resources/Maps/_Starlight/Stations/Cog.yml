@@ -177646,13 +177646,6 @@ entities:
     - type: Transform
       pos: 8.5,68.5
       parent: 2
-- proto: SpawnMechPaddyFilled
-  entities:
-  - uid: 27100
-    components:
-    - type: Transform
-      pos: -35.5,64.5
-      parent: 2
 - proto: SpawnMechRipley
   entities:
   - uid: 27101

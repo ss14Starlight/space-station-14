@@ -186152,14 +186152,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,8.5
       parent: 2
-- proto: SpawnMechPaddyFilled
-  entities:
-  - uid: 29011
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -59.5,61.5
-      parent: 2
 - proto: SpawnMobAlexander
   entities:
   - uid: 29012

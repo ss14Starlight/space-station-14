@@ -172183,13 +172183,6 @@ entities:
     - type: Transform
       pos: 41.5,37.5
       parent: 2
-- proto: SpawnMechPaddyFilled
-  entities:
-  - uid: 23806
-    components:
-    - type: Transform
-      pos: 36.5,8.5
-      parent: 2
 - proto: SpawnMechRipley
   entities:
   - uid: 23807
