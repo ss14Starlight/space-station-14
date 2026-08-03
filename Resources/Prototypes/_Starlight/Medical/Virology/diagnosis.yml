@@ -1,0 +1,82 @@
+- type: entity
+  parent: BaseItem
+  id: PathogenDetector
+  name: virology detector
+  description: Reads qualifying suit sensors for pathogen signatures without exposing crew locations.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    layers:
+    - state: icon
+    - state: analyzer
+      shader: unshaded
+  - type: Item
+    heldPrefix: analyzer
+    storedRotation: -90
+  - type: PathogenDetector
+  - type: UserInterface
+    interfaces:
+      enum.PathogenDetectorUiKey.Key:
+        type: PathogenDetectorBoundUserInterface
+  - type: ItemPrice
+    fallbackPrice: 100
+
+- type: entity
+  parent: BaseItem
+  id: PathogenSwab
+  name: pathogen swab
+  description: A sterile, single-use swab for collecting an anonymous biological specimen.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Specific/Medical/mouth_swab.rsi
+    state: icon
+  - type: PathogenSwab
+  - type: Tag
+    tags:
+    - Recyclable
+    - Trash
+
+- type: entity
+  parent: ChemistryEmptyVialSmall
+  id: PathogenViableCulture
+  name: viable pathogen culture
+  description: A fully identified living culture. Handle with care.
+  components:
+  - type: PathogenViableCulture
+    strain: 0
+  - type: Label
+  - type: Tag
+    tags:
+    - Vial
+
+# Optional mapper-placeable console. Diagnosis does not depend on this existing.
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerVirologyDetector
+  name: virology monitoring console
+  description: Displays name-only pathogen detections from the suit sensor network.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: crew
+    - map: ["computerLayerKeys"]
+      state: med_key
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: ActivatableUI
+    key: enum.PathogenDetectorUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: PathogenDetector
+  - type: UserInterface
+    interfaces:
+      enum.PathogenDetectorUiKey.Key:
+        type: PathogenDetectorBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface

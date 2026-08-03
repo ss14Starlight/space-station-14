@@ -1,0 +1,13 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               MinSize="420 320"
+               SetSize="460 380"
+               Title="{Loc pathogen-detector-window-title}">
+    <BoxContainer Orientation="Vertical" Margin="8 8 8 8" SeparationOverride="8">
+        <Label Text="{Loc pathogen-detector-infections-heading}" StyleClasses="LabelHeading" />
+        <ItemList Name="InfectionList" SelectMode="None" VerticalExpand="True" MinHeight="190" />
+        <PanelContainer StyleClasses="LowDivider" />
+        <Label Text="{Loc pathogen-detector-contamination-heading}" StyleClasses="LabelHeading" />
+        <Label Name="ContaminationLabel" HorizontalExpand="True" />
+    </BoxContainer>
+</DefaultWindow>

@@ -17,6 +17,9 @@
   - type: Appearance
   - type: Machine
     board: DiagnoserMachineCircuitboard
+  # Starlight - analyse prepared pathogen cultures and print staged reports.
+  - type: PathogenDiagnoser
+    analysisTime: 5
 
 - type: entity
   name: disease diagnoser report

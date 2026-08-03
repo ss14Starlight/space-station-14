@@ -124,3 +124,14 @@
             - CentrifugeCompatible
   - type: Machine
     board: CentrifugeMachineCircuitboard
+  # Starlight - process several pathogen specimen vials in one timed batch.
+  - type: PathogenCentrifuge
+    processTime: 10
+    capacity: 6
+  # Starlight - declare the batch container so prototype state is stable on spawn.
+  - type: ContainerContainer
+    containers:
+      mixer: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      pathogen-culture-batch: !type:Container
