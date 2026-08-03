@@ -1,11 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: Added alt layers for molar gas mixers.
-    type: Add
-  id: 406848
-  time: '2026-07-24T17:53:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5240
 - author: redmushie
   changes:
   - message: Maximum atmospheric device output pressures have been reverted to their non-doubled levels.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407247
   time: '2026-08-03T18:33:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5488
+- author: Forrestgod
+  changes:
+  - message: 'Created a new Component: JobIconOverride, It lets admins override a job icon in the radio to whatever as well as the job title.'
+    type: Add
+  id: 407248
+  time: '2026-08-03T18:33:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5411
 Order: -1
