@@ -1,39 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: (CS-4T9 Tanker) Updated buy/sell gas pipes to follow updated convention.
-    type: Tweak
-  id: 406830
-  time: '2026-07-23T11:13:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5244
-- author: Caws
-  changes:
-  - message: 'Added station beacons for mappers to use: Mail Room, Mining, Paramedic, Clown, Mime, and Musician.'
-    type: Add
-  id: 406831
-  time: '2026-07-24T07:47:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5282
-- author: Conflee
-  changes:
-  - message: Added NaN% poster, immortalizing a round where Beta broke the entire power grid of a station by getting negative power, making station unfixable even with admin commands. Spawned from the Contraband Poster pool.
-    type: Add
-  id: 406832
-  time: '2026-07-24T08:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5277
-- author: Conflee
-  changes:
-  - message: Resprited all Gun Safes. They now have a marker indicating which type of gun is inside them, making it much easier to find the correct safe more quickly.
-    type: Tweak
-  id: 406833
-  time: '2026-07-24T09:37:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5280
-- author: Conflee
-  changes:
-  - message: Added Command, Lawyer, Syndicate, and Security access Gun Safes.
-    type: Add
-  id: 406834
-  time: '2026-07-24T09:37:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5280
 - author: Conflee
   changes:
   - message: Swapped the Disabler Gun Safe to use Security access instead of Armory access. Disablers are starting loadout kit, and the safes are often mapped outside Armory in locker rooms etc. There's no reason to make Secoffs drag Warden from Genpop to open these.
@@ -2799,4 +2764,39 @@ Entries:
   id: 407229
   time: '2026-08-03T10:53:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5481
+- author: OMEGA
+  changes:
+  - message: (Silica) The Right Honorable Flippers.
+    type: Add
+  id: 407230
+  time: '2026-08-03T10:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5465
+- author: OMEGA
+  changes:
+  - message: (Silica) Departmental Lathes.
+    type: Add
+  id: 407231
+  time: '2026-08-03T10:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5465
+- author: OMEGA
+  changes:
+  - message: (Silica) Distro and waste pipes added to all docks.
+    type: Add
+  id: 407232
+  time: '2026-08-03T10:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5465
+- author: OMEGA
+  changes:
+  - message: (Silica) Buy and sell pipes added to cargo shuttle docks.
+    type: Add
+  id: 407233
+  time: '2026-08-03T10:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5465
+- author: OMEGA
+  changes:
+  - message: (Silica) Scrubbers and vents cleaned up.
+    type: Fix
+  id: 407234
+  time: '2026-08-03T10:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5465
 Order: -1
