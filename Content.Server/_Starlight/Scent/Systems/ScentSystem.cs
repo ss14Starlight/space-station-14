@@ -440,14 +440,14 @@ public sealed class ScentSystem : SharedScentSystem
         if (TryMergeIntoExisting(ent))
             return;
 
-        var marker = Spawn(ScentMarkerPrototype, xform.Coordinates);
+        var marker = SpawnAtPosition(ScentMarkerPrototype, xform.Coordinates);
         var decayTime = GetDecayTime(scent, uid);
 
         var markerComp = Comp<ScentMarkerComponent>(marker);
         markerComp.ScentId = scentId;
         markerComp.ExpiresAt = _timing.CurTime + decayTime;
         markerComp.TotalDuration = decayTime;
-        markerComp.WasContained = IsContained(xform);
+        markerComp.ContainedIn = GetAirtightContainer(xform);
         Dirty(marker, markerComp);
 
         var despawn = Comp<TimedDespawnComponent>(marker);
@@ -468,10 +468,12 @@ public sealed class ScentSystem : SharedScentSystem
         return headSealed && outerSealed;
     }
 
-    // Is this entity's immediate parent an airtight container (locker, crate)?
-    private bool IsContained(TransformComponent xform)
+    // The airtight container (locker, crate) this entity's immediate parent is, if any.
+    private EntityUid? GetAirtightContainer(TransformComponent xform)
     {
-        return TryComp<EntityStorageComponent>(xform.ParentUid, out var storage) && storage.Airtight;
+        return TryComp<EntityStorageComponent>(xform.ParentUid, out var storage) && storage.Airtight
+            ? xform.ParentUid
+            : null;
     }
 
     // Only merges into our own chain tail, never any other nearby marker. Revisiting an old spot
@@ -495,7 +497,7 @@ public sealed class ScentSystem : SharedScentSystem
         marker.Strength = Math.Min(1f, marker.Strength + scent.MergeStrengthStep);
         marker.ExpiresAt = _timing.CurTime + decayTime;
         marker.TotalDuration = decayTime;
-        marker.WasContained = IsContained(xform);
+        marker.ContainedIn = GetAirtightContainer(xform);
         Dirty(tail, marker);
 
         if (TryComp<TimedDespawnComponent>(tail, out var despawn))
