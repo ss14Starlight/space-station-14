@@ -1,32 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: (Silica) Added freezers and heaters to atmos.
-    type: Tweak
-  id: 406825
-  time: '2026-07-23T10:08:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5194
-- author: joshujo
-  changes:
-  - message: pressure pumps now accept signals.
-    type: Add
-  id: 406826
-  time: '2026-07-23T10:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5172
-- author: joshujo
-  changes:
-  - message: volumetric pumps now accept signals.
-    type: Add
-  id: 406827
-  time: '2026-07-23T10:42:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5172
-- author: redmushie
-  changes:
-  - message: (ATS) Updated dock buy/sell pipes to follow updated convention.
-    type: Tweak
-  id: 406828
-  time: '2026-07-23T11:13:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5244
 - author: redmushie
   changes:
   - message: (ATS) Distro dock inlet regulators; prevents the ATS from giving all of its distro to a visiting shuttle.
@@ -2799,4 +2771,32 @@ Entries:
   id: 407224
   time: '2026-08-03T09:28:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5480
+- author: OMEGA
+  changes:
+  - message: (Bagel) The Right Honorable Flippers.
+    type: Add
+  id: 407225
+  time: '2026-08-03T09:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5474
+- author: OMEGA
+  changes:
+  - message: (Bagel) Departmental Lathes.
+    type: Add
+  id: 407226
+  time: '2026-08-03T09:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5474
+- author: OMEGA
+  changes:
+  - message: (Bagel) Distro and waste pipes added to all docks.
+    type: Add
+  id: 407227
+  time: '2026-08-03T09:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5474
+- author: OMEGA
+  changes:
+  - message: (Bagel) Buy and sell pipes added to cargo shuttle docks.
+    type: Add
+  id: 407228
+  time: '2026-08-03T09:28:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5474
 Order: -1
