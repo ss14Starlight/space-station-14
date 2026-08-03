@@ -125,6 +125,15 @@
     state: small6
 
 - type: decal
+  id: WaterReedsSmall7
+  tags: ["flora"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _CP14/Decals/water_reeds.rsi
+    state: small7
+
+- type: decal
   id: WaterReedsSmall8
   tags: ["flora"]
   snapCardinals: true
