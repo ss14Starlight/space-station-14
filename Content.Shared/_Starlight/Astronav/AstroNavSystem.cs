@@ -23,9 +23,15 @@ public sealed partial class AstroNavSystem : EntitySystem
     {
         if(args.Slot != "id")
             return;
+
         _alerts.ShowAlert(args.EquipTarget, ent.Comp.GPSAlert);
         EnsureComp<AstroNavMobComponent>(args.EquipTarget);
-        RadarConsoleComponent radarComp = EnsureComp<RadarConsoleComponent>(args.EquipTarget);
+
+        // Do not override existing radar console (such as ghosts have)
+        if (HasComp<RadarConsoleComponent>(args.EquipTarget))
+            return;
+
+        var radarComp = EnsureComp<RadarConsoleComponent>(args.EquipTarget);
         radarComp.FollowEntity = true;
         radarComp.MaxRange = ent.Comp.MaxRange;
     }
