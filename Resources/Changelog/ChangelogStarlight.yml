@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Silica) Roboticist lockers.
-    type: Add
-  id: 406822
-  time: '2026-07-23T10:08:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5194
-- author: OMEGA
-  changes:
   - message: (Silica) Overhauled piping networks.
     type: Tweak
   id: 406823
@@ -2799,4 +2792,11 @@ Entries:
   id: 407221
   time: '2026-08-02T17:42:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5467
+- author: Arkanic
+  changes:
+  - message: Fix railroading For Real For Real this time.
+    type: Fix
+  id: 407222
+  time: '2026-08-03T09:28:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5478
 Order: -1
