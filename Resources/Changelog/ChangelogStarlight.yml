@@ -1,32 +1,4 @@
 Entries:
-- author: CasaleBalthazar
-  changes:
-  - message: the molar gas mixer, a new type of gas mixer that respect the specified mix when mixing gases at different temperatures.
-    type: Add
-  id: 406844
-  time: '2026-07-24T17:53:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5240
-- author: CasaleBalthazar
-  changes:
-  - message: renamed the gas mixer to volumetric gas mixer.
-    type: Tweak
-  id: 406845
-  time: '2026-07-24T17:53:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5240
-- author: CasaleBalthazar
-  changes:
-  - message: updated the guidebook entry on gas mixing/filtering.
-    type: Tweak
-  id: 406846
-  time: '2026-07-24T17:53:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5240
-- author: CrazyPhantom
-  changes:
-  - message: Ported Molar gas mixers.
-    type: Add
-  id: 406847
-  time: '2026-07-24T17:53:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5240
 - author: CrazyPhantom
   changes:
   - message: Added alt layers for molar gas mixers.
@@ -2799,4 +2771,32 @@ Entries:
   id: 407243
   time: '2026-08-03T17:25:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5483
+- author: Johnny
+  changes:
+  - message: Added the little personnel grabber to the paddy mech, its able to finally grab prisoners and put it in a back cell!
+    type: Add
+  id: 407244
+  time: '2026-08-03T18:33:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5488
+- author: Johnny
+  changes:
+  - message: Changed the paddy mech to only be able to accept nonlethal mech armaments.
+    type: Tweak
+  id: 407245
+  time: '2026-08-03T18:33:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5488
+- author: Johnny
+  changes:
+  - message: Changed the paddy mech to do less blunt damage with its fist.
+    type: Tweak
+  id: 407246
+  time: '2026-08-03T18:33:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5488
+- author: Johnny
+  changes:
+  - message: Changed paddies melee to do more stamina damage, around same as a truncheon.
+    type: Tweak
+  id: 407247
+  time: '2026-08-03T18:33:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5488
 Order: -1
