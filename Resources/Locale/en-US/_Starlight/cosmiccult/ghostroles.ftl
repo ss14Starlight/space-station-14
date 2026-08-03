@@ -30,7 +30,7 @@ ghost-role-information-cosmic-oracle-rules = You are a [color={role-type-team-an
 # Lodestar
 
 ghost-role-information-cosmic-lodestar-name = Malign Lodestar
-ghost-role-information-cosmic-lodestar-description = A vessle given consciousness by the Astral Murmur. From beyond the front lines, unleash shards of the void upon those who resist the Cosmic Cult and illuminate the path toward the final convergence.
+ghost-role-information-cosmic-lodestar-description = A vessle of the Astral Murmur. From beyond the front lines, unleash shards of the void upon those who resist the Cosmic Cult and illuminate the path toward the final convergence.
 ghost-role-information-cosmic-lodestar-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] aligned with the Cosmic Cult. You are an instrument of the Astral Murmur; remain behind your cosmic allies, strike from afar, and tear apart those who oppose the inevitable end.
 
 # COLOSSUS
