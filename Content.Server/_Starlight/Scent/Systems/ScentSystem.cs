@@ -7,6 +7,7 @@ using Content.Server._Starlight.Scent.Components;
 using Content.Shared._Starlight.Scent;
 using Content.Shared._Starlight.Scent.Components;
 using Content.Shared._Starlight.Scent.Systems;
+using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Disposal.Unit;
 using Content.Shared.DoAfter;
@@ -441,6 +442,9 @@ public sealed class ScentSystem : SharedScentSystem
         if (HasComp<BeingDisposedComponent>(uid))
             return;
 
+        if (IsHiddenVentCrawl(uid))
+            return;
+
         if (TryMergeIntoExisting(ent))
             return;
 
@@ -478,6 +482,18 @@ public sealed class ScentSystem : SharedScentSystem
         return TryComp<EntityStorageComponent>(xform.ParentUid, out var storage) && storage.Airtight
             ? xform.ParentUid
             : null;
+    }
+
+    // Suppressed everywhere in the gas pipe network except at a terminus (vent/scrubber), where
+    // the scent is reaching open air.
+    private bool IsHiddenVentCrawl(EntityUid uid)
+    {
+        if (!TryComp<BeingVentCrawlComponent>(uid, out var ventCrawl))
+            return false;
+
+        return !TryComp<VentCrawlHolderComponent>(ventCrawl.Holder, out var holder) ||
+               holder.CurrentTube is not { } tube ||
+               !HasComp<VentCrawlEntryComponent>(tube);
     }
 
     // Only merges into our own chain tail, never any other nearby marker. Revisiting an old spot
