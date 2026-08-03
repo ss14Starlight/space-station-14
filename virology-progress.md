@@ -473,6 +473,9 @@ Updated: 2026-08-03
 - The final organic-trash disposal build completes with 0 errors and the focused
   contamination suite passes 20/20. The final diff contains no YAML changes because all
   organic-trash prototypes remain exactly as committed and previously validated.
+- The permanent-immunity live-vaccine balance build completes with 0 errors and focused
+  treatment tests pass 4/4. The regression pins the carrier's permanent self-immunity,
+  1.5-tile range, 3% per-target pulse chance, ten-second interval, and ten-minute duration.
 
 ## Treatment Phase
 
@@ -497,6 +500,10 @@ Updated: 2026-08-03
   exhausted.
 - Live-vaccine production remains restricted to virulent cultures, consumes one viroculum
   catalyst on successful completion, and now checks line of sight while shedding immunity.
+- Immunity from direct treatment, vaccination, natural recovery, and live-vaccine pulses
+  remains permanent for the round. Live-vaccine spread is instead constrained to a
+  1.5-tile unobstructed radius with a 3% roll per eligible person every ten seconds; the
+  carrier remains active for ten minutes.
 - Added viroculum seeds and caps as the botany catalyst for live vaccine synthesis.
 - Added ViroDrobe, cargo, medical-lathe, locker, and flatpack distribution so the complete
   virology workflow does not depend on map edits.
@@ -538,8 +545,8 @@ History reconstruction verification:
    and viral carriers.
 2. Manually verify the analyser interaction/report layout and the monitor's contamination
    bar, map framing, room list, live refresh, and suit-sensor filtering in a live client.
-3. Decide the permanent-immunity balance for treatment and live-vaccine recipients before
-   tuning production costs or batch sizes.
+3. Tune treatment production costs and batch sizes after live testing the permanent,
+   low-probability live-vaccine spread.
 4. Design beneficial strain content and balance separately; its injector route is ready,
    but beneficial effects remain outside this phase.
 5. Revisit symptom composition, stage-3 distinction, jitter scaling, and the safe fast-test

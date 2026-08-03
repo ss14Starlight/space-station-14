@@ -6,6 +6,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Medical.Virology;
@@ -30,6 +31,7 @@ public sealed partial class PathogenTreatmentSystem : EntitySystem
     [Dependency] private PathogenSystem _pathogen = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
@@ -99,7 +101,8 @@ public sealed partial class PathogenTreatmentSystem : EntitySystem
                 !_pathogen.CanHost(target) ||
                 !_interaction.InRangeUnobstructed(uid, target, carrier.Range) ||
                 _pathogen.IsInfected(target, carrier.Strain) ||
-                _pathogen.IsImmune(target, carrier.Strain))
+                _pathogen.IsImmune(target, carrier.Strain) ||
+                !_random.Prob(Math.Clamp(carrier.Chance, 0f, 1f)))
             {
                 continue;
             }

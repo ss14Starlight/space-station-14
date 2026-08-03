@@ -143,6 +143,12 @@ public sealed class PathogenTreatmentTests : GameTest
                 Assert.That(pathogens.IsImmune(liveTarget, virulent.Id), Is.True);
                 Assert.That(entities.HasComponent<PathogenVaccineCarrierComponent>(liveTarget), Is.True);
                 Assert.That(entities.GetComponent<PathogenInjectorComponent>(liveInjector).Empty, Is.True);
+
+                var carrier = entities.GetComponent<PathogenVaccineCarrierComponent>(liveTarget);
+                Assert.That(carrier.Range, Is.EqualTo(1.5f));
+                Assert.That(carrier.Chance, Is.EqualTo(0.03f));
+                Assert.That(carrier.Interval, Is.EqualTo(TimeSpan.FromSeconds(10)));
+                Assert.That(carrier.Duration, Is.EqualTo(TimeSpan.FromMinutes(10)));
             });
         });
     }
