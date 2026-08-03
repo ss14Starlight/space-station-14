@@ -64,6 +64,6 @@
     slotFlags: EYES
     stripTime: 3
     uiWindowPos: 0,2
-    strippingWindowPos: 0,0
+    strippingWindowPos: 1,0
     displayName: Eyes
 # Starlight end
