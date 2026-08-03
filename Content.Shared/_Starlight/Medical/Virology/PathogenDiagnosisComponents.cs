@@ -5,7 +5,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Medical.Virology;
 
 /// <summary>
-/// Reads qualifying suit sensors for infection without exposing location data.
+/// Displays station contamination and qualifying sick crew without exposing crew locations.
 /// </summary>
 [RegisterComponent]
 public sealed partial class PathogenDetectorComponent : Component;
@@ -69,15 +69,24 @@ public enum PathogenDetectorUiKey : byte
 
 [Serializable, NetSerializable]
 public sealed class PathogenDetectorUiState(
-    List<PathogenDetectorEntry> infections,
-    string contamination) : BoundUserInterfaceState
+    NetEntity? grid,
+    string stationName,
+    float contamination,
+    float virus,
+    float bacteria,
+    float fungus,
+    List<string> sickCrew,
+    List<PathogenContaminationBeaconGroup> groups) : BoundUserInterfaceState
 {
-    public readonly List<PathogenDetectorEntry> Infections = infections;
-    public readonly string Contamination = contamination;
+    public readonly NetEntity? Grid = grid;
+    public readonly string StationName = stationName;
+    public readonly float Contamination = contamination;
+    public readonly float Virus = virus;
+    public readonly float Bacteria = bacteria;
+    public readonly float Fungus = fungus;
+    public readonly List<string> SickCrew = sickCrew;
+    public readonly List<PathogenContaminationBeaconGroup> Groups = groups;
 }
-
-[Serializable, NetSerializable]
-public readonly record struct PathogenDetectorEntry(string Name, string Detection);
 
 /// <summary>
 /// A sterile, single-use swab. Filled specimen details stay server-side and anonymous.

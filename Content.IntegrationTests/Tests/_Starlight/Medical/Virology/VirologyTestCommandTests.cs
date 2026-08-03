@@ -64,11 +64,10 @@ public sealed class VirologyTestCommandTests : GameTest
                 spawnedPrototypes,
                 Is.SupersetOf(new[]
                 {
-                    "PathogenDetector",
+                    "HandheldVirologyMonitor",
                     "PathogenAnalyzer",
                     "PathogenSwab",
                     "ChemistryEmptyVialSmall",
-                    "PathogenContaminationScanner",
                     "PathogenDecontaminator",
                     "DiseaseDiagnoser",
                     "MachineCentrifuge",

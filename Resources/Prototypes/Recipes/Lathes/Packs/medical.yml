@@ -45,7 +45,7 @@
   - HandheldHealthAnalyzer
   - DiseaseSwab
   # Starlight - dedicated virology detection and sampling tools.
-  - PathogenDetector
+  - HandheldVirologyMonitor
   - PathogenAnalyzer
   - PathogenSwab
   - PathogenInjector

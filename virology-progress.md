@@ -138,18 +138,14 @@ Updated: 2026-08-03
   contributing; there is no passive decay and no historical contamination value.
 - Source points, sampling interval, local infection thresholds, and emergent overlap
   values are server CVars.
-- Added a handheld contamination scanner. Using it shows total contamination, the
-  individual viral, bacterial, and fungal values, dominant signature, active source count,
-  and highest-risk same-map source. Infectious sources are preferred, then the source with
-  the largest current contribution.
-- The scanner's directional reading names the nearest enabled navigation beacon but keeps
-  its distance and direction aimed at the physical source.
-- Opening the scanner also opens the station map. Sources on the user's grid are grouped
-  by their nearest enabled navigation beacon, so the map reveals an area rather than exact
-  source coordinates. Markers scale with group contamination, blink when a group contains
-  an infectious source, and use different colors for bacterial, fungal, and mixed groups.
-- The map's beacon list shows each group's current contamination, source count, and
-  infectious-source count.
+- The handheld virology monitor shows the station's total contamination on a 0-100 bar
+  and lists the current viral, bacterial, and fungal signature values.
+- Physical sources on the user's grid are grouped by their nearest enabled navigation
+  beacon, so the monitor map reveals a contaminated area rather than an exact source
+  position. Markers scale with group contamination, blink when a group contains an
+  infectious source, and use different colors for bacterial, fungal, and mixed groups.
+- The adjacent area list shows each beacon group's current contamination value without
+  revealing individual source entities.
 - Added a targeted biological decontaminator. Using it on a detected source immediately
   suppresses that physical source for five minutes and immediately rebuilds the live
   contamination snapshot. It does not subtract an arbitrary number of stored points.
@@ -158,8 +154,8 @@ Updated: 2026-08-03
   contamination, can infect locally, and can be removed with either the decontaminator
   or any normal absorbent mop.
 - Environmental sources never use a viral signature.
-- Both tools are stocked in the filled virologist locker and ViroDrobe, so no map edit is
-  required.
+- The monitor and decontaminator are stocked in the filled virologist locker and
+  ViroDrobe, so no map edit is required.
 - Source sampling does not run in the lobby or after round end.
 
 ### Diagnosis and viable cultures
@@ -169,13 +165,10 @@ Updated: 2026-08-03
 - Identification progress and distinct sampled-host identities are stored on the
   round-local runtime strain. Separate virologists therefore contribute to the same
   station-wide result, and all progress clears with the strain registry at round restart.
-- Added a handheld virology detector and an optional mapper-placeable console. Both query
-  suit sensors directly, show infected crew only when sensors are on vitals or coordinates
-  mode, and send only the sensor identity plus pathogen readout. Their UI state contains no
-  coordinates or map position.
-- Before first analysis the detector reports an unidentified pathogen. After the first
-  successful analysis it reports the strain designation. It also reports direction and
-  distance to the strongest local contamination source using the existing source system.
+- The handheld virology monitor and optional mapper-placeable console query suit sensors
+  directly and show infected crew only when sensors are on vitals or coordinates mode.
+  The sick-crew payload is structurally a list of names: it contains no crew coordinates,
+  pathogen designation, identification state, or diagnosis details.
 - Added a dedicated anonymous pathogen swab. A two-second adjacent sample can come from an
   infected host or an active contamination source; no host identity is shown on the swab.
   Source sampling performs a normal full-strength exposure against the sampler, including
@@ -195,7 +188,7 @@ Updated: 2026-08-03
   completion, without consuming the specimen.
 - Natural versus engineered origin is withheld until full identification. Virulent and
   beneficial strains report engineered; ambient and emergent strains report natural.
-- The detector and swabs are stocked in the ViroDrobe and printable from the medical
+- The monitor and swabs are stocked in the ViroDrobe and printable from the medical
   lathe. No map edit, crew-monitor server, health-analyzer change, or fixed console is
   required.
 
@@ -216,6 +209,23 @@ Updated: 2026-08-03
   consume cultures and injector doses.
 - The analyser is printable from the medical lathe and stocked in the ViroDrobe, filled
   virologist locker, medical resupply pack, and admin test kit without requiring map edits.
+
+### Handheld virology monitor
+
+- Replaced the overlapping virology detector and contamination scanner with one handheld
+  monitor and retained the optional powered console on the same interface.
+- Its single live view contains the station contamination bar, typed signature totals,
+  beacon-grouped contamination map, area contamination list, and qualifying sick-crew
+  names. Open monitor views refresh every two seconds.
+- Sick crew are deduplicated and alphabetized. Sensors below vitals mode are ignored, and
+  no crew position or pathogen information exists in the monitor's network state.
+- Room markers reuse the physical-source sampler rather than creating another source
+  registry or time-based contamination system.
+- The monitor uses the existing handheld crew-monitor art so it is visually distinct from
+  the health-analyser-style pathogen analyser.
+- The obsolete standalone scanner prototype, BUI, localization, admin-kit entry, and
+  distribution references were removed. The monitor is printable and stocked in the
+  ViroDrobe, filled virologist locker, and admin test kit.
 
 ### Admin live-testing environment
 
@@ -419,6 +429,22 @@ Updated: 2026-08-03
 - The complete post-analyser virology filter passes 31 tests with the known pooled spread
   regression skipped. The client rebuild, including the analyser XAML and wrapped report
   fields, completed with 0 errors; only existing repository warnings remain.
+- The first monitor build found two client map-wiring errors: a private generated XAML
+  reference and a missing nav-map namespace. Both were fixed, and the client plus
+  integration-test projects then built with 0 errors.
+- The first no-build YAML check exposed a stale copied server assembly still containing
+  the deleted scanner IDs. Rebuilding the linter dependencies and rerunning against the
+  current code completed with 0 prototype errors.
+- Focused post-monitor diagnosis tests pass 5/5. They cover sensor-mode gating, a
+  name-only sick-crew payload, typed contamination totals, all analyser targets, and the
+  renamed monitor prototype.
+- The complete post-monitor virology filter passes 31 tests with the known pooled spread
+  regression skipped: 0 failed out of 32 total tests.
+- The final monitor diff passes `git diff --check`. All changed paths are virology code,
+  UI, tests, localization, prototypes, distribution, and this progress document; casino,
+  Gamorrah, treasurer, and brigmed content is absent.
+- No temporary console commands, debug output, scripts, or generated test logs remain in
+  the repository.
 
 ## Treatment Phase
 
@@ -478,15 +504,14 @@ History reconstruction verification:
 
 ## Next Phase
 
-1. Replace the overlapping detector and contamination scanner with one handheld virology
-   monitor containing a station contamination bar, beacon-grouped room map, and a
-   suit-sensor sick-crew list that exposes names only.
-2. Manually verify analyser interaction feedback and report layout in a live client after
-   the unified monitor is complete.
-3. Decide the permanent-immunity balance for treatment and live-vaccine recipients before
+1. Manually verify the analyser interaction/report layout and the monitor's contamination
+   bar, map framing, room list, live refresh, and suit-sensor filtering in a live client.
+2. Decide the permanent-immunity balance for treatment and live-vaccine recipients before
    tuning production costs or batch sizes.
-4. Design beneficial strain content and balance separately; its injector route is ready,
+3. Design beneficial strain content and balance separately; its injector route is ready,
    but beneficial effects remain outside this phase.
+4. Revisit symptom composition, stage-3 distinction, jitter scaling, and the safe fast-test
+   interval after the tool presentation pass.
 
 ## End-of-Phase Checklist
 

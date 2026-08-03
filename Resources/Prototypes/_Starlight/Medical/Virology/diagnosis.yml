@@ -1,17 +1,15 @@
 - type: entity
   parent: BaseItem
-  id: PathogenDetector
-  name: virology detector
-  description: Reads qualifying suit sensors for pathogen signatures without exposing crew locations.
+  id: HandheldVirologyMonitor
+  name: handheld virology monitor
+  description: Displays station contamination by area and name-only sick crew reports from qualifying suit sensors.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/healthanalyzer.rsi
-    layers:
-    - state: icon
-    - state: analyzer
-      shader: unshaded
+    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    state: scanner
   - type: Item
-    heldPrefix: analyzer
+    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    heldPrefix: scanner
     storedRotation: -90
   - type: PathogenDetector
   - type: UserInterface
@@ -19,7 +17,7 @@
       enum.PathogenDetectorUiKey.Key:
         type: PathogenDetectorBoundUserInterface
   - type: ItemPrice
-    fallbackPrice: 100
+    fallbackPrice: 180
 
 - type: entity
   parent: BaseItem
@@ -74,12 +72,12 @@
     tags:
     - Vial
 
-# Optional mapper-placeable console. Diagnosis does not depend on this existing.
+# Optional mapper-placeable console. Monitoring does not depend on this existing.
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerVirologyDetector
   name: virology monitoring console
-  description: Displays name-only pathogen detections from the suit sensor network.
+  description: Displays station contamination and name-only sick crew reports from the suit sensor network.
   components:
   - type: Sprite
     layers:

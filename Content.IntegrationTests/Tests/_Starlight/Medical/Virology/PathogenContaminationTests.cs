@@ -206,18 +206,18 @@ public sealed class PathogenContaminationTests : GameTest
     }
 
     [Test]
-    public void ScannerUiTypesAreNetworkSerializable()
+    public void MonitorUiTypesAreNetworkSerializable()
     {
         Assert.Multiple(() =>
         {
             Assert.That(
                 Attribute.IsDefined(
-                    typeof(PathogenContaminationScannerUiKey),
+                    typeof(PathogenDetectorUiKey),
                     typeof(NetSerializableAttribute)),
                 Is.True);
             Assert.That(
                 Attribute.IsDefined(
-                    typeof(PathogenContaminationScannerUiState),
+                    typeof(PathogenDetectorUiState),
                     typeof(NetSerializableAttribute)),
                 Is.True);
             Assert.That(

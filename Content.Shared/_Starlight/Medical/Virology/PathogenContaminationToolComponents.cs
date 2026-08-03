@@ -3,29 +3,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Medical.Virology;
 
-/// <summary>
-/// Displays station contamination and points toward the strongest active source.
-/// </summary>
-[RegisterComponent]
-public sealed partial class PathogenContaminationScannerComponent : Component;
-
-[Serializable, NetSerializable]
-public enum PathogenContaminationScannerUiKey : byte
-{
-    Key,
-}
-
-[Serializable, NetSerializable]
-public sealed class PathogenContaminationScannerUiState(
-    NetEntity grid,
-    string stationName,
-    List<PathogenContaminationBeaconGroup> groups) : BoundUserInterfaceState
-{
-    public readonly NetEntity Grid = grid;
-    public readonly string StationName = stationName;
-    public readonly List<PathogenContaminationBeaconGroup> Groups = groups;
-}
-
 [Serializable, NetSerializable]
 public readonly record struct PathogenContaminationBeaconGroup(
     NetEntity Beacon,

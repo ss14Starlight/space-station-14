@@ -1,14 +1,14 @@
-# Suit-sensor detector
-pathogen-detector-window-title = Virology Detection
-pathogen-detector-infections-heading = Detected infections
-pathogen-detector-contamination-heading = Local contamination
-pathogen-detector-no-infections = No qualifying suit sensor reports an infection.
-pathogen-detector-entry = {$name}: {$detection}
-pathogen-detector-unidentified = Unidentified pathogen detected
-pathogen-detector-identified = {$designation} detected
-pathogen-detector-contamination-none = No active contamination source detected.
-pathogen-detector-contamination = {$type} source: {$distance} m {$direction}.
-pathogen-detector-contamination-located = {$type} source near {$beacon}: {$distance} m {$direction}.
+# Handheld virology monitor
+pathogen-monitor-window-title = Virology Monitor
+pathogen-monitor-station-unknown = Unknown station grid
+pathogen-monitor-contamination-heading = Station contamination
+pathogen-monitor-contamination-value = {$level}/100
+pathogen-monitor-signatures = Viral {$virus}  |  Bacterial {$bacteria}  |  Fungal {$fungus}
+pathogen-monitor-rooms-heading = Contaminated areas
+pathogen-monitor-no-contaminated-rooms = No contaminated beacon areas.
+pathogen-monitor-room-entry = {$room}: {$level}/100
+pathogen-monitor-sick-crew-heading = Sick crew
+pathogen-monitor-no-sick-crew = No qualifying suit sensor reports sickness.
 
 # Direct pathogen analyser
 pathogen-analyzer-window-title = Pathogen Analysis

@@ -206,7 +206,7 @@
     - id: ClothingEyesHudMedical
     - id: ClothingBeltMedicalFilled
     - id: HandheldHealthAnalyzer
-    - id: PathogenContaminationScanner
+    - id: HandheldVirologyMonitor
     - id: PathogenDecontaminator
     - id: PathogenAnalyzer
     - id: PlushieLizardJobMedicaldoctor

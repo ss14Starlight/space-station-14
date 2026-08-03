@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Medical.Virology;
@@ -130,13 +131,14 @@ public sealed class PathogenDiagnosisTests : GameTest
     }
 
     [Test]
-    public async Task DetectorHonorsSensorModeAndNeverCarriesCoordinates()
+    public async Task MonitorHonorsSensorModeAndCarriesCrewNamesOnly()
     {
         var server = Pair.Server;
         var entities = server.EntMan;
         var registry = server.System<PathogenRegistrySystem>();
         var pathogens = server.System<PathogenSystem>();
         var detector = server.System<PathogenDetectorSystem>();
+        var contamination = server.System<PathogenContaminationSystem>();
         var inventory = server.System<InventorySystem>();
         var sensors = server.System<SuitSensorSystem>();
 
@@ -152,6 +154,12 @@ public sealed class PathogenDiagnosisTests : GameTest
             host = entities.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
             uniform = entities.SpawnEntity("ClothingUniformJumpsuitColorGrey", MapCoordinates.Nullspace);
             pathogens.TryInfect(host, strain.Id);
+            contamination.SetContamination(new Dictionary<PathogenType, float>
+            {
+                [PathogenType.Virus] = 4f,
+                [PathogenType.Bacteria] = 3f,
+                [PathogenType.Fungus] = 2f,
+            });
 
             Assert.That(inventory.TryEquip(host, uniform, "jumpsuit"), Is.True);
             var sensor = entities.GetComponent<SuitSensorComponent>(uniform);
@@ -159,7 +167,7 @@ public sealed class PathogenDiagnosisTests : GameTest
         });
 
         await server.WaitAssertion(() =>
-            Assert.That(detector.BuildState(observer).Infections, Is.Empty));
+            Assert.That(detector.BuildState(observer).SickCrew, Is.Empty));
 
         await server.WaitPost(() =>
         {
@@ -167,7 +175,7 @@ public sealed class PathogenDiagnosisTests : GameTest
             sensors.SetSensor((uniform, sensor), SuitSensorMode.SensorBinary);
         });
         await server.WaitAssertion(() =>
-            Assert.That(detector.BuildState(observer).Infections, Is.Empty));
+            Assert.That(detector.BuildState(observer).SickCrew, Is.Empty));
 
         await server.WaitPost(() =>
         {
@@ -176,25 +184,33 @@ public sealed class PathogenDiagnosisTests : GameTest
         });
         await server.WaitAssertion(() =>
         {
-            var unknown = detector.BuildState(observer).Infections.Single();
-            Assert.That(unknown.Detection, Does.Contain("Unidentified pathogen"));
+            var state = detector.BuildState(observer);
+            Assert.That(state.SickCrew, Has.Count.EqualTo(1));
+            Assert.That(state.SickCrew.Single(), Is.Not.Empty);
         });
 
         await server.WaitPost(() =>
             registry.AnalyzeSample(strain.Id, host, sourceSample: false));
         await server.WaitAssertion(() =>
         {
-            var identified = detector.BuildState(observer).Infections.Single();
-            Assert.That(identified.Detection, Does.Contain(strain.Designation));
-
-            var stateFields = typeof(PathogenDetectorUiState)
+            var state = detector.BuildState(observer);
+            var sickCrewField = typeof(PathogenDetectorUiState).GetField(nameof(state.SickCrew));
+            var fieldNames = typeof(PathogenDetectorUiState)
                 .GetFields()
-                .Select(field => field.FieldType)
+                .Select(field => field.Name)
                 .ToArray();
-            Assert.That(
-                stateFields.Any(type =>
-                    type.Name.Contains("Coordinate", StringComparison.OrdinalIgnoreCase)),
-                Is.False);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(state.SickCrew, Has.Count.EqualTo(1));
+                Assert.That(state.Contamination, Is.EqualTo(9f));
+                Assert.That(state.Virus, Is.EqualTo(4f));
+                Assert.That(state.Bacteria, Is.EqualTo(3f));
+                Assert.That(state.Fungus, Is.EqualTo(2f));
+                Assert.That(sickCrewField?.FieldType, Is.EqualTo(typeof(List<string>)));
+                Assert.That(fieldNames.Any(name => name.Contains("Detection")), Is.False);
+                Assert.That(fieldNames.Any(name => name.Contains("Pathogen")), Is.False);
+            });
         });
     }
 
@@ -328,7 +344,7 @@ public sealed class PathogenDiagnosisTests : GameTest
 
         await server.WaitPost(() =>
         {
-            detector = entities.SpawnEntity("PathogenDetector", MapCoordinates.Nullspace);
+            detector = entities.SpawnEntity("HandheldVirologyMonitor", MapCoordinates.Nullspace);
             analyzer = entities.SpawnEntity("PathogenAnalyzer", MapCoordinates.Nullspace);
             swab = entities.SpawnEntity("PathogenSwab", MapCoordinates.Nullspace);
             diagnoser = entities.SpawnEntity("DiseaseDiagnoser", MapCoordinates.Nullspace);

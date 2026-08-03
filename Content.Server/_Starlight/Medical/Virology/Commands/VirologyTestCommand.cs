@@ -54,12 +54,11 @@ public sealed partial class VirologyTestCommand : IConsoleCommand
 
     private static readonly EntProtoId[] TestKit =
     [
-        "PathogenDetector",
+        "HandheldVirologyMonitor",
         "PathogenAnalyzer",
         "PathogenSwab",
         "PathogenInjector",
         "ChemistryEmptyVialSmall",
-        "PathogenContaminationScanner",
         "PathogenDecontaminator",
         "DiseaseDiagnoser",
         "MachineCentrifuge",

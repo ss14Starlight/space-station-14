@@ -1,13 +1,38 @@
 <DefaultWindow xmlns="https://spacestation14.io"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-               MinSize="420 320"
-               SetSize="460 380"
-               Title="{Loc pathogen-detector-window-title}">
+               xmlns:ui="clr-namespace:Content.Client.Pinpointer.UI"
+               MinSize="840 650"
+               SetSize="920 760"
+               Title="{Loc pathogen-monitor-window-title}">
     <BoxContainer Orientation="Vertical" Margin="8 8 8 8" SeparationOverride="8">
-        <Label Text="{Loc pathogen-detector-infections-heading}" StyleClasses="LabelHeading" />
-        <ItemList Name="InfectionList" SelectMode="None" VerticalExpand="True" MinHeight="190" />
+        <Label Name="StationNameLabel" StyleClasses="LabelHeading" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Label Text="{Loc pathogen-monitor-contamination-heading}" VerticalAlignment="Center" />
+            <ProgressBar Name="ContaminationBar"
+                         MinValue="0"
+                         MaxValue="100"
+                         SetHeight="24"
+                         HorizontalExpand="True">
+                <Label Name="ContaminationValueLabel" Margin="6 0" />
+            </ProgressBar>
+        </BoxContainer>
+        <Label Name="SignatureLabel" StyleClasses="LabelSubText" />
         <PanelContainer StyleClasses="LowDivider" />
-        <Label Text="{Loc pathogen-detector-contamination-heading}" StyleClasses="LabelHeading" />
-        <Label Name="ContaminationLabel" HorizontalExpand="True" />
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="8">
+            <ui:NavMapControl Name="ContaminationMap" VerticalExpand="True" HorizontalExpand="True" />
+            <BoxContainer Orientation="Vertical" SetWidth="235" SeparationOverride="6">
+                <Label Text="{Loc pathogen-monitor-rooms-heading}" StyleClasses="LabelHeading" />
+                <ItemList Name="RoomList"
+                          SelectMode="None"
+                          VerticalExpand="True"
+                          SizeFlagsStretchRatio="2" />
+                <PanelContainer StyleClasses="LowDivider" />
+                <Label Text="{Loc pathogen-monitor-sick-crew-heading}" StyleClasses="LabelHeading" />
+                <ItemList Name="SickCrewList"
+                          SelectMode="None"
+                          VerticalExpand="True"
+                          SizeFlagsStretchRatio="1" />
+            </BoxContainer>
+        </BoxContainer>
     </BoxContainer>
 </DefaultWindow>

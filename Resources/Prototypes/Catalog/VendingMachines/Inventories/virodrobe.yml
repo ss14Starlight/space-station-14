@@ -15,9 +15,8 @@
     # machines, so the role never depends on a map being edited.
     DiseaseDiagnoserFlatpack: 1
     VaccinatorFlatpack: 1
-    PathogenContaminationScanner: 1
     PathogenDecontaminator: 1
-    PathogenDetector: 2
+    HandheldVirologyMonitor: 2
     PathogenAnalyzer: 2
     PathogenSwab: 12
     PathogenInjector: 6

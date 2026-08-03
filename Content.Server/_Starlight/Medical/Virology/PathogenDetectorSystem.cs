@@ -7,20 +7,24 @@ using Content.Shared.Medical.SuitSensors;
 using Content.Shared.Station;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Medical.Virology;
 
 /// <summary>
-/// Builds a name-only infection list from suit sensors in vitals or coordinates mode.
-/// Coordinates are deliberately absent from the networked detector state.
+/// Builds the unified virology monitor state from contamination and suit-sensor data.
+/// Sick crew are represented only by sensor names; pathogen and crew-position data are absent.
 /// </summary>
 public sealed partial class PathogenDetectorSystem : EntitySystem
 {
+    [Dependency] private PathogenContaminationSystem _contamination = default!;
     [Dependency] private PathogenContaminationSourceSystem _sources = default!;
-    [Dependency] private PathogenRegistrySystem _registry = default!;
+    [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedIdCardSystem _idCards = default!;
     [Dependency] private SharedStationSystem _station = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
+
+    private TimeSpan _nextRefresh;
 
     public override void Initialize()
     {
@@ -28,6 +32,28 @@ public sealed partial class PathogenDetectorSystem : EntitySystem
 
         SubscribeLocalEvent<PathogenDetectorComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<PathogenDetectorComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpen);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_timing.CurTime < _nextRefresh)
+            return;
+
+        _nextRefresh = _timing.CurTime + TimeSpan.FromSeconds(2);
+        var query = EntityQueryEnumerator<PathogenDetectorComponent>();
+        while (query.MoveNext(out var uid, out var component))
+        {
+            if (!_ui.IsUiOpen(uid, PathogenDetectorUiKey.Key))
+                continue;
+
+            foreach (var actor in _ui.GetActors(uid, PathogenDetectorUiKey.Key))
+            {
+                UpdateState((uid, component), actor);
+                break;
+            }
+        }
     }
 
     private void OnUseInHand(Entity<PathogenDetectorComponent> detector, ref UseInHandEvent args)
@@ -57,7 +83,7 @@ public sealed partial class PathogenDetectorSystem : EntitySystem
 
     public PathogenDetectorUiState BuildState(EntityUid observer)
     {
-        var entries = new List<PathogenDetectorEntry>();
+        var sickCrew = new List<string>();
         var seenHosts = new HashSet<EntityUid>();
         var station = _station.GetOwningStation(observer);
 
@@ -68,31 +94,37 @@ public sealed partial class PathogenDetectorSystem : EntitySystem
                 sensor.User is not { } host ||
                 !seenHosts.Add(host) ||
                 station is not null && sensor.StationId != station ||
-                !TryComp<PathogenInfectionComponent>(host, out var infections))
+                !TryComp<PathogenInfectionComponent>(host, out var infections) ||
+                infections.Infections.Count == 0)
             {
                 continue;
             }
 
-            foreach (var infection in infections.Infections)
-            {
-                if (!_registry.TryGetStrain(infection.Pathogen, out var strain))
-                    continue;
-
-                var detection = strain.Identification == PathogenIdentificationStage.Unidentified
-                    ? Loc.GetString("pathogen-detector-unidentified")
-                    : Loc.GetString(
-                        "pathogen-detector-identified",
-                        ("designation", strain.Designation));
-                entries.Add(new PathogenDetectorEntry(GetSensorName(host), detection));
-            }
+            sickCrew.Add(GetSensorName(host));
         }
 
-        entries = entries
-            .OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(entry => entry.Detection, StringComparer.OrdinalIgnoreCase)
+        sickCrew = sickCrew
+            .OrderBy(name => name, StringComparer.OrdinalIgnoreCase)
             .ToList();
 
-        return new PathogenDetectorUiState(entries, GetContaminationReading(observer));
+        NetEntity? grid = null;
+        var stationName = Loc.GetString("pathogen-monitor-station-unknown");
+        var groups = new List<PathogenContaminationBeaconGroup>();
+        if (_sources.TryGetBeaconGroups(observer, out var gridUid, out groups))
+        {
+            grid = GetNetEntity(gridUid);
+            stationName = Name(gridUid);
+        }
+
+        return new PathogenDetectorUiState(
+            grid,
+            stationName,
+            _contamination.Contamination,
+            _contamination.GetContamination(PathogenType.Virus),
+            _contamination.GetContamination(PathogenType.Bacteria),
+            _contamination.GetContamination(PathogenType.Fungus),
+            sickCrew,
+            groups);
     }
 
     private string GetSensorName(EntityUid host)
@@ -104,25 +136,5 @@ public sealed partial class PathogenDetectorSystem : EntitySystem
         }
 
         return Loc.GetString("suit-sensor-component-unknown-name");
-    }
-
-    private string GetContaminationReading(EntityUid observer)
-    {
-        if (!_sources.TryGetStrongestSource(observer, out var reading))
-            return Loc.GetString("pathogen-detector-contamination-none");
-
-        var signatures = string.Join(
-            "/",
-            reading.PathogenTypes.Select(type =>
-                Loc.GetString($"pathogen-contamination-signature-{type.ToString().ToLowerInvariant()}")));
-        var key = reading.BeaconName is null
-            ? "pathogen-detector-contamination"
-            : "pathogen-detector-contamination-located";
-        return Loc.GetString(
-            key,
-            ("type", signatures),
-            ("distance", reading.Distance.ToString("0")),
-            ("direction", reading.Direction),
-            ("beacon", reading.BeaconName ?? string.Empty));
     }
 }

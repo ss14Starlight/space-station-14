@@ -1,28 +1,5 @@
 - type: entity
   parent: BaseItem
-  id: PathogenContaminationScanner
-  name: contamination scanner
-  description: Maps biological contamination by station landmark and points toward its strongest active source.
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Medical/healthanalyzer.rsi
-    layers:
-    - state: icon
-    - state: analyzer
-      shader: unshaded
-  - type: Item
-    heldPrefix: analyzer
-    storedRotation: -90
-  - type: PathogenContaminationScanner
-  - type: UserInterface
-    interfaces:
-      enum.PathogenContaminationScannerUiKey.Key:
-        type: PathogenContaminationScannerBoundUserInterface
-  - type: ItemPrice
-    fallbackPrice: 80
-
-- type: entity
-  parent: BaseItem
   id: PathogenDecontaminator
   name: biological decontaminator
   description: Sterilizes an active contamination source and lowers station contamination.

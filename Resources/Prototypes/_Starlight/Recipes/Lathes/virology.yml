@@ -1,6 +1,6 @@
 - type: latheRecipe
-  id: PathogenDetector
-  result: PathogenDetector
+  id: HandheldVirologyMonitor
+  result: HandheldVirologyMonitor
   categories:
   - Tools
   completetime: 4
