@@ -26,36 +26,42 @@
         presets:
         - Greenshift
         - Sandbox
+        - EventLight
     - id: SpaceCash1000
       conditions:
       - !type:GamemodeCondition
         presets:
         - Greenshift
         - Sandbox
+        - EventLight
     - id: SpaceCash1000
       conditions:
       - !type:GamemodeCondition
         presets:
         - Greenshift
         - Sandbox
+        - EventLight
     - id: SpaceCash1000
       conditions:
       - !type:GamemodeCondition
         presets:
         - Greenshift
         - Sandbox
+        - EventLight
     - id: SpaceCash1000
       conditions:
       - !type:GamemodeCondition
         presets:
         - Greenshift
         - Sandbox
+        - EventLight
     - id: SpaceCash1000
       conditions:
       - !type:GamemodeCondition
         presets:
         - Greenshift
-        - Sandbox #Starlight end
+        - Sandbox
+        - EventLight #Starlight end
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -100,20 +106,19 @@
       conditions:
       - !type:PlayerCountCondition
         max: 15
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    #region Starlight
+    - id: PrintedDocumentGreenshiftAlert #Starlight start
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+        - EventLight
     # - id: PaperEndGreenshift
     #   conditions:
     #   - !type:GamemodeCondition
     #     presets:
     #     - Greenshift
-    #     - Sandbox
-    #endregion Starlight
+    #     - Sandbox # Starlight end
 
 
 # No laser table + Laser table
@@ -216,6 +221,7 @@
         presets:
         - Greenshift
         - Sandbox
+        - EventLight
     - id: FloraTreeChristmas02Flatpack
       conditions:
         - !type:HolidayActiveCondition
@@ -261,12 +267,13 @@
     - id: RubberStampCE
     - id: MetalFoamGrenade
     - id: PlushieMatthew #starlight
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
+    - id: PrintedDocumentGreenshiftAlert # Starlight start
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+        - EventLight # Starlight end
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -340,6 +347,7 @@
         presets:
         - Greenshift
         - Sandbox
+        - EventLight
     - id: JawsOfLifeMed #Starlight end
 
 # Hardsuit table, used for suit storage as well
@@ -403,6 +411,7 @@
         presets:
         - Greenshift
         - Sandbox
+        - EventLight
     - id: RDDiploma
     - id: XenobiologyConsoleCameraTagger
     #- id: PaperIonstormBorgs
@@ -483,7 +492,8 @@
       - !type:GamemodeCondition
         presets:
         - Greenshift
-        - Sandbox # Starlight end
+        - Sandbox
+        - EventLight # Starlight end
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

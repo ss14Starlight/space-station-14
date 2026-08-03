@@ -198,8 +198,8 @@
       prob: 0.20
     - id: SLChangelingLess # I have managed to make changelings lose their abilities when they turn into zombies, so the concern with them is gone.
       prob: 0.20
-    #- id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
-    #  prob: 0.05
+    - id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
+      prob: 0.05
     #- id: SubBrighteye
     #  prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation # I mean technically there's nothing inherently wrong with them showing up.
@@ -219,8 +219,8 @@
       prob: 0.15
     - id: SubWizard
       prob: 0.05
-    #- id: SubXenoborgs
-    #  prob: 0.05
+    - id: SubXenoborgs
+      prob: 0.05
     # No SELF Agents in Nukie games because of the FREEmag = free guns!!!
 
 - type: entity

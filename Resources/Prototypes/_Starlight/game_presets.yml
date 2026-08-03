@@ -8,6 +8,7 @@
   name: eventlight-title
   description: eventlight-description
   minPlayers: 5
+  voteCooldown: 40
   showInVote: false
   rules:
     - SpaceTrafficControlEventScheduler
@@ -136,13 +137,14 @@
   - allexceptroundenders
   name: all-at-once-except-zombieteors-title
   minPlayers: 60
+  voteCooldown: 40
   description: all-at-once-except-zombieteors-description
   showInVote: false
   rules:
     - Nukeops
     - Traitor
     - Revolutionary
-    - WizardDuel
+    - SubWizard
     #- Xenoborgs
     - RampingStationEventScheduler
     - SLChangeling

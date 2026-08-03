@@ -51,7 +51,7 @@
         max: 4 # Starlight end
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseXenoborgsRule # Starlight
   id: SubXenoborgs
   components:
   - type: XenoborgsRule
@@ -59,5 +59,13 @@
   - type: GameRule
     minPlayers: 20 # Starlight
     cancelPresetOnTooFewPlayers: false
-  - type: DynamicRuleCost # Starlight
-    cost: 150 # Starlight
+  - type: AntagSelection  # Starlight start
+    selectionTime: PrePlayerSpawn
+    antags:
+    - !type:FixedAntagCount
+      proto: MothershipCore
+    - !type:FixedAntagCount
+      proto: Xenoborg
+      count: 4
+  - type: DynamicRuleCost
+    cost: 150 # Starlight end
