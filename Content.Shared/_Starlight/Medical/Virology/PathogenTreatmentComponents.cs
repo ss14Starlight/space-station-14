@@ -63,10 +63,10 @@ public sealed partial class PathogenVaccineCarrierComponent : Component
     public int Strain;
 
     [DataField]
-    public float Range = 1.5f;
+    public float Range = 2f;
 
     [DataField]
-    public float Chance = 0.03f;
+    public float Chance = 0.05f;
 
     [DataField]
     public TimeSpan Interval = TimeSpan.FromSeconds(10);

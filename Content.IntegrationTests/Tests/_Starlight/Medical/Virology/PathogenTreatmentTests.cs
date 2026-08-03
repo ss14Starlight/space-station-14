@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Numerics;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -145,11 +146,65 @@ public sealed class PathogenTreatmentTests : GameTest
                 Assert.That(entities.GetComponent<PathogenInjectorComponent>(liveInjector).Empty, Is.True);
 
                 var carrier = entities.GetComponent<PathogenVaccineCarrierComponent>(liveTarget);
-                Assert.That(carrier.Range, Is.EqualTo(1.5f));
-                Assert.That(carrier.Chance, Is.EqualTo(0.03f));
+                Assert.That(carrier.Range, Is.EqualTo(2f));
+                Assert.That(carrier.Chance, Is.EqualTo(0.05f));
                 Assert.That(carrier.Interval, Is.EqualTo(TimeSpan.FromSeconds(10)));
                 Assert.That(carrier.Duration, Is.EqualTo(TimeSpan.FromMinutes(10)));
             });
+        });
+    }
+
+    [Test]
+    public async Task LiveVaccineCarrierCanImmuniseMoreThanTwoRecipients()
+    {
+        var server = Pair.Server;
+        var entities = server.EntMan;
+        var maps = server.System<SharedMapSystem>();
+        var pathogens = server.System<PathogenSystem>();
+        var registry = server.System<PathogenRegistrySystem>();
+        var timing = server.ResolveDependency<IGameTiming>();
+
+        Pathogen strain = default!;
+        EntityUid source = default;
+        var recipients = new List<EntityUid>();
+
+        await server.WaitPost(() =>
+        {
+            maps.CreateMap(out var mapId);
+            source = entities.SpawnEntity("MobHuman", new MapCoordinates(Vector2.Zero, mapId));
+
+            for (var i = 0; i < 3; i++)
+            {
+                recipients.Add(entities.SpawnEntity(
+                    "MobHuman",
+                    new MapCoordinates(new Vector2(0.5f + i * 0.25f, 0f), mapId)));
+            }
+
+            strain = registry.Generate("StationFever")!;
+            var carrier = entities.AddComponent<PathogenVaccineCarrierComponent>(source);
+            carrier.Strain = strain.Id;
+            carrier.Chance = 1f;
+            carrier.NextPulse = timing.CurTime;
+            carrier.EndTime = timing.CurTime + TimeSpan.FromMinutes(1);
+        });
+
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            var immuneRecipients = 0;
+            foreach (var recipient in recipients)
+            {
+                if (pathogens.IsImmune(recipient, strain.Id))
+                    immuneRecipients++;
+
+                Assert.That(
+                    entities.HasComponent<PathogenVaccineCarrierComponent>(recipient),
+                    Is.False,
+                    "Recipients must not continue the live-vaccine spread chain.");
+            }
+
+            Assert.That(immuneRecipients, Is.EqualTo(3));
         });
     }
 

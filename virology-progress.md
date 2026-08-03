@@ -1,6 +1,6 @@
 # Virology Development Progress
 
-Updated: 2026-08-03
+Updated: 2026-08-04
 
 ## Completed
 
@@ -473,9 +473,10 @@ Updated: 2026-08-03
 - The final organic-trash disposal build completes with 0 errors and the focused
   contamination suite passes 20/20. The final diff contains no YAML changes because all
   organic-trash prototypes remain exactly as committed and previously validated.
-- The permanent-immunity live-vaccine balance build completes with 0 errors and focused
-  treatment tests pass 4/4. The regression pins the carrier's permanent self-immunity,
-  1.5-tile range, 3% per-target pulse chance, ten-second interval, and ten-minute duration.
+- The revised permanent-immunity live-vaccine balance compiles with 0 errors and focused
+  treatment tests pass 5/5. The regressions pin permanent self-immunity, a 2-tile range,
+  5% per-target rolls every ten seconds, a ten-minute duration, unlimited successful
+  recipients, and no carrier chain from those recipients.
 
 ## Treatment Phase
 
@@ -502,8 +503,9 @@ Updated: 2026-08-03
   catalyst on successful completion, and now checks line of sight while shedding immunity.
 - Immunity from direct treatment, vaccination, natural recovery, and live-vaccine pulses
   remains permanent for the round. Live-vaccine spread is instead constrained to a
-  1.5-tile unobstructed radius with a 3% roll per eligible person every ten seconds; the
-  carrier remains active for ten minutes.
+  2-tile unobstructed radius with a 5% roll per eligible person every ten seconds. There
+  is no recipient cap during the carrier's ten-minute active period, and recipients do
+  not become carriers themselves.
 - Added viroculum seeds and caps as the botany catalyst for live vaccine synthesis.
 - Added ViroDrobe, cargo, medical-lathe, locker, and flatpack distribution so the complete
   virology workflow does not depend on map edits.
@@ -545,8 +547,8 @@ History reconstruction verification:
    and viral carriers.
 2. Manually verify the analyser interaction/report layout and the monitor's contamination
    bar, map framing, room list, live refresh, and suit-sensor filtering in a live client.
-3. Tune treatment production costs and batch sizes after live testing the permanent,
-   low-probability live-vaccine spread.
+3. Manually verify how many crew the permanent live vaccine reaches during normal
+   movement, then tune its 5% roll if the uncapped result is too weak or too strong.
 4. Design beneficial strain content and balance separately; its injector route is ready,
    but beneficial effects remain outside this phase.
 5. Revisit symptom composition, stage-3 distinction, jitter scaling, and the safe fast-test
