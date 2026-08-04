@@ -2,16 +2,16 @@
 
 [![Steam](https://img.shields.io/badge/Steam-SS14%20-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
-[![GitHub](https://img.shields.io/github/stars/starfall-ss14/starfall?style=social)]([https://github.com/starfall-ss14/starfall)
+[![GitHub](https://img.shields.io/github/stars/InferusSS14/Inferus?style=social)]([https://github.com/InferusSS14/Inferus)
 
-# STARFALL
+# INFERUS
 <sub>Space Station 14</sub>
 
 this is still very early please cut us some slack
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/starfall-ss14/starfall)
-![GitHub Issues](https://img.shields.io/github/issues/starfall-ss14/starfall)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr-closed/starfall-ss14/starfall)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/InferusSS14/Inferus)
+![GitHub Issues](https://img.shields.io/github/issues/InferusSS14/Inferus)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr-closed/InferusSS14/Inferus)
 
 </div>
 
