@@ -286,7 +286,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
                 ("amount", entry.Amount),
                 ("item", Loc.GetString(entry.Name))));
         }
-        _paper.SetContent(label, Loc.GetString("job-board-label-text", ("target", string.Join(',', target)), ("reward", job.Reward)));
+        _paper.SetContent(label, Loc.GetString("job-board-label-text", ("target", string.Join(',', target)), ("reward", job.Reward), ("tickets", job.Tickets))); //#starlight add tickets to label
 
         ent.Comp.NextPrintTime = _timing.CurTime + ent.Comp.PrintDelay;
     }
