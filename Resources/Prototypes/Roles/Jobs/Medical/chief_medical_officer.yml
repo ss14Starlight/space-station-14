@@ -27,6 +27,7 @@
   canBeAntag: false
   access:
   - Medical
+  - Virology # Starlight
   - Command
   - Maintenance
   - Chemistry

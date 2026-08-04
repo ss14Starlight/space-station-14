@@ -1,3 +1,7 @@
 - type: accessLevel
+  id: Virology
+  name: id-card-access-level-virology
+
+- type: accessLevel
   id: Surgery
   name: id-card-access-level-surgery

@@ -558,9 +558,8 @@ History reconstruction verification:
 - Added the selectable Virologist medical job with Chief Medical Officer supervision,
   antagonist eligibility, and a salary of 90 credits.
 - The job requires 10 hours of Medical department playtime and 1 hour as Chemist.
-- Virologists currently receive Medical and Maintenance access. Low-population extended
-  access adds Chemistry, Paramedic, and Surgery. A dedicated Virology access level remains
-  a separate future phase.
+- Virologists receive Medical, Virology, and Maintenance access. Low-population extended
+  access adds Chemistry, Paramedic, and Surgery.
 - Added the Virologist playtime tracker, Medical department membership, starting gear,
   chameleon outfit, ID card, medical PDA, job icon wiring, and mapper-placeable job spawn
   marker by reusing the Virologist art that was already present in the repository.
@@ -605,29 +604,49 @@ Incubation-transmission verification:
 - The exact mechanics reference now documents stage 0 as contagious but asymptomatic and
   distinguishes pre-symptomatic emergent replacement from transmission eligibility.
 
+## Virology Access
+
+- Added the dedicated `Virology` access level and its English ID-console label.
+- Virologists and the Chief Medical Officer receive Virology access directly. The access
+  is also included in the Medical, AllAccess, and CyborgAllAccess groups so access-management
+  presets and all-access roles remain internally consistent.
+- Added dedicated virology door electronics. Existing solid and glass locked virology
+  airlocks now require Virology rather than generic Medical access.
+- The secure virologist locker now requires Virology access. Ordinary medical airlocks,
+  the coroner locker, and unrelated medical storage retain Medical access.
+- No station map was edited. Existing mapped entities inherit these changes from their
+  shared prototypes.
+
+Virology-access verification:
+
+- `Content.YAMLLinter` completed with 0 errors.
+- The complete solution builds with 0 errors and no phase-introduced warnings; only the
+  repository's existing package and obsolete-API warnings remain.
+- Focused Virology access and AllAccess/CyborgAllAccess parity tests pass 2/2.
+- The complete virology filter passes 42 tests with 2 known pooled spread-fixture skips
+  and 0 failures.
+
 ## Next Phase
 
 1. Add two Virologist slots and one `SpawnPointVirologist` placement to each supported
    station with a usable virology laboratory. Keep serialized station map changes in their
    own commit.
-2. Add the dedicated Virology access level, assign it to Virologists and the CMO, and move
-   standard locked virology airlocks and the Virologist locker from Medical access to it.
-3. Manually verify the Virologist preference entry, requirements, PDA/ID appearance,
+2. Manually verify the Virologist preference entry, requirements, PDA/ID appearance,
    clothing choices, and complete round-start equipment after station integration.
-4. Manually verify that loose organic trash contributes 0.1 each, contained trash
+3. Manually verify that loose organic trash contributes 0.1 each, contained trash
    disappears from the next snapshot, and disposal-processed organic trash remains
    excluded after reaching the disposal room. Also verify food/mold spills, dead plants,
    and viral carriers.
-5. Manually verify the analyser interaction/report layout and the monitor's contamination
+4. Manually verify the analyser interaction/report layout and the monitor's contamination
    bar, map framing, room list, live refresh, and suit-sensor filtering in a live client.
-6. Manually verify how many crew the permanent live vaccine reaches during normal
+5. Manually verify how many crew the permanent live vaccine reaches during normal
    movement, then tune its 5% roll if the uncapped result is too weak or too strong.
-7. Design beneficial strain content and balance separately; its injector route is ready,
+6. Design beneficial strain content and balance separately; its injector route is ready,
    but beneficial effects remain outside this phase.
-8. Manually verify the three ambient stage progressions, especially whether the 45-second
+7. Manually verify the three ambient stage progressions, especially whether the 45-second
    weak signatures are noticeable without being annoying, then design the separate
    emergent stage-two pools and stage-three signatures.
-9. Manually verify that a stage-zero virus spreads without showing symptoms, stage-zero
+8. Manually verify that a stage-zero virus spreads without showing symptoms, stage-zero
    bacterial contact can transmit, and an incubating fungal host can leave its one patch.
 
 ## End-of-Phase Checklist

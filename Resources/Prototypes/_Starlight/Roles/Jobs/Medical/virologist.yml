@@ -17,6 +17,7 @@
   displayWeight: 5
   access:
   - Medical
+  - Virology
   - Maintenance
   extendedAccess:
   - Chemistry

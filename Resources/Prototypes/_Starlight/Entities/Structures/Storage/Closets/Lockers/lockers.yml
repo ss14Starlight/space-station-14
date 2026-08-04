@@ -286,7 +286,7 @@
       stateDoorOpen: medical_open
       stateDoorClosed: virologist_door
     - type: AccessReader
-      access: [["Medical"]]
+      access: [["Virology"]]
 
 # Geneticist
 - type: entity

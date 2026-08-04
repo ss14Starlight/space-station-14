@@ -24,6 +24,7 @@ id-card-access-level-cadet = Cadet
 # Service
 
 # Medical
+id-card-access-level-virology = Virology
 id-card-access-level-surgery = Surgery
 id-card-access-level-paramed = Paramedic
 

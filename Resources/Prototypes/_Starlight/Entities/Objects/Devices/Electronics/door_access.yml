@@ -43,6 +43,15 @@
   - type: AccessReader
     access: [["Paramedic"]]
 
+# Virology
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsVirology
+  suffix: Virology, Locked
+  components:
+  - type: AccessReader
+    access: [["Virology"]]
+
 # Mining
 - type: entity
   parent: DoorElectronics
