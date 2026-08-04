@@ -45,6 +45,16 @@
 
 - type: entity
   parent: FaxMachineServiceBase
+  id: FaxMachineServiceBotany
+  suffix: "SRV: Botany"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Botany"
+      order: 250
+
+- type: entity
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceReporter
   suffix: "SRV: Reporter"
   components:
@@ -75,6 +85,16 @@
 
 - type: entity
   parent: FaxMachineServiceBase
+  id: FaxMachineServiceKitchen
+  suffix: "SRV: Kitchen"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Kitchen"
+      order: 450
+
+- type: entity
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceBar
   suffix: "SRV: Bar"
   components:
@@ -102,6 +122,16 @@
       group: FaxGroupService
       name: "Chaplain"
       order: 610
+
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineServiceJanitor
+  suffix: "SRV: Janitor"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Janitor"
+      order: 650
 
 - type: entity
   parent: FaxMachineServiceBase

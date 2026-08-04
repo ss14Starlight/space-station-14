@@ -42,3 +42,13 @@
       group: FaxGroupScience
       name: "Research Director"
       order: 200
+
+- type: entity
+  parent: FaxMachineScienceBase
+  id: FaxMachineScienceRobotics
+  suffix: "SCI: Robotics"
+  components:
+    - type: FaxMachine
+      group: FaxGroupScience
+      name: "Robotics"
+      order: 400

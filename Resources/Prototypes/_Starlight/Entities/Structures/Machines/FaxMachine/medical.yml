@@ -57,3 +57,23 @@
       group: FaxGroupMedical
       name: "Psychology"
       order: 400
+
+- type: entity
+  parent: FaxMachineMedicalBase
+  id: FaxMachineMedicalVirology
+  suffix: "MED: Virology"
+  components:
+    - type: FaxMachine
+      group: FaxGroupMedical
+      name: "Virology"
+      order: 500
+
+- type: entity
+  parent: FaxMachineMedicalBase
+  id: FaxMachineMedicalVirology
+  suffix: "MED: Genetics"
+  components:
+    - type: FaxMachine
+      group: FaxGroupMedical
+      name: "Genetics"
+      order: 600
