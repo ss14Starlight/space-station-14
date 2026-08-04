@@ -321,6 +321,17 @@
     stock: 1
 
 - type: listing
+  id: VendorPlushieSnail
+  productEntity: PlushieSnail
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
   id: VendorPlushieSus
   productEntity: PlushieSus
   cost:
