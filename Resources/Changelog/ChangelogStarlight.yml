@@ -1,20 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Changed TEG substation wiring slighty to work with the bluespace harvester.
-    type: Tweak
-  id: 406877
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Changed service communication console from bar to hops bedroom.
-    type: Tweak
-  id: 406878
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
   - message: (MANOR) Changed hops room a little to accommodate a second window.
     type: Tweak
   id: 406879
@@ -2799,4 +2785,18 @@ Entries:
   id: 407276
   time: '2026-08-04T08:05:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5511
+- author: CommanderAlex365
+  changes:
+  - message: Gave Mail Technicians shuttle access on skeleton crew.
+    type: Tweak
+  id: 407277
+  time: '2026-08-04T08:05:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5508
+- author: CommanderAlex365
+  changes:
+  - message: Gave Cargo Technicians shuttle access by default.
+    type: Fix
+  id: 407278
+  time: '2026-08-04T08:05:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5508
 Order: -1
