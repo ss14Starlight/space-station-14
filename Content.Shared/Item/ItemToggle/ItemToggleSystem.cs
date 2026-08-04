@@ -317,6 +317,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
     /// </summary>
     private void TurnOffOnUnwielded(Entity<ItemToggleComponent> ent, ref ItemUnwieldedEvent args)
     {
+        if (ent.Comp.IgnoreWieldState) return; // Starlight
         TryDeactivate((ent, ent.Comp), args.User);
     }
 
@@ -326,6 +327,7 @@ public sealed partial class ItemToggleSystem : EntitySystem
     private void TurnOnOnWielded(Entity<ItemToggleComponent> ent, ref ItemWieldedEvent args)
     {
         // FIXME: for some reason both client and server play sound
+        if (ent.Comp.IgnoreWieldState) return; // Starlight
         TryActivate((ent, ent.Comp), args.User); // Starlight edit
     }
 

@@ -13,42 +13,34 @@
     layers:
       - state: icon
       - state: icon-blade
-        visible: false
-        color: '#FFFFFF'
         shader: unshaded
+        color: '#FFFFFF'
         map: [ "blade" ]
   - type: Sharp
   - type: DisarmMalus
     malus: 0.6
-  - type: ItemToggleHot
-  - type: ItemTogglePointLight
-    toggleableVisualsColorModulatesLights: true
   - type: MeleeWeapon
     wideAnimationRotation: 135
     attackRate: 0.8
     autoAttack: true
     damage:
       types:
-        Blunt: 4.5
-  - type: ItemToggleMeleeWeapon
-    activatedSoundOnHit:
+        Slash: 12.5
+        Heat: 12.5
+        Structural: 120
+    soundHit:
       path: /Audio/_Starlight/Weapons/marriage_swing.ogg
       params:
         variation: 0.250
-    activatedSoundOnHitNoDamage:
+    soundNoDamage:
       path: /Audio/_Starlight/Weapons/marriage_swing.ogg
       params:
         variation: 0.250
         volume: -10
-    activatedSoundOnSwing:
+    soundSwing:
       path: /Audio/_Starlight/Weapons/marriage_swing.ogg
       params:
         variation: 0.125
-    activatedDamage:
-      types:
-        Slash: 12.5
-        Heat: 12.5
-        Structural: 120
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
@@ -56,7 +48,6 @@
         Slash: 12.5
         Heat: 12.5
         Structural: 120
-    respectActiveState: true
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/x09_headsman.rsi
     size: Ginormous
@@ -70,15 +61,10 @@
     walkModifier: 0.7
     sprintModifier: 0.7
   - type: ItemToggle
-    predictable: true
-    soundActivate:
-      path: /Audio/Weapons/ebladeon.ogg
-      params:
-        pitch: 0.8
-    soundDeactivate:
-      path: /Audio/Weapons/ebladeoff.ogg
-      params:
-        pitch: 0.8
+    activated: true
+    onUse: false
+    onActivate: false
+    ignoreWieldState: true
   - type: ItemToggleActiveSound
     activeSound:
       path: /Audio/_Starlight/Weapons/marriage_hum.ogg
@@ -112,10 +98,8 @@
     reflectProb: 0.5
     spread: 45
   - type: PointLight
-    enabled: false
+    enabled: true
     radius: 3
     energy: 3
     color: "#00CCFF"
     netsync: false
-  - type: UseDelay
-    delay: 1
