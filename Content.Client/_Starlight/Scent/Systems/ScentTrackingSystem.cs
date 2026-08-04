@@ -139,7 +139,7 @@ public sealed class ScentTrackingSystem : EntitySystem
         return ent.Comp.ContainedIn != own;
     }
 
-    // Resolves the airtight container the local player is currently inside, if any.
+    // Resolves the airtight container the local player is currently inside, if any. 
     private bool TryGetOwnEnclosure(out EntityUid enclosure)
     {
         enclosure = default;
