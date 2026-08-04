@@ -194,7 +194,7 @@ public sealed class ScentSystem : SharedScentSystem
         if (!TryComp<ScentTraceComponent>(target, out var trace) || !trace.Scents.ContainsKey(args.ScentId))
             return;
 
-        SetTrackedScent((uid, component), args.ScentId);
+        SetTrackedScent((uid, component), args.ScentId, target);
         _popup.PopupEntity(Loc.GetString("scent-sniff-window-tracking-popup"), uid, uid);
     }
 
