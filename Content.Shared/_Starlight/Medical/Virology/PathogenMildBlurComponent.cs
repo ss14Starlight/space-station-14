@@ -12,7 +12,7 @@ public sealed partial class PathogenMildBlurComponent : Component
     public float Magnitude = 1.5f;
 }
 
-public sealed class PathogenMildBlurSystem : EntitySystem
+public sealed partial class PathogenMildBlurSystem : EntitySystem
 {
     [Dependency] private BlurryVisionSystem _blurryVision = default!;
 
