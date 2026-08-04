@@ -217693,20 +217693,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -77.640724,69.44274
       parent: 2
-- proto: WeaponMechChainSword
-  entities:
-  - uid: 34785
-    components:
-    - type: Transform
-      pos: -60.490166,61.342957
-      parent: 2
-- proto: WeaponMechCombatFiredartLaser
-  entities:
-  - uid: 34786
-    components:
-    - type: Transform
-      pos: -60.47454,61.655457
-      parent: 2
 - proto: WeaponPistolGoldenMk58
   entities:
   - uid: 34787

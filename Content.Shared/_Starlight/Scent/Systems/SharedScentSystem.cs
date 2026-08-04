@@ -30,7 +30,8 @@ public abstract class SharedScentSystem : EntitySystem
         Actions.AddAction(ent.Owner, ref ent.Comp.ToggleActionEntity, ent.Comp.ToggleAction);
     }
 
-    private void OnSmellerShutdown(Entity<SmellerComponent> ent, ref ComponentShutdown args)
+    // virtual so ClientScentSystem can override instead of subscribing to ComponentShutdown again.
+    protected virtual void OnSmellerShutdown(Entity<SmellerComponent> ent, ref ComponentShutdown args)
     {
         Actions.RemoveAction(ent.Owner, ent.Comp.ToggleActionEntity);
         Actions.RemoveAction(ent.Owner, ent.Comp.SneezeActionEntity);
