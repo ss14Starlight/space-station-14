@@ -80,7 +80,14 @@ public sealed class ScentTrackingSystem : EntitySystem
     private void ApplyFilterForLocalPlayer(Entity<ScentMarkerComponent> ent)
     {
         if (!TryGetLocalSmeller(out var smeller))
+        {
+            // No SmellerComponent: hide, since replay bypasses PVS and would otherwise leave
+            // every recorded marker visible to a plain observer.
+            if (TryComp<SpriteComponent>(ent.Owner, out var sprite))
+                _sprite.SetVisible((ent.Owner, sprite), false);
+
             return;
+        }
 
         var enclosure = TryGetOwnEnclosure(out var own) ? own : (EntityUid?)null;
         ApplyFilter(ent, smeller, enclosure);
