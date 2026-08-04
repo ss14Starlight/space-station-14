@@ -65,7 +65,7 @@ names-shadekin-dataset-59 = Delight
 names-shadekin-dataset-60 = Adoration
 
 # Memory
-names-shadekin-dataset-61 = Dillusioned
+names-shadekin-dataset-61 = Disillusioned
 names-shadekin-dataset-62 = Forgotten
 names-shadekin-dataset-63 = Focusless
 names-shadekin-dataset-64 = Lost
