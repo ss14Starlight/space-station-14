@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Changed the two mail tech lockers to be just one double variant.
-    type: Tweak
-  id: 406882
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
   - message: (MANOR) Changed shiva spawn from hos bedroom to sec locker room.
     type: Tweak
   id: 406883
@@ -2799,4 +2792,11 @@ Entries:
   id: 407281
   time: '2026-08-04T08:54:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5505
+- author: Orhu
+  changes:
+  - message: Added more Avali first names and pack names to the name generator.
+    type: Add
+  id: 407282
+  time: '2026-08-04T08:54:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5506
 Order: -1
