@@ -4,6 +4,35 @@ ghost-role-information-theunknown-name = The Unknown
 ghost-role-information-theunknown-description = The Cosmic Cult has won. An fragment of cosmic power extrudes into realspace.
 ghost-role-information-theunknown-rules = ...
 
+
+# CosmicMinions
+
+ghost-role-information-cosmic-minion-name = Cosmic Minion
+
+ghost-role-information-cosmic-minion-description = Cosmic Cult Minion
+    You are a manifestation of the Cosmic Cult.
+
+    Aid your maker and fellow minions in spreading corruption and entropy.
+    Protect your allies, destroy those who oppose the Cosmic Cult, and further the goals of your cosmic master.
+
+# Custodian
+
+ghost-role-information-cosmic-custodian-name = Malign Custodian
+ghost-role-information-cosmic-custodian-description = A vessel of the Astral Murmur. With malign mass and unnatural strength, stand at the forefront of the Cosmic Cult and crush all who oppose its inevitable convergence.
+ghost-role-information-cosmic-custodian-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] aligned with the Cosmic Cult. You are the shield and fist of the Astral Murmur; lead the advance, protect your cosmic allies, and break through all who stand against the coming convergence.
+
+# ORACLE
+
+ghost-role-information-cosmic-oracle-name = Malign Oracle
+ghost-role-information-cosmic-oracle-description = A vessel of the Astral Murmur. Offer guidance and revelation to the Cosmic Cult, aiding them as they usher in the inevitable end.
+ghost-role-information-cosmic-oracle-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] aligned with the Cosmic Cult. Communicate through the Astral Murmur and follow the wishes of your cosmic allies.
+
+# Lodestar
+
+ghost-role-information-cosmic-lodestar-name = Malign Lodestar
+ghost-role-information-cosmic-lodestar-description = A vessel of the Astral Murmur. From beyond the front lines, unleash shards of the void upon those who resist the Cosmic Cult and illuminate the path toward the final convergence.
+ghost-role-information-cosmic-lodestar-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] aligned with the Cosmic Cult. You are an instrument of the Astral Murmur; remain behind your cosmic allies, strike from afar, and tear apart those who oppose the inevitable end.
+
 # COLOSSUS
 
 ghost-role-information-colossus-name = Entropic Colossus
@@ -22,6 +51,9 @@ ghost-role-colossus-briefing =
 ghost-role-colossus-death = The colossus collapses, its light extinguished.
 ghost-role-colossus-hibernate = The colossus begins drawing in energy!
 ghost-role-colossus-effigy-confirm = If placement is  valid, press again to Beckon an Effigy.
+
+ghost-role-colossus-effigy-lost = Your connection to the effigy has been severed. You begin gathering strength for another.
+ghost-role-colossus-effigy-ready = Your strength has returned. You may once again beckon an effigy.
 
 ghost-role-colossus-effigy-error-grid = Invalid location! An Effigy must be beckoned upon a stable surface.
 ghost-role-colossus-effigy-error-location = Invalid location! The Effigy must be beckoned near {$LOCATION}.
