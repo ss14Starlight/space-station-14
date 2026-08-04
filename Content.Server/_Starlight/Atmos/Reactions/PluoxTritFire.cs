@@ -17,12 +17,17 @@ public sealed partial class PluoxTritFire : IGasReactionEffect
 
 		var initialPluoxMoles = mixture.GetMoles(Gas.Pluoxium);
 		var initialCo2moles = mixture.GetMoles(Gas.CarbonDioxide);
+        var initialOxygenmoles = mixture.GetMoles(Gas.Oxygen);
 		var initialTritiumMoles = mixture.GetMoles(Gas.Tritium);
         var temperature = mixture.Temperature;
 
-///Check pluox flat concentration relative to fuel, Co2 contribuites to reduce threshold for intentional reaction.
+///Check pluox flat concentration relative to fuel, Co2 contribuites to reduce threshold for intentional reaction. Oxy makes reaction harder to reduce accidental fires.
 
-        var pluoxSat = ((initialCo2moles * 0.5f));
+        var pluoxSat = (0f);
+		if (initialPluoxMoles > 1)
+		{
+            pluoxSat = ((initialPluoxMoles + (initialCo2moles * 0.25f)) - (initialOxygenmoles * 0.25f));
+		}
 		var pluoxRatio = (pluoxSat / initialTritiumMoles);
 
 ///Too much pluox? Ignite! It's super oxygen and doesnt care about current temperature.
@@ -32,20 +37,20 @@ public sealed partial class PluoxTritFire : IGasReactionEffect
 
 		if (pluoxSat > 25)
 		{
-			satrate = (pluoxRatio * 0.05f);
+			satrate = (pluoxRatio * 0.01f);
 		}
 
 ///Can also ignite from very high temperatures.
 
-		if (temperature > 5500f)
+		if (temperature > 7500f)
 		{
-			temprate = (temperature/5500f);
+			temprate = (temperature/7500f);
 		}
 
         var rate = (satrate + temprate);
         var burn = (0f);
 
-        if (rate < 0.0001f)
+        if (rate < 0.01f)
             return ReactionResult.NoReaction;
 
 ///At a certain rate the reaction gets slower unless cooled to prevent insanity.
