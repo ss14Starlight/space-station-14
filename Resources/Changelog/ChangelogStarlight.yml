@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Added hv wires to maints cargo dock.
-    type: Add
-  id: 406876
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
   - message: (MANOR) Changed TEG substation wiring slighty to work with the bluespace harvester.
     type: Tweak
   id: 406877
@@ -2799,4 +2792,11 @@ Entries:
   id: 407275
   time: '2026-08-04T07:23:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5490
+- author: Conflee
+  changes:
+  - message: Fixed Derelict Purrfus using the wrong sprite.
+    type: Fix
+  id: 407276
+  time: '2026-08-04T08:05:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5511
 Order: -1
