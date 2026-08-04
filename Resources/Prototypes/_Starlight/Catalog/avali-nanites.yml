@@ -1,0 +1,25 @@
+- type: listing
+  id: NaniteHeal
+  name: nanite-heal-name
+  description: nanite-heal-description
+  productAction: ActionHealingNanites
+  cost:
+    Configuration: 2
+  categories:
+  - AvaliNanites
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: NaniteGDrone
+  name: nanite-gdrone-name
+  description: nanite-gdrone-description
+  productAction: ActionGroundDrone
+  cost:
+    Configuration: 1
+  categories:
+  - AvaliNanites
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

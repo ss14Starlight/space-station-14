@@ -204,3 +204,10 @@
   id: ChangelingAbilityUtility
   name: store-ling-category-utility
   priority: 2
+
+# avali
+
+- type: storeCategory
+  id: AvaliNanites
+  name: store-avali-category-nanites
+  priority: 0

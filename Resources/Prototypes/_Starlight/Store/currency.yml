@@ -26,3 +26,8 @@
   id: EvolutionPoint
   displayName: store-currency-display-evolutionpoints
   canWithdraw: false
+
+- type: currency
+  id: Configuration
+  displayName: "Configurations"
+  canWithdraw: false

@@ -2,6 +2,17 @@
 # Tip: 50% opacity light orange was applied after the icons were made, take the colors off the light orange in the base sprite.
 
 - type: entity
+  parent: ActionIntrinsicStore
+  id: ActionNexusStore
+  name: Shop
+  description: Opens the ability shop.
+  components:
+  - type: Action
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_avali.rsi
+      state: nexus-store
+
+- type: entity
   id: ActionStasisEnter
   name: Enter Stasis
   description: Enter a state of suspended animation, healing damage over time but preventing movement and most actions.
@@ -45,4 +56,24 @@
     - type: InstantAction
       event: !type:SpawnItemInHandEvent
         spawned: AvaliHealingInjector
+        requiresFreeHand: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionGroundDrone
+  name: Deploy V.E.S.T.A.
+  description: Construct a V.E.S.T.A. class drone.
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_avali.rsi
+        state: ground-drone
+    - type: LimitedCharges
+      maxCharges: 1
+    - type: AutoRecharge
+      rechargeDuration: 1800
+    - type: InstantAction
+      event: !type:SpawnItemInHandEvent
+        spawned: MobGDrone
         requiresFreeHand: true
