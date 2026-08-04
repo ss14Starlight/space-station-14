@@ -26,6 +26,14 @@
   - sprite: _Starlight/Objects/Fun/Plushies/axolotl_plushie.rsi
     state: icon
 
+#Borb Plushie
+- type: foodSequenceElement
+  id: PlushieBorb
+  name: food-sequence-cotton-burger-content-plushie-borb
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/borb_plushie.rsi
+    state: icon
+
 #Cow Squishims Plushie
 - type: foodSequenceElement
   id: PlushieCowSquishims
