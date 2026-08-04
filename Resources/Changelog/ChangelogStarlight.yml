@@ -1,62 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Added roboticist, surgeon, and a virologist locker to their respective areas. (All filled).
-    type: Add
-  id: 406868
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added transparent windows, and drain to roboticist surgery room.
-    type: Add
-  id: 406869
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added a second hop window for someone to assist the hop in those long lines.
-    type: Add
-  id: 406870
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added a camera to xenobio.
-    type: Add
-  id: 406871
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added some BUY and SELL floor decals to cargo.
-    type: Add
-  id: 406872
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added ipc repair bay remotes to roboticist.
-    type: Add
-  id: 406873
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added Syndicate scarfs to syndicate maints room.
-    type: Add
-  id: 406874
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added A sledgehammer and crowbar to maints clone room to better facilitate tearing it down and rebuilding it.
-    type: Add
-  id: 406875
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
   - message: (MANOR) Added hv wires to maints cargo dock.
     type: Add
   id: 406876
@@ -2799,4 +2743,60 @@ Entries:
   id: 407267
   time: '2026-08-04T07:23:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5476
+- author: OMEGA
+  changes:
+  - message: (Leth) The Right Honorable Flippers.
+    type: Add
+  id: 407268
+  time: '2026-08-04T07:23:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5490
+- author: OMEGA
+  changes:
+  - message: (Leth) Departmental Lathes.
+    type: Add
+  id: 407269
+  time: '2026-08-04T07:23:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5490
+- author: OMEGA
+  changes:
+  - message: (Leth) Distro and waste pipes added to all docks.
+    type: Add
+  id: 407270
+  time: '2026-08-04T07:23:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5490
+- author: OMEGA
+  changes:
+  - message: (Leth) Buy and sell pipes added to cargo shuttle docks.
+    type: Add
+  id: 407271
+  time: '2026-08-04T07:23:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5490
+- author: OMEGA
+  changes:
+  - message: (Leth) Shipyard console.
+    type: Add
+  id: 407272
+  time: '2026-08-04T07:23:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5490
+- author: OMEGA
+  changes:
+  - message: (Leth) Coroner locker.
+    type: Add
+  id: 407273
+  time: '2026-08-04T07:23:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5490
+- author: OMEGA
+  changes:
+  - message: (Leth) Surgeon locker.
+    type: Add
+  id: 407274
+  time: '2026-08-04T07:23:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5490
+- author: OMEGA
+  changes:
+  - message: (Leth) Roboticist lockers.
+    type: Add
+  id: 407275
+  time: '2026-08-04T07:23:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5490
 Order: -1
