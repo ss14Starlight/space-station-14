@@ -1,27 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Changed hops room a little to accommodate a second window.
-    type: Tweak
-  id: 406879
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Changed ce's room to be smaller for the gravity gen fix.
-    type: Tweak
-  id: 406880
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Changed the boxing ring bell to outside the ring.
-    type: Tweak
-  id: 406881
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
   - message: (MANOR) Changed the two mail tech lockers to be just one double variant.
     type: Tweak
   id: 406882
@@ -2799,4 +2778,25 @@ Entries:
   id: 407278
   time: '2026-08-04T08:05:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5508
+- author: wonderfulnewworld
+  changes:
+  - message: Added 2 new instrument styles to the Synthesizer, Tine Piano and FM Piano.
+    type: Add
+  id: 407279
+  time: '2026-08-04T08:54:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5505
+- author: wonderfulnewworld
+  changes:
+  - message: Added 2 new instrument styles to the Trumpet, Vampiric and Grand.
+    type: Add
+  id: 407280
+  time: '2026-08-04T08:54:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5505
+- author: wonderfulnewworld
+  changes:
+  - message: Midis will no longer "Weh".
+    type: Fix
+  id: 407281
+  time: '2026-08-04T08:54:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5505
 Order: -1
