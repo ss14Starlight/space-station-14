@@ -3,7 +3,6 @@ name: Update Changelog
 on:
   push:
     branches:
-      - Inferus
       - main
 
 
