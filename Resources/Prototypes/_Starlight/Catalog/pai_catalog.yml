@@ -79,10 +79,10 @@
       stock: 1
 
 - type: listing
-  id: Moffic
-  name: language-Moffic-name
-  description: language-Moffic-description
-  productLanguage: Moffic
+  id: Lepidic
+  name: language-Lepidic-name # Inferus: Change to "Lepidic"
+  description: language-Lepidic-description # Inferus: Change to "Lepidic"
+  productLanguage: Lepidic # Inferus: Change to "Lepidic"
   icon:
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
     state: moth

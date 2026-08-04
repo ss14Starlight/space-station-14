@@ -9,11 +9,11 @@
     speaks:
     - GalacticCommon
     - Machine
-    - Moffic
+    - Lepidic # Inferus: Change to "Lepidic"
     understands:
     - GalacticCommon
     - Machine
-    - Moffic
+    - Lepidic # Inferus: Change to "Lepidic"
     - Mothroach
   - type: Jump
     action: JumpMoth

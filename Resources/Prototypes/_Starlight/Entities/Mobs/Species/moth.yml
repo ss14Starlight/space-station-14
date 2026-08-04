@@ -9,10 +9,10 @@
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
-    - Moffic
+    - Lepidic # Inferus: Change to "Lepidic"
     understands:
     - GalacticCommon
-    - Moffic
+    - Lepidic # Inferus: Change to "Lepidic"
     - Mothroach
   # Starlight-end
   - type: Jump

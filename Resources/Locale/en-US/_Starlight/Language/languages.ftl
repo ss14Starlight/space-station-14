@@ -24,7 +24,7 @@ language-Bubblish-description = The language of slimes. It's a mixture of bubbli
 language-Canilunzt-name = Canilunzt
 language-Canilunzt-description = The guttural language spoken and utilized by the inhabitants of Vazzend system, composed of growls, barks, yaps, and heavy utilization of ears and tail movements. Vulpkanin speak this language with ease.
 
-language-Moffic-name = Moffic
+language-Lepidic-name = Moffic
 language-Moffic-description = The language of the Mothpeople borders on complete unintelligibility.
 
 language-Nekomimetic-name = Nekomimetic

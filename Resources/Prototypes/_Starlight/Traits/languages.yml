@@ -406,7 +406,7 @@
       inverted: true
 
 - type: trait
-  id: Moffic
+  id: Lepidic # Inferus: Change to "Lepidic"
   name: trait-language-moffic-name
   description: trait-language-moffic-desc
   category: LanguageTraits
@@ -414,9 +414,9 @@
   effects:
     - !type:LanguageEffect
       languagesSpoken:
-        - Moffic
+        - Lepidic # Inferus: Change to "Lepidic"
       languagesUnderstood:
-        - Moffic
+        - Lepidic # Inferus: Change to "Lepidic"
         - Mothroach
   requirements:
     - !type:SpeciesRequirement
