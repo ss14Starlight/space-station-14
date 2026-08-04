@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Stack; // #starlight
 using Content.Server.Station.Systems;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
@@ -27,6 +28,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
     [Dependency] private LabelSystem _label = default!;
     [Dependency] private PaperSystem _paper = default!;
     [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private StackSystem _stack = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
 
@@ -56,7 +58,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
         {
             if (!FulfillsSalvageJob(sold, (args.Station, salvageJobsData), out var jobId))
                 continue;
-            TryCompleteSalvageJob((args.Station, salvageJobsData), jobId.Value);
+            TryCompleteSalvageJob((args.Station, salvageJobsData), jobId.Value, sold);
         }
     }
 
@@ -155,7 +157,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
     /// <param name="ent"></param>
     /// <param name="job"></param>
     /// <returns></returns>
-    public bool TryCompleteSalvageJob(Entity<SalvageJobsDataComponent> ent, ProtoId<CargoBountyPrototype> job)
+    public bool TryCompleteSalvageJob(Entity<SalvageJobsDataComponent> ent, ProtoId<CargoBountyPrototype> job, EntityUid? sourceEntity = null)
     {
         if (!GetAvailableJobs(ent).Contains(job))
             return false;
@@ -175,6 +177,13 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
                 (ent.Owner, stationBankAccount),
                 jobProto.Reward,
                 _cargo.CreateAccountDistribution((ent,  stationBankAccount)));
+        }
+        // #starlight
+        // Add tickets
+        if (jobProto.Tickets > 0 && sourceEntity is { Valid: true })
+        {
+            var coordinates = Transform(sourceEntity.Value).Coordinates;
+            _stack.SpawnAtPosition(jobProto.Tickets, "SalvageTicket", coordinates);
         }
 
         // We ranked up!
