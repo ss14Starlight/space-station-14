@@ -3,6 +3,7 @@ using Content.Server.StationEvents.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Chat;
+using Content.Shared.Ghost;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Pinpointer;
@@ -58,6 +59,10 @@ public sealed partial class FullMoonHowlRule : StationEventSystem<FullMoonHowlRu
 
             if (Transform(attached).MapID != mainStationMap)
                 return false;
+
+            // Ghosts are always eligible to hear the announcement, for observer/admin purposes.
+            if (HasComp<GhostComponent>(attached))
+                return true;
 
             if (TryComp<InventoryComponent>(attached, out var inv)
                 && inv.SpeciesId is { } speciesId
