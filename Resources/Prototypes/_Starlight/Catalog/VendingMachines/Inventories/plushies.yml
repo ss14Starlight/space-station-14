@@ -222,6 +222,17 @@
     stock: 1
 
 - type: listing
+  id: VendorPlushieKitten
+  productEntity: PlushieKitten
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
   id: VendorPlushieExperiment
   productEntity: PlushieExperiment
   cost:
