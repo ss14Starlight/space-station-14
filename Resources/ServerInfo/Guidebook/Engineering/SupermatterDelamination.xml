@@ -45,12 +45,12 @@
   ## Delamination Cleanup
 
   <Box>
-    <GuideEntityEmbed Entity="Cascad1" Caption="Cascade Crystal" />
+    <GuideEntityEmbed Entity="Cascad1" Caption="Cascad Crystal" />
   </Box>
 
-  During complete failure, the original Supermatter crystal collapses and transforms into cascade crystals.
+  During complete failure, the original Supermatter crystal collapses and transforms into cascad crystals.
 
-  Cascade crystals are extremely hardened structures that expand through surrounding materials.
+  Cascad crystals are extremely hardened structures that expand through surrounding materials.
 
   Due to their structure, they require heavy-duty tools for efficient removal.
 
@@ -61,8 +61,8 @@
     <GuideEntityEmbed Entity="HammerBreachingNT" Caption="Breaching Hammer" />
   </Box>
 
-  Emergency tools may damage cascade crystals, but are not considered suitable for cleanup operations.
+  Emergency tools may damage cascad crystals, but are not considered suitable for cleanup operations.
 
-  Personnel should avoid entering affected areas until the cascade has been fully removed and the area declared safe.
+  Personnel should avoid entering affected areas until the cascad has been fully removed and the area declared safe.
 
 </Document>
