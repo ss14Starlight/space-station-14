@@ -407,8 +407,8 @@
 
 - type: trait
   id: Lepidic # Inferus: Change to "Lepidic"
-  name: trait-language-moffic-name
-  description: trait-language-moffic-desc
+  name: trait-language-lepidic-name
+  description: trait-language-lepidic-desc
   category: LanguageTraits
   cost: 2
   effects:

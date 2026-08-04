@@ -80,8 +80,8 @@
 
 - type: listing
   id: Lepidic
-  name: language-Lepidic-name # Inferus: Change to "Lepidic"
-  description: language-Lepidic-description # Inferus: Change to "Lepidic"
+  name: language-lepidic-name # Inferus: Change to "Lepidic"
+  description: language-lepidic-description # Inferus: Change to "Lepidic"
   productLanguage: Lepidic # Inferus: Change to "Lepidic"
   icon:
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
