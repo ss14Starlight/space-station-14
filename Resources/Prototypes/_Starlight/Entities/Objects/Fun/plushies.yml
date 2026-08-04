@@ -173,7 +173,7 @@
 - type: entity
   parent: BaseMothPlushie
   id: PlushieMozan # puddleboat
-  name: Mozan plushie
+  name: mozan plushie
   description: Just like the real thing, it squeaks if you poke it.
   components:
   - type: Sprite
