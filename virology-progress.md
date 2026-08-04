@@ -665,28 +665,65 @@ Emergent-symptom verification:
 - The complete virology integration filter passes 45 tests with 2 known pooled spread-fixture
   skips and 0 failures.
 
+## Bioseal Rollerbed
+
+- Added the `BiosealRollerBed` and folded `BiosealRollerBedSpawnFolded` prototypes. The
+  bed keeps the standard rollerbed's one-person strap, folds to a Normal-sized carried
+  item only while empty, and is supplied folded in the Virologist's secure locker.
+- Added a custom virology-themed RSI: teal upholstery and frame, amber zipper details,
+  folded/in-hand states, an open transparent cover, and a visibly sealed transparent
+  cover. The occupant remains visible through the sealed cover.
+- A patient must be lying on or strapped to the open bed before the cover can capture and
+  zip around them. The cover is not lockable and provides no armor or combat protection.
+- While zipped, an occupant cannot transmit or receive viruses, bacteria, or fungus.
+  Sealed viral carriers do not contribute station contamination, fungal carriers cannot
+  create spore patches, live-vaccine carriers cannot expose nearby crew, and isolated
+  occupants are excluded from automatic disease-host selection.
+- Disease progression and symptoms continue inside the cover. The seal blocks ordinary
+  direct interaction and explicitly blocks Pathogen Analyzer scans; treatment and direct
+  examination therefore require unzipping it.
+- A conscious mobile occupant can attempt to unzip the cover from inside by moving. The
+  action takes two seconds, is interrupted by damage, and opens the cover without a lock.
+  Opening or destroying the bed ends isolation immediately.
+
+Bioseal verification:
+
+- `Content.YAMLLinter` completed with 0 errors, including the new prototype and RSI.
+- `Content.Server` and the integration-test assembly build with 0 errors. Only existing
+  repository package-vulnerability, dependency-pruning, and obsolete-API warnings remain.
+- The focused integration test passes. It loads three patients and verifies blocked viral
+  proximity spread, bacterial contact spread, fungal spore shedding, outside exposure,
+  viral contamination, direct access, Pathogen Analyzer scanning, and the two-second
+  internal unzip action.
+- The complete virology integration filter passes 45 tests with 2 known pooled-fixture
+  skips and 0 failures.
+
 ## Next Phase
 
-1. Add two Virologist slots and one `SpawnPointVirologist` placement to each supported
+1. Manually verify Bioseal loading, dragging, folded inventory handling, open/sealed
+   visuals with an occupant, external zip/unzip interactions, and internal unzipping in a
+   live client. Confirm health analysers and other direct medical tools cannot scan or
+   treat through the sealed cover.
+2. Add two Virologist slots and one `SpawnPointVirologist` placement to each supported
    station with a usable virology laboratory. Keep serialized station map changes in their
    own commit.
-2. Manually verify the Virologist preference entry, requirements, PDA/ID appearance,
+3. Manually verify the Virologist preference entry, requirements, PDA/ID appearance,
    clothing choices, and complete round-start equipment after station integration.
-3. Manually verify that loose organic trash contributes 0.1 each, contained trash
+4. Manually verify that loose organic trash contributes 0.1 each, contained trash
    disappears from the next snapshot, and disposal-processed organic trash remains
    excluded after reaching the disposal room. Also verify food/mold spills, dead plants,
    and viral carriers.
-4. Manually verify the analyser interaction/report layout and the monitor's contamination
+5. Manually verify the analyser interaction/report layout and the monitor's contamination
    bar, map framing, room list, live refresh, and suit-sensor filtering in a live client.
-5. Manually verify how many crew the permanent live vaccine reaches during normal
+6. Manually verify how many crew the permanent live vaccine reaches during normal
    movement, then tune its 5% roll if the uncapped result is too weak or too strong.
-6. Design beneficial strain content and balance separately; its injector route is ready,
+7. Design beneficial strain content and balance separately; its injector route is ready,
    but beneficial effects remain outside this phase.
-7. Manually verify the three ambient stage progressions, especially whether the 45-second
+8. Manually verify the three ambient stage progressions, especially whether the 45-second
    weak signatures are noticeable without being annoying. Then manually verify all three
    emergent progressions, including capped damage, item dropping, knockdown, stutter,
    blur, and temporary blindness.
-8. Manually verify that a stage-zero virus spreads without showing symptoms, stage-zero
+9. Manually verify that a stage-zero virus spreads without showing symptoms, stage-zero
    bacterial contact can transmit, and an incubating fungal host can leave its one patch.
 
 ## End-of-Phase Checklist
