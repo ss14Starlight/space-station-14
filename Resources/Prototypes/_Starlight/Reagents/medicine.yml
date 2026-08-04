@@ -389,7 +389,7 @@
   allowedDepartments:
   - Medical
   flavor: medicine
-  color: "#4FB2A5"
+  color: "#4fb2a5"
   metabolisms:
     Medicine:
       effects:
