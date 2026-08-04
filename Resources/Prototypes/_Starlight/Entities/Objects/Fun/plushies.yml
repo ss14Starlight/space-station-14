@@ -1,72 +1,7 @@
-# Character Plushies
+# Character Plushies - Keep alphabetical, please!
 - type: entity
   parent: BasePlushie
-  id: PlushieGalio #Weh!
-  name: galio plushie
-  description: Carry with you to feel silly wherever you go!
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
-    state: icon
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/Items/Toys/weh.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Animals/lizard_happy.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Animals/lizard_happy.ogg
-  - type: EmitSoundOnCollide
-    sound:
-      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      collection: FootstepClown
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: JuiceThatMakesYouWeh
-        Quantity: 30
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouWeh
-          Quantity: 10
-  - type: Clothing
-    quickEquip: false
-    sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
-    slots:
-    - HEAD
-  - type: Speech
-    speechVerb: Reptilian # for pais (In the secret stash)
-  - type: Tag
-    tags:
-    - ClothMade
-    - Payload
-    - PlushieLizard
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: LizardPlushie
-
-- type: entity
-  parent: BasePlushie
-  id: PlushieDoxes #Weh!
+  id: PlushieDoxes # SanityGecko
   name: doxes-the-captain plushie
   description: An adorable stuffed toy that resembles Doxes-the-Captain. "Captain's IP is 189.47.108.519!"
   components:
@@ -130,20 +65,7 @@
 
 - type: entity
   parent: BaseMothPlushie
-  id: PlushieMozan
-  name: Mozan plushie
-  description: Just like the real thing, it squeaks if you poke it.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
-    state: icon
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
-
-- type: entity
-  parent: BaseMothPlushie
-  id: PlushieKoni
+  id: PlushieKoni # neomoth
   name: koni plushie
   description: Some sort of moth-cat hybrid. You can't help but find it really cute. Can squeak and meow!
   components:
@@ -183,7 +105,85 @@
         head:
           - state: equipped-HELMET
 
-# General Plushies
+- type: entity
+  parent: BasePlushie
+  id: PlushieGalio # galiotheblepdragon
+  name: galio plushie
+  description: Carry with you to feel silly wherever you go!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/lizard_happy.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/lizard_happy.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: FootstepClown
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
+    slots:
+    - HEAD
+  - type: Speech
+    speechVerb: Reptilian # for pais (In the secret stash)
+  - type: Tag
+    tags:
+    - ClothMade
+    - Payload
+    - PlushieLizard
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: LizardPlushie
+
+- type: entity
+  parent: BaseMothPlushie
+  id: PlushieMozan # puddleboat
+  name: Mozan plushie
+  description: Just like the real thing, it squeaks if you poke it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
+
+# General Plushies - Keep alphabetical, please!
 - type: entity
   parent: BasePlushie
   id: PlushieAbductor
@@ -291,6 +291,19 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieBorb
+
+- type: entity
+  parent: BaseBorgPlushie
+  id: PlushieBorg
+  name: borg plushie
+  description: A tiny plushie of an engineering cyborg, complete with itty-bitty plastic tools.
+  components:
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
+      state: icon
 
 - type: entity
   parent: BasePlushie
@@ -589,64 +602,6 @@
         - state: equipped-HELMET
 
 - type: entity
-  parent: BaseBorgPlushie
-  id: PlushieBorg
-  name: borg plushie
-  description: A tiny plushie of an engineering cyborg, complete with tiny plastic tools.
-  components:
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
-      state: icon
-
-- type: entity
-  parent: BasePlushie
-  id: PlushieLargeSoftShark
-  name: large blue shark soft plushie
-  description: A large, soft, and cuddly shark plushie. Perfect for hugging!
-  components:
-    - type: Item
-      size: Normal
-      sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
-      state: icon
-    # Shows cuddle message when used in hand
-    - type: CuddleMessage
-      localizedMessageKey: plushie-large-soft-shark-cuddle
-    - type: EmitSoundOnUse
-      sound:
-        path: /Audio/Effects/thudswoosh.ogg
-        params:
-          volume: -5
-      handle: false
-    - type: EmitSoundOnLand
-      sound:
-        path: /Audio/Items/Toys/rawr.ogg
-    - type: EmitSoundOnTrigger
-      sound:
-        path: /Audio/Items/Toys/rawr.ogg
-    - type: EmitSoundOnActivate
-      sound:
-        path: /Audio/Items/Toys/rawr.ogg
-    - type: EmitSoundOnCollide
-      sound:
-        path: /Audio/Items/Toys/rawr.ogg
-    - type: MeleeWeapon
-      wideAnimationRotation: 90
-      soundHit:
-        path: /Audio/Items/Toys/rawr.ogg
-      animation: WeaponArcBite
-    - type: UseDelay
-      delay: 1.0
-    - type: Tag
-      tags:
-        - Payload
-        - ClothMade
-
-- type: entity
   parent: BasePlushie
   id: PlushieRenault
   name: renault plushie
@@ -715,11 +670,12 @@
     sound:
       path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
 
+
 - type: entity
   parent: BasePlushie
   id: PlushieSaltLampSmall
   name: small salt lamp plushie
-  description: Small safe version of everyone's favorite salt lamp.
+  description: Small, safe version of everyone's favorite salt lamp.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/supermatter.rsi
@@ -804,6 +760,51 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieShadekin
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieLargeSoftShark
+  name: large blue shark soft plushie
+  description: A large, soft, and cuddly shark plushie. Perfect for hugging!
+  components:
+    - type: Item
+      size: Normal
+      sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
+      state: icon
+    # Shows cuddle message when used in hand
+    - type: CuddleMessage
+      localizedMessageKey: plushie-large-soft-shark-cuddle
+    - type: EmitSoundOnUse
+      sound:
+        path: /Audio/Effects/thudswoosh.ogg
+        params:
+          volume: -5
+      handle: false
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/Toys/rawr.ogg
+    - type: EmitSoundOnTrigger
+      sound:
+        path: /Audio/Items/Toys/rawr.ogg
+    - type: EmitSoundOnActivate
+      sound:
+        path: /Audio/Items/Toys/rawr.ogg
+    - type: EmitSoundOnCollide
+      sound:
+        path: /Audio/Items/Toys/rawr.ogg
+    - type: MeleeWeapon
+      wideAnimationRotation: 90
+      soundHit:
+        path: /Audio/Items/Toys/rawr.ogg
+      animation: WeaponArcBite
+    - type: UseDelay
+      delay: 1.0
+    - type: Tag
+      tags:
+        - Payload
+        - ClothMade
 
 - type: entity
   parent: BasePlushie

@@ -1,4 +1,4 @@
-# Marketable Character Plushies
+# Marketable Character Plushies - Keep alphabetical, please!
 - type: listing
   id: VendorPlushieDoxes
   productEntity: PlushieDoxes
@@ -43,7 +43,7 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-# Generic Playable Species
+# Generic Playable Species - Keep alphabetical, please!
 - type: listing
   id: VendorPlushieArachind
   productEntity: PlushieArachind
@@ -121,7 +121,7 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-# General Plushies
+# General Plushies - Keep alphabetical, please!
 - type: listing
   id: VendorPlushieAbductor
   productEntity: PlushieAbductor
@@ -189,6 +189,17 @@
     stock: 3
 
 - type: listing
+  id: VendorPlushieExperiment
+  productEntity: PlushieExperiment
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: VendorPlushieFrog
   productEntity: PlushieFrogSquishims
   cost:
@@ -242,17 +253,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 3
-
-- type: listing
-  id: VendorPlushieExperiment
-  productEntity: PlushieExperiment
-  cost:
-    NTCredit: 20
-  categories:
-  - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushiePanda
@@ -364,12 +364,12 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-# Toys
+# Toys - Keep alphabetical, please!
 - type: listing
-  id: VendorSingularityToy
-  productEntity: SingularityToy
+  id: VendorCatEars
+  productEntity: ClothingHeadHatWhiteCatEars
   cost:
-    NTCredit: 1000
+    NTCredit: 1666
   categories:
   - SLToys
   conditions:
@@ -377,10 +377,10 @@
     stock: 1
 
 - type: listing
-  id: VendorCatEars
-  productEntity: ClothingHeadHatWhiteCatEars
+  id: VendorSingularityToy
+  productEntity: SingularityToy
   cost:
-    NTCredit: 1666
+    NTCredit: 1000
   categories:
   - SLToys
   conditions:
