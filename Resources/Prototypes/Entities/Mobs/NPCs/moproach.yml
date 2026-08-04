@@ -9,7 +9,7 @@
     speaks:
     - Mothroach
     understands:
-    - Moffic
+    - Lepidic # Inferus: Change to "Lepidic"
     - Mothroach
     - GalacticCommon
   # Starlight-end

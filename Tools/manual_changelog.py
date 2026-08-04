@@ -119,7 +119,7 @@ def parse_github_pull_request(changelog, stream):
 
 
 def main():
-    default_filename = 'Resources/Changelog/ChangelogStarlight.yml'
+    default_filename = 'Resources/Changelog/ChangelogInferus.yml'
 
     parser = argparse.ArgumentParser(description='Update the changelog manually.')
 

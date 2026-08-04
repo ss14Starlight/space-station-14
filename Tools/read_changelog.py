@@ -10,7 +10,7 @@ def format_timestamp(timestamp):
 
     return formatted_time
 
-with open("Resources/Changelog/ChangelogStarlight.yml", "r", encoding="utf-8") as file:
+with open("Resources/Changelog/ChangelogInferus.yml", "r", encoding="utf-8") as file:
     data = yaml.safe_load(file)
 
 entries = data.get("Entries", [])

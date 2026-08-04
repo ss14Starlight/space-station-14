@@ -34,7 +34,7 @@ jobs:
       - name: Find Missing Changelog PRs
         id: find_prs
         env:
-          CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogStarlight.yml'
+          CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogInferus.yml'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           COMMITS_COUNT: ${{ inputs.commits_count }}
@@ -44,7 +44,7 @@ jobs:
       - name: Process Missing PRs
         if: steps.find_prs.outputs.missing_prs != '[]'
         env:
-          CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogStarlight.yml'
+          CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogInferus.yml'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
@@ -65,7 +65,7 @@ jobs:
 
       - name: Display changelog after backfill
         run: |
-          if [ -f "Resources/Changelog/ChangelogStarlight.yml" ]; then
+          if [ -f "Resources/Changelog/ChangelogInferus.yml" ]; then
             echo "=== Changelog updated ==="
             git diff --name-only
           else
@@ -76,7 +76,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "Resources/Changelog/ChangelogStarlight.yml"
+          git add "Resources/Changelog/ChangelogInferus.yml"
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
