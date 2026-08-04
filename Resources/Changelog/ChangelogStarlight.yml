@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Changed shiva spawn from hos bedroom to sec locker room.
-    type: Tweak
-  id: 406883
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
   - message: (MANOR) Fixed air vents and scrubbers near main engine being hooked into the wrong pipes.
     type: Fix
   id: 406884
@@ -2799,4 +2792,11 @@ Entries:
   id: 407282
   time: '2026-08-04T08:54:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5506
+- author: Hot Mic
+  changes:
+  - message: Updated the Flavor Text from "Special medical table for surgery. This one just seems to be a useless prop, though." to "Special medical table for surgery.".
+    type: Tweak
+  id: 407283
+  time: '2026-08-04T08:54:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5509
 Order: -1
