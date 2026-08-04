@@ -15,7 +15,7 @@ this is still very early please cut us some slack
 
 </div>
 
-Starfall is a fork of [STARLIGHT](https://github.com/ss14Starlight/space-station-14) which is an open source project aimed at creating unique mechanics and a pleasant game atmosphere in the game Space Station 14,
+Inferus is a fork of [STARLIGHT](https://github.com/ss14Starlight/space-station-14) which is an open source project aimed at creating unique mechanics and a pleasant game atmosphere in the game Space Station 14,
 a game about survival on a space station where there are constant confrontations between the crew and antagonists created to prevent the crew from achieving their goals.
 
 ## Space Station 14 Documentation/Wiki
