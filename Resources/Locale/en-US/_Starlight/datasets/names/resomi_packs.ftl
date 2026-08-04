@@ -26,3 +26,5 @@ names-resomi-packs-dataset-25 = Windrider Pack
 names-resomi-packs-dataset-26 = Steelflower Pack
 names-resomi-packs-dataset-27 = Brightfeathers Pack
 names-resomi-packs-dataset-28 = Trashmaker Pack
+names-resomi-packs-dataset-29 = Gravedigger Pack
+names-resomi-packs-dataset-30 = Glider Pack

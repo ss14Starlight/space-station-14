@@ -26,3 +26,5 @@ names-avali-packs-dataset-25 = Windrider Pack
 names-avali-packs-dataset-26 = Steelflower Pack
 names-avali-packs-dataset-27 = Brightfeathers Pack
 names-avali-packs-dataset-28 = Trashmaker Pack
+names-avali-packs-dataset-29 = Gravedigger Pack
+names-resomi-packs-dataset-30 = Glider Pack
