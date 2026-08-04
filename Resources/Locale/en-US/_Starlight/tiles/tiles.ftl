@@ -56,10 +56,10 @@ tiles-tech-greeb-floor = tech maints greeb floor
 tiles-mowed-dark-astro-grass = mowed dark astro-grass
 tiles-mowed-light-astro-grass = mowed light astro-grass
 tiles-mowed-jungle-astro-grass = mowed jungle astro-grass
-tiles-grass-classic-planet-floor = classic grass
+tiles-grass-classic-planet-floor = classic grass planet
 tiles-planet-grass-classic-floor-mowed = mowed classic astro-grass
 tiles-planet-grass-classic-floor = classic astro-grass
-tiles-astro-grass-classic = classic astro-grass planet
+tiles-astro-grass-classic = classic astro-grass
 
 # Developer tiles for mapping
 tiles-floor-dev-floor = [dev] floor

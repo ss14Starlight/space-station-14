@@ -22,7 +22,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_spruce_medium_snow.rsi #SL Edit
+    sprite: _CP14/Objects/Decoration/Flora/tree_spruce_medium_snow.rsi
     offset: 0,1.15
   - type: Fixtures
     fixtures:
@@ -40,7 +40,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_spruce_small.rsi #SL Edit
+    sprite: _CP14/Objects/Decoration/Flora/tree_spruce_small.rsi
     offset: 0,1.15
   - type: Fixtures
     fixtures:
@@ -58,7 +58,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_spruce_big.rsi #SL Edit
+    sprite: _CP14/Objects/Decoration/Flora/tree_spruce_big.rsi
     offset: 0,1.15
   - type: Fixtures
     fixtures:
@@ -76,7 +76,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_birch_small.rsi #SL Edit
+    sprite: _CP14/Objects/Decoration/Flora/tree_birch_small.rsi
     offset: 0,0.7
   - type: Fixtures
     fixtures:
@@ -94,7 +94,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_birch_medium.rsi #SL Edit
+    sprite: _CP14/Objects/Decoration/Flora/tree_birch_medium.rsi
     offset: 0,0.7
   - type: Fixtures
     fixtures:
@@ -112,7 +112,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_birch_big.rsi #SL Edit
+    sprite: _CP14/Objects/Decoration/Flora/tree_birch_big.rsi
     offset: 0,1.55
   - type: Fixtures
     fixtures:
@@ -130,7 +130,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_died.rsi #SL Edit
+    sprite: _CP14/Objects/Decoration/Flora/tree_died.rsi
     offset: 0,0.7
   - type: Fixtures
     fixtures:
@@ -148,7 +148,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_died_small.rsi #SL Edit
+    sprite: _CP14/Objects/Decoration/Flora/tree_died_small.rsi
     offset: 0,0.7
   - type: Fixtures
     fixtures:
@@ -166,7 +166,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_vampire.rsi #SL Edit
+    sprite: _CP14/Objects/Decoration/Flora/tree_vampire.rsi
     offset: 0,0.7
   - type: Fixtures
     fixtures:

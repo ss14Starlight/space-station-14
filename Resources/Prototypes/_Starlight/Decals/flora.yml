@@ -4,7 +4,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: &waterReeds _CP14/Decals/water_reeds.rsi
     state: big1
 
 - type: decal
@@ -13,7 +13,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds 
     state: big2
 
 - type: decal
@@ -22,7 +22,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: big3
 
 - type: decal
@@ -31,7 +31,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: big4
 
 - type: decal
@@ -40,7 +40,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: big5
 
 - type: decal
@@ -49,7 +49,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: big6
 
 - type: decal
@@ -58,7 +58,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: big7
 
 - type: decal
@@ -67,7 +67,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: big8
 
 - type: decal
@@ -76,7 +76,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small1
 
 - type: decal
@@ -85,7 +85,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small2
 
 - type: decal
@@ -94,7 +94,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small3
 
 - type: decal
@@ -103,7 +103,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small4
 
 - type: decal
@@ -112,7 +112,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small5
 
 - type: decal
@@ -121,7 +121,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small6
 
 - type: decal
@@ -130,7 +130,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small7
 
 - type: decal
@@ -139,7 +139,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small8
 
 - type: decal
@@ -148,7 +148,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small9
 
 - type: decal
@@ -157,7 +157,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small10
 
 - type: decal
@@ -166,5 +166,5 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _CP14/Decals/water_reeds.rsi
+    sprite: *waterReeds
     state: small11

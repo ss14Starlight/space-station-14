@@ -924,7 +924,7 @@
 # Grass
 - type: tile
   id: FloorJungleAstroGrassEdge
-  name: tiles-jungle-astro-grass #sl edit
+  name: tiles-jungle-astro-grass
   parent: FloorGrassJungle
   edgeSpritePriority: 1
   edgeSprites:
@@ -940,12 +940,12 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemJungleAstroGrass
-  weather: false #Starlight-edit
+  weather: false
 
 - type: tile
   parent: FloorGrassDark
   id: FloorDarkAstroGrassEdge
-  name: tiles-dark-astro-grass #sl edit
+  name: tiles-dark-astro-grass
   edgeSpritePriority: 1
   edgeSprites:
     SouthEast: /Textures/_CP14/Tiles/GrassDark/single_edge.png
@@ -960,12 +960,12 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemDarkAstroGrass
-  weather: false #Starlight-edit
+  weather: false
 
 - type: tile
   parent: FloorGrassLight
   id: FloorLightAstroGrassEdge
-  name: tiles-light-astro-grass #sl edit
+  name: tiles-light-astro-grass
   edgeSpritePriority: 1
   edgeSprites:
     SouthEast: /Textures/_CP14/Tiles/GrassLight/single_edge.png
@@ -980,7 +980,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemLightAstroGrass
-  weather: false #Starlight-edit
+  weather: false
 
 - type: tile
   id: FloorGrassClassic
@@ -1036,4 +1036,4 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemGrass
-  weather: false #Starlight-edit
+  weather: false
