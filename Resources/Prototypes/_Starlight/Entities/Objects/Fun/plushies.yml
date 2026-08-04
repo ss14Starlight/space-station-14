@@ -473,6 +473,50 @@
       CottonBurger: PlushiePanda
 
 - type: entity
+  parent: BasePlushie
+  id: PlushiePig
+  name: pig plushie
+  description: Head? Round. Eyes? Filled with optimism. Smells kinda like bacon.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/pig_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/pig_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/pig_oink.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/pig_oink.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/pig_oink.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/pig_oink.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Animals/pig_oink.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushiePig
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/sus_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
   parent: BaseBorgPlushie
   id: PlushieBorg
   name: borg plushie
@@ -690,7 +734,7 @@
       CottonBurger: PlushieSus
   - type: Clothing
     quickEquip: false
-    sprite: *sprite
+    sprite: _Starlight/Objects/Fun/Plushies/sus_plushie.rsi
     slots:
       - HEAD
     clothingVisuals:
