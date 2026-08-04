@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Fixed air vents and scrubbers near main engine being hooked into the wrong pipes.
-    type: Fix
-  id: 406884
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
   - message: (MANOR) Fixed gravity generator being accessible through the walls in maints.
     type: Fix
   id: 406885
@@ -2799,4 +2792,11 @@ Entries:
   id: 407283
   time: '2026-08-04T08:54:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5509
+- author: wonderfulnewworld
+  changes:
+  - message: Phenylpiperidine no longer says it applies forced sleep when it actually doesn't.
+    type: Fix
+  id: 407284
+  time: '2026-08-04T09:24:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5501
 Order: -1
