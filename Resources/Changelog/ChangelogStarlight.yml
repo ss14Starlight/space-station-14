@@ -1,25 +1,4 @@
 Entries:
-- author: Glaud
-  changes:
-  - message: The Purrfus paperwork cyborg module now has a slot that can hold PDAs, IDs and stamps.
-    type: Add
-  id: 406904
-  time: '2026-07-25T18:49:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5297
-- author: Mack
-  changes:
-  - message: Disabled the Bright-Eye antag from rolling.
-    type: Remove
-  id: 406905
-  time: '2026-07-25T20:25:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5320
-- author: ScarletLightweaver
-  changes:
-  - message: re-added the un clonable trait!.
-    type: Add
-  id: 406906
-  time: '2026-07-25T21:21:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5313
 - author: OMEGA
   changes:
   - message: All windows and directional windows (excluding shuttle windows) can now be upgraded in-place by using the upgraded glass on them directly.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407303
   time: '2026-08-04T09:55:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: Johnny
+  changes:
+  - message: Moved most of the atmospheric devices into the atmos category in construction menu.
+    type: Tweak
+  id: 407304
+  time: '2026-08-04T09:55:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5428
+- author: Johnny
+  changes:
+  - message: Fixed the atmospheric category showing up weird in construction menu.
+    type: Fix
+  id: 407305
+  time: '2026-08-04T09:55:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5428
+- author: Johnny
+  changes:
+  - message: Molar gas mixer can be made flipped and also go on other gas pipe layers.
+    type: Fix
+  id: 407306
+  time: '2026-08-04T09:55:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5428
 Order: -1
