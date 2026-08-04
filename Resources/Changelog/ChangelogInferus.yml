@@ -6,4 +6,12 @@ Entries:
   id: 1
   time: '2026-08-04T00:00:00.000000+00:00'
   url: https://github.com/InferusSS14/Inferus
+- author: Tarazicon
+  changes:
+  - message: Changed another thing.
+    type: Tweak
+  id: 201
+  time: '2026-08-04T23:29:27.000000+00:00'
+  url: https://github.com/InferusSS14/Inferus/pull/2
 Order: -1
+
