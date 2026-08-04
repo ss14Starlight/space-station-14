@@ -1,6 +1,6 @@
 - type: entity
   id: MedkitCombatFilledETO
-  suffix: Filled
+  suffix: Filled, ETO
   parent: MedkitCombat
   components:
   - type: EntityTableContainerFill

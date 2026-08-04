@@ -2,7 +2,7 @@
   parent: [BaseETOContraband, ClothingSovietBelt]
   id: ClothingBeltETOCombatTech
   name: ETO combat technician belt
-  description: A Useful belt to carry all of the CT's gear, including some ammo if need be.
+  description: A useful belt to carry all of the CT's gear, including some ammo if need be.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/etobelt.rsi
@@ -12,8 +12,7 @@
 - type: entity
   parent: ClothingBeltETOCombatTech
   id: ClothingBeltETOCombatTechFilled
-  name: ETO combat technician belt
-  description: A Useful belt to carry all of the CT's gear, including some ammo if need be.
+  suffix: Filled, ETO
   components:
   - type: EntityTableContainerFill
     containers:

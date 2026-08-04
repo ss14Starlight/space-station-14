@@ -2,7 +2,7 @@
   parent: [EncryptionKey, BaseETOContraband]
   id: EncryptionKeyETO
   name: ETO encryption key
-  description: An encryption key used by ETO Operatives.
+  description: An encryption key used by ETO operatives.
   components:
     - type: EncryptionKey
       channels:
