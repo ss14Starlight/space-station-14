@@ -161,6 +161,12 @@
     - type: Inventory
       speciesId: avali
       templateId: protogen
+      femaleDisplacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: jumpsuit
       displacements:
         jumpsuit:
           sizeMaps:
@@ -187,3 +193,8 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: back
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: gloves
