@@ -264,6 +264,7 @@
     - id: RubberStampCE
     - id: MetalFoamGrenade
     - id: PlushieMatthew #starlight
+    - id: EngineeringTechFabFlatpack # Starlight
     - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
