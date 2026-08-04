@@ -12,7 +12,8 @@
                 <Control MinHeight="10"/>
                 <RichTextLabel Name="ManifestLabel"/>
                 <Control MinHeight="10"/>
-                <RichTextLabel Name="RewardLabel" VerticalExpand="True"/>
+                <RichTextLabel Name="RewardLabel" VerticalExpand="True" VerticalAlignment ="Bottom" />
+                <Control MinHeight="10"/>
                 <RichTextLabel Name="TicketsLabel" VerticalExpand="True" VerticalAlignment="Bottom"/>
             </BoxContainer>
             <BoxContainer HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Center">
