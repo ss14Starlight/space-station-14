@@ -149,3 +149,8 @@ pathogen-desc-mycosis = A fungal infection of the skin, eyes, and muscles that l
 
 pathogen-name-vigor = vigor
 pathogen-desc-vigor = An engineered strain that accelerates tissue repair. Cannot spread on its own and must be administered directly. Runs its course quickly.
+
+# Bioseal rollerbed
+bioseal-rollerbed-internal-unzip-start = You start unzipping the isolation cover from inside.
+bioseal-rollerbed-unzipped = The transparent isolation cover unzips.
+bioseal-rollerbed-zipped = The transparent isolation cover seals with a quiet hiss.

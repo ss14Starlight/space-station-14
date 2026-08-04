@@ -9,6 +9,7 @@ public sealed partial class PathogenContactSystem : EntitySystem
 {
     [Dependency] private PathogenRegistrySystem _registry = default!;
     [Dependency] private PathogenTransmissionSystem _transmission = default!;
+    [Dependency] private PathogenIsolationSystem _isolation = default!;
 
     public override void Initialize()
     {
@@ -28,7 +29,8 @@ public sealed partial class PathogenContactSystem : EntitySystem
 
     private bool TryTransmit(EntityUid source, EntityUid target)
     {
-        if (!TryComp<PathogenInfectionComponent>(source, out var infections))
+        if (_isolation.IsIsolated(source) ||
+            !TryComp<PathogenInfectionComponent>(source, out var infections))
             return false;
 
         foreach (var infection in infections.Infections)

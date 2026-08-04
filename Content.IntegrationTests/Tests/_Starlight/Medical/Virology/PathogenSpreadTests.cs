@@ -4,6 +4,8 @@ using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Medical.Virology;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Medical.Virology;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
@@ -60,6 +62,90 @@ public sealed class PathogenSpreadTests : GameTest
 
         await server.WaitAssertion(() =>
             Assert.That(pathogens.IsInfected(target, strain.Id), Is.True));
+    }
+
+    /// <summary>
+    /// The dead deliberately keep their infections so bodies stay worth swabbing, which
+    /// means nothing else stops a corpse being picked as a shedding source. Containment
+    /// does not cover for it either: a body bag's fixture sits on ItemMask, so it never
+    /// blocks the InRangeUnobstructed raycast that the proximity sweep relies on.
+    /// </summary>
+    [Test]
+    public async Task DeadHostsDoNotShedVirus()
+    {
+        var server = Pair.Server;
+        var entities = server.EntMan;
+        var maps = server.System<SharedMapSystem>();
+        var mobState = server.System<MobStateSystem>();
+        var pathogens = server.System<PathogenSystem>();
+        var registry = server.System<PathogenRegistrySystem>();
+        var spread = server.System<PathogenSpreadSystem>();
+
+        EntityUid livingTarget = default;
+        EntityUid deadTarget = default;
+        Pathogen livingStrain = default!;
+        Pathogen deadStrain = default!;
+
+        await server.WaitPost(() =>
+        {
+            maps.CreateMap(out var mapId);
+            var livingSource = entities.SpawnEntity(
+                "MobHuman",
+                new MapCoordinates(Vector2.Zero, mapId));
+            livingTarget = entities.SpawnEntity(
+                "MobHuman",
+                new MapCoordinates(Vector2.UnitX, mapId));
+            var deadSource = entities.SpawnEntity(
+                "MobHuman",
+                new MapCoordinates(new Vector2(30, 0), mapId));
+            deadTarget = entities.SpawnEntity(
+                "MobHuman",
+                new MapCoordinates(new Vector2(31, 0), mapId));
+
+            // Two infected hosts already sit against the 15% ambient tier budget, and the
+            // corpse still counts toward it while no longer counting as living crew.
+            // Twenty spare crew keeps the cap clear so the control below can transmit.
+            for (var i = 0; i < 20; i++)
+            {
+                entities.SpawnEntity(
+                    "MobHuman",
+                    new MapCoordinates(new Vector2(100 + i, 0), mapId));
+            }
+
+            livingStrain = registry.Generate("SpaceCold")!;
+            deadStrain = registry.Generate("SpaceCold")!;
+            foreach (var strain in new[] { livingStrain, deadStrain })
+            {
+                strain.Transmissibility = 1f;
+                strain.MaxPrevalence = 1f;
+                strain.SpreadRange = 3f;
+            }
+
+            Assert.That(pathogens.TryInfect(livingSource, livingStrain.Id), Is.True);
+            Assert.That(pathogens.TryInfect(deadSource, deadStrain.Id), Is.True);
+
+            mobState.ChangeMobState(deadSource, MobState.Dead);
+            Assert.That(
+                entities.GetComponent<PathogenInfectionComponent>(deadSource).Infections,
+                Is.Not.Empty,
+                "A corpse should keep its infections so the body is still worth swabbing.");
+
+            spread.SweepNow();
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            // Control: the identical living setup does transmit, so the assertion below
+            // fails for the right reason rather than because the harness went inert.
+            Assert.That(
+                pathogens.IsInfected(livingTarget, livingStrain.Id),
+                Is.True,
+                "A living carrier should still spread by proximity.");
+            Assert.That(
+                pathogens.IsInfected(deadTarget, deadStrain.Id),
+                Is.False,
+                "A corpse is not breathing or coughing and must not shed.");
+        });
     }
 
     [Test]

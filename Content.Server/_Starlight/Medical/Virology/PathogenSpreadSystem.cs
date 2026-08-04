@@ -1,5 +1,7 @@
 using Content.Shared._Starlight.Medical.Virology;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Medical.Virology;
@@ -15,6 +17,7 @@ public sealed partial class PathogenSpreadSystem : EntitySystem
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private PathogenRegistrySystem _registry = default!;
     [Dependency] private PathogenTransmissionSystem _transmission = default!;
+    [Dependency] private PathogenIsolationSystem _isolation = default!;
 
     /// <summary>
     /// How often transmission is tested. Deliberately coarse: this is an
@@ -50,9 +53,16 @@ public sealed partial class PathogenSpreadSystem : EntitySystem
     private void Sweep()
     {
         _shedding.Clear();
+        var mobStates = GetEntityQuery<MobStateComponent>();
         var query = EntityQueryEnumerator<PathogenInfectionComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
+            // The dead keep their infections so bodies stay worth swabbing, but a corpse
+            // is not breathing or coughing, so it stops shedding. Viral carrier
+            // contamination has never counted the dead either.
+            if (mobStates.TryGetComponent(uid, out var mobState) && mobState.CurrentState == MobState.Dead)
+                continue;
+
             foreach (var infection in comp.Infections)
             {
                 if (!_registry.TryGetStrain(infection.Pathogen, out var strain))
@@ -75,6 +85,7 @@ public sealed partial class PathogenSpreadSystem : EntitySystem
         foreach (var (source, strain) in _shedding)
         {
             if (_transmission.AtCap(strain) ||
+                _isolation.IsIsolated(source) ||
                 !xforms.TryGetComponent(source, out var xform))
                 continue;
 

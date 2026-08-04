@@ -19,6 +19,7 @@ public sealed partial class PathogenTransmissionSystem : EntitySystem
     [Dependency] private PathogenRegistrySystem _registry = default!;
     [Dependency] private PathogenResistanceSystem _resistance = default!;
     [Dependency] private PathogenSystem _pathogen = default!;
+    [Dependency] private PathogenIsolationSystem _isolation = default!;
 
     private readonly Dictionary<int, int> _hostCounts = new();
     private readonly Dictionary<PathogenTier, int> _tierCounts = new();
@@ -59,6 +60,7 @@ public sealed partial class PathogenTransmissionSystem : EntitySystem
     public bool CanExpose(EntityUid target, Pathogen strain)
     {
         return !AtCap(strain) &&
+               !_isolation.IsIsolated(target) &&
                _pathogen.CanHost(target) &&
                !_pathogen.IsInfected(target, strain.Id) &&
                !_pathogen.IsImmune(target, strain.Id);

@@ -44,6 +44,7 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private PathogenContaminationSystem _contamination = default!;
     [Dependency] private PathogenRegistrySystem _registry = default!;
+    [Dependency] private PathogenIsolationSystem _isolation = default!;
     [Dependency] private PathogenTransmissionSystem _transmission = default!;
     [Dependency] private RottingSystem _rotting = default!;
     [Dependency] private SharedSolutionContainerSystem _solutions = default!;
@@ -330,9 +331,10 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
 
         var carriers = 0;
         var query = EntityQueryEnumerator<PathogenInfectionComponent, MobStateComponent, TransformComponent>();
-        while (query.MoveNext(out _, out var infections, out var mobState, out var transform))
+        while (query.MoveNext(out var uid, out var infections, out var mobState, out var transform))
         {
             if (mobState.CurrentState == MobState.Dead ||
+                _isolation.IsIsolated(uid) ||
                 transform.MapID == MapId.Nullspace ||
                 transform.GridUid is null)
             {
@@ -393,9 +395,11 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
             return;
 
         var query = EntityQueryEnumerator<PathogenInfectionComponent, TransformComponent>();
-        while (query.MoveNext(out _, out var infections, out var transform))
+        while (query.MoveNext(out var uid, out var infections, out var transform))
         {
-            if (transform.MapID == MapId.Nullspace || transform.GridUid is null)
+            if (_isolation.IsIsolated(uid) ||
+                transform.MapID == MapId.Nullspace ||
+                transform.GridUid is null)
                 continue;
 
             foreach (var infection in infections.Infections)

@@ -29,6 +29,7 @@ public sealed partial class PathogenTreatmentSystem : EntitySystem
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private PathogenRegistrySystem _registry = default!;
     [Dependency] private PathogenSystem _pathogen = default!;
+    [Dependency] private PathogenIsolationSystem _isolation = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private PowerReceiverSystem _power = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -85,7 +86,8 @@ public sealed partial class PathogenTreatmentSystem : EntitySystem
 
     private void Pulse(EntityUid uid, PathogenVaccineCarrierComponent carrier)
     {
-        if (!_registry.TryGetStrain(carrier.Strain, out _))
+        if (_isolation.IsIsolated(uid) ||
+            !_registry.TryGetStrain(carrier.Strain, out _))
             return;
 
         _nearby.Clear();

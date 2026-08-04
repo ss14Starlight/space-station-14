@@ -1,0 +1,87 @@
+- type: entity
+  id: BiosealRollerBed
+  parent: RollerBed
+  name: bioseal rollerbed
+  description: A mobile rollerbed fitted with a transparent, airtight isolation cover. Zip it around a patient to contain disease during transport.
+  components:
+  - type: Item
+    size: Normal
+    heldPrefix: bioseal_rollerbed
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/bioseal_rollerbed.rsi
+    noRot: true
+    layers:
+    - state: bioseal_rollerbed
+      map: ["unfoldedLayer", "enum.StorageVisualLayers.Base"]
+    - state: bioseal_rollerbed_folded
+      map: ["foldedLayer"]
+      visible: false
+    - state: bioseal_open
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: bioseal_open
+      map: ["buckledLayer"]
+      visible: false
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/bioseal_rollerbed.rsi
+    state: bioseal_rollerbed
+  - type: Strap
+    size: 1
+    buckleOnInteractHand: true
+  - type: EntityStorage
+    capacity: 1
+    open: true
+    openOnMove: false
+    showContents: true
+    occludesLight: false
+    airtight: true
+    isCollidableWhenOpen: false
+    enteringRange: 0.45
+    whitelist:
+      components:
+      - HumanoidAppearance
+    closeSound:
+      path: /Audio/Misc/zip.ogg
+    openSound:
+      path: /Audio/Misc/zip.ogg
+  - type: EntityStorageLayingDownOverride
+  - type: EntityStorageVisuals
+    stateBaseOpen: bioseal_rollerbed
+    stateBaseClosed: bioseal_rollerbed
+    stateDoorOpen: bioseal_open
+    stateDoorClosed: bioseal_sealed
+  - type: BiosealRollerbed
+    internalUnzipTime: 2
+  # EntityStorage copies showContents/occludesLight onto this container at init, so the
+  # prototype has to declare the same values or the entity diverges from it on spawn.
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+        ents: []
+        showEnts: true
+        occludes: false
+  - type: GenericVisualizer
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { visible: true }
+          False: { visible: false }
+        unfoldedLayer:
+          True: { visible: false }
+          False: { visible: true }
+        enum.StorageVisualLayers.Door:
+          True: { visible: false }
+          False: { visible: true }
+
+- type: entity
+  id: BiosealRollerBedSpawnFolded
+  parent: BiosealRollerBed
+  suffix: folded
+  components:
+  - type: Foldable
+    folded: true
+  # Matches RollerBedSpawnFolded upstream - a folded bed cannot be buckled onto, and the
+  # save test fails if the prototype does not declare the state it spawns in.
+  - type: Strap
+    enabled: false
+  - type: EntityStorage
+    open: false

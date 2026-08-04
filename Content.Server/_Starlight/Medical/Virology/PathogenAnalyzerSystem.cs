@@ -18,6 +18,7 @@ public sealed partial class PathogenAnalyzerSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private PathogenContaminationSourceSystem _sources = default!;
+    [Dependency] private PathogenIsolationSystem _isolation = default!;
     [Dependency] private PathogenRegistrySystem _registry = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
 
@@ -63,6 +64,9 @@ public sealed partial class PathogenAnalyzerSystem : EntitySystem
 
     public bool CanScan(EntityUid target)
     {
+        if (_isolation.IsIsolated(target))
+            return false;
+
         if (HasComp<HumanoidAppearanceComponent>(target) && HasComp<MobStateComponent>(target))
             return true;
 

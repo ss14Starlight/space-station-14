@@ -19,6 +19,7 @@ public sealed partial class PathogenHostSelectionSystem : EntitySystem
 {
     [Dependency] private IAfkManager _afk = default!;
     [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private PathogenIsolationSystem _isolation = default!;
 
     public List<EntityUid> GetEligibleAutomaticHosts()
     {
@@ -63,6 +64,7 @@ public sealed partial class PathogenHostSelectionSystem : EntitySystem
                !TerminatingOrDeleted(uid) &&
                HasComp<HumanoidAppearanceComponent>(uid) &&
                !HasComp<CryostorageContainedComponent>(uid) &&
+               !_isolation.IsIsolated(uid) &&
                TryComp<MindContainerComponent>(uid, out var mind) &&
                mind.HasMind &&
                CanHost(uid);

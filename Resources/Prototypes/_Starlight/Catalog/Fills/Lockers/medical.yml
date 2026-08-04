@@ -208,6 +208,7 @@
     - id: HandheldHealthAnalyzer
     - id: HandheldVirologyMonitor
     - id: PathogenDecontaminator
+    - id: BiosealRollerBedSpawnFolded
     - id: PathogenAnalyzer
     - id: PlushieLizardJobMedicaldoctor
       prob: 0.02
