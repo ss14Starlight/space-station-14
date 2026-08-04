@@ -111,6 +111,7 @@
   - Psychologist
   - Paramedic
   - Surgeon # Starlight-edit
+  - Virologist # Starlight-edit
 
 - type: department
   id: Security

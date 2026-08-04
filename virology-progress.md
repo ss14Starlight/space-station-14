@@ -552,19 +552,54 @@ History reconstruction verification:
 - Compiler workers started by verification were shut down. The remaining running server is
   from the separate `ss14-paperwork` checkout and was left untouched.
 
+## Virologist Role Foundation
+
+- Added the selectable Virologist medical job with Chief Medical Officer supervision,
+  antagonist eligibility, and a salary of 90 credits.
+- The job requires 10 hours of Medical department playtime and 1 hour as Chemist.
+- Virologists currently receive Medical and Maintenance access. Low-population extended
+  access adds Chemistry, Paramedic, and Surgery. A dedicated Virology access level remains
+  a separate future phase.
+- Added the Virologist playtime tracker, Medical department membership, starting gear,
+  chameleon outfit, ID card, medical PDA, job icon wiring, and mapper-placeable job spawn
+  marker by reusing the Virologist art that was already present in the repository.
+- Added a complete role loadout using the existing virology jumpsuit and jumpskirt,
+  backpack/satchel/duffel variants, long virologist coat, medical PPE choices, and the new
+  Virologist PDA. Specialized pathogen equipment remains in the laboratory and locker.
+- Station map job counts and physical spawn-marker placement were deliberately left out of
+  this foundation commit. The agreed station configuration is two Virologist slots; it will
+  be added in a separate map-integration phase.
+
+Role-foundation verification:
+
+- `Content.YAMLLinter` completed with 0 errors.
+- The complete solution builds with 0 errors; only existing package and obsolete-API
+  warnings remain.
+- Focused role, chameleon, starting-gear, and loadout integration tests pass 8/8.
+- Prototype save/load/save tests pass 2/2.
+- `git diff --check` passes. Changed-path and content scans contain no casino, Gamorrah,
+  treasurer, brigmed, debug-command, or test-command content.
+
 ## Next Phase
 
-1. Manually verify that loose organic trash contributes 0.1 each, contained trash
+1. Add two Virologist slots and one `SpawnPointVirologist` placement to each supported
+   station with a usable virology laboratory. Keep serialized station map changes in their
+   own commit.
+2. Add the dedicated Virology access level, assign it to Virologists and the CMO, and move
+   standard locked virology airlocks and the Virologist locker from Medical access to it.
+3. Manually verify the Virologist preference entry, requirements, PDA/ID appearance,
+   clothing choices, and complete round-start equipment after station integration.
+4. Manually verify that loose organic trash contributes 0.1 each, contained trash
    disappears from the next snapshot, and disposal-processed organic trash remains
    excluded after reaching the disposal room. Also verify food/mold spills, dead plants,
    and viral carriers.
-2. Manually verify the analyser interaction/report layout and the monitor's contamination
+5. Manually verify the analyser interaction/report layout and the monitor's contamination
    bar, map framing, room list, live refresh, and suit-sensor filtering in a live client.
-3. Manually verify how many crew the permanent live vaccine reaches during normal
+6. Manually verify how many crew the permanent live vaccine reaches during normal
    movement, then tune its 5% roll if the uncapped result is too weak or too strong.
-4. Design beneficial strain content and balance separately; its injector route is ready,
+7. Design beneficial strain content and balance separately; its injector route is ready,
    but beneficial effects remain outside this phase.
-5. Manually verify the three ambient stage progressions, especially whether the 45-second
+8. Manually verify the three ambient stage progressions, especially whether the 45-second
    weak signatures are noticeable without being annoying, then design the separate
    emergent stage-two pools and stage-three signatures.
 

@@ -344,6 +344,24 @@
 
 - type: entity
   parent: IDCardStandard
+  id: VirologistIDCard
+  name: virologist ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: *color-medical-top
+    - state: stripe_bottom
+      color: *color-medical-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Virologist
+  - type: PresetIdCard
+    job: Virologist
+
+- type: entity
+  parent: IDCardStandard
   id: PsychologistIDCard
   name: psychologist ID card
   components:

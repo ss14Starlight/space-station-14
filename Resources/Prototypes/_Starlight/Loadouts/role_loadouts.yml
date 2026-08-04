@@ -209,6 +209,26 @@
 
 # Medical
 - type: roleLoadout
+  id: JobVirologist
+  groups:
+  - GroupTankHarness
+  - MedicalDoctorHead
+  - MedicalMask
+  - VirologistJumpsuit
+  - MedicalGloves
+  - VirologistBackpack
+  - VirologistOuterClothing
+  - MedicalShoes
+  - VirologistPDA
+  - MedicalEyewear
+  - SurvivalMedical
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathToolMedical
+
+- type: roleLoadout
   id: JobSurgeon
   groups:
   - GroupTankHarness # for Vox

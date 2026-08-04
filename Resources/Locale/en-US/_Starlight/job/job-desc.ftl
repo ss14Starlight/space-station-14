@@ -15,6 +15,7 @@ job-description-performer = Learn the basics of clowning, miming, and musicking.
 job-description-roboticist = A scientist whose purpose is to repair and create mechanoids, cyborgs, and other mechanical creations.
 job-description-salvagelead = Lead your salvage team and keep them safe. Remember, you are the Quartermaster's eyes and ears off station.
 job-description-surgeon = Heal people, cripple enemies, and replace limbs and organs!
+job-description-virologist = Track station outbreaks, identify pathogens, produce targeted treatments, and coordinate contamination control.
 job-description-zookeeper = Put on a joyful display of cute animals and space carps for all the crew to see.
 job-description-nct = Your job is to try to assist as many crew members as possible regardless of department. You are NOT permitted to give command staff advice on any command SOP questions or aid in legal advice.
 job-description-stirstir = A disreputable monkey who should not be trusted. A real cell stuffer.

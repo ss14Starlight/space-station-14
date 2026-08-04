@@ -823,6 +823,38 @@
   - LoadoutSiliconPositronicBrain
   - LoadoutSiliconSpeciesBrain
 
+# Virologist
+- type: loadoutGroup
+  id: VirologistJumpsuit
+  name: loadout-group-virologist-jumpsuit
+  loadouts:
+  - VirologistJumpsuit
+  - VirologistJumpskirt
+
+- type: loadoutGroup
+  id: VirologistBackpack
+  name: loadout-group-virologist-backpack
+  loadouts:
+  - VirologistBackpack
+  - VirologistSatchel
+  - VirologistDuffel
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: VirologistOuterClothing
+  name: loadout-group-virologist-outerclothing
+  minLimit: 0
+  loadouts:
+  - RegularLabCoat
+  - VirologistLabCoatLong
+  - MedicalDoctorWintercoat
+
+- type: loadoutGroup
+  id: VirologistPDA
+  name: loadout-group-virologist-id
+  loadouts:
+  - VirologistPDA
+
 # Chemist
 - type: loadoutGroup
   id: ChemistHead

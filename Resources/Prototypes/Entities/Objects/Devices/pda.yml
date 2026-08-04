@@ -862,6 +862,25 @@
     state: pda-chemistry
 
 - type: entity
+  parent: BaseMedicalPDA
+  id: VirologyPDA
+  name: virologist PDA
+  description: Shiny, sterile, and covered in warning labels.
+  components:
+  - type: Pda
+    id: VirologistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-virology
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#5b7f42"
+  - type: Icon
+    state: pda-virology
+
+- type: entity
   parent: BasePDA
   id: RnDPDA
   name: research director PDA

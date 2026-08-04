@@ -15,4 +15,5 @@ JobPerformer = Performer
 JobRoboticist = Roboticist
 JobSalvageLead = Salvage Lead
 JobSurgeon = Surgeon
+JobVirologist = Virologist
 JobZookeeper = Zookeeper

@@ -97,6 +97,10 @@ loadout-group-salvage-lead-mantle = Salvage Lead mantle
 loadout-group-borg-brain-type = Cyborg Brain Type
 
 # Medical
+loadout-group-virologist-jumpsuit = Virologist jumpsuit
+loadout-group-virologist-backpack = Virologist backpack
+loadout-group-virologist-outerclothing = Virologist outer clothing
+loadout-group-virologist-id = Virologist ID
 loadout-group-chemist-head = Chemist head
 loadout-group-chemist-eyewear = Chemist eyewear
 loadout-group-chemist-id = Chemist ID

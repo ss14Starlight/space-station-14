@@ -446,6 +446,19 @@
       - state: chemist
       - state: jobicon # Starlight
 
+- type: entity
+  id: SpawnPointVirologist
+  parent: SpawnPointJobBase
+  name: virologist
+  components:
+  - type: SpawnPoint
+    job_id: Virologist
+  - type: Sprite
+    layers:
+      - state: green
+      - state: virologist
+      - state: jobicon # Starlight
+
 # Science
 
 - type: entity
