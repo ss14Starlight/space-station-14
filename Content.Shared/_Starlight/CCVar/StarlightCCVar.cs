@@ -11,7 +11,7 @@ public sealed partial class StarlightCCVars
     /// Basic CCVars
     /// </summary>
     public static readonly CVarDef<string> LobbyChangelogsList =
-        CVarDef.Create("lobby_changelog.list", "ChangelogStarlight.yml,Changelog.yml", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("lobby_changelog.list", "ChangelogInferus.yml,Changelog.yml", CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> ServerName =
         CVarDef.Create("lobby.server_name", "☆ Starlight ☆", CVar.SERVER | CVar.REPLICATED);
