@@ -65,6 +65,7 @@ public sealed partial class MechGrabberComponent : Component
             "Anomaly",
             "Mech",
         ],
+        Tags = ["NoMechGrab"], // Starlight
     };
 
     public EntityUid? AudioStream;

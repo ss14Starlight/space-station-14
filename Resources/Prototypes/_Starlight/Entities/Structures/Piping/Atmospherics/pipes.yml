@@ -8,6 +8,10 @@
   placement:
     mode: AlignAtmosPipeLayers
   components:
+  - type: AtmosUnsafeUnanchor
+    enabled: false # Retains gas when unanchored.
+  - type: Item
+    allowDirectHandPickup: false # No pickup allowed because it can retain gas.
   - type: Sprite
     sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
     drawdepth: ThinPipe
@@ -17,6 +21,19 @@
       - sprite: _Starlight/Structures/Piping/Atmospherics/subfloortank.rsi
         state: subFloorTank
         map: [ "enum.SubfloorLayers.FirstLayer" ]
+  - type: Physics
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1: # Fixture, non-colliding, just for setting mass.
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.27 # Matching tall gas tank for comparison convenience.
+          position: 0,0
+        density: 700
+        hard: false
+        mask: [ ]
+        layer: [ ]
   - type: AtmosPipeLayers
     spriteLayersRsiPaths:
       enum.PipeVisualLayers.Pipe:
@@ -40,6 +57,7 @@
     tags:
     - Pipe
     - Unstackable
+    - NoMechGrab
   - type: NodeContainer
     nodes:
       pipe:
@@ -118,9 +136,11 @@
   placement:
     mode: AlignAtmosPipeLayers
   components:
+    - type: AtmosUnsafeUnanchor
+      enabled: false # Retains gas when unanchored.
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
-      drawdepth: Mobs
+      drawdepth: Overdoors
       offset: 0,0.55
       noRot: true
       layers:
@@ -147,7 +167,7 @@
           shape:
             !type:PhysShapeCircle
             radius: 0.27
-          density: 600
+          density: 1700 # Quite heavy; it's not meant to be a superior canister. Heavy enough that you won't want to bring it outside your department.
           mask:
             - MachineMask
           layer:
@@ -188,6 +208,7 @@
       tags:
         - Pipe
         - Unstackable
+        - NoMechGrab
     - type: NodeContainer
       nodes:
         pipe:
