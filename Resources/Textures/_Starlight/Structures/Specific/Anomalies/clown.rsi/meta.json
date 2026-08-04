@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC0-1.0",
-  "copyright": "Created by Conflee, using sprites from SS13",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -16,7 +16,8 @@
           1,
           1
         ]
-      ]
+      ],
+      "copyright": "Created by Conflee, using sprites from SS13"
     },
     {
       "name": "anomclown-pulse",
@@ -27,7 +28,8 @@
           0.15,
           0.15
         ]
-      ]
+      ],
+      "copyright": "Created by Conflee, using sprites from SS13"
     }
   ]
 }
