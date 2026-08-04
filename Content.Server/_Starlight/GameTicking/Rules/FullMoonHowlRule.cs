@@ -46,7 +46,7 @@ public sealed partial class FullMoonHowlRule : StationEventSystem<FullMoonHowlRu
         if (mainGrid is null)
             return;
 
-        // Recipients are scoped by map, not grid membership, so off-grid players on the station map still qualify.
+        // Recipients are selected by map, not grid, so off-grid players on the station map may still hear the announcement.
         var mainStationMap = Transform(mainGrid.Value).MapID;
 
         var recipients = Filter.Empty().AddWhere(session =>
@@ -91,7 +91,7 @@ public sealed partial class FullMoonHowlRule : StationEventSystem<FullMoonHowlRu
             : Loc.GetString("station-event-fullmoonhowl-default-location");
 
         var message = Loc.GetString("station-event-fullmoonhowl-announcement", ("location", (object) location));
-        // Send as styled chat text to avoid default announcement header and keep the dreamlike tone.
+        // Send as styled chat text to avoid default announcement header and keep the tone.
         var wrappedMessage = $"[font color=#ADD8E6][italic]{FormattedMessage.EscapeText(message)}[/italic][/font]";
         _chatManager.ChatMessageToManyFiltered(recipients, ChatChannel.Radio, message, wrappedMessage, default, false, true, Color.FromHex("#ADD8E6"));
         Audio.PlayGlobal(component.HowlSound, recipients, true);
