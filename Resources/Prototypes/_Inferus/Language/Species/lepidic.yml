@@ -4,7 +4,7 @@
   chatPrefix: lep
   speech:
     color: "#c7df2edd"
-    fontId: Curly
+    fontId: Eater
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 2
