@@ -37,6 +37,14 @@ public sealed class IndividualGeneSystem : EntitySystem
             while (geneUsers.MoveNext(out var uid, out var genesComponent))
                 foreach (var gene in genesComponent.Genes.Where(allGenes.Contains))
                     allGenes.Remove(gene);
+            var geneConsoles = _entityManager.EntityQueryEnumerator<GeneticsConsoleComponent>();
+            while (geneConsoles.MoveNext(out var uid, out var geneticsConsoleComponent))
+                foreach (var gene in geneticsConsoleComponent.Genes.Where(allGenes.Contains))
+                    allGenes.Remove(gene);
+            var geneSamplers = _entityManager.EntityQueryEnumerator<GeneSamplerComponent>();
+            while (geneSamplers.MoveNext(out var uid, out var geneSamplerComponent))
+                foreach (var gene in geneSamplerComponent.Genes.Where(allGenes.Contains))
+                    allGenes.Remove(gene);
 
             foreach (var gene in allGenes)
             {

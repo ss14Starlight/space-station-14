@@ -29,6 +29,9 @@ public sealed partial class IndividualGeneComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public string? Name = string.Empty;
 
+    /// <summary>
+    /// If non-null, the gene prototype this individual gene refers to.
+    /// </summary>
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public ProtoId<SampleGenePrototype>? Prototype = null;
 }

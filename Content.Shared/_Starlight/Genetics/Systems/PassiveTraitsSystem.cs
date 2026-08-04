@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Genetics.Components;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -10,6 +11,13 @@ public sealed class PassiveTraitsSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedEntityEffectsSystem _entityEffectsSystem = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<PassiveTraitsComponent, EntityPausedEvent>(OnPaused);
+        SubscribeLocalEvent<PassiveTraitsComponent, EntityUnpausedEvent>(OnUnpaused);
+    }
 
     public override void Update(float frameTime)
     {
