@@ -13,7 +13,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: *waterReeds 
+    sprite: *waterReeds
     state: big2
 
 - type: decal
