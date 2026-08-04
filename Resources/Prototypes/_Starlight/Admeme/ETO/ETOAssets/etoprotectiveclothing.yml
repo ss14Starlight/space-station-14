@@ -1,7 +1,7 @@
 # ETO Gear
 
 - type: entity
-  parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseETOContraband]
+  parent: [BaseETOContraband, ClothingOuterArmorBase, ClothingOuterStorageBase]
   id: ClothingOuterVestWebETOBase
   name: ETO web vest
   description: A protective vest built for ETO Members, allows you to stay light on your feet.
@@ -24,7 +24,7 @@
     damageCoefficient: 0.9
 
 - type: entity
-  parent: [ClothingOuterVestWebETOBase, BaseETOContraband]
+  parent: ClothingOuterVestWebETOBase
   id: ClothingOuterVestWebETOCorpsman
   name: ETO medical vest
   description: A protective vest built for ETO Corpsmen, allows you to stay light on your feet and get to those in need.
@@ -47,7 +47,7 @@
       damageCoefficient: 0.9
 
 - type: entity
-  parent: [ClothingOuterVestWebETOBase, BaseETOContraband]
+  parent: ClothingOuterVestWebETOBase
   id: ClothingOuterVestWebETOLead
   name: ETO lead web vest
   description: A highly protective Web Vest designed for the Team Leader, Death to our enemy, freedom to their slaves.
@@ -70,7 +70,7 @@
       damageCoefficient: 0.9
 
 - type: entity
-  parent: [ClothingOuterVestWebETOBase, BaseETOContraband]
+  parent: ClothingOuterVestWebETOBase
   id: ClothingOuterVestWebETOCombatTech
   name: ETO combat technician vest
   description: A sturdy vest ripped off of an advanced Engineers hardsuit, protects the body but weighs down the user.
