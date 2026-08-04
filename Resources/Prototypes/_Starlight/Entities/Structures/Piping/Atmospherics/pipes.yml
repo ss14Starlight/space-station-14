@@ -143,16 +143,22 @@
       enable: true
     - type: Fixtures
       fixtures:
-        fix1:
+        fix1: # Collidable circle following the sprite
           shape:
             !type:PhysShapeCircle
             radius: 0.27
-            position: 0,0.25
-          density: 500
+          density: 600
           mask:
             - MachineMask
           layer:
             - MachineLayer
+        fix2: # Non-collidable rectangle that makes the entire bottom half clickable.
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5" # Only the bottom tile
+          hard: true
+          mask: [ ]
+          layer: [ Opaque ]
     - type: AtmosPipeLayers
       spriteLayersRsiPaths:
         enum.PipeVisualLayers.Pipe:
