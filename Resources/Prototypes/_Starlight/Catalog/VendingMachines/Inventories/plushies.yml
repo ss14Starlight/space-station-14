@@ -366,10 +366,87 @@
 
 # Toys - Keep alphabetical, please!
 - type: listing
-  id: VendorCatEars
+  id: VendorClothingHeadHatWhiteCatEars
   productEntity: ClothingHeadHatWhiteCatEars
   cost:
     NTCredit: 1666
+  categories:
+  - SLToys
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VendorClothingShoesSkates
+  productEntity: ClothingShoesSkates
+  cost:
+    NTCredit: 40
+  categories:
+  - SLToys
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorClothingShoesSkatesCool
+  productEntity: ClothingShoesSkatesCool
+  cost:
+    NTCredit: 800
+  categories:
+  - SLToys
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VendorToyRubberDuck
+  productEntity: ToyRubberDuck
+  cost:
+    NTCredit: 20
+  categories:
+  - SLToys
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorToyIan
+  productEntity: ToyIan
+  cost:
+    NTCredit: 20
+  categories:
+  - SLToys
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorMagic9Ball
+  productEntity: Magic9Ball
+  cost:
+    NTCredit: 20
+  categories:
+  - SLToys
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorToyMouse
+  productEntity: ToyMouse
+  cost:
+    NTCredit: 20
+  categories:
+  - SLToys
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: VendorToyHammer
+  productEntity: ToyHammer
+  cost:
+    NTCredit: 20
   categories:
   - SLToys
   conditions:
@@ -386,3 +463,4 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
