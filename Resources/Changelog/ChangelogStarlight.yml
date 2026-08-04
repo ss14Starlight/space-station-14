@@ -1,137 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Fixed gravity generator being accessible through the walls in maints.
-    type: Fix
-  id: 406885
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Fixed xenobio beacon being the incorrect station beacon.
-    type: Fix
-  id: 406886
-  time: '2026-07-25T07:33:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5289
-- author: CrazyPhantom
-  changes:
-  - message: Nanochat spam is no longer Admin only and is based on population.
-    type: Add
-  id: 406887
-  time: '2026-07-25T07:33:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5292
-- author: SevenShades
-  changes:
-  - message: Sprites for the Plumbing Smart Dispenser.
-    type: Add
-  id: 406888
-  time: '2026-07-25T07:33:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5301
-- author: STARLIGHT TEAM
-  changes:
-  - message: Frezon price per mol 2.5 -> 2.
-    type: Tweak
-  id: 406889
-  time: '2026-07-25T07:58:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5302
-- author: redmushie
-  changes:
-  - message: Fixed RPD submenu icon being an error.
-    type: Fix
-  id: 406890
-  time: '2026-07-25T12:33:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5315
-- author: Rinary
-  changes:
-  - message: Fixed null link unbans.
-    type: Fix
-  id: 406891
-  time: '2026-07-25T12:57:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5319
-- author: CrazyPhantom, redmushie
-  changes:
-  - message: Fixed the molar gas mixer not working.
-    type: Fix
-  id: 406892
-  time: '2026-07-25T13:19:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5317
-- author: Swonki
-  changes:
-  - message: Added Eep Secondary Attack.
-    type: Add
-  id: 406893
-  time: '2026-07-25T17:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5171
-- author: Swonki
-  changes:
-  - message: Removed passive Eep lightning, Eep can now eat from SMES, Substations, and APC's in peace.
-    type: Remove
-  id: 406894
-  time: '2026-07-25T17:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5171
-- author: Swonki
-  changes:
-  - message: Removed passive Eep energy regeneration, Eeps must now use SMES/APC/Substations.
-    type: Remove
-  id: 406895
-  time: '2026-07-25T17:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5171
-- author: Swonki
-  changes:
-  - message: Changed Eep Space movement from 1.5 to 0.5.
-    type: Tweak
-  id: 406896
-  time: '2026-07-25T17:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5171
-- author: Swonki
-  changes:
-  - message: Changed Eep tesla damage, now it does 15 burn.
-    type: Tweak
-  id: 406897
-  time: '2026-07-25T17:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5171
-- author: Swonki
-  changes:
-  - message: Changed Eep power drain action, now it's 2x as fast.
-    type: Tweak
-  id: 406898
-  time: '2026-07-25T17:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5171
-- author: Swonki
-  changes:
-  - message: Changed Eep max charge to be tripled.
-    type: Tweak
-  id: 406899
-  time: '2026-07-25T17:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5171
-- author: STARLIGHT TEAM
-  changes:
-  - message: Fixed divide by zero battery error causing NaN charge.
-    type: Fix
-  id: 406900
-  time: '2026-07-25T17:53:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5272
-- author: Swonki
-  changes:
-  - message: Mechs now take structural damage, with a slight resistance.
-    type: Add
-  id: 406901
-  time: '2026-07-25T17:53:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5261
-- author: Neomoth, AegisShieldDev
-  changes:
-  - message: Tabs to the ghost theme menu.
-    type: Add
-  id: 406902
-  time: '2026-07-25T18:21:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5225
-- author: MetalSage, TheShuEd
-  changes:
-  - message: Added a new graphics option, additive lighting.
-    type: Add
-  id: 406903
-  time: '2026-07-25T18:21:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5314
 - author: Glaud
   changes:
   - message: The Purrfus paperwork cyborg module now has a slot that can hold PDAs, IDs and stamps.
@@ -2799,4 +2666,137 @@ Entries:
   id: 407284
   time: '2026-08-04T09:24:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5501
+- author: SirLutz
+  changes:
+  - message: Colossus ingress now tears away existing doorways and creates a malign passageway.
+    type: Tweak
+  id: 407285
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Colossus Sunder ability can now pass through windows, girders, and open doors.
+    type: Tweak
+  id: 407286
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Colossus healing now has two charges, which recharge every 8 minutes.
+    type: Tweak
+  id: 407287
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Colossus can create another effigy 4 minutes after the previous one vanishes (crit, decay, or deletion).
+    type: Tweak
+  id: 407288
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Colossus is now able to cross spiderwebs without slowdown.
+    type: Tweak
+  id: 407289
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Malign passageways automatically close after opening without requiring power.
+    type: Add
+  id: 407290
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Effigies now have guaranteed rift spawns and minion spawns, ensuring a mix of minions and rifts.
+    type: Tweak
+  id: 407291
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Malign minions are now ghost roles, allowing them to support the Colossus and Cult.
+    type: Add
+  id: 407292
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Malign minions are now immune to spiderwebs and insulated against shocks. They rock!
+    type: Tweak
+  id: 407293
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Minions can now see cultist icons.
+    type: Add
+  id: 407294
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Malign minion ghost roles now have text.
+    type: Add
+  id: 407295
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Colossus and Malign Minion are now playtime tracked.
+    type: Add
+  id: 407296
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Cosmic Cult minions can now communicate through the Astral Murmur.
+    type: Add
+  id: 407297
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Malign minions now deal structural damage, allowing them to damage mechs.
+    type: Add
+  id: 407298
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: 'Malign minions now have different damage profiles: Custodians deal brute damage, Oracles deal cold and asphyxiation damage, and Lodestars deal cold damage.'
+    type: Tweak
+  id: 407299
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Tier 3 Cosmic Cultists now change faction from NanoTrasen to CosmicCult.
+    type: Add
+  id: 407300
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: The Cosmic Cult faction is hostile to everyone, and everyone is against them.
+    type: Add
+  id: 407301
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: Refund for canceled Null shard fragments, or when something doesnt work.
+    type: Add
+  id: 407302
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
+- author: SirLutz
+  changes:
+  - message: IPCs can now be targeted correctly, with the nullfragment ability.
+    type: Fix
+  id: 407303
+  time: '2026-08-04T09:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5344
 Order: -1
