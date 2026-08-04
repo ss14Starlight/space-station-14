@@ -320,7 +320,7 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
         }
     }
 
-    private float GetViralCarrierContamination()
+    internal float GetViralCarrierContamination()
     {
         var perCarrier = Math.Max(
             0f,
@@ -340,7 +340,6 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
             }
 
             if (infections.Infections.Any(infection =>
-                    infection.Stage >= 1 &&
                     _registry.TryGetStrain(infection.Pathogen, out var strain) &&
                     strain.PathogenType == PathogenType.Virus))
             {
@@ -380,7 +379,7 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
         }
     }
 
-    private void TryCreateSporePatches()
+    internal void TryCreateSporePatches()
     {
         var chance = Math.Clamp(
             _config.GetCVar(StarlightCCVars.VirologySporePatchChancePerSample),
@@ -401,8 +400,7 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
 
             foreach (var infection in infections.Infections)
             {
-                if (infection.Stage < 1 ||
-                    infection.SporePatchCreated ||
+                if (infection.SporePatchCreated ||
                     !_registry.TryGetStrain(infection.Pathogen, out var strain) ||
                     strain.PathogenType != PathogenType.Fungus ||
                     !_random.Prob(chance))

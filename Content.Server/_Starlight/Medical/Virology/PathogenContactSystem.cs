@@ -33,8 +33,7 @@ public sealed partial class PathogenContactSystem : EntitySystem
 
         foreach (var infection in infections.Infections)
         {
-            if (infection.Stage < 1 ||
-                !_registry.TryGetStrain(infection.Pathogen, out var strain) ||
+            if (!_registry.TryGetStrain(infection.Pathogen, out var strain) ||
                 strain.PathogenType != PathogenType.Bacteria)
             {
                 continue;

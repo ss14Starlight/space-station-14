@@ -55,11 +55,6 @@ public sealed partial class PathogenSpreadSystem : EntitySystem
         {
             foreach (var infection in comp.Infections)
             {
-                // Incubating hosts are not yet shedding. This is what makes catching a
-                // strain early actually worth something.
-                if (infection.Stage < 1)
-                    continue;
-
                 if (!_registry.TryGetStrain(infection.Pathogen, out var strain))
                     continue;
 

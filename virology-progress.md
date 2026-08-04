@@ -24,8 +24,8 @@ Updated: 2026-08-04
   sources such as rot, biological puddles, and visible strain-specific spore patches.
 - All three routes use the same host eligibility, immunity, PPE/resistance, per-strain
   prevalence, and per-tier prevalence checks.
-- A contact action can transmit at most once in each direction, and a contagious source
-  host must have reached stage 1.
+- A contact action can transmit at most once in each direction. Natural transmission is
+  active from stage 0; incubation hides symptoms but does not prevent contagion.
 - Viral sweeps first snapshot all contagious source/strain pairs, then perform exposure
   attempts. Infecting a previously healthy host can therefore add an infection component
   without modifying the collection currently being enumerated and crashing the server.
@@ -103,12 +103,13 @@ Updated: 2026-08-04
 - Initial hosts must be in-game, non-AFK, living humanoids with a mind, outside cryostorage,
   and able to host disease.
 - The same centralized eligibility rule is used for every automatic pathogen placement:
-  round-start ambient seeds, 25/75 ambient seeds, the 50 emergent outbreak, pre-contagious
-  emergent replacement, and ambient extinction respawn.
+  round-start ambient seeds, 25/75 ambient seeds, the 50 emergent outbreak,
+  pre-symptomatic emergent replacement, and ambient extinction respawn.
 - Natural person-to-person transmission does not apply the AFK filter. An exposed AFK
   player can still catch a disease, preventing inactivity from acting as immunity.
-- Before any initial host reaches contagious stage 1, an initial carrier who becomes AFK,
-  disconnects, dies, ghosts, or enters cryostorage is cured and replaced once.
+- Before any initial host reaches symptomatic stage 1, an initial carrier who becomes AFK,
+  disconnects, dies, ghosts, or enters cryostorage is cured and replaced once. The strain
+  can already spread during this incubation window.
 - A real cure is never replaced. Once any carrier reaches stage 1, all automatic
   replacement stops, so eradication remains permanent.
 - Every threshold remains consumed after contamination falls, so it cannot retrigger.
@@ -169,14 +170,14 @@ Updated: 2026-08-04
 - Added a targeted biological decontaminator. Using it on a detected source immediately
   suppresses that physical source for five minutes and immediately rebuilds the live
   contamination snapshot. It does not subtract an arbitrary number of stored points.
-- Contagious fungal hosts have one low per-sample chance to create one vivid green,
-  strain-pinned spore patch. A patch lasts up to ten minutes, contributes fungal
-  contamination, can infect locally, and can be removed with either the decontaminator
-  or any normal absorbent mop.
-- Physical environmental sources never use a viral signature. Instead, each living,
-  symptomatic viral carrier on a station grid contributes 0.5 to the global viral
-  signature. This airborne reading has no fake surface source or room-map marker and
-  disappears when the carriers recover, die, or leave the station.
+- Fungal hosts, including those still incubating at stage 0, have one low per-sample chance
+  to create one vivid green, strain-pinned spore patch. A patch lasts up to ten minutes,
+  contributes fungal contamination, can infect locally, and can be removed with either
+  the decontaminator or any normal absorbent mop.
+- Physical environmental sources never use a viral signature. Instead, each living viral
+  carrier on a station grid contributes 0.5 to the global viral signature from stage 0.
+  This airborne reading has no fake surface source or room-map marker and disappears when
+  the carriers recover, die, or leave the station.
 - The monitor and decontaminator are stocked in the filled virologist locker and
   ViroDrobe, so no map edit is required.
 - Source sampling does not run in the lobby or after round end.
@@ -580,6 +581,30 @@ Role-foundation verification:
 - `git diff --check` passes. Changed-path and content scans contain no casino, Gamorrah,
   treasurer, brigmed, debug-command, or test-command content.
 
+## Incubation Transmission
+
+- Natural transmission now begins immediately at stage 0. Incubating viruses participate
+  in the five-second proximity sweep, and incubating bacteria can spread through completed
+  physical-contact actions.
+- Incubating fungal infections can make their one strain-pinned environmental spore patch.
+  Fungi still have no direct person-to-person route.
+- Living stage-zero virus carriers now contribute the same 0.5 viral contamination as
+  symptomatic carriers, keeping the station monitor consistent with airborne shedding.
+- Symptoms remain completely suppressed during stage 0 and begin at stage 1. Emergent
+  initial-host replacement still ends at stage 1, but is now described as pre-symptomatic
+  replacement because the carrier is already contagious.
+
+Incubation-transmission verification:
+
+- The complete solution builds with 0 errors; only existing dependency and obsolete-API
+  warnings remain. No YAML or prototype data changed in this phase.
+- Focused regressions cover stage-zero virus proximity, bacterial contact, fungal patch
+  creation, and viral contamination. All four pass across isolated and pooled runs; the
+  final pooled class reports 3 passed and 1 known fixture skip.
+- The complete virology filter passes 42 tests with 1 pooled fixture skip and 0 failures.
+- The exact mechanics reference now documents stage 0 as contagious but asymptomatic and
+  distinguishes pre-symptomatic emergent replacement from transmission eligibility.
+
 ## Next Phase
 
 1. Add two Virologist slots and one `SpawnPointVirologist` placement to each supported
@@ -602,6 +627,8 @@ Role-foundation verification:
 8. Manually verify the three ambient stage progressions, especially whether the 45-second
    weak signatures are noticeable without being annoying, then design the separate
    emergent stage-two pools and stage-three signatures.
+9. Manually verify that a stage-zero virus spreads without showing symptoms, stage-zero
+   bacterial contact can transmit, and an incubating fungal host can leave its one patch.
 
 ## End-of-Phase Checklist
 

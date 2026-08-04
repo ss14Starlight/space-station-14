@@ -341,7 +341,7 @@ public sealed partial class PathogenContaminationSystem : EntitySystem
 
         foreach (var carrier in state.Carriers)
         {
-            if (!HasReachedContagiousStage(carrier.Host, state.Strain))
+            if (!HasReachedSymptomaticStage(carrier.Host, state.Strain))
                 continue;
 
             _emergentSeed = null;
@@ -353,7 +353,7 @@ public sealed partial class PathogenContaminationSystem : EntitySystem
             var carrier = state.Carriers[i];
 
             // A real cure is respected. Replacement only protects the outbreak from
-            // unavailable initial players before it has had a chance to begin.
+            // unavailable initial players before symptoms begin.
             if (!_pathogen.IsInfected(carrier.Host, state.Strain))
             {
                 state.Carriers.RemoveAt(i);
@@ -379,7 +379,7 @@ public sealed partial class PathogenContaminationSystem : EntitySystem
 
             _adminLog.Add(LogType.EventStarted,
                 LogImpact.Low,
-                $"Replaced an unavailable pre-contagious emergent carrier with " +
+                $"Replaced an unavailable pre-symptomatic emergent carrier with " +
                 $"{ToPrettyString(replacement):host}");
         }
 
@@ -411,7 +411,7 @@ public sealed partial class PathogenContaminationSystem : EntitySystem
         return true;
     }
 
-    private bool HasReachedContagiousStage(EntityUid uid, int strain)
+    private bool HasReachedSymptomaticStage(EntityUid uid, int strain)
     {
         if (!TryComp<PathogenInfectionComponent>(uid, out var infections))
             return false;

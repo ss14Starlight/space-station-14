@@ -27,7 +27,7 @@ public sealed partial class PathogenInfection
     public int Pathogen;
 
     /// <summary>
-    /// Zero while incubating. Symptoms start expressing at 1.
+    /// Zero while incubating. Transmission is already active, but symptoms start at 1.
     /// </summary>
     [DataField]
     public int Stage;
