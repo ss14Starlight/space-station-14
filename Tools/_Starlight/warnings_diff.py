@@ -52,10 +52,10 @@ def __main__():
     sleep(2)  # wait for branch switch to complete
     print("Running stable build...")
     stablelines = runBuild()
-    print("Switching to starlight-dev branch...")
-    switchBranch('starlight-dev')
+    print("Switching to main branch...")
+    switchBranch('main')
     sleep(2)  # wait for branch switch to complete
-    print("Running starlight-dev build...")
+    print("Running main build...")
     devlines = runBuild()
 
     print("Comparing results...")
@@ -70,19 +70,19 @@ def __main__():
 
     #convert to string
     if only_in_dev:
-        diff_output += "Warnings only in starlight-dev build:\n"
+        diff_output += "Warnings only in main build:\n"
         for line in only_in_dev:
             diff_output += line + "\n"
 
     if diff_output:
-        print("Differences found between stable and starlight-dev builds:")
+        print("Differences found between stable and main builds:")
         print(diff_output)
         #output to a file
         with open('build_warnings_diff.txt', 'w') as f:
             f.write(diff_output)
             print("Differences written to build_warnings_diff.txt")
     else:
-        print("No differences found between stable and starlight-dev builds.")
+        print("No differences found between stable and main builds.")
 
 if __name__ == "__main__":
     __main__()
