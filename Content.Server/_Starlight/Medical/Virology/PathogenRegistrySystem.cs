@@ -177,14 +177,23 @@ public sealed partial class PathogenRegistrySystem : EntitySystem
     }
 
     /// <summary>
-    /// Core symptoms always, then a random draw from the pool. The cores are what keep an
-    /// archetype recognisable; the draw is what stops it being memorisable.
+    /// One optional stage-one warning, all fixed symptoms, then a random draw from the
+    /// tier-specific pool.
     /// </summary>
     private List<ProtoId<PathogenSymptomPrototype>> RollSymptoms(
         PathogenArchetypePrototype archetype,
         PathogenGenerationOptions options)
     {
-        var symptoms = new List<ProtoId<PathogenSymptomPrototype>>(archetype.CoreSymptoms);
+        var symptoms = new List<ProtoId<PathogenSymptomPrototype>>();
+
+        if (archetype.StageOneSymptomPool.Count > 0)
+            symptoms.Add(_random.Pick(archetype.StageOneSymptomPool));
+
+        foreach (var symptom in archetype.CoreSymptoms)
+        {
+            if (!symptoms.Contains(symptom))
+                symptoms.Add(symptom);
+        }
 
         var pool = archetype.SymptomPool
             .Where(x => !symptoms.Contains(x))
@@ -201,6 +210,13 @@ public sealed partial class PathogenRegistrySystem : EntitySystem
             symptoms.Add(pool[index]);
             pool.RemoveAt(index);
         }
+
+        symptoms.Sort((left, right) =>
+        {
+            var leftStage = _proto.Index(left).MinStage;
+            var rightStage = _proto.Index(right).MinStage;
+            return leftStage.CompareTo(rightStage);
+        });
 
         return symptoms;
     }

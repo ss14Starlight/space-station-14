@@ -80,6 +80,14 @@ public sealed partial class PathogenArchetypePrototype : IPrototype
     public List<ProtoId<PathogenSymptomPrototype>> CoreSymptoms = new();
 
     /// <summary>
+    /// Exactly one is selected when the list is non-empty. Keeping this separate from
+    /// <see cref="SymptomPool"/> lets every strain show one early type-level warning
+    /// without fixing that warning between rounds.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<PathogenSymptomPrototype>> StageOneSymptomPool = new();
+
+    /// <summary>
     /// Drawn from at random to fill out the rest of the strain.
     /// </summary>
     [DataField]

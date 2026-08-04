@@ -1,0 +1,14 @@
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: PathogenThroatSlowdownStatusEffect
+  name: throat irritation
+  components:
+  - type: MovementModStatusEffect
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: PathogenMildBlurStatusEffect
+  name: irritated eyes
+  components:
+  - type: PathogenMildBlur
+    magnitude: 1.5

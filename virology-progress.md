@@ -58,9 +58,17 @@ Updated: 2026-08-04
 
 ### Symptom content
 
-- Ambient symptoms include sneezing, coughing, fatigue, chills, watery eyes, sniffles,
-  hiccups, mild stuttering, slurred speech, itching, mild dizziness, harmless rash,
-  and mild sweating.
+- Rebuilt ambient generation around a cumulative `1 + 2 + 1` structure. Each strain
+  rolls one externally visible stage-one warning from its pathogen-type core pool, two
+  harmless stage-two symptoms from its ambient type-specific pool, and one fixed weak
+  stage-three signature.
+- Space Cold shivers weakly at stage three, Throat Infection suffers a 5% two-second
+  coughing slowdown, and Spore Rash rubs its eyes and receives a 1.5-second mild blur.
+  The signatures recur about every 45 seconds so they are noticeable without becoming
+  disruptive. All three ambient archetypes now always have exactly three stages.
+- Stage-one alternatives use forced sneeze/cough emotes or PVS-visible behaviour text,
+  so every ambient infection can be noticed by nearby crew. Stage-two pools remain
+  medically themed and harmless rather than drawing unrelated symptoms across types.
 - Emergent symptoms include headache, nausea, muscle aches, fever, shortness of breath,
   shaky hands, hoarseness, blurred vision, clumsiness, vomiting, nosebleed, and
   drowsiness.
@@ -477,6 +485,11 @@ Updated: 2026-08-04
   treatment tests pass 5/5. The regressions pin permanent self-immunity, a 2-tile range,
   5% per-target rolls every ten seconds, a ten-minute duration, unlimited successful
   recipients, and no carrier chain from those recipients.
+- The structured ambient-symptom phase builds with 0 errors. The rebuilt standalone YAML
+  linter reports no errors, focused ambient generation and mild-blur tests pass 2/2, and
+  the complete virology suite passes 39 tests with the known pooled spread test skipped.
+  The focused regression verifies one visible stage-one core, two harmless stage-two
+  rolls, one fixed stage-three signature, and clean mild-blur removal.
 
 ## Treatment Phase
 
@@ -551,8 +564,9 @@ History reconstruction verification:
    movement, then tune its 5% roll if the uncapped result is too weak or too strong.
 4. Design beneficial strain content and balance separately; its injector route is ready,
    but beneficial effects remain outside this phase.
-5. Revisit symptom composition, stage-3 distinction, jitter scaling, and the safe fast-test
-   interval after the tool presentation pass.
+5. Manually verify the three ambient stage progressions, especially whether the 45-second
+   weak signatures are noticeable without being annoying, then design the separate
+   emergent stage-two pools and stage-three signatures.
 
 ## End-of-Phase Checklist
 

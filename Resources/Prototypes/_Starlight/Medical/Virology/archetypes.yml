@@ -18,17 +18,20 @@
   respawnOnExtinction: true
   tier: Ambient
   maxPrevalence: 0.10
-  coreSymptoms:
+  stageOneSymptomPool:
   - Sneezing
+  - ViralSniffling
+  - ViralWateryEyes
+  coreSymptoms:
+  - AmbientViralShivering
   symptomPool:
-  - Coughing
-  - Fatigue
-  - Chills
-  - WateryEyes
-  - Sniffles
-  - Hiccups
-  - MildDizziness
-  minExtraSymptoms: 1
+  - AmbientViralFatigue
+  - AmbientViralBlockedNose
+  - AmbientViralMildHeadache
+  - AmbientViralColdSensation
+  - AmbientViralDryCough
+  - AmbientViralSinusPressure
+  minExtraSymptoms: 2
   maxExtraSymptoms: 2
   minTransmissibility: 0.04
   maxTransmissibility: 0.06
@@ -36,7 +39,7 @@
   maxSpreadRange: 2.0
   minIncubation: 60
   maxIncubation: 150
-  minStages: 2
+  minStages: 3
   maxStages: 3
   minStageDelay: 90
   maxStageDelay: 180
@@ -52,16 +55,20 @@
   respawnOnExtinction: true
   tier: Ambient
   maxPrevalence: 0.10
-  coreSymptoms:
+  stageOneSymptomPool:
   - Coughing
+  - BacterialThroatClearing
+  - BacterialThroatDiscomfort
+  coreSymptoms:
+  - AmbientBacterialCoughingFit
   symptomPool:
-  - Chills
-  - Fatigue
-  - WateryEyes
-  - Sniffles
-  - MildStutter
-  - SlurredSpeech
-  minExtraSymptoms: 1
+  - AmbientBacterialDryMouth
+  - AmbientBacterialPainfulSwallowing
+  - AmbientBacterialSwollenThroat
+  - AmbientBacterialUnpleasantTaste
+  - AmbientBacterialMildFatigue
+  - AmbientBacterialVoiceCracking
+  minExtraSymptoms: 2
   maxExtraSymptoms: 2
   minTransmissibility: 0.03
   maxTransmissibility: 0.045
@@ -69,7 +76,7 @@
   maxSpreadRange: 2.0
   minIncubation: 90
   maxIncubation: 210
-  minStages: 2
+  minStages: 3
   maxStages: 3
   minStageDelay: 120
   maxStageDelay: 210
@@ -87,16 +94,20 @@
   respawnOnExtinction: true
   tier: Ambient
   maxPrevalence: 0.08
+  stageOneSymptomPool:
+  - FungalScratching
+  - FungalEyeRubbing
+  - FungalSkinFlaking
   coreSymptoms:
-  - WateryEyes
+  - AmbientFungalEyeBlur
   symptomPool:
-  - Sneezing
-  - Fatigue
-  - Chills
-  - Itching
-  - HarmlessRash
-  - MildSweating
-  minExtraSymptoms: 1
+  - AmbientFungalHarmlessRash
+  - AmbientFungalDrySkin
+  - AmbientFungalMildSweating
+  - AmbientFungalSporeSneezing
+  - AmbientFungalEyeIrritation
+  - AmbientFungalCrawlingSkin
+  minExtraSymptoms: 2
   maxExtraSymptoms: 2
   minTransmissibility: 0
   maxTransmissibility: 0
@@ -104,7 +115,7 @@
   maxSpreadRange: 2.5
   minIncubation: 120
   maxIncubation: 240
-  minStages: 2
+  minStages: 3
   maxStages: 3
   minStageDelay: 150
   maxStageDelay: 240

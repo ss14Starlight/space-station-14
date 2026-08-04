@@ -28,6 +28,342 @@
     showInChat: true
     force: true
 
+# --- Ambient stage-one core pools ---
+# Every option is externally visible. Ambient, emergent, and virulent archetypes can
+# share these pools while selecting only one warning for each generated strain.
+
+- type: pathogenSymptom
+  id: ViralSniffling
+  name: pathogen-symptom-viral-sniffling
+  minStage: 1
+  interval: 55
+  effects:
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-viral-sniffling-visible
+
+- type: pathogenSymptom
+  id: ViralWateryEyes
+  name: pathogen-symptom-viral-watery-eyes
+  minStage: 1
+  interval: 60
+  effects:
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-viral-watery-eyes-visible
+
+- type: pathogenSymptom
+  id: BacterialThroatClearing
+  name: pathogen-symptom-bacterial-throat-clearing
+  minStage: 1
+  interval: 55
+  effects:
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-bacterial-throat-clearing-visible
+
+- type: pathogenSymptom
+  id: BacterialThroatDiscomfort
+  name: pathogen-symptom-bacterial-throat-discomfort
+  minStage: 1
+  interval: 60
+  effects:
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-bacterial-throat-discomfort-visible
+
+- type: pathogenSymptom
+  id: FungalScratching
+  name: pathogen-symptom-fungal-scratching
+  minStage: 1
+  interval: 55
+  effects:
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-fungal-scratching-visible
+
+- type: pathogenSymptom
+  id: FungalEyeRubbing
+  name: pathogen-symptom-fungal-eye-rubbing
+  minStage: 1
+  interval: 60
+  effects:
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-fungal-eye-rubbing-visible
+
+- type: pathogenSymptom
+  id: FungalSkinFlaking
+  name: pathogen-symptom-fungal-skin-flaking
+  minStage: 1
+  interval: 60
+  effects:
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-fungal-skin-flaking-visible
+
+# --- Ambient stage-two pools ---
+# These are flavour only. Each ambient strain rolls exactly two from its type's pool.
+
+- type: pathogenSymptom
+  id: AmbientViralFatigue
+  name: pathogen-symptom-ambient-viral-fatigue
+  minStage: 2
+  interval: 75
+  effects:
+  - !type:Emote
+    emote: Yawn
+    showInChat: true
+    force: true
+
+- type: pathogenSymptom
+  id: AmbientViralBlockedNose
+  name: pathogen-symptom-ambient-viral-blocked-nose
+  minStage: 2
+  interval: 80
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-viral-blocked-nose-popup
+
+- type: pathogenSymptom
+  id: AmbientViralMildHeadache
+  name: pathogen-symptom-ambient-viral-mild-headache
+  minStage: 2
+  interval: 95
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-viral-mild-headache-popup
+
+- type: pathogenSymptom
+  id: AmbientViralColdSensation
+  name: pathogen-symptom-ambient-viral-cold-sensation
+  minStage: 2
+  interval: 85
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-viral-cold-sensation-popup
+
+- type: pathogenSymptom
+  id: AmbientViralDryCough
+  name: pathogen-symptom-ambient-viral-dry-cough
+  minStage: 2
+  interval: 75
+  effects:
+  - !type:Emote
+    emote: Cough
+    showInChat: true
+    force: true
+
+- type: pathogenSymptom
+  id: AmbientViralSinusPressure
+  name: pathogen-symptom-ambient-viral-sinus-pressure
+  minStage: 2
+  interval: 90
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-viral-sinus-pressure-popup
+
+- type: pathogenSymptom
+  id: AmbientBacterialDryMouth
+  name: pathogen-symptom-ambient-bacterial-dry-mouth
+  minStage: 2
+  interval: 85
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-bacterial-dry-mouth-popup
+
+- type: pathogenSymptom
+  id: AmbientBacterialPainfulSwallowing
+  name: pathogen-symptom-ambient-bacterial-painful-swallowing
+  minStage: 2
+  interval: 80
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-bacterial-painful-swallowing-popup
+
+- type: pathogenSymptom
+  id: AmbientBacterialSwollenThroat
+  name: pathogen-symptom-ambient-bacterial-swollen-throat
+  minStage: 2
+  interval: 90
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-bacterial-swollen-throat-popup
+
+- type: pathogenSymptom
+  id: AmbientBacterialUnpleasantTaste
+  name: pathogen-symptom-ambient-bacterial-unpleasant-taste
+  minStage: 2
+  interval: 95
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-bacterial-unpleasant-taste-popup
+
+- type: pathogenSymptom
+  id: AmbientBacterialMildFatigue
+  name: pathogen-symptom-ambient-bacterial-mild-fatigue
+  minStage: 2
+  interval: 85
+  effects:
+  - !type:Emote
+    emote: Yawn
+    showInChat: true
+    force: true
+
+- type: pathogenSymptom
+  id: AmbientBacterialVoiceCracking
+  name: pathogen-symptom-ambient-bacterial-voice-cracking
+  minStage: 2
+  interval: 90
+  effects:
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-ambient-bacterial-voice-cracking-visible
+
+- type: pathogenSymptom
+  id: AmbientFungalHarmlessRash
+  name: pathogen-symptom-ambient-fungal-harmless-rash
+  minStage: 2
+  interval: 90
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-fungal-harmless-rash-popup
+
+- type: pathogenSymptom
+  id: AmbientFungalDrySkin
+  name: pathogen-symptom-ambient-fungal-dry-skin
+  minStage: 2
+  interval: 85
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-fungal-dry-skin-popup
+
+- type: pathogenSymptom
+  id: AmbientFungalMildSweating
+  name: pathogen-symptom-ambient-fungal-mild-sweating
+  minStage: 2
+  interval: 90
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-fungal-mild-sweating-popup
+
+- type: pathogenSymptom
+  id: AmbientFungalSporeSneezing
+  name: pathogen-symptom-ambient-fungal-spore-sneezing
+  minStage: 2
+  interval: 80
+  effects:
+  - !type:Emote
+    emote: Sneeze
+    showInChat: true
+    force: true
+
+- type: pathogenSymptom
+  id: AmbientFungalEyeIrritation
+  name: pathogen-symptom-ambient-fungal-eye-irritation
+  minStage: 2
+  interval: 80
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-fungal-eye-irritation-popup
+
+- type: pathogenSymptom
+  id: AmbientFungalCrawlingSkin
+  name: pathogen-symptom-ambient-fungal-crawling-skin
+  minStage: 2
+  interval: 95
+  effects:
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-fungal-crawling-skin-popup
+
+# --- Ambient fixed stage-three signatures ---
+
+- type: pathogenSymptom
+  id: AmbientViralShivering
+  name: pathogen-symptom-ambient-viral-shivering
+  minStage: 3
+  interval: 45
+  intervalVariance: 0.2
+  effects:
+  - !type:Jitter
+    time: 0.5
+    amplitude: 2
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-viral-shivering-popup
+
+- type: pathogenSymptom
+  id: AmbientBacterialCoughingFit
+  name: pathogen-symptom-ambient-bacterial-coughing-fit
+  minStage: 3
+  interval: 45
+  intervalVariance: 0.2
+  effects:
+  - !type:Emote
+    emote: Cough
+    showInChat: true
+    force: true
+  - !type:MovementSpeedModifier
+    effectProto: PathogenThroatSlowdownStatusEffect
+    walkSpeedModifier: 0.95
+    sprintSpeedModifier: 0.95
+    time: 2
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-ambient-bacterial-coughing-fit-popup
+
+- type: pathogenSymptom
+  id: AmbientFungalEyeBlur
+  name: pathogen-symptom-ambient-fungal-eye-blur
+  minStage: 3
+  interval: 48
+  intervalVariance: 0.2
+  effects:
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-ambient-fungal-eye-blur-visible
+  - !type:ModifyStatusEffect
+    effectProto: PathogenMildBlurStatusEffect
+    time: 1.5
+    type: Update
+
 - type: pathogenSymptom
   id: Fatigue
   name: pathogen-symptom-fatigue
