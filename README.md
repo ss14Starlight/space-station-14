@@ -2,7 +2,7 @@
 
 [![Steam](https://img.shields.io/badge/Steam-SS14%20-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
-[![GitHub](https://img.shields.io/github/stars/ss14Starlight/space-station-14?style=social)]([https://github.com/starfall-ss14/starfall)
+[![GitHub](https://img.shields.io/github/stars/starfall-ss14/starfall?style=social)]([https://github.com/starfall-ss14/starfall)
 
 # STARFALL
 <sub>Space Station 14</sub>
