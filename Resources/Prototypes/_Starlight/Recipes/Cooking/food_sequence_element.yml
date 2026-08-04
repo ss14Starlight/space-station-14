@@ -106,6 +106,14 @@
   - sprite: _Starlight/Objects/Fun/Plushies/pig_plushie.rsi
     state: icon
 
+#Renault Plushie
+- type: foodSequenceElement
+  id: PlushieRenault
+  name: food-sequence-cotton-burger-content-plushie-renault
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/renault_plushie.rsi
+    state: icon
+
 #Shadekin Plushie
 - type: foodSequenceElement
   id: PlushieShadekin

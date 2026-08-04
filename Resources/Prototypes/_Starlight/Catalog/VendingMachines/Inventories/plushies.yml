@@ -277,6 +277,17 @@
     stock: 3
 
 - type: listing
+  id: VendorPlushieRenault
+  productEntity: PlushieRenault
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: PlushieSeaBunny
   productEntity: PlushieSeaBunny
   cost:

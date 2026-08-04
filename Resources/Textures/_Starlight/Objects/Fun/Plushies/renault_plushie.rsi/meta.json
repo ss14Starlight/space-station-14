@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "https://github.com/austation/austation/blob/HEAD/icons/obj/plushes.dmi, edited from from tgstation https://github.com/tgstation/tgstation/blob/master/icons/mob/pets.dmi"
+    },
+    {
+      "name": "inhand-left",
+      "copyright": "CawsForConcern (GitHub), edits of in-hand kitten plushie sprites by oliveoil238",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "copyright": "CawsForConcern (GitHub), edits of in-hand kitten plushie sprites by oliveoil238",
+      "directions": 4
+    }
+  ]
+}
