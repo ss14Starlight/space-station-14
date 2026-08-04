@@ -21,18 +21,6 @@ pathogen-symptom-itching = itching
 pathogen-symptom-mild-dizziness = mild dizziness
 pathogen-symptom-harmless-rash = harmless rash
 pathogen-symptom-mild-sweating = mild sweating
-pathogen-symptom-headache = headache
-pathogen-symptom-nausea = nausea
-pathogen-symptom-muscle-aches = muscle aches
-pathogen-symptom-fever = fever
-pathogen-symptom-short-breath = short breath
-pathogen-symptom-shaky-hands = shaky hands
-pathogen-symptom-hoarseness = hoarseness
-pathogen-symptom-blurred-vision = blurred vision
-pathogen-symptom-clumsiness = clumsiness
-pathogen-symptom-vomiting = vomiting
-pathogen-symptom-nosebleed = nosebleed
-pathogen-symptom-drowsiness = drowsiness
 pathogen-symptom-minor-regeneration = accelerated tissue repair
 
 # Ambient structured symptoms
@@ -67,6 +55,23 @@ pathogen-symptom-ambient-viral-shivering = light shivering
 pathogen-symptom-ambient-bacterial-coughing-fit = coughing fits
 pathogen-symptom-ambient-fungal-eye-blur = irritated-eye blur
 
+# Emergent structured symptoms
+pathogen-symptom-emergent-viral-fever-chills = fever chills
+pathogen-symptom-emergent-viral-muscle-weakness = muscle weakness
+pathogen-symptom-emergent-viral-light-headedness = light-headedness
+pathogen-symptom-emergent-viral-high-fever = high fever
+pathogen-symptom-emergent-viral-fainting-spell = fainting spells
+pathogen-symptom-emergent-bacterial-coughing-fit = severe coughing fits
+pathogen-symptom-emergent-bacterial-breathlessness = breathlessness
+pathogen-symptom-emergent-bacterial-severe-hoarseness = severe hoarseness
+pathogen-symptom-emergent-bacterial-hypoxic-attack = hypoxic attacks
+pathogen-symptom-emergent-bacterial-respiratory-collapse = respiratory collapse
+pathogen-symptom-emergent-fungal-eye-inflammation = eye inflammation
+pathogen-symptom-emergent-fungal-cramps = fungal cramps
+pathogen-symptom-emergent-fungal-numb-fingers = numb fingers
+pathogen-symptom-emergent-fungal-toxic-mycosis = toxic mycosis
+pathogen-symptom-emergent-fungal-ocular-spore-flare = ocular spore flares
+
 # Symptom popups, shown only to the host
 pathogen-symptom-chills-popup = A cold shiver runs through you.
 pathogen-symptom-watery-eyes-popup = Your eyes water.
@@ -76,19 +81,6 @@ pathogen-symptom-itching-popup = Your skin itches.
 pathogen-symptom-mild-dizziness-popup = The room tilts for a moment.
 pathogen-symptom-harmless-rash-popup = An irritated rash prickles across your skin.
 pathogen-symptom-mild-sweating-popup = Sweat beads on your forehead.
-pathogen-symptom-headache-popup = A dull headache pulses behind your eyes.
-pathogen-symptom-nausea-popup = Your stomach turns.
-pathogen-symptom-muscle-aches-popup = Your muscles ache.
-pathogen-symptom-fever-popup = Heat rolls through you.
-pathogen-symptom-short-breath-popup = You struggle to catch your breath.
-pathogen-symptom-shaky-hands-popup = Your hands tremble.
-pathogen-symptom-hoarseness-popup = Your throat feels raw.
-pathogen-symptom-blurred-vision-popup = Your vision blurs.
-pathogen-symptom-clumsiness-popup = Your balance slips.
-pathogen-symptom-vomiting-popup = Your stomach heaves.
-pathogen-symptom-nosebleed-popup = Warm blood trickles from your nose.
-pathogen-symptom-drowsiness-popup = Your eyelids feel heavy.
-
 # Public ambient stage-one signs
 pathogen-symptom-viral-sniffling-visible = {CAPITALIZE(THE($entity))} sniffles and wipes their nose.
 pathogen-symptom-viral-watery-eyes-visible = {CAPITALIZE(THE($entity))} rubs their watery eyes.
@@ -119,6 +111,23 @@ pathogen-symptom-ambient-viral-shivering-popup = A light shiver passes through y
 pathogen-symptom-ambient-bacterial-coughing-fit-popup = The coughing fit briefly takes the strength from your legs.
 pathogen-symptom-ambient-fungal-eye-blur-visible = {CAPITALIZE(THE($entity))} rubs their irritated eyes.
 
+# Emergent mechanical symptoms
+pathogen-symptom-emergent-viral-fever-chills-visible = {CAPITALIZE(THE($entity))} shivers violently with fever.
+pathogen-symptom-emergent-viral-muscle-weakness-popup = Your aching muscles suddenly lose their strength.
+pathogen-symptom-emergent-viral-light-headedness-popup = The room tilts as your vision swims.
+pathogen-symptom-emergent-viral-high-fever-popup = A scorching fever clouds your vision.
+pathogen-symptom-emergent-viral-fainting-spell-visible = {CAPITALIZE(THE($entity))} goes limp and collapses.
+pathogen-symptom-emergent-bacterial-coughing-fit-popup = A harsh coughing fit drains the strength from your legs.
+pathogen-symptom-emergent-bacterial-breathlessness-popup = Your lungs tighten, leaving you unable to run properly.
+pathogen-symptom-emergent-bacterial-severe-hoarseness-visible = {CAPITALIZE(POSS-ADJ($entity))} voice breaks into a rough rasp.
+pathogen-symptom-emergent-bacterial-hypoxic-attack-popup = Air refuses to reach your lungs as your vision dims.
+pathogen-symptom-emergent-bacterial-respiratory-collapse-visible = {CAPITALIZE(THE($entity))} gasps for air and collapses.
+pathogen-symptom-emergent-fungal-eye-inflammation-visible = {CAPITALIZE(THE($entity))} rubs frantically at their inflamed eyes.
+pathogen-symptom-emergent-fungal-cramps-popup = A painful cramp seizes your muscles.
+pathogen-symptom-emergent-fungal-numb-fingers-popup = Your fingers go numb and lose their grip.
+pathogen-symptom-emergent-fungal-toxic-mycosis-popup = A wave of fungal sickness turns your stomach.
+pathogen-symptom-emergent-fungal-ocular-spore-flare-visible = {CAPITALIZE(THE($entity))} clutches at their eyes as their vision fails.
+
 # Strains
 pathogen-name-space-cold = space cold
 pathogen-desc-space-cold = A common and thoroughly unremarkable rhinovirus. Spreads readily, clears on its own, and has never killed anyone. Reliably makes an entire department miserable.
@@ -129,14 +138,14 @@ pathogen-desc-throat-rot = A mild bacterial infection of the upper airway. Slowe
 pathogen-name-spore-bloom = spore rash
 pathogen-desc-spore-bloom = A mild surface fungal infection affecting exposed skin and eyes. It does not spread between people, but is difficult to clear from a room once settled.
 
-pathogen-name-station-fever = station fever
-pathogen-desc-station-fever = A self-limiting viral flare-up that appears when the station has let contamination get ahead of it. Miserable, obvious, and worth virology's time, but not an antagonist weapon.
+pathogen-name-station-flu = station flu
+pathogen-desc-station-flu = A self-limiting viral flare-up that appears when the station has let contamination get ahead of it. Miserable, obvious, and worth virology's time, but not an antagonist weapon.
 
 pathogen-name-grey-lung = grey lung
 pathogen-desc-grey-lung = A bacterial airway infection that thrives in neglected medbay queues and dirty workrooms. It spreads steadily, then clears once treated and contained.
 
-pathogen-name-red-flux = red flux
-pathogen-desc-red-flux = A fungal gastrointestinal infection that lingers in neglected spaces. It is unpleasant enough to justify a response, but is built to create work rather than casualties.
+pathogen-name-mycosis = mycosis
+pathogen-desc-mycosis = A fungal infection of the skin, eyes, and muscles that lingers in neglected spaces. It is dangerous enough to demand treatment, but is built to create work rather than casualties.
 
 pathogen-name-vigor = vigor
 pathogen-desc-vigor = An engineered strain that accelerates tissue repair. Cannot spread on its own and must be administered directly. Runs its course quickly.

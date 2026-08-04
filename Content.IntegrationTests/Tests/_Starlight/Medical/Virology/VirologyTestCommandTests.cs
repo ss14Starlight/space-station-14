@@ -33,9 +33,9 @@ public sealed class VirologyTestCommandTests : GameTest
                     "SpaceCold",
                     "ThroatRot",
                     "SporeBloom",
-                    "StationFever",
+                    "StationFlu",
                     "GreyLung",
-                    "RedFlux",
+                    "Mycosis",
                 }));
 
             virus = registry.Strains.Values

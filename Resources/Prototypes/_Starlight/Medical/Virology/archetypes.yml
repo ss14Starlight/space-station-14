@@ -127,25 +127,28 @@
 # out of ambient milestone selection until the contamination system deliberately spawns one.
 
 - type: pathogenArchetype
-  id: StationFever
-  name: pathogen-name-station-fever
-  description: pathogen-desc-station-fever
+  id: StationFlu
+  name: pathogen-name-station-flu
+  description: pathogen-desc-station-flu
   pathogenType: Virus
   seedWeight: 0
   respawnOnExtinction: false
   tier: Emergent
   protectionBypass: 0.4
   maxPrevalence: 0.15
+  stageOneSymptomPool:
+  - Sneezing
+  - ViralSniffling
+  - ViralWateryEyes
   coreSymptoms:
-  - Fever
+  - EmergentViralHighFever
+  - EmergentViralFaintingSpell
   symptomPool:
-  - Headache
-  - MuscleAches
-  - ShortBreath
-  - ShakyHands
-  - Drowsiness
+  - EmergentViralFeverChills
+  - EmergentViralMuscleWeakness
+  - EmergentViralLightHeadedness
   minExtraSymptoms: 2
-  maxExtraSymptoms: 3
+  maxExtraSymptoms: 2
   minTransmissibility: 0.035
   maxTransmissibility: 0.055
   minSpreadRange: 1.5
@@ -169,17 +172,19 @@
   tier: Emergent
   protectionBypass: 0.4
   maxPrevalence: 0.15
-  coreSymptoms:
+  stageOneSymptomPool:
   - Coughing
-  - Hoarseness
+  - BacterialThroatClearing
+  - BacterialThroatDiscomfort
+  coreSymptoms:
+  - EmergentBacterialHypoxicAttack
+  - EmergentBacterialRespiratoryCollapse
   symptomPool:
-  - Fever
-  - ShortBreath
-  - Fatigue
-  - BlurredVision
-  - Drowsiness
-  minExtraSymptoms: 1
-  maxExtraSymptoms: 3
+  - EmergentBacterialCoughingFit
+  - EmergentBacterialBreathlessness
+  - EmergentBacterialSevereHoarseness
+  minExtraSymptoms: 2
+  maxExtraSymptoms: 2
   minTransmissibility: 0.025
   maxTransmissibility: 0.045
   minSpreadRange: 1.5
@@ -194,25 +199,28 @@
   maxDuration: 1800
 
 - type: pathogenArchetype
-  id: RedFlux
-  name: pathogen-name-red-flux
-  description: pathogen-desc-red-flux
+  id: Mycosis
+  name: pathogen-name-mycosis
+  description: pathogen-desc-mycosis
   pathogenType: Fungus
   seedWeight: 0
   respawnOnExtinction: false
   tier: Emergent
   protectionBypass: 0.5
   maxPrevalence: 0.12
+  stageOneSymptomPool:
+  - FungalScratching
+  - FungalEyeRubbing
+  - FungalSkinFlaking
   coreSymptoms:
-  - Nausea
+  - EmergentFungalToxicMycosis
+  - EmergentFungalOcularSporeFlare
   symptomPool:
-  - Vomiting
-  - Fever
-  - Clumsiness
-  - Nosebleed
-  - MuscleAches
+  - EmergentFungalEyeInflammation
+  - EmergentFungalCramps
+  - EmergentFungalNumbFingers
   minExtraSymptoms: 2
-  maxExtraSymptoms: 3
+  maxExtraSymptoms: 2
   # Fungus is environmental only; treatment contact and quarantine do not spread it.
   minTransmissibility: 0
   maxTransmissibility: 0

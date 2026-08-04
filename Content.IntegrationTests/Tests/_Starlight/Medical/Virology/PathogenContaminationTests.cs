@@ -14,7 +14,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Medical.Virology;
 [TestFixture]
 public sealed class PathogenContaminationTests : GameTest
 {
-    private static readonly ProtoId<PathogenArchetypePrototype> StationFever = "StationFever";
+    private static readonly ProtoId<PathogenArchetypePrototype> StationFlu = "StationFlu";
     private static readonly EntProtoId SporePatch = "PathogenSporePatch";
     private static readonly EntProtoId BananaPeel = "TrashBananaPeel";
     private static readonly ProtoId<TagPrototype> OrganicTrashTag = "OrganicTrash";
@@ -223,7 +223,7 @@ public sealed class PathogenContaminationTests : GameTest
 
         await server.WaitAssertion(() =>
         {
-            var archetype = proto.Index(StationFever);
+            var archetype = proto.Index(StationFlu);
             var strain = registry.Generate(archetype, new PathogenGenerationOptions
             {
                 MaxPrevalenceCap = 0.08f,

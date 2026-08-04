@@ -189,7 +189,7 @@ public sealed class PathogenProtectionPrototypeTests : GameTest
         {
             Assert.Multiple(() =>
             {
-                foreach (var id in new[] { "SporeBloom", "RedFlux" })
+                foreach (var id in new[] { "SporeBloom", "Mycosis" })
                 {
                     var archetype = prototypes.Index<PathogenArchetypePrototype>(id);
                     Assert.That(archetype.PathogenType, Is.EqualTo(PathogenType.Fungus));

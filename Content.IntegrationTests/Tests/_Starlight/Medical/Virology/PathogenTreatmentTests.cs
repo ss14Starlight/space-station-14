@@ -106,7 +106,7 @@ public sealed class PathogenTreatmentTests : GameTest
         await server.WaitPost(() =>
         {
             beneficial = registry.Generate("Vigor")!;
-            virulent = registry.Generate("StationFever")!;
+            virulent = registry.Generate("StationFlu")!;
             virulent.Tier = PathogenTier.Virulent;
             beneficialInjector = entities.SpawnEntity("PathogenInjector", MapCoordinates.Nullspace);
             liveInjector = entities.SpawnEntity("PathogenInjector", MapCoordinates.Nullspace);
@@ -180,7 +180,7 @@ public sealed class PathogenTreatmentTests : GameTest
                     new MapCoordinates(new Vector2(0.5f + i * 0.25f, 0f), mapId)));
             }
 
-            strain = registry.Generate("StationFever")!;
+            strain = registry.Generate("StationFlu")!;
             var carrier = entities.AddComponent<PathogenVaccineCarrierComponent>(source);
             carrier.Strain = strain.Id;
             carrier.Chance = 1f;

@@ -496,66 +496,179 @@
     - pathogen-symptom-mild-sweating-popup
 
 # --- Emergent ---
-# Station-neglect symptoms: unpleasant, visible, and curable, but not antag-grade.
+# Station-neglect symptoms create real medical and operational problems without becoming
+# antagonist-grade. Stage two is mechanically disruptive but deals no damage. Each stage
+# three pair combines one capped damage symptom with one dangerous gameplay interruption.
 # None of these alter transmission; spread stays tied to pathogen type.
 
-- type: pathogenSymptom
-  id: Headache
-  name: pathogen-symptom-headache
-  minStage: 1
-  interval: 90
-  effects:
-  - !type:PopupMessage
-    type: Local
-    messages:
-    - pathogen-symptom-headache-popup
+# Station Flu: stage two pool
 
 - type: pathogenSymptom
-  id: Nausea
-  name: pathogen-symptom-nausea
-  minStage: 1
-  interval: 100
-  effects:
-  - !type:PopupMessage
-    type: Local
-    messages:
-    - pathogen-symptom-nausea-popup
-
-- type: pathogenSymptom
-  id: MuscleAches
-  name: pathogen-symptom-muscle-aches
-  minStage: 2
-  interval: 95
-  effects:
-  - !type:MovementSpeedModifier
-    walkSpeedModifier: 0.85
-    sprintSpeedModifier: 0.85
-    time: 3
-  - !type:PopupMessage
-    type: Local
-    messages:
-    - pathogen-symptom-muscle-aches-popup
-
-- type: pathogenSymptom
-  id: Fever
-  name: pathogen-symptom-fever
-  minStage: 2
-  interval: 85
-  stageScaling: 0.25
-  effects:
-  - !type:AdjustTemperature
-    amount: 2000
-  - !type:PopupMessage
-    type: Local
-    messages:
-    - pathogen-symptom-fever-popup
-
-- type: pathogenSymptom
-  id: ShortBreath
-  name: pathogen-symptom-short-breath
+  id: EmergentViralFeverChills
+  name: pathogen-symptom-emergent-viral-fever-chills
   minStage: 2
   interval: 80
   effects:
+  - !type:Jitter
+    time: 4
+    amplitude: 5
+  - !type:MovementSpeedModifier
+    effectProto: PathogenEmergentSlowdownStatusEffect
+    walkSpeedModifier: 0.9
+    sprintSpeedModifier: 0.9
+    time: 4
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-emergent-viral-fever-chills-visible
+
+- type: pathogenSymptom
+  id: EmergentViralMuscleWeakness
+  name: pathogen-symptom-emergent-viral-muscle-weakness
+  minStage: 2
+  interval: 90
+  effects:
+  - !type:MovementSpeedModifier
+    effectProto: PathogenEmergentSlowdownStatusEffect
+    walkSpeedModifier: 0.8
+    sprintSpeedModifier: 0.8
+    time: 4
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-emergent-viral-muscle-weakness-popup
+
+- type: pathogenSymptom
+  id: EmergentViralLightHeadedness
+  name: pathogen-symptom-emergent-viral-light-headedness
+  minStage: 2
+  interval: 95
+  effects:
+  - !type:ModifyStatusEffect
+    effectProto: StatusEffectWoozy
+    time: 4
+    type: Update
+  - !type:ModifyStatusEffect
+    effectProto: PathogenMildBlurStatusEffect
+    time: 4
+    type: Update
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-emergent-viral-light-headedness-popup
+
+# Station Flu: fixed stage three pair
+
+- type: pathogenSymptom
+  id: EmergentViralHighFever
+  name: pathogen-symptom-emergent-viral-high-fever
+  minStage: 3
+  interval: 120
+  intervalVariance: 0.2
+  effects:
+  - !type:PathogenCappedDamage
+    damageType: Heat
+    amount: 3
+    maximum: 15
+  - !type:ModifyStatusEffect
+    effectProto: PathogenMildBlurStatusEffect
+    time: 4
+    type: Update
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-emergent-viral-high-fever-popup
+
+- type: pathogenSymptom
+  id: EmergentViralFaintingSpell
+  name: pathogen-symptom-emergent-viral-fainting-spell
+  minStage: 3
+  interval: 130
+  intervalVariance: 0.2
+  effects:
+  - !type:ModifyKnockdown
+    time: 2
+    type: Update
+    drop: true
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-emergent-viral-fainting-spell-visible
+
+# Grey Lung: stage two pool
+
+- type: pathogenSymptom
+  id: EmergentBacterialCoughingFit
+  name: pathogen-symptom-emergent-bacterial-coughing-fit
+  minStage: 2
+  interval: 75
+  effects:
+  - !type:Emote
+    emote: Cough
+    showInChat: true
+    force: true
+  - !type:MovementSpeedModifier
+    effectProto: PathogenEmergentSlowdownStatusEffect
+    walkSpeedModifier: 0.85
+    sprintSpeedModifier: 0.85
+    time: 4
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-emergent-bacterial-coughing-fit-popup
+
+- type: pathogenSymptom
+  id: EmergentBacterialBreathlessness
+  name: pathogen-symptom-emergent-bacterial-breathlessness
+  minStage: 2
+  interval: 85
+  effects:
+  - !type:Emote
+    emote: Gasp
+    showInChat: true
+    force: true
+  - !type:MovementSpeedModifier
+    effectProto: PathogenEmergentSlowdownStatusEffect
+    walkSpeedModifier: 1
+    sprintSpeedModifier: 0.5
+    time: 4
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-emergent-bacterial-breathlessness-popup
+
+- type: pathogenSymptom
+  id: EmergentBacterialSevereHoarseness
+  name: pathogen-symptom-emergent-bacterial-severe-hoarseness
+  minStage: 2
+  interval: 100
+  effects:
+  - !type:ModifyStatusEffect
+    effectProto: StatusEffectStutter
+    time: 4
+    type: Update
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-emergent-bacterial-severe-hoarseness-visible
+
+# Grey Lung: fixed stage three pair
+
+- type: pathogenSymptom
+  id: EmergentBacterialHypoxicAttack
+  name: pathogen-symptom-emergent-bacterial-hypoxic-attack
+  minStage: 3
+  interval: 120
+  intervalVariance: 0.2
+  effects:
+  - !type:PathogenCappedDamage
+    damageType: Asphyxiation
+    amount: 5
+    maximum: 20
+  - !type:ModifyStatusEffect
+    effectProto: PathogenMildBlurStatusEffect
+    time: 4
+    type: Update
   - !type:Emote
     emote: Gasp
     showInChat: true
@@ -563,109 +676,111 @@
   - !type:PopupMessage
     type: Local
     messages:
-    - pathogen-symptom-short-breath-popup
+    - pathogen-symptom-emergent-bacterial-hypoxic-attack-popup
 
 - type: pathogenSymptom
-  id: ShakyHands
-  name: pathogen-symptom-shaky-hands
-  minStage: 2
-  interval: 75
-  stageScaling: 0.35
-  effects:
-  - !type:Jitter
-    time: 3
-    amplitude: 8
-  - !type:PopupMessage
-    type: Local
-    messages:
-    - pathogen-symptom-shaky-hands-popup
-
-- type: pathogenSymptom
-  id: Hoarseness
-  name: pathogen-symptom-hoarseness
-  minStage: 2
-  interval: 110
-  effects:
-  - !type:ModifyStatusEffect
-    effectProto: StatusEffectStutter
-    time: 5
-    type: Update
-  - !type:PopupMessage
-    type: Local
-    messages:
-    - pathogen-symptom-hoarseness-popup
-
-- type: pathogenSymptom
-  id: BlurredVision
-  name: pathogen-symptom-blurred-vision
-  minStage: 3
-  interval: 120
-  effects:
-  - !type:GenericStatusEffect
-    key: TemporaryBlindness
-    component: TemporaryBlindness
-    time: 1
-    type: Update
-  - !type:PopupMessage
-    type: Local
-    messages:
-    - pathogen-symptom-blurred-vision-popup
-
-- type: pathogenSymptom
-  id: Clumsiness
-  name: pathogen-symptom-clumsiness
-  minStage: 2
-  interval: 115
-  effects:
-  - !type:ModifyStatusEffect
-    effectProto: StatusEffectFriction
-    time: 2
-    type: Update
-  - !type:PopupMessage
-    type: Local
-    messages:
-    - pathogen-symptom-clumsiness-popup
-
-- type: pathogenSymptom
-  id: Vomiting
-  name: pathogen-symptom-vomiting
+  id: EmergentBacterialRespiratoryCollapse
+  name: pathogen-symptom-emergent-bacterial-respiratory-collapse
   minStage: 3
   interval: 130
+  intervalVariance: 0.2
   effects:
-  - !type:Vomit
-    probability: 0.35
+  - !type:Emote
+    emote: Gasp
+    showInChat: true
+    force: true
+  - !type:ModifyKnockdown
+    time: 3
+    type: Update
+    drop: true
   - !type:PopupMessage
-    type: Local
+    type: Pvs
     messages:
-    - pathogen-symptom-vomiting-popup
+    - pathogen-symptom-emergent-bacterial-respiratory-collapse-visible
+
+# Mycosis: stage two pool
 
 - type: pathogenSymptom
-  id: Nosebleed
-  name: pathogen-symptom-nosebleed
-  minStage: 3
-  interval: 135
-  effects:
-  - !type:ModifyBloodLevel
-    amount: -1
-  - !type:PopupMessage
-    type: Local
-    messages:
-    - pathogen-symptom-nosebleed-popup
-
-- type: pathogenSymptom
-  id: Drowsiness
-  name: pathogen-symptom-drowsiness
+  id: EmergentFungalEyeInflammation
+  name: pathogen-symptom-emergent-fungal-eye-inflammation
   minStage: 2
-  interval: 120
+  interval: 85
   effects:
   - !type:ModifyStatusEffect
-    effectProto: StatusEffectDrowsiness
+    effectProto: PathogenMildBlurStatusEffect
     time: 4
     type: Update
   - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-emergent-fungal-eye-inflammation-visible
+
+- type: pathogenSymptom
+  id: EmergentFungalCramps
+  name: pathogen-symptom-emergent-fungal-cramps
+  minStage: 2
+  interval: 90
+  effects:
+  - !type:Jitter
+    time: 4
+    amplitude: 7
+  - !type:MovementSpeedModifier
+    effectProto: PathogenEmergentSlowdownStatusEffect
+    walkSpeedModifier: 0.8
+    sprintSpeedModifier: 0.8
+    time: 4
+  - !type:PopupMessage
     type: Local
     messages:
-    - pathogen-symptom-drowsiness-popup
+    - pathogen-symptom-emergent-fungal-cramps-popup
+
+- type: pathogenSymptom
+  id: EmergentFungalNumbFingers
+  name: pathogen-symptom-emergent-fungal-numb-fingers
+  minStage: 2
+  interval: 100
+  effects:
+  - !type:PathogenDropActiveItem
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-emergent-fungal-numb-fingers-popup
+
+# Mycosis: fixed stage three pair
+
+- type: pathogenSymptom
+  id: EmergentFungalToxicMycosis
+  name: pathogen-symptom-emergent-fungal-toxic-mycosis
+  minStage: 3
+  interval: 120
+  intervalVariance: 0.2
+  effects:
+  - !type:PathogenCappedDamage
+    damageType: Poison
+    amount: 3
+    maximum: 15
+  - !type:Vomit
+    probability: 0.25
+  - !type:PopupMessage
+    type: Local
+    messages:
+    - pathogen-symptom-emergent-fungal-toxic-mycosis-popup
+
+- type: pathogenSymptom
+  id: EmergentFungalOcularSporeFlare
+  name: pathogen-symptom-emergent-fungal-ocular-spore-flare
+  minStage: 3
+  interval: 130
+  intervalVariance: 0.2
+  effects:
+  - !type:ModifyStatusEffect
+    effectProto: StatusEffectTemporaryBlindness
+    time: 3
+    type: Update
+  - !type:PopupMessage
+    type: Pvs
+    messages:
+    - pathogen-symptom-emergent-fungal-ocular-spore-flare-visible
 
 # --- Beneficial ---
 # Kept alongside the ambient set so the difference in scale stays obvious at a glance.

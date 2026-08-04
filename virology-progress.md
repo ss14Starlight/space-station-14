@@ -69,11 +69,12 @@ Updated: 2026-08-04
 - Stage-one alternatives use forced sneeze/cough emotes or PVS-visible behaviour text,
   so every ambient infection can be noticed by nearby crew. Stage-two pools remain
   medically themed and harmless rather than drawing unrelated symptoms across types.
-- Emergent symptoms include headache, nausea, muscle aches, fever, shortness of breath,
-  shaky hands, hoarseness, blurred vision, clumsiness, vomiting, nosebleed, and
-  drowsiness.
+- Emergent symptoms use pathogen-specific structured pools. Each full strain rolls one
+  visible stage-one warning, exactly two mechanical but non-damaging stage-two symptoms,
+  and receives both fixed stage-three symptoms: one capped damage effect and one dangerous
+  gameplay interruption.
 - Ambient archetypes have larger symptom pools for round-to-round variety.
-- Added three inactive emergent archetypes: Station Fever, Grey Lung, and Red Flux.
+- Added three inactive emergent archetypes: Station Flu, Grey Lung, and Mycosis.
 - Emergent archetypes do not seed at round start and do not respawn after extinction.
 - Fixed Watery Eyes so it can occur in a two-stage Spore Bloom strain.
 
@@ -91,9 +92,10 @@ Updated: 2026-08-04
   appeared, then permits repeats for the fourth strain.
 - With no antagonist, the emergent outbreak is guaranteed.
 - With an antagonist, the emergent outbreak has a configurable 40% chance.
-- Antagonist-round emergent strains retain three stages but default to an 8% prevalence
-  cap, 70% transmissibility, half the normal PPE bypass (20-25% effective), 25% slower
-  stage progression, and one or two extra symptoms.
+- Antagonist-round emergent strains retain three stages and both fixed stage-three
+  symptoms, but default to an 8% prevalence cap, 70% transmissibility, half the normal
+  PPE bypass (20-25% effective), 25% slower stage progression, and only one or two of the
+  three stage-two pool symptoms.
 - Emergent strains never respawn after eradication.
 - Ambient contamination outbreaks infect a random eligible crew member. Contamination
   sources bias the pathogen type but do not determine the initial host, representing
@@ -381,7 +383,7 @@ Updated: 2026-08-04
   the four-second drowsiness status until it causes sleep, although normal 120-second
   symptom timing cannot do so. Six seconds avoided the false result. The harness default
   still needs correction before any further symptom test.
-- Live stage-3 testing also showed that Station Fever and the tested Grey Lung roll did
+- Live stage-3 testing also showed that the former Station Fever design and the tested Grey Lung roll did
   not feel meaningfully different from stage 2. Jitter stage scaling extends duration
   rather than amplitude, while stronger fever heat uses the same popup.
 - Automated phase order is now YAML/prototype validation first when prototype data is
@@ -626,6 +628,43 @@ Virology-access verification:
 - The complete virology filter passes 42 tests with 2 known pooled spread-fixture skips
   and 0 failures.
 
+## Emergent Symptoms
+
+- Rebuilt Station Flu, Grey Lung, and Mycosis around the same cumulative structure used
+  by ambient strains. Every full emergent strain has one random pathogen-specific visible
+  stage-one warning, exactly two different stage-two symptoms from a three-option pool,
+  and both fixed stage-three symptoms.
+- Station Flu stage two can produce fever chills, muscle weakness, or light-headedness.
+  Its fixed stage-three pair is high fever, which deals 3 Heat damage up to a 15 Heat cap,
+  and a two-second fainting spell that drops held items.
+- Grey Lung stage two can produce severe coughing fits, breathlessness, or severe
+  hoarseness. Its fixed stage-three pair is a hypoxic attack, which deals 5 Asphyxiation
+  damage up to a 20 Asphyxiation cap, and a three-second respiratory collapse that drops
+  held items.
+- Mycosis stage two can produce eye inflammation, fungal cramps, or numb fingers. Its
+  fixed stage-three pair is toxic mycosis, which deals 3 Poison damage up to a 15 Poison
+  cap and has a 25% vomit chance, and a three-second ocular spore flare that temporarily
+  blinds the patient.
+- All authored temporary symptom effects last four seconds or less. This is prototype
+  balance, not a hard runtime duration limit. Stage-two symptoms deal no damage, and no
+  symptom modifies transmission.
+- Added reusable capped-damage and active-hand-drop entity effects. Capped damage ignores
+  resistance so its authored per-type ceiling is exact, while numb fingers drops only the
+  currently active held item.
+- Renamed the former Station Fever archetype to Station Flu and the former Red Flux
+  archetype to Mycosis, including command and automated-test references.
+
+Emergent-symptom verification:
+
+- `Content.YAMLLinter` completed with 0 errors.
+- The complete solution builds with 0 errors; only existing dependency and obsolete-API
+  warnings remain.
+- Focused integration tests pass 3/3. They verify generated composition for all three
+  archetypes, mechanical stage-two content, the fixed stage-three damage/interruption
+  split, the exact damage cap, and active-hand dropping.
+- The complete virology integration filter passes 45 tests with 2 known pooled spread-fixture
+  skips and 0 failures.
+
 ## Next Phase
 
 1. Add two Virologist slots and one `SpawnPointVirologist` placement to each supported
@@ -644,8 +683,9 @@ Virology-access verification:
 6. Design beneficial strain content and balance separately; its injector route is ready,
    but beneficial effects remain outside this phase.
 7. Manually verify the three ambient stage progressions, especially whether the 45-second
-   weak signatures are noticeable without being annoying, then design the separate
-   emergent stage-two pools and stage-three signatures.
+   weak signatures are noticeable without being annoying. Then manually verify all three
+   emergent progressions, including capped damage, item dropping, knockdown, stutter,
+   blur, and temporary blindness.
 8. Manually verify that a stage-zero virus spreads without showing symptoms, stage-zero
    bacterial contact can transmit, and an incubating fungal host can leave its one patch.
 

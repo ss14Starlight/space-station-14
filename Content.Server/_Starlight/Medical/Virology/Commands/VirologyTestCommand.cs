@@ -47,9 +47,9 @@ public sealed partial class VirologyTestCommand : IConsoleCommand
         "SpaceCold",
         "ThroatRot",
         "SporeBloom",
-        "StationFever",
+        "StationFlu",
         "GreyLung",
-        "RedFlux",
+        "Mycosis",
     ];
 
     private static readonly EntProtoId[] TestKit =

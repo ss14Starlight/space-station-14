@@ -32,7 +32,7 @@ public sealed class PathogenDiagnosisTests : GameTest
         await server.WaitPost(() =>
         {
             ambient = registry.Generate("SpaceCold")!;
-            emergent = registry.Generate("StationFever")!;
+            emergent = registry.Generate("StationFlu")!;
             otherAmbient = registry.Generate("ThroatRot")!;
             firstHost = entities.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
             secondHost = entities.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
@@ -240,7 +240,7 @@ public sealed class PathogenDiagnosisTests : GameTest
         {
             treatmentStrain = registry.Generate("SpaceCold")!;
             sourceStrain = registry.Generate("SporeBloom")!;
-            liveStrain = registry.Generate("StationFever")!;
+            liveStrain = registry.Generate("StationFlu")!;
             liveStrain.Tier = PathogenTier.Virulent;
             beneficialStrain = registry.Generate("Vigor")!;
 

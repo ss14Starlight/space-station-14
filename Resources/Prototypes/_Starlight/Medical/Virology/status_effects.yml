@@ -12,3 +12,8 @@
   components:
   - type: PathogenMildBlur
     magnitude: 1.5
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: PathogenEmergentSlowdownStatusEffect
+  name: pathogen weakness
