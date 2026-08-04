@@ -53,8 +53,8 @@
   - type: UseDelay
     delay: 1
   - type: Instrument
-    program: 6
-    bank: 1
+    program: 1
+    bank: 101
     allowPercussion: true
   - type: Reflect
     reflectProb: 0.75 # surpise get tasered
