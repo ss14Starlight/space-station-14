@@ -59,7 +59,7 @@
   components:
   - type: AtmosPipeLayers
     alternativePrototypes:
-      Primary: GasVentPumpNoColdWeather
+      Primary: GasVentPumpColdWeather
       Secondary: GasVentPumpColdWeatherAlt1
       Tertiary: GasVentPumpColdWeatherAlt2
       Quaternary: GasVentPumpColdWeatherAlt3
