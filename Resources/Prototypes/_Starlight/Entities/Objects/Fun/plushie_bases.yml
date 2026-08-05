@@ -27,6 +27,9 @@
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Effects/avali_scream.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieBorb
 
 # Borg
 - type: entity
@@ -59,6 +62,9 @@
       - Prying
     useSound:
       path: /Audio/Items/crowbar.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieBorg
 
 # Felionoid
 - type: entity
@@ -119,6 +125,9 @@
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: LizardPlushie
 
 # Moth
 - type: entity
@@ -146,6 +155,9 @@
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Moth/moth_scream.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: MothPlushie
 
 # Resomi
 - type: entity
@@ -176,6 +188,9 @@
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieBorb
 
 # Shadekin
 - type: entity
@@ -203,6 +218,9 @@
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Voice/Shadekin/scream_f1.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieShadekin
 
 # Vulpkanin
 - type: entity
@@ -236,3 +254,6 @@
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Effects/yip.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieVulp
