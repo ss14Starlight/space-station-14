@@ -124,9 +124,16 @@ public sealed partial class PathogenSystem : EntitySystem
 
     private bool AnyHostCarries(int strainId)
     {
+        var mobStates = GetEntityQuery<MobStateComponent>();
         var query = EntityQueryEnumerator<PathogenInfectionComponent>();
-        while (query.MoveNext(out _, out var comp))
+        while (query.MoveNext(out var uid, out var comp))
         {
+            // A strain sitting in a corpse is not in circulation. Counting it here would
+            // let one body suppress the respawn forever, so the strain could neither
+            // spread nor come back.
+            if (mobStates.TryGetComponent(uid, out var mobState) && mobState.CurrentState == MobState.Dead)
+                continue;
+
             foreach (var infection in comp.Infections)
             {
                 if (infection.Pathogen == strainId)

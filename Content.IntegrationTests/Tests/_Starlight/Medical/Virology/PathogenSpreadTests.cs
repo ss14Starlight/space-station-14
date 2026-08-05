@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Content.IntegrationTests.Fixtures;
@@ -145,6 +146,81 @@ public sealed class PathogenSpreadTests : GameTest
                 pathogens.IsInfected(deadTarget, deadStrain.Id),
                 Is.False,
                 "A corpse is not breathing or coughing and must not shed.");
+        });
+    }
+
+    /// <summary>
+    /// Corpses keep their infections, and living crew is the cap denominator. If corpses
+    /// also filled the numerator, every death would move the cap twice in the same
+    /// direction with nothing to undo it, and a tier could lock out permanently while
+    /// healthy crew stood around with no living carrier left anywhere.
+    /// </summary>
+    [Test]
+    public async Task DeadHostsDoNotHoldPrevalenceBudget()
+    {
+        var server = Pair.Server;
+        var entities = server.EntMan;
+        var maps = server.System<SharedMapSystem>();
+        var mobState = server.System<MobStateSystem>();
+        var pathogens = server.System<PathogenSystem>();
+        var registry = server.System<PathogenRegistrySystem>();
+        var transmission = server.System<PathogenTransmissionSystem>();
+
+        var carriers = new List<EntityUid>();
+        Pathogen strain = default!;
+
+        await server.WaitPost(() =>
+        {
+            maps.CreateMap(out var mapId);
+
+            var crew = new List<EntityUid>();
+            for (var i = 0; i < 10; i++)
+            {
+                crew.Add(entities.SpawnEntity(
+                    "MobHuman",
+                    new MapCoordinates(new Vector2(i * 10, 0), mapId)));
+            }
+
+            strain = registry.Generate("SpaceCold")!;
+
+            for (var i = 0; i < 3; i++)
+            {
+                Assert.That(pathogens.TryInfect(crew[i], strain.Id), Is.True);
+                carriers.Add(crew[i]);
+            }
+
+            Assert.That(
+                transmission.AtCap(strain),
+                Is.True,
+                "Three ambient carriers among ten crew should exceed the 15% tier budget.");
+        });
+
+        await server.WaitPost(() =>
+        {
+            foreach (var carrier in carriers)
+            {
+                mobState.ChangeMobState(carrier, MobState.Dead);
+            }
+        });
+
+        // Counts are cached per tick and killing a mob does not invalidate them, so the
+        // assertion below would otherwise read stale numbers and pass for the wrong reason.
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            foreach (var carrier in carriers)
+            {
+                Assert.That(
+                    entities.GetComponent<PathogenInfectionComponent>(carrier).Infections,
+                    Is.Not.Empty,
+                    "Corpses must keep their infections so bodies stay worth swabbing.");
+            }
+
+            Assert.That(
+                transmission.AtCap(strain),
+                Is.False,
+                "Corpses must not hold prevalence budget once they can no longer spread.");
         });
     }
 

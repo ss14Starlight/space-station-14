@@ -99,9 +99,17 @@ public sealed partial class PathogenTransmissionSystem : EntitySystem
                 _livingCrew++;
         }
 
+        var mobStates = GetEntityQuery<MobStateComponent>();
         var infectionQuery = EntityQueryEnumerator<PathogenInfectionComponent>();
-        while (infectionQuery.MoveNext(out _, out var infections))
+        while (infectionQuery.MoveNext(out var uid, out var infections))
         {
+            // Corpses keep their infections so bodies stay worth swabbing, but they must
+            // not hold prevalence budget. Living crew is the denominator above, so
+            // counting the dead here would let every death ratchet the cap shut for good:
+            // the numerator rises while the denominator falls, and nothing ever undoes it.
+            if (mobStates.TryGetComponent(uid, out var mobState) && mobState.CurrentState == MobState.Dead)
+                continue;
+
             foreach (var infection in infections.Infections)
             {
                 _hostCounts[infection.Pathogen] =
