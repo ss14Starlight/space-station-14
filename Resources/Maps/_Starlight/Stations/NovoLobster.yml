@@ -116,7 +116,7 @@ entities:
     - type: MapAtmosphere
       space: False
       mixture:
-        volume: 2500
+        volume: 1998.5
         immutable: True
         temperature: 208.15
         moles:
@@ -14626,7 +14626,7 @@ entities:
     - type: Transform
       pos: 43.592377,-23.351452
       parent: 2
-- proto: AirAlarm
+- proto: AirAlarmColdWeather
   entities:
   - uid: 4
     components:
@@ -17485,7 +17485,7 @@ entities:
       - 25074
     - type: Fixtures
       fixtures: {}
-- proto: AirAlarmNoLowerBound
+- proto: AirAlarmColdWeather
   entities:
   - uid: 181
     components:
@@ -20618,7 +20618,7 @@ entities:
     - type: Transform
       pos: -25.5,-51.5
       parent: 2
-- proto: AirSensor
+- proto: AirSensorColdWeather
   entities:
   - uid: 692
     components:
@@ -166031,7 +166031,7 @@ entities:
       open: False
     - type: AtmosPipeColor
       color: '#03FCD3FF'
-- proto: GasVentPump
+- proto: GasVentPumpColdWeather
   entities:
   - uid: 24802
     components:
@@ -166039,7 +166039,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -34.5,28.5
       parent: 2
-- proto: GasVentPumpAlt3
+- proto: GasVentPumpColdWeatherAlt3
   entities:
   - uid: 24803
     components:
@@ -168939,7 +168939,7 @@ entities:
       - 180
     - type: AtmosPipeColor
       color: '#0055CCFF'
-- proto: GasVentPumpAlt4
+- proto: GasVentPumpColdWeatherAlt4
   entities:
   - uid: 25075
     components:
@@ -168952,7 +168952,7 @@ entities:
       - 141
     - type: AtmosPipeColor
       color: '#990000FF'
-- proto: GasVentScrubber
+- proto: GasVentScrubberColdWeather
   entities:
   - uid: 25076
     components:
@@ -169011,7 +169011,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -34.5,27.5
       parent: 2
-- proto: GasVentScrubberAlt3
+- proto: GasVentScrubberColdWeatherAlt3
   entities:
   - uid: 25082
     components:
@@ -169024,7 +169024,7 @@ entities:
       - 141
     - type: AtmosPipeColor
       color: '#0055CCFF'
-- proto: GasVentScrubberAlt4
+- proto: GasVentScrubberColdWeatherAlt4
   entities:
   - uid: 25083
     components:
