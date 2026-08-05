@@ -365,7 +365,7 @@ jobs:
     runs-on: ubuntu-slim
     steps:
       - name: Delete test binaries
-        if: ${{ runner.debug != '1' || inputs.harvest != true }}
+        if: ${{ !(runner.debug == '1' || inputs.harvest == true) }}
         continue-on-error: true
         uses: geekyeggo/delete-artifact@v6
         with:
