@@ -63,3 +63,21 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
     state: straight
+
+- type: marking
+  id: ProtoAvaliLEDFaceSun
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
+  speciesRestriction: [ProtoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
+    state: sun
+
+- type: marking
+  id: ProtoAvaliLEDFacePenta
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
+  speciesRestriction: [ProtoAvali]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-avali/led_shapes_face.rsi
+    state: penta

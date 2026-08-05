@@ -19,6 +19,16 @@
         {
             "name": "straight",
             "directions": 4
+        },
+        {
+            "name": "penta",
+            "directions": 4,
+            "copyright": "By Spaghetti-bit (github)"
+        },
+        {
+            "name": "sun",
+            "directions": 4,
+            "copyright": "By Spaghetti-bit (github)"
         }
     ]
 }
