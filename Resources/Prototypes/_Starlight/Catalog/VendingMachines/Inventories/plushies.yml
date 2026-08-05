@@ -22,6 +22,17 @@
       stock: 1
 
 - type: listing
+  id: VendorPlushieEinalia
+  productEntity: PlushieEinalia
+  cost:
+    NTCredit: 20
+  categories:
+    - SLCrew
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: VendorPlushieGalio
   productEntity: PlushieGalio
   cost:

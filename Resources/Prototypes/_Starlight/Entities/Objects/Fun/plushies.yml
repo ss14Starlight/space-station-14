@@ -128,6 +128,27 @@
         - state: equipped-HELMET
 
 - type: entity
+  parent: BaseAvaliPlushie
+  id: PlushieEinalia # CaptainComedy
+  name: einalia plushie
+  description: A marketable plushie of one of the shortest Captains in NT-CC employ, and Nebula's husband. The two amber eyes on its face feel as if they're boring into your soul.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/einalia_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/einalia_plushie.rsi
+    state: icon
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/einalia_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
   parent: BaseLizardPlushie
   id: PlushieGalio # galiotheblepdragon
   name: galio plushie

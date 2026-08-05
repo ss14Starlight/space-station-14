@@ -166,7 +166,7 @@ GasPipeSubfloorTankAlt4: GasPipeTankSubfloorAlt4
 AbductorPlushie: PlushieAbductor
 AxolotlPlushie: PlushieAxolotl
 BorbPlushie: PlushieBorb
-PlushieBrighteyes: PlushieBrightheart # new ID
+PlushieBrighteyes: PlushieBrightheart
 SquishimsCow: PlushieCowSquishims
 CreaturePlushie: PlushieCreature
 SquishimsFrog: PlushieFrogSquishims
@@ -176,7 +176,7 @@ KittenPlushie: PlushieKitten
 PlushieMimeLizard: PlushieLizardJobMime # upstream
 PandaPlushie: PlushiePanda
 PigPlushie: PlushiePig
-RenaultPlushie: PlushieRenault # cleaned up ID
+RenaultPlushie: PlushieRenault
 SnailPlushie: PlushieSnail
 SusPlushie: PlushieSus
 IanPlushie: ToyIan # upstream
@@ -190,8 +190,6 @@ PlushieAsh: PlushieVulp
 PlushieBarfo: PlushieKitten
 DeerPlushie: PlushieLizard
 OddDeerPlushie: PlushieLizard
-PlushieEina: PlushieBorb
-PlushieEinalia: PlushieBorb
 PlushieLiz: PlushieBorb
 PlushieEmmie: PlushieBorb
 PlushieFixes: PlushieLizardJobChiefengineer
