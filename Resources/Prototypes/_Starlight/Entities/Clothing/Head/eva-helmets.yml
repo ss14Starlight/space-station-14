@@ -164,8 +164,8 @@
 - type: entity
   parent:  ClothingHeadHardsuitBase
   id: ClothingHeadHelmetsoftsuitWizardFrost
-  name: wizard pyromancer hood
-  description: A hood of living fire, the inferno within stares at you.
+  name: wizard cryomancer hood
+  description: A hood of magical ice, the coldest of gaze pierces your very soul.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hoods/wizardfrost.rsi
