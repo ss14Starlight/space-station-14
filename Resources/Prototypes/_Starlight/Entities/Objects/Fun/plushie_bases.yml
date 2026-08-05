@@ -202,7 +202,7 @@
   - type: Edible
     requiresSpecialDigestion: true
     useSound:
-      collection: FelionoidScreams
+      path: /Audio/_Starlight/Voice/Shadekin/scream_f1.ogg
 
 # Vulpkanin
 - type: entity
