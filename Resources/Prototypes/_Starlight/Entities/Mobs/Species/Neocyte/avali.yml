@@ -112,6 +112,12 @@
     - type: Inventory
       speciesId: avali
       templateId: neocyte
+      femaleDisplacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: jumpsuit
       displacements:
         jumpsuit:
           sizeMaps:
@@ -138,6 +144,11 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: back
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: gloves
 
 - type: entity
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
@@ -150,6 +161,12 @@
     - type: Inventory
       speciesId: avali
       templateId: neocyte
+      femaleDisplacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: jumpsuit
       displacements:
         jumpsuit:
           sizeMaps:
@@ -176,3 +193,8 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: back
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: gloves
