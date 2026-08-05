@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/05/2026 09:22:02
+  time: 08/05/2026 09:36:47
   entityCount: 246
 maps: []
 grids:
@@ -1210,8 +1210,7 @@ entities:
   - uid: 147
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,1.5
+      pos: 1.5,-2.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -1251,6 +1250,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-3.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 162
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -1296,7 +1302,7 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-- proto: GasPipeTankSubfloorFilledAir1000Alt3
+- proto: GasPipeTankSubfloorFilledAir500Alt3
   entities:
   - uid: 158
     components:
@@ -1337,19 +1343,11 @@ entities:
       color: '#990000FF'
 - proto: GasPressurePumpAlt3
   entities:
-  - uid: 162
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,-2.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 163
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-2.5
+      rot: -1.5707963267948966 rad
+      pos: -1.5,1.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
