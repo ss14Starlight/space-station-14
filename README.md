@@ -1,5 +1,5 @@
 <div class="header" align="center">
-
+  
 [![Steam](https://img.shields.io/badge/Steam-SS14%20-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
 [![GitHub](https://img.shields.io/github/stars/InferusSS14/Inferus?style=social)]([https://github.com/InferusSS14/Inferus)
@@ -9,9 +9,11 @@
 
 this is still very early please cut us some slack
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/InferusSS14/Inferus)
+![GitHub Commit Activity](https://img.shields.io/github/commit-activity/w/InferusSS14/Inferus)
 ![GitHub Issues](https://img.shields.io/github/issues/InferusSS14/Inferus)
 ![GitHub Pull Requests](https://img.shields.io/github/issues-pr-closed/InferusSS14/Inferus)
+
+[Discord](https://discord.gg/udFzfJzSNf)
 
 </div>
 
