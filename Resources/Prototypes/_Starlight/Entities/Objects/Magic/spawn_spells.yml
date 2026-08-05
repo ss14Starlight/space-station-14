@@ -43,7 +43,7 @@
       proto: SummonIceSculpture
 
 - type: entity
-  parent: ActionForceWall
+  parent: ActionForceWall #kind of a summon wasnt sure where to put it
   id: ActionIcePillars
   name: Ice Pillars
   description: Creates a row of ice pillars in front of you (20 seconds cooldown).
