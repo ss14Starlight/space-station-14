@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (Reach) Added a sink to bar.
-    type: Add
-  id: 406918
-  time: '2026-07-26T11:55:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5331
-- author: Johnny
-  changes:
   - message: (Reach) Added two fuel dispensers to engi and atmos.
     type: Add
   id: 406919
@@ -2799,4 +2792,11 @@ Entries:
   id: 407317
   time: '2026-08-05T08:57:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: Orange Juice Goose
+  changes:
+  - message: Overhauled the fland SM room to be more usable for both beginners and experts.
+    type: Tweak
+  id: 407318
+  time: '2026-08-05T08:57:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5513
 Order: -1
