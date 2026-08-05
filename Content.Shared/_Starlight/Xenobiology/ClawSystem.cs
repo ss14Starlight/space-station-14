@@ -6,7 +6,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared._Starlight.Xenobiology;
 
-public sealed class ClawSystem : EntitySystem
+public sealed partial class ClawSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
