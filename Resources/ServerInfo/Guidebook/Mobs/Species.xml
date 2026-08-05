@@ -17,7 +17,7 @@
   <GuideEntityEmbed Entity="AppearanceHuman" Caption="Human"/>
   <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>
   <GuideEntityEmbed Entity="AppearanceSlimePerson" Caption="Laspi"/>
-  <GuideEntityEmbed Entity="AppearanceMoth" Caption="Moth Person"/>
+  <GuideEntityEmbed Entity="AppearanceMoth" Caption="Lepori"/>
   <GuideEntityEmbed Entity="AppearanceResomi" Caption="Resomi"/>
   </Box>
   <Box>

@@ -2660,7 +2660,7 @@
 
 - type: entity
   name: cotton boll
-  description: Moth people's favorite snack, and just as fluffy as them.
+  description: The Leporii's favorite snack, and just as fluffy as them.
   id: CottonBol
   parent: FoodProduceBase
   components:
