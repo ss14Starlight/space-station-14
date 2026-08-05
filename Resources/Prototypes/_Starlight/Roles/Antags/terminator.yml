@@ -8,3 +8,14 @@
   - !type:OverallPlaytimeRequirement
     time: 5h
   playTimeTracker: AntagTerminator
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Terminator
+  spawnerPrototype: SpawnPointGhostTerminator
+  briefing:
+    text: terminator-role-greeting
+    color: orange
+    sound: /Audio/_Starlight/Ambience/Antag/exterminator_start.ogg
+  mindRoles:
+    - MindRoleTerminator

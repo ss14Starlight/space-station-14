@@ -1211,13 +1211,13 @@
 - type: entity
   id: NullspaceAnchorMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: Nullspace anchor circuitboard
+  name: nullspace anchor circuitboard
   description: A machine printed circuit board for a nullspace anchor
   components:
     - type: Sprite
       state: science
     - type: MachineBoard
-      prototype: nullspaceanchor
+      prototype: NullspaceAnchor
       stackRequirements:
         Steel: 5
         Manipulator: 1
@@ -1228,7 +1228,7 @@
 - type: entity
   parent: BaseMachineCircuitboard
   id: MassDriverCircuitboard
-  name: mass driver board
+  name: mass driver circuitboard
   components:
     - type: MachineBoard
       prototype: MassDriver
@@ -1240,7 +1240,7 @@
 - type: entity
   id: DarkBreacherMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: Dark breacher circuitboard
+  name: dark breacher circuitboard
   description: A machine printed circuit board for a dark breacher
   components:
     - type: Sprite
@@ -1299,4 +1299,144 @@
       tagRequirements:
         GlassBeaker:
           amount: 1
+          defaultPrototype: Beaker
+
+# Departmental Techfabs
+- type: entity
+  id: CargoTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseCargoContraband]
+  name: cargo techfab machine board
+  description: A machine printed circuit board for a cargo techfab.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: CargoTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: EngineeringTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseEngineeringContraband]
+  name: engineering techfab machine board
+  description: A machine printed circuit board for an engineering techfab.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: EngineeringTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: ServiceTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseCivilianContraband]
+  name: service techfab machine board
+  description: A machine printed circuit board for a service techfab.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: ServiceTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: ScienceTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseScienceContraband]
+  name: science techfab machine board
+  description: A machine printed circuit board for a science techfab.
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: ScienceTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: CommandTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseCommandContraband]
+  name: command techfab machine board
+  description: A machine printed circuit board for a command techfab.
+  components:
+    - type: Sprite
+      state: command
+    - type: MachineBoard
+      prototype: CommandTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: NanoTrasenTechFabCircuitboard
+  categories: [ DoNotMap ]
+  parent: [BaseMachineCircuitboard, BaseNanoTrasenContraband]
+  name: NanoTrasen techfab machine board
+  description: A machine printed circuit board for a NanoTrasen techfab.
+  components:
+    - type: Sprite
+      state: command
+    - type: MachineBoard
+      prototype: NanoTrasenTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: CentralCommandTechFabCircuitboard
+  categories: [ DoNotMap ]
+  parent: [BaseMachineCircuitboard, BaseCentcommContraband]
+  name: Central Command techfab machine board
+  description: A machine printed circuit board for a Central Command techfab.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: CentralCommandTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: SyndicateTechFabCircuitboard
+  categories: [ DoNotMap ]
+  parent: [BaseMachineCircuitboard, BaseSyndicateContraband]
+  name: Syndicate techfab machine board
+  description: A machine printed circuit board for a Syndicate techfab.
+  components:
+    - type: Sprite
+      state: cpu_syndicate
+    - type: MachineBoard
+      prototype: SyndicateTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
           defaultPrototype: Beaker
