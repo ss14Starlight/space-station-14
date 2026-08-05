@@ -28,3 +28,19 @@
   id: AssistantManagerJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtCommandGeneric
+
+# Backpack
+- type: loadout
+  id: AssistantManagerBackpack
+  equipment:
+    back: ClothingBackpackCommandGeneric
+
+- type: loadout
+  id: AssistantManagerSatchel
+  equipment:
+    back: ClothingBackpackSatchelCommandGeneric
+
+- type: loadout
+  id: AssistantManagerDuffel
+  equipment:
+    back: ClothingBackpackDuffelCommandGeneric

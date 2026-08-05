@@ -12,10 +12,10 @@
     time: 30h
   - !type:RolesRequirement
     proto: ExtRolesReq
+  weight: 15
   startingGear: AssistantManagerGear
   icon: "JobIconAssistantManager"
   supervisors: job-supervisors-command
-  canBeAntag: false
   access:
   - Maintenance
   special:
