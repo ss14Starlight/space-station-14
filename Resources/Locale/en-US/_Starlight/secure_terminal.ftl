@@ -156,13 +156,12 @@ secure-terminal-med-pod-announcement = The Emergency Medical Pod has been author
 
 secure-terminal-deputize-salvage-name = Deputize Salvage Personnel
 secure-terminal-deputize-salvage-desc = Formally deputizes Salvage as auxiliary security personnel.
-    Recommended when no Security personnel are present, or when Security is unable to handle active threats to the station without assistance.
-    This is a station-wide announcement only — it grants no additional access. Equipment and orders remain the responsibility of Command.
+    Recommended when no Security personnel are present, or when Security is unable to handle active threats to the station.
+    This is a station-wide announcement only — it grants no additional access.
 secure-terminal-deputize-salvage-announcement = Salvage personnel have been deputized and are now acting in an auxiliary security capacity. Deputies are authorized to engage active station threats.
 
 secure-terminal-revoke-salvage-name = Revoke Salvage Deputization
 secure-terminal-revoke-salvage-desc = Ends the deputization of Salvage personnel and returns them to standard cargo duties.
-    Use once Security personnel are available and able to handle threats without assistance.
     This is a station-wide announcement only — no access is changed.
 secure-terminal-revoke-salvage-announcement = Salvage personnel are no longer deputized.
 
