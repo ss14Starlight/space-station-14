@@ -3,6 +3,7 @@
 food-sequence-cotton-burger-content-plushie-abductor = alien
 food-sequence-cotton-burger-content-plushie-axolotl = axolotl
 food-sequence-cotton-burger-content-plushie-borb = borb
+food-sequence-cotton-burger-content-plushie-borg = lawful
 food-sequence-cotton-burger-content-plushie-cow-squishims = cow
 food-sequence-cotton-burger-content-plushie-creature = YIPPIE
 food-sequence-cotton-burger-content-plushie-frog-squishims = froggy

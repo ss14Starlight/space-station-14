@@ -34,6 +34,14 @@
   - sprite: _Starlight/Objects/Fun/Plushies/borb_plushie.rsi
     state: icon
 
+#Borg Plushie
+- type: foodSequenceElement
+  id: PlushieBorg
+  name: food-sequence-cotton-burger-content-plushie-borg
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
+    state: icon
+
 #Cow Squishims Plushie
 - type: foodSequenceElement
   id: PlushieCowSquishims
