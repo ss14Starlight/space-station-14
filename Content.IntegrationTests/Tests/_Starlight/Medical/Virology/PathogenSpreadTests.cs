@@ -5,6 +5,7 @@ using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Medical.Virology;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Medical.Virology;
+using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.GameObjects;
@@ -221,6 +222,63 @@ public sealed class PathogenSpreadTests : GameTest
                 transmission.AtCap(strain),
                 Is.False,
                 "Corpses must not hold prevalence budget once they can no longer spread.");
+        });
+    }
+
+    /// <summary>
+    /// Natural recovery is otherwise the only way a strain reaches the respawn queue, and
+    /// a host that dies never recovers. Without this an ambient strain whose last carrier
+    /// was killed - by anything, not just the disease - silently left the round.
+    /// </summary>
+    [Test]
+    public async Task DeadCarrierLetsAmbientStrainRespawn()
+    {
+        var server = Pair.Server;
+        var entities = server.EntMan;
+        var maps = server.System<SharedMapSystem>();
+        var minds = server.System<SharedMindSystem>();
+        var mobState = server.System<MobStateSystem>();
+        var pathogens = server.System<PathogenSystem>();
+        var registry = server.System<PathogenRegistrySystem>();
+
+        EntityUid carrier = default;
+        EntityUid survivor = default;
+        Pathogen strain = default!;
+
+        await server.WaitPost(() =>
+        {
+            maps.CreateMap(out var mapId);
+            carrier = entities.SpawnEntity("MobHuman", new MapCoordinates(Vector2.Zero, mapId));
+            survivor = entities.SpawnEntity("MobHuman", new MapCoordinates(new Vector2(50, 0), mapId));
+
+            // Automatic host selection only ever considers player-controlled crew, so the
+            // survivor has to actually be one or the respawn has nowhere to land. Being
+            // the only eligible host also makes the assertion below deterministic.
+            var mindId = minds.CreateMind(ServerSession!.UserId);
+            minds.TransferTo(mindId, survivor);
+            server.PlayerMan.SetAttachedEntity(ServerSession, survivor);
+
+            strain = registry.Generate("SpaceCold")!;
+            Assert.That(
+                strain.RespawnOnExtinction,
+                Is.True,
+                "Ambient strains are the ones meant to reappear.");
+            Assert.That(pathogens.TryInfect(carrier, strain.Id), Is.True);
+        });
+
+        await server.WaitPost(() => mobState.ChangeMobState(carrier, MobState.Dead));
+        await server.WaitRunTicks(5);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(
+                entities.GetComponent<PathogenInfectionComponent>(carrier).Infections,
+                Is.Not.Empty,
+                "The corpse keeps its infection so the body stays worth swabbing.");
+            Assert.That(
+                pathogens.IsInfected(survivor, strain.Id),
+                Is.True,
+                "A strain whose last living carrier died must reappear on the crew.");
         });
     }
 

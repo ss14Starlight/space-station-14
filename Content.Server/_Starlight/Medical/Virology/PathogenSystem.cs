@@ -34,6 +34,36 @@ public sealed partial class PathogenSystem : EntitySystem
     /// </summary>
     private readonly List<int> _extinct = new();
 
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<PathogenInfectionComponent, MobStateChangedEvent>(OnMobStateChanged);
+    }
+
+    /// <summary>
+    /// Natural recovery is otherwise the only way into the respawn queue, and a host that
+    /// dies never recovers. A carrier dying is not the crew running out of people who can
+    /// catch this - the survivors still can - so the strain has to get its chance to
+    /// reappear rather than silently leaving the round with the body.
+    /// </summary>
+    private void OnMobStateChanged(
+        Entity<PathogenInfectionComponent> entity,
+        ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Dead)
+            return;
+
+        foreach (var infection in entity.Comp.Infections)
+        {
+            if (_registry.TryGetStrain(infection.Pathogen, out var strain) &&
+                strain.RespawnOnExtinction)
+            {
+                _extinct.Add(strain.Id);
+            }
+        }
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
