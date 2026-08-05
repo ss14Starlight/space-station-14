@@ -31,10 +31,11 @@ using Robust.Shared.Utility;
 using Robust.Shared.Map.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
-using Content.Shared.SSDIndicator; // Starlight-edit
-using Content.Shared.Atmos; // Starlight-edit
 using Content.Shared.SSDIndicator;
 using Content.Shared.Atmos;
+using Content.Shared.SSDIndicator;
+using Content.Shared.Atmos;
+
 namespace Content.Server.Revenant.EntitySystems;
 
 public sealed partial class RevenantSystem
