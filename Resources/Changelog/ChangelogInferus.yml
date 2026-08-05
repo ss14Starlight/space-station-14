@@ -22,5 +22,14 @@ Entries:
   id: 401
   time: '2026-08-05T16:48:22.000000+00:00'
   url: https://github.com/InferusSS14/Inferus/pull/4
+- author: Tarazicon
+  changes:
+  - message: Changed moths from "Moth People" to "Leporii".
+    type: Tweak
+  - message: Fixed Lepidic causing errors.
+    type: Fix
+  id: 501
+  time: '2026-08-05T19:25:26.000000+00:00'
+  url: https://github.com/InferusSS14/Inferus/pull/5
 Order: -1
 
