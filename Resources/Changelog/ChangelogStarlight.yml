@@ -1,88 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: All windows and directional windows (excluding shuttle windows) can now be upgraded in-place by using the upgraded glass on them directly.
-    type: Add
-  id: 406907
-  time: '2026-07-25T21:21:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5241
-- author: Teddiousbear, briochebear
-  changes:
-  - message: sea bunny plushie.
-    type: Add
-  id: 406908
-  time: '2026-07-25T21:21:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5310
-- author: Conflee
-  changes:
-  - message: Added Crispy Rice Bars, a legally distinct crispy rice treat held together with marshmallow! Boxes and individually wrapped bars can be spawned by the Random Snack spawners, and 1 box can be purchased at snack venders.
-    type: Add
-  id: 406909
-  time: '2026-07-26T10:31:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5258
-- author: Conflee
-  changes:
-  - message: Added a handful of Starlight-unique food wrappers to the Random Trash spawners.
-    type: Tweak
-  id: 406910
-  time: '2026-07-26T10:31:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5258
-- author: joshujo
-  changes:
-  - message: Mixers now accept signals.
-    type: Add
-  id: 406911
-  time: '2026-07-26T11:14:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5281
-- author: joshujo
-  changes:
-  - message: Filters(including inlines) now accept signals.
-    type: Add
-  id: 406912
-  time: '2026-07-26T11:14:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5281
-- author: joshujo
-  changes:
-  - message: Air injectors now accept signals.
-    type: Add
-  id: 406913
-  time: '2026-07-26T11:14:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5281
-- author: joshujo
-  changes:
-  - message: Molar mixers now accept signals.
-    type: Add
-  id: 406914
-  time: '2026-07-26T11:14:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5281
-- author: Rinary
-  changes:
-  - message: Fixed three new bugs with unbans =).
-    type: Fix
-  id: 406915
-  time: '2026-07-26T11:14:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5343
-- author: wonderfulnewworld, Merrokitsune
-  changes:
-  - message: The fire axes can now tear plating.
-    type: Add
-  id: 406916
-  time: '2026-07-26T11:14:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5341
-- author: Johnny
-  changes:
-  - message: (Reach) Added screens to the walls.
-    type: Add
-  id: 406917
-  time: '2026-07-26T11:55:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5331
-- author: Johnny
-  changes:
-  - message: (Reach) Added a sink to bar.
-    type: Add
-  id: 406918
-  time: '2026-07-26T11:55:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5331
 - author: Johnny
   changes:
   - message: (Reach) Added two fuel dispensers to engi and atmos.
@@ -2799,4 +2715,88 @@ Entries:
   id: 407306
   time: '2026-08-04T09:55:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5428
+- author: OMEGA
+  changes:
+  - message: Adds a new air alarm protoype, unlocked.
+    type: Add
+  id: 407307
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: OMEGA
+  changes:
+  - message: (Cork) Remade gas pipe network.
+    type: Add
+  id: 407308
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: OMEGA
+  changes:
+  - message: (Cork) Remade HV, MV and LV networks.
+    type: Add
+  id: 407309
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: OMEGA
+  changes:
+  - message: (Cork) Departmental Lathes.
+    type: Add
+  id: 407310
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: OMEGA
+  changes:
+  - message: (Cork) The Right Honorable Flippers.
+    type: Add
+  id: 407311
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: OMEGA
+  changes:
+  - message: (Cork) Distro and waste pipes added to all docks.
+    type: Add
+  id: 407312
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: OMEGA
+  changes:
+  - message: (Cork) Buy and sell pipes added to cargo shuttle docks.
+    type: Add
+  id: 407313
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: OMEGA
+  changes:
+  - message: (Cork) Unlocked air alarms mapped to Science chambers.
+    type: Add
+  id: 407314
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: OMEGA
+  changes:
+  - message: (Cork) Removed Artifact chamber blast doors. No more ashing half the station!.
+    type: Remove
+  id: 407315
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: OMEGA
+  changes:
+  - message: (Cork) Artifact chambers reworked to enable more control of chamber state.
+    type: Tweak
+  id: 407316
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: OMEGA
+  changes:
+  - message: (Cork) TEG and distro pipes simplified.
+    type: Tweak
+  id: 407317
+  time: '2026-08-05T08:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5518
+- author: Orange Juice Goose
+  changes:
+  - message: Overhauled the fland SM room to be more usable for both beginners and experts.
+    type: Tweak
+  id: 407318
+  time: '2026-08-05T08:57:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5513
 Order: -1
