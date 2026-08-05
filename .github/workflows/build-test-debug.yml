@@ -361,10 +361,11 @@ jobs:
       - content-tests
       - integration-tests
       - yaml-linter
+      - ci-success
     runs-on: ubuntu-slim
     steps:
       - name: Delete test binaries
-        if: ${{ runner.debug != '1' }}
+        if: ${{ runner.debug != '1' || inputs.harvest != true }}
         continue-on-error: true
         uses: geekyeggo/delete-artifact@v6
         with:
