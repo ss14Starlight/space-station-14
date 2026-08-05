@@ -5,7 +5,7 @@
       requirement:
         !type:RoleTimeRequirement
         role: JobAssistantManager
-        time: 216000 #60 hrs. No actual benefit for it at this time. PDA will be added with clothes at some point in the future, and a winter coat inspired by Warden.
+        time: 216000
 
 # Head
 - type: loadout
