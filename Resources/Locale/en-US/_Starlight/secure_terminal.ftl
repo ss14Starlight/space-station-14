@@ -154,6 +154,18 @@ secure-terminal-med-pod-desc = Dispatches the Emergency Medical Pod — rapid-de
     Use when mass casualties exceed the station's medical capacity.
 secure-terminal-med-pod-announcement = The Emergency Medical Pod has been authorized and is en route. Estimated arrival: 5 minutes.
 
+secure-terminal-deputize-salvage-name = Deputize Salvage Personnel
+secure-terminal-deputize-salvage-desc = Formally deputizes Salvage as auxiliary security personnel.
+    Recommended when no Security personnel are present, or when Security is unable to handle active threats to the station without assistance.
+    This is a station-wide announcement only — it grants no additional access. Equipment and orders remain the responsibility of Command.
+secure-terminal-deputize-salvage-announcement = Attention all crew — by order of Command, Salvage personnel have been deputized and are now acting in an auxiliary security capacity. Deputies are authorized to engage active threats to the station and are to be treated as Security staff. They are required to follow all Security Officer procedures during this time.
+
+secure-terminal-revoke-salvage-name = Revoke Salvage Deputization
+secure-terminal-revoke-salvage-desc = Ends the deputization of Salvage personnel and returns them to standard cargo duties.
+    Use once Security personnel are available and able to handle threats without assistance.
+    This is a station-wide announcement only — no access is changed.
+secure-terminal-revoke-salvage-announcement = Attention all crew — by order of Command, Salvage personnel are no longer deputized and have returned to standard cargo duties. Former deputies are no longer authorized to engage threats and are no longer bound by Security Officer procedures.
+
 secure-terminal-nukerequest-name = Self Destruct Code
 secure-terminal-nukerequest-desc = Request the nuclear self-destruct codes.
                                    Misuse of the nuclear request system will not be tolerated under any circumstances.

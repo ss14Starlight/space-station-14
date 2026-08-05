@@ -489,6 +489,42 @@
 
 #region Misc
 
+# ── Deputize Salvage Personnel ────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: DeputizeSalvage
+  name: secure-terminal-deputize-salvage-name
+  description: secure-terminal-deputize-salvage-desc
+  announcement: secure-terminal-deputize-salvage-announcement
+  announcementColor: "#ff4444"
+  activationDelaySecs: 0
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: Announcement
+  sortOrder: 200
+  authGroups:
+    - [Captain, HeadOfSecurity]
+  authGroupLabels:
+    - "Captain / HoS (1)"
+  cooldownSecs: 600
+
+# ── Revoke Salvage Deputization ───────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: RevokeSalvageDeputization
+  name: secure-terminal-revoke-salvage-name
+  description: secure-terminal-revoke-salvage-desc
+  announcement: secure-terminal-revoke-salvage-announcement
+  announcementColor: "#ff4444"
+  activationDelaySecs: 0
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: Announcement
+  sortOrder: 201
+  authGroups:
+    - [Captain, HeadOfSecurity]
+  authGroupLabels:
+    - "Captain / HoS (1)"
+  cooldownSecs: 0
+
 # ── Self Destruct Code ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: NukeRequest
