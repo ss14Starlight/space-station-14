@@ -15,6 +15,9 @@ loadout-group-assistant-backpack = Assistant backpack
 loadout-group-assistantmanager-head = Assistant Manager head
 loadout-group-assistantmanager-jumpsuit = Assistant Manager jumpsuit
 loadout-group-assistantmanager-backpack = Assistant Manager backpack
+loadout-group-assistantmanager-gloves = Assistant Manager gloves
+loadout-group-assistantmanager-outerclothing = Assistant Manager outer clothing
+loadout-group-assistantmanager-shoes = Assistant Manager shoes
 
 loadout-group-boxer-jumpsuit = Boxer jumpsuit
 loadout-group-boxer-gloves = Boxer gloves

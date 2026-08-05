@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da , edited by Alekshhh. Equipped-EYES-moth modified from equipped-EYES by HTMLSystem. equipped-EYES-dog modified from equipped-EYES by Sparlight (GitHub). equipped-EYES-resomi modified from equipped-EYES by Huaqas (GitHub), recolored for assistantpatch by wonderfulnewworld (GitHub)",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
@@ -9,32 +9,27 @@
     "states": [
         {
             "name": "icon",
-			"copyright": "TG Station, Alekshhh, wonderfulnewworld",
-			"license": "CC-BY-SA-3.0"
+			"copyright": "TG Station, Alekshhh, wonderfulnewworld"
         },
         {
             "name": "equipped-EYES",
             "directions": 4,
-			"copyright": "TG Station, Alekshhh, wonderfulnewworld",
-			"license": "CC-BY-SA-3.0"
+			"copyright": "TG Station, Alekshhh, wonderfulnewworld"
         },
         {
             "name": "equipped-EYES-dog",
             "directions": 4,
-			"copyright": "TG Station, Alekshhh, Sparlight, wonderfulnewworld",
-			"license": "CC-BY-SA-3.0"
+			"copyright": "TG Station, Alekshhh, Sparlight, wonderfulnewworld"
         },
         {
             "name": "equipped-EYES-moth",
             "directions": 4,
-			"copyright": "TG Station, HTMLSystem, wonderfulnewworld",
-			"license": "CC-BY-SA-3.0"
+			"copyright": "TG Station, HTMLSystem, wonderfulnewworld"
         },
         {
             "name": "equipped-EYES-resomi",
             "directions": 4,
-			"copyright": "TG Station, Huaqas, wonderfulnewworld",
-			"license": "CC-BY-SA-3.0"
+			"copyright": "TG Station, Huaqas, wonderfulnewworld"
         }
     ]
 }

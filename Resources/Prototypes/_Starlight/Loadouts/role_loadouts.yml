@@ -76,12 +76,9 @@
   - AssistantManagerHead
   - AssistantManagerJumpsuit
   - AssistantManagerBackpack
-  - AssistantNeck
-  - AssistantFace
-  - AssistantGloves
-  - AssistantOuterClothing
-  - AssistantShoes
-  - AssistantGlasses
+  - AssistantManagerGloves
+  - AssistantManagerOuterClothing
+  - AssistantManagerShoes
   - Survival
   - Trinkets
   - Scarves

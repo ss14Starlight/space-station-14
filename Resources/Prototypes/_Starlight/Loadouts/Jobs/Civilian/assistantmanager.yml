@@ -44,3 +44,26 @@
   id: AssistantManagerDuffel
   equipment:
     back: ClothingBackpackDuffelCommandGeneric
+
+# Gloves
+- type: loadout
+  id: AssistantManagerGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorBlue
+
+- type: loadout
+  id: AssistantManagerMittens
+  equipment:
+    gloves: ClothingHandsMittensColorBlue
+
+# Outer Clothing
+- type: loadout
+  id: AssistantManagerWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterColorBlue
+
+# Feet
+- type: loadout
+  id: BlueWinterBoots
+  equipment:
+    shoes: ClothingShoesBootsWinterBlue
