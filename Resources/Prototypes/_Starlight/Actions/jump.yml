@@ -1,7 +1,7 @@
 - type: entity
   id: Jump
   name: Jump
-  description: You jumps at the selected direction.
+  description: Jump towards the direction of your cursor.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
