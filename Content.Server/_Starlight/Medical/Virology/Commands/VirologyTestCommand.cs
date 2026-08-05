@@ -3,7 +3,10 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Shared._Starlight.Medical.Virology;
 using Content.Shared.Administration;
+using Content.Shared.Research.Prototypes;
+using Content.Shared.Roles;
 using Robust.Shared.Console;
+using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -17,12 +20,16 @@ public sealed partial class VirologyTestCommand : IConsoleCommand
 {
     private static readonly TimeSpan DefaultTestSymptomInterval = TimeSpan.FromSeconds(3);
 
+    private static readonly ProtoId<JobPrototype> VirologistJob = "Virologist";
+
     [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
 
     private static readonly string[] Subcommands =
     [
+        "smoke",
         "setup",
         "kit",
         "generate",
@@ -70,6 +77,37 @@ public sealed partial class VirologyTestCommand : IConsoleCommand
         "ClothingOuterBioGeneral",
         "ClothingHeadHatHoodBioGeneral",
         "ClothingOuterHardsuitEngineering",
+        "PathogenViableCulture",
+        "BiosealRollerBed",
+        "ViroculumSeeds",
+    ];
+
+    /// <summary>
+    /// Everything virology adds that a round has to be able to produce. The smoke pass
+    /// only checks these resolve; <see cref="TestKit"/> is the subset worth holding.
+    /// </summary>
+    private static readonly EntProtoId[] SmokeEntities =
+    [
+        "HandheldVirologyMonitor",
+        "PathogenAnalyzer",
+        "PathogenSwab",
+        "PathogenViableCulture",
+        "ComputerVirologyDetector",
+        "PathogenDecontaminator",
+        "PathogenSporePatch",
+        "PathogenInjector",
+        "BiosealRollerBed",
+        "BiosealRollerBedSpawnFolded",
+        "ViroculumSeeds",
+        "FoodViroculumCap",
+    ];
+
+    private static readonly string[] SmokeRecipes =
+    [
+        "HandheldVirologyMonitor",
+        "PathogenSwab",
+        "PathogenAnalyzer",
+        "PathogenInjector",
     ];
 
     public string Command => "virotest";
@@ -77,6 +115,7 @@ public sealed partial class VirologyTestCommand : IConsoleCommand
     public string Description => "Creates and controls a live-round virology test environment.";
 
     public string Help =>
+        "virotest smoke [self|netEntity]\n" +
         "virotest setup [self|netEntity]\n" +
         "virotest kit [self|netEntity]\n" +
         "virotest generate <archetype>\n" +
@@ -104,6 +143,9 @@ public sealed partial class VirologyTestCommand : IConsoleCommand
 
         switch (args[0].ToLowerInvariant())
         {
+            case "smoke":
+                Smoke(shell, args);
+                break;
             case "setup":
                 Setup(shell, args);
                 break;
@@ -175,6 +217,88 @@ public sealed partial class VirologyTestCommand : IConsoleCommand
         }
 
         return CompletionResult.Empty;
+    }
+
+    /// <summary>
+    /// One-shot existence pass over everything virology adds. Answers "is the content
+    /// reachable" before anyone spends time on "is the content correct", and catches the
+    /// failure mode that no other test does: a prototype that loads fine but whose locale
+    /// key was never written, so it shows up in game as a raw fluent id.
+    /// </summary>
+    private void Smoke(IConsoleShell shell, string[] args)
+    {
+        if (args.Length > 2 ||
+            !TryResolveOptionalTarget(shell, args, 1, out var target))
+        {
+            shell.WriteLine("Usage: virotest smoke [self|netEntity]");
+            return;
+        }
+
+        var checks = 0;
+        var failures = 0;
+
+        void Check(bool passed, string label)
+        {
+            checks++;
+            if (passed)
+                return;
+
+            failures++;
+            shell.WriteError($"  FAIL  {label}");
+        }
+
+        shell.WriteLine("[entities]");
+        foreach (var prototype in SmokeEntities)
+            Check(_prototypes.HasIndex<EntityPrototype>(prototype), $"entity '{prototype}'");
+
+        shell.WriteLine("[job and recipes]");
+        Check(_prototypes.HasIndex<JobPrototype>(VirologistJob), $"job '{VirologistJob}'");
+        foreach (var recipe in SmokeRecipes)
+            Check(_prototypes.HasIndex<LatheRecipePrototype>(recipe), $"lathe recipe '{recipe}'");
+
+        shell.WriteLine("[archetypes]");
+        foreach (var archetype in _prototypes.EnumeratePrototypes<PathogenArchetypePrototype>()
+                     .OrderBy(archetype => archetype.ID))
+        {
+            Check(_loc.HasString(archetype.Name), $"archetype '{archetype.ID}' name '{archetype.Name}'");
+
+            if (archetype.Description is { } description)
+                Check(_loc.HasString(description), $"archetype '{archetype.ID}' description '{description}'");
+
+            foreach (var symptom in archetype.CoreSymptoms
+                         .Concat(archetype.StageOneSymptomPool)
+                         .Concat(archetype.SymptomPool))
+            {
+                Check(
+                    _prototypes.HasIndex(symptom),
+                    $"archetype '{archetype.ID}' references missing symptom '{symptom}'");
+            }
+        }
+
+        shell.WriteLine("[symptoms]");
+        var referenced = _prototypes.EnumeratePrototypes<PathogenArchetypePrototype>()
+            .SelectMany(archetype => archetype.CoreSymptoms
+                .Concat(archetype.StageOneSymptomPool)
+                .Concat(archetype.SymptomPool))
+            .Select(symptom => symptom.Id)
+            .ToHashSet();
+
+        foreach (var symptom in _prototypes.EnumeratePrototypes<PathogenSymptomPrototype>()
+                     .OrderBy(symptom => symptom.ID))
+        {
+            Check(_loc.HasString(symptom.Name), $"symptom '{symptom.ID}' name '{symptom.Name}'");
+
+            // Unreachable symptoms are finished work that silently never fires.
+            Check(referenced.Contains(symptom.ID), $"symptom '{symptom.ID}' is not in any archetype pool");
+        }
+
+        shell.WriteLine($"[result] {checks - failures}/{checks} checks passed.");
+
+        if (failures > 0)
+            shell.WriteError($"{failures} check(s) failed - fix these before testing behaviour.");
+
+        EnsureTestStrains(shell);
+        SpawnKit(shell, target);
     }
 
     private void Setup(IConsoleShell shell, string[] args)
