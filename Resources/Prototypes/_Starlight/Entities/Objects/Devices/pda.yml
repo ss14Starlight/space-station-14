@@ -319,6 +319,7 @@
     id: AssistantManagerIDCard
   - type: PdaBorderColor
     borderColor: "#789876"
+    accentVColor: "#447987"
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-assistantmanager
