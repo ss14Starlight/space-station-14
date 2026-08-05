@@ -10,17 +10,6 @@ pathogen-protection-unknown = This item's pathogen protection cannot be identifi
 # Symptoms
 pathogen-symptom-sneezing = sneezing
 pathogen-symptom-coughing = coughing
-pathogen-symptom-fatigue = fatigue
-pathogen-symptom-chills = chills
-pathogen-symptom-watery-eyes = watery eyes
-pathogen-symptom-sniffles = sniffles
-pathogen-symptom-hiccups = hiccups
-pathogen-symptom-mild-stutter = mild stutter
-pathogen-symptom-slurred-speech = slurred speech
-pathogen-symptom-itching = itching
-pathogen-symptom-mild-dizziness = mild dizziness
-pathogen-symptom-harmless-rash = harmless rash
-pathogen-symptom-mild-sweating = mild sweating
 pathogen-symptom-minor-regeneration = accelerated tissue repair
 
 # Ambient structured symptoms
@@ -73,14 +62,6 @@ pathogen-symptom-emergent-fungal-toxic-mycosis = toxic mycosis
 pathogen-symptom-emergent-fungal-ocular-spore-flare = ocular spore flares
 
 # Symptom popups, shown only to the host
-pathogen-symptom-chills-popup = A cold shiver runs through you.
-pathogen-symptom-watery-eyes-popup = Your eyes water.
-pathogen-symptom-sniffles-popup = Your nose starts to run.
-pathogen-symptom-hiccups-popup = You hiccup.
-pathogen-symptom-itching-popup = Your skin itches.
-pathogen-symptom-mild-dizziness-popup = The room tilts for a moment.
-pathogen-symptom-harmless-rash-popup = An irritated rash prickles across your skin.
-pathogen-symptom-mild-sweating-popup = Sweat beads on your forehead.
 # Public ambient stage-one signs
 pathogen-symptom-viral-sniffling-visible = {CAPITALIZE(THE($entity))} sniffles and wipes their nose.
 pathogen-symptom-viral-watery-eyes-visible = {CAPITALIZE(THE($entity))} rubs their watery eyes.
