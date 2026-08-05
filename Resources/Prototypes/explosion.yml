@@ -142,7 +142,7 @@
     types:
       Heat: 5
   lightColor: Red
-  firecolor: Red
+  fireColor: Red
   texturePath: /Textures/Effects/fire.rsi
   fireStates: 10
   fireStacks: 10

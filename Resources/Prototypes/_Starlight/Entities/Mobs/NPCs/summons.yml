@@ -2,7 +2,7 @@
   name: ice sculpture
   id: SummonIceSculpture
   parent: MobElementalBase
-  description: An animated ice construct, filled with malovelent magic.
+  description: An animated ice construct, filled with malevolent magic.
   components:
     - type: LanguageKnowledge
       speaks:

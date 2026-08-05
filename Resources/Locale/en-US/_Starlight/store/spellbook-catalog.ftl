@@ -35,32 +35,32 @@ spellbook-explosionrune-desc = Place a magical rune under your feet that detonat
 spellbook-igniterune-name = Incendiary Rune
 spellbook-igniterune-desc = Place a magical rune under your feet that ignites anyone who dares walk on it.
 
-spellbook-firearrow-name = Fire Arrow
-spellbook-firearrow-desc = Fire three arrow with a tight spread, quick to recharge.
+spellbook-firearrow-name = Fire Arrows
+spellbook-firearrow-desc = Fire three arrows with a tight spread, quick to recharge.
 
 spellbook-cryomancer-name = The Cryomancer path
 spellbook-cryomancer-desc = A set of armor and spells fit for a master Cryomancer. The cold takes all and today you will make sure of that.
 
 spellbook-freezerune-name = Freeze Rune
-spellbook-freezerune-desc = A rune that appears where the caster wishes, freezes in place and damage anyone who walks on it.
+spellbook-freezerune-desc = A rune that appears where the caster wishes, freezes in place and damages anyone who walks on it.
 
 spellbook-frozentome-name = The Frozen Tome
 spellbook-frozentome-desc = An ancient tome rich in cryo magic, allows the wielder to cast a ray of frost.
 
 spellbook-icesculpture-name = Summon Ice Sculpture
-spellbook-icesculpture-desc = Draws a magical rune that summons a ice sculpture after two seconds.
+spellbook-icesculpture-desc = Draws a magical rune that summons an ice sculpture after two seconds.
 
-spellbook-articglare-name = Artic Glare
-spellbook-articglare-desc = Show them the fury of the artic, freezing anyone in front of you.
+spellbook-arcticglare-name = Artic Glare
+spellbook-arcticglare-desc = Show them the fury of the artic, freezing anyone in front of you.
 
 spellbook-iceshard-name = Ice Shard
 spellbook-iceshard-desc = Throw a sharp shard of ice that will slice and freeze the first person it touches.
 
 spellbook-iceorb-name = Heart of winter
-spellbook-iceorb-desc = Unleash a slow moving orb of ice, the orb periodicly throws shard around.
+spellbook-iceorb-desc = Unleash a slow moving orb of ice that periodically throws ice shards around.
 
 spellbook-icepillars-name = Summon ice pillars
-spellbook-icepillars-desc = Summon a row of somewhat sturdy ice pillars in front of you, blocks projectiles but not lasers.
+spellbook-icepillars-desc = Summon a row of somewhat sturdy ice pillars in front of you, block projectiles but not lasers.
 
 spellbook-eruption-name = Eruption
 spellbook-eruption-desc = Summon a rune that after 2 seconds will start sending fiery shrapnels in a wide area.

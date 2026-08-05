@@ -1,5 +1,5 @@
 - type: entity
-  parent: ActionFireball
+  parent: ActionFireball #Remove actionupregadable if spell is put in shop alone
   id: ActionFirebolt
   name: Firebolt
   description: Fires a fast but weaker bolt of fire toward the aimed location. (Cooldown of 5 seconds)
@@ -23,7 +23,7 @@
     modifier: Spell
 
 - type: entity
-  parent: ActionFireball
+  parent: ActionFireball #Remove actionupregadable if spell is put in shop alone
   id: ActionFireOrb
   name: Fire Orb
   description: Fires a slow moving Orb of fire that will ignite everyone in a big radius in a glorious inferno. (Cooldown of 4 minutes)
@@ -48,7 +48,7 @@
     modifier: Spell
 
 - type: entity
-  parent: ActionFireball
+  parent: ActionFireball #Remove actionupregadable if spell is put in shop alone
   id: ActionFireArrow
   name: Fire arrow
   description: Fires a solid flame in the form of an arrow. (Cooldown of 15 seconds)
@@ -75,8 +75,8 @@
 
 - type: entity
   parent: BaseAction
-  id: ActionArticGlare
-  name: Artic Glare
+  id: ActionArcticGlare
+  name: Arctic Glare
   description: Glare at your enemies with the fury of the artic, freezing anyone close (short range spell, 2 min cooldown).
   components:
   - type: Magic
@@ -86,7 +86,7 @@
     raiseOnUser: true
     icon:
       sprite: _Starlight/Objects/Magic/magicactions.rsi
-      state: articglare
+      state: arcticglare
   - type: TargetAction
     range: 60
     checkCanAccess: false
@@ -96,8 +96,8 @@
       projectileCount: 15
       spreadDegrees: 120
   - type: SpeakOnAction
-    sentence: action-speech-spell-articglare
-    tts: action-speech-spell-articglare-tts
+    sentence: action-speech-spell-arcticglare
+    tts: action-speech-spell-arcticglare-tts
     modifier: Spell
   - type: EorgPreventAction
 
@@ -127,10 +127,10 @@
   - type: EorgPreventAction
 
 - type: entity
-  parent: ActionFireball
+  parent: ActionFireball #Remove actionupregadable if spell is put in shop alone
   id: ActionIceOrb
   name: Heart of Winter
-  description: Unleash a slow moving orb of ice, the orb throws icy shards every seconds. Also destroys anything non living on impact. (3 min cooldown)
+  description: Unleash a slow moving orb of ice, the orb throws icy shards every seconds and a half. Also destroys anything non living on impact. (3 min cooldown)
   components:
   - type: Action
     useDelay: 180
