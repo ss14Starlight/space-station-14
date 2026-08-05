@@ -105,6 +105,14 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Rebuilds the source snapshot without the live-round gate <see cref="SampleNow"/>
+    /// enforces for admin use. Integration tests have no round, so they cannot reach the
+    /// collectors any other way.
+    /// </summary>
+    internal void SampleSourcesForTest()
+        => SampleSources();
+
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
         _sources.Clear();
@@ -600,6 +608,61 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// The strains a source can pass on by being touched, and the odds of it. Bacteria
+    /// only: the proximity sweep deliberately no longer carries it, because contact is
+    /// what makes bacteria a different threat from an airborne one.
+    /// </summary>
+    public bool TryGetContactExposure(EntityUid source, out List<Pathogen> strains, out float chance)
+    {
+        strains = new List<Pathogen>();
+        chance = 0f;
+
+        if (_isolation.IsIsolated(source) ||
+            !_sources.TryGetValue(source, out var snapshot))
+        {
+            return false;
+        }
+
+        strains = GetSourceStrains(snapshot, GetActiveStrains())
+            .Where(strain => strain.PathogenType == PathogenType.Bacteria)
+            .ToList();
+
+        if (strains.Count == 0)
+            return false;
+
+        var multiplier = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationContactMultiplier));
+
+        chance = Math.Clamp(GetSourceInfectionChance(snapshot) * multiplier, 0f, 1f);
+        return chance > 0f;
+    }
+
+    private float GetSourceInfectionChance(SourceSnapshot snapshot)
+    {
+        var threshold = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationInfectionThreshold));
+        var chanceScale = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationInfectionChanceScale));
+        var puddleChance = Math.Clamp(
+            _config.GetCVar(StarlightCCVars.VirologyContaminationPuddleInfectionChance),
+            0f,
+            1f);
+
+        var minimumChance = Math.Max(
+            snapshot.MinimumInfectionChance,
+            snapshot.IsPuddle ? puddleChance : 0f);
+
+        return PathogenContaminationMath.SourceInfectionChance(
+            snapshot.Contamination,
+            threshold,
+            chanceScale,
+            minimumChance);
+    }
+
     public bool TryGetBeaconGroups(
         EntityUid observer,
         out EntityUid grid,
@@ -711,7 +774,14 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
             if (chance <= 0f)
                 continue;
 
-            var strains = GetSourceStrains(snapshot, active);
+            // Fungus travels as airborne spores, so standing near a patch is exposure and
+            // masks are the counter. Bacteria needs contact, which is the whole reason it
+            // plays differently from a virus - giving it a free no-touch route from the
+            // environment undercut that, so it is handled by PathogenSourceContactSystem.
+            var strains = GetSourceStrains(snapshot, active)
+                .Where(strain => strain.PathogenType != PathogenType.Bacteria)
+                .ToList();
+
             if (strains.Count == 0)
                 continue;
 

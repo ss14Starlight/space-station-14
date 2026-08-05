@@ -73,6 +73,16 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("virology.contamination_puddle_infection_chance", 0.01f, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Multiplies a source's infection chance when the exposure came from touching it
+    /// rather than standing near it. Contact is a deliberate one-off, where proximity
+    /// rolls every sample tick for as long as someone loiters, so a single touch is worth
+    /// more than a single proximity roll - but only a few times more, since a messy room
+    /// can be crossed repeatedly.
+    /// </summary>
+    public static readonly CVarDef<float> VirologyContaminationContactMultiplier =
+        CVarDef.Create("virology.contamination_contact_multiplier", 3f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Chance for a symptomatic fungal host to shed a patch each time its shedding
     /// interval comes around. Luck decides, so there is no fixed patch budget.
     /// </summary>
