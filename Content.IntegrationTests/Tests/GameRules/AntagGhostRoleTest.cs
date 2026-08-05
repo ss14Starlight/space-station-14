@@ -269,7 +269,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     }
 
     /// <summary>
-    /// Testing this to see if this solves memory issues.
+    /// Returns the IDs of all loaded maps so maps created during a test can be identified and deleted afterward.
     /// </summary>
     private HashSet<MapId> MapIds() => SEntMan.AllComponents<MapComponent>().Select(x => x.Component.MapId).ToHashSet();
     #endregion
