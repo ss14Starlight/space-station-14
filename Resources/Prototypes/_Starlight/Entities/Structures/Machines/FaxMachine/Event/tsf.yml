@@ -1,0 +1,26 @@
+# Group
+- type: faxGroup
+  id: FaxGroupTSF
+  name: fax-group-tsf
+  color: "#22a7ff"
+  order: 1500 # All events: 1500
+  selectable: false
+
+# Single fax -- can be edited for mapping/event purposes.
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineTSF
+  suffix: "TSF"
+  categories: [ DoNotMap ]
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#22a7ff"
+    - type: FaxMachine
+      group: FaxGroupTSF
+      intrinsicGroup: FaxGroupTSF
+      intrinsicLocked: true # No impersonating unless emagged
+      name: "Trans-Solar Federation"
+      order: 500

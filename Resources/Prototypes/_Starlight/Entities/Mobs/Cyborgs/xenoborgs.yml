@@ -41,7 +41,7 @@
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
-  id: XenoborgEngiDerelict
+  id: DerelictEngiXenoborg
   name: derelict engi xenoborg
   components:
     - type: Sprite
@@ -63,7 +63,7 @@
     - type: BorgChassis
       jobIconOverride: JobIconXenoborg # Starlight
       jobTitleOverride: chat-radio-xenoborg # Starlight
-      maxModules: 7
+      maxModules: 8
       hasMindState: borg_e
       noMindState: borg_e_r
       moduleWhitelist:
@@ -77,10 +77,11 @@
       damageContainers:
         - Inorganic
         - Silicon
+        - Hybrid
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
-  id: XenoborgHeavyDerelict
+  id: DerelictHeavyXenoborg
   name: derelict heavy xenoborg
   components:
     - type: Sprite
@@ -150,8 +151,8 @@
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
-  id: XenoborgScoutDerelict
-  name: scout xenoborg
+  id: DerelictScoutXenoborg
+  name: derelict scout xenoborg
   components:
     - type: Sprite
       sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_scout.rsi #Starlight Borg RSI Atomization
@@ -172,7 +173,7 @@
     - type: MovementAlwaysTouching # it flies in space with tiny thrusters
     - type: FlashImmunity
     - type: BorgChassis
-      maxModules: 4
+      maxModules: 5
       hasMindState: borg_e
       noMindState: borg_e_r
       moduleWhitelist:
@@ -188,8 +189,8 @@
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
-  id: XenoborgStealthDerelict
-  name: stealth xenoborg
+  id: DerelictStealthXenoborg
+  name: derelict stealth xenoborg
   components:
     - type: Sprite
       sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_stealth.rsi

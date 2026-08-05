@@ -42,7 +42,6 @@ using Content.Server._Starlight.Medical.Limbs;
 using Content.Server._Starlight.Thaven;
 using Content.Server.Administration.Components;
 using Content.Server.Power.Components;
-using Content.Shared._Starlight.Thaven.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Contraband;
@@ -50,29 +49,31 @@ using Content.Shared.Electrocution;
 using Content.Shared.Humanoid;
 using Content.Shared.Overlays;
 using Content.Shared._Starlight.Medical.Body.Part;
+using Content.Shared._Starlight;
+using Content.Shared._Starlight.Thaven;
 #endregion Starlight
 
 namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    [Dependency] private readonly DoorSystem _door = default!;
-    [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
-    [Dependency] private readonly AirlockSystem _airlockSystem = default!;
-    [Dependency] private readonly StackSystem _stackSystem = default!;
-    [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly AdminTestArenaSystem _adminTestArenaSystem = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
-    [Dependency] private readonly JointSystem _jointSystem = default!;
-    [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private DoorSystem _door = default!;
+    [Dependency] private SharedElectrocutionSystem _electrocution = default!;
+    [Dependency] private AirlockSystem _airlockSystem = default!;
+    [Dependency] private StackSystem _stackSystem = default!;
+    [Dependency] private SharedAccessSystem _accessSystem = default!;
+    [Dependency] private HandsSystem _handsSystem = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private AdminTestArenaSystem _adminTestArenaSystem = default!;
+    [Dependency] private StationJobsSystem _stationJobsSystem = default!;
+    [Dependency] private JointSystem _jointSystem = default!;
+    [Dependency] private SharedBatterySystem _batterySystem = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private GunSystem _gun = default!;
 
     #region Starlight
-    [Dependency] private readonly LimbSystem _limbSystem = default!;
-    [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
+    [Dependency] private LimbSystem _limbSystem = default!;
+    [Dependency] private StarlightEntitySystem _entitySystem = default!;
     #endregion
 
     private void AddTricksVerbs(GetVerbsEvent<Verb> args)
@@ -849,10 +850,38 @@ public sealed partial class AdminVerbSystem
                     }
                 },
                 Impact = LogImpact.Medium,
-                Message = "Replace the right hand with a Reaper arm.",
+                Message = "Replace the right arm with a Reaper arm.",
                 Priority = (int)TricksVerbPriorities.SetBulletAmount,
             };
             args.Verbs.Add(reaperArm);
+
+            // Engineer arm verb
+            Verb engineerArm = new()
+            {
+                Text = "Replace the left arm with an Engineer arm.",
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/Mobs/Species/Cyberlimbs/parts.rsi"), "l_engineer_arm"),
+                Act = () =>
+                {
+                    var torso = _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Torso).FirstOrDefault();
+                    var leftArm = _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Arm).FirstOrDefault(part => part.Component.Symmetry == BodyPartSymmetry.Left);
+                    if (torso == default || leftArm == default)
+                        return;
+
+                    if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Target, out var body)
+                        && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(leftArm.Id, out var partEnt))
+                    {
+                        _limbSystem.Amputatate(body, partEnt);
+                        var reaper = Spawn("LeftArmCyberEngineer", body.Comp1.Coordinates);
+                        if (_entitySystem.TryEntity<BodyPartComponent>(reaper, out var engineerEnt))
+                            _limbSystem.AttachLimb((body.Owner, body.Comp2), "left arm", torso, engineerEnt);
+                    }
+                },
+                Impact = LogImpact.Medium,
+                Message = "Replace the left arm with an Engineer arm.",
+                Priority = (int)TricksVerbPriorities.SetBulletAmount,
+            };
+            args.Verbs.Add(engineerArm);
 
             // Left Speg
             Verb leftSpeg = new()
@@ -910,7 +939,6 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(rightSpeg);
         }
-
 
         if (TryComp<ThavenMoodsComponent>(args.Target, out var moods))
         {
@@ -1100,5 +1128,6 @@ public sealed partial class AdminVerbSystem
         AddRandomMood = -32, //Starlight Thaven
         AddCustomMood = -33, //Starlight Thaven
         BlockObjectiveTargeting = -44, // Starlight
+        RejoinAtmosDevice = -45 // Starlight
     }
 }

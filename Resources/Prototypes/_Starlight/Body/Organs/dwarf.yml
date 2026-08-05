@@ -2,14 +2,16 @@
   id: OrganDwarfHeart
   parent: OrganHumanHeart
   name: dwarf heart
+  suffix: Dwarf
   components:
   - type: Metabolizer
-    metabolizerTypes: [Dwarf]
+    metabolizerTypes: [Dwarf, Protogen]
 
 - type: entity
   id: OrganDwarfLiver
   parent: OrganHumanLiver
   name: dwarf liver
+  suffix: Dwarf
   components:
   - type: Metabolizer
     metabolizerTypes: [Dwarf]
@@ -18,6 +20,7 @@
   id: OrganDwarfStomach
   parent: OrganHumanStomach
   name: dwarf stomach
+  suffix: Dwarf
   components:
   - type: Sprite
     state: stomach
@@ -35,4 +38,4 @@
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
-    metabolizerTypes: [Dwarf]
+    metabolizerTypes: [Dwarf, Animal]

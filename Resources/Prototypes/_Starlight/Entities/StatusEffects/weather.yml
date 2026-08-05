@@ -6,13 +6,13 @@
     - type: WeatherStatusEffect
       sprite:
         sprite: /Textures/Effects/weather.rsi
-        state: ashfall_heavy
+        state: ashfall
       color: green
       sound:
         path: /Audio/_Starlight/Effects/Weather/blobalarm.ogg
         params:
           loop: true
-          volume: -10
+          volume: -16
     - type: WeatherEffects
     - type: WeatherEntityEffect
       effects:
@@ -36,20 +36,17 @@
         path: /Audio/_Starlight/Effects/Weather/blobalarm.ogg
         params:
           loop: true
-          volume: -10
+          volume: -16
     - type: WeatherEffects
     - type: WeatherEntityEffect
       effects:
-      - !type:Flash
-      - !type:Flammable
-        multiplier: 3.75
-        multiplierOnExisting: 0.75
-      - !type:Ignite
       - !type:HealthChange
         ignoreResistances: false
         damage:
           types:
-            Heat: 1
+            Heat: 3
+      - !type:AdjustTemperature
+        amount: 5500
 
 - type: entity
   parent: WeatherBase
@@ -82,3 +79,19 @@
   components:
     - type: ParallaxStatusEffect
       parallax: CosmicFinaleParallax
+
+# a version of WeatherSnowfallHeavy with a LOT less fog
+- type: entity
+  parent: WeatherBase
+  id: WeatherSnowfallLobster
+  name: heavy snowfall with light fog
+  components:
+  - type: WeatherStatusEffect
+    sprite:
+      sprite: /Textures/_Starlight/Effects/weather.rsi
+      state: snowfall_lobster
+    sound:
+      path: /Audio/Effects/Weather/snowstorm.ogg
+      params:
+        loop: true
+        volume: -12 # quiet ambience rather than in-your-face wind

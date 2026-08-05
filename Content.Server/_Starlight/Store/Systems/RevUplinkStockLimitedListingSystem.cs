@@ -1,11 +1,10 @@
 using System.Linq;
-using Content.Server.Store.Components;
+using Content.Shared._Starlight.Store.Components;
+using Content.Shared._Starlight.Store.Conditions;
+using Content.Shared._Starlight.Store.Events;
 using Content.Shared.Store.Components;
-using Content.Shared.Store.Conditions;
-using Content.Shared.Store.Events;
-using Robust.Shared.GameObjects;
 
-namespace Content.Server.Store.Systems;
+namespace Content.Server._Starlight.Store.Systems;
 
 /// <summary>
 /// This system handles stock-limited listings in the store system.

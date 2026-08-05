@@ -27,26 +27,29 @@ using Content.Shared.Speech.Muting;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+// Starlight Start
+using Content.Shared._Starlight.SecureTerminal;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared.Silicons.StationAi;
 // Starlight End
 
 namespace Content.Server.Communications
 {
-    public sealed class CommunicationsConsoleSystem : EntitySystem
+    public sealed partial class CommunicationsConsoleSystem : EntitySystem
     {
-        [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-        [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
-        [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-        [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
-        [Dependency] private readonly StationSystem _stationSystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!; // Starlight
+        [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
+        [Dependency] private AlertLevelSystem _alertLevelSystem = default!;
+        [Dependency] private ChatSystem _chatSystem = default!;
+        [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
+        [Dependency] private EmergencyShuttleSystem _emergency = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private RoundEndSystem _roundEndSystem = default!;
+        [Dependency] private StationSystem _stationSystem = default!;
+        [Dependency] private UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private IGameTiming _gameTiming = default!; // Starlight
 
         private const float UIUpdateInterval = 5.0f;
         // Starlight Start
@@ -70,6 +73,10 @@ namespace Content.Server.Communications
 
             // On console init, set cooldown
             SubscribeLocalEvent<CommunicationsConsoleComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
+
+            // Starlight Start: Secure Command Terminal
+            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleOpenSecureTerminalMessage>(OnOpenSecureTerminalMessage);
+            // Starlight End
         }
 
         public override void Update(float frameTime)
@@ -115,6 +122,18 @@ namespace Content.Server.Communications
             comp.AdditionalGrids.Add(ccComp.Entity.Value);
             //Starlight end
         }
+
+        // Starlight Start: Secure Command Terminal
+        private void OnOpenSecureTerminalMessage(EntityUid uid, CommunicationsConsoleComponent comp,
+            CommunicationsConsoleOpenSecureTerminalMessage msg)
+        {
+            if (msg.Actor is not { Valid: true } actor) return;
+            if (!CanUse(actor, uid)) return;
+            if (!TryComp<SecureCommandTerminalConsoleComponent>(uid, out var terminal) || !terminal.Enabled) return;
+            if (HasComp<StationAiHeldComponent>(actor)) return;
+            _uiSystem.TryOpenUi(uid, SecureCommandTerminalUiKey.Key, actor);
+        }
+        // Starlight End
 
         /// <summary>
         /// Update the UI of every comms console.
@@ -209,7 +228,8 @@ namespace Content.Server.Communications
                 callRecallCooldownEnd: recallEndTime,
                 shuttleCountdownEnd: _roundEndSystem.ExpectedCountdownEnd,
                 shuttleCallsAllowed: _roundEndSystem.GetShuttleCallsEnabled(),
-                lastCountdownStart: _roundEndSystem.LastCountdownStart
+                lastCountdownStart: _roundEndSystem.LastCountdownStart,
+                hasSecureTerminal: TryComp<Content.Shared._Starlight.SecureTerminal.SecureCommandTerminalConsoleComponent>(uid, out var sct) && sct.Enabled
             // Starlight edit End
             ));
         }
@@ -287,6 +307,7 @@ namespace Content.Server.Communications
             {
                 Text = message.Message,
                 Tts = message.Message,
+                OriginalText = message.Message,
                 Modifier = SpeechModifier.None
             };
             msg.Text = SharedChatSystem.SanitizeAnnouncement(message.Message, maxLength);

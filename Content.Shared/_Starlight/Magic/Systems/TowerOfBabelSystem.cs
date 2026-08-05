@@ -4,7 +4,6 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Events;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Shared._Starlight.Magic.Components;
-using Content.Shared.Destructible;
 using Content.Shared.Popups;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -14,9 +13,9 @@ namespace Content.Shared._Starlight.Magic.Systems;
 
 public sealed partial class TowerOfBabelSystem : EntitySystem
 {
-    [Dependency] private readonly SharedLanguageSystem _language = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedLanguageSystem _language = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -37,26 +36,26 @@ public sealed partial class TowerOfBabelSystem : EntitySystem
 
         var comp = languageKnower.Comp;
 
-        if (comp.SpokenLanguages.Count > comp.UnderstoodLanguages.Count)
+        if (comp.Speaks.Count > comp.Understands.Count)
         {
             _random.Shuffle(allLangs);
-            comp.SpokenLanguages = [.. allLangs.Take(comp.SpokenLanguages.Count)];
-            var spoken = comp.SpokenLanguages.ToList();
+            comp.Speaks = [.. allLangs.Take(comp.Speaks.Count)];
+            var spoken = comp.Speaks.ToList();
             _random.Shuffle(spoken);
-            comp.UnderstoodLanguages = [.. spoken.Take(comp.UnderstoodLanguages.Count())];
+            comp.Understands = [.. spoken.Take(comp.Understands.Count())];
         }
         else
         {
             _random.Shuffle(allLangs);
-            comp.UnderstoodLanguages = [.. allLangs.Take(comp.UnderstoodLanguages.Count)];
-            var understood = comp.UnderstoodLanguages.ToList();
+            comp.Understands = [.. allLangs.Take(comp.Understands.Count)];
+            var understood = comp.Understands.ToList();
             _random.Shuffle(understood);
-            comp.SpokenLanguages = [.. understood.Take(comp.SpokenLanguages.Count())];
+            comp.Speaks = [.. understood.Take(comp.Speaks.Count())];
         }
 
         if (
-            comp.SpokenLanguages.Contains(SharedLanguageSystem.UniversalPrototype) ||
-            comp.UnderstoodLanguages.Contains(SharedLanguageSystem.UniversalPrototype)
+            comp.Speaks.Contains(SharedLanguageSystem.UniversalPrototype) ||
+            comp.Understands.Contains(SharedLanguageSystem.UniversalPrototype)
         )
             EnsureComp<UniversalLanguageSpeakerComponent>(languageKnower);
 

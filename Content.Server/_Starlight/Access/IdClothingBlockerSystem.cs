@@ -12,10 +12,10 @@ using Content.Shared.Popups;
 
 namespace Content.Server._Starlight.Access;
 
-public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
+public sealed partial class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedIdCardSystem _card = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedIdCardSystem _card = default!;
 
     public override void Initialize()
     {
@@ -57,11 +57,11 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 
     protected override void OnUnequipAttempt(EntityUid uid, IdClothingBlockerComponent component, BeingUnequippedAttemptEvent args)
     {
-        var wearerHasAccess = HasAccess(args.Unequipee, component);
+        var wearerHasAccess = HasAccess(args.User, component);
         if (wearerHasAccess)
             return;
 
-        if (args.UnEquipTarget == args.Unequipee)
+        if (args.UnEquipTarget == args.User)
         {
             args.Cancel();
         }
@@ -93,24 +93,16 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 
     // We assume access might have changed when a hand or inventory is equipped or unequipped
     private void OnAnyHandEquipped(EntityUid wearer, HandsComponent component, DidEquipHandEvent args)
-    {
-        UpdateClothingBlockingState(wearer);
-    }
+        => UpdateClothingBlockingState(wearer);
 
     private void OnAnyHandUnequipped(EntityUid wearer, HandsComponent component, DidUnequipHandEvent args)
-    {
-        UpdateClothingBlockingState(wearer);
-    }
+        => UpdateClothingBlockingState(wearer);
 
     private void OnAnyInventoryEquipped(EntityUid wearer, InventoryComponent component, DidEquipEvent args)
-    {
-        UpdateClothingBlockingState(wearer);
-    }
+        => UpdateClothingBlockingState(wearer);
 
     private void OnAnyInventoryUnequipped(EntityUid wearer, InventoryComponent component, DidUnequipEvent args)
-    {
-        UpdateClothingBlockingState(wearer);
-    }
+        => UpdateClothingBlockingState(wearer);
 
     private void UpdateClothingBlockingState(EntityUid wearer)
     {

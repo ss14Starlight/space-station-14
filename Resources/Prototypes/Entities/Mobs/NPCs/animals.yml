@@ -217,6 +217,7 @@
     speaks:
     - Chicken
     understands:
+    - GalacticCommon
     - Chicken
   - type: MobThresholds
     thresholds:
@@ -364,7 +365,6 @@
   parent: FoodEgg
   suffix: Fertilized, Chicken
   components:
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobChicken
@@ -373,8 +373,9 @@
     intervalSeconds: 20
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
-  - type: TimedDespawn #delete the egg after the chicken spawns
-    lifetime: 21
+    despawnWhenDone: true # Starlight-edit
+#  - type: TimedDespawn Starlight-edit #delete the egg after the chicken spawns
+#    lifetime: 21
 
 - type: entity
   name: cockroach
@@ -514,7 +515,7 @@
 
 - type: entity
   name: mothroach
-  parent: MobCockroach #starlight Nubody will not pass.
+  parent: MobCockroach # Starlight Edit: Removed BaseMobMothroach
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
@@ -523,6 +524,7 @@
     speaks:
     - Mothroach
     understands:
+    - GalacticCommon
     - Moffic
     - Mothroach
   # Starlight-end
@@ -709,6 +711,7 @@
     speaks:
     - Duck
     understands:
+    - GalacticCommon
     - Duck
   - type: MobThresholds
     thresholds:
@@ -829,7 +832,6 @@
   parent: FoodEgg
   suffix: Fertilized, Duck
   components:
-    - type: Timer
     - type: TimedSpawner
       prototypes:
       - MobDuckMallard
@@ -838,8 +840,9 @@
       intervalSeconds: 20
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
-    - type: TimedDespawn #delete the egg after the chicken spawns
-      lifetime: 21
+      despawnWhenDone: true # Starlight-edit: delete the egg after the duck spawns
+    #- type: TimedDespawn Starlight-edit
+    #  lifetime: 21
 
 - type: entity
   name: butterfly
@@ -920,7 +923,7 @@
 
 - type: entity
   name: cow
-  parent: SimpleMobBase #starlight Nubody will not pass.
+  parent: SimpleMobBase # Starlight Edit: Removed BaseMobRuminant
   id: MobCow
   description: Moo.
   components:
@@ -1007,7 +1010,7 @@
 
 - type: entity
   name: crab
-  parent: SimpleMobBase #starlight Nubody will not pass.
+  parent: SimpleMobBase # Starlight Edit: Removed BaseMobHemocyanin
   id: MobCrab
   description: A folk legend goes around that his claw snaps spacemen out of existence over distasteful remarks. Be polite and tolerant for your own safety.
   components:
@@ -1087,7 +1090,7 @@
 
 - type: entity
   name: goat
-  parent: SimpleMobBase #starlight Nubody will not pass.
+  parent: SimpleMobBase # Starlight Edit: Removed BaseMobRuminant
   id: MobGoat
   description: Her spine consists of long sharp segments, no wonder she is so grumpy.
   components:
@@ -1338,7 +1341,7 @@
 - type: entity
   name: genetic ancestor
   id: MobBaseAncestor
-  parent: [SimpleMobBase, StripableInventoryBase] #starlight Nubody will not pass.
+  parent: [SimpleMobBase, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
@@ -1347,9 +1350,9 @@
     speaks:
     - Ancestor
     understands:
+    - GalacticCommon
     - Ancestor
   # Starlight-end
-  - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
     canDisarm: true
   - type: Inventory
@@ -1381,6 +1384,7 @@
         layer:
         - MobLayer
   - type: Stripping
+  - type: Scent # Starlight
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1403,6 +1407,12 @@
       state: "creampie_human"
       visible: false
   - type: Hands
+    # Starlight edit Start: Reverted NuBody
+    # activeHandId: Hand
+    # hands:
+    #   Hand:
+    #     location: Left
+    # Starlight edit End: Reverted NuBody
   - type: ComplexInteraction
   - type: GenericVisualizer
     visuals:
@@ -1484,6 +1494,7 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
+  - type: VentCrawler # Starlight
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
   - type: AlwaysRevolutionaryConvertible
@@ -1509,6 +1520,13 @@
   - type: Tag
     tags:
       - Monkey
+  - type: Vocal
+    sounds:
+      Male: Monkey
+      Female: Monkey
+      Unsexed: Monkey
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
 
 - type: Tag
   id: Monkey
@@ -1530,6 +1548,14 @@
     understands:
     - Ancestor
     - GalacticCommon
+  - type: VentCrawler # Starlight
+  - type: Vocal
+    sounds:
+      Male: Monkey
+      Female: Monkey
+      Unsexed: Monkey
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
   # Starlight-End
   - type: NameIdentifier
     group: Monkey
@@ -1563,7 +1589,6 @@
   suffix: syndicate agent
   components:
     # make the player a traitor once its taken
-  - type: VentCrawler
   # Starlight-Start
   - type: LanguageSpeaker
   - type: LanguageKnowledge
@@ -1581,7 +1606,6 @@
   parent: MobBaseSyndicateMonkey
   suffix: NukeOps
   components:
-  - type: VentCrawler
   # Starlight-Start
   - type: LanguageSpeaker
   - type: LanguageKnowledge
@@ -1606,6 +1630,7 @@
     - Ancestor
     - Draconic
     understands:
+    - GalacticCommon
     - Ancestor
     - Draconic
   # Starlight-end
@@ -1729,6 +1754,7 @@
   parent: MobBaseKobold
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   components:
+  - type: VentCrawler # Starlight
   - type: Clumsy
     gunShootFailDamage:
       types:
@@ -1756,6 +1782,7 @@
     - Ancestor
     - Draconic
     - GalacticCommon
+  - type: VentCrawler
   # Starlight-End
   - type: MobThresholds
     thresholds:
@@ -1795,22 +1822,24 @@
 
 - type: entity
   name: mouse
-  parent: SimpleMobBase #starlight Nubody will not pass.
+  parent:
+  - SimpleMobBase
+  # - BaseMobAnimal # Starlight Edit: Revert NuBody
   id: MobMouse
   description: Squeak!
   components:
-  # Starlight-start: Languages
+  # Starlight Start
   - type: LanguageKnowledge
     speaks:
     - Mouse
     understands:
+    - GalacticCommon
     - Mouse
-  # Starlight-end
-  - type: VentCrawler # Starlight-edit: Vent Crawl
-  # Starlight - start
+    - Squeakish
+  - type: VentCrawler
   - type: Body
     prototype: Mouse
-  # Starlight - end
+  # Starlight End
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -2400,6 +2429,14 @@
   id: MobPenguin
   description: Their lives are constant pain due to their inner-body knees.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Penguin
+    understands:
+    - GalacticCommon
+    - Penguin
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2531,6 +2568,12 @@
         damage: 50
       behaviors:
       - !type:ExplodeBehavior
+  #SL begin
+  - type: PressureImmunity
+  - type: Respirator
+    minSaturation: 5.0
+  - type: TemperatureImmunity
+  #SL end
 
   # I have included a snake_hiss.ogg sound file so if you want to use that be my guest
 - type: entity
@@ -2587,7 +2630,7 @@
 # Code unique spider prototypes or combine them all into one spider and get a
 # random sprite state when you spawn it.
 - type: entity
-  parent: [ SimpleMobBase, MobCombat ] #starlight Nubody will not pass.
+  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobHemocyanin
   id: MobSpiderBase
   abstract: true
   components:
@@ -2596,6 +2639,7 @@
     speaks:
     - Chittin
     understands:
+    - GalacticCommon
     - Chittin
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -2685,6 +2729,7 @@
       groups:
         Brute: -0.07
         Burn: -0.07
+  - type: NightVision # Starlight
 
 - type: entity
   parent: MobSpiderBase
@@ -2979,6 +3024,7 @@
     speaks:
     - Fox
     understands:
+    - GalacticCommon
     - Fox
     - Canilunzt
   # Starlight-end
@@ -3054,6 +3100,14 @@
     rootTask:
       task: RuminantHostileCompound
   - type: MessyDrinker
+  # Starlight Begin
+  - type: Smeller
+  - type: Scent
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
+  # Starlight End
   - type: Puller
     needsHands: false
   - type: Tag
@@ -3084,6 +3138,10 @@
       Male: Dog
       Female: Dog
       Unsexed: Dog
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
   # Starlight End
   - type: Fixtures
     fixtures:
@@ -3126,13 +3184,15 @@
       Dead: CorgiDead
   - type: Blindable # why is this not base?
   - type: Emoting
+  - type: Scent
+  - type: Smeller
   - type: ThermalRegulator # Lower radiated heat, Corgis are smaller so their body surface area is also smaller.
     metabolismHeat: 400 # half of human's
     radiatedHeat: 35 # This affects them reallistically only when dead in a spaced room, makes the cold damage scale slower.
     implicitHeatRegulation: 250 # Add implicit heat regulation because they lacked it for some reason
     sweatHeatRegulation: 500 # Allow corgis to sweat, i dont know if dogs sweat but i am not implementing a different way of regulation just for them
     shiveringHeatRegulation: 500 # Allow corgis to shiver to warm up
-    normalBodyTemperature: 310.15 # Same as human
+    normalBodyTemperature: 311.45 # Slightly higher than human
     thermalRegulationTemperatureThreshold: 2 # Same as human
   # Starlight End
 
@@ -3145,6 +3205,7 @@
     speaks:
     - Dog
     understands:
+    - GalacticCommon
     - Dog
     - Canilunzt
   # Starlight-end
@@ -3181,6 +3242,7 @@
     understands:
     - Dog
     - GalacticCommon
+    - Canilunzt
   # Starlight End
   - type: Sprite
     drawdepth: Mobs
@@ -3280,6 +3342,7 @@
     speaks:
     - Cat
     understands:
+    - GalacticCommon
     - Cat
     - Nekomimetic
   # Starlight-end
@@ -3646,7 +3709,9 @@
     speaks:
     - Mouse
     understands:
+    - GalacticCommon
     - Mouse
+    - Squeakish
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: GhostRole
@@ -3807,6 +3872,7 @@
     speaks:
     - Pig
     understands:
+    - GalacticCommon
     - Pig
   # Starlight-end
   - type: Sprite
@@ -3874,7 +3940,7 @@
 
 - type: entity
   name: diona nymph
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [SimpleMobBase, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal
   id: MobDionaNymph
   description: It's like a cat, only.... branch-ier.
   components:
@@ -3883,6 +3949,7 @@
     speaks:
     - Sylvan
     understands:
+    - GalacticCommon
     - Sylvan
   # Starlight-end
   - type: Sprite
@@ -3972,6 +4039,7 @@
     speaks:
     - Sylvan
     understands:
+    - GalacticCommon
     - Sylvan
   # Starlight-end
 
@@ -4123,6 +4191,14 @@
             sprite: Mobs/Pets/displacements.rsi
             state: corgi_head_displacement
   - type: Hands # HANDS!
+    # Starlight edit Start: Reverted NuBody
+    # activeHandId: Right
+    # hands:
+    #   Right:
+    #     location: Right
+    #   Left:
+    #     location: Left
+    # Starlight edit End: Reverted NuBody
   - type: Puller
   - type: Cuffable # bad dog!
   - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth
@@ -4134,6 +4210,9 @@
   # Starlight - start
   - type: Body
     prototype: SmartCorgi
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCorgi
   # Starlight - end
   - type: RotationVisuals
     defaultRotation: 90

@@ -8,7 +8,7 @@ namespace Content.Server._Starlight.Speech.EntitySystems;
 
 public sealed partial class FrenchAccentSystem : EntitySystem
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     [GeneratedRegex(@"th", RegexOptions.IgnoreCase)]
     private static partial Regex RegexTh();
@@ -25,7 +25,7 @@ public sealed partial class FrenchAccentSystem : EntitySystem
         SubscribeLocalEvent<FrenchAccentComponent, AccentGetEvent>(OnAccentGet);
     }
 
-    public SpeechMessage Accentuate(SpeechMessage message, FrenchAccentComponent component)
+    public SpeechMessage Accentuate(SpeechMessage message, FrenchAccentComponent _)
     {
         message = _replacement.ApplyReplacements(message, "french");
 

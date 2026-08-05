@@ -10,9 +10,9 @@ namespace Content.Server._Starlight.Grid;
 
 [AdminCommand(AdminFlags.Admin)]
 [ToolshedCommand]
-public sealed class GridCommand : ToolshedCommand
+public sealed partial class GridCommand : ToolshedCommand
 {
-    [Dependency] private readonly IPlayerManager _plr = default!;
+    [Dependency] private IPlayerManager _plr = default!;
 
     [CommandImplementation("getplayers")]
     public IEnumerable<EntityUid> GetPlayersOnGrid([PipedArgument] EntityUid grid, bool excludeGhosts = false)
@@ -31,7 +31,7 @@ public sealed class GridCommand : ToolshedCommand
 
     [CommandImplementation("getplayers")]
     public IEnumerable<EntityUid> GetPlayersOnGrids([PipedArgument] IEnumerable<EntityUid> grids, bool excludeGhosts = false) =>
-        grids.SelectMany(x => GetPlayersOnGrid(x));
+        grids.SelectMany(x => GetPlayersOnGrid(x, excludeGhosts));
 
     [CommandImplementation("get")]
     public EntityUid GetGrid([PipedArgument] EntityUid uid) => Transform(uid).GridUid ?? EntityUid.Invalid;

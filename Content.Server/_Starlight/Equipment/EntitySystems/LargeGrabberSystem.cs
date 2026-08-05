@@ -5,8 +5,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Mech.Equipment.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Wall;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -22,16 +20,16 @@ namespace Content.Server._Starlight.Equipment.EntitySystems;
 /// Handles <see cref="LargeGrabberComponent"/> and all related UI logic
 /// Adapted from <see cref="MechGrabberSystem"/>
 /// </summary>
-public sealed class LargeGrabberSystem : EntitySystem
+public sealed partial class LargeGrabberSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private InteractionSystem _interaction = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private ItemToggleSystem _itemToggle = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -67,9 +65,7 @@ public sealed class LargeGrabberSystem : EntitySystem
     }
 
     private void OnStartup(EntityUid uid, LargeGrabberComponent component, ComponentStartup args)
-    {
-        component.ItemContainer = _container.EnsureContainer<Container>(uid, "item-container");
-    }
+        => component.ItemContainer = _container.EnsureContainer<Container>(uid, "item-container");
 
     private void OnInteract(EntityUid uid, LargeGrabberComponent component, AfterInteractEvent args)
     {

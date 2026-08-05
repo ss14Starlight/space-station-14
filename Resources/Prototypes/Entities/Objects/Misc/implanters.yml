@@ -48,8 +48,8 @@
     - RadioImplant
     - ChameleonControllerImplant
     - VoiceMaskImplant
-    - SELFStorageImplant #Starlight
     - MindControlImplant #Starlight
+    - CommandTrackingImplant #Starlight
     deimplantFailureDamage:
       types:
         Cellular: 50

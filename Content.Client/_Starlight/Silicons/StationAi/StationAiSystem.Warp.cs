@@ -1,7 +1,8 @@
 using Content.Client._Starlight.Silicons.StationAi;
+using Content.Shared._Starlight.StationAi;
 using Content.Shared.Silicons.StationAi;
-using Robust.Shared.Player;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Client.Silicons.StationAi;
 
 public sealed partial class StationAiSystem
@@ -48,7 +49,5 @@ public sealed partial class StationAiSystem
     }
 
     private void OnWarpWindowClosed()
-    {
-        _warpUi?.ClearWindow();
-    }
+        => _warpUi?.ClearWindow();
 }

@@ -12,12 +12,13 @@
   icon: "JobIconSalvageSpecialist" # Starlight - New distinct icon, Starlight end
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-qm
-  canBeAntag: false
+  displayWeight: 4 # Starlight
   access:
   - Cargo
   - Salvage
   - Maintenance
   - External
+  - Shuttle # Starlight
   extendedAccess:
   - Mining # Starlight
   - Mail # Starlight

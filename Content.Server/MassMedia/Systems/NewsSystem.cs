@@ -28,24 +28,25 @@ using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Content.Server._Starlight.MassMedia.Components;
 
 namespace Content.Server.MassMedia.Systems;
 
-public sealed class NewsSystem : SharedNewsSystem
+public sealed partial class NewsSystem : SharedNewsSystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly DiscordWebhook _discord = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IBaseServer _baseServer = default!;
+    [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private DiscordWebhook _discord = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IBaseServer _baseServer = default!;
 
     private WebhookIdentifier? _webhookId = null;
     private Color _webhookEmbedColor;
@@ -117,6 +118,7 @@ public sealed class NewsSystem : SharedNewsSystem
             return;
 
         EnsureComp<StationNewsComponent>(station.Value);
+        EnsureComp<StationNewsReactionsComponent>(station.Value); // Starlight
     }
 
     private void OnWriteUiDeleteMessage(Entity<NewsWriterComponent> ent, ref NewsWriterDeleteMessage msg)
@@ -136,6 +138,7 @@ public sealed class NewsSystem : SharedNewsSystem
             );
 
             articles.RemoveAt(msg.ArticleNum);
+            RemoveArticleTracking(ent, msg.ArticleNum); // Starlight
             _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
         }
         else
@@ -210,7 +213,12 @@ public sealed class NewsSystem : SharedNewsSystem
             Title = title.Length <= MaxTitleLength ? title : $"{title[..MaxTitleLength]}...",
             Content = content.Length <= MaxContentLength ? content : $"{content[..MaxContentLength]}...",
             Author = author,
-            ShareTime = _ticker.RoundDuration()
+            ShareTime = _ticker.RoundDuration(),
+            // Starlight-edit: start
+            Likes = 0,
+            Dislikes = 0,
+            Views = 0
+            // Starlight-edit: end
         };
 
         articles.Add(article.Value);
@@ -284,25 +292,37 @@ public sealed class NewsSystem : SharedNewsSystem
         if (args is not NewsReaderUiMessageEvent message)
             return;
 
+        var shouldCountView = false; // Starlight
+
         switch (message.Action)
         {
             case NewsReaderUiAction.Next:
                 NewsReaderLeafArticle(ent, 1);
+                shouldCountView = true; // Starlight
                 break;
             case NewsReaderUiAction.Prev:
                 NewsReaderLeafArticle(ent, -1);
+                shouldCountView = true; // Starlight
                 break;
             case NewsReaderUiAction.NotificationSwitch:
                 ent.Comp.NotificationOn = !ent.Comp.NotificationOn;
                 break;
+            // Starlight-edit: start
+            case NewsReaderUiAction.Like:
+                TryReactToCurrentArticle(ent, GetEntity(args.LoaderUid), true);
+                break;
+            case NewsReaderUiAction.Dislike:
+                TryReactToCurrentArticle(ent, GetEntity(args.LoaderUid), false);
+                break;
+            // Starlight-edit: end
         }
 
-        UpdateReaderUi(ent, GetEntity(args.LoaderUid));
+        UpdateReaderUi(ent, GetEntity(args.LoaderUid), shouldCountView);
     }
 
     private void OnReaderUiReady(Entity<NewsReaderCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
-        UpdateReaderUi(ent, args.Loader);
+        UpdateReaderUi(ent, args.Loader, true);
     }
     #endregion
 
@@ -331,7 +351,7 @@ public sealed class NewsSystem : SharedNewsSystem
         _ui.SetUiState(ent.Owner, NewsWriterUiKey.Key, state);
     }
 
-    private void UpdateReaderUi(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid)
+    private void UpdateReaderUi(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid, bool shouldCountView = false) // Starlight
     {
         if (!TryGetArticles(ent, out var articles))
             return;
@@ -343,12 +363,17 @@ public sealed class NewsSystem : SharedNewsSystem
             _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, new NewsReaderEmptyBoundUserInterfaceState(ent.Comp.NotificationOn));
             return;
         }
+        // Starlight-edit: start
+        if (shouldCountView)
+            TryCountCurrentArticleView(ent, loaderUid, articles);
+        // Starlight-edit: end
 
         var state = new NewsReaderBoundUserInterfaceState(
             articles[ent.Comp.ArticleNumber],
             ent.Comp.ArticleNumber + 1,
             articles.Count,
-            ent.Comp.NotificationOn);
+            ent.Comp.NotificationOn,
+            HasReactedToCurrentArticle(ent, loaderUid)); // Starlight
 
         _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
     }
@@ -366,6 +391,139 @@ public sealed class NewsSystem : SharedNewsSystem
         if (ent.Comp.ArticleNumber < 0)
             ent.Comp.ArticleNumber = articles.Count - 1;
     }
+
+# region Starlight
+
+    private void TryReactToCurrentArticle(Entity<NewsReaderCartridgeComponent> ent, EntityUid reader, bool like)
+    {
+        if (!TryGetArticles(ent, out var articles) ||
+            articles.Count == 0)
+            return;
+
+        NewsReaderLeafArticle(ent, 0);
+
+        var article = articles[ent.Comp.ArticleNumber];
+        if (!TryGetArticleReactions(ent, ent.Comp.ArticleNumber, out var reactions, true))
+            return;
+
+        var readerKey = GetNetEntity(reader);
+        if (!reactions.Add(readerKey))
+            return;
+
+        if (like)
+            article.Likes++;
+        else
+            article.Dislikes++;
+
+        articles[ent.Comp.ArticleNumber] = article;
+    }
+
+    private bool HasReactedToCurrentArticle(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid)
+    {
+        if (!TryGetArticleReactions(ent, ent.Comp.ArticleNumber, out var reactions, false))
+            return false;
+
+        return reactions.Contains(GetNetEntity(loaderUid));
+    }
+
+    private void TryCountCurrentArticleView(Entity<NewsReaderCartridgeComponent> ent, EntityUid viewer, List<NewsArticle> articles)
+    {
+        if (!TryGetArticleViews(ent, ent.Comp.ArticleNumber, out var views, true))
+            return;
+
+        var viewerKey = GetNetEntity(viewer);
+        if (!views.Add(viewerKey))
+            return;
+
+        var article = articles[ent.Comp.ArticleNumber];
+        article.Views++;
+        articles[ent.Comp.ArticleNumber] = article;
+    }
+
+    private bool TryGetArticleReactions(EntityUid articleOwner, int articleNumber,
+        [NotNullWhen(true)] out HashSet<NetEntity>? reactions,
+        bool create)
+    {
+        reactions = null;
+
+        if (_station.GetOwningStation(articleOwner) is not { } station)
+            return false;
+
+        if (!TryComp<StationNewsReactionsComponent>(station, out var comp))
+        {
+            if (!create)
+                return false;
+
+            comp = EnsureComp<StationNewsReactionsComponent>(station);
+        }
+
+        if (!comp.ReactedByArticle.TryGetValue(articleNumber, out reactions))
+        {
+            if (!create)
+                return false;
+
+            reactions = new HashSet<NetEntity>();
+            comp.ReactedByArticle[articleNumber] = reactions;
+        }
+
+        return true;
+    }
+
+    private bool TryGetArticleViews(EntityUid articleOwner, int articleNumber,
+        [NotNullWhen(true)] out HashSet<NetEntity>? views,
+        bool create)
+    {
+        views = null;
+
+        if (_station.GetOwningStation(articleOwner) is not { } station)
+            return false;
+
+        if (!TryComp<StationNewsReactionsComponent>(station, out var comp))
+        {
+            if (!create)
+                return false;
+
+            comp = EnsureComp<StationNewsReactionsComponent>(station);
+        }
+
+        if (!comp.ViewedByArticle.TryGetValue(articleNumber, out views))
+        {
+            if (!create)
+                return false;
+
+            views = new HashSet<NetEntity>();
+            comp.ViewedByArticle[articleNumber] = views;
+        }
+
+        return true;
+    }
+
+    private void RemoveArticleTracking(EntityUid articleOwner, int articleNumber)
+    {
+        if (_station.GetOwningStation(articleOwner) is not { } station ||
+            !TryComp<StationNewsReactionsComponent>(station, out var comp))
+        {
+            return;
+        }
+
+        ShiftArticleTracking(comp.ReactedByArticle, articleNumber);
+        ShiftArticleTracking(comp.ViewedByArticle, articleNumber);
+    }
+
+    private static void ShiftArticleTracking(Dictionary<int, HashSet<NetEntity>> records, int articleNumber)
+    {
+        records.Remove(articleNumber);
+
+        foreach (var (index, articleRecords) in records
+                     .Where(entry => entry.Key > articleNumber)
+                     .OrderBy(entry => entry.Key)
+                     .ToArray())
+        {
+            records.Remove(index);
+            records[index - 1] = articleRecords;
+        }
+    }
+#endregion
 
     private void UpdateWriterDevices()
     {

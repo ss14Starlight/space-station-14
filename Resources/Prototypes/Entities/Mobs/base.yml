@@ -44,7 +44,6 @@
     active: False
   - type: StunVisuals
   - type: TextToSpeech
-  - type: CollectiveMind
   - type: CustomLimbVisualizer
     displacements:
       LHand:

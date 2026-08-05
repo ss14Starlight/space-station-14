@@ -71,7 +71,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatSecurityTrooper
   name: trooper hat
-  description: A campaign hat for the Nanotrasen Troopers. It's supposed to come with a case, too...
+  description: A campaign hat for the NanoTrasen Troopers. It's supposed to come with a case, too... # SL
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/security_trooper_hat.rsi
@@ -237,7 +237,7 @@
   parent: [ClothingHeadBase, BaseCommandManagerContraband] # Starlight
   id: ClothingHeadHatBeretCommand
   name: command beret
-  description: A beret with the Nanotrasen logo. It has an aura of authority.
+  description: A beret with the NanoTrasen logo. It has an aura of authority. # SL
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/beret_command.rsi
@@ -723,6 +723,13 @@
         color: "#a60b0b"
       - state: pompom-equipped-HELMET
         color: "#a60b0b"
+  - type: TemperatureProtection # Starlight start
+    heatingCoefficient: 1
+    coolingCoefficient: 0.75
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingHeadHatWizardBase

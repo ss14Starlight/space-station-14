@@ -22,6 +22,8 @@ guide-entry-sl-rule-11 = Rule 11
 guide-entry-sl-rule-12 = Rule 12
 guide-entry-sl-rule-13 = Rule 13
 guide-entry-sl-rule-14 = Rule 14
+guide-entry-sl-rule-15 = Rule 15
+guide-entry-sl-rule-16 = Rule 16
 guide-entry-sl-metashield = Metashield
 
 guide-entry-sl-silicon-1 = Sil.Rule 1
@@ -138,7 +140,7 @@ guide-entry-sl-nano-trasen-employee-sop-genproc-intro = General Procedures
 guide-entry-sl-nano-trasen-employee-sop-safety-protocol = Safety Protocol
 guide-entry-sl-nano-trasen-employee-sop-staff-intro = Staff Procedures
 guide-entry-sl-nano-trasen-employee-sop-nt-rep = NanoTrasen Representative
-guide-entry-sl-nano-trasen-employee-sop-bso = BlueShield Officer
+guide-entry-sl-nano-trasen-employee-sop-bso = Blueshield Officer
 guide-entry-sl-nano-trasen-employee-sop-magistrate = Magistrate
 guide-entry-sl-nano-trasen-employee-sop-iaa = Internal Affairs Agent
 guide-entry-sl-nano-trasen-employee-sop-nct = NanoTrasen Career Trainer
@@ -148,11 +150,14 @@ guide-entry-sl-service-sop-genproc-intro = General Procedures
 guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 guide-entry-sl-service-sop-lawyer = Lawyer
+guide-entry-sl-service-sop-reporter = Reporter
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
+guide-entry-devil = Devil
 
 guide-entry-sl-deepfried-recipes = Deep Fried
+guide-entry-sl-ice-cream-recipes = Ice Cream Maker
 
 # Plumbing guides
 guide-entry-plumbing = Plumbing

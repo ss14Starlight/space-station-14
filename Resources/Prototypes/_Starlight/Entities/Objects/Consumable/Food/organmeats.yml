@@ -4,7 +4,7 @@
   name: haggis
   parent: FoodMealBase
   id: FoodHaggis
-  description: A delicacy among Dwarves, the Scottish, and precisely no one else. Inexplicably nutritious.
+  description: A delicacy among Dwarfs, the Scottish, and precisely no one else. Inexplicably nutritious.
   components:
     - type: FlavorProfile
       flavors:

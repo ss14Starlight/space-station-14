@@ -362,6 +362,60 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
+# Courtroom
+- type: entity
+  parent: AirlockSecurityLocked
+  id: AirlockCourtroomLocked
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+
+- type: entity
+  parent: AirlockSecurityGlassLocked
+  id: AirlockCourtroomGlassLocked
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+
+- type: entity
+  parent: AirlockCourtroomLocked
+  id: AirlockMaintCourtroomLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+
+# Attorney
+- type: entity
+  parent: AirlockServiceLocked
+  id: AirlockAttorneyLocked
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAttorney ]
+
+- type: entity
+  parent: AirlockServiceGlassLocked
+  id: AirlockAttorneyGlassLocked
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAttorney ]
+
+- type: entity
+  parent: AirlockAttorneyLocked
+  id: AirlockMaintAttorneyLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+
 # Xenoborg
 - type: entity
   parent: AirlockXenoborgGlass
@@ -879,40 +933,33 @@
       containers:
         board: [ DoorElectronicsBlackstar ]
 
-# Blackstar
+#Visitors
 - type: entity
-  parent: AirlockBrigmed
-  id: AirlockMedTakLocked
-  suffix: MedTak, Locked
+  parent: Airlock
+  id: AirlockVisitorLocked
+  suffix: Visitor, Locked
   components:
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsMedTak ]
-    - type: Wires
-      layoutId: AirlockMedTak
+        board: [ DoorElectronicsVisitor ]
 
-# MedTak
 - type: entity
-  parent: AirlockBrigmedGlass
-  id: AirlockMedTakGlassLocked
-  suffix: MedTak, Locked
+  parent: AirlockGlass
+  id: AirlockVisitorGlassLocked
+  suffix: Visitor, Locked
   components:
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsMedTak ]
-    - type: Wires
-      layoutId: AirlockMedTak
+        board: [ DoorElectronicsVisitor ]
 
 - type: entity
   parent: AirlockGlassShuttle
-  id: AirlockGlassShuttleMedTakLocked
-  suffix: Glass, Docking, MedTak, Locked
+  id: AirlockGlassShuttleVisitorLocked
+  suffix: Glass, Docking, Visitor, Locked
   components:
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsMedTak ]
-    - type: Wires
-      layoutId: AirlockMedTak
+        board: [ DoorElectronicsVisitor ]
 
 
 # Escape Pods (gridfills)

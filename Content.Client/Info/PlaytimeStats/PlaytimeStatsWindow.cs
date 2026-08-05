@@ -15,8 +15,8 @@ namespace Content.Client.Info.PlaytimeStats;
 [GenerateTypedNameReferences]
 public sealed partial class PlaytimeStatsWindow : FancyWindow
 {
-    [Dependency] private readonly JobRequirementsManager _jobRequirementsManager = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private JobRequirementsManager _jobRequirementsManager = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
     private readonly Color _altColor = Color.FromHex("#292B38");
     private readonly Color _defaultColor = Color.FromHex("#2F2F3B");
     private readonly Color _antagColor = Color.FromHex("#fe7676");

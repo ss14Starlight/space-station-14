@@ -10,13 +10,14 @@
   icon: "JobIconSalvageLead"
   startingGear: SalvageLeadGear
   supervisors: job-supervisors-qm
-  canBeAntag: false
+  displayWeight: 5
   access:
   - Cargo
   - Salvage
   - SalvageLead
   - Maintenance
   - External
+  - Shuttle
   extendedAccess:
   - Mining
   - Mail

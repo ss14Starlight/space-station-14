@@ -39,6 +39,15 @@
   parent: ClothingNeckBase
   id: ClothingScarfBase
   components:
+  #region Starlight
+  - type: TemperatureProtection # same as winter boots
+    heatingCoefficient: 1.025
+    coolingCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.9 # I mean, that's literally what they're for...
+  #endregion Starlight
   - type: Tag
     tags:
     - Scarf

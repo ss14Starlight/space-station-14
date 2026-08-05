@@ -2,20 +2,20 @@ using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.AlertLevel;
 using Content.Server.GameTicking;
 using Content.Server.StationEvents.Components;
+using Content.Server.StationEvents.Events;
 using Content.Shared._Starlight.GameTicking.Components;
 using Content.Shared._Starlight.Light;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.Station.Components;
-using Robust.Shared.Player;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._Starlight.GameTicking.Rules;
 
-public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
+public sealed partial class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
 {
-    [Dependency] private readonly SharedPoweredLightSystem _poweredLightSystem = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private SharedPoweredLightSystem _poweredLightSystem = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
 
     public override void Initialize()
     {

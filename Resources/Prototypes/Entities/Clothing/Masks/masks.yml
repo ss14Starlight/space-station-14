@@ -41,6 +41,9 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: Tag
+    tags:
+    - CorgiWearable #Starlight edit
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]
@@ -84,7 +87,7 @@
   parent: [ClothingMaskGasAtmos, BaseCommandContraband]
   id: ClothingMaskGasCaptain
   name: captain's gas mask
-  description: Nanotrasen cut corners and repainted a spare atmospheric gas mask, but don't tell anyone.
+  description: NanoTrasen cut corners and repainted a spare atmospheric gas mask, but don't tell anyone. # SL
   components:
   - type: Sprite
     sprite: Clothing/Mask/gascaptain.rsi
@@ -324,6 +327,7 @@
   - type: IdentityBlocker
   - type: Tag
     tags:
+    - MimeMask #Starlight
     - HamsterWearable
     - WhitelistChameleon
   - type: HideLayerClothing
@@ -521,6 +525,8 @@
     - HeadSide
   - type: Pierceable
     level: Rock
+  - type: FlashImmunity # Starlight
+    blocksSpecialVision: False
   - type: Armor
     modifiers:
       coefficients:
@@ -732,6 +738,11 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  # Starlight-start
+  - type: Construction
+    graph: ClothingMaskMimeSecurity
+    node: mask
+  # Starlight-end
 
 - type: entity
   parent: ClothingMaskBase

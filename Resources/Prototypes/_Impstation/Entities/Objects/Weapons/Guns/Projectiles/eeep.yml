@@ -1,0 +1,12 @@
+- type: entity
+  name: eeep lightning
+  id: EeepGunBullet
+  parent: TeslaGunBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Structural: 10
+        Piercing: 5
+        Burn: 15 #Starlight

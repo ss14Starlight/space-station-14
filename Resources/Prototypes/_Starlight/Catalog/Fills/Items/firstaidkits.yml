@@ -1,0 +1,13 @@
+- type: entity
+  id: MedkitFilledParamed
+  suffix: Filled
+  parent: Medkit
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Brutepack
+        - id: Ointment
+        - id: Gauze
+        - id: Bloodpack

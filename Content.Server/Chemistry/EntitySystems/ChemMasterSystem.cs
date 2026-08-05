@@ -1,7 +1,7 @@
 using Content.Server.Chemistry.Components;
 using Content.Server.Popups;
 using Content.Server.Storage.EntitySystems;
-using Content.Shared._Starlight.Plumbing.Components; // Starlight-edit: Plumbing valve
+using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -10,9 +10,10 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
+using Content.Shared.Labels.Components;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Storage;
-using Content.Shared.Tag; //Starlight-edit
+using Content.Shared.Tag;
 using JetBrains.Annotations;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -30,17 +31,17 @@ namespace Content.Server.Chemistry.EntitySystems
     /// <seealso cref="ChemMasterComponent"/>
     /// </summary>
     [UsedImplicitly]
-    public sealed class ChemMasterSystem : EntitySystem
+    public sealed partial class ChemMasterSystem : EntitySystem
     {
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly AudioSystem _audioSystem = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-        [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-        [Dependency] private readonly StorageSystem _storageSystem = default!;
-        [Dependency] private readonly LabelSystem _labelSystem = default!;
-        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly TagSystem _tag = default!; //Starlight-edit
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private AudioSystem _audioSystem = default!;
+        [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+        [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
+        [Dependency] private StorageSystem _storageSystem = default!;
+        [Dependency] private LabelSystem _labelSystem = default!;
+        [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private TagSystem _tag = default!; //Starlight-edit
 
         private static readonly EntProtoId PillPrototypeId = "Pill";
         private static readonly EntProtoId PatchPrototypeId = "Patch"; //Starlight
@@ -233,7 +234,14 @@ namespace Content.Server.Chemistry.EntitySystems
 
             if (!WithdrawFromSource(chemMaster, needed, user, out var withdrawal))
                 return;
-            _labelSystem.Label(container, message.Label);
+
+            // Starlight-start
+            var containerLabel = string.IsNullOrWhiteSpace(message.ContainerLabel)
+                ? message.Label
+                : message.ContainerLabel;
+            // Starlight-end
+
+            _labelSystem.Label(container, containerLabel); // Starlight: message.Label -> containerLabel
 
             for (var i = 0; i < message.Number; i++)
             {
@@ -287,7 +295,13 @@ namespace Content.Server.Chemistry.EntitySystems
             if (!WithdrawFromSource(chemMaster, needed, user, out var withdrawal))
                 return;
 
-            _labelSystem.Label(container, message.Label);
+            // Starlight-start
+            var containerLabel = string.IsNullOrWhiteSpace(message.ContainerLabel)
+                ? message.Label
+                : message.ContainerLabel;
+            // Starlight-end
+
+            _labelSystem.Label(container, containerLabel); // Starlight: message.Label -> containerLabel
 
             for (var i = 0; i < message.Number; i++)
             {
@@ -450,6 +464,9 @@ namespace Content.Server.Chemistry.EntitySystems
                 return null;
 
             //Starlight-start
+            TryComp<LabelComponent>(container.Value, out var labelComp);
+            var existingLabel = labelComp?.CurrentLabel;
+
             var items = storage.Container.ContainedEntities.Select((Func<EntityUid, (string, FixedPoint2 quantity)>) (pill =>
             {
                 if (_solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PillSolutionName, out _, out var solution))
@@ -470,15 +487,19 @@ namespace Content.Server.Chemistry.EntitySystems
 
             if (_tag.HasTag(container.Value, PatchPackTag))
             {
-                return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)) / 2, storage.Grid.GetArea() / 2)
+                return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)), storage.Grid.GetArea())
                 {
-                    PatchEntities = items
+                    PatchEntities = items,
+                    ContainerLabel = existingLabel,
+                    Uid = GetNetEntity(container.Value)
                 };
             }
 
             return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)), storage.Grid.GetArea())
             {
-                PillEntities = items
+                PillEntities = items,
+                ContainerLabel = existingLabel,
+                Uid = GetNetEntity(container.Value)
             };
             //Starlight-end
         }

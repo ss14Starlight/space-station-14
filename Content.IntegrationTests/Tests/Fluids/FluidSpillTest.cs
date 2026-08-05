@@ -1,4 +1,5 @@
 #nullable enable
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Spreader;
 using Content.Shared.Chemistry.Components;
@@ -14,8 +15,14 @@ namespace Content.IntegrationTests.Tests.Fluids;
 
 [TestFixture]
 [TestOf(typeof(SpreaderSystem))]
-public sealed class FluidSpill
+public sealed class FluidSpill : GameTest
 {
+    #region Starlight
+    public override PoolSettings PoolSettings => new()
+        {
+            Dirty = true,
+        };
+    #endregion
     private static PuddleComponent? GetPuddle(IEntityManager entityManager, Entity<MapGridComponent> mapGrid, Vector2i pos)
     {
         return GetPuddleEntity(entityManager, mapGrid, pos)?.Comp;
@@ -36,13 +43,14 @@ public sealed class FluidSpill
     [Test]
     public async Task SpillCorner()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
         var mapManager = server.ResolveDependency<IMapManager>();
         var entityManager = server.ResolveDependency<IEntityManager>();
         var puddleSystem = server.System<PuddleSystem>();
         var mapSystem = server.System<SharedMapSystem>();
         var gameTiming = server.ResolveDependency<IGameTiming>();
+        var tileDefinitionManager = server.ResolveDependency<ITileDefinitionManager>(); // Monolith
         EntityUid gridId = default;
 
         /*
@@ -57,11 +65,13 @@ public sealed class FluidSpill
             var grid = mapManager.CreateGridEntity(mapId);
             gridId = grid.Owner;
 
+            var plating = tileDefinitionManager["Plating"]; // Monolith
+            var platingTile = new Tile(plating.TileId); // Monolith
             for (var x = 0; x < 3; x++)
             {
                 for (var y = 0; y < 3; y++)
                 {
-                    mapSystem.SetTile(grid, new Vector2i(x, y), new Tile(1));
+                    mapSystem.SetTile(grid, new Vector2i(x, y), platingTile); // Monolith edit
                 }
             }
 
@@ -110,7 +120,5 @@ public sealed class FluidSpill
                 }
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

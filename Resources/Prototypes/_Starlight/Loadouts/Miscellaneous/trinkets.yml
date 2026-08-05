@@ -50,6 +50,49 @@
     - TrumpetInstrument
   groupBy: "Instruments"
 
+- type: loadout
+  id: CoderSocks
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    shoes: ClothingUnderSocksCoder
+
+- type: loadout
+  id: CatEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatWhiteCatEars
+  groupBy: "cat ears"
+
+- type: loadout
+  id: BunnyEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatBunny
+  groupBy: "cat ears"
+
+- type: loadout
+  id: DogEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatDogEars
+  groupBy: "cat ears"
+
 # Headphones
 - type: loadout
   id: ReporterHeadphonesTrinket
@@ -63,6 +106,12 @@
     back:
     - ClothingMultipleHeadphonesReporter
   groupBy: "Headphones"
+
+- type: loadout
+  id: PawBootTrinket
+  equipment:
+    shoes: ClothingShoesPawBoots
+  groupBy: "Paw Boots"
 
 - type: loadout
   id: HighEndHeadphones
@@ -428,7 +477,7 @@
     - !type:JobRequirementLoadoutEffect
       requirement:
         !type:OverallPlaytimeRequirement
-        time: 360000 # 100hr
+        time: 360000 # 100 hours
   storage:
     back:
       - CrayonMagic
@@ -572,6 +621,66 @@
     gloves: ClothingClothWrap
   groupBy: "cloth wraps"
 
+# Maid Outfits
+- type: loadout
+  id: MaidOutfit
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
+  groupBy: "maid outfit"
+
+- type: loadout
+  id: MaidGloves
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40 hr
+  equipment:
+    gloves: ClothingHandsMaidGlovesElegant
+  groupBy: "maid outfit"
+
+- type: loadout
+  id: TacticalMaidGloves
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Security
+        time: 216000 # 60 hours of charging batong
+  equipment:
+    gloves: ClothingHandsTacticalMaidGlovesDelicate
+  groupBy: "maid outfit"
+
+- type: loadout
+  id: MaidOutfitTactical
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Security
+        time: 216000 # 60 hours of charging batong
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtTacticalMaid
+  groupBy: "maid outfit"
+
+- type: loadout
+  id: MaidHeadbandTactical
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Security
+        time: 216000 # 60 hours of charging batong
+  equipment:
+    head: ClothingHeadHatTacticalMaidHeadband
+  groupBy: "maid outfit"
+
+
 - type: loadout
   id: TreasureCoinIron
   storage:
@@ -595,3 +704,194 @@
   storage:
     back:
       - PictureFrame
+
+- type: loadout
+  id: TowelColorGray
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 100h
+  storage:
+    back:
+    - TowelColorGray
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChaplain
+      time: 100h
+  storage:
+    back:
+    - TowelColorBlack
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorRed
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Security
+      time: 100h
+  storage:
+    back:
+    - TowelColorRed
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorOrange
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 100h
+  storage:
+    back:
+    - TowelColorOrange
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorLightBrown
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 100h
+  storage:
+    back:
+    - TowelColorLightBrown
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorYellow
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 100h
+  storage:
+    back:
+    - TowelColorYellow
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorDarkGreen
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobLibrarian
+      time: 100h
+  storage:
+    back:
+    - TowelColorDarkGreen
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorGreen
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 100h
+  storage:
+    back:
+    - TowelColorGreen
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorLightBlue
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
+  storage:
+    back:
+    - TowelColorLightBlue
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorDarkBlue
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Command
+      time: 100h
+  storage:
+    back:
+    - TowelColorDarkBlue
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorPurple
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Science
+      time: 100h
+  storage:
+    back:
+    - TowelColorPurple
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorMaroon
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Law
+      time: 100h
+  storage:
+    back:
+    - TowelColorMaroon
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorMime
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMime
+      time: 100h
+  storage:
+    back:
+    - TowelColorMime
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorSilver
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 500h
+  storage:
+    back:
+    - TowelColorSilver
+  groupBy: "towels"
+
+- type: loadout
+  id: TowelColorGold
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 1000h
+  storage:
+    back:
+    - TowelColorGold
+  groupBy: "towels"
+

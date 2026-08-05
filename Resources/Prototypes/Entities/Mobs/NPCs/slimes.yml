@@ -1,7 +1,7 @@
 ﻿- type: entity
   name: basic slime
   id: BaseMobAdultSlimes
-  parent: [ SimpleMobBase, MobCombat ] #starlight Nubody will not pass.
+  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobSlimes
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
   components:
@@ -11,6 +11,7 @@
     speaks:
     - Bubblish
     understands:
+    - GalacticCommon
     - Bubblish
   # Starlight - End
   - type: VentCrawler

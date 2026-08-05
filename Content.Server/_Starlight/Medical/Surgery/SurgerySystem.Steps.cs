@@ -1,25 +1,21 @@
 ﻿using System.Linq;
-using Content.Shared.Starlight.Medical.Surgery;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+using Content.Shared._Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
-using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Bed.Sleep;
-using Microsoft.CodeAnalysis;
 using Content.Server._Starlight.Medical.Limbs;
-using Content.Server.Administration.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
-
-namespace Content.Server.Starlight.Medical.Surgery;
+namespace Content.Server._Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
 //
@@ -28,10 +24,10 @@ namespace Content.Server.Starlight.Medical.Surgery;
 //However, I don’t want to touch the official systems, so I need to come up with extensions for them.
 public sealed partial class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] private readonly IGameTiming Timing = default!;
-    [Dependency] private readonly LimbSystem _limbSystem = default!;
-    [Dependency] private readonly StarlightEntitySystem _entity = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private LimbSystem _limbSystem = default!;
+    [Dependency] private StarlightEntitySystem _entity = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
 
     public void InitializeSteps()
     {
@@ -59,12 +55,13 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         var query = EntityQueryEnumerator<IncisionOpenComponent>();
         while (query.MoveNext(out var uid, out var incision))
         {
-            if (Timing.CurTime < incision.NextUpdate)
+            if (_timing.CurTime < incision.NextUpdate)
                 continue;
 
-            incision.NextUpdate = Timing.CurTime + incision.UpdateInterval;
+            incision.NextUpdate = _timing.CurTime + incision.UpdateInterval;
 
-            var patient = Transform(uid).ParentUid;
+            if (!TryComp<BodyPartComponent>(uid, out var part) || part.Body is not { } patient)
+                continue;
 
             _bloodstreamSystem.TryModifyBleedAmount(patient, 0.1f);
         }
@@ -180,7 +177,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             || !TryComp(args.Body, out HumanoidAppearanceComponent? humanoid)
             || !_limbSystem.AttachLimb((args.Body, humanoid), slot, (args.Part, part), (limdId, limb));
 
-    private void OnStepAttachItemComplete(Entity<SurgeryStepAttachLimbEffectComponent> ent, string slot, ref SurgeryStepEvent args)
+    private void OnStepAttachItemComplete(Entity<SurgeryStepAttachLimbEffectComponent> _, string slot, ref SurgeryStepEvent args)
         => args.IsCancelled = args.Tools.Count == 0
             || !(args.Tools.FirstOrDefault() is var itemId)
             || !TryComp(itemId, out MetaDataComponent? metadata)

@@ -2,28 +2,28 @@ using Content.Server.Doors.Systems;
 using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
-using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
+using Content.Shared.Humanoid;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicIngressSystem : EntitySystem
+public sealed partial class CosmicIngressSystem : EntitySystem
 {
-    [Dependency] private readonly CosmicCultSystem _cult = default!;
-    [Dependency] private readonly DoorSystem _door = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private DoorSystem _door = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<CosmicCultComponent, EventCosmicIngress>(OnCosmicIngress);
-
+        SubscribeLocalEvent<HumanoidAppearanceComponent, EventCosmicAnomalyIngress>(OnAnomalyIngress);
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusIngress>(OnColossusIngress);
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusIngressDoAfter>(OnColossusIngressDoAfter);
     }
@@ -50,6 +50,18 @@ public sealed class CosmicIngressSystem : EntitySystem
         _cult.MalignEcho(uid);
     }
 
+    private void OnAnomalyIngress(Entity<HumanoidAppearanceComponent> uid, ref EventCosmicAnomalyIngress args)
+    {
+        var target = args.Target;
+        if (args.Handled)
+            return;
+        args.Handled = true;
+
+        _door.StartOpening(target);
+        _audio.PlayPvs(args.IngressSFX, uid);
+        Spawn(args.GenericVFX, Transform(target).Coordinates);
+    }
+
     private void OnColossusIngress(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusIngress args)
     {
         var doargs = new DoAfterArgs(EntityManager, ent, ent.Comp.IngressDoAfter, new EventCosmicColossusIngressDoAfter(), ent, args.Target)
@@ -63,19 +75,28 @@ public sealed class CosmicIngressSystem : EntitySystem
         _doAfter.TryStartDoAfter(doargs);
     }
 
-    private void OnColossusIngressDoAfter(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusIngressDoAfter args)
+    private void OnColossusIngressDoAfter(Entity<CosmicColossusComponent> ent,
+    ref EventCosmicColossusIngressDoAfter args)
     {
-        if (args.Args.Target is not { } target)
-            return;
         if (args.Cancelled || args.Handled)
             return;
+
+        if (args.Args.Target is not { } target)
+            return;
+
         args.Handled = true;
         var comp = ent.Comp;
+        var coordinates = Transform(target).Coordinates;
 
-        if (TryComp<DoorBoltComponent>(target, out var doorBolt))
-            _door.SetBoltsDown((target, doorBolt), false);
-        _door.StartOpening(target);
         _audio.PlayPvs(comp.IngressSfx, ent);
-        Spawn(comp.CultVfx, Transform(target).Coordinates);
+        Spawn(comp.CultVfx, coordinates);
+        foreach (var entity in _lookup.GetEntitiesIntersecting(coordinates))
+        {
+            if (HasComp<DoorComponent>(entity))
+                QueueDel(entity);
+        }
+        // Spawn corrupted replacement
+        var malignDoor = Spawn("DoorCosmicCult", coordinates);
+        _door.StartOpening(malignDoor);
     }
 }

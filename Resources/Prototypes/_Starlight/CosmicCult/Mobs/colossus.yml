@@ -10,6 +10,9 @@
     cultistText: cosmic-examine-text-cultentity
     othersText: cosmic-examine-text-entities
   - type: AntagImmune
+  - type: NpcFactionMember
+    factions:
+    - CosmicCult
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
   - type: Sprite
@@ -96,6 +99,7 @@
       proper: true
       gender: epicene
   - type: ProtectedFromStepTriggers
+  - type: IgnoreSpiderWeb
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
@@ -194,7 +198,6 @@
     - ActionViewLaws
     - ActionCosmicColossusSunder
     - ActionCosmicColossusIngress
-    - ActionCosmicColossusHibernate
   - type: MeleeWeapon
     altDisarm: false
     animation: WeaponArcCosmic
@@ -282,6 +285,10 @@
       0: Alive
       400: Dead
   - type: CosmicColossus
+  - type: CosmicCorrupting
+    mobile: true
+    autoDisable: false
+    corruptionReduction: 0
 
 - type: speechSounds
   id: ColossusSpeech
@@ -291,6 +298,7 @@
     path: /Audio/_Starlight/CosmicCult/colossus_ask.ogg
   exclaimSound:
     path: /Audio/_Starlight/CosmicCult/colossus_exclaim.ogg
+
 
 - type: entity
   categories: [ HideSpawnMenu ]

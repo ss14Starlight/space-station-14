@@ -1,0 +1,19 @@
+<Document>
+  ## Malign Rifts
+  <Box>
+    <GuideEntityEmbed Entity="CosmicMalignRift" Caption=""/>
+    <GuideEntityEmbed Entity="MachineAPE" Caption=""/>
+  </Box>
+  As your cult progresses, [color=#4cabb3]Malign Rifts[/color] will begin to spawn throughout the surrounding environment.
+  These rifts in realspace bleed unstable astral power, and should be located as soon as possible!
+
+  Malign Rifts can be expunged by an [color=Yellow]A.P.E[/color] set to [bold]Nullspace stabilizer particles[/bold] or by a bible.
+
+  Cultists may stealthily [color=#4cabb3]absorb[/color] a Malign Rift by interacting with it.
+
+  Successful absorption of a Malign Rift will [bold]permanently[/bold] empower the cultist doing so, increasing the strength of all the [color=#4cabb3]Influences[/color] they possess, and doubling the [color=#4cabb3]Entropy[/color] they gain from siphoning crewmembers.
+  Empowered cultists also no longer need to breathe, and are immune to the vacuum of space.
+  Empowered cultists also gain the [color=#4cabb3]Null Fragmentation[/color] influence, which can be used to convert a Cyborg into an [color=#4cabb3]Entropic Colossus[/color], or to corrupt the station AI's laws.
+
+
+</Document>

@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared.Body.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
@@ -9,27 +8,31 @@ using Content.Shared.Station;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+#region Starlight
+using Content.Shared.Body.Systems;
+#endregion
 
 namespace Content.Shared.Clothing;
 
 /// <summary>
 /// Assigns a loadout to an entity based on the RoleLoadout prototype
 /// </summary>
-public sealed class LoadoutSystem : EntitySystem
+public sealed partial class LoadoutSystem : EntitySystem
 {
     // Shared so we can predict it for placement manager.
 
-    [Dependency] private readonly ActorSystem _actors = default!;
-    [Dependency] private readonly SharedStationSpawningSystem _station = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private ActorSystem _actors = default!;
+    [Dependency] private SharedStationSpawningSystem _station = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         // Wait until the character has all their organs before we give them their loadout
-        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]); // Starlight
+        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]); // Starlight: Added after: [typeof(SharedBodySystem)]
+        SubscribeLocalEvent<LoadoutComponent, StartingGearEquippedEvent>(OnStartingGearEquipped); // Starlight: post-spawn gear
     }
 
     public static string GetJobPrototype(string? loadout)
@@ -142,6 +145,7 @@ public sealed class LoadoutSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, LoadoutComponent component, MapInitEvent args)
     {
+        if (component.PostStationSpawn) return; // Starlight
         Equip(uid, component.StartingGear, component.RoleLoadout);
     }
 
@@ -197,4 +201,19 @@ public sealed class LoadoutSystem : EntitySystem
 
         return HumanoidCharacterProfile.Random();
     }
+
+    #region Starlight
+
+    private void OnStartingGearEquipped(Entity<LoadoutComponent> entity, ref StartingGearEquippedEvent ev)
+    {
+        if (entity.Comp.AppliedPostSpawnGear) return;
+        var postSpawnGear = entity.Comp.PostSpawnGear;
+        if (postSpawnGear is null) return;
+        var uid = entity.Owner;
+        if (entity.Comp.PostSpawnGear is null || postSpawnGear.Count <= 0) return;
+        _station.EquipStartingGear(uid, _random.Pick(postSpawnGear), false);
+        entity.Comp.AppliedPostSpawnGear = true;
+    }
+
+    #endregion Starlight
 }

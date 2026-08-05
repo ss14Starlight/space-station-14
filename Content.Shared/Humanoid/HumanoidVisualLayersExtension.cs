@@ -1,6 +1,7 @@
+#region Starlight
 using Content.Shared._Starlight.Medical.Body.Part;
-using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+#endregion
 
 namespace Content.Shared.Humanoid
 {
@@ -44,6 +45,8 @@ namespace Content.Shared.Humanoid
                     yield return HumanoidVisualLayers.FacialHair;
                     yield return HumanoidVisualLayers.Snout;
                     yield return HumanoidVisualLayers.SnoutCover;
+                    yield return HumanoidVisualLayers.FaceCover; // Far Horizons
+                    yield return HumanoidVisualLayers.FaceCoverCover; // Far Horizons
                     break;
                 case HumanoidVisualLayers.Snout:
                     yield return HumanoidVisualLayers.Snout;
@@ -68,13 +71,15 @@ namespace Content.Shared.Humanoid
                 case HumanoidVisualLayers.Chest:
                     yield return HumanoidVisualLayers.Chest;
                     yield return HumanoidVisualLayers.Tail;
+                    yield return HumanoidVisualLayers.BodyCover; // Far Horizons
+                    yield return HumanoidVisualLayers.BodyCoverCover; // Far Horizons
                     break;
                 default:
                     yield break;
             }
         }
 
-        // Starlight start
+        // Starlight Start: Reverted NuBody
         public static HumanoidVisualLayers? ToHumanoidLayers(this BodyPartComponent part)
         {
             switch (part.PartType)
@@ -141,6 +146,6 @@ namespace Content.Shared.Humanoid
 
             return null;
         }
-        // Starlight end
+        // Starlight End: Reverted NuBody
     }
 }

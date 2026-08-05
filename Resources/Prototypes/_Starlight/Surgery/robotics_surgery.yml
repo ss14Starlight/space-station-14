@@ -1,0 +1,119 @@
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractHandImplantRobot
+  name: Extract Hand Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepRemoveHandImplantRobot
+  - type: SurgeryPartCondition
+    parts:
+    - Hand
+  - type: SurgeryOrganExistCondition
+    organ:
+    - type: HandImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: hand_implant_insulated
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantHandImplantRobot
+  name: Implant Hand Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepPrepareImplantSiteEyesRobot
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepInsertHandImplant
+    - SurgeryStepConnectWiringConnections
+  - type: SurgeryPartCondition
+    parts:
+    - Hand
+  - type: SurgeryOrganDontExistCondition
+    organ:
+    - type: HandImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: hand_implant_insulated
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractBrainImplantRobot
+  name: Extract Brain Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepRemoveInnerPlating
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepRemoveBrainImplantRobot
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepPositionPlating
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts:
+    - Head
+  - type: SurgeryOrganExistCondition
+    organ:
+    - type: BrainImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: brain_implant_translator
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantBrainImplantRobot
+  name: Implant Brain Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepRemoveInnerPlating
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepInsertBrainImplant
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepPositionPlating
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts:
+    - Head
+  - type: SurgeryOrganDontExistCondition
+    organ:
+    - type: BrainImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: brain_implant_translator
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC

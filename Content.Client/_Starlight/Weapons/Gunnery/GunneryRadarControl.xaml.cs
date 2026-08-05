@@ -1,20 +1,20 @@
 using System.Numerics;
 using Content.Client.Shuttles.UI;
+using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Weapons.Gunnery;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
-using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.Collections;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Utility;
+using Robust.Shared.Timing;
+
 namespace Content.Client._Starlight.Weapons.Gunnery;
 
 /// <summary>
@@ -29,9 +29,9 @@ namespace Content.Client._Starlight.Weapons.Gunnery;
 /// • Click on open space (with cannon selected) → fire at cursor.
 /// • Hold LMB while guided projectile is active → steer rocket toward cursor.
 /// </summary>
-public sealed class GunneryRadarControl : BaseShuttleControl
+public sealed partial class GunneryRadarControl : BaseShuttleControl
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private IMapManager _mapManager = default!;
 
     private readonly SharedShuttleSystem  _shuttles;
     private readonly SharedTransformSystem _transform;
@@ -54,6 +54,9 @@ public sealed class GunneryRadarControl : BaseShuttleControl
 
     private Vector2? _cursorRelativePos;  // control-local pixel position
     private bool     _lmbHeld;
+    private bool     _firingLmb; // true while LMB held for firing (not selection/guidance)
+    private float    _fireThrottle; // accumulated seconds; fire intent sent once per interval
+    private const float FireThrottleInterval = 0.05f; // 20 Hz — enough for any gun, avoids per-frame spam
 
     private List<Entity<MapGridComponent>> _grids = new();
 
@@ -112,8 +115,27 @@ public sealed class GunneryRadarControl : BaseShuttleControl
     {
         base.KeyBindDown(args);
 
-        if (args.Function == EngineKeyFunctions.UIClick)
-            _lmbHeld = true;
+        if (args.Function != EngineKeyFunctions.UIClick)
+            return;
+
+        _lmbHeld = true;
+
+        // If clicking on a cannon blip, select/deselect it immediately.
+        if (TrySelectCannonAt(args.RelativePixelPosition))
+            return;
+
+        // While a guided projectile is active, LMB steers rather than fires.
+        if (_trackedGuidedProjectile != null)
+            return;
+
+        // Clicking empty space with a cannon selected → start firing.
+        if (_coordinates == null || _rotation == null || SelectedCannons.Count == 0)
+            return;
+
+        _firingLmb = true;
+        var worldPos = ScreenToWorld(args.RelativePixelPosition);
+        foreach (var selected in SelectedCannons)
+            OnFireRequested?.Invoke(selected, worldPos);
     }
 
     protected override void KeyBindUp(GUIBoundKeyEventArgs args)
@@ -124,22 +146,27 @@ public sealed class GunneryRadarControl : BaseShuttleControl
             return;
 
         _lmbHeld = false;
+        _firingLmb = false;
+    }
 
-        // Don't fire if we can't resolve world coords.
-        if (_coordinates == null || _rotation == null)
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        // Keep sending fire requests while LMB is held (full-auto / burst auto-repeat).
+        // Throttled to 20 Hz so we don't spam a raycast/CannonBlocked check every rendered frame.
+        if (!_firingLmb || SelectedCannons.Count == 0 || _cursorRelativePos == null)
+        {
+            _fireThrottle = FireThrottleInterval; // ready to fire the instant the next press lands
             return;
+        }
 
-        var clickPos  = args.RelativePixelPosition;
-        var worldPos  = ScreenToWorld(clickPos);
-
-        // Check if click landed on a cannon blip — if so, select it.
-        if (TrySelectCannonAt(clickPos))
+        _fireThrottle += args.DeltaSeconds;
+        if (_fireThrottle < FireThrottleInterval)
             return;
+        _fireThrottle -= FireThrottleInterval;
 
-        // Otherwise: fire all selected cannons toward click position.
-        if (SelectedCannons.Count == 0)
-            return;
-
+        var worldPos = ScreenToWorld(_cursorRelativePos.Value);
         foreach (var selected in SelectedCannons)
             OnFireRequested?.Invoke(selected, worldPos);
     }
@@ -291,7 +318,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
                 continue;
 
             var originScreen = Vector2.Transform(originMapCoords.Position, blipWorldToView);
-            var endScreen    = Vector2.Transform(originMapCoords.Position + laser.Direction * laser.Length, blipWorldToView);
+            var endScreen    = Vector2.Transform(originMapCoords.Position + (laser.Direction * laser.Length), blipWorldToView);
             handle.DrawLine(originScreen, endScreen, laser.Color.WithAlpha(0.9f));
             handle.DrawLine(originScreen, endScreen, laser.Color.WithAlpha(0.35f));
         }
@@ -358,7 +385,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
             const string GuidanceText = "GUIDANCE ACTIVE — hold LMB to steer";
             var dim = handle.GetDimensions(Font, GuidanceText, 1f);
             handle.DrawString(Font,
-                new Vector2(PixelWidth / 2f - dim.X / 2f, PixelHeight - dim.Y - 8f),
+                new Vector2((PixelWidth / 2f) - (dim.X / 2f), PixelHeight - dim.Y - 8f),
                 GuidanceText, Color.LimeGreen);
         }
     }
@@ -401,9 +428,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
     }
 
     private Vector2 InverseScalePosition(Vector2 value)
-    {
-        return (value - MidPointVector) / MinimapScale;
-    }
+        => (value - MidPointVector) / MinimapScale;
 
     /// <summary>
     /// Checks whether the given control-local click position is close enough to a

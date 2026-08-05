@@ -1,39 +1,47 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from ParadiseStation | Salvage/Mining PDAs by mikeysaurus, Veteran Salvage/Mining PDAs by PeterPoley for Starlight | Senior Chemist+Senior Mail Tech/Corpsman+Vet Corpsman/Brigmedic, Duty Officer, and Assistant Manager PDA by wonderfulnewworld (github) for Starlight | Paramedic and Senior Paramedic by TacoLlama (github)",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "pda"
+      "name": "pda",
+      "copyright": "Paradise Station"
     },
     {
-      "name": "id_overlay"
+      "name": "id_overlay",
+      "copyright": "Paradise Station"
     },
     {
       "name": "equipped-BELT",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Paradise Station"
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Paradise Station"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Paradise Station"
     },
     {
-      "name": "insert_overlay"
+      "name": "insert_overlay",
+      "copyright": "Paradise Station"
     },
     {
-      "name": "light_overlay"
+      "name": "light_overlay",
+      "copyright": "Paradise Station"
     },
     {
       "name": "equipped-IDCARD",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Paradise Station"
     },
     {
       "name": "pda-blueshield",
@@ -61,35 +69,43 @@
     },
 	{
       "name": "pda-assistantmanager",
-      "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld"
     },
     {
-      "name": "pda-mining"
+      "name": "pda-mining",
+      "copyright": "mikeysaurus"
     },
     {
-      "name": "pda-mailtech"
+      "name": "pda-mailtech",
+      "copyright": "wonderfulnewworld"
     },
     {
-      "name": "pda-ntnc-cs"
+      "name": "pda-ntnc-cs",
+      "copyright": "ItsAbby"
     },
     {
-      "name": "pda-commander"
+      "name": "pda-commander",
+      "copyright": "Fractalflower"
     },
     {
-      "name": "pda-salvagelead"
+      "name": "pda-salvagelead",
+      "copyright": "mikeysaurus"
     },
     {
-      "name": "pda-veteransalvagelead"
+      "name": "pda-veteransalvagelead",
+      "copyright": "mikeysaurus"
     },
     {
-      "name": "pda-veteransalvage"
+      "name": "pda-veteransalvage",
+      "copyright": "mikeysaurus"
     },
     {
-      "name": "pda-veteranmining"
+      "name": "pda-veteranmining",
+      "copyright": "mikeysaurus"
     },
     {
       "name": "pda-paramedic",
+      "copyright": "SevenShades",
       "delays": [
         [
           0.3,
@@ -101,6 +117,7 @@
     },
     {
       "name": "pda-seniorparamedic",
+      "copyright": "SevenShades",
       "delays": [
         [
           0.3,
@@ -112,18 +129,15 @@
     },
     {
       "name": "pda-seniormailtech",
-      "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld"
     },
     {
       "name": "pda-seniorchemist",
-      "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld"
     },
     {
       "name": "pda-veteranbrigmedic",
       "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0",
       "delays": [
         [
           0.3,
@@ -136,7 +150,6 @@
     {
       "name": "pda-corpsman",
       "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0",
       "delays": [
         [
           0.3,
@@ -149,7 +162,6 @@
     {
       "name": "pda-veterancorpsman",
       "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0",
       "delays": [
         [
           0.3,
@@ -161,13 +173,15 @@
     },
     {
       "name": "pda-dutyofficer",
-      "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld"
+    },
+    {
+      "name": "pda-punpun",
+      "copyright": "wonderfulnewworld"
     },
     {
       "name": "pda-magi",
-      "copyright": "Wayiscute",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "Wayiscute"
     },
     {
       "name": "pda-solgov",
@@ -176,12 +190,29 @@
     },
     {
       "name": "pda-medtak",
+      "copyright": "SevenShades",
       "delays": [
         [
           0.3,
           0.3,
           0.3,
           0.3
+        ]
+      ]
+    },
+    {
+      "name": "pda-decimus",
+      "copyright": "StygianEagle"
+    },
+    {
+      "name": "pda-ntsf",
+      "copyright": "StygianEagle, tgstation",
+      "delays": [
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0
         ]
       ]
     }

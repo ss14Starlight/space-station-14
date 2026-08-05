@@ -1,5 +1,6 @@
 - type: entity
   id: Morgue
+  categories: [ ShouldMapStation ] # Starlight
   name: morgue
   description: Used to store bodies until someone fetches them. Includes a high-tech alert system for false-positives!
   placement:

@@ -52,9 +52,6 @@
       reoccurrenceDelay: 20
       maxOccurrences: 2
     - type: DoorRuntimeRule
-      blacklist:
-        tags:
-          - ExternalAirlock
 
 - type: entity
   parent: BaseGameRule
@@ -159,7 +156,7 @@
   - type: StationEvent
     occursDuringRoundEnd: false
     globalAnnouncement: false
-    weight: 50
+    weight: 20
     startAnnouncement: station-event-nightshift-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg

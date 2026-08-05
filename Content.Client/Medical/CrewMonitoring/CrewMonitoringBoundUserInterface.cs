@@ -1,28 +1,29 @@
 using Content.Shared.Medical.CrewMonitoring;
 using Robust.Client.UserInterface;
-using Content.Shared.Implants.Components; // Starlight
-using Content.Shared.Silicons.StationAi; // Starlight
-using Robust.Shared.Map; // Starlight
-using Robust.Shared.Player; // Starlight
-using System.Linq; // Starlight
-using Robust.Shared.Timing; // Starlight
+#region Starlight
+using Content.Shared.Implants.Components;
+using Content.Shared.Silicons.StationAi;
+using Robust.Shared.Map;
+using Robust.Shared.Player;
+using System.Linq;
+using Robust.Shared.Timing;
+using Content.Shared.Medical.SuitSensors;
+using Content.Client._Starlight.UserInterface;
+#endregion
 
 namespace Content.Client.Medical.CrewMonitoring;
 
-public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
+public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!; // Starlight
-    [Dependency] private readonly IGameTiming _gameTiming = default!; // Starlight
+    [Dependency] private ISharedPlayerManager _playerManager = default!; // Starlight
+    [Dependency] private IGameTiming _gameTiming = default!; // Starlight
 
     [ViewVariables]
     private CrewMonitoringWindow? _menu;
 
     private TimeSpan _lastOpened = TimeSpan.Zero; // Starlight
 
-    public CrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-        IoCManager.InjectDependencies(this);     // Starlight
-    }
+    public CrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) => IoCManager.InjectDependencies(this);     // Starlight
 
     protected override void Open()
     {
@@ -47,7 +48,7 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
             }
         }
 
-        _menu = this.CreateWindow<CrewMonitoringWindow>();
+        _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan); // Starlight
         _menu.Set(stationName, gridUid);
         _menu.MapClicked += OnMapClicked; // Starlight
     }
@@ -63,40 +64,6 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
                 // Starlight begin
                 bool awaitingData = st.Timestamp < _lastOpened; // Know whether we have real data or are viewing a cached state.
                 bool serverOnline = _gameTiming.CurTime - st.LastUpdate < TimeSpan.FromSeconds(6); // After 6 seconds of radio silence, the server is presumed offline.
-                if (!awaitingData && EntMan.TryGetComponent<CrewMonitoringFilterComponent>(Owner, out var filter))
-                {
-                    var filteredSensors = filter.ShownDepartments.Count == 0 ?
-                        st.Sensors.ToList() // We ToList it to ensure we get a copy, for the off chance that someone sets AlwaysShowTrackingImplants without any ShownDepartments
-                        : st.Sensors
-                          .Where(sensor => sensor.JobDepartments.Intersect(filter.ShownDepartments).Count() != 0)
-                          .ToList();
-
-                    if (filter.AlwaysShowTrackingImplants)
-                    {
-                        foreach (var sensor in st.Sensors)
-                        {
-                            //get the client entity
-                            var clientEntity = EntMan.GetEntity(sensor.SuitSensorUid);
-                            if (EntMan.TryGetComponent<SubdermalImplantComponent>(clientEntity, out var suitSensor))
-                            {
-                                filteredSensors.Add(sensor);
-                            }
-                        }
-                    }
-
-                    if (filter.OnlyShowWoundedOrDead)
-                    {
-                        filteredSensors = filteredSensors
-                            .Where(sensor =>
-                                    (!sensor.IsAlive)
-                                    || (sensor.DamagePercentage is not null && sensor.DamagePercentage > 0.5)).ToList();
-                    }
-
-                    filteredSensors = filteredSensors.Distinct().ToList();
-                    _menu?.ShowSensors(awaitingData, serverOnline, filteredSensors, Owner, xform?.Coordinates);
-                    break;
-                }
-                // We let it flow into the upstream code if there's no CrewMonitoringComponent
                 _menu?.ShowSensors(awaitingData, serverOnline, st.Sensors, Owner, xform?.Coordinates);
                 // Starlight end
                 break;
@@ -122,6 +89,7 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
             if (_menu != null)
             {
                 _menu.MapClicked -= OnMapClicked;
+                _menu.DisposePopOut(); // Starlight: close the popout
                 _menu = null;
             }
         }

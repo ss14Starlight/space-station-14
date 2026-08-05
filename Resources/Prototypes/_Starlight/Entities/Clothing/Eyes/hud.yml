@@ -14,9 +14,13 @@
     - type: ShowHealthBars
       damageContainers:
         - Biological
+        - IPC
+        - Hybrid
     - type: ShowHealthIcons
       damageContainers:
         - Biological
+        - IPC
+        - Hybrid
     - type: Tag
       tags:
         - HudMedical
@@ -118,6 +122,9 @@
     - type: EyeProtection
       protectionTime: 5
     - type: ShowHealthBars
+      damageContainers:
+        - Biological
+        - Hybrid # Protogens
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
@@ -180,6 +187,7 @@
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
+    - type: ShowAccess
     - type: EyeProtection
       protectionTime: 5
 
@@ -199,9 +207,11 @@
     - type: ShowHealthBars
       damageContainers:
         - Biological
+        - Hybrid
     - type: ShowHealthIcons
       damageContainers:
         - Biological
+        - Hybrid
     - type: Tag
       tags:
         - HudMedical

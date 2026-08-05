@@ -9,9 +9,9 @@ namespace Content.Client._TP14.Kitchen;
 ///     Client-side sprite visualizer system for the deep-fried item component.
 ///     Created by Cookie (FatherCheese) for Trieste Port 14.
 /// </summary>
-public sealed class DeepFriedVisualizerSystem : EntitySystem
+public sealed partial class DeepFriedVisualizerSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

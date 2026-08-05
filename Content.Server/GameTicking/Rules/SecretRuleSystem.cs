@@ -15,13 +15,18 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
+public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    // Starlight begin
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    // Starlight end
 
+    private readonly Dictionary<string, int> _secretPresetCooldown = new();
     private string _ruleCompName = default!;
 
     public override void Initialize()
@@ -43,10 +48,14 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
         }
 
         Log.Info($"Selected {preset.ID} as the secret preset.");
+        if (_ticker.RunLevel == GameRunLevel.PreRoundLobby) _chatManager.SendAdminAnnouncement($"Round preset selected: Secret ({preset.ID})."); // Starlight
         _adminLogger.Add(LogType.EventStarted, $"Selected {preset.ID} as the secret preset.");
 
         foreach (var rule in preset.Rules)
         {
+            if (GameTicker.IsIgnored(rule))
+                continue;
+
             EntityUid ruleEnt;
 
             // if we're pre-round (i.e. will only be added)
@@ -73,40 +82,35 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
 
     private bool TryPickPreset(ProtoId<WeightedRandomPrototype> weights, [NotNullWhen(true)] out GamePresetPrototype? preset)
     {
-        var options = _prototypeManager.Index(weights).Weights.ShallowClone();
+        // Starligth edit Start: Extra Logging and Cooldown
+        var baseOptions = _prototypeManager.Index(weights).Weights.ShallowClone();
         var players = GameTicker.ReadyPlayerCount();
 
-        GamePresetPrototype? selectedPreset = null;
-        var sum = options.Values.Sum();
-        while (options.Count > 0)
+        Log.Info(
+            $"Secret roll pool: weights={weights}, players={players}, " +
+            $"optionCount={baseOptions.Count}, rawSum={baseOptions.Values.Sum()}, " +
+            $"cooldowns=[{string.Join(", ", _secretPresetCooldown.Select(x => $"{x.Key}:{x.Value}"))}], " +
+            $"options=[{string.Join(", ", baseOptions.OrderBy(x => x.Key).Select(x => $"{x.Key}:{x.Value}"))}]");
+
+        var options = baseOptions.ShallowClone();
+        RemoveSecretCooldownOptions(options);
+
+        if (TryPickPresetFromOptions(options, weights, players, out preset))
         {
-            var accumulated = 0f;
-            var rand = _random.NextFloat(sum);
-            foreach (var (key, weight) in options)
-            {
-                accumulated += weight;
-                if (accumulated < rand)
-                    continue;
-
-                if (!_prototypeManager.TryIndex(key, out selectedPreset))
-                    Log.Error($"Invalid preset {selectedPreset} in secret rule weights: {weights}");
-
-                options.Remove(key);
-                sum -= weight;
-                break;
-            }
-
-            if (CanPick(selectedPreset, players))
-            {
-                preset = selectedPreset;
-                return true;
-            }
-
-            if (selectedPreset != null)
-                Log.Info($"Excluding {selectedPreset.ID} from secret preset selection.");
+            UpdateSecretPresetCooldown(preset);
+            return true;
         }
 
-        preset = null;
+        Log.Warning("Secret preset cooldown removed every valid option. Retrying without cooldowns.");
+
+        options = baseOptions.ShallowClone();
+
+        if (TryPickPresetFromOptions(options, weights, players, out preset))
+        {
+            UpdateSecretPresetCooldown(preset);
+            return true;
+        }
+        // Starlight edit End
         return false;
     }
 
@@ -153,19 +157,114 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
         if (selected == null)
             return false;
 
-        foreach (var ruleId in selected.Rules)
+        return players >= GameTicker.GetMinimumPlayerCount(selected);
+    }
+
+    #region Starlight
+    private bool TryPickPresetFromOptions(
+        Dictionary<string, float> options,
+        ProtoId<WeightedRandomPrototype> weights,
+        int players,
+        [NotNullWhen(true)] out GamePresetPrototype? preset)
+    {
+        var attempt = 0;
+
+        while (options.Count > 0)
         {
-            if (!_prototypeManager.TryIndex(ruleId, out EntityPrototype? rule)
-                || !rule.TryGetComponent(_ruleCompName, out GameRuleComponent? ruleComp))
+            attempt++;
+
+            var sum = options.Values.Sum();
+
+            if (sum <= 0f)
             {
-                Log.Error($"Encountered invalid rule {ruleId} in preset {selected.ID}");
-                return false;
+                Log.Error($"Secret preset weights {weights} had no positive remaining weight.");
+                break;
             }
 
-            if (ruleComp.MinPlayers > players && ruleComp.CancelPresetOnTooFewPlayers)
-                return false;
+            var accumulated = 0f;
+            var rand = _random.NextFloat(sum);
+            string? selectedId = null;
+            var selectedWeight = 0f;
+
+            foreach (var (key, weight) in options)
+            {
+                accumulated += weight;
+
+                if (accumulated < rand)
+                    continue;
+
+                selectedId = key;
+                selectedWeight = weight;
+                break;
+            }
+
+            if (selectedId == null)
+            {
+                Log.Error($"Secret preset weights {weights} failed to pick a candidate despite having options.");
+                break;
+            }
+
+            options.Remove(selectedId);
+
+            if (!_prototypeManager.TryIndex(selectedId, out GamePresetPrototype? selectedPreset))
+            {
+                Log.Error($"Invalid preset {selectedId} in secret rule weights: {weights}");
+                continue;
+            }
+
+            var canPick = CanPick(selectedPreset, players);
+
+            Log.Info(
+                $"Secret roll attempt {attempt}: weights={weights}, players={players}, " +
+                $"rand={rand}, rollSum={sum}, selected={selectedId}, " +
+                $"selectedWeight={selectedWeight}, canPick={canPick}, remaining={options.Count}");
+
+            if (canPick)
+            {
+                preset = selectedPreset;
+                return true;
+            }
+
+            Log.Info($"Excluding {selectedPreset.ID} from secret preset selection.");
         }
 
-        return true;
+        preset = null;
+        return false;
     }
+
+    private void RemoveSecretCooldownOptions(Dictionary<string, float> options)
+    {
+        foreach (var key in options.Keys.ToList())
+        {
+            if (!_secretPresetCooldown.TryGetValue(key, out var cooldown))
+                continue;
+
+            options.Remove(key);
+            Log.Info($"Preset {key} skipped for secret selection due to cooldown ({cooldown} rounds remaining).");
+        }
+    }
+
+    private void UpdateSecretPresetCooldown(GamePresetPrototype pickedPreset)
+    {
+        foreach (var key in _secretPresetCooldown.Keys.ToList())
+        {
+            if (key == pickedPreset.ID)
+                continue;
+
+            _secretPresetCooldown[key]--;
+
+            if (_secretPresetCooldown[key] > 0)
+                continue;
+
+            _secretPresetCooldown.Remove(key);
+            Log.Info($"Preset {key} removed from secret cooldown.");
+        }
+
+        if (pickedPreset.VoteCooldown <= 0)
+            return;
+
+        _secretPresetCooldown[pickedPreset.ID] = pickedPreset.VoteCooldown;
+        Log.Info($"Preset {pickedPreset.ID} added to secret cooldown for {pickedPreset.VoteCooldown} rounds.");
+    }
+    #endregion
 }

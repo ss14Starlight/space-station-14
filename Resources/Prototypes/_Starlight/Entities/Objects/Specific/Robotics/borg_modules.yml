@@ -81,6 +81,67 @@
       - state: base-stripes-inhand-right
         color: "#FF00CC"
 
+# Blacklist abstracts
+- type: entity
+  parent: BaseXenoborgModuleHeavy
+  id: BaseXenoborgModuleHeavyWeapon
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - XenoborgModuleHeavy
+    - ModuleBlacklistXenoborgHeavyWeapon
+  - type: BorgModuleWhitelist
+    whitelistInfo: borg-module-incompatibility-xenoborg-heavyweapon
+    moduleBlacklist:
+      tags:
+      - ModuleBlacklistXenoborgHeavyWeapon
+
+- type: entity
+  parent: BaseXenoborgModuleScout
+  id: BaseXenoborgModuleScoutWeapon
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - XenoborgModuleScout
+    - ModuleBlacklistXenoborgScoutWeapon
+  - type: BorgModuleWhitelist
+    whitelistInfo: borg-module-incompatibility-xenoborg-scoutweapon
+    moduleBlacklist:
+      tags:
+      - ModuleBlacklistXenoborgScoutWeapon
+
+- type: entity
+  parent: BaseXenoborgModuleEngi
+  id: BaseXenoborgModuleEngiWeapon
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - XenoborgModuleEngi
+    - ModuleBlacklistXenoborgEngiWeapon
+  - type: BorgModuleWhitelist
+    whitelistInfo: borg-module-incompatibility-xenoborg-engiweapon
+    moduleBlacklist:
+      tags:
+      - ModuleBlacklistXenoborgEngiWeapon
+
+- type: entity
+  parent: BaseXenoborgModuleStealth
+  id: BaseXenoborgModuleStealthWeapon
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - XenoborgModuleStealth
+    - ModuleBlacklistXenoborgStealthWeapon
+  - type: BorgModuleWhitelist
+    whitelistInfo: borg-module-incompatibility-xenoborg-stealthhypo
+    moduleBlacklist:
+      tags:
+      - ModuleBlacklistXenoborgStealthWeapon
+
 # generic modules
 - type: entity
   id: BorgModuleUppies
@@ -95,7 +156,8 @@
   - type: Sprite
     layers:
     - state: generic
-    - state: icon-hands
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-hands
   - type: ItemBorgModule
     hands:
     - forceRemovable: true
@@ -115,6 +177,31 @@
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
 
+- type: entity
+  id: BorgContrabandBag
+  parent: BaseStorageItem
+  name: contraband bag
+  description: An integrated evidence bag mounted directly into a security cyborg's chassis. It can collect contraband on contact, and will drop to the floor if the cyborg is incapacitated.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/security.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+  - type: Tag
+    tags:
+    - BorgContrabandBag
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,8,3
+    quickInsert: true
+    areaInsert: false
+    whitelist:
+      components:
+      - Contraband
+  - type: Dumpable
+
 # region Security
 - type: entity
   id: BorgModuleSecurity
@@ -125,47 +212,46 @@
   - type: Sprite
     layers:
     - state: security
-    - state: icon-nt
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-nt
   - type: ItemBorgModule
     hands:
-    - item: Flash
-      hand:
-        emptyRepresentative: Flash
-        emptyLabel: borg-slot-flash-empty
-        whitelist:
-          components:
-          - Flash
-    - item: Crowbar
-    - item: Zipties
-      hand:
-        emptyRepresentative: Zipties
-        emptyLabel: borg-slot-zipties-empty
-        whitelist:
-          tags:
-          - Handcuffs # Can be replaced by handcuffs or zipties
-    - item: Stunbaton
-      hand:
-        emptyRepresentative: Stunbaton
-        emptyLabel: borg-slot-stunbaton-empty
-        whitelist:
-          components:
-          - Stunbaton
-    - item: WeaponDisabler
-      hand:
-        emptyRepresentative: WeaponDisabler
-        emptyLabel: borg-slot-disabler-empty
-        whitelist:
-          tags:
-          - Disabler
-    - item: HoloprojectorSecurity
-      hand:
-        emptyRepresentative: HoloprojectorSecurity
-        emptyLabel: borg-slot-holoprojector-empty
-        whitelist:
-          components:
-          - HolosignProjector
+    - item: WeaponPDW9TaserBorg
+    - item: BorgStunbatonRechargeable
+    - item: BorgHolocuffs
+    - item: BorgFlashRechargeable
+    - item: BorgHoloprojectorSecurity
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
+  - type: Tag
+    tags:
+    - BorgModuleSecurityStation
+
+- type: entity
+  id: BorgModuleSecurityContraband
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: contraband bag cyborg module
+  description: A security cyborg module containing an integrated evidence bag. It can collect contraband on contact and will drop to the floor if the cyborg is incapacitated.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-nt
+  - type: ItemBorgModule
+    hands:
+    - item: BorgContrabandBag
+      hand:
+        emptyRepresentative: BorgContrabandBag
+        emptyLabel: borg-slot-contrabag-empty
+        whitelist:
+          tags:
+          - BorgContrabandBag
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
+  - type: Tag
+    tags:
+    - BorgModuleSecurityStation
 
 # region TSF
 - type: entity
@@ -265,6 +351,7 @@
   name: paperwork cyborg module
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: command
     - state: icon-paperwork
@@ -274,7 +361,6 @@
     - item: BoxFolderCyborgClipboard
     - item: RubberStampApproved
     - item: RubberStampDenied
-    - item: HandLabeler
     - hand:
         emptyLabel: borg-slot-papers-empty
         emptyRepresentative: BorgModulePaperStampPlaceholder
@@ -283,6 +369,15 @@
           - Document
           components:
           - Stamp
+    - hand:
+        emptyLabel: borg-slot-idstamps-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          components:
+          - Pda
+          - IdCard
+          - Stamp
+    - item: HandLabeler # last entry so it shows at the top of the module slots
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
 
@@ -295,7 +390,8 @@
   - type: Sprite
     layers:
     - state: service
-    - state: icon-bartending
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-bartending
   - type: ItemBorgModule
     hands:
     - item: DrinkGlass
@@ -420,7 +516,8 @@
   - type: Sprite
     layers:
     - state: service
-    - state: icon-cooking
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-cooking
   - type: ItemBorgModule
     hands:
     - item: BorgDropper
@@ -685,7 +782,8 @@
   - type: Sprite
     layers:
     - state: medical
-    - state: icon-surgery
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-surgery
   - type: ItemBorgModule
     hands:
     - item: Scalpel
@@ -808,6 +906,7 @@
   name: hauling cyborg module
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-mats
@@ -848,6 +947,7 @@
   name: mail cyborg module
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-mail
@@ -873,9 +973,10 @@
   id: BorgModuleAdvancedLoading
   parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
   name: advanced loading cyborg module
-  description: Advanced module for cargo cyborgs, with specialised hydraulic clamps
+  description: Advanced module for cargo cyborgs, with specialised hydraulic clamps.
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-loading
@@ -894,7 +995,8 @@
   - type: Sprite
     layers:
     - state: generic
-    - state: icon-plumbing
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-plumbing
   - type: ItemBorgModule
     hands:
     - item: RPLDRecharging
@@ -932,6 +1034,7 @@
   name: makeshift knife cyborg module
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: makeshift
     - state: icon-knife
@@ -973,6 +1076,7 @@
   description: Enables the borg to provide some measaure of defense. Is Law 1 still intact?
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: mining
     - state: icon-salvage-defense
@@ -1119,97 +1223,60 @@
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
 
-# region MedTak
+# Xenoborg Tier 3
 - type: entity
-  id: BaseBorgModuleMedTak
-  parent: BaseBorgModule
-  abstract: true
+  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleEnergyBlade
+  name: energy sword xenoborg module
+  description: Module with an energy sword and a shield.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
-  - type: BorgModule
-    borgFitTypes:
-    - borg-type-medtak
-  - type: Tag
-    tags:
-    - BorgModuleMedTak
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: base-icon-inhand-left
-        color: "#ffffff"
-      - state: base-module-inhand-left
-        color: "#660505"
-      - state: base-part-inhand-left
-      - state: base-stripes-inhand-left
-        color: "#ffffff"
-      right:
-      - state: base-icon-inhand-right
-        color: "#ffffff"
-      - state: base-module-inhand-right
-        color: "#660505"
-      - state: base-part-inhand-right
-      - state: base-stripes-inhand-right
-        color: "#ffffff"
-
-- type: entity
-  id: BorgModuleMedTakMedical
-  parent: [ BaseBorgModuleMedTak, BaseProviderBorgModule ]
-  name: MedTak medical cyborg module
-  description: A MedTak cyborg module for medical support.
-  components:
-  - type: Sprite
     layers:
-    - state: medtak
-    - state: icon-medtak-med
+    - state: xenoborg_scout
+    - state: icon-xenoborg-sword3
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
-    - item: TacticalJetInjector
-      hand:
-        emptyLabel: borg-slot-syringe-empty
-        emptyRepresentative: TacticalJetInjector
-        whitelist:
-          tags:
-          - Syringe
-          - JetInjector
-          - Medipen
-    - hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: MedicatedSuture
-        whitelist:
-          components:
-          - Healing
-          - FitsInDispenser
-          tags:
-          - ChemDispensable
-          - Bottle
-    - item: MedTakHoverBedSpawnFolded
-      hand:
-        emptyLabel: borg-slot-rollerbeds-empty
-        emptyRepresentative: MedTakHoverBed
-        whitelist:
-          tags:
-          - BodyBag
-          - RollerBed
-    - item: MedkitCombatMedTakFilledBorg
-    - item: BottleCaseMedTakFilled
+    - item: CyborgEnergySwordBlue
+    - item: EnergyShieldUnbreakable
+    - item: JetpackXenoborg
   - type: BorgModuleIcon
-    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: medtak-aid-module }
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-sword3-module }
 
 - type: entity
-  id: BorgModuleMedTakRifle
-  parent: [ BaseBorgModuleMedTak, BaseProviderBorgModule ]
-  name: MedTak rifle cyborg module
-  description: A MedTak cyborg module equipped with a cut down CODE-9 and a breaching hammer.
+  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleSuperHeavyLaser
+  name: bitterfrost cannon xenoborg module
+  description: Module with a bitterfrost cannon.
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
-    - state: medtak
-    - state: icon-medtak-sec
+    - state: xenoborg_heavy
+    - state: icon-xenoborg-laser3
   - type: ItemBorgModule
     hands:
-    - item: WeaponRifleMedTakROW
-    - item: HammerMedTakOneHanded
+    - item: WeaponLaserCannonXenoborgCold
+    - item: KukriKnife
   - type: BorgModuleIcon
-    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: medtak-combat-module }
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-laser3-module }
+
+- type: entity
+  parent: [ BaseXenoborgModuleStealthWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleHypoPlus
+  name: advanced hypo xenoborg module
+  description: Module with a better set of self-refilling hypos.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+    layers:
+    - state: xenoborg_stealth
+    - state: icon-xenoborg-hypo2
+  - type: ItemBorgModule
+    hands:
+    - item: NocturineHypoPlus
+    - item: LicoxideHypoPlus
+    - item: MuteToxinHypo
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-hypo2-module }
+

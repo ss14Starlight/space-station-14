@@ -10,7 +10,6 @@
   startingGear: DetectiveGear
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
-  canBeAntag: false
   access:
   - Security
   - Brig
@@ -26,7 +25,7 @@
   id: DetectiveGear
   equipment:
     id: DetectivePDA
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetDetective # Starlight
     belt: ClothingBeltHolsterFilled
   storage:
     back:

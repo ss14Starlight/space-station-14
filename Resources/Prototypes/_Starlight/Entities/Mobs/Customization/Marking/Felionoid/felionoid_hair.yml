@@ -2,7 +2,7 @@
   id: FelionoidHairCrestedQuills
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
       state: crestedquills_s
@@ -11,7 +11,7 @@
   id: FelionoidHairFlowing
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
       state: flowing_s
@@ -20,7 +20,7 @@
   id: FelionoidHairHawk
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
       state: hawk_s
@@ -29,7 +29,7 @@
   id: FelionoidHairKeelQuills
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
       state: keelquills_s
@@ -38,7 +38,7 @@
   id: FelionoidHairKeetQuills
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
       state: keetquills_s
@@ -47,7 +47,7 @@
   id: FelionoidHairKingly
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
       state: kingly_s
@@ -56,7 +56,7 @@
   id: FelionoidHairMange
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
       state: mange_s
@@ -65,7 +65,7 @@
   id: FelionoidHairNights
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
       state: nights_s

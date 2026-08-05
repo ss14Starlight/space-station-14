@@ -1,0 +1,47 @@
+﻿- type: reagent
+  id: DevilJuice
+  name: reagent-name-devil-juice
+  group: Toxins
+  desc: reagent-desc-devil-juice
+  color: "#66181A"
+  physicalDesc: reagent-physical-desc-devil-juice
+  allowedDepartments:
+    - Medical
+  flavor: perfid
+  metabolisms:
+    Poison:
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Poison: 1.5
+              Cellular: 1
+        - !type:AdjustReagent
+          conditions:
+            - !type:ReagentCondition
+              reagent: DevilJuice
+              min: 0.26
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: DevilJuice
+          amount: 0.25
+
+- type: reagent
+  id: ZXAMetabolites
+  name: reagent-name-zxa-metabolites
+  group: Toxins
+  desc: reagent-desc-zxa-metabolites
+  flavor: bitter
+  color: "#869ea3"
+  physicalDesc: reagent-physical-desc-nondescript
+  # Just as BZ Metabolites don't actually function right now, neither do ZXA Metabolites. Maybe we could make it hurt vampires too or something.
+  # metabolisms:
+  #   Poison:
+  #     effects:
+  #     - !type:AdjustLingChemicals
+  #       conditions:
+  #       - !type:LingCondition {}
+  #       - !type:ReagentThreshold
+  #         reagent: BZMetabolites
+  #         min: 0.2
+  #       amount: -12

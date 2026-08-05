@@ -1,0 +1,125 @@
+- type: vessel
+  id: PTS
+  name: Private Transport Shuttle
+  description: A private transport vessel for up to 6 passengers.
+  price: 21200
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/pts.yml
+
+- type: vessel
+  id: Barge
+  name: The Barge
+  description: A large shipping vessel repurposed into a salvage bar.
+  price: 78500
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/barge.yml
+
+- type: vessel
+  id: Prospector
+  name: NT-7 Prospector
+  description: A small mining vessel designed to assist salvage operations.
+  price: 31350
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/prospector.yml
+
+- type: vessel
+  id: Ingeniator
+  name: NTS 'Jumpstart' Mini-Ingeniator
+  description: A large engineering vessel designed to "Jumpstart" a station without a working Engineering Department.
+  price: 85000
+  category: Large
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Mini_Ingeniator.yml
+
+- type: vessel
+  id: Comet
+  name: EXP-Comet
+  description: A large salvage vessel designed to hold entire salvaging teams for operations.
+  price: 98500
+  category: Large
+  group: Cargo
+  shuttlePath: /Maps/_Starlight/Shuttles/Comet.yml
+
+- type: vessel
+  id: Munchies
+  name: SRB-Munchies
+  description: A medium sized restaurant ship designed to sell food to people.
+  price: 38250
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Munchies.yml
+
+- type: vessel
+  id: CargoGas
+  name: CS-4T9 "Tanker"
+  description: A small sized cargo shuttle 'borrowed' from another station that is able to hold gas.
+  price: 21500
+  category: Small
+  group: Cargo
+  shuttlePath: /Maps/_Starlight/Shuttles/GasTransport.yml
+
+- type: vessel
+  id: Pioneer
+  name: SR-4S1 "Pioneer"
+  description: A medium sized salvaging ship made for salvaging operations.
+  price: 39200
+  category: Medium
+  group: Cargo
+  shuttlePath: /Maps/_Starlight/Shuttles/Salvage/pioneer.yml
+
+- type: vessel
+  id: Breaker
+  name: NTMS-42A "Breaker"
+  description: A medium sized mining shuttle made for mining operations.
+  price: 32850
+  category: Medium
+  group: Cargo
+  shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml
+
+- type: vessel
+  id: Honeybee
+  name: NTS "Honeybee" Mini-Flores
+  description: A small sized botany shuttle made for advanced farming operations, comes with one mutation room.
+  price: 30000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Honeybee.yml
+
+- type: vessel
+  id: Reach
+  name: SS-Reach III
+  description: A large station vessel made for skeleton crews that we decided to allow stations to buy.
+  price: 700500
+  category: Humongous
+  group: Command
+  shuttlePath: /Maps/_Starlight/Shuttles/ReachButShipyard.yml
+
+- type: vessel
+  id: Apotherkerin
+  name: JSS-MED Apotherkerin
+  description: A compact vessel designed for chemistry and botany, comes with a chemistry lab, a hydroponics area and mutation room. Requires external sources of air.
+  price: 40000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/JSS_MED_Apotherkerin.yml
+
+- type: vessel
+  id: Bumblebee
+  name: NTS "Bumblebee" Flores
+  description: A medium sized botany shuttle made for advance farming operations, comes with two mutation rooms.
+  price: 60000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Bumblebee.yml
+
+- type: vessel
+  id: SpaceTruck
+  name: HARMS Space Truck
+  description: A cheap trailer truck with a semi-legal (check with your lawyer!) IFF console onboard. Comes with two beers and a sweet digital audio workstation for blasting your tunes as you cruise through space.
+  price: 14999
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/SpaceTruck.yml

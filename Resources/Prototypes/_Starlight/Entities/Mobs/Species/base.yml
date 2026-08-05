@@ -202,10 +202,18 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-      enum.VampireClassUiKey.Key: # SL
+      # starlight start
+      enum.VampireClassUiKey.Key:
         type: VampireClassBui
-      enum.VampireLocateUiKey.Key: # SL
+      enum.VampireLocateUiKey.Key:
         type: VampireLocateBui
+      enum.DamnationsMenuUiKey.Key:
+        type: DevilDamnationsBoundUserInterface
+        requireInputValidation: false
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+        requireInputValidation: false
+      # starlight end
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
@@ -243,6 +251,7 @@
     - Boop
   # Starlight End
   - type: CosmicCenserTarget # Stellar - Cosmic Cult
+  - type: Scent # Starlight - smell system
 
 - type: entity
   save: false

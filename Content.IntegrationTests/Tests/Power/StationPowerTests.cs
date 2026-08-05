@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -14,7 +15,7 @@ using Robust.Shared.GameObjects;
 
 namespace Content.IntegrationTests.Tests.Power;
 
-public sealed class StationPowerTests
+public sealed class StationPowerTests : GameTest
 {
     /// <summary>
     /// How long the station should be able to survive on stored power if nothing is changed from round start.
@@ -70,18 +71,19 @@ public sealed class StationPowerTests
         "StarlightStationBuilding",
         "StarlightPlasma",
         "StarlightSepultum",
-        "StarlightBoxcars"
         #endregion
     ];
+
+    public override PoolSettings PoolSettings => new ()
+    {
+        Dirty = true,
+    };
 
     [Explicit]
     [Test, TestCaseSource(nameof(GameMaps))]
     public async Task TestStationStartingPowerWindow(string mapProtoId)
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-        });
+        var pair = Pair;
         var server = pair.Server;
 
         var entMan = server.EntMan;
@@ -256,22 +258,17 @@ public sealed class StationPowerTests
             // Starlight start
             Assert.That(estimatedDuration, Is.LessThanOrEqualTo(MaximumPowerDurationSeconds),
                 $"Initial power for {mapProtoId} lasts too long! Max allowed {MaximumPowerDurationSeconds}s " +
-                $"but estimated to last {estimatedDuration}s — remove some stored power!");
+                $"but estimated to last {estimatedDuration}s remove some stored power!");
             Assert.That(totalStartingCharge, Is.LessThanOrEqualTo(maximumStoredPower),
                 $"Has {totalStartingCharge - maximumStoredPower} too much stored power!");
             // Starlight end
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test, TestCaseSource(nameof(GameMaps))]
     public async Task TestApcLoad(string mapProtoId)
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-        });
+        var pair = Pair;
         var server = pair.Server;
 
         var entMan = server.EntMan;
@@ -310,7 +307,5 @@ public sealed class StationPowerTests
                 }
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

@@ -1,11 +1,11 @@
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Components
 {
     [RegisterComponent, NetworkedComponent, Access(typeof(StomachSystem))]

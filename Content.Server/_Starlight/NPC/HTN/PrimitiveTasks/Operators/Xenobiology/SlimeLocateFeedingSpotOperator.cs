@@ -6,7 +6,6 @@ using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.Pathfinding;
 using Content.Shared._Starlight.Xenobiology;
 using Content.Shared.Interaction;
-using Content.Shared.Tag;
 
 namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Xenobiology;
 
@@ -17,7 +16,7 @@ public sealed partial class SlimeLocateFeedingSpotOperator : HTNOperator
      * Should be used when there are no nearby food sources.
      */
 
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     private SlimeBrainSystem _slimeBrainSystem = default!;
     private PathfindingSystem _pathfinding = default!;

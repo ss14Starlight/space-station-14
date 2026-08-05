@@ -5,6 +5,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
+using Content.Shared.Players;
 using Content.Shared.Roles.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
@@ -18,20 +19,20 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Roles;
 
-public abstract class SharedRoleSystem : EntitySystem
+public abstract partial class SharedRoleSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] protected readonly ISharedPlayerManager Player = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly SharedMindSystem _minds = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] protected ISharedPlayerManager Player = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedMindSystem _minds = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     private JobRequirementOverridePrototype? _requirementOverride;
 
     // Starlight
-    [Dependency] private readonly SharedPvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvsOverride = default!;
     // Starlight
 
     public override void Initialize()
@@ -249,7 +250,7 @@ public abstract class SharedRoleSystem : EntitySystem
         return (result);
     }
 
-    private void SetRoleType(EntityUid mind, ProtoId<RoleTypePrototype> roleTypeId, LocId? subtype)
+    public void SetRoleType(EntityUid mind, ProtoId<RoleTypePrototype> roleTypeId, LocId? subtype) // Starlight edit: make public
     {
         if (!TryComp<MindComponent>(mind, out var comp))
         {
@@ -633,6 +634,16 @@ public abstract class SharedRoleSystem : EntitySystem
     }
 
     /// <summary>
+    /// Does this player's mind possess an antagonist role
+    /// </summary>
+    /// <param name="player">The player session we want the mind of</param>
+    /// <returns>True if the mind possesses any antag roles</returns>
+    public bool PlayerIsAntagonist(ICommonSession player)
+    {
+        return MindIsAntagonist(player.GetMind());
+    }
+
+    /// <summary>
     /// Does this mind possess an antagonist role
     /// </summary>
     /// <param name="mindId">The mind entity</param>
@@ -643,6 +654,16 @@ public abstract class SharedRoleSystem : EntitySystem
             return false;
 
         return CheckAntagonistStatus(mindId.Value).Antag;
+    }
+
+    /// <summary>
+    /// Does this player's mind possess an exclusive antagonist role
+    /// </summary>
+    /// <param name="player">The player session we want the mind of</param>
+    /// <returns>True if the mind possesses any antag roles</returns>
+    public bool PlayerIsExclusiveAntagonist(ICommonSession player)
+    {
+        return MindIsExclusiveAntagonist(player.GetMind());
     }
 
     /// <summary>

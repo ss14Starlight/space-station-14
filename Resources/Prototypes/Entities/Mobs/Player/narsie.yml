@@ -43,6 +43,8 @@
   - type: AnnounceOnSpawn
     message: narsie-has-risen
     sender: narsie-has-risen-sender
+    ignoreASpace: true # Starlight
+    globalAnnounce: true # Starlight
     sound:
       path: /Audio/Misc/narsie_rises.ogg
     color: red
@@ -84,7 +86,9 @@
     - Command
     - CentCom
     - Engineering
+    - Law # Starlight
     - Medical
+    - NanoTrasen # Starlight
     - Science
     - Security
     - Service

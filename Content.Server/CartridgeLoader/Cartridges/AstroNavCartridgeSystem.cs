@@ -1,12 +1,13 @@
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.GPS.Components;
+using Content.Shared._Starlight.Astronav;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
-public sealed class AstroNavCartridgeSystem : EntitySystem
+public sealed partial class AstroNavCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
 
     public override void Initialize()
     {
@@ -19,6 +20,7 @@ public sealed class AstroNavCartridgeSystem : EntitySystem
     private void OnCartridgeAdded(Entity<AstroNavCartridgeComponent> ent, ref CartridgeAddedEvent args)
     {
         EnsureComp<HandheldGPSComponent>(args.Loader);
+        EnsureComp<AstroNavComponent>(args.Loader); // Starlight-edit
     }
 
     private void OnCartridgeRemoved(Entity<AstroNavCartridgeComponent> ent, ref CartridgeRemovedEvent args)
@@ -27,6 +29,7 @@ public sealed class AstroNavCartridgeSystem : EntitySystem
         if (!_cartridgeLoaderSystem.HasProgram<AstroNavCartridgeComponent>(args.Loader))
         {
             RemComp<HandheldGPSComponent>(args.Loader);
+            RemComp<AstroNavComponent>(args.Loader); // Starlight-edit
         }
     }
 }

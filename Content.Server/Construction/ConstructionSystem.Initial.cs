@@ -24,13 +24,13 @@ namespace Content.Server.Construction
 {
     public sealed partial class ConstructionSystem
     {
-        [Dependency] private readonly InventorySystem _inventorySystem = default!;
-        [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-        [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-        [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-        [Dependency] private readonly EntityLookupSystem _lookupSystem = default!;
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-        [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+        [Dependency] private InventorySystem _inventorySystem = default!;
+        [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+        [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+        [Dependency] private SharedHandsSystem _handsSystem = default!;
+        [Dependency] private EntityLookupSystem _lookupSystem = default!;
+        [Dependency] private SharedTransformSystem _transformSystem = default!;
+        [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
         // --- WARNING! LEGACY CODE AHEAD! ---
         // This entire file contains the legacy code for initial construction.
@@ -99,6 +99,7 @@ namespace Content.Server.Construction
             ConstructionGraphPrototype graph,
             ConstructionGraphEdge edge,
             ConstructionGraphNode targetNode,
+            ConstructionPrototype constructionPrototype, // Starlight edit
             EntityCoordinates coords,
             Angle angle = default)
         {
@@ -269,6 +270,20 @@ namespace Content.Server.Construction
                 return null;
             }
 
+            // Starlight edit start
+            foreach (var condition in constructionPrototype.Conditions)
+            {
+                if (!condition.Condition(user, coords, angle.GetCardinalDir()))
+                {
+                    var message = condition.GenerateGuideEntry()?.Localization
+                                  ?? "construction-system-construct-conditions-not-met";
+                    _popup.PopupEntity(Loc.GetString(message), user, user);
+                    FailCleanup();
+                    return null;
+                }
+            }
+            // Starlight edit end
+
             var newEntityProto = graph.Nodes[edge.Target].Entity.GetId(null, user, new(EntityManager));
             var newEntity = SpawnAttachedTo(newEntityProto, coords, rotation: angle);
 
@@ -356,8 +371,15 @@ namespace Content.Server.Construction
 
             foreach (var condition in constructionPrototype.Conditions)
             {
+                // Starlight edit start
                 if (!condition.Condition(user, user.ToCoordinates(0, 0), Direction.South))
+                {
+                    var message = condition.GenerateGuideEntry()?.Localization
+                                  ?? "construction-system-construct-conditions-not-met";
+                    _popup.PopupEntity(Loc.GetString(message), user, user);
                     return false;
+                }
+                // Starlight edit end
             }
 
             if (pathFind == null)
@@ -391,6 +413,7 @@ namespace Content.Server.Construction
                     constructionGraph,
                     edge,
                     targetNode,
+                    constructionPrototype, // Starlight edit
                     Transform(user).Coordinates) is not { Valid: true } item)
                 return false;
 
@@ -460,6 +483,11 @@ namespace Content.Server.Construction
             {
                 if (!condition.Condition(user, location, ev.Angle.GetCardinalDir()))
                 {
+                    // Starlight edit start
+                    var message = condition.GenerateGuideEntry()?.Localization
+                                  ?? "construction-system-construct-conditions-not-met";
+                    _popup.PopupEntity(Loc.GetString(message), user, user);
+                    // Starlight edit end
                     Cleanup();
                     return;
                 }
@@ -531,6 +559,7 @@ namespace Content.Server.Construction
                     constructionGraph,
                     edge,
                     targetNode,
+                    constructionPrototype, // Starlight edit
                     GetCoordinates(ev.Location),
                     constructionPrototype.CanRotate ? ev.Angle : Angle.Zero) is not {Valid: true} structure)
             {

@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Chat;
 using Content.Shared.CombatMode;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
@@ -17,6 +18,7 @@ using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Popups;
 using Content.Shared.Strip.Components;
 using Content.Shared.Verbs;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Damage.Components;
@@ -25,23 +27,25 @@ namespace Content.Shared.Strip;
 
 using System.Collections.Generic;
 
-public abstract class SharedStrippableSystem : EntitySystem
+public abstract partial class SharedStrippableSystem : EntitySystem
 {
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
 
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
 
-    [Dependency] private readonly SharedCuffableSystem _cuffableSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedCuffableSystem _cuffableSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
 
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+
+    [Dependency] private SharedChatSystem _chat = default!; // Moffstation - Stripping notifier
 
     // Starlight Start: Track active strip DoAfters per user with them queues
-    [Dependency] private readonly PullingSystem _pullingSystem = default!;
+    [Dependency] private PullingSystem _pullingSystem = default!;
 
     private readonly Dictionary<EntityUid, Queue<DoAfterId>> _activeStripDoAfters = new();
 
@@ -435,6 +439,7 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         if (!stealth)
         {
+            _interactionSystem.DoContactInteraction(user, target, null, true); // Moffstation - Interaction particles - switched to person so the particles pop up
             if (IsStripHidden(slotDef, user))
                 _popupSystem.PopupEntity(Loc.GetString("strippable-component-alert-owner-hidden", ("slot", slot)), target, target, PopupType.Large);
             else
@@ -452,7 +457,7 @@ public abstract class SharedStrippableSystem : EntitySystem
         var prefix = stealth ? "stealthily " : "";
         _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s {slot} slot");
 
-        _interactionSystem.DoContactInteraction(user, item);
+        //_interactionSystem.DoContactInteraction(user, item); // ES, removed, interaction handled through new interaction system
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, time, new StrippableDoAfterEvent(false, true, slot), user, target, item)
         {
@@ -677,6 +682,7 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         if (!stealth)
         {
+            _interactionSystem.DoContactInteraction(user, target, null, true); // Moffstation - Interaction particles - switched to person so the particles pop up
             _popupSystem.PopupEntity(Loc.GetString("strippable-component-alert-owner",
                                                         ("user", Identity.Entity(user, EntityManager)),
                                                         ("item", item)),
@@ -687,7 +693,7 @@ public abstract class SharedStrippableSystem : EntitySystem
         var prefix = stealth ? "stealthily " : "";
         _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s hands");
 
-        _interactionSystem.DoContactInteraction(user, item);
+        //_interactionSystem.DoContactInteraction(user, item); // ES, removed, interaction handled through new interaction system
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, time, new StrippableDoAfterEvent(false, false, handName), user, target, item)
         {
@@ -862,8 +868,13 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (args.Handled || !args.Complex || args.Target == args.User)
             return;
 
+        // Begin Stellar Changes - don't play an interact particle for examining the strip UI
         if (TryOpenStrippingUi(args.User, (uid, component)))
+        {
             args.Handled = true;
+            args.InteractionParticle = false;
+        }
+        // End Stellar Changes - don't play an interact particle for examining the strip UI
     }
 
     /// <summary>

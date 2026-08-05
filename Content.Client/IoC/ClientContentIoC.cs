@@ -22,14 +22,16 @@ using Content.Client.Stylesheets;
 using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.Achievement;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
 using Content.Shared.IoC;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Content.Client._NullLink;
+using Content.Client._Starlight.Achievement;
 using Content.Client._Starlight.Shaders;
 using Content.Shared._Starlight.DocumentManager;
 
@@ -79,6 +81,8 @@ namespace Content.Client.IoC
             collection.Register<INullLinkPlayTimeManager, NullLinkPlayTimeManager>();
             // NullLink end
 
+            collection.Register<IClientAchievementManager, ClientAchievementManager>(); // Starlight
+            collection.Register<IAchievementRewardManager, ClientAchievementManager>(); // Starlight
             collection.Register<PreWrittenDocumentManager>(); // Starlight
             collection.Register<IStarlightShaderManager, StarlightShaderManager>(); // Starlight
         }

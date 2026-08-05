@@ -4,6 +4,9 @@ using Content.Server.Popups;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Bible;
+using Content.Shared.Clumsy; //Starlight
+using Content.Shared.Cluwne; //Starlight
+using Content.Server._Starlight.Bible; // Starlight
 using Content.Shared.Damage.Systems;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.IdentityManagement;
@@ -29,29 +32,29 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
-using Content.Shared.Vampire.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Vampire.Components;
 #endregion Starlight
 
 namespace Content.Server.Bible
 {
-    public sealed class BibleSystem : EntitySystem
+    public sealed partial class BibleSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly ActionBlockerSystem _blocker = default!;
-        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly InventorySystem _invSystem = default!;
-        [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly UseDelaySystem _delay = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly SharedStunSystem _stun = default!;
-        [Dependency] private readonly HandsSystem _hands = default!; //Starlight
-        [Dependency] private readonly TagSystem _tags = default!; //Starlight
-        [Dependency] private readonly NameModifierSystem _nameModifier = default!; //Starlight
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private ActionBlockerSystem _blocker = default!;
+        [Dependency] private DamageableSystem _damageableSystem = default!;
+        [Dependency] private InventorySystem _invSystem = default!;
+        [Dependency] private MobStateSystem _mobStateSystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private SharedActionsSystem _actionsSystem = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private UseDelaySystem _delay = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private SharedStunSystem _stun = default!;
+        [Dependency] private HandsSystem _hands = default!; //Starlight
+        [Dependency] private TagSystem _tags = default!; //Starlight
+        [Dependency] private NameModifierSystem _nameModifier = default!; //Starlight
 
 
         public override void Initialize()
@@ -136,10 +139,22 @@ namespace Content.Server.Bible
             if (!TryComp(uid, out UseDelayComponent? useDelay) || _delay.IsDelayed((uid, useDelay)))
                 return;
 
-            if (args.Target == null || args.Target == args.User || !_mobStateSystem.IsAlive(args.Target.Value))
+            // starlight start
+            if (args.Target == null || args.Target == args.User)
             {
                 return;
             }
+
+            // for anyone thinking of rewriting this system...
+            // if it were up to me, instead of having other component specific code (unholy component, uncluwnification)
+            // in here, this would raise an event that is actually handled in the respective system, so everything stays modular
+            // however, rewriting random systems is beyond the scope of the pr this code was added in, so only devil is using this event
+            var thwackEv = new BibleThwackEvent(args.User);
+            RaiseLocalEvent(args.Target.Value, ref thwackEv);
+            if(thwackEv.Handled) return;
+
+            if(!_mobStateSystem.IsAlive(args.Target.Value)) return;
+            // starlight end
 
             if (!HasComp<BibleUserComponent>(args.User))
             {
@@ -152,7 +167,7 @@ namespace Content.Server.Bible
                 return;
             }
 
-            // Starlight start
+            // starlight start
             //Damage unholy creatures
             if (HasComp<UnholyComponent>(args.Target))
             {

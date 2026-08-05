@@ -33,7 +33,6 @@
       Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pump_alt3.rsi
       Quinary: _Carpmosia/Structures/Piping/Atmospherics/pump_alt4.rsi
       # Carpmosia-end - 5 pipe layers
-  - type: ChildBlockVision # Starlight
 
 - type: entity
   parent: GasBinaryBase
@@ -102,9 +101,18 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+    prefix: device-address-prefix-gas-pump
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+  - type: GasPressurePumpSignal
   # Starlight end
   - type: GuideHelp
     guides:
@@ -173,22 +181,24 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_pump.ogg
-    - type: DeviceNetwork
-      deviceNetId: AtmosDevices
-      receiveFrequencyId: AtmosMonitor
-      transmitFrequencyId: AtmosMonitor
-      sendBroadcastAttemptEvent: true
-      examinableAddress: true
-      prefix: device-address-prefix-volume-pump
-    - type: WiredNetworkConnection
+        # Starlight: Replaced DeviceNetwork, see Starlight block
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-volume-pump
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: GasVolumePumpSignal
     # Starlight end
     - type: GuideHelp
       guides:
@@ -255,6 +265,10 @@
       path: /Audio/Ambience/Objects/gas_hiss.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasFlowRegulator
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  # Starlight end
   - type: GuideHelp
     guides:
     - PressureRegulator
@@ -304,9 +318,6 @@
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:
@@ -376,9 +387,6 @@
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:
@@ -459,9 +467,6 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
   # Starlight end
   - type: GuideHelp
     guides:
@@ -522,9 +527,6 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:
@@ -533,6 +535,7 @@
 - type: entity
   parent: GasVentPump
   id: GasDualPortVentPump
+  categories: [ DoNotMap ] # Starlight - Blacklisted by WizDen for mapping, extremely easy to use wrong, best to just not map them at all.
   name: dual-port air vent
   description: Has a valve and a pump attached to it. There are two ports, one is an input for releasing air, the other is an output when siphoning.
   placement:
@@ -602,6 +605,11 @@
       enabled: true
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
+    # Starlight start
+    - type: VentCrawlTube
+      blocksVision: false
+    - type: VentCrawlTransit
+    # Starlight end
     - type: GuideHelp
       guides:
       - AirVent
@@ -684,6 +692,10 @@
     navMapBlip: GasValve
   - type: Transform
     noRot: false
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  # Starlight end
   - type: GuideHelp
     guides:
     - GasRecycling
@@ -738,6 +750,10 @@
     node: radiator
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: Thermoregulator
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  # Starlight end
   - type: GuideHelp
     guides:
     - Radiators
@@ -770,3 +786,7 @@
     - type: Construction
       graph: GasBinary
       node: bendradiator
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlBend
+    # Starlight end

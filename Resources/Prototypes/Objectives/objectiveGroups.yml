@@ -50,6 +50,7 @@
     CorporateSecretsStealObjective: 0.75 #Starlight Unique Target
     CriminalReportsStealObjective: 0.75 #Starlight Unique Target
     SecureKnowledgeStealObjective:  0.75 #Starlight Unique Target
+    CaptainTabletStealObjective: 0.75 # #Starlight Unique Target
     # Starlight end
 
 
@@ -125,7 +126,7 @@
     FiringPinAdvancedLaserStealObjective: 1
     LogProbeCartridgeStealObjective: 1 # Detective
     MedTekCartridgeStealObjective: 1 # CMO, yet again
-    SecurityTechFabCircuitboardStealObjective: 1 # sec
+    DepartmentalTechFabCircuitboardStealObjective: 1 # General departmental
     PTechCircuitboardStealObjective: 1 # hop
     CommsComputerCircuitboardStealObjective: 1 # bridge/tech vault
     IDCardComputerCircuitboardStealObjective: 1 # bridge/tech vault(?)
@@ -134,10 +135,11 @@
     ClothingNeckMantleDecoratedSalvagerStealObjective: 1 # Salvage Lead's mantle. They're usually always wearing it...
     SalvageShuttleCircuitboardStealObjective: 1 # technically qm
     MiningShuttleCircuitboardStealObjective: 1 # ditto
+    ShipyardCircuitboardStealObjective: 1 # bridge/caps locker
     SpyglassCaptainStealObjective: 0.7 #Cappy
     # Starlight-end
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med
-    MedicalTechFabCircuitboardStealObjective: 1
+    SecureTechFabCircuitboardStealObjective: 1 # Starlight, Medical -> Secure
     FireAxeStealObjective: 1                            #eng
     AmePartFlatpackStealObjective: 1
     ExpeditionsCircuitboardStealObjective: 1            #sup
@@ -172,17 +174,5 @@
     RenaultStealObjective: 1
     ShivaStealObjective: 1
     TropicoStealObjective: 1
-
-# Starlight start
-- type: weightedRandom # Starlight
-  id: ThiefObjectiveGroupEscape # Starlight
-  weights: # Starlight
-    ThiefObjectiveGroupEscapeForced: 1 # Starlight, have to do it this way because it's hardcoded to pick a group from a group
-
-- type: weightedRandom
-  id: ThiefObjectiveGroupEscapeForced # Starlight
-  weights:
-#    EscapeThiefShuttleObjective: # Starlight forced already anyways
-    EscapeMasterThiefObjective: 1 # Starlight
 
 #Crew, wizard, when you code it...

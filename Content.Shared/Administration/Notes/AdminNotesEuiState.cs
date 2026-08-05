@@ -7,7 +7,7 @@ namespace Content.Shared.Administration.Notes;
 [Serializable, NetSerializable]
 public sealed class AdminNotesEuiState : EuiStateBase
 {
-    public AdminNotesEuiState(string notedPlayerName, Dictionary<(int, NoteType), SharedAdminNote> notes, bool canCreate, bool canDelete, bool canEdit, Dictionary<(int, NoteType), SharedAdminNote> networkNotes) // Starlight-edit: network notes
+    public AdminNotesEuiState(string notedPlayerName, Dictionary<(int, NoteType), SharedAdminNote> notes, bool canCreate, bool canDelete, bool canEdit, Dictionary<(int, NoteType, string, string), SharedAdminNote> networkNotes) // Starlight-edit: network notes
     {
         NotedPlayerName = notedPlayerName;
         Notes = notes;
@@ -19,7 +19,7 @@ public sealed class AdminNotesEuiState : EuiStateBase
 
     public string NotedPlayerName { get; }
     public Dictionary<(int noteId, NoteType noteType), SharedAdminNote> Notes { get; }
-    public Dictionary<(int noteId, NoteType noteType), SharedAdminNote> NetworkNotes { get; } // Starlight-edit: network notes
+    public Dictionary<(int noteId, NoteType noteType, string, string), SharedAdminNote> NetworkNotes { get; } // Starlight-edit: network notes
     public bool CanCreate { get; }
     public bool CanDelete { get; }
     public bool CanEdit { get; }

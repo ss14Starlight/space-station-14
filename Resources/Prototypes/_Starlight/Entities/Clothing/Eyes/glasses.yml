@@ -13,6 +13,9 @@
   - type: EyeProtection
     protectionTime: 5
   - type: ShowHealthBars
+    damageContainers:
+      - Biological
+      - Hybrid # Protogens
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -39,6 +42,9 @@
   - type: EyeProtection
     protectionTime: 5
   - type: ShowHealthBars
+    damageContainers:
+      - Biological
+      - Hybrid # Protogens
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -106,6 +112,7 @@
   - type: ShowCriminalRecordIcons
   - type: EyeProtection
     protectionTime: 5
+  - type: ShowAccess
   - type: StealTarget
     stealGroup: RareGlassesCollection
 
@@ -126,9 +133,13 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - IPC
+    - Hybrid
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+    - IPC
+    - Hybrid
   - type: Tag
     tags:
     - HudMedical
@@ -136,6 +147,15 @@
     protectionTime: 5
   - type: StealTarget
     stealGroup: RareGlassesCollection
+
+- type: entity
+  parent: ClothingEyesGlassesBlueShield
+  id: ClothingEyesGlassesNanotrasen
+  name: NanoTrasen glasses
+  description: The latest in NanoTrasen technology has lead up to these glasses, only given to the best of the best.
+  components:
+  - type: FlashImmunity
+    blocksSpecialVision: False
 
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
@@ -146,18 +166,23 @@
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
     - type: ShowAccessReaderSettings
+    - type: ShowAccess
+      seeIdHolder: true
+      itemsOnly: false
     - type: ShowHealthBars
       damageContainers:
         - Biological
         - Inorganic
         - Silicon
         - IPC
+        - Hybrid
     - type: ShowHealthIcons
       damageContainers:
         - Biological
         - Inorganic
         - Silicon
         - IPC
+        - Hybrid
     - type: FlashImmunity
     - type: EyeProtection
       protectionTime: 5
@@ -199,6 +224,9 @@
   - type: SolutionScanner
   - type: VisionCorrection
   - type: ShowHealthBars
+    damageContainers:
+      - Biological
+      - Hybrid # Protogens
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -362,3 +390,24 @@
     - type: Clothing
       sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
     - type: VisionCorrection
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesNoirAssistant
+  name: cheap noir-tech glasses
+  description: A pair of glasses that simulate what the world looked like before the invention of color.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/noir.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/sunglasses.rsi
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: NoirOverlay
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon

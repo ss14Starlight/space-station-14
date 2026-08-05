@@ -30,21 +30,21 @@ namespace Content.Server.Silicons.Borgs;
 /// <inheritdoc/>
 public sealed partial class BorgSystem : SharedBorgSystem
 {
-    [Dependency] private readonly IBanManager _banManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
-    [Dependency] private readonly TriggerSystem _trigger = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private IBanManager _banManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DeviceNetworkSystem _deviceNetwork = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
     //Starlight Start
-    [Dependency] private readonly EuiManager _euiManager = null!;
-    [Dependency] private readonly IPlayerManager _playerManager = null!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly GhostSystem _ghostSystem = default!;
+    [Dependency] private EuiManager _euiManager = null!;
+    [Dependency] private IPlayerManager _playerManager = null!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private GhostSystem _ghostSystem = default!;
     //Starlight End
 
     public static readonly ProtoId<JobPrototype> BorgJobId = "Borg";

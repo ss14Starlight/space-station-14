@@ -7,10 +7,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Chemistry.Commands;
 
 [AdminCommand(AdminFlags.Debug)]
-public sealed class DumpReagentGuideText : LocalizedEntityCommands
+public sealed partial class DumpReagentGuideText : LocalizedEntityCommands
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!; // Starlight
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private ILocalizationManager _loc = default!; // Starlight
 
     public override string Command => "dumpreagentguidetext";
 

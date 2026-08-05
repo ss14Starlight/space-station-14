@@ -2,17 +2,13 @@ using Content.Shared.Examine;
 using Content.Shared.PowerCell;
 using Content.Shared.Interaction;
 using Robust.Shared.Spawners;
-using Content.Server.Hands.Systems;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.HoloItem;
 
-public sealed class HoloItemSystem : EntitySystem
+public sealed partial class HoloItemSystem : EntitySystem
 {
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
 
     public override void Initialize()
     {
@@ -72,7 +68,6 @@ public sealed class HoloItemSystem : EntitySystem
         args.Handled = true;
     }
 
-    //We do it exactly like SharedCollectiveMindSystem
     private List<ComponentRegistration> StringsToRegs(List<string> input)
     {
         var list = new List<ComponentRegistration>();

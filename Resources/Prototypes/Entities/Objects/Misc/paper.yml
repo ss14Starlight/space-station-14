@@ -372,6 +372,7 @@
   parent: Paper
   id: NukeCodePaper
   name: nuclear authentication codes
+  suffix: Random # Starlight
   components:
   - type: NukeCodePaper
     allNukesAvailable: true

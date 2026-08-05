@@ -21,7 +21,7 @@
   id: CrateServiceReligious
   parent: CrateChaplain
   name: religious supplies crate
-  description: Contains holy water, a bible, and a spare censer.
+  description: Contains holy water, a censer and a bible.
   components:
     - type: StorageFill
       contents:
@@ -30,12 +30,34 @@
           amount: 2
         - id: CosmicCenser
 
+- type: entity
+  id: CrateScienceAnomalousContainment
+  parent: CrateScience
+  name: anomalous containment supplies crate
+  description: Contains a Containment Oubliette circuit board and two A.P.E circuit boards.
+  components:
+    - type: StorageFill
+      contents:
+        - id: OublietteCircuitBoard
+        - id: APECircuitboard
+          amount: 2
+
 - type: cargoProduct
   id: ServiceReligiousSupplies
   icon:
     sprite: _Starlight/CosmicCult/Objects/censer.rsi
     state: icon
   product: CrateServiceReligious
-  cost: 2000
+  cost: 1500
   category: cargoproduct-category-name-service
+  group: market
+
+- type: cargoProduct
+  id: ScienceAnomalousContainmentSupplies
+  icon:
+    sprite: Structures/Storage/Crates/science.rsi
+    state: icon
+  product: CrateScienceAnomalousContainment
+  cost: 8000
+  category: cargoproduct-category-name-science
   group: market

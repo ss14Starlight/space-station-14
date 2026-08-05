@@ -4,9 +4,9 @@ using Content.Shared.Weapons.Hitscan.Events;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanBasicDamageSystem : EntitySystem
+public sealed partial class HitscanBasicDamageSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private DamageableSystem _damage = default!;
 
     public override void Initialize()
     {
@@ -30,7 +30,7 @@ public sealed class HitscanBasicDamageSystem : EntitySystem
                 ignoreResistances: ent.Comp.IgnoreResistances,
                 origin: args.Data.Gun,
                 armorPenetration: ent.Comp.ArmorPenetration,
-                canHeal: false
+                canHeal: true // Need this true to be able to deal extra damage on weakness.
             );
         // Starlight end
 

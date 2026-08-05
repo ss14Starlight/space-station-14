@@ -13,3 +13,19 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorCommand
+
+# Bags
+- type: loadout
+  id: HoPBackpack
+  equipment:
+    back: ClothingBackpackHoP
+
+- type: loadout
+  id: HoPSatchel
+  equipment:
+    back: ClothingBackpackSatchelHoP
+
+- type: loadout
+  id: HoPDuffel
+  equipment:
+    back: ClothingBackpackDuffelHoP

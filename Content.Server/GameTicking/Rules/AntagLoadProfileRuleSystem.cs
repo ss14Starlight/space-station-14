@@ -4,27 +4,25 @@ using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
 using Content.Server.Preferences.Managers;
-using Content.Server.Traits;
 using Content.Shared._Starlight.Character.Info;
+using Content.Shared._Starlight.Station;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
-using Robust.Shared.GameObjects;
 using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfileRuleComponent>
+public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfileRuleComponent>
 {
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IServerPreferencesManager _prefs = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!; // Starlight
-    [Dependency] private readonly TraitSystem _traitSystem = default!; //Starlight
-    [Dependency] private readonly SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
-    [Dependency] private readonly GrammarSystem _grammarSystem = default!; // Starlight
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; // Starlight
+    [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private IServerPreferencesManager _prefs = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!; // Starlight
+    [Dependency] private TraitSystem _traitSystem = default!; //Starlight
+    [Dependency] private SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
+    [Dependency] private GrammarSystem _grammarSystem = default!; // Starlight
+    [Dependency] private AutoDiscordLogSystem _autolog = default!; // Starlight
 
     public override void Initialize()
     {
@@ -42,31 +40,36 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         HumanoidCharacterProfile? profile = null;
         if (args.Session != null)
         {
-            var roles = args.AntagRoles;
+            //var roles = args.AntagRoles; // Starlight
             var prefs = _prefs.GetPreferences(args.Session.UserId);
-            profile = prefs.SelectProfileForAntag(roles);
+            profile = prefs.SelectProfileForAntag(args.Antag.PrefRoles); // Starlight
         }
 
-        // Startlight - Start (Changing fully so RandomWithSpecies loads with a specieID)
-        var species = _proto.Index(SharedHumanoidAppearanceSystem.DefaultSpecies);
+        #region Starlight
+        var species = Proto.Index(SharedHumanoidAppearanceSystem.DefaultSpecies);
+
         if (profile is not null)
-            species = _proto.Index(profile.Species);
+            species = Proto.Index(profile.Species);
 
         if (ent.Comp.SpeciesHardOverride is not null)
-            species = _proto.Index(ent.Comp.SpeciesHardOverride.Value);
+            species = Proto.Index(ent.Comp.SpeciesHardOverride.Value);
         else if (ent.Comp.SpeciesOverride is not null
             && (ent.Comp.SpeciesOverrideBlacklist?.Contains(new ProtoId<SpeciesPrototype>(species.ID)) ?? false))
-            species = _proto.Index(ent.Comp.SpeciesOverride.Value);
+            species = Proto.Index(ent.Comp.SpeciesOverride.Value);
 
-        if (profile is null)
-            profile = HumanoidCharacterProfile.RandomWithSpecies(species.ID);
+        profile ??= HumanoidCharacterProfile.RandomWithSpecies(species.ID);
+        profile = profile.WithSpecies(species.ID);
 
-        if (profile?.ForcedPrototype != "" && profile is not null)
+        // This exact profile is subsequently used for its loadout.
+        args.SelectedProfile = profile;
+
+        if (!string.IsNullOrEmpty(profile.ForcedPrototype))
         {
-            if (!_proto.Resolve(profile.ForcedPrototype, out var forcedProto))
+            if (!Proto.Resolve(profile.ForcedPrototype, out var forcedProto))
                 throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
-            args.Entity = Spawn(profile.ForcedPrototype);
-            var resolvedEntity = (EntityUid)args.Entity;
+
+            args.Entity = Spawn(profile.ForcedPrototype, args.Coords);
+            var resolvedEntity = args.Entity.Value;
             var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
             _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
 
@@ -74,20 +77,21 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         }
         else
         {
-            args.Entity = Spawn(species.Prototype);
-            _humanoid.LoadProfile(args.Entity.Value, profile?.WithSpecies(species.ID));
+            args.Entity = Spawn(species.Prototype, args.Coords);
+            _humanoid.LoadProfile(args.Entity.Value, profile);
         }
 
-        if (ent.Comp.ApplyCharacterProfile && profile is not null)
+        if (ent.Comp.ApplyCharacterProfile)
         {
             _metaSystem.SetEntityName(args.Entity.Value, profile.Name);
             _sLSharedCharacterInfoSystem.ApplyCharacterInfo(args.Entity.Value, profile);
+
             if (args.Session is not null)
                 _traitSystem.ApplyTraits(args.Entity.Value, profile, args.Session);
         }
 
-        if (profile?.ForcedPrototype != "")
-            RaiseLocalEvent(args.Entity.Value, new ForcedPrototypeDoSpecialEvent()); // Starlight
-        // Starlight - End
+        if (!string.IsNullOrEmpty(profile.ForcedPrototype))
+            RaiseLocalEvent(args.Entity.Value, new ForcedPrototypeDoSpecialEvent());
+    #endregion
     }
 }

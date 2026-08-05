@@ -13,11 +13,13 @@
     - BorgModuleSecurity
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleSecurity
+  - BorgModuleSecurityContraband
 
   radioChannels:
-  - Science
+  - Command
   - Security
 
   # Visual
@@ -32,6 +34,15 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 36000 #10 hrs
+
+  # Access
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgSecurity
 
 # Syndicate borgs
 
@@ -148,6 +159,7 @@
     - BorgModulePurrfus
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModulePaperwork
 
@@ -157,6 +169,7 @@
   - Science
   - Law
 
+  # Access
   addComponents:
   - type: Access
     groups:
@@ -164,6 +177,7 @@
     tags:
     - Borg
     - Debrief
+    - HeadOfPersonnel
 
   # Visual
   inventoryTemplateId: borgTall
@@ -189,6 +203,7 @@
     - BorgModuleSupply
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleAppraisal
   - BorgModuleHold
@@ -205,3 +220,13 @@
   # Pet
   petSuccessString: petting-success-cargo-cyborg
   petFailureString: petting-failure-cargo-cyborg
+
+  # Access
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgCargo
+        - Quartermaster

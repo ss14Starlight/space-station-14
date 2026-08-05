@@ -40,9 +40,10 @@
   - EmergencyElfOxygenMedical # 🌟Starlight🌟
   - EmergencyNonBreatherMedical # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseMedical # Starlight
+
 
 # Chief Medical Officer
-
 - type: loadoutGroup
   id: ChiefMedicalOfficerHead
   name: loadout-group-chief-medical-officer-head
@@ -59,6 +60,11 @@
   - ChiefMedicalOfficerJumpskirt
   - ChiefMedicalOfficerTurtleneckJumpsuit
   - ChiefMedicalOfficerTurtleneckJumpskirt
+  - ChiefMedicalOfficerFormalSuit # DeltaV
+  - ChiefMedicalOfficerFormalSkirt # DeltaV
+  - ChiefMedicalOfficerVestSuit # DeltaV
+  - ChiefMedicalOfficerVestSkirt # DeltaV
+  - ChiefMedicalOfficerSummerSuit # DeltaV
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerOuterClothing
@@ -66,6 +72,7 @@
   minLimit: 0
   loadouts:
   - ChiefMedicalOfficerLabCoat
+  - ChiefMedicalOfficerLabCoatLong # DeltaV
   - ChiefMedicalOfficerWintercoat
 
 - type: loadoutGroup
@@ -75,6 +82,8 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
+  - ChiefMedicalOfficerShawl # DeltaV
+  - ChiefMedicalOfficerOverShoulder # DeltaV
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerShoes
@@ -89,13 +98,6 @@
   - LaceupShoes # 🌟Starlight🌟
   - LeatherShoes # 🌟Starlight🌟
 
-- type: loadoutGroup
-  id: ChiefMedicalOfficerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieChiefMedicalOfficer
-
 # Medical Doctor
 
 - type: loadoutGroup
@@ -109,6 +111,11 @@
   - BlueSurgeryCap
   - GreenSurgeryCap
   - PurpleSurgeryCap
+  - BlackSurgeryCap # Delta V
+  - CyanSurgeryCap # Delta V
+  - PinkSurgeryCap # Delta V
+  - RainbowSurgeryCap # Delta V
+  - WhiteSurgeryCap # Delta V
   - NurseHat
 
 - type: loadoutGroup
@@ -122,6 +129,11 @@
   - MedicalBlueScrubs
   - MedicalGreenScrubs
   - MedicalPurpleScrubs
+  - MedicalBlackScrubs # DeltaV
+  - MedicalCyanScrubs # DeltaV
+  - MedicalPinkScrubs # DeltaV
+  - MedicalRainbowScrubs # DeltaV
+  - MedicalWhiteScrubs # DeltaV
   # afterlight start
   - NurseJumpskirt
   - CoronerJumpskirt
@@ -138,6 +150,8 @@
   - MedicalDoctorWintercoat
   - SeniorPhysicianLabCoat
   - WindbreakerMedical # 🌟Starlight🌟
+  - RegularLabCoatLong # DeltaV
+  - CoronerLabCoatLong # Starlight
 
 - type: loadoutGroup
   id: MedicalDoctorPDA
@@ -145,13 +159,6 @@
   loadouts:
   - MedicalDoctorPDA
   - SeniorPhysicianPDA
-
-- type: loadoutGroup
-  id: MedicalDoctorJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieMedicalDoctor
 
 # Medical Intern
 
@@ -161,13 +168,6 @@
   loadouts:
   - WhiteJumpsuit
   - WhiteJumpskirt
-
-- type: loadoutGroup
-  id: MedicalInternJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieMedicalIntern
 
 # Chemist
 
@@ -190,6 +190,9 @@
   - ChemistWintercoat
   - SeniorChemistLabCoat # Starlight
   - SeniorChemistWintercoat # Starlight
+  - RegularLabCoatLong # DeltaV
+  - ChemistLabCoatLong # DeltaV
+  - SeniorChemistLabCoatLong # Starlight
 
 - type: loadoutGroup
   id: ChemistBackpack
@@ -202,13 +205,6 @@
   - SeniorChemistSatchel # Starlight
   - SeniorChemistDuffel # Starlight
   - LeatherSatchel # starlight
-
-- type: loadoutGroup
-  id: ChemistJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieChemist
 
 # Paramedic
 
@@ -235,6 +231,7 @@
   loadouts:
   - ParamedicWindbreaker
   - ParamedicWintercoat
+  - ParamedicJacket # DeltaV
 
 - type: loadoutGroup
   id: ParamedicShoes
@@ -246,10 +243,4 @@
   - WhiteShoes
   - MedicalWinterBoots
   - Heels # Starlight
-
-- type: loadoutGroup
-  id: ParamedicJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieParamedic
+  - HighHeelBoots # Starlight

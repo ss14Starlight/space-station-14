@@ -1,6 +1,6 @@
 
 - type: entity
-  parent: [ClothingUniformBase, BaseCentcommContraband]
+  parent: [ClothingUniformBase, BaseNanoTrasenContraband]
   id: ClothingUniformNTNCFatigues
   name: NanoTrasen navy marine fatigues
   description: Standard issue NanoTrasen Navy Marine fatigues. Very airy.
@@ -11,7 +11,7 @@
     sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/ntnc_fatigues.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpsuitNTNCOfficer
   name: NanoTrasen navy officer's jumpsuit
   description: Standard issue NanoTrasen Navy Marine jumpsuit. This one's for an officer.
@@ -22,7 +22,7 @@
     sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/ntnc_officer.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpsuitNTNCEnsign
   name: NanoTrasen navy ensign's jumpsuit
   description: Standard issue NanoTrasen Navy Marine jumpsuit. This one's for an ensign.

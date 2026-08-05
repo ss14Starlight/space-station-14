@@ -11,11 +11,11 @@ namespace Content.Shared._Afterlight.Silicons.Borgs;
 /// Shared behaviour for borg switchable subtype logic.
 /// Essentially a reimplementation of <see cref="SharedBorgSwitchableTypeSystem"/> specifically for cosmetic functions.
 /// </summary>
-public abstract class SharedBorgSwitchableSubtypeSystem : EntitySystem
+public abstract partial class SharedBorgSwitchableSubtypeSystem : EntitySystem
 {
-    [Dependency] private readonly InteractionPopupSystem _interactionPopup = default!;
-    [Dependency] protected readonly IPrototypeManager Prototypes = default!;
-    [Dependency] protected readonly IComponentFactory ComponentFactory = default!;
+    [Dependency] private InteractionPopupSystem _interactionPopup = default!;
+    [Dependency] protected IPrototypeManager Prototypes = default!;
+    [Dependency] protected IComponentFactory ComponentFactory = default!;
 
     public override void Initialize()
     {

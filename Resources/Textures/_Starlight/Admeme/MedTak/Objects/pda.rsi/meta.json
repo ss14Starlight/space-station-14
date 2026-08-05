@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pda-medtak",
+      "copyright": "SevenShades",
+      "delays": [[ 0.3, 0.3, 0.3, 0.3 ]]
+    }
+  ]
+}

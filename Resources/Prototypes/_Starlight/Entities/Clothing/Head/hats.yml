@@ -200,6 +200,23 @@
         - HamsterWearable
         - WhitelistChameleon
 
+- type: entity
+  parent: [ClothingHeadBase, BaseSecurityContraband]
+  id: ClothingHeadDeputyHat
+  name: deputy's hat
+  description: el desperados...
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/deputy_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/deputy_hat.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
+
 #USSP
 - type: entity
   parent: [ClothingHeadBase, BaseSovietContraband]
@@ -271,7 +288,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatTVHead
   name: tv head
-  description: The label says it will make you beat a skeleton in a popularity poll on Tumblr. What does that even mean?
+  description: The label says it will make you look like a true Tumblr sexyman. What does that even mean?
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/tv_head.rsi
@@ -426,7 +443,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatNTREliteTophat
   name: nt rep elite tophat
-  description: An expensive looking black tophat. the gold embossing on the front shows the Nanotrasen logo, fitting for an NT rep.
+  description: An expensive looking black tophat. the gold embossing on the front shows the NanoTrasen logo, fitting for an NT rep.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/ntr_elite_tophat.rsi
@@ -627,6 +644,17 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
 
+- type: entity
+  parent: ClothingHeadHatWizard
+  id: ClothingHeadHatWitchyHat
+  name: witchy hat
+  description: Wicky-wicky-witchy hat!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/witchyhat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/witchyhat.rsi
+
 # Wizard duel!
 - type: entity
   parent: ClothingHeadHatRedwizard # Parents red since red wizard hat sprite base
@@ -687,4 +715,34 @@
     - PetWearable
     - CorgiWearable
     - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBunnyGang
+  name: Bunny Gang Hat
+  description: The hat of a secretive group of bunny mercenaries.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/bunnygang.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/bunnygang.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretPrison
+  name: prison beret
+  description: A criminal's least favorite headwear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/beret_prison.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/beret_prison.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
     - WhitelistChameleon

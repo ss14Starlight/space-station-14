@@ -174,9 +174,18 @@
       pai_slot:
         name: Personal AI Device
         ejectOnInteract: true
+        ejectOnBreak: true # Starlight: eject PAI when console is destroyed so it isn't voided.
         whitelist:
           components:
           - PAI
+  - type: AccessReader
+  - type: ActivatableUIRequiresAccess
+    allowUnlocking: true
+  - type: Lock
+    unlockOnClick: false
+  - type: Wires
+    boardName: wires-board-name-computer
+    layoutId: ComputerAiLockable
       # Starlight-end
   - type: ContainerContainer
     containers:
@@ -250,8 +259,9 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleCargo
-  name: cargo shuttle console
-  description: Used to pilot the cargo shuttle.
+  categories: [ ShouldMapStation ] # Starlight begin
+  name: remote cargo shuttle console
+  description: Used to pilot the cargo shuttle remotely. # Starlight end
   components:
   - type: Sprite
     layers:
@@ -279,6 +289,10 @@
     board: CargoShuttleConsoleCircuitboard
   - type: StealTarget
     stealGroup: CargoShuttleConsoleCircuitboard
+  #Starlight start
+  - type: AccessReader
+    access: [["Shuttle"]]
+  #Starlight end
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -387,6 +401,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerMedicalRecords
+  categories: [ ShouldMapStation ] # Starlight
   name: medical records computer
   description: This can be used to check medical records.
   components:
@@ -573,6 +588,7 @@
     pagingSoundParams:
       maxDistance: 15 # Stationary consoles have a much longer audio range.
     # Starlight END
+  - type: CrewMonitoringFilter # Starlight: set crew monitors to filter for crew sensors by default
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
@@ -683,8 +699,9 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerId
+  categories: [ ShouldMapStation ] # Starlight
   name: ID card computer
-  description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+  description: Terminal for programming NanoTrasen employee ID cards to access parts of the station. # SL
   components:
   - type: IdCardConsole
   # Starlight-edit: Start
@@ -698,6 +715,7 @@
     - Service
     - Engineering
     - Law
+    - NanoTrasen
   # Starlight-edit: End
     privilegedIdSlot:
       name: id-card-console-privileged-id
@@ -804,11 +822,11 @@
     range: 4
     ports:
       - BodyScannerSender
-  # Starlight-end
 
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerComms
+  categories: [ ShouldMapStation ] # Starlight
   name: communications console # Starlight
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
@@ -841,6 +859,11 @@
         type: CommunicationsConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+      # Starlight Start: Secure Command Terminal
+      enum.SecureCommandTerminalUiKey.Key:
+        type: SecureCommandTerminalBui
+  - type: SecureCommandTerminalConsole
+      # Starlight End
   - type: Computer
     board: CommsComputerCircuitboard
   # Starlight Start - Immersive Lighting PR
@@ -880,6 +903,8 @@
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: false # The title already says who they are.
     sound: /Audio/Announcements/war.ogg
+  - type: SecureCommandTerminalConsole # SL
+    enabled: false
   - type: Computer
     board: SyndicateCommsComputerCircuitboard
   - type: PointLight
@@ -914,6 +939,8 @@
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: false
     sound: /Audio/Announcements/war.ogg # SL - Revert this back to war sound
+  - type: SecureCommandTerminalConsole # SL
+    enabled: false
   - type: Computer
     board: WizardCommsComputerCircuitboard
   - type: PointLight
@@ -946,6 +973,8 @@
     color: "#1d8bad"
     canShuttle: false
     global: true
+  - type: SecureCommandTerminalConsole #SL
+    enabled: false
   - type: Computer
     board: CentcommCommsComputerCircuitboard
   - type: PointLight
@@ -1062,11 +1091,12 @@
         type: WiresBoundUserInterface
   - type: Computer
     board: CargoRequestComputerCircuitboard
-  # Starlight Start - Immersive Lighting PR
-  - type: PointLight
+  # Starlight Start
+  - type: PointLight # Immersive lighting PR
     radius: 2.5
     energy: 1.5
     color: "#b89f25"
+  - type: ActivatableUIRequiresAccess # Actually check access.
   # Starlight End
   - type: AccessReader
     access: [["Cargo"]]
@@ -1247,7 +1277,7 @@
   - type: PointLight
     color: "#afe837"
   - type: AccessReader
-    access: [["Service"], ["Theatre"]]
+    access: [["Service"]] # Starlight: Service is actually everyone in Service now.
 
 - type: entity
   id: ComputerCargoBounty
@@ -1292,6 +1322,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerFundingAllocation
+  categories: [ ShouldMapStation ] # Starlight
   name: funding allocation computer
   description: Terminal for controlling the distribution of funds and pay to departments.
   components:
@@ -1710,6 +1741,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerRoboticsControl
+  categories: [ ShouldMapStation ] # Starlight
   name: robotics control console
   description: Used to remotely monitor, disable, and destroy the station's cyborgs. # Starlight-edit - add ", disable, and destroy"
   components:
@@ -1806,6 +1838,7 @@
 
 - type: entity
   id: StationAiUploadComputer
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseComputer
   name: AI upload console
   description: Used to update the laws of the station AI.
@@ -1868,6 +1901,7 @@
 
 - type: entity
   id: StationAiFixerComputer
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseComputer
   name: AI restoration console
   description: Used to repair damaged artifical intelligences.

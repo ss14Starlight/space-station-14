@@ -47,8 +47,15 @@ public sealed partial class DungeonJob
                     if (gen.Replacement == null)
                         break;
 
-                    var prototype = _entManager.GetComponent<MetaDataComponent>(uid.Value).EntityPrototype;
+                    // Starlight Start
+                    if (_entManager.Deleted(uid.Value) ||
+                        !_entManager.TryGetComponent(uid.Value, out MetaDataComponent? meta))
+                    {
+                        continue;
+                    }
+                    // Starlight End
 
+                    var prototype = meta.EntityPrototype; // Starlight Edit
                     if (prototype?.ID == gen.Replacement)
                     {
                         replaceEntities[node] = uid.Value;
@@ -81,6 +88,12 @@ public sealed partial class DungeonJob
 
             var frontier = new ValueList<Vector2i>(32);
 
+            // Starlight Start: Avoid warning spam when we run out of valid tiles
+            var partiallyFilledGroups = 0;
+            var skippedGroups = 0;
+            var missingTilesFromPartialGroups = 0;
+            // Starlight End
+
             // Iterate the group counts and pathfind out each group.
             for (var i = 0; i < gen.Count; i++)
             {
@@ -88,6 +101,14 @@ public sealed partial class DungeonJob
 
                 if (!ValidateResume())
                     return;
+
+                // Starlight Start: Stop when we run out of valid tiles
+                if (availableTiles.Count == 0)
+                {
+                    skippedGroups = gen.Count - i;
+                    break;
+                }
+                // Starlight End
 
                 var groupSize = random.Next(gen.MinGroupSize, gen.MaxGroupSize + 1);
 
@@ -125,7 +146,15 @@ public sealed partial class DungeonJob
 
                         if (replaceEntities.TryGetValue(node, out var existingEnt))
                         {
-                            var existingProto = _entManager.GetComponent<MetaDataComponent>(existingEnt).EntityPrototype;
+                            // Starlight Start
+                            if (_entManager.Deleted(existingEnt) ||
+                                !_entManager.TryGetComponent(existingEnt, out MetaDataComponent? existingMeta))
+                            {
+                                continue;
+                            }
+                            // Starlight End
+
+                            var existingProto = existingMeta.EntityPrototype; // Starlight Edit
                             _entManager.DeleteEntity(existingEnt);
 
                             if (existingProto != null && remapping.TryGetValue(existingProto.ID, out var remapped))
@@ -141,11 +170,30 @@ public sealed partial class DungeonJob
                     }
                 }
 
+            // Starlight edit Start: Stop warning when we run out of valid tiles
                 if (groupSize > 0)
                 {
-                    _sawmill.Warning($"Found remaining group size for ore veins of {gen.Replacement ?? "null"}!");
+                    partiallyFilledGroups++;
+                    missingTilesFromPartialGroups += groupSize;
+
+                    if (availableTiles.Count == 0)
+                    {
+                        skippedGroups = gen.Count - i - 1;
+                        break;
+                    }
                 }
+                // Starlight edit End
             }
+
+            // Starlight Start
+            if (partiallyFilledGroups > 0 || skippedGroups > 0)
+            {
+                _sawmill.Debug(
+                    $"Ore generation for {gen.Entity} replacing {gen.Replacement ?? "null"} on {_entManager.ToPrettyString(_gridUid)} " +
+                    $"ran out of valid replacement tiles. Partially-filled groups: {partiallyFilledGroups}; " +
+                    $"skipped groups: {skippedGroups}; missing tiles from partial groups: {missingTilesFromPartialGroups}.");
+            }
+            // Starlight End
         }
     }
 }

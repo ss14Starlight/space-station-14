@@ -7,8 +7,8 @@
     - type: XenoArtifact
       priceMultiplier: 1.5
       nodeCount:
-        min: 24
-        max: 25
+        min: 23
+        max: 24
     - type: Sprite
       sprite: _Starlight/Objects/Materials/abyss.rsi
       state: abyss_core
@@ -114,6 +114,16 @@
     tags:
     - LabellerRefillPaper
   - type: Item
+
+- type: entity
+  parent: LabellerRefillPaper
+  id: LabellerRefillPaper999
+  suffix: 999
+  components:
+  - type: Sprite
+    state: icon_100
+  - type: Stack
+    count: 999
 
 - type: entity
   parent: LabellerRefillPaper

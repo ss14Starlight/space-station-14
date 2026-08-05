@@ -13,6 +13,15 @@
     allowedDepartments: [ TSF ]
     severity: TSF
 
+# Roboticist
+- type: entity
+  id: BaseRoboticistContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ Roboticist ]
+
 #Advanced Cyberlimbs
 - type: entity
   id: BaseAdvancedCyberlimbContraband
@@ -101,6 +110,14 @@
     allowedDepartments: [ Law ]
 
 - type: entity
+  id: BaseNanoTrasenContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Representatives ]
+
+- type: entity
   id: BaseJanitorSecurityContraband
   parent: BaseRestrictedContraband
   abstract: true
@@ -142,6 +159,14 @@
   - type: Contraband
     allowedDepartments: [ Security ]
     allowedJobs: [ Zookeeper ]
+
+- type: entity
+  id: BaseReporterContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+    - type: Contraband
+      allowedJobs: [ Reporter ]
 
 - type: entity
   id: BaseCommandManagerContraband
@@ -187,10 +212,10 @@
   - type: Contraband
     allowedDepartments: [ Medical, Security ]
 
-# MedTak
 - type: entity
-  id: BaseMedTakContraband
+  id: BaseSecurityScienceCommandNanoTrasenContraband
+  parent: BaseRestrictedContraband
   abstract: true
   components:
   - type: Contraband
-    severity: MedTak
+    allowedDepartments: [ Security, Science, Command, Representatives ]

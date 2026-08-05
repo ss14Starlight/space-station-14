@@ -1,0 +1,11 @@
+<Document>
+  # Proto-Lagomorph
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoLagomorph" Caption=""/>
+  </Box>
+
+  ## Resistances
+  - Receive [color=#ffa500]35% more heat damage[/color] and [color=#8147ff]25% more shock damage[/color].
+  - Receive [color=#1e90ff]40% less cold damage[/color].
+</Document>

@@ -1,9 +1,8 @@
 ﻿using Content.Server._Starlight.Objectives.Events;
+using Content.Server._Starlight.Achievement;
 using Content.Server.Administration.Managers;
-using Content.Server.Administration.Systems;
-using Content.Server.Database.Migrations.Postgres;
 using Content.Server.EUI;
-using Content.Server.Ghost.Roles.UI;
+using Content.Server.Revolutionary.Components;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Administration.Logs;
@@ -14,19 +13,27 @@ using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Starlight;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Visual;
+using Content.Shared._Starlight.Railroading.Components.Reward;
+using Content.Shared._Starlight.Abstract;
 
 namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingSystem : SharedRailroadingSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IAdminManager _admins = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
-    [Dependency] private readonly RailroadRuleSystem _railroadRule = default!;
+    private const string CriminalCardPrototypeId = "RRCardCriminal";
+
+    [Dependency] private AchievementSystem _achievements = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IAdminManager _admins = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private StarlightEntitySystem _entitySystem = default!;
+    [Dependency] private RailroadRuleSystem _railroadRule = default!;
 
     public readonly ProtoId<AlertPrototype> AlertProtoId = "RailroadingChoice";
     private readonly Dictionary<ICommonSession, CardSelectionEui> _openUis = [];
@@ -56,7 +63,6 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         if (ent.Comp.Completed is { Count: > 0 })
             foreach (var item in ent.Comp.Completed)
                 RaiseLocalEvent(item, ref collect);
-
 
         args.Groups["Cards"] = collect.Objectives;
     }
@@ -173,6 +179,15 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
 
                 var cardPerformer = EnsureComp<RailroadCardPerformerComponent>(card);
                 cardPerformer.Performer = subject;
+
+                if (TryComp<MetaDataComponent>(card.Owner, out var meta)
+                    && meta.EntityPrototype?.ID == CriminalCardPrototypeId)
+                {
+                    var achievementId = HasComp<CommandStaffComponent>(subject.Owner)
+                        ? "wavering_loyalty"
+                        : "on_the_run";
+                    _achievements.QueueUnlockAchievement(subject.Owner, achievementId);
+                }
 
                 var @event = new RailroadingCardChosenEvent(subject);
                 RaiseLocalEvent(card, ref @event);

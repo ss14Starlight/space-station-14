@@ -17,13 +17,15 @@ using Robust.Shared.Prototypes;
 using Timer = Robust.Shared.Timing.Timer;
 // Starlght Start
 using Robust.Shared.Random;
-using Content.Server.Parallax;
 using Content.Shared.Screen.Components;
 using Content.Shared.Parallax.Biomes;
 using System.Numerics;
-using Content.Server.DeviceNetwork.Components;
 using Content.Shared.Procedural;
 using Robust.Shared.Map.Components;
+using Content.Shared._Starlight.Shuttles.Components;
+using Content.Shared.Tag;
+using Content.Shared.Whitelist;
+
 // Starlight End
 
 namespace Content.Server.Shuttles.Systems;
@@ -228,7 +230,7 @@ public sealed partial class EmergencyShuttleSystem
             if (_evacuationPlanetMap == null || _evacuationLandingZone == null)
                 SetupEvacuationPlanet();
 
-            if (_evacuationPlanetMap == null || _evacuationLandingZone == null)
+            if (_evacuationPlanetMap == null || _evacuationLandingZone is not { } evacuationLandingZone)
             {
                 Log.Error($"Evacuation pod {ToPrettyString(uid)} failed to setup evacuation planet destination.");
                 continue;
@@ -237,7 +239,7 @@ public sealed partial class EmergencyShuttleSystem
             var angle = _random.NextAngle();
             var distance = _random.NextFloat(0, PodSpreadRadius);
             var offset = angle.ToVec() * distance;
-            var landingCoords = _evacuationLandingZone.Value.Offset(offset);
+            var landingCoords = evacuationLandingZone.Offset(offset);
 
             var rotations = new[]
             {
@@ -276,18 +278,22 @@ public sealed partial class EmergencyShuttleSystem
         {
             var query = AllEntityQuery<StationCentcommComponent, TransformComponent>();
 
+            //Starlight edit start - Add ERT shuttles to whitelist on beacon
             // Guarantees that emergency shuttle arrives first before anyone else can FTL.
-            while (query.MoveNext(out var comp, out var centcommXform))
+            while (query.MoveNext(out var comp, out _))
             {
-                if (Deleted(comp.Entity))
+                if (Deleted(comp.Entity) || !comp.MapEntity.HasValue || Deleted(comp.MapEntity))
                     continue;
 
-                if (_shuttle.TryAddFTLDestination(centcommXform.MapID, true, out var ftlComp))
+                var mapId = Transform(comp.MapEntity.Value).MapID;
+                if (_shuttle.TryAddFTLDestination(mapId, true, false, false, out var ftlDestinationComponent))
                 {
-                    _shuttle.SetFTLWhitelist((centcommXform.MapUid!.Value, ftlComp), null);
+                    var whitelistInst = new EntityWhitelist { Tags = new() { "ERTShuttle" } };
+                    _shuttle.SetFTLWhitelist((comp.MapEntity.Value, ftlDestinationComponent), whitelistInst);
                 }
             }
         }
+            //Starlight-edit end
     }
 
     private void OnEmergencyRepealAll(EntityUid uid, EmergencyShuttleConsoleComponent component, EmergencyShuttleRepealAllMessage args)
@@ -371,6 +377,12 @@ public sealed partial class EmergencyShuttleSystem
         TransitTime = MinimumTransitTime + (MaximumTransitTime - MinimumTransitTime) * _random.NextFloat();
         // Round to nearest 10
         TransitTime = MathF.Round(TransitTime / 10f) * 10f;
+
+        // Starlight Start: Evacuation pod planet landing
+        // Clear round-local evacuation planet state so stale map entity IDs are not reused next round.
+        _evacuationPlanetMap = null;
+        _evacuationLandingZone = null;
+        // Starlight End
     }
 
     private void UpdateAllEmergencyConsoles()

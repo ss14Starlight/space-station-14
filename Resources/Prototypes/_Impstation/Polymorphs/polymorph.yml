@@ -1,0 +1,10 @@
+- type: polymorph
+  id: EeepGrow
+  configuration:
+    entity: MobEeep
+    transferName: false
+    transferDamage: false
+    inventory: None
+    forced: true
+    revertOnCrit: false
+    revertOnDeath: false

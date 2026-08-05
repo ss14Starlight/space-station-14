@@ -1,8 +1,7 @@
 using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
-using Content.Shared._Starlight.NullSpace;
-using Content.Shared.Damage;
+using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -10,13 +9,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicImpositionSystem : EntitySystem
+public sealed partial class CosmicImpositionSystem : EntitySystem
 {
-    [Dependency] private readonly CosmicCultSystem _cult = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -58,7 +57,5 @@ public sealed class CosmicImpositionSystem : EntitySystem
     }
 
     private void OnImpositionDamaged(Entity<CosmicImposingComponent> uid, ref BeforeDamageChangedEvent args)
-    {
-        args.Cancelled = true;
-    }
+        => args.Cancelled = true;
 }

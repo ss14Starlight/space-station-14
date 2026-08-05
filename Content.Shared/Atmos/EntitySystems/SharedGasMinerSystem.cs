@@ -4,9 +4,9 @@ using Content.Shared.Temperature;
 
 namespace Content.Shared.Atmos.EntitySystems;
 
-public abstract class SharedGasMinerSystem : EntitySystem
+public abstract partial class SharedGasMinerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAtmosphereSystem _sharedAtmosphereSystem = default!;
+    [Dependency] private SharedAtmosphereSystem _sharedAtmosphereSystem = default!;
 
     public override void Initialize()
     {
@@ -16,6 +16,10 @@ public abstract class SharedGasMinerSystem : EntitySystem
 
     private void OnExamine(Entity<GasMinerComponent> ent, ref ExaminedEvent args)
     {
+        // Starlight-start
+        if (!ent.Comp.ShowInfoOnExamine)
+            return;
+        // Starlight-end
         var component = ent.Comp;
 
         using (args.PushGroup(nameof(GasMinerComponent)))

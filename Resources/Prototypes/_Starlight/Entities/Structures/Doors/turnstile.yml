@@ -8,21 +8,60 @@
   - type: AccessReader
     access: [["Command"]]
 
+- type: entity
+  id: TurnstileSecurity
+  parent: Turnstile
+  suffix: Security
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: TurnstileArmory
+  parent: Turnstile
+  suffix: Armory
+  components:
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: entity
+  id: TurnstileSyndicate
+  parent: Turnstile
+  suffix: Syndicate
+  components:
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+
 # CentComm turnstiles
 
 - type: entity
   id: TurnstileCentComm
   parent: Turnstile
   name: central command turnstile
-  suffix: Command
   components:
     - type: Sprite
       sprite: _Starlight/Structures/Doors/cc-turnstile.rsi
       layers:
         - state: turnstile
           map: [ "enum.TurnstileVisualLayers.Base" ]
+
+- type: entity
+  id: TurnstileCentCommCommand
+  parent: TurnstileCentComm
+  name: central command turnstile
+  suffix: Command
+  components:
     - type: AccessReader
       access: [["Command"]]
+
+- type: entity
+  id: TurnstileCentCommCentralCommand
+  parent: TurnstileCentComm
+  name: central command turnstile
+  suffix: Central Command
+  components:
+    - type: AccessReader
+      access: [["CentralCommand"]]
 
 - type: entity
   id: TurnstileCentCommDebrief
@@ -32,3 +71,9 @@
   components:
     - type: AccessReader
       access: [["Debrief"]]
+    - type: Turnstile
+      denySound:
+        path: /Audio/Machines/airlock_deny.ogg
+        params:
+          maxDistance: 1.5 # Small range to prevent disturbing debrief.
+          volume: -7

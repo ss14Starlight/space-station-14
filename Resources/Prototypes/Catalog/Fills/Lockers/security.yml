@@ -14,6 +14,7 @@
 
 - type: entity
   id: LockerWardenFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerWarden
   components:
@@ -35,12 +36,12 @@
     - id: ClothingBeltSecurityFilled
     - id: Flash
     - id: ClothingEyesGlassesSecurity
-    - id: ClothingHandsGlovesCombat
+#    - id: ClothingHandsGlovesCombat # Starlight, they spawn with these now.
     - id: ClothingShoesBootsJack
     - id: ClothingOuterCoatWarden
     - id: ClothingOuterWinterWarden
-    - id: RubberStampWarden
     - id: DoorRemoteArmory
+    - id: BoxWardenStamps #Starlight
     - id: HoloprojectorSecurity
     - id: BookSpaceLaw
     - id: ClothingBackpackElectropack
@@ -50,6 +51,7 @@
     - id: NetworkConfigurator
     - id: Binoculars
     - id: NeuralLinkDisruptor # Starlight
+    - id: TicketPad # Starlight
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -77,6 +79,7 @@
     children:
     - id: ClothingHandsGlovesSecurityRed #Starlight
     - id: ClothingEyesHudSecurity #Starlight
+    - id: TicketPad # Starlight
     - id: FlashlightSeclite
       prob: 0.8
     - id: WeaponDisabler
@@ -121,6 +124,8 @@
     - id: ClothingHeadHatBeretCorpsman #Starlight
     - id: ClothingBeltCorpsmanFilled #Starlight
     - id: ClothingHandsGlovesBlackNitrile #Starlight
+    - id: BottleCaseSecurityFilled # Starlight
+    - id: PenPackSecurityFilled # Starlight
 #    - id: ClothingEyesGlassesSecurity #Starlight, replacing with brigmed glasses.
     - id: WeaponTaser
     - id: WeaponDisabler
@@ -164,6 +169,7 @@
 
 - type: entity
   id: LockerDetectiveFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerDetective
   components:
@@ -218,10 +224,14 @@
       prob: 0.5
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseSecuritySL, BaseSecurityContraband] #SL parenting
   id: GunSafeDisabler
   name: disabler safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: disabler_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -235,10 +245,14 @@
       amount: 5
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafePistolMk58
   name: pistol safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: pistol_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -253,22 +267,22 @@
       amount: 2
     - id: WeaponPistolEnforcer
       amount: 1
-    #- id: WeaponMachinePistolMk64
-      #amount: 1
     - id: MagazinePistolSP
       amount: 4
     - id: MagazinePistolHP
       amount: 2
     - id: MagazinePistolFMJ
       amount: 2
-    #- id: MagazinePistolHighCapacitySP
-      #amount: 2
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafeRifleLecter
   name: rifle safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: lecter_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -277,22 +291,34 @@
 - type: entityTable
   id: FillGunSafeRifleLecter
   table: !type:AllSelector
+# Starlight-start
     children:
     - id: BoxFiringPin # Starlight, firing pins
     - id: WeaponRifleLecter
-      amount: 2 # Starlight
+      amount: 2
     - id: WeaponRifleLeikha
       amount: 1
+    - id: WeaponRifleLawbringer
+      amount: 1
     - id: MagazineRifleHP
-      amount: 4 # Starlight
+      amount: 4
     - id: MagazineRifleSP
-      amount: 4 # Starlight
+      amount: 4
+    - id: MagazineLightRifleSP
+      amount: 1
+    - id: MagazineLightRifleHP
+      amount: 1
+# Starlight-end
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafeSubMachineGunDrozd
   name: smg safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: drozd_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -311,10 +337,14 @@
       amount: 5 # Starlight
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafeShotgunEnforcer
   name: heavy shotgun safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: enforcer_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -335,10 +365,14 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafeShotgunKammerer
   name: shotgun safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: kammerer_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -361,9 +395,13 @@
 - type: entity
   id: GunSafeSubMachineGunWt550
   suffix: Wt550
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   name: wt550 safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: wt550_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -380,10 +418,14 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafeLaserCarbine
   name: laser safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: laser_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector

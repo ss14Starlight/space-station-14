@@ -1,35 +1,43 @@
 {
-    "version": 1,
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Made by Conflee",
-    "size": {
-        "x": 32,
-        "y": 32
-    },
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
   "states": [
     {
-      "name": "wanted_clown"
+      "name": "wanted_clown",
+      "copyright": "Made by Conflee"
     },
     {
-      "name": "wanted_freak"
+      "name": "wanted_freak",
+      "copyright": "Made by Conflee"
     },
     {
-      "name": "wanted_ian"
+      "name": "wanted_ian",
+      "copyright": "Made by Conflee"
     },
     {
-      "name": "wanted_johntoe"
+      "name": "wanted_johntoe",
+      "copyright": "Made by Conflee"
     },
     {
-      "name": "wanted_mime"
+      "name": "wanted_mime",
+      "copyright": "Made by Conflee"
     },
     {
-      "name": "wanted_punpun"
+      "name": "wanted_punpun",
+      "copyright": "Made by Conflee"
     },
     {
-      "name": "wanted_stirstir"
+      "name": "wanted_stirstir",
+      "copyright": "Made by Conflee"
     },
     {
-      "name": "wanted_traitor"
+      "name": "wanted_traitor",
+      "copyright": "Made by Conflee"
     }
   ]
 }

@@ -1,17 +1,17 @@
-using Content.Client._Starlight.Trail;
-using Content.Server.Administration.Systems;
+using Content.Client._Starlight.Overlay.Trail;
+using Content.Shared._Starlight;
 using Content.Shared._Starlight.GhostTheme;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.GhostTheme;
 
-public sealed class GhostThemeSystem : EntitySystem
+public sealed partial class GhostThemeSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly StarlightEntitySystem _entities = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private StarlightEntitySystem _entities = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -46,12 +46,15 @@ public sealed class GhostThemeSystem : EntitySystem
         {
             var trail = EnsureComp<TrailComponent>(ent.Owner);
             trail.TrailColor = ghostThemePrototype.Trail.Color;
+            trail.FadeColor = ghostThemePrototype.Trail.FadeColor;
             trail.MaxPoints = ghostThemePrototype.Trail.MaxPoints;
             trail.LineWidth = ghostThemePrototype.Trail.LineWidth;
             trail.MinDistance = ghostThemePrototype.Trail.MinDistance;
             trail.DecayDelay = ghostThemePrototype.Trail.DecayDelay;
             trail.DecayInterval = ghostThemePrototype.Trail.DecayInterval;
             trail.Shader = ghostThemePrototype.Trail.Shader;
+            trail.Mode = ghostThemePrototype.Trail.Mode;
+            trail.SkipSamples = ghostThemePrototype.Trail.SkipSamples;
         }
         else
         {

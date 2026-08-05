@@ -1,3 +1,4 @@
+using Content.Server._Starlight.GameTicking;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
 using Content.Shared.Store;

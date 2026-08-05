@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: BasePDA
   id: RoboticistPDA
   name: roboticist PDA
@@ -22,6 +22,7 @@
     damageContainers:
     - Silicon
     - IPC
+    - Hybrid
 
 - type: entity
   parent: BaseMedicalPDA
@@ -508,6 +509,70 @@
   - type: Icon
     state: pda-internservice
 
+# Pun Pun
+- type: entity
+  parent: BasePDA
+  id: PunPunPDA
+  name: pun pun's PDA
+  description: Smells like bananas.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PunPunIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-punpun
+  - type: PdaBorderColor
+    borderColor: "#333333"
+    accentVColor: "#ffdc54"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-punpun
+
+- type: entity
+  parent: BotanistPDA
+  id: KikiPDA
+  name: kiki's PDA
+  description: Has an earthy scent.
+  components:
+  - type: Pda
+    id: KikiIDCard
+
+- type: entity
+  parent: ClearPDA
+  id: StirStirPDA
+  name: stir stir's PDA
+  description: Has been used as a hammer before.
+  components:
+  - type: Pda
+    id: StirStirIDCard
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
+  parent: ClearPDA
+  id: PrisonerPDA
+  name: prisoner PDA
+  description: Has been used as a hammer before.
+  components:
+  - type: Pda
+    id: PrisonerJobIDCard
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
 - type: entity
   parent: BasePDA
   id: CommanderPDA
@@ -559,6 +624,38 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - NanoChatCartridge
+
+- type: entity
+  parent: BasePDA
+  categories: [ DoNotMap ]
+  id: CentCommGreenShieldPDA
+  name: greenshield PDA
+  description: Comes with all the bells and whistles for all those times you do more than walk slowly next to someone who thinks they are way too important.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/pda.rsi
+    - type: Pda
+      id: CCGreenShieldIDCard
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-ntnc-cs
+    - type: Icon
+      sprite: _Starlight/Objects/Devices/pda.rsi
+      state: pda-ntnc-cs
+    - type: CartridgeLoader
+      uiKey: enum.PdaUiKey.Key
+      preinstalled:
+        - CrewManifestCartridge
+        - NotekeeperCartridge
+        - NanoTaskCartridge
+        - NewsReaderCartridge
+        - MedTekCartridge
+        - WantedListCartridge
+        - LogProbeCartridge
+        - AstroNavCartridge
+        - NanoChatCartridge
 
 - type: entity
   parent: BasePDA
@@ -633,10 +730,18 @@
 - type: entity
   parent: CentcomPDA
   id: NTSFPDA
-  suffix: NTSF #starlight
+  name: NT PDA
+  description: A stately blue PDA used by top NanoTrasen Officials and Special Forces.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: CentcomIDCardNTSF
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ntsf
   - type: HealthAnalyzer
     maxScanRange: null
     scanDelay: 0
@@ -644,6 +749,9 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-ntsf
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -660,10 +768,18 @@
 - type: entity
   parent: CentcomPDA
   id: DecimusPDA
-  suffix: ERROR #starlight
+  name: jailbroken PDA
+  description: An illegally modified generic NanoTrasen PDA. Please report this to your nearest NanoTrasen Representative for investigation.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: CentcomIDCardDecimus
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-decimus
   - type: HealthAnalyzer
     maxScanRange: null
     scanDelay: 0
@@ -671,6 +787,9 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-decimus
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -686,11 +805,11 @@
 
 - type: entity
   parent: BasePDA
-  id: NanotrasenCareerTrainerPDA
+  id: NanoTrasenCareerTrainerPDA
   name: NanoTrasen career trainer PDA
   components:
   - type: Pda
-    id: NanotrasenCareerTrainerIDCard
+    id: NanoTrasenCareerTrainerIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -793,59 +912,88 @@
     - type: PdaBorderColor
       borderColor: "#717059"
 
-# MedTak
 - type: entity
-  parent: [ ParamedicPDA, BaseMedTakContraband ]
-  id: MedTakMedicPDA
-  name: MedTak medic PDA
-  description: Is it blood or red paint?
+  parent: ClownPDA
+  id: CluwneBeastPDA
+  name: cluwne PDA
+  suffix: Unremoveable
+  description: Cursed cluwne PDA.
   components:
+  - type: Pda
+    id: CluwneBeastIDCard
+    penSlot:
+      startingItem: CrayonGreen
+      ejectSound: /Audio/Items/bikehorn.ogg
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-medtak
-  - type: Pda
-    id: MedTakMedicIDCard
+       pda-cluwne
   - type: PdaBorderColor
-    accentVColor: "#d7d7d0"
-    borderColor: "#600000"
+    borderColor: "#1c8f4d"
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
-    state: pda-medtak
+    state: pda-cluwne
+  - type: Unremoveable
 
 - type: entity
-  parent: MedTakMedicPDA
-  id: MedTakPilotPDA
-  name: MedTak pilot PDA
-  description: It's red paint.
+  parent: BasePDA
+  id: CentCommServiceWorkerPDA
+  name: CentComm service worker PDA
+  description: The crappy version they give to the people who make their food, mop their floors, and serve their drinks.
   components:
   - type: Pda
-    id: MedTakPilotIDCard
+    id: CentCommIDCardServiceWorker
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-centcom
+  - type: PdaBorderColor
+    borderColor: "#00842e"
+  - type: Icon
+    state: pda-centcom
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
-  parent: MedTakMedicPDA
-  id: MedTakSecurityPDA
-  name: MedTak security PDA
-  description: It's blood.
+  parent: CentCommServiceWorkerPDA
+  id: CentCommChefPDA
+  name: CentComm chef PDA
+  description: It's slick with the oil of the fat steak you're supposed to be cooking.
   components:
   - type: Pda
-    id: MedTakSecurityIDCard
+    id: CentCommIDCardChef
 
 - type: entity
-  parent: MedTakMedicPDA
-  id: MedTakTeamLeadPDA
-  name: MedTak team leader PDA
-  description: It's blood.
+  parent: CentCommServiceWorkerPDA
+  id: CentCommBartenderPDA
+  name: CentComm bartender PDA
+  description: The trappings of a glorified cocktail waiter.
   components:
   - type: Pda
-    id: MedTakTeamLeadIDCard
+    id: CentCommIDCardBartender
 
 - type: entity
-  parent: MedTakMedicPDA
-  id: MedTakDispatcherPDA
-  name: MedTak dispatcher PDA
-  description: It's red paint.
+  parent: CentCommServiceWorkerPDA
+  id: CentCommJanitorPDA
+  name: CentComm janitor PDA
+  description: Why are you reading this instead of mopping floors?
   components:
   - type: Pda
-    id: MedTakDispatcherIDCard
+    id: CentCommIDCardJanitor

@@ -1,18 +1,22 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprite by deltaVelocity for starlight, modified by ItsAbby for Far Horizons and Starlight",
+  "copyright": "Icon sprite by ItsMaitake, modified by ItsAbby. Worn sprite by deltaVelocity for Starlight, modified by ItsMaitake, further modified by ItsAbby for Far Horizons and Starlight.",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+	  "copyright": "ItsMaitake, ItsAbby",
+	  "license": "CC-BY-SA-3.0"
     },
     {
       "name": "equipped-NECK",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "deltaVelocity, ItsMaitake, ItsAbby",
+	  "license": "CC-BY-SA-3.0"
     }
   ]
 }

@@ -1,5 +1,10 @@
 # Abstracts
 - type: entity
+  name: steal target
+  id: BaseStealTargetParent
+  abstract: true
+
+- type: entity
   abstract: true
   parent: BaseThiefStealObjective
   id: BaseThiefSecurityStealObjective
@@ -46,6 +51,22 @@
   components:
   - type: NotJobRequirement
     jobs: [ Captain, HeadOfPersonnel, HeadOfSecurity, ResearchDirector, ChiefEngineer, ChiefMedicalOfficer, Quartermaster, NanoTrasenRepresentative, Magistrate, BlueShield ]
+
+- type: entity
+  abstract: true
+  parent: BaseThiefStealObjective
+  id: BaseThiefNanoTrasenStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ NanoTrasenRepresentative, Magistrate, BlueShield, IAA, NanotrasenCareerTrainer ]
+
+- type: entity
+  abstract: true
+  parent: BaseThiefStealObjective
+  id: BaseThiefLawStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Magistrate, IAA, Lawyer ]
 
 # Thief Single
 - type: entity
@@ -105,13 +126,15 @@
     difficulty: 1
 
 - type: entity
-  parent: [BaseThiefStealObjective, BaseThiefSecurityStealObjective]
-  id: SecurityTechFabCircuitboardStealObjective
+  parent: BaseThiefStealObjective
+  id: DepartmentalTechFabCircuitboardStealObjective
   components:
+  - type: NotJobRequirement
+    jobs: [ ChiefEngineer, ChiefMedicalOfficer, Quartermaster, ResearchDirector, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, ResearchAssistant, Scientist, Roboticist, StationEngineer, AtmosphericTechnician, TechnicalAssistant, MedicalDoctor, Paramedic, MedicalIntern, Surgeon, Chemist, Psychologist ]
   - type: StealCondition
-    stealGroup: SecurityTechFabCircuitboard
+    stealGroup: DepartmentalTechFabCircuitboard
   - type: Objective
-    difficulty: 1.4 # Good luck.
+    difficulty: 1
 
 - type: entity
   parent: BaseThiefStealObjective
@@ -282,18 +305,25 @@
     difficulty: 0.6 # There's a lot of them... but they're comically easy to get. Cargo can also buy PTech restocks, so they can't get this objective either.
 
 - type: entity
+  parent: BaseStealTargetParent
+  id: StealTargetMedicalBeltCollection
+  abstract: true
+  components:
+  - type: StealTarget
+    stealGroup: MedicalBeltCollection
+
+- type: entity
   parent: BaseThiefStealObjective # Easy
   id: MedicalBeltStealCollectionObjective
   components:
   - type: NotJobRequirement
-    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, HeadOfSecurity, Brigmedic, BlueShield, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ]
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, HeadOfSecurity, Brigmedic, BlueShield ]
   - type: StealCondition
     stealGroup: MedicalBeltCollection
     minCollectionSize: 6
     maxCollectionSize: 11
   - type: Objective
-    difficulty: 0.9 # So a lot of things actually count towards this objective, normal Doctor, Paramed, CMO, Brigmed, BSO... But you can't really hold more than three at a time. Cargo banned because they can just buy restocks.
-
+    difficulty: 0.9 # So a lot of things actually count towards this objective, normal Doctor, Paramed, CMO, Brigmed, BSO... But you can't really hold more than three at a time.
 
 - type: entity
   parent: [BaseThiefObjective, BaseLivingObjective]
@@ -307,3 +337,18 @@
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
   - type: EscapeShuttleCondition
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components: # So you can't get this and the normal Escape objective at the same time.
+      - EscapeShuttleCondition
+
+- type: entity
+  parent: BaseThiefStealCollectionObjective
+  id: FigurineStealCollectionObjective
+  components:
+  - type: StealCondition
+    stealGroup: Figurines
+    minCollectionSize: 10
+    maxCollectionSize: 18 #will be limited to the number of figures on the station anyway.
+  - type: Objective
+    difficulty: 0.7 #Starlight edit, youre fighting others for em

@@ -6,11 +6,11 @@ alerts-vampire-blood-desc = Shows how much blood you've drunk. Extend your fangs
 alerts-vampire-fed-name = Blood Fullness
 alerts-vampire-fed-desc = Your current blood fullness. Drink blood to stay fed.
 
-roles-antag-vamire-name = Vampire
+roles-antag-vampire-name = Vampire
 roles-antag-vampire-description = Feed on the crew. Extend your fangs and drink their blood.
 
 roles-antag-thrall-name = Thrall
-roles-antag-thrall-description = Serve your master faithfully and obey their commands.
+roles-antag-thrall-objective = Serve your master faithfully and obey their commands.
 
 vampire-roundend-name = vampire
 
@@ -26,7 +26,8 @@ vampire-drink-target-maxed = You have already drunk { $amount } units of blood f
 vampire-drink-target-hard-max = You have drunk the maximum amount of blood from this target ({ $amount } units).
 vampire-full-power-achieved = Your vampiric essence surges full power achieved!
 vampire-umbrae-full-power-fov = The shadows bend to your will. You can now see through walls!
-vampire-drink-target-not-viable = This being does not have flowing blood, they need to be alive!
+vampire-drink-target-not-viable = This being does not have a beating heart!
+vampire-drink-target-rot = This being's essence is foul!
 vampire-sleep-shielded = This being cannot be put to sleep due to an implant!
 vampire-sleep-protected = Better eye contact is required...
 
@@ -124,7 +125,7 @@ action-vampire-eternal-darkness-not-enough-blood = You have run out of blood to 
 action-vampire-eternal-darkness-start = You conjured eternal darkness...
 action-vampire-eternal-darkness-stop = The eternal darkness has dissipated...
 
-#Dantalion
+# Dantalion
 vampire-enthrall-start = You reach into {CAPITALIZE(THE($target))}'s mind...
 vampire-enthrall-success = {CAPITALIZE(THE($target))} bends the knee and becomes your thrall.
 vampire-enthrall-target = Your mind is overwhelmed by vampiric domination!

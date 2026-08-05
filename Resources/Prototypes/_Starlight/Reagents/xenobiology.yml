@@ -73,6 +73,25 @@
             - Felionoid
             - Shadekin
             - Thaven
+            - Elf
+            - Lagomorph
+            - ProtoArachnid
+            - ProtoDiona
+            - ProtoDwarf
+            - ProtoHuman
+            - ProtoMoth
+            - ProtoReptilian
+            - ProtoResomi
+            - ProtoSlimePerson
+            - ProtoVox
+            - ProtoVulp
+            - ProtoAvali
+            - ProtoCyclorite
+            - ProtoFelionoid
+            - ProtoKin
+            - ProtoThaven
+            - ProtoElf
+            - ProtoLagomorph
         # Starlight-Start: Cyclorite Metabolism
         - !type:AdjustReagent
           conditions:

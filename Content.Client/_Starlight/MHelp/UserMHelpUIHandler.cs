@@ -1,10 +1,8 @@
 using System.Numerics;
 using Content.Client._Starlight.MHelp.UI;
-using Content.Client.UserInterface.Systems.Bwoink;
-using Content.Shared.Starlight.MHelp;
+using Content.Shared._Starlight.MHelp;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Network;
-using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.MHelp;
 

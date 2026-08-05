@@ -31,7 +31,7 @@ public sealed partial class FaxWindow : DefaultWindow
         SendButton.OnPressed += _ => SendButtonPressed?.Invoke();
         RefreshButton.OnPressed += _ => RefreshButtonPressed?.Invoke();
         PeerSelector.OnItemSelected += args =>
-            PeerSelected?.Invoke((string) args.Button.GetItemMetadata(args.Id)!);
+            PeerSelected?.Invoke(((KnownFax) args.Button.GetItemMetadata(args.Id)!).Address!); // Starlight: string => KnownFax.Address
     }
 
     public void UpdateState(FaxUiState state)
@@ -74,19 +74,35 @@ public sealed partial class FaxWindow : DefaultWindow
         {
             PeerSelector.Clear();
 
-            foreach (var (address, name) in state.AvailablePeers)
+            #region Starlight
+            /*
+             * - Subdivides peers into their assigned Groups;
+             * - Groups are ordered by Group.Order, machines without group are sorted to the bottom;
+             * - Peers ordered within groups by their individual Order.
+             */
+            var peers = state.AvailablePeers
+                .GroupBy(x => x.Value.GroupOrder)
+                .OrderBy(x => x.Key ?? int.MaxValue)
+                .SelectMany(group => group
+                    .OrderBy(peer => peer.Value.Order));
+            #endregion
+
+            foreach (var (address, knownFax) in peers) // Starlight: name => KnownFax, loop ordered peers.
             {
-                var id = AddPeerSelect(name, address);
+                var id = AddPeerSelect(knownFax); // Starlight: (name, addr) => KnownFax
                 if (address == state.DestinationAddress)
                     PeerSelector.Select(id);
             }
         }
     }
 
-    private int AddPeerSelect(string name, string address)
+    private int AddPeerSelect(KnownFax knownFax) // Starlight: (name, addr) => KnownFax
     {
-        PeerSelector.AddItem(name);
-        PeerSelector.SetItemMetadata(PeerSelector.ItemCount - 1, address);
+        #region Starlight
+        PeerSelector.AddItem(knownFax.Name);
+        PeerSelector.SetItemMetadata(PeerSelector.ItemCount - 1, knownFax);
+        PeerSelector.SetItemColor(knownFax.GroupColor ?? Color.DarkGray);
+        #endregion
         return PeerSelector.ItemCount - 1;
     }
 

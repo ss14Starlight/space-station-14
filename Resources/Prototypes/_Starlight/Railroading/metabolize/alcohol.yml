@@ -13,14 +13,7 @@
       max: 3
   - type: RailroadCard
     images:
-    - /Textures/_Starlight/Railroading/whiskey.png
-    - /Textures/_Starlight/Railroading/daiquiri.png
-    - /Textures/_Starlight/Railroading/martini.png
-    - /Textures/_Starlight/Railroading/white.png
-    - /Textures/_Starlight/Railroading/margarita.png
-    - /Textures/_Starlight/Railroading/shampagne.png
-    - /Textures/_Starlight/Railroading/glass.png
-    - /Textures/_Starlight/Railroading/shot.png
+    - /Textures/_Starlight/Railroading/drink.png
     description: rr-alcohol-desc
 
 - type: entity
@@ -3005,3 +2998,31 @@
     amount:
       min: 100
       max: 200
+
+- type: entity
+  id: RRCardMetabolizeTheLastCall
+  parent: [ MetabolizeDrinkCondition, RRCardMetabolizeBaseAlcohol ]
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: RailroadSpawnFlow
+    count:
+      min: 1
+      max: 1
+  - type: RailroadCard
+    title: rr-thelastcall
+    icon: 
+    iconColor: '#ED555596' # Hard
+    color: '#9146cc' # Myphic
+    description: rr-thelastcall-desc
+  - type: RailroadMetabolizeTask
+    reagents:
+    - ReagentId: TheLastCall
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
+    icon:
+      sprite: _Starlight/Objects/Consumable/Drinks/thelastcall.rsi
+      state: icon_empty
+  - type: RailroadDonationReward
+    amount:
+      min: 50
+      max: 150

@@ -7,7 +7,7 @@ using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Wall;
 // Starlight start
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 // Starlight end
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -28,15 +28,15 @@ namespace Content.Client.Construction
     /// The client-side implementation of the construction system, which is used for constructing entities in game.
     /// </summary>
     [UsedImplicitly]
-    public sealed class ConstructionSystem : SharedConstructionSystem
+    public sealed partial class ConstructionSystem : SharedConstructionSystem
     {
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-        [Dependency] private readonly SpriteSystem _sprite = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private ExamineSystemShared _examineSystem = default!;
+        [Dependency] private SharedTransformSystem _transformSystem = default!;
+        [Dependency] private SpriteSystem _sprite = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
         // Starlight-edit start
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+        [Dependency] private IConfigurationManager _configurationManager = default!;
         // Starlight-edit end
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
@@ -317,6 +317,7 @@ namespace Content.Client.Construction
                 var targetSprite = EnsureComp<SpriteComponent>(dummy);
                 EntityManager.System<AppearanceSystem>().OnChangeData(dummy, targetSprite);
 
+                var destIndex = 0; // Starlight: Track how many layers we've actually added
                 for (var i = 0; i < targetSprite.AllLayers.Count(); i++)
                 {
                     if (!targetSprite[i].Visible || !targetSprite[i].RsiState.IsValid)
@@ -327,12 +328,24 @@ namespace Content.Client.Construction
                         state.StateId.Name is null)
                         continue;
 
-                    _sprite.AddBlankLayer((ghost.Value, sprite), i);
-                    _sprite.LayerSetSprite((ghost.Value, sprite), i, new SpriteSpecifier.Rsi(rsi.Path, state.StateId.Name));
-                    sprite.LayerSetShader(i, "unshaded");
-                    _sprite.LayerSetVisible((ghost.Value, sprite), i, true);
+                    // Starlight START
+                    // Most of these lines only changed i => destIndex. By counting how many layers we add we prevent
+                    // empty layers since empty/missing layer indices causes bugs *elsewhere*. Yay.
+                    _sprite.AddBlankLayer((ghost.Value, sprite), destIndex);
+                    _sprite.LayerSetSprite((ghost.Value, sprite), destIndex, new SpriteSpecifier.Rsi(rsi.Path, state.StateId.Name));
+                    sprite.LayerSetShader(destIndex, "unshaded");
+                    _sprite.LayerSetVisible((ghost.Value, sprite), destIndex, true);
+
+                    // This is new: Fix offset not being copied
+                    _sprite.LayerSetOffset((ghost.Value, sprite), destIndex,
+                        targetSprite.Offset + ((SpriteComponent.Layer)targetSprite[i]).Offset);
+
+                    // Count the added layer
+                    destIndex++;
+                    // Starlight END
                 }
 
+                sprite.NoRotation = targetSprite.NoRotation; // Starlight: Fix NoRotation also being ignored.
                 Del(dummy);
             }
             else

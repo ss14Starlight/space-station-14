@@ -64,6 +64,16 @@
     accent: dwarf
   - type: Speech
     speechSounds: Bass
+  # Begin Starlight: Add Dwarf tag.
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - NotLabelable
+    - Dwarf
+  # End Starlight
   - type: HumanoidAppearance
     species: Dwarf
     hideLayersOnEquip:

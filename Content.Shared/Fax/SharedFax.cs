@@ -12,14 +12,14 @@ public enum FaxUiKey : byte
 public sealed class FaxUiState : BoundUserInterfaceState
 {
     public string DeviceName { get; }
-    public Dictionary<string, string> AvailablePeers { get; }
+    public Dictionary<string, KnownFax> AvailablePeers { get; } // Starlight: string => KnownFax
     public string? DestinationAddress { get; }
     public bool IsPaperInserted { get; }
     public bool CanSend { get; }
     public bool CanCopy { get; }
 
     public FaxUiState(string deviceName,
-        Dictionary<string, string> peers,
+        Dictionary<string, KnownFax> peers, // Starlight: string => KnownFax
         bool canSend,
         bool canCopy,
         bool isPaperInserted,
@@ -80,3 +80,31 @@ public sealed class FaxDestinationMessage : BoundUserInterfaceMessage
         Address = address;
     }
 }
+
+#region Starlight
+
+[Serializable]
+[DataDefinition]
+public sealed partial class KnownFax
+{
+    [DataField]
+    public string? Address { get; private set; }
+    [DataField]
+    public string Name { get; private set; }
+
+    public Color? GroupColor { get; set; }
+    public int? GroupOrder { get; set; }
+
+    [DataField]
+    public int Order { get; private set; }
+
+    public KnownFax(string address, string name, int order)
+    {
+        Address = address;
+        Name = name;
+        Order = order;
+    }
+}
+
+#endregion
+

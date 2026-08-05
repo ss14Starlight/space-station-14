@@ -14,7 +14,5 @@ public sealed class HeatRadiationBlockerSystem : EntitySystem
     }
 
     private void OnRadiateHeatAttempt(EntityUid uid, HeatRadiationBlockerComponent component, ref RadiateHeatAttemptEvent args)
-    {
-        args.Cancelled = true;
-    }
+        => args.Cancelled = true;
 }

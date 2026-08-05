@@ -1,12 +1,10 @@
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Actions;
-using Content.Shared._Starlight.NullSpace;
 using Content.Shared.Maps;
 using Robust.Server.GameObjects;
 using Content.Shared.Popups;
 using Content.Shared.Physics;
-using Content.Shared._Starlight.Shadekin;
 using System.Linq;
 using Content.Server.Ghost;
 using Robust.Server.Containers;
@@ -15,23 +13,25 @@ using Content.Shared.Light.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Inventory;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 
-public sealed class NullSpacePhaseSystem : EntitySystem
+public sealed partial class NullSpacePhaseSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private PhysicsSystem _physics = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
 
     private readonly EntProtoId _shadekinShadow = "ShadekinShadow";
-    private readonly EntProtoId ShadekinPhaseInEffect = "ShadekinPhaseInEffect";
-    private readonly EntProtoId ShadekinPhaseOutEffect = "ShadekinPhaseOutEffect";
+    private readonly EntProtoId _shadekinPhaseInEffect = "ShadekinPhaseInEffect";
+    private readonly EntProtoId _shadekinPhaseOutEffect = "ShadekinPhaseOutEffect";
 
     public override void Initialize()
     {
@@ -44,14 +44,10 @@ public sealed class NullSpacePhaseSystem : EntitySystem
     }
 
     private void OnInit(EntityUid uid, NullPhaseComponent component, MapInitEvent args)
-    {
-        Toggle(uid, component, true);
-    }
+        => Toggle(uid, component, true);
 
     public void OnShutdown(EntityUid uid, NullPhaseComponent component, ComponentShutdown args)
-    {
-        Toggle(uid, component, false);
-    }
+        => Toggle(uid, component, false);
 
     private void OnEquipped(EntityUid uid, NullPhaseComponent component, GotEquippedEvent args)
     {
@@ -59,9 +55,9 @@ public sealed class NullSpacePhaseSystem : EntitySystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EnsureComp<NullPhaseComponent>(args.Equipee);
+        EnsureComp<NullPhaseComponent>(args.EquipTarget);
         if (!component.PreventLightFlicker
-            || !TryComp<ShadekinComponent>(args.Equipee, out var shadekin))
+            || !TryComp<ShadekinComponent>(args.EquipTarget, out var shadekin))
             return;
         component.OriginalFlickerFlagState = shadekin.DoLightFlicker;
         shadekin.DoLightFlicker = false;
@@ -69,9 +65,9 @@ public sealed class NullSpacePhaseSystem : EntitySystem
 
     private void OnUnequipped(EntityUid uid, NullPhaseComponent component, GotUnequippedEvent args)
     {
-        RemComp<NullPhaseComponent>(args.Equipee);
+        RemComp<NullPhaseComponent>(args.EquipTarget);
         if (!component.PreventLightFlicker
-            || !TryComp<ShadekinComponent>(args.Equipee, out var shadekin))
+            || !TryComp<ShadekinComponent>(args.EquipTarget, out var shadekin))
             return;
         shadekin.DoLightFlicker = component.OriginalFlickerFlagState;
     }
@@ -162,7 +158,7 @@ public sealed class NullSpacePhaseSystem : EntitySystem
                         _ghost.DoGhostBooEvent(light);
                 }
 
-                var effect = SpawnAtPosition(ShadekinPhaseInEffect, Transform(uid).Coordinates);
+                var effect = SpawnAtPosition(_shadekinPhaseInEffect, Transform(uid).Coordinates);
                 Transform(effect).LocalRotation = Transform(uid).LocalRotation;
             }
             else
@@ -184,7 +180,7 @@ public sealed class NullSpacePhaseSystem : EntitySystem
                         _ghost.DoGhostBooEvent(light);
                 }
 
-                var effect = SpawnAtPosition(ShadekinPhaseOutEffect, Transform(uid).Coordinates);
+                var effect = SpawnAtPosition(_shadekinPhaseOutEffect, Transform(uid).Coordinates);
                 Transform(effect).LocalRotation = Transform(uid).LocalRotation;
             }
             else

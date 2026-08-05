@@ -3,7 +3,7 @@ using Content.Shared.Roles;
 using Content.Shared.Store;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
 
-namespace Content.Server.Store.Conditions;
+namespace Content.Server._Starlight.Store.Conditions;
 
 public sealed partial class MindRoleCondition : ListingCondition
 {

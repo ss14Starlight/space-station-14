@@ -10,3 +10,4 @@
     drawRate: 0
     useCharge: 20
   - type: ToggleCellDraw
+  - type: ForceQuickDraw #Starlight Don't pull the power cell when using hotkeys to remove from pockets

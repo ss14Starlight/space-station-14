@@ -4,12 +4,21 @@ using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 
+#region Starlight
+using Content.Shared.Item.ItemToggle;
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.PowerCell;
+using Content.Shared.PowerCell.Components;
+#endregion
+
 namespace Content.Shared.Blocking;
 
 public sealed partial class BlockingSystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!; //Starlight
+    [Dependency] private ItemToggleSystem _itemToggle = default!; //Starlight
 
     private void InitializeUser()
     {
@@ -20,7 +29,45 @@ public sealed partial class BlockingSystem
         SubscribeLocalEvent<BlockingUserComponent, ContainerGettingInsertedAttemptEvent>(OnInsertAttempt);
         SubscribeLocalEvent<BlockingUserComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<BlockingUserComponent, EntityTerminatingEvent>(OnEntityTerminating);
+
+        SubscribeLocalEvent<BlockingComponent, ItemToggledEvent>(OnBlockerToggled); //Starlight;
+        SubscribeLocalEvent<BlockingComponent, PowerCellSlotEmptyEvent>(OnPowerCellEmpty); //Starlight;
+        SubscribeLocalEvent<BlockingComponent, PowerCellChangedEvent>(OnPowerCellChanged); //Starlight;
     }
+
+    #region Starlight
+    /// <summary>
+    /// If power cell is empty,the shield should be disabled
+    /// </summary>
+    private void OnPowerCellEmpty(EntityUid uid, BlockingComponent component, PowerCellSlotEmptyEvent args) => TryDeactivate(uid);
+    /// <summary>
+    /// If power cell is swapped,the shield should be disabled
+    /// </summary>
+    private void OnPowerCellChanged(EntityUid uid, BlockingComponent component, PowerCellChangedEvent args)
+    {
+        if (args.Ejected)
+            TryDeactivate(uid);
+    }
+    /// <summary>
+    /// If an event triggers that wishes to turn off the shield, this helper function does so
+    /// </summary>
+    private void TryDeactivate(EntityUid uid)
+    {
+        if (!HasComp<BlockingComponent>(uid))
+            return;
+        if (!TryComp<ItemToggleComponent>(uid, out var itemToggle) || !itemToggle.Activated)
+            return;
+        _itemToggle.TryDeactivate(uid, predicted: false);
+    }
+    /// <summary>
+    /// stop user from blocking when the shield is toggled off
+    /// </summary>
+    private void OnBlockerToggled(EntityUid uid, BlockingComponent component, ItemToggledEvent args)
+    {
+        if (!args.Activated && component.IsBlocking && TryComp<BlockingUserComponent>(component.User, out var blockingUserComponent) && TryComp<TransformComponent>(uid, out var transform))
+            UserStopBlocking(transform.ParentUid, blockingUserComponent);
+    }
+    #endregion
 
     private void OnParentChanged(EntityUid uid, BlockingUserComponent component, ref EntParentChangedMessage args)
     {
@@ -48,13 +95,47 @@ public sealed partial class BlockingSystem
         if (args.Damage.GetTotal() <= 0)
             return;
 
+        #region Starlight
+        // A shield that needs to be toggled to function should only absorb damage if it is toggled
+        if (TryComp<ItemToggleComponent>(item, out var itemToggle) && !itemToggle.Activated)
+            return;
+
+        #endregion
+
         // A shield should only block damage it can itself absorb. To determine that we need the Damageable component on it.
         if (!TryComp<DamageableComponent>(item, out var dmgComp))
             return;
 
         var blockFraction = blocking.IsBlocking ? blocking.ActiveBlockFraction : blocking.PassiveBlockFraction;
         blockFraction = Math.Clamp(blockFraction, 0, 1);
-        _damageable.TryChangeDamage((item, dmgComp), blockFraction * args.OriginalDamage);
+
+        #region Starlight
+        // A shield that uses power to function needs to use that power
+        if (!TryComp<PowerCellSlotComponent>(item, out var powerCellComp))
+        {
+            _damageable.TryChangeDamage((item, dmgComp), blockFraction * args.OriginalDamage); //Original Wizden code, this should be applicable in the majority of cases
+        }
+        else //if the shield has a battery slot, then we consume charge not durability
+        {
+            var damageMod = blocking.IsBlocking ? blocking.ActiveBlockDamageModifier : blocking.PassiveBlockDamageModifer;
+            var damage = DamageSpecifier.ApplyModifierSet(args.Damage, damageMod);
+            var damageEnergy = (float) damage.GetTotal() * blocking.DamageEnergyDraw * blockFraction;
+
+            var availableEnergy = _powerCell.GetRemainingUses(item, 1f);
+            if (availableEnergy <= 0)
+                return; // If the power cell is empty, no damage will be blocked
+
+            var energyUsed = damageEnergy;
+            if (damageEnergy > availableEnergy)
+            {
+                energyUsed = availableEnergy;
+                blockFraction *= energyUsed / damageEnergy; //reduce block fraction if there wasn't enough energy to actually block the damage fully
+            }
+
+            if (!_powerCell.TryUseCharge(item, energyUsed))
+                return; // if no battery or no charge, doesn't work and all damage is applied
+        }
+        #endregion
 
         var modify = new DamageModifierSet();
         foreach (var key in dmgComp.Damage.DamageDict.Keys)

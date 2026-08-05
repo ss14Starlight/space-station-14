@@ -37,6 +37,7 @@
             ServiceWorker: [ 2, 2 ]
             Performer: [ 2, 2 ]
             Reporter: [ 2, 3 ]
+            Lawyer: [ 1, 1 ]
             #engineering (8)
             AtmosphericTechnician: [ 4, 4 ]
             StationEngineer: [ 4, 4 ]
@@ -55,13 +56,13 @@
             #security (11 - 13)
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
-            SecurityOfficer: [ 6, 8 ]
+            SecurityOfficer: [ 4, 6 ]
+            SecurityCadet: [ 2, 3 ] #intern, not counted
             Brigmedic: [ 1, 1 ]
             Detective: [ 1, 2 ] #good cop, bad cop
-            SecurityCadet: [ 4, 4 ] #intern, not counted
-            #supply (10 - 13)
+            #supply (12 - 15)
             SalvageLead: [ 1, 1 ]
-            SalvageSpecialist: [ 4, 4 ] #the salvagers yearn for the mines
+            SalvageSpecialist: [ 3, 3 ] #the salvagers yearn for the mines
             MiningSpecialist: [ 3, 3 ] #the miners... yearn for the mines...
             MailTech: [ 1, 2 ]
             CargoTechnician: [ 4, 6 ]

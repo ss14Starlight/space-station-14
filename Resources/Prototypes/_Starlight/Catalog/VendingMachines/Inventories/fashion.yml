@@ -28,28 +28,6 @@
       stock: 1
 
 - type: listing
-  id: ClothingUniformJumpskirtElegantMaid
-  productEntity: ClothingUniformJumpskirtElegantMaid
-  cost:
-    NTCredit: 990
-  categories:
-    - SLFashionSkirt
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-- type: listing
-  id: ClothingUniformJumpskirtTacticalMaid
-  productEntity: ClothingUniformJumpskirtTacticalMaid
-  cost:
-    NTCredit: 990
-  categories:
-    - SLFashionSkirt
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-- type: listing
   id: ClothingUniformJumpskirtDressRed
   productEntity: ClothingUniformJumpskirtDressRed
   cost:
@@ -381,17 +359,6 @@
       stock: 1
 
 - type: listing
-  id: ClothingHeadHatTacticalMaidHeadband
-  productEntity: ClothingHeadHatTacticalMaidHeadband
-  cost:
-    NTCredit: 400
-  categories:
-    - SLFashionHead
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-- type: listing
   id: ClothingMaskGeneralBorg
   productEntity: ClothingMaskGeneralBorg
   cost:
@@ -449,6 +416,17 @@
 - type: listing
   id: ClothingNeckCloakCentcomBlack
   productEntity: ClothingNeckCloakCentcomBlack
+  cost:
+    NTCredit: 2000
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingNeckCloakBoatCC
+  productEntity: ClothingNeckCloakBoatCC
   cost:
     NTCredit: 2000
   categories:
@@ -660,18 +638,6 @@
     - !type:ListingLimitedStockCondition
       stock: 1
 
-
-- type: listing
-  id: ClothingHandsMaidGlovesElegant
-  productEntity: ClothingHandsMaidGlovesElegant
-  cost:
-    NTCredit: 400
-  categories:
-    - SLFashionOther
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
 - type: listing
   id: NT4PlayerInstrument
   productEntity: NT4PlayerInstrument
@@ -726,3 +692,25 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: ClothingBackpackBunnyGangBundle
+  productEntity: ClothingBackpackBunnyGangBundle
+  cost:
+    NTCredit: 500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: ClothingHeadHatBunny
+  productEntity: ClothingHeadHatBunny
+  cost:
+    NTCredit: 50
+  categories:
+    - SLFashionHead
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2

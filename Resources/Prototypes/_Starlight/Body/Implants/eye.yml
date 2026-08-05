@@ -34,10 +34,13 @@
     state: eye_implant_diagnostic
   - type: FunctionalOrgan
     comps:
+    - type: ShowAccessReaderSettings
     - type: ShowHealthBars
       damageContainers:
       - Inorganic
       - Silicon
+      - IPC
+      - Hybrid
 
 - type: entity
   id: EyeImplantMedical
@@ -50,6 +53,9 @@
   - type: FunctionalOrgan
     comps:
     - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Hybrid # Protogens
     - type: ShowHealthIcons
 
 - type: entity
@@ -89,6 +95,9 @@
   - type: FunctionalOrgan
     comps:
     - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - Hybrid # Protogens
     - type: ShowHealthIcons
     - type: ShowJobIcons
     - type: ShowMindShieldIcons

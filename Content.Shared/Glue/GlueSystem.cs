@@ -14,15 +14,15 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Glue;
 
-public sealed class GlueSystem : EntitySystem
+public sealed partial class GlueSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly NameModifierSystem _nameMod = default!;
-    [Dependency] private readonly OpenableSystem _openable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private NameModifierSystem _nameMod = default!;
+    [Dependency] private OpenableSystem _openable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     public override void Initialize()
     {
@@ -47,6 +47,18 @@ public sealed class GlueSystem : EntitySystem
         if (TryGlue(entity, target, args.User))
             args.Handled = true;
     }
+
+    // Starlight Start
+    /// <summary>
+    /// Removes the glued condition from the target.
+    /// </summary>
+    public void RemoveGlued(EntityUid uid)
+    {
+        RemComp<UnremoveableComponent>(uid);
+        if (RemComp<GluedComponent>(uid))
+            _nameMod.RefreshNameModifiers(uid);
+    }
+    // Starlight End
 
     private void OnUtilityVerb(Entity<GlueComponent> entity, ref GetVerbsEvent<UtilityVerb> args)
     {

@@ -4,13 +4,16 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared._Moffstation.Teleportation.Components;
 using Content.Shared.Teleportation.Components;
+using Content.Shared.Weapons.Misc;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -22,15 +25,18 @@ namespace Content.Shared.Teleportation.Systems;
 /// Uses <see cref="LinkedEntitySystem"/> to get linked portals.
 /// </summary>
 /// <seealso cref="PortalComponent"/>
-public abstract class SharedPortalSystem : EntitySystem
+public abstract partial class SharedPortalSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedGrapplingGunSystem _grappling = default!;
+    [Dependency] private SharedJointSystem _joints = default!;
+    [Dependency] private EntityQuery<PortalBlacklistComponent> _portalBlacklistQuery; // Moffstation - Portal Blacklist
 
     private const string PortalFixture = "portalFixture";
     private const string ProjectileFixture = "projectile";
@@ -101,6 +107,11 @@ public abstract class SharedPortalSystem : EntitySystem
             return;
         // Starlight - OnAttemptPortalEvent - End
 
+        // Moffstation - Begin
+        if (_portalBlacklistQuery.HasComp(subject))
+            return;
+        // Moffstation - End
+
         // break pulls before portal enter so we don't break shit
         if (TryComp<PullableComponent>(subject, out var pullable) && pullable.BeingPulled)
         {
@@ -112,6 +123,9 @@ public abstract class SharedPortalSystem : EntitySystem
         {
             _pulling.TryStopPull(pullerComp.Pulling.Value, subjectPulling);
         }
+
+        // also break grapple joints
+        _joints.RemoveJoint(subject, SharedGrapplingGunSystem.GrapplingJoint);
 
         // if they came from another portal, just return and wait for them to exit the portal
         if (HasComp<PortalTimeoutComponent>(subject))
@@ -253,7 +267,13 @@ public abstract class SharedPortalSystem : EntitySystem
             return;
 
         _audio.PlayPredicted(departureSound, ent, subject);
-        _audio.PlayPredicted(arrivalSound, subject, subject);
+        // Moffstation - Start - Sparks and fx
+        if (!HasComp<PortalComponent>(targetEntity))
+            PredictedSpawnAtPosition(ent.Comp.TeleportEffect, Transform(subject).Coordinates);
+        else
+            _audio.PlayPredicted(arrivalSound, subject, subject);
+        // Moffstation - End
+
     }
 
     /// <summary>
