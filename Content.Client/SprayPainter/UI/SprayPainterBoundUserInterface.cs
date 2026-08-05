@@ -30,6 +30,7 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
             _window.OnDecalColorChanged += OnDecalColorChanged;
             _window.OnDecalAngleChanged += OnDecalAngleChanged;
             _window.OnDecalSnapChanged += OnDecalSnapChanged;
+            _window.OnPreviewToggleChanged += OnPreviewToggleChanged;
         }
 
         var sprayPainter = EntMan.System<SprayPainterSystem>();
@@ -56,6 +57,7 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
         _window.SetDecalAngle(sprayPainter.SelectedDecalAngle);
         _window.SetDecalColor(sprayPainter.SelectedDecalColor);
         _window.SetDecalSnap(sprayPainter.SnapDecals);
+        _window.SetPreviewToggle(sprayPainter.ShowDecalPreview); // Starlight
     }
 
     private void OnDecalSnapChanged(bool snap)
@@ -63,7 +65,7 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
         SendPredictedMessage(new SprayPainterSetDecalSnapMessage(snap));
     }
 
-    private void OnDecalAngleChanged(int angle)
+    private void OnDecalAngleChanged(float angle) // Starlight edit
     {
         SendPredictedMessage(new SprayPainterSetDecalAngleMessage(angle));
     }
@@ -93,4 +95,11 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
         var key = _window?.IndexToColorKey(args.ItemIndex);
         SendPredictedMessage(new SprayPainterSetPipeColorMessage(key));
     }
+
+    #region Starlight
+
+    private void OnPreviewToggleChanged(bool state) =>
+        SendPredictedMessage(new SprayPainterDecalPreviewToggleMessage(state));
+
+    #endregion
 }

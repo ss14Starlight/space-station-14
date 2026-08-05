@@ -1,14 +1,23 @@
 using System.Linq;
+using Content.Client._Starlight.SprayPainter;
+using Content.Client.Decals;
+using Content.Client.Hands.Systems;
 using Content.Client.Items;
 using Content.Client.Message;
 using Content.Client.Stylesheets;
+using Content.Shared._Starlight.SprayPainter;
 using Content.Shared.Decals;
+using Content.Shared.GameTicking;
+using Content.Shared.Hands;
+using Content.Shared.Interaction;
 using Content.Shared.SprayPainter;
 using Content.Shared.SprayPainter.Components;
 using Content.Shared.SprayPainter.Prototypes;
 using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -21,6 +30,15 @@ namespace Content.Client.SprayPainter;
 public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
 {
     [Dependency] private UserInterfaceSystem _ui = default!;
+    // Starlight begin
+    [Dependency] private IOverlayManager _overlay = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private DecalPlacementSystem _placement = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    // Starlight end
 
     public List<SprayPainterDecalEntry> Decals = [];
     public Dictionary<string, List<string>> PaintableGroupsByCategory = new();
@@ -33,6 +51,18 @@ public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
         Subs.ItemStatus<SprayPainterComponent>(ent => new StatusControl(ent));
         SubscribeLocalEvent<SprayPainterComponent, AfterAutoHandleStateEvent>(OnStateUpdate);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+
+        // Starlight begin
+        SubscribeLocalEvent<SprayPainterComponent, SprayPainterUpdateDecalEvent>(OnDecalUpdated);
+        SubscribeLocalEvent<LocalPlayerAttachedEvent>(OnLocalPlayerAttached);
+        SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnLocalPlayerDetached);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        SubscribeLocalEvent<SprayPainterComponent, HandDeselectedEvent>(OnHandDeselected);
+        SubscribeLocalEvent<SprayPainterComponent, HandSelectedEvent>(OnHandSelected);
+        SubscribeLocalEvent<SprayPainterComponent, GotEquippedHandEvent>(OnGotEquippedHand);
+        SubscribeLocalEvent<SprayPainterComponent, GotUnequippedHandEvent>(OnGotUnequippedHand);
+        SubscribeLocalEvent<SprayPainterComponent, ComponentShutdown>(OnComponentShutdown);
+        // Starlight end
 
         CachePrototypes();
     }
@@ -121,6 +151,59 @@ public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
                 ("mode", Robust.Shared.Localization.Loc.GetString(modeLocString))));
         }
     }
+
+    #region Starlight
+
+    private void UpdateOverlay(SprayPainterComponent comp)
+    {
+        _overlay.RemoveOverlay<SprayPainterDecalGhostOverlay>();
+        if (!comp.ShowDecalPreview) return;
+        if (!_prototypeManager.HasIndex(comp.SelectedDecal)) return;
+        var decal = _prototypeManager.Index(comp.SelectedDecal);
+        var color = comp.SelectedDecalColor ?? Color.White;
+        if (comp.OpaqueGhost) color.A /= 2;
+        _overlay.AddOverlay(new SprayPainterDecalGhostOverlay(_placement, _transform, _sprite, _interaction, decal,
+            comp.SelectedDecalAngle, color, comp.SnapDecals));
+    }
+
+    private void OnDecalUpdated(Entity<SprayPainterComponent> ent, ref SprayPainterUpdateDecalEvent args) =>
+        UpdateOverlay(ent);
+
+    private void OnLocalPlayerAttached(LocalPlayerAttachedEvent args)
+    {
+        if (!TryComp<SprayPainterComponent>(_hands.GetActiveHandEntity(), out var comp)) return;
+        UpdateOverlay(comp);
+    }
+
+    private void OnLocalPlayerDetached(LocalPlayerDetachedEvent args) => RemoveOverlay();
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent args) => RemoveOverlay();
+
+    private void OnHandDeselected(Entity<SprayPainterComponent> ent, ref HandDeselectedEvent args) =>
+        RemoveOverlay();
+
+    private void OnHandSelected(Entity<SprayPainterComponent> ent, ref HandSelectedEvent args) =>
+        UpdateOverlay(ent);
+
+    private void OnGotEquippedHand(Entity<SprayPainterComponent> ent, ref GotEquippedHandEvent args)
+    {
+        if (_hands.GetActiveHandEntity() != ent) return;
+        UpdateOverlay(ent);
+    }
+
+    private void OnGotUnequippedHand(Entity<SprayPainterComponent> ent, ref GotUnequippedHandEvent args)
+    {
+        if (args.Unequipped != ent.Owner) return;
+        RemoveOverlay();
+    }
+
+    private void OnComponentShutdown(Entity<SprayPainterComponent> ent, ref ComponentShutdown args) =>
+        RemoveOverlay();
+
+    private void RemoveOverlay() => _overlay.RemoveOverlay<SprayPainterDecalGhostOverlay>();
+
+    #endregion
+
 }
 
 /// <summary>

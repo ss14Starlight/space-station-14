@@ -31,9 +31,9 @@ public sealed class SprayPainterSetDecalSnapMessage(bool snap) : BoundUserInterf
 }
 
 [Serializable, NetSerializable]
-public sealed class SprayPainterSetDecalAngleMessage(int angle) : BoundUserInterfaceMessage
+public sealed class SprayPainterSetDecalAngleMessage(float angle) : BoundUserInterfaceMessage // Starlight edit
 {
-    public int Angle = angle;
+    public float Angle = angle; // Starlight edit
 }
 
 [Serializable, NetSerializable]
@@ -117,3 +117,13 @@ public partial record struct EntityPaintedEvent(
     EntityUid Tool,
     EntProtoId Prototype,
     ProtoId<PaintableGroupPrototype> Group);
+
+#region Starlight
+
+[Serializable, NetSerializable]
+public sealed class SprayPainterDecalPreviewToggleMessage(bool state) : BoundUserInterfaceMessage
+{
+    public bool State = state;
+}
+
+#endregion

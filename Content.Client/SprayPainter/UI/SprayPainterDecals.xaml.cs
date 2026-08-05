@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Linq;
 using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Shared.Decals;
@@ -19,21 +21,30 @@ public sealed partial class SprayPainterDecals : Control
 {
     public Action<ProtoId<DecalPrototype>>? OnDecalSelected;
     public Action<Color?>? OnColorChanged;
-    public Action<int>? OnAngleChanged;
+    public Action<float>? OnAngleChanged; // Starlight edit
     public Action<bool>? OnSnapChanged;
 
     private SpriteSystem? _sprite;
     private string _selectedDecal = string.Empty;
     private List<SprayPainterDecalEntry> _decals = [];
+    public event Action<bool>? OnPreviewToggled; // Starlight
 
     public SprayPainterDecals()
     {
         RobustXamlLoader.Load(this);
 
-        AddAngleButton.OnButtonUp += _ => AngleSpinBox.Value += 90;
-        SubAngleButton.OnButtonUp += _ => AngleSpinBox.Value -= 90;
-        SetZeroAngleButton.OnButtonUp += _ => AngleSpinBox.Value = 0;
-        AngleSpinBox.ValueChanged += args => OnAngleChanged?.Invoke(args.Value);
+        // Starlight begin
+        foreach (var element in RotationContainer.Children)
+        {
+            if (element is not Button button)
+                continue;
+            button.OnPressed += RotationButtonPressed;
+        }
+
+        RotationValue.OnTextChanged += SelectRotation;
+
+        PreviewCheckbox.OnToggled += PreviewButtonToggled;
+        // Starlight end
 
         UseCustomColorCheckBox.OnPressed += UseCustomColorCheckBoxOnOnPressed;
         SnapToTileCheckBox.OnPressed += SnapToTileCheckBoxOnOnPressed;
@@ -154,10 +165,48 @@ public sealed partial class SprayPainterDecals : Control
         PopulateDecals(_decals, _sprite);
     }
 
-    public void SetAngle(int degrees)
+    #region Starlight
+
+    private void SelectRotation(LineEdit.LineEditEventArgs args)
     {
-        AngleSpinBox.OverrideValue(degrees);
+        var text = args.Text.Replace("+", "");
+
+        var numPart = new string(text.Where(char.IsDigit).ToArray());
+        if (string.IsNullOrEmpty(numPart) || !float.TryParse(numPart, out var value))
+        {
+            SetAngle(0);
+            OnAngleChanged?.Invoke(0);
+            return;
+        }
+
+        if (text.Count(c => c == '-') % 2 == 1)
+            value = -Math.Abs(value);
+
+        var nearest = MathF.Round(value);
+
+        if (Math.Abs(value - nearest) < 0.001f) value = nearest;
+
+        SetAngle(value);
+        OnAngleChanged?.Invoke(value);
     }
+
+    private void RotationButtonPressed(BaseButton.ButtonEventArgs args)
+    {
+        if (args.Button is not Button btn)
+            return;
+        if (!float.TryParse(btn.Text?.Replace("+",""), out var value))
+            return;
+        var finalVal = float.Clamp(float.Parse(RotationValue.Text) + value, -999999, 999999);
+        SetAngle(finalVal);
+        OnAngleChanged?.Invoke(finalVal);
+    }
+    public void SetAngle(float angle) => RotationValue.SetText(angle.ToString(CultureInfo.InvariantCulture));
+
+    private void PreviewButtonToggled(BaseButton.ButtonEventArgs args) => TogglePreview(args.Button.Pressed);
+    private void TogglePreview(bool state) => OnPreviewToggled?.Invoke(state);
+    public void SetPreviewToggle(bool state) => PreviewCheckbox.Pressed = state;
+
+    #endregion
 
     public void SetColor(Color? color)
     {

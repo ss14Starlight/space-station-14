@@ -15,12 +15,23 @@
             <CheckBox Name="SnapToTileCheckBox" Text="{Loc 'spray-painter-use-snap-to-tile'}" />
         </BoxContainer>
 
-        <BoxContainer Orientation="Horizontal">
-            <Label Text="{Loc 'spray-painter-angle-rotation'}" />
-            <SpinBox Name="AngleSpinBox" HorizontalExpand="True" />
-            <Button Text="{Loc 'spray-painter-angle-rotation-90-sub'}" Name="SubAngleButton" />
-            <Button Text="{Loc 'spray-painter-angle-rotation-reset'}" Name="SetZeroAngleButton" />
-            <Button Text="{Loc 'spray-painter-angle-rotation-90-add'}" Name="AddAngleButton" />
+        <Label Text="{Loc 'crayon-window-rotation'}" Margin="0 0 0 1" />
+        <BoxContainer Name="RotationContainer" Orientation="Horizontal" Margin="0 0 0 4">
+            <Button Name="Neg180Btn" Text="-180" SetWidth="40" SetHeight="30"></Button>
+            <Button Name="Neg90Btn" Text="-90" SetWidth="36" SetHeight="30"></Button>
+            <Button Name="Neg45Btn" Text="-45" SetWidth="36" SetHeight="30"></Button>
+            <Button Name="Neg10Btn" Text="-10" SetWidth="36" SetHeight="30"></Button>
+            <Button Name="Neg1Btn" Text="-1" SetWidth="30" SetHeight="30"></Button>
+            <LineEdit Name="RotationValue" Margin="0 0 0 0" Text="0" HorizontalExpand="True"></LineEdit>
+            <Button Name="Pos1Btn" Text="+1" SetWidth="30" SetHeight="30"></Button>
+            <Button Name="Pos10Btn" Text="+10" SetWidth="36" SetHeight="30"></Button>
+            <Button Name="Pos45Btn" Text="+45" SetWidth="36" SetHeight="30"></Button>
+            <Button Name="Pos90Btn" Text="+90" SetWidth="36" SetHeight="30"></Button>
+            <Button Name="Pos180Btn" Text="+180" SetWidth="40" SetHeight="30"></Button>
+        </BoxContainer>
+		<BoxContainer>
+            <Label Text="{Loc 'crayon-window-preview'}" Margin="0 6 8 0" />
+            <CheckBox Name="PreviewCheckbox" Margin="0 8 0 0"></CheckBox>
         </BoxContainer>
     </BoxContainer>
 </controls:SprayPainterDecals>

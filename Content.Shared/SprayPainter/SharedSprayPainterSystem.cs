@@ -14,6 +14,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared._Starlight.SprayPainter;
 
 namespace Content.Shared.SprayPainter;
 
@@ -42,6 +43,10 @@ public abstract partial class SharedSprayPainterSystem : EntitySystem
         SubscribeLocalEvent<SprayPainterComponent, GetVerbsEvent<AlternativeVerb>>(OnPainterGetAltVerbs);
         SubscribeLocalEvent<PaintableComponent, InteractUsingEvent>(OnPaintableInteract);
         SubscribeLocalEvent<PaintedComponent, ExaminedEvent>(OnPainedExamined);
+        // Starlight begin
+        SubscribeLocalEvent<SprayPainterComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
+        SubscribeLocalEvent<SprayPainterComponent, BoundUIClosedEvent>(OnBoundUIClosed);
+        // Starlight end
 
         Subs.BuiEvents<SprayPainterComponent>(SprayPainterUiKey.Key,
             subs =>
@@ -53,6 +58,7 @@ public abstract partial class SharedSprayPainterSystem : EntitySystem
                 subs.Event<SprayPainterSetDecalColorMessage>(OnSetDecalColor);
                 subs.Event<SprayPainterSetDecalAngleMessage>(OnSetDecalAngle);
                 subs.Event<SprayPainterSetDecalSnapMessage>(OnSetDecalSnap);
+                subs.Event<SprayPainterDecalPreviewToggleMessage>(OnUIPreviewToggled); // Starlight
             });
     }
 
@@ -278,6 +284,7 @@ public abstract partial class SharedSprayPainterSystem : EntitySystem
         ent.Comp.SelectedDecal = args.DecalPrototype;
         Dirty(ent);
         UpdateUi(ent);
+        RaiseLocalEvent(ent, new SprayPainterUpdateDecalEvent()); // Starlight
     }
 
     /// <summary>
@@ -288,6 +295,7 @@ public abstract partial class SharedSprayPainterSystem : EntitySystem
         ent.Comp.SelectedDecalAngle = args.Angle;
         Dirty(ent);
         UpdateUi(ent);
+        RaiseLocalEvent(ent, new SprayPainterUpdateDecalEvent()); // Starlight
     }
 
     /// <summary>
@@ -298,6 +306,7 @@ public abstract partial class SharedSprayPainterSystem : EntitySystem
         ent.Comp.SnapDecals = args.Snap;
         Dirty(ent);
         UpdateUi(ent);
+        RaiseLocalEvent(ent, new SprayPainterUpdateDecalEvent()); // Starlight
     }
 
     /// <summary>
@@ -308,11 +317,38 @@ public abstract partial class SharedSprayPainterSystem : EntitySystem
         ent.Comp.SelectedDecalColor = args.Color;
         Dirty(ent);
         UpdateUi(ent);
+        RaiseLocalEvent(ent, new SprayPainterUpdateDecalEvent()); // Starlight
     }
 
     protected virtual void UpdateUi(Entity<SprayPainterComponent> ent)
     {
     }
+
+    #region Starlight
+
+    private void OnUIPreviewToggled(Entity<SprayPainterComponent> ent, ref SprayPainterDecalPreviewToggleMessage args)
+    {
+        ent.Comp.ShowDecalPreview = args.State;
+        Dirty(ent);
+        UpdateUi(ent);
+        RaiseLocalEvent(ent, new SprayPainterUpdateDecalEvent());
+    }
+
+    private void OnBoundUIOpened(Entity<SprayPainterComponent> ent, ref BoundUIOpenedEvent args)
+    {
+        ent.Comp.OpaqueGhost = false;
+        Dirty(ent);
+        RaiseLocalEvent(ent, new SprayPainterUpdateDecalEvent());
+    }
+
+    private void OnBoundUIClosed(Entity<SprayPainterComponent> ent, ref BoundUIClosedEvent args)
+    {
+        ent.Comp.OpaqueGhost = true;
+        Dirty(ent);
+        RaiseLocalEvent(ent, new SprayPainterUpdateDecalEvent());
+    }
+
+    #endregion
 
     #endregion
 }

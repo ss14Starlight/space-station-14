@@ -28,8 +28,9 @@ public sealed partial class SprayPainterWindow : DefaultWindow
     public event Action<ProtoId<DecalPrototype>>? OnDecalChanged;
     public event Action<ItemList.ItemListSelectedEventArgs>? OnSetPipeColor;
     public event Action<Color?>? OnDecalColorChanged;
-    public event Action<int>? OnDecalAngleChanged;
+    public event Action<float>? OnDecalAngleChanged; // Starlight edit
     public event Action<bool>? OnDecalSnapChanged;
+    public event Action<bool>? OnPreviewToggleChanged; // Starlight
 
     // Pipe color data
     private ItemList _colorList = default!;
@@ -195,6 +196,7 @@ public sealed partial class SprayPainterWindow : DefaultWindow
                 _sprayPainterDecals.OnColorChanged += color => OnDecalColorChanged?.Invoke(color);
                 _sprayPainterDecals.OnAngleChanged += angle => OnDecalAngleChanged?.Invoke(angle);
                 _sprayPainterDecals.OnSnapChanged += snap => OnDecalSnapChanged?.Invoke(snap);
+                _sprayPainterDecals.OnPreviewToggled += state => OnPreviewToggleChanged?.Invoke(state); // Starlight
 
                 Tabs.AddChild(_sprayPainterDecals);
                 TabContainer.SetTabTitle(_sprayPainterDecals, Loc.GetString("spray-painter-tab-category-decals"));
@@ -281,7 +283,7 @@ public sealed partial class SprayPainterWindow : DefaultWindow
             _sprayPainterDecals.SetSelectedDecal(decal);
     }
 
-    public void SetDecalAngle(int angle)
+    public void SetDecalAngle(float angle) // Starlight edit
     {
         if (_sprayPainterDecals != null)
             _sprayPainterDecals.SetAngle(angle);
@@ -298,6 +300,17 @@ public sealed partial class SprayPainterWindow : DefaultWindow
         if (_sprayPainterDecals != null)
             _sprayPainterDecals.SetSnap(snap);
     }
+
+    #region Starlight
+
+    public void SetPreviewToggle(bool state)
+    {
+        if (_sprayPainterDecals is not null)
+            _sprayPainterDecals.SetPreviewToggle(state);
+    }
+
+    #endregion
+
     # endregion
 }
 

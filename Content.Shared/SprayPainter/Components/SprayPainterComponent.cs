@@ -80,7 +80,7 @@ public sealed partial class SprayPainterComponent : Component
     /// The angle at which to paint the decal.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public int SelectedDecalAngle;
+    public float SelectedDecalAngle; // Starlight edit
 
     /// <summary>
     /// The angle at which to paint the decal.
@@ -105,6 +105,20 @@ public sealed partial class SprayPainterComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier SoundSwitchDecalMode = new SoundPathSpecifier("/Audio/Machines/quickbeep.ogg", AudioParams.Default.WithVolume(1.5f));
+
+    #region Starlight
+
+    /// <summary>
+    /// Shows a preview of the decal at the cursor.
+    /// </summary>
+    [DataField, AutoNetworkedField] public bool ShowDecalPreview;
+
+    /// <summary>
+    /// Makes the preview ghost opaque if true.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField] public bool OpaqueGhost;
+
+    #endregion
 }
 
 /// <summary>
