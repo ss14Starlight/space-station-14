@@ -237625,4 +237625,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -31.630175,59.664494
       parent: 2
+- proto: SpawnPointVirologist
+  entities:
+  - uid: 36604
+    components:
+    - type: Transform
+      pos: -28.5,-20.5
+      parent: 2
 ...

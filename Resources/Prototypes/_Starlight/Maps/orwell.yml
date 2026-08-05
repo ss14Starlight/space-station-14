@@ -38,6 +38,7 @@
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 5, 6 ]
+            Virologist: [ 2, 2 ]
             Paramedic: [ 2, 2 ]
             MedicalIntern: [ 4, 4 ]
             Surgeon: [ 2, 2 ]

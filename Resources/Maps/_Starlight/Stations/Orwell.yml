@@ -199723,4 +199723,11 @@ entities:
     - type: Transform
       pos: 64.43076,27.440712
       parent: 2
+- proto: SpawnPointVirologist
+  entities:
+  - uid: 31728
+    components:
+    - type: Transform
+      pos: 53.5,-19.5
+      parent: 2
 ...

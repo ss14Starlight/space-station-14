@@ -220410,4 +220410,11 @@ entities:
     - type: Transform
       pos: -2.5174084,78.74515
       parent: 2
+- proto: SpawnPointVirologist
+  entities:
+  - uid: 35263
+    components:
+    - type: Transform
+      pos: 45.5,36.5
+      parent: 2
 ...
