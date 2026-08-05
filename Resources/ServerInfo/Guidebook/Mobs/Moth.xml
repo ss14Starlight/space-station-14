@@ -1,16 +1,17 @@
 <Document>
-  # Moth People
+  # The Leporii
 
   <Box>
     <GuideEntityEmbed Entity="AppearanceMoth" Caption=""/>
   </Box>
 
-  They can eat cotton, fabrics and clothing, but virtually none of the food that others would consider "edible". They prefer a somewhat lower temperature range than humans.
-  Their Insect Blood can't be metabolised from Iron like normal blood.
+  The Leporii have many names, but are appropriately referred to as just "moths" by most crewmembers. You're free to call them what you like, just be respectful.
 
-  Their wings give them better acceleration if there is no gravity on the station, but they still can't move without equipment when floating out in space.
+  They can eat cotton-based items, but virtually none of the food that others would consider "edible". They prefer a somewhat lower temperature range than most.
+  Their hemolymph cannot be metabolised from from iron like normal blood.
 
-  They take [color=#1e90ff]30% less Cold damage[/color] but [color=#ffa500]20% more Heat damage, catch on fire more easily, and take 350% more fire damage than other species.[/color]
+  They're able to move more effectively if there is no gravity on the station, but they still can't move without equipment when floating out in space.
+  They take [color=#1e90ff]30% less cold damage[/color] but [color=#ffa500]20% more heat damage, catch on fire more easily, and take 350% more fire damage than other species.[/color]
 
-  They are able to jump short distances, allowing them to move around station hallways quickly. They can jump up to [color=yellow]3[/color] times in a row, and will regain one 'charge' of this ability every [color=yellow]30[/color] seconds.
+  They are able to fly short distances, allowing them to move around areas quickly. They can fly up to [color=yellow]4[/color] times in a row, and will regain one 'charge' of this ability every [color=yellow]45[/color] seconds.
 </Document>
