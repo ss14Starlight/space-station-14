@@ -8,6 +8,20 @@
     baseWalkSpeed: 3
     baseSprintSpeed: 3
     weightlessModifier: 1
+  - type: AntagImmune
+  - type: NoSlip
+  - type: ProtectedFromStepTriggers
+  - type: IgnoreSpiderWeb
+  - type: Insulated
+  - type: StatusEffects
+    allowed:
+    - Stunned
+    - Stutter
+  - type: LanguageKnowledge
+    speaks:
+    - Cosmic
+    understands:
+    - Cosmic
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -16,9 +30,19 @@
         true
       NavSmash: !type:Bool
         true
+  - type: CosmicCultFaction
+  - type: CosmicMinion
   - type: NpcFactionMember
     factions:
-    - SimpleHostile
+    - CosmicCult
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: false
+    name: ghost-role-information-cosmic-minion-name
+  - type: CosmicCultExamine
+    cultistText: cosmic-examine-text-cultentity
+    othersText: cosmic-examine-text-entities
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -65,23 +89,6 @@
         Bloodloss:
           0
   - type: CombatMode
-  - type: MeleeWeapon
-    altDisarm: false
-    animation: WeaponArcCosmic
-    damage:
-      types:
-        Asphyxiation: 5
-        Cold: 5
-    soundHit:
-      path: /Audio/_Starlight/CosmicCult/cosmiclance_hit.ogg
-      params:
-        variation: 0.2
-        volume: 1
-    soundSwing:
-      path: /Audio/_Starlight/CosmicCult/cosmicweapon_swing.ogg
-      params:
-        variation: 0.125
-        volume: -4
   - type: TypingIndicator
     proto: CosmicTyping
   - type: PointLight
@@ -107,24 +114,84 @@
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicCustodian ]
-  id: MobCosmicCustodianHostile
+  id: MobCosmicCustodianHostile #Bruiser/Sword/Lance stats
   components:
   - type: Physics
     bodyStatus: OnGround
+  - type: TypingIndicator
+    proto: CosmicTyping
+  - type: GhostRole
+    name: ghost-role-information-cosmic-custodian-name
+    description: ghost-role-information-cosmic-custodian-description
+    rules: ghost-role-information-cosmic-custodian-rules
+    mindRoles:
+    - MindRoleCosmicMinion
+  - type: MeleeWeapon
+    altDisarm: false
+    animation: WeaponArcCosmic
+    damage:
+      types:
+        Cold: 5
+        Blunt: 5
+        Slash: 5
+        Structural: 10
+    soundHit:
+      path: /Audio/_Starlight/CosmicCult/cosmicsword_hit.ogg
+      params:
+        variation: 0.2
+        volume: 1
+    soundSwing:
+      path: /Audio/_Starlight/CosmicCult/cosmicweapon_swing.ogg
+      params:
+        variation: 0.125
+        volume: -4
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicOracle ]
-  id: MobCosmicOracleHostile
+  id: MobCosmicOracleHostile #Disabler
   components:
   - type: Physics
     bodyStatus: OnGround
+  - type: TypingIndicator
+    proto: CosmicTyping
+  - type: GhostRole
+    name: ghost-role-information-cosmic-oracle-name
+    description: ghost-role-information-cosmic-oracle-description
+    rules: ghost-role-information-cosmic-oracle-rules
+    mindRoles:
+    - MindRoleCosmicMinion
+  - type: MeleeWeapon
+    altDisarm: false
+    animation: WeaponArcCosmic
+    damage:
+      types:
+        Asphyxiation: 10
+        Cold: 5
+        Blunt: 5
+        Structural: 5
+    soundHit:
+      path: /Audio/_Starlight/CosmicCult/cosmiclance_hit.ogg
+      params:
+        variation: 0.2
+        volume: 1
+    soundSwing:
+      path: /Audio/_Starlight/CosmicCult/cosmicweapon_swing.ogg
+      params:
+        variation: 0.125
+        volume: -4
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicLodestar ]
-  id: MobCosmicLodestarHostile
+  id: MobCosmicLodestarHostile #ranged unit 25 damage from razor.
   components:
   - type: Physics
     bodyStatus: OnGround
+  - type: GhostRole
+    name: ghost-role-information-cosmic-lodestar-name
+    description: ghost-role-information-cosmic-lodestar-description
+    rules: ghost-role-information-cosmic-lodestar-rules
+    mindRoles:
+    - MindRoleCosmicMinion
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound

@@ -18,7 +18,6 @@ public sealed partial class CosmicHibernateSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusHibernate>(OnColossusHibernate);
     }
 
@@ -26,12 +25,13 @@ public sealed partial class CosmicHibernateSystem : EntitySystem
     {
         if (ent.Comp.Attacking || ent.Comp.Hibernating || !_transform.AnchorEntity(ent))
             return;
-        args.Handled = true;
-        var comp = ent.Comp;
 
-        comp.TimesHibernated++;
+        args.Handled = true;
+
+        var comp = ent.Comp;
         comp.Hibernating = true;
         comp.HibernationTimer = comp.HibernationWait + _timing.CurTime;
+
         _appearance.SetData(ent, ColossusVisuals.Status, ColossusStatus.Action);
         _appearance.SetData(ent, ColossusVisuals.Hibernation, ColossusAction.Running);
         _stun.TryAddStunDuration(ent.Owner, comp.HibernationWait);

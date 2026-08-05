@@ -25,7 +25,7 @@ public sealed partial class ScentMarkerComponent : Component
     [DataField, AutoNetworkedField]
     public TimeSpan TotalDuration;
 
-    // Whether the emitter was inside an airtight container at the moment of this emission.
+    // The airtight container the emitter was inside at the moment of this emission, if any.
     [DataField, AutoNetworkedField]
-    public bool WasContained;
+    public EntityUid? ContainedIn;
 }
