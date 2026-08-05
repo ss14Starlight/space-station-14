@@ -69,41 +69,41 @@
   name: koni plushie
   description: Some sort of moth-cat hybrid. You can't help but find it really cute. Can squeak and meow!
   components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
-      state: icon
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
-    - type: EmitSoundOnUse
-      sound:
-        collection: CatMothSounds
-    - type: EmitSoundOnActivate
-      sound:
-        collection: CatMothSounds
-    - type: EmitSoundOnCollide
-      sound:
-        collection: CatMothSounds
-    - type: EmitSoundOnLand
-      sound:
-        collection: CatMothScreams
-    - type: EmitSoundOnTrigger
-      sound:
-        collection: CatMothSounds
-    - type: MeleeWeapon
-      soundHit:
-        collection: CatMothSounds
-    - type: Edible
-      useSound:
-        collection: CatMothScreams
-    - type: Clothing
-      quickEquip: false
-      sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
-      slots:
-        - HEAD
-      clothingVisuals:
-        head:
-          - state: equipped-HELMET
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+  - type: EmitSoundOnUse
+    sound:
+      collection: CatMothSounds
+  - type: EmitSoundOnActivate
+    sound:
+      collection: CatMothSounds
+  - type: EmitSoundOnCollide
+    sound:
+      collection: CatMothSounds
+  - type: EmitSoundOnLand
+    sound:
+      collection: CatMothScreams
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: CatMothSounds
+  - type: MeleeWeapon
+    soundHit:
+      collection: CatMothSounds
+  - type: Edible
+    useSound:
+      collection: CatMothScreams
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
 
 - type: entity
   parent: BasePlushie
@@ -298,12 +298,12 @@
   name: borg plushie
   description: A tiny plushie of an engineering cyborg, complete with itty-bitty plastic tools.
   components:
-    - type: Item
-      size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
-      state: icon
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
+    state: icon
 
 - type: entity
   parent: BasePlushie
@@ -767,44 +767,44 @@
   name: large blue shark soft plushie
   description: A large, soft, and cuddly shark plushie. Perfect for hugging!
   components:
-    - type: Item
-      size: Normal
-      sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
-    - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
-      state: icon
-    # Shows cuddle message when used in hand
-    - type: CuddleMessage
-      localizedMessageKey: plushie-large-soft-shark-cuddle
-    - type: EmitSoundOnUse
-      sound:
-        path: /Audio/Effects/thudswoosh.ogg
-        params:
-          volume: -5
-      handle: false
-    - type: EmitSoundOnLand
-      sound:
-        path: /Audio/Items/Toys/rawr.ogg
-    - type: EmitSoundOnTrigger
-      sound:
-        path: /Audio/Items/Toys/rawr.ogg
-    - type: EmitSoundOnActivate
-      sound:
-        path: /Audio/Items/Toys/rawr.ogg
-    - type: EmitSoundOnCollide
-      sound:
-        path: /Audio/Items/Toys/rawr.ogg
-    - type: MeleeWeapon
-      wideAnimationRotation: 90
-      soundHit:
-        path: /Audio/Items/Toys/rawr.ogg
-      animation: WeaponArcBite
-    - type: UseDelay
-      delay: 1.0
-    - type: Tag
-      tags:
-        - Payload
-        - ClothMade
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
+    state: icon
+  # Shows cuddle message when used in hand
+  - type: CuddleMessage
+    localizedMessageKey: plushie-large-soft-shark-cuddle
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Effects/thudswoosh.ogg
+      params:
+        volume: -5
+    handle: false
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    soundHit:
+      path: /Audio/Items/Toys/rawr.ogg
+    animation: WeaponArcBite
+  - type: UseDelay
+    delay: 1.0
+  - type: Tag
+    tags:
+      - Payload
+      - ClothMade
 
 - type: entity
   parent: BasePlushie
