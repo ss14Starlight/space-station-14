@@ -91,7 +91,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
 
       - name: Checkout
@@ -110,14 +110,20 @@ jobs:
 
       - name: Run Content.Tests
         env:
+          HARVEST: ${{ inputs.harvest }}
           RUN_DEBUG: ${{ runner.debug }}
         run: |
+          PROGRESS=()
+          if [[ "$HARVEST" = "true" || "$RUN_DEBUG" = "1" ]]; then
+            PROGRESS=(--progress on --output Detailed )
+          fi
           VERBOSITY=()
           if [ "$RUN_DEBUG" = "1" ]; then
-            VERBOSITY=(--output Detailed --show-stdout All --show-stderr All)
+            VERBOSITY=(--show-stdout All --show-stderr All)
           fi
           bin/Content.Tests/Content.Tests \
             --retry-failed-tests 2 \
+            "${PROGRESS[@]}" \
             "${VERBOSITY[@]}" \
             --report-ctrf \
             --report-ctrf-filename ctrf/ctrf-report.json \
@@ -145,6 +151,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -182,7 +189,9 @@ jobs:
             echo "No tests assigned to shard ${{ matrix.shard }}"
             exit 0
           fi
+          PROGRESS=()
           if [[ "$HARVEST" = "true" || $RUN_DEBUG == 1 ]]; then
+            PROGRESS=(--progress on --output Detailed)
             while :; do
               free --human --line --seconds 1 --count 1 | tr -d '\r\n'
               echo
@@ -197,12 +206,13 @@ jobs:
           fi
           VERBOSITY=()
           if [ "$RUN_DEBUG" = "1" ]; then
-            VERBOSITY=(--output Detailed --show-stdout All --show-stderr All)
+            VERBOSITY=(--show-stdout All --show-stderr All)
           fi
           bin/Content.IntegrationTests/Content.IntegrationTests \
             --filter "$TEST_FILTER" \
             --minimum-expected-tests 1 \
             "${RETRY[@]}" \
+            "${PROGRESS[@]}" \
             "${VERBOSITY[@]}" \
             --hangdump \
             --hangdump-timeout 3m \
