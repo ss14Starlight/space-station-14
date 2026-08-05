@@ -1,0 +1,56 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                StyleClasses="TraitsEntryPanel"
+                HorizontalExpand="True"
+                Margin="0 0 0 4">
+
+    <BoxContainer Orientation="Horizontal"
+                  HorizontalExpand="True"
+                  Margin="10 8">
+
+        <!-- Toggle Container -->
+        <BoxContainer Name="ToggleContainer"
+                      Orientation="Horizontal"
+                      VerticalAlignment="Top"
+                      Margin="0 2 10 0"
+                      SetWidth="24">
+
+            <!-- Checkbox -->
+            <CheckBox Name="AntagCheckbox"
+                      StyleClasses="TraitsEntryCheckbox"
+                      VerticalAlignment="Center"/>
+
+            <!-- Lock Icon -->
+            <TextureRect Name="LockIcon"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         SetSize="20 20"
+                         Stretch="KeepAspectCentered"
+                         TexturePath="/Textures/Interface/VerbIcons/lock.svg.192dpi.png"
+                         Visible="False"/>
+        </BoxContainer>
+
+        <!-- Trait Info -->
+        <GridContainer Columns="2"
+                       HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical"
+                          HorizontalExpand="True"
+                          VerticalAlignment="Center"
+                          Name="AntagInfo">
+
+                <!-- Name Row -->
+                <Label Name="AntagNameLabel"
+                       StyleClasses="TraitsEntryNameLabel"/>
+
+                <!-- Description -->
+                <RichTextLabel Name="AntagDescriptionLabel"
+                               StyleClasses="TraitsEntryDescriptionLabel"
+                               Margin="0 4 0 0"/>
+            </BoxContainer>
+            <Button Name="LoadoutButton"
+                    Text="{Loc 'loadout-window'}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"/>
+        </GridContainer>
+    </BoxContainer>
+</PanelContainer>

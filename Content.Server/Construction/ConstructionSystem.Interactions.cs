@@ -301,6 +301,9 @@ namespace Content.Server.Construction
                     if (validation)
                         return HandleResult.Validated;
 
+                    if (doAfterState == DoAfterState.None) // Starlight
+                        _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation
+
                     // If we still haven't completed this step's DoAfter...
                     if (doAfterState == DoAfterState.None && insertStep.DoAfter > 0)
                     {
@@ -383,6 +386,7 @@ namespace Content.Server.Construction
                     if (doAfterState == DoAfterState.Completed)
                         return  HandleResult.True;
 
+                    _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation - Interaction particles
                     var result  = _toolSystem.UseTool(
                         interactUsing.Used,
                         interactUsing.User,

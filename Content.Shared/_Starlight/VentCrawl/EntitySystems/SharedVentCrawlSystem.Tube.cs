@@ -6,6 +6,7 @@ using Content.Shared.Tools.Components;
 using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Shared._Starlight.VentCrawl.EntitySystems;
 
@@ -161,7 +162,7 @@ public sealed partial class SharedVentCrawlSystem
 
         tube.Connected = false;
 
-        foreach (var holder in tube.ContainedHolders)
+        foreach (var holder in tube.ContainedHolders.ToArray())
             ExitVentCrawl(holder);
     }
 
@@ -305,11 +306,11 @@ public sealed partial class SharedVentCrawlSystem
         var holder = PredictedSpawnAttachedTo(VentCrawlEntryComponent.HolderPrototypeId, tubeCoords);
         var holderComponent = Comp<VentCrawlHolderComponent>(holder);
 
-        if (!TryInsert(holder, target))
-        {
-            Del(holder);
+        if (!CanInsert(holder, target) || !_containerSystem.Insert(target, GetOrEnsureContainer(holder)))
             return false;
-        }
+
+        if (TryComp<PhysicsComponent>(target, out var physBody))
+            _physicsSystem.SetCanCollide(target, false, body: physBody);
 
         _mover.SetRelay(target, holder);
         ventCrawler.InTube = true;

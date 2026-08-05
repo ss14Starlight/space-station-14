@@ -35,6 +35,7 @@ uplink-gloves-knuckleduster-desc = A pair of plastitanium knuckle dusters that l
 
 uplink-hushpup-name = Hushpup
 uplink-hushpup-desc = A powerful silenced shotgun with a low magazine capacity. Uses 12 gauge ammo.
+# ^ Starlight Edit: .50 -> 12 gauge
 
 uplink-c20r-name = C-20r
 uplink-c20r-desc = Old faithful: The classic C-20r Submachine Gun.
@@ -360,9 +361,6 @@ uplink-cane-blade-desc = A cane that has a hidden blade that can be unsheathed.
 # Armor
 uplink-chameleon-name = Chameleon Kit
 uplink-chameleon-desc = A backpack full of items that contain chameleon technology allowing you to disguise as pretty much anyone on the station, and more! Comes with a free Agent ID card!
-
-uplink-chameleon-bundle-name = Chameleon Kit Crate
-uplink-chameleon-bundle-desc = A crate containing a backpack full of items that contain chameleon technology allowing you to disguise as pretty much anything on the station, and more!
 
 uplink-clothing-no-slips-shoes-name = No-slip Shoes
 uplink-clothing-no-slips-shoes-desc = Chameleon shoes that protect you from slips.
