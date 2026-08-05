@@ -86,6 +86,7 @@
       visualState: disable
       magState: disable
       heldPrefix: disable4
+      pacifismAllowedMode: true
     - proto: RedLaserBeam
       fireCost: 66.6
       visualState: kill
@@ -118,6 +119,7 @@
     fireModes:
     - proto: DisablerBolt
       fireCost: 100
+      pacifismAllowedMode: true
     - proto: RedLaserBeam
       fireCost: 200
       conditions:
@@ -197,9 +199,11 @@
     - proto: DisablerBolt
       fireCost: 50
       magState: disable
+      pacifismAllowedMode: true
     - proto: TaserBolt
       fireCost: 166
       magState: stun
+      pacifismAllowedMode: true
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
@@ -266,10 +270,12 @@
       fireCost: 40
       magState: disable
       visualState: disable-unshaded
+      pacifismAllowedMode: true
     - proto: TaserBolt
       fireCost: 100
       magState: stun
       visualState: stun-unshaded
+      pacifismAllowedMode: true
     - proto: RedLaserBeam
       fireCost: 75
       magState: kill
@@ -915,6 +921,7 @@
       fireCost: 25
       magState: disable
       visualState: disable
+      pacifismAllowedMode: true
   - type: Item
     size: Large
     shape:

@@ -35,7 +35,7 @@
     - Mining
     - SalvageLead
     - Mail
-    - Pirate
+    - Shuttle
 
 - type: accessLevel
   id: Debug1
@@ -83,6 +83,7 @@
   - Pirate
   - Blackstar
   - MedTak
+  - Casino
   - Visitor
 
 - type: accessGroup

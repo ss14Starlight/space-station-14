@@ -86,6 +86,7 @@
       - BuzzochloricBees
       - Amatoxin
       - Tazinide
+      - Phenylpiperidine
     - quantity: 10
       weight: 4
       reagents:
@@ -194,6 +195,7 @@
       - BuzzochloricBees
       - Amatoxin
       - Tazinide
+      - Phenylpiperidine
     - quantity: 3
       weight: 2.5
       reagents:
@@ -268,6 +270,7 @@
       - BuzzochloricBees
       - Amatoxin
       - Tazinide
+      - Phenylpiperidine
     - quantity: 15
       weight: 25
       reagents:

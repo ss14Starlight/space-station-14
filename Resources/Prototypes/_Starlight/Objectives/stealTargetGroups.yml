@@ -249,11 +249,11 @@
     state: cart-nav
 
 - type: stealTargetGroup
-  id: SecurityTechFabCircuitboard
-  name: steal-target-groups-security-tech-fab-circuitboard
+  id: DepartmentalTechFabCircuitboard
+  name: steal-target-groups-departmental-tech-fab-circuitboard
   sprite:
-    sprite: Objects/Misc/module.rsi
-    state: security
+    sprite: _Starlight/Objects/Misc/techfabstealobjective.rsi
+    state: departmental
 
 - type: stealTargetGroup
   id: PTechCircuitboard

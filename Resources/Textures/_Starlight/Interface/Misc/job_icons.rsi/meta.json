@@ -98,38 +98,10 @@
             "name": "Commander"
         },
         {
-            "name": "SyndicateAgent"
-        },
-        {
             "name": "Operative"
         },
         {
-            "name": "SyndicateSecurity",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateWarden",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateScience",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateChef",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateEngineer",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateCargo",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateJanitor",
-            "copyright": "IamSidzilla"
+            "name": "SyndicateAgent"
         },
         {
             "name": "HeadRevolutionary",
@@ -146,6 +118,26 @@
         {
             "name": "CCGreenShield",
             "copyright": "Conflee Modified by Tjmaxmillion"
+        },
+        {
+            "name": "CCServiceWorker",
+            "copyright": "Wizards Den, modified by bynddark8"
+
+        },
+        {
+            "name": "CCChef",
+            "copyright": "Wizards Den, modified by bynddark8"
+
+        },
+        {
+            "name": "CCBartender",
+            "copyright": "Wizards Den, modified by bynddark8"
+
+        },
+        {
+            "name": "CCJanitor",
+            "copyright": "Wizards Den, modified by bynddark8"
+
         },
         {
             "name": "SalvageLead",
@@ -185,31 +177,31 @@
         },
         {
             "name": "ERTChaplain",
-            "copyright": "Wizards Den, Conflee"
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Conflee"
         },
         {
             "name": "ERTEngineer",
-            "copyright": "Wizards Den, Conflee"
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Conflee"
         },
         {
             "name": "ERTJanitor",
-            "copyright": "Wizards Den, Conflee"
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Conflee"
         },
         {
             "name": "ERTLeader",
-            "copyright": "Wizards Den, Conflee"
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Conflee"
         },
         {
             "name": "ERTMedical",
-            "copyright": "Wizards Den, Conflee"
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Conflee"
         },
         {
             "name": "ERTSecurity",
-            "copyright": "Wizards Den, Conflee"
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Conflee"
         },
         {
             "name": "CBURN",
-            "copyright": "Wizards Den, Conflee"
+            "copyright": "Taken and modified from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Conflee"
         },
         {
             "name": "Chaplain",
@@ -239,7 +231,7 @@
         },
         {
             "name": "Blackstar",
-            "copyright": "Captain icon from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolored to Blackstar colors by @redmushie (github)"
+            "copyright": "Captain icon from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolored to Blackstar colors by @redmushie (github)"
         },
         {
             "name": "MedTakLeader",

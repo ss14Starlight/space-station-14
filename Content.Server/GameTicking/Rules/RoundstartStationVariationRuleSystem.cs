@@ -27,7 +27,7 @@ public sealed partial class RoundstartStationVariationRuleSystem : GameRuleSyste
         var spawns = EntitySpawnCollection.GetSpawns(component.Rules, _random);
         foreach (var rule in spawns)
         {
-            GameTicker.AddGameRule(rule);
+            GameTicker.AddFilteredGameRule(rule);
         }
     }
 

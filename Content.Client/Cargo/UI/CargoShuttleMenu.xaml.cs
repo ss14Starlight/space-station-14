@@ -34,19 +34,18 @@ namespace Content.Client.Cargo.UI
 
             foreach (var order in orders)
             {
-                 var product = protoManager.Index<EntityPrototype>(order.ProductId);
-                 var productName = product.Name;
+                 var proto = protoManager.Index(order.CargoProductId); // Starlight
                  var account = protoManager.Index(order.Account);
 
                  var row = new CargoOrderRow
                  {
                      Order = order,
-                     Icon = { Texture = sprites.Frame0(product) },
+                     Icon = { Texture = sprites.Frame0(proto.Icon) }, // Starlight
                      ProductName =
                      {
                          Text = Loc.GetString(
                              "cargo-console-menu-populate-orders-cargo-order-row-product-name-text",
-                             ("productName", productName),
+                             ("productName", order.ProductName), // Starlight
                              ("orderAmount", order.OrderQuantity - order.NumDispatched),
                              ("orderRequester", order.Requester),
                              ("accountColor", account.Color),

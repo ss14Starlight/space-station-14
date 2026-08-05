@@ -956,7 +956,8 @@
     - DualPortVent
     - VentGas
     - VentPassive
-    - MixerGas
+    - MixerGasVolumetric
+    - MixerGasMolar
     - Radiator
     - RadiatorBend
     - SignalValve
@@ -968,6 +969,7 @@
     - PressureRegulator
     - PassiveGate
     - PipeSensor
+    - GasTankSubfloor
     - Deconstruct
     - AirAlarm
     - AirSensor
@@ -1124,3 +1126,16 @@
   - type: ActivatableUI
     inHandsOnly: true
     key: enum.RcdUiKey.Key
+
+- type: entity
+  id: ToolboxSELF
+  parent: ToolboxThief
+  suffix: SELF
+  components:
+  - type: ThiefUndeterminedBackpack
+    toolName: self-toolbox-name
+    maxSelectedSets: 1
+    possibleSets:
+    - SaboteurSELF
+    - PressSELF
+    - SpySELF
