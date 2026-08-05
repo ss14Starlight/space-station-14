@@ -64,9 +64,9 @@
 
 - type: entity
   id: ProjectileFireArrow
-  name: firearrow
+  name: fire arrow
   description: Flagra!
-  parent: BaseBulletTrigger
+  parent: BaseArrow
   categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
@@ -76,19 +76,16 @@
   - type: Projectile
     damage:
       types:
-        Heat: 30
-        Slash: 30
+        Heat: 20
+        Slash: 20
     soundHit:
       path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
-  - type: Explosive
-    explosionType: FireBomb
-    totalIntensity: 0.1
-    intensitySlope: 1
-    maxIntensity: 0.1
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
     - state: firearrow
+  - type: TimedDespawn
+    lifetime: 6
   - type: IgniteOnCollide
     fireStacks: 1
 

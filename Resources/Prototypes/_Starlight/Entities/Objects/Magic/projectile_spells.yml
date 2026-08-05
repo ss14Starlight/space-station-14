@@ -21,7 +21,6 @@
     sentence: action-speech-spell-firebolt
     tts: action-speech-spell-firebolt-tts
     modifier: Spell
-  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: ActionFireball
@@ -47,7 +46,6 @@
     sentence: action-speech-spell-fireorb
     tts: action-speech-spell-fireorb-tts
     modifier: Spell
-  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: ActionFireball
@@ -57,23 +55,23 @@
   components:
   - type: Action
     useDelay: 5
-    sound: !type:SoundPathSpecifier
-      path: /Audio/Magic/fireball.ogg
+    itemIconStyle: BigAction
+    raiseOnUser: true
     icon:
       sprite: _Starlight/Objects/Magic/magicactions.rsi
-      state: firearrow
+      state: firearrows
   - type: TargetAction
     range: 60
     checkCanAccess: false
   - type: WorldTargetAction
-    event: !type:ProjectileSpellEvent
+    event: !type:MultiProjectileSpellEvent
       prototype: ProjectileFireArrow
-      projectileSpeed: 35
+      projectileCount: 3
+      spreadDegrees: 16
   - type: SpeakOnAction
     sentence: action-speech-spell-firearrow
     tts: action-speech-spell-firearrow-tts
     modifier: Spell
-  - type: EorgPreventAction
 
 - type: entity
   parent: BaseAction

@@ -234,23 +234,6 @@
       - SpellbookFireMaster
 
 - type: listing
-  id: SpellbookKnockWar
-  name: spellbook-knock-name
-  description: spellbook-knock-desc
-  productAction: ActionKnock
-  priority: 11
-  cost:
-    WizCoin: 0
-  categories:
-  - SpellbookWar
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyBeforeCondition
-    whitelist:
-      - SpellbookFireMaster
-
-- type: listing
   id: SpellbookBlinkWar
   name: spellbook-blink-name
   description: spellbook-blink-desc
