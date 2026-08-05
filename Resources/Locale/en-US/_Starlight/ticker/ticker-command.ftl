@@ -8,3 +8,5 @@ command-description-ticker-cancelrestart =
     Cancels the round restart timer.
 command-description-ticker-cancelpostround =
     Cancels the post-end state and returns to being considered in-round.
+command-description-ticker-toggletimeronend =
+    Toggle whether the round restart timer will auto-start on round end. Resets to true automatically upon returning to lobby.
