@@ -28,6 +28,23 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<float> VirologyContaminationFoodPuddleMaximum =
         CVarDef.Create("virology.contamination_food_puddle_maximum", 1.2f, CVar.SERVERONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Standing water is the only floor source fungus gets, so it is deliberately weak -
+    /// well under a rotting corpse's fungal share.
+    /// </summary>
+    public static readonly CVarDef<float> VirologyContaminationWaterPuddlePerUnit =
+        CVarDef.Create("virology.contamination_water_puddle_per_unit", 0.01f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VirologyContaminationWaterPuddleMaximum =
+        CVarDef.Create("virology.contamination_water_puddle_maximum", 0.4f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Water below this volume is ignored entirely. Mopping leaves small smears of water
+    /// behind, and cleaning up blood must not breed fungus as a side effect.
+    /// </summary>
+    public static readonly CVarDef<float> VirologyContaminationWaterPuddleMinimumVolume =
+        CVarDef.Create("virology.contamination_water_puddle_minimum_volume", 25f, CVar.SERVERONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<float> VirologyContaminationMoldPuddlePerUnit =
         CVarDef.Create("virology.contamination_mold_puddle_per_unit", 0.06f, CVar.SERVERONLY | CVar.ARCHIVE);
 

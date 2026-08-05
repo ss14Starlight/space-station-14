@@ -60,6 +60,7 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
     private static readonly ProtoId<ReagentPrototype> NutrimentReagent = "Nutriment";
     private static readonly ProtoId<ReagentPrototype> ProteinReagent = "Protein";
     private static readonly ProtoId<ReagentPrototype> MoldReagent = "Mold";
+    private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
     private static readonly PathogenType[] RotSignatures =
     [
         PathogenType.Bacteria,
@@ -199,6 +200,15 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
         var foodMaximum = Math.Max(
             0f,
             _config.GetCVar(StarlightCCVars.VirologyContaminationFoodPuddleMaximum));
+        var waterPerUnit = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationWaterPuddlePerUnit));
+        var waterMaximum = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationWaterPuddleMaximum));
+        var waterMinimumVolume = Math.Max(
+            0f,
+            _config.GetCVar(StarlightCCVars.VirologyContaminationWaterPuddleMinimumVolume));
         var moldPerUnit = Math.Max(
             0f,
             _config.GetCVar(StarlightCCVars.VirologyContaminationMoldPuddlePerUnit));
@@ -221,6 +231,7 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
             var biologicalVolume = 0f;
             var foodVolume = 0f;
             var moldVolume = 0f;
+            var waterVolume = 0f;
             foreach (var quantity in solution.Contents)
             {
                 var reagentId = quantity.Reagent.Prototype;
@@ -231,6 +242,9 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
 
                 if (reagentId == MoldReagent)
                     moldVolume += volume;
+
+                if (reagentId == WaterReagent)
+                    waterVolume += volume;
 
                 if (_prototypes.TryIndex<ReagentPrototype>(reagentId, out var reagent) &&
                     reagent.Group == "Biological")
@@ -260,6 +274,18 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
                 moldPerUnit,
                 moldMaximum);
             AddSource(uid, [PathogenType.Fungus], moldContamination);
+
+            // Standing water is the one floor source fungus gets, and blood is already
+            // bacteria's. The volume gate matters: mopping leaves small water smears
+            // behind, and cleaning up blood must not breed fungus as a side effect.
+            if (waterVolume >= waterMinimumVolume)
+            {
+                var waterContamination = PathogenContaminationMath.PuddleContamination(
+                    waterVolume,
+                    waterPerUnit,
+                    waterMaximum);
+                AddSource(uid, [PathogenType.Fungus], waterContamination);
+            }
         }
     }
 
