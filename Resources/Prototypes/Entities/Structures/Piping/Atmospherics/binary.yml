@@ -309,7 +309,7 @@
       node: passivegate
     - type: AmbientSound
       enabled: true
-      volume: -15 # Starlight-edit: half the original amplitude (-9dB), passive gates never stop hissing
+      volume: -15 # Starlight-edit: half the original amplitude (-9dB)
       range: 3 # Starlight-edit: smaller radius so gate clusters don't overlap
       sound:
         path: /Audio/Ambience/Objects/gas_hiss.ogg
@@ -378,7 +378,7 @@
       node: valve
     - type: AmbientSound
       enabled: true
-      volume: -15 # Starlight-edit: half the original amplitude (-9dB), an open valve hisses permanently
+      volume: -15 # Starlight-edit: half the original amplitude (-9dB)
       range: 3 # Starlight-edit: smaller radius so valve clusters don't overlap
       sound:
         path: /Audio/Ambience/Objects/gas_hiss.ogg
