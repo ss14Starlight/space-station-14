@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/05/2026 00:07:52
-  entityCount: 10206
+  time: 08/05/2026 01:11:54
+  entityCount: 10205
 maps:
 - 1
 grids:
@@ -8504,15 +8504,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,38.5
       parent: 2
-  - uid: 196
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 21.5,1.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 4370
   - uid: 201
     components:
     - type: Transform
@@ -26240,6 +26231,13 @@ entities:
     - type: Transform
       pos: 45.5,-13.5
       parent: 2
+- proto: DefaultStationBeaconAIPower
+  entities:
+  - uid: 196
+    components:
+    - type: Transform
+      pos: 51.5,-13.5
+      parent: 2
 - proto: DefaultStationBeaconAIUpload
   entities:
   - uid: 3778
@@ -30660,7 +30658,6 @@ entities:
       parent: 2
     - type: DeviceList
       devices:
-      - 196
       - 4485
     - type: Fixtures
       fixtures: {}
@@ -48976,7 +48973,7 @@ entities:
       pos: 6.5,21.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -23078.924
+      secondsUntilStateChange: -23167.344
       state: Closing
   - uid: 6078
     components:
@@ -51091,48 +51088,6 @@ entities:
     - type: Transform
       pos: 15.106596,-1.3672802
       parent: 8834
-- proto: MoffEffectSparksSilent
-  entities:
-  - uid: 2273
-    components:
-    - type: Transform
-      rot: 1.661807834168648 rad
-      pos: 50.78594,-12.693721
-      parent: 2
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 0.45
-            position: 0,0
-          mask:
-          - Impassable
-          layer: []
-          density: 100
-          hard: True
-          restitution: 0
-          friction: 0.4
-        throw-fixture:
-          shape: !type:PhysShapeCircle
-            radius: 0.45
-            position: 0,0
-          mask:
-          - Impassable
-          - HighImpassable
-          - BulletImpassable
-          layer: []
-          density: 1
-          hard: False
-          restitution: 0
-          friction: 0.4
-    - type: ThrownItem
-      playLandSound: True
-      landTime: 16751.3499157
-      thrownTime: 16750.8499158
-      animate: False
-    - type: ESPreventCollideMarker
-      entities:
-      - invalid
 - proto: MonkeyCubeBox
   entities:
   - uid: 6283
@@ -51773,6 +51728,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 47.5,-13.5
       parent: 2
+    - type: StationAiCore
+      lawConsole: 7503
+    - type: DeviceLinkSource
+      linkedPorts:
+        7503:
+        - - AiLawConsoleSender
+          - AiLawConsoleReceiver
 - proto: PlushieAtmosian
   entities:
   - uid: 6356
@@ -60404,7 +60366,7 @@ entities:
       pos: 43.5,-14.5
       parent: 2
     - type: SiliconLawUpdater
-      core: invalid
+      core: 2253
     - type: AccessReader
       accessListsOriginal:
       - - ResearchDirector
