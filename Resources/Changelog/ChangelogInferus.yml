@@ -13,5 +13,14 @@ Entries:
   id: 201
   time: '2026-08-04T23:29:27.000000+00:00'
   url: https://github.com/InferusSS14/Inferus/pull/2
+- author: Starfall Team
+  changes:
+  - message: Made the experiment plushie description nicer.
+    type: Tweak
+  - message: Tweaked the Jump description.
+    type: Tweak
+  id: 401
+  time: '2026-08-05T16:48:22.000000+00:00'
+  url: https://github.com/InferusSS14/Inferus/pull/4
 Order: -1
 
