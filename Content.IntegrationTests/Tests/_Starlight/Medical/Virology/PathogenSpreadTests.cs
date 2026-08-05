@@ -271,7 +271,7 @@ public sealed class PathogenSpreadTests : GameTest
         var pathogens = server.System<PathogenSystem>();
         var registry = server.System<PathogenRegistrySystem>();
         var sources = server.System<PathogenContaminationSourceSystem>();
-        var oldChance = server.CfgMan.GetCVar(StarlightCCVars.VirologySporePatchChancePerSample);
+        var oldChance = server.CfgMan.GetCVar(StarlightCCVars.VirologySporePatchChance);
 
         Pathogen strain = default!;
 
@@ -279,7 +279,7 @@ public sealed class PathogenSpreadTests : GameTest
         {
             await server.WaitPost(() =>
             {
-                server.CfgMan.SetCVar(StarlightCCVars.VirologySporePatchChancePerSample, 1f);
+                server.CfgMan.SetCVar(StarlightCCVars.VirologySporePatchChance, 1f);
                 maps.CreateMap(out var mapId);
                 var grid = mapManager.CreateGridEntity(mapId);
                 maps.SetTile(grid.Owner, grid.Comp, Vector2i.Zero, new Tile(1));
@@ -294,14 +294,15 @@ public sealed class PathogenSpreadTests : GameTest
                     Is.Zero);
                 Assert.That(entities.GetComponent<TransformComponent>(source).GridUid, Is.EqualTo(grid.Owner));
                 Assert.That(
-                    server.CfgMan.GetCVar(StarlightCCVars.VirologySporePatchChancePerSample),
+                    server.CfgMan.GetCVar(StarlightCCVars.VirologySporePatchChance),
                     Is.EqualTo(1f));
 
                 sources.TryCreateSporePatches();
                 Assert.That(
                     entities.GetComponent<PathogenInfectionComponent>(source)
-                        .Infections.Single().SporePatchCreated,
-                    Is.True);
+                        .Infections.Single().NextSporePatch,
+                    Is.GreaterThan(TimeSpan.Zero),
+                    "Shedding should be on cooldown until the next interval comes around.");
             });
 
             await server.WaitAssertion(() =>
@@ -314,7 +315,7 @@ public sealed class PathogenSpreadTests : GameTest
         {
             await server.WaitPost(() =>
                 server.CfgMan.SetCVar(
-                    StarlightCCVars.VirologySporePatchChancePerSample,
+                    StarlightCCVars.VirologySporePatchChance,
                     oldChance));
         }
     }

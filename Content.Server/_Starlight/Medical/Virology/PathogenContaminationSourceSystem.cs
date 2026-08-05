@@ -410,16 +410,20 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
     internal void TryCreateSporePatches()
     {
         var chance = Math.Clamp(
-            _config.GetCVar(StarlightCCVars.VirologySporePatchChancePerSample),
+            _config.GetCVar(StarlightCCVars.VirologySporePatchChance),
             0f,
             1f);
         var lifetime = Math.Max(
             1f,
             _config.GetCVar(StarlightCCVars.VirologySporePatchLifetime));
+        var interval = TimeSpan.FromSeconds(Math.Max(
+            1f,
+            _config.GetCVar(StarlightCCVars.VirologySporePatchInterval)));
 
         if (chance <= 0f)
             return;
 
+        var curTime = _timing.CurTime;
         var query = EntityQueryEnumerator<PathogenInfectionComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var infections, out var transform))
         {
@@ -430,20 +434,25 @@ public sealed partial class PathogenContaminationSourceSystem : EntitySystem
 
             foreach (var infection in infections.Infections)
             {
-                if (infection.SporePatchCreated ||
+                if (curTime < infection.NextSporePatch ||
                     !_registry.TryGetStrain(infection.Pathogen, out var strain) ||
-                    strain.PathogenType != PathogenType.Fungus ||
-                    !_random.Prob(chance))
+                    strain.PathogenType != PathogenType.Fungus)
                 {
                     continue;
                 }
+
+                // The cooldown advances whether or not the roll lands, so a carrier gets
+                // one chance per interval rather than one per contamination sample.
+                infection.NextSporePatch = curTime + interval;
+
+                if (!_random.Prob(chance))
+                    continue;
 
                 var patch = Spawn(
                     SporePatchPrototype,
                     transform.Coordinates.SnapToGrid(EntityManager));
                 Comp<PathogenSporePatchComponent>(patch).Strain = strain.Id;
                 EnsureComp<TimedDespawnComponent>(patch).Lifetime = lifetime;
-                infection.SporePatchCreated = true;
             }
         }
     }

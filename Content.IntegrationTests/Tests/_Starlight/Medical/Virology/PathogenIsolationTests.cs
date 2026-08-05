@@ -31,13 +31,13 @@ public sealed class PathogenIsolationTests : GameTest
         var sources = server.System<PathogenContaminationSourceSystem>();
         var standing = server.System<StandingStateSystem>();
         var storage = server.System<EntityStorageSystem>();
-        var oldSporeChance = server.CfgMan.GetCVar(StarlightCCVars.VirologySporePatchChancePerSample);
+        var oldSporeChance = server.CfgMan.GetCVar(StarlightCCVars.VirologySporePatchChance);
 
         try
         {
             await server.WaitPost(() =>
             {
-                server.CfgMan.SetCVar(StarlightCCVars.VirologySporePatchChancePerSample, 1f);
+                server.CfgMan.SetCVar(StarlightCCVars.VirologySporePatchChance, 1f);
 
                 var viralBag = entities.SpawnEntity("BodyBag", map.GridCoords);
                 var viralHost = entities.SpawnEntity("MobHuman", map.GridCoords);
@@ -83,9 +83,8 @@ public sealed class PathogenIsolationTests : GameTest
 
                 sources.TryCreateSporePatches();
                 Assert.That(
-                    entities.GetComponent<PathogenInfectionComponent>(fungalHost)
-                        .Infections.Single(infection => infection.Pathogen == fungus.Id)
-                        .SporePatchCreated,
+                    entities.EntityQuery<PathogenSporePatchComponent>()
+                        .Any(patch => patch.Strain == fungus.Id),
                     Is.False,
                     "A bagged fungal carrier must not seed spore patches.");
             });
@@ -94,7 +93,7 @@ public sealed class PathogenIsolationTests : GameTest
         {
             await server.WaitPost(() =>
                 server.CfgMan.SetCVar(
-                    StarlightCCVars.VirologySporePatchChancePerSample,
+                    StarlightCCVars.VirologySporePatchChance,
                     oldSporeChance));
         }
     }

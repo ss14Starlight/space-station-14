@@ -72,8 +72,19 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<float> VirologyContaminationPuddleInfectionChance =
         CVarDef.Create("virology.contamination_puddle_infection_chance", 0.01f, CVar.SERVERONLY | CVar.ARCHIVE);
 
-    public static readonly CVarDef<float> VirologySporePatchChancePerSample =
-        CVarDef.Create("virology.spore_patch_chance_per_sample", 0.05f, CVar.SERVERONLY | CVar.ARCHIVE);
+    /// <summary>
+    /// Chance for a symptomatic fungal host to shed a patch each time its shedding
+    /// interval comes around. Luck decides, so there is no fixed patch budget.
+    /// </summary>
+    public static readonly CVarDef<float> VirologySporePatchChance =
+        CVarDef.Create("virology.spore_patch_chance", 0.5f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// How often a fungal host gets one roll to shed a patch. Combined with the patch
+    /// lifetime this decides how long a trail a carrier leaves behind them.
+    /// </summary>
+    public static readonly CVarDef<float> VirologySporePatchInterval =
+        CVarDef.Create("virology.spore_patch_interval", 120f, CVar.SERVERONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> VirologySporePatchLifetime =
         CVarDef.Create("virology.spore_patch_lifetime", 600f, CVar.SERVERONLY | CVar.ARCHIVE);

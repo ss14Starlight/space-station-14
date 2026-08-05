@@ -62,8 +62,10 @@ public sealed partial class PathogenInfection
     public TimeSpan? SymptomIntervalOverride;
 
     /// <summary>
-    /// Prevents one fungal infection from leaving a trail of reservoir patches.
+    /// When this fungal infection next gets a roll to shed a reservoir patch. A carrier
+    /// sheds continuously rather than once, so fungus can actually sustain a chain, but
+    /// each opportunity is decided by luck rather than a fixed patch budget.
     /// </summary>
     [DataField]
-    public bool SporePatchCreated;
+    public TimeSpan NextSporePatch;
 }

@@ -32,7 +32,7 @@ public sealed class BiosealRollerbedTests : GameTest
         var standing = server.System<StandingStateSystem>();
         var storage = server.System<EntityStorageSystem>();
         var transmission = server.System<PathogenTransmissionSystem>();
-        var oldSporeChance = server.CfgMan.GetCVar(StarlightCCVars.VirologySporePatchChancePerSample);
+        var oldSporeChance = server.CfgMan.GetCVar(StarlightCCVars.VirologySporePatchChance);
 
         EntityUid virusSource = default;
         EntityUid virusTarget = default;
@@ -49,7 +49,7 @@ public sealed class BiosealRollerbedTests : GameTest
         {
             await server.WaitPost(() =>
             {
-                server.CfgMan.SetCVar(StarlightCCVars.VirologySporePatchChancePerSample, 1f);
+                server.CfgMan.SetCVar(StarlightCCVars.VirologySporePatchChance, 1f);
                 virusBed = entities.SpawnEntity("BiosealRollerBed", map.GridCoords);
                 virusSource = entities.SpawnEntity("MobHuman", map.GridCoords);
                 virusTarget = entities.SpawnEntity(
@@ -126,10 +126,10 @@ public sealed class BiosealRollerbedTests : GameTest
                 Assert.That(pathogens.IsInfected(bacteriaTarget, bacteria.Id), Is.False);
                 Assert.That(transmission.TryExpose(virusSource, outsideStrain, 1f), Is.False);
                 Assert.That(
-                    entities.GetComponent<PathogenInfectionComponent>(fungusSource)
-                        .Infections.Single(infection => infection.Pathogen == fungus.Id)
-                        .SporePatchCreated,
-                    Is.False);
+                    entities.EntityQuery<PathogenSporePatchComponent>()
+                        .Any(patch => patch.Strain == fungus.Id),
+                    Is.False,
+                    "A sealed fungal carrier must not seed spore patches.");
             });
 
             await server.WaitPost(() =>
@@ -148,7 +148,7 @@ public sealed class BiosealRollerbedTests : GameTest
         {
             await server.WaitPost(() =>
                 server.CfgMan.SetCVar(
-                    StarlightCCVars.VirologySporePatchChancePerSample,
+                    StarlightCCVars.VirologySporePatchChance,
                     oldSporeChance));
         }
     }
