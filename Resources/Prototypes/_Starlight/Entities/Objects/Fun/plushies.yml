@@ -1,6 +1,31 @@
 # Character Plushies - Keep alphabetical, please!
 - type: entity
-  parent: BasePlushie
+  parent: BaseShadekinPlushie
+  id: PlushieBrightheart # rtasva
+  name: brightheart plushie
+  description: A plushie of a small, elusive, and odd looking security officer. Seems familiar somehow.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/brightheart_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/brightheart_plushie.rsi
+    state: icon
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/brightheart_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: BaseLizardPlushie
   id: PlushieDoxes # SanityGecko
   name: doxes-the-captain plushie
   description: An adorable stuffed toy that resembles Doxes-the-Captain. "Captain's IP is 189.47.108.519!"
@@ -54,9 +79,6 @@
     - HEAD
   - type: Speech
     speechVerb: Reptilian # for pais (In the secret stash)
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: LizardPlushie
   - type: Tag
     tags:
     - Payload
@@ -106,7 +128,7 @@
         - state: equipped-HELMET
 
 - type: entity
-  parent: BasePlushie
+  parent: BaseLizardPlushie
   id: PlushieGalio # galiotheblepdragon
   name: galio plushie
   description: Carry with you to feel silly wherever you go!
@@ -166,9 +188,6 @@
     - ClothMade
     - Payload
     - PlushieLizard
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: LizardPlushie
 
 - type: entity
   parent: BaseMothPlushie

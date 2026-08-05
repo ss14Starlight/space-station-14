@@ -166,6 +166,7 @@ GasPipeSubfloorTankAlt4: GasPipeTankSubfloorAlt4
 AbductorPlushie: PlushieAbductor
 AxolotlPlushie: PlushieAxolotl
 BorbPlushie: PlushieBorb
+PlushieBrighteyes: PlushieBrightheart # new ID
 SquishimsCow: PlushieCowSquishims
 CreaturePlushie: PlushieCreature
 SquishimsFrog: PlushieFrogSquishims
@@ -187,7 +188,6 @@ MozanPlush: PlushieMozan
 PlushieAmali: PlushieLizard
 PlushieAsh: PlushieVulp
 PlushieBarfo: PlushieKitten
-PlushieBrighteyes: PlushieKitten
 DeerPlushie: PlushieLizard
 OddDeerPlushie: PlushieLizard
 PlushieEina: PlushieBorb

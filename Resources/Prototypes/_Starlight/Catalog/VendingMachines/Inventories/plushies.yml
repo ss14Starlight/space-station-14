@@ -1,5 +1,16 @@
 # Marketable Character Plushies - Keep alphabetical, please!
 - type: listing
+  id: VendorPlushieBrightheart
+  productEntity: PlushieBrightheart
+  cost:
+    NTCredit: 20
+  categories:
+    - SLCrew
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: VendorPlushieDoxes
   productEntity: PlushieDoxes
   cost:
