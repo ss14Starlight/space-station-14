@@ -54,6 +54,17 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: VendorPlushieNebula
+  productEntity: PlushieNebula
+  cost:
+    NTCredit: 20
+  categories:
+    - SLCrew
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
 # Generic Playable Species - Keep alphabetical, please!
 - type: listing
   id: VendorPlushieArachind

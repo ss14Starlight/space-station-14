@@ -202,6 +202,27 @@
     size: Small
     sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
 
+- type: entity
+  parent: BaseAvaliPlushie
+  id: PlushieNebula # rtasva - staff centcomm character
+  name: nebula plushie
+  description: A marketable plushie of Nebula Silverfeather- lovable pop star turned CC official. Husband not included.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/nebula_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/nebula_plushie.rsi
+    state: icon
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/nebula_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
 # General Plushies - Keep alphabetical, please!
 - type: entity
   parent: BasePlushie
