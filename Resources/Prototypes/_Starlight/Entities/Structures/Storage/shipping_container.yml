@@ -35,8 +35,8 @@
     grid:
     - 0,0,9,6
   - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
+    containers:
+      storagebase: !type:Container
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
