@@ -78,7 +78,7 @@
     sprite: _Starlight/Markers/jobs.rsi
     layers:
       - state: green
-      - state: obs # Placeholder until we get an actual sprite for assistant manager.
+      - state: assistantmanager
       - state: jobicon
 
 - type: entity
