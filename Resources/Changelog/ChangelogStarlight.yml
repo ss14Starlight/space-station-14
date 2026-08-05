@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (Reach) Added two fuel dispensers to engi and atmos.
-    type: Add
-  id: 406919
-  time: '2026-07-26T11:55:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5331
-- author: Johnny
-  changes:
   - message: (Reach) Added detective and brigmedic roles.
     type: Add
   id: 406920
@@ -2799,4 +2792,11 @@ Entries:
   id: 407318
   time: '2026-08-05T08:57:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5513
+- author: Spaghetti-Bit
+  changes:
+  - message: Fixed some ProtoAvali displacements (Gloves and Jumpsuit).
+    type: Fix
+  id: 407319
+  time: '2026-08-05T14:28:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5515
 Order: -1
