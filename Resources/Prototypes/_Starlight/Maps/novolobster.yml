@@ -15,6 +15,8 @@
             prefixCreator: 'CW'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_silica.yml
+        - type: StationCargoShuttle
+          path: /Maps/_Starlight/Shuttles/cargo_novolobster.yml
         - type: StationJobs
           availableJobs:
             #service
