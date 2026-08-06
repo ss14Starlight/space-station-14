@@ -44,10 +44,11 @@
 
 # Gas Vent
 
-# Carries nothing but the layer map, so the vanilla alt sprite is the only one in
-# the alts' parent lists and the placement ghost draws it at the right offset.
+# Inherits the thresholds so no variant has to list the sensor base as a second
+# parent. Declares no sprite, so the vanilla alt sprite reaches the placement ghost.
 - type: entity
   abstract: true
+  parent: AirSensorChamberBase
   id: GasVentPumpChamberBase
   components:
   - type: AtmosPipeLayers
@@ -59,32 +60,32 @@
       Quinary: GasVentPumpChamberAlt4
 
 - type: entity
-  parent: [AirSensorChamberBase, GasVentPumpChamberBase, GasVentPump]
+  parent: [GasVentPumpChamberBase, GasVentPump]
   id: GasVentPumpChamber
   placement:
     mode: AlignAtmosPipeLayers
   description: An air vent set up for use in chambers. It only alarms on extreme pressure.
 
 - type: entity
-  parent: [AirSensorChamberBase, GasVentPumpChamberBase, GasVentPumpAlt1]
+  parent: [GasVentPumpChamberBase, GasVentPumpAlt1]
   id: GasVentPumpChamberAlt1
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in chambers. It only alarms on extreme pressure.
 
 - type: entity
-  parent: [AirSensorChamberBase, GasVentPumpChamberBase, GasVentPumpAlt2]
+  parent: [GasVentPumpChamberBase, GasVentPumpAlt2]
   id: GasVentPumpChamberAlt2
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in chambers. It only alarms on extreme pressure.
 
 - type: entity
-  parent: [AirSensorChamberBase, GasVentPumpChamberBase, GasVentPumpAlt3]
+  parent: [GasVentPumpChamberBase, GasVentPumpAlt3]
   id: GasVentPumpChamberAlt3
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in chambers. It only alarms on extreme pressure.
 
 - type: entity
-  parent: [AirSensorChamberBase, GasVentPumpChamberBase, GasVentPumpAlt4]
+  parent: [GasVentPumpChamberBase, GasVentPumpAlt4]
   id: GasVentPumpChamberAlt4
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in chambers. It only alarms on extreme pressure.
@@ -93,6 +94,7 @@
 
 - type: entity
   abstract: true
+  parent: AirSensorChamberBase
   id: GasVentScrubberChamberBase
   components:
   # Scrubbers default to enabled and nothing switches them off at map init, so a
@@ -108,32 +110,32 @@
       Quinary: GasVentScrubberChamberAlt4
 
 - type: entity
-  parent: [AirSensorChamberBase, GasVentScrubberChamberBase, GasVentScrubber]
+  parent: [GasVentScrubberChamberBase, GasVentScrubber]
   id: GasVentScrubberChamber
   placement:
     mode: AlignAtmosPipeLayers
   description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
 
 - type: entity
-  parent: [AirSensorChamberBase, GasVentScrubberChamberBase, GasVentScrubberAlt1]
+  parent: [GasVentScrubberChamberBase, GasVentScrubberAlt1]
   id: GasVentScrubberChamberAlt1
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
 
 - type: entity
-  parent: [AirSensorChamberBase, GasVentScrubberChamberBase, GasVentScrubberAlt2]
+  parent: [GasVentScrubberChamberBase, GasVentScrubberAlt2]
   id: GasVentScrubberChamberAlt2
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
 
 - type: entity
-  parent: [AirSensorChamberBase, GasVentScrubberChamberBase, GasVentScrubberAlt3]
+  parent: [GasVentScrubberChamberBase, GasVentScrubberAlt3]
   id: GasVentScrubberChamberAlt3
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
 
 - type: entity
-  parent: [AirSensorChamberBase, GasVentScrubberChamberBase, GasVentScrubberAlt4]
+  parent: [GasVentScrubberChamberBase, GasVentScrubberAlt4]
   id: GasVentScrubberChamberAlt4
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
