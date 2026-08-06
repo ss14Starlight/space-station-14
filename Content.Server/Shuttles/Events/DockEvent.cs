@@ -7,8 +7,8 @@ namespace Content.Server.Shuttles.Events;
 /// </summary>
 public sealed class DockEvent : EntityEventArgs
 {
-    public DockingComponent DockA = default!;
-    public DockingComponent DockB = default!;
+    public Entity<DockingComponent> DockA = default!;
+    public Entity<DockingComponent> DockB = default!;
 
     public EntityUid GridAUid = default!;
     public EntityUid GridBUid = default!;
