@@ -316,6 +316,7 @@
   description: A terminal for programming NanoTrasen and non-NanoTrasen ID cards with extended access levels.
   components:
   - type: IdCardConsole
+    allIconsUnlocked: true # Starlight-edit
     accessGroups:
     - General
     - Security

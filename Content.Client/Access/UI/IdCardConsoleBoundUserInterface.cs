@@ -5,13 +5,12 @@ using Content.Shared.CCVar;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.CrewManifest;
 using Content.Shared.Roles;
+using Content.Shared.StatusIcon;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
-// Starlight-edit: Start
 using Robust.Client.UserInterface;
 using Content.Shared._Starlight.Access;
-// Starlight-edit: End
 
 namespace Content.Client.Access.UI
 {
@@ -66,8 +65,8 @@ namespace Content.Client.Access.UI
             var castState = (IdCardConsoleBoundUserInterfaceState) state;
             _window?.UpdateState(castState);
         }
-
-        public void SubmitData(string newFullName, string newJobTitle, List<ProtoId<AccessLevelPrototype>> newAccessList, ProtoId<JobPrototype>? newJobPrototype) // Starlight: Nullable newJobPrototype
+        // Starlight-edit: Start
+        public void SubmitData(string newFullName, string newJobTitle, List<ProtoId<AccessLevelPrototype>> newAccessList, ProtoId<JobPrototype>? newJobPrototype, ProtoId<JobIconPrototype>? newJobIcon) // Starlight: Nullable newJobPrototype, newJobIcon
         {
             if (newFullName.Length > _maxNameLength)
                 newFullName = newFullName[.._maxNameLength];
@@ -79,14 +78,14 @@ namespace Content.Client.Access.UI
                 newFullName,
                 newJobTitle,
                 newAccessList,
-                newJobPrototype));
+                newJobPrototype,
+                newJobIcon));
         }
-        // Starlight-edit: Start
+        // Starlight-edit: End
 
         public void OnGroupSelected(ProtoId<AccessGroupPrototype> group)
         {
             SendMessage(new IdCardConsoleComponent.AccessGroupSelectedMessage(group)); // Starlight-edit
         }
-        // Starlight-edit: End
     }
 }
