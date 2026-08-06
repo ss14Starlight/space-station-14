@@ -387,7 +387,7 @@
   desc: reagent-desc-healing-nanites
   physicalDesc: reagent-physical-desc-opaque
   flavor: electrifying
-  color: "#a52faf"
+  color: "#70ff9b"
   metabolisms:
     Medicine:
       effects:
