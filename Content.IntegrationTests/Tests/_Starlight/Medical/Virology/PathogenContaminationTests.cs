@@ -247,8 +247,12 @@ public sealed class PathogenContaminationTests : GameTest
                     Is.InRange(
                         archetype.MinStageDelay.TotalSeconds * 1.25,
                         archetype.MaxStageDelay.TotalSeconds * 1.25));
+                // Generation always adds one stage-one symptom before the core set, so a
+                // strain carries core + 1 + however many extras the roll asked for. The
+                // old range omitted the stage-one pick and so failed whenever the extras
+                // roll came up 2 - a coin flip on every run.
                 Assert.That(strain.Symptoms.Count,
-                    Is.InRange(archetype.CoreSymptoms.Count + 1, archetype.CoreSymptoms.Count + 2));
+                    Is.InRange(archetype.CoreSymptoms.Count + 2, archetype.CoreSymptoms.Count + 3));
             });
         });
     }
