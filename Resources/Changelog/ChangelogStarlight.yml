@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Elkridge) Added ice cream maker to Kitchen.
-    type: Add
-  id: 406948
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
   - message: (Elkridge) Added ticket machine to HOP.
     type: Add
   id: 406949
@@ -2799,4 +2792,11 @@ Entries:
   id: 407347
   time: '2026-08-06T22:28:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5494
+- author: wonderfulnewworld, Princess-Cheeseballs
+  changes:
+  - message: You can now roll antag if you join in that awkward period between round start and gamerule start.
+    type: Fix
+  id: 407348
+  time: '2026-08-06T22:28:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5438
 Order: -1
