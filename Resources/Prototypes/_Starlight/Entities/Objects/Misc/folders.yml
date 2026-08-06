@@ -299,8 +299,6 @@
       tags:
       - Folder
       - HighRiskItem
-    - type: StealTarget
-      stealGroup: HoPBoardSteal
     - type: ContainerContainer
       containers:
         storagebase: !type:Container
