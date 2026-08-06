@@ -55,9 +55,10 @@
   placement:
     mode: SnapgridCenter
   components:
-  # Starlight-edit: moved off AirSensorBase
+  # Starlight-start
   - type: DeviceNetwork
     prefix: device-address-prefix-sensor
+  # Starlight-end
   - type: Transform
     anchored: true
   - type: Damageable
