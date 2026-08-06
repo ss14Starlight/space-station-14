@@ -7,6 +7,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Weapons.Melee.EnergySword;
 
+[Obsolete("Use EnergyColorSystem instead.")] // Starlight
 public sealed partial class EnergySwordSystem : EntitySystem
 {
     [Dependency] private SharedRgbLightControllerSystem _rgbSystem = default!;
