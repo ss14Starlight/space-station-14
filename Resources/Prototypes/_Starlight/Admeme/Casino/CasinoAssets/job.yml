@@ -2,7 +2,7 @@
   parent: JobIcon
   id: JobIconCasinoOwner
   icon:
-    sprite: &jobIcons _Starlight/Admeme/Casino/Interface/job_icons.rsi
+    sprite: &jobIcons /Textures/_Starlight/Admeme/Casino/Interface/job_icons.rsi
     state: owner
   jobName: job-name-casino-owner
   allowSelection: false

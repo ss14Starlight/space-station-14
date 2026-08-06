@@ -533,6 +533,9 @@
   id: Nexus
 
 - type: Tag
+  id: NonLethalMech # Used to allow nonlethal mech equipment on a mech.
+
+- type: Tag
   id: NotLabelable
 
 - type: Tag
