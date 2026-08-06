@@ -21,6 +21,15 @@
   upperWarnAround: !type:AlarmThresholdSetting
     threshold: 0.8
 
+# Chamber - no lower bounds, and the upper warn multiplier resolves to 75000kPa.
+# Both upper checks are >=, so these fire at the stated values.
+- type: alarmThreshold
+  id: chamberPressure
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 90000
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.8333333
+
 # Sauna - bounds copy stationTemperature, only the upper warn multiplier differs,
 # resolving to 323.15K.
 - type: alarmThreshold
