@@ -45,6 +45,8 @@
 - type: entity
   parent: [AirSensorSaunaBase, GasVentPump]
   id: GasVentPumpSauna
+  placement:
+    mode: AlignAtmosPipeLayers
   description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
   components:
   - type: AtmosPipeLayers
@@ -86,6 +88,8 @@
 - type: entity
   parent: [AirSensorSaunaBase, GasVentScrubber]
   id: GasVentScrubberSauna
+  placement:
+    mode: AlignAtmosPipeLayers
   description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
   components:
   - type: AtmosPipeLayers

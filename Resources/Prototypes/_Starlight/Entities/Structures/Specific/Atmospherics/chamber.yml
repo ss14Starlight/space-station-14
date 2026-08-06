@@ -47,6 +47,8 @@
 - type: entity
   parent: [AirSensorChamberBase, GasVentPump]
   id: GasVentPumpChamber
+  placement:
+    mode: AlignAtmosPipeLayers
   description: An air vent set up for use in chambers. It only alarms on extreme pressure.
   components:
   - type: AtmosPipeLayers
@@ -86,6 +88,8 @@
 - type: entity
   parent: [AirSensorChamberBase, GasVentScrubber]
   id: GasVentScrubberChamber
+  placement:
+    mode: AlignAtmosPipeLayers
   description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
   components:
   - type: AtmosPipeLayers
