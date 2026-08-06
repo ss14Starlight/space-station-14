@@ -42,12 +42,10 @@
   name: explosion rune
   components:
     - type: Explosive
-      explosionType: Default
+      explosionType: DefaultnoSpace
       totalIntensity: 20
       intensitySlope: 5
       maxIntensity: 4
-      tileBreakChance: [0]
-      tileBreakIntensity: [0]
     - type: Sprite
       sprite: Structures/Magic/Cult/trap.rsi
       layers:

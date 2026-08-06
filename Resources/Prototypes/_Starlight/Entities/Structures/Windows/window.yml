@@ -38,7 +38,6 @@
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
-          
 # Honeypots BEGIN
 # I tried inheritance on these guys, but ran into various things not inheriting, so YAML anchors it is.
 
