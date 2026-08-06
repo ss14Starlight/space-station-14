@@ -26,11 +26,5 @@
       classes:
         - SlimeExtract
       availableTraits:
-        - Text1
-        - Text2
-        - waterToMonkeyCube
-    - type: PassiveTraits
-    - type: OnceTraits
-    - type: OnSolutionChangedTraits
-      containerName: container
+        - MonkeyCubeSpawn
     - type: GeneticExtract

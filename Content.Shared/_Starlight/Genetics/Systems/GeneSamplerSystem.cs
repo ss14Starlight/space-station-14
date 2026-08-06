@@ -1,9 +1,10 @@
 using Content.Shared._Starlight.Genetics.Components;
+using Content.Shared._Starlight.Genetics.Genes.Components;
 using Content.Shared.Interaction;
 
 namespace Content.Shared._Starlight.Genetics.Systems;
 
-public sealed class GeneSamplerSystem : EntitySystem
+public sealed partial class GeneSamplerSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;

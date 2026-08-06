@@ -34,18 +34,8 @@
       classes:
         - Slime
       availableTraits:
-        - waterToMonkeyCube
-        - Text0
-        - Text1
-        - Text2
-        - Blank3
-        - Blank4
-        - Blank5
-        - Blank6
-        - Blank7
-        - Blank8
-    - type: PassiveTraits
-    - type: OnceTraits
+        - MonkeyCubeSpawn
+        - SteelAndGlassSpawn
     - type: GeneticSlime
       splitEntity: GeneticSlime
       extractEntity: GeneticSlimeExtract
@@ -86,6 +76,7 @@
   id: startingSlimeGene
   traits:
     traits:
-      waterToMonkeyCube: 1.0
+      MonkeyCubeSpawn: 1.0
+      SteelAndGlassSpawn: 1.0
   technicalName: SLmE1
   name: Base Slime Gene

@@ -3,9 +3,9 @@ using Content.Shared.Interaction;
 
 namespace Content.Shared._Starlight.Genetics.Systems;
 
-public abstract class SharedGeneticsConsoleSystem : EntitySystem
+public abstract partial class SharedGeneticsConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
 
     public override void Initialize()
     {

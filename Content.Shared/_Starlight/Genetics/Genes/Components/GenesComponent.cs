@@ -1,8 +1,7 @@
-using Content.Shared._Starlight.Genetics.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Genetics.Components;
+namespace Content.Shared._Starlight.Genetics.Genes.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class GenesComponent : Component
@@ -17,7 +16,7 @@ public sealed partial class GenesComponent : Component
     /// The traits that can be pulled from to make a gene.
     /// </summary>
     [ViewVariables, AutoNetworkedField, DataField(required: true)]
-    public HashSet<ProtoId<AbstractTraitPrototype>> AvailableTraits;
+    public HashSet<ProtoId<GeneticTraitPrototype>> AvailableTraits;
 
     /// <summary>
     /// The classes of traits this genome can apply to an entity. If a trait has one of the classes in this set, it can

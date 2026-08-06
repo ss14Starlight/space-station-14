@@ -1,161 +1,95 @@
-- type: passiveTrait
-  id: Blank0
-  name: Blank Trait 0 (Passive)
-  description: Does nothing.
+- type: geneticTrait
+  id: MonkeyCubeSpawn
+  name: Monkey Cube Spawn
+  description: Spawns a monkey cube every 10 seconds.
+  threshold: 1
   classes:
-    - Slime
     - SlimeExtract
-  entityEffect:
-    effect: !type:Blank
-    scalingFactor: 1
-    scalingOffset: 0
-  cooldown: 60
+  parts:
+    - !type:TraitPeriodicItemSpawnerPart
+        collections:
+          - MonkeyCubeSpawnCollection
 
-- type: passiveTrait
-  id: Blank1
-  name: Blank Trait 1 (Passive)
-  description: Does nothing.
+- type: spawnCollection
+  id: MonkeyCubeSpawnCollection
+  items:
+    - id: MonkeyCube
+      amount: 1
+  cooldown: 10
+
+- type: geneticTrait
+  id: SteelSpawnRapid
+  name: Rapid Steel Spawn
+  description: Spawns a sheet of steel every 5 seconds. Scales with trait strength.
+  threshold: 1
   classes:
     - Slime
-    - SlimeExtract
-  entityEffect:
-    effect: !type:Blank
-    scalingFactor: 1
-    scalingOffset: 0
-  cooldown: 60
+  parts:
+    - !type:TraitPeriodicItemSpawnerPart
+      collections:
+        - SteelSheetRapidCollection
 
-- type: passiveTrait
-  id: Blank2
-  name: Blank Trait 2 (Passive)
-  description: Does nothing.
+- type: spawnCollection
+  id: SteelSheetRapidCollection
+  items:
+    - id: SheetSteel1
+      amount: 1
+  cooldown: 1
+
+- type: geneticTrait
+  id: SteelSpawnNormal
+  name: Regular Steel Spawn
+  description: Spawns 5 sheets of steel every 15 seconds. Scales with trait strength.
+  threshold: 1
   classes:
     - Slime
-    - SlimeExtract
-  entityEffect:
-    effect: !type:Blank
-    scalingFactor: 1
-    scalingOffset: 0
-  cooldown: 60
+  parts:
+    - !type:TraitPeriodicItemSpawnerPart
+      collections:
+        - SteelSheetNormalCollection
 
-- type: onSolutionChangedTrait
-  id: Blank3
-  name: Blank Trait 3 (On Solution Changed)
-  description: Does nothing.
+- type: spawnCollection
+  id: SteelSheetNormalCollection
+  items:
+    - id: SheetSteel1
+      amount: 5
+  cooldown: 10
+
+- type: geneticTrait
+  id: SteelSpawnSlow
+  name: Slow Steel Spawn
+  description: Spawns 15 sheets of steel every 30 seconds. Scales with trait strength.
+  threshold: 1
   classes:
     - Slime
-    - SlimeExtract
-  extractReaction: blankSolutionReaction
+  parts:
+    - !type:TraitPeriodicItemSpawnerPart
+      collections:
+        - SteelSheetSlowCollection
 
-- type: onSolutionChangedTrait
-  id: Blank4
-  name: Blank Trait 4 (On Solution Changed)
-  description: Does nothing.
-  classes:
-    - Slime
-    - SlimeExtract
-  extractReaction: blankSolutionReaction
-
-- type: onSolutionChangedTrait
-  id: Blank5
-  name: Blank Trait 5 (On Solution Changed)
-  description: Does nothing.
-  classes:
-    - Slime
-    - SlimeExtract
-  extractReaction: blankSolutionReaction
-
-- type: onceTrait
-  id: Blank6
-  name: Blank Trait 6 (Once)
-  description: Does nothing.
-  classes:
-    - Slime
-    - SlimeExtract
-  onAddedEffect:
-    effect: !type:Blank
-    scalingFactor: 1
-    scalingOffset: 0
-  onRemovedEffect:
-    effect: !type:Blank
-    scalingFactor: 1
-    scalingOffset: 0
-
-- type: onceTrait
-  id: Blank7
-  name: Blank Trait 7 (Once)
-  description: Does nothing.
-  classes:
-    - Slime
-    - SlimeExtract
-  onAddedEffect:
-    effect: !type:Blank
-    scalingFactor: 1
-    scalingOffset: 0
-  onRemovedEffect:
-    effect: !type:Blank
-    scalingFactor: 1
-    scalingOffset: 0
-
-- type: onceTrait
-  id: Blank8
-  name: Blank Trait 8 (Once)
-  description: Does nothing.
-  classes:
-    - Slime
-    - SlimeExtract
-  onAddedEffect:
-    effect: !type:Blank
-    scalingFactor: 1
-    scalingOffset: 0
-  onRemovedEffect:
-    effect: !type:Blank
-    scalingFactor: 1
-    scalingOffset: 0
-
-- type: passiveTrait
-  id: Text0
-  name: Text Trait 0
-  description: Does a text popup every 2 seconds.
-  classes:
-    - Slime
-  entityEffect:
-    effect: !type:Popup
-      text: 000
-    scalingFactor: 0
-    scalingOffset: 1
-  cooldown: 2
-
-- type: passiveTrait
-  id: Text1
-  name: Text Trait 1
-  description: Does a text popup every 3 seconds.
-  classes:
-    - Slime
-    - SlimeExtract
-  entityEffect:
-    effect: !type:Popup
-      text: 111
-    scalingFactor: 0
-    scalingOffset: 1
+- type: spawnCollection
+  id: SteelSheetSlowCollection
+  items:
+    - id: SheetSteel1
+      amount: 15
   cooldown: 3
 
-- type: passiveTrait
-  id: Text2
-  name: Text Trait 2
-  description: Does a text popup every 7 seconds.
+- type: geneticTrait
+  id: SteelAndGlassSpawn
+  name: Steel And Glass Spawn
+  description: Spawns 5 sheets of steel and 5 sheets of glass every 15 seconds. Scales with trait strength.
+  threshold: 1
   classes:
-    - SlimeExtract
-  entityEffect:
-    effect: !type:Popup
-      text: 222
-    scalingFactor: 0
-    scalingOffset: 1
-  cooldown: 7
+    - Slime
+  parts:
+    - !type:TraitPeriodicItemSpawnerPart
+      collections:
+        - SteelSheetNormalCollection
+        - GlassSheetNormalCollection
 
-- type: onSolutionChangedTrait
-  id: waterToMonkeyCube
-  name: Monkey Cube Hydrosynthesis
-  description: Converts water to monkey cubes.
-  classes:
-    - SlimeExtract
-  extractReaction: GeneticWaterToMonkeyCubeReaction
+- type: spawnCollection
+  id: GlassSheetNormalCollection
+  items:
+    - id: SheetGlass1
+      amount: 5
+  cooldown: 10

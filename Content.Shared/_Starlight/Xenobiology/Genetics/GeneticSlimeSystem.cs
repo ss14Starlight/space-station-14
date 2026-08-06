@@ -1,17 +1,16 @@
 using System.Linq;
-using Content.Shared._Starlight.Genetics;
-using Content.Shared._Starlight.Genetics.Components;
-using Content.Shared._Starlight.Genetics.Systems;
+using Content.Shared._Starlight.Genetics.Genes.Systems;
 using Content.Shared._Starlight.Weapons.Melee.Events;
 using Content.Shared.Coordinates;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using GenesComponent = Content.Shared._Starlight.Genetics.Genes.Components.GenesComponent;
 
 namespace Content.Shared._Starlight.Xenobiology.Genetics;
 
-public sealed class GeneticSlimeSystem : EntitySystem
+public sealed partial class GeneticSlimeSystem : EntitySystem
 {
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private GenesSystem _genesSystem = default!;

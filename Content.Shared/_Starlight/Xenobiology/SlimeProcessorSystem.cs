@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared._Starlight.Genetics;
 using Content.Shared._Starlight.Genetics.Components;
+using Content.Shared._Starlight.Genetics.Genes.Systems;
 using Content.Shared._Starlight.Genetics.Systems;
 using Content.Shared._Starlight.Xenobiology.Genetics;
 using Content.Shared.Coordinates;
@@ -15,6 +16,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using GenesComponent = Content.Shared._Starlight.Genetics.Genes.Components.GenesComponent;
 
 namespace Content.Shared._Starlight.Xenobiology;
 

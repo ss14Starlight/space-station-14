@@ -12,9 +12,9 @@ namespace Content.Shared._Starlight.Genetics;
 public sealed partial class TraitDict
 {
     [ViewVariables(VVAccess.ReadWrite), DataField]
-    public Dictionary<ProtoId<AbstractTraitPrototype>, FixedPoint2> Traits = new();
+    public Dictionary<ProtoId<GeneticTraitPrototype>, FixedPoint2> Traits = new();
 
-    public TraitDict(Dictionary<ProtoId<AbstractTraitPrototype>, FixedPoint2> traits) => Traits = traits;
+    public TraitDict(Dictionary<ProtoId<GeneticTraitPrototype>, FixedPoint2> traits) => Traits = traits;
 
     public TraitDict() {}
 

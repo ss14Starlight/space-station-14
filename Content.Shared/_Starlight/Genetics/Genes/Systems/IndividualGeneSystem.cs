@@ -1,13 +1,14 @@
 using System.Linq;
 using System.Text;
 using Content.Shared._Starlight.Genetics.Components;
+using Content.Shared._Starlight.Genetics.Genes.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._Starlight.Genetics.Systems;
+namespace Content.Shared._Starlight.Genetics.Genes.Systems;
 
-public sealed class IndividualGeneSystem : EntitySystem
+public sealed partial class IndividualGeneSystem : EntitySystem
 {
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
@@ -112,9 +113,9 @@ public sealed class IndividualGeneSystem : EntitySystem
     /// Returns a random selection of traits with repetition.
     /// </summary>
     /// <returns>A random selection of traits with repetition.</returns>
-    public IEnumerable<ProtoId<AbstractTraitPrototype>> RandomTraits(Entity<GenesComponent> entity)
+    public IEnumerable<ProtoId<GeneticTraitPrototype>> RandomTraits(Entity<GenesComponent> entity)
     {
-        IEnumerable<ProtoId<AbstractTraitPrototype>> traits = entity.Comp.AvailableTraits;
+        IEnumerable<ProtoId<GeneticTraitPrototype>> traits = entity.Comp.AvailableTraits;
         while(true)
             yield return traits.ElementAt(_robustRandom.Next(0, traits.Count()));
     }

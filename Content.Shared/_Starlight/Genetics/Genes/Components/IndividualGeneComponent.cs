@@ -1,8 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.Genetics.Components;
+namespace Content.Shared._Starlight.Genetics.Genes.Components;
 
 /// <summary>
 /// A collection of traits along with associated metadata, like the name.
