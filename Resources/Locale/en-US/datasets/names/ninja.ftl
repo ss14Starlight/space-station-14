@@ -15,8 +15,7 @@ names-ninja-dataset-14 = Hiryu
 names-ninja-dataset-15 = Hayabusa
 names-ninja-dataset-16 = Midnight
 names-ninja-dataset-17 = Seven
-## Starlight
-names-ninja-dataset-18 = Oni
+names-ninja-dataset-18 = McNinja
 names-ninja-dataset-19 = Hanzo
 names-ninja-dataset-20 = Blood
 names-ninja-dataset-21 = Iga
@@ -28,8 +27,7 @@ names-ninja-dataset-26 = Baki
 names-ninja-dataset-27 = Ogre
 names-ninja-dataset-28 = Daemon
 names-ninja-dataset-29 = Goemon
-## Starlight
-names-ninja-dataset-30 = Nagato
+names-ninja-dataset-30 = McAwesome
 ## Starlight
 names-ninja-dataset-31 = Kotaro
 names-ninja-dataset-32 = Death
@@ -40,3 +38,5 @@ names-ninja-dataset-36 = Samurai
 names-ninja-dataset-37 = Eater
 names-ninja-dataset-38 = Ryu
 names-ninja-dataset-39 = Raiden
+names-ninja-dataset-40 = Oni
+names-ninja-dataset-41 = Nagato

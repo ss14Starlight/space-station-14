@@ -2,7 +2,7 @@
   id: NamesDragon
   values:
     prefix: names-dragon-dataset-
-    count: 31
+    count: 32 # Starlight
 
 - type: localizedDataset
   id: NamesDragonTitle
