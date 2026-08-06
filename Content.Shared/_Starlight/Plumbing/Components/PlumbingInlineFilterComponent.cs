@@ -17,7 +17,7 @@ public sealed partial class PlumbingInlineFilterComponent : Component
 
     /// <summary>
     ///     How much of each filtered reagent the buffer holds. Each reagent gets its own
-    ///     allowance to avoid clogging.so a plentiful reagent cannot crowd the rest out of the buffer.
+    ///     allowance to avoid clogging so a plentiful reagent cannot crowd the rest out of the buffer.
     ///     Should be sized for <see cref="MaxFilteredReagents"/> * this value.
     /// </summary>
     [DataField] public FixedPoint2 ReagentCapacity = FixedPoint2.New(10);
