@@ -1,0 +1,10 @@
+# An air alarm that starts with its access reader deactivated, as if the ACC wire
+# had been cut. Access levels are inherited from AirAlarm and left intact, so
+# mending the wire re-locks it to Atmospherics access.
+- type: entity
+  parent: AirAlarm
+  id: AirAlarmUnlocked
+  suffix: Unlocked
+  components:
+  - type: AccessReader
+    enabled: false

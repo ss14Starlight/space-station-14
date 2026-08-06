@@ -113,11 +113,11 @@ public sealed class CharacterSelectionTest : GameTest
         public bool ExpectTraitor;
         public int? SetSeed;
 
-        public SelectionTestData WithCharacters(IEnumerable<TestCharacter> newCharacters)
+        public SelectionTestData WithCharacters(IEnumerable<TestCharacter> newCharacters, string variant)
         {
             return new SelectionTestData()
             {
-                Description = Description,
+                Description = $"{Description} [{variant}]",
                 HighPrioJob = HighPrioJob,
                 MediumPrioJobs = MediumPrioJobs,
                 LowPrioJobs = LowPrioJobs,
@@ -312,7 +312,7 @@ public sealed class CharacterSelectionTest : GameTest
             {
                 var reversedCharacters = testCase.Characters.ShallowClone();
                 reversedCharacters.Reverse();
-                yield return testCase.WithCharacters(reversedCharacters).ToTestCaseData();
+                yield return testCase.WithCharacters(reversedCharacters, "reversed").ToTestCaseData();
             }
 
             if (testCase.Characters.Count > 2)
@@ -323,7 +323,7 @@ public sealed class CharacterSelectionTest : GameTest
                     var movingCharacter = rotatedCharacters[0];
                     rotatedCharacters.RemoveAt(0);
                     rotatedCharacters.Add(movingCharacter);
-                    yield return testCase.WithCharacters(rotatedCharacters).ToTestCaseData();
+                    yield return testCase.WithCharacters(rotatedCharacters, $"rotated {i}").ToTestCaseData();
                 }
             }
         }
