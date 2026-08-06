@@ -10,7 +10,72 @@
     sprite: _ES/Objects/Misc/magazines.rsi
     state: popular_spacepeople
   - type: Item
-    size: Small
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#ffa69b"
+      right:
+      - state: magazine-inhand-right
+        color: "#ffa69b"
+  - type: Appearance
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: ExtinguishableSetCollisionWake
+  - type: Flammable
+    fireSpread: true
+    alwaysCombustible: true
+    canExtinguish: true
+    damage:
+      types:
+        Heat: 1
+  - type: FireVisuals
+    sprite: Effects/fire.rsi
+    normalState: fire
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Edible
+    delay: 7
+    forceFeedDelay: 7
+  - type: FlavorProfile
+    flavors:
+    - paper
+  - type: BadFood
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      SheetPrinter: 100
+  - type: Tag
+    tags:
+    - Paper # SL End
 
 # Magazines
 # When adding new issues, DON'T FORGET TO ADD THEM AS SPAWNERS / TO EXISTING SPAWNERS!
@@ -25,6 +90,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: cognitowood
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#b3b3b3"
+      right:
+      - state: magazine-inhand-right
+        color: "#b3b3b3" # SL End
 
 # Cooking and Botany
 - type: entity
@@ -36,6 +110,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: cooking
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#9ed63a"
+      right:
+      - state: magazine-inhand-right
+        color: "#9ed63a" # SL End
 
 # Crossword
 - type: entity
@@ -47,6 +130,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: crossword
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#b3b3b3"
+      right:
+      - state: magazine-inhand-right
+        color: "#b3b3b3" # SL End
 
 # Wordsearch
 - type: entity
@@ -58,6 +150,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: wordsearch
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#b3b3b3"
+      right:
+      - state: magazine-inhand-right
+        color: "#b3b3b3" # SL End
 
 # Earth News
 - type: entity
@@ -69,6 +170,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: earth_news
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#3285ba"
+      right:
+      - state: magazine-inhand-right
+        color: "#3285ba" # SL End
 
 # Gun News
 - type: entity
@@ -80,6 +190,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: guns
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#007923"
+      right:
+      - state: magazine-inhand-right
+        color: "#007923" # SL End
 
 # Medical News
 - type: entity
@@ -91,6 +210,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: medical
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#9ed63a"
+      right:
+      - state: magazine-inhand-right
+        color: "#9ed63a" # SL End
 
 # Popular Spacepeople TODAY
 - type: entity
@@ -119,7 +247,7 @@
 
 # Revolutionary
 - type: entity
-  parent: BaseMagazine
+  parent: [ BaseMagazine, BaseMinorContraband ] # SL Edit literally 1984
   id: MagazineRevolutionary
   name: "REVOLUTION! #1"
   description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Firebombs & You'"
@@ -127,6 +255,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: zine_revolutionary
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#b3b3b3"
+      right:
+      - state: magazine-inhand-right
+        color: "#b3b3b3" # SL End
 
 - type: entity
   parent: MagazineRevolutionary
@@ -172,7 +309,7 @@
 
 # Conspiracy
 - type: entity
-  parent: BaseMagazine
+  parent: [ BaseMagazine, BaseMinorContraband ] # SL Edit literally 1984
   id: MagazineConspiracy
   name: True History
   description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Where NanoTrasen Really Went'" #SL Edit
@@ -180,6 +317,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: zine_conspiracy
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#eb0c07"
+      right:
+      - state: magazine-inhand-right
+        color: "#eb0c07" # SL End
 
 - type: entity
   parent: MagazineConspiracy
@@ -216,6 +362,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: fashion
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#ffe14d"
+      right:
+      - state: magazine-inhand-right
+        color: "#ffe14d" # SL End
 
 - type: entity
   parent: MagazineFashion
@@ -269,6 +424,15 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
     state: space
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#3f3f3f"
+      right:
+      - state: magazine-inhand-right
+        color: "#3f3f3f" # SL End
 
 - type: entity
   parent: MagazineEngineerNews

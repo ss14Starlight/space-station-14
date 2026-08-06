@@ -8,6 +8,26 @@
   },
   "states": [
     {
+      "name": "magazine-inhand-left",
+	  "copyright": "Made by Conflee for Starlight",
+      "directions": 4
+    },
+	{
+      "name": "magazine-inhand-right",
+	  "copyright": "Made by Conflee for Starlight",
+      "directions": 4
+    },
+	{
+      "name": "newspaper-inhand-left",
+	  "copyright": "Taken from TGStation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/service/bureaucracy.dmi",
+      "directions": 4
+    },
+	{
+      "name": "newspaper-inhand-right",
+	  "copyright": "Taken from TGStation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/service/bureaucracy.dmi",
+      "directions": 4
+    },
+	{
       "name": "cognitowood",
 	  "copyright": "Made by Flareguy for Ephemeral Space"
     },
