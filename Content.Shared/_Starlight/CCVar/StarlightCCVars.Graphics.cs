@@ -11,6 +11,12 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<int> InteractionParticlesMode =
         CVarDef.Create("opt.interaction_particles_mode", (int) InteractionParticleMode.WithoutInHand, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Experimental fix: rate-limits drunk overlay screen-texture copies to ~30Hz instead of every render frame.
+    /// </summary>
+    public static readonly CVarDef<bool> DrunkRenderFix =
+        CVarDef.Create("opt.drunk_render_fix", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
 
 /// <summary>
