@@ -38,5 +38,12 @@ Entries:
   id: 601
   time: '2026-08-06T05:13:04.000000+00:00'
   url: https://github.com/InferusSS14/Inferus/pull/6
+- author: Inferus
+  changes:
+  - message: Changed README.
+    type: Tweak
+  id: 701
+  time: '2026-08-06T05:55:36.000000+00:00'
+  url: https://github.com/InferusSS14/Inferus/pull/7
 Order: -1
 
