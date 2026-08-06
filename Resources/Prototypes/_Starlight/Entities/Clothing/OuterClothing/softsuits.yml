@@ -171,9 +171,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetsoftsuitWizardFire
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
   - type: Tag
     tags:
     - Hardsuit
@@ -222,9 +219,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetsoftsuitWizardFrost
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
   - type: PointLight
     radius: 4
     energy: 5
