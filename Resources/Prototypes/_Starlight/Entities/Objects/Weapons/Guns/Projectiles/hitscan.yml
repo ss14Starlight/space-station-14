@@ -255,7 +255,6 @@
     deviation: 0.05
   - type: HitscanRicochet
     chance: 0.48
-  - type: HitscanIgniteEffect
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -452,7 +451,6 @@
       types:
         Blunt: 2
         Heat: 14
-  - type: HitscanIgniteEffect
   - type: HitscanPierce
     chance: 0.69
     deviation: 0.2
@@ -806,7 +804,6 @@
       types:
         Blunt: 3
         Heat: 16
-  - type: HitscanIgniteEffect
   - type: HitscanPierce
     chance: 0.69
     deviation: 0.05
@@ -953,7 +950,6 @@
       types:
         Blunt: 2
         Heat: 15
-  - type: HitscanIgniteEffect
   - type: HitscanPierce
     chance: 0.69
   - type: HitscanRicochet
@@ -1107,7 +1103,6 @@
         Heat: 3
   - type: HitscanPierce
     chance: 0.02
-  - type: HitscanIgniteEffect
   - type: HitscanBasicVisuals
     bullet:
       sprite:
