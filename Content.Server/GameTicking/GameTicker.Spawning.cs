@@ -33,6 +33,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server._NullLink.PlayerData;
+using Content.Server._Starlight.GameTicking.Events;
 using Content.Server._Starlight.NewLife;
 
 namespace Content.Server.GameTicking
@@ -151,19 +152,18 @@ namespace Content.Server.GameTicking
                 // satisfies every pre-selected antag may actually spawn. This also enforces
                 // profile-specific requirements such as Initial Infected's IPC restriction.
                 var selectedAntags = _antagSelection.GetPreSelectedAntagSpecifiers(playerSession);
+                var selectedAntagDefinitions = new Dictionary<ProtoId<AntagSpecifierPrototype>, AntagSpecifierPrototype>();
                 if (selectedAntags.Count > 0)
                 {
-                    var selectedAntagDefinitions = new List<AntagSpecifierPrototype>();
                     foreach (var antag in selectedAntags)
                     {
                         if (_prototypeManager.Resolve(antag, out var definition))
                         {
-                            selectedAntagDefinitions.Add(definition);
+                            selectedAntagDefinitions.Add(antag, definition);
                             continue;
                         }
 
                         _sawmill.Error($"Could not resolve pre-selected antag definition {antag} for {playerSession.Name}.");
-                        break;
                     }
 
                     if (selectedAntagDefinitions.Count != selectedAntags.Count)
@@ -173,7 +173,7 @@ namespace Content.Server.GameTicking
                     else
                     {
                         filteredPlayerProfiles = filteredPlayerProfiles.Where(profile =>
-                            selectedAntagDefinitions.All(definition =>
+                            selectedAntagDefinitions.Values.All(definition =>
                                 _antagSelection.IsProfileValidForAntag(playerSession, profile, definition)));
                     }
                 }
@@ -182,15 +182,42 @@ namespace Content.Server.GameTicking
                 var finalPlayerProfiles = filteredPlayerProfiles.ToList();
 
                 #region Starlight
-                // If the assigned job still has a valid character, release only the failed antag
-                // reservation and fall back to normal spawning.
+                // If the player has a valid character for their assigned job but none can satisfy
+                // every preselected antag, choose the job-valid character compatible with the most
+                // reservations. Release and replace only the remaining incompatible antag slots,
+                // then spawn the player in their assigned job.
+                // TLDR: If you somehow manage to get assigned II as an IPC or Brighteye as a non-Shadekin,
+                // you will still spawn in your assigned job, but the antag slots will be released for other players to take.
                 if (finalPlayerProfiles.Count == 0 &&
                     selectedAntags.Count > 0 &&
                     jobValidPlayerProfiles.Count > 0)
                 {
-                    var evInvalidAntagProfile = new NoJobsAvailableSpawningEvent(playerSession);
+                    var profileCompatibility = jobValidPlayerProfiles
+                        .Select(profile =>
+                        {
+                            var compatibleAntags = selectedAntagDefinitions.Values.Count(definition =>
+                                _antagSelection.IsProfileValidForAntag(playerSession, profile, definition));
+                            return (Profile: profile, CompatibleAntags: compatibleAntags);
+                        })
+                        .ToList();
+
+                    var mostCompatibleAntags = profileCompatibility.Max(candidate => candidate.CompatibleAntags);
+                    var fallbackProfiles = profileCompatibility
+                        .Where(candidate => candidate.CompatibleAntags == mostCompatibleAntags)
+                        .Select(candidate => candidate.Profile)
+                        .ToList();
+                    var fallbackProfile = _robustRandom.Pick(fallbackProfiles);
+
+                    var invalidAntags = selectedAntags
+                        .Where(antag =>
+                            !selectedAntagDefinitions.TryGetValue(antag, out var definition) ||
+                            !_antagSelection.IsProfileValidForAntag(playerSession, fallbackProfile, definition))
+                        .ToHashSet();
+
+                    var evInvalidAntagProfile =
+                        new InvalidAntagProfileSpawningEvent(playerSession, invalidAntags);
                     RaiseLocalEvent(evInvalidAntagProfile);
-                    finalPlayerProfiles = jobValidPlayerProfiles;
+                    finalPlayerProfiles = [fallbackProfile];
                 }
                 #endregion
 

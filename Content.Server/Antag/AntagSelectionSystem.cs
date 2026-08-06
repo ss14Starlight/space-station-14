@@ -7,6 +7,7 @@ using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
+using Content.Server._Starlight.GameTicking.Events;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
@@ -138,6 +139,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // In order of how these occur.
         SubscribeLocalEvent<RulePlayerSpawningEvent>(OnPlayerSpawning);
         SubscribeLocalEvent<NoJobsAvailableSpawningEvent>(OnJobNotAssigned);
+        SubscribeLocalEvent<InvalidAntagProfileSpawningEvent>(OnInvalidAntagProfile); // Starlight
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnJobsAssigned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
     }
@@ -348,39 +350,59 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         #endregion
     }
 
-    private void OnJobNotAssigned(NoJobsAvailableSpawningEvent args)
+    private void OnJobNotAssigned(NoJobsAvailableSpawningEvent args) => ReleaseFailedPreSelections(args.Player); // Starlight
+
+    private void OnInvalidAntagProfile(InvalidAntagProfileSpawningEvent args) => ReleaseFailedPreSelections(args.Player, args.InvalidAntags); // Starlight
+
+    #region Starlight
+    /// <summary>
+    /// Releases either every failed preselection for a player, or only the specified antags.
+    /// Also removes released reservations from the post-spawn initialization queue so the same
+    /// vacancy is not processed and queued a second time by <see cref="OnJobsAssigned"/>.
+    /// </summary>
+    private void ReleaseFailedPreSelections(
+        ICommonSession player,
+        IReadOnlySet<ProtoId<AntagSpecifierPrototype>>? antags = null)
     {
-        // If someone fails to spawn in due to there being no jobs, they should be removed from any preselected antags.
-        // We only care about delayed rules, since if they're active the player should have already been removed via MakeAntag.
+        var released = new HashSet<(EntityUid Rule, ProtoId<AntagSpecifierPrototype> Antag)>();
+
+        // We only care about delayed rules, since active rules initialize their antags immediately.
         var query = QueryDelayedRules();
         while (query.MoveNext(out var uid, out _, out var comp, out _))
         {
             if (comp.SelectionTime == RuleStarted)
                 continue;
 
-            Debug.Assert(comp.SelectionTime != Never, $"Player: {args.Player.Name}, was pre selected for an game rule {ToPrettyString(uid)} which does not do pre-selections");
+            Debug.Assert(comp.SelectionTime != Never,
+                $"Player: {player.Name}, was pre-selected for a game rule {ToPrettyString(uid)} which does not do pre-selections");
 
             if (!comp.RemoveUponFailedSpawn)
                 continue;
 
-            foreach (var antag in comp.Antags)
+            foreach (var selector in comp.Antags)
             {
-                #region Starlight
-                /*if (!comp.PreSelectedSessions.TryGetValue(antag, out var session))
-                    break;
-                session.Remove(args.Player);*/
+                var antag = selector.Proto;
+                if (antags != null && !antags.Contains(antag))
+                    continue;
 
-                if (!comp.PreSelectedSessions.TryGetValue(antag.Proto, out var sessions) ||
-                    !sessions.Contains(args.Player))
+                if (!comp.PreSelectedSessions.TryGetValue(antag, out var sessions) ||
+                    !sessions.Contains(player))
                 {
                     continue;
                 }
 
-                DeSelectSession((uid, comp), antag.Proto, args.Player, sessions);
-                QueueReplacement((uid, comp), antag.Proto);
-                #endregion
+                DeSelectSession((uid, comp), antag, player, sessions);
+                QueueReplacement((uid, comp), antag);
+                released.Add((uid, antag));
             }
         }
+
+        if (released.Count == 0)
+            return;
+
+        _delayedAntags.RemoveAll(entry =>
+            entry.player.UserId == player.UserId &&
+            released.Contains((entry.gameRule.Owner, entry.antag.ID)));
     }
 
     private void AddGameRuleDefinitions(Entity<AntagSelectionComponent> gameRule,
@@ -406,6 +428,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 break;
         }
     }
+    #endregion
 
     private void AddGameRuleDefinitions(Entity<AntagSelectionComponent> gameRule,
         int playerCount,
