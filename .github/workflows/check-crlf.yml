@@ -25,6 +25,11 @@ jobs:
         filter: '*'
     - run: |
         mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
+        rc=0
         for added_modified_file in "${added_modified_files[@]}"; do
-          editorconfig-checker --format github-actions ${added_modified_file}
+          if [ -n "$added_modified_file" ]; then
+            editorconfig-checker --format github-actions \
+              --exclude '\.(sf2|icns|aseprite)$' "${added_modified_file}" || rc=1
+          fi
         done
+        exit $rc
