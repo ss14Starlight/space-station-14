@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Packed) Added Flippers to Courtroom.
-    type: Add
-  id: 406925
-  time: '2026-07-26T13:10:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5275
-- author: Orhu
-  changes:
   - message: (Packed) Added vend of silence to Mime Room.
     type: Add
   id: 406926
@@ -2799,4 +2792,11 @@ Entries:
   id: 407324
   time: '2026-08-05T14:54:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5500
+- author: Sparlight
+  changes:
+  - message: Smart corgis with the new AstroNav mass scanner can now actually use the mass scanner UI.
+    type: Fix
+  id: 407325
+  time: '2026-08-06T08:56:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5535
 Order: -1
