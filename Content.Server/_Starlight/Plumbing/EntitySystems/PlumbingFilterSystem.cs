@@ -127,7 +127,7 @@ public sealed partial class PlumbingFilterSystem : EntitySystem
             remaining -= pulled;
             totalPulled += pulled;
         }
-        
+
         SetRunning(ent, totalPulled > 0);
     }
 
