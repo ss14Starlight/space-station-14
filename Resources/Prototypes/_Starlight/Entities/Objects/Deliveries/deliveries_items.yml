@@ -40,8 +40,6 @@
 
 - type: entity
   id: MailSyndicateSpamLetterAdmin
-  name: Reasons to choose The Syndicate!
-  description: An advertisement for the Syndicate. Wont fit in a fax somehow.
   suffix: Admin Only, No Achievement
   parent: RRMailSyndicateSpamLetter
 
