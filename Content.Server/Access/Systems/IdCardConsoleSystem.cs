@@ -277,7 +277,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
         JobIconPrototype? jobIcon = null;
         if (_prototype.Resolve(newJobIcon, out var explicitJobIcon) && IconAllowed(explicitJobIcon))
             jobIcon = explicitJobIcon;
-        else if (_prototype.Resolve(job?.Icon, out var defaultJobIcon) && IconAllowed(defaultJobIcon))
+        else if (_prototype.Resolve(job?.Icon, out var defaultJobIcon))
             jobIcon = defaultJobIcon;
 
         if (jobIcon != null)
