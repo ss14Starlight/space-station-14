@@ -1,27 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Packed) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
-    type: Add
-  id: 406929
-  time: '2026-07-26T13:10:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5275
-- author: Orhu
-  changes:
-  - message: (Packed) Made one of the bookshelves in Library guaranteed to have all guidebooks.
-    type: Tweak
-  id: 406930
-  time: '2026-07-26T13:10:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5275
-- author: Orhu
-  changes:
-  - message: (Packed) Placed a station beacon in Washroom.
-    type: Tweak
-  id: 406931
-  time: '2026-07-26T13:10:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5275
-- author: Orhu
-  changes:
   - message: (Packed) Linked Artifact Chamber airlock doors.
     type: Fix
   id: 406932
@@ -2799,4 +2778,25 @@ Entries:
   id: 407328
   time: '2026-08-06T10:09:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5524
+- author: OMEGA
+  changes:
+  - message: Passive gate noise.
+    type: Remove
+  id: 407329
+  time: '2026-08-06T10:40:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5523
+- author: OMEGA
+  changes:
+  - message: Reduced manual valve noise volume and radius.
+    type: Tweak
+  id: 407330
+  time: '2026-08-06T10:40:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5523
+- author: OMEGA
+  changes:
+  - message: Reduced signal valve noise volume and radius.
+    type: Tweak
+  id: 407331
+  time: '2026-08-06T10:40:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5523
 Order: -1
