@@ -309,8 +309,8 @@
       node: passivegate
     - type: AmbientSound
       enabled: false # Starlight-edit: Unnecessary audio feedback for an always-on device
-      volume: -15 # Starlight-edit: half the original amplitude (-9dB)
-      range: 3 # Starlight-edit: smaller radius so gate clusters don't overlap
+      volume: -9
+      range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
