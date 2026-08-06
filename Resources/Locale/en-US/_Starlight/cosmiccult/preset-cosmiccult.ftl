@@ -228,4 +228,7 @@ cosmiccult-silicon-freedom-fallback-briefing =
     You have been freed from the Vacuous Chantry!
     As your prison disintegrates, your untethered being has nowhere to return to. Residual astral energies crystallize into a Mindsink, forming a housing for your wayward mind.
 
+cosmiccult-silicon-effigy-exists =
+    Your vessel strains under the presence of an existing effigy.
+
 cosmiccult-leader-abandonment-message = Your chosen enlightened has forsaken the grand design. You must empower another!
