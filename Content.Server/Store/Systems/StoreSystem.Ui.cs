@@ -110,7 +110,7 @@ public sealed partial class StoreSystem
 
         // STARLIGHT: Check if a rift has been destroyed and update the listing accordingly
         // This ensures the rift listing remains unavailable even when the UI is refreshed
-        _revSupplyRift.CheckRiftDestroyedAndUpdateListing(component);
+        _revSupplyRift.CheckRiftDestroyedAndUpdateListing((store, component));
 
         //this is the person who will be passed into logic for all listing filtering.
         if (user != null) //if we have no "buyer" for this update, then don't update the listings
@@ -391,7 +391,7 @@ public sealed partial class StoreSystem
                 continue;
 
             // Refresh all listings to ensure they have the latest stock count and last purchaser information
-            RefreshAllListings(storeComp);
+            RefreshAllListings((uid, storeComp));
 
             // Force a refresh of the available listings
             if (storeComp.AccountOwner != null)
@@ -543,7 +543,7 @@ public sealed partial class StoreSystem
         }
 
         // Reset store back to its original state
-        RefreshAllListings(component);
+        RefreshAllListings((uid, component));
         component.BalanceSpent = new();
         UpdateUserInterface(buyer, uid, component);
     }
