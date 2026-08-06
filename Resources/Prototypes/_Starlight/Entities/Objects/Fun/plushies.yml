@@ -86,48 +86,6 @@
     - PlushieLizard
 
 - type: entity
-  parent: BaseMothPlushie
-  id: PlushieKoni # neomoth
-  name: koni plushie
-  description: Some sort of moth-cat hybrid. You can't help but find it really cute. Can squeak and meow!
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
-    state: icon
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
-  - type: EmitSoundOnUse
-    sound:
-      collection: CatMothSounds
-  - type: EmitSoundOnActivate
-    sound:
-      collection: CatMothSounds
-  - type: EmitSoundOnCollide
-    sound:
-      collection: CatMothSounds
-  - type: EmitSoundOnLand
-    sound:
-      collection: CatMothScreams
-  - type: EmitSoundOnTrigger
-    sound:
-      collection: CatMothSounds
-  - type: MeleeWeapon
-    soundHit:
-      collection: CatMothSounds
-  - type: Edible
-    useSound:
-      collection: CatMothScreams
-  - type: Clothing
-    quickEquip: false
-    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
-    slots:
-      - HEAD
-    clothingVisuals:
-      head:
-        - state: equipped-HELMET
-
-- type: entity
   parent: BaseAvaliPlushie
   id: PlushieEinalia # CaptainComedy
   name: einalia plushie
@@ -209,6 +167,72 @@
     - ClothMade
     - Payload
     - PlushieLizard
+
+- type: entity
+  parent: BaseMothPlushie
+  id: PlushieKoni # neomoth
+  name: koni plushie
+  description: Some sort of moth-cat hybrid. You can't help but find it really cute. Can squeak and meow!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+  - type: EmitSoundOnUse
+    sound:
+      collection: CatMothSounds
+  - type: EmitSoundOnActivate
+    sound:
+      collection: CatMothSounds
+  - type: EmitSoundOnCollide
+    sound:
+      collection: CatMothSounds
+  - type: EmitSoundOnLand
+    sound:
+      collection: CatMothScreams
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: CatMothSounds
+  - type: MeleeWeapon
+    soundHit:
+      collection: CatMothSounds
+  - type: Edible
+    useSound:
+      collection: CatMothScreams
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: BaseVulpkaninPlushie
+  id: PlushieLance # deltaVelocity
+  name: lance plushie
+  description: Turning a quartermaster into a marketable plushie was not as profitable a venture as many in the cargo department had hoped.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
 
 - type: entity
   parent: BaseMothPlushie

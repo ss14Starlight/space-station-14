@@ -55,6 +55,17 @@
       stock: 1
 
 - type: listing
+  id: VendorPlushieLance
+  productEntity: PlushieLance
+  cost:
+    NTCredit: 20
+  categories:
+  - SLCrew
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: VendorPlushieMozan
   productEntity: PlushieMozan
   cost:
