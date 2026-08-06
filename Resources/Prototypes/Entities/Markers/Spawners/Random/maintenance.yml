@@ -220,7 +220,7 @@
         - id: MagazineConspiracy4
         - id: MagazineConspiracy5
         - id: MagazineConspiracy6
-      # Starlight End 
+      # Starlight End
     # Rare Group
     - !type:GroupSelector
       weight: 2

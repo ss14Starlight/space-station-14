@@ -110,7 +110,7 @@
   id: MagazinePopularSpacepeople3
   name: "Popular Spacepeople TODAY #145"
   description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'Maksym Millions's new dietary supplement sparks controversy'"
-  
+
 - type: entity
   parent: MagazinePopularSpacepeople
   id: MagazinePopularSpacepeople4
@@ -170,7 +170,6 @@
   name: "REVOLUTION! #10"
   description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Non-Governmental Threats: Stay Vigiliant Against Syndicate Agents'"
 
-
 # Conspiracy
 - type: entity
   parent: BaseMagazine
@@ -194,7 +193,7 @@
 
 - type: entity
   parent: MagazineConspiracy
-  id: MagazineConspiracy4   
+  id: MagazineConspiracy4
   description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'RATMEN ARE REAL AND IN YOUR STATION'"
 
 - type: entity
@@ -229,7 +228,7 @@
   id: MagazineFashion3
   name: "Fashion Fanatics #15"
   description: "A magazine containing various fashion ideas & news. The headline reads: 'Aquatic-themed outfit ideas'"
-  
+
 - type: entity
   parent: MagazineFashion
   id: MagazineFashion4

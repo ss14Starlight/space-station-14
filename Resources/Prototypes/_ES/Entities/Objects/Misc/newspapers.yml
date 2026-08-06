@@ -43,7 +43,7 @@
   id: NewspaperWater
   name: Galaxy NOW - October 30th, 2525 #SL Edit
   description: "A paperback newspaper. The headline reads: 'Water Shortage Creates Concern For Halloween Plans on Indar'" #SL Edit
-  
+
 - type: entity
   parent: BaseNewspaper
   id: NewspaperWeldingFuel
