@@ -55,7 +55,7 @@ public sealed partial class JobIdentityConsoleBoundUserInterface : BoundUserInte
         _window?.UpdateState(castState);
     }
 
-    public void SubmitData(string newJobTitle, ProtoId<JobIconPrototype> newJobIcon)
+    public void SubmitData(string newJobTitle, ProtoId<JobIconPrototype>? newJobIcon)
     {
         if (newJobTitle.Length > _maxIdJobLength)
             newJobTitle = newJobTitle[.._maxIdJobLength];

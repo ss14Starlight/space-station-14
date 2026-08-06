@@ -129,7 +129,7 @@ public sealed partial class JobIdentityConsoleWindow : DefaultWindow
             jobIconButton.OnPressed += _ =>
             {
                 _currentJobIcon = jobIcon.ID;
-                SubmitData();
+                _owner?.SubmitData(JobTitleLineEdit.Text, _currentJobIcon);
             };
             IconGrid.AddChild(jobIconButton);
 
@@ -139,6 +139,7 @@ public sealed partial class JobIdentityConsoleWindow : DefaultWindow
 
     private void SubmitData()
     {
-        _owner?.SubmitData(JobTitleLineEdit.Text, _currentJobIcon);
+        // Should no icon be selected the existing icon will be retained - prevents issues in the case of a title only submit.
+        _owner?.SubmitData(JobTitleLineEdit.Text, null);
     }
 }

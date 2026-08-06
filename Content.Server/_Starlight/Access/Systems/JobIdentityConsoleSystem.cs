@@ -49,24 +49,30 @@ public sealed partial class JobIdentityConsoleSystem : SharedJobIdentityConsoleS
     private void TryWriteJobIdentity(EntityUid uid,
         JobIdentityConsoleComponent component,
         string newJobTitle,
-        ProtoId<JobIconPrototype> newJobIconId,
+        ProtoId<JobIconPrototype>? newJobIconId,
         EntityUid player)
     {
         if (component.TargetIdSlot.Item is not { Valid: true } targetId || !PrivilegedIdIsAuthorized(uid, component))
             return;
 
-        if (!_prototype.Resolve(newJobIconId, out var newJobIcon))
-            return;
+        // When a null icon is returned the current icon is kept - used to prevent issues when only a name change occurs.
+        JobIconPrototype? newJobIcon = null;
+        if (newJobIconId != null)
+        {
+            if (!_prototype.Resolve(newJobIconId, out newJobIcon))
+                return;
 
-        // Prevents applying icons not accessible on the console.
-        if (!newJobIcon.Tags.Overlaps(component.RequiredTags))
-            return;
+            // Prevents applying icons not accessible on the console.
+            if (!newJobIcon.Tags.Overlaps(component.RequiredTags))
+                return;
+        }
 
         _idCard.TryChangeJobTitle(targetId, newJobTitle, player: player);
-        _idCard.TryChangeJobIcon(targetId, newJobIcon, player: player);
+        if (newJobIcon != null)
+            _idCard.TryChangeJobIcon(targetId, newJobIcon, player: player);
 
         _adminLogger.Add(LogType.Action,
-            $"{player} used {ToPrettyString(uid)} to set {ToPrettyString(targetId)}'s job title to \"{newJobTitle}\" and job icon to {newJobIconId}");
+            $"{player} used {ToPrettyString(uid)} to set {ToPrettyString(targetId)}'s job title to \"{newJobTitle}\"{(newJobIcon != null ? $" and job icon to {newJobIconId}" : string.Empty)}");
     }
 
     private void UpdateUserInterface(EntityUid uid, JobIdentityConsoleComponent component, EntityEventArgs args)

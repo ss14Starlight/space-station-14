@@ -34,9 +34,9 @@ public sealed partial class JobIdentityConsoleComponent : Component
     public sealed class WriteJobIdentityMessage : BoundUserInterfaceMessage
     {
         public readonly string JobTitle;
-        public readonly ProtoId<JobIconPrototype> JobIcon;
+        public readonly ProtoId<JobIconPrototype>? JobIcon;
 
-        public WriteJobIdentityMessage(string jobTitle, ProtoId<JobIconPrototype> jobIcon)
+        public WriteJobIdentityMessage(string jobTitle, ProtoId<JobIconPrototype>? jobIcon)
         {
             JobTitle = jobTitle;
             JobIcon = jobIcon;
