@@ -1,60 +1,4 @@
 Entries:
-- author: Orhu
-  changes:
-  - message: (Plasma) Added Flippers to Courtroom.
-    type: Add
-  id: 406934
-  time: '2026-07-26T13:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5276
-- author: Orhu
-  changes:
-  - message: (Plasma) Added vend of silence to Mime Room.
-    type: Add
-  id: 406935
-  time: '2026-07-26T13:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5276
-- author: Orhu
-  changes:
-  - message: (Plasma) Added ice cream maker to Kitchen.
-    type: Add
-  id: 406936
-  time: '2026-07-26T13:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5276
-- author: Orhu
-  changes:
-  - message: (Plasma) Added ticket machine to HOP.
-    type: Add
-  id: 406937
-  time: '2026-07-26T13:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5276
-- author: Orhu
-  changes:
-  - message: (Plasma) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
-    type: Add
-  id: 406938
-  time: '2026-07-26T13:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5276
-- author: Orhu
-  changes:
-  - message: (Plasma) Added a guidebook crate to the Library.
-    type: Add
-  id: 406939
-  time: '2026-07-26T13:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5276
-- author: Orhu
-  changes:
-  - message: (Plasma) Placed a station beacon in Washroom.
-    type: Tweak
-  id: 406940
-  time: '2026-07-26T13:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5276
-- author: Orhu
-  changes:
-  - message: (Plasma) Replaced certain out-of-place tiles at the plasma miners.
-    type: Tweak
-  id: 406941
-  time: '2026-07-26T13:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5276
 - author: Cvlancer
   changes:
   - message: (OASIS) Added Stir Stir to genpop.
@@ -2799,4 +2743,60 @@ Entries:
   id: 407333
   time: '2026-08-06T10:57:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5517
+- author: neomoth
+  changes:
+  - message: You can now multitool the energy shield to make it RGB.
+    type: Add
+  id: 407334
+  time: '2026-08-06T10:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5459
+- author: neomoth
+  changes:
+  - message: You can now multitool the X-03 green phase shield to make it RGB, though it requires an extra step.
+    type: Add
+  id: 407335
+  time: '2026-08-06T10:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5459
+- author: neomoth
+  changes:
+  - message: You can now multitool the X-03 phase shield to make it RGB, though it requires an extra step.
+    type: Add
+  id: 407336
+  time: '2026-08-06T10:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5459
+- author: neomoth
+  changes:
+  - message: You can now multitool the X-09 Headsman to make it RGB, though it requires an extra step.
+    type: Add
+  id: 407337
+  time: '2026-08-06T10:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5459
+- author: neomoth
+  changes:
+  - message: Made so items that provide bonus damage on wield can opt to respect ItemToggleComponent, such that if an item is deactivated it will not provide the damage bonus.
+    type: Tweak
+  id: 407338
+  time: '2026-08-06T10:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5459
+- author: neomoth
+  changes:
+  - message: Fix a bug where wielding an item with ItemToggleActiveSound with prediction enabled would cause the client-side audio entity to not get deleted when unwielding the item.
+    type: Fix
+  id: 407339
+  time: '2026-08-06T10:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5459
+- author: neomoth
+  changes:
+  - message: Some mapped energy swords that tried to have pre-set colors now no longer reroll their color on map init.
+    type: Fix
+  id: 407340
+  time: '2026-08-06T10:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5459
+- author: neomoth
+  changes:
+  - message: Fix a bug where ItemUnwieldedEvent would sometimes be raised on the client after wielding an item, causing entities with ItemToggleComponent on the client to desync from the server and erroneously show an activate AND deactivate verb.
+    type: Fix
+  id: 407341
+  time: '2026-08-06T10:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5459
 Order: -1
