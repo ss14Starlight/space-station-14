@@ -95,6 +95,10 @@
   abstract: true
   id: GasVentScrubberChamberBase
   components:
+  # Scrubbers default to enabled and nothing switches them off at map init, so a
+  # chamber would be stripped of its mix from round start.
+  - type: GasVentScrubber
+    enabled: false
   - type: AtmosPipeLayers
     alternativePrototypes:
       Primary: GasVentScrubberChamber
