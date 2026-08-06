@@ -1,0 +1,122 @@
+# Chamber atmosphere - every threshold is ignored, so linking these to an air
+# alarm never raises an alert whatever the chamber is filled with. Readings still
+# report to the alarm UI. Passive vents and outlet injectors are not sensors and
+# need no variant.
+
+# Air Sensor
+
+- type: entity
+  abstract: true
+  parent: AirSensorBase
+  id: AirSensorChamberBase
+  suffix: Chamber Atmosphere
+  components:
+  - type: AtmosMonitor
+    temperatureThresholdId: ignore
+    pressureThresholdId: ignore
+    gasThresholdPrototypes:
+      Oxygen: ignore
+      Nitrogen: ignore
+      CarbonDioxide: ignore
+      Plasma: ignore
+      Tritium: ignore
+      WaterVapor: ignore
+      Ammonia: ignore
+      NitrousOxide: ignore
+      Frezon: ignore
+      BZ: ignore
+      Healium: ignore
+      Nitrium: ignore
+      Pluoxium: ignore
+      Hydrogen: ignore
+      HyperNoblium: ignore
+      ProtoNitrate: ignore
+      Zauker: ignore
+      Halon: ignore
+      Helium: ignore
+      AntiNoblium: ignore
+      Ulnitranium: ignore
+      ZXA: ignore
+
+- type: entity
+  parent: [AirSensorChamberBase, AirSensor]
+  id: AirSensorChamber
+  description: An air sensor set up for use in chambers. It reports readings without raising alarms.
+
+# Gas Vent
+
+- type: entity
+  parent: [AirSensorChamberBase, GasVentPump]
+  id: GasVentPumpChamber
+  description: An air vent set up for use in chambers. It reports readings without raising alarms.
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentPumpChamber
+      Secondary: GasVentPumpChamberAlt1
+      Tertiary: GasVentPumpChamberAlt2
+      Quaternary: GasVentPumpChamberAlt3
+      Quinary: GasVentPumpChamberAlt4
+
+- type: entity
+  parent: [AirSensorChamberBase, GasVentPumpChamber, GasVentPumpAlt1]
+  id: GasVentPumpChamberAlt1
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in chambers. It reports readings without raising alarms.
+
+- type: entity
+  parent: [AirSensorChamberBase, GasVentPumpChamber, GasVentPumpAlt2]
+  id: GasVentPumpChamberAlt2
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in chambers. It reports readings without raising alarms.
+
+- type: entity
+  parent: [AirSensorChamberBase, GasVentPumpChamber, GasVentPumpAlt3]
+  id: GasVentPumpChamberAlt3
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in chambers. It reports readings without raising alarms.
+
+- type: entity
+  parent: [AirSensorChamberBase, GasVentPumpChamber, GasVentPumpAlt4]
+  id: GasVentPumpChamberAlt4
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in chambers. It reports readings without raising alarms.
+
+# Gas Scrubber
+
+- type: entity
+  parent: [AirSensorChamberBase, GasVentScrubber]
+  id: GasVentScrubberChamber
+  description: An air scrubber set up for use in chambers. It reports readings without raising alarms.
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentScrubberChamber
+      Secondary: GasVentScrubberChamberAlt1
+      Tertiary: GasVentScrubberChamberAlt2
+      Quaternary: GasVentScrubberChamberAlt3
+      Quinary: GasVentScrubberChamberAlt4
+
+- type: entity
+  parent: [AirSensorChamberBase, GasVentScrubberChamber, GasVentScrubberAlt1]
+  id: GasVentScrubberChamberAlt1
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in chambers. It reports readings without raising alarms.
+
+- type: entity
+  parent: [AirSensorChamberBase, GasVentScrubberChamber, GasVentScrubberAlt2]
+  id: GasVentScrubberChamberAlt2
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in chambers. It reports readings without raising alarms.
+
+- type: entity
+  parent: [AirSensorChamberBase, GasVentScrubberChamber, GasVentScrubberAlt3]
+  id: GasVentScrubberChamberAlt3
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in chambers. It reports readings without raising alarms.
+
+- type: entity
+  parent: [AirSensorChamberBase, GasVentScrubberChamber, GasVentScrubberAlt4]
+  id: GasVentScrubberChamberAlt4
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in chambers. It reports readings without raising alarms.
