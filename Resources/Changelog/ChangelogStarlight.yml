@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Packed) Added vend of silence to Mime Room.
-    type: Add
-  id: 406926
-  time: '2026-07-26T13:10:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5275
-- author: Orhu
-  changes:
   - message: (Packed) Added ice cream maker to Kitchen.
     type: Add
   id: 406927
@@ -2799,4 +2792,11 @@ Entries:
   id: 407325
   time: '2026-08-06T08:56:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5535
+- author: RedSpeeds
+  changes:
+  - message: Changed shuttle console's maintenance panel to be accessible even when locked.
+    type: Tweak
+  id: 407326
+  time: '2026-08-06T09:30:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5529
 Order: -1
