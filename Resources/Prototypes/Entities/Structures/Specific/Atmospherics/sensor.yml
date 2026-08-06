@@ -6,9 +6,7 @@
     deviceNetId: AtmosDevices
     receiveFrequencyId: AtmosMonitor
     transmitFrequencyId: AtmosMonitor
-    # Starlight-edit: prefix moved to the sensors themselves - vents and scrubbers
-    # inherit this base for its monitoring, and a variant listing it as an earlier
-    # parent used to inherit the sensor address with it
+    # Starlight-edit: prefix moved to AirSensor and GasPipeSensor, vents and scrubbers inherit this base too
     sendBroadcastAttemptEvent: true
     examinableAddress: true
   - type: WiredNetworkConnection
