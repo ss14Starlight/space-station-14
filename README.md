@@ -28,26 +28,11 @@ Space Station 14 has a [documentation site](https://docs.spacestation14.io/) for
 
 ## License
 
-> [!NOTE]
-> **Relicensing in progress.** The Starlight Fork License (`LICENSE-Starlight.TXT`) was applied to Starlight contributions
-> from **2024-11-04** (commit `84205e38`) through **2026-02-28** (commit `01eff0f7`).
-> This license **remains in effect** for contributions made during that period until explicit relicensing
-> consent is received from the respective authors. Once consent is given, those contributions are relicensed under MIT.
-> All contributions outside of that range are licensed under MIT (`LICENSE.TXT`).
-> Relicensing requests are tracked in [issue #3499](https://github.com/ss14Starlight/space-station-14/issues/3499).
+> All contributions to this repository are licensed under [MIT](https://opensource.org/license/MIT).
 
-### Click each banner for further information
+> Contributions submitted 2024-11-04 (commit `84205e38`) through 2026-02-28 (commit `01eff0f7`) may still fall under the Starlight License (`LICENSE-Starlight.txt`).
+> Relicensing requests can be found in [issue #3499](https://github.com/ss14Starlight/space-station-14/issues/3499).
+> Assets are licensed under CC BY-SA 4.0 unless otherwise stated.
 
----
-
-<details>
-<summary><a href="#"><img src="https://img.shields.io/badge/licence-MIT-green?style=for-the-badge" alt="MIT license"></a></summary>
-
->Some files are licensed under [MIT license](https://opensource.org/license/MIT), these files are Space Wizards Federation code.
-</details>
-
-<details>
-<summary><a href="#"><img src="https://img.shields.io/badge/licence-CC_3.0_BY--SA-lightblue?style=for-the-badge" alt="Creative Commons 3.0 BY-SA"></a></summary>
-
->All other non-code Inferus Assets, including icons and sound files, are licensed under the [Creative Commons 3.0 BY-SA](https://creativecommons.org/licenses/by-sa/3.0/) license unless otherwise noted in the folder or file.
-</details>
+> Some assets may be licensed under non-commercial licenses, such as [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) and [CC BY-NC-SA 4.0.](https://creativecommons.org/licenses/by-sa/4.0/)
+> These assets may not be used for commercial purposes under any circumstance except by the copyright holder.

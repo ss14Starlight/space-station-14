@@ -1,7 +1,7 @@
-## Short description
+## Description
 <!-- What do you wish to change with your PR? -->
 
-## Why we need to add this
+## Reason for Adding
 <!-- What is the reason for adding these changes? Please describe how this will change the game in any way. -->
 
 ## Media (Video/Screenshots)
