@@ -34,6 +34,7 @@
   - type: Tag
     tags:
     - Ore
+    - AbyssiumOre #BountySalvageAbyssiumOre
 
 #stack
 - type: stack

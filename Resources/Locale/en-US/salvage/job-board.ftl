@@ -22,11 +22,15 @@ salv-job-board-name-BountyTeethSpaceCarp = Space Carp
 salv-job-board-name-BountySalvageScrap = Deep-Space Debris
 salv-job-board-name-BountySalvageOreGold = Gold (Ore)
 salv-job-board-name-BountySalvageOreSilver = Silver (Ore)
+salv-job-board-name-BountySalvageRawXenoMeat = Raw Xeno Meat
+salv-job-board-name-BountySalvageAbyssiumOre = Abyssium Ore
 
 salv-job-board-name-BountySalvageOreUranium = Uranium (Ore)
 salv-job-board-name-BountySalvageOrePlasma = Plasma (Ore)
 salv-job-board-name-BountySalvageOreBananium = Bananium (Ore)
 salv-job-board-name-BountyTeethSharkminnow = Sharkminnow
+salv-job-board-name-BountySalvageBandolier = Marine Bandolier
+salv-job-board-name-BountySalvageCommieID = Soviet ID Card
 
 salv-job-board-name-BountyGoliathPlates = Goliath
 salv-job-board-name-BountyHivelordRemains = Hivelord
@@ -36,11 +40,15 @@ bounty-description-tooth-space-carp = We need you to get a sample of some space 
 bounty-description-salvage-scrap = We are researching the effects of deep space on station materials, and we need some samples. Find some old junk off of debris and bring it to us.
 bounty-description-salvage-ore-gold = We are engaging in an experimental new electronics manufacturing process. Deliver us a large sum of unrefined gold ore. It can come from any source.
 bounty-description-salvage-ore-silver = We are studying the material effects of silver based on the refining methods. Send us a large amount of unrefined silver ore. It can come from any source.
+bounty-description-salvage-raw-xeno-meat = A modern day Iron Chef has requested unique proteins to create a new star dish with. Let's send them some of the best we can find!
+bounty-description-salvage-abyssium-ore = We heard of the existance of some Abyssium ore in the sector. Our team wants you to retrieve some for testing.
 
 bounty-description-tooth-sharkminnow = We need you to get a sample of some Sharkminnow teeth. These guys are a fair bit nastier than the smaller carp you're familiar with. Take care to not let them bite you: they'll suck out your blood and heal.
 bounty-description-salvage-ore-plasma = We need a shipment of plasma ore to send over to the research station. Please provide us with some so that we can continue our testing. It can come from any source.
 bounty-description-salvage-ore-uranium = We need a sample of uranium ore for our ongoing experiments on nuclear devices. Be aware that while the uranium does glow slightly, it will probably not harm you. It can come from any source.
 bounty-description-salvage-ore-bananium = We have an ongoing project to decode the mystifying clown genomic sequence. We believe a sample of raw bananium will help us achieve this. Note that this only comes from the rarest of deep-space asteroids.
+bounty-description-salvage-bandolier = We have a certain collector of USSP merchandise, they wish to finish their cosplay outfit, and have requested a few bandoliers. Get it done.
+bounty-description-salvage-commie-id = Again, this certain collector of USSP merchandise is really going out down to the ID Card, let's get them a few to get their LARP on fleek.
 
 bounty-description-remains = We need you to get a sample of a few Hivelord cores. Be aware that Hivelords can replicate infinitely if the core is not destroyed. Take care not to get overwhelmed.
 bounty-description-plates = We need you to get a couple sheets of Goliath hide. These guys are pretty slow, but be careful about the tentacles: they'll grab you and pull you to the ground. You don't want to know what happens next.
