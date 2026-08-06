@@ -1,11 +1,7 @@
-# STARLIGHT
-# Keep this file as it is when merging upstream, we dont want anything from the upstream version
-# Maintainer is needed on each as the latest rule takes precedence
-* @ss14Starlight/maintainer
-/Content.*/ @ss14Starlight/maintainer @ss14Starlight/dev
-/Resources/Textures/ @ss14Starlight/maintainer @ss14Starlight/spriters
-/Resources/Maps/ @ss14Starlight/maintainer @ss14Starlight/mappers
-/Resources/Prototypes/ @ss14Starlight/maintainer @ss14Starlight/prototypers
-/Resources/ServerInfo/ @ss14Starlight/maintainer @ss14Starlight/wiki
-
-/Resources/Prototypes/_NullLink/ @StarlightHost
+# INFERUS
+* @InferusSS14/maintainer
+/Content.*/ @InferusSS14/maintainer @InferusSS14/dev
+/Resources/Textures/ @InferusSS14/maintainer @InferusSS14/spriters
+/Resources/Maps/ @InferusSS14/maintainer @InferusSS14/mappers
+/Resources/Prototypes/ @InferusSS14/maintainer @InferusSS14/prototypers
+/Resources/ServerInfo/ @InferusSS14/maintainer @InferusSS14/wiki
