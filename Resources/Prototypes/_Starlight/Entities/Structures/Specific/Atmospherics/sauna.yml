@@ -42,12 +42,11 @@
 
 # Gas Vent
 
+# Carries nothing but the layer map, so the vanilla alt sprite is the only one in
+# the alts' parent lists and the placement ghost draws it at the right offset.
 - type: entity
-  parent: [AirSensorSaunaBase, GasVentPump]
-  id: GasVentPumpSauna
-  placement:
-    mode: AlignAtmosPipeLayers
-  description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+  abstract: true
+  id: GasVentPumpSaunaBase
   components:
   - type: AtmosPipeLayers
     alternativePrototypes:
@@ -58,25 +57,32 @@
       Quinary: GasVentPumpSaunaAlt4
 
 - type: entity
-  parent: [AirSensorSaunaBase, GasVentPumpSauna, GasVentPumpAlt1]
+  parent: [AirSensorSaunaBase, GasVentPumpSaunaBase, GasVentPump]
+  id: GasVentPumpSauna
+  placement:
+    mode: AlignAtmosPipeLayers
+  description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
+
+- type: entity
+  parent: [AirSensorSaunaBase, GasVentPumpSaunaBase, GasVentPumpAlt1]
   id: GasVentPumpSaunaAlt1
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
 
 - type: entity
-  parent: [AirSensorSaunaBase, GasVentPumpSauna, GasVentPumpAlt2]
+  parent: [AirSensorSaunaBase, GasVentPumpSaunaBase, GasVentPumpAlt2]
   id: GasVentPumpSaunaAlt2
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
 
 - type: entity
-  parent: [AirSensorSaunaBase, GasVentPumpSauna, GasVentPumpAlt3]
+  parent: [AirSensorSaunaBase, GasVentPumpSaunaBase, GasVentPumpAlt3]
   id: GasVentPumpSaunaAlt3
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
 
 - type: entity
-  parent: [AirSensorSaunaBase, GasVentPumpSauna, GasVentPumpAlt4]
+  parent: [AirSensorSaunaBase, GasVentPumpSaunaBase, GasVentPumpAlt4]
   id: GasVentPumpSaunaAlt4
   categories: [ HideSpawnMenu ]
   description: An air vent set up for use in saunas. It ignores humidity, and heat until it turns harmful.
@@ -84,13 +90,11 @@
 # Gas Scrubber
 
 # filterGases replaces the inherited list wholesale, so this is the default set
-# with WaterVapor dropped.
+# with WaterVapor dropped. It lives here rather than on the primary so the alts
+# inherit it without the primary's sprite.
 - type: entity
-  parent: [AirSensorSaunaBase, GasVentScrubber]
-  id: GasVentScrubberSauna
-  placement:
-    mode: AlignAtmosPipeLayers
-  description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+  abstract: true
+  id: GasVentScrubberSaunaBase
   components:
   - type: AtmosPipeLayers
     alternativePrototypes:
@@ -120,25 +124,32 @@
     - ZXA
 
 - type: entity
-  parent: [AirSensorSaunaBase, GasVentScrubberSauna, GasVentScrubberAlt1]
+  parent: [AirSensorSaunaBase, GasVentScrubberSaunaBase, GasVentScrubber]
+  id: GasVentScrubberSauna
+  placement:
+    mode: AlignAtmosPipeLayers
+  description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
+
+- type: entity
+  parent: [AirSensorSaunaBase, GasVentScrubberSaunaBase, GasVentScrubberAlt1]
   id: GasVentScrubberSaunaAlt1
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
 
 - type: entity
-  parent: [AirSensorSaunaBase, GasVentScrubberSauna, GasVentScrubberAlt2]
+  parent: [AirSensorSaunaBase, GasVentScrubberSaunaBase, GasVentScrubberAlt2]
   id: GasVentScrubberSaunaAlt2
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
 
 - type: entity
-  parent: [AirSensorSaunaBase, GasVentScrubberSauna, GasVentScrubberAlt3]
+  parent: [AirSensorSaunaBase, GasVentScrubberSaunaBase, GasVentScrubberAlt3]
   id: GasVentScrubberSaunaAlt3
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
 
 - type: entity
-  parent: [AirSensorSaunaBase, GasVentScrubberSauna, GasVentScrubberAlt4]
+  parent: [AirSensorSaunaBase, GasVentScrubberSaunaBase, GasVentScrubberAlt4]
   id: GasVentScrubberSaunaAlt4
   categories: [ HideSpawnMenu ]
   description: An air scrubber set up for use in saunas. It leaves water vapour where it is.
