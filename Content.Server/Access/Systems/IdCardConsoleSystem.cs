@@ -80,7 +80,8 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
         _adminLogger.Add(LogType.Action,
             $"{ToPrettyString(args.UserUid)} emagged {ToPrettyString(ent)}, unlocking every job icon");
 
-        UpdateUserInterface(ent, ent.Comp);
+        // The EmaggedComponent flag isn't persisted until after this event returns, so CheckFlag would still report locked here - override it explicitly.
+        UpdateUserInterface(ent, ent.Comp, allIconsUnlockedOverride: true);
     }
     // Starlight-edit: End
 
@@ -108,7 +109,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
     private void UpdateUserInterface(EntityUid uid, IdCardConsoleComponent component, EntityEventArgs args) =>
         UpdateUserInterface(uid, component);
 
-    private void UpdateUserInterface(EntityUid uid, IdCardConsoleComponent component)
+    private void UpdateUserInterface(EntityUid uid, IdCardConsoleComponent component, bool? allIconsUnlockedOverride = null)
     {
         if (!component.Initialized)
             return;
@@ -184,7 +185,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
         }
 
         var showGroups = availableGroups.Count > 1;
-        var allIconsUnlocked = component.AllIconsUnlocked || _emag.CheckFlag(uid, EmagType.Interaction);
+        var allIconsUnlocked = allIconsUnlockedOverride ?? (component.AllIconsUnlocked || _emag.CheckFlag(uid, EmagType.Interaction));
         // Starlight-edit: End
 
         IdCardConsoleBoundUserInterfaceState newState;
