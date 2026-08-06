@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Packed) Added ice cream maker to Kitchen.
-    type: Add
-  id: 406927
-  time: '2026-07-26T13:10:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5275
-- author: Orhu
-  changes:
   - message: (Packed) Added space heaters to Atmos.
     type: Add
   id: 406928
@@ -2799,4 +2792,11 @@ Entries:
   id: 407326
   time: '2026-08-06T09:30:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5529
+- author: Spaghetti-Bit
+  changes:
+  - message: Gave all vampires nightvision upon choosing a class, it's no longer exclusive to Umbrae.
+    type: Tweak
+  id: 407327
+  time: '2026-08-06T09:30:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5504
 Order: -1
