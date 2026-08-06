@@ -1,7 +1,6 @@
 # Chamber atmosphere - every threshold is ignored, so linking these to an air
 # alarm never raises an alert whatever the chamber is filled with. Readings still
-# report to the alarm UI. Passive vents and outlet injectors are not sensors and
-# need no variant.
+# report to the alarm UI.
 
 # Air Sensor
 
