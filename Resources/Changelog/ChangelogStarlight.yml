@@ -1,20 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Packed) Linked Artifact Chamber airlock doors.
-    type: Fix
-  id: 406932
-  time: '2026-07-26T13:10:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5275
-- author: Orhu
-  changes:
-  - message: (Plasma) Added Stir Stir to Genpop.
-    type: Add
-  id: 406933
-  time: '2026-07-26T13:10:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5276
-- author: Orhu
-  changes:
   - message: (Plasma) Added Flippers to Courtroom.
     type: Add
   id: 406934
@@ -2799,4 +2785,18 @@ Entries:
   id: 407331
   time: '2026-08-06T10:40:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5523
+- author: Orhu
+  changes:
+  - message: Adds new random names for Avali (first and pack), Borgis (and all variants), Corgis, Cyclorites, Devils (name and title), Resomi (pack only), Shadekin, and Thaven.
+    type: Add
+  id: 407332
+  time: '2026-08-06T10:57:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5517
+- author: Orhu
+  changes:
+  - message: Removed the name "Jax" from the Shadekin random name pool.
+    type: Remove
+  id: 407333
+  time: '2026-08-06T10:57:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5517
 Order: -1
