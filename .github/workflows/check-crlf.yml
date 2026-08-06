@@ -1,4 +1,4 @@
-﻿name: EditorConfig Check
+name: EditorConfig Check
 
 # Cancel older jobs on PRs when new changes are pushed
 concurrency:
@@ -16,5 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v7
-    - name: Check for CRLF, trailing whitespace, and missing final newlines
-      run: Tools/check_crlf.py
+    - uses: editorconfig-checker/action-editorconfig-checker@v2
+    - name: Get changed files
+      id: files
+      uses: Ana06/get-changed-files@v2.3.0
+    - run: editorconfig-checker --format github-actions ${{ steps.files.outputs.all }}
