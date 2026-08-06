@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Packed) Added space heaters to Atmos.
-    type: Add
-  id: 406928
-  time: '2026-07-26T13:10:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5275
-- author: Orhu
-  changes:
   - message: (Packed) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
     type: Add
   id: 406929
@@ -2799,4 +2792,11 @@ Entries:
   id: 407327
   time: '2026-08-06T09:30:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5504
+- author: Conflee
+  changes:
+  - message: Restored a very old clause to HoS SOP. "Sentences that would exceed 30 minutes may be made permanent at the Head of Security's discretion, but should be reserved for extreme cases and repeat offenders." This is so HoS can handle brig shitters who non-stop break things and attack secoffs/other inmates.
+    type: Tweak
+  id: 407328
+  time: '2026-08-06T10:09:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5524
 Order: -1
