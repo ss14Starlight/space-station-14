@@ -1158,7 +1158,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             gear.Add(prototype.StartingGear.Value);
 
         var selectedLoadout = GetSelectedLoadout(player, selectedProfile, prototype.RoleLoadout, out var selectedLoadoutProto); // Starlight, antag loadouts
-        _loadout.Equip(antag, gear, prototype.RoleLoadout, selectedLoadout, selectedLoadoutProto); // Starlight
+        _loadout.Equip(antag, gear, prototype.RoleLoadout, selectedLoadout, selectedLoadoutProto, prioritizeBackStorage: true); // Starlight
 
         // Ensure that we have the right mind for our entity.
         if (!_mind.TryGetMind(player, out var mind, out var mindComp) || mindComp.OwnedEntity != antag)
