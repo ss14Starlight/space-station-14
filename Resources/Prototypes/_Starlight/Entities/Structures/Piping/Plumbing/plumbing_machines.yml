@@ -627,7 +627,7 @@
   parent: PlumbingMachineBase
   id: PlumbingFilter
   name: plumbing filter
-  description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
+  description: Filters up to 10 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
   - type: Physics
     bodyType: Static
@@ -636,7 +636,13 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: filter
-      map: [ "enum.SubfloorLayers.FirstLayer" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PlumbingVisuals.Running:
+        enum.PlumbingVisualLayers.Base:
+          True: { state: filter_working }
+          False: { state: filter }
   - type: PlumbingDevice
     updateInterval: 2
   - type: PlumbingInlet
@@ -705,7 +711,7 @@
   parent: PlumbingFilter
   id: PlumbingFilterFlipped
   suffix: Flipped
-  description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
+  description: Filters up to 10 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
   - type: Physics
     bodyType: Static
@@ -714,7 +720,13 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: filterF
-      map: [ "enum.SubfloorLayers.FirstLayer" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PlumbingVisuals.Running:
+        enum.PlumbingVisualLayers.Base:
+          True: { state: filterF_working }
+          False: { state: filterF }
   - type: NodeContainer
     nodes:
       inlet:
