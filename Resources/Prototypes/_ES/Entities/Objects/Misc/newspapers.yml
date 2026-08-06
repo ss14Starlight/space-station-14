@@ -4,6 +4,7 @@
   parent: BaseItem
   name: newspaper
   description: A paperback newspaper. This one is several years out of date and doesn't seem to contain any information you don't already know.
+  abstract: true
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi

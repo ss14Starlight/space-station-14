@@ -20,7 +20,7 @@
   parent: BaseMagazine
   id: MagazineCognitoWood
   name: "CognitoWood #1"
-  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Perservence, Lethargy, and Branches, Super-Nymphs United!'"
+  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Perseverance, Lethargy, and Branches, Super-Nymphs United!'"
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi
@@ -156,7 +156,7 @@
   parent: MagazineRevolutionary
   id: MagazineRevolutionary6
   name: "REVOLUTION! #7"
-  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Station Bots & Their Vunerabilities'"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Station Bots & Their Vulnerabilities'"
 
 - type: entity
   parent: MagazineRevolutionary
@@ -168,7 +168,7 @@
   parent: MagazineRevolutionary
   id: MagazineRevolutionary8
   name: "REVOLUTION! #10"
-  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Non-Governmental Threats: Stay Vigiliant Against Syndicate Agents'"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Non-Governmental Threats: Stay Vigilant Against Syndicate Agents'"
 
 # Conspiracy
 - type: entity
@@ -189,7 +189,7 @@
 - type: entity
   parent: MagazineConspiracy
   id: MagazineConspiracy3
-  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Rising barricade usage orchastrated by Big Wood'"
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Rising barricade usage orchestrated by Big Wood'"
 
 - type: entity
   parent: MagazineConspiracy
@@ -264,7 +264,7 @@
   parent: BaseMagazine
   id: MagazineEngineerNews
   name: "ShuttleTech #2"
-  description: "A magazine containing the latest news on engineering & tech advancements. The headline reads: 'NanoTrasen-competitior leaks information from rumored megathruster schematics'" #SL Edit
+  description: "A magazine containing the latest news on engineering & tech advancements. The headline reads: 'NanoTrasen-competitor leaks information from rumored megathruster schematics'" #SL Edit
   components:
   - type: Sprite
     sprite: _ES/Objects/Misc/magazines.rsi

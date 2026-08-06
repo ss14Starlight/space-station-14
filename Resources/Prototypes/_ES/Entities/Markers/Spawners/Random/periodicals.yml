@@ -29,6 +29,7 @@
       - MagazineCrossword
       - MagazineEarthNews
       - MagazineMedicalScience
+      - MagazineFirearms
       - MagazinePopularSpacepeople
       - MagazinePopularSpacepeople2
       - MagazinePopularSpacepeople3
@@ -102,6 +103,7 @@
       - MagazineFashion8
       - MagazineEngineerNews
       - MagazineEngineerNews2
+      - MagazineFirearms
 
 - type: entity
   parent: MarkerBase
