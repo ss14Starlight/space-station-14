@@ -83,8 +83,8 @@ public sealed partial class IdCardConsoleComponent : Component
         public readonly ProtoId<AccessGroupPrototype> CurrentAccessGroup;
         public readonly List<ProtoId<AccessGroupPrototype>>? AvailableAccessGroups;
         public readonly ProtoId<JobIconPrototype>? TargetIdJobIcon;
-        // True if every job icon (not just those tagged for that console) are unlocked for selection.
-        // True if <"IdCardConsoleComponent.AllIconsUnlocked"is set or the console has been emagged.
+        // True if every job icon (not just those tagged for that console) is unlocked for selection,
+        // because "IdCardConsoleComponent.AllIconsUnlocked" is set or the console has been emagged.
         public readonly bool AllIconsUnlocked;
         // Starlight-edit: End
 

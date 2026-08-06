@@ -9,8 +9,6 @@ public abstract partial class SharedJobIdentityConsoleSystem : EntitySystem
 {
     [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
 
-    public const string Sawmill = "jobidentityconsole";
-
     public override void Initialize()
     {
         base.Initialize();

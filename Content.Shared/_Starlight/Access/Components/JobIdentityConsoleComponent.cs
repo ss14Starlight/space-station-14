@@ -25,7 +25,8 @@ public sealed partial class JobIdentityConsoleComponent : Component
     [DataField]
     public ItemSlot TargetIdSlot = new();
 
-    /// Through "JobIconPrototype.AllowSelection" a console will only display icons that match the tag set in job.yml with the tag on the console, unless overided by allIconsUnlocked
+    // An icon is only accepted if its "JobIconPrototype.Tags" overlaps this set
+    // An empty set rejects every icon
 
     [DataField, AutoNetworkedField]
     public HashSet<ProtoId<TagPrototype>> RequiredTags = new();
