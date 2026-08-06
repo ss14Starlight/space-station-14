@@ -37,11 +37,13 @@ public sealed partial class StoreSystem
             }
         }
 
+        // Starlight-start
         ent.Comp.FullListingsCatalog = newState;
 
         // STARLIGHT: Check if a rift has been destroyed and update the listing accordingly
         // This ensures the rift listing remains unavailable even after reopening the uplink
         _revSupplyRift.CheckRiftDestroyedAndUpdateListing(ent);
+        // Starlight-end
     }
 
     /// <summary>

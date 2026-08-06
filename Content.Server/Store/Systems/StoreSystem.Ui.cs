@@ -391,7 +391,9 @@ public sealed partial class StoreSystem
                 continue;
 
             // Refresh all listings to ensure they have the latest stock count and last purchaser information
+            // Starlight-start
             RefreshAllListings((uid, storeComp));
+            // Starlight-end
 
             // Force a refresh of the available listings
             if (storeComp.AccountOwner != null)
@@ -543,7 +545,9 @@ public sealed partial class StoreSystem
         }
 
         // Reset store back to its original state
+        // Starlight-start
         RefreshAllListings((uid, component));
+        // Starlight-end
         component.BalanceSpent = new();
         UpdateUserInterface(buyer, uid, component);
     }
