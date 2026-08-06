@@ -82,7 +82,7 @@
 
 - type: entity
   id: BriefcaseWeaponBulldogFilled
-  parent: BriefcaseWeapon
+  parent: BriefcaseWeapon # Starlight Edit: BriefcaseWeaponSmall -> BriefcaseWeapon
   name: secure bulldog case
   components:
   - type: EntityTableContainerFill

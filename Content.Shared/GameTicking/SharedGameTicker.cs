@@ -224,6 +224,13 @@ namespace Content.Shared.GameTicking
         }
     }
 
+    #region Starlight
+
+    [Serializable, NetSerializable]
+    public sealed class RoundEndCancelMessageEvent : EntityEventArgs;
+
+    #endregion
+
     [Serializable, NetSerializable]
     public enum PlayerGameStatus : sbyte
     {

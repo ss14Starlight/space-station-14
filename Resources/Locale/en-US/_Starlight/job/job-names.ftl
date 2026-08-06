@@ -17,3 +17,7 @@ JobSalvageLead = Salvage Lead
 JobSurgeon = Surgeon
 JobVirologist = Virologist
 JobZookeeper = Zookeeper
+JobCentCommServiceWorker = CentComm Service Worker
+JobCentCommChef = CentComm Chef
+JobCentCommBartender = CentComm Bartender
+JobCentCommJanitor = CentComm Janitor

@@ -1,45 +1,33 @@
-# Subfloor gas tank BEGIN
+# Subfloor gas tank START
 - type: constructionGraph
-  id: GasPipeSubfloorTank
+  id: GasPipeTankSubfloor
   start: start
   graph:
   - node: start
     edges:
     - to: tank
-      steps:
+      steps: &subfloorBuildSteps
       - material: Steel
         amount: 5
-        doAfter: 1
+        doAfter: 2
 
     - to: tankAlt1
-      steps:
-      - material: Steel
-        amount: 5
-        doAfter: 1
+      steps: *subfloorBuildSteps
 
     - to: tankAlt2
-      steps:
-      - material: Steel
-        amount: 5
-        doAfter: 1
+      steps: *subfloorBuildSteps
 
     - to: tankAlt3
-      steps:
-      - material: Steel
-        amount: 5
-        doAfter: 1
+      steps: *subfloorBuildSteps
 
     - to: tankAlt4
-      steps:
-      - material: Steel
-        amount: 5
-        doAfter: 1
+      steps: *subfloorBuildSteps
 
   - node: tank
-    entity: GasPipeSubfloorTank
+    entity: GasPipeTankSubfloor
     actions:
     - !type:SetAnchor
-    edges:
+    edges: &subfloorBuildEdges
     - to: start
       conditions:
       - !type:EntityAnchored
@@ -51,78 +39,108 @@
       - !type:DeleteEntity
       steps:
       - tool: Welding
-        doAfter: 1
+        doAfter: 2
 
   - node: tankAlt1
-    entity: GasPipeSubfloorTankAlt1
+    entity: GasPipeTankSubfloorAlt1
     actions:
     - !type:SetAnchor
-    edges:
-    - to: start
-      conditions:
-      - !type:EntityAnchored
-        anchored: false
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetSteel1
-        amount: 5
-      - !type:DeleteEntity
-      steps:
-      - tool: Welding
-        doAfter: 1
+    edges: *subfloorBuildEdges
 
   - node: tankAlt2
-    entity: GasPipeSubfloorTankAlt2
+    entity: GasPipeTankSubfloorAlt2
     actions:
     - !type:SetAnchor
-    edges:
-    - to: start
-      conditions:
-      - !type:EntityAnchored
-        anchored: false
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetSteel1
-        amount: 5
-      - !type:DeleteEntity
-      steps:
-      - tool: Welding
-        doAfter: 1
+    edges: *subfloorBuildEdges
 
   - node: tankAlt3
-    entity: GasPipeSubfloorTankAlt3
+    entity: GasPipeTankSubfloorAlt3
     actions:
     - !type:SetAnchor
-    edges:
-    - to: start
-      conditions:
-      - !type:EntityAnchored
-        anchored: false
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetSteel1
-        amount: 5
-      - !type:DeleteEntity
-      steps:
-      - tool: Welding
-        doAfter: 1
+    edges: *subfloorBuildEdges
 
   - node: tankAlt4
-    entity: GasPipeSubfloorTankAlt4
+    entity: GasPipeTankSubfloorAlt4
     actions:
     - !type:SetAnchor
-    edges:
-    - to: start
-      conditions:
-      - !type:EntityAnchored
-        anchored: false
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetSteel1
-        amount: 5
-      - !type:DeleteEntity
-      steps:
-      - tool: Welding
-        doAfter: 1
+    edges: *subfloorBuildEdges
 
 # Subfloor gas tank END
+# Tall gas tank START
+
+- type: constructionGraph
+  id: GasPipeTankTall
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: tank
+          steps: &tallBuildSteps
+            - material: Steel
+              amount: 6
+            - material: Plasteel
+              amount: 4
+              doAfter: 3
+
+        - to: tankAlt1
+          steps: *tallBuildSteps
+
+        - to: tankAlt2
+          steps: *tallBuildSteps
+
+        - to: tankAlt3
+          steps: *tallBuildSteps
+
+        - to: tankAlt4
+          steps: *tallBuildSteps
+
+    - node: tank
+      entity: GasPipeTankTall
+      actions:
+        - !type:SetAnchor
+      edges: &tallDeconEdges
+        - to: start
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 6
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 4
+            - !type:DeleteEntity
+          steps:
+            - tool: Prying
+              doAfter: 2
+            - tool: Cutting
+              doAfter: 2
+            - tool: Welding
+              doAfter: 3
+
+    - node: tankAlt1
+      entity: GasPipeTankTallAlt1
+      actions:
+        - !type:SetAnchor
+      edges: *tallDeconEdges
+
+    - node: tankAlt2
+      entity: GasPipeTankTallAlt2
+      actions:
+        - !type:SetAnchor
+      edges: *tallDeconEdges
+
+    - node: tankAlt3
+      entity: GasPipeTankTallAlt3
+      actions:
+        - !type:SetAnchor
+      edges: *tallDeconEdges
+
+    - node: tankAlt4
+      entity: GasPipeTankTallAlt4
+      actions:
+        - !type:SetAnchor
+      edges: *tallDeconEdges
+
+# Tall gas tank END

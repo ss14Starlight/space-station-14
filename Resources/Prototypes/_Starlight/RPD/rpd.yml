@@ -281,15 +281,15 @@
   fx: EffectRCDConstruct0
 
 - type: rcd
-  id: SubfloorGasTank
+  id: GasTankSubfloor
   category: InterfacesStorage
   sprite:
     sprite: _Starlight/Structures/Piping/Atmospherics/subfloortank.rsi
     state: subFloorTank
   mode: ConstructObject
-  prototype: GasPipeSubfloorTank
+  prototype: GasPipeTankSubfloor
   cost: 5
-  delay: 0
+  delay: 2
   rotation: User
   hasLayers: true
   fx: EffectRCDConstruct0

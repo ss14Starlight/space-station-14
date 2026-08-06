@@ -9,10 +9,15 @@
   mirror: GasMolarMixerFlipped
   conditions:
   - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasMolarMixer
+  - GasMolarMixerAlt1
+  - GasMolarMixerAlt2
+  - GasMolarMixerAlt3
+  - GasMolarMixerAlt4
 
 - type: construction
   id: GasMolarMixerFlipped
-  hide: true
   graph: GasTrinary
   startNode: start
   targetNode: molarmixerflipped
@@ -22,3 +27,9 @@
   mirror: GasMolarMixer
   conditions:
   - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasMolarMixerFlipped
+  - GasMolarMixerFlippedAlt1
+  - GasMolarMixerFlippedAlt2
+  - GasMolarMixerFlippedAlt3
+  - GasMolarMixerFlippedAlt4

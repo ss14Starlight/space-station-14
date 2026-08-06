@@ -1,26 +1,31 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by conf (on discord)",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "trash"
+            "name": "trash",
+            "copyright": "Made by conf (on discord)"
         },
         {
-            "name": "trash_east"
+            "name": "trash_east",
+            "copyright": "Made by conf (on discord)"
         },
         {
-            "name": "trash_north"
+            "name": "trash_north",
+            "copyright": "Made by conf (on discord)"
         },
         {
-            "name": "trash_south"
+            "name": "trash_south",
+            "copyright": "Made by conf (on discord)"
         },
         {
-            "name": "trash_west"
+            "name": "trash_west",
+            "copyright": "Made by conf (on discord)"
         }
     ]
 }

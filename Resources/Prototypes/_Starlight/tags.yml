@@ -1,8 +1,5 @@
 # PLEASE, KEEP THIS FILE ALPHABETIZED
 - type: Tag
-  id: AnomalyCoreShadow
-
-- type: Tag
   id: AbductedTraitBackground
 
 - type: Tag
@@ -13,6 +10,12 @@
 
 - type: Tag
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
+
+- type: Tag
+  id: AnomalyCoreShadow
+
+- type: Tag
+  id: ApcAdvancedElectronics # ConstructionGraph: APC
 
 - type: Tag
   id: Arachnid
@@ -123,10 +126,13 @@
   id: CentcommVibroblade
 
 - type: Tag
-  id: CombatRemote # Tag: used on the RemoteSignallerCombat
+  id: CheapInsulatedFabric
 
 - type: Tag
-  id: CheapInsulatedFabric
+  id: CheapSunglasses #used in the security mime mask crafting graph
+
+- type: Tag
+  id: ChonoLoke
 
 - type: Tag
   id: Cleanade
@@ -153,12 +159,6 @@
   id: ClarkeTreads
 
 - type: Tag
-  id: ChonoLoke
-
-- type: Tag
-  id: CheapSunglasses #used in the security mime mask crafting graph
-
-- type: Tag
   id: ClownKudzu
 
 - type: Tag
@@ -168,10 +168,16 @@
   id: CombatMech
 
 - type: Tag
+  id: CombatRemote # Tag: used on the RemoteSignallerCombat
+
+- type: Tag
   id: Compy
 
 - type: Tag
   id: Condiment
+
+- type: Tag
+  id: CrispyRiceBar
 
 - type: Tag
   id: CyberHandItem
@@ -244,6 +250,9 @@
 
 - type: Tag
   id: EmergencyWelder
+
+- type: Tag
+  id: ERTShuttle
 
 - type: Tag
   id: Felionoid
@@ -519,6 +528,9 @@
 
 - type: Tag
   id: Nexus
+
+- type: Tag
+  id: NonLethalMech # Used to allow nonlethal mech equipment on a mech.
 
 - type: Tag
   id: NotLabelable
