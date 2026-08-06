@@ -582,5 +582,6 @@
         "!type:WorldSpawnSpellEvent mapping",
         "!type:WormCorridorDunGen mapping",
         "!type:ZombifySelfActionEvent mapping"
-    ]
+    ],
+    "dotnet.defaultSolution": "SpaceStation14.slnx"
 }
