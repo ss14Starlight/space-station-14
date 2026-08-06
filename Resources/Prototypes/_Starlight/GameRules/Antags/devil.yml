@@ -8,6 +8,7 @@
     delay:
       min: 240
       max: 420
+    cancelPresetOnTooFewPlayers: false
   - type: DevilRule
   - type: AntagObjectives
     objectives:
