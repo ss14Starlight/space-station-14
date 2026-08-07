@@ -398,7 +398,7 @@ public sealed partial class GameTicker
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 
-            var effectivePlayers = GetEffectivePlayerCount(args.Players.Length); // Starlight, get effective players
+            var effectivePlayers = GetEffectivePlayerCountGameruleEligibility(args.Players.Length); // Starlight, get effective players
             if (effectivePlayers >= minPlayers) // Starlight, args.Players.Length -> effectivePlayers
                 continue;
 
@@ -421,7 +421,7 @@ public sealed partial class GameTicker
 
     #region Starlight
     //Helper function for effective player count
-    private int GetEffectivePlayerCount(int activePlayers)
+    private int GetEffectivePlayerCountGameruleEligibility(int activePlayers)
     {
         var onlinePlayers = PlayerGameStatuses.Count;
 

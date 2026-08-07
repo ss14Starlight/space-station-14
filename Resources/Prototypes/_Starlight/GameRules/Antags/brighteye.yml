@@ -6,6 +6,7 @@
   components:
   - type: GameRule
     minPlayers: 20
+    cancelPresetOnTooFewPlayers: false
   - type: RuleGrids
   - type: BrighteyeRule
   - type: SubRule
