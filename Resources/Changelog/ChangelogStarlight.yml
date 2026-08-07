@@ -1,20 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Elkridge) Placed a station beacon in Washroom.
-    type: Tweak
-  id: 406952
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Replaced mail tech lockers with new large variants.
-    type: Tweak
-  id: 406953
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
   - message: (Serpentcrest) Added Stir Stir to Genpop.
     type: Add
   id: 406954
@@ -2799,4 +2785,18 @@ Entries:
   id: 407351
   time: '2026-08-07T01:11:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5536
+- author: JohnJJohn, Rouden, H20we, loltart
+  changes:
+  - message: Radio Host equipment has found it's way into the sector.
+    type: Add
+  id: 407352
+  time: '2026-08-07T05:50:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5288
+- author: JohnJJohn, Rouden, H20we, loltart
+  changes:
+  - message: Syndicate agents can find illegal CDs in their uplinks.
+    type: Add
+  id: 407353
+  time: '2026-08-07T05:50:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5288
 Order: -1
