@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
     steps:
     - uses: actions/checkout@v7
       with:
@@ -24,47 +23,22 @@ jobs:
     - uses: editorconfig-checker/action-editorconfig-checker@v2
       with:
         version: 'v3.8.0'
-    - name: Setup Reviewdog
-      uses: reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f # v1.5.0
-      with:
-        reviewdog_version: v0.21.0
     - name: Check changed files against .editorconfig
       env:
         BASE_SHA: ${{ github.event.pull_request.base.sha }}
-        REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         mapfile -d '' -t added_modified_files \
           < <(git diff --name-only --diff-filter=ACMR -z "${BASE_SHA}...HEAD")
         editorconfig-checker --version
-        checker_status=0
+        rc=0
         checked=0
-        report="$(mktemp)"
         for added_modified_file in "${added_modified_files[@]}"; do
           if [ -n "$added_modified_file" ]; then
             echo "Checking ${added_modified_file}"
-            editorconfig-checker --no-color --format gcc \
-              --exclude '\.(sf2|icns|aseprite)$' "${added_modified_file}" >> "$report" 2>&1 || checker_status=1
+            editorconfig-checker --format github-actions \
+              --exclude '\.(sf2|icns|aseprite)$' "${added_modified_file}" || rc=1
             checked=$((checked + 1))
           fi
         done
-
-        cat "$report"
-        echo "Checked ${checked} file(s), result ${checker_status}"
-
-        set +e
-        reviewdog \
-          -efm='%f:%l:%c: %t%*[^:]: %m' \
-          -name="EditorConfig" \
-          -reporter=github-pr-annotations \
-          -filter-mode=file \
-          -fail-level=any \
-          < "$report"
-        reviewdog_status=$?
-        set -e
-
-        if (( checker_status != 0 && reviewdog_status == 0 )); then
-          echo "::error::EditorConfig Checker failed without producing a parseable diagnostic."
-          exit "${checker_status}"
-        fi
-
-        exit "${reviewdog_status}"
+        echo "Checked ${checked} file(s), result ${rc}"
+        exit "${rc}"
