@@ -32,19 +32,13 @@ public sealed partial class FullMoonHowlRule : StationEventSystem<FullMoonHowlRu
         if (!TryComp<StationDataComponent>(chosenStation.Value, out var stationData))
             return;
 
-        var mainGrids = stationData.MainGrids;
+        // Prefer initial "main station" grid if available, otherwise fallback to all station grids.
+        var grids = stationData.MainGrids.Count > 0
+            ? stationData.MainGrids
+            : stationData.Grids;
 
-        EntityUid? mainGrid = null;
-        foreach (var grid in mainGrids)
-        {
-            if (!Exists(grid))
-                continue;
-
-            mainGrid = grid;
-            break;
-        }
-
-        if (mainGrid is null)
+        // If no suitable grid is found, abort the event.
+        if (!grids.TryFirstOrNull(out var mainGrid))
             return;
 
         // Recipients are selected by map, not grid, so off-grid players on the station map may still hear the announcement.
@@ -80,7 +74,7 @@ public sealed partial class FullMoonHowlRule : StationEventSystem<FullMoonHowlRu
             if (!beacon.Enabled)
                 continue;
 
-            if (xform.GridUid is not { } gridUid || !mainGrids.Contains(gridUid))
+            if (xform.GridUid is not { } gridUid || !grids.Contains(gridUid))
                 continue;
 
             var locationName = !string.IsNullOrWhiteSpace(beacon.Text)
