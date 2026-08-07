@@ -111,7 +111,7 @@
       stasisDamageReduction: 0.7
 
 - type: entity
-  parent: [BaseProtogenAppearance, BaseSpeciesDummy, BaseInventoryProtoAvali]
+  parent: [BaseProtogenAppearance, BaseInventoryProtoAvali, BaseSpeciesDummy]
   id: AppearanceProtoAvali
   categories: [ HideSpawnMenu ]
   description: A dummy proto-avali meant to be used in character setup.
