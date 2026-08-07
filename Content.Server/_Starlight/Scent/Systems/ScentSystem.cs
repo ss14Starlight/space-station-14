@@ -24,6 +24,8 @@ using Content.Shared.Inventory;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
+using Content.Shared.Stealth;
+using Content.Shared.Stealth.Components;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Content.Shared.Zombies;
@@ -50,6 +52,7 @@ public sealed class ScentSystem : SharedScentSystem
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly SharedStealthSystem _stealth = default!;
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
@@ -456,6 +459,7 @@ public sealed class ScentSystem : SharedScentSystem
         markerComp.ExpiresAt = _timing.CurTime + decayTime;
         markerComp.TotalDuration = decayTime;
         markerComp.ContainedIn = GetAirtightContainer(xform);
+        markerComp.WasCloaked = IsCloaked(uid);
         Dirty(marker, markerComp);
 
         var despawn = Comp<TimedDespawnComponent>(marker);
@@ -496,6 +500,15 @@ public sealed class ScentSystem : SharedScentSystem
         return null;
     }
 
+    // Same threshold the game already uses to decide an entity is too hidden to examine
+    // (StealthComponent.ExamineThreshold), reused here instead of picking a new cutoff.
+    private bool IsCloaked(EntityUid uid)
+    {
+        return TryComp<StealthComponent>(uid, out var stealth) &&
+               stealth.Enabled &&
+               _stealth.GetVisibility(uid, stealth) <= stealth.ExamineThreshold;
+    }
+
     // Suppressed everywhere in the gas pipe network except at a terminus (vent/scrubber), where
     // the scent is genuinely reaching open air.
     private bool IsHiddenVentCrawl(EntityUid uid)
@@ -530,6 +543,7 @@ public sealed class ScentSystem : SharedScentSystem
         marker.ExpiresAt = _timing.CurTime + decayTime;
         marker.TotalDuration = decayTime;
         marker.ContainedIn = GetAirtightContainer(xform);
+        marker.WasCloaked = IsCloaked(uid);
         Dirty(tail, marker);
 
         if (TryComp<TimedDespawnComponent>(tail, out var despawn))

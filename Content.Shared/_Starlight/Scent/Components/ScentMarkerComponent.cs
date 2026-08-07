@@ -28,4 +28,9 @@ public sealed partial class ScentMarkerComponent : Component
     // The airtight container the emitter was inside at the moment of this emission, if any.
     [DataField, AutoNetworkedField]
     public EntityUid? ContainedIn;
+
+    // Whether the emitter was cloaked (StealthComponent, hidden past its ExamineThreshold) at
+    // the moment of this emission.
+    [DataField, AutoNetworkedField]
+    public bool WasCloaked;
 }
