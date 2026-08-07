@@ -1,0 +1,179 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "ai-vinyl-sleeve",
+            "copyright": "renamed from sleeve_ai, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "devil-vinyl-sleeve",
+            "copyright": "renamed from sleeve_penta, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "pizza-vinyl-sleeve",
+            "copyright": "renamed from sleeve_fruit, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "fart-vinyl-sleeve",
+            "copyright": "renamed from sleeve_36, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "sunnysideoflavaland-vinyl-sleeve",
+            "copyright": "renamed from sleeve_32, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "hockey-vinyl-sleeve",
+            "copyright": "renamed from sleeve_35, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "rat-vinyl-sleeve",
+            "copyright": "renamed from sleeve_34, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "mgs-vinyl-sleeve",
+            "copyright": "renamed from sleeve_33, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "questional-vinyl-sleeve",
+            "copyright": "renamed from sleeve_31, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "janitor-vinyl-sleeve",
+            "copyright": "renamed from sleeve_30, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "weird-vinyl-sleeve",
+            "copyright": "renamed from sleeve_29, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "djclown-vinyl-sleeve",
+            "copyright": "renamed from sleeve_28, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "vampire-vinyl-sleeve",
+            "copyright": "renamed from sleeve_27, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "shulker-vinyl-sleeve",
+            "copyright": "renamed from sleeve_26, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "redsun-vinyl-sleeve",
+            "copyright": "renamed from sleeve_25, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "skull-vinyl-sleeve",
+            "copyright": "renamed from sleeve_24, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "fisherman-vinyl-sleeve",
+            "copyright": "renamed from sleeve_23, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "heisenbee-vinyl-sleeve",
+            "copyright": "renamed from sleeve_22, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "station13-vinyl-sleeve",
+            "copyright": "renamed from sleeve_21, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "station14-vinyl-sleeve",
+            "copyright": "taken from Goobstation commit: https://github.com/Goob-Station/Goob-Station/commit/7b21da687067a88f835f56978d2895c9c9dda939"
+        },
+        {
+            "name": "reactor-vinyl-sleeve",
+            "copyright": "renamed from sleeve_20, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "pda-vinyl-sleeve",
+            "copyright": "renamed from sleeve_19, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "nukedisk-vinyl-sleeve",
+            "copyright": "renamed from sleeve_18, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "blockycraft-vinyl-sleeve",
+            "copyright": "renamed from sleeve_13, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "eye-vinyl-sleeve",
+            "copyright": "renamed from sleeve_16, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "th-vinyl-sleeve",
+            "copyright": "renamed from sleeve_15, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "clown-vinyl-sleeve",
+            "copyright": "renamed from sleeve_14, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "newnanoyork-vinyl-sleeve",
+            "copyright": "renamed from sleeve_12, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "djtider-vinyl-sleeve",
+            "copyright": "renamed from sleeve_11, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "coffee-vinyl-sleeve",
+            "copyright": "renamed from sleeve_10, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "welcometoss13-vinyl-sleeve",
+            "copyright": "renamed from sleeve_9, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "peace-vinyl-sleeve",
+            "copyright": "renamed from sleeve_8, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "japan-vinyl-sleeve",
+            "copyright": "renamed from sleeve_7, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "christmas-vinyl-sleeve",
+            "copyright": "renamed from sleeve_6, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "pickle-vinyl-sleeve",
+            "copyright": "renamed from sleeve_5, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "flash-vinyl-sleeve",
+            "copyright": "renamed from sleeve_4, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "plainbeige-vinyl-sleeve",
+            "copyright": "renamed from sleeve_3, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+            "name": "plainblack-vinyl-sleeve",
+            "copyright": "renamed from sleeve_2, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+             "name": "plainwhite-vinyl-sleeve",
+            "copyright": "renamed from sleeve_1, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+             "name": "nb-vinyl-sleeve",
+            "copyright": "renamed from sleeve_nb, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+             "name": "pride-vinyl-sleeve",
+            "copyright": "renamed from sleeve_pride taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        },
+        {
+             "name": "trans-vinyl-sleeve",
+            "copyright": "renamed from sleeve_trans, taken from goonstation commit: https://github.com/goonstation/goonstation/commit/4059e4be90832b02b1228b1bee3db342094e4f1e"
+        }
+  ]
+}
