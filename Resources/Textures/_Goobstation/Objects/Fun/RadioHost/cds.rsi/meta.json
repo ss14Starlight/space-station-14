@@ -18,6 +18,10 @@
         {
             "name": "jne-cd",
             "copyright": "Jvne"
+        },
+        {
+            "name": "nt-cd",
+            "copyright": "Huaqas (GitHub)"
         }
     ]
 }

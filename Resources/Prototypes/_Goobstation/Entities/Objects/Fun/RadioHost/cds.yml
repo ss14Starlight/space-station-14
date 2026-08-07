@@ -186,14 +186,13 @@
     gameRule: NumberStationThreats
 
 - type: entity
-  parent: [ BaseCDDisc, BaseSyndicateContraband ]
-  id: CDNumbersSlowAdmin
-  suffix: ADMEME
-  name: "CD: Nuuummmbbbeeerrrsss"
+  parent: [ BaseCDDisc, BaseCommandContraband ]
+  id: CDNumbersSlow
+  name: "CD: Nothing Ever Happens..."
   description: A CD containing a cryptic message that will eventually contact a nearby threat from off station.
   components:
   - type: Sprite
-    state: synd-cd
+    state: nt-cd
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/CDs/misc/numbers.ogg # This is the long version of numbers and takes 275 seconds to summon a threat.
