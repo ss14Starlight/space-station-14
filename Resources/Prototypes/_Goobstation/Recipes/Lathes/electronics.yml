@@ -1,0 +1,25 @@
+# Goobstation - Radio Host boards
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  id: VinylPlayerCircuitboard
+  result: VinylPlayerCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  id: TapeDeckCircuitboard
+  result: TapeDeckCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  id: StationRadioServerCircuitboard
+  result: StationRadioServerCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseSilverCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  id: StationRadioRigCircuitboard
+  result: StationRadioRigCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCheapCircuitboardRecipe, BaseCircuitryRecipeCategory ]
+  id: StationRadioCircuitboard
+  result: StationRadioCircuitboard
