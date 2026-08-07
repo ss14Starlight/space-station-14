@@ -142,8 +142,10 @@ namespace Content.Server.Shuttles.Systems
 
             var msg = new UndockEvent
             {
-                DockA = dockA,
-                DockB = dockB,
+                // Starlight-start
+                DockA = (dockAUid, dockA),
+                DockB = (dockBUid.Value, dockB),
+                // Starlight-end
                 GridAUid = gridAUid!.Value,
                 GridBUid = gridBUid!.Value,
             };

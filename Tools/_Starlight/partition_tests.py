@@ -94,6 +94,9 @@ WEIGHT_OVERRIDES = {
     "DragDropOntoDrainTest": 0.125,
     "DragDropOpensStrip": 0.5,
     "DuplicatePlayerIdDoesNotThrowTest": 0.5,
+    "DynamicBudgetUpdateTest": 0.2,
+    "DynamicMutuallyExclusiveRulesRejectionTest": 0.2,
+    "DynamicRuleCooldownTest": 0.2,
     "EORPluralizationTest": 0.5,
     "EmergencyEvacTest": 0.5,
     "EnsureNoEdgeClobbering": 0.5,
@@ -354,11 +357,18 @@ def method_of(test_name):
     return name[dot + 1:] if dot > 0 else name
 
 
-def build_filter(methods):
+def build_filter(methods, all_methods):
     """Build a Microsoft test-case filter from NUnit method names."""
     if not methods:
         return ""
-    return "|".join(f"Name={m}" for m in sorted(methods))
+    universe = sorted(all_methods)
+    clauses = []
+    for method in sorted(methods):
+        terms = [f"Name~{method}"]
+        terms += [f"Name!~{other}" for other in universe
+                  if other != method and method in other]
+        clauses.append("(" + "&".join(terms) + ")")
+    return "|".join(clauses)
 
 
 def cmd_generate():
@@ -376,12 +386,13 @@ def cmd_generate():
         print("Error: no tests discovered from input", file=sys.stderr)
         sys.exit(1)
 
+    explicit_methods = sorted({method_of(t) for t in explicit})
     if explicit:
-        methods = sorted({method_of(t) for t in explicit})
         print(f"Excluded {len(explicit)} test(s) from [Explicit] method(s): "
-              f"{', '.join(methods)}", file=sys.stderr)
+              f"{', '.join(explicit_methods)}", file=sys.stderr)
 
     class_counts = extract_classes(tests)
+    all_methods = set(class_counts) | set(explicit_methods)
     print(f"Discovered {len(tests)} tests in {len(class_counts)} classes, distributing across {total} shards", file=sys.stderr)
 
     timings = load_timings(timings_path)
@@ -419,7 +430,7 @@ def cmd_generate():
     filters = []
     for shard in range(total):
         my_classes = sorted(shards[shard])
-        filter_expr = build_filter(my_classes)
+        filter_expr = build_filter(my_classes, all_methods)
         filters.append(filter_expr)
         print(f"  Shard {shard}: {len(my_classes)} classes, weight {shard_loads[shard]:.1f} ({sum(class_counts[c] for c in my_classes)} tests)", file=sys.stderr)
         for cls in my_classes:

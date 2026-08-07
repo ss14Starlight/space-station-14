@@ -27,6 +27,12 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Reviewdog)' == 'true'">
+    <!-- Emit compiler and analyzer diagnostics for diff-aware CI reporting. -->
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <ErrorLog>$(BaseIntermediateOutputPath)reviewdog.sarif,version=2.1</ErrorLog>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(_EnableNUnitRunnerLate)' == 'true'">
     <Reference Include="NUnit3.TestAdapter">
       <HintPath>$(NuGetPackageRoot)nunit3testadapter/$(_LateNUnitAdapterVersion)/build/netcoreapp3.1/NUnit3.TestAdapter.dll</HintPath>
