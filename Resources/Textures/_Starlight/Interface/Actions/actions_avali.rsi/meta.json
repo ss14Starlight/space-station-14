@@ -26,6 +26,9 @@
 			"name": "ground-drone"
 		},
 		{
+			"name": "air-drone"
+		},
+		{
 			"name": "nexus-store"
 		}
 	]

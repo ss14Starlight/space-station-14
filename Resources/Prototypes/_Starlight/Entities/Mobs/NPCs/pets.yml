@@ -261,9 +261,7 @@
 
 - type: entity
   parent: BaseMob
-  id: MobGDrone
-  name: V.E.S.T.A.
-  description: Virtual Engineering Software Technician Assistant, protects your feet from small hazards and comes with basic networking protocols.
+  id: MobAvaliDrone
   components:
   - type: Reactive
     groups:
@@ -295,7 +293,6 @@
     - SiliconEmotes
     - Unimplantable
     - StunImmune
-    - DoorElectronicsConfigurator
   - type: Body
     prototype: Bot
   - type: LanguageKnowledge
@@ -315,6 +312,22 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
+  - type: ZombieImmune
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Effects/chime.ogg
+      params:
+        volume: -4
+
+- type: entity
+  parent: MobAvaliDrone
+  id: MobGDrone
+  name: V.E.S.T.A.
+  description: Virtual Engineering Software Technician Assistant, protects your feet from small hazards and comes with basic networking protocols.
+  components:
   - type: Sprite
     drawdepth: Mobs
     sprite: _Starlight/Mobs/Pets/gdrone.rsi
@@ -331,17 +344,6 @@
     slots:
     - NECK
   - type: ProtectedFromStepTriggers
-  - type: ZombieImmune
-  - type: HTN
-    rootTask:
-      task: IdleCompound
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/Effects/chime.ogg
-      params:
-        volume: -4
-  - type: UseDelay
-    delay: 1.0
   - type: NetworkConfigurator
   - type: ActivatableUI
     key: enum.NetworkConfiguratorUiKey.List
@@ -354,3 +356,28 @@
         type: NetworkConfiguratorBoundUserInterface
       enum.NetworkConfiguratorUiKey.Link:
         type: NetworkConfiguratorBoundUserInterface
+  - type: Tag
+    tags:
+    - DoorElectronicsConfigurator
+
+- type: entity
+  parent: MobAvaliDrone
+  id: MobADrone
+  name: Air Drone
+  description: Air Drone Description
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Pets/adrone.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: drone
+  - type: Item
+    size: Normal
+    heldPrefix: 1
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Pets/adrone.rsi
+    equippedPrefix: 0
+    slots:
+    - NECK

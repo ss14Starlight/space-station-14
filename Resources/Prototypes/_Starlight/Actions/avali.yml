@@ -77,3 +77,23 @@
       event: !type:SpawnItemInHandEvent
         spawned: MobGDrone
         requiresFreeHand: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionAirDrone
+  name: Deploy Air Drone
+  description: Construct a Air Drone
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_avali.rsi
+        state: air-drone
+    - type: LimitedCharges
+      maxCharges: 1
+    - type: AutoRecharge
+      rechargeDuration: 1800
+    - type: InstantAction
+      event: !type:SpawnItemInHandEvent
+        spawned: MobADrone
+        requiresFreeHand: true
