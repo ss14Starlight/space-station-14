@@ -1,0 +1,23 @@
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateRadioHostVinyls
+  name: vinyls crate
+  description: A crate with 12 randomly selected Vinyls to add to your collection.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: RandomVinylSleeve
+        rolls: 12
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateRadioHostADs
+  name: ads crate
+  description: A crate with 6 randomly selected advertisement CDs to add to your collection.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: RandomCDDisc
+        rolls: 6
