@@ -16,3 +16,12 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsJournalism ]
+
+#region Starlight
+- type: entity
+  parent: AirlockJournalismLocked # Starlight
+  id: AirlockMaintJournalismLocked # Starlight
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+#endregion Starlight
