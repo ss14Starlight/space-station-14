@@ -117,9 +117,9 @@
 
 - type: vessel
   id: SpaceTruck
-  name: Harm's Space Truck
-  description: A small sized space truck. This one has a legal IFF console on board... no one knows why it's installed or why it's on sale.
-  price: 15050
+  name: HARMS Space Truck
+  description: A cheap trailer truck with a semi-legal (check with your lawyer!) IFF console onboard. Comes with two beers and a sweet digital audio workstation for blasting your tunes as you cruise through space.
+  price: 14999
   category: Small
   group: Civilian
   shuttlePath: /Maps/_Starlight/Shuttles/SpaceTruck.yml
