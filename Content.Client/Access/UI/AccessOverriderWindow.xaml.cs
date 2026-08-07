@@ -67,7 +67,9 @@ namespace Content.Client.Access.UI
                 button.OnPressed += _ => OnSubmit?.Invoke(BuildAccessList());
             }
         }
+        // Starlight-edit: End
 
+        #region Starlight
         /// <summary>
         /// Layers the visible buttons' states over the accesses belonging to the other groups.
         /// </summary>
@@ -77,8 +79,8 @@ namespace Content.Client.Access.UI
             accessList.AddRange(_accessButtons.ButtonsList.Where(x => x.Value.Pressed).Select(x => x.Key));
 
             return accessList;
-            // Starlight-edit: End
         }
+        #endregion
 
         public void UpdateState(IPrototypeManager protoManager, AccessOverriderBoundUserInterfaceState state)
         {
