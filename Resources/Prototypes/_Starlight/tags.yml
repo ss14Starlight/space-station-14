@@ -580,6 +580,9 @@
   id: RollerBed
 
 - type: Tag
+  id: SalvageTicket
+
+- type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
 
 - type: Tag
@@ -695,6 +698,3 @@
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground
-
-- type: Tag
-  id: SalvageTicket
