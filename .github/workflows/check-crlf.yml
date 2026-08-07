@@ -42,7 +42,7 @@ jobs:
         for added_modified_file in "${added_modified_files[@]}"; do
           if [ -n "$added_modified_file" ]; then
             echo "Checking ${added_modified_file}"
-            editorconfig-checker --format gcc \
+            editorconfig-checker --no-color --format gcc \
               --exclude '\.(sf2|icns|aseprite)$' "${added_modified_file}" >> "$report" 2>&1 || checker_status=1
             checked=$((checked + 1))
           fi
