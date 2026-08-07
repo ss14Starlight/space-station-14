@@ -18,14 +18,16 @@ namespace Content.Client.Access.UI
         private readonly AccessLevelControl _accessButtons = new();
         private readonly AccessGroupControl _accessGroups = new();
         private readonly Dictionary<string, Button> _legacyAccessButtons = new();
+        // Starlight-edit: End
 
+        #region Starlight
         /// <summary>
         /// Every access set on the target, including those outside the selected group.
         /// Only the selected group has buttons at any one time, so the rest are held here
         /// and merged back in on submit rather than being dropped.
         /// </summary>
         private readonly HashSet<ProtoId<AccessLevelPrototype>> _pressedAccess = new();
-        // Starlight-edit: End
+        #endregion
 
         public event Action<List<ProtoId<AccessLevelPrototype>>>? OnSubmit;
         public event Action<ProtoId<AccessGroupPrototype>>? OnGroupSelected; // Starlight-edit
