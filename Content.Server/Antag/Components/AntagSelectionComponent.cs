@@ -48,6 +48,22 @@ public sealed partial class AntagSelectionComponent : Component
     [DataField]
     public Dictionary<ProtoId<AntagSpecifierPrototype>, HashSet<ICommonSession>> PreSelectedSessions = new();
 
+    #region Starlight
+    /// <summary>
+    /// Pre-selected antagonist slots that became vacant before the antagonist could be initialized.
+    /// These are retried against other eligible players before falling back to ghost roles.
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<ProtoId<AntagSpecifierPrototype>, int> PendingReplacements = new();
+
+    /// <summary>
+    /// Target counts captured when this rule performed its primary selection. We use these
+    /// as a floor so unrelated players leaving cannot erase an already-reserved slot.
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<ProtoId<AntagSpecifierPrototype>, int> SelectionTargets = new();
+    #endregion
+
     /// <summary>
     /// The minds and original names of the players assigned to be antagonists, as well as their assigned antag.
     /// </summary>

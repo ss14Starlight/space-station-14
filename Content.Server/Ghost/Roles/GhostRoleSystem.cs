@@ -946,6 +946,14 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
         SetMode(entity.Owner, ghostRoleProto, ghostRoleProto.Name, entity.Comp);
     }
+    # region Starlight
+    // Used for some antag selection stuff to prevent extra antags from rolling
+    public void MarkGhostRoleTaken(Entity<GhostRoleComponent> role)
+    {
+        role.Comp.Taken = true;
+        UnregisterGhostRole(role);
+    }
+    # endregion
 }
 
 [AnyCommand]
