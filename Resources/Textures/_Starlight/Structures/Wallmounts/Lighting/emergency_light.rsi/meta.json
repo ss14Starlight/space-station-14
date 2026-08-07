@@ -5,14 +5,16 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "juliang, modified by mirrorcult",
+    "copyright": "State based copyright",
     "states": [
         {
             "name": "base",
+			"copyright": "Made by Conflee for Starlight",
             "directions": 4
         },
         {
             "name": "emergency_light_off",
+			"copyright": "Made by Conflee for Starlight",
             "directions": 4,
             "delays": [
                 [
@@ -31,6 +33,7 @@
         },
         {
             "name": "emergency_light_on",
+			"copyright": "Made by Conflee for Starlight",
             "directions": 4,
             "delays": [
                 [
