@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/06/2026 09:04:36
-  entityCount: 31162
+  time: 08/07/2026 00:27:50
+  entityCount: 31161
 maps:
 - 1
 grids:
@@ -11400,7 +11400,7 @@ entities:
       pos: -13.5,17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -466676.22
+      secondsUntilStateChange: -466947.28
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11425,7 +11425,7 @@ entities:
       pos: 29.5,19.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -462146.9
+      secondsUntilStateChange: -462417.97
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11651,7 +11651,7 @@ entities:
       pos: 39.5,29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -417858.9
+      secondsUntilStateChange: -418129.97
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12102,7 +12102,7 @@ entities:
       pos: 12.5,81.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -381887.6
+      secondsUntilStateChange: -382158.66
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12925,7 +12925,7 @@ entities:
       pos: -17.5,32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -153002.72
+      secondsUntilStateChange: -153273.77
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13089,7 +13089,7 @@ entities:
       pos: 53.5,55.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -362414
+      secondsUntilStateChange: -362685.06
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13293,7 +13293,7 @@ entities:
       pos: -17.5,73.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -134941.48
+      secondsUntilStateChange: -135212.53
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13803,7 +13803,7 @@ entities:
       pos: 40.5,6.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -178828.19
+      secondsUntilStateChange: -179099.23
       state: Opening
     - type: AccessReader
       accessListsOriginal: []
@@ -13944,7 +13944,7 @@ entities:
       pos: 46.5,38.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -155414.33
+      secondsUntilStateChange: -155685.38
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14254,7 +14254,7 @@ entities:
       pos: 72.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -458789.84
+      secondsUntilStateChange: -459060.9
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -92609,18 +92609,6 @@ entities:
       - Experimental
       - CivilianServices
       - Biochemical
-  - uid: 31155
-    components:
-    - type: Transform
-      pos: -22.5,42.5
-      parent: 2
-    - type: TechnologyDatabase
-      supportedDisciplines:
-      - Industrial
-      - Arsenal
-      - Experimental
-      - CivilianServices
-      - Biochemical
 - proto: ExosuitFabricator
   entities:
   - uid: 12743
@@ -164087,6 +164075,13 @@ entities:
     - type: Transform
       pos: -32.56366,70.81876
       parent: 2
+- proto: SpawnMechPaddyFilled
+  entities:
+  - uid: 22417
+    components:
+    - type: Transform
+      pos: -26.5,9.5
+      parent: 2
 - proto: SpawnMechRipley
   entities:
   - uid: 12887
@@ -173051,13 +173046,6 @@ entities:
     components:
     - type: Transform
       pos: 33.185043,39.57143
-      parent: 2
-- proto: ToyDeathRipley
-  entities:
-  - uid: 24008
-    components:
-    - type: Transform
-      pos: -26.511908,9.521585
       parent: 2
 - proto: ToyFigurineCaptain
   entities:
