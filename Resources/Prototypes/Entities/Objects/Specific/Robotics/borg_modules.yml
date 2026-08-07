@@ -642,6 +642,7 @@
         whitelist:
           tags:
             - Ore
+            - SalvageTicket # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
 
@@ -667,6 +668,7 @@
         whitelist:
           tags:
             - Ore
+            - SalvageTicket # Starlight
     - item: RadioHandheldExpedition # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
