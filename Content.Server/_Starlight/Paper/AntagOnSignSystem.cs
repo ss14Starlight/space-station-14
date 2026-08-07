@@ -62,14 +62,14 @@ public sealed partial class AntagOnSignSystem : EntitySystem
         {
             var targetComp = _componentFactory.GetComponent(antag.TargetComponent);
 
-            var fmakeantag = typeof(AntagSelectionSystem).GetMethod(nameof(AntagSelectionSystem.ForceMakeAntag));
+            var fmakeantag = typeof(AntagSelectionSystem).GetMethod(nameof(AntagSelectionSystem.ForceMakeAntag), [typeof(ICommonSession), typeof(EntProtoId)]);
             if (fmakeantag == null)
             {
                 _sawmill.Error("Failed to reflect \"ForceMakeAntag\" method from AntagSelectionSystem for genericization");
                 continue;
             }
             var generic = fmakeantag.MakeGenericMethod(targetComp.GetType());
-            generic.Invoke(_antag, [session, antag.Antag.Id]);
+            generic.Invoke(_antag, [session, antag.Antag]);
         }
         // Starlight Start: Achievements
         if (TryComp<MetaDataComponent>(uid, out var meta)

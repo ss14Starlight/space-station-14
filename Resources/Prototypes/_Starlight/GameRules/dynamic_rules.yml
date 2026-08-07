@@ -185,7 +185,7 @@
             min: 25
         - id: NukeopsLate
           weight: 9
-          prob: 0.40 # Have a 40% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
+          prob: 0.40 # Have a 60% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
