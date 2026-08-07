@@ -10,3 +10,9 @@ signal-port-description-radio-server = The input of the radio server, connect a 
 vinyl-popout-no-station = The vinyl ejects itself, you're not on a station!
 vinyl-popout-no-power = The vinyl ejects itself, the player isn't powered!
 vinyl-popout-no-radio-connection = The vinyl ejects itself, the player isn't connected to the radio system!
+
+vinyl-player-examine-empty = It's empty.
+vinyl-player-examine-loaded = There's a copy of { $vinyl } inside.
+
+station-radio-receiver-examine-full-volume = It's playing at full volume.
+station-radio-receiver-examine-low-volume = It's playing at low volume.
