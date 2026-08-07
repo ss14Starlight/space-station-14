@@ -1,0 +1,12 @@
+- type: marking
+  id: MothWingsSelene
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Moth, ProtoMoth, Protogen]
+  sprites:
+  - sprite: _DV/Mobs/Customization/Moth/moth_wings.rsi
+    state: selene_primary
+  - sprite: _DV/Mobs/Customization/Moth/moth_wings.rsi
+    state: selene_secondary
+  - sprite: _DV/Mobs/Customization/Moth/moth_wings.rsi
+    state: selene_tertiary
