@@ -273,7 +273,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
         // Starlight-edit: Start - A manually player set icon will always override a preset one. Sanity checks to prevent a client from applying an icon it can't access.
         bool IconAllowed(JobIconPrototype icon) =>
-            icon.Tags.Contains(CrewJobIconTag) || component.AllIconsUnlocked || _emag.CheckFlag(uid, EmagType.Interaction);
+            icon.Tags.Overlaps(component.RequiredTags) || component.AllIconsUnlocked || _emag.CheckFlag(uid, EmagType.Interaction);
 
         JobIconPrototype? jobIcon = null;
         if (_prototype.Resolve(newJobIcon, out var explicitJobIcon) && IconAllowed(explicitJobIcon))

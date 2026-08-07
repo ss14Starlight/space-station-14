@@ -38,8 +38,10 @@ namespace Content.Client.Access.UI
         {
             base.Open();
             // Starlight-edit: Start
+            var requiredTags = EntMan.GetComponent<IdCardConsoleComponent>(Owner).RequiredTags;
+
             _window = this.CreateWindow<IdCardConsoleWindow>();
-            _window.Initialize(this);
+            _window.Initialize(this, requiredTags);
             _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
             // Starlight-edit: End
             _window.CrewManifestButton.OnPressed += _ => SendMessage(new CrewManifestOpenUiMessage());

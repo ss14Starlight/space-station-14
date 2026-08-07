@@ -2,6 +2,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
+using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -25,6 +26,10 @@ public sealed partial class IdCardConsoleComponent : Component
     // Enabled by default on the Universal ID Console, and can be enabled by a player when using an EMAG on an ID card computer.
     [DataField]
     public bool AllIconsUnlocked = false;
+
+    // Starlight-edit: An icon is only accepted for selection if its "JobIconPrototype.Tags" is set unless AllIconsUnlocked is set or the console has been emagged. Defaults to the standard crew icon tag.
+    [DataField, AutoNetworkedField]
+    public HashSet<ProtoId<TagPrototype>> RequiredTags = new() { SharedIdCardConsoleSystem.CrewJobIconTag };
 
     [Serializable, NetSerializable]
     public sealed class WriteToTargetIdMessage : BoundUserInterfaceMessage
