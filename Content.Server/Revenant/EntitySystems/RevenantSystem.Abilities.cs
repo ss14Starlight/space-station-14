@@ -229,7 +229,7 @@ public sealed partial class RevenantSystem
     }
 
     #region Starlight
-    
+
     ///<summary>
     /// Creates ice tiles and adds freezon per ice tile
     ///</summary>
@@ -266,7 +266,7 @@ public sealed partial class RevenantSystem
         //Generate the ice tiles and add the moles for freezon
         foreach (var tileref in falloffTiles)
         {
-            //Generate the tiles in a radius that always spawn. 
+            //Generate the tiles in a radius that always spawn.
             if(coreTiles.Contains(tileref))
             {
                 Spawn("IceCrust", _mapSystem.ToCenterCoordinates(tileref, map));

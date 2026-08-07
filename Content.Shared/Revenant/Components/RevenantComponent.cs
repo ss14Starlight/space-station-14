@@ -130,7 +130,7 @@ public sealed partial class RevenantComponent : Component
     /// the second corresponds to the amount of time the entity is made solid.
     /// </summary>
     [DataField("ChillDebuffs")]
-    public Vector2 ChillDebuffs = new(2, 10);  
+    public Vector2 ChillDebuffs = new(2, 10);
 
     /// <summary>
     /// The radius around the user that this ability affects guaranteed
@@ -158,7 +158,7 @@ public sealed partial class RevenantComponent : Component
     public float ChillFrezonPerTile = 2f;
 
     #endregion
-    
+
     #endregion
 
     #region Overload Lights Ability
