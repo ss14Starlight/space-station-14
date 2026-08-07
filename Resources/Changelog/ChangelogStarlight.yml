@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Serpentcrest) Added vend of silence to Mime Room.
-    type: Add
-  id: 406956
-  time: '2026-07-26T14:08:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5252
-- author: Orhu
-  changes:
   - message: (Serpentcrest) Added ice cream maker to Kitchen and Ice Cream Stand.
     type: Add
   id: 406957
@@ -2799,4 +2792,11 @@ Entries:
   id: 407355
   time: '2026-08-07T08:35:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5550
+- author: Caws, Conf, Way, SevenShades
+  changes:
+  - message: Novo Lobster, a full rework of Lobster Station. Better bundle up, 'cuz it's reeeal cold. Available for playtesting, but not yet in the regular map rotation.
+    type: Add
+  id: 407356
+  time: '2026-08-07T09:23:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5111
 Order: -1
