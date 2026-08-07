@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Serpentcrest) Added Flippers to Courtroom.
-    type: Add
-  id: 406955
-  time: '2026-07-26T14:08:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5252
-- author: Orhu
-  changes:
   - message: (Serpentcrest) Added vend of silence to Mime Room.
     type: Add
   id: 406956
@@ -2799,4 +2792,11 @@ Entries:
   id: 407354
   time: '2026-08-07T07:01:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5548
+- author: RedSpeeds
+  changes:
+  - message: Fixed Abductors not being able to interact with their shuttle console.
+    type: Fix
+  id: 407355
+  time: '2026-08-07T08:35:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5550
 Order: -1
