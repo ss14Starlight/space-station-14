@@ -200,6 +200,6 @@ public sealed class JobTest : GameTest
             }
         });
 
-        await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.Server.WaitPost(() => ticker.RestartRound()); 
     }
 }
