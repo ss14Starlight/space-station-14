@@ -263,7 +263,7 @@
   parent: BaseMob
   id: MobGDrone
   name: V.E.S.T.A.
-  description: A deployed avali ground drone. wip.
+  description: Virtual Engineering Software Technician Assistant, protects your feet from small hazards and comes with basic networking protocols.
   components:
   - type: Reactive
     groups:
@@ -295,6 +295,7 @@
     - SiliconEmotes
     - Unimplantable
     - StunImmune
+    - DoorElectronicsConfigurator
   - type: Body
     prototype: Bot
   - type: LanguageKnowledge
@@ -329,15 +330,11 @@
     equippedPrefix: 0
     slots:
     - NECK
+  - type: ProtectedFromStepTriggers
   - type: ZombieImmune
-  - type: InteractionPopup
-    interactSuccessString: petting-success-generic-cyborg
-    interactFailureString: petting-failure-generic-cyborg
-    interactSuccessSound:
-      path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: HTN
     rootTask:
-      task: RuminantCompound
+      task: IdleCompound
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Effects/chime.ogg
@@ -345,3 +342,15 @@
         volume: -4
   - type: UseDelay
     delay: 1.0
+  - type: NetworkConfigurator
+  - type: ActivatableUI
+    key: enum.NetworkConfiguratorUiKey.List
+    inHandsOnly: true
+  - type: UserInterface
+    interfaces:
+      enum.NetworkConfiguratorUiKey.List:
+        type: NetworkConfiguratorBoundUserInterface
+      enum.NetworkConfiguratorUiKey.Configure:
+        type: NetworkConfiguratorBoundUserInterface
+      enum.NetworkConfiguratorUiKey.Link:
+        type: NetworkConfiguratorBoundUserInterface
