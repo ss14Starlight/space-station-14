@@ -842,6 +842,81 @@
     layers:
       - state: eye_implant_welding
 
+# nose implants
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPrepareImplantSiteNose
+  name: Prepare Implant Site
+  components:
+  - type: SurgeryStep
+    duration: 2
+    tools:
+    - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertNoseImplant
+  name: Insert Nose Implant
+  components:
+  - type: SurgeryStep
+    duration: 2
+    tools:
+    - type: NoseImplant
+  - type: SurgeryStepOrganInsert
+    slot: nose_implant
+  # TODO: placeholder art, reusing the eye implant sprite until dedicated nose implant art exists.
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: eye_implant_welding
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepConnectOlfactoryNerve
+  name: Connect Olfactory Nerve
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepClampOlfactoryNerve
+  name: Clamp Olfactory Nerve
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveNoseImplant
+  name: Remove Nose Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: Scalpel
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: NoseImplant
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
 # hand implants
 
 - type: entity
