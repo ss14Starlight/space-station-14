@@ -69,10 +69,8 @@ namespace Content.YAMLLinter
                 return path;
             }
 
-            if (path.StartsWith("EnginePrototypes/", StringComparison.Ordinal))
-                return $"RobustToolbox/Resources/{path}";
+            return path.StartsWith("EnginePrototypes/", StringComparison.Ordinal) ? $"RobustToolbox/Resources/{path}" : $"Resources/{path}";
 
-            return $"Resources/{path}";
             // Starlight End
         }
 
