@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Sepultum) Added Flippers to Magistrate's Office.
-    type: Add
-  id: 406969
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
   - message: (Sepultum) Added vend of silence to Mime Room.
     type: Add
   id: 406970
@@ -2799,4 +2792,11 @@ Entries:
   id: 407368
   time: '2026-08-07T09:56:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5541
+- author: CrazyPhantom
+  changes:
+  - message: Experimental fix for alcohol lag can be enabled with the command ``cvar opt.drunk_render_fix true``.
+    type: Fix
+  id: 407369
+  time: '2026-08-07T10:24:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5532
 Order: -1
