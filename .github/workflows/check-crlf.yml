@@ -17,19 +17,30 @@ jobs:
     steps:
     - uses: actions/checkout@v7
     - uses: editorconfig-checker/action-editorconfig-checker@v2
+      with:
+        version: 'v3.9.0'
     - name: Get changed files
       id: files
       uses: Ana06/get-changed-files@v2.3.0
       with:
-        format: 'csv'
+        format: 'json'
         filter: '*'
-    - run: |
-        mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
+    - name: Check changed files against .editorconfig
+      env:
+        ADDED_MODIFIED_FILES: ${{ steps.files.outputs.added_modified }}
+      run: |
+        mapfile -d '' -t added_modified_files \
+          < <(jq --raw-output0 '.[]' <<< "$ADDED_MODIFIED_FILES")
+        editorconfig-checker --version
         rc=0
+        checked=0
         for added_modified_file in "${added_modified_files[@]}"; do
           if [ -n "$added_modified_file" ]; then
+            echo "Checking ${added_modified_file}"
             editorconfig-checker --format github-actions \
               --exclude '\.(sf2|icns|aseprite)$' "${added_modified_file}" || rc=1
+            checked=$((checked + 1))
           fi
         done
+        echo "Checked ${checked} file(s), result ${rc}"
         exit $rc
