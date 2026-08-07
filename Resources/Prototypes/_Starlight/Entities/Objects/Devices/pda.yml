@@ -528,6 +528,38 @@
     id: KikiIDCard
 
 - type: entity
+  parent: ClearPDA
+  id: StirStirPDA
+  name: stir stir's PDA
+  description: Has been used as a hammer before.
+  components:
+  - type: Pda
+    id: StirStirIDCard
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
+  parent: ClearPDA
+  id: PrisonerPDA
+  name: prisoner PDA
+  description: Has been used as a hammer before.
+  components:
+  - type: Pda
+    id: PrisonerJobIDCard
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
   parent: BasePDA
   id: CommanderPDA
   name: commander PDA
@@ -892,3 +924,62 @@
   - type: Icon
     state: pda-cluwne
   - type: Unremoveable
+
+- type: entity
+  parent: BasePDA
+  id: CentCommServiceWorkerPDA
+  name: CentComm service worker PDA
+  description: The crappy version they give to the people who make their food, mop their floors, and serve their drinks.
+  components:
+  - type: Pda
+    id: CentCommIDCardServiceWorker
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-centcom
+  - type: PdaBorderColor
+    borderColor: "#00842e"
+  - type: Icon
+    state: pda-centcom
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NanoChatCartridge # CD
+
+- type: entity
+  parent: CentCommServiceWorkerPDA
+  id: CentCommChefPDA
+  name: CentComm chef PDA
+  description: It's slick with the oil of the fat steak you're supposed to be cooking.
+  components:
+  - type: Pda
+    id: CentCommIDCardChef
+
+- type: entity
+  parent: CentCommServiceWorkerPDA
+  id: CentCommBartenderPDA
+  name: CentComm bartender PDA
+  description: The trappings of a glorified cocktail waiter.
+  components:
+  - type: Pda
+    id: CentCommIDCardBartender
+
+- type: entity
+  parent: CentCommServiceWorkerPDA
+  id: CentCommJanitorPDA
+  name: CentComm janitor PDA
+  description: Why are you reading this instead of mopping floors?
+  components:
+  - type: Pda
+    id: CentCommIDCardJanitor

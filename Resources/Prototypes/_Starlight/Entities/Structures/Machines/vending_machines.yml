@@ -178,6 +178,23 @@
 
 - type: entity
   parent: SLVendingMachine
+  id: VendingMachineMime
+  categories: [ ShouldMapStation ]
+  name: vend of silence
+  description: All the gear a mime could need. Go put the captain in an invisible box!
+  components:
+  - type: AccessReader
+    access: [["Theatre"]]
+  - type: Store
+    name: vendor-mime-dispenser
+    categories:
+    - SLMime
+    - SLSecret
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/vend-of-silence.rsi
+
+- type: entity
+  parent: SLVendingMachine
   id: SLVendingMachineSecurity
   categories: [ ShouldMapStation ]
   name: security dispenser

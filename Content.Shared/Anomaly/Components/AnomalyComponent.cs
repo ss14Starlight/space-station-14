@@ -227,6 +227,9 @@ public sealed partial class AnomalyComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool CanPulse = true;
+
+    [DataField, AutoNetworkedField]
+    public bool CanBePunched = true;
     #endregion
 
     #region Points and Vessels

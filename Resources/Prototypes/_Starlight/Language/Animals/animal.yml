@@ -125,3 +125,19 @@
     - chirp
     - squeak
     - screech
+
+- type: language
+  id: Penguin
+  icon: LanguageIconAnimal
+  chatPrefix: pen
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 4
+    replacement:
+    - chirp
+    - brr
+    - honk
+    - squawk
+    - gak
+    - trill

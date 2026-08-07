@@ -178,6 +178,14 @@
         whitelist:
           components:
           - PAI
+  - type: AccessReader
+  - type: ActivatableUIRequiresAccess
+    allowUnlocking: true
+  - type: Lock
+    unlockOnClick: false
+  - type: Wires
+    boardName: wires-board-name-computer
+    layoutId: ComputerAiLockable
       # Starlight-end
   - type: ContainerContainer
     containers:
@@ -251,9 +259,9 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleCargo
-  categories: [ ShouldMapStation ] # Starlight
-  name: cargo shuttle console
-  description: Used to pilot the cargo shuttle.
+  categories: [ ShouldMapStation ] # Starlight begin
+  name: remote cargo shuttle console
+  description: Used to pilot the cargo shuttle remotely. # Starlight end
   components:
   - type: Sprite
     layers:
@@ -281,6 +289,10 @@
     board: CargoShuttleConsoleCircuitboard
   - type: StealTarget
     stealGroup: CargoShuttleConsoleCircuitboard
+  #Starlight start
+  - type: AccessReader
+    access: [["Shuttle"]]
+  #Starlight end
 
 - type: entity
   parent: BaseComputerAiAccess

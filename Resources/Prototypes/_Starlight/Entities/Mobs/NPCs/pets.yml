@@ -27,6 +27,8 @@
     - CannotSuicide
     - VimPilot
 
+## KIKI
+
 - type: entity
   name: Kiki
   parent: MobKoboldAdvanced
@@ -72,10 +74,60 @@
     - AnomalyHost
   - type: Loadout
     prototypes: [ MobKoboldGear ]
+  - type: Vocal
+    sounds:
+      Male: MaleReptilian
+      Female: FemaleReptilian
+      Unsexed: FemaleReptilian
   - type: Grammar
     attributes:
       proper: true
       gender: female
+
+## STIR STIR
+
+- type: entity
+  name: Stir Stir
+  parent: MobMonkeyAdvanced # He's smarter than the average monkey. Also no vent crawling.
+  id: MobMonkeyStirStir
+  suffix: AI
+  description: A disreputable monkey who should not be trusted. A real cell stuffer.
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-stirstir-name
+    description: ghost-role-information-stirstir-description
+    rules: ghost-role-information-nonantagonist-rules
+    job: StirStir
+  - type: GhostTakeoverAvailable
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 3
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+    - AnomalyHost
+  - type: Loadout
+    prototypes: [ MobStirStirGear ]
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+
+## ADMIN MICE
 
 - type: entity
   parent: MobMouse
@@ -258,3 +310,48 @@
   - type: AutoImplant
     implants:
     - BluespaceImplant
+
+- type: entity
+  name: Rt Hon. Flippers
+  parent: MobPenguin
+  id: MobPenguinFlippers
+  description: Emperor of the Court.
+  components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Penguin
+    understands:
+    - Penguin
+    - GalacticCommon
+  # Starlight-end
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Pets/flippers.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: flippers
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: flippers
+      Critical:
+        Base: flippers_dead
+      Dead:
+        Base: flippers_dead_blood
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-bird
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/penguin_squawk.ogg
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
