@@ -156,7 +156,7 @@
   - type: StationEvent
     occursDuringRoundEnd: false
     globalAnnouncement: false
-    weight: 50
+    weight: 20
     startAnnouncement: station-event-nightshift-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg

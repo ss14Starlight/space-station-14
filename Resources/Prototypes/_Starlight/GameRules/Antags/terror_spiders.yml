@@ -24,3 +24,4 @@
         max: 5 # I don't expect us to reach this, but we need to include a max now.
   - type: DynamicRuleCost
     cost: 200
+    cooldown: 1

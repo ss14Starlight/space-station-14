@@ -129,6 +129,8 @@
           #Starlight start
           conditions:
             - !type:WirePanel
+            - !type:Locked
+              locked: false
           #Starlight end
           steps:
             - tool: Prying
