@@ -153,17 +153,20 @@ public sealed partial class LoadoutSystem : EntitySystem
         // Starlight edit Start: Antag Loadouts
         List<ProtoId<RoleLoadoutPrototype>>? loadoutGroups,
         RoleLoadout? selectedLoadout = null,
-        RoleLoadoutPrototype? selectedLoadoutProto = null)
+        RoleLoadoutPrototype? selectedLoadoutProto = null, // Starlight
+        bool prioritizeBackStorage = false) // Starlight
         // Starlight edit End
     {
+        var priorityContext = prioritizeBackStorage ? new PriorityStorageEquipContext() : null; // Starlight
+
         // First, randomly pick a startingGear profile from those specified, and equip it.
         if (startingGear != null && startingGear.Count > 0)
-            _station.EquipStartingGear(uid, _random.Pick(startingGear), false);
+            _station.EquipStartingGear(uid, _random.Pick(startingGear), false, priorityContext); // Starlight
 
         // Starlight Start: Antag Loadouts
         if (selectedLoadout != null && selectedLoadoutProto != null)
         {
-            _station.EquipRoleLoadout(uid, selectedLoadout, selectedLoadoutProto);
+            _station.EquipRoleLoadout(uid, selectedLoadout, selectedLoadoutProto, null, priorityContext);
             GearEquipped(uid);
             return;
         }
@@ -181,7 +184,7 @@ public sealed partial class LoadoutSystem : EntitySystem
         var proto = _protoMan.Index(id);
         var loadout = new RoleLoadout(id);
         loadout.SetDefault(GetProfile(uid), _actors.GetSession(uid), _protoMan, true);
-        _station.EquipRoleLoadout(uid, loadout, proto);
+        _station.EquipRoleLoadout(uid, loadout, proto, null, priorityContext); // Starlight
 
         GearEquipped(uid);
     }
