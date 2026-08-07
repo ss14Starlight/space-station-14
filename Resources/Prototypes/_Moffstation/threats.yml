@@ -1,0 +1,4 @@
+- type: ninjaHackingThreat
+  id: DeadDrop
+  announcement: station-syndicate-dead-drop-announcement
+  rule: SyndicateDeadDrop
