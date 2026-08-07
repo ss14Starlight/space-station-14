@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/07/2026 02:13:45
-  entityCount: 39684
+  time: 08/07/2026 02:23:55
+  entityCount: 39694
 maps:
 - 1
 grids:
@@ -26114,6 +26114,13 @@ entities:
     - type: Transform
       pos: -0.60930705,-59.250107
       parent: 2
+- proto: BookFeather
+  entities:
+  - uid: 39694
+    components:
+    - type: Transform
+      pos: 26.532166,-52.37609
+      parent: 2
 - proto: BookLeafLoversSecret
   entities:
   - uid: 1308
@@ -50436,6 +50443,11 @@ entities:
     - type: Transform
       pos: -1.5,-19.5
       parent: 2
+  - uid: 15674
+    components:
+    - type: Transform
+      pos: 0.5,-72.5
+      parent: 2
   - uid: 16183
     components:
     - type: Transform
@@ -50560,6 +50572,26 @@ entities:
     components:
     - type: Transform
       pos: -8.5,-24.5
+      parent: 2
+  - uid: 39686
+    components:
+    - type: Transform
+      pos: -0.5,-72.5
+      parent: 2
+  - uid: 39687
+    components:
+    - type: Transform
+      pos: -1.5,-72.5
+      parent: 2
+  - uid: 39688
+    components:
+    - type: Transform
+      pos: -2.5,-72.5
+      parent: 2
+  - uid: 39689
+    components:
+    - type: Transform
+      pos: -3.5,-72.5
       parent: 2
 - proto: CableApcStack
   entities:
@@ -92866,6 +92898,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-14.5
       parent: 2
+  - uid: 39690
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 33.5,-56.5
+      parent: 2
+  - uid: 39692
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 35.5,-56.5
+      parent: 2
 - proto: ChairFolding
   entities:
   - uid: 14466
@@ -100549,10 +100593,10 @@ entities:
       parent: 2
 - proto: DefaultStationBeaconEscapePodN
   entities:
-  - uid: 15674
+  - uid: 35192
     components:
     - type: Transform
-      pos: -27.5,20.5
+      pos: -28.5,18.5
       parent: 2
 - proto: DefaultStationBeaconEscapePodS
   entities:
@@ -100848,10 +100892,10 @@ entities:
       parent: 2
 - proto: DefaultStationBeaconTheater
   entities:
-  - uid: 35192
+  - uid: 39685
     components:
     - type: Transform
-      pos: -1.5,-16.5
+      pos: -1.5,-18.5
       parent: 2
 - proto: DefaultStationBeaconToolRoom
   entities:
@@ -189956,8 +190000,11 @@ entities:
       desc: There was a distant shore with a crest that pierced the very sky itself, a destination that inspired awe in the souls of many. Trawling through the sand, they watched water erase the footprints they had left. The rocky grains of the cliffside slipped through time-worn fingers, yet they pressed on to the very top. When this masked one arrived at the peak, they did so alone, and they could no longer see the distant shore they once loved.
       name: the tide
     - type: Transform
+      anchored: True
       pos: -35.5,-4.5
       parent: 2
+    - type: Physics
+      bodyType: Static
     - type: ContainerContainer
       containers:
         jumpsuit: !type:ContainerSlot
@@ -189998,9 +190045,12 @@ entities:
       desc: She watched the mask take yet another victim, a person who weighed the end as equally they did the journey. Perhaps she'd never crest that distant peak, yet, she found a peace here at the shore, among the company of friends, of family, of passer-bys. Perhaps not everything is a task to conquer; perhaps she was happy here.
       name: the sister
     - type: Transform
+      anchored: True
       rot: -1.5707963267948966 rad
       pos: -34.5,-4.5
       parent: 2
+    - type: Physics
+      bodyType: Static
     - type: ContainerContainer
       containers:
         jumpsuit: !type:ContainerSlot
@@ -190041,9 +190091,12 @@ entities:
       desc: He watched the mask trudge on through the bitter gales and the sweet petrichor, intoxicated by an enthusiasm, by their appetite for more. There came a point where he could no longer march by their side as the roads grew ever more serpentine, ever steeper, a rocky scree that not even he could overcome. When he called out for help, his voice was answered by a glassy-eyed stare until he slipped into the dark below.
       name: the father
     - type: Transform
+      anchored: True
       rot: 1.5707963267948966 rad
       pos: -36.5,-4.5
       parent: 2
+    - type: Physics
+      bodyType: Static
     - type: ContainerContainer
       containers:
         jumpsuit: !type:ContainerSlot
@@ -206522,6 +206575,11 @@ entities:
     components:
     - type: Transform
       pos: 86.5,3.5
+      parent: 2
+  - uid: 34685
+    components:
+    - type: Transform
+      pos: -1.5,-73.5
       parent: 2
 - proto: RandomVendingClothing
   entities:
@@ -230091,6 +230149,11 @@ entities:
     - type: Transform
       pos: 53.5,-54.5
       parent: 2
+  - uid: 39691
+    components:
+    - type: Transform
+      pos: 34.5,-56.5
+      parent: 2
 - proto: TableStone
   entities:
   - uid: 34251
@@ -231610,6 +231673,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 21.5,14.5
       parent: 2
+- proto: ToolboxArtisticFilled
+  entities:
+  - uid: 39693
+    components:
+    - type: Transform
+      pos: -10.494825,-3.392424
+      parent: 2
 - proto: ToolboxElectricalFilled
   entities:
   - uid: 27432
@@ -231671,6 +231741,11 @@ entities:
     components:
     - type: Transform
       pos: 57.291447,1.9310257
+      parent: 2
+  - uid: 34572
+    components:
+    - type: Transform
+      pos: 49.354675,-57.21529
       parent: 2
 - proto: ToolboxGoldFilled
   entities:
@@ -231979,11 +232054,6 @@ entities:
     components:
     - type: Transform
       pos: -13.5,-68.5
-      parent: 2
-  - uid: 34572
-    components:
-    - type: Transform
-      pos: 49.5,-57.5
       parent: 2
 - proto: ToySword
   entities:
@@ -232759,11 +232829,6 @@ entities:
     components:
     - type: Transform
       pos: 43.5,-9.5
-      parent: 2
-  - uid: 34685
-    components:
-    - type: Transform
-      pos: -1.5,-73.5
       parent: 2
   - uid: 37972
     components:
