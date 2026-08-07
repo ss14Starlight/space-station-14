@@ -45,5 +45,12 @@ Entries:
   id: 701
   time: '2026-08-06T05:55:36.000000+00:00'
   url: https://github.com/InferusSS14/Inferus/pull/7
+- author: Tarazicon
+  changes:
+  - message: Added Selene Wing markings to moths.
+    type: Add
+  id: 801
+  time: '2026-08-07T05:11:45.000000+00:00'
+  url: https://github.com/InferusSS14/Inferus/pull/8
 Order: -1
 
