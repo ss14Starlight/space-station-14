@@ -62,7 +62,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         }
         return false;
     }
-    
+
     /// <summary>
     /// Resolves whether Radio Rig is linked to a Radio Server that is powered and whether or not it can broadcast.
     /// </summary>

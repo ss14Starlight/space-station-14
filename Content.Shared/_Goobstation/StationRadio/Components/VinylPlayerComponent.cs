@@ -17,7 +17,7 @@ public sealed partial class VinylPlayerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? SoundEntity;
-    
+
     // Starlight - Dehardcode Audo Params
     /// <summary>
     /// Default audio params for the played audio.

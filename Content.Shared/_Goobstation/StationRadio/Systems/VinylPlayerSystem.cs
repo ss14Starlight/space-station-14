@@ -38,7 +38,7 @@ public sealed partial class VinylPlayerSystem : EntitySystem
 
         if (!_stationRadio.TryGetLinkedPoweredServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp)) // Starlight - Add Station Radio Resume Play
             return;
-        
+
         // Starlight - Start - Add Station Radio Resume Play
         serverComp.CurrentSong = null;
         serverComp.PlaybackStartTime = null;
