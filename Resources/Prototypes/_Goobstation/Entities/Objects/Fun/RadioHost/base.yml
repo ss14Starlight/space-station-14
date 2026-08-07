@@ -6,8 +6,6 @@
   description: A flat round disc with music encoded onto it's surface. Very fragile!
   abstract: true
   components:
-  #- type: MusicDisk # TODO, attach sound to disk via component.
-  #  audioTrack: /Audio/_Goobstation/MusicDisks/Music/<NAME>.oog
   - type: Sprite
     sprite: _Goobstation/Objects/Fun/RadioHost/vinyl.rsi
     state: default
