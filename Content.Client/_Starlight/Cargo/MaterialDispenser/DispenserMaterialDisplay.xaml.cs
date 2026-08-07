@@ -81,7 +81,7 @@ public sealed partial class DispenserMaterialDisplay : PanelContainer
             {
                 Name = $"{sheetsToEject}",
                 Access = AccessLevel.Public,
-                Text = $"{sheetsToEject}", // Starlight
+                Text = $"{sheetsToEject}",
                 MinWidth = 45,
                 StyleClasses = { styleClass }
             };

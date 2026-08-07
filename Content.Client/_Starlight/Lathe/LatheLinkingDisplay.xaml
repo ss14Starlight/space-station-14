@@ -3,7 +3,7 @@
                 HorizontalExpand="True"
                 VerticalExpand="True">
     <BoxContainer Orientation="Horizontal" Name="ButtonBox" Visible="False">
-        <Button MinSize="80 0" Name="LinkingEjectButton" Access="Public" Text="Eject" ToggleMode="True" StyleClasses="OpenRight" />
-        <Button MinSize="80 0" Name="LinkingTransferButton" Access="Public" Text="DeviceName" ToggleMode="True" StyleClasses="OpenLeft" Pressed="True"/>
+        <Button SizeFlagsStretchRatio="50" HorizontalExpand="True" Name="LinkingEjectButton" Access="Public" Text="Eject" ToolTip="" ToggleMode="True" StyleClasses="OpenRight" Pressed="True" />
+        <Button SizeFlagsStretchRatio="50" HorizontalExpand="True" Name="LinkingTransferButton" Access="Public" Text="Not linked" ToolTip="{Loc lathe-menu-linking-linked-tooltip}" ToggleMode="True" StyleClasses="OpenLeft"/>
     </BoxContainer>
 </PanelContainer>

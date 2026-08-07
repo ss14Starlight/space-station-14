@@ -43,12 +43,20 @@ public sealed partial class LatheLinkingDisplay : PanelContainer
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
-        if (_entityManager.TryGetComponent<LatheLinkingComponent>(_entity, out var linking) && linking.LinkedEntity != null)
+        if (_entityManager.TryGetComponent<LatheLinkingComponent>(_entity, out var linking))
         {
+
             ButtonBox.Visible = true;
+            LinkingEjectButton.ToolTip = Loc.GetString("lathe-menu-linking-eject-tooltip",
+                ("lathename", _entityManager.GetComponent<MetaDataComponent>(_entity).EntityName));
             if (linking.LinkedEntity != null)
                 LinkingTransferButton.Text = _entityManager.GetComponent<MetaDataComponent>(linking.LinkedEntity.Value)
                     .EntityName;
+            else
+            {
+                LinkingEjectButton.Disabled = true;
+                LinkingTransferButton.Disabled = true;
+            }
             if (linking.Ejecting)
             {
                 LinkingEjectButton.Pressed = true;
