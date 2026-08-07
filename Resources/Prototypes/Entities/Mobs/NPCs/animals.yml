@@ -3142,6 +3142,9 @@
     interfaces:
       enum.ScentSniffUiKey.Key:
         type: ScentSniffBoundUserInterface
+      enum.RadarConsoleUiKey.Key: # dog descendants may potentially have mass scanners
+        type: RadarConsoleBoundUserInterface
+        requireInputValidation: false
   # Starlight End
   - type: Fixtures
     fixtures:

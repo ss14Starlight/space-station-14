@@ -40,13 +40,12 @@
   - IAA
   - Brigmedic
   - BlueShield
-  - Robotics
+  - Robotics # Adding another access? Make sure to also assign it to CyborgAllAccess.
   - Surgery
   - Paramedic
   - Mining
   - SalvageLead
   - Mail
-  - Pirate # Adding another access? Make sure to also assign it to CyborgAllAccess.
   - Debrief
   - Shuttle # Starlight end
 
