@@ -1,95 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added Stir Stir to genpop.
-    type: Add
-  id: 406942
-  time: '2026-07-26T13:11:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5307
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added Ice cream machine to freezer.
-    type: Add
-  id: 406943
-  time: '2026-07-26T13:11:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5307
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added Add Vend of Silence to mime/clown room.
-    type: Add
-  id: 406944
-  time: '2026-07-26T13:11:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5307
-- author: Orhu
-  changes:
-  - message: (Elkridge) Added Stir Stir to Genpop.
-    type: Add
-  id: 406945
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Added Flippers to Courtroom.
-    type: Add
-  id: 406946
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Added vend of silence to Mime Room.
-    type: Add
-  id: 406947
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Added ice cream maker to Kitchen.
-    type: Add
-  id: 406948
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Added ticket machine to HOP.
-    type: Add
-  id: 406949
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
-    type: Add
-  id: 406950
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Made one of the bookshelves in Library guaranteed to have all guidebooks.
-    type: Tweak
-  id: 406951
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Placed a station beacon in Washroom.
-    type: Tweak
-  id: 406952
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Replaced mail tech lockers with new large variants.
-    type: Tweak
-  id: 406953
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Serpentcrest) Added Stir Stir to Genpop.
-    type: Add
-  id: 406954
-  time: '2026-07-26T14:08:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5252
 - author: Orhu
   changes:
   - message: (Serpentcrest) Added Flippers to Courtroom.
@@ -2799,4 +2708,95 @@ Entries:
   id: 407341
   time: '2026-08-06T10:57:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5459
+- author: wonderfulworld
+  changes:
+  - message: Added rule cooldowns for Nukeops, NukeopsLate, Revolutionary, Zombie, Cosmic Cult, Wizard Duel, and Terror Spiders in dynamic.
+    type: Add
+  id: 407342
+  time: '2026-08-06T22:28:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5491
+- author: wonderfulworld
+  changes:
+  - message: Devil and Brighteye not having enough players will now no longer prevent the round from starting.
+    type: Tweak
+  id: 407343
+  time: '2026-08-06T22:28:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5491
+- author: wonderfulworld
+  changes:
+  - message: Dynamic will no longer roll invalid rule combinations together.
+    type: Fix
+  id: 407344
+  time: '2026-08-06T22:28:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5491
+- author: wonderfulworld
+  changes:
+  - message: Dynamic will no longer roll into negative budget.
+    type: Fix
+  id: 407345
+  time: '2026-08-06T22:28:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5491
+- author: wonderfulnewworld
+  changes:
+  - message: When you roll an antag that adds items to your inventory, if your back storage doesn't have enough room, it'll drop enough items from your back storage to fit your new gear in. If you're not wearing back storage, or your back storage is too small, it'll put them in your hands instead. Failing both of those cases, then it'll drop them on the floor.
+    type: Fix
+  id: 407346
+  time: '2026-08-06T22:28:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5494
+- author: wonderfulnewworld
+  changes:
+  - message: Pun Pun and other non-bag equippers can now actually get their Thief and SELF gear.
+    type: Fix
+  id: 407347
+  time: '2026-08-06T22:28:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5494
+- author: wonderfulnewworld, Princess-Cheeseballs
+  changes:
+  - message: You can now roll antag if you join in that awkward period between round start and gamerule start.
+    type: Fix
+  id: 407348
+  time: '2026-08-06T22:28:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5438
+- author: wonderfulnewworld
+  changes:
+  - message: HP Ammo no longer heals wearers of the cybersun juggernaut suit, decimus, deathsquad... etc, anyone with really high armor, basically.
+    type: Fix
+  id: 407349
+  time: '2026-08-07T01:11:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5536
+- author: wonderfulnewworld
+  changes:
+  - message: Antag papers work again.
+    type: Fix
+  id: 407350
+  time: '2026-08-07T01:11:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5536
+- author: wonderfulnewworld
+  changes:
+  - message: Antag requirements show up again.
+    type: Fix
+  id: 407351
+  time: '2026-08-07T01:11:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5536
+- author: JohnJJohn, Rouden, H20we, loltart
+  changes:
+  - message: Radio Host equipment has found it's way into the sector.
+    type: Add
+  id: 407352
+  time: '2026-08-07T05:50:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5288
+- author: JohnJJohn, Rouden, H20we, loltart
+  changes:
+  - message: Syndicate agents can find illegal CDs in their uplinks.
+    type: Add
+  id: 407353
+  time: '2026-08-07T05:50:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5288
+- author: wonderfulnewworld
+  changes:
+  - message: Cotton cake can no longer be sliced infinitely.
+    type: Fix
+  id: 407354
+  time: '2026-08-07T07:01:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5548
 Order: -1
