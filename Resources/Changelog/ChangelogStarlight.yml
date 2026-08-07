@@ -1,27 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Sepultum) Added vend of silence to Mime Room.
-    type: Add
-  id: 406970
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
-  - message: (Sepultum) Added ice cream maker to Kitchen.
-    type: Add
-  id: 406971
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
-  - message: (Sepultum) Added space heaters to Atmos.
-    type: Add
-  id: 406972
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
   - message: (Sepultum) Added a robotics control console to Robotics.
     type: Add
   id: 406973
@@ -2799,4 +2778,25 @@ Entries:
   id: 407369
   time: '2026-08-07T10:24:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5532
+- author: Orange Juice Goose
+  changes:
+  - message: Bluespace harvester for starboard.
+    type: Add
+  id: 407370
+  time: '2026-08-07T10:43:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5533
+- author: Orange Juice Goose
+  changes:
+  - message: Supermatter for starboard. Starboardmatter.
+    type: Add
+  id: 407371
+  time: '2026-08-07T10:43:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5533
+- author: Orange Juice Goose
+  changes:
+  - message: Reworked starboard TEG.
+    type: Tweak
+  id: 407372
+  time: '2026-08-07T10:43:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5533
 Order: -1
