@@ -142,6 +142,8 @@
           tags:
           - VinylSleeveFit
   - type: ContainerContainer
+    containers:
+      vinyl: !type:ContainerSlot
 
 - type: entity
   parent: BaseItem
@@ -163,6 +165,8 @@
           tags:
           - VinylSleeveFit
   - type: ContainerContainer
+    containers:
+      vinyl: !type:ContainerSlot
   - type: EntityTableContainerFill # By default just put a random one in there.
     containers:
       vinyl: !type:NestedSelector
