@@ -200,3 +200,24 @@
   heatCapacity: 10000
   weather: true
   indestructible: true
+
+- type: parallax
+  id: MoodySky
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/moody_land.png"
+      slowness: 0.98
+      scale: 0.95, 0.95
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/moody_city.png"
+      slowness: 0.98
+      scale: 0.95, 0.95
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/dark_noise.png"
+      slowness: 0.95
+      scale: "2, 2"
+      scrolling: "0.4, -0.05"

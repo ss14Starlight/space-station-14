@@ -43,6 +43,7 @@
         max: 1 # Starlight end
   - type: DynamicRuleCost
     cost: 150
+    cooldown: 1 # Starlight
 
 - type: antagSpecifier
   parent: RestrictedAntag

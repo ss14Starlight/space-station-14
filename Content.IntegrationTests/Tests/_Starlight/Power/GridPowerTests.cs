@@ -60,6 +60,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/cargo_prism.yml"),
         new("/Maps/_Starlight/Shuttles/cargo_silica.yml"),
         new("/Maps/_Starlight/Shuttles/cargo_syndicate.yml"),
+        new("/Maps/_Starlight/Shuttles/cargo_novolobster.yml"),
 
         // Evac
         new("/Maps/_Starlight/Shuttles/emergency_cluster.yml"),

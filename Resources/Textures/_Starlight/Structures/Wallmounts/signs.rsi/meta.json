@@ -127,6 +127,10 @@
         {
             "name": "break_service",
 			"copyright": "Conflee"
+        },
+        {
+            "name": "radiohost",
+			"copyright": "Huaqas"
         }
     ]
 }
