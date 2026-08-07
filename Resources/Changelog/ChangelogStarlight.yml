@@ -1,27 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Elkridge) Added ticket machine to HOP.
-    type: Add
-  id: 406949
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
-    type: Add
-  id: 406950
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
-  - message: (Elkridge) Made one of the bookshelves in Library guaranteed to have all guidebooks.
-    type: Tweak
-  id: 406951
-  time: '2026-07-26T13:41:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5274
-- author: Orhu
-  changes:
   - message: (Elkridge) Placed a station beacon in Washroom.
     type: Tweak
   id: 406952
@@ -2799,4 +2778,25 @@ Entries:
   id: 407348
   time: '2026-08-06T22:28:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5438
+- author: wonderfulnewworld
+  changes:
+  - message: HP Ammo no longer heals wearers of the cybersun juggernaut suit, decimus, deathsquad... etc, anyone with really high armor, basically.
+    type: Fix
+  id: 407349
+  time: '2026-08-07T01:11:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5536
+- author: wonderfulnewworld
+  changes:
+  - message: Antag papers work again.
+    type: Fix
+  id: 407350
+  time: '2026-08-07T01:11:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5536
+- author: wonderfulnewworld
+  changes:
+  - message: Antag requirements show up again.
+    type: Fix
+  id: 407351
+  time: '2026-08-07T01:11:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5536
 Order: -1
