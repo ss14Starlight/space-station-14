@@ -30,7 +30,7 @@ public sealed partial class HitscanBasicDamageSystem : EntitySystem
                 ignoreResistances: ent.Comp.IgnoreResistances,
                 origin: args.Data.Gun,
                 armorPenetration: ent.Comp.ArmorPenetration,
-                canHeal: true // Need this true to be able to deal extra damage on weakness.
+                canHeal: false
             );
         // Starlight end
 

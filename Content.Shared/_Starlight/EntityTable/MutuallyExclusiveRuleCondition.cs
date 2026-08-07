@@ -29,15 +29,24 @@ public sealed partial class MutuallyExclusiveRuleCondition : EntityTableConditio
         if (Rules.Count == 0)
             return false;
 
+        if (ctx.TryGetData<GameRuleTableContext>(out var gameRuleContext))
+        {
+            foreach (var ruleId in Rules)
+            {
+                if (gameRuleContext.Contains(ruleId))
+                    return false;
+            }
+
+            return true;
+        }
+
         var gameTicker = entMan.System<SharedGameTicker>();
 
         foreach (var previousRule in gameTicker.AllPreviousGameRules)
         {
             foreach (var ruleId in Rules)
             {
-                string rule = ruleId;
-
-                if (previousRule.Item2 == rule)
+                if (previousRule.Item2 == ruleId.Id)
                     return false;
             }
         }
