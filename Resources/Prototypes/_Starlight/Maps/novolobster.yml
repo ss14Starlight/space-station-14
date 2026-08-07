@@ -69,7 +69,7 @@
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
-            Musician: [ 2, 2 ]
+            Musician: [ 3, 3 ]
             Performer: [ 5, 5 ]
             #silicon
             StationAi: [ 1, 1 ]
