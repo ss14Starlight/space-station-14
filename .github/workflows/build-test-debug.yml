@@ -33,12 +33,15 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: read
     outputs:
       integration_test_filters: ${{ steps.integration-test-shards.outputs.filters }}
       integration_test_shards: ${{ steps.integration-test-shards.outputs.shards }}
     steps:
       - name: Checkout Master
         uses: actions/checkout@v7
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && 0 || 1 }}
 
       - name: Setup Submodule
         run: |
@@ -55,8 +58,39 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
 
+      - name: Setup Reviewdog
+        if: github.event_name == 'pull_request'
+        uses: reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f # v1.5.0
+        with:
+          reviewdog_version: v0.21.0
+
       - name: Build Project
+        if: github.event_name != 'pull_request'
         run: dotnet build --configuration DebugOpt /m
+
+      - name: Build Project and collect C# diagnostics
+        if: github.event_name == 'pull_request'
+        run: dotnet build --configuration DebugOpt -p:Reviewdog=true /m
+
+      - name: Report C# diagnostics on changed lines
+        if: github.event_name == 'pull_request'
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mapfile -d '' -t reports < <(find . -type f -name reviewdog.sarif -print0)
+          if (( ${#reports[@]} == 0 )); then
+            echo "::error::The build did not produce any C# diagnostic reports."
+            exit 1
+          fi
+
+          jq -s '{version: "2.1.0", runs: [.[].runs[]]}' "${reports[@]}" > /tmp/csharp-diagnostics.sarif
+          reviewdog \
+            -f=sarif \
+            -name="C# diagnostics" \
+            -reporter=github-pr-annotations \
+            -filter-mode=added \
+            -fail-level=warning \
+            < /tmp/csharp-diagnostics.sarif
 
       - name: Discover Integration Tests
         id: integration-test-shards
@@ -277,10 +311,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: read
     timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && 0 || 1 }}
 
       - name: Setup Submodule
         run: |
@@ -297,6 +334,12 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
 
+      - name: Setup Reviewdog
+        if: github.event_name == 'pull_request'
+        uses: reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f # v1.5.0
+        with:
+          reviewdog_version: v0.21.0
+
       - name: Download test binaries
         uses: actions/download-artifact@v8
         with:
@@ -306,7 +349,43 @@ jobs:
         run: tar --use-compress-program='zstd -d -T0' -xf test-binaries.tar.zst && rm test-binaries.tar.zst
 
       - name: Run Linter
+        if: github.event_name != 'pull_request'
         run: bin/Content.YAMLLinter/Content.YAMLLinter
+
+      - name: Run Linter and report changed YAML lines
+        if: github.event_name == 'pull_request'
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          bin/Content.YAMLLinter/Content.YAMLLinter > /tmp/yaml-linter.log 2>&1
+          linter_status=$?
+          set -e
+
+          cat /tmp/yaml-linter.log
+
+          set +e
+          reviewdog \
+            -efm='%f:%l:%c: %t%*[^:]: %m' \
+            -name="YAML linter" \
+            -reporter=github-pr-annotations \
+            -filter-mode=added \
+            -fail-level=error \
+            < /tmp/yaml-linter.log
+          reviewdog_status=$?
+          set -e
+
+          if (( linter_status > 2 )); then
+            echo "::error::YAML linter crashed with exit code ${linter_status}."
+            exit "${linter_status}"
+          fi
+
+          if (( linter_status == 2 )); then
+            echo "::error::YAML field validation failed; see the log for non-localized errors."
+            exit 1
+          fi
+
+          exit "${reviewdog_status}"
 
   ci-success:
     name: Debug CI Required
@@ -366,7 +445,6 @@ jobs:
 
   cleanup:
     name: Cleanup Artifacts
-    if: always()
     needs:
       - content-tests
       - integration-tests
@@ -375,7 +453,7 @@ jobs:
     runs-on: ubuntu-slim
     steps:
       - name: Delete test binaries
-        if: ${{ !(runner.debug == '1' || inputs.harvest == true) }}
+        if: ${{ !(runner.debug == '1' || inputs.harvest == true || needs.ci-success.result == 'success') }}
         continue-on-error: true
         uses: geekyeggo/delete-artifact@v6
         with:
