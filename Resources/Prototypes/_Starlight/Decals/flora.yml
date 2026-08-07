@@ -4,7 +4,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: &waterReeds _CP14/Decals/water_reeds.rsi
+    sprite: &waterReeds _Starlight/Decals/water_reeds.rsi
     state: big1
 
 - type: decal

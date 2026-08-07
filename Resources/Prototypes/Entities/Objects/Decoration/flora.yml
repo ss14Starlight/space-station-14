@@ -42,7 +42,7 @@
   - type: Clickable
   - type: Sprite
     noRot: true
-    sprite: _CP14/Objects/Decoration/Flora/flora_trees.rsi #SL Edit
+    sprite: _Starlight/Objects/Decoration/Flora/flora_trees.rsi #SL Edit
     drawdepth: Overdoors
     offset: 0,0.9
   - type: Physics
@@ -99,7 +99,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_snow.rsi #SL Edit
+    sprite: _Starlight/Objects/Decoration/Flora/tree_snow.rsi #SL Edit
     offset: 0,0.7
   - type: Fixtures
     fixtures:
@@ -117,7 +117,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/flora_treeslarge.rsi #SL Edit
+    sprite: _Starlight/Objects/Decoration/Flora/flora_treeslarge.rsi #SL Edit
     offset: 0,1.55
   - type: Fixtures
     fixtures:
@@ -135,7 +135,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _CP14/Objects/Decoration/Flora/tree_spruce_medium.rsi #SL Edit
+    sprite: _Starlight/Objects/Decoration/Flora/tree_spruce_medium.rsi #SL Edit
     offset: 0,1.15
   - type: Fixtures
     fixtures:

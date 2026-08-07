@@ -1462,7 +1462,7 @@
 - type: tile
   id: FloorGrass
   name: tiles-planet-grass-floor
-  sprite: /Textures/_CP14/Tiles/Grass/grass.png #SL Edit
+  sprite: /Textures/_Starlight/Tiles/Grass/grass.png #SL Edit
   #SL Start
   variants: 6
   placementVariants:
@@ -1484,7 +1484,7 @@
 - type: tile
   id: FloorGrassJungle
   name: tiles-jungle-grass-floor
-  sprite: /Textures/_CP14/Tiles/GrassTall/grass.png #SL Edit
+  sprite: /Textures/_Starlight/Tiles/GrassTall/grass.png #SL Edit
   #SL Start
   variants: 6
   placementVariants:
@@ -1506,7 +1506,7 @@
 - type: tile
   id: FloorGrassDark
   name: tiles-dark-grass-floor
-  sprite: /Textures/_CP14/Tiles/GrassDark/grass.png #SL Edit
+  sprite: /Textures/_Starlight/Tiles/GrassDark/grass.png #SL Edit
   variants: 6 #SL
   placementVariants:
   - 1.0
@@ -1525,7 +1525,7 @@
 - type: tile
   id: FloorGrassLight
   name: tiles-light-grass-floor
-  sprite: /Textures/_CP14/Tiles/GrassLight/grass.png #SL Edit
+  sprite: /Textures/_Starlight/Tiles/GrassLight/grass.png #SL Edit
   variants: 6 #SL
   placementVariants:
   - 1.0
@@ -1980,7 +1980,7 @@
 - type: tile
   id: FloorAstroGrass
   name: tiles-astro-grass
-  sprite: /Textures/_CP14/Tiles/Grass/grass.png #SL Edit
+  sprite: /Textures/_Starlight/Tiles/Grass/grass.png #SL Edit
   variants: 6 #SL
   placementVariants:
   - 1.0
@@ -1991,14 +1991,14 @@
   - 1.0 #SL
   edgeSpritePriority: 1
   edgeSprites:
-    SouthEast: /Textures/_CP14/Tiles/Grass/single_edge.png #SL Edit
-    NorthEast: /Textures/_CP14/Tiles/Grass/single_edge.png #SL Edit
-    NorthWest: /Textures/_CP14/Tiles/Grass/single_edge.png #SL Edit
-    SouthWest: /Textures/_CP14/Tiles/Grass/single_edge.png #SL Edit
-    South: /Textures/_CP14/Tiles/Grass/double_edge.png #SL Edit
-    East: /Textures/_CP14/Tiles/Grass/double_edge.png #SL Edit
-    North: /Textures/_CP14/Tiles/Grass/double_edge.png #SL Edit
-    West: /Textures/_CP14/Tiles/Grass/double_edge.png #SL Edit
+    SouthEast: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
+    NorthEast: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
+    NorthWest: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
+    SouthWest: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
+    South: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
+    East: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
+    North: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
+    West: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Cutting ]
