@@ -1,5 +1,5 @@
-using Content.Shared._Goobstation.StationRadio.Components;
-using Content.Shared._Goobstation.StationRadio.Events;
+using Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
+using Content.Shared._Goobstation.StationRadio.Events; // Starlight - _Goob -> _Goobstation
 using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared.Communications;
@@ -17,9 +17,9 @@ using Robust.Shared.Timing;
 using System.Linq;
 using Content.Shared.Radio.Components;
 using Content.Server.Chat.Systems;
-using Content.Shared._Goobstation.StationRadio.Systems;
+using Content.Shared._Goobstation.StationRadio.Systems; // Starlight - Station Radio Check oved to StationRadioReceiverSystem
 
-namespace Content.Server._Goobstation.StationRadio;
+namespace Content.Server._Goobstation.StationRadio; // Starlight - _Goob -> _Goobstation
 
 /// <summary>
 /// System that handles spawning game rules when vinyl disks finish playing.
@@ -37,7 +37,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private SharedPopupSystem _popups = default!;
     [Dependency] private ChatSystem _chat = default!;
-    [Dependency] private readonly StationRadioReceiverSystem _stationRadio = default!;
+    [Dependency] private readonly StationRadioReceiverSystem _stationRadio = default!; // Starlight - Station Radio Check oved to StationRadioReceiverSystem
 
     private record struct TrackingData(EntityUid VinylPlayerUid, TimeSpan EndTime);
     private readonly Dictionary<EntityUid, TrackingData> _trackingVinyls = new();
@@ -83,7 +83,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         }
 
         // Check if vinyl player is connected to the radio system
-        if (!_stationRadio.TryGetLinkedPoweredServer(playerUid, out _))
+        if (!_stationRadio.TryGetLinkedPoweredServer(playerUid, out _)) // Starlight - Station Radio Check oved to StationRadioReceiverSystem
         {
             _popups.PopupPredicted(Loc.GetString("vinyl-popout-no-radio-connection"), playerUid, null, PopupType.Medium);
             QueueSafeEject();
@@ -140,7 +140,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             }
 
             // Check if vinyl player is still connected to the radio system
-            if (!_stationRadio.TryGetLinkedPoweredServer(data.VinylPlayerUid, out _))
+            if (!_stationRadio.TryGetLinkedPoweredServer(data.VinylPlayerUid, out _)) // Starlight - Station Radio Check oved to StationRadioReceiverSystem
             {
                 _trackingVinyls.Remove(vinylUid);
                 _popups.PopupPredicted(Loc.GetString("vinyl-popout-no-radio-connection"), data.VinylPlayerUid, null, PopupType.Medium);
@@ -198,10 +198,10 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             _containers.Remove(vinylUid, container);
 
         // Play sound effect
-        _audio.PlayPvs(summonComp.BurnSound, vinylCoords, summonComp.BurnSoundParams); // AudioParams.Default.WithVolume(-5f));
+        _audio.PlayPvs(summonComp.BurnSound, vinylCoords, summonComp.BurnSoundParams);  // Starlight - Dehardcode BurnSoundParams
 
         // Spawn ash at the vinyl's location
-        Spawn(summonComp.AshPrototype, vinylCoords);
+        Spawn(summonComp.AshPrototype, vinylCoords); // Starlight - Dehardcode ash prototype
 
         // Delete the vinyl
         QueueDel(vinylUid);

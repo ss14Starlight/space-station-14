@@ -1,23 +1,25 @@
-using Content.Shared._Goobstation.StationRadio.Components;
-using Content.Shared._Goobstation.StationRadio.Events;
+using Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
+using Content.Shared._Goobstation.StationRadio.Events; // Starlight - _Goob -> _Goobstation
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceLinking; // Starlight - Remove Server Check from VinylSummonSystem
 using Content.Shared.Radio.Components; // Moffstation - Alt click to lower volume.
-using Content.Shared.Verbs;
-using Robust.Shared.Network;
-using Robust.Shared.Timing; // Moffstation - Alt click to lower volume.
+using Content.Shared.Verbs; // Moffstation - Alt click to lower volume.
+using Robust.Shared.Network; // Starlight - Add Station Radio Resume Play
+using Robust.Shared.Timing; // Starlight - Add Station Radio Resume Play
 
-namespace Content.Shared._Goobstation.StationRadio.Systems;
+namespace Content.Shared._Goobstation.StationRadio.Systems; // Starlight - _Goob -> _Goobstation
 
 public sealed partial class StationRadioReceiverSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPowerReceiverSystem _power = default!;
+    // Starlight - Add Station Radio Resume Play
     [Dependency] private INetManager _net = default!;
     [Dependency] private IGameTiming _timing = default!;
+    // Starlight - End
     public override void Initialize()
     {
         base.Initialize();
@@ -25,13 +27,15 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         SubscribeLocalEvent<StationRadioReceiverComponent, StationRadioMediaStoppedEvent>(OnMediaStopped);
         SubscribeLocalEvent<StationRadioReceiverComponent, ActivateInWorldEvent>(OnRadioToggle);
         SubscribeLocalEvent<StationRadioReceiverComponent, PowerChangedEvent>(OnPowerChanged);
-        SubscribeLocalEvent<StationRadioReceiverComponent, MapInitEvent>(OnReceiverMapInit);
 
-        SubscribeLocalEvent<StationRadioServerComponent, PowerChangedEvent>(OnServerPowerChanged);
+        SubscribeLocalEvent<StationRadioReceiverComponent, MapInitEvent>(OnReceiverMapInit); // Starlight - Add Radio Resume Play
+
+        SubscribeLocalEvent<StationRadioServerComponent, PowerChangedEvent>(OnServerPowerChanged); // Starlight - Fix Server Broadcasting Music with no power.
 
         SubscribeLocalEvent<StationRadioReceiverComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs); // Moffstation - Alt click to lower volume.
     }
 
+    // Starlight - Start - Remove Server Check from VinylSummonSystem
     /// <summary>
     /// Resolves whether a Radio Rig is linked to a Radio Server.
     /// </summary>
@@ -58,7 +62,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         }
         return false;
     }
-
+    
     /// <summary>
     /// Resolves whether Radio Rig is linked to a Radio Server that is powered and whether or not it can broadcast.
     /// </summary>
@@ -73,6 +77,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             return;
         _audio.SetGain(comp.SoundEntity, GetGain(comp, args.Powered));
     }
+    // Starlight - End
 
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
     {

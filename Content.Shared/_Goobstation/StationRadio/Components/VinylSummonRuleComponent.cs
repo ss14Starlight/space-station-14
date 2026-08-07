@@ -1,8 +1,8 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes; // Starlight - Dehardcode Audio Params and Ash Prototype
 
-namespace Content.Shared._Goobstation.StationRadio.Components;
+namespace Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
 
 /// <summary>
 /// Component that allows a vinyl disk to spawn a game rule when it finishes playing.
@@ -22,6 +22,7 @@ public sealed partial class VinylSummonRuleComponent : Component
     [DataField]
     public SoundSpecifier BurnSound = new SoundPathSpecifier("/Audio/Effects/cig_snuff.ogg");
 
+    // Starlight - Dehardcode Audio Params and Ash Prototype
     /// <summary>
     /// Set default volume for the Burn sound.
     /// </summary>
@@ -33,4 +34,5 @@ public sealed partial class VinylSummonRuleComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId AshPrototype = "Ash";
+    // Starlight - End
 }

@@ -208,7 +208,7 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
         var message = args.OriginalChatMsg.Message; // Starlight-edit: The chat system will handle the rest and re-obfuscate if needed.
         _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name,
-            checkRadioPrefix: component.ParseRadioPrefix, // Goobstation - Radio Host Flag
+            checkRadioPrefix: component.ParseRadioPrefix, // Starlight - Radio Host, change LouderSpeech to ParseRadioPrefix
             languageOverride: args.Language); // Starlight
     }
 
