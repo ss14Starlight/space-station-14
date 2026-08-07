@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Serpentcrest) Added Stir Stir to Genpop.
-    type: Add
-  id: 406954
-  time: '2026-07-26T14:08:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5252
-- author: Orhu
-  changes:
   - message: (Serpentcrest) Added Flippers to Courtroom.
     type: Add
   id: 406955
@@ -2799,4 +2792,11 @@ Entries:
   id: 407353
   time: '2026-08-07T05:50:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5288
+- author: wonderfulnewworld
+  changes:
+  - message: Cotton cake can no longer be sliced infinitely.
+    type: Fix
+  id: 407354
+  time: '2026-08-07T07:01:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5548
 Order: -1
