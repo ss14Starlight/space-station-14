@@ -70,7 +70,7 @@ jobs:
 
       - name: Build Project and collect C# diagnostics
         if: github.event_name == 'pull_request'
-        run: dotnet build --configuration DebugOpt -p:Reviewdog=true /m -clp:ErrorsOnly
+        run: dotnet build --configuration DebugOpt -p:Reviewdog=true /m
 
       - name: Report C# diagnostics on changed lines
         if: github.event_name == 'pull_request'
