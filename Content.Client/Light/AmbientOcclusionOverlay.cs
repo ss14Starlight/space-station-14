@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Runtime.InteropServices;
 using Content.Client.Graphics;
 using Content.Shared.CCVar;
 using Content.Shared.Maps;
@@ -26,10 +27,14 @@ public sealed partial class AmbientOcclusionOverlay : Overlay
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IPrototypeManager _proto = default!;
 
+    private List<Entity<MapGridComponent>> _cachedGrids = new();
+    private readonly List<Entity<OccluderComponent, TransformComponent>> _cachedOccluders = new();
+    private readonly List<Vector2> _aoVertices = new(4096);
+    private readonly List<ushort> _aoIndices = new(6144);
+
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowEntities;
 
     private readonly OverlayResourceCache<CachedResources> _resources = new ();
-    private List<Entity<MapGridComponent>> _grids = new();
 
     public AmbientOcclusionOverlay()
     {
@@ -55,7 +60,6 @@ public sealed partial class AmbientOcclusionOverlay : Overlay
         var worldBounds = args.WorldBounds;
         var worldHandle = args.WorldHandle;
         var color = Color.FromHex(_cfgManager.GetCVar(CCVars.AmbientOcclusionColor));
-        var distance = _cfgManager.GetCVar(CCVars.AmbientOcclusionDistance);
         //var color = Color.Red;
         var target = viewport.RenderTarget;
         var lightScale = target.Size / (Vector2) viewport.Size;
@@ -92,18 +96,21 @@ public sealed partial class AmbientOcclusionOverlay : Overlay
             () =>
             {
                 worldHandle.UseShader(_proto.Index(UnshadedShader).Instance());
-                var invMatrix = res.AOTarget.GetWorldToLocalMatrix(viewport.Eye!, scale);
+                worldHandle.SetTransform(Matrix3x2.Identity);
+                var worldToTargetMatrix = res.AOTarget.GetWorldToLocalMatrix(viewport.Eye!, scale);
 
-                foreach (var entry in query.QueryAabb(mapId, worldBounds))
+                _cachedOccluders.Clear();
+                query.QueryAabb(_cachedOccluders, mapId, worldBounds);
+
+                foreach (var entry in _cachedOccluders)
                 {
-                    DebugTools.Assert(entry.Component.Enabled);
-                    var matrix = xformSystem.GetWorldMatrix(entry.Transform);
-                    var localMatrix = Matrix3x2.Multiply(matrix, invMatrix);
-
-                    worldHandle.SetTransform(localMatrix);
-                    // 4 pixels
-                    worldHandle.DrawRect(Box2.UnitCentered.Enlarged(distance / EyeManager.PixelsPerMeter), Color.White);
+                    DebugTools.Assert(entry.Comp1.Enabled);
+                    var matrix = xformSystem.GetWorldMatrix(entry.Comp2);
+                    var localToTargetMatrix = Matrix3x2.Multiply(matrix, worldToTargetMatrix);
+                    AppendAmbientOcclusionPolygon(worldHandle, entry.Comp1.Polygon, localToTargetMatrix);
                 }
+
+                FlushAmbientOcclusionPolygons(worldHandle);
             }, Color.Transparent);
 
         _clyde.BlurRenderTarget(viewport, res.AOTarget, res.AOBlurBuffer, viewport.Eye!, 14f);
@@ -116,9 +123,9 @@ public sealed partial class AmbientOcclusionOverlay : Overlay
                 // Don't want lighting affecting it.
                 worldHandle.UseShader(_proto.Index(UnshadedShader).Instance());
 
-                _grids.Clear();
-                maps.FindGridsIntersecting(mapId, worldBounds, ref _grids);
-                foreach (var grid in _grids)
+                _cachedGrids.Clear();
+                maps.FindGridsIntersecting(mapId, worldBounds, ref _cachedGrids);
+                foreach (var grid in _cachedGrids)
                 {
                     var transform = xformSystem.GetWorldMatrix(grid.Owner);
                     var worldToTextureMatrix = Matrix3x2.Multiply(transform, invMatrix);
@@ -153,6 +160,48 @@ public sealed partial class AmbientOcclusionOverlay : Overlay
         _resources.Dispose();
 
         base.DisposeBehavior();
+    }
+
+    private void AppendAmbientOcclusionPolygon(
+        DrawingHandleWorld worldHandle,
+        ReadOnlySpan<Vector2> polygon,
+        Matrix3x2 localToTargetMatrix)
+    {
+        if (polygon.Length < 3)
+            return;
+
+        // Keep indices representable as ushort for DrawingHandleBase.DrawPrimitives().
+        if (_aoVertices.Count + polygon.Length > ushort.MaxValue)
+            FlushAmbientOcclusionPolygons(worldHandle);
+
+        var indexBase = (ushort) _aoVertices.Count;
+
+        for (var i = 0; i < polygon.Length; i++)
+        {
+            _aoVertices.Add(Vector2.Transform(polygon[i], localToTargetMatrix));
+        }
+
+        for (var i = 1; i < polygon.Length - 1; i++)
+        {
+            _aoIndices.Add(indexBase);
+            _aoIndices.Add((ushort) (indexBase + i));
+            _aoIndices.Add((ushort) (indexBase + i + 1));
+        }
+    }
+
+    private void FlushAmbientOcclusionPolygons(DrawingHandleWorld worldHandle)
+    {
+        if (_aoVertices.Count == 0)
+            return;
+
+        worldHandle.DrawPrimitives(
+            DrawPrimitiveTopology.TriangleList,
+            CollectionsMarshal.AsSpan(_aoIndices),
+            CollectionsMarshal.AsSpan(_aoVertices),
+            Color.White);
+
+        _aoVertices.Clear();
+        _aoIndices.Clear();
     }
 
     private sealed class CachedResources : IDisposable
