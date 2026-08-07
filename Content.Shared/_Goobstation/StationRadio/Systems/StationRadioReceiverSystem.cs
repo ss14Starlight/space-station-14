@@ -5,8 +5,8 @@ using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.DeviceLinking; // Starlight - Remove Server Check from VinylSummonSystem
-using Content.Shared.Radio.Components; // Moffstation - Alt click to lower volume.
-using Content.Shared.Verbs; // Moffstation - Alt click to lower volume.
+using Content.Shared.Radio.Components; // Starlight - Alt click to lower volume.
+using Content.Shared.Verbs; // Starlight - Alt click to lower volume.
 using Robust.Shared.Network; // Starlight - Add Station Radio Resume Play
 using Robust.Shared.Timing; // Starlight - Add Station Radio Resume Play
 
@@ -31,53 +31,11 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         SubscribeLocalEvent<StationRadioReceiverComponent, MapInitEvent>(OnReceiverMapInit); // Starlight - Add Radio Resume Play
 
         SubscribeLocalEvent<StationRadioServerComponent, PowerChangedEvent>(OnServerPowerChanged); // Starlight - Fix Server Broadcasting Music with no power.
+        SubscribeLocalEvent<StationRadioServerComponent, EntityTerminatingEvent>(OnServerTerminating); // Starlight - When Server is destroyed, it should stop broadcasting.
+        SubscribeLocalEvent<RadioRigComponent, EntityTerminatingEvent>(OnRigTerminating); // Starlight - When Rig is destroyed, it should stop broadcasting.
 
-        SubscribeLocalEvent<StationRadioReceiverComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs); // Moffstation - Alt click to lower volume.
+        SubscribeLocalEvent<StationRadioReceiverComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs); // Starlight - Alt click to lower volume.
     }
-
-    // Starlight - Start - Remove Server Check from VinylSummonSystem
-    /// <summary>
-    /// Resolves whether a Radio Rig is linked to a Radio Server.
-    /// </summary>
-    public bool TryGetLinkedServer(EntityUid uid, out EntityUid server)
-    {
-        server = default;
-
-        if (!TryComp<DeviceLinkSourceComponent>(uid, out var source))
-            return false;
-
-        foreach (var linkedRig in source.LinkedPorts.Keys)
-        {
-            if (!HasComp<RadioRigComponent>(linkedRig) || !TryComp<DeviceLinkSinkComponent>(linkedRig, out var sink))
-                continue;
-
-            foreach (var linkedServer in sink.LinkedSources)
-            {
-                if (!HasComp<StationRadioServerComponent>(linkedServer))
-                continue;
-
-                server = linkedServer;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Resolves whether Radio Rig is linked to a Radio Server that is powered and whether or not it can broadcast.
-    /// </summary>
-    public bool TryGetLinkedPoweredServer(EntityUid uid, out EntityUid server)
-    {
-        return TryGetLinkedServer(uid, out server) && _power.IsPowered(server);
-    }
-
-    private void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args)
-    {
-        if(comp.SoundEntity == null)
-            return;
-        _audio.SetGain(comp.SoundEntity, GetGain(comp, args.Powered));
-    }
-    // Starlight - End
 
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
     {
@@ -174,7 +132,11 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         }
     }
 
-    // Moffstation - Start - Alt click to lower volume.
+    // Starlight - Start - Remove Server Check from VinylSummonSystem
+
+    /// <summary>
+    /// Method for getting the current volume of the station radio.
+    /// </summary>
     private static float GetGain(StationRadioReceiverComponent comp, bool powered)
     {
         if (!comp.Active || !powered)
@@ -183,6 +145,9 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         return comp.LowVolume ? comp.LowVolumeGain : 1f;
     }
 
+    /// <summary>
+    /// Alt Click / Context Menu Verb for turning down the volume of the radio.
+    /// </summary>
     private void OnGetAltVerbs(EntityUid uid, StationRadioReceiverComponent comp, GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
@@ -200,5 +165,75 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             }
         });
     }
-    // Moffstation - End
+
+    /// <summary>
+    /// Resolves whether a Radio Rig is linked to a Radio Server.
+    /// </summary>
+    public bool TryGetLinkedServer(EntityUid uid, out EntityUid server)
+    {
+        server = default;
+
+        if (!TryComp<DeviceLinkSourceComponent>(uid, out var source))
+            return false;
+
+        foreach (var linkedRig in source.LinkedPorts.Keys)
+        {
+            if (!HasComp<RadioRigComponent>(linkedRig) || !TryComp<DeviceLinkSinkComponent>(linkedRig, out var sink))
+                continue;
+
+            foreach (var linkedServer in sink.LinkedSources)
+            {
+                if (!HasComp<StationRadioServerComponent>(linkedServer))
+                continue;
+
+                server = linkedServer;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Resolves whether Radio Rig is linked to a Radio Server that is powered and whether or not it can broadcast.
+    /// </summary>
+    public bool TryGetLinkedPoweredServer(EntityUid uid, out EntityUid server)
+    {
+        return TryGetLinkedServer(uid, out server) && _power.IsPowered(server);
+    }
+
+    /// <summary>
+    /// Stop broadcasting if the Radio Server loses power, despite the Vinyl Player and Rig still being powered.
+    /// </summary>
+    private void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args)
+    {
+        if(comp.SoundEntity == null)
+            return;
+        _audio.SetGain(comp.SoundEntity, GetGain(comp, args.Powered));
+    }
+
+    /// <summary>
+    /// When the Radio Server is destroyed, stop all station radio receivers.
+    /// </summary>
+    private void OnServerTerminating(EntityUid uid, StationRadioServerComponent comp, ref EntityTerminatingEvent args) => StopAllReceivers();
+
+    /// <summary>
+    /// When the Radio Rig is destroyed, stop all station radio receivers.
+    /// </summary>
+    private void OnRigTerminating(EntityUid uid, RadioRigComponent comp, ref EntityTerminatingEvent args) => StopAllReceivers();
+
+    /// <summary>
+    /// Stop the broadcast on server destruction.
+    /// </summary>
+    private void StopAllReceivers()
+    {
+        if (_net.IsClient)
+            return;
+
+        var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
+        while (query.MoveNext(out var receiver, out _))
+        {
+            RaiseLocalEvent(receiver, new StationRadioMediaStoppedEvent());
+        }
+    }
+    // Starlight - End
 }
