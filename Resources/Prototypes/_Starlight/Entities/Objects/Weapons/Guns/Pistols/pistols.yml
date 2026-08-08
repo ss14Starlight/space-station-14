@@ -600,3 +600,55 @@
     autoRefillRate: 4s
     affectedByEmp: true
   - type: AmmoCounter
+
+- type: entity
+  name: broomhandle
+  parent: BaseWeaponSniper
+  id: Pistolbrommhandle
+  description: An antiquated design of a pistol, used by a few antique fans.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 0
+        staminaMultiplier: 0
+      Rodentia:
+        knockback: 0
+        staminaMultiplier: 0
+      Resomi:
+        knockback: 0
+        staminaMultiplier: 0
+      Felionoid:
+        knockback: 0
+        staminaMultiplier: 0
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/broomhandle.rsi
+    slots:
+    - Back
+    - suitStorage
+    - Belt
+  - type: Gun
+    pump: false
+    fireRate: 4.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: BallisticAmmoProvider
+    capacity: 15
+    proto: CartridgePistol40SP
+    whitelist:
+      tags:
+      - CartridgePistolDP
+  - type: FiringPinHolder
+    supportedPins: [ Pistol, GunUpgrade ]
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/broomhandle.rsi
+    layers:
+    - state: base
