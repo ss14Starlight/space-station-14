@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Sepultum) Added a ticket machine to HOP.
-    type: Add
-  id: 406974
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
   - message: (Sepultum) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
     type: Add
   id: 406975
@@ -2799,4 +2792,11 @@ Entries:
   id: 407373
   time: '2026-08-08T21:00:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5489
+- author: Caws
+  changes:
+  - message: The security shuttles no longer give you a blank 'no shuttle found' pilot interface when attempting to pilot them.
+    type: Fix
+  id: 407374
+  time: '2026-08-08T21:47:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5573
 Order: -1
