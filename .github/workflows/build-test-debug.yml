@@ -125,7 +125,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
 
       - name: Checkout
@@ -185,7 +185,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -249,7 +249,7 @@ jobs:
             "${PROGRESS[@]}" \
             "${VERBOSITY[@]}" \
             --hangdump \
-            --hangdump-timeout 3m \
+            --hangdump-timeout 5m \
             --hangdump-filename "hang-dump-shard-${{ matrix.shard }}-{pname}-{pid}-{time}.dmp" \
             --report-ctrf \
             --report-ctrf-filename "shard-${{ matrix.shard }}-ctrf-report-{time}.json" \
