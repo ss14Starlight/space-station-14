@@ -113,4 +113,8 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     protected virtual void RefreshUI(EntityUid body)
     {
     }
+
+    public void AddInstalledComponent(Entity<FunctionalOrganComponent> ent, Type type) => ent.Comp.Installed.Add(type);
+
+    public void ClearInstalledComponents(Entity<FunctionalOrganComponent> ent) => ent.Comp.Installed.Clear();
 }

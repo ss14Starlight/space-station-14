@@ -13,6 +13,7 @@ using Content.Shared.Speech.Muting;
 using Content.Shared._Starlight.Cybernetics;
 using Content.Shared._Starlight.Cybernetics.Components;
 using Content.Shared._Starlight.Language.Components;
+using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
@@ -36,6 +37,7 @@ public sealed partial class OrganSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private ISerializationManager _serialization = default!;
+    [Dependency] private SharedSurgerySystem _surgery = default!;
 
     public override void Initialize()
     {
@@ -82,7 +84,7 @@ public sealed partial class OrganSystem : EntitySystem
             var fresh = (IComponent)_serialization.Read(type, comp.Mapping)!;
             EntityManager.AddComponent(args.Body, fresh);
             UpdateEntity(args.Body, fresh, ent.Owner);
-            ent.Comp.Installed.Add(type);
+            _surgery.AddInstalledComponent(ent, type);
         }
     }
 
@@ -98,7 +100,7 @@ public sealed partial class OrganSystem : EntitySystem
             UpdateEntity(args.Body, installed, ent.Owner);
         }
 
-        ent.Comp.Installed.Clear();
+        _surgery.ClearInstalledComponents(ent);
     }
 
     private void UpdateEntity(EntityUid ent, IComponent comp, EntityUid? implant = null)
