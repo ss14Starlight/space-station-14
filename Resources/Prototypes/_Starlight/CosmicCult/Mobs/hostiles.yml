@@ -148,7 +148,7 @@
         Cold: 5
         Blunt: 5
         Slash: 5
-        Structural: 10
+        Structural: 16
     soundHit:
       path: /Audio/_Starlight/CosmicCult/cosmicsword_hit.ogg
       params:
@@ -180,7 +180,7 @@
         Asphyxiation: 10
         Cold: 5
         Blunt: 5
-        Structural: 5
+        Structural: 12
     soundHit:
       path: /Audio/_Starlight/CosmicCult/cosmiclance_hit.ogg
       params:
