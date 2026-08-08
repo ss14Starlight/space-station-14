@@ -9,7 +9,7 @@
   "states": [
     {
       "name": "icon",
-      "copyright": "tgstation, wonderfulnewworld, Limblesstar",
+      "copyright": "tgstation, wonderfulnewworld",
       "license": "CC-BY-SA-3.0"
     },
     {
@@ -27,13 +27,13 @@
     {
       "name": "inhand-left",
       "directions": 4,
-      "copyright": "tgstation, wonderfulnewworld, Limblesstar",
+      "copyright": "tgstation, wonderfulnewworld",
       "license": "CC-BY-SA-3.0"
     },
     {
       "name": "inhand-right",
       "directions": 4,
-      "copyright": "tgstation, wonderfulnewworld, Limblesstar",
+      "copyright": "tgstation, wonderfulnewworld",
       "license": "CC-BY-SA-3.0"
     },
     {
