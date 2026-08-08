@@ -35,8 +35,6 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private SharedBatterySystem _battery = default!;
     [Dependency] private PowerCellSystem _powerCell = default!;
-    private const float WorkingPower = 2f;
-    private const float PowerEfficiency = 1f;
     private const string PlasmaTag = "SheetPlasma"; // Starlight Edit: PlasmaSheet -> SheetPlasma
 
     public override void Initialize()
@@ -129,76 +127,78 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
 
-        var Power = _battery.GetCharge(battery.Value.AsNullable());
+        var capicator = _battery.GetCharge(battery.Value.AsNullable());
 
-        if (Power <= 0f)
+        if (capicator <= 0f)
         return;
 
-        var fuelMultiplier = 1f;
-
-        if (electrolyzer.CurrentFuel >= 0f)
-        {
-            fuelMultiplier = 10f;
-        }
-
-        var rate = Math.Min(1f, ((Power * fuelMultiplier)/500000f));
+        var rate = Math.Min(1f, (capicator/200000f));    
 
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);
         var initBZ = mixture.GetMoles(Gas.BZ);
         var temperature = mixture.Temperature;
-        float powerLoad = 0f;
-        float activeLoad = (4200f * (3f * WorkingPower) * WorkingPower) / (PowerEfficiency + WorkingPower);
         var oldHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
 
         if (initH2O > 0.05f)
         {
-            var maxProportion = 0.25f * rate * (float) Math.Pow(WorkingPower, 2);
-            var proportion = Math.Min(initH2O * 0.5f, maxProportion);
-            var temperatureEfficiency = Math.Min(mixture.Temperature / 1123.15f, 1f);
+            var temperatureEfficiency = Math.Min(mixture.Temperature / 1123.15f, 1f); ///For some reason combustibles have variable oxy consumption? This keeps it balanced.
 
-            var h2oRemoved = proportion * 2f;
-            var oxyProduced = proportion * temperatureEfficiency;
-            var hydrogenProduced = proportion * 2f * temperatureEfficiency;
+            var h2oRate = Math.Min(2.5 * rate, initH2O);
 
-            mixture.AdjustMoles(Gas.WaterVapor, -h2oRemoved * electrolyzer.Efficiency);
-            mixture.AdjustMoles(Gas.Oxygen, oxyProduced * electrolyzer.Efficiency);
-            mixture.AdjustMoles(Gas.Hydrogen, hydrogenProduced * electrolyzer.Efficiency);
+            var h2oRemoved = h2oRate * 2f;
+            var oxyProduced = h2oRate * temperatureEfficiency;
+            var hydrogenProduced = h2oRate * 2f * temperatureEfficiency;
 
-            var reactionPower = activeLoad * (hydrogenProduced / (maxProportion * 2f));
-            powerLoad = Math.Max(reactionPower, powerLoad);
+            mixture.AdjustMoles(Gas.WaterVapor, -h2oRemoved);
+            mixture.AdjustMoles(Gas.Oxygen, oxyProduced);
+            mixture.AdjustMoles(Gas.Hydrogen, hydrogenProduced);
+
+            var H2OLoad = (Atmospherics.FireHydrogenEnergyReleased * hydrogenProduced); ///Load is determined by the energy made by re-igniting the hydrogen. Efficiency of device prevents free power.
         }
 
         if (initHyperNob > 0.01f && temperature < 150f)
         {
-            var maxProportion = 0.15f * rate * (float) Math.Pow(WorkingPower, 2);
-            var proportion = Math.Min(initHyperNob, maxProportion * electrolyzer.Efficiency);
-            mixture.AdjustMoles(Gas.HyperNoblium, -proportion * electrolyzer.Efficiency);
-            mixture.AdjustMoles(Gas.AntiNoblium, proportion * 0.5f * electrolyzer.Efficiency);
+            var HNobRate = Math.Min(1.5 * rate, initHyperNob);
 
-            powerLoad = Math.Max(powerLoad, activeLoad * (proportion / maxProportion));
+            mixture.AdjustMoles(Gas.HyperNoblium, -HNobRate);
+            mixture.AdjustMoles(Gas.AntiNoblium, (1.5f * HNobRate));
+
+            var HyperNobLoad = (5000f * HNobRate); ///High energy consumption.
         }
 
         if (initBZ > 0.01f)
         {
-            var proportion = Math.Min(initBZ * rate * (0.1f - (float) Math.Pow(Math.E, -0.5f * temperature * WorkingPower / Atmospherics.FireMinimumTemperatureToExist)), initBZ);
-            mixture.AdjustMoles(Gas.BZ, -proportion * electrolyzer.Efficiency);
-            mixture.AdjustMoles(Gas.Oxygen, proportion * 0.2f * electrolyzer.Efficiency);
-            mixture.AdjustMoles(Gas.Halon, proportion * 2f);
+            var BZRate = Math.Min(2.5 * rate, initBZ);
+
+            mixture.AdjustMoles(Gas.BZ, -BZRate);
+            mixture.AdjustMoles(Gas.Oxygen, BZRate * 0.2f);
+            mixture.AdjustMoles(Gas.Halon, BZRate * 2f);
             var energyReleased = proportion * Atmospherics.HalonProductionEnergy;
 
             var newHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
             if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
                 mixture.Temperature = Math.Max((mixture.Temperature * oldHeatCapacity + energyReleased) / newHeatCapacity, Atmospherics.TCMB);
-            powerLoad = Math.Max(powerLoad, activeLoad * Math.Min(proportion / 30f, 1));
+
+            var BZLoad = (BZRate); ///Low energy consumption since overall its actually making more energy in thermal power.
         }
 
         var finalHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
         if (finalHeatCapacity > Atmospherics.MinimumHeatCapacity && finalHeatCapacity != oldHeatCapacity)
             mixture.Temperature = Math.Max(mixture.Temperature * oldHeatCapacity / finalHeatCapacity, Atmospherics.TCMB);
 
-       _battery..ChangeCharge(battery.Value.AsNullable(), -50000f);
-        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - powerLoad);
+        var powerUsed = (500f + H2OLoad + HyperNobLoad + BZLoad);
+
+        var fuelMultiplier = 1f;
+
+        if (electrolyzer.CurrentFuel >= 0f)
+        {
+            fuelMultiplier = 0.1f;
+        }
+
+        _battery.ChangeCharge(battery.Value.AsNullable(), (powerUsed * fuelMultiplier); ///NOT WORKING!!! HLEP!!!
+
+        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - (h2oRate + HNobRate + BZRate);
 
         _gasOverlaySystem.UpdateSessions();
     }

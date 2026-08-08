@@ -52,5 +52,5 @@
   - type: Battery
     netsync: false
     ChargeRate: 50000
-    maxCharge: 100000
+    maxCharge: 200000
     startingCharge: 0
