@@ -1,0 +1,17 @@
+- type: entity
+  parent: BookBase
+  id: BookCapnsScruples
+  name: "A Cap'n's Scruples"
+  description:
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#0d05f7"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+    - type: Paper
+      content: book-capns-scruples
