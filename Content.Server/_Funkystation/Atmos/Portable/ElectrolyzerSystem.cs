@@ -196,9 +196,9 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             fuelMultiplier = 0.1f;
         }
 
-        _battery.ChangeCharge(battery.Value.AsNullable(), (powerUsed * fuelMultiplier); ///NOT WORKING!!! HLEP!!!
+        _battery.ChangeCharge(battery.Value.AsNullable(), (-powerUsed * fuelMultiplier)); ///NOT WORKING!!! HLEP!!!
 
-        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - (h2oRate + HNobRate + BZRate);
+        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - (h2oRate + HNobRate + BZRate));
 
         _gasOverlaySystem.UpdateSessions();
     }
