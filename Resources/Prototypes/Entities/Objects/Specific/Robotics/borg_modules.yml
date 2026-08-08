@@ -639,7 +639,7 @@
     - item: RadioHandheldExpedition # Starlight
     - hand: # Starlight
         emptyRepresentative: GoldOre
-        emptyLabel: borg-slot-ore-empty
+        emptyLabel: borg-slot-ore-ticket-empty
         whitelist:
           tags:
             - Ore
@@ -666,7 +666,7 @@
     - item: OreBagOfHolding
     - hand: # Starlight
         emptyRepresentative: GoldOre
-        emptyLabel: borg-slot-ore-empty
+        emptyLabel: borg-slot-ore-ticket-empty
         whitelist:
           tags:
             - Ore
