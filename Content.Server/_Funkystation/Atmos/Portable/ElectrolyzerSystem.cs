@@ -158,7 +158,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             mixture.AdjustMoles(Gas.Oxygen, oxyProduced);
             mixture.AdjustMoles(Gas.Hydrogen, hydrogenProduced);
 
-            H2OLoad = Atmospherics.FireHydrogenEnergyReleased * hydrogenProduced; ///Load is determined by the energy made by re-igniting the hydrogen. Efficiency of device prevents free power.
+            H2OLoad = (int) (Atmospherics.FireHydrogenEnergyReleased * hydrogenProduced); ///Load is determined by the energy made by re-igniting the hydrogen. Efficiency of device prevents free power.
         }
 
         if (initHyperNob > 0.01f && temperature < 150f)
@@ -168,7 +168,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             mixture.AdjustMoles(Gas.HyperNoblium, -HNobRate);
             mixture.AdjustMoles(Gas.AntiNoblium, HNobRate);
 
-            HyperNobLoad = 5000f * HNobRate; ///High energy consumption.
+            HyperNobLoad = (int) (5000f * HNobRate); ///High energy consumption.
         }
 
         if (initBZ > 0.01f)
@@ -184,7 +184,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
                 mixture.Temperature = Math.Max((mixture.Temperature * oldHeatCapacity + energyReleased) / newHeatCapacity, Atmospherics.TCMB);
 
-            BZLoad = BZRate; ///Low energy consumption since overall its actually making more energy in thermal power.
+            BZLoad = (int) (BZRate); ///Low energy consumption since overall its actually making more energy in thermal power.
         }
 
         var finalHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
