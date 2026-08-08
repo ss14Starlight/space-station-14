@@ -491,5 +491,6 @@ public enum LogType
     RoundstartRulesAdded = 1002,
     Sparks = 1003,
     Scent = 1004,
+    Virology = 1005, // Starlight
     #endregion
 }
