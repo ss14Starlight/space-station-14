@@ -119,6 +119,9 @@
     guides:
     - TeslaEngine
     - SingularityTeslaEngine
+  - type: Electrolyzer
+    Efficiency: 0.5
+    Passive: true
 
 - type: entity
   id: TeslaGroundingRod
@@ -214,3 +217,12 @@
     guides:
     - TeslaEngine
     - SingularityTeslaEngine
+  - type: Battery
+    netsync: false
+    maxCharge: 5000000
+    startingCharge: 0
+  - type: TeslaCoil
+    chargeFromLightning: 5000000
+  - type: Electrolyzer
+    Efficiency: 0.1
+    Passive: true
