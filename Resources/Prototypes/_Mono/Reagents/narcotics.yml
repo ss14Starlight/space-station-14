@@ -53,10 +53,10 @@
         key: Stutter
         component: StutteringAccent
       - !type:Jitter
-      - !type:GenericStatusEffect
-        key: ForcedSleep
-        time: 5
-        type: Add
+      #- !type:GenericStatusEffect # Starlight start
+      #  key: ForcedSleep # It doesn't work due to using the wrong status effect, but I think fixing it would just make it noct 2, so I'd rather just not have the effect.
+      #  time: 5
+      #  type: Add # Starlight end
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
         type: Add
