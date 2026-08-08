@@ -19,6 +19,11 @@
   rule: ImmovableRodSpawn
 
 - type: ninjaHackingThreat
+  id: RodSlug
+  announcement: terror-rod-slug
+  rule: ImmovableRodSlugSpawn
+
+- type: ninjaHackingThreat
   id: Wizard
   announcement: terror-wizard
   rule: WizardSpawn

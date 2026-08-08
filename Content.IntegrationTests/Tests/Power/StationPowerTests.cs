@@ -49,6 +49,7 @@ public sealed class StationPowerTests : GameTest
         "StarlightKiloton",
         "StarlightLagan",
         "StarlightLobster",
+        "StarlightNovoLobster",
         "StarlightManor",
         "StarlightLeth",
         "StarlightMing",

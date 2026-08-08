@@ -38,6 +38,7 @@
   - Boxer
   - Zookeeper
   - Prisoner
+  - RadioHost
   # Starlight end
 
 - type: department

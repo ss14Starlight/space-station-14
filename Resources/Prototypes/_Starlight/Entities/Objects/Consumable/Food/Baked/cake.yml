@@ -61,7 +61,7 @@
 
 - type: entity
   name: A Slice of Cotton Cake
-  parent: FoodCottonCake
+  parent: FoodCakeSliceBase
   id: FoodCottonCakeSlice
   description: You cut up the moff how dare you
   components:

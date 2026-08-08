@@ -1,0 +1,19 @@
+- type: cargoProduct
+  id: RadioAdsCrateCargo
+  icon:
+    sprite: Objects/Misc/cd.rsi
+    state: icon
+  product: CrateRadioHostADs
+  cost: 800
+  category: cargoproduct-category-name-service
+  group: market
+
+- type: cargoProduct
+  id: RadioVinylCrateCargo
+  icon:
+    sprite: _Goobstation/Objects/Fun/RadioHost/vinyl.rsi
+    state: default
+  product: CrateRadioHostVinyls
+  cost: 1600
+  category: cargoproduct-category-name-service
+  group: market

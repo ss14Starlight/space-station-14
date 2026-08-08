@@ -362,6 +362,13 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
+- type: entity
+  parent: AirlockJournalismLocked
+  id: AirlockMaintJournalismLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
 # Courtroom
 - type: entity
   parent: AirlockSecurityLocked

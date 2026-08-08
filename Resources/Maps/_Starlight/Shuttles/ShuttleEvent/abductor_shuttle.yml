@@ -1150,6 +1150,9 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 1
+    - type: Lock
+      locked: false
+      showLockVerbs: false
 - proto: CrateFreezer
   entities:
   - uid: 163

@@ -1,0 +1,256 @@
+# Advertisements
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertBillMovie
+  name: "CD: Bill Movie"
+  description: A CD containing a prerecorded advertisement for an upcoming movie.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/adverts/bill_movie.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertCaptainTraining
+  name: "CD: Captain Training"
+  description: A CD containing a prerecorded advertisement for Captain Training.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/adverts/captain_training.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertCargoniaRecruitment
+  name: "CD: Cargonia Recruitment"
+  description: A CD containing a prerecorded advertisement for Cargonia Recruitment.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/adverts/cargonia.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertChemistryAdvert
+  name: "CD: Chemistry Advertisement"
+  description: A CD containing a prerecorded advertisement for the station's chemistry department.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/adverts/chemistry.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertCloningPSA
+  name: "CD: Cloning PSA"
+  description: A CD containing a prerecorded public service announcement for the station's cloning facilities.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/cloning_psa.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertDanitosBurritos
+  name: "CD: Danito's Burritos"
+  description: A CD containing a prerecorded advertisement for Danito's Burritos.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/adverts/danitos_burritos.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertDansTickets
+  name: "CD: Dan's Golden Tickets"
+  description: A CD containing a prerecorded advertisement for Dan's Golden Tickets. Coming to a station near you!
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/adverts/dans_tickets.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertPopeCrunchCereal
+  name: "CD: Pope Crunch Cereal"
+  description: A CD containing a prerecorded advertisement for Pope Crunch Cereal.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/adverts/pope_crunch_cereal.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertDansQuickNoodles
+  name: "CD: Dan's Quick Noodles"
+  description: A CD containing a prerecorded advertisement for Dan's Quick Noodles.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/adverts/quick_noodles.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertBecomeSilicon
+  name: "CD: Become Silicon"
+  description: A CD containing a prerecorded advertisement from your local silicon overlord.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/adverts/overlord.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDAdvertSecurityPSA
+  name: "CD: Security PSA"
+  description: A CD containing a prerecorded public service announcement for the station's security department.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/security_psa.ogg
+
+# Miscellaneous
+- type: entity
+  parent: BaseCDDisc
+  id: CDMiscDuck
+  name: "CD: Amusing Duck"
+  description: A CD containing a prerecorded message from an amusing duck.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/amusing_duck.ogg
+
+# June and Eel Show
+- type: entity
+  parent: BaseCDDisc
+  id: CDJNEShow
+  name: "CD: June and Eel Show"
+  description: A CD containing a prerecorded message for the June and Eel show.
+  components:
+  - type: Sprite
+    state: jne-cd
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/JNE.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDJNENextUp
+  name: "CD: Up Next"
+  description: A CD containing a prerecorded message for the June and Eel show.
+  components:
+  - type: Sprite
+    state: jne-cd
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/NextUp.ogg
+
+- type: entity
+  parent: BaseCDDisc
+  id: CDJNENinja
+  name: "CD: Ninja Attack"
+  description: A CD containing a prerecorded message for the June and Eel show.
+  components:
+  - type: Sprite
+    state: jne-cd
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/Ninja.ogg
+
+
+# Syndicate Contraband CDs
+- type: entity
+  parent: [ BaseCDDisc, BaseSyndicateContraband ]
+  id: CDSyndicateFM
+  name: "CD: Syndicate Radio"
+  description: 102.9 syndicate Radio.
+  components:
+  - type: Sprite
+    state: synd-cd
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/syndicateFM.ogg
+
+- type: entity
+  parent: [ BaseCDDisc, BaseSyndicateContraband ]
+  id: CDNumbers
+  name: "CD: Numbers"
+  description: A CD containing a cryptic message used to contact a nearby threat from off station.
+  components:
+  - type: Sprite
+    state: synd-cd
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/numbersShort.ogg # Short version of numbers and takes 171 seconds to summon a threat.
+  - type: VinylSummonRule # This CD summons a random station threat from the following gamerule.
+    gameRule: NumberStationThreats
+
+- type: entity
+  parent: [ BaseCDDisc, BaseCommandContraband ]
+  id: CDNumbersSlow
+  name: "CD: Nothing Ever Happens..."
+  description: A CD containing a cryptic message that will eventually contact a nearby threat from off station.
+  components:
+  - type: Sprite
+    state: nt-cd
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/numbers.ogg # This is the long version of numbers and takes 275 seconds to summon a threat.
+  - type: VinylSummonRule
+    gameRule: NumberStationThreats
+
+- type: entity
+  parent: [ BaseCDDisc, BaseSyndicateContraband ]
+  id: CDNumbersQuickAdmin
+  suffix: ADMEME
+  name: "CD: Nmbrz"
+  description: A sped up CD that will quickly contact a nearby threat from off station.
+  components:
+  - type: Sprite
+    state: synd-cd
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/numbersAdmin.ogg # Super sped up version of numbers which will summon a threat in about 15 seconds.
+  - type: VinylSummonRule
+    gameRule: NumberStationThreats
+
+# Nuclear Operative Contraband CDs
+- type: entity
+  parent: [ BaseCDDisc, BaseSyndicateContraband ]
+  id: CDNukieAnnouncement
+  name: "CD: Commander Announcement"
+  description: A CD containing an announcement from the Nuclear Operatives Commander, crashing out at the station's Captain.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/commander_announcement.ogg
+
+- type: entity
+  parent: [ BaseCDDisc, BaseSyndicateContraband ]
+  id: CDNukieFigurines
+  name: "CD: Commander Figurines"
+  description: A CD containing a secret recording of the Nuclear Operatives Commander playing with figurines.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/commander_figurines.ogg
+
+- type: entity
+  parent: [ BaseCDDisc, BaseSyndicateContraband ]
+  id: CDNukieResignation
+  name: "CD: Commander Resignation"
+  description: A CD containing the Nuclear Operatives Commander's resignation.
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/commander_resignation.ogg
+
+- type: entity
+  parent: [ BaseCDDisc, BaseSyndicateContraband ]
+  id: CDNukieSupport
+  name: "CD: Commander Support"
+  description: A CD containing a recording of the Nuclear Operatives Commander complaining to the Syndicate customer support department!
+  components:
+  - type: Vinyl
+    song:
+      path: /Audio/_Goobstation/RadioStation/CDs/misc/commander_support.ogg
