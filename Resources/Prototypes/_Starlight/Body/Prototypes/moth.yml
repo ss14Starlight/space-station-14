@@ -12,6 +12,7 @@
         eyes: OrganMothEyes # Starlight
         tongue: OrganHumanTongue
         eye_implant: null
+        nose_implant: null # 🌟Starlight🌟
         brain_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoMoth
