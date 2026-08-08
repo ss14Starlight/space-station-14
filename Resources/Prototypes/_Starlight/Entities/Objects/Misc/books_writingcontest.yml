@@ -13,6 +13,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-capns-scruples
 
@@ -31,6 +32,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
         - state: overlay_blood
     - type: Paper
       content: book-last-cow
@@ -50,6 +52,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-through-the-glass
 
@@ -68,6 +71,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-caves-of-urania
 
@@ -86,6 +90,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-chuckles
 
@@ -104,6 +109,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-corridor-nine
 
@@ -122,6 +128,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-beside-photograph
 
@@ -140,14 +147,16 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-death-always
 
 - type: entity
   parent: BookBase
   id: BookMarty
-  name: "M.A.R.T.Y/Log#849211"
+  name: "M.A.R.T.Y./Log#849211"
   description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction.
+  components:
     - type: Sprite
       layers:
         - state: paper
@@ -157,6 +166,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-marty
 
@@ -175,6 +185,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-nts-martyr
 
@@ -193,6 +204,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-when-thoughts-end
 
@@ -211,6 +223,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-apocolypse
 
@@ -229,6 +242,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-wizard-dice
 
@@ -247,6 +261,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-hop-play
 
@@ -265,6 +280,7 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-confession
 
@@ -283,5 +299,6 @@
           color: "#d4af37"
         - state: detail_rivets
           color: "#888b8d"
+        - state: icon_temple
     - type: Paper
       content: book-life-of-a-clown
