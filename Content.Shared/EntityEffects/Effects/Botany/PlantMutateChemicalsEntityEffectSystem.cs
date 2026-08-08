@@ -31,7 +31,7 @@ public sealed partial class PlantMutateChemicals : EntityEffectBase<PlantMutateC
     public ProtoId<WeightedRandomFillSolutionPrototype> RandomPickBotanyReagent = "RandomPickBotanyReagent";
 
     /// <inheritdoc/>
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
         var list = new List<string>();
 
@@ -52,6 +52,6 @@ public sealed partial class PlantMutateChemicals : EntityEffectBase<PlantMutateC
 
         var names = ContentLocalizationManager.FormatListToOr(list);
 
-        return loc.GetString("entity-effect-guidebook-plant-mutate-chemicals", ("chance", Probability), ("name", names));
+        return Loc.GetString("entity-effect-guidebook-plant-mutate-chemicals", ("chance", Probability), ("name", names));
     }
 }

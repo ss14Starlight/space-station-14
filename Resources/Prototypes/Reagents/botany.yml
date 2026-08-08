@@ -10,7 +10,7 @@
     - !type:PlantAdjustNutrition
       amount: 2
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:SatiateHunger
         conditions:
@@ -34,7 +34,7 @@
       probability: 0.3
       amount: 0.4
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:SatiateHunger
         conditions:
@@ -56,18 +56,13 @@
   flavor: bitter
   color: "#9e9886"
   physicalDesc: reagent-physical-desc-bubbling
-  # Starlight Edits
-  contrabandSeverity: Major
-  allowedJobs:
-  - Botanist
-  # Starlight End
   plantMetabolism:
     - !type:PlantAdjustToxins
       amount: 4
     - !type:PlantAdjustPests
       amount: -6
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -85,11 +80,6 @@
   flavor: bitter
   color: "#49002E"
   physicalDesc: reagent-physical-desc-bubbling
-  # Starlight Edits
-  contrabandSeverity: Major
-  allowedJobs:
-  - Botanist
-  # Starlight End
   plantMetabolism:
     - !type:PlantAdjustToxins
       amount: 6
@@ -99,8 +89,11 @@
       amount: -20
     - !type:PlantAdjustMutationMod
       amount: 0.1
+    - !type:PlantChangeTraits
+      trait: PlantTraitKudzu
+      remove: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -132,7 +125,7 @@
       amount: 1
     - !type:RobustHarvest {}
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -156,8 +149,6 @@
             Asphyxiation: 1
             Heat: 2
             Poison: 1
-    Medicine:
-      effects:
       - !type:Polymorph
         prototype: TreeMorph
         conditions:
@@ -191,18 +182,13 @@
   flavor: bitter
   color: "#968395"
   physicalDesc: reagent-physical-desc-bubbling
-  # Starlight Edits
-  contrabandSeverity: Major
-  allowedJobs:
-  - Botanist
-  # Starlight End
   plantMetabolism:
     - !type:PlantAdjustToxins
       amount: 4
     - !type:PlantAdjustWeeds
       amount: -6
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -228,60 +214,36 @@
   - !type:PlantAdjustHealth
     amount: 0.5
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
-        conditions: #Starlight
-        - !type:MetabolizerTypeCondition
-          type: [ Avali, Resomi, Vox ] # The birds, including Vox
-          inverted: true
         damage:
           types:
             Caustic: 1
-    Medicine: #Starlight
+    Respiration:
       effects:
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Avali, Resomi ]  # The birds, excluding Vox (they exhale ammonia, they don't want a ton of ammonia build up)
-        damage:
-          types:
-            Asphyxiation: -1
-    Gas:
-      effects:
-      - !type:HealthChange
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Rat, Avali, Resomi ] #Starlight
+          type: [ Rat ]
           inverted: true
         - !type:ReagentCondition
           reagent: Ammonia
           min: 1
-        # Starlight-start
-        - !type:HasComponentsCondition
-          inverted: true
-          components:
-          - type: TerrorSpider
-        # Starlight-end
         ignoreResistances: true
+        scaling: true
         damage:
           types:
-            Poison: 0.25
+            Poison: 1
       - !type:Vomit
         probability: 0.12
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Rat, Vox, Avali, Resomi ] #Starlight
+          type: [ Rat, Vox ]
           inverted: true
         - !type:ReagentCondition
           reagent: Ammonia
           min: 0.8
-        # Starlight-start
-        - !type:HasComponentsCondition
-          inverted: true
-          components:
-          - type: TerrorSpider
-        # Starlight-end
       - !type:PopupMessage
         type: Local
         visualType: Medium
@@ -291,7 +253,7 @@
         - !type:ReagentCondition
           reagent: Ammonia
           min: 0.25
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Rat ]
@@ -300,11 +262,9 @@
           min: 1
         ignoreResistances: true
         damage:
-          groups:
-            Brute: -2.5
-            Burn: -2.5
-          types:
-            Bloodloss: -5
+          Brute: -2.5
+          Burn: -2.5
+          Airloss: -5
       - !type:ModifyBloodLevel
         amount: 1
         conditions:
@@ -343,7 +303,7 @@
     amount: 1
   - !type:PlantDiethylamine {}
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
