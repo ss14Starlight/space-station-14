@@ -17,7 +17,7 @@ namespace Content.Shared._Starlight.Ninja;
 /// Only exists in shared to provide API and for access.
 /// All logic is serverside.
 /// </summary>
-public sealed class SharedPodHackerSystem : EntitySystem
+public abstract class SharedPodHackerSystem : EntitySystem
 {
 }
 
