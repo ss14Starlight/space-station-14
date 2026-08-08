@@ -27,6 +27,13 @@ public sealed class ClientScentSystem : SharedScentSystem
         SubscribeLocalEvent<SmellerComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
     }
 
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _overlayMan.RemoveOverlay(_overlay);
+    }
+
     private void OnSmellerInit(EntityUid uid, SmellerComponent component, ComponentInit args)
     {
         if (_player.LocalEntity == uid && !_overlayMan.HasOverlay<ScentPerceptionOverlay>())
