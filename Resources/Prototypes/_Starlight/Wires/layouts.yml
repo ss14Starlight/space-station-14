@@ -56,5 +56,21 @@
   id: AirlockBlackstar
 
 - type: wireLayout
-  parent: Airlock
-  id: AirlockMedTak
+  id: SmartFridge
+  dummyWires: 3
+  wires:
+    - !type:PowerWireAction
+    - !type:AccessWireAction
+      electrify: true
+    - !type:SpeechWireAction
+    - !type:AiInteractWireAction
+    - !type:LogWireAction
+
+- type: wireLayout
+  id: ComputerAiLockable
+  dummyWires: 2
+  wires:
+    - !type:AccessWireAction
+      electrify: true
+    - !type:PowerWireAction
+    - !type:AiInteractWireAction

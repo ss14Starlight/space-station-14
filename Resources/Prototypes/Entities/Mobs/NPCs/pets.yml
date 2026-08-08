@@ -423,6 +423,12 @@
       Male: Dog
       Female: Dog
       Unsexed: Dog
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
+  - type: Smeller
+  - type: Scent
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs
@@ -549,6 +555,12 @@
       Female: Dog
       Unsexed: Dog
   - type: Emoting
+  - type: Smeller
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
+  - type: Scent
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs
@@ -583,6 +595,8 @@
     spawned:
     - id: FoodMeat
       amount: 3
+    - id: PhenylpiperidineSolidified # Moffstation - Waltuh
+      amount: 1 # Moffstation - Waltuh
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-dog
@@ -1149,4 +1163,3 @@
       gender: male
   - type: Loadout
     prototypes: [ MobPollyGear ]
-

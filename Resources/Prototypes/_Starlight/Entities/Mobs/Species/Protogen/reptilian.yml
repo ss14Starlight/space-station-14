@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urisst' Mztosster
-  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  parent: BaseMobProtogen
   id: BaseMobProtoReptilian
   abstract: true
   components:
@@ -14,7 +14,6 @@
     - GalacticCommon
     - Machine
     - Draconic
-  - type: Absorbable
   - type: HumanoidAppearance
     species: ProtoReptilian
     hideLayersOnEquip:

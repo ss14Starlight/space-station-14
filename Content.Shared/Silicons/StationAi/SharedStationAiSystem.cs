@@ -205,7 +205,8 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         args.Result = BoundUserInterfaceRangeResult.Fail;
 
-        // Similar to the inrange check but more optimised so server doesn't die.
+        // STARLIGHT START - perf improvements
+        //// Similar to the inrange check but more optimised so server doesn't die.
         var targetXform = Transform(args.Target);
 
         // No cross-grid
@@ -213,21 +214,26 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         {
             return;
         }
+        //
+        //if (!_broadphaseQuery.TryComp(targetXform.GridUid, out var broadphase) || !_gridQuery.TryComp(targetXform.GridUid, out var grid))
+        //{
+        //    return;
+        //}
+        //
+        //var targetTile = Maps.LocalToTile(targetXform.GridUid.Value, grid, targetXform.Coordinates);
+        //
+        //lock (_vision)
+        //{
+        //    if (_vision.IsAccessible((targetXform.GridUid.Value, broadphase, grid), targetTile, fastPath: true))
+        //    {
+        //        args.Result = BoundUserInterfaceRangeResult.Pass;
+        //    }
+        //}
 
-        if (!_broadphaseQuery.TryComp(targetXform.GridUid, out var broadphase) || !_gridQuery.TryComp(targetXform.GridUid, out var grid))
-        {
-            return;
-        }
-
-        var targetTile = Maps.LocalToTile(targetXform.GridUid.Value, grid, targetXform.Coordinates);
-
-        lock (_vision)
-        {
-            if (_vision.IsAccessible((targetXform.GridUid.Value, broadphase, grid), targetTile, fastPath: true))
-            {
-                args.Result = BoundUserInterfaceRangeResult.Pass;
-            }
-        }
+        // this replaces above code
+        if (!_vision.IsOutsideCameraViewCached(args.Target))
+            args.Result = BoundUserInterfaceRangeResult.Pass;
+        // STARLIGHT END
     }
 
     private void OnAiInRange(Entity<StationAiOverlayComponent> ent, ref InRangeOverrideEvent args)
@@ -247,16 +253,20 @@ public abstract partial class SharedStationAiSystem : EntitySystem
             return;
         }
 
-        // Validate it's in camera range yes this is expensive.
-        // Yes it needs optimising
-        if (!_broadphaseQuery.TryComp(targetXform.GridUid, out var broadphase) || !_gridQuery.TryComp(targetXform.GridUid, out var grid))
-        {
-            return;
-        }
+        // STARLIGHT START
+        //// Validate it's in camera range yes this is expensive.
+        //// Yes it needs optimising
+        //if (!_broadphaseQuery.TryComp(targetXform.GridUid, out var broadphase) || !_gridQuery.TryComp(targetXform.GridUid, out var grid))
+        //{
+        //    return;
+        //}
+        //
+        //var targetTile = Maps.LocalToTile(targetXform.GridUid.Value, grid, targetXform.Coordinates);
+        //
+        //args.InRange = _vision.IsAccessible((targetXform.GridUid.Value, broadphase, grid), targetTile);
 
-        var targetTile = Maps.LocalToTile(targetXform.GridUid.Value, grid, targetXform.Coordinates);
-
-        args.InRange = _vision.IsAccessible((targetXform.GridUid.Value, broadphase, grid), targetTile);
+        args.InRange = !_vision.IsOutsideCameraViewCached(target);
+        // STARLIGHT END
     }
 
     private void OnIntellicardDoAfter(Entity<StationAiHolderComponent> ent, ref IntellicardDoAfterEvent args) => IntellicardTransfer(ent.Owner, ent.Comp, args); // Starlight-edit

@@ -45,6 +45,9 @@
 - files: ["ming.yml"]
   authors: PubliclyExecutedPig, Starlight Team
 
+- files: ["novolobster.yml"]
+  authors: CawsForConcern (remake), Starlight Team
+
 - files: ["oasis.yml"]
   authors: CptJeanLuc, cvlancer (expansions), Starlight Team
 
@@ -109,7 +112,7 @@
 - files: ["breaker.yml"]
   authors: Starlight Team
 
-- files: ["KillerTamashi-SecShuttle.yml"]
+- files: ["pursuit.yml"]
   authors: KillerTheFlareon
 
 # nuclear op maps

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  parent: BaseMobProtogen
   id: BaseMobProtoHuman
   name: Urist McHandster
   abstract: true
@@ -13,7 +13,6 @@
     - GalacticCommon
     - Machine
     - SolCommon
-  - type: Absorbable
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Humie/parts.rsi
     state: full

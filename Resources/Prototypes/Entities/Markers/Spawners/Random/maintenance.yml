@@ -58,6 +58,7 @@
       - id: ClothingHeadHatFez
       - id: ClothingHeadHatPaper
       - id: ClothingHeadHatPirate
+      - id: ClothingHeadHatWitchyHat # Starlight
       - id: ClothingMaskSterile
       - id: ClothingMultipleHeadphones
       - id: ClothingNeckTieRed
@@ -102,6 +103,14 @@
       - id: ClothingNeckTatteredHood #SL
       - id: SpyglassImprovised #SL
         weight: 0.65 #SL
+      # Goobstation - Start - Vinyls and CDs to Maints loot
+      - !type:NestedSelector
+        weight: 4
+        tableId: RandomVinylSleeve
+      - !type:NestedSelector
+        weight: 4
+        tableId: RandomCDDisc
+      # Goobstation - End
     # Uncommon Group
     - !type:GroupSelector
       weight: 23
@@ -306,6 +315,7 @@
       - id: BarberScissors
       - id: TwinPointerKit # Starlight: Added twinpointer to maints loot
       - id: JetpackImprovisedFilled #Starlight
+      - id: JailFree # Starlight
       - id: Flash0Use # Starlight
         weight: 0.6 # Starlight
       - id: Flash1Use # Starlight
