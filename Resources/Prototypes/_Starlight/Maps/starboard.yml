@@ -28,6 +28,8 @@
             Librarian: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             ServiceWorker: [ 3, 5 ]
+            Reporter: [ 2, 2 ]
+            RadioHost: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 3 ]
@@ -68,7 +70,6 @@
             Musician: [ 2, 3 ]
             Performer: [ 3, 5 ]
             Boxer: [ 2, 2 ]
-            Reporter: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 4, 4 ]
