@@ -21,6 +21,7 @@ using Robust.Shared.Timing;
 using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Antags.Abductor.Components;
+using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server._Starlight.Medical.Surgery;
 public sealed partial class OrganSystem : EntitySystem
@@ -34,6 +35,7 @@ public sealed partial class OrganSystem : EntitySystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private ISerializationManager _serialization = default!;
 
     public override void Initialize()
     {
@@ -71,11 +73,15 @@ public sealed partial class OrganSystem : EntitySystem
     {
         foreach (var comp in (ent.Comp.Components ?? []).Values)
         {
-            if (!EntityManager.HasComponent(args.Body, comp.Component.GetType()))
-            {
-                EntityManager.AddComponent(args.Body, comp.Component);
-                UpdateEntity(args.Body, comp.Component, ent.Owner);
-            }
+            var type = comp.Component.GetType();
+            if (EntityManager.HasComponent(args.Body, type))
+                continue;
+
+            // Fresh instance per install; reusing the same object after a prior removal fails
+            // AddComponent's PreAdd check.
+            var fresh = (IComponent)_serialization.Read(type, comp.Mapping)!;
+            EntityManager.AddComponent(args.Body, fresh);
+            UpdateEntity(args.Body, fresh, ent.Owner);
         }
     }
 
@@ -83,11 +89,13 @@ public sealed partial class OrganSystem : EntitySystem
     {
         foreach (var comp in (ent.Comp.Components ?? []).Values)
         {
-            if (EntityManager.HasComponent(args.Body, comp.Component.GetType()))
-            {
-                EntityManager.RemoveComponent(args.Body, EntityManager.GetComponent(args.Body, comp.Component.GetType()));
-                UpdateEntity(args.Body, comp.Component, ent.Owner);
-            }
+            var type = comp.Component.GetType();
+            if (!EntityManager.HasComponent(args.Body, type))
+                continue;
+
+            var installed = EntityManager.GetComponent(args.Body, type);
+            EntityManager.RemoveComponent(args.Body, installed);
+            UpdateEntity(args.Body, installed, ent.Owner);
         }
     }
 
