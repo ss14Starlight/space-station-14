@@ -287,6 +287,7 @@
       types:
         Blunt: 6
         Shock: 6
+        Structural: 10
   - type: AltFireMelee
   - type: Prying
     pryPowered: true
