@@ -219,6 +219,24 @@
   - Security
   - Medical
 
+- type: technology
+  id: NoseImplantOlfactory
+  name: research-technology-olfactory-nose
+  icon:
+    # TODO: placeholder art, reusing the eye implant welding sprite until dedicated nose implant art exists.
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eye_implant_welding
+  discipline: Biochemical
+  tier: 3
+  cost: 7680
+  recipeUnlocks:
+    - NoseImplantOlfactory
+  technologyPrerequisites:
+    - CyberImplantsTech
+  radioChannels:
+  - Security
+  - Medical
+
 #starlight, moved from civilian to medical
 - type: technology
   id: BluespaceChemistry

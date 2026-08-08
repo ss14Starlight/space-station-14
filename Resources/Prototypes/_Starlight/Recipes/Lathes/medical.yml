@@ -595,6 +595,18 @@
     Glass: 100
 
 - type: latheRecipe
+  id: NoseImplantOlfactory
+  result: NoseImplantOlfactory
+  categories:
+  - Implants
+  completetime: 5
+  materials:
+    Plastic: 500
+    Steel: 500
+    Gold: 200
+    Glass: 100
+
+- type: latheRecipe
   id: CyberEyeThermal
   result: CyberEyeThermal
   categories:
