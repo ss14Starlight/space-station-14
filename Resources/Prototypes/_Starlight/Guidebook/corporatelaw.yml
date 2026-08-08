@@ -86,3 +86,8 @@
   id: PleaBargains
   name: guide-entry-plea-bargains
   text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/PleaBargains.xml"
+
+- type: guideEntry
+  id: SupernaturalEntities
+  name: guide-entry-rules-supernatural-entities
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/SupernaturalEntities.xml"
