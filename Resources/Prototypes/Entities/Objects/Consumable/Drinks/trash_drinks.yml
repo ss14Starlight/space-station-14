@@ -156,11 +156,26 @@
 - type: entity
   parent: [DrinkCartonBaseLargeEmpty, DrinkMilkCarton]
   id: DrinkCartonMilk
+  components: # Starlight
+  - type: Tag
+    tags:
+    - Trash
+    - MilkCarton
 
 - type: entity
   parent: [DrinkCartonBaseLargeEmpty, DrinkSoyMilkCarton]
   id: DrinkCartonSoyMilk
+  components: # Starlight
+  - type: Tag
+    tags:
+    - Trash
+    - MilkCarton
 
 - type: entity
   parent: [DrinkCartonBaseLargeEmpty, DrinkOatMilkCarton]
   id: DrinkCartonOatMilk
+  components: # Starlight
+  - type: Tag
+    tags:
+    - Trash
+    - MilkCarton
