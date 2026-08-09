@@ -6,7 +6,7 @@
   description: A machine that processes and transforms gases through electrolysis. Runs off electricity but can be turbo charged with plasma sheets. # Starlight
   components:
   - type: Electrolyzer
-    efficiency: 0.8
+    efficiency: 0.5
     onSound:
       path: /Audio/Weapons/click.ogg
   - type: AtmosDevice
@@ -56,5 +56,5 @@
       nodeGroupID: HVPower
   - type: Battery
     netsync: false
-    maxCharge: 200000
+    maxCharge: 1000000
     startingCharge: 0

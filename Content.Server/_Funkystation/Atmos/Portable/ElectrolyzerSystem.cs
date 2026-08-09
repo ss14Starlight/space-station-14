@@ -168,8 +168,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         }
 
 
-        var rate = (charge/200000f) / args.dt;
-
+        var rate = (charge/battery.MaxCharge) / args.dt;
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);
         var initBZ = mixture.GetMoles(Gas.BZ);
@@ -183,8 +182,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         if (initH2O > 0.05f)
         {
             var temperatureEfficiency = Math.Min(mixture.Temperature / 1123.15f, 1f); ///For some reason combustibles have variable oxy consumption? This keeps it balanced.
-
-            var h2oRate = (float) Math.Min(2.5 * rate, initH2O / 2f);
+            var h2oRate = Math.Min(Math.Min(2.5f * rate, initH2O / 2f), (2f * charge / electrolyzer.Efficiency)/Atmospherics.FireHydrogenEnergyReleased);
 
             var h2oRemoved = h2oRate * 2f;
             var oxyProduced = h2oRate * temperatureEfficiency;
@@ -244,7 +242,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         if (electrolyzer.Passive == true)
         {
-                electrolyzer.IsPowered = false;         
+                electrolyzer.IsPowered = false;
         }
 
         _gasOverlaySystem.UpdateSessions();

@@ -120,7 +120,7 @@
     - TeslaEngine
     - SingularityTeslaEngine
   - type: Electrolyzer
-    efficiency: .25
+    efficiency: .5
     passive: true
   - type: AtmosDevice
 
@@ -225,6 +225,6 @@
   - type: TeslaCoil
     chargeFromLightning: 5000000
   - type: Electrolyzer
-    efficiency: 0.1
+    efficiency: 0.25
     passive: true
   - type: AtmosDevice
