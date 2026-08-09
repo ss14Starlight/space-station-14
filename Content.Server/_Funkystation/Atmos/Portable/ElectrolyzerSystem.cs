@@ -89,23 +89,22 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
     private void OnActivate(EntityUid uid, ElectrolyzerComponent comp, ActivateInWorldEvent args)
     {
-        if (comp.Passive == false)
+        if (comp.Passive == true)
+                    return;
+        if (args.Handled) return;
+
+        if (comp.IsPowered)
         {
-            if (args.Handled) return;
-
-            if (comp.IsPowered)
-            {
-                comp.IsPowered = false;
-                _popup.PopupEntity(Loc.GetString("electrolyzer-turned-off"), uid, args.User);
-                UpdateAppearance(uid);
-            }
-            else
-            {
-                TryTurnOn(uid, comp, args.User);
-            }
-
-            args.Handled = true;
+            comp.IsPowered = false;
+            _popup.PopupEntity(Loc.GetString("electrolyzer-turned-off"), uid, args.User);
+            UpdateAppearance(uid);
         }
+        else
+        {
+            TryTurnOn(uid, comp, args.User);
+        }
+
+        args.Handled = true;
     }
 
     private void UpdateAppearance(EntityUid uid)
@@ -126,27 +125,28 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         if (electrolyzer.Passive == false)
         {
-            if (TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
-            if (!Transform(uid).Anchored)
-            {
-               powerConsumer.DrawRate = 0f;
-               return;
-            }
-            {
-               var missingcharge = 200000f - charge;
-               var requestedcharge = Math.Min(missingcharge / args.dt, 50000f);
-               powerConsumer.DrawRate = Math.Max(requestedcharge, 0f);
-               _battery.ChangeCharge((uid, battery), powerConsumer.ReceivedPower * args.dt);
-            }        
-        }
+            if (!TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
+                    return;
 
-        if (charge <= 0f)
-        return;
+                if (!Transform(uid).Anchored)
+                {
+                    powerConsumer.DrawRate = 0f;
+                    return;
+                }
+
+                var missingCharge = battery.MaxCharge - charge;
+                powerConsumer.DrawRate = Math.Min(50_000f, Math.Max(0f, missingCharge / args.dt));
+                _battery.ChangeCharge((uid, battery), powerConsumer.ReceivedPower * args.dt);
+                charge = _battery.GetCharge((uid, battery));
+        }
 
         if (electrolyzer.Passive == true)
         {
             electrolyzer.IsPowered = true;             
         }
+
+        if (charge <= 0f)
+        return;
 
         if (!Transform(uid).Anchored || !electrolyzer.IsPowered)
             return;
@@ -154,18 +154,21 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
 
-        if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
+        if (electrolyzer.Passive == false)
         {
-            var remaining = stack.Count - 1;
-            _stackSystem.SetCount((fuelEntity, stack), remaining);
-            electrolyzer.CurrentFuel = electrolyzer.PlasmaFuelConversion;
+            if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
+            {
+                var remaining = stack.Count - 1;
+                _stackSystem.SetCount((fuelEntity, stack), remaining);
+                electrolyzer.CurrentFuel = electrolyzer.PlasmaFuelConversion;
 
-            if (remaining <= 0)
-            EntityManager.QueueDeleteEntity(fuelEntity);
+                if (remaining <= 0)
+                EntityManager.QueueDeleteEntity(fuelEntity);
+            }
         }
 
 
-        var rate = charge/200000f;    
+        var rate = charge/2000f;    
 
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);
