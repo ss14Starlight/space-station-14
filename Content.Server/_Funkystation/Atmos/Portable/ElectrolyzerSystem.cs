@@ -127,23 +127,16 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         if (!Transform(uid).Anchored || !electrolyzer.IsPowered)
             return;
 
-        if (electrolyzer.CurrentFuel <= 0f)
-        {
-            // Get fuel value from sheet
-            float fuelPerSheet = 0f;
-            if (_tagSystem.HasTag(fuelEntity, PlasmaTag))
-                fuelPerSheet = electrolyzer.PlasmaFuelConversion;
-            else
-                return;
+        if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
+{
+    var remaining = stack.Count - 1;
 
-            // Consume 1 sheet
-            _stackSystem.SetCount((fuelEntity, stack), stack.Count - 1);
-            electrolyzer.CurrentFuel = fuelPerSheet;
+    _stackSystem.SetCount((fuelEntity, stack), remaining);
+    electrolyzer.CurrentFuel = electrolyzer.PlasmaFuelConversion;
 
-            // If stack now empty, delete it
-            if (stack.Count <= 0)
-                EntityManager.QueueDeleteEntity(fuelEntity);
-        }
+    if (remaining <= 0)
+        EntityManager.QueueDeleteEntity(fuelEntity);
+}
 
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
@@ -218,7 +211,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         var PlasmaFuel = electrolyzer.CurrentFuel;
 
-        if (PlasmaFuel >= 0f)
+        if (PlasmaFuel > 0f)
         {
             fuelMultiplier = 0.1f;
         }
