@@ -319,7 +319,7 @@
       itemIconStyle: NoItem
       priority: 15
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Vampire/Umbrae.rsi
         state: cloak_of_darkness
     - type: InstantAction
       event: !type:VampireCloakOfDarknessActionEvent {}
@@ -339,7 +339,7 @@
       itemIconStyle: NoItem
       priority: 16
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Vampire/Umbrae.rsi
         state: shadow_snare
     - type: TargetAction
       checkCanAccess: false
@@ -363,7 +363,7 @@
       itemIconStyle: NoItem
       priority: 20
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Vampire/Umbrae.rsi
         state: shadow_anchor
     - type: InstantAction
       event: !type:VampireShadowAnchorActionEvent {}
@@ -383,7 +383,7 @@
       itemIconStyle: NoItem
       priority: 21
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Vampire/Umbrae.rsi
         state: shadow_boxing
     - type: TargetAction
       interactOnMiss: false
@@ -418,7 +418,7 @@
       itemIconStyle: NoItem
       priority: 17
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Vampire/Umbrae.rsi
         state: dark_passage
     - type: TargetAction
       range: 15
@@ -442,7 +442,7 @@
       itemIconStyle: NoItem
       priority: 18
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Vampire/Umbrae.rsi
         state: extinguish
     - type: InstantAction
       event: !type:VampireExtinguishActionEvent {}
@@ -462,7 +462,7 @@
       itemIconStyle: NoItem
       priority: 19
       icon:
-        sprite: _Starlight/Vampire/umbrae.rsi
+        sprite: _Starlight/Vampire/Umbrae.rsi
         state: eternal_darkness
     - type: InstantAction
       event: !type:VampireEternalDarknessActionEvent
