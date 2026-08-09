@@ -52,7 +52,9 @@ public abstract partial class SharedRadioDeviceSystem : EntitySystem
     }
     #endregion
 
-    #region Starlight
+    // Starlight - Start
+    #region Starlight 
+    
     public override void Initialize()
     {
         base.Initialize();
@@ -68,9 +70,10 @@ public abstract partial class SharedRadioDeviceSystem : EntitySystem
             return;
 
         args.PushMarkup(Loc.GetString(mic.Enabled
-            ? "station-radio-server-examine-recording"
-            : "station-radio-server-examine-not-recording"));
+            ? "station-radio-server-examine-not-recording"
+            : "station-radio-server-examine-recording"));
     }
     #endregion
+    // Starlight - End
 }
 
