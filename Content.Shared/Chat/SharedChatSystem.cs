@@ -42,6 +42,8 @@ public abstract partial class SharedChatSystem : EntitySystem
     public const char EmotesAltPrefix = '*';
     public const char AdminPrefix = ']';
     public const char WhisperPrefix = ',';
+    public const char SubtlePrefix = '-'; // Inferus
+    public const char SubtleOOCPrefix = '{'; // Inferus
 
     public const char DefaultChannelKey = 'h';
 

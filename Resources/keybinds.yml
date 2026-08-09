@@ -659,3 +659,10 @@ binds:
   type: State
   key: Space
   priority: -1
+
+# Inferus
+- function: FocusSubtle
+  key: Minus
+- function: FocusSubtleOOC
+  mod1: Shift
+  key: LBracket

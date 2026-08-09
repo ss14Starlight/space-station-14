@@ -7,7 +7,7 @@
     ///     Maps to <see cref="ChatChannel"/>, giving better names.
     /// </remarks>
     [Flags]
-    public enum ChatSelectChannel : ushort
+    public enum ChatSelectChannel : uint // Inferus
     {
         None = 0,
 
@@ -50,6 +50,13 @@
         ///     Admin chat
         /// </summary>
         Admin = ChatChannel.AdminChat,
+
+        /// Inferus
+        /// <summary>
+        /// Subtle and Subtle OOC
+        /// </summary>
+        Subtle,
+        SubtleOOC,
 
         Console = ChatChannel.Unspecified
     }
