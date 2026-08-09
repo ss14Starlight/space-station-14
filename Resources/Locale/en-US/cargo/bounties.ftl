@@ -79,7 +79,7 @@ bounty-item-oven-machine-board = Oven machine board
 bounty-item-ring = Ring
 bounty-item-remains = Hivelord Remains
 bounty-item-plates = Goliath Hide Plates
-# Starlight Salvage Bounties additional
+# Starlight: -> New Salvage Bounties
 bounty-item-bandolier = Marine Bandolier
 bounty-item-commie-id = Soviet ID Card
 bounty-item-raw-xeno-meat = Raw Xeno Meat

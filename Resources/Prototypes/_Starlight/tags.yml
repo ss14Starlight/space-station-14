@@ -533,10 +533,10 @@
   id: NotLabelable
 
 - type: Tag
-  id: NukiePlanet
+  id: NukeKegBounty #BountySalvageNukeKeg
 
 - type: Tag
-  id: NukeKegBounty #BountySalvageNukeKeg
+  id: NukiePlanet
 
 - type: Tag
   id: OldTreasure #BountySalvageOldTreasure

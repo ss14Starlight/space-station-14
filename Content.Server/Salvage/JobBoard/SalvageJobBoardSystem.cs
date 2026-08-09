@@ -3,7 +3,6 @@ using System.Linq;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Radio.EntitySystems;
-using Content.Server.Stack; // #starlight
 using Content.Server.Station.Systems;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
@@ -16,6 +15,9 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+/// #starlight start
+using Content.Server.Stack;
+/// #starlight end
 
 namespace Content.Server.Salvage.JobBoard;
 
@@ -28,9 +30,11 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
     [Dependency] private LabelSystem _label = default!;
     [Dependency] private PaperSystem _paper = default!;
     [Dependency] private RadioSystem _radio = default!;
-    [Dependency] private StackSystem _stack = default!; // #starlight
     [Dependency] private StationSystem _station = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
+/// #starlight start
+    [Dependency] private StackSystem _stack = default!;
+/// #starlight end
 
     /// <summary>
     /// Radio channel that unlock messages are broadcast on.
@@ -58,7 +62,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
         {
             if (!FulfillsSalvageJob(sold, (args.Station, salvageJobsData), out var jobId))
                 continue;
-            TryCompleteSalvageJob((args.Station, salvageJobsData), jobId.Value, sold);
+            TryCompleteSalvageJob((args.Station, salvageJobsData), jobId.Value, sold); //#starlight
         }
     }
 
