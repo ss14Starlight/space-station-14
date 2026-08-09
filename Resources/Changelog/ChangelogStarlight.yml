@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Sepultum) One of the bookshelves in Library will now always contain all guidebooks.
-    type: Tweak
-  id: 406976
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
   - message: (Sepultum) Placed a station beacon in Washroom.
     type: Tweak
   id: 406977
@@ -2799,4 +2792,11 @@ Entries:
   id: 407375
   time: '2026-08-09T10:40:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5502
+- author: Xale
+  changes:
+  - message: Cuffing no longer prevents player controlled zombies from attacking.
+    type: Fix
+  id: 407376
+  time: '2026-08-09T11:12:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5445
 Order: -1
