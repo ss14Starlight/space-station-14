@@ -119,10 +119,32 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
     private void OnDeviceUpdated(EntityUid uid, ElectrolyzerComponent electrolyzer, ref AtmosDeviceUpdateEvent args, BatteryComponent battery)
     {
+        if (electrolyzer.Passive == true)
+        {
+                comp.IsPowered = true;             
+        }
+
         if (!Transform(uid).Anchored || !electrolyzer.IsPowered)
             return;
 
-        UpdateAppearance(uid);
+        if (electrolyzer.CurrentFuel <= 0f)
+        {
+            }
+            // Get fuel value from sheet
+            float fuelPerSheet = 0f;
+            if (_tagSystem.HasTag(fuelEntity, PlasmaTag))
+                fuelPerSheet = electrolyzer.PlasmaFuelConversion;
+            else
+                return;
+
+            // Consume 1 sheet
+            _stackSystem.SetCount((fuelEntity, stack), stack.Count - 1);
+            electrolyzer.CurrentFuel = fuelPerSheet;
+
+            // If stack now empty, delete it
+            if (stack.Count <= 0)
+                EntityManager.QueueDeleteEntity(fuelEntity);
+        }
 
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
@@ -203,6 +225,11 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         _battery.ChangeCharge(battery.Value.AsNullable(), (-powerUsed * fuelMultiplier)); ///NOT WORKING!!! HLEP!!!
 
         electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - (powerUsed - 500f));
+
+        if (electrolyzer.Passive == true)
+        {
+                comp.IsPowered = false;             
+        }
 
         _gasOverlaySystem.UpdateSessions();
     }
