@@ -170,7 +170,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         {
             var temperatureEfficiency = Math.Min(mixture.Temperature / 1123.15f, 1f); ///For some reason combustibles have variable oxy consumption? This keeps it balanced.
 
-            var h2oRate = (float) Math.Min(2.5 * rate, initH2O);
+            var h2oRate = (float) Math.Min(2.5 * rate, initH2O / 2f);
 
             var h2oRemoved = h2oRate * 2f;
             var oxyProduced = h2oRate * temperatureEfficiency;
@@ -222,7 +222,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             fuelMultiplier = 0.1f;
         }
 
-        _battery.ChangeCharge(battery.Value.AsNullable(), (-powerUsed * fuelMultiplier)); ///NOT WORKING!!! HLEP!!!
+        _battery.ChangeCharge(battery.Value.AsNullable(), (-powerUsed * fuelMultiplier) / electrolyzer.Efficiency); ///NOT WORKING!!! HLEP!!!
 
         electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - (powerUsed - 500f));
 
