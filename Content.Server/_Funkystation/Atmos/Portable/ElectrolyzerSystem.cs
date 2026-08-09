@@ -168,7 +168,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         }
 
 
-        var rate = (charge/2000f) / args.dt;    
+        var rate = (charge/200000f) / args.dt;    
 
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);

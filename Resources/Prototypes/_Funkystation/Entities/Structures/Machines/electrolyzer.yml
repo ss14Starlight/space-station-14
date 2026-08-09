@@ -51,7 +51,7 @@
   - type: NodeContainer
     examinable: true
     nodes:
-    input:
+     input:
       !type:CableDeviceNode
       nodeGroupID: HVPower
   - type: Battery
