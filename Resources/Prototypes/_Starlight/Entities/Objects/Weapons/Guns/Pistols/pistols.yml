@@ -602,10 +602,10 @@
   - type: AmmoCounter
 
 - type: entity
-  name: broomhandle
-  parent: BaseWeaponSniper
-  id: Pistolbrommhandle
-  description: An antiquated design of a pistol, used by a few antique fans.
+  name: cold case
+  parent: [BaseWeaponSniper, BaseSecurityContraband]
+  id: PistolColdCase
+  description: An antiquated design of a pistol, truly a stilish choice.
   components:
   - type: KnockbackByUserTag
     doestContain:
@@ -627,28 +627,39 @@
     - 0,0,1,0
     - 0,1,0,1
   - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/broomhandle.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/coldcase.rsi
     slots:
     - Back
     - suitStorage
     - Belt
+    - Pocket
+  - type: Tag
+    tags:
+    - Sidearm
   - type: Gun
     pump: false
-    fireRate: 4.5
+    fireRate: 4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
   - type: BallisticAmmoProvider
     capacity: 15
     proto: CartridgePistol40SP
     whitelist:
       tags:
       - CartridgePistolDP
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+      firing_pin: !type:Container
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 30
   - type: FiringPinHolder
     supportedPins: [ Pistol, GunUpgrade ]
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/broomhandle.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/coldcase.rsi
     layers:
     - state: base
