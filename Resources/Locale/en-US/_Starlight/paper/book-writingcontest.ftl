@@ -277,7 +277,7 @@ book-chuckles = The stale burn of cheap tobacco mixed with too-pure air hits the
         Dreams of meat.
 
 # Written by teapoterror
-book-corridor-nine=There was something off with Corridor Nine. The central eight corridors were where all
+book-corridor-nine = There was something off with Corridor Nine. The central eight corridors were where all
         foot-traffic went throughout Quincy Port, a small little midway stop between somewhere and
         nowhere on the far reaches of frontier space. Consulting the electronic maps, you'd never even
         find a "Corridor Nine", unless you personally crawled around the old maintenance halls and

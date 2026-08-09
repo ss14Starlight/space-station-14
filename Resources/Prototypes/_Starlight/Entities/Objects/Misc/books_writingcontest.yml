@@ -210,7 +210,7 @@
 
 - type: entity
   parent: BookBase
-  id: BookApoclypse
+  id: BookApocolypse
   name: "Apocolypse"
   description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
   components:
