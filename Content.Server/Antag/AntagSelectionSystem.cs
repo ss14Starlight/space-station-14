@@ -1171,7 +1171,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         Log.Debug($"Assigned {ToPrettyString(antag):target}, mind {ToPrettyString(mind):target} as antagonist: {ToPrettyString(gameRule):user}");
         _adminLogger.Add(LogType.AntagSelection, $"Assigned {ToPrettyString(antag):target}, mind {ToPrettyString(mind):target} as antagonist: {ToPrettyString(gameRule):user}");
 
-        _antagsSpawned.WithLabels(Prototype(antag)?.ID ?? "unknown").Inc(); // Starlight
+        _antagsSpawned.WithLabels(prototype.ID ?? "unknown").Inc(); // Starlight
 
         SendBriefing(player, prototype.Briefing);
 
