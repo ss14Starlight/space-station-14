@@ -605,7 +605,7 @@
   name: cold case
   parent: [BaseWeaponSniper, BaseSecurityContraband]
   id: WeaponPistolColdCase
-  description: An antiquated design of a pistol, truly a stilish choice.
+  description: An antiquated design of a pistol, truly a stylish choice.
   components:
   - type: KnockbackByUserTag
     doestContain:
@@ -663,3 +663,8 @@
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/coldcase.rsi
     layers:
     - state: base
+  - type: StealTarget
+    stealGroup: OfficerHandgun
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.01
