@@ -126,14 +126,13 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         if (electrolyzer.Passive == false)
         {
+            if (TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
             if (!Transform(uid).Anchored)
                powerConsumer.DrawRate = 0f;
                return;
-
-            if (TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
             {
-               var missingcharge = Math.Max(50000f, battery.MaxCharge - charge);
-               powerConsumer.DrawRate = Math.Min(0f, missingcharge);
+               var missingcharge = Math.Min((battery.MaxCharge - charge) / args.dt, 50000f);
+               powerConsumer.DrawRate = Math.Max(missingcharge, 0f);
                _battery.ChangeCharge((uid, battery), powerConsumer.ReceivedPower * args.dt);
             }        
         }
