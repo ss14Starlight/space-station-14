@@ -29,7 +29,9 @@ public sealed partial class ScentMarkerComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? ContainedIn;
 
-    // Whether the emitter was dead at the moment of this emission.
+    /// <summary>
+    /// Whether the emitter was dead when this marker was emitted or last refreshed.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public bool WasDead;
 }
