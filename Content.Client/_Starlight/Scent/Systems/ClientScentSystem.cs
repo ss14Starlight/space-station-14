@@ -27,6 +27,12 @@ public sealed class ClientScentSystem : SharedScentSystem
         SubscribeLocalEvent<SmellerComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
     }
 
+    /// <summary>
+    /// ComponentShutdown/LocalPlayerDetachedEvent only fire on ordinary gameplay transitions, not
+    /// when this system itself gets torn down (e.g. disconnecting mid-round). IOverlayManager is a
+    /// process-lifetime singleton that outlives this system, so without this, _overlay stays
+    /// registered forever, holding a live reference to this connection's entire entity graph.
+    /// </summary>
     public override void Shutdown()
     {
         base.Shutdown();
