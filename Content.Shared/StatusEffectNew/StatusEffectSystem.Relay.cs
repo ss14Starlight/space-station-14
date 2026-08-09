@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Eye.Blinding.Systems; // Starlight
 using Content.Shared.Mobs.Events;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -36,6 +37,7 @@ public sealed partial class StatusEffectsSystem
         SubscribeLocalEvent<StatusEffectContainerComponent, BeforeAlertSeverityCheckEvent>(RelayStatusEffectEvent);
 
         SubscribeLocalEvent<StatusEffectContainerComponent, AccentGetEvent>(RelayStatusEffectEvent);
+        SubscribeLocalEvent<StatusEffectContainerComponent, GetBlurEvent>(RelayStatusEffectEvent); // Starlight
 
         SubscribeLocalEvent<StatusEffectContainerComponent, BleedModifierEvent>(RefRelayStatusEffectEvent);
     }

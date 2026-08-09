@@ -1,0 +1,17 @@
+- type: entity
+  parent: StatusEffectSlowdown
+  id: PathogenThroatSlowdownStatusEffect
+  name: throat irritation
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: PathogenMildBlurStatusEffect
+  name: irritated eyes
+  components:
+  - type: PathogenMildBlur
+    magnitude: 1.5
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: PathogenEmergentSlowdownStatusEffect
+  name: pathogen weakness
