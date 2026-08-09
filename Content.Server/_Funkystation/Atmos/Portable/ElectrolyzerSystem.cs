@@ -132,8 +132,9 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
             if (TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
             {
-               var missingcharge = Math.Max(battery.MaxCharge - charge, 50000f);
+               var missingcharge = Math.Max(50000f, battery.MaxCharge - charge);
                powerConsumer.DrawRate = Math.Min(0f, missingcharge);
+               _battery.ChangeCharge((uid, battery), powerConsumer.ReceivedPower * args.dt);
             }        
         }
 
@@ -151,19 +152,16 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
 
-        if (electrolyzer.Passive == false)
+        if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
         {
-            if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
-            {
-                var remaining = stack.Count - 1;
+            var remaining = stack.Count - 1;
+            _stackSystem.SetCount((fuelEntity, stack), remaining);
+            electrolyzer.CurrentFuel = electrolyzer.PlasmaFuelConversion;
 
-                _stackSystem.SetCount((fuelEntity, stack), remaining);
-                electrolyzer.CurrentFuel = electrolyzer.PlasmaFuelConversion;
-
-                if (remaining <= 0)
-                    EntityManager.QueueDeleteEntity(fuelEntity);
-            }
+            if (remaining <= 0)
+            EntityManager.QueueDeleteEntity(fuelEntity);
         }
+
 
         var rate = charge/200000f;    
 
