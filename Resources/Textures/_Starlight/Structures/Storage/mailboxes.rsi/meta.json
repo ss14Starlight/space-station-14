@@ -34,6 +34,10 @@
     {
       "name": "service",
       "copyright": "by Conf"
+    },
+    {
+      "name": "security",
+      "copyright": "by Conf"
     }
   ]
 }

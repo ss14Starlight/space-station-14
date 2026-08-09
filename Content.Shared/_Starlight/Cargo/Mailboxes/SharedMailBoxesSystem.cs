@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Content.Shared.Delivery;
+using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Interaction;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Storage;
@@ -23,6 +25,20 @@ public partial class SharedMailBoxesSystem : EntitySystem
 
         SubscribeLocalEvent<MailBoxComponent, ContainerIsInsertingAttemptEvent>(OnInsertAttempt);
         SubscribeLocalEvent<MailBoxComponent, GetVerbsEvent<InteractionVerb>>(OnInteractionVerbs);
+        SubscribeLocalEvent<MailBoxComponent, InteractUsingEvent>(OnInteractWith);
+        SubscribeLocalEvent<MailBoxComponent, ExaminedEvent>(OnExamined);
+    }
+
+    private void OnExamined(Entity<MailBoxComponent> ent, ref ExaminedEvent args)
+    {
+        if (ent.Comp.Names.Contains(Identity.Name(args.Examiner, EntityManager))) args.PushMarkup("You seem to have mail!");
+    }
+
+    private void OnInteractWith(Entity<MailBoxComponent> ent, ref InteractUsingEvent args)
+    {
+        if (args.Handled) return;
+        if(!_containerSystem.TryGetContainer(ent, "mail_storage", out var container)) return;
+        args.Handled = _containerSystem.Insert(args.Used, container);
     }
 
     private void OnInteractionVerbs(Entity<MailBoxComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
@@ -42,10 +58,10 @@ public partial class SharedMailBoxesSystem : EntitySystem
 
     private void EjectMail(Entity<MailBoxComponent> ent, EntityUid argsUser)
     {
-        if (!_containerSystem.TryGetContainer(ent, StorageComponent.ContainerId, out var container))
-            return;
-
         var userName = Identity.Name(argsUser, EntityManager);
+        if (!ent.Comp.Names.Contains(userName)) return;
+        if (!_containerSystem.TryGetContainer(ent, "mail_storage", out var container))
+            return;
 
         foreach (var entity in container.ContainedEntities.ToArray())
         {
@@ -57,6 +73,7 @@ public partial class SharedMailBoxesSystem : EntitySystem
 
             _containerSystem.RemoveEntity(ent, entity, reparent: true, force: true);
         }
+        ent.Comp.Names.Remove(userName);
     }
 
     private void OnInsertAttempt(Entity<MailBoxComponent> ent, ref ContainerIsInsertingAttemptEvent args)
@@ -65,7 +82,7 @@ public partial class SharedMailBoxesSystem : EntitySystem
             return;
 
         if (!HasComp<DeliveryComponent>(args.EntityUid) || HasComp<DeliveryBombComponent>(args.EntityUid) ||
-            HasComp<DeliveryPriorityComponent>(args.EntityUid))
+            HasComp<DeliveryPriorityComponent>(args.EntityUid) || HasComp<DeliveryFragileComponent>(args.EntityUid))
         {
             args.Cancel();
             return;
