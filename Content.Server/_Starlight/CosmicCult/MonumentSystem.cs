@@ -6,9 +6,12 @@ using Content.Server.Atmos.Components;
 using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server._Starlight.Shuttles;
+using Content.Server.Spawners.Components;
+using Content.Server.Spawners.EntitySystems;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
 using Content.Shared.Audio;
 using Content.Shared.Interaction;
@@ -21,6 +24,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
+using Robust.Shared.Serialization.Markdown.Mapping;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -42,6 +46,7 @@ public sealed partial class MonumentSystem : SharedMonumentSystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SpawnOnDespawnSystem _sod = default!;
 
     private static readonly EntProtoId _cosmicGod = "MobCosmicGodSpawn";
     private static readonly EntProtoId _monumentCollider = "MonumentCollider";
@@ -94,8 +99,19 @@ public sealed partial class MonumentSystem : SharedMonumentSystem
                     victoryComp.Victory = true;
                 }
 
-                Spawn(_cosmicGod, Transform(uid).Coordinates);
+                var spawnUid = Spawn(_cosmicGod, Transform(uid).Coordinates);
                 comp.CurrentState = FinaleState.Victory;
+
+                // add override to make sure cosmic god ends round
+                if (TryComp<SpawnOnDespawnComponent>(spawnUid, out var spawnComp))
+                    _sod.SetOverrides((spawnUid, spawnComp), new ComponentRegistry(
+                        new Dictionary<string, EntityPrototype.ComponentRegistryEntry>
+                        {
+                            {
+                                "CosmicGod", new EntityPrototype.ComponentRegistryEntry(
+                                    new CosmicGodComponent { TriggerRoundEnd = true }, new MappingDataNode())
+                            }
+                        }));
             }
         }
 

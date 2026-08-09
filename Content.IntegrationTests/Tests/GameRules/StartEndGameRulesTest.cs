@@ -2,6 +2,7 @@ using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
 
@@ -13,7 +14,8 @@ public sealed class StartEndGameRulesTest : GameTest
     public override PoolSettings PoolSettings => new PoolSettings
     {
         Dirty = true,
-        DummyTicker = false
+        DummyTicker = false,
+        Map = PoolManager.TestStation
     };
 
     /// <summary>
@@ -22,6 +24,8 @@ public sealed class StartEndGameRulesTest : GameTest
     [Test]
     public async Task TestAllConcurrent()
     {
+        Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
+        Server.CfgMan.SetCVar(CCVars.GameRoleTimers, false); // Starlight
         var pair = Pair;
         var server = pair.Server;
         await server.WaitIdleAsync();
@@ -50,5 +54,7 @@ public sealed class StartEndGameRulesTest : GameTest
             gameTicker.ClearGameRules();
             Assert.That(!gameTicker.GetAddedGameRules().Any());
         });
+        Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
+        Server.CfgMan.SetCVar(CCVars.GameRoleTimers, true); // Starlight
     }
 }

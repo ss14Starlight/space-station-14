@@ -92,10 +92,19 @@
   id: Reach
   name: SS-Reach III
   description: A large station vessel made for skeleton crews that we decided to allow stations to buy.
-  price: 1500000
+  price: 700500
   category: Humongous
   group: Command
   shuttlePath: /Maps/_Starlight/Shuttles/ReachButShipyard.yml
+
+- type: vessel
+  id: Apotherkerin
+  name: JSS-MED Apotherkerin
+  description: A compact vessel designed for chemistry and botany, comes with a chemistry lab, a hydroponics area and mutation room. Requires external sources of air.
+  price: 40000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/JSS_MED_Apotherkerin.yml
 
 - type: vessel
   id: Bumblebee
@@ -105,3 +114,12 @@
   category: Medium
   group: Civilian
   shuttlePath: /Maps/_Starlight/Shuttles/Bumblebee.yml
+
+- type: vessel
+  id: SpaceTruck
+  name: HARMS Space Truck
+  description: A cheap trailer truck with a semi-legal (check with your lawyer!) IFF console onboard. Comes with two beers and a sweet digital audio workstation for blasting your tunes as you cruise through space.
+  price: 14999
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/SpaceTruck.yml

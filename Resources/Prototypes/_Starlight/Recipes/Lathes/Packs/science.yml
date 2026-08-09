@@ -7,3 +7,10 @@
   id: StarlightShuttleBoards
   recipes:
   - WallmountMassScannerElectronics
+
+
+# No Security or Medical since they have the most unique stuff; go get them yourself!
+- type: latheRecipePack
+  id: StarlightLatheBoardsEmag
+  recipes:
+  - ProtolatheMachineCircuitboard

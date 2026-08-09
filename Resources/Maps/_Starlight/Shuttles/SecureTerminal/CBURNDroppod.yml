@@ -88,6 +88,9 @@ entities:
     - type: Shuttle
       dampingModifier: 0.25
     - type: ImplicitRoof
+    - type: Tag
+      tags:
+        - ERTShuttle
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
