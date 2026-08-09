@@ -131,8 +131,9 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
                powerConsumer.DrawRate = 0f;
                return;
             {
-               var missingcharge = Math.Min((battery.MaxCharge - charge) / args.dt, 50000f);
-               powerConsumer.DrawRate = Math.Max(missingcharge, 0f);
+               var missingcharge = battery.MaxCharge - charge;
+               var requestedcharge = Math.Min(missingcharge / args.dt, 50000f);
+               powerConsumer.DrawRate = Math.Max(requestedcharge, 0f);
                _battery.ChangeCharge((uid, battery), powerConsumer.ReceivedPower * args.dt);
             }        
         }
