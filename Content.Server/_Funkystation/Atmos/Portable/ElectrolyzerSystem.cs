@@ -40,12 +40,12 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<ElectrolyzerComponent, SignalReceivedEvent>(OnSignalReceived);
         SubscribeLocalEvent<ElectrolyzerComponent, AtmosDeviceUpdateEvent>(OnDeviceUpdated);
         SubscribeLocalEvent<ElectrolyzerComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<ElectrolyzerComponent, InteractUsingEvent>(OnInteractUsingFuel);
         SubscribeLocalEvent<ElectrolyzerComponent, AnchorStateChangedEvent>(OnAnchorChanged);
+
     }
 
     private void OnSignalReceived(EntityUid uid, ElectrolyzerComponent comp, SignalReceivedEvent args) 
@@ -117,8 +117,11 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         }
     }
 
-    private void OnDeviceUpdated(EntityUid uid, ElectrolyzerComponent electrolyzer, ref AtmosDeviceUpdateEvent args, BatteryComponent battery)
+    private void OnDeviceUpdated(EntityUid uid, ElectrolyzerComponent electrolyzer, ref AtmosDeviceUpdateEvent args)
     {
+        if (!TryComp<BatteryComponent>(uid, out var battery))
+            return;
+
         if (electrolyzer.Passive == true)
         {
                 electrolyzer.IsPowered = true;             
@@ -127,24 +130,31 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         if (!Transform(uid).Anchored || !electrolyzer.IsPowered)
             return;
 
-        if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
-{
-    var remaining = stack.Count - 1;
-
-    _stackSystem.SetCount((fuelEntity, stack), remaining);
-    electrolyzer.CurrentFuel = electrolyzer.PlasmaFuelConversion;
-
-    if (remaining <= 0)
-        EntityManager.QueueDeleteEntity(fuelEntity);
-}
-
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
 
         var charge = _battery.GetCharge((uid, battery));
 
+        var missingcharge = (float) Math.Max(50000f, 200000f - charge);
+
+        if (TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
+        {
+        powerConsumer.DrawRate = (float) Math.Min(1f, missingcharge);
+        }
+
         if (charge <= 0f)
         return;
+
+        if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
+        {
+            var remaining = stack.Count - 1;
+
+            _stackSystem.SetCount((fuelEntity, stack), remaining);
+            electrolyzer.CurrentFuel = electrolyzer.PlasmaFuelConversion;
+
+            if (remaining <= 0)
+                EntityManager.QueueDeleteEntity(fuelEntity);
+        }
 
         var rate = charge/200000f;    
 
@@ -299,16 +309,6 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             {
                 _popup.PopupEntity(Loc.GetString("electrolyzer-must-be-anchored"), uid, user.Value);
             }
-            return;
-        }
-
-        bool hasFuel = comp.CurrentFuel > 0f ||
-                       (_itemSlots.TryGetSlot(uid, "fuel", out var slot) &&
-                       slot.ContainerSlot?.ContainedEntity != null);
-
-        if (!hasFuel)
-        {
-            _popup.PopupEntity(Loc.GetString("electrolyzer-no-fuel"), uid);
             return;
         }
 
