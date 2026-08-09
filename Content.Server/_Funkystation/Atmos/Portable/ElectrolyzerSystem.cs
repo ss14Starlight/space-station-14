@@ -128,8 +128,10 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         {
             if (TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
             if (!Transform(uid).Anchored)
+            {
                powerConsumer.DrawRate = 0f;
                return;
+            }
             {
                var missingcharge = battery.MaxCharge - charge;
                var requestedcharge = Math.Min(missingcharge / args.dt, 50000f);
