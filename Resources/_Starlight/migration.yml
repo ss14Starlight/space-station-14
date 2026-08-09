@@ -161,3 +161,7 @@ GasPipeSubfloorTankAlt1: GasPipeTankSubfloorAlt1
 GasPipeSubfloorTankAlt2: GasPipeTankSubfloorAlt2
 GasPipeSubfloorTankAlt3: GasPipeTankSubfloorAlt3
 GasPipeSubfloorTankAlt4: GasPipeTankSubfloorAlt4
+
+#2026-08-09 - Removed unused sawoff shotty since the riot gun rework
+WeaponShotgunRiotSawnEmpty: null
+WeaponShotgunRiotSawn: null
