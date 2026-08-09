@@ -122,9 +122,23 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         if (!TryComp<BatteryComponent>(uid, out var battery))
             return;
 
+        var charge = _battery.GetCharge((uid, battery));
+
+        if (electrolyzer.Passive == false)
+        {
+            if (TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
+            {
+            var missingcharge = (float) Math.Max(50000f, 200000f - charge);
+            powerConsumer.DrawRate = (float) Math.Min(1f, missingcharge);
+            }        
+        }
+
+        if (charge <= 0f)
+        return;
+
         if (electrolyzer.Passive == true)
         {
-                electrolyzer.IsPowered = true;             
+            electrolyzer.IsPowered = true;             
         }
 
         if (!Transform(uid).Anchored || !electrolyzer.IsPowered)
@@ -133,27 +147,18 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
 
-        var charge = _battery.GetCharge((uid, battery));
-
-        var missingcharge = (float) Math.Max(50000f, 200000f - charge);
-
-        if (TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
+        if (electrolyzer.Passive == false)
         {
-        powerConsumer.DrawRate = (float) Math.Min(1f, missingcharge);
-        }
+            if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
+            {
+                var remaining = stack.Count - 1;
 
-        if (charge <= 0f)
-        return;
+                _stackSystem.SetCount((fuelEntity, stack), remaining);
+                electrolyzer.CurrentFuel = electrolyzer.PlasmaFuelConversion;
 
-        if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
-        {
-            var remaining = stack.Count - 1;
-
-            _stackSystem.SetCount((fuelEntity, stack), remaining);
-            electrolyzer.CurrentFuel = electrolyzer.PlasmaFuelConversion;
-
-            if (remaining <= 0)
-                EntityManager.QueueDeleteEntity(fuelEntity);
+                if (remaining <= 0)
+                    EntityManager.QueueDeleteEntity(fuelEntity);
+            }
         }
 
         var rate = charge/200000f;    

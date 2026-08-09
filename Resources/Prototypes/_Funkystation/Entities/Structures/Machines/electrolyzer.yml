@@ -51,6 +51,5 @@
     voltage: High
   - type: Battery
     netsync: false
-    ChargeRate: 50000
     maxCharge: 200000
     startingCharge: 0
