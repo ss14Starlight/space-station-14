@@ -117,7 +117,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         }
     }
 
-    private void OnDeviceUpdated(EntityUid uid, ElectrolyzerComponent electrolyzer, ref AtmosDeviceUpdateEvent args, BatteryComponent battery)
+    private void OnDeviceUpdated(EntityUid uid, ElectrolyzerComponent electrolyzer, ref AtmosDeviceUpdateEvent args, SharedBatterySystem.GetCharge battery)
     {
         if (electrolyzer.Passive == true)
         {
@@ -149,7 +149,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
 
-        var capicator = _battery.GetCharge(battery.Value.AsNullable());
+        var capicator = battery.GetCharge;
 
         if (capicator <= 0f)
         return;
