@@ -377,3 +377,23 @@
   cost: 1000
   category: cargoproduct-category-name-fun
   group: market
+
+- type: cargoProduct
+  id: PholcusPlushie
+  icon:
+    sprite: _Starlight\Objects\Fun\Plushies\pholcus_plushie.rsi
+    state: icon
+  product: PlushiePholcus
+  cost: 2
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: JimboPlushie
+  icon:
+    sprite: _Starlight\Objects\Fun\Plushies\jimbo_plushie.rsi
+    state: icon
+  product: PlushieJimbo
+  cost: 3
+  category: cargoproduct-category-name-fun
+  group: market

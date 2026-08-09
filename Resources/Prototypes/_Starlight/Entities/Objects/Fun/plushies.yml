@@ -2122,3 +2122,39 @@
     sprite: _Starlight\Objects\Fun\Plushies\pholcus_plushie.rsi
     slots:
     - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieJimbo
+  name: jimbo plushie
+  description: This NEEDS to be thrown at a wall.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/jimbo_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: 
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+  - type: EmitSoundOnLand
+    sound: /Audio/Voice/Moth/moth_squeak.ogg
+  - type: EmitSoundOnActivate
+    sound: /Audio/Voice/Moth/moth_chitter.ogg
+  - type: EmitSoundOnTrigger
+    sound: /Audio/Voice/Moth/moth_chitter.ogg
+  - type: EmitSoundOnCollide
+    sound: /Audio/Voice/Moth/moth_squeak.ogg
+  - type: Edible
+    useSound: /Audio/Voice/Moth/moth_laugh.ogg
+  - type: MeleeWeapon
+    soundHit: /Audio/Voice/Moth/moth_squeak.ogg
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight\Objects\Fun\Plushies\jimbo_plushie.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET

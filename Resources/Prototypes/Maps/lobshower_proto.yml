@@ -1,0 +1,22 @@
+- type: gameMap
+  id: Ashli
+  mapName: 'Baby Shower'
+  mapPath: /Maps/lobshower.yml
+  minPlayers: 0
+  maxPlayers: 140
+  stations:
+    Ashli:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Lobster Station {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'RT'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_lox.yml
+        - type: StationJobs
+          availableJobs:
+            #service
+            Assistant: [ -1, -1 ]
+            Bartender: [ 3, 3 ]

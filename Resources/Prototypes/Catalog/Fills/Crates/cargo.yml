@@ -258,3 +258,15 @@
     - id: EmeraldLizitar
       prob: 0.01
     #Starlight end
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateRootBeerFloat
+  name: Root Beer Float
+  description: Contains 1 root beer float glass. Makes Pholcus happy.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: DrinkRootBeerFloatGlass
+        amount: 1
