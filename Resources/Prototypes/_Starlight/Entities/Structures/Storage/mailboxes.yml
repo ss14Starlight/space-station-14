@@ -1,0 +1,25 @@
+﻿- type: entity
+  id: BaseMailbox
+  parent: BaseStructure
+  abstract: true
+  components:
+  - type: Mailbox
+  - type: ContainerContainer
+    containers:
+      mail_storage: !type:Container
+  - type: Transform
+  - type: Sprite
+    noRot: true
+    sprite: _Starlight/Stuctures/Storage/mailboxes.rsi
+    layers:
+      - state: civilian
+
+- type: entity
+  id: CargoMailbox
+  parent: BaseMailbox
+  components:
+      - type: Mailbox
+        department: Cargo
+      - type: Sprite
+        layers:
+          - state: cargo

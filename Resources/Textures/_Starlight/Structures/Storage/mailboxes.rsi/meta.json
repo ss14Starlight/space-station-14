@@ -1,0 +1,39 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "civilian",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "cargo",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "command",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "engineering",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "medical",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "science",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "service",
+      "copyright": "by Conf"
+    }
+  ]
+}
