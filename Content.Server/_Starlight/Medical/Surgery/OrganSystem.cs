@@ -84,7 +84,7 @@ public sealed partial class OrganSystem : EntitySystem
             var fresh = (IComponent)_serialization.Read(type, comp.Mapping)!;
             EntityManager.AddComponent(args.Body, fresh);
             UpdateEntity(args.Body, fresh, ent.Owner);
-            _surgery.AddInstalledComponent(ent, type);
+            _surgery.AddInstalledComponent(ent.Owner, type);
         }
     }
 
@@ -100,7 +100,7 @@ public sealed partial class OrganSystem : EntitySystem
             UpdateEntity(args.Body, installed, ent.Owner);
         }
 
-        _surgery.ClearInstalledComponents(ent);
+        _surgery.ClearInstalledComponents(ent.Owner);
     }
 
     private void UpdateEntity(EntityUid ent, IComponent comp, EntityUid? implant = null)
