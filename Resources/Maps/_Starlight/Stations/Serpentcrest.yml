@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/08/2026 13:00:18
-  entityCount: 29527
+  time: 08/09/2026 01:57:10
+  entityCount: 29535
 maps:
 - 1
 grids:
@@ -10990,8 +10990,6 @@ entities:
       devices:
       - 14089
       - 17449
-      - 17617
-      - 13906
     - type: Fixtures
       fixtures: {}
 - proto: AirAlarmFreezer
@@ -13036,13 +13034,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 45.5,-39.5
-      parent: 2
-- proto: AirlockMaintServiceLocked
-  entities:
-  - uid: 538
-    components:
-    - type: Transform
-      pos: -34.5,-23.5
       parent: 2
 - proto: AirlockMedical
   entities:
@@ -18184,28 +18175,6 @@ entities:
       parent: 2
 - proto: Autolathe
   entities:
-  - uid: 1138
-    components:
-    - type: Transform
-      pos: -59.5,6.5
-      parent: 2
-    - type: TechnologyDatabase
-      supportedDisciplines:
-      - Industrial
-      - Arsenal
-      - Experimental
-      - CivilianServices
-  - uid: 1139
-    components:
-    - type: Transform
-      pos: 49.5,-11.5
-      parent: 2
-    - type: TechnologyDatabase
-      supportedDisciplines:
-      - Industrial
-      - Arsenal
-      - Experimental
-      - CivilianServices
   - uid: 1140
     components:
     - type: Transform
@@ -20466,7 +20435,7 @@ entities:
   - uid: 1496
     components:
     - type: Transform
-      pos: -54.39993,11.5008955
+      pos: -54.765137,11.444828
       parent: 2
   - uid: 1497
     components:
@@ -20925,6 +20894,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,34.5
+      parent: 2
+  - uid: 29535
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -30.5,-26.5
       parent: 2
 - proto: C4
   entities:
@@ -55444,6 +55419,20 @@ entities:
     - type: Transform
       pos: 59.5,-11.5
       parent: 2
+- proto: CargoTechFab
+  entities:
+  - uid: 1139
+    components:
+    - type: Transform
+      pos: 49.5,-11.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
 - proto: Carpet
   entities:
   - uid: 8376
@@ -62470,11 +62459,6 @@ entities:
     - type: Transform
       pos: -43.5,-20.5
       parent: 2
-  - uid: 9721
-    components:
-    - type: Transform
-      pos: -34.5,-23.5
-      parent: 2
   - uid: 9722
     components:
     - type: Transform
@@ -69319,6 +69303,16 @@ entities:
     - type: Transform
       pos: -29.5,-22.5
       parent: 2
+  - uid: 13599
+    components:
+    - type: Transform
+      pos: -10.5,53.5
+      parent: 2
+  - uid: 20032
+    components:
+    - type: Transform
+      pos: 52.5,6.5
+      parent: 2
 - proto: Cautery
   entities:
   - uid: 10962
@@ -69333,10 +69327,10 @@ entities:
       parent: 2
 - proto: CdRackFilled
   entities:
-  - uid: 10964
+  - uid: 17617
     components:
     - type: Transform
-      pos: -32.5,-25.5
+      pos: -31.5,-25.5
       parent: 2
 - proto: Chair
   entities:
@@ -70661,14 +70655,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.526301,-48.306103
-      parent: 2
-- proto: ChairOfficeSleek
-  entities:
-  - uid: 11194
-    components:
-    - type: Transform
-      rot: -3.141592653589793 rad
-      pos: -31.5,-25.5
       parent: 2
 - proto: ChairPilotSeat
   entities:
@@ -74892,6 +74878,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,38.5
       parent: 2
+- proto: ComfyChairBlue
+  entities:
+  - uid: 11194
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -32.5,-25.5
+      parent: 2
 - proto: ComfyChairRed
   entities:
   - uid: 11882
@@ -74906,6 +74900,20 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.5,-27.5
       parent: 2
+- proto: CommandTechFab
+  entities:
+  - uid: 13598
+    components:
+    - type: Transform
+      pos: -10.5,53.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
 - proto: CommsComputerCircuitboard
   entities:
   - uid: 11884
@@ -76142,6 +76150,9 @@ entities:
     - type: Transform
       pos: -9.5,37.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Command
     - type: Lock
       locked: False
     - type: Fixtures
@@ -76753,7 +76764,7 @@ entities:
   - uid: 12132
     components:
     - type: Transform
-      pos: 52.5,6.5
+      pos: 52.5,7.5
       parent: 2
 - proto: CrateLockBoxSecurity
   entities:
@@ -77072,6 +77083,13 @@ entities:
     components:
     - type: Transform
       pos: 8.5,40.5
+      parent: 2
+- proto: CrateRadioHostVinyls
+  entities:
+  - uid: 25403
+    components:
+    - type: Transform
+      pos: -34.5,-24.5
       parent: 2
 - proto: CrateSecNonlethalThrowables
   entities:
@@ -85563,6 +85581,20 @@ entities:
     - type: Transform
       pos: -46.30557,-33.460907
       parent: 2
+- proto: EngineeringTechFab
+  entities:
+  - uid: 1138
+    components:
+    - type: Transform
+      pos: -59.5,6.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
 - proto: ExosuitFabricator
   entities:
   - uid: 13539
@@ -86001,16 +86033,6 @@ entities:
     components:
     - type: Transform
       pos: -9.5,38.5
-      parent: 2
-  - uid: 13598
-    components:
-    - type: Transform
-      pos: -10.5,53.5
-      parent: 2
-  - uid: 13599
-    components:
-    - type: Transform
-      pos: -9.5,53.5
       parent: 2
   - uid: 13600
     components:
@@ -88858,15 +88880,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 129
-  - uid: 13906
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -34.5,-23.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 239
   - uid: 13907
     components:
     - type: Transform
@@ -118571,6 +118584,11 @@ entities:
       color: '#990000FF'
 - proto: GasVentScrubberAlt2
   entities:
+  - uid: 10964
+    components:
+    - type: Transform
+      pos: -32.5,-25.5
+      parent: 2
   - uid: 17615
     components:
     - type: Transform
@@ -118591,16 +118609,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 194
-  - uid: 17617
-    components:
-    - type: Transform
-      pos: -32.5,-25.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 239
-    - type: AtmosPipeColor
-      color: '#990000FF'
 - proto: GasVolumePump
   entities:
   - uid: 17618
@@ -132314,16 +132322,14 @@ entities:
       fixtures: {}
 - proto: LockableButtonService
   entities:
-  - uid: 20032
+  - uid: 29534
     components:
     - type: Transform
-      pos: -33.5,-23.5
+      rot: -1.5707963267948966 rad
+      pos: -30.5,-26.5
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        20486:
-        - - Pressed
-          - Toggle
         25182:
         - - Pressed
           - Toggle
@@ -132331,6 +132337,9 @@ entities:
         - - Pressed
           - Toggle
         25184:
+        - - Pressed
+          - Toggle
+        20486:
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -137437,12 +137446,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -41.5,-42.5
       parent: 2
-  - uid: 20679
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 52.5,5.5
-      parent: 2
   - uid: 20680
     components:
     - type: Transform
@@ -137478,6 +137481,12 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -15.5,-3.5
+      parent: 2
+  - uid: 29528
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 52.5,6.5
       parent: 2
 - proto: PlasmaWindoorSecureArmoryLocked
   entities:
@@ -143930,6 +143939,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,1.5
       parent: 28952
+  - uid: 29530
+    components:
+    - type: Transform
+      pos: -9.5,53.5
+      parent: 2
 - proto: RadAutoInjector
   entities:
   - uid: 21753
@@ -151101,6 +151115,20 @@ entities:
     - type: Transform
       pos: -2.4670353,-17.508991
       parent: 2
+- proto: ScienceTechFab
+  entities:
+  - uid: 29529
+    components:
+    - type: Transform
+      pos: 52.5,6.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
 - proto: ScrapAirlock1
   entities:
   - uid: 23016
@@ -152181,6 +152209,11 @@ entities:
           type: StackCustomSplitBoundUserInterface
           requireInputValidation: True
           interactionRange: 2
+  - uid: 29532
+    components:
+    - type: Transform
+      pos: -9.552835,53.370327
+      parent: 2
 - proto: SheetGlass10
   entities:
   - uid: 23161
@@ -152306,6 +152339,11 @@ entities:
     components:
     - type: Transform
       pos: 50.7436,27.647867
+      parent: 2
+  - uid: 29533
+    components:
+    - type: Transform
+      pos: -9.19346,53.651577
       parent: 2
 - proto: SheetRGlass1
   entities:
@@ -152464,6 +152502,11 @@ entities:
     components:
     - type: Transform
       pos: -38.41074,30.53354
+      parent: 2
+  - uid: 29531
+    components:
+    - type: Transform
+      pos: -9.802835,53.635952
       parent: 2
 - proto: SheetSteel1
   entities:
@@ -159042,10 +159085,15 @@ entities:
       parent: 2
 - proto: SpawnPointRadioHost
   entities:
-  - uid: 24144
+  - uid: 538
     components:
     - type: Transform
-      pos: -34.5,-25.5
+      pos: -34.5,-26.5
+      parent: 2
+  - uid: 20679
+    components:
+    - type: Transform
+      pos: -31.5,-26.5
       parent: 2
 - proto: SpawnPointReporter
   entities:
@@ -159758,6 +159806,11 @@ entities:
     - type: Transform
       pos: 56.5,10.5
       parent: 2
+  - uid: 25406
+    components:
+    - type: Transform
+      pos: -55.5,11.5
+      parent: 2
   - uid: 28951
     components:
     - type: Transform
@@ -159765,24 +159818,19 @@ entities:
       parent: 2
 - proto: StationRadioRig
   entities:
-  - uid: 24257
+  - uid: 24144
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -33.5,-25.5
       parent: 2
 - proto: StationRadioServer
   entities:
-  - uid: 24258
+  - uid: 24257
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -31.5,-24.5
       parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        24257:
-        - - StationRadioServerPort
-          - StationRadioRigPort
 - proto: SteelBench
   entities:
   - uid: 24259
@@ -168596,26 +168644,6 @@ entities:
       parent: 28952
 - proto: WallReinforced
   entities:
-  - uid: 25403
-    components:
-    - type: Transform
-      pos: -35.5,-25.5
-      parent: 2
-  - uid: 25404
-    components:
-    - type: Transform
-      pos: -35.5,-26.5
-      parent: 2
-  - uid: 25405
-    components:
-    - type: Transform
-      pos: -35.5,-27.5
-      parent: 2
-  - uid: 25406
-    components:
-    - type: Transform
-      pos: -35.5,-24.5
-      parent: 2
   - uid: 25407
     components:
     - type: Transform
@@ -178742,6 +178770,36 @@ entities:
       parent: 2
 - proto: WallSolid
   entities:
+  - uid: 9721
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -34.5,-23.5
+      parent: 2
+  - uid: 13906
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -35.5,-24.5
+      parent: 2
+  - uid: 24258
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -35.5,-26.5
+      parent: 2
+  - uid: 25404
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -35.5,-27.5
+      parent: 2
+  - uid: 25405
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -35.5,-25.5
+      parent: 2
   - uid: 27318
     components:
     - type: Transform
@@ -187350,12 +187408,12 @@ entities:
   - uid: 28824
     components:
     - type: Transform
-      pos: -55.392986,11.67821
+      pos: -54.296387,11.679203
       parent: 2
   - uid: 28825
     components:
     - type: Transform
-      pos: -55.311626,11.547023
+      pos: -54.31201,11.741703
       parent: 2
 - proto: WeaponLaserCarbinePractice
   entities:
