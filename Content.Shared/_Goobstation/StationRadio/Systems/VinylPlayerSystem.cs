@@ -157,8 +157,8 @@ public sealed partial class VinylPlayerSystem : EntitySystem
         }
         return false;
     }
-    // Starlight - Start - Shift Click to view what Vinyl is inserted.
 
+    #region Starlight
     /// <summary>
     /// Show what vinyl is currently inserted when examined.
     /// </summary>
@@ -173,5 +173,5 @@ public sealed partial class VinylPlayerSystem : EntitySystem
         var vinyl = container.ContainedEntities[0];
         args.PushMarkup(Loc.GetString("vinyl-player-examine-loaded", ("vinyl", Name(vinyl))));
     }
-    // Starlight - End
+    #endregion
 }

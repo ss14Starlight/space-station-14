@@ -133,8 +133,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         }
     }
 
-    // Starlight - Start - Remove Server Check from VinylSummonSystem
-
+    #region Starlight
     /// <summary>
     /// Method for getting the current volume of the station radio.
     /// </summary>
@@ -246,5 +245,5 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             ? "station-radio-receiver-examine-low-volume"
             : "station-radio-receiver-examine-full-volume"));
     }
-    // Starlight - End
+    #endregion
 }

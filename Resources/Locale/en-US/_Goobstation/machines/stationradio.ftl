@@ -11,6 +11,7 @@ vinyl-popout-no-station = The vinyl ejects itself, you're not on a station!
 vinyl-popout-no-power = The vinyl ejects itself, the player isn't powered!
 vinyl-popout-no-radio-connection = The vinyl ejects itself, the player isn't connected to the radio system!
 
+# Starlight - Station Radio Examination Text.
 vinyl-player-examine-empty = It's empty.
 vinyl-player-examine-loaded = There's a copy of { $vinyl } inside.
 
@@ -19,3 +20,4 @@ station-radio-receiver-examine-low-volume = It's playing at low volume.
 
 station-radio-server-examine-recording = The station server is not recording.
 station-radio-server-examine-not-recording = The station server is currently recording.
+# Starlight - End
