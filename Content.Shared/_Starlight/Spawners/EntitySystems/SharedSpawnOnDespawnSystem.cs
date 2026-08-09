@@ -1,14 +1,13 @@
-using Content.Server.Spawners.Components;
-using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
-using Robust.Shared.Map; // Starlight
+using SpawnOnDespawnComponent = Content.Shared._Starlight.Spawners.Components.SpawnOnDespawnComponent;
 
-namespace Content.Server.Spawners.EntitySystems;
+namespace Content.Shared._Starlight.Spawners.EntitySystems;
 
-public sealed partial class SpawnOnDespawnSystem : EntitySystem // Starlight edit
+public sealed partial class SharedSpawnOnDespawnSystem : EntitySystem // Starlight edit
 {
-    [Dependency] private TransformSystem _xform = default!; // Starlight
+    [Dependency] private SharedTransformSystem _xform = default!; // Starlight
     private readonly Queue<(EntProtoId Prototype, EntityCoordinates Coordinates, ComponentRegistry? overrides)> _queuedSpawns = new(); // Starlight
 
     public override void Initialize()
@@ -27,8 +26,7 @@ public sealed partial class SpawnOnDespawnSystem : EntitySystem // Starlight edi
         while (_queuedSpawns.Count > 0)
         {
             var (prototype, coordinates, overrides) = _queuedSpawns.Dequeue();
-            var uid = Spawn(prototype, overrides);
-            _xform.SetCoordinates(uid, coordinates);
+            PredictedSpawnAtPosition(prototype, coordinates, overrides);
         }
     }
     // Starlight End
