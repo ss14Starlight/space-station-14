@@ -117,11 +117,11 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         }
     }
 
-    private void OnDeviceUpdated(EntityUid uid, ElectrolyzerComponent electrolyzer, ref AtmosDeviceUpdateEvent args, SharedBatterySystem.GetCharge battery)
+    private void OnDeviceUpdated(EntityUid uid, ElectrolyzerComponent electrolyzer, ref AtmosDeviceUpdateEvent args, BatteryComponent battery)
     {
         if (electrolyzer.Passive == true)
         {
-                comp.IsPowered = true;             
+                electrolyzer.IsPowered = true;             
         }
 
         if (!Transform(uid).Anchored || !electrolyzer.IsPowered)
@@ -129,7 +129,6 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         if (electrolyzer.CurrentFuel <= 0f)
         {
-            }
             // Get fuel value from sheet
             float fuelPerSheet = 0f;
             if (_tagSystem.HasTag(fuelEntity, PlasmaTag))
@@ -149,12 +148,12 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
 
-        var capicator = battery.GetCharge;
+        var charge = _battery.GetCharge((uid, battery));
 
-        if (capicator <= 0f)
+        if (charge <= 0f)
         return;
 
-        var rate = Math.Min(1f, (capicator/200000f));    
+        var rate = charge/200000f;    
 
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);
@@ -222,13 +221,13 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             fuelMultiplier = 0.1f;
         }
 
-        _battery.ChangeCharge(battery.Value.AsNullable(), (-powerUsed * fuelMultiplier) / electrolyzer.Efficiency); ///NOT WORKING!!! HLEP!!!
+        _battery.ChangeCharge((uid, battery),-powerUsed * fuelMultiplier / electrolyzer.Efficiency);
 
         electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - (powerUsed - 500f));
 
         if (electrolyzer.Passive == true)
         {
-                comp.IsPowered = false;             
+                electrolyzer.IsPowered = false;             
         }
 
         _gasOverlaySystem.UpdateSessions();
