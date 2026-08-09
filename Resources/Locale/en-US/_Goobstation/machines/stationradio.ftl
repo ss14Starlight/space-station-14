@@ -16,3 +16,6 @@ vinyl-player-examine-loaded = There's a copy of { $vinyl } inside.
 
 station-radio-receiver-examine-full-volume = It's playing at full volume.
 station-radio-receiver-examine-low-volume = It's playing at low volume.
+
+station-radio-server-examine-recording = The station server is not recording.
+station-radio-server-examine-not-recording = The station server is currently recording.
