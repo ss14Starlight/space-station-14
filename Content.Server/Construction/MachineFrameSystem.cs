@@ -1,6 +1,7 @@
 using Content.Server.Construction.Components;
 using Content.Server.Stack;
 using Content.Shared._Moffstation.BladeServer;
+using Content.Shared._Omu.Common.Construction;
 using Content.Shared.Construction.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -146,6 +147,9 @@ public sealed partial class MachineFrameSystem : EntitySystem
     {
         if (!TryComp<MachineBoardComponent>(used, out var machineBoard))
             return false;
+
+        if (HasComp<BigMachineBoardComponent>(used)) // Omu
+            EnsureComp<BigMachineBeingBuiltComponent>(uid); // todo checks to remove this comp. but its an edgecase i cant be bothered with rn
 
         // Moffstation - Begin - Blade Server construction
         // If this is a Blade Server frame, make sure the board is a Blade Server board.

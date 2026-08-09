@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Construction.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared._Omu.Common.Construction;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
@@ -14,8 +15,10 @@ using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Stacks;
 using Content.Shared.Temperature;
 using Content.Shared.Temperature.Components;
+using Content.Shared.Tools;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 #if EXCEPTION_TOLERANCE
 // ReSharper disable once RedundantUsingDirective
@@ -50,6 +53,8 @@ namespace Content.Server.Construction
             SubscribeLocalEvent<ConstructionComponent, OnTemperatureChangeEvent>(EnqueueEvent);
             SubscribeLocalEvent<ConstructionComponent, PartAssemblyPartInsertedEvent>(EnqueueEvent);
         }
+
+        private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying"; // Omu starlight fixes
 
         /// <summary>
         ///     Takes in an entity with <see cref="ConstructionComponent"/> and an object event, and handles any
@@ -385,6 +390,18 @@ namespace Content.Server.Construction
                     // If we're handling an event after its DoAfter finished...
                     if (doAfterState == DoAfterState.Completed)
                         return  HandleResult.True;
+
+                    // Omustation Start
+                    if (HasComp<BigMachineBeingBuiltComponent>(uid)
+                        && !_toolSystem.HasQuality(interactUsing.Used, PryingQuality)) // kinda hardcoded crowbar check in case we are dissasembling
+                    {
+                        var bigBuildEvent = new BigBuildAttemptEvent(uid, user.Value);
+                        RaiseLocalEvent(uid, ref bigBuildEvent, true);
+
+                        if (bigBuildEvent.Cancelled)
+                            return HandleResult.False;
+                    }
+                    // Omustation End
 
                     _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation - Interaction particles
                     var result  = _toolSystem.UseTool(
