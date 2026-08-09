@@ -303,6 +303,9 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: bearpelt_glow
       shader: unshaded
+  - type: Tag #starlight start
+    tags:
+    - SpaceBearHide #starlight end
   - type: Item
     sprite: Clothing/Head/Misc/hides.rsi
     heldPrefix: bear

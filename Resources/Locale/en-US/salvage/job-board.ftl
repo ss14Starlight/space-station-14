@@ -25,6 +25,7 @@ salv-job-board-name-BountySalvageOreSilver = Silver (Ore)
 salv-job-board-name-BountySalvageRawXenoMeat = Raw Xeno Meat
 salv-job-board-name-BountySalvageAbyssiumOre = Abyssium Ore
 salv-job-board-name-BountySalvageOldTreasure = Old Treasure
+salv-job-board-name-BountySalvageSpaceBearHide = Space Bear Hide
 
 salv-job-board-name-BountySalvageOreUranium = Uranium (Ore)
 salv-job-board-name-BountySalvageOrePlasma = Plasma (Ore)
@@ -45,6 +46,7 @@ bounty-description-salvage-ore-silver = We are studying the material effects of 
 bounty-description-salvage-raw-xeno-meat = A modern day Iron Chef has requested unique proteins to create a new star dish with. Let's send them some of the best we can find!
 bounty-description-salvage-abyssium-ore = We heard of the existance of some Abyssium ore in the sector. Our team wants you to retrieve some for testing.
 bounty-description-salvage-old-treasure = We have a collector of some antiquated technologies willing to pay handsomely for some old relic technology, see what you can find for them.
+bounty-description-salvage-space-bear-hide = We have a new rug merchant in dire need of exquisite materials. A raw space bear hide should interest them, go get it salvagers.
 
 bounty-description-tooth-sharkminnow = We need you to get a sample of some Sharkminnow teeth. These guys are a fair bit nastier than the smaller carp you're familiar with. Take care to not let them bite you: they'll suck out your blood and heal.
 bounty-description-salvage-ore-plasma = We need a shipment of plasma ore to send over to the research station. Please provide us with some so that we can continue our testing. It can come from any source.

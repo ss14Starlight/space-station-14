@@ -67,6 +67,7 @@
       tags:
       - OreSilver
 
+#starlight start
 - type: cargoBounty
   id: BountySalvageRawXenoMeat
   reward: 7500
@@ -114,6 +115,23 @@
     whitelist:
       tags:
       - OldTreasure
+
+- type: cargoBounty
+  id: BountySalvageSpaceBearHide
+  reward: 5000
+  tickets: 500
+  description: bounty-description-salvage-space-bear-hide
+  group: SalvageJobTier1
+  sprite:
+    sprite: Objects/Materials/materials.rsi
+    state: bearpelt
+  entries:
+  - name: bounty-item-space-bear-hide
+    amount: 1
+    whitelist:
+      tags:
+      - SpaceBearHide
+#starlight end
 
 # Tier 2
 
@@ -181,6 +199,7 @@
       tags:
       - OreBananium
 
+#starlight start
 - type: cargoBounty
   id: BountySalvageBandolier
   reward: 12500
@@ -228,6 +247,7 @@
     whitelist:
       tags:
       - NukeKegBounty
+#starlight end
 
 # Tier 3
 

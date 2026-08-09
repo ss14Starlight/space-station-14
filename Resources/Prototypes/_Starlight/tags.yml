@@ -661,6 +661,9 @@
   id: SovietWarehouse
 
 - type: Tag
+  id: SpaceBearHide #BountySalvageSpaceBearHide
+
+- type: Tag
   id: SpecialMech
 
 - type: Tag
