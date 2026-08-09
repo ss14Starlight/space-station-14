@@ -604,7 +604,7 @@
 - type: entity
   name: cold case
   parent: [BaseWeaponSniper, BaseSecurityContraband]
-  id: PistolColdCase
+  id: WeaponPistolColdCase
   description: An antiquated design of a pistol, truly a stilish choice.
   components:
   - type: KnockbackByUserTag

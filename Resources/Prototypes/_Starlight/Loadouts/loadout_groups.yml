@@ -1156,6 +1156,13 @@
   - SecurityGlassesPrescription
 
 - type: loadoutGroup
+  id: DetectiveLethal
+  name: loadout-group-detective-lethal
+  loadouts:
+  - InspectorBelt
+  - ColdCaseBelt
+
+- type: loadoutGroup
   id: BrigmedicHead
   name: loadout-group-brigmedic-head
   minLimit: 0

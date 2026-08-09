@@ -26,7 +26,6 @@
   equipment:
     id: DetectivePDA
     ears: ClothingHeadsetDetective # Starlight
-    belt: ClothingBeltHolsterFilled
   storage:
     back:
     - Flash
