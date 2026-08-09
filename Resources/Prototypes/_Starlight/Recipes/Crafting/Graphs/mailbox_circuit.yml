@@ -5,7 +5,7 @@
   - node: cargo
     entity: CargoMailBoxMachineCircuitboard
     edges:
-    - to: engineering
+    - to: command
       steps:
       - tool: Screwing
         doAfter: 2
