@@ -5,15 +5,7 @@
   - node: cargo
     entity: CargoMailBoxMachineCircuitboard
     edges:
-    - to: civilian
-      steps:
-      - tool: Screwing
-        doAfter: 2
-
-  - node: civilian
-    entity: CivilianMailBoxMachineCircuitboard
-    edges:
-    - to: command
+    - to: engineering
       steps:
       - tool: Screwing
         doAfter: 2

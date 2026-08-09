@@ -42,18 +42,6 @@
           - state: cargo
 
 - type: entity
-  id: CivilianMailBox
-  name: Civilian Mail Box
-  description: A mail box for storing and retrieving mail. Allows for Civilians to store and retrieve their mail.
-  parent: BaseMailBox
-  components:
-    - type: MailBox
-      department: Civilian
-    - type: Sprite
-      layers:
-        - state: civilian
-
-- type: entity
   id: CommandMailBox
   name: Command Mail Box
   description: A mail box for storing and retrieving mail. Allows for Command to store and retrieve their mail.
@@ -120,7 +108,7 @@
   parent: BaseMailBox
   components:
     - type: MailBox
-      department: Service
+      department: Civilian
     - type: Sprite
       layers:
         - state: service

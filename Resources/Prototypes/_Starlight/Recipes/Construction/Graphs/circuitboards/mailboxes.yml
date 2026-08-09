@@ -24,16 +24,6 @@
       node: cargo
 
 - type: entity
-  id: CivilianMailBoxMachineCircuitboard
-  name: Civilian Mailbox Machine Circuitboard
-  parent: BaseMailBoxMachineCircuitboard
-  components:
-    - type: MachineBoard
-      prototype: CivilianMailBox
-    - type: Construction
-      node: civilian
-
-- type: entity
   id: CommandMailBoxMachineCircuitboard
   name: Command Mailbox Machine Circuitboard
   parent: BaseMailBoxMachineCircuitboard
