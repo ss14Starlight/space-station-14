@@ -28,6 +28,27 @@
     sprite: _Starlight/Structures/Storage/mailboxes.rsi
     layers:
       - state: civilian
+  - type: EmptyOnMachineDeconstruct
+    containers:
+      - mail_storage
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:EmptyAllContainersBehaviour
 
 - type: entity
   id: CargoMailBox
@@ -40,6 +61,8 @@
       - type: Sprite
         layers:
           - state: cargo
+      - type: Machine
+        board: CargoMailBoxMachineCircuitboard
 
 - type: entity
   id: CommandMailBox
@@ -52,6 +75,8 @@
     - type: Sprite
       layers:
         - state: command
+    - type: Machine
+      board: CommandMailBoxMachineCircuitboard
 
 - type: entity
   id: EngineeringMailBox
@@ -64,6 +89,8 @@
     - type: Sprite
       layers:
         - state: engineering
+    - type: Machine
+      board: EngineeringMailBoxMachineCircuitboard
 
 - type: entity
   id: MedicalMailBox
@@ -76,6 +103,8 @@
     - type: Sprite
       layers:
         - state: medical
+    - type: Machine
+      board: MedicalMailBoxMachineCircuitboard
 
 - type: entity
   id: ScienceMailBox
@@ -88,6 +117,8 @@
     - type: Sprite
       layers:
         - state: science
+    - type: Machine
+      board: ScienceMailBoxMachineCircuitboard
 
 - type: entity
   id: SecurityMailBox
@@ -100,6 +131,8 @@
     - type: Sprite
       layers:
         - state: security
+    - type: Machine
+      board: SecurityMailBoxMachineCircuitboard
 
 - type: entity
   id: ServiceMailBox
@@ -112,3 +145,5 @@
     - type: Sprite
       layers:
         - state: service
+    - type: Machine
+      board: ServiceMailBoxMachineCircuitboard

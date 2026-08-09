@@ -98,9 +98,8 @@ public partial class SharedMailBoxesSystem : EntitySystem
 
     private void OnInsertAttempt(Entity<MailBoxComponent> ent, ref ContainerIsInsertingAttemptEvent args)
     {
-        if (args.Cancelled)
+        if (args.Cancelled || args.Container.ID != "mail_storage")
             return;
-
         if (!HasComp<DeliveryComponent>(args.EntityUid) || HasComp<DeliveryBombComponent>(args.EntityUid) ||
             HasComp<DeliveryPriorityComponent>(args.EntityUid) || HasComp<DeliveryFragileComponent>(args.EntityUid))
         {
