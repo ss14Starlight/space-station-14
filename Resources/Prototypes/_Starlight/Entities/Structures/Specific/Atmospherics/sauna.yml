@@ -164,6 +164,7 @@
 - type: entity
   parent: AirAlarmUnlocked
   id: AirAlarmSauna
+  name: sauna air alarm
   suffix: Sauna Atmosphere, unlocked, auto mode disabled
   description: An air alarm set up for use in saunas. It doesn't report to the station's alert console.
   components:
