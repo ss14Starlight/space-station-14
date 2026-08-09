@@ -1,5 +1,5 @@
 using Content.Shared.Actions;
 
-namespace Content.Shared.Revenant;
+namespace Content.Shared._Starlight.Revenant;
 
 public sealed partial class RevenantChillActionEvent : InstantActionEvent;

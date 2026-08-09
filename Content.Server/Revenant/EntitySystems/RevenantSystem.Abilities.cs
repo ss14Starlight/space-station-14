@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Revenant;
 using Content.Shared.Popups;
 using Content.Shared.Damage;
 using Content.Shared.Revenant;
