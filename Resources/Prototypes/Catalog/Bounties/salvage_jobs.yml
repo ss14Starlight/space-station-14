@@ -99,6 +99,22 @@
       tags:
       - AbyssiumOre
 
+- type: cargoBounty
+  id: BountySalvageOldTreasure
+  reward: 10000
+  tickets: 1000
+  description: bounty-description-salvage-old-treasure
+  group: SalvageJobTier1
+  sprite:
+    sprite: Objects/Misc/module.rsi
+    state: cddrive
+  entries:
+  - name: bounty-item-old-treasure
+    amount: 5
+    whitelist:
+      tags:
+      - OldTreasure
+
 # Tier 2
 
 - type: cargoBounty
@@ -196,6 +212,22 @@
     whitelist:
       tags:
       - CommieID
+
+- type: cargoBounty
+  id: BountySalvageNukeKeg
+  reward: 12500
+  tickets: 1000
+  description: bounty-description-salvage-nuke-keg
+  group: SalvageJobTier2
+  sprite:
+    sprite: Objects/Devices/nuke.rsi
+    state: nuclearbomb_base
+  entries:
+  - name: bounty-item-nuke-keg
+    amount: 1
+    whitelist:
+      tags:
+      - NukeKegBounty
 
 # Tier 3
 

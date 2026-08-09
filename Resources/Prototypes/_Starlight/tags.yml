@@ -536,6 +536,12 @@
   id: NukiePlanet
 
 - type: Tag
+  id: NukeKegBounty #BountySalvageNukeKeg
+
+- type: Tag
+  id: OldTreasure #BountySalvageOldTreasure
+
+- type: Tag
   id: OmniCyberEyes
 
 - type: Tag

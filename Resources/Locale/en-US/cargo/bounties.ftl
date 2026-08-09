@@ -84,6 +84,8 @@ bounty-item-bandolier = Marine Bandolier
 bounty-item-commie-id = Soviet ID Card
 bounty-item-raw-xeno-meat = Raw Xeno Meat
 bounty-item-abyssium-ore = Abyssium Ore
+bounty-item-old-treasure = Old Treasure
+bounty-item-nuke-keg = Nuke Keg
 
 bounty-description-artifact = NanoTrasen is in some hot water for stealing artifacts from non-spacefaring planets. Return one and we'll compensate you for it.
 bounty-description-baseball-bat = Baseball fever is going on at CentComm! Be a dear and ship them some baseball bats, so that management can live out their childhood dream.
