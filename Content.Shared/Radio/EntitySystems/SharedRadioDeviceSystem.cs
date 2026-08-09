@@ -59,7 +59,6 @@ public abstract partial class SharedRadioDeviceSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<StationRadioServerComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<IntercomComponent, AfterAutoHandleStateEvent>(OnAfterHandleState);
     }
 
     /// <summary>
