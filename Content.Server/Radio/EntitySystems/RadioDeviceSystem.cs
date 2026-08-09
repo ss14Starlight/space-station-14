@@ -208,16 +208,21 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
             ("originalName", nameEv.VoiceName));
 
         // Starlight - Start - Radio Host
-        var chatType = TryComp<StationRadioReceiverComponent>(uid, out var receiverComp) && receiverComp.LowVolume
-            ? InGameICChatType.Whisper
-            : InGameICChatType.Speak;
+        var chatType = InGameICChatType.Whisper; // Default, messages from radios are sent as whispers.
+        var transmitRange = ChatTransmitRange.GhostRangeLimit; // Default, all ghosts can hear whispers from radios.
+        if (TryComp<StationRadioReceiverComponent>(uid, out var receiverComp))
+        {
+            transmitRange = ChatTransmitRange.HideChat; // Message hidden from chat if from a Station Radio.
+            chatType = receiverComp.LowVolume ? InGameICChatType.Whisper : InGameICChatType.Speak; // Radios will talk loudly if at full volume.
+        }
         // Starlight - End
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
         var message = args.OriginalChatMsg.Message; // Starlight-edit: The chat system will handle the rest and re-obfuscate if needed.
         _chat.TrySendInGameICMessage(uid, message,
-            chatType, // Starlight - Radio Host (ChatTransmitRange.GhostRangeLimit -> chatType)
-            ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false,
+            chatType, // Starlight - Radio Host (InGameICChatType.Whisper -> chatType)
+            transmitRange,// Starlight - Radio Host (ChatTransmitRange.GhostRangeLimit -> transmitRange)
+            nameOverride: name, checkRadioPrefix: false,
             languageOverride: args.Language); // Starlight
     }
 
