@@ -133,6 +133,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         }
     }
 
+    // Starlight - Start
     #region Starlight
     /// <summary>
     /// Method for getting the current volume of the station radio.
@@ -246,4 +247,5 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             : "station-radio-receiver-examine-full-volume"));
     }
     #endregion
+    // Starlight - End
 }
