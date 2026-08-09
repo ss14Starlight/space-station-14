@@ -3,6 +3,9 @@ using Content.Shared.Interaction;
 
 namespace Content.Shared._Starlight.Containers.ItemSlots;
 
+/// <summary>
+/// Inserts a clicked entity into an item slot on the entity the user is holding.
+/// </summary>
 public sealed class ItemSlotQuickInsertSystem : EntitySystem
 {
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;

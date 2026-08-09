@@ -162,7 +162,7 @@
   - BorgModulePrying
   - BorgModuleTool
   - BorgModulePaperwork
-  - BorgModuleAdvancedPaperwork
+  - BorgModulePaperworkPrinting
 
   radioChannels:
   - Common

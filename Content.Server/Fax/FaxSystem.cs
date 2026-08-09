@@ -661,13 +661,13 @@ public sealed partial class FaxSystem : EntitySystem
         var printout = component.PrintingQueue.Dequeue();
 
         var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
-        #region Starlight
+        // Starlight start
         var xform = Transform(uid);
         var coords = _container.TryGetOuterContainer(uid, xform, out var outerContainer)
             ? Transform(outerContainer.Owner).Coordinates
             : xform.Coordinates;
         var printed = Spawn(entityToSpawn, coords);
-        #endregion
+        // Starlight end
 
         if (TryComp<PaperComponent>(printed, out var paper))
         {
