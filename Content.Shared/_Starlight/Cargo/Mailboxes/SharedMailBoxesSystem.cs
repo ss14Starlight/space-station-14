@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared.Access.Systems;
 using Content.Shared.Delivery;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
@@ -18,7 +19,9 @@ public partial class SharedMailBoxesSystem : EntitySystem
 {
     [Dependency] private SharedJobSystem _jobSystem = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedIdCardSystem _idCard = default!;
 
+    /// <inheritdoc />
     public override void Initialize()
     {
         base.Initialize();
@@ -27,11 +30,19 @@ public partial class SharedMailBoxesSystem : EntitySystem
         SubscribeLocalEvent<MailBoxComponent, GetVerbsEvent<InteractionVerb>>(OnInteractionVerbs);
         SubscribeLocalEvent<MailBoxComponent, InteractUsingEvent>(OnInteractWith);
         SubscribeLocalEvent<MailBoxComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<MailBoxComponent, ActivateInWorldEvent>(OnActivateInWorld);
+    }
+
+    private void OnActivateInWorld(Entity<MailBoxComponent> ent, ref ActivateInWorldEvent args)
+    {
+        if (args.Handled || !args.Complex) return;
+        args.Handled = true;
+        EjectMail(ent, args.User);
     }
 
     private void OnExamined(Entity<MailBoxComponent> ent, ref ExaminedEvent args)
     {
-        if (ent.Comp.Names.Contains(Identity.Name(args.Examiner, EntityManager))) args.PushMarkup("You seem to have mail!");
+        if (ent.Comp.Names.Contains(GetKeyCardName(args.Examiner))) args.PushMarkup(Loc.GetString("mailbox-has-mail"));
     }
 
     private void OnInteractWith(Entity<MailBoxComponent> ent, ref InteractUsingEvent args)
@@ -48,7 +59,7 @@ public partial class SharedMailBoxesSystem : EntitySystem
         var user = args.User;
         args.Verbs.Add(new InteractionVerb()
         {
-            Text = "Get your mail",
+            Text = Loc.GetString("mailbox-get"),
             Act = () =>
             {
                 EjectMail(ent, user);
@@ -58,7 +69,7 @@ public partial class SharedMailBoxesSystem : EntitySystem
 
     private void EjectMail(Entity<MailBoxComponent> ent, EntityUid argsUser)
     {
-        var userName = Identity.Name(argsUser, EntityManager);
+        var userName = GetKeyCardName(argsUser);
         if (!ent.Comp.Names.Contains(userName)) return;
         if (!_containerSystem.TryGetContainer(ent, "mail_storage", out var container))
             return;
@@ -74,6 +85,15 @@ public partial class SharedMailBoxesSystem : EntitySystem
             _containerSystem.RemoveEntity(ent, entity, reparent: true, force: true);
         }
         ent.Comp.Names.Remove(userName);
+        DirtyField(ent!, nameof(ent.Comp.Names));
+    }
+
+    private string GetKeyCardName(EntityUid user)
+    {
+        if (_idCard.TryFindIdCard(user, out var idCard) && !string.IsNullOrWhiteSpace(idCard.Comp.FullName))
+            return idCard.Comp.FullName;
+
+        return "";
     }
 
     private void OnInsertAttempt(Entity<MailBoxComponent> ent, ref ContainerIsInsertingAttemptEvent args)
@@ -89,14 +109,14 @@ public partial class SharedMailBoxesSystem : EntitySystem
         }
 
         var delivery = Comp<DeliveryComponent>(args.EntityUid);
-        DepartmentPrototype? department = null;
-        if (delivery.RecipientJobTitle != null && !_jobSystem.TryGetDepartment(delivery.RecipientJobTitle, out department) && delivery.RecipientName != null)
+        DepartmentPrototype? department;
+        if (delivery.RecipientJobTitle == null || !_jobSystem.TryGetDepartment(delivery.RecipientJobTitle, out department) || delivery.RecipientName == null)
         {
             args.Cancel();
             return;
         }
-        if (department != null && department != ent.Comp.Department) args.Cancel();
-
-        if (delivery.RecipientName != null) ent.Comp.Names.Add(delivery.RecipientName);
+        if (department != ent.Comp.Department) args.Cancel();
+        ent.Comp.Names.Add(delivery.RecipientName);
+        DirtyField(ent!, nameof(ent.Comp.Names));
     }
 }

@@ -1,7 +1,7 @@
 ﻿{
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "State based",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -37,6 +37,14 @@
     },
     {
       "name": "security",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "full",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "empty",
       "copyright": "by Conf"
     }
   ]

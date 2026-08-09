@@ -43,7 +43,7 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
         base.Initialize();
 
         SubscribeLocalEvent<DeliveryComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<DeliveryComponent, EntGotInsertedIntoContainerMessage>(OnInsertedInContainer);
+        SubscribeLocalEvent<DeliveryComponent, EntGotInsertedIntoContainerMessage>(OnInsertedInContainer); // Starlight
 
 
         InitializeSpawning();

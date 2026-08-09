@@ -64,6 +64,16 @@
       node: medical
 
 - type: entity
+  id: ScienceMailBoxMachineCircuitboard
+  name: Science Mailbox Machine Circuitboard
+  parent: BaseMailBoxMachineCircuitboard
+  components:
+    - type: MachineBoard
+      prototype: ScienceMailBox
+    - type: Construction
+      node: science
+
+- type: entity
   id: SecurityMailBoxMachineCircuitboard
   name: Security Mailbox Machine Circuitboard
   parent: BaseMailBoxMachineCircuitboard

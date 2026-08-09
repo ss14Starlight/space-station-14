@@ -90,6 +90,18 @@
         - state: medical
 
 - type: entity
+  id: ScienceMailBox
+  name: Science Mail Box
+  description: A mail box for storing and retrieving mail. Allows for Science to store and retrieve their mail.
+  parent: BaseMailBox
+  components:
+    - type: MailBox
+      department: Science
+    - type: Sprite
+      layers:
+        - state: science
+
+- type: entity
   id: SecurityMailBox
   name: Security Mail Box
   description: A mail box for storing and retrieving mail. Allows for Security to store and retrieve their mail.

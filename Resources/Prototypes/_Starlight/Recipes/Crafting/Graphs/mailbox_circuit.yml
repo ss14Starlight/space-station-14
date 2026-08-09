@@ -37,10 +37,18 @@
   - node: medical
     entity: MedicalMailBoxMachineCircuitboard
     edges:
-    - to: security
+    - to: science
       steps:
       - tool: Screwing
         doAfter: 2
+
+  - node: science
+    entity: ScienceMailBoxMachineCircuitboard
+    edges:
+      - to: security
+        steps:
+          - tool: Screwing
+            doAfter: 2
 
   - node: security
     entity: SecurityMailBoxMachineCircuitboard
