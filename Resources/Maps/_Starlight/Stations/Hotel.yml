@@ -69776,6 +69776,15 @@ entities:
       - 21449
       - 22418
   - uid: 22511
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 23.5,-36.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 22509
+      - 10602
 - proto: Fireplace
   entities:
   - uid: 11056
