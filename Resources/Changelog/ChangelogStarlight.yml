@@ -1,62 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Sepultum) Added a robotics control console to Robotics.
-    type: Add
-  id: 406973
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
-  - message: (Sepultum) Added a ticket machine to HOP.
-    type: Add
-  id: 406974
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
-  - message: (Sepultum) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
-    type: Add
-  id: 406975
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
-  - message: (Sepultum) One of the bookshelves in Library will now always contain all guidebooks.
-    type: Tweak
-  id: 406976
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
-  - message: (Sepultum) Placed a station beacon in Washroom.
-    type: Tweak
-  id: 406977
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
-  - message: (Sepultum) Replaced cargo tech lockers with large variants.
-    type: Tweak
-  id: 406978
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
-  - message: (Sepultum) Linked the SM radiation shutters to their button.
-    type: Fix
-  id: 406979
-  time: '2026-07-26T14:38:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5245
-- author: Orhu
-  changes:
-  - message: (Ming) Added Stir Stir to Genpop.
-    type: Add
-  id: 406980
-  time: '2026-07-26T14:38:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5248
-- author: Orhu
-  changes:
   - message: (Ming) Added Flippers to Courtroom.
     type: Add
   id: 406981
@@ -2799,4 +2743,60 @@ Entries:
   id: 407372
   time: '2026-08-07T10:43:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5533
+- author: RedSpeeds
+  changes:
+  - message: Added glasses slots to Monkey, Kobold, Scurret.
+    type: Add
+  id: 407373
+  time: '2026-08-08T21:00:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5489
+- author: Caws
+  changes:
+  - message: The security shuttles no longer give you a blank 'no shuttle found' pilot interface when attempting to pilot them.
+    type: Fix
+  id: 407374
+  time: '2026-08-08T21:47:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5573
+- author: Conflee
+  changes:
+  - message: Resprited the Small Light, Light Tube, Emergency Light, and Strobe Light. They're all slightly cleaner, less pre-tinted so coloring stands out more, and have fake bloom added to their on states.
+    type: Tweak
+  id: 407375
+  time: '2026-08-09T10:40:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5502
+- author: Xale
+  changes:
+  - message: Cuffing no longer prevents player controlled zombies from attacking.
+    type: Fix
+  id: 407376
+  time: '2026-08-09T11:12:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5445
+- author: Conflee
+  changes:
+  - message: Added Gulthias, Birch, Snowy Oak, and non-snowy Conifer trees from Crystal Punk.
+    type: Add
+  id: 407377
+  time: '2026-08-09T11:12:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5479
+- author: Conflee
+  changes:
+  - message: Added water reeds floral decals, from Crystal Punk.
+    type: Add
+  id: 407378
+  time: '2026-08-09T11:12:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5479
+- author: Conflee
+  changes:
+  - message: Resprited Grass, Light Grass, Dark Grass, and Jungle Grass using sprites from Crystal Punk.
+    type: Tweak
+  id: 407379
+  time: '2026-08-09T11:12:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5479
+- author: Conflee
+  changes:
+  - message: Resprited basic trees and Snowy Conifer Trees using sprites from Crystal Punk.
+    type: Tweak
+  id: 407380
+  time: '2026-08-09T11:12:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5479
 Order: -1
