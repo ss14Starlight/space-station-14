@@ -405,7 +405,7 @@ namespace Content.Client.Paper.UI
                 formButton.ModulateSelfOverride = Color.LightBlue;
 
             // Create the popup dialog structure
-            var popup = new Popup();
+            var popup = new Popup { CloseOnClick = false }; // Starlight
             var vbox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(10) };
             var editContainer = new PanelContainer { StyleClasses = { "TransparentBorderedWindowPanel" } };
             var edit = new LineEdit { MinSize = new Vector2(200, 0), Margin = new Thickness(5) };

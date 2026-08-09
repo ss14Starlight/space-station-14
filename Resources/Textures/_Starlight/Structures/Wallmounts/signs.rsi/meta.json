@@ -65,6 +65,14 @@
 			"copyright": "Conflee"
         },
         {
+            "name": "robo_surgery",
+            "copyright": "Conflee"
+        },
+        {
+            "name": "heat",
+            "copyright": "Sevenshades"
+        },
+        {
             "name": "locker_cargo",
 			"copyright": "Conflee"
         },
@@ -119,6 +127,10 @@
         {
             "name": "break_service",
 			"copyright": "Conflee"
+        },
+        {
+            "name": "radiohost",
+			"copyright": "Huaqas"
         }
     ]
 }

@@ -4,6 +4,7 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared._Moffstation.Teleportation.Components;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Weapons.Misc;
 using Content.Shared.Verbs;
@@ -35,6 +36,7 @@ public abstract partial class SharedPortalSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedGrapplingGunSystem _grappling = default!;
     [Dependency] private SharedJointSystem _joints = default!;
+    [Dependency] private EntityQuery<PortalBlacklistComponent> _portalBlacklistQuery; // Moffstation - Portal Blacklist
 
     private const string PortalFixture = "portalFixture";
     private const string ProjectileFixture = "projectile";
@@ -104,6 +106,11 @@ public abstract partial class SharedPortalSystem : EntitySystem
         if (ev.Cancelled)
             return;
         // Starlight - OnAttemptPortalEvent - End
+
+        // Moffstation - Begin
+        if (_portalBlacklistQuery.HasComp(subject))
+            return;
+        // Moffstation - End
 
         // break pulls before portal enter so we don't break shit
         if (TryComp<PullableComponent>(subject, out var pullable) && pullable.BeingPulled)
@@ -260,7 +267,13 @@ public abstract partial class SharedPortalSystem : EntitySystem
             return;
 
         _audio.PlayPredicted(departureSound, ent, subject);
-        _audio.PlayPredicted(arrivalSound, subject, subject);
+        // Moffstation - Start - Sparks and fx
+        if (!HasComp<PortalComponent>(targetEntity))
+            PredictedSpawnAtPosition(ent.Comp.TeleportEffect, Transform(subject).Coordinates);
+        else
+            _audio.PlayPredicted(arrivalSound, subject, subject);
+        // Moffstation - End
+
     }
 
     /// <summary>
