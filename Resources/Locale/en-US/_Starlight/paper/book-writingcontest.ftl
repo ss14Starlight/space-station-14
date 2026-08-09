@@ -155,52 +155,37 @@ book-through-the-glass = The pounding on the windows stopped hours ago.
 # Written by karmakitsuna
 book-caves-of-urania = The horrible conclusion long over due, finally settled over my confused mind and despite my initial reluctance, suddenly became an awful certainty. I was lost. Completely, and hopelessly lost in the vast labyrinthine recesses of the caves of Urania-9775. No path yielded familiarity, no landmark offered guidance. The thought of never again seeing the blessed light of day, or feeling anything beneath my feet besides the icy unfeeling cavern rocks had fueled my disbelief up until this point. But now, hope had departed.
 
-
         I recalled learning how individuals faced in these situations often lost their composure. However, I took no pride in my mindfulness and felt no superiority for retaining my senses. For my own undoing would be the same. Our legacies would be identical- a case study covered briefly during orientation. I’d be unnamed and unremembered. Starvation would prove my ultimate fate, of this I was sure. Aside from the eyeless fish in pools around the caverns I’d seen no other forms of life.
-
 
         From my records I know that I am a clone, my original self was lost some time ago. Its fate sealed in a file I don’t have the authorization to access. On paper cloning allows you to live forever. But it’s not until you’re about to die that you realize it won’t be you living. Just someone else with identical genetics and past memories.
 
-
         As the last rays of my lamp flickered into obscurity I resolved to leave no stone unturned. No potential means of escape neglected. I imagined scenarios in which my crew had remained, waiting for my return. Or perhaps they returned themselves, determined to find me. I stood and summoned all of the strength possessed by my lungs. I shouted with the vain hope that someone would indeed hear the cacophony of sound that reverberated throughout the labyrinth. Still, I believed deep within my heart that this ruckus would fall upon no ears, save my own. Yet determined, I continued to shout unto the void.
 
-
         Then, I heard it. Soft, trudges echoing off of the cold rocky ground. Hope swelled within me. Grinning, I readied myself to renew my calls, gleeful with the notion that doing such would hasten my discovery and subsequent rescue. However as I listened, for a second time that day a dreadful realization dawned on me. For these were not the footfalls of any mortal man. In the unearthly stillness, and damp air the tread of any rescuer would’ve fallen upon my ears as a series of sharp, decisive blows. Boots striking the ground with a regular cadence, perhaps accompanied by the trickle of dislodged small stones. The impacts were instead soft and stealthy, with a light clicking, akin to the padded paws of some canid. I listened carefully with dread as I registered that each series of soft steps could be traced to four feet, not two.
-
 
         My cries had aroused some wild beast. Perhaps a xenomorph that had long ago strayed into these caverns. Upon landing we’d been greeted by no signs of hostile life, or life at all. But that was not to say that something else hadn’t ever found its way here. I considered for a staunch moment that perhaps this was a harbinger. I would not succumb to starvation as I’d initially feared, but would instead meet a more macabre, albeit shorter end. Yet the instincts for self preservation remained. The offer for a quick demise was rebuked, for I resigned to only part with my life for as high of a price as I could demand. I quieted, considering that perhaps this unknown creature would, in the absence of further guiding noises, lose its direction as I had. My hope was not destined for realization, as the strange footfalls continued to steadily advance. The beast evidently had obtained my scent, in this atmosphere so clean and pure of any and all distracting noise or undertones. Lady luck would not smile upon me today, as was already apparent by my current predicament. Steadily, the uneven footfalls drew louder.
 
         Thus I began to mount my defense against the inevitable but unseen attack. I withdrew my knife from my pocket and firmly gripped the cool steel handle. My other hand felt around until it grasped onto a sizable stone. Under the disastrous assumption that this planet contained no registered life, I’d subjugated my PKA to remain on the shuttle in order to retain free space within my bag.
 
-
         Forced to remain still, despite the acceleration of my racing heartbeat I held my breath and listened. Contrary to the emergency, and urgency of the situation I needed to remain patient and still. The conduct of the creature was strange. Primarily the tread was that of a four-legged beast walking with a lack of coordination between its front and back legs. However, frequently I heard the sound of only two feet. In the silence I tried to imagine the creature I was about to be faced with. Likely some unfortunate beast that had wandered into the caves of Urania-9775 as I had. Now, like myself, faced with lifelong confinement in these dark unfeeling corridors and labyrinths. Likely it subsisted on the eyeless fishes, meager meals.  No wonder it sought a more hearty subsistence such as myself.
-
 
         I spent this terrible vigil trying to imagine the creature. Already, my keen ears had advanced in their proficiencies. In the absence of all other stimulus and sense I found I could discern the most minute of details. The soft clicking of nails on the stone floors. The uneven and horrendous gait. I fancied I could hear even the flare of its nostrils as it absorbed what could only be my own scent. Despite the absolute blackness my vision conjured up fearsome and horrible shapes within the sinister darkness which fully enveloped me. Despite my better senses I swore I could feel the darkness itself press against me, restraining me. It was then that I realized with a start that in this absolute darkness that I would never behold its form with my own eyes. Should I survive the oncoming onslaught, I would never see my attacker’s true form or know with certainty that which was coming for my life.
 
-
         As the sounds drew near I wanted to scream, to yell, as I fought for my life. If I were to perish it would not be with a whimper but with a boisterous call which would echo through this tomb as the only legacy I would leave behind. Fiery adrenaline rushed through my blood. My left hand white knuckled the stone and with a loud determined cry I turned and threw the rock in the direction of the pattering. My aim struck true, for I heard a blunt thunk, and then the thing jump a distance away.
-
 
         I readjusted my aim, and extended my arm, swiftly whipping my elbow. My knife flew from my fingers in the direction the awful creature had moved. Never had I heard such heavenly music to my ears as the sound of the blade rending through flesh, followed by the trickle of what I could only assume to be blood. The strong scent of iron penetrated the dank air, and I heard the scrabbling footfalls as the creature hobbled away, and then to my heart’s utter delight collapsed with a thunk that echoed through the cavern.
 
-
         Immense relief flooded through me, and I leaned back against the cold wall. Only then noticing how hot my own flesh felt. For a moment I welcomed the hard, cool surface. Then my mind returned to the sounds nearby, the trickle of blood and the sound of rasping, frenzied breath. It dawned on me that I had only wounded the creature. And now I was weaponless. Feeling about, I grabbed stones and pelted them in rapid succession in the direction I believed the creature to be in. Fear overtook me once more, and swiftly I turned and fled. Arms outstretched, I ran. Battering and bruising myself against the hard rock walls. I continued for some time before I pressed my back against the wall, trying to make myself as small as possible. I listened, my mind trying to tune out the sounds of my own breath and equally frantic heartbeat which thudded loudly in my head.
-
 
         It was then that I heard a sound, or rather a regular, sharp, succession of sounds. Coming from the direction I’d been heading. The sound of steady foot falls, one after the other. Moving with a confident and purposeful pace. This time I held no doubts within my mind, it was my Vulpkanin expedition leader returning for me. It was then that I shouted, yelled, shrieked and even wept with complete and utter joy. I raced towards the beautiful sound and  after rounding a sharp corner I was rewarded with the warm light of an approaching flashlight. I sprinted to meet them, and flung myself to the ground by their feet embracing their boots. Despite my best efforts to retain my composure, I gibbered in a meaningless and idiotic manner, choking out my terrible tale. Simultaneously bequeathing protestations of gratitude and remorse for my foley. To their credit they knelt down beside me, placing a kind and gentle hand upon my shoulder as they listened patiently to my frantic and at times unintelligible recounting.
 
-
         Eventually I learned that my leader had noted my absence upon return to the ship. Once they called me over the radio, their keen sense of hearing detected the sound of their own voice echoing inside of my locker- instead of on my person. After returning to station they’d refueled, restocked their supplies and returned. Using their own intuitive sense of direction and delicate sense of smell they’d sojourned into the cave where they proceeded to make a thorough canvassing, locating my whereabouts after nearly 6 hours.
 
-
         Emboldened by their presence as well as the light of their flashlight I began to reflect on the strange beast that I had wounded but a short ways back. And, to my own surprise, suggested that we go and see for ourselves, what manner of beast I’d felled. Backed by their companionship I returned to the scene of my terrible experience. The blood on the floor lay thick, and the pungent scent of iron permeated the chamber. Soon we rounded on a stark white figure laying upon the floor. Simultaneously we released a sound of wonder, for of all of the unnatural monsters either of us had ever beheld, this was by far the strangest. It appeared to be a large, anthropoid simian. Its hair was a pure snow-white, which contrasted with the deep red hue of the blood caked across it. It appeared no sun had kissed its skin in recent memory.
-
 
         Continuing our assessment I noted the long, lanky limbs, the arms shorter than the legs which explained its gait. Long nail-like claws extended from the tips of all of its fingers and toes. Both hands and feet were prehensile yet covered in thick callouses. It could move better in the dark than I ever could in the light.
 
         Its breaths had grown weak and feeble by this point. My leader withdrew their own PKA ready to finish off the wretched and miserable being. However, it then emitted a sudden sound which shook the otherwise still cavern. It seemed as though the light emitted from the flashlight had broken a spell cast over the creature. The warm glow of the flashlight’s bulb inducing sensations it had not felt since first entering this cave however long ago. The paws went through a convulsive motion and its entire body contracted. With a final, terrible jerk it rolled over and turned to face us. In that moment as our eyes met, I was so struck with horror. Its eyes were a deep inky black yet had grown wide enough to drink in the dark. As I took in the uncanny sight that was slowly becoming more and more familiar its lips opened and several sounds issued from them. Then it fell still, and exhaled one low last breath before relaxing one penultimate time in death.
-
 
         My leader clutched my arm and trembled, their light shaking fitfully and casting flickering shadows across the walls of the tomb. I took no motion and drew no breath, my horrified gaze fixed upon the cold floor and lifeless figure ahead. And as the sounds registered in my ears my brain slowly comprehended their meaning. It was then that the awesome truth struck me. That this creature that I had killed, this unfathomable wraith, had once been me.
 
@@ -767,7 +752,7 @@ book-wizard-dice = "Snide, smug, swindling sharks." Ricky kicks back the chair a
         "Roll the dice."
 
 # Written by thelenzy
-book-hop-play = A HOP Play
+book-hop-play =
         Characters
         The Head of Personnel
         An Assistant
@@ -779,6 +764,7 @@ book-hop-play = A HOP Play
         A Space Carp
         A Security Officer
         A Cadet
+
         Scene 1
         At the Head of Personal’s Office, crew members line up to get
         what they need from the poor HOP. A Smart Alec with big glasses
@@ -1036,9 +1022,7 @@ book-hop-play = A HOP Play
         THE END
 
 # Written by orhu
-book-confession = <i> A loose piece of paper falls out into your hand as you flip through the book, a message scrawled onto it in shaky handwriting that you can barely decipher. </i>
-
-          My name is Thomas Hill. I am an engineer. I have worked for NanoTransen for the last 18 years of my life. I've made friends here, worked long shifts alongside them. I’ve almost died hundreds of times. I love working here and I swear that I would never want to hurt anyone on this station. It's just... The thing is... I’m not human. Not anymore.
+book-confession =  My name is Thomas Hill. I am an engineer. I have worked for NanoTransen for the last 18 years of my life. I've made friends here, worked long shifts alongside them. I’ve almost died hundreds of times. I love working here and I swear that I would never want to hurt anyone on this station. It's just... The thing is... I’m not human. Not anymore.
 
           There's something wrong with me. I'm not... me anymore. There's an... urge that makes me do things I don't want to. I’m hungry in a way I've never been hungry before. I don’t know why. Maybe I ate something bad. I want it to stop. I just want it to GO AWAY!!
 
@@ -1071,7 +1055,7 @@ book-confession = <i> A loose piece of paper falls out into your hand as you fli
           Forgive me. I’m just so hungry.
 
 # Written by rings69
-book-life-of-a-clown: All day, everyday. Everyday was hell. People looked at me everywhere I went. They were all plotting- plotting to kill me and take my cheese… I just knew it… I was an adherent of the Honkmother, and everyone hated me because of it. It saddened me. I was just being myself, expressing myself in the only way I knew how. I wanted to make little kids laugh, to make people happy, and I’m being ostracized for it… I had friends, I was popular. Now, just because I wanted to squeeze my nose and go honk, people hated me…
+book-life-of-a-clown = All day, everyday. Everyday was hell. People looked at me everywhere I went. They were all plotting- plotting to kill me and take my cheese… I just knew it… I was an adherent of the Honkmother, and everyone hated me because of it. It saddened me. I was just being myself, expressing myself in the only way I knew how. I wanted to make little kids laugh, to make people happy, and I’m being ostracized for it… I had friends, I was popular. Now, just because I wanted to squeeze my nose and go honk, people hated me…
           I went to get my groceries. I was mocked and stared at. I just… There were three men and a woman. They stalked me through each aisle, following me from afar… Each time I looked to a new person for help, they ignored me. I grabbed my icecream, pistachio flavored. I smiled, imagining myself on my couch, eating my favorite ice cream!
           “Of course a clown buys pistachio…” I heard from behind me. I turned around. A woman and her child. She cringed as she saw my face.
           I ran away, going to the pasta aisle. I picked out fettucini, my favorite shape.
@@ -1085,9 +1069,9 @@ book-life-of-a-clown: All day, everyday. Everyday was hell. People looked at me 
           I tried talking to the police after the assault. I called and called, each time barely able to keep the shakes in check, but everytime when they looked me up in the system, they hung up. I even tried going to the precinct in person, but there I was denied even quicker. What was I supposed to do…
           This was the life of a clown…
 
-book-unnamed-god: "Theological Studies — The unnamed God"
+# Written by thepipetoadcouncil
+book-unnamed-god = "Theological Studies — The unnamed God"
           By Dr Marcel Marceau
-
 
 
 

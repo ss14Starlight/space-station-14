@@ -130,7 +130,7 @@
           color: "#888b8d"
         - state: icon_temple
     - type: Paper
-      content: book-beside-photograph
+      content: book-bedside-photograph
 
 - type: entity
   parent: BookBase
@@ -287,7 +287,7 @@
 - type: entity
   parent: BookBase
   id: BookLifeOfAClown
-  name: "Life of a Clown"
+  name: "A Day in the Life of a Clown"
   description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction.
   components:
     - type: Sprite
@@ -302,3 +302,22 @@
         - state: icon_temple
     - type: Paper
       content: book-life-of-a-clown
+
+- type: entity
+  parent: BookBase
+  id: BookUnnamedGod
+  name: "Theological Studies — The unnamed God"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-unnamed-god
