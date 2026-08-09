@@ -171,7 +171,7 @@
       content: book-marty
 
 - type: entity
-  parent: BookBase
+  parent: [BookBase, BaseMinorContraband]
   id: BookNTsMartyr
   name: "NT's Martyr"
   description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
