@@ -35,6 +35,9 @@
   - type: NpcFactionMember
     factions:
     - CosmicCult
+  - type: CosmicMalignantHealing
+    healInterval: 1
+    healAmount: 0.1
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
@@ -51,6 +54,7 @@
     - Alive
     - Dead
   - type: MobThresholds
+    allowRevives: true
     thresholds:
       0: Alive
       50: Dead
