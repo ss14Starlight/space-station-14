@@ -22,6 +22,8 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.FocusAdminChat);
             common.AddFunction(ContentKeyFunctions.FocusConsoleChat);
             common.AddFunction(ContentKeyFunctions.FocusDeadChat);
+            common.AddFunction(ContentKeyFunctions.FocusSubtle); // Inferus
+            common.AddFunction(ContentKeyFunctions.FocusSubtleOOC); // Inferus
             common.AddFunction(ContentKeyFunctions.CycleChatChannelForward);
             common.AddFunction(ContentKeyFunctions.CycleChatChannelBackward);
             common.AddFunction(ContentKeyFunctions.EscapeContext);

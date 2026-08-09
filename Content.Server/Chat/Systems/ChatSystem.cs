@@ -1057,7 +1057,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     // Starlight - End
 
     /// <summary>
-    ///     Returns list of players and ranges for all players withing some range. Also returns observers with a range of -1.
+    ///     Returns list of players and ranges for all players within some range. Also returns observers with a range of -1.
     /// </summary>
     private Dictionary<ICommonSession, ICChatRecipientData> GetRecipients(EntityUid source, float voiceGetRange, bool isWhisper = false) // Starlight-edit
     {
@@ -1085,7 +1085,8 @@ public sealed partial class ChatSystem : SharedChatSystem
 
             //Starlight begin | Check what's larger, the passed voice range or, if it exists, the voice range on ChatListenerRangeComponent
             var distanceToCheck = voiceGetRange;
-            if(TryComp<ChatListenerRangeComponent>(playerEntity, out var rangeComp))
+            if (TryComp<ChatListenerRangeComponent>(playerEntity, out var rangeComp))
+            {
                 if (rangeComp.AllowExtendListenRange)
                 {
                     distanceToCheck = isWhisper switch
@@ -1095,24 +1096,48 @@ public sealed partial class ChatSystem : SharedChatSystem
                         _ => distanceToCheck
                     };
                 }
+            }
             //Starlight end
+
+        // Inferus, subtle + LOS
+        var isGhost = HasComp<GhostComponent>(playerEntity);
+        var isAdmin = _adminManager.IsAdmin(player);
+        var canSeeSubtle = !isGhost || isAdmin;
 
             // even if they are a ghost hearer, in some situations we still need the range
             if (sourceCoords.TryDistance(EntityManager, transformEntity.Coordinates, out var distance) && distance < distanceToCheck) // Starlight-edit
             {
-                recipients.Add(player, new ICChatRecipientData(distance, observer));
+                var inLos = _examineSystem.InRangeUnOccluded(source, playerEntity, distanceToCheck, null);
+
+                recipients.Add(player, new ICChatRecipientData(
+                    distance,
+                    observer,
+                    Subtle: canSeeSubtle,
+                    InLOS: inLos));
                 continue;
             }
 
             if (observer)
-                recipients.Add(player, new ICChatRecipientData(-1, true));
-        }
-
-        RaiseLocalEvent(new ExpandICChatRecipientsEvent(source, voiceGetRange, recipients));
-        return recipients;
+            {
+                // Out-of-range observers
+                recipients.Add(player, new ICChatRecipientData(
+                    -1,
+                    true,
+                    Subtle: canSeeSubtle,   // non-admin ghosts still can't see subtle
+                    InLOS: false));
+            }
     }
 
-    public readonly record struct ICChatRecipientData(float Range, bool Observer, bool? HideChatOverride = null)
+    RaiseLocalEvent(new ExpandICChatRecipientsEvent(source, voiceGetRange, recipients));
+    return recipients;
+}
+
+    public readonly record struct ICChatRecipientData(
+    float Range,
+    bool Observer,
+    bool? HideChatOverride = null,
+    bool Subtle = true,
+    bool InLOS = true)
     {
     }
 

@@ -4,7 +4,7 @@ namespace Content.Shared.Chat
     ///     Represents chat channels that the player can filter chat tabs by.
     /// </summary>
     [Flags]
-    public enum ChatChannel : ushort
+    public enum ChatChannel : uint // Inferus
     {
         None = 0,
 
@@ -84,6 +84,13 @@ namespace Content.Shared.Chat
         ///     Unspecified.
         /// </summary>
         Unspecified = 1 << 15,
+
+        /// Inferus
+        /// <summary>
+        /// Subtle and Subtle OOC
+        /// </summary>
+        Subtle     = 1 << 20,
+        SubtleOOC  = 1 << 21,
 
         /// <summary>
         ///     Channels considered to be IC.

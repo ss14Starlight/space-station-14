@@ -81,6 +81,14 @@ internal sealed partial class ChatManager : IChatManager
 
             default:
                 throw new ArgumentOutOfRangeException(nameof(channel), channel, null);
+
+            case ChatSelectChannel.Subtle: // Inferus
+                _consoleHost.ExecuteCommand($"subtle \"{CommandParsing.Escape(str)}\"");
+            break;
+
+            case ChatSelectChannel.SubtleOOC: // Inferus
+                _consoleHost.ExecuteCommand($"sooc \"{CommandParsing.Escape(str)}\"");
+            break;
         }
     }
 
