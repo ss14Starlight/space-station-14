@@ -216,7 +216,9 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         var fuelMultiplier = 1f;
 
-        if (electrolyzer.CurrentFuel >= 0f)
+        var PlasmaFuel = electrolyzer.CurrentFuel;
+
+        if (PlasmaFuel >= 0f)
         {
             fuelMultiplier = 0.1f;
         }
