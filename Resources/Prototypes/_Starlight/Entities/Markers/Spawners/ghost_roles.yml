@@ -16,7 +16,7 @@
     layers:
     - state: green
     - sprite: Mobs/Silicon/Chassis/derelict.rsi
-      state: derelict_icon
+      state: borg
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
