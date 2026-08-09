@@ -59,5 +59,12 @@ Entries:
   id: 901
   time: '2026-08-08T01:59:43.000000+00:00'
   url: https://github.com/InferusSS14/Inferus/pull/9
+- author: Tarazicon
+  changes:
+  - message: Added subtle emotes and subtle OOC.
+    type: Add
+  id: 1201
+  time: '2026-08-09T23:19:04.000000+00:00'
+  url: https://github.com/InferusSS14/Inferus/pull/12
 Order: -1
 
