@@ -12,6 +12,7 @@
   access:
   - Service
   - Maintenance
+  - Journalism
 
 - type: startingGear
   id: ReporterGear
