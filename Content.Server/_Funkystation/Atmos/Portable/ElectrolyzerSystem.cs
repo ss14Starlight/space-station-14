@@ -48,7 +48,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
     }
 
-    private void OnSignalReceived(EntityUid uid, ElectrolyzerComponent comp, SignalReceivedEvent args) 
+    private void OnSignalReceived(EntityUid uid, ElectrolyzerComponent comp, SignalReceivedEvent args)
     {
         if (comp.Passive == false)
         {
@@ -142,7 +142,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         if (electrolyzer.Passive == true)
         {
-            electrolyzer.IsPowered = true;             
+            electrolyzer.IsPowered = true;
         }
 
         if (charge <= 0f)
@@ -168,7 +168,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         }
 
 
-        var rate = (charge/200000f) / args.dt;    
+        var rate = (charge/200000f) / args.dt;
 
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);
@@ -244,7 +244,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         if (electrolyzer.Passive == true)
         {
-                electrolyzer.IsPowered = false;             
+                electrolyzer.IsPowered = false;         
         }
 
         _gasOverlaySystem.UpdateSessions();
