@@ -53,8 +53,8 @@ public abstract partial class SharedRadioDeviceSystem : EntitySystem
     #endregion
 
     // Starlight - Start
-    #region Starlight 
-    
+    #region Starlight
+
     public override void Initialize()
     {
         base.Initialize();
