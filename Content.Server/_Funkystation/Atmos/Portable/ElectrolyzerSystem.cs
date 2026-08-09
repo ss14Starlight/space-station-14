@@ -123,7 +123,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         var charge = _battery.GetCharge((uid, battery));
 
-        if (electrolyzer.Passive == false)
+        if (!electrolyzer.Passive)
         {
             if (!TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
                     return;
@@ -168,7 +168,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         }
 
 
-        var rate = charge/2000f;    
+        var rate = (charge/2000f) / args.dt;    
 
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);

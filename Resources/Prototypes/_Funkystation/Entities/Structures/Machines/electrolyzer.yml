@@ -48,7 +48,12 @@
       machine_parts: !type:Container
       hidden_slot: !type:ContainerSlot
   - type: PowerConsumer
-    voltage: High
+  - type: NodeContainer
+    examinable: true
+    nodes:
+    input:
+      !type:CableDeviceNode
+      nodeGroupID: HVPower
   - type: Battery
     netsync: false
     maxCharge: 200000
