@@ -1,3 +1,4 @@
+# Written by woldendov
 book-capns-scruples = There were me a rotten ferry cap'n of not too much acclaim.
         Me sloop scarcely able to go from astroid to planet and back home again.
 
@@ -15,6 +16,7 @@ book-capns-scruples = There were me a rotten ferry cap'n of not too much acclaim
         "I take people and cargo" says I
         "That's how simple it be." "Don't much mind the poor, methinks, but they should ride for free."
 
+# Written by sladeaz
 book-last-cow = The constant low thrum of the life-support fans hummed through the metal bones of Orbital Ranch Theta-9, a lonely little speck drifting in the icy shadow of Jupiter’s moons. It was the year 2652, and Bill Voss had spent four long, quiet years out here as the sole caretaker of Nanotrasen’s priceless pureblood Earth livestock. The warm, earthy smell of hay and manure always mixed with that sharp metallic bite of recycled air that coated his tongue like old pennies. Every morning he’d wake to the soft lowing of the cattle rolling through the grav-sim barn, the gentle clucking of the hens, and the faint rustle of sheep wool brushing against the stall walls. It was lonely work, sure, but those familiar scents and sounds kept the endless black void from pressing in too hard.
 
         He kept the old double-barrel shotgun hidden in a locked panel behind the feed bins. He’d smuggled it up in pieces years ago, breaking every corporate rule in the book. It was a twelve-gauge with a walnut stock worn smooth by generations of hands back on Earth. The gun felt solid and real in his grip—no finicky energy cells, no fancy electronics that could glitch out when you needed them most. Just brass shells, a good kick of recoil, and raw stopping power. He’d never had to use it. Until now.
@@ -115,6 +117,7 @@ book-last-cow = The constant low thrum of the life-support fans hummed through t
 
         Then there was only silence… and the wet sound of something still moving in the dark.
 
+# Written by mica_bloodless
 book-through-the-glass = The pounding on the windows stopped hours ago.
          Are they tired, or paused on a slower cruelty?
          Their bloodshot eyes still hunt me through the glass, but they do not break for now they wait, heavy as a storm closely approaching.
@@ -149,6 +152,7 @@ book-through-the-glass = The pounding on the windows stopped hours ago.
          As I take my final drink and take one last bite, I am now ready to open the way one last time.
          For them to feed on my sinner’s body.
 
+# Written by karmakitsuna
 book-caves-of-urania = The horrible conclusion long over due, finally settled over my confused mind and despite my initial reluctance, suddenly became an awful certainty. I was lost. Completely, and hopelessly lost in the vast labyrinthine recesses of the caves of Urania-9775. No path yielded familiarity, no landmark offered guidance. The thought of never again seeing the blessed light of day, or feeling anything beneath my feet besides the icy unfeeling cavern rocks had fueled my disbelief up until this point. But now, hope had departed.
 
 
@@ -200,6 +204,7 @@ book-caves-of-urania = The horrible conclusion long over due, finally settled ov
 
         My leader clutched my arm and trembled, their light shaking fitfully and casting flickering shadows across the walls of the tomb. I took no motion and drew no breath, my horrified gaze fixed upon the cold floor and lifeless figure ahead. And as the sounds registered in my ears my brain slowly comprehended their meaning. It was then that the awesome truth struck me. That this creature that I had killed, this unfathomable wraith, had once been me.
 
+# Written by anonymous
 book-chuckles = The stale burn of cheap tobacco mixed with too-pure air hits the back of Jo’s palate as she puffs on her cigarette. No one came down to this hall unless they needed a break from station goings-on. No noise — except the lights and fans — and no smells — except your own tobacco, or the occasional hydro-grown spliff. A girl could relax here, especially after a grueling lunch shift working the small mess hall alone. And relaxing she was, until the grating squeak of floppy red shoes dragged her back to fluorescent presence.
 
         “Oh hi, Jo! My favorite cook!” The spindly arachnid stands before here, waving with all three of his right arms, obsidian-black compound eyes glittering in the dim light of the hall.
@@ -286,6 +291,7 @@ book-chuckles = The stale burn of cheap tobacco mixed with too-pure air hits the
 
         Dreams of meat.
 
+# Written by teapoterror
 book-corridor-nine=There was something off with Corridor Nine. The central eight corridors were where all
         foot-traffic went throughout Quincy Port, a small little midway stop between somewhere and
         nowhere on the far reaches of frontier space. Consulting the electronic maps, you'd never even
@@ -357,8 +363,10 @@ book-corridor-nine=There was something off with Corridor Nine. The central eight
         hall, all sealed off now with a big metal barricade. Though never much of a skeptic, she couldn't
         help but feel, looking at that walled off path… that there was something off with Corridor Nine.
 
+# Written by some_dork17
 book-bedside-photograph = Here I am, sitting on a blanket on a beach, staring up at the clouds. The breeze blows gently, cool in comparison to the warm sun shining from above. This is my first time in a place such as this. I’ve only seen what a beach looks like in photos, and so this whole experience is a new opportunity for me. I take a deep breath. I exhale with a shudder. I am only wearing a bathing suit, and I am suddenly realizing that it is rather cold, despite the warm, summer vista before me. I look in my beach day bag for something to put on. It feels like I spent forever packing for this big day, and here I am, having forgotten to pack anything warm to wear. I take a deep, long sigh, and exhale with a sputter. I begrudgingly pick up the blanket and wrap it around myself. I have been told the sand would get everywhere, but the warmth of the blanket is too tempting to pass up. The sand is soft like fresh marshmallows, it makes me want to lie back and fall asleep, but I know that I shouldn’t. I’ve been told I would get a sunburn if I drift off right now. I turn back to my bag for my sunscreen, and I find myself once again disappointed by my improper planning. Only medicine and the associated empty plastic packaging. Profoundly disappointing. I place my bag behind me and rest my head upon it. I take a breath that lasts for hours, and exhale for just a few seconds. This is what I’ve always wanted. I look forward to the ocean ahead, gently pushing against the sand at my feet. There is a brightly colored beach ball floating on the horizon. It bobs up and down. I could go get it, but I’ve been told the waves would bring it back, and so I choose to wait for it. I take a deep breath, but find no reason to exhale. The tide has come in, and it’s come in to brush against me. I move my bag out of the way to stop it from getting wet, but the water is very warm, so I don’t mind getting wet. I am quite thirsty, but I’ve always been told the water is salty, and not safe to drink, so I stop myself from trying it. With nothing else to do, I give up, lie back, and soak in the sunshine. I close my eyes and smile, my hardsuit cushioning my slumber as the water pools around me. This is everything I’ve ever wanted. I exhale.
 
+# Written by csadt
 book-death-always = A deafening diffusion of pressure echoed on quarter inch thick crystalline diaphragm windows, reflecting sound and light in a cascade of information taken in by chroma sensitive diodes behind vat grown prysmarine corneas; themselves sewn with nanocarbonfibers to micro servos making adjustments on the specometer level at two million times a second.
         Behind it all a bag of water and salt processes the electrical impulses jumping from copper to neurons.
         Her neck jerks, skull moving a good three inches from its previous location.
@@ -389,6 +397,7 @@ book-death-always = A deafening diffusion of pressure echoed on quarter inch thi
         Seeing the face of her love just as beautiful as the day she’d made the memory.
         Then there was nothing.
 
+# Written by mediocremann
 book-marty = [-239, -195]
          Stanchion_station
          Timecomp: 2385 02.06.21
@@ -496,6 +505,7 @@ book-marty = [-239, -195]
          >
                  Valid hierarchy.
 
+# Writtne by nullnominal
 book-nts-martyr = Fuck. That was a mistake on my part. I tried to help Still, yet Nanotrasion decided that me helping her wasn’t a worthwhile endeavor. I still tried to help, and now I’m in this godawful situation. They want me, and they will stop at nothing to achieve it. Still has PTSD, and NT, even if not directly, caused it to happen. She, well, had a shift where she perceived revolutionaries, but there were no revolutionaries. Because of that, she had decided to call for a Death Squad. NT never actually sent one however. They didn’t see the threat of revolutionaries to be worthy of it at that time.
 
         I tried. I really tried to manage her PTSD. I am her doctor, a trusted one in NT in fact. Hell, I’m a Chief Medical Officer. Obviously, I kept helping, as Still is one of my best friends. Why wouldn’t I? Her personality is more important than ruthless efficiency. Hell, her PTSD makes it so she is even less efficient than normal. NT obviously didn’t agree, as they sent NT-ISD after me.
@@ -614,6 +624,7 @@ book-nts-martyr = Fuck. That was a mistake on my part. I tried to help Still, ye
 
         ***
 
+# Written by xoan
 book-when-thoughts-end = In this familiar place I work, as I always do, with only a vague understanding of my purpose.
 
          Opening my eyes to the thickly opaque lime-green glass of the cryopod, my mind slowly comes into focus. The first thought is just how bitterly cold it is in here. A thin layer of brittle frost covers everything. My arms and legs feel like lead, requiring considerable effort to push through this chilly embrace to pop open the latch. As soon as it’s pushed open, air rushes in causing me to feel uncomfortably hot in comparison. A few moments later I clamber out of the pod, rising shakily to my feet. Just as I’m blinking away the last of the melting ice crystals I find myself already heading toward my assigned department.
@@ -643,6 +654,7 @@ book-when-thoughts-end = In this familiar place I work, as I always do, with onl
 
          “Hedrick? Hedrick are you alright?” I blink repeatedly as I refocus on the current situation. I look to the voice, to the roboticist. “…sorry” I start, “I have your delivery here.” I’m watched in silence as I unload the two crates. The three of them loom over me as I unpack the delivery order. Trying to cut the tension I strike up a conversation. “So why did you order all this? What sort of project are you working on?” To my surprise it is the musician that speaks. “A change.” Each one is grinning at me, sharing a look amongst themselves. He continues, “to put it a little more materialistically…” he reaches into his pocket, pulling out a security flash, the same type that I saw spill from the locker, except for the cracked bulb and exposed wires. My mind briefly flicks back to that moment remembering the uncomfortable disorientation. “We are making these, and a lot of them at that. It serves to open up the mind and view the world in a new, better way.” It’s at this point that I feel my arms grabbed by the other two, I realise that I’m being restrained! I try to tug and pull my arms free, but I’m held tight. Panic shoots through me like lightning wondering why they are doing this to me, and to what end. “Say…,” the musician lifts up the flash to my face, its cracked bulb brightening with a crackling red glow. He buzzes, “…has anyone discussed with you Hegelian Dialectics?”
 
+# Written by .wuspoppinb
 book-apocolypse = It is said there will come a time when shields are riven, spears shaken, and swords splintered; In the waning hours of the wolf, the wind, and wicked. In the many elder days, they called it Armageddon, the apocalypse, the end of all things. It is so foretold; the ending shall be heralded by the sounding of great horns, the likes of which blow unerring across the land, seas, and skies. The echo of which brings down that which was made to stand eternal.
 
 
@@ -659,7 +671,7 @@ book-apocolypse = It is said there will come a time when shields are riven, spea
 
       The fourth rider, bore a visage to haunt the dreams of all men. Emaciated, gaunt, and impossibly thin, the rider could barely be called alive. His skin was sickeningly green, and the horse reflected it's master. His face bore no features, a smooth crest of flesh where eyes and a mouth would be. There was no mistaking it; this was Death, and with him, a fourth of the universe was his domain.
 
-
+# Written by naterthegreater
 book-wizard-dice = "Snide, smug, swindling sharks." Ricky kicks back the chair and drowns the string of curses in a glass of rum. The free booze is the only good thing about his job. "Tch, 'become an assistant, see the galaxy.'" And where does he end up?
 
         Barratry, freaking Barratry. He slams his glass down and leers at the dirty little bar where staff drink their days away. CentComm loves touting their "first-rate working environments" and "commitment to employee well-being" when they're parading cameras around Manor and Oasis.
@@ -754,7 +766,7 @@ book-wizard-dice = "Snide, smug, swindling sharks." Ricky kicks back the chair a
 
         "Roll the dice."
 
-
+# Written by thelenzy
 book-hop-play = A HOP Play
         Characters
         The Head of Personnel
@@ -1023,7 +1035,7 @@ book-hop-play = A HOP Play
         They all laugh at the HOP.
         THE END
 
-
+# Written by orhu
 book-confession = <i> A loose piece of paper falls out into your hand as you flip through the book, a message scrawled onto it in shaky handwriting that you can barely decipher. </i>
 
           My name is Thomas Hill. I am an engineer. I have worked for NanoTransen for the last 18 years of my life. I've made friends here, worked long shifts alongside them. I’ve almost died hundreds of times. I love working here and I swear that I would never want to hurt anyone on this station. It's just... The thing is... I’m not human. Not anymore.
@@ -1058,6 +1070,7 @@ book-confession = <i> A loose piece of paper falls out into your hand as you fli
 
           Forgive me. I’m just so hungry.
 
+# Written by rings69
 book-life-of-a-clown: All day, everyday. Everyday was hell. People looked at me everywhere I went. They were all plotting- plotting to kill me and take my cheese… I just knew it… I was an adherent of the Honkmother, and everyone hated me because of it. It saddened me. I was just being myself, expressing myself in the only way I knew how. I wanted to make little kids laugh, to make people happy, and I’m being ostracized for it… I had friends, I was popular. Now, just because I wanted to squeeze my nose and go honk, people hated me…
           I went to get my groceries. I was mocked and stared at. I just… There were three men and a woman. They stalked me through each aisle, following me from afar… Each time I looked to a new person for help, they ignored me. I grabbed my icecream, pistachio flavored. I smiled, imagining myself on my couch, eating my favorite ice cream!
           “Of course a clown buys pistachio…” I heard from behind me. I turned around. A woman and her child. She cringed as she saw my face.
