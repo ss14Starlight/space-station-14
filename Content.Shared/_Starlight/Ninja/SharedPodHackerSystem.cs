@@ -13,25 +13,10 @@ using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Shared._Starlight.Ninja;
 
-/// <summary>
-/// Only exists in shared to provide API and for access.
-/// All logic is serverside.
-/// </summary>
-public abstract class SharedPodHackerSystem : EntitySystem
-{
-}
-
-/// <summary>
-/// DoAfter event for pod console extract ability.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed partial class ExtractDoAfterEvent : SimpleDoAfterEvent { }
-
-public sealed partial class PodHackerSystem : SharedPodHackerSystem
+public sealed partial class SharedPodHackerSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;
-    // TODO: remove when generic check event is used
     [Dependency] private SharedNinjaGlovesSystem _gloves = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
 
@@ -82,6 +67,12 @@ public sealed partial class PodHackerSystem : SharedPodHackerSystem
         RaiseLocalEvent(args.User, ref ev);
     }
 }
+
+/// <summary>
+/// DoAfter event for pod console extract ability.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed partial class ExtractDoAfterEvent : SimpleDoAfterEvent { }
 
 /// <summary>
 /// Raised on the user when a extract is called.
