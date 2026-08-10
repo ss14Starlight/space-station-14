@@ -1,14 +1,25 @@
 {
-  "version": 2,
+  "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Wit Studio - My friend Nokotan, SS13 Sprites, Conflee, ReamNox, Miracula, Puddleboat, Salthew, Gensy, Polaris TODO from Happyrobot33, Fix copyright after RSI Split",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/67676ba1602e83d81d9f141a9f3f2900a461b381"
+    },
+    {
+      "name": "inhand-left",
+      "copyright": "CawsForConcern (GitHub), edits of in-hand lizard plushie sprites by KieueCaprie",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "copyright": "CawsForConcern (GitHub), edits of in-hand lizard plushie sprites by KieueCaprie",
+      "directions": 4
     }
   ]
 }
