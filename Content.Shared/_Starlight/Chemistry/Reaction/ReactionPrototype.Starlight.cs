@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.Chemistry.Reaction;
+namespace Content.Shared.Chemistry.Reaction;
 
 public sealed partial class ReactionPrototype
 {

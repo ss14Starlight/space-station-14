@@ -60,12 +60,6 @@
   filterEnabled: True
 
 - type: guideEntry
-  id: DoughRecipes # Starlight-add
-  name: guide-entry-sl-dough-recipes
-  text: "/ServerInfo/_Starlight/Guidebook/Service/DoughRecipes.xml"
-  filterEnabled: True
-
-- type: guideEntry
   id: BreakfastRecipes
   name: guide-entry-breakfast-recipes
   text: "/ServerInfo/Guidebook/Service/BreakfastRecipes.xml"
