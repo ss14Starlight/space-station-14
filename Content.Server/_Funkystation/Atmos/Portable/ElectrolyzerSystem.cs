@@ -225,7 +225,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         if (finalHeatCapacity > Atmospherics.MinimumHeatCapacity && finalHeatCapacity != oldHeatCapacity)
             mixture.Temperature = Math.Max(mixture.Temperature * oldHeatCapacity / finalHeatCapacity, Atmospherics.TCMB);
 
-        var powerUsed = (500f + H2OLoad + HyperNobLoad + BZLoad); ///Starlight: Gotta conusme power
+        var powerUsed = (500f + H2OLoad + HyperNobLoad + BZLoad); ///Starlight: Gotta consume power
 
         var fuelMultiplier = 1f;
 
@@ -335,7 +335,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             {
                 _audio.PlayPvs(comp.OnSound, uid, AudioParams.Default.WithVolume(-4f));
             }
-
+        }
             UpdateAppearance(uid);
 
             private void OnAnchorChanged(EntityUid uid, ElectrolyzerComponent comp, ref AnchorStateChangedEvent args)
@@ -347,6 +347,5 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
                     _popup.PopupEntity(Loc.GetString("electrolyzer-turned-off"), uid);
                 }
             }
-        }
     }
 }
