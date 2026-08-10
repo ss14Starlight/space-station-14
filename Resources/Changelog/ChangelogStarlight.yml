@@ -1,48 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Kiloton) Added ticket machine to HOP.
-    type: Add
-  id: 407019
-  time: '2026-07-27T08:21:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5255
-- author: Orhu
-  changes:
-  - message: (Kiloton) Added coroner, surgeon, virologist, geneticist, and roboticist lockers to appropriate locations.
-    type: Add
-  id: 407020
-  time: '2026-07-27T08:21:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5255
-- author: Orhu
-  changes:
-  - message: (Kiloton) Added operating computers to the surgery rooms.
-    type: Add
-  id: 407021
-  time: '2026-07-27T08:21:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5255
-- author: Orhu
-  changes:
-  - message: (Kiloton) Placed station beacons in both washrooms.
-    type: Tweak
-  id: 407022
-  time: '2026-07-27T08:21:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5255
-- author: Orhu
-  changes:
-  - message: (Kiloton) Replaced cargo tech and mail tech lockers with large variants.
-    type: Tweak
-  id: 407023
-  time: '2026-07-27T08:21:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5255
-- author: Orhu
-  changes:
-  - message: (Kiloton) Filled in the spaced area outside of the clinic to reduce spacing potential.
-    type: Tweak
-  id: 407024
-  time: '2026-07-27T08:21:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5255
-- author: Orhu
-  changes:
   - message: (Cluster) Added Stir Stir to Genpop.
     type: Add
   id: 407025
@@ -2799,4 +2757,46 @@ Entries:
   id: 407418
   time: '2026-08-10T17:26:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5597
+- author: Makeshift
+  changes:
+  - message: (Packed) Added Radio Host!
+    type: Add
+  id: 407419
+  time: '2026-08-10T19:47:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5591
+- author: Makeshift
+  changes:
+  - message: (Packed) Added Departmental Techfabs!
+    type: Add
+  id: 407420
+  time: '2026-08-10T19:47:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5591
+- author: Makeshift
+  changes:
+  - message: (Packed) Added a Chef Closet to the Freezer.
+    type: Add
+  id: 407421
+  time: '2026-08-10T19:47:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5591
+- author: Makeshift
+  changes:
+  - message: (Packed) AI External airlocks now have command access, too.
+    type: Fix
+  id: 407422
+  time: '2026-08-10T19:47:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5591
+- author: Makeshift
+  changes:
+  - message: (Packed) The stage now uses platforms. Fancy!
+    type: Tweak
+  id: 407423
+  time: '2026-08-10T19:47:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5591
+- author: Makeshift
+  changes:
+  - message: (Packed) Science's artifact chamber now uses an unlocked Air Alarm.
+    type: Tweak
+  id: 407424
+  time: '2026-08-10T19:47:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5591
 Order: -1
