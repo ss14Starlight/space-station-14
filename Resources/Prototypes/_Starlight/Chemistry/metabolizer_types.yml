@@ -11,6 +11,10 @@
   name: metabolizer-type-cyclorite
 
 - type: metabolizerType
+  id: NeoVox
+  name: metabolizer-type-neo-vox
+
+- type: metabolizerType
   id: Avali
   name: metabolizer-type-avali
 

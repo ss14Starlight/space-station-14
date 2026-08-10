@@ -1,0 +1,230 @@
+﻿- type: constructionGraph
+  id: CounterRetroSteel
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CounterRetroSteel
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 3
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: CounterRetroSteel
+      entity: TableCounterRetroSteel
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: CounterRetroWood
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CounterRetroWood
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 3
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: CounterRetroWood
+      entity: TableCounterRetroWood
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank
+              amount: 3
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: CounterRetroKitchen
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CounterRetroKitchen
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 3
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: CounterRetroKitchen
+      entity: TableCounterRetroKitchen
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: CounterRetroSteelWood
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CounterRetroSteelWood
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 3
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+    - node: CounterRetroSteelWood
+      entity: TableCounterRetroSteelWood
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: CounterRetroWhiteOrange
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CounterRetroWhiteOrange
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 3
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: CounterRetroWhiteOrange
+      entity: TableCounterRetroWhiteOrange
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: CounterRetroWhiteTeal
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CounterRetroWhiteTeal
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 3
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: CounterRetroWhiteTeal
+      entity: TableCounterRetroWhiteTeal
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: CounterRetroDiner
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CounterRetroDiner
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 3
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: CounterRetroDiner
+      entity: TableCounterRetroDiner
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
