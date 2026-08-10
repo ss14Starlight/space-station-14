@@ -136,9 +136,6 @@
         - id: ClothingNeckCloakPan
       - id: ToyFigurineSkeleton
       - id: MysteryFigureBox
-      - id: PlushieMimeLizard #starlight
-      - id: SnailPlushie #starlight
-      - id: AxolotlPlushie #starlight
       # Cult
       - !type:AllSelector
         children:

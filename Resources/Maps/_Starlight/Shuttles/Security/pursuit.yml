@@ -1813,7 +1813,7 @@ entities:
     - type: Transform
       pos: 1.5,1.5
       parent: 1
-- proto: ComputerShuttleSecurity
+- proto: ComputerShuttle
   entities:
   - uid: 237
     components:
