@@ -1,46 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: RCD/RPD/RPLDs now only spark once, when creating an object.
-    type: Tweak
-  id: 407067
-  time: '2026-07-28T07:23:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5371
-- author: wonderfulnewworld
-  changes:
-  - message: Stun Baton sparks are smaller now.
-    type: Tweak
-  id: 407068
-  time: '2026-07-28T07:23:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5371
-- author: neomoth
-  changes:
-  - message: Fix being able to examine access on a PDA/ID that is out of reach or that can't be interacted with (e.g. in someone's strip menu).
-    type: Fix
-  id: 407069
-  time: '2026-07-28T07:23:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5365
-- author: DocMoth
-  changes:
-  - message: Adds the Magic Crayon back to loadouts.
-    type: Tweak
-  id: 407070
-  time: '2026-07-28T08:04:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5355
-- author: Spaghetti-Bit & ya3.14a
-  changes:
-  - message: "After some investments into making PPE more comfortable to wear for our avian coworkers, we've changed gas mask fittings for avali & resomi: Gas mask, security gas mask, security bio mask."
-    type: Tweak
-  id: 407071
-  time: '2026-07-28T08:04:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5362
-- author: Caws
-  changes:
-  - message: (Cluster) Fixed a turnstile that was facing the wrong way in Genpop.
-    type: Fix
-  id: 407072
-  time: '2026-07-28T08:04:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5353
 - author: Caws
   changes:
   - message: (Cluster) Removed firelocks on top of turnstiles in Security.
@@ -2799,4 +2757,46 @@ Entries:
   id: 407466
   time: '2026-08-10T21:36:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5565
+- author: wonderfulnewworld, Limerent-Sun
+  changes:
+  - message: Neocytes will now appear as ghost roles, with random frames.
+    type: Add
+  id: 407467
+  time: '2026-08-10T21:36:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5457
+- author: wonderfulnewworld, Limerent-Sun
+  changes:
+  - message: Renamed all Protogen-type species to Neocytes.
+    type: Tweak
+  id: 407468
+  time: '2026-08-10T21:36:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5457
+- author: wonderfulnewworld, Limerent-Sun
+  changes:
+  - message: Neocytes will now always spawn with a frame.
+    type: Fix
+  id: 407469
+  time: '2026-08-10T21:36:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5457
+- author: wonderfulnewworld, Limerent-Sun
+  changes:
+  - message: Neo-Kin can now get ion stormed.
+    type: Fix
+  id: 407470
+  time: '2026-08-10T21:36:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5457
+- author: wonderfulnewworld, Limerent-Sun
+  changes:
+  - message: Cyclorites, Neo-Cyclorites, and Neo-Vox no longer take damage from water vapor.
+    type: Fix
+  id: 407471
+  time: '2026-08-10T21:36:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5457
+- author: wonderfulnewworld, Limerent-Sun
+  changes:
+  - message: Neocytes now restore their frames after polymorphing.
+    type: Fix
+  id: 407472
+  time: '2026-08-10T21:36:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5457
 Order: -1
