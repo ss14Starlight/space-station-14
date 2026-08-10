@@ -1,88 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: New variables for calculations.
-    type: Add
-  id: 406994
-  time: '2026-07-26T15:26:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5199
-- author: SirLutz
-  changes:
-  - message: Components for new modifiers.
-    type: Add
-  id: 406995
-  time: '2026-07-26T15:26:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5199
-- author: SirLutz
-  changes:
-  - message: partial old calculations.
-    type: Remove
-  id: 406996
-  time: '2026-07-26T15:26:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5199
-- author: SirLutz
-  changes:
-  - message: Tritium, Nitrous oxide, Freezon change reactifity.
-    type: Tweak
-  id: 406997
-  time: '2026-07-26T15:26:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5199
-- author: SirLutz
-  changes:
-  - message: minor wrong naming of variables.
-    type: Fix
-  id: 406998
-  time: '2026-07-26T15:26:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5199
-- author: SirLutz
-  changes:
-  - message: Hydrogen molar mass from 32 to 1.
-    type: Fix
-  id: 406999
-  time: '2026-07-26T15:26:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5199
-- author: BlythT
-  changes:
-  - message: Improved chat filters and highlights UI.
-    type: Tweak
-  id: 407000
-  time: '2026-07-26T17:20:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5293
-- author: TrixxedHeart
-  changes:
-  - message: Added Particles and a config option for them.
-    type: Add
-  id: 407001
-  time: '2026-07-26T17:35:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5334
-- author: TrixxedHeart
-  changes:
-  - message: There are now particle effects for fire and gibbing.
-    type: Add
-  id: 407002
-  time: '2026-07-26T17:35:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5334
-- author: Orhu
-  changes:
-  - message: (Hotel) Added a new Lawyer's Office near Courtroom.
-    type: Add
-  id: 407003
-  time: '2026-07-27T07:45:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5271
-- author: Orhu
-  changes:
-  - message: (Hotel) Added Stir Stir to Genpop.
-    type: Add
-  id: 407004
-  time: '2026-07-27T07:45:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5271
-- author: Orhu
-  changes:
-  - message: (Hotel) Added Flippers to Courtroom.
-    type: Add
-  id: 407005
-  time: '2026-07-27T07:45:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5271
 - author: Orhu
   changes:
   - message: (Hotel) Added vend of silence to Mime Room.
@@ -2799,4 +2715,88 @@ Entries:
   id: 407393
   time: '2026-08-10T13:27:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5336
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: 'Added in-hands sprites for the following plushies: Alien grey (Abductor), Axolotl, Borb, Cow Squishims, Creature, Frog Squishims, Gnome, Goat, Kitten, Pig, Renault, Shadekin, Snail, and Sus.'
+    type: Add
+  id: 407394
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: Added a hat sprite for the Pig plushie (sprites by oliveoil238).
+    type: Add
+  id: 407395
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: Added a hat sprite for the Snail plushie.
+    type: Add
+  id: 407396
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: Added a hat sprite for the Sus plushie.
+    type: Add
+  id: 407397
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: Added roller skates, cooler roller skates, rubber duck, toy mouse, toy Ian, Magic 9 Ball, and toy hammer to the Hug Dispenser's stock.
+    type: Add
+  id: 407398
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: Some crew plushies have been updated with in-hands / hat sprites.
+    type: Add
+  id: 407399
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: Plushies now cost a flat twenty bucks.
+    type: Tweak
+  id: 407400
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: The Sus plushie has been re-sprited due to the copyright trail being lost.
+    type: Tweak
+  id: 407401
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: The Gnome plushie has been re-sprited due to the copyright trail being lost.
+    type: Tweak
+  id: 407402
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: Abductor plushie has been renamed to "alien grey plushie" as to not bump against the Metashield.
+    type: Tweak
+  id: 407403
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: CentComm will be re-opening the Marketable Plushie Program! Stay tuned for more details soon.
+    type: Tweak
+  id: 407404
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Caws, oliveoil238, & rtasva
+  changes:
+  - message: 34 plushies have been discontinued from the hug dispenser.
+    type: Remove
+  id: 407405
+  time: '2026-08-10T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5455
 Order: -1
