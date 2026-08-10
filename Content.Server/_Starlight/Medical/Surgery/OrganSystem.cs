@@ -25,6 +25,7 @@ using Content.Shared._Starlight.Antags.Abductor.Components;
 using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server._Starlight.Medical.Surgery;
+
 public sealed partial class OrganSystem : EntitySystem
 {
 
@@ -81,7 +82,7 @@ public sealed partial class OrganSystem : EntitySystem
 
             // Fresh instance per install; reusing the same object after a prior removal fails
             // AddComponent's PreAdd check.
-            var fresh = (IComponent)_serialization.Read(type, comp.Mapping)!;
+            var fresh = _serialization.CreateCopy(comp.Component, notNullableOverride: true);
             EntityManager.AddComponent(args.Body, fresh);
             UpdateEntity(args.Body, fresh, ent.Owner);
             _surgery.AddInstalledComponent(ent.Owner, type);
