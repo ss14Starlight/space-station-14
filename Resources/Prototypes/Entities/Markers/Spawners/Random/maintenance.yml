@@ -103,6 +103,14 @@
       - id: ClothingNeckTatteredHood #SL
       - id: SpyglassImprovised #SL
         weight: 0.65 #SL
+      # Goobstation - Start - Vinyls and CDs to Maints loot
+      - !type:NestedSelector
+        weight: 4
+        tableId: RandomVinylSleeve
+      - !type:NestedSelector
+        weight: 4
+        tableId: RandomCDDisc
+      # Goobstation - End
     # Uncommon Group
     - !type:GroupSelector
       weight: 23
@@ -128,9 +136,6 @@
         - id: ClothingNeckCloakPan
       - id: ToyFigurineSkeleton
       - id: MysteryFigureBox
-      - id: PlushieMimeLizard #starlight
-      - id: SnailPlushie #starlight
-      - id: AxolotlPlushie #starlight
       # Cult
       - !type:AllSelector
         children:
