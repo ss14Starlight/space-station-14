@@ -1,18 +1,4 @@
 Entries:
-- author: Orhu
-  changes:
-  - message: (Ming) Fixed the wiring to the air vents outside of HOP.
-    type: Fix
-  id: 406989
-  time: '2026-07-26T14:38:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5248
-- author: Orhu
-  changes:
-  - message: (Ming) Fixed an APC that wasn't linked to MVs near Robotics.
-    type: Fix
-  id: 406990
-  time: '2026-07-26T14:38:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5248
 - author: Arkanic
   changes:
   - message: Fixed criminal, terminator, etc railroading cards not appearing.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407388
   time: '2026-08-10T12:50:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5404
+- author: Mack
+  changes:
+  - message: Derelict Borgi's robotics access.
+    type: Add
+  id: 407389
+  time: '2026-08-10T12:50:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5408
+- author: Mack
+  changes:
+  - message: Derelict Borgi's research access.
+    type: Remove
+  id: 407390
+  time: '2026-08-10T12:50:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5408
 Order: -1
