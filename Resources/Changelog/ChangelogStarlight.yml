@@ -1,11 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: RCD now spawns the correct post light variant.
-    type: Fix
-  id: 407082
-  time: '2026-07-28T13:38:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5382
 - author: Mack
   changes:
   - message: Form text input will no longer close when clicking away.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407481
   time: '2026-08-10T22:37:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5554
+- author: Sparlight
+  changes:
+  - message: Individuals that can smell can now smell anything with a scent directly now, in addition to the scent traces left behind on them.
+    type: Add
+  id: 407482
+  time: '2026-08-10T22:37:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5544
 Order: -1
