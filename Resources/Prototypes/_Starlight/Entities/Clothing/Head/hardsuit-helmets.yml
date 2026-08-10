@@ -1156,7 +1156,7 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-    - Hybrid # Protogens
+    - Hybrid # Neocytes
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false
@@ -1198,7 +1198,7 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-    - Hybrid # Protogens
+    - Hybrid # Neocytes
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false
