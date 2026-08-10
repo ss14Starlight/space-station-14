@@ -1,0 +1,216 @@
+﻿# Archetypes, not strains. Each of these is a template used to roll a concrete strain at
+# a spawning event; the character stays fixed, the specifics do not.
+
+# Ambients are irritating, visible, self-clearing. If any of these ever ruin
+# someone's shift, the numbers to change are the duration and prevalence ranges,
+# not the symptom pool.
+
+- type: pathogenArchetype
+  id: SpaceCold
+  name: pathogen-name-space-cold
+  description: pathogen-desc-space-cold
+  pathogenType: Virus
+  seedWeight: 1.5
+  respawnOnExtinction: true
+  tier: Ambient
+  maxPrevalence: 0.10
+  stageOneSymptoms:
+  - Sneezing
+  - CoreViralSniffling
+  - CoreViralWateryEyes
+  stageThreeSymptoms:
+  - AmbientViralShivering
+  stageTwoSymptomPool:
+  - AmbientViralFatigue
+  - AmbientViralBlockedNose
+  - AmbientViralMildHeadache
+  - AmbientViralColdSensation
+  - AmbientViralDryCough
+  - AmbientViralSinusPressure
+  minTransmissibility: 0.04
+  maxTransmissibility: 0.06
+  minSpreadRange: 1.5
+  maxSpreadRange: 2.0
+  minIncubation: 60
+  maxIncubation: 150
+  minStages: 3
+  maxStages: 3
+  minStageDelay: 90
+  maxStageDelay: 180
+  minDuration: 480
+  maxDuration: 900
+
+- type: pathogenArchetype
+  id: ThroatRot
+  name: pathogen-name-throat-rot
+  description: pathogen-desc-throat-rot
+  pathogenType: Bacteria
+  seedWeight: 1
+  respawnOnExtinction: true
+  tier: Ambient
+  maxPrevalence: 0.10
+  stageOneSymptoms:
+  - Coughing
+  - CoreBacterialThroatClearing
+  - CoreBacterialThroatDiscomfort
+  stageThreeSymptoms:
+  - AmbientBacterialCoughingFit
+  stageTwoSymptomPool:
+  - AmbientBacterialDryMouth
+  - AmbientBacterialPainfulSwallowing
+  - AmbientBacterialSwollenThroat
+  - AmbientBacterialUnpleasantTaste
+  - AmbientBacterialMildFatigue
+  - AmbientBacterialVoiceCracking
+  minTransmissibility: 0.03
+  maxTransmissibility: 0.045
+  minSpreadRange: 1.5
+  maxSpreadRange: 2.0
+  minIncubation: 90
+  maxIncubation: 210
+  minStages: 3
+  maxStages: 3
+  minStageDelay: 120
+  maxStageDelay: 210
+  minDuration: 600
+  maxDuration: 1080
+
+# Fungus is environmental only. So transmission values stay is zero
+- type: pathogenArchetype
+  id: SporeBloom
+  name: pathogen-name-spore-bloom
+  description: pathogen-desc-spore-bloom
+  pathogenType: Fungus
+  seedWeight: 0.8
+  respawnOnExtinction: true
+  tier: Ambient
+  maxPrevalence: 0.08
+  stageOneSymptoms:
+  - CoreFungalSkinIrritation
+  - CoreFungalEyeIrritation
+  - CoreFungalFlakingSkin
+  stageThreeSymptoms:
+  - AmbientFungalEyeBlur
+  stageTwoSymptomPool:
+  - AmbientFungalRash
+  - AmbientFungalDrySkin
+  - AmbientFungalMildSweating
+  - AmbientFungalSporeSneezing
+  - AmbientFungalEyeIrritation
+  - AmbientFungalCrawlingSkin
+  minTransmissibility: 0
+  maxTransmissibility: 0
+  minSpreadRange: 2.0
+  maxSpreadRange: 2.5
+  minIncubation: 120
+  maxIncubation: 240
+  minStages: 3
+  maxStages: 3
+  minStageDelay: 150
+  maxStageDelay: 240
+  minDuration: 720
+  maxDuration: 1200
+
+# --- Emergent ---
+# These are station-neglect outbreaks, not antagonist diseases. seedWeight 0 keeps them
+# out of ambient milestone selection until the contamination system deliberately spawns one.
+
+- type: pathogenArchetype
+  id: StationFlu
+  name: pathogen-name-station-flu
+  description: pathogen-desc-station-flu
+  pathogenType: Virus
+  seedWeight: 0
+  respawnOnExtinction: false
+  tier: Emergent
+  maxPrevalence: 0.15
+  stageOneSymptoms:
+  - Sneezing
+  - CoreViralSniffling
+  - CoreViralWateryEyes
+  stageThreeSymptoms:
+  - EmergentViralHighFever
+  - EmergentViralFaintingSpell
+  stageTwoSymptomPool:
+  - EmergentViralFeverChills
+  - EmergentViralMuscleWeakness
+  - EmergentViralLightHeadedness
+  minTransmissibility: 0.035
+  maxTransmissibility: 0.055
+  minSpreadRange: 1.5
+  maxSpreadRange: 2.0
+  minIncubation: 120
+  maxIncubation: 240
+  minStages: 3
+  maxStages: 3
+  minStageDelay: 120
+  maxStageDelay: 210
+  minDuration: 900
+  maxDuration: 1500
+
+- type: pathogenArchetype
+  id: GreyLung
+  name: pathogen-name-grey-lung
+  description: pathogen-desc-grey-lung
+  pathogenType: Bacteria
+  seedWeight: 0
+  respawnOnExtinction: false
+  tier: Emergent
+  maxPrevalence: 0.15
+  stageOneSymptoms:
+  - Coughing
+  - CoreBacterialThroatClearing
+  - CoreBacterialThroatDiscomfort
+  stageThreeSymptoms:
+  - EmergentBacterialHypoxicAttack
+  - EmergentBacterialRespiratoryCollapse
+  stageTwoSymptomPool:
+  - EmergentBacterialCoughingFit
+  - EmergentBacterialBreathlessness
+  - EmergentBacterialSevereHoarseness
+  minTransmissibility: 0.025
+  maxTransmissibility: 0.045
+  minSpreadRange: 1.5
+  maxSpreadRange: 2.0
+  minIncubation: 150
+  maxIncubation: 300
+  minStages: 3
+  maxStages: 3
+  minStageDelay: 150
+  maxStageDelay: 240
+  minDuration: 1080
+  maxDuration: 1800
+
+- type: pathogenArchetype
+  id: Mycosis
+  name: pathogen-name-mycosis
+  description: pathogen-desc-mycosis
+  pathogenType: Fungus
+  seedWeight: 0
+  respawnOnExtinction: false
+  tier: Emergent
+  maxPrevalence: 0.12
+  stageOneSymptoms:
+  - CoreFungalSkinIrritation
+  - CoreFungalEyeIrritation
+  - CoreFungalFlakingSkin
+  stageThreeSymptoms:
+  - EmergentFungalToxicMycosis
+  - EmergentFungalOcularSporeFlare
+  stageTwoSymptomPool:
+  - EmergentFungalEyeInflammation
+  - EmergentFungalCramps
+  - EmergentFungalNumbFingers
+  # Fungus is environmental only; treatment contact and quarantine do not spread it.
+  minTransmissibility: 0
+  maxTransmissibility: 0
+  minSpreadRange: 2.0
+  maxSpreadRange: 2.5
+  minIncubation: 180
+  maxIncubation: 360
+  minStages: 3
+  maxStages: 3
+  minStageDelay: 180
+  maxStageDelay: 300
+  minDuration: 1200
+  maxDuration: 2100
