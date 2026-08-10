@@ -162,7 +162,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
                 emotesByCategory.Add(emote.Category, list);
             }
 
-            var actionOption = new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote)
+            var actionOption = new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote, HandleAlternativeRadialButtonClick) //Starlight-edit
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(emote.Icon),
                 ToolTip = Loc.GetString(emote.Name)
@@ -205,6 +205,15 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
 
         return models;
     }
+
+    //Starlight-edit start
+
+    private void HandleAlternativeRadialButtonClick(EmotePrototype emote)
+    {
+        EntityManager.RaisePredictiveEvent(new RequestBindEmoteMessage(emote.ID));
+    }
+
+    //Starlight-edit stop
 
     private void HandleRadialButtonClick(EmotePrototype prototype)
     {

@@ -45,3 +45,8 @@ chat-emote-msg-snort = snorts
 chat-emote-msg-stomp = stomps
 chat-emote-msg-hum = hums
 chat-emote-msg-glub = glubs
+
+# Emote binding
+
+emote-menu-bound = Bound {$emote} to a quick action
+emote-menu-already-bound = Unbound {$emote} from quick actions

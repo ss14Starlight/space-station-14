@@ -1,0 +1,8 @@
+# Template for runtime-defined emote quick-bind actions - DO NOT USE MANUALLY!
+- type: entity
+  parent: BaseAction
+  id: ActionEmoteBindBase
+  components:
+  - type: Action
+  - type: InstantAction
+    event: null
