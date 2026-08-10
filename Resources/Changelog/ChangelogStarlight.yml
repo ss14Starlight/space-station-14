@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Supermatter interactions for funky/starlight gases(enum).
-    type: Add
-  id: 406992
-  time: '2026-07-26T15:26:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5199
-- author: SirLutz
-  changes:
   - message: Modifiers in old calculations.
     type: Add
   id: 406993
@@ -2799,4 +2792,11 @@ Entries:
   id: 407391
   time: '2026-08-10T13:27:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5453
+- author: Swonki
+  changes:
+  - message: Ninja Extraction! Ninjas are no longer expected to work a full shift to try to call the evac shuttle, instead they now use a station escape pod to leave.
+    type: Add
+  id: 407392
+  time: '2026-08-10T13:27:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5149
 Order: -1
