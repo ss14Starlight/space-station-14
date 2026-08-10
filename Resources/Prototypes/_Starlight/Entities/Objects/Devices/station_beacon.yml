@@ -177,7 +177,7 @@
 - type: entity
   parent: DefaultStationBeaconService
   id: DefaultStationBeaconRadioHost
-  suffix: Service Radio Host
+  suffix: Radio Studio
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-radio-host
