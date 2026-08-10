@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Intercom assemblies are no longer Invincible.
-    type: Fix
-  id: 407013
-  time: '2026-07-27T07:45:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5351
 - author: Orhu
   changes:
   - message: (Kiloton) Added Stir Stir to Genpop.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407412
   time: '2026-08-10T14:38:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5460
+- author: BeptolCorp
+  changes:
+  - message: Added the track Null Scar Gaze by Beptol Corporation Acoustics to the game lobby.
+    type: Add
+  id: 407413
+  time: '2026-08-10T14:38:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5507
 Order: -1
