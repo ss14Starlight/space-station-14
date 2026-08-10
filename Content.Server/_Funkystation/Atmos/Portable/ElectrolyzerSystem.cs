@@ -250,7 +250,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
     private void OnInteractUsingFuel(EntityUid uid, ElectrolyzerComponent comp, InteractUsingEvent args)
     {
-        if (comp.passive == false) ///Starlight: Don't put fuel inside passive electrolyzers
+        if (comp.Passive == false) ///Starlight: Don't put fuel inside passive electrolyzers
         {
             if (args.Handled || args.Target != uid)
                 return;
@@ -279,35 +279,35 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
                 return;
             }
 
-        bool existingIsPlasma = _tagSystem.HasTag(existingItem.Value, PlasmaTag);
+                bool existingIsPlasma = _tagSystem.HasTag(existingItem.Value, PlasmaTag);
 
-            // Same type: merge
-            if ((heldIsPlasma && existingIsPlasma)) ///Starlight: Uranium no longer a valid solid fuel.
-            {
-                if (!TryComp<StackComponent>(heldItem, out var heldStack) ||
-                    !TryComp<StackComponent>(existingItem.Value, out var existingStack))
+                // Same type: merge
+                if ((heldIsPlasma && existingIsPlasma)) ///Starlight: Uranium no longer a valid solid fuel.
                 {
-                    _popup.PopupEntity(Loc.GetString("electrolyzer-cannot-merge-invalid-stack"), uid, args.User); // Should never happen
+                    if (!TryComp<StackComponent>(heldItem, out var heldStack) ||
+                        !TryComp<StackComponent>(existingItem.Value, out var existingStack))
+                    {
+                        _popup.PopupEntity(Loc.GetString("electrolyzer-cannot-merge-invalid-stack"), uid, args.User); // Should never happen
+                        return;
+                    }
+
+                    int maxStack = _stackSystem.GetMaxCount(existingStack);
+                    int total = existingStack.Count + heldStack.Count;
+
+                    if (total > maxStack)
+                    {
+                        int toAdd = maxStack - existingStack.Count;
+                        _stackSystem.SetCount((existingItem.Value, existingStack), maxStack);
+                        _stackSystem.SetCount((heldItem, heldStack), heldStack.Count - toAdd);
+                    }
+                    else
+                    {
+                        _stackSystem.SetCount((existingItem.Value, existingStack), total);
+                        EntityManager.QueueDeleteEntity(heldItem);
+                    }
+
                     return;
                 }
-
-                int maxStack = _stackSystem.GetMaxCount(existingStack);
-                int total = existingStack.Count + heldStack.Count;
-
-                if (total > maxStack)
-                {
-                    int toAdd = maxStack - existingStack.Count;
-                    _stackSystem.SetCount((existingItem.Value, existingStack), maxStack);
-                    _stackSystem.SetCount((heldItem, heldStack), heldStack.Count - toAdd);
-                }
-                else
-                {
-                    _stackSystem.SetCount((existingItem.Value, existingStack), total);
-                    EntityManager.QueueDeleteEntity(heldItem);
-                }
-
-                return;
-            }
         }
     }
 
@@ -335,8 +335,11 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             {
                 _audio.PlayPvs(comp.OnSound, uid, AudioParams.Default.WithVolume(-4f));
             }
-        }
+
             UpdateAppearance(uid);
+
+        }
+    }
 
             private void OnAnchorChanged(EntityUid uid, ElectrolyzerComponent comp, ref AnchorStateChangedEvent args)
             {
@@ -347,5 +350,4 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
                     _popup.PopupEntity(Loc.GetString("electrolyzer-turned-off"), uid);
                 }
             }
-    }
 }
