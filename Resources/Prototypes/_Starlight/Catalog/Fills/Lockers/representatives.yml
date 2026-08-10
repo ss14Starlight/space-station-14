@@ -22,7 +22,6 @@
         - id: BoxFolderClipboardFilled
         - id: PrinterDocFlatpack
         - id: FaxMachineFlatpack
-        - id: PlushieEmmie
         - id: ClothingOuterHardsuitNtrep
         - id: BriefcaseSecure
         - !type:NestedSelector

@@ -1,0 +1,7 @@
+- type: entity
+  id: QuantityDespawnScent
+  name: scent despawn category
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: QuantityDespawnCategory
+    maxEntities: 5000

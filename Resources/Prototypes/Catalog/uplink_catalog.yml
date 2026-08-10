@@ -118,6 +118,13 @@
   productEntity: ClothingHandsKnuckleDustersSyndicate
   cost:
     Telecrystal: 1 # Starlight-edit: 6 -> 1
+  # Starlight Start: Discount isnt needed cause its 1 TC
+  # discountCategory: veryRareDiscounts
+  # discountDownTo:
+  #   Telecrystal: 2
+  # cost:
+  #   Telecrystal: 4
+  # Starlight End
   categories:
   - UplinkWeaponry
 
@@ -275,6 +282,11 @@
     Telecrystal: 16 # Starlight-edit: 18 -> 16
   categories:
   - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkGrenadeLauncher
@@ -286,6 +298,11 @@
     Telecrystal: 20
   categories:
   - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkGrenadeLauncherBundle
@@ -300,6 +317,11 @@
     Telecrystal: 26 # Starlight-edit: 30 -> 26
   categories:
   - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkL6SawBundle
@@ -329,6 +351,11 @@
     Telecrystal: 4
   categories:
   - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkSmokeGrenade
@@ -1631,9 +1658,9 @@
 #  id: UplinkChameleon
 #  name: uplink-chameleon-name
 #  description: uplink-chameleon-desc
-#  productEntity: ClothingBackpackChameleonFill
-#  icon: { sprite: /Textures/Clothing/Uniforms/Jumpsuit/rainbow.rsi, state: icon }
-#  discountCategory: usualDiscounts
+#  productEntity: ClothingBackpackChameleonFillAgent
+#   icon: { sprite: /Textures/Clothing/Uniforms/Jumpsuit/rainbow.rsi, state: icon }
+#   discountCategory: usualDiscounts
 #  discountDownTo:
 #    Telecrystal: 2
 #  cost:
@@ -1809,6 +1836,16 @@
       whitelist:
         tags:
           - NukeOpsUplink
+
+- type: listing
+  id: UplinkClothingConductingGloves
+  name: uplink-clothing-conducting-gloves-name
+  description: uplink-clothing-conducting-gloves-desc
+  productEntity: ClothingHandsGlovesConducting
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
 
 - type: listing
   id: UplinkBackpackSyndicate
