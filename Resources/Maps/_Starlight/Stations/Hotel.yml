@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/09/2026 19:02:29
-  entityCount: 22523
+  time: 08/10/2026 13:02:00
+  entityCount: 22524
 maps:
 - 1
 grids:
@@ -7936,7 +7936,7 @@ entities:
       pos: 8.5,6.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -259419.55
+      secondsUntilStateChange: -259537.7
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9489,13 +9489,6 @@ entities:
     - type: Transform
       pos: 23.5,-36.5
       parent: 2
-- proto: AirlockJournalismLocked
-  entities:
-  - uid: 6404
-    components:
-    - type: Transform
-      pos: 13.5,20.5
-      parent: 2
 - proto: AirlockKitchenLocked
   entities:
   - uid: 390
@@ -9604,6 +9597,13 @@ entities:
     - type: Transform
       pos: 46.5,-6.5
       parent: 2
+- proto: AirlockMaintJournalismLocked
+  entities:
+  - uid: 6404
+    components:
+    - type: Transform
+      pos: 13.5,20.5
+      parent: 2
 - proto: AirlockMaintLocked
   entities:
   - uid: 406
@@ -9642,7 +9642,7 @@ entities:
       pos: 2.5,-7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -221543.61
+      secondsUntilStateChange: -221661.77
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9808,7 +9808,7 @@ entities:
       pos: -38.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -273595.03
+      secondsUntilStateChange: -273713.2
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9824,7 +9824,7 @@ entities:
       pos: -36.5,-10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -273494.1
+      secondsUntilStateChange: -273612.25
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14701,6 +14701,18 @@ entities:
     - type: Transform
       pos: 38.5,-6.5
       parent: 2
+  - uid: 22524
+    components:
+    - type: Transform
+      pos: -17.5,14.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
 - proto: BiomassReclaimer
   entities:
   - uid: 1113
@@ -120807,7 +120819,7 @@ entities:
   - uid: 18384
     components:
     - type: Transform
-      pos: -17.5,14.5
+      pos: -18.5,12.5
       parent: 2
 - proto: SpawnMobMcGriff
   entities:
