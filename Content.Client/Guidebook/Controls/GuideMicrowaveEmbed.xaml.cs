@@ -50,12 +50,6 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
         GenerateControl(recipe);
     }
 
-    // starlight start
-    public GuideMicrowaveEmbed(ReactionPrototype reaction) : this()
-    {
-        GenerateControl(reaction);
-    }
-    // starlight end
     public bool CheckMatchesSearch(string query)
     {
         return this.ChildrenContainText(query);
@@ -206,7 +200,12 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
         GenerateDeviceType(recipe);
     }
 
-    // starlight start
+    #region Starlight
+    
+    public GuideMicrowaveEmbed(ReactionPrototype reaction) : this()
+    {
+        GenerateControl(reaction);
+    }
 
     private void GenerateHeader(ReactionPrototype reaction)
     {
@@ -305,7 +304,7 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
         GenerateReactionCookTime();
         GenerateReactionDeviceType();
     }
-    // starlight end
+    #endregion
 }
 
 

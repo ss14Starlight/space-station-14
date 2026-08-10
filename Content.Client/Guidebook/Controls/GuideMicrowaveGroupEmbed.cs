@@ -70,6 +70,6 @@ public sealed partial class GuideMicrowaveGroupEmbed : BoxContainer, IDocumentTa
         {
             AddChild(new GuideMicrowaveEmbed(reaction));
         }
-    }
         // starlight end
+}
 }

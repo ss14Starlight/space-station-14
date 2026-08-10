@@ -1,9 +1,11 @@
 - type: reaction
   id: CreateMothBatter
-  guidebookGroups: # Starlight-edit
+  # Starlight-start
+  guidebookGroups:
     - Dough
     - Moth
     - Cake
+  # Starlight-end
   impact: Low
   quantized: true
   conserveEnergy: false

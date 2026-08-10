@@ -1,7 +1,6 @@
 using Robust.Shared.Serialization;
 
-// ReSharper disable once CheckNamespace
-namespace Content.Shared.Chemistry.Reaction;
+namespace Content.Shared._Starlight.Chemistry.Reaction;
 
 public sealed partial class ReactionPrototype
 {
