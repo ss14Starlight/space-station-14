@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Kiloton) Added Stir Stir to Genpop.
-    type: Add
-  id: 407014
-  time: '2026-07-27T08:21:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5255
-- author: Orhu
-  changes:
   - message: (Kiloton) Added Flippers to Courtroom.
     type: Add
   id: 407015
@@ -2799,4 +2792,11 @@ Entries:
   id: 407413
   time: '2026-08-10T14:38:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5507
+- author: Swonki
+  changes:
+  - message: Exosuit drills blunt damage values reduced.
+    type: Tweak
+  id: 407414
+  time: '2026-08-10T15:07:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5562
 Order: -1
