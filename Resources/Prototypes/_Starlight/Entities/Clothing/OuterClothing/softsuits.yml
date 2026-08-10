@@ -137,3 +137,89 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseMagicalContraband ]
+  id: ClothingOuterSoftsuitWizardFire
+  name: wizard pyromancer robes
+  description: A magical robe made of living fire, conjured only by the most skilled of pyromancers.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Suits/wizardfire.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Suits/wizardfire.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.01
+  - type: StaminaResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.8
+        Piercing: 0.50
+        Heat: 0.1
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetsoftsuitWizardFire
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+  - type: PointLight
+    radius: 4
+    energy: 5
+    color: "#DE3A3A"
+  - type: RestrictByUserTag
+    contains:
+    - Wizard
+    messages:
+    - wizard-item-restricted-1
+    - wizard-item-restricted-2
+    - wizard-item-restricted-3
+    - wizard-item-restricted-4
+
+- type: entity
+  parent: ClothingOuterSoftsuitWizardFire
+  id: ClothingOuterSoftsuitWizardFrost
+  name: wizard cryomancer robes
+  description: A magical robe weaved from the most ancient of ice, befitting the most talented of cryomancers.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Suits/wizardfrost.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Suits/wizardfrost.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.2
+        Piercing: 0.70
+        Heat: 0.6
+        Cold: 0.01
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetsoftsuitWizardFrost
+  - type: PointLight
+    radius: 4
+    energy: 5
+    color: "#2CDDF5"
