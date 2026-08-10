@@ -51,5 +51,4 @@
   roles:
   - SalvageLead
   - SalvageSpecialist
-  editorHidden: true
   primary: false

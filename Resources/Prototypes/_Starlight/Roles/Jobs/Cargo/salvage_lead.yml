@@ -4,6 +4,7 @@
   description: job-description-salvagelead
   rules: job-rules-itg-aligned
   playTimeTracker: JobSalvageLead
+  supervisors: job-supervisors-guild
   requirements:
     - !type:RoleTimeRequirement
       role: JobQuartermaster
@@ -15,6 +16,7 @@
   - Salvage
   - SalvageLead
   - External
+  - Maintenance
   - Shuttle
   special:
   - !type:AddImplantSpecial

@@ -17,6 +17,7 @@
   access:
   - Salvage
   - External
+  - Maintenance
   - Shuttle # Starlight
   special:
   - !type:AddImplantSpecial

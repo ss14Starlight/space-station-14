@@ -7,4 +7,5 @@ job-supervisors-warden = the Warden
 job-supervisors-none = Nobody
 job-supervisors-solgov = Trans-Solar Federation
 job-supervisors-prisoner = the Prison Officers, Deputy Governor, and Governor
-job-supervisors-itg = Salvage Leader
+job-supervisors-itg = The Salvage Leader
+job-supervisors-guild = The Interstellar Trade Guild
