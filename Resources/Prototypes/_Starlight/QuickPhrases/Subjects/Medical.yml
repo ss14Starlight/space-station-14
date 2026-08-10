@@ -14,11 +14,6 @@
   text: reagent-name-bruizine
 
 - type: quickPhrase
-  id: ChemPyrazinePhrase
-  parent: BaseMedicinePhrase
-  text: reagent-name-pyrazine
-
-- type: quickPhrase
   id: ChemInsuzinePhrase
   parent: BaseMedicinePhrase
   text: reagent-name-insuzine
