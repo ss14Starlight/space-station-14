@@ -1,11 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: Form text input will no longer close when clicking away.
-    type: Fix
-  id: 407083
-  time: '2026-07-28T14:26:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5378
 - author: OMEGA
   changes:
   - message: The RCD can now build airlocks and firelocks on top of each other.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407482
   time: '2026-08-10T22:37:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5544
+- author: Conflee, Flareguy
+  changes:
+  - message: Added Newspapers and Magazines, newpropr with worldbuilding and lore for mappers to decorate with. 11 Newspapers, 21 'legit' Magazines, and 14 'disreputable' 'Zines are implemented currently.
+    type: Add
+  id: 407483
+  time: '2026-08-10T23:12:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5538
 Order: -1
