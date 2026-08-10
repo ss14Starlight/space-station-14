@@ -66,4 +66,4 @@ steal-target-groups-secure-documents = classified secure documents
 steal-target-groups-secure-documents-brighteye = Bright-Eyes classified secure documents
 
 # Wizard Duelist
-steal-target-groups-wizard-medallions = Space Wizard Federation medallion
+steal-target-groups-wizard-medallions = Space Wizards Federation medallion
