@@ -868,11 +868,10 @@
     - type: NoseImplant
   - type: SurgeryStepOrganInsert
     slot: nose_implant
-  # TODO: placeholder art, reusing the eye implant sprite until dedicated nose implant art exists.
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
-      - state: eye_implant_welding
+      - state: nose_implant_scent
 
 - type: entity
   parent: SurgeryStepBase

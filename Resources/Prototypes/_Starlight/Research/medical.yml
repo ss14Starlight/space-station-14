@@ -223,9 +223,8 @@
   id: NoseImplantOlfactory
   name: research-technology-olfactory-nose
   icon:
-    # TODO: placeholder art, reusing the eye implant welding sprite until dedicated nose implant art exists.
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
-    state: eye_implant_welding
+    state: nose_implant_scent
   discipline: Biochemical
   tier: 3
   cost: 7680
