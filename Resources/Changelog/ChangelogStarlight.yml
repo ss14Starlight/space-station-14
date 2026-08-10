@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Cluster) Fixed disposals piping that caused looping.
-    type: Fix
-  id: 407033
-  time: '2026-07-27T08:22:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5270
-- author: Orhu
-  changes:
   - message: (Fland) Added Stir Stir to Genpop.
     type: Add
   id: 407034
@@ -2799,4 +2792,11 @@ Entries:
   id: 407432
   time: '2026-08-10T20:15:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5590
+- author: Conflee
+  changes:
+  - message: Added 7 new 'Retro' Counters. Constructable by players and usable by mappers. Diner, Kitchen, Steel and Wood, Wood, Steel, Orange and White, and Teal and White.
+    type: Add
+  id: 407433
+  time: '2026-08-10T20:43:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5577
 Order: -1
