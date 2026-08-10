@@ -506,8 +506,8 @@ public sealed class ScentSystem : SharedScentSystem
     private bool IsCloaked(EntityUid uid)
     {
         return TryComp<StealthComponent>(uid, out var stealth) &&
-               stealth.Enabled &&
-               _stealth.GetVisibility(uid, stealth) <= stealth.ExamineThreshold;
+                stealth.Enabled &&
+                _stealth.GetVisibility(uid, stealth) <= stealth.ExamineThreshold;
     }
 
     // Suppressed everywhere in the gas pipe network except at a terminus (vent/scrubber), where
