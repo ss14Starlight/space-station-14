@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Modifiers in old calculations.
-    type: Add
-  id: 406993
-  time: '2026-07-26T15:26:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5199
-- author: SirLutz
-  changes:
   - message: New variables for calculations.
     type: Add
   id: 406994
@@ -2799,4 +2792,11 @@ Entries:
   id: 407392
   time: '2026-08-10T13:27:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5149
+- author: Drakobird, Conf
+  changes:
+  - message: A chilling new ability for the revenant.
+    type: Add
+  id: 407393
+  time: '2026-08-10T13:27:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5336
 Order: -1
