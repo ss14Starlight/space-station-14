@@ -29,7 +29,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using SpawnPointComponent = Content.Server.Spawners.Components.SpawnPointComponent;
 
 namespace Content.IntegrationTests.Tests
 {
