@@ -64,6 +64,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Radio.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared._Starlight.Shadekin.Components;
+using Prometheus;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -131,6 +132,9 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     /// Mind role to add to cultists.
     /// </summary>
     public static readonly EntProtoId MindRole = "MindRoleCosmicCult";
+
+    private static readonly Counter _cultistCounter = Metrics.CreateCounter("cultist_counter",
+        "Keeps a track of the amount of times cultist win or loose", ["results"]);
 
     public override void Initialize()
     {
@@ -444,6 +448,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
         if (type is WinType.CultComplete or WinType.CrewComplete) //Let's lock in our WinType to prevent us from setting a worse win if a better win's been achieved.
             ent.Comp.WinLocked = true;
+
+        _cultistCounter.WithLabels(type.ToString()).Inc();
     }
 
     private void OnRunLevelChanged(GameRunLevelChangedEvent ev)
@@ -552,6 +558,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         GameRuleComponent gameRule,
         ref RoundEndTextAppendEvent args)
     {
+
         var ftlKey = component.WinType.ToString().ToLower();
         var winType = Loc.GetString($"cosmiccult-roundend-{ftlKey}");
         var summaryText = Loc.GetString($"cosmiccult-summary-{ftlKey}");
