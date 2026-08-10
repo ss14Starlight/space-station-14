@@ -26,10 +26,8 @@
     rootTask:
       task: SimpleHostileCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
-      NavSmash: !type:Bool
-        true
+      NavClimb: !type:Bool "true"
+      NavSmash: !type:Bool "true"
   - type: CosmicCultFaction
   - type: CosmicMinion
   - type: NpcFactionMember
@@ -61,22 +59,23 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
+  - type: CosmicRiftHealth
+    healthPerCorpse: 5
   - type: Destructible
     thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 70
-        behaviors:
-          - !type:SpawnEntitiesBehavior
-            spawn:
-              CosmicLapseAbilityVFX:
-                min: 1
-                max: 1
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-          - !type:PlaySoundBehavior
-            sound:
-              path: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
+    - trigger: !type:DamageTrigger
+        damage: 70
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CosmicLapseAbilityVFX:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -86,12 +85,10 @@
     bleedReductionAmount: 0.1
     bloodlossDamage:
       types:
-        Bloodloss:
-          0
+        Bloodloss: 0
     bloodlossHealDamage:
       types:
-        Bloodloss:
-          0
+        Bloodloss: 0
   - type: CombatMode
   - type: TypingIndicator
     proto: CosmicTyping
@@ -105,16 +102,16 @@
   - type: GhostTakeoverAvailable
   - type: LightBehaviour
     behaviours:
-     - !type:FadeBehaviour
-       interpolate: Linear
-       minDuration: 5.5
-       maxDuration: 5.5
-       startValue: 0.5
-       endValue: 2
-       property: Energy
-       enabled: true
-       isLooped: true
-       reverseWhenFinished: true
+    - !type:FadeBehaviour
+      interpolate: Linear
+      minDuration: 5.5
+      maxDuration: 5.5
+      startValue: 0.5
+      endValue: 2
+      property: Energy
+      enabled: true
+      isLooped: true
+      reverseWhenFinished: true
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicCustodian ]
@@ -164,6 +161,8 @@
     rules: ghost-role-information-cosmic-oracle-rules
     mindRoles:
     - MindRoleCosmicMinion
+  - type: ThermalVision
+    active: false
   - type: MeleeWeapon
     altDisarm: false
     animation: WeaponArcCosmic
@@ -200,10 +199,8 @@
     rootTask:
       task: SimpleRangedHostileCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
-      NavSmash: !type:Bool
-        true
+      NavClimb: !type:Bool "true"
+      NavSmash: !type:Bool "true"
   - type: Gun
     projectileSpeed: 12
     soundGunshot: /Audio/_Starlight/CosmicCult/projectile_razor.ogg

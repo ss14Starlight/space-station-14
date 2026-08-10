@@ -88,6 +88,18 @@ public sealed partial class CosmicIngressSystem : EntitySystem
         var comp = ent.Comp;
         var coordinates = Transform(target).Coordinates;
 
+        // Empower a malign rift instead of prying open a door.
+        if (TryComp<CosmicMalignRiftComponent>(target, out _))
+        {
+            _audio.PlayPvs(comp.IngressSfx, ent);
+            Spawn(comp.CultVfx, coordinates);
+
+            QueueDel(target);
+            Spawn("CosmicMalignEmpoweredRift", coordinates);
+
+            return;
+        }
+
         _audio.PlayPvs(comp.IngressSfx, ent);
         Spawn(comp.CultVfx, coordinates);
         foreach (var entity in _lookup.GetEntitiesIntersecting(coordinates))

@@ -247,6 +247,7 @@
     whitelist:
       components:
         - Door
+        - CosmicMalignRift
 
 - type: entity
   id: ActionCosmicColossusHibernate
