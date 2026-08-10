@@ -1,11 +1,4 @@
 Entries:
-- author: Arkanic
-  changes:
-  - message: Fixed criminal, terminator, etc railroading cards not appearing.
-    type: Fix
-  id: 406991
-  time: '2026-07-26T15:10:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5305
 - author: SirLutz
   changes:
   - message: Supermatter interactions for funky/starlight gases(enum).
@@ -2799,4 +2792,11 @@ Entries:
   id: 407390
   time: '2026-08-10T12:50:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5408
+- author: Ohelig
+  changes:
+  - message: Added a random, vulpkanin-specific event.
+    type: Add
+  id: 407391
+  time: '2026-08-10T13:27:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5453
 Order: -1
