@@ -267,18 +267,18 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-- type: listing
-  id: SpellbookStaffAnimation
-  name: spellbook-staff-animation-name
-  description: spellbook-staff-animation-description
-  productEntity: AnimationStaff
-  cost:
-    WizCoin: 3
-  categories:
-  - SpellbookEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
+#- type: listing # Starlight start, this staff is only used to be a massive annoyance, and can remove steal targets. All in all, it's just not a good item to let people use.
+#  id: SpellbookStaffAnimation
+#  name: spellbook-staff-animation-name
+#  description: spellbook-staff-animation-description
+#  productEntity: AnimationStaff
+#  cost:
+#    WizCoin: 3
+#  categories:
+#  - SpellbookEquipment
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1 # Starlight end
 
 # Event
 - type: listing
