@@ -303,5 +303,3 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
     }
     #endregion
 }
-
-

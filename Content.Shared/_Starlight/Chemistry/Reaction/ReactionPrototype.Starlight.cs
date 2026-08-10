@@ -5,10 +5,10 @@ namespace Content.Shared.Chemistry.Reaction;
 
 public sealed partial class ReactionPrototype
 {
-    [DataField("guidebookGroup")]
+    [DataField]
     public string? GuidebookGroup;
 
-    [DataField("guidebookGroups")]
+    [DataField]
     public List<string> GuidebookGroups = [];
 
     public bool InGuidebookGroup(string group)
