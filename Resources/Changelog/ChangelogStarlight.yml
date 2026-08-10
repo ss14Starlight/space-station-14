@@ -1,27 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Ming) Added ice cream machine to kitchen and ice cream stand.
-    type: Add
-  id: 406983
-  time: '2026-07-26T14:38:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5248
-- author: Orhu
-  changes:
-  - message: (Ming) Added ticket machine to HOP.
-    type: Add
-  id: 406984
-  time: '2026-07-26T14:38:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5248
-- author: Orhu
-  changes:
-  - message: (Ming) Added coroner, surgeon, virologist, and roboticist lockers to appropriate locations.
-    type: Add
-  id: 406985
-  time: '2026-07-26T14:38:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5248
-- author: Orhu
-  changes:
   - message: (Ming) Placed a station beacon in Washroom.
     type: Tweak
   id: 406986
@@ -2799,4 +2778,25 @@ Entries:
   id: 407382
   time: '2026-08-10T00:53:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5405
+- author: Caws
+  changes:
+  - message: Organized the shuttle files for both mapper and admin convenience.
+    type: Tweak
+  id: 407383
+  time: '2026-08-10T12:21:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5379
+- author: Caws
+  changes:
+  - message: Xenoborgs now use the custom Starlight Mothership once again.
+    type: Fix
+  id: 407384
+  time: '2026-08-10T12:21:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5379
+- author: Caws
+  changes:
+  - message: Removed a bunch of old/unused shuttle files.
+    type: Remove
+  id: 407385
+  time: '2026-08-10T12:21:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5379
 Order: -1
