@@ -1,18 +1,4 @@
 Entries:
-- author: Orhu
-  changes:
-  - message: (Hotel) Placed a defib in Brigmed.
-    type: Fix
-  id: 407011
-  time: '2026-07-27T07:45:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5271
-- author: Caws
-  changes:
-  - message: Intercom construction on walls works again (you don't need to tear down the wall to build an intercom anymore), Engineers rejoice.
-    type: Fix
-  id: 407012
-  time: '2026-07-27T07:45:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5351
 - author: Caws
   changes:
   - message: Intercom assemblies are no longer Invincible.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407410
   time: '2026-08-10T14:38:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5564
+- author: Mack
+  changes:
+  - message: The plumbing filter can now take up to 10 reagents.
+    type: Tweak
+  id: 407411
+  time: '2026-08-10T14:38:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5460
+- author: Mack
+  changes:
+  - message: Inline plumbing filter.
+    type: Add
+  id: 407412
+  time: '2026-08-10T14:38:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5460
 Order: -1
