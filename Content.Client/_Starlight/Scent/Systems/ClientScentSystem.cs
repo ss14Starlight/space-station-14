@@ -11,10 +11,10 @@ namespace Content.Client._Starlight.Scent.Systems;
 /// Also handles adding/removing ScentPerceptionOverlay for the local Smeller, so
 /// SharedScentSystem's handlers actually run on the client too.
 /// </summary>
-public sealed class ClientScentSystem : SharedScentSystem
+public sealed partial class ClientScentSystem : SharedScentSystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
 
     private ScentPerceptionOverlay _overlay = default!;
 
