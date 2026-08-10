@@ -13,7 +13,7 @@ namespace Content.Shared._Starlight.Scent.Systems;
 /// <summary>
 /// See ClientScentSystem for the concrete client-side subclass.
 /// </summary>
-public abstract class SharedScentSystem : EntitySystem
+public abstract partial class SharedScentSystem : EntitySystem
 {
     [Dependency] protected SharedActionsSystem Actions = default!;
     [Dependency] protected SharedAudioSystem Audio = default!;
@@ -46,9 +46,7 @@ public abstract class SharedScentSystem : EntitySystem
     /// <param name="component">The newly added SmellerComponent.</param>
     /// <param name="args">Component initialization event args.</param>
     protected virtual void OnSmellerInit(EntityUid uid, SmellerComponent component, ComponentInit args)
-    {
-        Actions.AddAction(uid, ref component.ToggleActionEntity, component.ToggleAction);
-    }
+        => Actions.AddAction(uid, ref component.ToggleActionEntity, component.ToggleAction);
 
     /// <summary>
     /// virtual so ClientScentSystem can override instead of subscribing to ComponentShutdown again.

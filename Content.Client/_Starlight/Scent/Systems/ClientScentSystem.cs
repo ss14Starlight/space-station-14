@@ -71,7 +71,5 @@ public sealed partial class ClientScentSystem : SharedScentSystem
     }
 
     private void OnPlayerDetached(EntityUid uid, SmellerComponent component, LocalPlayerDetachedEvent args)
-    {
-        _overlayMan.RemoveOverlay(_overlay);
-    }
+        => _overlayMan.RemoveOverlay(_overlay);
 }
