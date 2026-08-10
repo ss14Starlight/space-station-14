@@ -83,7 +83,6 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeySalvage # Starlight
 #      - EncryptionKeyCargo # Starlight
       - EncryptionKeyCommand
       - EncryptionKeyCommon

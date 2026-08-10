@@ -16,9 +16,7 @@
     - id: PlushieLance # Starlight start
     - id: RadioHandheldExpedition
     - id: ClothingOuterHardsuitLuxmax
-    - id: SalvageShuttleConsoleCircuitboard
     - id: MiningShuttleConsoleCircuitboard
-    - id: EncryptionKeySalvage
     - id: CargoTechFabFlatpack
     - id: PrintedDocumentGreenshiftAlert
       conditions:
@@ -92,7 +90,6 @@
     - id: WeaponDisabler
     - id: ClothingEyesGlassesCommand
     - id: ClothingEyesHudCommand
-    - id: EncryptionKeyExpedition #starlight
     - id: SpyglassCaptain #Starlight
     - id: CommunicationTablet #Starlight
     - id: CommandTechFabFlatpack # Starlight
