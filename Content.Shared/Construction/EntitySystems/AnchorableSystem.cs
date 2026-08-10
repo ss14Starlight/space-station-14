@@ -158,7 +158,7 @@ public sealed partial class AnchorableSystem : EntitySystem
         // TODO: Anchoring snaps rn anyway!
         if (component.Snap)
         {
-            var coordinates = xform.Coordinates.SnapToGrid(EntityManager, _map);
+            var coordinates = xform.Coordinates.SnapToGrid(EntityManager);
 
             if (AnyUnstackable(uid, coordinates))
             {

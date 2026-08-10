@@ -405,7 +405,7 @@ public abstract partial class SharedMagicSystem : EntitySystem
         if (!_net.IsServer)
             return;
 
-        var ent = Spawn(proto, position.SnapToGrid(EntityManager, _mapSystem));
+        var ent = Spawn(proto, position.SnapToGrid(EntityManager));
 
         if (lifetime != null)
         {
