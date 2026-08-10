@@ -83,7 +83,7 @@ public sealed partial class OrganSystem : EntitySystem
             // Fresh instance per install; reusing the same object after a prior removal fails
             // AddComponent's PreAdd check.
             var fresh = _serialization.CreateCopy(comp.Component, notNullableOverride: true);
-            EntityManager.AddComponent(args.Body, fresh);
+            AddComp(args.Body, fresh);
             UpdateEntity(args.Body, fresh, ent.Owner);
             _surgery.AddInstalledComponent(ent.Owner, type);
         }
@@ -97,7 +97,7 @@ public sealed partial class OrganSystem : EntitySystem
                 continue;
 
             var installed = EntityManager.GetComponent(args.Body, type);
-            EntityManager.RemoveComponent(args.Body, installed);
+            RemComp(args.Body, installed);
             UpdateEntity(args.Body, installed, ent.Owner);
         }
 
@@ -113,8 +113,8 @@ public sealed partial class OrganSystem : EntitySystem
                 _language.UpdateEntityLanguages(ent);
                 break;
             case EncryptionKeyHolderComponent encrypt: //Move encryption keys between implant and body
-                if(implant != null)
-                    if(TryComp(implant, out EncryptionKeyHolderComponent? implantKeyHolder))
+                if (implant != null)
+                    if (TryComp(implant, out EncryptionKeyHolderComponent? implantKeyHolder))
                         if (TryComp(ent, out EncryptionKeyHolderComponent? bodyKeyHolder))
                             foreach (var key in implantKeyHolder.KeyContainer.ContainedEntities.ToList())
                                 _container.Insert(key, bodyKeyHolder.KeyContainer);
@@ -129,18 +129,18 @@ public sealed partial class OrganSystem : EntitySystem
 
     private void OnTaggedOrganImplanted(Entity<TaggedOrganComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {
-        if(ent.Comp.AddTags.Count > 0)
+        if (ent.Comp.AddTags.Count > 0)
             _tag.AddTags(args.Body, ent.Comp.AddTags);
-        if(ent.Comp.RemoveTags.Count > 0)
+        if (ent.Comp.RemoveTags.Count > 0)
             _tag.RemoveTags(args.Body, ent.Comp.RemoveTags);
         UpdateEntity(args.Body, ent.Comp);
     }
 
     private void OnTaggedOrganExtracted(Entity<TaggedOrganComponent> ent, ref SurgeryOrganExtracted args)
     {
-        if(ent.Comp.AddTags.Count > 0)
+        if (ent.Comp.AddTags.Count > 0)
             _tag.RemoveTags(args.Body, ent.Comp.AddTags);
-        if(ent.Comp.RemoveTags.Count > 0)
+        if (ent.Comp.RemoveTags.Count > 0)
             _tag.AddTags(args.Body, ent.Comp.RemoveTags);
         UpdateEntity(args.Body, ent.Comp);
     }
@@ -277,13 +277,13 @@ public sealed partial class OrganSystem : EntitySystem
 
         _humanoidAppearanceSystem.SetLayersVisibility(args.Body, [ent.Comp.Layer], true);
         _humanoidAppearanceSystem.SetBaseLayerId(args.Body, ent.Comp.Layer,
-        TryComp(args.Body, out HumanoidAppearanceComponent? humanoid) && ent.Comp.Prototypes.TryGetValue(humanoid.Species, out var layer)? layer :
-        ent.Comp.Prototypes.TryGetValue("Default", out var defaultLayer)? defaultLayer : null);
+        TryComp(args.Body, out HumanoidAppearanceComponent? humanoid) && ent.Comp.Prototypes.TryGetValue(humanoid.Species, out var layer) ? layer :
+        ent.Comp.Prototypes.TryGetValue("Default", out var defaultLayer) ? defaultLayer : null);
     }
 
     private void OnCyberneticsDisrupted(Entity<FunctionalOrganComponent> ent, ref CyberneticDisruptionEvent args)
     {
-        if(!ent.Comp.IsCybernetic)
+        if (!ent.Comp.IsCybernetic)
             return;
 
         if (TryComp(args.Target, out CyberneticDisruptionComponent? _))
