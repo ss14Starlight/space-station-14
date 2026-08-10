@@ -409,7 +409,6 @@
           min: 1
         reagent: HeartbreakerToxin
         amount: -3
-      # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
