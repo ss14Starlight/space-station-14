@@ -72,7 +72,7 @@
   components:
     - type: Inventory
       speciesId: avali
-      templateId: protogen
+      templateId: neocyte
       femaleDisplacements: #Yes I know this is stupid.
         jumpsuit:
           sizeMaps:
