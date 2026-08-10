@@ -41,7 +41,7 @@ jobs:
       - name: Checkout Master
         uses: actions/checkout@v7
         with:
-          fetch-depth: ${{ github.event_name == 'pull_request' && 0 || 1 }}
+          fetch-depth: ${{ github.event_name == 'pull_request' && '0' || '1' }}
 
       - name: Setup Submodule
         run: |
@@ -317,7 +317,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
-          fetch-depth: ${{ github.event_name == 'pull_request' && 0 || 1 }}
+          fetch-depth: ${{ github.event_name == 'pull_request' && '0' || '1' }}
 
       - name: Setup Submodule
         run: |
