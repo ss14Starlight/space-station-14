@@ -63,13 +63,8 @@ namespace Content.YAMLLinter
         {
             var path = file.Replace('\\', '/').TrimStart('/');
 
-            if (path.StartsWith("RobustToolbox/", StringComparison.Ordinal)
-                || path.StartsWith("Resources/", StringComparison.Ordinal))
-            {
-                return path;
-            }
-
-            return path.StartsWith("EnginePrototypes/", StringComparison.Ordinal) ? $"RobustToolbox/Resources/{path}" : $"Resources/{path}";
+            return path.StartsWith("RobustToolbox/", StringComparison.Ordinal) || path.StartsWith("Resources/", StringComparison.Ordinal) ? path : 
+                path.StartsWith("EnginePrototypes/", StringComparison.Ordinal) ? $"RobustToolbox/Resources/{path}" : $"Resources/{path}";
 
             // Starlight End
         }
