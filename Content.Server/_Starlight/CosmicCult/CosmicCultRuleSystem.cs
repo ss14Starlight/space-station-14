@@ -136,9 +136,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     private static readonly Counter _cultistCounter = Metrics.CreateCounter("cultist_counter",
         "Keeps a track of the amount of times cultist win or loose", ["results"]);
 
-    private static readonly Counter _convertsCounter = Metrics.CreateCounter("cultist_converts",
-        "Keeps track of the amount of players converted this round",
-        new CounterConfiguration { LabelNames = new[] { "round_id" } });
+    private static readonly Gauge _convertsGauage = Metrics.CreateGauge("cultist_converts",
+        "Keeps track of the amount of players converted this round");
 
     public override void Initialize()
     {
@@ -452,10 +451,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
         if (type is WinType.CultComplete or WinType.CrewComplete) //Let's lock in our WinType to prevent us from setting a worse win if a better win's been achieved.
             ent.Comp.WinLocked = true;
-
-        _cultistCounter.WithLabels(type.ToString()).Inc();
-        var ticker = IoCManager.Resolve<GameTicker>();
-        _convertsCounter.WithLabels(ticker.RoundId.ToString()).Inc(ent.Comp.TotalCult);
     }
 
     private void OnRunLevelChanged(GameRunLevelChangedEvent ev)
@@ -574,6 +569,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         args.AddLine(Loc.GetString("cosmiccult-roundend-cultpop-count", ("count", component.PercentConverted)));
         args.AddLine(Loc.GetString("cosmiccult-roundend-entropy-count", ("count", component.EntropySiphoned)));
         args.AddLine(Loc.GetString("cosmiccult-roundend-monument-stage", ("stage", component.CurrentTier)));
+
+        _cultistCounter.WithLabels(component.WinType.ToString()).Inc();
     }
 
     public void IncrementCultObjectiveEntropy(Entity<CosmicCultComponent> ent)
@@ -591,6 +588,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     public void AdjustCultObjectiveConversion(int value)
     {
+        _convertsGauage.Inc(value); // I know, I know using an Inc function with potential negative values is bad. Blame Prometheus for not having an .Adjust function...
         var query = EntityQueryEnumerator<CosmicConversionConditionComponent>();
         while (query.MoveNext(out _, out var conversionComp))
         {
