@@ -1,67 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Cluster) Removed firelocks on top of turnstiles in Security.
-    type: Remove
-  id: 407073
-  time: '2026-07-28T08:04:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5353
-- author: Caws
-  changes:
-  - message: Added Weather Markers, a simple system for roundstart weather on maps.
-    type: Add
-  id: 407074
-  time: '2026-07-28T08:42:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5283
-- author: VBlankFF
-  changes:
-  - message: Parasitic anomalies given by artifacts no longer fail to give the pulse action if the character had been given a parasitic anomaly earlier in the round.
-    type: Fix
-  id: 407075
-  time: '2026-07-28T09:06:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5369
-- author: STARLIGHT TEAM
-  changes:
-  - message: Metal hydrogen formation chance doubled.
-    type: Tweak
-  id: 407076
-  time: '2026-07-28T09:24:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5359
-- author: OMEGA
-  changes:
-  - message: Post lights can now be deconstructed with the RCD.
-    type: Tweak
-  id: 407077
-  time: '2026-07-28T09:56:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5374
-- author: redmushie
-  changes:
-  - message: RPDs and RPLDs now actually respect the layer you clicked on.
-    type: Fix
-  id: 407078
-  time: '2026-07-28T11:04:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5347
-- author: neomoth
-  changes:
-  - message: Fix chat prefixes showing up in some message types.
-    type: Fix
-  id: 407079
-  time: '2026-07-28T12:45:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5364
-- author: neomoth
-  changes:
-  - message: Fix language prefix not being parsed out of the message when tabbed into the radio chat.
-    type: Fix
-  id: 407080
-  time: '2026-07-28T12:45:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5364
-- author: neomoth
-  changes:
-  - message: Fix TTS vocalizing language prefixes.
-    type: Fix
-  id: 407081
-  time: '2026-07-28T12:45:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5364
 - author: redmushie
   changes:
   - message: RCD now spawns the correct post light variant.
@@ -2799,4 +2736,67 @@ Entries:
   id: 407472
   time: '2026-08-10T21:36:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5457
+- author: Huaqas
+  changes:
+  - message: Radio Hosts will now spawn with their PDAs.
+    type: Fix
+  id: 407473
+  time: '2026-08-10T22:37:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5554
+- author: Huaqas
+  changes:
+  - message: Radio Hosts can no longer spawn with no jumpsuit.
+    type: Fix
+  id: 407474
+  time: '2026-08-10T22:37:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5554
+- author: Huaqas
+  changes:
+  - message: Station Radios should be easier to hear and will whisper when set to Low Volume mode.
+    type: Fix
+  id: 407475
+  time: '2026-08-10T22:37:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5554
+- author: Huaqas
+  changes:
+  - message: Ghosts will no longer get spammed with messages from every station radio.
+    type: Fix
+  id: 407476
+  time: '2026-08-10T22:37:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5554
+- author: Huaqas
+  changes:
+  - message: Radio Hosts now have Service access.
+    type: Add
+  id: 407477
+  time: '2026-08-10T22:37:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5554
+- author: Huaqas
+  changes:
+  - message: BSO, NTR and the Reporter now have Journalism access. Service Workers will receive Journalism access with their extended access.
+    type: Add
+  id: 407478
+  time: '2026-08-10T22:37:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5554
+- author: Huaqas
+  changes:
+  - message: You can now examine a Vinyl Player to tell you what is currently inserted.
+    type: Add
+  id: 407479
+  time: '2026-08-10T22:37:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5554
+- author: Huaqas
+  changes:
+  - message: You can now examine a Station Radio to tell what volume it is playing at.
+    type: Add
+  id: 407480
+  time: '2026-08-10T22:37:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5554
+- author: Huaqas
+  changes:
+  - message: You can now examine a Station Radio Server to tell if it is recording or not.
+    type: Add
+  id: 407481
+  time: '2026-08-10T22:37:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5554
 Order: -1
