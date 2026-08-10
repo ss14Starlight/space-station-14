@@ -6,6 +6,38 @@
   - type: Occluder
     enabled: false
 
+- type: entity
+  id: IcePillars
+  parent: BaseStructure
+  name: ice pillar
+  description: A sturdy and see-through pillar of ice.
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    noRot: true
+    sprite: _Starlight/Objects/Magic/magicactions.rsi
+    layers:
+    - state: icepillars
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - GlassLayer
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
 # Honeypots BEGIN
 # I tried inheritance on these guys, but ran into various things not inheriting, so YAML anchors it is.
 
@@ -317,5 +349,3 @@
       proto: UraniumReinforcedWindowDirectional
       overrides: *honeypotOverridesIndestructible
     - *uraniumReinforcedDirectionalSprite
-
-# Honeypots END
