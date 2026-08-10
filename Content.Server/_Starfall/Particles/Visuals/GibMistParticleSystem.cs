@@ -1,5 +1,5 @@
 using Content.Shared._Starfall.Particles;
-using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Systems; // Starlight
 using Content.Shared.Body.Components;
 using Content.Shared.Gibbing;
 using Robust.Shared.Player;
@@ -20,7 +20,9 @@ namespace Content.Server._Starfall.Particles;
 /// TODO: KILL WHEN GIBBING IS PREDICTED/SHARED I BEG
 public sealed class GibMistParticleSystem : EntitySystem
 {
+    #region Starlight
     [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
+    #endregion
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
