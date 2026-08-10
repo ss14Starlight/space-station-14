@@ -119,7 +119,7 @@
     guides:
     - TeslaEngine
     - SingularityTeslaEngine
-  - type: Electrolyzer
+  - type: Electrolyzer # Starlight
     efficiency: .5
     passive: true
   - type: AtmosDevice
@@ -218,13 +218,13 @@
     guides:
     - TeslaEngine
     - SingularityTeslaEngine
-  - type: Battery
+  - type: Battery # Starlight
     netsync: false
     maxCharge: 5000000
     startingCharge: 0
-  - type: TeslaCoil
+  - type: TeslaCoil 
     chargeFromLightning: 5000000
-  - type: Electrolyzer
+  - type: Electrolyzer 
     efficiency: 0.25
     passive: true
   - type: AtmosDevice

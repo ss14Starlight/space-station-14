@@ -33,8 +33,8 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
     [Dependency] private HandsSystem _handsSystem = default!;
     [Dependency] private TagSystem _tagSystem = default!;
     [Dependency] private AudioSystem _audio = default!;
-    [Dependency] private SharedBatterySystem _battery = default!;
-    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private SharedBatterySystem _battery = default!; /// Starlight: Needed for electric charging
+    [Dependency] private PowerCellSystem _powerCell = default!; /// Starlight: ''
     private const string PlasmaTag = "SheetPlasma"; // Starlight Edit: PlasmaSheet -> SheetPlasma
 
     public override void Initialize()
@@ -50,7 +50,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
     private void OnSignalReceived(EntityUid uid, ElectrolyzerComponent comp, SignalReceivedEvent args)
     {
-        if (comp.Passive == false)
+        if (comp.Passive == false) /// Starlight: Only check active electrolyzers for signals.
         {
                 if (!TryComp<DeviceLinkSinkComponent>(uid, out _))
                     return;
@@ -89,7 +89,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
     private void OnActivate(EntityUid uid, ElectrolyzerComponent comp, ActivateInWorldEvent args)
     {
-        if (comp.Passive == true)
+        if (comp.Passive == true) /// Starlight: Don't try to activate passive electrolyzers
                     return;
         if (args.Handled) return;
 
@@ -118,12 +118,12 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
     private void OnDeviceUpdated(EntityUid uid, ElectrolyzerComponent electrolyzer, ref AtmosDeviceUpdateEvent args)
     {
-        if (!TryComp<BatteryComponent>(uid, out var battery))
+        if (!TryComp<BatteryComponent>(uid, out var battery)) /// Starlight
             return;
 
         var charge = _battery.GetCharge((uid, battery));
 
-        if (!electrolyzer.Passive)
+        if (!electrolyzer.Passive) /// Starlight: Only draw grid energy for active electrolyzers.
         {
             if (!TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
                     return;
@@ -154,7 +154,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
 
-        if (electrolyzer.Passive == false)
+        if (electrolyzer.Passive == false) /// Starlight: Fuel handling now optional, and doesnt check for passive electrolyzers.
         {
             if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
             {
