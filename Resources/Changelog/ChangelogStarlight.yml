@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Sparks are now logged.
-    type: Add
-  id: 407066
-  time: '2026-07-28T07:23:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5371
-- author: wonderfulnewworld
-  changes:
   - message: RCD/RPD/RPLDs now only spark once, when creating an object.
     type: Tweak
   id: 407067
@@ -2799,4 +2792,11 @@ Entries:
   id: 407465
   time: '2026-08-10T21:36:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5566
+- author: Caws
+  changes:
+  - message: Removed Barratry from the game's files due to being unmaintained.
+    type: Remove
+  id: 407466
+  time: '2026-08-10T21:36:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5565
 Order: -1
