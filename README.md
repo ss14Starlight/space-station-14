@@ -17,8 +17,7 @@ this is still very early please cut us some slack
 
 </div>
 
-Inferus is a fork of [STARLIGHT](https://github.com/ss14Starlight/space-station-14) which is an open source project aimed at creating unique mechanics and a pleasant game atmosphere in the game Space Station 14,
-a game about survival on a space station where there are constant confrontations between the crew and antagonists created to prevent the crew from achieving their goals.
+Inferus is an open-source adult-oriented project aimed at creating unique stories and a pleasant roleplaying atmosphere in the game [Space Station 14](https://github.com/space-wizards/space-station-14), based off of the [STARLIGHT](https://github.com/ss14Starlight/space-station-14) codebase.
 
 ## Space Station 14 Documentation/Wiki
 
