@@ -1,55 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Cluster) Added Stir Stir to Genpop.
-    type: Add
-  id: 407025
-  time: '2026-07-27T08:22:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5270
-- author: Orhu
-  changes:
-  - message: (Cluster) Added Flippers to Courtroom.
-    type: Add
-  id: 407026
-  time: '2026-07-27T08:22:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5270
-- author: Orhu
-  changes:
-  - message: (Cluster) Added vend of silence to Mime/Clown room.
-    type: Add
-  id: 407027
-  time: '2026-07-27T08:22:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5270
-- author: Orhu
-  changes:
-  - message: (Cluster) Added windows to catch trash ejecting from Disposals.
-    type: Tweak
-  id: 407028
-  time: '2026-07-27T08:22:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5270
-- author: Orhu
-  changes:
-  - message: (Cluster) Added a button to HOP's Office for the ticket machine.
-    type: Tweak
-  id: 407029
-  time: '2026-07-27T08:22:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5270
-- author: Orhu
-  changes:
-  - message: (Cluster) Made one of the bookshelves in the library guaranteed to spawn with all guidebooks.
-    type: Tweak
-  id: 407030
-  time: '2026-07-27T08:22:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5270
-- author: Orhu
-  changes:
-  - message: (Cluster) Placed a station beacon in the washroom.
-    type: Tweak
-  id: 407031
-  time: '2026-07-27T08:22:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5270
-- author: Orhu
-  changes:
   - message: (Cluster) Connected the disposals chute south of Botany to disposals.
     type: Fix
   id: 407032
@@ -2799,4 +2750,53 @@ Entries:
   id: 407424
   time: '2026-08-10T19:47:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5591
+- author: Way
+  changes:
+  - message: (Hotel) Radio Host is now playable on Hotel station.
+    type: Add
+  id: 407425
+  time: '2026-08-10T20:15:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5585
+- author: Way
+  changes:
+  - message: (Hotel) Departmental lathes are mapped.
+    type: Add
+  id: 407426
+  time: '2026-08-10T20:15:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5585
+- author: Way
+  changes:
+  - message: (Hotel) Reporter has been moved near evac, next to library. Their old room has been turned into the main service area for their respective lathe and fax.
+    type: Tweak
+  id: 407427
+  time: '2026-08-10T20:15:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5585
+- author: Way
+  changes:
+  - message: (Hotel) Bar had it's dining area slightly rearranged to accommodate the new area.
+    type: Tweak
+  id: 407428
+  time: '2026-08-10T20:15:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5585
+- author: Way
+  changes:
+  - message: (Hotel) Added a maints route above the Radio Host's room, to prevent a dead end and better flow.
+    type: Tweak
+  id: 407429
+  time: '2026-08-10T20:15:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5585
+- author: Way
+  changes:
+  - message: (Hotel) AI cameras on the outer parts of the core viewing into space have been removed.
+    type: Tweak
+  id: 407430
+  time: '2026-08-10T20:15:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5585
+- author: Way
+  changes:
+  - message: (Hotel) Botany has a biogen.
+    type: Fix
+  id: 407431
+  time: '2026-08-10T20:15:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5585
 Order: -1
