@@ -5,10 +5,73 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Starlight, Made by staff member Conf",
+    "copyright": "State based copyright",
     "states": [
         {
-            "name": "wizcoin"
+            "name": "wizcoin",
+			"copyright": "Starlight, made by staff member Conf"
+        },
+        {
+            "name": "redwizcoin",
+			"copyright": "Conf, wondefulnewworld"
+        },
+        {
+            "name": "red-equipped-NECK",
+			"copyright": "TG Station, wondefulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "bluewizcoin",
+			"copyright": "Conf, wondefulnewworld"
+        },
+        {
+            "name": "blue-equipped-NECK",
+			"copyright": "TG Station, wondefulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "yellowwizcoin",
+			"copyright": "Conf, wondefulnewworld"
+        },
+        {
+            "name": "yellow-equipped-NECK",
+			"copyright": "TG Station, wondefulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "greenwizcoin",
+			"copyright": "Conf, wondefulnewworld"
+        },
+        {
+            "name": "green-equipped-NECK",
+			"copyright": "TG Station, wondefulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "purplewizcoin",
+			"copyright": "Conf, wondefulnewworld"
+        },
+        {
+            "name": "purple-equipped-NECK",
+			"copyright": "TG Station, wondefulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "orangewizcoin",
+			"copyright": "Conf, wondefulnewworld"
+        },
+        {
+            "name": "orange-equipped-NECK",
+			"copyright": "TG Station, wondefulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "cyanwizcoin",
+			"copyright": "Conf, wondefulnewworld"
+        },
+        {
+            "name": "omniwizcoin",
+			"copyright": "Conf, wondefulnewworld"
         }
     ]
 }
