@@ -136,6 +136,10 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     private static readonly Counter _cultistCounter = Metrics.CreateCounter("cultist_counter",
         "Keeps a track of the amount of times cultist win or loose", ["results"]);
 
+    private static readonly Counter _convertsCounter = Metrics.CreateCounter("cultist_converts",
+        "Keeps track of the amount of players converted this round",
+        new CounterConfiguration { LabelNames = new[] { "round_id" } });
+
     public override void Initialize()
     {
         base.Initialize();
@@ -450,6 +454,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             ent.Comp.WinLocked = true;
 
         _cultistCounter.WithLabels(type.ToString()).Inc();
+        var ticker = IoCManager.Resolve<GameTicker>();
+        _convertsCounter.WithLabels(ticker.RoundId.ToString()).Inc(ent.Comp.TotalCult);
     }
 
     private void OnRunLevelChanged(GameRunLevelChangedEvent ev)
