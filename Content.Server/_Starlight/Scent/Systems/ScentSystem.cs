@@ -459,6 +459,7 @@ public sealed class ScentSystem : SharedScentSystem
         markerComp.ExpiresAt = _timing.CurTime + decayTime;
         markerComp.TotalDuration = decayTime;
         markerComp.ContainedIn = GetAirtightContainer(xform);
+        markerComp.WasDead = MobState.IsDead(uid);
         markerComp.WasCloaked = IsCloaked(uid);
         Dirty(marker, markerComp);
 
@@ -543,6 +544,7 @@ public sealed class ScentSystem : SharedScentSystem
         marker.ExpiresAt = _timing.CurTime + decayTime;
         marker.TotalDuration = decayTime;
         marker.ContainedIn = GetAirtightContainer(xform);
+        marker.WasDead = MobState.IsDead(uid);
         marker.WasCloaked = IsCloaked(uid);
         Dirty(tail, marker);
 

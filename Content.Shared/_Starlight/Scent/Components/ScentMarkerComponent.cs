@@ -3,8 +3,10 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Scent.Components;
 
-// A short-lived, invisible-to-normal-vision object left behind by a ScentComponent entity.
-// TimedDespawnComponent handles despawn. See scent_marker.yml.
+/// <summary>
+/// A short-lived, invisible-to-normal-vision object left behind by a ScentComponent entity.
+/// TimedDespawnComponent handles despawn. See scent_marker.yml.
+/// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Access(typeof(SharedScentSystem))]
 public sealed partial class ScentMarkerComponent : Component
 {
@@ -21,6 +23,7 @@ public sealed partial class ScentMarkerComponent : Component
     /// <summary>
     /// How pooled this marker is, 0-1. Maps to alpha/scale client-side.
     /// </summary>
+    /// </summary>
     [DataField, AutoNetworkedField]
     public float Strength;
 
@@ -36,6 +39,12 @@ public sealed partial class ScentMarkerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? ContainedIn;
+
+    /// <summary>
+    /// Whether the emitter was dead when this marker was emitted or last refreshed.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool WasDead;
     /// <summary>
     /// Whether the emitter was cloaked (StealthComponent, hidden past its ExamineThreshold) at
     /// the moment of this emission.
