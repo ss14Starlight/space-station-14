@@ -77,7 +77,7 @@ public sealed partial class OrganSystem : EntitySystem
         foreach (var comp in (ent.Comp.Components ?? []).Values)
         {
             var type = comp.Component.GetType();
-            if (EntityManager.HasComponent(args.Body, type))
+            if (HasComp(args.Body, type))
                 continue;
 
             // Fresh instance per install; reusing the same object after a prior removal fails
@@ -93,7 +93,7 @@ public sealed partial class OrganSystem : EntitySystem
     {
         foreach (var type in ent.Comp.Installed)
         {
-            if (!EntityManager.HasComponent(args.Body, type))
+            if (!HasComp(args.Body, type))
                 continue;
 
             var installed = EntityManager.GetComponent(args.Body, type);
