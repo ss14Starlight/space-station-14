@@ -12,6 +12,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
+using Content.Shared.Antag;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -32,6 +33,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server._NullLink.PlayerData;
+using Content.Server._Starlight.GameTicking.Events;
 using Content.Server._Starlight.NewLife;
 
 namespace Content.Server.GameTicking
@@ -134,21 +136,104 @@ namespace Content.Server.GameTicking
                 var playerProfiles = playerPrefs.GetAllEnabledProfilesForJob(job.Value);
 
                 // Filter out job requirements
-                var filteredPlayerProfiles = playerProfiles.Values.Where(profile =>
+                var jobValidPlayerProfiles = playerProfiles.Values.Where(profile => // Starlight
                     JobRequirements.TryRequirementsMet(job.Value,
-                        _playerManager.GetSessionById(player),
+                        playerSession, // Starlight
                         null,
                         out _,
                         EntityManager,
                         _prototypeManager,
                         profile)
-                );
+                ).ToList(); // Starlight
+                var filteredPlayerProfiles = jobValidPlayerProfiles.AsEnumerable(); // Starlight
+
+                #region Starlight
+                // Your account may have several enabled characters, but only the character that
+                // satisfies every pre-selected antag may actually spawn. This also enforces
+                // profile-specific requirements such as Initial Infected's IPC restriction.
+                var selectedAntags = _antagSelection.GetPreSelectedAntagSpecifiers(playerSession);
+                var selectedAntagDefinitions = new Dictionary<ProtoId<AntagSpecifierPrototype>, AntagSpecifierPrototype>();
+                if (selectedAntags.Count > 0)
+                {
+                    foreach (var antag in selectedAntags)
+                    {
+                        if (_prototypeManager.Resolve(antag, out var definition))
+                        {
+                            selectedAntagDefinitions.Add(antag, definition);
+                            continue;
+                        }
+
+                        _sawmill.Error($"Could not resolve pre-selected antag definition {antag} for {playerSession.Name}.");
+                    }
+
+                    if (selectedAntagDefinitions.Count != selectedAntags.Count)
+                    {
+                        filteredPlayerProfiles = Enumerable.Empty<HumanoidCharacterProfile>();
+                    }
+                    else
+                    {
+                        filteredPlayerProfiles = filteredPlayerProfiles.Where(profile =>
+                            selectedAntagDefinitions.Values.All(definition =>
+                                _antagSelection.IsProfileValidForAntag(playerSession, profile, definition)));
+                    }
+                }
+                #endregion
 
                 var finalPlayerProfiles = filteredPlayerProfiles.ToList();
-                if (finalPlayerProfiles.Count == 0)
-                    continue;
 
-                var profile = _robustRandom.Pick(finalPlayerProfiles.ToList());
+                #region Starlight
+                // If the player has a valid character for their assigned job but none can satisfy
+                // every preselected antag, choose the job-valid character compatible with the most
+                // reservations. Release and replace only the remaining incompatible antag slots,
+                // then spawn the player in their assigned job.
+                // TLDR: If you somehow manage to get assigned II as an IPC or Brighteye as a non-Shadekin,
+                // you will still spawn in your assigned job, but the antag slots will be released for other players to take.
+                if (finalPlayerProfiles.Count == 0 &&
+                    selectedAntags.Count > 0 &&
+                    jobValidPlayerProfiles.Count > 0)
+                {
+                    var profileCompatibility = jobValidPlayerProfiles
+                        .Select(profile =>
+                        {
+                            var compatibleAntags = selectedAntagDefinitions.Values.Count(definition =>
+                                _antagSelection.IsProfileValidForAntag(playerSession, profile, definition));
+                            return (Profile: profile, CompatibleAntags: compatibleAntags);
+                        })
+                        .ToList();
+
+                    var mostCompatibleAntags = profileCompatibility.Max(candidate => candidate.CompatibleAntags);
+                    var fallbackProfiles = profileCompatibility
+                        .Where(candidate => candidate.CompatibleAntags == mostCompatibleAntags)
+                        .Select(candidate => candidate.Profile)
+                        .ToList();
+                    var fallbackProfile = _robustRandom.Pick(fallbackProfiles);
+
+                    var invalidAntags = selectedAntags
+                        .Where(antag =>
+                            !selectedAntagDefinitions.TryGetValue(antag, out var definition) ||
+                            !_antagSelection.IsProfileValidForAntag(playerSession, fallbackProfile, definition))
+                        .ToHashSet();
+
+                    var evInvalidAntagProfile =
+                        new InvalidAntagProfileSpawningEvent(playerSession, invalidAntags);
+                    RaiseLocalEvent(evInvalidAntagProfile);
+                    finalPlayerProfiles = [fallbackProfile];
+                }
+                #endregion
+
+                if (finalPlayerProfiles.Count == 0)
+                #region Starlight
+                {
+                    var evNoProfile = new NoJobsAvailableSpawningEvent(playerSession);
+                    RaiseLocalEvent(evNoProfile);
+                    _chatManager.DispatchServerMessage(
+                        playerSession,
+                        Loc.GetString("game-ticker-player-no-valid-roundstart-character"));
+                    continue;
+                }
+                #endregion
+
+                var profile = _robustRandom.Pick(finalPlayerProfiles); // Starlight
 
                 SpawnPlayer(playerSession, profile, station, job, false);
             }
