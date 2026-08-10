@@ -6,8 +6,8 @@ using Content.Shared.Radio.EntitySystems;
 using Content.Shared._Starlight.TextToSpeech;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Content.Server.Speech; // Starlight
-using Content.Server._Starlight.Language; // Starlight
+using Content.Server.Speech;
+using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Clothing;
 
 namespace Content.Server.Radio.EntitySystems;
@@ -56,13 +56,13 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
 
     private void OnSpeak(EntityUid uid, WearingHeadsetComponent component, EntitySpokeEvent args)
     {
-        #region Starlight
+        // Starlight-start
         HeadsetLoudModeComponent? loudComp = null;
         if(TryComp<HeadsetLoudModeComponent>(component.Headset, out var comp) && comp.Active)
         {
             loudComp = comp;
         }
-        #endregion Starlight
+        // Starlight-end
         if (args.Channel != null
             && TryComp(component.Headset, out EncryptionKeyHolderComponent? keys)
             && keys.Channels.Contains(args.Channel.ID))

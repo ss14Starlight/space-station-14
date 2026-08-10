@@ -37,7 +37,7 @@ using Robust.Shared.Utility;
 using Content.Shared._Starlight.Radio;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Ghost;
-using Content.Server._Starlight.TextToSpeech; //Starlight
+using Content.Server._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Clothing;
 
 namespace Content.Server.Radio.EntitySystems;
