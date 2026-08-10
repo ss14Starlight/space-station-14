@@ -1,27 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Hotel) Added vend of silence to Mime Room.
-    type: Add
-  id: 407006
-  time: '2026-07-27T07:45:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5271
-- author: Orhu
-  changes:
-  - message: (Hotel) Added ice cream maker to Kitchen.
-    type: Add
-  id: 407007
-  time: '2026-07-27T07:45:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5271
-- author: Orhu
-  changes:
-  - message: (Hotel) Added ticket machine to HOP.
-    type: Add
-  id: 407008
-  time: '2026-07-27T07:45:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5271
-- author: Orhu
-  changes:
   - message: (Hotel) Made one of the bookshelves in Library guaranteed to have all guidebooks.
     type: Tweak
   id: 407009
@@ -2799,4 +2778,25 @@ Entries:
   id: 407405
   time: '2026-08-10T13:58:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5455
+- author: Glaud
+  changes:
+  - message: Purrfus cyborgs now come with an paperwork printing module, holding a document printer, an integrated fax transmitter, a clipboard and a document slot.
+    type: Add
+  id: 407406
+  time: '2026-08-10T13:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5454
+- author: Glaud
+  changes:
+  - message: The clipboard have placed to the new module in purrfus.
+    type: Tweak
+  id: 407407
+  time: '2026-08-10T13:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5454
+- author: Glaud
+  changes:
+  - message: Fax machines inside a container no longer lose the paper they print.
+    type: Fix
+  id: 407408
+  time: '2026-08-10T13:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5454
 Order: -1
