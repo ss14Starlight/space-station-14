@@ -250,7 +250,7 @@ public abstract partial class SharedRoleSystem : EntitySystem
         return (result);
     }
 
-    private void SetRoleType(EntityUid mind, ProtoId<RoleTypePrototype> roleTypeId, LocId? subtype)
+    public void SetRoleType(EntityUid mind, ProtoId<RoleTypePrototype> roleTypeId, LocId? subtype) // Starlight edit: make public
     {
         if (!TryComp<MindComponent>(mind, out var comp))
         {

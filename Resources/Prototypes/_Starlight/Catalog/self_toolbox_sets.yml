@@ -4,16 +4,16 @@
   description: self-backpack-category-saboteur-description
   sprite:
     sprite: Objects/Tools/jaws_of_life.rsi
-    state: proto_jaws_pry
+    state: syn_jaws_pry
   content:
-  - PrototypeJawsOfLife
+  - SyndicateJawsOfLife
   - WelderIndustrialAdvanced
   - PowerDrill
   - Multitool
-  - ClothingHandsGlovesColorYellow
+  - ClothingHandsGlovesInsulatedChameleon
   - RadioJammer
   - FreedomImplanter
-  - ClothingHeadHatWelding
+  - ClothingEyesGlassesMeson
 
 - type: thiefBackpackSet
   id: PressSELF
@@ -30,18 +30,6 @@
   - ScramImplanter
 
 - type: thiefBackpackSet
-  id: LiberatorSELF
-  name: The Liberator
-  description: self-backpack-category-liberator-description
-  sprite:
-    sprite: Objects/Tools/access_breaker.rsi
-    state: icon
-  content:
-  - AccessBreaker
-  - ClothingHandsGlovesColorYellow
-  - Screwdriver
-
-- type: thiefBackpackSet
   id: SpySELF
   name: The Spy
   description: self-backpack-category-spy-description
@@ -49,7 +37,7 @@
     sprite: Objects/Devices/camera_bug.rsi
     state: camera_bug
   content:
-  - ClothingBackpackChameleonFillAgent
-  - ChameleonControllerImplanter
-  - DnaScramblerImplanter
+  - StorageImplanter
+  - ChameleonProjector
+  - WeaponPistolStechkin
   - CameraBug
