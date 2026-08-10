@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Fland) Added Stir Stir to Genpop.
-    type: Add
-  id: 407034
-  time: '2026-07-27T09:10:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5254
-- author: Orhu
-  changes:
   - message: (Fland) Added Flippers to Magistrate's Office.
     type: Add
   id: 407035
@@ -2799,4 +2792,11 @@ Entries:
   id: 407433
   time: '2026-08-10T20:43:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5577
+- author: Sparlight
+  changes:
+  - message: Partial smellers can now faintly perceive the scent emissions of corpses inside closed containers.
+    type: Add
+  id: 407434
+  time: '2026-08-10T21:04:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5570
 Order: -1
