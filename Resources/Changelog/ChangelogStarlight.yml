@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Cluster) Connected the disposals chute south of Botany to disposals.
-    type: Fix
-  id: 407032
-  time: '2026-07-27T08:22:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5270
-- author: Orhu
-  changes:
   - message: (Cluster) Fixed disposals piping that caused looping.
     type: Fix
   id: 407033
@@ -2799,4 +2792,11 @@ Entries:
   id: 407431
   time: '2026-08-10T20:15:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5585
+- author: Caws
+  changes:
+  - message: '"Brig Med" map beacon has been renamed to "Brigmedic".'
+    type: Tweak
+  id: 407432
+  time: '2026-08-10T20:15:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5590
 Order: -1
