@@ -20,6 +20,7 @@
     - Gorilla
     - Abductor
     - Pirate
+    - CosmicCult
 
 - type: npcFaction
   id: DungeonSoviet
@@ -40,6 +41,7 @@
     - Gorilla
     - Abductor
     - Pirate
+    - CosmicCult
 
 - type: npcFaction
   id: DungeonSyndicate
@@ -61,6 +63,7 @@
     - Gorilla
     - Abductor
     - Pirate
+    - CosmicCult
 
 - type: npcFaction
   id: Gorilla
@@ -85,6 +88,7 @@
     - DungeonSyndicate
     - Abductor
     - Pirate
+    - CosmicCult
 
 - type: npcFaction
   id: NanoTrasenSilicon # purely making this so zombies STOP ATTACKING FUCKING SILICONS
@@ -106,6 +110,7 @@
   - Gorilla
   - Abductor
   - Pirate
+  - CosmicCult
 
 - type: npcFaction
   id: SyndicateSilicon # Again, zombies fuck you.
@@ -127,6 +132,7 @@
     - Gorilla
     - Abductor
     - Pirate
+    - CosmicCult
 
 - type: npcFaction
   id: Abductor
@@ -154,6 +160,7 @@
   - Dragon
   - SimpleHostile
   - Pirate
+  - CosmicCult
 
 - type: npcFaction
   id: Pirate
@@ -177,6 +184,7 @@
   - Dragon
   - Gorilla
   - Abductor
+  - CosmicCult
 
 - type: npcFaction
   id: Floral # It's so plant anom creatures don't attack diona.
@@ -193,6 +201,7 @@
   - AllHostile
   - Gorilla
   - Pirate
+  - CosmicCult
 
 - type: npcFaction
   id: Vampire
@@ -208,6 +217,7 @@
   - AllHostile
   - Gorilla
   - Pirate
+  - CosmicCult
 
 - type: npcFaction
   id: HonkHostile
@@ -224,6 +234,7 @@
   - Xenoborg
   - Gorilla
   - Pirate
+  - CosmicCult
 
 - type: npcFaction
   id: HonkNeutral
@@ -236,3 +247,30 @@
     - AllHostile
     - Gorilla
     - Abductor
+    - CosmicCult
+
+- type: npcFaction
+  id: CosmicCult
+  hostile:
+    - NanoTrasen
+    - NanoTrasenSilicon
+    - Syndicate
+    - SyndicateSilicon
+    - Xeno
+    - Zombie
+    - Abductor
+    - Dragon
+    - Wizard
+    - Gorilla
+    - DungeonSoviet
+    - DungeonSyndicate
+    - Abyss
+    - AllHostile
+    - SimpleHostile
+    - SimpleNeutral
+    - PetsNT
+    - Mouse
+    - HonkHostile
+    - HonkNeutral
+    - Floral
+    - Passive

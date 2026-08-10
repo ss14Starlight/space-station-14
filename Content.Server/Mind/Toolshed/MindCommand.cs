@@ -15,19 +15,21 @@ public sealed class MindCommand : ToolshedCommand
 {
     private SharedMindSystem? _mind;
 
+    // Starlight begin: I can't find any reason to get component instead of entity, so changed it to return entity.
     [CommandImplementation("get")]
-    public MindComponent? Get([PipedArgument] ICommonSession session)
+    public EntityUid Get([PipedArgument] ICommonSession session)
     {
         _mind ??= GetSys<SharedMindSystem>();
-        return _mind.TryGetMind(session, out _, out var mind) ? mind : null;
+        return _mind.TryGetMind(session, out var mind, out _) ? mind : EntityUid.Invalid;
     }
 
     [CommandImplementation("get")]
-    public MindComponent? Get([PipedArgument] EntityUid ent)
+    public EntityUid Get([PipedArgument] EntityUid ent)
     {
         _mind ??= GetSys<SharedMindSystem>();
-        return _mind.TryGetMind(ent, out _, out var mind) ? mind : null;
+        return _mind.TryGetMind(ent, out var mind, out _) ? mind : EntityUid.Invalid;
     }
+    // Starlight end
 
     [CommandImplementation("control")]
     public EntityUid Control(IInvocationContext ctx, [PipedArgument] EntityUid target, ICommonSession player)
@@ -45,7 +47,8 @@ public sealed class MindCommand : ToolshedCommand
         return target;
     }
 
-    //Starlight begin
+    #region Starlight
+
     [CommandImplementation("takeover")]
     public EntityUid Takeover(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
@@ -107,5 +110,6 @@ public sealed class MindCommand : ToolshedCommand
     [CommandImplementation("wipe")]
     public IEnumerable<ICommonSession> Wipe(IInvocationContext ctx, [PipedArgument] IEnumerable<ICommonSession> player)
         => player.Select(x => Wipe(ctx, x));
-    //Starlight end
+
+    #endregion
 }

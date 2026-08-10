@@ -57,6 +57,7 @@ namespace Content.Client.GameTicking.Managers
             SubscribeNetworkEvent<TickerLobbyInfoEvent>(LobbyInfo);
             SubscribeNetworkEvent<TickerLobbyCountdownEvent>(LobbyCountdown);
             SubscribeNetworkEvent<RoundEndMessageEvent>(RoundEnd);
+            SubscribeNetworkEvent<RoundEndCancelMessageEvent>(OnRoundEndCancelMessage); // Starlight
             SubscribeNetworkEvent<RequestWindowAttentionEvent>(OnAttentionRequest);
             SubscribeNetworkEvent<TickerLateJoinStatusEvent>(LateJoinStatus);
             SubscribeNetworkEvent<TickerJobsAvailableEvent>(UpdateJobsAvailable);
@@ -159,5 +160,12 @@ namespace Content.Client.GameTicking.Managers
 
             _userInterfaceManager.GetUIController<RoundEndSummaryUIController>().OpenRoundEndSummaryWindow(message);
         }
+
+        #region Starlight
+
+        private void OnRoundEndCancelMessage(RoundEndCancelMessageEvent ev) => _userInterfaceManager
+            .GetUIController<RoundEndSummaryUIController>().DeleteRoundEndSummaryWindow();
+
+        #endregion
     }
 }
