@@ -202,10 +202,7 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
 
     #region Starlight
 
-    public GuideMicrowaveEmbed(ReactionPrototype reaction) : this()
-    {
-        GenerateControl(reaction);
-    }
+    public GuideMicrowaveEmbed(ReactionPrototype reaction) : this() => GenerateControl(reaction);
 
     private void GenerateHeader(ReactionPrototype reaction)
     {
