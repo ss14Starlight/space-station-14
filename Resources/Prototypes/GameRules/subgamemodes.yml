@@ -59,5 +59,6 @@
   - type: GameRule
     minPlayers: 20 # Starlight
     cancelPresetOnTooFewPlayers: false
-  - type: DynamicRuleCost # Starlight
-    cost: 150 # Starlight
+  - type: DynamicRuleCost # Starlight start
+    cost: 150
+    cooldown: 1 # Starlight end

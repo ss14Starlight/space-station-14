@@ -84,6 +84,8 @@ public sealed class CharacterSelectionTest : GameTest
     private static readonly ProtoId<JobPrototype> Clown = "Clown";
     private static readonly ProtoId<AntagPrototype> Traitor = "Traitor";
     private static readonly ProtoId<AntagSpecifierPrototype> TraitorSpecifier = "Traitor";
+    private static readonly ProtoId<AntagPrototype> InitialInfected = "InitialInfected";
+    private static readonly ProtoId<AntagSpecifierPrototype> InitialInfectedSpecifier = "InitialInfected";
 
     // helper structs for test case definition readability
     public sealed class TestCharacter
@@ -296,6 +298,22 @@ public sealed class CharacterSelectionTest : GameTest
             ],
             ExpectedJob = Mime,
             ExpectTraitor = true
+        },
+        // Antag eligibility must not allow the final profile picker to choose
+        // a different character with the same job but without the selected antag enabled.
+        // Basically this tries to catch a bug where you select a character with a job and antag enabled, but then
+        // the final profilepicker chooses a different character with the same job but without the antag enabled.
+        new()
+        {
+            Description = "Same job, one antag character",
+            HighPrioJob = Passenger,
+            Characters =
+            [
+                new() { Jobs = [ Passenger ], IsTraitor = true, ExpectToSpawn = true },
+                new() { Jobs = [ Passenger ] }
+            ],
+            ExpectedJob = Passenger,
+            ExpectTraitor = true
         }
     ];
 
@@ -413,6 +431,21 @@ public sealed class CharacterSelectionTest : GameTest
             ticker.RestartRound();
         });
     }
+
+    // Test that a character with a profile that is not valid for a specific antag cannot be selected as that antag
+    // It really just exists to see if IPCs are rolling Initial Infected...
+    [Test]
+    public Task ProfileSpecificAntagRequirementsTest() =>
+        Pair.Server.WaitAssertion(() =>
+        {
+            var antagSystem = Pair.Server.System<AntagSelectionSystem>();
+            var definition = Pair.Server.ProtoMan.Index(InitialInfectedSpecifier);
+            var human = HumanoidCharacterProfile.RandomWithSpecies("Human").AsEnabled().WithAntagPreferences([InitialInfected]);
+            var ipc = HumanoidCharacterProfile.RandomWithSpecies("IPC").AsEnabled().WithAntagPreferences([InitialInfected]);
+
+            Assert.That(antagSystem.IsProfileValidForAntag(Pair.Player!, human, definition), Is.True);
+            Assert.That(antagSystem.IsProfileValidForAntag(Pair.Player!, ipc, definition), Is.False);
+        });
 
     // Run multiple round starts with the same set of characters, all of which are valid to select,
     // and verify that which character is selected varies
