@@ -1,0 +1,49 @@
+- type: lancerMission
+  id: tutorial
+  name: lancer-mission-tutorial-name
+  description: lancer-mission-tutorial-desc
+  encounters:
+  - tutorial-arena
+
+- type: lancerMission
+  id: ridge-pass
+  name: lancer-mission-ridge-pass-name
+  description: lancer-mission-ridge-pass-desc
+  unlocksMission: deep-range
+  encounters:
+  - ridge-pass-fight-1
+  - ridge-pass-fight-2
+  - ridge-pass-fight-3
+
+- type: lancerMission
+  id: deep-range
+  name: lancer-mission-deep-range-name
+  description: lancer-mission-deep-range-desc
+  unlocksAfter: ridge-pass
+  unlocksMission: crown-signal
+  # Default / Tortuga path
+  encounters:
+  - deep-range-fight-1
+  - deep-range-fight-2
+  - deep-range-fight-3
+  # Tokugawa: same fight shapes, fewer shooters / softer elites
+  loadoutEncounters:
+    tokugawa:
+    - deep-range-fight-1-tokugawa
+    - deep-range-fight-2-tokugawa
+    - deep-range-fight-3-tokugawa
+
+- type: lancerMission
+  id: crown-signal
+  name: lancer-mission-crown-signal-name
+  description: lancer-mission-crown-signal-desc
+  unlocksAfter: deep-range
+  encounters:
+  - crown-signal-fight-1
+  - crown-signal-fight-2
+  - crown-signal-fight-3
+  loadoutEncounters:
+    tokugawa:
+    - crown-signal-fight-1-tokugawa
+    - crown-signal-fight-2-tokugawa
+    - crown-signal-fight-3-tokugawa

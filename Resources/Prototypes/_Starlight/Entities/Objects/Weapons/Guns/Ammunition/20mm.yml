@@ -6,9 +6,9 @@
   - type: Projectile
     damage:
       types:
-        Structural: 10
         Blunt: 25
         Piercing: 75
+        Structural: 0
   - type: TimedDespawn
     lifetime: 2
   - type: PointLight

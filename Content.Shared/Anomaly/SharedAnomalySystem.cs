@@ -48,7 +48,11 @@ public abstract partial class SharedAnomalySystem : EntitySystem
 
     private void OnAnomalyThrowStart(Entity<AnomalyComponent> ent, ref MeleeThrowOnHitStartEvent args)
     {
-        if (!TryComp<CorePoweredThrowerComponent>(args.Weapon, out var corePowered) || !TryComp<PhysicsComponent>(ent, out var body))
+        // Starlight edit Start: Added CanBePunched
+        if (!ent.Comp.CanBePunched ||
+            !TryComp<CorePoweredThrowerComponent>(args.Weapon, out var corePowered) ||
+            !TryComp<PhysicsComponent>(ent, out var body))
+        // Starlight edit End
             return;
 
         // anomalies are static by default, so we have set them to dynamic to be throwable

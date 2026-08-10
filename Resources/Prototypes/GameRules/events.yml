@@ -34,6 +34,11 @@
     - id: CommunicationBlackout
     - id: NightShift
     - id: SyndicateDeadDrop
+    - id: NanoChatSpamTiny
+    - id: NanoChatSpamLowPop
+    - id: NanoChatSpamMidPop
+    - id: NanoChatSpamHighPop
+    - id: NanoChatSpamUltraPop
     # Starlight End
     - id: MalignRiftSpawn # Funky
 
@@ -62,9 +67,9 @@
     - id: WizardSpawn
     - id: AbductorsSpawn # Starlight start
     #- id: SubXenoborgs
+    #- id: BrighteyeSpawn
     #- id: TerrorSpidersSpawn
     - id: RailroadingTerminator
-    - id: Brighteye
     - id: ColossusSpawn # Starlight end
     - id: EeepEvent # imp
     - !type:NestedSelector
@@ -90,12 +95,20 @@
     - !type:GroupSelector # Derelict Xenoborgs
       weight: 5
       children:
-        - id: XenoBorgHeavyDerelictSpawn
-        - id: XenoBorgEngiDerelictSpawn
-        - id: XenoBorgScoutDerelictSpawn
-        - id: XenoBorgStealthDerelictSpawn
-        - id: XenoBorgiDerelictSpawn
+        - id: DerelictHeavyXenoborgSpawn
+        - id: DerelictEngiXenoborgSpawn
+        - id: DerelictScoutXenoborgSpawn
+        - id: DerelictStealthXenoborgSpawn
+        - id: DerelictXenoBorgiSpawn
    #     - id: DerelictSyndicateAssaultCyborgSpawn # Starlight end - no more derelict Syndicate borgs
+
+- type: entity
+  abstract: true
+  parent: BaseGameRule
+  id: BaseAntagGhostRoleRule
+  components:
+  - type: AntagSelection
+    selectionTime: Never
 
 - type: entity
   id: BaseStationEvent
@@ -223,7 +236,7 @@
     prototype: MobSkeletonCloset
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: DragonSpawn
   components:
   - type: StationEvent
@@ -244,18 +257,14 @@
     - DragonSurviveObjective
   - type: AntagSelection
     agentName: dragon-round-end-agent-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDragon
-      min: 1
-      max: 1
-      pickPlayer: false
-      mindRoles:
-      - MindRoleDragon
+    antags:
+    - !type:FixedAntagCount
+      proto: Dragon
   - type: DynamicRuleCost
     cost: 75
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: NinjaSpawn
   components:
   - type: StationEvent
@@ -277,44 +286,14 @@
     - NinjaSurviveObjective
   - type: AntagSelection
     agentName: ninja-round-end-agent-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostSpaceNinja
-      min: 1
-      max: 1
-      prefRoles: [ SpaceNinja ]
-      pickPlayer: false
-      startingGear: SpaceNinjaGear
-      roleLoadout:
-      - AntagSpaceNinja # Starlight
-      briefing:
-        text: ninja-role-greeting
-        color: Green
-        sound: /Audio/Misc/ninja_greeting.ogg
-      components:
-      - type: ThermalVision
-      - type: SpaceNinja
-      - type: NpcFactionMember
-        factions:
-        - Syndicate
-      - type: AutoImplant
-        implants:
-        - DeathAcidifierImplant
-      - type: RandomMetadata
-        nameSegments:
-        - NamesNinjaTitle
-        - NamesNinja
-        nameFormat: name-format-ninja
-      mindRoles:
-      - MindRoleNinja
-      # Starlight-start
-      tags:
-        - CantBecomeRevolutionary
-      # Starlight-end
+    antags:
+    - !type:FixedAntagCount
+      proto: SpaceNinja
   - type: DynamicRuleCost
     cost: 75
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseAntagGhostRoleRule
   id: ParadoxCloneSpawn
   components:
   - type: StationEvent
@@ -334,20 +313,9 @@
   - type: AntagRandomSpawn # TODO: improve spawning so they only start in maints
   - type: AntagSelection
     agentName: paradox-clone-round-end-agent-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostParadoxClone
-      min: 1
-      max: 1
-      pickPlayer: false
-      startingGear: ParadoxCloneGear
-      roleLoadout:
-      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
-      briefing:
-        text: paradox-clone-role-greeting
-        color: lightblue
-        sound: /Audio/Misc/paradox_clone_greeting.ogg
-      mindRoles:
-      - MindRoleParadoxClone
+    antags:
+    - !type:FixedAntagCount
+      proto: ParadoxClone
   - type: DynamicRuleCost
     cost: 50
 
@@ -364,7 +332,7 @@
     prototype: MobRevenant
 
 - type: entity
-  parent: BaseWizardRule
+  parent: [ BaseAntagGhostRoleRule, BaseWizardRule ]
   id: WizardSpawn
   components:
   - type: StationEvent
@@ -373,42 +341,8 @@
     earliestStart: 30
     reoccurrenceDelay: 60
     minimumPlayers: 45 # 🌟Starlight🌟 Casualization
-  - type: AntagSelection
-    agentName: wizard-round-end-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostWizard
-      min: 1
-      max: 3 # Starlight
-      prefRoles: [ Wizard ] #starlight
-      playerRatio: 60 # Starlight, you know, could be neat for multiple wizards to late spawn.
-      pickPlayer: false
-      startingGear: WizardBlueGear
-      roleLoadout:
-      - AntagWizard # Starlight
-      briefing:
-        text: wizard-role-greeting
-        color: Turquoise
-        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
-      # TODO: WizardComp as needed
-      components:
-      - type: UniversalLanguageSpeaker
-      - type: NpcFactionMember
-        factions:
-        - Wizard
-      - type: RandomMetadata
-        nameSegments:
-        - NamesWizardFirst
-        - NamesWizardLast
-        nameFormat: name-format-wizard
-      mindRoles:
-      - MindRoleWizard
-      # Starlight-start
-      tags:
-        - CantBecomeRevolutionary
-        - Wizard
-      # Starlight-end
-  - type: DynamicRuleCost
-    cost: 75
+  - type: DynamicRuleCost # Starlight
+    cost: 75 # Starlight
 
 # disabled until event is rewritten to be more interesting
 #- type: entity
@@ -597,32 +531,17 @@
     occursDuringRoundEnd: false
   - type: ZombieRule
   - type: AntagSelection
-    definitions:
-    - prefRoles: [ InitialInfected ]
-      max: 3
-      playerRatio: 10
-      blacklist:
-        components:
-        - ZombieImmune
-        - AntagImmune
-      briefing:
-        text: zombie-patientzero-role-greeting
-        color: Plum
-        sound: "/Audio/Ambience/Antag/zombie_start.ogg"
-      components:
-      - type: PendingZombie #less time to prepare than normal
-        minInitialInfectedGrace: 300
-        maxInitialInfectedGrace: 450
-      - type: ZombifyOnDeath
-      - type: IncurableZombie
-      - type: InitialInfected
-      mindRoles:
-      - MindRoleInitialInfected
+    antags:
+    - !type:LinearAntagCount
+      proto: InitialInfected
+      range:
+        min: 1
+        max: 3
   - type: DynamicRuleCost
     cost: 200
 
 - type: entity
-  parent: BaseNukeopsRule
+  parent: [ BaseAntagGhostRoleRule, BaseNukeopsRule ]
   id: LoneOpsSpawn
   components:
   - type: StationEvent
@@ -636,31 +555,9 @@
   - type: NukeopsRule
     roundEndBehavior: Nothing
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointLoneNukeOperative
-      min: 1
-      max: 1
-      prefRoles: [ Nukeops ]
-      pickPlayer: false
-      startingGear: SyndicateLoneOperativeGearFull
-      roleLoadout:
-      - AntagNukeops # Starlight
-      components:
-      - type: NukeOperative
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicatePrefix
-        - NamesSyndicateNormal
-        nameFormat: name-format-nukie-generic
-      - type: NpcFactionMember
-        factions:
-        - Syndicate
-      mindRoles:
-      - MindRoleLoneops
-      # Starlight-start
-      tags:
-        - CantBecomeRevolutionary
-      # Starlight-end
+    antags:
+    - !type:FixedAntagCount
+      proto: LoneOp
   - type: DynamicRuleCost
     cost: 100 # Starlight
 
@@ -681,17 +578,13 @@
     occursDuringRoundEnd: false
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
-    definitions:
-    - prefRoles: [ TraitorSleeper ]
-      fallbackRoles: [ Traitor ]
-      min: 1
-      max: 10 # Starlight, scaling and futureproofing.
-      playerRatio: 32  # Starlight. Beta will never get more than 2, same as before, but Alpha can actually gain a decent amount.
-      blacklist:
-        components:
-        - AntagImmune
-      mindRoles:
-      - MindRoleTraitorSleeper
+    antags:
+    - !type:LinearAntagCount
+      proto: TraitorSleeper
+      playerRatio: 32 # Starlight
+      range:
+        min: 1
+        max: 10 # Starlight
 
 - type: entity
   id: MassHallucinations
@@ -789,8 +682,9 @@
     prototype: RandomSatchelSpawner
 
 - type: entity
-  parent: BaseGameRule
-  id: DerelictEngineerCyborgSpawn
+  abstract: true
+  parent: BaseAntagGhostRoleRule
+  id: BaseDerelictCyborgSpawn
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight
@@ -801,18 +695,24 @@
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
+
+- type: entity
+  parent: BaseDerelictCyborgSpawn
+  id: DerelictEngineerCyborgSpawn
+  components:
   - type: AntagSpawner
     prototype: PlayerEngineeringBorgDerelictGhostRole
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictEngineeringCyborg
-      min: 1
-      max: 2 # Starlight
-      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-      pickPlayer: false
+    antags:
+    - !type:LinearAntagCount # Starlight start
+      proto: DerelictEngineeringCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseDerelictCyborgSpawn
   id: DerelictGenericCyborgSpawn
   components:
   - type: StationEvent
@@ -827,15 +727,16 @@
   - type: AntagSpawner
     prototype: PlayerBorgDerelictGhostRole
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictCyborg
-      min: 1
-      max: 2 # Starlight
-      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-      pickPlayer: false
+    antags:
+    - !type:LinearAntagCount # Starlight start
+      proto: DerelictGenericCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseDerelictCyborgSpawn
   id: DerelictJanitorCyborgSpawn
   components:
   - type: StationEvent
@@ -850,15 +751,16 @@
   - type: AntagSpawner
     prototype: PlayerJanitorBorgDerelictGhostRole
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictJanitorCyborg
-      min: 1
-      max: 2 # Starlight
-      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-      pickPlayer: false
+    antags:
+    - !type:LinearAntagCount # Starlight start
+      proto: DerelictJanitorCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseDerelictCyborgSpawn
   id: DerelictMedicalCyborgSpawn
   components:
   - type: StationEvent
@@ -873,14 +775,16 @@
   - type: AntagSpawner
     prototype: PlayerMedicalBorgDerelictGhostRole
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictMedicalCyborg
-      min: 1
-      max: 1
-      pickPlayer: false
+    antags:
+    - !type:LinearAntagCount # Starlight start
+      proto: DerelictMedicalCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseDerelictCyborgSpawn
   id: DerelictMiningCyborgSpawn
   components:
   - type: StationEvent
@@ -895,32 +799,30 @@
   - type: AntagSpawner
     prototype: PlayerMiningBorgDerelictGhostRole
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictMiningCyborg
-      min: 1
-      max: 2 # Starlight
-      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-      pickPlayer: false
+    antags:
+    - !type:LinearAntagCount # Starlight start
+      proto: DerelictMiningCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end
 
 - type: entity
-  parent: BaseGameRule
+  parent: BaseDerelictCyborgSpawn
   id: DerelictSyndicateAssaultCyborgSpawn # Starlight - admeme only, not rollable
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 25
-    reoccurrenceDelay: 20
     minimumPlayers: 15
-    duration: null
-  - type: SpaceSpawnRule
-    spawnDistance: 0
   - type: AntagSpawner
     prototype: PlayerBorgSyndicateDerelictGhostRole
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictSyndicateAssaultCyborg
-      min: 1
-      max: 2 # Starlight
-      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-      pickPlayer: false
+    antags:
+    - !type:LinearAntagCount # Starlight start
+      proto: DerelictSyndicateAssaultCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end

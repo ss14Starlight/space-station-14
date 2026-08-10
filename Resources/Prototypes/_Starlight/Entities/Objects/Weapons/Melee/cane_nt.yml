@@ -7,10 +7,47 @@
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/cane_nt.rsi
     layers:
+    - state: cane-nt-active
+      visible: true
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_on" ]
     - state: cane-nt
-      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_off" ]
+    - state: cane-nt
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_nocell" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StunbatonVisuals.Stunbaton_on:
+        enum.StunbatonVisualLayers.Stunbaton_on:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StunbatonVisuals.Stunbaton_off:
+        enum.StunbatonVisualLayers.Stunbaton_off:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StunbatonVisuals.Stunbaton_nocell:
+        enum.StunbatonVisualLayers.Stunbaton_nocell:
+          True: { visible: true }
+          False: { visible: false }
   - type: Stunbaton
-    energyPerUse: 25
+    energyPerUse: 18 # from 25 to account for medium power cells. (720 charge with 18 per use = 40 hits (yes the NT cane is a monster))
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor # A little treat for our hard working paperwork jockies.
+        disableEject: true # No ejects little one.
+        swap: false
+        blacklist:
+          tags:
+          - MechReactor
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
   - type: ItemToggle
     predictable: false
     soundActivate:
@@ -44,31 +81,12 @@
     damage: 40
     sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor
-  - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
   - type: UseDelay
   - type: Item
     heldPrefix: off
     size: Normal
   - type: DisarmMalus
     malus: 0.300
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-     enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: {state: cane-nt-active}
-          False: {state: cane-nt}
-  - type: Riggable
-  - type: SolutionContainerManager
-    solutions:
-      battery:
-        maxVol: 5
-  - type: InjectableSolution
-    solution: battery
-  - type: DrawableSolution
-    solution: battery
   - type: MobilityAid
   - type: Prying
     speedModifier: 0.25

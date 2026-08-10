@@ -10,6 +10,7 @@ public sealed class ServerReloginTest : GameTest
 {
     public override PoolSettings PoolSettings => new PoolSettings
     {
+        Dirty = true, // Starlight
         Connected = true,
         DummyTicker = false
     };

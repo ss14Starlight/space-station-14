@@ -1,4 +1,4 @@
-﻿using Content.Client._Starlight.Managers;
+using Content.Client._Starlight.Managers;
 using Content.Client._Starlight.Achievement;
 using Content.Client._NullLink; // NullLink
 using Content.Client.Administration.Managers;
@@ -15,6 +15,7 @@ using Content.Client.IoC;
 using Content.Client.Launcher;
 using Content.Client.Lobby;
 using Content.Client.MainMenu;
+using Content.Client.Overlays;
 using Content.Client.Parallax.Managers;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Playtime;
@@ -140,6 +141,8 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
+            // Starlight-edit: Lancer arcade scoreboards
+            _prototypeManager.RegisterIgnore("arcadeScoreboard");
 
             _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
 
@@ -177,6 +180,7 @@ namespace Content.Client.Entry
 
             _parallaxManager.LoadDefaultParallax();
 
+            _overlayManager.AddOverlay(new CP14BasePostProcessOverlay()); // CP14-PostProcess
             _overlayManager.AddOverlay(new SingularityOverlay());
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
             _chatManager.Initialize();
