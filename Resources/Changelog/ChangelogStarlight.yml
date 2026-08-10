@@ -1,20 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Ming) Added Flippers to Courtroom.
-    type: Add
-  id: 406981
-  time: '2026-07-26T14:38:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5248
-- author: Orhu
-  changes:
-  - message: (Ming) Added vend of silence to Mime Room.
-    type: Add
-  id: 406982
-  time: '2026-07-26T14:38:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5248
-- author: Orhu
-  changes:
   - message: (Ming) Added ice cream machine to kitchen and ice cream stand.
     type: Add
   id: 406983
@@ -2799,4 +2785,18 @@ Entries:
   id: 407380
   time: '2026-08-09T11:12:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5479
+- author: SnappingOpossum, Princess-Cheeseballs, MilenVolf
+  changes:
+  - message: Certain randomized items and decorations no longer spawn with the wrong rotation.
+    type: Fix
+  id: 407381
+  time: '2026-08-10T00:53:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5405
+- author: SnappingOpossum, Princess-Cheeseballs, MilenVolf
+  changes:
+  - message: Handheld artifacts will no longer create entities glued to players.
+    type: Fix
+  id: 407382
+  time: '2026-08-10T00:53:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5405
 Order: -1
