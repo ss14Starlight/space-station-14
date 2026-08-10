@@ -279,7 +279,7 @@
       visible: false
       shader: unshaded
       map: [ "blade" ]
-  - type: EnergySword
+  - type: EnergyColor # SL
   - type: ItemToggle
     soundActivate:
       path: /Audio/Weapons/ebladeon.ogg

@@ -61,6 +61,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/Cargo/cargo_prism.yml"),
         new("/Maps/_Starlight/Shuttles/Cargo/cargo_silica.yml"),
         new("/Maps/_Starlight/Shuttles/Cargo/cargo_syndicate.yml"),
+        new("/Maps/_Starlight/Shuttles/cargo_novolobster.yml"),
 
         // Evac
         new("/Maps/_Starlight/Shuttles/Evac/emergency_cluster.yml"),
@@ -89,6 +90,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/Shipyard/pioneer.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/prospector.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/pts.yml"),
+        new("/Maps/_Starlight/Shuttles/SpaceTruck.yml"),
 
         // Syndicate
         new("/Maps/_Starlight/Shuttles/Nukeops/blackhorse.yml"),
@@ -107,6 +109,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/incorporation.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/montague.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/romeo.yml"),
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/VisitorInquisitor.yml"),
 
         new("/Maps/_Starlight/Shuttles/Admeme/LancePirates.yml"),
         new("/Maps/_Starlight/Shuttles/Admeme/lotteryShuttleAdmeme.yml"),

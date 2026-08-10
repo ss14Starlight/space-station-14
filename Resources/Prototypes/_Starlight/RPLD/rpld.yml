@@ -210,7 +210,7 @@
 - type: rcd
   id: PlumbingRpldSmartDispenser
   category: PlumbingProduction
-  sprite: /Textures/_Starlight/Interface/Radial/RPLD/smart_fridge.png
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/smart_dispenser.png
   mode: ConstructObject
   prototype: PlumbingSmartDispenser
   cost: 3

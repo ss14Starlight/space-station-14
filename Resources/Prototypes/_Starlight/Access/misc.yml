@@ -35,7 +35,8 @@
     - Mining
     - SalvageLead
     - Mail
-    - Pirate
+    - Shuttle
+    - Journalism
 
 - type: accessLevel
   id: Debug1

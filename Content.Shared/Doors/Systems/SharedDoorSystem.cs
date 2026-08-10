@@ -148,7 +148,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         RaiseLocalEvent(ent, new DoorStateChangedEvent(door.State));
     }
 
-    public bool SetState(EntityUid uid, DoorState state, DoorComponent? door = null)
+    public bool SetState(EntityUid uid, DoorState state, DoorComponent? door = null, EntityUid? user = null) // Starlight: added user param
     {
         if (!Resolve(uid, ref door))
             return false;
@@ -192,7 +192,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
         door.State = state;
         Dirty(uid, door);
-        RaiseLocalEvent(uid, new DoorStateChangedEvent(state));
+        RaiseLocalEvent(uid, new DoorStateChangedEvent(state, user)); // Starlight: pass user through
 
         AppearanceSystem.SetData(uid, DoorVisuals.State, door.State);
         return true;
@@ -203,7 +203,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
     #region Interactions
     protected void OnActivate(EntityUid uid, DoorComponent door, ActivateInWorldEvent args)
     {
-        args.InteractionParticle &= door.ShowInteractionParticle; // Starlight, don't show SECRET doors
+        args.InteractionParticle &= door.ShowInteractionParticles; // Starlight, don't show SECRET doors
 
         // Starlight edit start: Enable entities with prying capabilities on themselves to open doors
         var pryingCapable = args.Complex || HasComp<PryingComponent>(args.User);
@@ -372,7 +372,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
         var lastState = door.State;
 
-        if (!SetState(uid, DoorState.Opening, door))
+        if (!SetState(uid, DoorState.Opening, door, user)) // Starlight: pass user through
             return;
 
         if (predicted)

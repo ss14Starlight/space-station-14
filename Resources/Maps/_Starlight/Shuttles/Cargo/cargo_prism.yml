@@ -859,7 +859,7 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: ComputerShuttleCargo
+- proto: ComputerShuttle
   entities:
   - uid: 118
     components:

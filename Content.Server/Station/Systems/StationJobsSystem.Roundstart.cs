@@ -300,23 +300,24 @@ public sealed partial class StationJobsSystem
     {
         var outputDict = new Dictionary<NetUserId, List<string>>(players.Count);
 
+        var antags = _antag.GetAntagJobs();
+
         foreach (var player in players)
         {
-            if (!_player.TryGetSessionById(player, out var session))
-                continue;
-
             var roleBans = _banManager.GetJobBans(player);
-            var isPreselectedAntag = _antag.GetPreSelectedAntagSessions().Contains(session);
-            var preselectedAntags = _antag.GetPreSelectedAntagDefinitions(session);
+            #region Starlight
+            // Multi-slot stuff
+            var profile = _serverPreferences.GetPreferences(player);
+            var profileJobs = profile.JobPriorities.Keys.Select(k => new ProtoId<JobPrototype>(k)).ToList();
 
             // Get all the jobs that a player has selected with a priority greater than Never and also that they
             // have an enabled character with that job preference selected
             var playerPrefs = _serverPreferences.GetPreferences(player);
             var playerJobs = playerPrefs.JobPriorities;
             var allCharacterJobs = new HashSet<ProtoId<JobPrototype>>();
-            foreach (var profile in playerPrefs.Characters.Values)
+            foreach (var playerProfile in playerPrefs.Characters.Values)
             {
-                if (profile is not HumanoidCharacterProfile { Enabled: true } humanoid)
+                if (playerProfile is not HumanoidCharacterProfile { Enabled: true } humanoid)
                     continue;
                 allCharacterJobs.UnionWith(humanoid.JobPreferences);
             }
@@ -330,14 +331,57 @@ public sealed partial class StationJobsSystem
                 filteredPlayerJobs.Add(job);
             }
 
-            // Remove jobs that the player in ineligible for
-            var profileJobs = filteredPlayerJobs.ToList();
+            #endregion
             var ev = new StationJobsGetCandidatesEvent(player, profileJobs);
             RaiseLocalEvent(ref ev);
 
+            // Shouldn't happen but you know :P
+            if (!_player.TryGetSessionById(player, out var session))
+                continue;
+
+            var (whitelist, blacklist) = antags.GetValueOrDefault(session);
+
+            #region Starlight
+            // If a player has already been selected as antag, they should only roll jobs from
+            // enabled profiles that also opted into one of their pre-selected antag roles.
+            HashSet<ProtoId<JobPrototype>>? antagCharacterJobs = null;
+            var selectedAntags = _antag.GetPreSelectedAntagSpecifiers(session);
+            if (selectedAntags.Count > 0)
+            {
+                var selectedAntagDefinitions = new List<AntagSpecifierPrototype>(); // Starlight
+                foreach (var antag in selectedAntags)
+                {
+                    if (!_prototypeManager.Resolve(antag, out var antagProto))
+                        continue;
+
+                    selectedAntagDefinitions.Add(antagProto); // Starlight
+                }
+
+                antagCharacterJobs = new HashSet<ProtoId<JobPrototype>>();
+                foreach (var character in profile.Characters.Values)
+                {
+                    if (character is not HumanoidCharacterProfile { Enabled: true } humanoid)
+                        continue;
+
+                    #region Starlight
+                    // A single character must satisfy every reservation. Taking the union of
+                    // preferences allows profile A to qualify one antag while profile B is spawned.
+                    if (selectedAntagDefinitions.Count != selectedAntags.Count ||
+                        !selectedAntagDefinitions.All(definition =>
+                            _antag.IsProfileValidForAntag(session, humanoid, definition)))
+                    {
+                        continue;
+                    }
+                    #endregion
+
+                    antagCharacterJobs.UnionWith(humanoid.JobPreferences);
+                }
+            }
+            #endregion
+
             List<string>? availableJobs = null;
 
-            foreach (var jobId in profileJobs)
+            foreach (var jobId in filteredPlayerJobs) // Starlight
             {
                 var priority = playerJobs[jobId];
 
@@ -347,21 +391,38 @@ public sealed partial class StationJobsSystem
                 if (!_prototypeManager.Resolve(jobId, out var job))
                     continue;
 
-                // If we're an antag but the job can't be an antag, don't allow this job
-                if (isPreselectedAntag && !job.CanBeAntag)
+                if (whitelist != null && !whitelist.Contains(jobId))
                     continue;
 
-                // If we're an antag, make sure that we have a character that is eligible to
-                // become all of our selected antags
-                if (isPreselectedAntag && !preselectedAntags.All(antag =>
-                        _antag.HasPrimaryAntagPreference(session, antag, AntagSelectionTime.IntraPlayerSpawn, job)))
-                    continue;
+                if (blacklist != null && blacklist.Contains(jobId))
+                                        continue;
+
+                if (antagCharacterJobs != null && !antagCharacterJobs.Contains(jobId)) // Starlight
+                    continue; // Starlight
 
                 if (weight is not null && job.Weight != weight.Value)
                     continue;
 
                 if (!(roleBans == null || !roleBans.Contains(jobId))) //TODO: Replace with IsRoleBanned
                     continue;
+
+                #region Starlight
+                // Multislot stuff, again
+                var validProfiles = profile.GetAllEnabledProfilesForJob(jobId);
+                if (validProfiles.Count == 0)
+                    continue;
+
+                if (!validProfiles.Values.Any(humanoid =>
+                        JobRequirements.TryRequirementsMet(
+                            jobId,
+                            session,
+                            null,
+                            out _,
+                            EntityManager,
+                            _prototypeManager,
+                            humanoid)))
+                    continue;
+                #endregion
 
                 availableJobs ??= new List<string>(playerJobs.Count);
                 availableJobs.Add(jobId);
