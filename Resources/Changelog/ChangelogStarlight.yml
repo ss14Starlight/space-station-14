@@ -1,39 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: The RCD can now build airlocks and firelocks on top of each other.
-    type: Tweak
-  id: 407084
-  time: '2026-07-28T14:26:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5377
-- author: Wizden Team
-  changes:
-  - message: Inflatables can now be sourced from emergency lockers.
-    type: Add
-  id: 407085
-  time: '2026-07-28T14:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5357
-- author: Wizden Team
-  changes:
-  - message: Conducting gloves to Uplink for 1 TC.
-    type: Add
-  id: 407086
-  time: '2026-07-28T14:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5357
-- author: Wizden Team
-  changes:
-  - message: Most outer clothing can now only hold small Items.
-    type: Tweak
-  id: 407087
-  time: '2026-07-28T14:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5357
-- author: Wizden Team
-  changes:
-  - message: Fixed Det coat armor values.
-    type: Fix
-  id: 407088
-  time: '2026-07-28T14:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5357
 - author: Wizden Team
   changes:
   - message: Explosion Resistance has been removed from the web vest.
@@ -2799,4 +2764,39 @@ Entries:
   id: 407483
   time: '2026-08-10T23:12:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5538
+- author: Romero/Littlemen, with thanks to SevenShade
+  changes:
+  - message: WAR WIZARD (admeme phase).
+    type: Add
+  id: 407484
+  time: '2026-08-10T23:12:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5526
+- author: Romero/Littlemen, with thanks to SevenShade
+  changes:
+  - message: The Cryomancer.
+    type: Add
+  id: 407485
+  time: '2026-08-10T23:12:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5526
+- author: Romero/Littlemen, with thanks to SevenShade
+  changes:
+  - message: The Pyromancer.
+    type: Add
+  id: 407486
+  time: '2026-08-10T23:12:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5526
+- author: Romero/Littlemen, with thanks to SevenShade
+  changes:
+  - message: 13 new spells, 2 special robes, one spellbook for the wizards.
+    type: Add
+  id: 407487
+  time: '2026-08-10T23:12:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5526
+- author: Romero/Littlemen, with thanks to SevenShade
+  changes:
+  - message: the option for actionsystem to change the speed of a projectile.
+    type: Tweak
+  id: 407488
+  time: '2026-08-10T23:12:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5526
 Order: -1
