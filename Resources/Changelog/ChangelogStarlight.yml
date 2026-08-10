@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Kiloton) Added a guidebook crate to the Library.
-    type: Add
-  id: 407018
-  time: '2026-07-27T08:21:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5255
-- author: Orhu
-  changes:
   - message: (Kiloton) Added ticket machine to HOP.
     type: Add
   id: 407019
@@ -2799,4 +2792,11 @@ Entries:
   id: 407417
   time: '2026-08-10T15:25:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5560
+- author: Caws
+  changes:
+  - message: Increased the maximum linking range of the artifact analysis console from 9 tiles to 12.
+    type: Tweak
+  id: 407418
+  time: '2026-08-10T17:26:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5597
 Order: -1
