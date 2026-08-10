@@ -365,7 +365,18 @@ public sealed partial class FaxSystem : EntitySystem
     private void OnCopyButtonPressed(EntityUid uid, FaxMachineComponent component, FaxCopyMessage args)
     {
         if (HasComp<MobStateComponent>(component.PaperSlot.Item))
+        {
             _faxecute.Faxecute(uid, component); // when button pressed it will hurt the mob.
+
+            // Starlight-edit
+            var printout = TryGetFaxablePrintout(component.PaperSlot.Item, component);
+            if (printout != null)
+            {
+                component.PrintingQueue.Enqueue(printout);
+                UpdateUserInterface(uid, component);
+            }
+            // Starlight-edit
+        }
         else
             Copy(uid, component, args);
     }
@@ -373,7 +384,13 @@ public sealed partial class FaxSystem : EntitySystem
     private void OnSendButtonPressed(EntityUid uid, FaxMachineComponent component, FaxSendMessage args)
     {
         if (HasComp<MobStateComponent>(component.PaperSlot.Item))
+        {
             _faxecute.Faxecute(uid, component); // when button pressed it will hurt the mob.
+
+            // Starlight-edit
+            SendFaxablePrintout(uid, component);
+            // Starlight-edit
+        }
         else
             Send(uid, component, args);
     }
@@ -789,6 +806,46 @@ public sealed partial class FaxSystem : EntitySystem
         """;
         return string.Format(MetaFormat, payload.MetaSentAt, FormattedMessage.EscapeText(payload.MetaSender ?? ""),
             currentTime, FormattedMessage.EscapeText(comp.FaxName), content);
+    }
+
+    private FaxPrintout? TryGetFaxablePrintout(EntityUid? item, FaxMachineComponent component)
+    {
+        if (item is not { } sendEntity ||
+            !TryComp<FaxableObjectComponent>(sendEntity, out var faxable) ||
+            string.IsNullOrEmpty(faxable.OutputtingText))
+            return null;
+
+        return new FaxPrintout(
+            Loc.GetString(faxable.OutputtingText),
+            Loc.GetString("fax-machine-printed-paper-name"),
+            prototypeId: component.PrintPaperId,
+            retainMetadata: true);
+    }
+
+    private void SendFaxablePrintout(EntityUid uid, FaxMachineComponent component)
+    {
+        var printout = TryGetFaxablePrintout(component.PaperSlot.Item, component);
+        if (printout == null)
+            return;
+
+        if (component.DestinationFaxAddress == null ||
+            !component.KnownFaxes.ContainsKey(component.DestinationFaxAddress))
+            return;
+
+        var payload = new NetworkPayload()
+        {
+            { DeviceNetworkConstants.Command, FaxConstants.FaxPrintCommand },
+            { FaxConstants.FaxPaperNameData, printout.Name },
+            { FaxConstants.FaxPaperContentData, printout.Content },
+            { FaxConstants.FaxPaperPrototypeData, printout.PrototypeId },
+            { FaxConstants.FaxPaperLockedData, false },
+            { FaxConstants.FaxMetaSender, component.FaxName },
+            { FaxConstants.FaxMetaSentAt, GetTimeStamp() }
+        };
+
+        _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
+        _audioSystem.PlayPvs(component.SendSound, uid);
+        UpdateUserInterface(uid, component);
     }
 
     private void UpdateMachineConfigureUserInterface(EntityUid uid, FaxMachineComponent? component = null)
