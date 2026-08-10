@@ -1,11 +1,12 @@
 ﻿using Content.Server.Xenoarchaeology.Artifact.XAE.Components;
-using Content.Shared.Xenoarchaeology.Artifact.XAE;
-using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Tag;
+using Content.Shared.Xenoarchaeology.Artifact;
+using Content.Shared.Xenoarchaeology.Artifact.XAE;
+using Content.Server._Starlight.Xenoarchaeology.Artifact.XAE.Components;
 
-namespace Content.Server.Xenoarchaeology.Artifact.XAE;
+namespace Content.Server._Starlight.Xenoarchaeology.Artifact.XAE;
 
 /// <summary>
 /// System for xeno artifact activation effect that gives artifacts accesses.

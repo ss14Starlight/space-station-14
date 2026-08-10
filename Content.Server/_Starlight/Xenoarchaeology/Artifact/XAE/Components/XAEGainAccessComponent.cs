@@ -2,7 +2,7 @@
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Xenoarchaeology.Artifact.XAE.Components;
+namespace Content.Server._Starlight.Xenoarchaeology.Artifact.XAE.Components;
 
 /// <summary>
 /// XenoArtifact effect that grant accesses to artifacts.

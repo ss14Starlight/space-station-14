@@ -127,6 +127,7 @@
       weight: 4.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 4.0
+    # Starlight-start
     - id: XenoArtifactAccessEngineering
       weight: 1.5
     - id: XenoArtifactAccessScience # this is nearly useless for most people who can obtain it
@@ -141,8 +142,7 @@
       weight: 1.5
     - id: XenoArtifactAccessCommand
       weight: 1.0
-    #- id: XenoArtifactAccessAll #AA is probably too much
-    #  weight: 1.0
+    # Starlight-end
 
 - type: entityTable
   id: XenoArtifactEffectsHandheldOnlyTable
@@ -1392,98 +1392,3 @@
   - type: XAECreateGas
     gases:
       CarbonDioxide: 300
-
-- type: entity
-  id: XenoArtifactAccessEngineering
-  parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Engineering and Atmospherics access
-  components:
-  - type: XAEGainAccess
-    accesses:
-    - Engineering
-    - Atmospherics
-
-- type: entity
-  id: XenoArtifactAccessScience
-  parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Research and Robotics access
-  components:
-  - type: XAEGainAccess
-    accesses:
-    - Research
-    - Robotics
-
-- type: entity
-  id: XenoArtifactAccessCargo
-  parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Cargo accesses
-  components:
-  - type: XAEGainAccess
-    accesses:
-    - Salvage
-    - Mining
-    - Mail
-    - Cargo
-
-- type: entity
-  id: XenoArtifactAccessService
-  parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Service accesses
-  components:
-  - type: XAEGainAccess
-    accesses:
-    - Bar
-    - Kitchen
-    - Hydroponics
-    - Service
-    - Janitor
-    - Theatre
-    - Chapel
-    - Lawyer
-
-- type: entity
-  id: XenoArtifactAccessSecurity
-  parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Security accesses
-  components:
-  - type: XAEGainAccess
-    accesses:
-    - Security
-    - Armory
-    - Brig
-    - Detective
-    - Cryogenics
-    - Brigmedic
-    - Cadet
-    - GenpopEnter
-    - GenpopLeave
-
-- type: entity
-  id: XenoArtifactAccessMedical
-  parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Medical accesses
-  components:
-  - type: XAEGainAccess
-    accesses:
-    - Medical
-    - Chemistry
-    - Surgery
-    - Paramedic
-
-- type: entity
-  id: XenoArtifactAccessCommand
-  parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Command access
-  components:
-  - type: XAEGainAccess
-    accesses:
-    - Command
-
-- type: entity
-  id: XenoArtifactAccessAll
-  parent: BaseOneTimeXenoArtifactEffect
-  description: Gains all access
-  components:
-  - type: XAEGainAccess
-    accessGroups:
-    - AllAccess
