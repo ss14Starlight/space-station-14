@@ -222,9 +222,9 @@
     netsync: false
     maxCharge: 5000000
     startingCharge: 0
-  - type: TeslaCoil 
+  - type: TeslaCoil
     chargeFromLightning: 5000000
-  - type: Electrolyzer 
+  - type: Electrolyzer
     efficiency: 0.25
     passive: true
   - type: AtmosDevice
