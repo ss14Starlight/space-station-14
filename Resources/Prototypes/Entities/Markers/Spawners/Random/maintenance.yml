@@ -177,6 +177,56 @@
         - id: ClothingNeckTransPin
         - id: ClothingNeckAutismPin
         - id: ClothingNeckGoldAutismPin
+      # Magazines Starlight Start
+      - !type:GroupSelector
+        children:
+        - id: NewspaperBigWatermelon
+        - id: NewspaperSpores
+        - id: NewspaperGasLeaks
+        - id: NewspaperMaintenanceTar
+        - id: NewspaperWater
+        - id: NewspaperWeldingFuel
+        - id: NewspaperParasite
+        - id: NewspaperMining
+        - id: NewspaperMining2
+        - id: NewspaperMining3
+        - id: NewspaperForeshadowing
+        - id: MagazineCognitoWood
+        - id: MagazineCookingAndBotany
+        - id: MagazineWordsearch
+        - id: MagazineCrossword
+        - id: MagazineEarthNews
+        - id: MagazineMedicalScience
+        - id: MagazinePopularSpacepeople
+        - id: MagazinePopularSpacepeople2
+        - id: MagazinePopularSpacepeople3
+        - id: MagazinePopularSpacepeople4
+        - id: MagazineFashion
+        - id: MagazineFashion2
+        - id: MagazineFashion3
+        - id: MagazineFashion4
+        - id: MagazineFashion5
+        - id: MagazineFashion6
+        - id: MagazineFashion7
+        - id: MagazineFashion8
+        - id: MagazineEngineerNews
+        - id: MagazineEngineerNews2
+        - id: MagazineFirearms
+        - id: MagazineRevolutionary
+        - id: MagazineRevolutionary2
+        - id: MagazineRevolutionary3
+        - id: MagazineRevolutionary4
+        - id: MagazineRevolutionary5
+        - id: MagazineRevolutionary6
+        - id: MagazineRevolutionary7
+        - id: MagazineRevolutionary8
+        - id: MagazineConspiracy
+        - id: MagazineConspiracy2
+        - id: MagazineConspiracy3
+        - id: MagazineConspiracy4
+        - id: MagazineConspiracy5
+        - id: MagazineConspiracy6
+      # Starlight End
     # Rare Group
     - !type:GroupSelector
       weight: 2
