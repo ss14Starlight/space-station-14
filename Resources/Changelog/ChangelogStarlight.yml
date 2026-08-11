@@ -1,20 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Changed saturation of colored light tubes and bulbs to be 20% less saturated. Barely noticeable, but it blows out colors a bit less and is less painful to look at.
-    type: Tweak
-  id: 407098
-  time: '2026-07-28T19:57:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5368
-- author: Conflee
-  changes:
-  - message: Fixed 'spotlights' over some light sources like Exterior Lights, Floodlights, and Flares. Exterior Lights still have a spotlight, but it is smaller. Floodlights only have a spotlight in a fully lit room, and it is very small. Any light can have a spotlight if light stacking happens, but this reduces their occurrence in normal gameplay.
-    type: Fix
-  id: 407099
-  time: '2026-07-28T19:57:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5368
-- author: Conflee
-  changes:
   - message: Fixed ghosts not being able to see the new additive lighting effects.
     type: Fix
   id: 407100
@@ -2799,4 +2785,18 @@ Entries:
   id: 407497
   time: '2026-08-11T08:33:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5540
+- author: Spaghetti-Bit
+  changes:
+  - message: Added loud mode to command headsets, as well as some other commanding role headsets.
+    type: Add
+  id: 407498
+  time: '2026-08-11T08:33:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5395
+- author: Spaghetti-Bit
+  changes:
+  - message: Yelling will now make your message more noticeable on the radio.
+    type: Add
+  id: 407499
+  time: '2026-08-11T08:33:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5395
 Order: -1
