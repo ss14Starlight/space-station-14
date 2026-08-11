@@ -1,0 +1,35 @@
+<Document>
+# Alert Levels
+
+## Code Gamma
+
+[bold]Called by any two of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], or [color=#2253b5]NanoTrasen Representative[/color], with [color=#86d420]Central Command[/color] approval.
+
+[bold]Conditions:[/bold] An existential threat poses a risk of losing the station that security cannot handle on Red Alert, such as a revolution or a war.
+
+Please be sure to submit with clear reasoning in your request.
+
+[bold]Ended when:[/bold] The existential threat has been resolved or sufficiently contained. Code Gamma must be active for a minimum period before it may be ended.
+
+[bold]Ended by any two of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], or [color=#2253b5]NanoTrasen Representative[/color].
+
+## Code Violet
+
+[bold]Called by any two of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], [color=#57b8f0]Chief Medical Officer[/color], or [color=#cd7ccd]Research Director[/color].
+
+[bold]Conditions:[/bold] A confirmed biological or viral outbreak poses a station-wide threat and warrants elevated containment measures across all departments.
+
+[bold]Ended when:[/bold] The outbreak has been fully contained and the threat to the crew has passed. Code Violet must be active for a minimum period before it may be ended.
+
+[bold]Ended by any one of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], [color=#57b8f0]Chief Medical Officer[/color], or [color=#cd7ccd]Research Director[/color].
+
+## Code Psi
+
+[bold]Called by any two of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], or [color=#cd7ccd]Research Director[/color].
+
+[bold]Conditions:[/bold] An overwhelming hostile silicon threat is present on the station.
+
+[bold]Ended when:[/bold] The threat has been neutralized. Code Psi must be active for a minimum period before it may be ended.
+
+[bold]Ended by any two of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], or [color=#cd7ccd]Research Director[/color].
+</Document>
