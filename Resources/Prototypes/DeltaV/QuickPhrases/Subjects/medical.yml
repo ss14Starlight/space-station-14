@@ -13,14 +13,7 @@
   parent: BaseMedicalSubjectPhrase
   group: Medicine #starlight
   abstract: true
-  #starlight start
 
-- type: quickPhrase
-  id: BaseMedicalEquipmentPhrase
-  parent: BaseMedicalSubjectPhrase
-  group: MedicalEquipment
-  abstract: true
-#starlight end
 - type: quickPhrase
   id: DamageBrutePhrase
   parent: BaseDamageTypePhrase

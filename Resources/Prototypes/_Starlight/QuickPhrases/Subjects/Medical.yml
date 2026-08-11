@@ -1,3 +1,10 @@
+#see DV medical.yml for uses
+- type: quickPhrase
+  id: BaseMedicalEquipmentPhrase
+  parent: BaseMedicalSubjectPhrase
+  group: MedicalEquipment
+  abstract: true
+
 - type: quickPhrase
   id: ChemLacerinolPhrase
   parent: BaseMedicinePhrase
