@@ -2,7 +2,7 @@
   id: PlastitaniumAirlockIndestructible
   parent: Airlock
   name: plastitanium airlock
-  suffix: indestructible
+  suffix: Indestructible
   components:
   - type: Sprite
     sprite: _Blimpuf/Structures/Doors/Airlocks/plastitanium.rsi
