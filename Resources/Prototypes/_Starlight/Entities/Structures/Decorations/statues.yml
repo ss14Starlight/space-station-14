@@ -64,92 +64,98 @@
           layer:
             - MidImpassable
 
-- type: entity
-  id: EndymionMemorial1
-  parent: BaseStructure
-  name: Endymion Memorial
-  description: |
-    A memorial commissioned in 2143 to commemorate the lives lost aboard the Endymion and Blu-E, carved from a recovered fragment of the ships' hull and shaped into their likeness. The names of the lost crew are carved on it.
-    "In reaching to the future, we must never forget those who came before us."
-    - TSF representative Kennedy Sunderland
-  components:
-    - type: Openable
-      openOnActivate: true
-      closeable: false
-      sound:
-        path: /Audio/Effects/curtain_openclose.ogg
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.OpenableVisuals.Opened:
-          enum.OpenableVisuals.Layer:
-            True: { state: open }
-            False: { state: closed }
-    - type: Sprite
-      snapCardinals: true
-      noRot: true
-      sprite: _Starlight/Structures/Decorations/Statues(3x2)/Endymion1.rsi
-      offset: "0.0,0.5"
-      drawdepth: Mobs
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-1.4,-0.2,1.4,0.50"
-          density: 60
-          mask:
-            - MachineMask
-          layer:
-            - MidImpassable
-            - LowImpassable
-    - type: Pullable
-    - type: Tag
-      tags:
-        - Structure
+# To be used later
+#- type: entity
+#  id: EndymionMemorial1
+#  parent: BaseStructure
+#  name: Endymion Memorial
+#  description: |
+#    A memorial commissioned in 2143 to commemorate the lives lost aboard the Endymion and Blu-E, carved from a recovered fragment of the ships' hull and shaped into their likeness. The names of the lost crew are carved on it.
+#    "In reaching to the future, we must never forget those who came before us."
+#    - TSF representative Kennedy Sunderland
+#  components:
+#    - type: Openable
+#      openOnActivate: true
+#      closeable: false
+#      sound:
+#        path: /Audio/Effects/curtain_openclose.ogg
+#    - type: Appearance
+#    - type: GenericVisualizer
+#      visuals:
+#        enum.OpenableVisuals.Opened:
+#          enum.OpenableVisuals.Layer:
+#            True: { state: open }
+#            False: { state: closed }
+#    - type: Sprite
+#      snapCardinals: true
+#      noRot: true
+#      sprite: _Starlight/Structures/Decorations/Statues(3x2)/Endymion1.rsi
+#      offset: "0.0,0.5"
+#      drawdepth: Mobs
+#    - type: Fixtures
+#      fixtures:
+#        fix1:
+#          shape:
+#            !type:PhysShapeAabb
+#            bounds: "-1.4,-0.2,1.4,0.50"
+#          density: 60
+#          mask:
+#            - MachineMask
+#          layer:
+#            - MidImpassable
+#            - LowImpassable
+#    - type: Pullable
+#    - type: Anchorable
+#    - type: Tag
+#      tags:
+#        - Structure
 
-- type: entity
-  id: EndymionMemorial2
-  parent: EndymionMemorial1
-  components:
-    - type: Sprite
-      snapCardinals: true
-      noRot: true
-      sprite: _Starlight/Structures/Decorations/Statues(3x2)/Endymion2.rsi
-      offset: "0.0,0.5"
-      drawdepth: Mobs
+# To be used later
+#- type: entity
+#  id: EndymionMemorial2
+#  parent: EndymionMemorial1
+#  components:
+#    - type: Sprite
+#      snapCardinals: true
+#      noRot: true
+#      sprite: _Starlight/Structures/Decorations/Statues(3x2)/Endymion2.rsi
+#      offset: "0.0,0.5"
+#      drawdepth: Mobs
 
-- type: entity
-  id: EndymionStatue1
-  parent: BaseStructure
-  name: Endymion Statue
-  description: |
-    A memorial commissioned in 2143 to commemorate the lives lost aboard the Endymion and Blu-E, carved from a recovered fragment of the ships' hull and shaped into their likeness. The names of the lost crew are carved on it.
-    "In reaching to the future, we must never forget those who came before us."
-    - TSF representative Kennedy Sunderland
-  components:
-    - type: Sprite
-      noRot: true
-      sprite: _Starlight/Structures/Decorations/Statues.rsi
-      state: endymion1
-      drawdepth: Mobs
-      offset: "0.0,0.5"
+# To be used later
+#- type: entity
+#  id: EndymionStatue1
+#  parent: BaseStructure
+#  name: Endymion Statue
+#  description: |
+#    A memorial commissioned in 2143 to commemorate the lives lost aboard the Endymion and Blu-E, carved from a recovered fragment of the ships' hull and shaped into their likeness. The names of the lost crew are carved on it.
+#    "In reaching to the future, we must never forget those who came before us."
+#    - TSF representative Kennedy Sunderland
+#  components:
+#    - type: Sprite
+#      noRot: true
+#      sprite: _Starlight/Structures/Decorations/Statues.rsi
+#      state: endymion1
+#      drawdepth: Mobs
+#      offset: "0.0,0.5"
+#    - type: Anchorable
 
-- type: entity
-  id: EndymionStatue2
-  parent: EndymionStatue1
-  components:
-    - type: Sprite
-      noRot: true
-      sprite: _Starlight/Structures/Decorations/Statues.rsi
-      state: endymion2
-      drawdepth: Mobs
-      offset: "0.0,0.5"
+# To be used later
+#- type: entity
+#  id: EndymionStatue2
+#  parent: EndymionStatue1
+#  components:
+#    - type: Sprite
+#      noRot: true
+#      sprite: _Starlight/Structures/Decorations/Statues.rsi
+#      state: endymion2
+#      drawdepth: Mobs
+#      offset: "0.0,0.5"
 
 - type: entity
   id: EndymionStatueLarge1
   parent: BaseStructure
-  name: Endymion Statue
+  name: Small Endymion Memorial
   description: |
     A memorial commissioned in 2143 to commemorate the lives lost aboard the Endymion and Blu-E, carved from a recovered fragment of the ships' hull and shaped into their likeness. The names of the lost crew are carved on it.
     "In reaching to the future, we must never forget those who came before us."
@@ -172,3 +178,4 @@
           layer:
             - MidImpassable
             - LowImpassable
+    - type: Anchorable

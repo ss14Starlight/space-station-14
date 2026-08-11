@@ -227,7 +227,7 @@
     - !type:GroupSelector #event thing
       children:
       - id: EndymionMonumentFlatpack
-      - id: EndymionStatueFlatpack
+      # - id: EndymionStatueFlatpack Sprites not yet made
     - id: PrintedDocumentEndymionMemorial
     - id: Multitool
     # Starlight End
