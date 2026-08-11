@@ -29,15 +29,15 @@ namespace Content.Server._Starlight.Weapons.Gunnery;
 /// </summary>
 public sealed partial class GunneryConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private ShuttleConsoleSystem _console = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
 
     /// <summary>
     /// How often to transmit UI updates when a player is actively looking at a console.
@@ -170,7 +170,7 @@ public sealed partial class GunneryConsoleSystem : EntitySystem
         var cannonGridUid = Transform(cannon).GridUid;
         if (cannonGridUid != null
             && cannonMapPos.MapId == targetMapPos.MapId
-            && _mapManager.TryFindGridAt(targetMapPos, out var targetGridUid, out _)
+            && _map.TryFindGridAt(targetMapPos, out var targetGridUid, out _)
             && targetGridUid == cannonGridUid.Value)
             return;
 
