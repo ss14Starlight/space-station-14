@@ -33,3 +33,10 @@ scent-evidence-both = scent, fingerprints, and other evidence
 
 scent-nose-implant-name = olfactory implant
 scent-nose-implant-description = Enables you to perceive and track scents.
+
+scent-surgery-step-locate-nose-implant = Locate Implant
+scent-surgery-step-prepare-implant-site-nose = Prepare Implant Site
+scent-surgery-step-insert-nose-implant = Insert Nose Implant
+scent-surgery-step-connect-olfactory-nerve = Connect Olfactory Nerve
+scent-surgery-step-clamp-olfactory-nerve = Clamp Olfactory Nerve
+scent-surgery-step-remove-nose-implant = Remove Nose Implant

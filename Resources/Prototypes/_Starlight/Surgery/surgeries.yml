@@ -844,7 +844,7 @@
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
     steps:
-    - SurgeryStepLocateHandImplant
+    - SurgeryStepLocateImplant
     - SurgeryStepExposeNerves
     - SurgeryStepRemoveHandImplant
   - type: SurgeryPartCondition
