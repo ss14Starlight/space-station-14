@@ -57,3 +57,11 @@ role-type-tsf-aligned-color = #22a7ff
 job-rules-tsf-aligned = You are {role-type-tsf-aligned-name}.
                               You are to serve the interests of the Trans-Solar Federation.
                               Remember, you do NOT serve the crew.
+
+role-type-itg-aligned-name = Interstellar Trade Guild
+role-type-itg-aligned-color = #a34f18
+role-type-itg-aligned-alternate-color = #a34f18
+job-rules-itg-aligned = You are {role-type-itg-aligned-name}.
+                              You are to serve and protect the interests of the Interstellar Trade Guild, even if they differ from the stations'.
+                              Remember, you do NOT serve the crew.
+

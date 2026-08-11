@@ -33,7 +33,6 @@
     - Surgery
     - Paramedic
     - Mining
-    - SalvageLead
     - Mail
     - Shuttle
     - Journalism
@@ -86,6 +85,7 @@
   - MedTak
   - Casino
   - Visitor
+  - Salvage
 
 - type: accessGroup
   id: Syndicate

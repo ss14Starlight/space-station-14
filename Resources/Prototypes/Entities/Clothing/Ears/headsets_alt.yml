@@ -22,7 +22,6 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyExpedition # Starlight
       - EncryptionKeyCargo
       - EncryptionKeyCommand
       - EncryptionKeyCommon
@@ -33,7 +32,6 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/qm.ogg
-  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
@@ -53,7 +51,6 @@
       path: /Audio/_Starlight/Effects/Radio/captain.ogg
   - type: StealTarget # Starlight
     stealGroup: ClothingHeadsetAltCommand # Starlight
-  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
@@ -73,7 +70,6 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/ce.ogg
-  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
@@ -95,7 +91,6 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/cmo.ogg
-  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
@@ -115,7 +110,6 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/hos.ogg
-  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
@@ -135,7 +129,6 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/rd.ogg
-  - type: HeadsetLoudMode #Starlight
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseSyndicateContraband]

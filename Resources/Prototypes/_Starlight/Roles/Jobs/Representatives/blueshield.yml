@@ -40,7 +40,6 @@
     - Research
     - Robotics
     - Detective
-    - Salvage
     - Security
     - Brigmedic
     - Brig
@@ -54,9 +53,7 @@
     - Surgery
     - Paramedic
     - Mining
-    - SalvageLead
     - Debrief
-    - Journalism
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
