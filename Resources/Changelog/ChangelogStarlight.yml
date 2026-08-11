@@ -1,11 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Electrocution no longer causes the target to emit sparks. This would cause Supermatter tritium to ignite.
-    type: Remove
-  id: 407113
-  time: '2026-07-29T15:46:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5397
 - author: DocMoth, Forrestgod
   changes:
   - message: Changed the Shading for the AI Core.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407512
   time: '2026-08-11T11:24:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5583
+- author: Caws
+  changes:
+  - message: Renamed Radio Host's room station beacon from "Radio Host" to "Radio Studio".
+    type: Tweak
+  id: 407513
+  time: '2026-08-11T11:24:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5589
 Order: -1
