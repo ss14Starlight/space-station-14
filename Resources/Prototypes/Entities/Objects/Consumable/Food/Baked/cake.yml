@@ -877,7 +877,7 @@
   - type: Tag
     tags:
     - Cake
-    - Birthday
+    - Birthday # Starlight
   - type: Item
     heldPrefix: birthday
 
@@ -892,7 +892,7 @@
   - type: Tag
     tags:
     - Cake
-    - Birthday
+    - Birthday # Starlight
     - Slice
   - type: Item
     heldPrefix: birthday-slice
