@@ -57,6 +57,13 @@ guide-entry-sl-command-clarifications = Command Clarifications
 guide-entry-sl-general-command-staff = General Command Staff
 guide-entry-sl-captain = Captain
 guide-entry-sl-ai = AI
+guide-entry-sl-secure-terminal = Secure Terminal
+guide-entry-sl-secure-terminal-ert = ERT Teams
+guide-entry-sl-secure-terminal-alerts = Alert Levels
+guide-entry-sl-secure-terminal-armories = Armories & Pods
+guide-entry-sl-secure-terminal-misc = Misc
+
+guide-entry-sl-secure-terminal-guide = Secure Terminal
 
 guide-entry-sl-non-crew-policies = Non-crew Policies
 guide-entry-sl-docking-and-visitors = Docking and Visitors

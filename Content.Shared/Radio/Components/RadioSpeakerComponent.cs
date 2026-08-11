@@ -25,20 +25,4 @@ public sealed partial class RadioSpeakerComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool Enabled;
-
-    // Starlight - Radio Host LouderSpeech -> ParseRadioPrefix.
-    /// <summary>
-    /// Whether or not a message is parsed through the radio when when sent in local chat.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool ParseRadioPrefix;
-    // Starlight - End
-
-    // Goobstation - Radio Host
-    /// <summary>
-    /// Does the radio need to be on a power grid to work?
-    /// </summary>
-    [DataField]
-    public bool PowerRequired;
-    // Goobstation - End
 }
