@@ -5,10 +5,10 @@ using SpawnOnDespawnComponent = Content.Shared._Starlight.Spawners.Components.Sp
 
 namespace Content.Shared._Starlight.Spawners.EntitySystems;
 
-public sealed partial class SharedSpawnOnDespawnSystem : EntitySystem // Starlight edit
+public sealed partial class SharedSpawnOnDespawnSystem : EntitySystem
 {
-    [Dependency] private SharedTransformSystem _xform = default!; // Starlight
-    private readonly Queue<(EntProtoId Prototype, EntityCoordinates Coordinates, ComponentRegistry? overrides)> _queuedSpawns = new(); // Starlight
+    [Dependency] private SharedTransformSystem _xform = default!;
+    private readonly Queue<(EntProtoId Prototype, EntityCoordinates Coordinates, ComponentRegistry? overrides)> _queuedSpawns = new();
 
     public override void Initialize()
     {
@@ -17,7 +17,6 @@ public sealed partial class SharedSpawnOnDespawnSystem : EntitySystem // Starlig
         SubscribeLocalEvent<SpawnOnDespawnComponent, TimedDespawnEvent>(OnDespawn);
     }
 
-    // Starlight Start
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -29,14 +28,13 @@ public sealed partial class SharedSpawnOnDespawnSystem : EntitySystem // Starlig
             PredictedSpawnAtPosition(prototype, coordinates, overrides);
         }
     }
-    // Starlight End
 
     private void OnDespawn(EntityUid uid, SpawnOnDespawnComponent comp, ref TimedDespawnEvent args)
     {
         if (!TryComp(uid, out TransformComponent? xform))
             return;
 
-        _queuedSpawns.Enqueue((comp.Prototype, xform.Coordinates, comp.Overrides)); // Starlight Edit: Queue the spawn to occur after the entity is fully deleted
+        _queuedSpawns.Enqueue((comp.Prototype, xform.Coordinates, comp.Overrides));
     }
 
     public void SetPrototype(Entity<SpawnOnDespawnComponent> entity, EntProtoId prototype)
@@ -44,10 +42,7 @@ public sealed partial class SharedSpawnOnDespawnSystem : EntitySystem // Starlig
         entity.Comp.Prototype = prototype;
     }
 
-    #region Starlight
-
     public void SetOverrides(Entity<SpawnOnDespawnComponent> entity, ComponentRegistry? overrides) =>
         entity.Comp.Overrides = overrides;
 
-    #endregion
 }
