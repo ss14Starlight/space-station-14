@@ -1,0 +1,11 @@
+- type: reaction
+  id: Firebolt
+  requiredMixerCategories:
+    - Shake
+  reactants:
+    Gildlager:
+      amount: 1
+    Whiskey:
+      amount: 4
+  products:
+    Firebolt: 5
