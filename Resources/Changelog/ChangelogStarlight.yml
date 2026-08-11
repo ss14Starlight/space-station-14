@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Boxcars) Removed Boxcars from the game files.
-    type: Remove
-  id: 407091
-  time: '2026-07-28T15:34:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5376
 - author: Wayiscute, Caws
   changes:
   - message: Added the new advanced APC, which supports up to 90kW of power draw, has a larger internal battery, and responds better to sudden changes in power demand. Unlockable by researching the "Power Generation" technology.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407490
   time: '2026-08-11T03:09:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5557
+- author: VBlankFF
+  changes:
+  - message: Added effects that give artifacts certain accesses.
+    type: Add
+  id: 407491
+  time: '2026-08-11T06:27:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5383
 Order: -1
