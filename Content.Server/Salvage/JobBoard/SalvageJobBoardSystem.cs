@@ -10,6 +10,7 @@ using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Paper;
 using Content.Shared.Radio;
 using Content.Shared.Salvage.JobBoard;
+using Content.Shared.Stacks;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
@@ -40,6 +41,11 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
     /// Radio channel that unlock messages are broadcast on.
     /// </summary>
     private static readonly ProtoId<RadioChannelPrototype> UnlockChannel = "Supply";
+
+    /// <summary> #starlight
+    /// Prototype for the stack that is spawned when a salvage job is completed.
+    /// </summary>
+    private static readonly ProtoId<StackPrototype> TicketStackPrototype = "SalvageTicket";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -187,7 +193,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
         if (jobProto.Tickets > 0 && sourceEntity is { Valid: true })
         {
             var coordinates = Transform(sourceEntity.Value).Coordinates;
-            _stack.SpawnAtPosition(jobProto.Tickets, "SalvageTicket", coordinates);
+            _stack.SpawnAtPosition(jobProto.Tickets, TicketStackPrototype, coordinates);
         }
 
         // We ranked up!
