@@ -314,7 +314,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepLocateNoseImplant
-  name: scent-surgery-step-locate-nose-implant
+  name: Locate Implant
   components:
   - type: SurgeryStep
     duration: 2
@@ -859,7 +859,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepPrepareImplantSiteNose
-  name: scent-surgery-step-prepare-implant-site-nose
+  name: Prepare Implant Site
   components:
   - type: SurgeryStep
     duration: 2
@@ -872,7 +872,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepInsertNoseImplant
-  name: scent-surgery-step-insert-nose-implant
+  name: Insert Nose Implant
   components:
   - type: SurgeryStep
     duration: 2
@@ -888,7 +888,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepConnectOlfactoryNerve
-  name: scent-surgery-step-connect-olfactory-nerve
+  name: Connect Olfactory Nerve
   components:
   - type: SurgeryStep
     duration: 4
@@ -901,7 +901,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepClampOlfactoryNerve
-  name: scent-surgery-step-clamp-olfactory-nerve
+  name: Clamp Olfactory Nerve
   components:
   - type: SurgeryStep
     duration: 3
@@ -914,7 +914,7 @@
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepRemoveNoseImplant
-  name: scent-surgery-step-remove-nose-implant
+  name: Remove Nose Implant
   components:
   - type: SurgeryStep
     duration: 3
