@@ -49,7 +49,7 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
   # starlight start
-  - type: CanDualWield # 🌟Starlight🌟
+  - type: CanDualWield #Starlight
     dualWieldInaccuracyPenalty: 27
   - type: MeleeWeapon
     wideAnimationRotation: 0

@@ -104,7 +104,7 @@ public sealed partial class NPCCombatSystem
                 _combat.SetInCombatMode(uid, true, combatMode);
             }
 
-            //🌟Starlight🌟
+            //Starlight
             if (!_gun.IsChamberClosed(uid)
                 && TryComp<ChamberMagazineAmmoProviderComponent>(gun, out var magazineComp))
             {
@@ -146,10 +146,10 @@ public sealed partial class NPCCombatSystem
                 // For consistency with NPC steering.
                 var collisionGroup = comp.UseOpaqueForLOSChecks ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
 
-                //🌟Starlight🌟 start
+                //Starlight start
                 if(TryComp<BatteryAmmoProviderComponent>(gun, out _))
                     collisionGroup = CollisionGroup.Opaque;
-                //🌟Starlight🌟 end
+                //Starlight end
 
                 comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup);
             }

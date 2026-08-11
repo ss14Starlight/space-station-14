@@ -14,7 +14,7 @@ namespace Content.Shared.VendingMachines
         }
     }
 
-    // 🌟Starlight🌟 start
+    //Starlight start
     /// <summary>
     /// Request balance information from server
     /// </summary>
@@ -35,7 +35,7 @@ namespace Content.Shared.VendingMachines
             Balance = balance;
         }
     }
-    // 🌟Starlight🌟 end
+    //Starlight end
 
     [Serializable, NetSerializable]
     public enum VendingMachineUiKey

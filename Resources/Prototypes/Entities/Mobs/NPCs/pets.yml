@@ -884,7 +884,7 @@
   - type: NpcFactionMember
     factions:
       - PetsNT
-  # 🌟Starlight🌟 start
+  #Starlight start
   - type: OptionsVisualizer
     visuals:
       base:
@@ -900,7 +900,7 @@
             sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/shiva.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: shiva
-  # 🌟Starlight🌟 end
+  #Starlight end
   - type: SpriteMovement
     movementLayers:
       movement:

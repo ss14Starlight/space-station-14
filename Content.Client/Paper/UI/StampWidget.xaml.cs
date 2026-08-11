@@ -29,7 +29,7 @@ public sealed partial class StampWidget : PanelContainer
             StampedByLabel.Text = value.Type is StampType.Signature ? value.StampedName : Loc.GetString(value.StampedName);
             StampedByLabel.FontColorOverride = value.StampedColor;
             ModulateSelfOverride = value.StampedColor;
-            // 🌟Starlight Edit start🌟
+            //Starlight Edit start
             if (value.Type == StampType.Signature && value.Font != null)
             {
                 var resCache = IoCManager.Resolve<IResourceCache>();
@@ -40,7 +40,7 @@ public sealed partial class StampWidget : PanelContainer
             {
                 StampedByLabel.FontOverride = null;
             }
-            //🌟Starlight Edit end🌟
+            //Starlight Edit end
 
             // Umbra: PanelOverride is the border texture, as inferred from ctor. Set null if the stamp is a signature to hide the border.
             PanelOverride = value.Type is StampType.Signature ? null : _borderTexture;

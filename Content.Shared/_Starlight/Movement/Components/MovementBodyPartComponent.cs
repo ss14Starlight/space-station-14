@@ -15,7 +15,7 @@ public sealed partial class MovementBodyPartComponent : Component
     [DataField("acceleration")]
     public float Acceleration = MovementSpeedModifierComponent.DefaultAcceleration;
 
-    // 🌟Starlight🌟 Start
+    //Starlight Start
     /// <summary>
     /// The density this leg can effectively move, it’s a temporary solution until we implement proper weight calculations for all body parts.
     /// </summary>
@@ -34,5 +34,5 @@ public sealed partial class MovementBodyPartComponent : Component
     [DataField]
     public float MaxSpeedMod = 20.0f;
 
-    // 🌟Starlight🌟 End
+    //Starlight End
 }

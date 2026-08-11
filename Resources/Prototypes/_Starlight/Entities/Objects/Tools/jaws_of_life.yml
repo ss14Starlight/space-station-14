@@ -67,7 +67,7 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: BoneSaw
     successRate: 0.8
@@ -76,4 +76,4 @@
       path: /Audio/Items/jaws_cut.ogg
     endSound:
       path: /Audio/Items/change_jaws.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end

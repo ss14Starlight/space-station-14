@@ -681,7 +681,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         {
             state = customization.State;
 
-            //Load voice from mind 🌟Starlight🌟
+            //Load voice from mind Starlight
             //Because APPARENTLY this is the best place to do it
             //Station AIs will have to update their picture at least once for this to be called
             if (TryComp<TextToSpeechComponent>(stationAi, out var ttscomp) &&

@@ -71,7 +71,7 @@ namespace Content.Client.GameTicking.Managers
             _admin.AdminStatusUpdated -= OnAdminUpdated;
             base.Shutdown();
         }
-        public void NewLifeOpened() //🌟Starlight🌟
+        public void NewLifeOpened() //Starlight
             => RaiseNetworkEvent(new NewLifeOpenedEvent());
 
         private void OnAdminUpdated()

@@ -157,7 +157,7 @@ namespace Content.Server._Starlight.Kitchen.EntitySystems
             _appearanceSystem.SetData(uid, ReagentGrinderVisualState.BeakerAttached, outputContainer.HasValue);
 
             if (reagentGrinder.AutoMode != GrinderAutoMode.Off && !HasComp<ActiveReagentGrinderComponent>(uid)
-            && (!reagentGrinder.NeedsPower || this.IsPowered(uid, EntityManager))) // 🌟Starlight🌟
+            && (!reagentGrinder.NeedsPower || this.IsPowered(uid, EntityManager))) //Starlight
             {
                 var program = reagentGrinder.AutoMode == GrinderAutoMode.Grind ? GrinderProgram.Grind : GrinderProgram.Juice;
                 DoWork(uid, reagentGrinder, program);
@@ -221,7 +221,7 @@ namespace Content.Server._Starlight.Kitchen.EntitySystems
             var state = new ReagentGrinderInterfaceState(
                 isBusy,
                 outputContainer.HasValue,
-                !grinderComp.NeedsPower || // 🌟Starlight🌟
+                !grinderComp.NeedsPower || //Starlight
                 this.IsPowered(uid, EntityManager),
                 canJuice,
                 canGrind,
@@ -234,7 +234,7 @@ namespace Content.Server._Starlight.Kitchen.EntitySystems
 
         private void OnStartMessage(Entity<ReagentGrinderComponent> entity, ref ReagentGrinderStartMessage message)
         {
-            if (entity.Comp.NeedsPower && // 🌟Starlight🌟
+            if (entity.Comp.NeedsPower && //Starlight
                 !this.IsPowered(entity.Owner, EntityManager) || HasComp<ActiveReagentGrinderComponent>(entity))
                 return;
 

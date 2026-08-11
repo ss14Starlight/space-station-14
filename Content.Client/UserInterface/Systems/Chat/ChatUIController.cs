@@ -68,7 +68,7 @@ public sealed partial class ChatUIController : UIController
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IReplayRecordingManager _replayRecording = default!;
 
-    [UISystemDependency] private readonly RadioChimeSystem? _chime = default;// 🌟Starlight🌟
+    [UISystemDependency] private readonly RadioChimeSystem? _chime = default;//Starlight
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
     [UISystemDependency] private readonly GhostSystem? _ghost = default;
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
@@ -979,7 +979,7 @@ public sealed partial class ChatUIController : UIController
             History.Add((_timing.CurTick, msg));
             MessageAdded?.Invoke(msg);
 
-            _chime?.PlayChime(msg.Chime); // 🌟Starlight🌟
+            _chime?.PlayChime(msg.Chime); //Starlight
 
             if (!msg.Read)
             {

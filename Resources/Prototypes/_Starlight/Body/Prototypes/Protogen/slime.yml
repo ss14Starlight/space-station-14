@@ -23,7 +23,7 @@
         core: SentientProtoSlimeCore # So they can eat ramchips.
         lungs: OrganProtoSlimeLungs # To heal cellular
         cavity: null
-        brain_implant: null # 🌟Starlight🌟
+        brain_implant: null #Starlight
     right arm:
       part: RightArmSlime
       connections:
@@ -34,12 +34,12 @@
       - left hand
     right hand:
       part: RightHandSlime
-      organs: # 🌟Starlight🌟
-        hand_implant: null # 🌟Starlight🌟
+      organs: #Starlight
+        hand_implant: null #Starlight
     left hand:
       part: LeftHandSlime
-      organs: # 🌟Starlight🌟
-        hand_implant: null # 🌟Starlight🌟
+      organs: #Starlight
+        hand_implant: null #Starlight
     right leg:
       part: RightLegSlime
       connections:

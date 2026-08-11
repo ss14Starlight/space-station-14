@@ -389,7 +389,7 @@
   - type: PhysicalComposition
     materialComposition:
       Glass: 50
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: BoneGel
     successRate: 0.01 # How.
@@ -398,7 +398,7 @@
       path: /Audio/Items/Medical/ointment_begin.ogg
     endSound:
       path: /Audio/Items/Medical/ointment_end.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   parent: BaseFoodCondimentBottle

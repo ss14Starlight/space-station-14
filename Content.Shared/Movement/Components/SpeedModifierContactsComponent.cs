@@ -28,18 +28,18 @@ public sealed partial class SpeedModifierContactsComponent : Component
     [DataField, AutoNetworkedField]
     public bool AffectAirborne;
 
-    // 🌟Starlight🌟 Changes below here.
+    //Starlight Changes below here.
 
     /// <summary>
-    /// A blacklist of entities that should be ignored by this component's speed modifiers. // 🌟Starlight🌟
+    /// A blacklist of entities that should be ignored by this component's speed modifiers. //Starlight
     /// </summary>
     [DataField]
-    public EntityWhitelist? Blacklist; // 🌟Starlight🌟
+    public EntityWhitelist? Blacklist; //Starlight
 
 
     /// <summary>
-    /// A whitelist of entities that should be targeted by this component's speed modifiers. // 🌟Starlight🌟
+    /// A whitelist of entities that should be targeted by this component's speed modifiers. //Starlight
     /// </summary>
     [DataField]
-    public EntityWhitelist? Whitelist; // 🌟Starlight🌟
+    public EntityWhitelist? Whitelist; //Starlight
 }

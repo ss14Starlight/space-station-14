@@ -36,7 +36,7 @@ public sealed partial class GasTankComponent : Component, IGasMixtureHolder
     [DataField]
     public GasMixture Air { get; set; } = new();
 
-    // 🌟Starlight🌟
+    //Starlight
     // It’s minimal mol count synchronization
     // just enough so the client can predict a jetpack jump
     [DataField, AutoNetworkedField]

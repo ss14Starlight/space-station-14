@@ -440,7 +440,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         };
         RaiseLocalEvent(weaponUid, ref ev);
 
-        RaiseLocalEvent(user, ref ev); // 🌟Starlight🌟
+        RaiseLocalEvent(user, ref ev); //Starlight
 
         if (weapon.SwingBeverage)
         {

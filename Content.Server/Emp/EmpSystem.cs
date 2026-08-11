@@ -15,18 +15,18 @@ namespace Content.Server.Emp;
 
 public sealed partial class EmpSystem : SharedEmpSystem
 {
-    // 🌟Starlight🌟  start
+    //Starlight  start
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private TransformSystem _transform = default!;
     [Dependency] private PowerCellSystem _powerCell = default!;
     [Dependency] private ItemToggleSystem _itemToggle = default!;
 
-    // 🌟Starlight🌟 end
+    //Starlight end
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<EmpOnMeleeHitComponent, MeleeHitEvent>(HandleMeleeHitTrigger); // 🌟Starlight🌟
+        SubscribeLocalEvent<EmpOnMeleeHitComponent, MeleeHitEvent>(HandleMeleeHitTrigger); //Starlight
         SubscribeLocalEvent<EmpImmuneComponent, EmpAttemptEvent>(OnEmpAttempt); //SL edit
 
         SubscribeLocalEvent<EmpDisabledComponent, RadioSendAttemptEvent>(OnRadioSendAttempt);
@@ -42,7 +42,7 @@ public sealed partial class EmpSystem : SharedEmpSystem
         args.Cancelled = true;
     }
 
-    // 🌟Starlight🌟 start
+    //Starlight start
     private void HandleMeleeHitTrigger(EntityUid uid, EmpOnMeleeHitComponent comp, MeleeHitEvent args)
     {
         if (args.HitEntities.Count <= 0)
@@ -58,7 +58,7 @@ public sealed partial class EmpSystem : SharedEmpSystem
         }
     }
 
-    // 🌟Starlight🌟 end
+    //Starlight end
 
     private void OnRadioReceiveAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioReceiveAttemptEvent args) => args.Cancelled = true;
 

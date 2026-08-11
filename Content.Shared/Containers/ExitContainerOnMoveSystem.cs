@@ -27,7 +27,7 @@ public sealed partial class ExitContainerOnMoveSystem : EntitySystem
         if (!_container.TryGetContainer(ent, comp.ContainerId, out var container, containerManager) || !container.Contains(args.Entity))
             return;
 
-        //🌟Starlight🌟 Prevent sleeping or stunned entities from exiting containers
+        //Starlight Prevent sleeping or stunned entities from exiting containers
         if (HasComp<SleepingComponent>(args.Entity) || HasComp<StunnedComponent>(args.Entity))
             return;
 

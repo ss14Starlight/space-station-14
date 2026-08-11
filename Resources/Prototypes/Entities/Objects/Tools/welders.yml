@@ -111,7 +111,7 @@
     count: 1
     sparkPrototype: MoffEffectSparksSilent
   # Moffstation - End
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: Tag
     tags:
     - ThermiteIgnitor
@@ -125,7 +125,7 @@
   - type: WelderSurgery
     startSound:
       /Audio/Items/welder.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   name: industrial welding tool

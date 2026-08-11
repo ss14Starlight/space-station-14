@@ -14,11 +14,11 @@ namespace Content.Client.Stylesheets
     [Obsolete("Please use the new sheetlet system to define styles, and remove all references to this class as it may be deleted in the future")]
     public abstract class StyleBase
     {
-        public const string ClassCardHeader = "CardHeader"; // 🌟Starlight🌟
-        public const string ClassCardBorder = "CardBorder"; // 🌟Starlight🌟
-        public const string ClassCardBanner = "CardBanner"; // 🌟Starlight🌟
-        public const string ClassCardBody = "CardBody"; // 🌟Starlight🌟
-        public const string ClassMenuBar = "MenuBar"; // 🌟Starlight🌟
+        public const string ClassCardHeader = "CardHeader"; //Starlight
+        public const string ClassCardBorder = "CardBorder"; //Starlight
+        public const string ClassCardBanner = "CardBanner"; //Starlight
+        public const string ClassCardBody = "CardBody"; //Starlight
+        public const string ClassMenuBar = "MenuBar"; //Starlight
 
         public abstract Stylesheet Stylesheet { get; }
 
@@ -31,10 +31,10 @@ namespace Content.Client.Stylesheets
         protected StyleBoxTexture BaseButtonSquare { get; }
 
         protected StyleBoxTexture BaseAngleRect { get; }
-        protected StyleBoxTexture BaseHeaderRect { get; } // 🌟Starlight🌟
-        protected StyleBoxTexture BaseBannerRect { get; } // 🌟Starlight🌟
-        protected StyleBoxTexture BaseBodyRect { get; } // 🌟Starlight🌟
-        protected StyleBoxTexture MenuBarRect { get; } // 🌟Starlight🌟
+        protected StyleBoxTexture BaseHeaderRect { get; } //Starlight
+        protected StyleBoxTexture BaseBannerRect { get; } //Starlight
+        protected StyleBoxTexture BaseBodyRect { get; } //Starlight
+        protected StyleBoxTexture MenuBarRect { get; } //Starlight
         protected StyleBoxTexture AngleBorderRect { get; }
 
         protected StyleBase(IResourceCache resCache)
@@ -113,7 +113,7 @@ namespace Content.Client.Stylesheets
             };
             BaseAngleRect.SetPatchMargin(StyleBox.Margin.All, 10);
 
-            // 🌟Starlight🌟 start
+            //Starlight start
             BaseHeaderRect = new StyleBoxTexture
             {
                 Texture = resCache.GetTexture("/Textures/_Starlight/Interface/Nano/card_header.png"),
@@ -145,7 +145,7 @@ namespace Content.Client.Stylesheets
             MenuBarRect.SetPatchMargin(StyleBox.Margin.Bottom, 5);
             MenuBarRect.SetPatchMargin(StyleBox.Margin.Left, 4);
             MenuBarRect.SetPatchMargin(StyleBox.Margin.Right, 8);
-            // 🌟Starlight🌟 end
+            //Starlight end
 
             AngleBorderRect = new StyleBoxTexture
             {

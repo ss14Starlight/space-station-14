@@ -152,7 +152,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
         SubscribeLocalEvent<StrippableComponent, DragDropDraggedEvent>(OnDragDrop);
         SubscribeLocalEvent<StrippableComponent, ActivateInWorldEvent>(OnActivateInWorld);
 
-        SubscribeLocalEvent<StrippableComponent, BeforeGettingStrippedEvent>(OnBeforeGettingStripped); //🌟Starlight🌟
+        SubscribeLocalEvent<StrippableComponent, BeforeGettingStrippedEvent>(OnBeforeGettingStripped); //Starlight
     }
 
     private void AddStripVerb(EntityUid uid, StrippableComponent component, GetVerbsEvent<Verb> args)
@@ -470,7 +470,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
             DuplicateCondition = DuplicateConditions.SameTool
         };
 
-        LimitSimultaneousStripDoAfters((user, null), doAfterArgs); //🌟Starlight🌟
+        LimitSimultaneousStripDoAfters((user, null), doAfterArgs); //Starlight
     }
 
     /// <summary>
@@ -584,7 +584,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
             DuplicateCondition = DuplicateConditions.SameTool
         };
 
-        LimitSimultaneousStripDoAfters(user, doAfterArgs); //🌟Starlight🌟
+        LimitSimultaneousStripDoAfters(user, doAfterArgs); //Starlight
     }
 
     /// <summary>
@@ -706,7 +706,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
             DuplicateCondition = DuplicateConditions.SameTool
         };
 
-        LimitSimultaneousStripDoAfters(user, doAfterArgs); //🌟Starlight🌟
+        LimitSimultaneousStripDoAfters(user, doAfterArgs); //Starlight
     }
 
     /// <summary>

@@ -120,7 +120,7 @@ public sealed partial class ReflectSystem : EntitySystem
             return false;
         }
 
-        #region 🌟Starlight🌟
+        #region Starlight
         var availableEnergy = 0;
         if (HasComp<PowerCellSlotComponent>(reflector.Owner)) //if the shield has a battery slot, then we consume charge to perform the reflection
         {
@@ -206,7 +206,7 @@ public sealed partial class ReflectSystem : EntitySystem
         EntityUid shotSource,
         Vector2 direction,
         ReflectType hitscanReflectType,
-        // 🌟Starlight🌟 start
+        //Starlight start
         string? hitscanId,
         [NotNullWhen(true)] out Vector2? newDirection)
     {
@@ -249,7 +249,7 @@ public sealed partial class ReflectSystem : EntitySystem
             var spread = _random.NextAngle(-reflector.Comp.Spread / 2, reflector.Comp.Spread / 2);
             newDirection = -spread.RotateVec(direction);
         }
-        // 🌟Starlight🌟 end
+        //Starlight end
 
         if (shooter != null)
             _adminLogger.Add(LogType.HitScanHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected hitscan from {ToPrettyString(shotSource)} shot by {ToPrettyString(shooter.Value)}");

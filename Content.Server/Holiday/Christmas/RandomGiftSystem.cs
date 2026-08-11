@@ -39,7 +39,7 @@ public sealed partial class RandomGiftSystem : EntitySystem
         SubscribeLocalEvent<RandomGiftComponent, MapInitEvent>(OnGiftMapInit);
         SubscribeLocalEvent<RandomGiftComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<RandomGiftComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<RandomGiftComponent, GetVerbsEvent<AlternativeVerb>>(OnGetWrapperVerbs); // 🌟Starlight🌟
+        SubscribeLocalEvent<RandomGiftComponent, GetVerbsEvent<AlternativeVerb>>(OnGetWrapperVerbs); //Starlight
         BuildIndex();
     }
 
@@ -57,7 +57,7 @@ public sealed partial class RandomGiftSystem : EntitySystem
         if (args.Handled)
             return;
 
-    // 🌟Starlight🌟 start
+    //Starlight start
     //Functionality was moved and slightly modified
         var coords = Transform(args.User).Coordinates;
         SpawnItems(uid, component, args.User, coords);
@@ -101,7 +101,7 @@ public sealed partial class RandomGiftSystem : EntitySystem
             Text = Loc.GetString("delivery-open-verb"),
         });
     }
-    // 🌟Starlight🌟 end
+    //Starlight end
 
     private void OnGiftMapInit(EntityUid uid, RandomGiftComponent component, MapInitEvent args)
     {

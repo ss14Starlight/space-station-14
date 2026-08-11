@@ -57,7 +57,7 @@ public sealed partial class ReflectComponent : Component
     [DataField, AutoNetworkedField]
     public Angle Spread = Angle.FromDegrees(45);
 
-    #region 🌟Starlight🌟
+    #region Starlight
     /// <summary>
     /// Overrides the reflection angle when set.
     /// </summary>

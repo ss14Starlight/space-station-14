@@ -15,11 +15,11 @@ public sealed partial class SalvageFactionPrototype : IPrototype
     [ViewVariables(VVAccess.ReadWrite), DataField("entries", required: true)]
     public List<SalvageMobEntry> MobGroups = new();
 
-    // 🌟Starlight🌟
+    //Starlight
     [DataField("biomes", customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageBiomeModPrototype>))]
     public List<string>? Biomes { get; private set; } = null;
 
-    // 🌟Starlight🌟
+    //Starlight
     [ViewVariables(VVAccess.ReadWrite), DataField("difficulties", required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
     public List<string> Difficulties = [];
 

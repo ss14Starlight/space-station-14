@@ -62,7 +62,7 @@
 - type: startingGear
   id: LibrarianGear
   equipment:
-    #shoes: ClothingShoesBootsLaceup # 🌟Starlight🌟
+    #shoes: ClothingShoesBootsLaceup #Starlight
     id: LibrarianPDA
     ears: ClothingHeadsetService
     pocket1: d20Dice

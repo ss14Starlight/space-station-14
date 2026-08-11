@@ -39,14 +39,14 @@
     materialComposition:
       Steel: 100
       Wood: 100
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: SurgicalDrill
     successRate: 0.01 # You can try
     speed: 0.5
     endSound:
       path: "/Audio/Weapons/smash.ogg"
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   name: mining drill
@@ -74,7 +74,7 @@
         Brute: 3
       types:
         Structural: 15
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: SurgicalDrill
     successRate: 0.2 # This drill is way too big, really
@@ -83,7 +83,7 @@
       path: "/Audio/Items/drill_use.ogg"
     endSound:
       path: "/Audio/Items/drill_use.ogg"
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   name: diamond tipped mining drill

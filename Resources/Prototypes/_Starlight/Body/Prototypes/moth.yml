@@ -12,7 +12,7 @@
         eyes: OrganMothEyes # Starlight
         tongue: OrganHumanTongue
         eye_implant: null
-        brain_implant: null # 🌟Starlight🌟
+        brain_implant: null #Starlight
     torso:
       part: TorsoMoth
       connections:
@@ -37,12 +37,12 @@
       - left hand
     right hand:
       part: RightHandMoth
-      organs: # 🌟Starlight🌟
-        hand_implant: null # 🌟Starlight🌟
+      organs: #Starlight
+        hand_implant: null #Starlight
     left hand:
       part: LeftHandMoth
-      organs: # 🌟Starlight🌟
-        hand_implant: null # 🌟Starlight🌟
+      organs: #Starlight
+        hand_implant: null #Starlight
     right leg:
       part: RightLegMoth
       connections:

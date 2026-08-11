@@ -23,7 +23,7 @@
 - type: startingGear
   id: ServiceWorkerGear
   equipment:
-    #shoes: ClothingShoesColorBlack # 🌟Starlight🌟
+    #shoes: ClothingShoesColorBlack #Starlight
     id: ServiceWorkerPDA
     ears: ClothingHeadsetService
   #storage:

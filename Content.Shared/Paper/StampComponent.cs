@@ -26,7 +26,7 @@ public partial struct StampDisplayInfo
     [DataField("type")]
     public StampType Type = StampType.RubberStamp;
 
-    // 🌟Starlight edit🌟
+    //Starlight edit
     [DataField("font")]
     public string? Font { get; set; } = "/Fonts/NotoSans/NotoSans-Regular.ttf"; // Default font :3
 };

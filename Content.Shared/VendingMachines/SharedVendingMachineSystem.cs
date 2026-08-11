@@ -62,7 +62,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         Subs.BuiEvents<VendingMachineComponent>(VendingMachineUiKey.Key, subs =>
         {
             subs.Event<VendingMachineEjectMessage>(OnInventoryEjectMessage);
-            subs.Event<VendingMachineRequestBalanceMessage>(OnRequestBalanceMessage); // 🌟Starlight🌟
+            subs.Event<VendingMachineRequestBalanceMessage>(OnRequestBalanceMessage); //Starlight
         });
     }
 
@@ -122,7 +122,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             contrabandInventory[weh.Key] = new(weh.Value);
         }
 
-        // 🌟Starlight🌟 Allow server-side systems to calculate prices
+        //Starlight Allow server-side systems to calculate prices
         // If emagged for interaction, the machine becomes free
 
         // This is a hack, because this method is doing a lot of things it should not be in component get state
@@ -145,7 +145,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             EmaggedInventory = emaggedInventory,
             ContrabandInventory = contrabandInventory,
             Contraband = component.Contraband,
-            ShowPrices = showPricesNow, // 🌟Starlight🌟
+            ShowPrices = showPricesNow, //Starlight
             EjectEnd = component.EjectEnd,
             DenyEnd = component.DenyEnd,
             DispenseOnHitEnd = component.DispenseOnHitEnd,
@@ -153,7 +153,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         };
     }
 
-    // 🌟Starlight🌟
+    //Starlight
     /// <summary>
     /// Virtual method for calculating inventory prices. Override on server for actual pricing logic
     /// </summary>

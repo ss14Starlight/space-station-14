@@ -19,7 +19,7 @@
   id: MusicianGear
   equipment:
     eyes: ClothingEyesGlassesMusicianSunglasses # Starlight
-    #shoes: ClothingShoesBootsLaceup # 🌟Starlight🌟
+    #shoes: ClothingShoesBootsLaceup #Starlight
     id: MusicianPDA
     ears: ClothingHeadsetService
   #storage:

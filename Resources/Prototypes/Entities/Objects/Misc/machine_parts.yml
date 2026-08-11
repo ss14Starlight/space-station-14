@@ -34,7 +34,7 @@
     - type: Tag
       tags:
       - MicroManipulatorStockPart
-    # 🌟Starlight-start🌟
+    #Starlight-start
     - type: ItemPrice
       priceCategory: tool_cheap
     - type: SurgeryTool
@@ -43,4 +43,4 @@
       speed: 1.5
       startSound:
         path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
-    # 🌟Starlight-end🌟
+    #Starlight-end

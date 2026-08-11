@@ -83,10 +83,10 @@
     heldPrefix: eyeballs
   - type: OrganVisualization
     layer: Eyes
-    # 🌟Starlight🌟 start
+    #Starlight start
     prototypes:
       Default: MobHumanoidEyes
-    # 🌟Starlight🌟 end
+    #Starlight end
 
 - type: entity
   id: OrganHumanTongue

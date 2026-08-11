@@ -76,11 +76,11 @@ namespace Content.Server.Database
             if (prefs is null)
                 return null;
 
-            // 🌟Starlight🌟 start : hotfix
+            //Starlight start : hotfix
             var maxSlot = prefs.Profiles.Count > 0
                 ? prefs.Profiles.Max(p => p.Slot) + 1
                 : 0;
-            // 🌟Starlight🌟 end
+            //Starlight end
 
             var profiles = new Dictionary<int, ICharacterProfile>(maxSlot);
             foreach (var profile in prefs.Profiles)
@@ -341,7 +341,7 @@ namespace Content.Server.Database
             var humanoid = new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.Voice,
-                profile.SiliconVoice, // 🌟Starlight🌟
+                profile.SiliconVoice, //Starlight
                 physicalDesc, // Starlight
                 personalityDesc, // Starlight
                 personalNotes, // Starlight
@@ -406,7 +406,7 @@ namespace Content.Server.Database
 
             profile.CharacterName = humanoid.Name;
             profile.Voice = humanoid.Voice;
-            profile.SiliconVoice = humanoid.SiliconVoice; // 🌟Starlight🌟
+            profile.SiliconVoice = humanoid.SiliconVoice; //Starlight
             profile.FlavorText = string.Empty; //Starlight
             profile.CharacterInfo ??= new StarLightModel.CharacterInfo();//Starlight
             profile.CharacterInfo.PhysicalDesc = humanoid.PhysicalDescription;//Starlight

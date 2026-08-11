@@ -32,7 +32,7 @@ namespace Content.Client.Stylesheets
         public Stylesheet SheetSpace { get; private set; } = default!;
 
         [Obsolete("Update to use SheetSystem instead")] // Starlight
-        public Stylesheet Starlight { get; private set; } = default!;  //🌟Starlight🌟
+        public Stylesheet Starlight { get; private set; } = default!;  //Starlight
 
         private Dictionary<string, Stylesheet> Stylesheets { get; set; } = default!;
 
@@ -58,7 +58,7 @@ namespace Content.Client.Stylesheets
             SheetSystem = Init(new SystemStylesheet(new BaseStylesheet.NoConfig(), this));
             SheetNano = new StyleNano(_resCache).Stylesheet; // TODO: REMOVE (obsolete)
             SheetSpace = new StyleSpace(_resCache).Stylesheet; // TODO: REMOVE (obsolete)
-            Starlight = new StyleStarlight(_resCache).Stylesheet; //🌟Starlight🌟 TODO: REMOVE (obsolete)
+            Starlight = new StyleStarlight(_resCache).Stylesheet; //Starlight TODO: REMOVE (obsolete)
             _userInterfaceManager.Stylesheet = SheetNanotrasen;
 
             // warn about unused sheetlets

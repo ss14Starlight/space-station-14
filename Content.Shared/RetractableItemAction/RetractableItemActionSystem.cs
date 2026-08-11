@@ -18,7 +18,7 @@ namespace Content.Shared.RetractableItemAction;
 public sealed partial class RetractableItemActionSystem : EntitySystem
 {
     [Dependency] private SharedHandsSystem _hands = default!;
-    [Dependency] private InventorySystem _inventory = default!; // 🌟Starlight🌟
+    [Dependency] private InventorySystem _inventory = default!; //Starlight
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
@@ -34,7 +34,7 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
         SubscribeLocalEvent<ActionRetractableItemComponent, ComponentShutdown>(OnActionSummonedShutdown);
         Subs.SubscribeWithRelay<ActionRetractableItemComponent, HeldRelayedEvent<TargetHandcuffedEvent>>(OnItemHandcuffed, inventory: false);
 
-        SubscribeLocalEvent<RetractableItemActionComponent, CyberneticDisruptionEvent>(OnCyberneticsDisrupted); // 🌟Starlight🌟
+        SubscribeLocalEvent<RetractableItemActionComponent, CyberneticDisruptionEvent>(OnCyberneticsDisrupted); //Starlight
     }
 
     private void OnActionInit(Entity<RetractableItemActionComponent> ent, ref MapInitEvent args)
@@ -46,10 +46,10 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
 
     private void OnRetractableItemAction(Entity<RetractableItemActionComponent> ent, ref OnRetractableItemActionEvent args)
     {
-        /*  🌟Starlight🌟 Start
+        /*  Starlight Start
          *  if (_hands.GetActiveHand(args.Performer) is not { } activeHand) // Moved
          *      return;
-         *  🌟Starlight🌟 End */
+         *  Starlight End */
 
         if (_actions.GetAction(ent.Owner) is not { } action)
             return;
@@ -60,7 +60,7 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
         if (ent.Comp.ActionItemUid == null)
             return;
 
-        // 🌟Starlight🌟 start
+        //Starlight start
         // A lot of this is the same, but moved a lot
         if (ent.Comp.SpawnInHand)
         {
@@ -109,7 +109,7 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
                 SummonRetractableItemInInventory(args.Performer, ent.Comp.ActionItemUid.Value, ent.Comp.Slot, ent.Owner);
             }
         }
-        // 🌟Starlight🌟 end
+        //Starlight end
 
         args.Handled = true;
     }

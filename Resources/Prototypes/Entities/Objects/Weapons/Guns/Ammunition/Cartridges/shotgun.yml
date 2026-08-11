@@ -180,7 +180,7 @@
     solutions:
       ammo:
         reagents:
-        - ReagentId: Nocturine #🌟Starlight🌟
+        - ReagentId: Nocturine #Starlight
           Quantity: 5
   - type: SolutionTransfer
     maxTransferAmount: 3.5

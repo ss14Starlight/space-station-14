@@ -103,7 +103,7 @@ namespace Content.Shared.ActionBlocker
             return !targetEv.Cancelled;
         }
 
-        //🌟Starlight🌟
+        //Starlight
         public bool CanInstrumentInteract(EntityUid user, EntityUid used, EntityUid? target)
         {
             var ev = new InteractionAttemptEvent(user, target);

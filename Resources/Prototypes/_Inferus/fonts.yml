@@ -1,3 +1,7 @@
 - type: font
   id: Sunshiney
   path: /Fonts/_Inferus/Sunshiney.otf
+
+- type: font
+  id: Scratch
+  path: /Fonts/_Inferus/Scratch/Scratch.otf

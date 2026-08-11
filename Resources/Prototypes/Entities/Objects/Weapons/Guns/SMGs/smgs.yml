@@ -23,7 +23,7 @@
     - suitStorage
   - type: AmmoCounter
   # starlight start
-  - type: CanDualWield # 🌟Starlight🌟
+  - type: CanDualWield #Starlight
     dualWieldInaccuracyPenalty: 68
   - type: MeleeWeapon
     wideAnimationRotation: 90

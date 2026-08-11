@@ -103,7 +103,7 @@ internal static class ServerContentIoC
         deps.Register<DiscordLink>();
         deps.Register<DiscordChatLink>();
 
-        // 🌟Starlight🌟 start
+        //Starlight start
         deps.Register<ISharedPlayersRoleManager, PlayerRolesManager>();
         deps.Register<IPlayerRolesManager, PlayerRolesManager>();
         deps.Register<ITTSClient, TTSClient>();
@@ -111,7 +111,7 @@ internal static class ServerContentIoC
         deps.Register<IBugReportManager, BugReportManager>();
         deps.Register<IAchievementRewardManager, NullLinkPlayerManager>();
         deps.Register<PreWrittenDocumentManager>();
-        // 🌟Starlight🌟 end
+        //Starlight end
         // nulllink start
         deps.Register<IActorRouter, ActorRouter>();
         deps.Register<NullLinkPlayerManager>();

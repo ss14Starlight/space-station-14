@@ -37,9 +37,9 @@ public abstract partial class SharedStunSystem
     private EntityQuery<CrawlerComponent> _crawlerQuery;
 
     [Dependency] private EntityLookupSystem _entityLookup = default!;
-    [Dependency] private SharedGunSystem _gunSystem = default!; // 🌟Starlight🌟
+    [Dependency] private SharedGunSystem _gunSystem = default!; //Starlight
     [Dependency] private SharedHandsSystem _hands = default!;
-    [Dependency] private SharedItemSystem _item = default!; // 🌟Starlight🌟
+    [Dependency] private SharedItemSystem _item = default!; //Starlight
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private StandingStateSystem _standingState = default!;
@@ -62,8 +62,8 @@ public abstract partial class SharedStunSystem
         // Action blockers
         SubscribeLocalEvent<KnockedDownComponent, BuckleAttemptEvent>(OnBuckleAttempt);
         SubscribeLocalEvent<KnockedDownComponent, StandAttemptEvent>(OnStandAttempt);
-        SubscribeLocalEvent<KnockedDownComponent, ShotAttemptedEvent>(OnShootAttempt); // 🌟Starlight🌟
-        SubscribeLocalEvent<KnockedDownComponent, AttemptMeleeEvent>(OnMeleeAttempt); // 🌟Starlight🌟
+        SubscribeLocalEvent<KnockedDownComponent, ShotAttemptedEvent>(OnShootAttempt); //Starlight
+        SubscribeLocalEvent<KnockedDownComponent, AttemptMeleeEvent>(OnMeleeAttempt); //Starlight
 
         // Updating movement and friction
         SubscribeLocalEvent<KnockedDownComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshKnockedSpeed);
@@ -601,7 +601,7 @@ public abstract partial class SharedStunSystem
             args.Cancelled = true;
     }
 
-    // 🌟Starlight🌟
+    //Starlight
     private void OnShootAttempt(Entity<KnockedDownComponent> entity, ref ShotAttemptedEvent args)
     {
         args.Cancel();
@@ -612,7 +612,7 @@ public abstract partial class SharedStunSystem
         }
     }
 
-    // 🌟Starlight🌟
+    //Starlight
     private void OnMeleeAttempt(Entity<KnockedDownComponent> entity, ref AttemptMeleeEvent args)
     {
         // If the weapon is wearable or is our own fists, then we can use it while knocked down

@@ -122,11 +122,11 @@ public sealed partial class MindComponent : Component
     [DataField]
     public LocId? Subtype;
 
-    // 🌟Starlight🌟
+    //Starlight
     [DataField]
     public string? Voice;
 
-    // 🌟Starlight🌟
+    //Starlight
     [DataField]
     public string? SiliconVoice;
 

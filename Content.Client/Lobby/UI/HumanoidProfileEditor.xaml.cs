@@ -563,7 +563,7 @@ namespace Content.Client.Lobby.UI
             UpdateSpeciesGuidebookIcon();
             IsDirty = false;
 
-            //🌟Starlight🌟
+            //Starlight
             _voices = [.. _prototypeManager
                 .EnumeratePrototypes<VoicePrototype>()
                 .Where(o => !o.Silicon)];
@@ -580,7 +580,7 @@ namespace Content.Client.Lobby.UI
 
             VoiceButton.OnPressed += _ => _voiceSelectorWindow.OpenCentered();
 
-            // 🌟Starlight🌟 start
+            //Starlight start
             _siliconVoices = [.. _prototypeManager
                 .EnumeratePrototypes<VoicePrototype>()
                 .Where(o => o.Silicon)];
@@ -604,7 +604,7 @@ namespace Content.Client.Lobby.UI
             // Cosmatic Drift Record System-end
             SetupInfoEditors();
             RefreshCharacterInfo();
-            // 🌟Starlight🌟 end
+            //Starlight end
         }
         private void UpdateVoicesControls()
         {
@@ -626,7 +626,7 @@ namespace Content.Client.Lobby.UI
             if (voiceChoice != default)
                 _voiceSelectorWindow.SelectVoice(voiceChoice);
         }
-        // 🌟Starlight🌟 Start
+        //Starlight Start
 
         private void SetupTabs()
         {
@@ -872,7 +872,7 @@ namespace Content.Client.Lobby.UI
         //     }
         // }
 
-        // 🌟Starlight🌟 end
+        //Starlight end
 
         /// <summary>
         /// Refreshes the species selector.
@@ -1155,7 +1155,7 @@ namespace Content.Client.Lobby.UI
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
             UpdateVoicesControls();
-            UpdateSiliconVoicesControls(); // 🌟Starlight🌟
+            UpdateSiliconVoicesControls(); //Starlight
             UpdateCybernetics(); // Starlight
             UpdateSpeciesLoadout(); // Far Horizons
 
@@ -1674,7 +1674,7 @@ namespace Content.Client.Lobby.UI
             Markings.SetSex(newSex);
             ReloadPreview();
             UpdateVoicesControls();
-            UpdateSiliconVoicesControls(); // 🌟Starlight🌟
+            UpdateSiliconVoicesControls(); //Starlight
         }
 
         private void SetGender(Gender newGender)

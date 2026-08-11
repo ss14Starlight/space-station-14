@@ -47,7 +47,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget, difficulty.ID);
         var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget, difficulty.ID);
         var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>()
-            .Where(x => x.Difficulties.Contains(difficulty.ID) && (x.Biomes == null || x.Biomes.Contains(biome.ID)))  // 🌟Starlight🌟
+            .Where(x => x.Difficulties.Contains(difficulty.ID) && (x.Biomes == null || x.Biomes.Contains(biome.ID)))  //Starlight
             .ToList();
         factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal)); //bullshit
         var faction = factionProtos[rand.Next(factionProtos.Count)];

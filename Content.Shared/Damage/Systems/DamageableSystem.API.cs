@@ -128,8 +128,8 @@ public sealed partial class DamageableSystem
         bool interruptsDoAfters = true,
         EntityUid? origin = null,
         bool ignoreGlobalModifiers = false,
-        float armorPenetration = 0f, // 🌟Starlight🌟
-        bool canHeal = true // 🌟Starlight🌟
+        float armorPenetration = 0f, //Starlight
+        bool canHeal = true //Starlight
     )
     {
         var damageDone = new DamageSpecifier();
@@ -175,7 +175,7 @@ public sealed partial class DamageableSystem
         }
         // Far Horizons end
 
-        // 🌟Starlight🌟 start
+        //Starlight start
         var finalEv = new DamageBeforeApplyEvent
         {
             Damage = damage,
@@ -184,7 +184,7 @@ public sealed partial class DamageableSystem
         RaiseLocalEvent(ent, finalEv);
         if (finalEv.Cancelled)
             return damage;
-        // 🌟Starlight🌟 end
+        //Starlight end
 
         if (!ignoreGlobalModifiers)
             damage = ApplyUniversalAllModifiers(damage);

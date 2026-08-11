@@ -128,7 +128,7 @@
         Piercing: 2
         Slash: 3
   - type: MessyDrinker
-    spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid, Starlight end
+    spillChance: 0.05 #Starlight 26% chance to spill per 30u of liquid, Starlight end
   - type: Sprite # Drawlayers. Top to bottom in order I believe.
     netsync: false
     layers:

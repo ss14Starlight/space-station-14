@@ -42,7 +42,7 @@
         Blunt: 0.5
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/cyberchainsaw.rsi
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: BoneSaw
     successRate: 0.6
@@ -51,7 +51,7 @@
       path: /Audio/Weapons/chainsawwield.ogg
     endSound:
       path: /Audio/Weapons/chainsaw.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
   - type: Tag
     tags:
       - CyberHandItem

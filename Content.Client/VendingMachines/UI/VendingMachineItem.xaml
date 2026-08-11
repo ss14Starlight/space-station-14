@@ -14,14 +14,14 @@
             SizeFlagsStretchRatio="1"
             HorizontalExpand="True"
             ClipText="True"/>
-    <!-- 🌟Starlight🌟 Amount in brackets -->
+    <!--Starlight Amount in brackets -->
         <Label Name="AmountLabel"
                         HorizontalAlignment="Right"
                         HorizontalExpand="False"
                         MinSize="40 0"
                         Margin="6 0 0 0"
                         ClipText="True"/>
-    <!-- 🌟Starlight🌟 Price with currency -->
+    <!--Starlight Price with currency -->
         <Label Name="PriceLabel"
                         HorizontalAlignment="Right"
                         HorizontalExpand="False"

@@ -1124,7 +1124,7 @@ public sealed partial class AdminVerbSystem
         SnapJoints = -29,
         MakeMinigun = -30,
         SetBulletAmount = -31,
-        ToggleOverlays = -32, // #🌟Starlight🌟
+        ToggleOverlays = -32, // #Starlight
         AddRandomMood = -32, //Starlight Thaven
         AddCustomMood = -33, //Starlight Thaven
         BlockObjectiveTargeting = -44, // Starlight

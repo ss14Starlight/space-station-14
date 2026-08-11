@@ -35,10 +35,10 @@ public sealed partial class CharacterInfoSystem : EntitySystem
         var jobTitle = Loc.GetString("character-info-no-profession");
         string? briefing = null;
 
-        // 🌟Starlight🌟 start
+        //Starlight start
         var @event = new CollectObjectivesEvent(objectives);
         RaiseLocalEvent(entity, ref @event);
-        // 🌟Starlight🌟 end
+        //Starlight end
 
         if (_minds.TryGetMind(entity, out var mindId, out var mind))
         {

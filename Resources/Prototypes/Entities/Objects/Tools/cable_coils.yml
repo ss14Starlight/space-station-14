@@ -49,7 +49,7 @@
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
-    # 🌟Starlight-start🌟
+    #Starlight-start
     - type: ItemPrice
       priceCategory: miscellaneous
     - type: SurgeryTool
@@ -60,7 +60,7 @@
         path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
       endSound:
         path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   id: CableHVStack

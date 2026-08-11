@@ -19,7 +19,7 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 6;// 🌟Starlight🌟
+    private const int MissionLimit = 6;//Starlight
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
@@ -145,7 +145,7 @@ public sealed partial class SalvageSystem
         component.Missions.Clear();
         var difficulties = _prototypeManager.GetInstances<SalvageDifficultyPrototype>();
 
-        // 🌟Starlight🌟
+        //Starlight
         var available = difficulties
 #if !DEBUG
             .Where(d => d.Value.Delay <= _timing.CurTime)
@@ -158,7 +158,7 @@ public sealed partial class SalvageSystem
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = _random.Pick(available), // 🌟Starlight🌟
+                Difficulty = _random.Pick(available), //Starlight
             };
 
             component.Missions[component.NextIndex++] = mission;

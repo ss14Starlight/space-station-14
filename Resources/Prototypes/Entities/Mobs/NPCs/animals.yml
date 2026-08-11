@@ -2761,7 +2761,7 @@
   id: MobGiantSpider
   description: Widely recognized to be the literal worst thing in existence.
   components:
-  # 🌟Starlight🌟 start
+  #Starlight start
   - type: OptionsVisualizer
     visuals:
       base:
@@ -2777,7 +2777,7 @@
             sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/spider.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: tarantula
-  # 🌟Starlight🌟 end
+  #Starlight end
   - type: SpriteMovement
     movementLayers:
       movement:
@@ -2815,7 +2815,7 @@
   id: MobClownSpider
   description: Combines the two most terrifying things in existence, spiders and clowns.
   components:
-  # 🌟Starlight🌟 start
+  #Starlight start
     - type: OptionsVisualizer
       visuals:
         base:
@@ -2831,7 +2831,7 @@
               sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/clownspider.rsi
               map: ["enum.DamageStateVisualLayers.Base", "movement"]
               state: clown
-  # 🌟Starlight🌟 end
+  #Starlight end
     - type: Butcherable
       spawned:
         - id: MaterialBananium1

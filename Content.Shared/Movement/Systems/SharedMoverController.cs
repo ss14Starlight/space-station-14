@@ -58,8 +58,8 @@ public abstract partial class SharedMoverController : VirtualController
     [Dependency] protected SharedGravitySystem _gravity = default!;
     [Dependency] protected SharedTransformSystem _transform = default!;
     [Dependency] private   TagSystem _tags = default!;
-    [Dependency] private   SharedActionsSystem _action = default!; //🌟Starlight🌟
-    [Dependency] private   SharedChargesSystem _charges = default!; //🌟Starlight🌟
+    [Dependency] private   SharedActionsSystem _action = default!; //Starlight
+    [Dependency] private   SharedChargesSystem _charges = default!; //Starlight
 
     protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
     protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;

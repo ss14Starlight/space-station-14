@@ -36,7 +36,7 @@ public sealed partial class MapMigrationSystem : EntitySystem
         SubscribeLocalEvent<BeforeEntityReadEvent>(OnBeforeReadEvent);
 
 #if DEBUG
-        //🌟Starlight🌟
+        //Starlight
         foreach (var file in _migrationFiles)
             ValidateMigrations(file);
 #endif
@@ -44,7 +44,7 @@ public sealed partial class MapMigrationSystem : EntitySystem
 
 
 
-    private bool TryReadFile(string file, [NotNullWhen(true)] out MappingDataNode? mappings) //🌟Starlight🌟
+    private bool TryReadFile(string file, [NotNullWhen(true)] out MappingDataNode? mappings) //Starlight
     {
         mappings = null;
         var path = new ResPath(file);
@@ -61,13 +61,13 @@ public sealed partial class MapMigrationSystem : EntitySystem
         return true;
     }
 
-    private void OnBeforeReadEvent(BeforeEntityReadEvent ev) //🌟Starlight🌟
+    private void OnBeforeReadEvent(BeforeEntityReadEvent ev) //Starlight
     {
         foreach (var file in _migrationFiles)
             ReadMigrations(ev, file);
     }
 
-    private void ReadMigrations(BeforeEntityReadEvent ev, string file) //🌟Starlight🌟
+    private void ReadMigrations(BeforeEntityReadEvent ev, string file) //Starlight
     {
         if (!TryReadFile(file, out var mappings))
             return;
@@ -85,7 +85,7 @@ public sealed partial class MapMigrationSystem : EntitySystem
     }
 
 #if DEBUG
-    //🌟Starlight🌟
+    //Starlight
     private void ValidateMigrations(string file)
     {
         if (!TryReadFile(file, out var mappings))

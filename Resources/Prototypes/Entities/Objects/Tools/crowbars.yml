@@ -44,7 +44,7 @@
     size: Normal
     shape:
     - 0,0,0,1
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: BoneSetter
     successRate: 0.4
@@ -54,7 +54,7 @@
   - type: CrowbarSurgery
     startSound:
       path: /Audio/Items/crowbar.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 # Standard (grey) Crowbar
 - type: entity

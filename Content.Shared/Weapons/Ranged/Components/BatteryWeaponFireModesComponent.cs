@@ -36,7 +36,7 @@ public sealed partial class BatteryWeaponFireMode
     /// The projectile prototype associated with this firing mode
     /// </summary>
     [DataField("proto", required: true)]
-    public string Prototype = default!; // 🌟Starlight🌟  entity & hitscan
+    public string Prototype = default!; //Starlight  entity & hitscan
 
     /// <summary>
     /// The battery cost to fire the projectile associated with this firing mode

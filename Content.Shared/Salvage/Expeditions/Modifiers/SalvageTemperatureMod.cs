@@ -19,7 +19,7 @@ public sealed partial class SalvageTemperatureMod : IPrototype, IBiomeSpecificMo
     [DataField]
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
 
-    // 🌟Starlight🌟
+    //Starlight
     [DataField]
     public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null;
 

@@ -45,7 +45,7 @@ namespace Content.Shared.Movement.Systems
                 .Bind(EngineKeyFunctions.MoveLeft, moveLeftCmdHandler)
                 .Bind(EngineKeyFunctions.MoveRight, moveRightCmdHandler)
                 .Bind(EngineKeyFunctions.MoveDown, moveDownCmdHandler)
-                .Bind(ContentKeyFunctions.Jump, new JumpInputCmdHandler(_action, _charges, Timing)) // 🌟Starlight🌟
+                .Bind(ContentKeyFunctions.Jump, new JumpInputCmdHandler(_action, _charges, Timing)) //Starlight
                 .Bind(EngineKeyFunctions.Walk, new WalkInputCmdHandler(this))
                 .Bind(EngineKeyFunctions.CameraRotateLeft, new CameraRotateInputCmdHandler(this, Direction.East))
                 .Bind(EngineKeyFunctions.CameraRotateRight, new CameraRotateInputCmdHandler(this, Direction.West))

@@ -70,7 +70,7 @@
 - type: startingGear
   id: HoPGear
   equipment:
-    #shoes: ClothingShoesColorBrown # 🌟Starlight🌟
+    #shoes: ClothingShoesColorBrown #Starlight
     id: HoPPDA
     gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetHoP

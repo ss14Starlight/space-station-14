@@ -346,7 +346,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
 
         if (HandsGui != null)
         {
-            // 🌟Starlight🌟  start
+            //Starlight  start
             if (hand.Location == HandLocation.Functional)
                 HandsGui.FunctionalHandContainer.AddButton(button);
             else
@@ -356,7 +356,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
                 if (hand.Location != HandLocation.Middle) //Borg hand re-sorting fix again
                     button.SetPositionInParent(Math.Min((int)hand.Location, existingHands));
             }
-            // 🌟Starlight🌟  end
+            //Starlight  end
         }
         else
         {

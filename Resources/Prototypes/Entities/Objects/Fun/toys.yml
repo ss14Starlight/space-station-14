@@ -121,7 +121,7 @@
       collection: packetOpenSounds
   - type: TrashOnSolutionEmpty
     solution: drink
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: BoneGel
     successRate: 0.4 # really not ideal, but in a pinch...
@@ -130,7 +130,7 @@
       path: "/Audio/Items/bikehorn.ogg"
     endSound:
       path: "/Audio/Items/Toys/pushHornHonk.ogg"
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   parent: DrinkBase

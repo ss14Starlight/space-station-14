@@ -169,10 +169,10 @@ namespace Content.Server.Atmos.EntitySystems
             var gas = gasTank.Comp.Air?.Remove(amount);
             CheckStatus(gasTank);
 
-            // 🌟Starlight🌟 start
+            //Starlight start
             gasTank.Comp.TotalMoles = gasTank.Comp.Air?.TotalMoles ?? 0;
             DirtyField(gasTank.Owner, gasTank.Comp, nameof(GasTankComponent.TotalMoles));
-            // 🌟Starlight🌟 end
+            //Starlight end
 
             return gas;
         }
@@ -200,10 +200,10 @@ namespace Content.Server.Atmos.EntitySystems
             _atmosphereSystem.Merge(ent.Comp.Air, giver);
             CheckStatus(ent);
 
-            // 🌟Starlight🌟 start
+            //Starlight start
             ent.Comp.TotalMoles = ent.Comp.Air?.TotalMoles ?? 0;
             DirtyField(ent.Owner, ent.Comp, nameof(GasTankComponent.TotalMoles));
-            // 🌟Starlight🌟 end
+            //Starlight end
         }
 
         public void CheckStatus(Entity<GasTankComponent> ent)

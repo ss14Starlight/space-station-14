@@ -39,7 +39,7 @@
         - ReagentId: SpaceGlue
           Quantity: 30
   - type: Glue
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: BoneGel
     successRate: 0.4 # really not ideal, but in a pinch...
@@ -48,7 +48,7 @@
       path: /Audio/Items/Medical/ointment_begin.ogg
     endSound:
       path: /Audio/Items/Medical/ointment_end.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   parent: BaseSqueezeBottle

@@ -90,7 +90,7 @@
       # Starlight-end
   - type: IgnitionSource
     temperature: 700
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: Scalpel
     successRate: 0.6
@@ -104,7 +104,7 @@
       path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   name: energy sword

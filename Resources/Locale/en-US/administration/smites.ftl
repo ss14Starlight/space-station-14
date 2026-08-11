@@ -154,11 +154,11 @@ admin-trick-pause-map-description = Pause the selected map. Note this doesn't en
 admin-trick-snap-joints-description = Remove all physics joints from an object. Unfortunately does not snap every bone in their body.
 admin-trick-minigun-fire-description = Makes the targetted gun fire like a minigun (very fast).
 admin-trick-set-bullet-amount-description = Quickly set the amount of unspawned bullets in a gun.
-## 🌟Starlight🌟
+##Starlight
 admin-trick-toggle-overlays-description = Toggle all overlays on target.
 
 admin-smite-scramble-name = Scramble DNA
 admin-smite-scramble-description = Scrambles their DNA, randomizing their character.
 
-## 🌟Starlight🌟
+##Starlight
 admin-smite-terminate-warning = I'll be back...

@@ -25,7 +25,7 @@ namespace Content.Shared.Chat
         /// </summary>
         public string WrappedMessage;
 
-        //🌟Starlight🌟
+        //Starlight
         public SoundSpecifier? Chime;
 
         public NetEntity SenderEntity;

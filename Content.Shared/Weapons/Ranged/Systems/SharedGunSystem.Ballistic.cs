@@ -10,7 +10,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
-using Robust.Shared.Prototypes; // 🌟Starlight🌟
+using Robust.Shared.Prototypes; //Starlight
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -184,7 +184,7 @@ public abstract partial class SharedGunSystem
         if (!args.IsInDetailsRange)
             return;
 
-        // 🌟Starlight🌟 -- get next ammo in feed
+        //Starlight -- get next ammo in feed
         var shots = GetBallisticShots(ent.Comp);
         string ammoTypeName = "";
 
@@ -209,7 +209,7 @@ public abstract partial class SharedGunSystem
             args.PushMarkup(Loc.GetString("gun-magazine-ammo-type", ("color", "green"), ("type", ammoTypeName)));
         else
             args.PushMarkup(Loc.GetString("gun-magazine-empty"));
-        // 🌟Starlight🌟 end me
+        //Starlight end me
     }
 
     private void ManualCycle(Entity<BallisticAmmoProviderComponent> ent, MapCoordinates coordinates, EntityUid? user = null, GunComponent? gunComp = null)

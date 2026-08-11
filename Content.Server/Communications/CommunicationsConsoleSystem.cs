@@ -363,7 +363,7 @@ namespace Content.Server.Communications
                 return;
             }
 
-            _chatSystem.DispatchCommunicationsConsoleAnnouncement(uid, msg.Text, title, announcementSound: comp.Sound, speaker: speaker, colorOverride: comp.Color); // 🌟Starlight🌟
+            _chatSystem.DispatchCommunicationsConsoleAnnouncement(uid, msg.Text, title, announcementSound: comp.Sound, speaker: speaker, colorOverride: comp.Color); //Starlight
             //Starlight begin
             foreach (var grid in comp.AdditionalGrids)
             {

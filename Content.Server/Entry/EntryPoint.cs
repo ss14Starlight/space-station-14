@@ -156,12 +156,12 @@ namespace Content.Server.Entry
             _job.Initialize();
             _rateLimit.Initialize();
 
-            //🌟Starlight🌟 start
+            //Starlight start
             _ttsClient.Initialize();
             _holidaySystem.Initialize();
 			_bugReport.Initialize();
 			_preWrittenDocument.Initialize();
-            //🌟Starlight🌟 end
+            //Starlight end
         }
 
         public override void PostInit()

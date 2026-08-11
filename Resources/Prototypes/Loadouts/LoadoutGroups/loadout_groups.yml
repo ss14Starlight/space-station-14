@@ -156,8 +156,8 @@
   - EmergencyElfOxygen # Starlight
   - EmergencyDwarfOxygen # Starlight
   - LoadoutSpeciesVoxNitrogen
-  - EmergencyNonBreather # 🌟Starlight🌟
-  - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyNonBreather #Starlight
+  - EmergencyIPC #Starlight
   - EmergencyCheese # Starlight
 
 # nitrogen or oxygen tank, depending on what your species needs
@@ -396,7 +396,7 @@
   - BrownShoes
   - WhiteShoes
   - WinterBoots
-  - Heels # 🌟Starlight🌟
+  - Heels #Starlight
 
 - type: loadoutGroup
   id: BartenderHead
@@ -609,6 +609,7 @@
   loadouts:
   - JanitorJumpsuit
   - JanitorJumpskirt
+  - MaidOutfit
 
 
 - type: loadoutGroup
@@ -619,6 +620,7 @@
   - JanitorRubberGloves
   - OrangeGloves
   - PurpleGloves
+  - MaidGloves
 
 - type: loadoutGroup
   id: JanitorOuterClothing
@@ -739,8 +741,8 @@
   - EmergencyElfOxygenClown # Starlight
   - EmergencyDwarfOxygenClown # Starlight
   - LoadoutSpeciesVoxNitrogen
-  - EmergencyNonBreatherClown # 🌟Starlight🌟
-  - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyNonBreatherClown #Starlight
+  - EmergencyIPC #Starlight
   - EmergencyCheeseClown # Starlight
 
 - type: loadoutGroup
@@ -811,8 +813,8 @@
   - EmergencyDwarfOxygenMime # Starlight
   - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
-  - EmergencyNonBreatherMime # 🌟Starlight🌟
-  - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyNonBreatherMime #Starlight
+  - EmergencyIPC #Starlight
   - EmergencyCheeseMime # Starlight
 
 - type: loadoutGroup
@@ -985,7 +987,7 @@
   defaultSelected: 1 # Starlight End
   loadouts:
   - BlackShoes
-  - YellowShoes # 🌟Starlight🌟
+  - YellowShoes #Starlight
   - CargoWinterBoots
   - SeniorCourierWinterBoots # Starlight start
   - LeatherShoes
@@ -1081,9 +1083,9 @@
   defaultSelected: 1 # Starlight End
   loadouts:
   - BrownShoes
-  - WorkBoots # 🌟Starlight🌟
+  - WorkBoots #Starlight
   - EngineeringWinterBoots
-  - Heels # 🌟Starlight🌟
+  - Heels #Starlight
 
 - type: loadoutGroup
   id: ChiefEngineerJobTrinkets
@@ -1147,7 +1149,7 @@
   - WhiteShoes # Starlight
   - WorkBoots
   - EngineeringWinterBoots
-  - Heels # 🌟Starlight🌟
+  - Heels #Starlight
 
 - type: loadoutGroup
   id: StationEngineerID
@@ -1195,9 +1197,9 @@
   defaultSelected: 1 # Starlight End
   loadouts:
   - WhiteShoes
-  - WorkBoots # 🌟Starlight🌟
+  - WorkBoots #Starlight
   - EngineeringWinterBoots
-  - Heels # 🌟Starlight🌟
+  - Heels #Starlight
 
 - type: loadoutGroup
   id: AtmosphericTechnicianJobTrinkets
@@ -1217,8 +1219,8 @@
   - EmergencyElfOxygenExtended # Starlight
   - EmergencyDwarfOxygenExtended # Starlight
   - LoadoutSpeciesVoxNitrogen
-  - EmergencyNonBreatherExtended # 🌟Starlight🌟
-  - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyNonBreatherExtended #Starlight
+  - EmergencyIPC #Starlight
   - EmergencyCheeseExtended # Starlight
 
 # Science
@@ -1261,8 +1263,8 @@
   defaultSelected: 1 # Starlight End
   loadouts:
   - BrownShoes
-  - WhiteShoes # 🌟Starlight🌟
-  - BlackShoes # 🌟Starlight🌟
+  - WhiteShoes #Starlight
+  - BlackShoes #Starlight
   - ScienceWinterBoots
   - Heels # Starlight start
   - LaceupShoes
@@ -1618,8 +1620,8 @@
   - EmergencyElfOxygenSecurity # Starlight
   - EmergencyDwarfOxygenSecurity # Starlight
   - LoadoutSpeciesVoxNitrogen
-  - EmergencyNonbreatherSecurity # 🌟Starlight🌟
-  - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyNonbreatherSecurity #Starlight
+  - EmergencyIPC #Starlight
   - EmergencyCheeseSecurity # Starlight
 
 # Wildcards
@@ -1669,8 +1671,8 @@
   - EmergencyElfOxygenSyndicate # Starlight
   - EmergencyDwarfOxygenSyndicate # Starlight
   - LoadoutSpeciesVoxNitrogen
-  - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
-  - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyNonBreatherSyndicate #Starlight
+  - EmergencyIPC #Starlight
   - EmergencyCheeseSyndicate # Starlight
 
 - type: loadoutGroup
@@ -1683,7 +1685,7 @@
   - EmergencyOxygenMilitaryDouble
   - EmergencyElfOxygenMilitaryDouble # Starlight
   - EmergencyDwarfOxygenMilitaryDouble # Starlight
-  - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyIPC #Starlight
   - EmergencyCheeseMilitary # Starlight
 
 - type: loadoutGroup

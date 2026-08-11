@@ -127,7 +127,7 @@
   abstract: true
   components:
   #starlight start
-  - type: CanDualWield # 🌟Starlight🌟
+  - type: CanDualWield #Starlight
   - type: MeleeWeapon
     wideAnimationRotation: 0
     damage:
@@ -159,7 +159,7 @@
   parent: BaseWeaponPowerCell
   abstract: true
   components:
-  - type: CanDualWield # 🌟Starlight🌟
+  - type: CanDualWield #Starlight
   - type: Item
     size: Small
   - type: Tag
@@ -551,7 +551,7 @@
   id: WeaponDisablerPractice
   description: A self-defense weapon that exhausts organic targets, weakening them until they collapse. This one has been undertuned for cadets making it mostly harmless.
   components:
-  - type: CanDualWield # 🌟Starlight🌟
+  - type: CanDualWield #Starlight
     dualWieldInaccuracyPenalty: 30
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/practice_disabler.rsi
@@ -581,7 +581,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: BatteryAmmoProvider
-    proto: DisablerBoltPractice # 🌟Starlight🌟
+    proto: DisablerBoltPractice #Starlight
     fireCost: 62.5
   - type: Tag
     tags:
@@ -611,7 +611,7 @@
       - suitStorage
       - Belt
   - type: BatteryAmmoProvider
-    proto: DisablerBolt # 🌟Starlight🌟
+    proto: DisablerBolt #Starlight
     fireCost: 62.5
   - type: GuideHelp
     guides:
@@ -626,7 +626,7 @@
   description: Advanced weapon that exhausts organic targets, weakening them until they collapse.
   components:
     # starlight start
-  - type: CanDualWield # 🌟Starlight🌟
+  - type: CanDualWield #Starlight
     dualWieldInaccuracyPenalty: 25
   - type: MeleeWeapon
     wideAnimationRotation: 90
@@ -664,7 +664,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: BatteryAmmoProvider
-    proto: DisablerBoltSmg # 🌟Starlight🌟
+    proto: DisablerBoltSmg #Starlight
     fireCost: 25
   - type: MagazineVisuals
     magState: mag

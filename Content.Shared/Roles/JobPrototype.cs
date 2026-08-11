@@ -32,7 +32,7 @@ namespace Content.Shared.Roles
         [DataField]
         public string Name { get; private set; } = string.Empty;
 
-        [DataField("hidden")] // 🌟Starlight🌟
+        [DataField("hidden")] //Starlight
         public bool Hidden { get; private set; } = false;
 
         [ViewVariables(VVAccess.ReadOnly)]

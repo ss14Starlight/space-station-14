@@ -14,19 +14,19 @@
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
-  - LeatherSatchel # 🌟Starlight🌟
+  - LeatherSatchel #Starlight
 
 - type: loadoutGroup
   id: MedicalShoes
   name: loadout-group-medical-doctor-shoes
-  minLimit: 0 # 🌟Starlight🌟
-  defaultSelected: 1 # 🌟Starlight🌟
+  minLimit: 0 #Starlight
+  defaultSelected: 1 #Starlight
   loadouts:
   - WhiteShoes
   - MedicalWinterBoots
-  - Heels # 🌟Starlight🌟
-  - LaceupShoes # 🌟Starlight🌟
-  - LeatherShoes # 🌟Starlight🌟
+  - Heels #Starlight
+  - LaceupShoes #Starlight
+  - LeatherShoes #Starlight
 
 - type: loadoutGroup
   id: SurvivalMedical
@@ -37,9 +37,9 @@
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
   - LoadoutSpeciesVoxNitrogen
-  - EmergencyElfOxygenMedical # 🌟Starlight🌟
-  - EmergencyNonBreatherMedical # 🌟Starlight🌟
-  - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyElfOxygenMedical #Starlight
+  - EmergencyNonBreatherMedical #Starlight
+  - EmergencyIPC #Starlight
   - EmergencyCheeseMedical # Starlight
 
 
@@ -88,15 +88,15 @@
 - type: loadoutGroup
   id: ChiefMedicalOfficerShoes
   name: loadout-group-chief-medical-officer-shoes
-  minLimit: 0 # 🌟Starlight🌟
-  defaultSelected: 1 # 🌟Starlight🌟
+  minLimit: 0 #Starlight
+  defaultSelected: 1 #Starlight
   loadouts:
   - BrownShoes
-  - WhiteShoes # 🌟Starlight🌟
+  - WhiteShoes #Starlight
   - MedicalWinterBoots
-  - Heels # 🌟Starlight🌟
-  - LaceupShoes # 🌟Starlight🌟
-  - LeatherShoes # 🌟Starlight🌟
+  - Heels #Starlight
+  - LaceupShoes #Starlight
+  - LeatherShoes #Starlight
 
 # Medical Doctor
 
@@ -149,7 +149,7 @@
   - RegularLabCoat
   - MedicalDoctorWintercoat
   - SeniorPhysicianLabCoat
-  - WindbreakerMedical # 🌟Starlight🌟
+  - WindbreakerMedical #Starlight
   - RegularLabCoatLong # DeltaV
   - CoronerLabCoatLong # Starlight
 

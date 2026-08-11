@@ -137,7 +137,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction MappingCancelEraseDecal = "MappingCancelEraseDecal";
         public static readonly BoundKeyFunction MappingOpenContextMenu = "MappingOpenContextMenu";
 
-        // 🌟Starlight🌟
+        //Starlight
         public static readonly BoundKeyFunction Jump = "Jump";
     }
 }

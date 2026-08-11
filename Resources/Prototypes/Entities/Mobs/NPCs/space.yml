@@ -187,7 +187,7 @@
   description: It's so glowing, it looks dangerous.
   components:
   - type: VentCrawler
-  # 🌟Starlight🌟 start
+  #Starlight start
   - type: OptionsVisualizer
     visuals:
       base:
@@ -218,7 +218,7 @@
             map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
             state: glow
             shader: unshaded
-  # 🌟Starlight🌟 end
+  #Starlight end
   - type: MobThresholds
     thresholds:
       0: Alive

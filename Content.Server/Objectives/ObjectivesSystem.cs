@@ -132,7 +132,7 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
             ev.AddLine(result.AppendLine().ToString());
         }
 
-        // 🌟Starlight🌟 start
+        //Starlight start
         var builder = new StringBuilder();
         builder.AppendLine(Loc.GetString("cards"));
 
@@ -191,7 +191,7 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
             ev.AddLine(stationBuilder.ToString());
         }
 
-        // 🌟Starlight🌟 end
+        //Starlight end
     }
 
     private void AddSummary(StringBuilder result, string agent, List<(EntityUid, string)> minds)
@@ -252,7 +252,7 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
                     var objectiveTitle = info.Value.Title;
                     var progress = info.Value.Progress;
                     totalObjectives++;
-                    WriteObjective(ref completedObjectives, agentSummary, objectiveTitle, progress); // 🌟Starlight🌟
+                    WriteObjective(ref completedObjectives, agentSummary, objectiveTitle, progress); //Starlight
                 }
             }
 
@@ -304,7 +304,7 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
         }
     }
 
-    // 🌟Starlight🌟
+    //Starlight
     private void WriteObjective(ref int completedObjectives, StringBuilder builder, string objectiveTitle, float progress)
     {
         builder.Append("- ");

@@ -43,7 +43,7 @@
       Steel: 100
   - type: StaticPrice
     price: 30
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: Hemostat
     successRate: 0.05 # Using something sharp as a hemostat is very dangerous
@@ -57,7 +57,7 @@
       path: /Audio/Items/wirecutter.ogg
   - type: ItemPrice
     priceCategory: tool_basic
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   name: screwdriver
@@ -102,7 +102,7 @@
       Steel: 100
   - type: StaticPrice
     price: 30
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: ItemPrice
     priceCategory: tool_basic
   - type: SurgeryTool
@@ -114,7 +114,7 @@
   - type: ScrewdriverSurgery
     startSound:
       path: /Audio/Items/screwdriver.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   name: wrench
@@ -332,7 +332,7 @@
         Piercing: 10
     soundHit:
       path: "/Audio/Items/drill_hit.ogg"
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: SurgicalDrill
     successRate: 0.6 # Not ideal, but it works
@@ -347,7 +347,7 @@
     speed: 0.6
     startSound:
       path: /Audio/Items/drill_use.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   id: RCD
@@ -554,11 +554,11 @@
   - type: StaticPrice
     price: 25
   - type: Shovel
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: Tool
     qualities:
       - Digging
-  # 🌟Starlight-end🌟
+  #Starlight-end
 - type: entity
   parent: BaseItem
   id: RollingPin

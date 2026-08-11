@@ -41,7 +41,7 @@ public sealed partial class CloningSystem : SharedCloningSystem
     [Dependency] private SharedStorageSystem _storage = default!;
     [Dependency] private SharedSubdermalImplantSystem _subdermalImplant = default!;
     [Dependency] private NameModifierSystem _nameMod = default!;
-    [Dependency] private SharedBodySystem _body = default!; // 🌟Starlight🌟
+    [Dependency] private SharedBodySystem _body = default!; //Starlight
     [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!; //TODO: This system has to support both the old and new status effect systems, until the old is able to be fully removed.
 
     /// <summary>
@@ -88,7 +88,7 @@ public sealed partial class CloningSystem : SharedCloningSystem
 
         var originalName = _nameMod.GetBaseName(original);
 
-        CopyCyberwareStates(original, clone.Value); // 🌟Starlight🌟 Copy species-native cyberware
+        CopyCyberwareStates(original, clone.Value); //Starlight Copy species-native cyberware
 
         // Set the clone's name. The raised events will also adjust their PDA and ID card names.
         _metaData.SetEntityName(clone.Value, originalName);

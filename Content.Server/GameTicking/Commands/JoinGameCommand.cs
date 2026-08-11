@@ -75,7 +75,7 @@ namespace Content.Server.GameTicking.Commands
 
                 if (ticker.PlayerGameStatuses.TryGetValue(player.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
                 {
-                    //🌟Starlight🌟 start
+                    //Starlight start
                     var newLifeSystem = _entManager.System<NewLifeSystem>();
 
                     if (!newLifeSystem.SlotIsAvailable(player.UserId, charSlot))
@@ -84,7 +84,7 @@ namespace Content.Server.GameTicking.Commands
                         shell.WriteError($"{player.Name} is not in the lobby.   This incident will be reported.");
                         return;
                     }
-                    //🌟Starlight🌟 end
+                    //Starlight end
                 }
 
                 var station = _entManager.GetEntity(new NetEntity(sid));

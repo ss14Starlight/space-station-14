@@ -28,7 +28,7 @@ public sealed partial class SalvageBiomeModPrototype : IPrototype, ISalvageMod
     [DataField("weather")]
     public bool Weather = true;
 
-    // 🌟Starlight🌟
+    //Starlight
     [DataField]
     public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null;
 

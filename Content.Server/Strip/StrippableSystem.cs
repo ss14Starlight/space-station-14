@@ -25,7 +25,7 @@ namespace Content.Server.Strip;
 
 public sealed class StrippableSystem : SharedStrippableSystem
 {
-  public override void Initialize() // 🌟Starlight🌟
+  public override void Initialize() //Starlight
   {
       base.Initialize();
       SubscribeLocalEvent<RoundEndSystemChangedEvent>((_) => ClearActiveStripDoAfters());

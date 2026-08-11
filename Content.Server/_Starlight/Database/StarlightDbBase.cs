@@ -10,7 +10,7 @@ public abstract partial class ServerDbBase
 {
     #region Player data
     /*
-     * Player data 🌟Starlight🌟
+     * Player data Starlight
      */
     public async Task<StarLightModel.PlayerDataDTO?> GetPlayerDataDTOForAsync(NetUserId userId, CancellationToken cancel)
     {

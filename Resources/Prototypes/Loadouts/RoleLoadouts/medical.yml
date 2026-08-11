@@ -16,9 +16,9 @@
   # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
-  - Scarves # 🌟Starlight🌟
-  - Pins # 🌟Starlight🌟
-  - Pens # 🌟Starlight🌟
+  - Scarves #Starlight
+  - Pins #Starlight
+  - Pens #Starlight
   - ChiefMedicalOfficerJobTrinkets
   - GroupSpeciesBreathToolMedical
 
@@ -38,9 +38,9 @@
   # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
-  - Scarves # 🌟Starlight🌟
-  - Pins # 🌟Starlight🌟
-  - Pens # 🌟Starlight🌟
+  - Scarves #Starlight
+  - Pins #Starlight
+  - Pens #Starlight
   - MedicalDoctorJobTrinkets
   - GroupSpeciesBreathToolMedical
 
@@ -49,7 +49,7 @@
   groups:
   - GroupTankHarness
   - MedicalInternJumpsuit
-  # 🌟Starlight🌟 start
+  #Starlight start
   - MedicalGloves
   - MedicalDoctorHead
   - MedicalMask
@@ -58,13 +58,13 @@
   - MedicalDoctorOuterClothing
   - MedicalShoes
   - MedicalEyewear
-  # 🌟Starlight🌟 end
+  #Starlight end
   # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
-  - Scarves # 🌟Starlight🌟
-  - Pins # 🌟Starlight🌟
-  - Pens # 🌟Starlight🌟
+  - Scarves #Starlight
+  - Pins #Starlight
+  - Pens #Starlight
   - MedicalInternJobTrinkets
   - GroupSpeciesBreathToolMedical
 
@@ -72,13 +72,13 @@
   id: JobChemist
   groups:
   - GroupTankHarness
-  - ChemistHead # 🌟Starlight🌟
+  - ChemistHead #Starlight
   - MedicalMask
   - ChemistJumpsuit
   - MedicalGloves # Starlight
   - ChemistBackpack
   - ChemistOuterClothing
-  # 🌟Starlight🌟 start
+  #Starlight start
   - ChemistBag
   - ChemistShoes
   - ChemistPDA
@@ -87,12 +87,12 @@
   - ChemistLabeler
   #- MedicalShoes
   #- Glasses
-  # 🌟Starlight🌟 end
+  #Starlight end
   - SurvivalMedical
   - Trinkets
-  - Scarves # 🌟Starlight🌟
-  - Pins # 🌟Starlight🌟
-  - Pens # 🌟Starlight🌟
+  - Scarves #Starlight
+  - Pins #Starlight
+  - Pens #Starlight
   - ChemistJobTrinkets
   - GroupSpeciesBreathToolMedical
 
@@ -107,13 +107,13 @@
   - MedicalBackpack
   - ParamedicOuterClothing
   - ParamedicShoes
-  - ParamedicPDA # 🌟Starlight🌟
+  - ParamedicPDA #Starlight
   - MedicalEyewear # Starlight
   # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
-  - Scarves # 🌟Starlight🌟
-  - Pins # 🌟Starlight🌟
-  - Pens # 🌟Starlight🌟
+  - Scarves #Starlight
+  - Pins #Starlight
+  - Pens #Starlight
   - ParamedicJobTrinkets
   - GroupSpeciesBreathToolMedical

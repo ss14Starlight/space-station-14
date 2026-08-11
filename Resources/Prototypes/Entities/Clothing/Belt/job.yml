@@ -89,7 +89,7 @@
         whitelist:
           tags:
           - JawsOfLife
-      # 🌟Starlight-start🌟
+      #Starlight-start
       syn_jaws:
         whitelist:
           tags:
@@ -98,7 +98,7 @@
         whitelist:
           tags:
           - PrototypeJawsOfLife
-      # 🌟Starlight-end🌟
+      #Starlight-end
       screwdriver_nuke:
         whitelist:
           tags:

@@ -36,7 +36,7 @@ namespace Content.Server.VendingMachines
         [Dependency] private PricingSystem _pricing = default!;
         [Dependency] private ThrowingSystem _throwingSystem = default!;
         [Dependency] private IGameTiming _timing = default!;
-        // 🌟Starlight🌟 start
+        //Starlight start
         [Dependency] private ItemPriceManager _itemPriceManager = default!;
         [Dependency] private IComponentFactory _componentFactory = default!;
         [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
@@ -44,7 +44,7 @@ namespace Content.Server.VendingMachines
         [Dependency] private CargoSystem _cargoSystem = default!;
         [Dependency] private Content.Server.Station.Systems.StationSystem _stationSystem = default!;
         [Dependency] private ISharedAdminLogManager _adminLogger = default!;
-        // 🌟Starlight🌟 end
+        //Starlight end
 
         private const float WallVendEjectDistanceFromWall = 1f;
 
@@ -61,7 +61,7 @@ namespace Content.Server.VendingMachines
 
             SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
 
-            // 🌟Starlight🌟 Push balance immediately when the UI opens so the client doesn't have to wait for a request/refresh
+            //Starlight Push balance immediately when the UI opens so the client doesn't have to wait for a request/refresh
             // Because im gonna loose this shit with calling from client
             SubscribeLocalEvent<VendingMachineComponent, BoundUIOpenedEvent>(OnUiOpened);
         }
@@ -92,7 +92,7 @@ namespace Content.Server.VendingMachines
                 TryUpdateVisualState((uid, component));
             }
 
-            //🌟Starlight🌟 Persist prices so UI shows them on first open
+            //Starlight Persist prices so UI shows them on first open
             PersistInventoryPrices(uid, component);
         }
 
@@ -316,7 +316,7 @@ namespace Content.Server.VendingMachines
             args.Price += priceSets.Max();
         }
 
-        // 🌟Starlight🌟 Send balance to the opening player right away so it shows before any purchase
+        //Starlight Send balance to the opening player right away so it shows before any purchase
         private void OnUiOpened(EntityUid uid, VendingMachineComponent component, BoundUIOpenedEvent args)
         {
             if (!Equals(args.UiKey, VendingMachineUiKey.Key)
@@ -332,7 +332,7 @@ namespace Content.Server.VendingMachines
             args.Cancelled |= ent.Comp.Broken;
         }
 
-        #region 🌟Starlight🌟
+        #region Starlight
         /// <summary>
         /// Persist prices into the live component so clients have prices on first open
         /// </summary>

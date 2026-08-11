@@ -49,10 +49,10 @@
       - state: eyeball-r
   - type: OrganVisualization
     layer: Eyes
-    # 🌟Starlight🌟 start
+    #Starlight start
     prototypes:
       Default: MobDionaEyes
-    # 🌟Starlight🌟 end
+    #Starlight end
 
 - type: entity
   id: OrganDionaStomach

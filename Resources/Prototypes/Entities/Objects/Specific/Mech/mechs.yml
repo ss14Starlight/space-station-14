@@ -5,12 +5,12 @@
   components:
   - type: MobMover
   - type: Mech
-# 🌟Starlight-start🌟
+#Starlight-start
     maxIntegrity: 170
     batteryWhitelist:
       tags:
       - MechReactor
-# 🌟Starlight-end🌟
+#Starlight-end
   - type: MechAir
   - type: DoAfter
   - type: Repairable
@@ -77,7 +77,7 @@
       mech-battery-slot: !type:ContainerSlot
       mech-gas-tank-slot: !type:ContainerSlot
   - type: Damageable
-    damageContainer: StructuralInorganic #🌟STARLIGHT Inorganic -> StructuralInorganic
+    damageContainer: StructuralInorganic #STARLIGHT Inorganic -> StructuralInorganic
     damageModifierSet: LightArmor
   - type: FootstepModifier
     footstepSoundCollection:
@@ -102,12 +102,12 @@
     enabled: false
     drawRate: 0.333333333 #Starlight, delay was 3 seconds per draw
   - type: ActiveInputMover
-# 🌟Starlight-start🌟
+#Starlight-start
   - type: Prying
     pryPowered: false
     force: false
     useSound: /Audio/Items/jaws_pry.ogg
-# 🌟Starlight-end🌟
+#Starlight-end
 
 # Ripley MK-I
 - type: entity

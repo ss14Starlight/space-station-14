@@ -42,10 +42,10 @@ gun-chamber-rack = Rack
 
 # MagazineAmmoProvider
 gun-magazine-examine = It has [color={$color}]{$count}[/color] shots remaining.
-# 🌟Starlight - Start🌟
+#Starlight - Start
 gun-magazine-ammo-type = It contains [color={$color}]{$type}[/color].
 gun-magazine-empty = Magazine is empty.
-# 🌟Starlight - End🌟
+#Starlight - End
 
 # RevolverAmmoProvider
 gun-revolver-empty = Empty revolver

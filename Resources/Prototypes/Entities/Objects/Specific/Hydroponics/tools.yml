@@ -106,7 +106,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: BoneSaw
     successRate: 0.4
@@ -115,7 +115,7 @@
       path: /Audio/Effects/chop.ogg
     endSound:
       path: /Audio/Effects/chop.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   name: spade
@@ -144,12 +144,12 @@
       sprite: Objects/Tools/Hydroponics/spade.rsi
   - type: Shovel
     speedModifier: 0.75 # slower at digging than a full-sized shovel
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: Tool
     qualities:
       - Digging
     speedModifier: 0.75 # see above
-  # 🌟Starlight-end🌟
+  #Starlight-end
   - type: PhysicalComposition
     materialComposition:
       Steel: 100

@@ -49,7 +49,7 @@ public sealed partial class SalvageSystem
             if (mobXform.MapUid != xform.MapUid)
                 continue;
 
-            // 🌟Starlight🌟
+            //Starlight
             // ignore bots
             if (TryComp<HTNComponent>(uid, out _))
                 continue;

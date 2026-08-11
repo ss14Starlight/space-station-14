@@ -101,9 +101,9 @@ public sealed partial class StationAiOverlay : Overlay
             var lookups = _entManager.System<EntityLookupSystem>();
             var xforms = _entManager.System<SharedTransformSystem>();
 
-            var color = Color.White; // 🌟Starlight🌟
-            if (stationAiOverlay is not null) // 🌟Starlight🌟
-                color = color.WithAlpha(stationAiOverlay.Alfa); // 🌟Starlight🌟
+            var color = Color.White; //Starlight
+            if (stationAiOverlay is not null) //Starlight
+                color = color.WithAlpha(stationAiOverlay.Alfa); //Starlight
 
             // Starlight: rebuild cached navmap geometry on timer, grid change, or camera move
             _cyberspaceRenderer.Update((float)_timing.FrameTime.TotalSeconds, gridUid, navMap, grid, xforms, worldBounds);

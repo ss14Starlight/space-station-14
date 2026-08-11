@@ -21,7 +21,7 @@
       visible: false
       map: ["enum.MorgueVisualLayers.Light"]
       shader: unshaded
-    - state: paper # 🌟Starlight begin - add paper labelling
+    - state: paper # Starlight begin - add paper labelling
       visible: false
       sprite: _Starlight/Structures/Storage/morgue-labels.rsi
       map: [ "enum.PaperLabelVisuals.Layer" ]
@@ -34,7 +34,7 @@
           - Paper
       blacklist:
         tags:
-          - Book # Starlight end🌟
+          - Book # Starlight end
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -78,7 +78,7 @@
         enum.StorageVisualLayers.Door:
           True: { visible: true}
           False: { visible: false}
-        enum.PaperLabelVisuals.Layer: # 🌟Starlight begin - add paper labelling
+        enum.PaperLabelVisuals.Layer: # Starlight begin - add paper labelling
           True: { visible: false }
       enum.PaperLabelVisuals.HasLabel:
         enum.PaperLabelVisuals.Layer:
@@ -89,7 +89,7 @@
           Paper: { state: paper }
           Bounty: { state: bounty }
           CaptainsPaper: { state: captains_paper }
-          Invoice: { state: invoice } # Starlight end🌟
+          Invoice: { state: invoice } # Starlight end
       enum.MorgueVisuals.Contents:
         # toggle contents light indicator:
         enum.MorgueVisualLayers.Light:

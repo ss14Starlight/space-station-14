@@ -51,7 +51,7 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: SurgeryTool
   - type: BoneSaw
     successRate: 0.8
@@ -72,7 +72,7 @@
       path: /Audio/Items/jaws_cut.ogg
     endSound:
       path: /Audio/Items/change_jaws.ogg
-  # 🌟Starlight-end🌟
+  #Starlight-end
 
 - type: entity
   name: Jaws of DEATH #SL
@@ -80,11 +80,11 @@
   id: SyndicateJawsOfLife
   description: Useful for entering the station or its departments.
   components:
-  # 🌟Starlight-start🌟
+  #Starlight-start
   - type: Tag
     tags:
     - SyndicateJawsOfLife
-  # 🌟Starlight-end🌟
+  #Starlight-end
   - type: Sprite
     sprite: Objects/Tools/jaws_of_life.rsi
     state: syn_jaws_pry

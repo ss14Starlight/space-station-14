@@ -28,7 +28,7 @@ namespace Content.Server.Storage.EntitySystems
             base.Initialize();
 
             SubscribeLocalEvent<SpawnItemsOnUseComponent, UseInHandEvent>(OnUseInHand);
-            SubscribeLocalEvent<SpawnItemsOnUseComponent, GetVerbsEvent<AlternativeVerb>>(OnGetWrapperVerbs); // 🌟Starlight🌟
+            SubscribeLocalEvent<SpawnItemsOnUseComponent, GetVerbsEvent<AlternativeVerb>>(OnGetWrapperVerbs); //Starlight
             SubscribeLocalEvent<SpawnItemsOnUseComponent, PriceCalculationEvent>(CalculatePrice, before: new[] { typeof(PricingSystem) });
         }
 
@@ -69,7 +69,7 @@ namespace Content.Server.Storage.EntitySystems
             if (args.Handled)
                 return;
 
-        // 🌟Starlight🌟 start
+        //Starlight start
         //Functionality was moved and slightly modified
             var coords = Transform(args.User).Coordinates;
             SpawnItems(uid, component, args.User, coords);
@@ -128,6 +128,6 @@ namespace Content.Server.Storage.EntitySystems
                 Text = Loc.GetString("delivery-open-verb"),
             });
         }
-        // 🌟Starlight🌟 end
+        //Starlight end
     }
 }

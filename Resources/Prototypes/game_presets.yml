@@ -3,7 +3,7 @@
   alias:
     - survival
   name: survival-title
-  showInVote: true # 🌟Starlight🌟
+  showInVote: true #Starlight
   minPlayers: 15 # Starlight
   description: survival-description
   rules:
@@ -20,7 +20,7 @@
     - junk
     - meteorhell
   name: kessler-syndrome-title
-  showInVote: true # 🌟Starlight🌟
+  showInVote: true #Starlight
   minPlayers: 15 # Starlight
   description: kessler-syndrome-description
   rules:
@@ -110,7 +110,7 @@
   - extended
   - shittersafari
   name: extended-title
-  showInVote: true # 🌟Starlight🌟
+  showInVote: true #Starlight
   description: extended-description
   minPlayers: 0 # Starlight
   rules:
@@ -125,7 +125,7 @@
   - greenshift
   - shittersafarideluxeedition
   name: greenshift-title
-  showInVote: true # 🌟Starlight🌟
+  showInVote: true #Starlight
   description: greenshift-description
   rules:
   - SpaceTrafficControlFriendlyEventScheduler # Starlight
@@ -140,7 +140,7 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
-  minPlayers: 40 # 🌟Starlight🌟
+  minPlayers: 40 #Starlight
   voteCooldown: 0 # Starlight, this one actually can roll back to back.
   rules:
   - SLDynamicRule # Starlight, we have a modified scheduler.
@@ -162,7 +162,7 @@
   description: secret-description
   rules:
     - Secret
-    - RailroadingMinor # 🌟Starlight🌟
+    - RailroadingMinor #Starlight
 
 - type: gamePreset
   id: Sandbox
@@ -182,17 +182,17 @@
     - tator
   name: traitor-title
   description: traitor-description
-  minPlayers: 5 # 🌟Starlight🌟
-  showInVote: true # 🌟Starlight🌟
+  minPlayers: 5 #Starlight
+  showInVote: true #Starlight
   rules:
-  # - DummyNonAntagChance 🌟Starlight🌟
+  # - DummyNonAntagChance Starlight
   - Traitor
   - SubGamemodesRuleNoChangelings #Starlight
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation
-  - RailroadingMinor # 🌟Starlight🌟
+  - RailroadingMinor #Starlight
 
 
 - type: gamePreset
@@ -216,10 +216,10 @@
   name: nukeops-title
   description: nukeops-description
   minPlayers: 40
-  showInVote: true # 🌟Starlight🌟
+  showInVote: true #Starlight
   rules:
   - Nukeops
-  # - DummyNonAntagChance 🌟Starlight🌟
+  # - DummyNonAntagChance Starlight
   - SubGamemodesRuleNuclearOperativeScaling # Starlight
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
@@ -235,9 +235,9 @@
   name: rev-title
   description: rev-description
   minPlayers: 30
-  showInVote: true # 🌟Starlight🌟
+  showInVote: true #Starlight
   rules:
-  # - DummyNonAntagChance 🌟Starlight🌟
+  # - DummyNonAntagChance Starlight
   - Revolutionary
   - SubGamemodesRuleConversion # Starlight. 3 max thieves on revs, so they can't be guaranteed an Emag.
   - BasicStationEventScheduler
@@ -251,11 +251,11 @@
   - wizard
   name: wizard-title
   description: wizard-description
-  minPlayers: 40 # 🌟Starlight🌟
+  minPlayers: 40 #Starlight
   showInVote: false
   rules:
   - Wizard
-  # - DummyNonAntagChance 🌟Starlight🌟
+  # - DummyNonAntagChance Starlight
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
@@ -268,11 +268,11 @@
     - xenoborgs
   name: xenoborgs-title
   description: xenoborgs-description
-  minPlayers: 30 # 🌟Starlight🌟
-  showInVote: true # 🌟Starlight🌟
+  minPlayers: 30 #Starlight
+  showInVote: true #Starlight
   rules:
   - Xenoborgs
-  # - DummyNonAntagChance 🌟Starlight🌟
+  # - DummyNonAntagChance Starlight
   - SubGamemodesRuleNoXenoborg # Starlight. no two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous, yo.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
@@ -289,8 +289,8 @@
   - zomber
   name: zombie-title
   description: zombie-description
-  minPlayers: 50 # 🌟Starlight🌟
-  showInVote: true # 🌟Starlight🌟
+  minPlayers: 50 #Starlight
+  showInVote: true #Starlight
   rules:
   - Zombie
   - SubGamemodesRuleZombieCompliantAntags # Starlight. I want to trial this, see how it plays out. If it goes poorly, we'll remove Xenoborgs from it.
@@ -307,8 +307,8 @@
   - meteombies
   name: zombieteors-title
   description: zombieteors-description
-  minPlayers: 50 # 🌟Starlight🌟
-  showInVote: true # 🌟Starlight🌟
+  minPlayers: 50 #Starlight
+  showInVote: true #Starlight
   rules:
   - Zombie
   - SubGamemodesRuleZombieCompliantAntags # Starlight. I want to trial this, see how it plays out. If it goes poorly, we'll remove Xenoborgs from it.

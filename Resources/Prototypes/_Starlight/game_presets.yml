@@ -216,7 +216,7 @@
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  - RailroadingMinor # 🌟Starlight🌟
+  - RailroadingMinor #Starlight
 
 - type: gamePreset
   id: DynamicLP

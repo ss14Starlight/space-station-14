@@ -207,11 +207,11 @@ namespace Content.Client.Ghost
         {
             _console.RemoteExecuteCommand(null, "ghostroles");
         }
-        public void OpenNewLife() //🌟Starlight🌟
+        public void OpenNewLife() //Starlight
         {
             _console.RemoteExecuteCommand(null, "newlife");
         }
-        public void OpenGhostTheme() //🌟Starlight🌟
+        public void OpenGhostTheme() //Starlight
         {
             _console.RemoteExecuteCommand(null, "ghostTheme");
         }

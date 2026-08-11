@@ -51,7 +51,7 @@ namespace Content.Server.Stunnable.Systems
         }
 
 
-        // 🌟Starlight🌟 start
+        //Starlight start
         private void OnStunbatonAfterInteract(Entity<StunbatonComponent> entity, ref AfterInteractEvent args) // Handle special interaction when using stunbaton on a riot shield
         {
             // Only handle interaction if stunbaton is the used item
@@ -91,11 +91,11 @@ namespace Content.Server.Stunnable.Systems
             // Play sound effect for all players in vicinity
             _audio.PlayPvs(entity.Comp.ShieldBashSound, target);
         }
-        // 🌟Starlight🌟 end
+        //Starlight end
 
         private void OnStaminaHitAttempt(Entity<StunbatonComponent> entity, ref StaminaDamageOnHitAttemptEvent args)
         {
-            // 🌟Starlight🌟 start
+            //Starlight start
             // Stunbatons check for power cells if they have no BatteryComponent
             Entity<BatteryComponent>? batteryEntity = null;
             if (!_itemToggle.IsActivated(entity.Owner) ||
@@ -105,7 +105,7 @@ namespace Content.Server.Stunnable.Systems
             {
                 args.Cancelled = true;
             }
-            // 🌟Starlight🌟 end
+            //Starlight end
         }
 
         private void OnExamined(Entity<StunbatonComponent> entity, ref ExaminedEvent args)
@@ -115,7 +115,7 @@ namespace Content.Server.Stunnable.Systems
             : Loc.GetString("comp-stunbaton-examined-off");
             args.PushMarkup(onMsg);
 
-            // 🌟Starlight🌟 start
+            //Starlight start
             Entity<BatteryComponent>? batteryEnt = null;
             if (TryComp<BatteryComponent>(entity.Owner, out var battery) ||
                 _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
@@ -132,14 +132,14 @@ namespace Content.Server.Stunnable.Systems
                 args.PushMarkup(Loc.GetString("melee-battery-examine", ("color", "yellow"), ("count", count)));
             }
 
-            // 🌟Starlight🌟 end
+            //Starlight end
         }
 
         protected override void TryTurnOn(Entity<StunbatonComponent> entity, ref ItemToggleActivateAttemptEvent args)
         {
             base.TryTurnOn(entity, ref args);
 
-            // 🌟Starlight🌟 start
+            //Starlight start
             Entity<BatteryComponent>? batteryEnt = null;
             if (TryComp<BatteryComponent>(entity.Owner, out var battery) ||
                 _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
@@ -167,7 +167,7 @@ namespace Content.Server.Stunnable.Systems
                     UpdateAppearance(entity, isActive: true);
                 }
             }
-            // 🌟Starlight🌟 end
+            //Starlight end
         }
 
         #region Starlight
@@ -180,7 +180,7 @@ namespace Content.Server.Stunnable.Systems
         }
         private void OnChargeChanged(Entity<StunbatonComponent> entity, ref ChargeChangedEvent args)
         {
-            // 🌟Starlight🌟 start
+            //Starlight start
             Entity<BatteryComponent>? batteryEnt = null;
             if (TryComp<BatteryComponent>(entity.Owner, out var battery) ||
                 _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
@@ -196,7 +196,7 @@ namespace Content.Server.Stunnable.Systems
                     }
                 }
             }
-            // 🌟Starlight🌟 end
+            //Starlight end
         }
 
         private void OnCellSlotInserted(Entity<StunbatonComponent> ent, ref EntInsertedIntoContainerMessage args)

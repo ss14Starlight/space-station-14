@@ -43,8 +43,8 @@ namespace Content.Server.GameTicking
         [Dependency] private IAdminManager _adminManager = default!;
         [Dependency] private SharedJobSystem _jobs = default!;
         [Dependency] private AdminSystem _admin = default!;
-        [Dependency] private NewLifeSystem _newLifeSystem = default!; //🌟Starlight🌟
-        [Dependency] private INullLinkPlayerManager _playerRolesManager = default!; //🌟Starlight🌟
+        [Dependency] private NewLifeSystem _newLifeSystem = default!; //Starlight
+        [Dependency] private INullLinkPlayerManager _playerRolesManager = default!; //Starlight
         [Dependency] private PolymorphSystem _polymorphSystem = default!;
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
@@ -383,7 +383,7 @@ namespace Content.Server.GameTicking
             }
             //starlight end
 
-            _newLifeSystem.SaveCharacterToUsed(player.UserId, playerPreferences.IndexOfCharacter(character));     //🌟Starlight🌟
+            _newLifeSystem.SaveCharacterToUsed(player.UserId, playerPreferences.IndexOfCharacter(character));     //Starlight
 
             DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName);
 

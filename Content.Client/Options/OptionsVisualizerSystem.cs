@@ -14,7 +14,7 @@ public sealed partial class OptionsVisualizerSystem : EntitySystem
     {
         (OptionVisualizerOptions.Test, CCVars.DebugOptionVisualizerTest),
         (OptionVisualizerOptions.ReducedMotion, CCVars.ReducedMotion),
-        (OptionVisualizerOptions.Arachnophobia, CCVars.AccessibilityArachnophobia),// 🌟Starlight🌟
+        (OptionVisualizerOptions.Arachnophobia, CCVars.AccessibilityArachnophobia),//Starlight
     };
 
     [Dependency] private IConfigurationManager _cfg = default!;

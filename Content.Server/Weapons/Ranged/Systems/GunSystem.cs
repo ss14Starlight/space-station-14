@@ -306,7 +306,7 @@ public sealed partial class GunSystem : SharedGunSystem
         return angles;
     }
 
-    // 🌟Starlight🌟
+    //Starlight
     private Angle[] LinearSpreadWithRandom(Angle start, Angle end, int intervals, float randomSpread)
     {
         var angles = new Angle[intervals];

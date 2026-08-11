@@ -125,7 +125,7 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile(
             string name,
             string voice,
-            string siliconVoice, // 🌟Starlight🌟
+            string siliconVoice, //Starlight
             string physicalDesc,// Starlight
             string personalityDesc,// Starlight
             string personalNotes,// Starlight
@@ -150,7 +150,7 @@ namespace Content.Shared.Preferences
         {
             Name = name;
             Voice = voice;
-            SiliconVoice = siliconVoice; // 🌟Starlight🌟
+            SiliconVoice = siliconVoice; //Starlight
             PhysicalDescription = physicalDesc;//Starlight
             PersonalityDescription = personalityDesc;//Starlight
             PersonalNotes = personalNotes;//Starlight
@@ -178,7 +178,7 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile(HumanoidCharacterProfile other)
             : this(other.Name,
                 other.Voice,
-                other.SiliconVoice, // 🌟Starlight🌟
+                other.SiliconVoice, //Starlight
                 other.PhysicalDescription,//Starlight
                 other.PersonalityDescription, //Starlight
                 other.PersonalNotes,//Starlight

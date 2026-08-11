@@ -627,8 +627,9 @@
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
+        !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 20h
   equipment:
     jumpsuit: ClothingUniformJumpskirtElegantMaid
   groupBy: "maid outfit"
@@ -638,8 +639,9 @@
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40 hr
+        !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 20h
   equipment:
     gloves: ClothingHandsMaidGlovesElegant
   groupBy: "maid outfit"

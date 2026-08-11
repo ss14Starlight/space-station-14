@@ -208,7 +208,7 @@ namespace Content.Server.Database
         #endregion
 
         #region Player data
-        /// 🌟Starlight🌟
+        ///Starlight
         Task SetPlayerDataForAsync(NetUserId userId, StarLightModel.PlayerDataDTO data, CancellationToken cancel = default);
         Task<StarLightModel.PlayerDataDTO?> GetPlayerDataForAsync(NetUserId userId, CancellationToken cancel = default);
 
@@ -666,7 +666,7 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.AddServerBanHitsAsync(connection, bans));
         }
-        //🌟Starlight🌟 start
+        //Starlight start
         public Task<StarLightModel.PlayerDataDTO?> GetPlayerDataForAsync(NetUserId userId, CancellationToken cancel = default)
         {
             DbReadOpsMetric.Inc();
@@ -678,7 +678,7 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.SetPlayerDataForAsync(userId, data, cancel));
         }
 
-        //🌟Starlight🌟 end
+        //Starlight end
 
         public Task<Admin?> GetAdminDataForAsync(NetUserId userId, CancellationToken cancel = default)
         {

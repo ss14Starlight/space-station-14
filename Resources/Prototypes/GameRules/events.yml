@@ -199,8 +199,8 @@
   - type: StationEvent
     globalAnnouncement: false # Starlight
     startAnnouncement: station-event-bureaucratic-error-announcement
-    earliestStart: 40 # 🌟Starlight🌟 Why could this happen roundstart?!
-    minimumPlayers: 40 # 🌟Starlight🌟
+    earliestStart: 40 #Starlight Why could this happen roundstart?!
+    minimumPlayers: 40 #Starlight
     weight: 3
     duration: 1
   - type: BureaucraticErrorRule
@@ -241,10 +241,10 @@
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight
-    weight: 3 # 🌟Starlight🌟 Casualization
-    earliestStart: 50 # 🌟Starlight🌟 Casualization
-    reoccurrenceDelay: 45 # 🌟Starlight🌟 Casualization
-    minimumPlayers: 40 # 🌟Starlight🌟 Casualization
+    weight: 3 #Starlight Casualization
+    earliestStart: 50 #Starlight Casualization
+    reoccurrenceDelay: 45 #Starlight Casualization
+    minimumPlayers: 40 #Starlight Casualization
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
@@ -269,10 +269,10 @@
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight
-    weight: 3 # 🌟Starlight🌟 Casualization
+    weight: 3 #Starlight Casualization
     duration: null
-    earliestStart: 45 # 🌟Starlight🌟 Casualization
-    reoccurrenceDelay: 45 # 🌟Starlight🌟 Casualization
+    earliestStart: 45 #Starlight Casualization
+    reoccurrenceDelay: 45 #Starlight Casualization
     minimumPlayers: 30
   - type: SpaceSpawnRule
   - type: AntagLoadProfileRule
@@ -340,7 +340,7 @@
     duration: 1
     earliestStart: 30
     reoccurrenceDelay: 60
-    minimumPlayers: 45 # 🌟Starlight🌟 Casualization
+    minimumPlayers: 45 #Starlight Casualization
   - type: DynamicRuleCost # Starlight
     cost: 75 # Starlight
 
@@ -448,9 +448,9 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+    earliestStart: 40 #Starlight Casualization
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
+    weight: 3.5 #Starlight Casualization
     duration: 60
   - type: VentCrittersRule
     entries:
@@ -470,9 +470,9 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+    earliestStart: 40 #Starlight Casualization
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
+    weight: 3.5 #Starlight Casualization
     duration: 60
   - type: VentCrittersRule
     entries:
@@ -492,9 +492,9 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+    earliestStart: 40 #Starlight Casualization
     minimumPlayers: 15
-    weight: 3.5 # 🌟Starlight🌟 Casualization
+    weight: 3.5 #Starlight Casualization
     duration: 60
   - type: VentCrittersRule
     entries:
@@ -510,7 +510,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
+    earliestStart: 40 #Starlight Casualization
     minimumPlayers: 20
     weight: 1.5
     duration: 60
@@ -545,9 +545,9 @@
   id: LoneOpsSpawn
   components:
   - type: StationEvent
-    earliestStart: 55 # 🌟Starlight🌟 Casualization
-    weight: 3 # 🌟Starlight🌟 Casualization
-    minimumPlayers: 35 # 🌟Starlight🌟 Casualization
+    earliestStart: 55 #Starlight Casualization
+    weight: 3 #Starlight Casualization
+    minimumPlayers: 35 #Starlight Casualization
     duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
   - type: RuleGrids
   - type: LoadMapRule
@@ -567,8 +567,8 @@
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight
-    earliestStart: 40 # 🌟Starlight🌟 Casualization
-    weight: 6 # 🌟Starlight🌟 Casualization
+    earliestStart: 40 #Starlight Casualization
+    weight: 6 #Starlight Casualization
     minimumPlayers: 15
     maxOccurrences: 1 # can only happen once per round
     startAnnouncement: station-event-communication-interception

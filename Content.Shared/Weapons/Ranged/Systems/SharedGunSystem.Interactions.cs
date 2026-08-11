@@ -1,4 +1,4 @@
-// 🌟Starlight🌟
+//Starlight
 using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Actions;
 using Content.Shared.Examine;
@@ -35,7 +35,7 @@ public abstract partial class SharedGunSystem
         if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract)
             return;
 
-        // 🌟Starlight🌟 — dual-wield verb: show when holding a gun in each hand
+        //Starlight — dual-wield verb: show when holding a gun in each hand
         var dualWield = EntitySystem.Get<SharedDualWieldSystem>();
         if (dualWield.TryGetBothGuns(args.User, out var leftGun, out var rightGun)
             && (uid == leftGun || uid == rightGun))

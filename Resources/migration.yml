@@ -620,7 +620,7 @@ ClothingOuterHardsuitBasic: ClothingOuterHardsuitEVA
 ClothingHeadHelmetHardsuitBasic: null
 SuitStorageBasic: SuitStorageEVA
 
-# 🌟Starlight🌟 start
+#Starlight start
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP
 MagazineBoxPistol: MagazineBoxPistolSP
@@ -630,7 +630,7 @@ MagazinePistolSubMachineGun: MagazinePistolSubMachineGunSP
 MagazineRifle: MagazineRifleSP
 
 BorgModuleTreatment: BorgModuleTopicals
-# 🌟Starlight🌟 end
+#Starlight end
 
 # 2025-05-18
 ClothingNeckCloakMiner: null

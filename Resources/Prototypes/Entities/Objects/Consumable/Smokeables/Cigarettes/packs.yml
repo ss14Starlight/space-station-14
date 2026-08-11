@@ -50,14 +50,14 @@
   - type: Storage
     grid:
     - 0,0,4,1
-    # 🌟Starlight - Start🌟
+    #Starlight - Start
     whitelist:
       components:
         - Smokable
         - Matchstick
         - Welder # for lighters
         - Crayon # they're ciggie shaped
-    # 🌟Starlight - End🌟
+    #Starlight - End
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -128,14 +128,14 @@
   - type: Storage
     grid:
     - 0,0,4,1
-    # 🌟Starlight - Start🌟
+    #Starlight - Start
     whitelist:
       components:
         - Smokable
         - Matchstick
         - Welder # for lighters
         - Crayon # they're ciggie shaped
-    # 🌟Starlight - End🌟
+    #Starlight - End
   - type: ItemCounter
     count:
       tags: [Cigarette]

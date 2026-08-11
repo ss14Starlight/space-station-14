@@ -56,7 +56,7 @@ namespace Content.Client.Entry
         [Dependency] private IComponentFactory _componentFactory = default!;
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private IClientAdminManager _adminManager = default!;
-        [Dependency] private IClientPlayerRolesManager _clientPlayerManager = default!; //🌟Starlight🌟
+        [Dependency] private IClientPlayerRolesManager _clientPlayerManager = default!; //Starlight
         [Dependency] private IParallaxManager _parallaxManager = default!;
         [Dependency] private IConfigurationManager _configManager = default!;
         [Dependency] private IStylesheetManager _stylesheetManager = default!;
@@ -144,20 +144,20 @@ namespace Content.Client.Entry
             // Starlight-edit: Lancer arcade scoreboards
             _prototypeManager.RegisterIgnore("arcadeScoreboard");
 
-            _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
+            _prototypeManager.RegisterIgnore("onSignActions"); //Starlight
 
             _documentManager.Initialize(); // Starlight
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();
-            _clientPlayerManager.Initialize(); //🌟Starlight🌟
+            _clientPlayerManager.Initialize(); //Starlight
             _screenshotHook.Initialize();
             _fullscreenHook.Initialize();
             _changelogManager.Initialize();
             _viewportManager.Initialize();
             _ghostKick.Initialize();
             _extendedDisconnectInformation.Initialize();
-            //_jobRequirements.Initialize(); //🌟Starlight🌟 - Moved to PostInit
+            //_jobRequirements.Initialize(); //Starlight - Moved to PostInit
             _playbackMan.Initialize();
             _clientsidePlaytimeManager.Initialize();
 
@@ -192,7 +192,7 @@ namespace Content.Client.Entry
             _documentParsingManager.Initialize();
             _titleWindowManager.Initialize();
 
-            _jobRequirements.Initialize(); //🌟Starlight🌟
+            _jobRequirements.Initialize(); //Starlight
 
             _baseClient.RunLevelChanged += (_, args) =>
             {
