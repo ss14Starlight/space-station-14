@@ -226,13 +226,13 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-    - Hybrid
-    - IPC # Starlight, Neocytes
+    - Hybrid # Starlight, Neocytes
+    - IPC # Starlight
   - type: ShowHealthIcons
     damageContainers:
     - Biological
-    - Hybrid
-    - IPC # Starlight, Neocytes
+    - Hybrid # Starlight, Neocytes
+    - IPC # Starlight
   - type: Access # Starlight BEGIN
     groups:
       - CyborgAllAccess

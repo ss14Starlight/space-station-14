@@ -411,12 +411,12 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-    - Hybrid
+    - Hybrid # Starlight, Neocytes
     - IPC # Starlight
   - type: ShowHealthIcons
     damageContainers:
     - Biological
-    - Hybrid
+    - Hybrid # Starlight, Neocytes
     - IPC # Starlight
 # Starlight Start
   - type: IntrinsicRadioReceiver
