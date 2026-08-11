@@ -1,11 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: Fixed decal performance issue on decal creation.
-    type: Fix
-  id: 407111
-  time: '2026-07-29T11:59:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5393
 - author: joshujo
   changes:
   - message: Gas filters can now filter multiple gases.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407510
   time: '2026-08-11T10:55:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5579
+- author: TaserTheFox
+  changes:
+  - message: More phrases to the AAC tablet.
+    type: Add
+  id: 407511
+  time: '2026-08-11T11:24:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5600
 Order: -1
