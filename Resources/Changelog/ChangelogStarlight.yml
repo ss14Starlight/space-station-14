@@ -1,39 +1,4 @@
 Entries:
-- author: Wayiscute, Caws
-  changes:
-  - message: Added the new advanced APC, which supports up to 90kW of power draw, has a larger internal battery, and responds better to sudden changes in power demand. Unlockable by researching the "Power Generation" technology.
-    type: Add
-  id: 407092
-  time: '2026-07-28T15:53:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5345
-- author: Wayiscute, Caws
-  changes:
-  - message: Regular APC electronics have been made slightly more expensive in order to discourage APC stacking.
-    type: Tweak
-  id: 407093
-  time: '2026-07-28T15:53:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5345
-- author: RedSpeeds
-  changes:
-  - message: Allow ERT Shuttle to FTL to CC after EOR.
-    type: Tweak
-  id: 407094
-  time: '2026-07-28T17:19:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5312
-- author: redmushie
-  changes:
-  - message: Issue where AI could teleport to the Monument.
-    type: Fix
-  id: 407095
-  time: '2026-07-28T17:51:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5342
-- author: wonderfulnewworld, sowelipililimute
-  changes:
-  - message: You can no longer see when people are stripping you.
-    type: Fix
-  id: 407096
-  time: '2026-07-28T19:29:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5384
 - author: wonderfulnewworld
   changes:
   - message: Secret doors no longer display an interaction particle.
@@ -2799,4 +2764,39 @@ Entries:
   id: 407491
   time: '2026-08-11T06:27:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5383
+- author: Tjmaxmillion
+  changes:
+  - message: Secure Terminal now gives 30 seconds for co-authorization.
+    type: Tweak
+  id: 407492
+  time: '2026-08-11T08:00:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5002
+- author: Tjmaxmillion
+  changes:
+  - message: Secure Terminal Manual in command guidebook.
+    type: Add
+  id: 407493
+  time: '2026-08-11T08:00:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5002
+- author: Tjmaxmillion
+  changes:
+  - message: Secure Terminal Manual Item, Spawns inside command lockers and the Keycard Authentication Device, can be ejected.
+    type: Add
+  id: 407494
+  time: '2026-08-11T08:00:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5002
+- author: Tjmaxmillion
+  changes:
+  - message: Secure Terminal SOP in command SOP.
+    type: Add
+  id: 407495
+  time: '2026-08-11T08:00:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5002
+- author: Tjmaxmillion
+  changes:
+  - message: Secure Terminal shuttle based recalls now work.
+    type: Fix
+  id: 407496
+  time: '2026-08-11T08:00:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5002
 Order: -1
