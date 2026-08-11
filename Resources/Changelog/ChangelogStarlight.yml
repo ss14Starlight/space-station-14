@@ -1,13 +1,6 @@
 Entries:
 - author: Glaud0283
   changes:
-  - message: Added Gamorrah brigmedic and treasurer roles with their own IDs and PDAs.
-    type: Add
-  id: 407104
-  time: '2026-07-28T20:17:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5329
-- author: Glaud0283
-  changes:
   - message: Casino contraband no longer shows a warning to casino staff.
     type: Fix
   id: 407105
@@ -2799,4 +2792,11 @@ Entries:
   id: 407503
   time: '2026-08-11T08:33:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5387
+- author: wonderfulnewworld
+  changes:
+  - message: Avali, Reptillians, and Noctiliae can now eat Phenylpiperidine crystals.
+    type: Fix
+  id: 407504
+  time: '2026-08-11T09:13:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5547
 Order: -1
