@@ -5,6 +5,7 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Tools;
+using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
@@ -68,6 +69,7 @@ public sealed partial class FaxSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedTimeSystem _time = default!;
+    [Dependency] private PreWrittenDocumentManager _documentManager = default!;
     #endregion
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
@@ -372,8 +374,10 @@ public sealed partial class FaxSystem : EntitySystem
             var printout = TryGetFaxablePrintout(component.PaperSlot.Item, component);
             if (printout != null)
             {
+                if (component.SendTimeoutRemaining > 0) return;
                 component.PrintingQueue.Enqueue(printout);
                 UpdateUserInterface(uid, component);
+                component.SendTimeoutRemaining += component.SendTimeout;
             }
             // Starlight-edit
         }
@@ -385,10 +389,8 @@ public sealed partial class FaxSystem : EntitySystem
     {
         if (HasComp<MobStateComponent>(component.PaperSlot.Item))
         {
-            _faxecute.Faxecute(uid, component); // when button pressed it will hurt the mob.
-
             // Starlight-edit
-            SendFaxablePrintout(uid, component);
+            if(SendFaxablePrintout(uid, component)) _faxecute.Faxecute(uid, component);
             // Starlight-edit
         }
         else
@@ -815,22 +817,26 @@ public sealed partial class FaxSystem : EntitySystem
             string.IsNullOrEmpty(faxable.OutputtingText))
             return null;
 
+        if(!_documentManager.TryGetDocumentContents(faxable.OutputtingText, out var text)) return null;
+
         return new FaxPrintout(
-            Loc.GetString(faxable.OutputtingText),
+            text,
             Loc.GetString("fax-machine-printed-paper-name"),
             prototypeId: component.PrintPaperId,
             retainMetadata: true);
     }
 
-    private void SendFaxablePrintout(EntityUid uid, FaxMachineComponent component)
+    private bool SendFaxablePrintout(EntityUid uid, FaxMachineComponent component)
     {
         var printout = TryGetFaxablePrintout(component.PaperSlot.Item, component);
         if (printout == null)
-            return;
+            return false;
+
+        if (component.SendTimeout > 0) return false;
 
         if (component.DestinationFaxAddress == null ||
             !component.KnownFaxes.ContainsKey(component.DestinationFaxAddress))
-            return;
+            return false;
 
         var payload = new NetworkPayload()
         {
@@ -845,7 +851,9 @@ public sealed partial class FaxSystem : EntitySystem
 
         _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
         _audioSystem.PlayPvs(component.SendSound, uid);
+        component.SendTimeoutRemaining += component.SendTimeout;
         UpdateUserInterface(uid, component);
+        return true;
     }
 
     private void UpdateMachineConfigureUserInterface(EntityUid uid, FaxMachineComponent? component = null)

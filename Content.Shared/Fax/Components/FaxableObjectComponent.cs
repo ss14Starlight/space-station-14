@@ -16,7 +16,7 @@ public sealed partial class FaxableObjectComponent : Component
 
     /// <summary>
     /// Starlight-edit
-    /// The text to output when faxing this object. Must be FTL loc string
+    /// The text to output when faxing this object. Must be Document name
     /// </summary>
     [DataField, AutoNetworkedField] public string OutputtingText = "";
 }
