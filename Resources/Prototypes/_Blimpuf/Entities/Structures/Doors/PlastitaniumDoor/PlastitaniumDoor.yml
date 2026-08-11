@@ -1,7 +1,7 @@
 ﻿- type: entity
-  id: PlastitaniumDoorIndesctructible # Starlight
+  id: PlastitaniumAirlockIndestructible # Starlight
   parent: [ BaseStructure, BaseStructureDissolvable ]
-  name: plastitanium door # Starlight, lowercase
+  name: plastitanium airlock # Starlight, name
   suffix: indestructible # Starlight
   description: It opens, it closes, and maybe crushes you.
   components:
@@ -159,8 +159,8 @@
 
 # Starlight start
 - type: entity
-  id: PlastitaniumDoor
-  parent: PlastitaniumDoorIndesctructible
+  id: PlastitaniumAirlock
+  parent: PlastitaniumAirlockIndestructible
   suffix: ""
   components:
     - type: Destructible
