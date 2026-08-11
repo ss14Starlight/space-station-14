@@ -120,15 +120,11 @@ public sealed partial class PolymorphSystem : EntitySystem
         }
     }
 
-    // Starlight begin
+    // Starlight begin - Why the fuck these can't just be one event handler listening for BasePolymorphActionEvent is fucking beyond me.
     private void OnPolymorphActionEvent(Entity<PolymorphableComponent> ent, ref PolymorphActionEvent args)
     {
         if (args.Handled) return;
-
-        if (!_proto.TryIndex(args.ProtoId, out var proto))
-            return;
-
-        PolymorphEntity(ent, proto.Configuration);
+        PolymorphEntity(ent, args.Config);
         args.Handled = true;
     }
 

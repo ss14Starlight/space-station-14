@@ -1,24 +1,21 @@
 {
   "version": 1,
   "license": "CC-BY-NC-SA-3.0",
-  "copyright": "State based copyright",
+  "copyright": "Sprites by CptPuddleboat",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon",
-      "copyright": "Character & sprites by CptPuddleboat (GitHub)"
+      "name": "icon"
     },
     {
       "name": "inhand-left",
-      "copyright": "Character & sprites by CptPuddleboat (GitHub)",
       "directions": 4
     },
     {
       "name": "inhand-right",
-      "copyright": "Character & sprites by CptPuddleboat (GitHub)",
       "directions": 4
     }
   ]

@@ -387,7 +387,7 @@
   - type: XenoborgsRule
   - type: RuleGrids
   - type: LoadMapRule
-    gridPath: /Maps/_Starlight/Shuttles/mothership.yml # Starlight
+    gridPath: /Maps/Shuttles/mothership.yml
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:
       MothershipCore: [ MothershipCore ]

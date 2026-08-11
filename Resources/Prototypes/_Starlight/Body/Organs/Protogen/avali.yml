@@ -1,0 +1,47 @@
+- type: entity
+  id: OrganProtoAvaliStomach
+  parent: OrganProtogenStomach
+  name: avali biological reactor
+  suffix: Proto-Avali
+  components:
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+    isSpecialDigestibleExclusive: false
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+- type: entity
+  id: OrganProtoAvaliHeart
+  parent: OrganProtogenHeart
+  name: avali cybernetic heart
+  suffix: Proto-Avali
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Avali, Protogen]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
+- type: entity
+  id: OrganProtoAvaliLiver
+  parent: OrganProtogenLiver
+  name: avali cybernetic liver
+  suffix: Proto-Avali
+  components:
+  - type: Metabolizer
+    updateInterval: 1.5
+    maxReagents: 1
+    metabolizerTypes: [Avali]
+    groups:
+    - id: Alcohol

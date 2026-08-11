@@ -33,11 +33,6 @@
   name: store-caregory-spellbook-events
   priority: 4
 
-- type: storeCategory
-  id: SpellbookWar
-  name: store-caregory-spellbook-war
-  priority: 5
-
 #uplink categoires
 - type: storeCategory
   id: UplinkWeaponry

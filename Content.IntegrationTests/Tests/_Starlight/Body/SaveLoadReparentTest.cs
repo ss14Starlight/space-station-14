@@ -31,6 +31,7 @@ public sealed class SaveLoadReparentTest : GameTest
         var server = pair.Server;
 
         var entities = server.ResolveDependency<IEntityManager>();
+        var maps = server.ResolveDependency<IMapManager>();
         var mapLoader = entities.System<MapLoaderSystem>();
         var bodySystem = entities.System<SharedBodySystem>();
         var containerSystem = entities.System<SharedContainerSystem>();
@@ -39,7 +40,7 @@ public sealed class SaveLoadReparentTest : GameTest
         await server.WaitAssertion(() =>
         {
             mapSys.CreateMap(out var mapId);
-            mapSys.CreateGridEntity(mapId);
+            maps.CreateGrid(mapId);
             var human = entities.SpawnEntity("HumanBodyDummy", new MapCoordinates(0, 0, mapId));
 
             Assert.That(entities.HasComponent<BodyComponent>(human), Is.True);

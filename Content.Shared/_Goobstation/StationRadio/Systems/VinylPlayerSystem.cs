@@ -4,10 +4,11 @@ using Content.Shared.Destructible;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
-using Content.Shared.Examine; // Starlight - Shift Click to view what Vinyl is inserted.
+using Content.Shared._Goobstation.StationRadio.Systems; // Starlight - Remove Server Check from VinylSummonSystem
 using Robust.Shared.Timing; // Starlight - Add Station Radio Resume Play
 
 namespace Content.Shared._Goobstation.StationRadio.Systems; // Starlight - _Goob -> _Goobstation
@@ -21,8 +22,6 @@ public sealed partial class VinylPlayerSystem : EntitySystem
     [Dependency] private StationRadioReceiverSystem _stationRadio = default!; // Starlight - Remove Server Check from VinylSummonSystem
     [Dependency] private IGameTiming _timing = default!; // Starlight - Add Station Radio Resume Play
 
-    [Dependency] private readonly SharedContainerSystem _container = default!; // Starlight - Shift Click to view what Vinyl is inserted.
-
     public override void Initialize()
     {
         base.Initialize();
@@ -30,8 +29,6 @@ public sealed partial class VinylPlayerSystem : EntitySystem
         SubscribeLocalEvent<VinylPlayerComponent, EntRemovedFromContainerMessage>(OnVinylRemove);
         SubscribeLocalEvent<VinylPlayerComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<VinylPlayerComponent, PowerChangedEvent>(OnPowerChanged);
-
-        SubscribeLocalEvent<VinylPlayerComponent, ExaminedEvent>(OnExamined); // Starlight - Shift Click to view what Vinyl is inserted.
     }
 
     private void OnPowerChanged(EntityUid uid, VinylPlayerComponent comp, PowerChangedEvent args)
@@ -157,21 +154,4 @@ public sealed partial class VinylPlayerSystem : EntitySystem
         }
         return false;
     }
-
-    #region Starlight
-    /// <summary>
-    /// Show what vinyl is currently inserted when examined.
-    /// </summary>
-    private void OnExamined(EntityUid uid, VinylPlayerComponent comp, ref ExaminedEvent args)
-    {
-        if (!_container.TryGetContainer(uid, "vinyl", out var container) || container.ContainedEntities.Count == 0) // confirm actual container ID
-        {
-            args.PushMarkup(Loc.GetString("vinyl-player-examine-empty"));
-            return;
-        }
-
-        var vinyl = container.ContainedEntities[0];
-        args.PushMarkup(Loc.GetString("vinyl-player-examine-loaded", ("vinyl", Name(vinyl))));
-    }
-    #endregion
 }
