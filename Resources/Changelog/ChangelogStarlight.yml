@@ -1,11 +1,4 @@
 Entries:
-- author: DocMoth, Forrestgod
-  changes:
-  - message: Changed the Shading for the AI Core.
-    type: Tweak
-  id: 407114
-  time: '2026-07-31T06:39:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5410
 - author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
   changes:
   - message: You can now late join as Traitors, Head Revs, Cosmic Cultists, Devils, and Initial Infected.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407513
   time: '2026-08-11T11:24:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5589
+- author: noxypaws
+  changes:
+  - message: use "Holy Book" instead of "Bible" in Cosmic Cult guidebook entries.
+    type: Tweak
+  id: 407514
+  time: '2026-08-11T19:16:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5604
 Order: -1
