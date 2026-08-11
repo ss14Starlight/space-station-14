@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: BaseItem
   name: Straw
   description: A straw to drain liquids into the cybernetic stomach.
