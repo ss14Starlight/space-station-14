@@ -38,7 +38,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private ThrowingSystem _throw = default!;
-    [Dependency] private readonly PointLightSystem _pointLight = default!;
+    [Dependency] private PointLightSystem _pointLight = default!;
     
 
     public override void Initialize()

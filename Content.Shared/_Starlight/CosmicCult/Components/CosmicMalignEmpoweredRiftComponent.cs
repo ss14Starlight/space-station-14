@@ -8,5 +8,9 @@ namespace Content.Server._Starlight.CosmicCult.Components;
 
     public Container CorpseContainer = default!;
 
-    [DataField] public float CoolingCoefficient = 0.1f;
+    /// <summary>
+    /// Controls how quickly corpses stored inside the rift are cooled.
+    /// Higher values increase the rate of heat removal.
+    /// </summary>
+    [DataField] public float CoolingCoefficient = 0.2f;
 }

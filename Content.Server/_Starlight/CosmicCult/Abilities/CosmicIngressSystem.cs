@@ -86,19 +86,25 @@ public sealed partial class CosmicIngressSystem : EntitySystem
 
         args.Handled = true;
         var comp = ent.Comp;
-        var coordinates = Transform(target).Coordinates;
 
         // Empower a malign rift instead of prying open a door.
         if (TryComp<CosmicMalignRiftComponent>(target, out _))
         {
+            var riftCoordinates = Transform(target).Coordinates;
             _audio.PlayPvs(comp.IngressSfx, ent);
-            Spawn(comp.CultVfx, coordinates);
+            Spawn(comp.CultVfx, riftCoordinates);
 
             QueueDel(target);
-            Spawn("CosmicMalignEmpoweredRift", coordinates);
+            Spawn("CosmicMalignEmpoweredRift", riftCoordinates);
 
             return;
         }
+
+        // Revalidate the target after the DoAfter. 
+        if (!TryComp<DoorComponent>(target, out _)) 
+            return;
+
+        var coordinates = Transform(target).Coordinates;
 
         _audio.PlayPvs(comp.IngressSfx, ent);
         Spawn(comp.CultVfx, coordinates);

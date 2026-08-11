@@ -38,8 +38,6 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 
         _container.Remove(corpse, ent.Comp.CorpseContainer);
 
-        StoredCorpseCount--;
-
         var riftCoordinates = Transform(ent.Owner).Coordinates;
         _transform.SetCoordinates(corpse, riftCoordinates);
     }
@@ -48,6 +46,8 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var corpseCount = 0;
+
         var query = EntityQueryEnumerator<CosmicMalignEmpoweredRiftComponent, TransformComponent>();
 
         while (query.MoveNext(out var uid, out var rift, out var xform))
@@ -55,6 +55,8 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 
             if (rift.CorpseContainer.Count > 0)
             {
+                corpseCount++;
+
                 var corpse = rift.CorpseContainer.ContainedEntities[0];
 
                 if (TryComp<TemperatureComponent>(corpse, out var temperature))
@@ -108,16 +110,14 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 
                 // Dont eat your own friends by accident
                 if (HasComp<CosmicCultComponent>(target))
-                continue;
+                    continue;
 
                 // Store the corpse inside the rift.
                 if (_container.Insert(target, rift.CorpseContainer))
-                {
-                    StoredCorpseCount++;
                     break;
-                }
             }
         }
+        StoredCorpseCount = corpseCount;
     }
 
     private void OnStartup(
