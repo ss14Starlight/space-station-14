@@ -1,0 +1,524 @@
+- type: entity
+  id: BorgChassisSelectable
+  parent: BaseBorgChassisNT
+  components:
+  - type: TextToSpeech
+  - type: Sprite
+    layers:
+    - state: borg
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+  - type: BorgChassis
+    # Default borg can take no modules until selected type.
+    maxModules: 0
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/Chassis/generic.rsi
+      state: borg
+    name: cyborg
+  - type: InteractionPopup
+    interactSuccessString: petting-success-generic-cyborg
+    interactFailureString: petting-failure-generic-cyborg
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - Common
+    - Binary
+    # Starlight-start
+    availableTypes:
+    - engineering
+    - generic
+    - janitor
+    - medical
+    - mining
+    - purrfus
+    - service
+    - cargo
+ #   - security Currently admeme only
+  # Starlight-end
+
+- type: entity
+  id: BorgChassisGeneric
+  parent: BorgChassisSelectable
+  name: generic cyborg
+  suffix: type picked
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: generic
+
+- type: entity
+  id: BorgChassisMining
+  parent: BorgChassisSelectable
+  name: salvage cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: mining
+
+- type: entity
+  id: BorgChassisEngineer
+  parent: BorgChassisSelectable
+  name: engineer cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: engineering
+
+- type: entity
+  id: BorgChassisJanitor
+  parent: BorgChassisSelectable
+  name: janitor cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: janitor
+
+- type: entity
+  id: BorgChassisMedical
+  parent: BorgChassisSelectable
+  name: medical cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: medical
+
+- type: entity
+  id: BorgChassisService
+  parent: BorgChassisSelectable
+  name: service cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: service
+
+- type: entity
+  id: BorgChassisSyndicateAssault
+  parent: BaseBorgChassisSyndicate
+  name: syndicate assault cyborg
+  description: A lean, mean killing machine with access to a variety of deadly modules.
+  components:
+    - type: TextToSpeech
+    - type: Sprite
+      sprite: Mobs/Silicon/Chassis/synd_sec.rsi
+      layers:
+      - state: borg
+      - state: borg_e
+        map: [ "enum.BorgVisualLayers.Light" ]
+        shader: unshaded
+        visible: false
+      - state: borg_l
+        shader: unshaded
+        map: [ "light" ]
+        visible: false
+    - type: BorgChassis
+      maxModules: 5 # starlight
+      moduleWhitelist:
+        tags:
+        - BorgModuleGeneric
+        - BorgModuleSyndicate
+        - BorgModuleSyndicateAssault
+      hasMindState: borg_e
+      noMindState: borg
+    - type: InteractionPopup
+      interactSuccessString: petting-success-syndicate-cyborg
+      interactFailureString: petting-failure-syndicate-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+
+- type: entity
+  id: BorgChassisSyndicateMedical
+  parent: [ BaseBorgChassisSyndicate, ShowMedicalIcons ]
+  name: syndicate medical cyborg
+  description: A combat medical cyborg. Has limited offensive potential, but makes more than up for it with its support capabilities.
+  components:
+    - type: TextToSpeech
+    - type: Sprite
+      sprite: Mobs/Silicon/Chassis/synd_medical.rsi
+      layers:
+      - state: borg
+      - state: borg_e
+        map: [ "enum.BorgVisualLayers.Light" ]
+        shader: unshaded
+        visible: false
+      - state: borg_l
+        shader: unshaded
+        map: [ "light" ]
+        visible: false
+    - type: BorgChassis
+      maxModules: 6 # starlight
+      moduleWhitelist:
+        tags:
+        - BorgModuleGeneric
+        - BorgModuleMedical
+        - BorgModuleSyndicate
+      hasMindState: borg_e
+      noMindState: borg
+    - type: ShowHealthBars
+      damageContainers: # Starlight start
+      - Biological
+      - Hybrid # Starlight end, Neocytes
+    - type: InteractionPopup
+      interactSuccessString: petting-success-syndicate-cyborg
+      interactFailureString: petting-failure-syndicate-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: SolutionScanner
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepHoverBorg
+        params:
+          volume: -6
+
+- type: entity
+  id: BorgChassisSyndicateSaboteur
+  parent: BaseBorgChassisSyndicate
+  name: syndicate saboteur cyborg
+  description: A streamlined engineering cyborg, equipped with covert modules. Its chameleon projector lets it disguise itself as a NanoTrasen cyborg. # SL
+  components:
+    - type: TextToSpeech
+    - type: Sprite
+      sprite: Mobs/Silicon/Chassis/synd_eng.rsi
+      layers:
+      - state: borg
+      - state: borg_e
+        map: [ "enum.BorgVisualLayers.Light" ]
+        shader: unshaded
+        visible: false
+      - state: borg_l
+        shader: unshaded
+        map: [ "light" ]
+        visible: false
+    - type: BorgChassis
+      maxModules: 6 # starlight
+      moduleWhitelist:
+        tags:
+        - BorgModuleGeneric
+        - BorgModuleEngineering
+        - BorgModuleSyndicate
+      hasMindState: borg_e
+      noMindState: borg
+    - type: ShowHealthBars
+      damageContainers:
+      - Inorganic
+      - Silicon
+      - Hybrid # Starlight
+    - type: InteractionPopup
+      interactSuccessString: petting-success-syndicate-cyborg
+      interactFailureString: petting-failure-syndicate-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+
+- type: entity
+  id: BorgChassisDerelict
+  parent: BaseBorgChassisDerelict
+  name: derelict cyborg
+  description: A man-machine hybrid that assists in station activity. This one is in a state of great disrepair.
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/derelict.rsi
+    layers:
+    - state: borg
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
+  - type: BorgChassis
+    maxModules: 5 # One less module slot than the regular module to reflect this being a "broken" cyborg.
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: Construction
+    node: derelictcyborg
+  - type: InteractionPopup
+    interactSuccessString: petting-success-derelict-cyborg
+    interactFailureString: petting-failure-derelict-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+# Starlight Start
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Science
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Science
+#Starlight End
+
+- type: entity
+  parent: BaseBorgChassisDerelict
+  id: EngineeringBorgChassisDerelict
+  name: derelict engineer cyborg
+  description: A man-machine hybrid that assists the engineering department. This one seems to have chunks of strange crystals pockmarking its surface.
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/engineer.rsi #Starlight
+    layers:
+    - state: engineer_derelict
+      sprite: Mobs/Silicon/Chassis/engineer_derelict.rsi #Starlight ;-;
+    - state: borg_e_r #Starlight ;-;
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: engineer_derelict_crystal #This layer and the layer below are duplicated in order to create a more mellow unshaded layer. See https://github.com/space-wizards/space-station-14/pull/37869 for more info on the method.
+      shader: unshaded
+      sprite: Mobs/Silicon/Chassis/engineer_derelict.rsi #Starlight ;-;
+    - state: engineer_derelict_crystal
+      shader: shaded
+      sprite: Mobs/Silicon/Chassis/engineer_derelict.rsi #Starlight ;-;
+    - state: borg_l #Starlight ;-;
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: BorgChassis
+    maxModules: 5 # One less module slot than the regular module to reflect this being a "broken" cyborg.
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleEngineering
+    hasMindState: borg_e #Starlight ;-;
+    noMindState: borg_e_r #Starlight ;-;
+# Starlight Start
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Engineering
+    - Science
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Engineering
+    - Science
+#Starlight End
+
+- type: entity
+  parent: BaseBorgChassisDerelict
+  id: JanitorBorgChassisDerelict
+  name: derelict janitor cyborg
+  description: A man-machine hybrid that assists the service department. It's a bigger mess than anything it can clean up.
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/janitor.rsi #Starlight
+    layers:
+    - state: janitor_derelict
+      map: ["movement"]
+      sprite: Mobs/Silicon/Chassis/janitor_derelict.rsi #Starlight ;-;
+    - state: borg_e_r #Starlight ;-;
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: borg_l #Starlight ;-;
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: janitor_moving_derelict
+    noMovementLayers:
+      movement:
+        state: janitor_derelict
+  - type: BorgChassis
+    maxModules: 5 # One less module slot than the regular module to reflect this being a "broken" cyborg.
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleJanitor
+    hasMindState: borg_e #Starlight ;-;
+    noMindState: borg_e_r #Starlight ;-;
+# Starlight Start
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Science
+    - Service
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Science
+    - Service
+#Starlight End
+
+- type: entity
+  parent: BaseBorgChassisDerelict
+  id: MedicalBorgChassisDerelict
+  name: derelict medical cyborg
+  description: A man-machine hybrid that assists the medical department. This one's needles don't look very sanitary.
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/medical.rsi #Starlight
+    layers:
+    - state: medical_derelict
+      map: ["movement"]
+      sprite: Mobs/Silicon/Chassis/medical_derelict.rsi #Starlight ;-;
+    - state: borg_e_r #Starlight ;-;
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: borg_l #Starlight ;-;
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: medical_moving_derelict
+    noMovementLayers:
+      movement:
+        state: medical_derelict
+  - type: BorgChassis
+    maxModules: 6 # One less module slot than the regular module to reflect this being a "broken" cyborg.
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleMedical
+    hasMindState: borg_e #Starlight ;-;
+    noMindState: borg_e_r #Starlight ;-;
+  - type: SolutionScanner
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Hybrid # Starlight
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+    - Hybrid # Starlight
+# Starlight Start
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Law
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Medical
+    - Science
+#Starlight End
+
+- type: entity
+  parent: BaseBorgChassisDerelict
+  id: MiningBorgChassisDerelict
+  name: derelict salvage cyborg
+  description: A man-machine hybrid that assists the cargo department. This one has seen the wrong side of a gibtonite chunk.
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/miner.rsi #Starlight
+    layers:
+    - state: miner_derelict
+      map: ["movement"]
+      sprite: Mobs/Silicon/Chassis/miner_derelict.rsi #Starlight ;-;
+    - state: borg_e_r #Starlight ;-;
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: borg_l #Starlight ;-;
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: miner_moving_derelict
+    noMovementLayers:
+      movement:
+        state: miner_derelict
+  - type: BorgChassis
+    maxModules: 6 # One less module slot than the regular module to reflect this being a "broken" cyborg.
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleCargo
+      - BorgModuleMining #Starlight
+    hasMindState: borg_e #Starlight ;-;
+    noMindState: borg_e_r #Starlight ;-;
+# Starlight Start
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Science
+    - Supply
+    - Expedition
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Science
+    - Supply
+    - Expedition
+#Starlight End
+
+- type: entity
+  parent: BaseBorgChassisSyndicateDerelict
+  id: SyndicateAssaultBorgChassisDerelict
+  name: derelict syndicate assault cyborg
+  description: A lean, mean killing machine with access to a variety of deadly modules. This one is more rust-orange than blood-red.
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/synd_sec.rsi #Starlight
+    layers:
+    - state: synd_sec_derelict
+      sprite: Mobs/Silicon/Chassis/synd_sec_derelict.rsi #Starlight ;-;
+    - state: synd_sec_derelict_e #Starlight temp fix
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+      sprite: Mobs/Silicon/Chassis/synd_sec_derelict.rsi #Starlight ;-;
+    - state: synd_sec_derelict_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+      sprite: Mobs/Silicon/Chassis/synd_sec_derelict.rsi #Starlight ;-;
+  - type: BorgChassis
+    maxModules: 4 # starlight
+    moduleWhitelist: # Note - the Derelict Assault Borg does not have a traversal module. This is intentional as Assault Borgs have space traversal with their c20 and free space movement, and they can navigate to the station using the pinpointer.
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSyndicate
+      - BorgModuleSyndicateAssault
+    hasMindState: synd_sec_derelict_e
+    noMindState: synd_sec_derelict
+  - type: Construction
+    node: derelictcyborg
+# Starlight Start
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Syndicate
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Syndicate
+#Starlight End

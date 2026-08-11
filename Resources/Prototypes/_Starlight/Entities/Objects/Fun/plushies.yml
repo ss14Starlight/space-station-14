@@ -1,0 +1,1004 @@
+# Character Plushies - Keep alphabetical, please!
+- type: entity
+  parent: BaseShadekinPlushie
+  id: PlushieBrightheart # rtasva
+  name: brightheart plushie
+  description: A plushie of a small, elusive, and odd looking security officer. Seems familiar somehow.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/brightheart_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/brightheart_plushie.rsi
+    state: icon
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/brightheart_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: BaseLizardPlushie
+  id: PlushieDoxes # SanityGecko
+  name: doxes-the-captain plushie
+  description: An adorable stuffed toy that resembles Doxes-the-Captain. "Captain's IP is 189.47.108.519!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/doxes_plushie.rsi
+    state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Fun/Plushies/doxes_plushie.rsi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/doxes_plushie.rsi
+    slots:
+    - HEAD
+  - type: Speech
+    speechVerb: Reptilian # for pais (In the secret stash)
+  - type: Tag
+    tags:
+    - Payload
+    - ClothMade
+    - PlushieLizard
+
+- type: entity
+  parent: BaseAvaliPlushie
+  id: PlushieEinalia # CaptainComedy
+  name: einalia plushie
+  description: A marketable plushie of one of the shortest Captains in NT-CC employ, and Nebula's husband. The two amber eyes on its face feel as if they're boring into your soul.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/einalia_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/einalia_plushie.rsi
+    state: icon
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/einalia_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: BaseLizardPlushie
+  id: PlushieGalio # galiotheblepdragon
+  name: galio plushie
+  description: Carry with you to feel silly wherever you go!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/lizard_happy.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/lizard_happy.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: FootstepClown
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
+    slots:
+    - HEAD
+  - type: Speech
+    speechVerb: Reptilian # for pais (In the secret stash)
+  - type: Tag
+    tags:
+    - ClothMade
+    - Payload
+    - PlushieLizard
+
+- type: entity
+  parent: BaseMothPlushie
+  id: PlushieKoni # neomoth
+  name: koni plushie
+  description: Some sort of moth-cat hybrid. You can't help but find it really cute. Can squeak and meow!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+  - type: EmitSoundOnUse
+    sound:
+      collection: CatMothSounds
+  - type: EmitSoundOnActivate
+    sound:
+      collection: CatMothSounds
+  - type: EmitSoundOnCollide
+    sound:
+      collection: CatMothSounds
+  - type: EmitSoundOnLand
+    sound:
+      collection: CatMothScreams
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: CatMothSounds
+  - type: MeleeWeapon
+    soundHit:
+      collection: CatMothSounds
+  - type: Edible
+    useSound:
+      collection: CatMothScreams
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/koni_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: BaseVulpkaninPlushie
+  id: PlushieLance # deltaVelocity
+  name: lance plushie
+  description: Turning a quartermaster into a marketable plushie was not as profitable a venture as many in the cargo department had hoped.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: BaseMothPlushie
+  id: PlushieMozan # puddleboat
+  name: mozan plushie
+  description: Just like the real thing, it squeaks if you poke it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
+
+- type: entity
+  parent: BaseAvaliPlushie
+  id: PlushieNebula # rtasva - staff centcomm character
+  name: nebula plushie
+  description: A marketable plushie of Nebula Silverfeather- lovable pop star turned CC official. Husband not included.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/nebula_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/nebula_plushie.rsi
+    state: icon
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/nebula_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: PlushieHuman
+  id: PlushieOp # InanimateIJK - staff centcomm character
+  name: op plushie
+  description: bnuny... human?
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/op_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/op_plushie.rsi
+    state: icon
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/op_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+# General Plushies - Keep alphabetical, please!
+- type: entity
+  parent: BasePlushie
+  id: PlushieAbductor
+  name: alien grey plushie # metashield
+  description: A silent grey alien with big black eyes, a staple of retro sci-fi where they kidnap and experiment on unsuspecting people. Thank goodness they're not real!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/abductor_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/abductor_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/taser_hit.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieAbductor
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAxolotl
+  name: axolotl plushie
+  description: Head empty. Absolutely zero thoughts behind their eyes.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/axolotl_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/axolotl_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieAxolotl
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieBorb
+  name: borb plushie
+  description: Chonky. Rotund. Orb.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/borb_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/borb_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieBorb
+
+- type: entity
+  parent: BaseBorgPlushie
+  id: PlushieBorg
+  name: borg plushie
+  description: A tiny plushie of an engineering cyborg, complete with itty-bitty plastic tools.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
+    state: icon
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieBorg
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieCowSquishims
+  name: cow squishims
+  description: Round and soft and legally distinct!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/cow_squishims_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/cow_squishims_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCowSquishims
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieCreature
+  name: creature plushie
+  description: YIPPIE!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/creature_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/creature_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Items/Toys/yippie.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCreature
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieFrogSquishims
+  name: frog squishims
+  description: Round and soft and legally distinct!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/frog_squishims_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/frog_squishims_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieFrogSquishims
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieGoat
+  name: goat plushie
+  description: The best boy, the softest boy.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/goat_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/goat_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieGoat
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieGnome
+  name: gnome plushie
+  description: Rattles when you shake it. Smells like Fooberries.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/gnome_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/gnome_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Items/Toys/gnome_hahe.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Toys/gnome_hahe.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Items/Toys/gnome_hahe.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Items/Toys/gnome_hahe.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Items/Toys/gnome_stop.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Items/Toys/gnome_murderer.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieGnome
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieKitten
+  name: kitten plushie
+  description: A blue kitten! Just like they raise on Vernethauz II!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/kitten_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/kitten_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/cat_meow2.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Animals/cat_hiss.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieKitten
+
+- type: entity
+  parent: BasePlushie
+  id: PlushiePanda
+  name: panda plushie
+  description: Large and in charge! Its paws and body are weighted with poly pellets. Holding it eases your stress and anxieties.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Toys/panda_noise2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Items/Toys/panda_noise2.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushiePanda
+
+- type: entity
+  parent: BasePlushie
+  id: PlushiePig
+  name: pig plushie
+  description: Head? Round. Eyes? Filled with optimism. Smells kinda like bacon.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/pig_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/pig_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/pig_oink.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/pig_oink.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/pig_oink.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/pig_oink.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Animals/pig_oink.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushiePig
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/sus_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieRenault
+  name: renault plushie
+  description: The Captain's trusty pet! The tail is so fluffy.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/renault_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/renault_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/fox5.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Animals/fox8.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Animals/fox11.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieRenault
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSaltLampLarge
+  name: large salt lamp plushie
+  description: Larger safe version of everyone's favorite salt lamp.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/supermatter.rsi
+    state: supermatter
+    scale: 0.7, 0.7
+  - type: PointLight
+    radius: 3
+    energy: 2
+    netsync: false
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+      params:
+        volume: -5
+    handle: false
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSaltLampSmall
+  name: small salt lamp plushie
+  description: Small, safe version of everyone's favorite salt lamp.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/supermatter.rsi
+    state: supermatter
+    scale: 0.4, 0.4
+  - type: PointLight
+    radius: 3
+    energy: 2
+    netsync: false
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+      params:
+        volume: -5
+    handle: false
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSeaBunny
+  name: sea bunny plushie
+  description: A squishy bunny, looks like it wants to be worn!
+  components:
+  - type: Item
+    size: Small
+    sprite: &sprite _Starlight/Objects/Fun/Plushies/sea_bunny_plushie.rsi
+  - type: Sprite
+    sprite: *sprite
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: &sound /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: *sound
+  - type: EmitSoundOnActivate
+    sound:
+      path: *sound
+  - type: EmitSoundOnTrigger
+    sound:
+      path: *sound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: *sound
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: *sound
+  - type: Clothing
+    quickEquip: false
+    sprite: *sprite
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: BaseShadekinPlushie
+  id: PlushieShadekin
+  name: shadekin plushie
+  description: A plushie of a Shadekin. It's very soft.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/shadekin_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/shadekin_plushie.rsi
+    state: icon
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieShadekin
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieLargeSoftShark
+  name: large blue shark soft plushie
+  description: A large, soft, and cuddly shark plushie. Perfect for hugging!
+  components:
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
+    state: icon
+  # Shows cuddle message when used in hand
+  - type: CuddleMessage
+    localizedMessageKey: plushie-large-soft-shark-cuddle
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Effects/thudswoosh.ogg
+      params:
+        volume: -5
+    handle: false
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    soundHit:
+      path: /Audio/Items/Toys/rawr.ogg
+    animation: WeaponArcBite
+  - type: UseDelay
+    delay: 1.0
+  - type: Tag
+    tags:
+      - Payload
+      - ClothMade
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSnail
+  name: snail plushie
+  description: Look at it go!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/snail_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/snail_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: SnailPlushie
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/snail_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSus
+  name: sus plushie
+  description: Fell out of a vent and into your heart. With a knife. It stabbed you (in the heart).
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/sus_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/sus_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieSus
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/sus_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET

@@ -1,0 +1,44 @@
+- type: job
+  id: ServiceWorker
+  name: job-name-serviceworker
+  description: job-description-serviceworker
+  playTimeTracker: JobServiceWorker
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Civilian
+    time: 0.5h
+  startingGear: ServiceWorkerGear
+  icon: "JobIconServiceWorker"
+  supervisors: job-supervisors-service
+  access:
+  - Service
+  - Maintenance
+  - Bar
+  - Kitchen
+  - Hydroponics # Starlight
+  extendedAccess:
+  - Theatre # Starlight
+  - Journalism # Starlight
+#  - Hydroponics # Starlight
+
+- type: startingGear
+  id: ServiceWorkerGear
+  equipment:
+    #shoes: ClothingShoesColorBlack # 🌟Starlight🌟
+    id: ServiceWorkerPDA
+    ears: ClothingHeadsetService
+  #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: ServiceWorkerChameleonOutfit
+  job: ServiceWorker
+  equipment:
+    head: ClothingHeadHatBowlerHat
+    eyes: ClothingEyesGlassesSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckScarfStripedBrown
+    jumpsuit: ClothingUniformJumpsuitServiceWorkerBartender # Starlights
+    outerClothing: ClothingOuterVest
+    gloves: ClothingHandsGlovesColorBlack

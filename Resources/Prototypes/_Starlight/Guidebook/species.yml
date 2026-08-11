@@ -1,0 +1,69 @@
+- type: guideEntry
+  id: Elf
+  name: species-name-elf
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Elf.xml"
+
+- type: guideEntry
+  id: Thaven
+  name: species-name-thaven
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Thaven.xml"
+
+- type: guideEntry
+  id: Shadekin
+  name: species-name-shadekin
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Shadekin.xml"
+
+- type: guideEntry
+  id: Felionoid
+  name: species-name-felionoid
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Felionoid.xml"
+
+- type: guideEntry
+  id: Cyclorite
+  name: species-name-cyclorite
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Cyclorite.xml"
+
+- type: guideEntry
+  id: Resomi
+  name: species-name-resomi
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Resomi.xml"
+
+- type: guideEntry
+  id: Avali
+  name: species-name-avali
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Avali.xml"
+
+- type: guideEntry
+  id: Lagomorph
+  name: species-name-lagomorph
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Lagomorph.xml"
+
+- type: guideEntry
+  id: Rodentia
+  name: species-name-rodentia
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Rodentia.xml"
+
+- type: guideEntry
+  id: Neocyte
+  name: species-name-neocyte
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Neocyte.xml"
+  children:
+  - NeocyteFrames
+  - TrueNeocyte
+  - NeoElf # You just have to ruin the alphabetical order, don't you?
+  - NeoArachnid
+  - NeoAvali
+  - NeoCyclorite
+  - NeoDiona
+  - NeoDwarf
+  - NeoFelionoid
+  - NeoHuman
+  - NeoKin
+  - NeoLagomorph
+  - NeoSlimePerson
+  - NeoThaven
+  - NeoMoth
+  - NeoReptilian
+  - NeoResomi
+  - NeoVox
+  - NeoVulpkanin

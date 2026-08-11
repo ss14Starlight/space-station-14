@@ -1,0 +1,581 @@
+using System.Linq;
+using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Radio.Systems;
+using Content.Server.Administration.Logs;
+using Content.Server.Chat.Systems;
+using Content.Server.Power.Components;
+using Content.Server.VoiceMask;
+using Content.Shared;
+using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.Language.Systems;
+using Content.Shared._Starlight.Silicons.Borgs;
+using Content.Shared._Starlight.Speech;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
+using Content.Shared.Chat;
+using Content.Shared.Clothing.EntitySystems;
+using Content.Shared.Database;
+using Content.Shared.Inventory;
+using Content.Shared.PDA;
+using Content.Shared.Radio;
+using Content.Shared.Radio.Components;
+using Content.Shared.Roles;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Silicons.StationAi;
+using Content.Shared.Speech;
+using Content.Shared._Starlight.TextToSpeech;
+using Content.Shared.StatusIcon;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Replays;
+using Robust.Shared.Utility;
+using Content.Shared._Starlight.Radio;
+using Content.Shared._Starlight.Language.Components;
+using Content.Shared.Ghost;
+using Content.Server._Starlight.TextToSpeech;
+using Content.Shared._Starlight.Clothing;
+
+namespace Content.Server.Radio.EntitySystems;
+
+/// <summary>
+///     This system handles intrinsic radios and the general process of converting radio messages into chat messages.
+/// </summary>
+// Far Horizons - made partial
+public sealed partial class RadioSystem : EntitySystem
+{
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private IReplayRecordingManager _replay = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private RadioChimeSystem _chime = default!; //🌟Starlight🌟
+    [Dependency] private LanguageSystem _language = default!; // Starlight
+
+    // set used to prevent radio feedback loops.
+    private readonly HashSet<string> _messages = new();
+
+    private EntityQuery<TelecomExemptComponent> _exemptQuery;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<IntrinsicRadioReceiverComponent, RadioReceiveEvent>(OnIntrinsicReceive);
+        SubscribeLocalEvent<IntrinsicRadioReceiverComponent, EncryptionChannelsChangedEvent>(OnReceiverEncryptionChannelsChanged); // 🌟Starlight🌟
+        SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EntitySpokeEvent>(OnIntrinsicSpeak);
+        SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EncryptionChannelsChangedEvent>(OnTransmitterEncryptionChannelsChanged); // 🌟Starlight🌟
+
+        _exemptQuery = GetEntityQuery<TelecomExemptComponent>();
+    }
+
+    private void OnIntrinsicSpeak(EntityUid uid, IntrinsicRadioTransmitterComponent component, EntitySpokeEvent args)
+    {
+        if (args.Channel != null && component.Channels.Contains(args.Channel.ID))
+        {
+            SendRadioMessage(uid, args.Message, args.Channel, uid, args.Language); // Starlight
+            args.Channel = null; // prevent duplicate messages from other listeners.
+        }
+        //Starlight begin
+        if (args.UsingCustomChannel && args.CustomChannel is not null)
+            SendCustomRadioMessage(uid, args.Message.Text, args.CustomChannel, uid, args.Language); // Custom channel data is already confirmed to exist on this headset
+        //Starlight end
+    }
+
+    private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
+    {
+        // Starlight - Start
+        if (args.Language.Speech.RadioChannel is not null && _language.CanUnderstand(uid, args.Language.ID, false)
+            || args.Language.Speech.RadioChannel is not null && HasComp<GhostComponent>(uid))
+            return;
+
+        if (TryComp(uid, out ActorComponent? actor))
+        {
+            var msg = args.OriginalChatMsg;
+
+            if (!_language.CanUnderstand(uid, args.Language.ID) && args.Language.Speech.RadioChannel is null)
+                msg = args.LanguageObfuscatedChatMsg;
+            else if (args.MessageSource != uid)
+                args.Receivers.Add(uid);
+
+            _netMan.ServerSendMessage(new MsgChatMessage { Message = msg }, actor.PlayerSession.Channel);
+            // Starlight - End
+        }
+    }
+
+    /// <summary>
+    /// Send radio message to all active radio listeners
+    /// </summary>
+    public void SendRadioMessage(
+        EntityUid messageSource,
+        SpeechMessage message, // Starlight
+        ProtoId<RadioChannelPrototype> channel,
+        EntityUid radioSource,
+        LanguagePrototype? language = null, // Starlight
+        bool suppressTTS = false, // Starlight
+        bool escapeMarkup = true,
+        HeadsetLoudModeComponent? loudComp = null) // Starlight
+    {
+        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language, suppressTTS: suppressTTS, loudComp: loudComp); // Starlight
+    }
+
+    /// <summary>
+    /// Send radio message to all active radio listeners
+    /// </summary>
+    /// <param name="messageSource">Entity that spoke the message</param>
+    /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
+    public void SendRadioMessage(
+        EntityUid messageSource,
+        SpeechMessage message, // Starlight
+        RadioChannelPrototype channel,
+        EntityUid radioSource,
+        LanguagePrototype? language = null, // Starlight
+        bool suppressTTS = false, // Starlight
+        bool escapeMarkup = true,
+        HeadsetLoudModeComponent? loudComp = null) // Starlight
+    {
+        // Starlight - start
+        if (channel.AutoTranslate is not null)
+            language = _language.GetLanguagePrototype(channel.AutoTranslate.Value);
+
+        if (language == null)
+            language = _language.GetLanguage(messageSource);
+
+        if ((!language.Speech.AllowRadio && language.Speech.RadioChannel is not null && language.Speech.RadioChannel != channel)
+            || (!language.Speech.AllowRadio && language.Speech.RadioChannel is null))
+            return;
+        // Starlight - End
+
+        // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
+        if (!_messages.Add(message.Text)) // Starlight
+            return;
+
+        var meta = MetaData(messageSource);
+        var entityName = meta?.EntityName ?? string.Empty;
+        var evt = new TransformSpeakerNameEvent(messageSource, entityName);
+        RaiseLocalEvent(messageSource, evt);
+
+        var name = evt.VoiceName;
+
+        if (string.IsNullOrEmpty(name))
+            name = entityName;
+        if (name == null)
+            name = string.Empty;
+        name = FormattedMessage.EscapeText(name);
+
+        // Starlight
+        var selectedName = name;
+        if (channel.AnonymousAlias is not null)
+            selectedName = ObfuscateName(channel.AnonymousAlias, messageSource);
+
+        SpeechVerbPrototype speech;
+        if (evt.SpeechVerb != null && _prototype.Resolve(evt.SpeechVerb, out var evntProto))
+            speech = evntProto;
+        else
+            speech = _chat.GetSpeechVerb(messageSource, message.Text); // Starlight
+
+        var content = escapeMarkup
+            ? FormattedMessage.EscapeText(message.Text) // Starlight
+            : message.Text; // Starlight
+
+        _chime.TryGetSenderHeadsetChime(messageSource, out var chime);
+
+        var wrappedMessage = WrapRadioMessage(messageSource, channel, selectedName, content, language, false, loudComp); // Starlight
+
+        // most radios are relayed to chat, so lets parse the chat message beforehand
+
+        var msg = new ChatMessage(ChatChannel.Radio, content, wrappedMessage, NetEntity.Invalid, null); // Starlight
+
+        var obfuscated = _language.ObfuscateSpeech(content, language);
+        var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, selectedName, obfuscated, language, true, loudComp);
+        var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, NetEntity.Invalid, null) { Chime = chime, };
+        var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource, []);
+
+        var ghostwrappedMessage = WrapRadioMessage(messageSource, channel, name, content, language, false, loudComp);
+        var ghostmsg = new ChatMessage(ChatChannel.Radio, content, ghostwrappedMessage, NetEntity.Invalid, null);
+        var ghostev = new RadioReceiveEvent(messageSource, channel, ghostmsg, notUdsMsg, language, radioSource, []);
+        // Starlight - End
+
+        var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
+        RaiseLocalEvent(ref sendAttemptEv);
+        RaiseLocalEvent(radioSource, ref sendAttemptEv);
+        var canSend = !sendAttemptEv.Cancelled;
+
+        var sourceMapId = Transform(radioSource).MapID;
+        var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
+        var sourceServerExempt = _exemptQuery.HasComp(radioSource);
+
+        // Starlight - Start - Languages - Radio
+        if (language.Speech.RadioChannel is not null && channel == language.Speech.RadioChannel)
+        {
+            var languageQuery = EntityQueryEnumerator<LanguageSpeakerComponent>();
+            while (canSend && languageQuery.MoveNext(out var receiver, out var _))
+            {
+                if (_language.CanUnderstand(receiver, language.ID, false) || HasComp<GhostComponent>(receiver))
+                {
+                    // check if message can be sent to specific receiver
+                    var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
+                    RaiseLocalEvent(ref attemptEv);
+                    RaiseLocalEvent(receiver, ref attemptEv);
+                    if (attemptEv.Cancelled)
+                        continue;
+
+                    // send the message
+                    if (channel.AnonymousAlias is not null && HasComp<GhostComponent>(receiver))
+                        RaiseLocalEvent(receiver, ref ghostev);
+                    else
+                        RaiseLocalEvent(receiver, ref ev);
+                }
+            }
+        }
+        // Starlight - End
+
+        var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
+        while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
+        {
+            if (HasComp<GhostComponent>(receiver) && language.Speech.RadioChannel is not null)
+                continue;
+
+            if (!radio.ReceiveAllChannels)
+            {
+                if (!radio.Channels.Contains(channel.ID) || (TryComp<IntercomComponent>(receiver, out var intercom) &&
+                                                             !intercom.SupportedChannels.Contains(channel.ID)))
+                    continue;
+            }
+
+            if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
+                continue;
+
+            // don't need telecom server for long range channels or handheld radios and intercoms
+            var needServer = !channel.LongRange && !sourceServerExempt;
+            if (needServer && !hasActiveServer)
+                continue;
+
+            // check if message can be sent to specific receiver
+            var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
+            RaiseLocalEvent(ref attemptEv);
+            RaiseLocalEvent(receiver, ref attemptEv);
+            if (attemptEv.Cancelled)
+                continue;
+
+            // send the message
+            if (channel.AnonymousAlias is not null && HasComp<GhostComponent>(receiver))
+                RaiseLocalEvent(receiver, ref ghostev);
+            else
+                RaiseLocalEvent(receiver, ref ev);
+        }
+
+        // Starlight start
+        RaiseLocalEvent(new RadioSpokeEvent
+        {
+            Channel = channel,
+            Source = messageSource,
+            Message = message,
+            Language = language,
+            SuppressTTS = suppressTTS,
+            Receivers = [.. ev.Receivers]
+        });
+        // Starlight end
+
+        if (name != Name(messageSource))
+            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
+        else
+            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
+
+        _replay.RecordServerMessage(msg); // Starlight-edit: Languages
+        _messages.Remove(message.Text); // Starluight
+    }
+
+    // Starlight - Start
+    /// <summary>
+    /// Send radio message to all active radio listeners, accepts a custom radio channel instead.
+    /// </summary>
+    /// <param name="messageSource">Entity that spoke the message</param>
+    /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
+    public void SendCustomRadioMessage(
+        EntityUid messageSource,
+        string message,
+        CustomRadioChannelData channel,
+        EntityUid radioSource,
+        LanguagePrototype? language = null,
+        bool escapeMarkup = true,
+        HeadsetLoudModeComponent? loudComp = null)
+    {
+        if (language == null)
+            language = _language.GetLanguage(messageSource);
+
+        if (!language.Speech.AllowRadio)
+            return;
+
+        if (!_messages.Add(message))
+            return;
+
+        var meta = MetaData(messageSource);
+        var entityName = meta?.EntityName ?? string.Empty;
+        var evt = new TransformSpeakerNameEvent(messageSource, entityName);
+        RaiseLocalEvent(messageSource, evt);
+
+        var name = evt.VoiceName;
+        if (string.IsNullOrEmpty(name))
+            name = entityName;
+        if (name == null)
+            name = string.Empty;
+        name = FormattedMessage.EscapeText(name);
+
+        SpeechVerbPrototype speech;
+        if (evt.SpeechVerb != null && _prototype.Resolve(evt.SpeechVerb, out var evntProto))
+            speech = evntProto;
+        else
+            speech = _chat.GetSpeechVerb(messageSource, message);
+
+        var content = escapeMarkup
+            ? FormattedMessage.EscapeText(message)
+            : message;
+
+        _chime.TryGetSenderHeadsetChime(messageSource, out var chime);
+
+        var wrappedMessage = WrapCustomRadioMessage(messageSource, channel, name, content, language, false, loudComp);
+
+        var msg = new ChatMessage(ChatChannel.Radio, content, wrappedMessage, NetEntity.Invalid, null);
+
+        var obfuscated = _language.ObfuscateSpeech(content, language);
+        var obfuscatedWrapped = WrapCustomRadioMessage(messageSource, channel, name, obfuscated, language, true, loudComp);
+        var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, NetEntity.Invalid, null) { Chime = chime, };
+        var ev = new RadioReceiveEvent(messageSource, null, msg, notUdsMsg, language, radioSource, []);
+
+        var sendAttemptEv = new CustomRadioSendAttemptEvent(channel, radioSource);
+        RaiseLocalEvent(ref sendAttemptEv);
+        RaiseLocalEvent(radioSource, ref sendAttemptEv);
+        var canSend = !sendAttemptEv.Cancelled;
+
+        var sourceMapId = Transform(radioSource).MapID;
+        var hasActiveServer = HasActiveServer(sourceMapId, channel.Id);
+        var sourceServerExempt = _exemptQuery.HasComp(radioSource);
+
+        var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
+        while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
+        {
+            if (!radio.ReceiveAllChannels)
+            {
+                if (radio.CustomChannels.All(c => c.Id != channel.Id) ||
+                    (TryComp<IntercomComponent>(receiver, out var intercom) &&
+                     intercom.CustomChannels.All(c => c.Id != channel.Id)))
+                    continue;
+            }
+
+            if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
+                continue;
+
+            var needServer = !channel.LongRange && !sourceServerExempt;
+            if (needServer && !hasActiveServer)
+                continue;
+
+            var attemptEv = new CustomRadioReceiveAttemptEvent(channel, radioSource, receiver);
+            RaiseLocalEvent(ref attemptEv);
+            RaiseLocalEvent(receiver, ref attemptEv);
+            if (attemptEv.Cancelled)
+                continue;
+
+            RaiseLocalEvent(receiver, ref ev);
+
+        }
+
+        // Do not add TTS here.
+        // No prototype, no TTS.
+
+        if (name != Name(messageSource))
+            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
+        else
+            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
+
+        _replay.RecordServerMessage(msg);
+        _messages.Remove(message);
+    }
+
+    private (string, string) GetJobIcon(EntityUid messageSource)
+    {
+        var iconId = "JobIconNoId";
+        var jobName = "";
+
+        if (_accessReader.FindAccessItemsInventory(messageSource, out var items))
+        {
+            foreach (var item in items)
+            {
+                // ID Card
+                if (TryComp<IdCardComponent>(item, out var id))
+                {
+                    iconId = id.JobIcon;
+                    jobName = id.LocalizedJobTitle;
+                    break;
+                }
+
+                // PDA
+                if (TryComp<PdaComponent>(item, out var pda)
+                    && pda.ContainedId != null
+                    && TryComp(pda.ContainedId, out id))
+                {
+                    iconId = id.JobIcon;
+                    jobName = id.LocalizedJobTitle;
+                    break;
+                }
+            }
+        }
+
+        if (TryComp<BorgChassisComponent>(messageSource, out var chassis) || HasComp<BorgBrainComponent>(messageSource)) // Starlight edit
+        {
+            iconId = chassis?.JobIconOverride ?? "JobIconBorg"; // Starlight edit
+            jobName = Loc.GetString(chassis?.LocalizedJobTitle ?? "job-name-borg"); // Starlight edit
+        }
+
+        // Starlight START
+        if (TryComp<JobIconOverrideComponent>(messageSource, out var overrideComp))
+        {
+            iconId = overrideComp.JobIconOverride;
+            jobName = overrideComp.LocalizedJobTitle;
+        }
+        // Starlight END
+
+        if (HasComp<StationAiHeldComponent>(messageSource) || (TryComp<StationAIShuntComponent>(messageSource, out var aiShunt) && aiShunt.Return.HasValue))
+        {
+            iconId = "JobIconStationAi";
+            jobName = Loc.GetString("job-name-station-ai");
+        }
+
+        jobName ??= "";
+
+        jobName = FormattedMessage.EscapeStringParameter(jobName); // Starlight: Prevent markup injection
+
+        return (iconId, jobName);
+    }
+    private string WrapRadioMessage(
+        EntityUid source,
+        RadioChannelPrototype channel,
+        string name,
+        string message,
+        LanguagePrototype language,
+        bool obfuscated,
+        HeadsetLoudModeComponent? loudComp = null) // Starlight
+    {
+        // TODO: code duplication with ChatSystem.WrapMessage
+        var speech = _chat.GetSpeechVerb(source, message);
+        var verbId = language.Speech.SpeechVerbOverrides is { } verbsOverride // Starlight
+            ? _random.Pick(verbsOverride).ToString()
+            : _random.Pick(speech.SpeechVerbStrings);
+        var languageColor = channel.Color;
+
+        if (language.Speech.Color is { } colorOverride)
+            languageColor = Color.InterpolateBetween(Color.White, colorOverride, colorOverride.A); // Changed first param to Color.White so it shows color correctly.
+
+        var (iconId, jobName) = GetJobIcon(source);
+
+        var namestring = $"[icon src=\"{iconId}\" tooltip=\"{jobName}\"] {name}";
+        if (_language.GetLanguageIcon(language, obfuscated))
+            namestring = $"[icon src=\"{iconId}\" tooltip=\"{jobName}\"] [icon src=\"{language.Icon}\" tooltip=\"{language.Name}\"] {name}";
+
+        // Starlight
+        if (channel.AnonymousAlias is not null)
+            namestring = name;
+
+        var fonttype = language.Speech.FontId ?? speech.FontId;
+        if ((language.Speech.ObfuscationFont ?? false) && !obfuscated)
+            fonttype = speech.FontId;
+
+        bool isYelling = false;
+        if (speech.ID == "DefaultExclamationStrong")
+            isYelling = true;
+
+        return Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
+                ("color", channel.Color),
+                ("languageColor", languageColor),
+                ("fontType", fonttype),
+                ("fontSize", loudComp is not null ? loudComp.FontSize + speech.FontSize : isYelling ? speech.FontSize : language.Speech.FontSize ?? speech.FontSize), // starlight edit: loud mode
+                ("verb", Loc.GetString(verbId)),
+                ("channel", $"\\[{channel.LocalizedName}\\]"),
+                ("name", namestring),
+                ("message", message));
+    }
+
+    private string WrapCustomRadioMessage(
+        EntityUid source,
+        CustomRadioChannelData channel,
+        string name,
+        string message,
+        LanguagePrototype language,
+        bool obfuscated,
+        HeadsetLoudModeComponent? loudComp = null
+    )
+    {
+        // TODO: code duplication with ChatSystem.WrapMessage
+        var speech = _chat.GetSpeechVerb(source, message);
+        var languageColor = channel.Color;
+
+        if (language.Speech.Color is { } colorOverride)
+            languageColor = Color.InterpolateBetween(Color.White, colorOverride, colorOverride.A); // Changed first param to Color.White so it shows color correctly.
+
+        var (iconId, jobName) = GetJobIcon(source);
+
+        var namestring = $"[icon src=\"{iconId}\" tooltip=\"{jobName}\"] {name}";
+        if (_language.GetLanguageIcon(language, obfuscated))
+            namestring = $"[icon src=\"{iconId}\" tooltip=\"{jobName}\"] [icon src=\"{language.Icon}\" tooltip=\"{language.Name}\"] {name}";
+
+        var fonttype = language.Speech.FontId ?? speech.FontId;
+        if ((language.Speech.ObfuscationFont ?? false) && !obfuscated)
+            fonttype = speech.FontId;
+
+        bool isYelling = false;
+        if (speech.ID == "DefaultExclamationStrong")
+            isYelling = true;
+
+        return Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
+            ("color", channel.Color),
+            ("languageColor", languageColor),
+            ("fontType", fonttype),
+            ("fontSize", loudComp is not null ? loudComp.FontSize + speech.FontSize : isYelling ? speech.FontSize : language.Speech.FontSize ?? speech.FontSize),
+            ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
+            ("channel", $"\\[{channel.LocalizedName}\\]"),
+            ("name", namestring),
+            ("message", message));
+    }
+    // Starlight - End
+
+    /// <inheritdoc cref="TelecomServerComponent"/>
+    private bool HasActiveServer(MapId mapId, string channelId)
+    {
+        var servers = EntityQuery<TelecomServerComponent, EncryptionKeyHolderComponent, ApcPowerReceiverComponent, TransformComponent>();
+        foreach (var (_, keys, power, transform) in servers)
+        {
+            if (transform.MapID == mapId &&
+                power.Powered &&
+                (keys.Channels.Contains(channelId) || keys.CustomChannels.Any(channel => channel.Id == channelId))) //Starlight edit
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    #region Starlight
+
+    private void OnTransmitterEncryptionChannelsChanged(Entity<IntrinsicRadioTransmitterComponent> ent,
+        ref EncryptionChannelsChangedEvent args)
+    {
+        ent.Comp.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
+        Dirty(ent);
+    }
+    private void OnReceiverEncryptionChannelsChanged(Entity<IntrinsicRadioReceiverComponent> ent, ref EncryptionChannelsChangedEvent args)
+    {
+        //Starlight begin
+        if (TryComp(ent.Owner, out ActiveRadioComponent? radio))
+        {
+            radio.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
+            Dirty(ent, radio);
+        }
+        //Starlight end
+    }
+    #endregion Starlight
+}

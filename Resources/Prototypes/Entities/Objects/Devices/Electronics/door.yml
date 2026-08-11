@@ -1,0 +1,35 @@
+- type: entity
+  id: DoorElectronics
+  parent: BaseElectronics
+  name: door electronics
+  description: An electronics board used in doors and airlocks.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: door_electronics
+    - type: Tag
+      tags:
+        - DoorElectronics
+        - RamChip # FH + Starlight
+    - type: DoorElectronics
+      # Starlight Start
+      accessGroups:
+      - General
+      - Security
+      - Cargo
+      - Command
+      - Research
+      - Medical
+      - Service
+      - Engineering
+      # Starlight End
+    - type: AccessReader
+    - type: ActivatableUI
+      key: enum.DoorElectronicsConfigurationUiKey.Key
+      requiredItems:
+        tags:
+        - DoorElectronicsConfigurator
+    - type: UserInterface
+      interfaces:
+        enum.DoorElectronicsConfigurationUiKey.Key:
+          type: DoorElectronicsBoundUserInterface

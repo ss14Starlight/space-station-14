@@ -1,0 +1,2036 @@
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerAlert
+  name: atmospheric alerts computer
+  description: Used to access the station's atmospheric automated alert system.
+  components:
+  - type: Computer
+    board: AlertsComputerCircuitboard
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: alert-0
+    - map: ["computerLayerKeys"]
+      state: atmos_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.AtmosAlertsComputerVisuals.ComputerLayerScreen:
+        computerLayerScreen:
+          0: { state: alert-0 }
+          1: { state: alert-0 }
+          2: { state: alert-1 }
+          3: { state: alert-2 }
+          4: { state: alert-2 }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      # Starlight Start
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: Structures/Machines/computers.rsi }
+          West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+      # Starlight End
+  - type: AtmosAlertsComputer
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.AtmosAlertsComputerUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.AtmosAlertsComputerUiKey.Key:
+            type: AtmosAlertsComputerBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - AtmosphericAlertsComputer
+    - DeviceMonitoringAndControl
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#42cccf"
+    castShadows: false
+  # Starlight End
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerAtmosMonitoring
+  name: atmospheric network monitor
+  description: Used to monitor the station's atmospheric networks.
+  components:
+  - type: Computer
+    board: AtmosMonitoringComputerCircuitboard
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: tank
+    - map: ["computerLayerKeys"]
+      state: atmos_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AtmosMonitoringConsole
+    navMapTileColor: "#1a1a1a"
+    navMapWallColor: "#404040"
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.AtmosMonitoringConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.AtmosMonitoringConsoleUiKey.Key:
+        type: AtmosMonitoringConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - AtmosphericNetworkMonitor
+    - DeviceMonitoringAndControl
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#42cccf"
+  # Starlight End
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerEmergencyShuttle
+  name: emergency shuttle console
+  description: Handles authorization to early launch the shuttle.
+  components:
+  - type: AccessReader
+    access:
+    - [ Command ]
+  - type: EmergencyShuttleConsole
+  - type: ActivatableUI
+    key: enum.EmergencyConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.EmergencyConsoleUiKey.Key:
+          type: EmergencyConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#43ccb5"
+  # Starlight End
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: BaseComputerShuttle
+  name: shuttle console
+  description: Used to pilot a shuttle.
+  abstract: true
+  components:
+  - type: ShuttleConsole
+  - type: ActivatableUI
+    key: enum.ShuttleConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.ShuttleConsoleUiKey.Key:
+          type: ShuttleConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: RadarConsole
+  - type: WorldLoader
+    radius: 256
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#43ccb5"
+  - type: ItemSlots
+    slots:
+      disk_slot:
+        name: Disk
+        insertSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        whitelist:
+          components:
+          - ShuttleDestinationCoordinates
+      # Starlight-start: added PAI slot to shuttle console.
+      pai_slot:
+        name: Personal AI Device
+        ejectOnInteract: true
+        ejectOnBreak: true # Starlight: eject PAI when console is destroyed so it isn't voided.
+        whitelist:
+          components:
+          - PAI
+  - type: AccessReader
+  - type: ActivatableUIRequiresAccess
+    allowUnlocking: true
+  - type: Lock
+    unlockOnClick: false
+  - type: Wires
+    boardName: wires-board-name-computer
+    layoutId: ComputerAiLockable
+      # Starlight-end
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      disk_slot: !type:ContainerSlot {}
+      pai_slot: !type:ContainerSlot {} # Starlight
+  - type: GuideHelp
+    guides:
+    - ShuttleCraft
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttle
+  name: shuttle console
+  description: Used to pilot a shuttle.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: ShuttleConsoleCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#469ddb"
+  # Starlight End
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleSyndie
+  name: syndicate shuttle console
+  description: Used to pilot a syndicate shuttle.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: syndishuttle
+    - map: ["computerLayerKeys"]
+      state: syndie_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Tag
+    tags:
+      - Syndicate
+  - type: RadarConsole
+    maxRange: 384
+  - type: WorldLoader
+    radius: 1536
+  - type: PointLight
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#c94242"
+  - type: Computer
+    board: SyndicateShuttleConsoleCircuitboard
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleCargo
+  categories: [ ShouldMapStation ] # Starlight begin
+  name: remote cargo shuttle console
+  description: Used to pilot the cargo shuttle remotely. # Starlight end
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi # Starlight
+      state: shuttle-cargo # Starlight
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: DroneConsole
+    components:
+      - type: CargoShuttle
+  - type: RadarConsole
+    maxRange: 256
+  - type: PointLight
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#a56d19" # Starlight - matches new computerLayerScreen
+  - type: Computer
+    board: CargoShuttleConsoleCircuitboard
+  - type: StealTarget
+    stealGroup: CargoShuttleConsoleCircuitboard
+  #Starlight start
+  - type: AccessReader
+    access: [["Shuttle"]]
+  #Starlight end
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerIFF
+  name: IFF computer
+  description: Allows you to control the IFF characteristics of this vessel.
+  components:
+  - type: IFFConsole
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Shuttles/iff.rsi
+      state: helm
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ActivatableUI
+    key: enum.IFFConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.IFFConsoleUiKey.Key:
+          type: IFFConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: Computer
+    board: ComputerIFFCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#4274c9"
+  # Starlight End
+
+- type: entity
+  parent: ComputerIFF
+  id: ComputerIFFSyndicate
+  name: IFF computer
+  suffix: Syndicate
+  description: Allows you to control the IFF and stealth characteristics of this vessel.
+  components:
+  - type: IFFConsole
+    allowedFlags:
+      - Hide
+      - HideLabel
+    hideOnInit: true
+  - type: ActivatableUI
+    key: enum.IFFConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.IFFConsoleUiKey.Key:
+          type: IFFConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: Computer
+    board: ComputerIFFSyndicateCircuitboard
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerPowerMonitoring
+  name: power monitoring computer
+  description: It monitors power levels across the station.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: power_monitor
+    - map: ["computerLayerKeys"]
+      state: power_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#d1a534"
+  # Starlight End
+  - type: Computer
+    board: PowerComputerCircuitboard
+  - type: PowerMonitoringConsole
+  - type: PowerMonitoringCableNetworks
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      hv:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.PowerMonitoringConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.PowerMonitoringConsoleUiKey.Key:
+        type: PowerMonitoringConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerMedicalRecords
+  categories: [ ShouldMapStation ] # Starlight
+  name: medical records computer
+  description: This can be used to check medical records.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: medcomp
+    - map: ["computerLayerKeys"]
+      state: med_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#359626"
+  # Starlight End
+  - type: Computer
+    board: MedicalRecordsComputerCircuitboard
+  # Cosmatic Drift Record System-start
+  - type: CharacterRecordConsole
+    consoleType: Medical
+  - type: UserInterface
+    interfaces:
+      enum.CharacterRecordConsoleKey.Key:
+        type: CharacterRecordConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.CharacterRecordConsoleKey.Key
+  # Cosmatic Drift Record System-end
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerCriminalRecords
+  # Cosmatic Drift Record System-start: Renamed from "criminal records computer" to "security records computer" to better reflect its purpose.
+  name: security records computer
+  description: This can be used to access security records.
+  # Cosmatic Drift Record System-end
+  components:
+    # We need to have both a CriminalRecordsConsole and CharacterRecordConsole
+    # component to be able to set wanted status.
+  - type: CriminalRecordsConsole
+  - type: UserInterface
+    interfaces:
+    # Cosmatic Drift Record System-start
+      enum.CharacterRecordConsoleKey.Key:
+        type: CharacterRecordConsoleBoundUserInterface
+    # Cosmatic Drift Record System-end
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: explosive
+    - map: ["computerLayerKeys"]
+      state: security_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  # Starlight Start - Immersive Lighting PR
+    - type: PointLight
+      radius: 2.5
+      energy: 1.3
+      color: "#d6cec3"
+  # Starlight End
+  - type: Computer
+    board: CriminalRecordsComputerCircuitboard
+  - type: AccessReader
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
+  - type: GuideHelp
+    guides:
+    - CriminalRecords
+  # Cosmatic Drift Record System-start
+  - type: CharacterRecordConsole
+    consoleType: Security
+  - type: ActivatableUI
+    key: enum.CharacterRecordConsoleKey.Key
+  # Cosmatic Drift Record System-end
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerStationRecords
+  # Cosmatic Drift Record System-start: Renamed from "station records computer" to "employment records computer" to better reflect its purpose.
+  name: employment records computer
+  description: This can be used to check employment records.
+  # Cosmatic Drift Record System-end
+  components:
+  - type: GeneralStationRecordConsole
+  - type: UserInterface
+    interfaces:
+        # Cosmatic Drift Record System-start
+        enum.CharacterRecordConsoleKey.Key:
+          type: CharacterRecordConsoleBoundUserInterface
+        # Cosmatic Drift Record System-end
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  # Cosmatic Drift Record System-start
+  - type: CharacterRecordConsole
+    consoleType: Employment
+  # Cosmatic Drift Record System-end
+  - type: ActivatableUI
+    key: enum.CharacterRecordConsoleKey.Key # Cosmatic Drift Record System
+  - type: PointLight
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#1f8c28"
+  - type: Computer
+    board: StationRecordsComputerCircuitboard
+  - type: GuideHelp
+    guides:
+    - Forensics
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerCrewMonitoring
+  name: crew monitoring console
+  description: Used to monitor active health sensors built into most of the crew's uniforms.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: crew
+    - map: ["computerLayerKeys"]
+      state: med_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  # Starlight Start
+    - map: [ "enum.CrewMonitorLayers.Alert" ]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: crew-alert
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.CrewMonitorVisuals.Alert:
+        enum.CrewMonitorLayers.Alert:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: Structures/Machines/computers.rsi }
+          West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+  # Starlight End
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#3fb32d"
+  # Starlight End
+  - type: Computer
+    board: CrewMonitoringComputerCircuitboard
+  - type: ActivatableUI
+    key: enum.CrewMonitoringUIKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.CrewMonitoringUIKey.Key:
+          type: CrewMonitoringBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: CrewMonitoringConsole
+    # Starlight START
+    pagingSoundParams:
+      maxDistance: 15 # Stationary consoles have a much longer audio range.
+    # Starlight END
+  - type: CrewMonitoringFilter # Starlight: set crew monitors to filter for crew sensors by default
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: WirelessNetworkConnection
+    range: 1200
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerResearchAndDevelopment
+  name: R&D computer
+  description: A computer used to interface with R&D tools.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: rdcomp
+    - map: ["computerLayerKeys"]
+      state: rd_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ResearchClient
+  - type: ResearchConsole
+  - type: ActiveRadio
+    channels:
+    - Science
+  - type: TechnologyDatabase
+  - type: ActivatableUI
+    key: enum.ResearchConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ResearchConsoleUiKey.Key:
+        type: ResearchConsoleBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Computer
+    board: ResearchComputerCircuitboard
+  - type: AccessReader
+    access: [["Research"]]
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#c244ad"
+  # Starlight End
+  - type: GuideHelp
+    guides:
+    - Science
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerAnalysisConsole
+  name: analysis console
+  description: A computer used to interface with the artifact analyzer.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: artifact
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ResearchClient
+  - type: AnalysisConsole
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSource
+    range: 12 # Starlight | Requested by Conflee to have a larger range.
+    ports:
+      - ArtifactAnalyzerSender
+  - type: ActivatableUI
+    key: enum.ArtifactAnalyzerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ArtifactAnalyzerUiKey.Key:
+        type: AnalysisConsoleBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Computer
+    board: AnalysisComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#d656c1"
+  # Starlight End
+  - type: GuideHelp
+    guides:
+    - AnalysisConsole
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerId
+  categories: [ ShouldMapStation ] # Starlight
+  name: ID card computer
+  description: Terminal for programming NanoTrasen employee ID cards to access parts of the station. # SL
+  components:
+  - type: IdCardConsole
+  # Starlight-edit: Start
+    accessGroups:
+    - General
+    - Security
+    - Cargo
+    - Command
+    - Research
+    - Medical
+    - Service
+    - Engineering
+    - Law
+    - NanoTrasen
+  # Starlight-edit: End
+    privilegedIdSlot:
+      name: id-card-console-privileged-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+    targetIdSlot:
+      name: id-card-console-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+  - type: ActivatableUI
+    key: enum.IdCardConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.IdCardConsoleUiKey.Key:
+        type: IdCardConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: CrewManifestViewer
+    ownerKey: enum.IdCardConsoleUiKey.Key
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+    - map: ["computerLayerKeys"]
+      state: id_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: IDComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#3c5eb5"
+  # Starlight End
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      IdCardConsole-privilegedId: !type:ContainerSlot
+      IdCardConsole-targetId: !type:ContainerSlot
+      pai_slot: !type:ContainerSlot # Starlight
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: computerBodyScanner
+  name: operating computer # Starlight-edit
+  description: A body scanner.
+  components:
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Computer
+    board: BodyScannerComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#3fb32d"
+  # Starlight End
+  # Starlight-start: Surgery body scanner
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: crew
+    - map: ["computerLayerKeys"]
+      state: med_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Speech
+  - type: BodyScanner
+  - type: HealthAnalyzer
+    talk: true
+  - type: ActivatableUI
+    key: enum.HealthAnalyzerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSource
+    range: 4
+    ports:
+      - BodyScannerSender
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerComms
+  categories: [ ShouldMapStation ] # Starlight
+  name: communications console # Starlight
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi # Starlight: Visual cohesion w/ departmental consoles
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Command" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-command # Starlight
+    sound: /Audio/_Starlight/Announcements/announce2.ogg #Starlight
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    transmitFrequencyId: ShuttleTimer
+  - type: ActivatableUI
+    key: enum.CommunicationsConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+      # Starlight Start: Secure Command Terminal
+      enum.SecureCommandTerminalUiKey.Key:
+        type: SecureCommandTerminalBui
+  - type: SecureCommandTerminalConsole
+      # Starlight End
+  - type: Computer
+    board: CommsComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#387dc7"
+  # Starlight End
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+
+- type: entity
+  parent: ComputerComms
+  id: SyndicateComputerComms
+  name: syndicate communications computer
+  description: A computer capable of remotely hacking into the station's communications systems. Using this to make an announcement will alert the station to your presence.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_syndie
+    - map: ["computerLayerKeys"]
+      state: syndie_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "NuclearOperative" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-nukie
+    color: "#ff0000"
+    canShuttle: false
+    global: true #announce to everyone they're about to fuck shit up
+    announceSentBy: false # The title already says who they are.
+    sound: /Audio/Announcements/war.ogg
+  - type: SecureCommandTerminalConsole # SL
+    enabled: false
+  - type: Computer
+    board: SyndicateCommsComputerCircuitboard
+  - type: PointLight
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#f71713"
+
+- type: entity
+  parent: ComputerComms
+  id: WizardComputerComms
+  name: wizard communications computer
+  description: A computer capable of magically projecting your speech to the station. Using this to make an announcement will alert the station to your presence.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_wizard
+    - map: ["computerLayerKeys"]
+      state: wizard_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Wizard" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-wizard
+    color: "#ff00ff"
+    canShuttle: false
+    global: true #announce to everyone they're about to fuck shit up
+    announceSentBy: false
+    sound: /Audio/Announcements/war.ogg # SL - Revert this back to war sound
+  - type: SecureCommandTerminalConsole # SL
+    enabled: false
+  - type: Computer
+    board: WizardCommsComputerCircuitboard
+  - type: PointLight
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#F317F3"
+
+- type: entity
+  parent: ComputerComms
+  id: CentcommComputerComms
+  name: central command communications computer
+  description: A computer used to make world wide announcements via keyboard. The superior cousin of the regular communications computer.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_logs
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-centcom
+    color: "#1d8bad"
+    canShuttle: false
+    global: true
+  - type: SecureCommandTerminalConsole #SL
+    enabled: false
+  - type: Computer
+    board: CentcommCommsComputerCircuitboard
+  - type: PointLight
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#00FF00"
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerSolarControl
+  name: solar control computer
+  description: A controller for solar panel arrays.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: solar_screen
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: SolarControlConsole
+  - type: ActivatableUI
+    key: enum.SolarControlConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SolarControlConsoleUiKey.Key:
+        type: SolarControlConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: SolarControlComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#d1a534"
+  # Starlight End
+  - type: GuideHelp
+    guides:
+    - SolarPanels
+    - Power
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerRadar
+  name: mass scanner computer
+  description: A computer for detecting nearby bodies, displaying them by position and mass.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: solar_screen
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: RadarConsole
+  - type: ActivatableUI
+    key: enum.RadarConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: Computer
+    board: RadarConsoleCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#d1a534"
+  # Starlight End
+
+- type: entity
+  id: ComputerCargoOrders
+  parent: BaseComputerAiAccess
+  name: cargo request computer
+  description: Used to order supplies and approve requests.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: CargoOrderConsole
+    removeLimitAccess: [ "Quartermaster" ]
+  - type: ActiveRadio
+    channels:
+    - Supply
+  - type: ActivatableUI
+    key: enum.CargoConsoleUiKey.Orders
+  - type: UserInterface
+    interfaces:
+      enum.CargoConsoleUiKey.Orders:
+        type: CargoOrderConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: CargoRequestComputerCircuitboard
+  # Starlight Start
+  - type: PointLight # Immersive lighting PR
+    radius: 2.5
+    energy: 1.5
+    color: "#b89f25"
+  - type: ActivatableUIRequiresAccess # Actually check access.
+  # Starlight End
+  - type: AccessReader
+    access: [["Cargo"]]
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSource
+    range: 200
+    ports:
+      - OrderSender
+  - type: GuideHelp
+    guides:
+    - Cargo
+
+# Request console variants.
+- type: entity
+  id: ComputerCargoOrdersEngineering
+  parent: ComputerCargoOrders
+  name: engineering request computer
+  description: Used by the engineering department to order supplies.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-eng
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: CargoOrderConsole
+    account: Engineering
+    announcementChannel: Engineering
+    removeLimitAccess: [ "ChiefEngineer" ]
+    mode: PrintSlip #Starlight
+  - type: ActiveRadio
+    channels:
+    - Engineering
+  - type: Computer
+    board: CargoRequestEngineeringComputerCircuitboard
+  - type: PointLight
+    color: "#c9c042"
+  - type: AccessReader
+    access: [["Engineering"]]
+
+- type: entity
+  id: ComputerCargoOrdersMedical
+  parent: ComputerCargoOrders
+  name: medical request computer
+  description: Used by the medical department to order supplies.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-med
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: CargoOrderConsole
+    account: Medical
+    announcementChannel: Medical
+    removeLimitAccess: [ "ChiefMedicalOfficer" ]
+    mode: PrintSlip #Starlight
+  - type: ActiveRadio
+    channels:
+    - Medical
+  - type: Computer
+    board: CargoRequestMedicalComputerCircuitboard
+  - type: PointLight
+    color: "#41e0fc"
+  - type: AccessReader
+    access: [["Medical"]]
+
+- type: entity
+  id: ComputerCargoOrdersScience
+  parent: ComputerCargoOrders
+  name: science request computer
+  description: Used by the science department to order supplies.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-sci
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: CargoOrderConsole
+    account: Science
+    announcementChannel: Science
+    removeLimitAccess: [ "ResearchDirector" ]
+    mode: PrintSlip #Starlight
+  - type: ActiveRadio
+    channels:
+    - Science
+  - type: Computer
+    board: CargoRequestScienceComputerCircuitboard
+  - type: PointLight
+    color: "#b53ca1"
+  - type: AccessReader
+    access: [["Research"]]
+
+- type: entity
+  id: ComputerCargoOrdersSecurity
+  parent: ComputerCargoOrders
+  name: security request computer
+  description: Used by the security department to order supplies.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-sec
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: CargoOrderConsole
+    account: Security
+    announcementChannel: Security
+    removeLimitAccess: [ "HeadOfSecurity" ]
+    mode: PrintSlip #Starlight
+  - type: ActiveRadio
+    channels:
+    - Security
+  - type: Computer
+    board: CargoRequestSecurityComputerCircuitboard
+  - type: PointLight
+    color: "#d11d00"
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: ComputerCargoOrdersService
+  parent: ComputerCargoOrders
+  name: service request computer
+  description: Used by the service department to order supplies.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-srv
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: CargoOrderConsole
+    account: Service
+    announcementChannel: Service
+    removeLimitAccess: [ "HeadOfPersonnel" ]
+    mode: PrintSlip #Starlight
+  - type: ActiveRadio
+    channels:
+    - Service
+  - type: Computer
+    board: CargoRequestServiceComputerCircuitboard
+  - type: PointLight
+    color: "#afe837"
+  - type: AccessReader
+    access: [["Service"]] # Starlight: Service is actually everyone in Service now.
+
+- type: entity
+  id: ComputerCargoBounty
+  parent: BaseComputerAiAccess
+  name: cargo bounty computer
+  description: Used to manage currently active bounties.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: bounty
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: CargoBountyConsole
+  - type: ActivatableUI
+    key: enum.CargoConsoleUiKey.Bounty
+  - type: UserInterface
+    interfaces:
+      enum.CargoConsoleUiKey.Bounty:
+        type: CargoBountyConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: CargoBountyComputerCircuitboard
+  - type: PointLight
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#b89f25"
+  - type: AccessReader
+    access: [["Quartermaster"]]
+  - type: GuideHelp
+    guides:
+    - CargoBounties
+    - Cargo
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerFundingAllocation
+  categories: [ ShouldMapStation ] # Starlight
+  name: funding allocation computer
+  description: Terminal for controlling the distribution of funds and pay to departments.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: allocate # ALLOCATION !!!
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: FundingAllocationConsole
+  - type: ActivatableUI
+    key: enum.FundingAllocationConsoleUiKey.Key
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [["HeadOfPersonnel"], ["Quartermaster"]] #Starlight edit: added Quatermaster
+  - type: UserInterface
+    interfaces:
+      enum.FundingAllocationConsoleUiKey.Key:
+        type: FundingAllocationConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: FundingAllocationComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#387dc7"
+  # Starlight End
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerCloningConsole
+  name: cloning console computer
+  description: The centerpiece of the cloning system, medicine's greatest accomplishment. It has lots of ports and wires.
+  components:
+  - type: CloningConsole
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: dna
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ApcPowerReceiver
+    powerLoad: 3100 #We want this to fail first so I transferred most of the scanner and pod's power here. (3500 in total)
+  - type: Computer
+    board: CloningConsoleComputerCircuitboard
+  - type: PointLight
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#2dad38"
+  - type: DeviceLinkSource
+    range: 4
+    ports:
+      - MedicalScannerSender
+      - CloningPodSender
+  - type: ActivatableUI
+    key: enum.CloningConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.CloningConsoleUiKey.Key:
+          type: CloningConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: GuideHelp
+    guides:
+    - Cloning
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerSalvageJobBoard
+  name: salvage job board
+  description: Console for accessing salvage jobs, if you're tough enough.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: salvjob # givin em a salvjob like hawk tuah
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: SalvageJobBoardConsole
+  - type: ActivatableUI
+    key: enum.SalvageJobBoardUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SalvageJobBoardUiKey.Key:
+        type: SalvageJobBoardBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ActiveRadio
+    channels: [ Supply ]
+  - type: Computer
+    board: SalvageJobBoardComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#8151c9"
+  # Starlight End
+
+- type: entity
+  id: ComputerSalvageExpedition
+  parent: BaseComputerAiAccess
+  name: salvage expeditions computer
+  description: Used to accept salvage missions, if you're tough enough.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: [ "computerLayerScreen" ]
+          state: mining
+        - map: ["computerLayerKeys"]
+          state: tech_key
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ComputerVisuals.Powered:
+          computerLayerScreen:
+            True: { visible: true, shader: unshaded }
+            False: { visible: false }
+          computerLayerKeys:
+            True: { visible: true, shader: unshaded }
+            False: { visible: true }
+        enum.WiresVisuals.MaintenancePanelState:
+          enum.WiresVisualLayers.MaintenancePanel:
+            True: { visible: false }
+            False: { visible: true }
+        # Starlight Start
+        enum.EdgeConnectionVisuals.ConnectionMask:
+          computerLayerBody:
+            None: { state: computer, sprite: Structures/Machines/computers.rsi }
+            West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+            East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+            East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+        # Starlight End
+    - type: SalvageExpeditionConsole
+    - type: ActivatableUI
+      key: enum.SalvageConsoleUiKey.Expedition
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.SalvageConsoleUiKey.Expedition:
+          type: SalvageExpeditionConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: Computer
+      board: SalvageExpeditionsComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+    - type: PointLight
+      radius: 2.5
+      energy: 2
+      color: "#8151c9"
+  # Starlight End
+    - type: AccessReader
+      access: [["Salvage"]]
+    - type: StealTarget
+      stealGroup: SalvageExpeditionsComputerCircuitboard
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerSurveillanceCameraMonitor
+  name: camera monitor
+  description: A surveillance camera monitor. You're watching them. Maybe.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: cameras
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: SurveillanceCameraMonitorCircuitboard
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
+  - type: WiredNetworkConnection
+  - type: DeviceNetworkRequiresPower
+  - type: SurveillanceCameraMonitor
+  - type: ActivatableUI
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+  - type: ActivatableUIRequiresVision
+  - type: Transform
+    anchored: true
+  - type: UserInterface
+    interfaces:
+        enum.SurveillanceCameraMonitorUiKey.Key:
+          type: SurveillanceCameraMonitorBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerSurveillanceWirelessCameraMonitor
+  name: wireless camera monitor
+  description: A wireless surveillance camera monitor. You're watching them. Maybe.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: cameras
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: SurveillanceWirelessCameraMonitorCircuitboard
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceNetworkRequiresPower
+  - type: Speech
+    speechVerb: Robotic
+  - type: SurveillanceCameraSpeaker
+  - type: SurveillanceCameraMonitor
+  - type: ActivatableUI
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+  - type: ActivatableUIRequiresVision
+  - type: UserInterface
+    interfaces:
+        enum.SurveillanceCameraMonitorUiKey.Key:
+          type: SurveillanceCameraMonitorBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+
+- type: entity
+  parent: ComputerSurveillanceWirelessCameraMonitor
+  id: ComputerSurveillanceWirelessXenoborgCameraMonitor
+  name: xenoborg camera monitor
+  description: A wireless xenoborg camera monitor. You're watching them. Maybe.
+  components:
+  - type: Computer
+    board: XenoborgCameraMonitorCircuitboard
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Mothership
+    transmitFrequencyId: Mothership
+  - type: WirelessNetworkConnection
+    range: 2000
+
+- type: entity
+  id: ComputerPalletConsole
+  parent: BaseComputerAiAccess
+  name: cargo sale computer
+  description: Used to sell goods loaded onto cargo pallets.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: transfer
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: CargoPalletConsole
+  - type: ActivatableUI
+    key: enum.CargoPalletConsoleUiKey.Sale
+  - type: UserInterface
+    interfaces:
+      enum.CargoPalletConsoleUiKey.Sale:
+        type: CargoPalletConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: CargoSaleComputerCircuitboard
+  - type: PointLight
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#b89f25"
+  - type: GuideHelp
+    guides:
+    - Cargo
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerMassMedia
+  name: news manager console
+  description: Write your message to the world!
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: service
+    - map: ["computerLayerKeys"]
+      state: service_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: ComputerMassMediaCircuitboard
+  - type: DeviceNetworkRequiresPower
+  - type: NewsWriter
+  - type: AccessReader
+    access: [[ "Service" ]]
+  - type: ActivatableUI
+    key: enum.NewsWriterUiKey.Key
+  - type: ActivatableUIRequiresVision
+  - type: Transform
+    anchored: true
+  - type: UserInterface
+    interfaces:
+        enum.NewsWriterUiKey.Key:
+          type: NewsWriterBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#60b03e"
+  # Starlight End
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerSensorMonitoring
+  name: sensor monitoring computer
+  description: A flexible console for monitoring all kinds of sensors.
+  # Putting this as "DO NOT MAP" until the performance issues are fixed.
+  # And it's more fleshed out.
+  suffix: TESTING, DO NOT MAP
+  categories: [ DoNotMap ]
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: sensors
+        - map: ["computerLayerKeys"]
+          state: atmos_key
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: PointLight
+      radius: 2.5 #SL
+      energy: 1.5 #SL
+      color: "#43ccb5"
+    - type: Computer
+      board: SensorConsoleCircuitboard
+    - type: SensorMonitoringConsole
+    - type: ActivatableUI
+      key: enum.SensorMonitoringConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.SensorMonitoringConsoleUiKey.Key:
+          type: SensorMonitoringConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: DeviceNetwork
+      deviceNetId: AtmosDevices
+      receiveFrequencyId: AtmosMonitor
+      transmitFrequencyId: AtmosMonitor
+      prefix: device-address-prefix-sensor-monitor
+      sendBroadcastAttemptEvent: true
+      examinableAddress: true
+    - type: WiredNetworkConnection
+    - type: DeviceList
+    - type: AtmosDevice
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerRoboticsControl
+  categories: [ ShouldMapStation ] # Starlight
+  name: robotics control console
+  description: Used to remotely monitor, disable, and destroy the station's cyborgs. # Starlight-edit - add ", disable, and destroy"
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: robot
+    - map: ["computerLayerKeys"]
+      state: rd_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: RoboticsConsole
+    allowBorgControl: true # Starlight-edit - false -> true, allow disabling/detonating borgs
+  - type: ActiveRadio
+    channels:
+    - Science
+  - type: ActivatableUI
+    key: enum.RoboticsConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.RoboticsConsoleUiKey.Key:
+        type: RoboticsConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: RoboticsConsole
+    transmitFrequencyId: CyborgControl
+  - type: Computer
+    board: RoboticsConsoleCircuitboard
+  - type: AccessReader # only used for dangerous things
+    access: [["Robotics"]] # Starlight
+  - type: Lock
+    unlockOnClick: false
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#d15abf"
+  # Starlight End
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerXenoborgsControl
+  name: xenoborgs control console
+  description: Used to remotely monitor all xenoborgs.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: xenorobot
+    - map: ["computerLayerKeys"]
+      state: rd_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ActivatableUI
+    key: enum.RoboticsConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.RoboticsConsoleUiKey.Key:
+        type: RoboticsConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: RoboticsConsole
+    allowBorgControl: false
+    radioChannel: Xenoborg
+  - type: ActiveRadio
+    channels:
+    - Xenoborg
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Mothership
+    transmitFrequencyId: Xenoborg
+  - type: Computer
+    board: ComputerXenoborgsControlCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#644eba"
+  # Starlight End
+
+- type: entity
+  id: StationAiUploadComputer
+  categories: [ ShouldMapStation ] # Starlight
+  parent: BaseComputer
+  name: AI upload console
+  description: Used to update the laws of the station AI.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: aiupload
+    - map: [ "computerLayerKeys" ]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Computer
+    board: StationAiUploadCircuitboard
+  - type: AccessReader
+    access: [ [ "ResearchDirector" ] ]
+  - type: Lock
+    unlockOnClick: false
+  - type: SiliconLawUpdater
+#    components: Changed to core linking
+#    - type: StationAiHeld
+  - type: ItemSlotsLock
+    slots:
+    - circuit_holder
+  - type: ItemSlotRequiresPower
+  - type: ItemSlots
+    slots:
+      circuit_holder:
+        name: circuit-holder
+        insertSuccessPopup: silicon-laws-updated
+        whitelist:
+          requireAll: true
+          components:
+          - SiliconLawProvider
+          - Item
+  - type: ContainerContainer
+    containers:
+      circuit_holder: !type:ContainerSlot
+      board: !type:Container
+# Starlight-start: Link console to core
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSink
+    ports:
+      - AiLawConsoleReceiver
+# Starlight-end
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#456dd9"
+  # Starlight End
+
+- type: entity
+  id: StationAiFixerComputer
+  categories: [ ShouldMapStation ] # Starlight
+  parent: BaseComputer
+  name: AI restoration console
+  description: Used to repair damaged artifical intelligences.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: ai-fixer-empty
+    - map: [ "computerLayerKeys" ]
+      state: rd_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.StationAiFixerConsoleVisuals.Key:
+        computerLayerScreen:
+          Repair0: { state: ai-fixer-progress-0 }
+          Repair1: { state: ai-fixer-progress-1 }
+          Repair2: { state: ai-fixer-progress-2 }
+          Repair3: { state: ai-fixer-progress-3 }
+          Purge0: { state: ai-fixer-purge-0 }
+          Purge1: { state: ai-fixer-purge-1 }
+          Purge2: { state: ai-fixer-purge-2 }
+          Purge3: { state: ai-fixer-purge-3 }
+          Empty: { state: ai-fixer-empty }
+          Occupied: { state: ai-fixer-full }
+          Rebooting: { state: ai-fixer-404 }
+          Dead: { state: ai-fixer-404 }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      # Starlight Start
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: Structures/Machines/computers.rsi }
+          West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+      # Starlight End
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Computer
+    board: StationAiFixerCircuitboard
+  - type: AccessReader
+    access: [ [ "ResearchDirector" ] ]
+  - type: Lock
+    unlockOnClick: false
+  - type: StationAiFixerConsole
+  - type: ItemSlotsLock
+    slots:
+    - station_ai_holder
+  - type: ItemSlotRequiresPower
+  - type: ItemSlots
+    slots:
+      station_ai_holder:
+        ejectOnBreak: true
+        lockedFailPopup: station-ai-fixer-console-is-locked
+        whitelistFailPopup: station-ai-fixer-console-station-ai-holder-required
+        whitelist:
+          requireAll: true
+          components:
+          - StationAiHolder
+          - Item
+  - type: ContainerContainer
+    containers:
+      station_ai_holder: !type:ContainerSlot
+      board: !type:Container
+  - type: ActivatableUI
+    key: enum.StationAiFixerConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StationAiFixerConsoleUiKey.Key:
+        type: StationAiFixerConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#b834c9"
+  # Starlight End
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerNukieDelivery
+  name: syndicate delivery computer
+  description: "A computer that can bluespace in certain equipment for Nuclear Operations. \nThe circuitboard is integrated into the frame and can't be recovered if deconstructed."
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-syndie
+    - map: ["computerLayerKeys"]
+      state: syndie_generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  # - type: Computer
+  #   board: SyndicateCommsComputerCircuitboard
+  - type: Anchorable
+    flags:
+    - Anchorable # No taking the console along!
+  - type: PointLight
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#f71713"
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    name: store-preset-name-nukie-delivery
+    categories:
+    - NukieDelivery

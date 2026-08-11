@@ -1,0 +1,35 @@
+- type: soundCollection
+  id: LobbyMusic
+  files:
+    - /Audio/Lobby/thunderdome.ogg
+    - /Audio/Lobby/space_asshole.ogg
+    # - /Audio/Lobby/the_wizard.ogg Starlight-edit: does not fall under the definition of "suitable" music
+    - /Audio/Lobby/endless_space.ogg
+    - /Audio/Lobby/singuloose.ogg
+    - /Audio/Lobby/comet_haley.ogg
+    - /Audio/Lobby/title2.ogg
+    - /Audio/Lobby/title3.ogg
+    - /Audio/Lobby/mod.flip-flap.ogg
+    - /Audio/Lobby/Spac_Stac.ogg
+    - /Audio/Lobby/pwmur.ogg
+    - /Audio/Lobby/lasers_rip_apart_the_bulkhead.ogg
+    - /Audio/Lobby/every_light_is_blinking_at_once.ogg
+    - /Audio/Lobby/atomicamnesiammx.ogg
+    - /Audio/Lobby/skubstep.ogg
+    # Starlight start
+    - /Audio/_Starlight/Lobby/cosmonaut.ogg
+    - /Audio/_Starlight/Lobby/breacher.ogg
+    - /Audio/_Starlight/Lobby/Resistance.ogg
+    - /Audio/_Starlight/Lobby/echoes-in-the-deep.ogg
+    - /Audio/_Starlight/Lobby/timefracture.ogg
+    - /Audio/_Starlight/Lobby/762_treastise.ogg
+    - /Audio/_Starlight/Lobby/hull_rupture.ogg
+    - /Audio/_Starlight/Lobby/aggravated_assault_by_melcom_.ogg
+    - /Audio/_Starlight/Lobby/Unity.ogg
+    - /Audio/_Starlight/Lobby/Bluespace.ogg
+    - /Audio/_Starlight/Lobby/thestation.ogg
+    - /Audio/_Starlight/Lobby/RedefiningLines.ogg
+    - /Audio/_Starlight/Lobby/HOME_Burn_Chamber_Starlight.ogg
+    - /Audio/_Starlight/Lobby/stenchOfWhiskey.ogg
+    - /Audio/_Starlight/Lobby/Null_Scar_Gaze.ogg
+    # Starlight end

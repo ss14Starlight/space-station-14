@@ -1,0 +1,126 @@
+- type: quickPhrase
+  id: SpeciesLagomorphPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-lagomorph
+
+- type: quickPhrase
+  id: SpeciesFelionoidPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-felionoid
+
+- type: quickPhrase
+  id: SpeciesShadekinPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-shadekin
+
+- type: quickPhrase
+  id: SpeciesThavenPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-thaven
+
+- type: quickPhrase
+  id: SpeciesCycloritePhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-cyclorite
+
+- type: quickPhrase
+  id: SpeciesElfPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-elf
+
+- type: quickPhrase
+  id: SpeciesIPCPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-ipc
+
+# Neocytes and neocyte subspecies
+
+- type: quickPhrase
+  id: SpeciesNeocytePhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-neocyte
+
+- type: quickPhrase
+  id: SpeciesTrueNeocytePhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-trueneocyte
+
+- type: quickPhrase
+  id: SpeciesNeoHumanPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neohuman
+
+- type: quickPhrase
+  id: SpeciesNeoDionaPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neodiona
+
+- type: quickPhrase
+  id: SpeciesNeoArachnidPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoarachnid
+
+- type: quickPhrase
+  id: SpeciesNeoMothPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neomoth
+
+- type: quickPhrase
+  id: SpeciesNeoReptilianPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoreptilian
+
+- type: quickPhrase
+  id: SpeciesNeoSlimePersonPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoslimeperson
+
+- type: quickPhrase
+  id: SpeciesNeoVulpkaninPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neovulpkanin
+
+- type: quickPhrase
+  id: SpeciesNeoResomiPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoresomi
+
+- type: quickPhrase
+  id: SpeciesNeoAvaliPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoavali
+
+- type: quickPhrase
+  id: SpeciesNeoVoxPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neovox
+
+- type: quickPhrase
+  id: SpeciesNeoLagomorphPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neolagomorph
+
+- type: quickPhrase
+  id: SpeciesNeoFelionoidPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neofelionoid
+
+- type: quickPhrase
+  id: SpeciesNeoKinPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neokin
+
+- type: quickPhrase
+  id: SpeciesNeoThavenPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neothaven
+
+- type: quickPhrase
+  id: SpeciesNeoCycloritePhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neocyclorite
+
+- type: quickPhrase
+  id: SpeciesNeoElfPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoelf

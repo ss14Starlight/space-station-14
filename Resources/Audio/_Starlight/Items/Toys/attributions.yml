@@ -1,0 +1,34 @@
+- files: ["gnome_hahe.ogg"]
+  license: "CC0-1.0"
+  copyright: "Original sound by Radio TV Solutions"
+  source: "https://www.youtube.com/watch?v=yaHrneT9BfU"
+
+- files: ["gnome_murderer.ogg"]
+  license: "CC0-1.0"
+  copyright: "Original sound by Radio TV Solutions"
+  source: "https://www.youtube.com/watch?v=yaHrneT9BfU"
+
+- files: ["gnome_stop.ogg"]
+  license: "CC0-1.0"
+  copyright: "Original sound by Radio TV Solutions"
+  source: "https://www.youtube.com/watch?v=yaHrneT9BfU"
+
+- files: ["panda_noise1.ogg"]
+  license: "CC0-1.0"
+  copyright: "None"
+  source: "https://www.youtube.com/watch?v=YRmGZIENeq4"
+
+- files: ["panda_noise2.ogg"]
+  license: "CC0-1.0"
+  copyright: "None"
+  source: "https://www.youtube.com/watch?v=YRmGZIENeq4"
+
+- files: ["darkforest_scream.ogg"]
+  license: "Custom"
+  copyright: "tonsil5 (Freesound)"
+  source: "https://pixabay.com/sound-effects/cartoon-scream-1-6835/"
+
+- files: ["yippie.ogg"]
+  license: "CC0-1.0"
+  copyright: "Original sound by CipherForbid"
+  source: "https://www.youtube.com/watch?v=-jySY1QC7dc"

@@ -1,0 +1,309 @@
+# Generic borg
+- type: borgType
+  id: generic
+
+  # Description
+  dummyPrototype: BorgChassisGeneric
+
+  # Functional
+  extraModuleCount: 5
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleScience #until sciborgs are added
+
+  defaultModules:
+  - BorgModulePrying
+  - BorgModuleTool
+  - BorgModuleInflatable
+  - BorgModuleArtifact
+  - BorgModuleAnomaly
+  radioChannels:
+  - Science
+
+  # Visual
+  inventoryTemplateId: borg # Starlight - why was this not always the case?
+  spritePath: Mobs/Silicon/Chassis/generic.rsi
+
+  # Pet
+  petSuccessString: petting-success-generic-cyborg
+  petFailureString: petting-failure-generic-cyborg
+
+  # Starlight BEGIN
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgResearch
+        - ResearchDirector
+  # Starlight END
+
+# Engineering borg
+- type: borgType
+  id: engineering
+
+  # Description
+  dummyPrototype: BorgChassisEngineer
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleEngineering
+
+  defaultModules:
+  - BorgModulePrying
+  - BorgModuleTool
+  - BorgModuleConstruction
+  - BorgModuleRCD
+  - BorgModuleCable
+
+  radioChannels:
+  - Engineering
+  - Science
+
+  # Starlight start: Engiborg hud, access
+  addComponents:
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
+    - IPC
+    - Hybrid
+  - type: ShowAccessReaderSettings
+  - type: Access
+    groups:
+      - CyborgAllAccess
+    tags:
+      - Borg
+      - BorgEngineering
+      - ChiefEngineer
+  # Starlight end
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spritePath: Mobs/Silicon/Chassis/engineer.rsi
+
+  # Pet
+  petSuccessString: petting-success-engineer-cyborg
+  petFailureString: petting-failure-engineer-cyborg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 3600 # 1 hour in Engineering
+  # Starlight-end
+
+
+# Salvage borg
+- type: borgType
+  id: mining
+
+  # Description
+  dummyPrototype: BorgChassisMining
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleCargo
+    - BorgModuleMining #STARLIGHT
+
+  defaultModules:
+  - BorgModulePrying
+  - BorgModuleTool
+  - BorgModuleMining
+  - BorgModuleTraversal
+  - BorgModuleAppraisal
+
+  radioChannels:
+  - Supply
+  - Science
+  - Expedition #Starlight
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spritePath: Mobs/Silicon/Chassis/miner.rsi
+  spriteBodyMovementState: borg_moving
+
+  # Pet
+  petSuccessString: petting-success-salvage-cyborg
+  petFailureString: petting-failure-salvage-cyborg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Cargo
+    time: 5400 # 1 hour 30 minutes in Cargo
+
+  addComponents:
+  - type: Access
+    groups:
+      - CyborgAllAccess
+    tags:
+      - Borg
+      - BorgCargo
+      - Quartermaster
+  # Starlight-end
+
+
+# Janitor borg
+- type: borgType
+  id: janitor
+
+  # Description
+  dummyPrototype: BorgChassisJanitor
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleJanitor
+
+  defaultModules:
+  - BorgModulePrying
+  - BorgModuleTool # Starlight
+  - BorgModuleCleaning
+  - BorgModuleCustodial
+
+  radioChannels:
+  - Science
+  - Service
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spritePath: Mobs/Silicon/Chassis/janitor.rsi
+  spriteBodyMovementState: borg_moving
+
+  # Pet
+  petSuccessString: petting-success-janitor-cyborg
+  petFailureString: petting-failure-janitor-cyborg
+
+  # Starlight BEGIN
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgService
+  # Starlight END
+
+
+# Medical borg
+- type: borgType
+  id: medical
+
+  # Description
+  dummyPrototype: BorgChassisMedical
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleMedical
+
+  defaultModules:
+  - BorgModulePrying
+  - BorgModuleTool # Starlight
+  - BorgModuleChemical
+  - BorgModuleTopicals
+  - BorgModuleRescue
+
+  radioChannels:
+  - Science
+  - Medical
+
+  addComponents:
+  - type: SolutionScanner
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Hybrid # Starlight, Neocytes
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+    - Hybrid # Starlight, Neocytes
+  - type: Access # Starlight BEGIN
+    groups:
+      - CyborgAllAccess
+    tags:
+      - Borg
+      - BorgMedical
+      - ChiefMedicalOfficer # Starlight END
+
+  # Visual
+  inventoryTemplateId: borgDutch
+  spritePath: Mobs/Silicon/Chassis/medical.rsi
+  spriteBodyMovementState: borg_moving
+
+  # Pet
+  petSuccessString: petting-success-medical-cyborg
+  petFailureString: petting-failure-medical-cyborg
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepHoverBorg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 3600 # 1 hour in medical
+  # Starlight-end
+
+
+# Service borg
+- type: borgType
+  id: service
+
+  # Description
+  dummyPrototype: BorgChassisService
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleService
+
+  defaultModules:
+  - BorgModulePrying
+  - BorgModuleTool # Starlight
+  - BorgModuleMusique
+  # Starlight start
+  - BorgModuleBartending
+  - BorgModuleCooking
+  - BorgModuleBotany
+  - BorgModuleBooks
+  # Starlight end
+  - BorgModuleClowning
+
+  radioChannels:
+  - Science
+  - Service
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spritePath: Mobs/Silicon/Chassis/service.rsi
+
+  # Pet
+  petSuccessString: petting-success-service-cyborg
+  petFailureString: petting-failure-service-cyborg
+
+  # Starlight BEGIN
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgService
+  # Starlight END

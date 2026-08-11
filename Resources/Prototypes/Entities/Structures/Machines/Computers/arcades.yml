@@ -1,0 +1,262 @@
+- type: entity
+  abstract: true
+  id: ArcadeBase
+  description: An arcade cabinet.
+  name: arcade
+  parent: BaseComputer
+  components:
+  - type: ApcPowerReceiver
+    powerLoad: 350
+  - type: ExtensionCableReceiver
+  - type: PointLight
+    radius: 1.8
+    energy: 3.0
+    color: "#3db83b"
+    castShadows: false #SL lighting optimization
+  - type: LitOnPowered
+  - type: Sprite
+    sprite: Structures/Machines/arcade.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: arcade
+    - map: ["computerLayerScreen"]
+      state: screen_invaders
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: panel
+      visible: false
+  # Starlight-start
+  - type: GenericVisualizer  # Override to prevent edge connection sprites; keep power/wires visuals from BaseComputer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: arcade }
+  - type: EdgeConnection
+    connectionKey: other
+  # Starlight-end
+  - type: Icon
+    sprite: Structures/Machines/arcade.rsi
+    state: arcade
+  - type: WiresPanel
+  - type: Wires
+    layoutId: Arcade
+    boardName: wires-board-name-arcade
+  - type: WiresVisuals
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Vending
+  - type: SpookySpeaker
+    messageSet: SpookySpeakerMessagesGeneric
+    speakChance: 0.2
+  - type: Anchorable
+  - type: Pullable
+  - type: StaticPrice
+    price: 300
+  - type: SpamEmitSoundRequirePower
+  - type: SpamEmitSound
+    minInterval: 30
+    maxInterval: 90
+    sound:
+      collection: ArcadeNoise
+      params:
+        volume: -8
+        maxDistance: 10
+        variation: 0.05
+
+- type: entity
+  id: SpaceVillainArcade
+  name: space villain arcade
+  parent: ArcadeBase
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/arcade.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: arcade
+    - map: ["computerLayerScreen"]
+      state: screen_spacevillain
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: panel
+      visible: false
+  - type: PointLight
+    color: "#e3a136"
+  - type: SpaceVillainArcade
+  # Starlight-start
+  - type: ArcadeReward
+    rewardMinAmount: 0
+    rewardMaxAmount: 0
+    possibleRewards: !type:NestedSelector
+      tableId: ArcadeRewardsTable
+  # Starlight-end
+  - type: WiresPanel
+  - type: Wires
+    layoutId: Arcade
+    boardName: wires-board-name-arcade
+  - type: ActivatableUI
+    key: enum.SpaceVillainArcadeUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: StationAiWhitelist
+  - type: UserInterface
+    interfaces:
+      enum.SpaceVillainArcadeUiKey.Key:
+        type: SpaceVillainArcadeBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: SpaceVillainArcadeComputerCircuitboard
+  - type: Vocalizer
+    minVocalizeInterval: 1m # Arcades are noisy
+    maxVocalizeInterval: 4m
+    hideChat: true
+  - type: DatasetVocalizer
+    dataset: SpaceVillainAds
+  - type: SpeakOnUIClosed
+    pack: SpaceVillainGoodbyes
+
+- type: entity
+  id: SpaceVillainArcadeFilled
+  parent: SpaceVillainArcade
+  suffix: Filled
+  components:
+  # Starlight-start
+  - type: ArcadeReward
+    rewardMinAmount: 5
+    rewardMaxAmount: 8
+  # Starlight-end
+
+- type: entity
+  id: BlockGameArcade
+  description: An arcade cabinet with a strangely familiar game.
+  name: NT block game
+  parent: ArcadeBase
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/arcade.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: arcade
+    - map: ["computerLayerScreen"]
+      state: screen_blockgame
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: panel
+      visible: false
+  - type: BlockGameArcade
+  # Starlight-start
+  - type: ArcadeScoreboard
+    serverScoreboard: BlockGame
+  # Starlight-end
+  - type: ActivatableUI
+    key: enum.BlockGameUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: StationAiWhitelist
+  - type: UserInterface
+    interfaces:
+      enum.BlockGameUiKey.Key:
+        type: BlockGameBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: BlockGameArcadeComputerCircuitboard
+  - type: Vocalizer
+    minVocalizeInterval: 1m # Arcades are noisy
+    maxVocalizeInterval: 4m
+    hideChat: true
+  - type: DatasetVocalizer
+    dataset: BlockGameAds
+  - type: SpeakOnUIClosed
+    pack: BlockGameGoodbyes
+
+- type: entityTable
+  id: ArcadeRewardsTable
+  table: !type:GroupSelector
+    children:
+    - id: Basketball
+    - id: BalloonNT
+    - id: BalloonCorgi
+    - id: BoxDonkSoftBox
+    - id: BoxCartridgeCap
+    - id: BeachBall
+    - id: CandyBucket
+    - id: CrayonBox
+    - id: ClothingHeadHatCowboyRed
+    - id: FoamCrossbow
+    - id: FoamBlade
+    - id: FoamCutlass
+    - id: Football
+    - id: GlowstickGreen
+    - id: GlowstickBlue
+    - id: GlowstickYellow
+    - id: GlowstickPurple
+    - id: GlowstickRed
+    - id: HarmonicaInstrument
+    - id: OcarinaInstrument
+    - id: RecorderInstrument
+    - id: GunpetInstrument
+    - id: BirdToyInstrument
+    - id: MysteryFigureBox
+    - id: PlushieHampter
+    - id: PlushieLizard
+    - id: PlushieRainbowLizard
+    - id: PlushieAtmosian
+    - id: PlushieSpaceLizard
+    - id: PlushieNuke
+    - id: PlushieCarp
+    - id: PlushieMagicarp
+    - id: PlushieHolocarp
+    - id: PlushieRainbowCarp
+    - id: PlushieRatvar
+    - id: PlushieNar
+    - id: PlushieSnake
+    - id: PlushieArachind
+    - id: PlushieMoth
+    - id: PlushieVulp
+    - id: PlushieHampter
+    - id: PlushiePenguin
+    - id: PlushieHuman
+    - id: PlushieRouny
+    - id: PlushieBee
+    - id: PlushieSlime
+    - id: PlushieGhost
+    - id: PlushieDiona
+    - id: PlushieSharkBlue
+    - id: PlushieVox
+    - id: PlushieXeno
+    - id: PlasticBanana
+    - id: RevolverCapGun
+    - id: SnapPopBox
+    - id: TennisBall
+    - id: ToyMouse
+    - id: ToyAi
+    - id: ToyNuke
+    - id: ToyFigurineGriffin
+    - id: ToyHonk
+    - id: ToyIan
+    - id: ToyMarauder
+    - id: ToyMauler
+    - id: ToyGygax
+    - id: ToyOdysseus
+    - id: ToyFigurineOwlman
+    - id: ToyDeathRipley
+    - id: ToyPhazon
+    - id: ToyFireRipley
+    - id: ToyReticence
+    - id: ToyRipley
+    - id: ToySeraph
+    - id: ToyDurand
+    - id: ToyFigurineSkeleton
+    - id: ToySword
+    - id: ToyAmongPequeno
+    - id: ToyRubberDuck
+    - id: ToyHammer
+    - id: WeaponWaterPistol
+    - id: WhoopieCushion
+    - id: Whistle
