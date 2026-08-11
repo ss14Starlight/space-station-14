@@ -125,10 +125,10 @@
   shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/SpaceTruck.yml
 
 - type: vessel
-  id: Secuttle
+  id: Catcher
   name: NTS "Catcher" Law
   description: An old military-pattern shuttle retrofitted for use by station Security. Comes with a small but stocked medbay and a prisoner holding cell.
   price: 50000
   category: Medium
   group: Security
-  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Secuttle.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Catcher.yml

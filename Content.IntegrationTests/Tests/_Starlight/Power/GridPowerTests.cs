@@ -81,6 +81,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/Shipyard/barge.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/breaker.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/Bumblebee.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/Catcher.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/Comet.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/GasTransport.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/Honeybee.yml"),
@@ -90,7 +91,6 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/Shipyard/pioneer.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/prospector.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/pts.yml"),
-        new("/Maps/_Starlight/Shuttles/Shipyard/Secuttle.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/SpaceTruck.yml"),
 
         // Syndicate
