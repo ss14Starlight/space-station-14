@@ -40,8 +40,6 @@
       map: ["enum.DoorVisualLayers.BaseEmagging"]
       shader: unshaded
       visible: false
-  - type: WiresPanel
-    visible: false
   - type: WiresPanelSecurity
     wiresAccessible: false
     securityLevel: maxSecurity # Realistically you should never see this, but just in case...
