@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
   changes:
-  - message: Reinforcement Traitors now get codewords.
-    type: Tweak
-  id: 407117
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
   - message: Brighteyes now use different events for roundstart and midround spawns.
     type: Tweak
   id: 407118
@@ -2799,4 +2792,11 @@ Entries:
   id: 407516
   time: '2026-08-11T19:42:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5586
+- author: CrazyPhantom
+  changes:
+  - message: Fixed welding fuel getting in censers.
+    type: Fix
+  id: 407517
+  time: '2026-08-11T19:42:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5602
 Order: -1
