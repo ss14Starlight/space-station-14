@@ -349,13 +349,16 @@ public abstract class RadialMenuOptionBase
 
 /// <summary> Base type for model of radial menu button with some action on button pressed. </summary>
 /// <param name="onPressed"></param>
-/// <param name="onAlternativePressed">Action to be executed on alternative (right) button press.</param>
+/// <param name="onAlternativePressed">Action to be executed on alternative (right) button press. Starlight-edit</param>
 public abstract class RadialMenuActionOptionBase(Action onPressed, Action? onAlternativePressed = null) : RadialMenuOptionBase
 {
     /// <summary> Action to be executed on button press. </summary>
     public Action OnPressed { get; } = onPressed;
 
-    /// <summary> Action to be executed on alternative (right) button press. </summary>
+    /// <summary>
+    /// Starlight-edit
+    /// Action to be executed on alternative (right) button press.
+    /// </summary>
     public Action? OnAlternativePressed { get; } = onAlternativePressed;
 }
 
@@ -366,7 +369,7 @@ public sealed class RadialMenuActionOption<T>(
     Action<T>? onAlternativePressed = null
 ) : RadialMenuActionOptionBase(
     onPressed: () => onPressed(data),
-    onAlternativePressed: onAlternativePressed == null ? null : () => onAlternativePressed(data));
+    onAlternativePressed: onAlternativePressed == null ? null : () => onAlternativePressed(data)); //Starlight edit
 
 /// <summary>
 /// Model for radial menu button that represents reference for next layer of radial buttons.

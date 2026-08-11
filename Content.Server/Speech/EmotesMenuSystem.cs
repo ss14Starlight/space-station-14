@@ -11,12 +11,13 @@ public sealed partial class EmotesMenuSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private ChatSystem _chat = default!;
-    //Starlight-edit start
+
+    #region Starlight
     public static readonly EntProtoId EmoteBindActionProtoId = "ActionEmoteBindBase";
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
-    //Starlight-edit stop
+    #endregion
     public override void Initialize()
     {
         base.Initialize();
@@ -46,7 +47,7 @@ public sealed partial class EmotesMenuSystem : EntitySystem
         if (!player.HasValue)
             return;
 
-        if (!_prototypeManager.Resolve(msg.ProtoId, out var proto))
+        if (!_prototypeManager.Resolve(msg.ProtoId, out var proto) || proto.ChatTriggers.Count == 0)
             return;
 
         var name = Loc.GetString(proto.Name);

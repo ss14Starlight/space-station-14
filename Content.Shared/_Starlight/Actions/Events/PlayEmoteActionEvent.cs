@@ -9,6 +9,9 @@ namespace Content.Shared._Starlight.Actions.Events;
 /// </summary>
 public sealed partial class PlayEmoteActionEvent : InstantActionEvent
 {
+    /// <summary>
+    /// Contains the prototype ID of the emote to be played.
+    /// </summary>
     [DataField]
     public ProtoId<EmotePrototype> ProtoId;
 }
