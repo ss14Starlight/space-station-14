@@ -4,7 +4,7 @@ meta:
   engineVersion: 283.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/11/2026 00:22:59
+  time: 08/11/2026 15:09:49
   entityCount: 29893
 maps:
 - 1
@@ -15139,11 +15139,25 @@ entities:
     - type: Transform
       parent: 2
       pos: 26.5,30.5
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        27171:
+        - - DoorStatus
+          - DoorBolt
   - uid: 27171
     components:
     - type: Transform
       parent: 2
       pos: 29.5,30.5
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        18400:
+        - - DoorStatus
+          - DoorBolt
 - proto: AirlockExternalGlassShuttleArrivals
   entities:
   - uid: 332
@@ -155834,6 +155848,12 @@ entities:
         29619:
         - - Pressed
           - Toggle
+        25487:
+        - - Pressed
+          - Toggle
+        25461:
+        - - Pressed
+          - Toggle
     - type: Fixtures
       fixtures: {}
 - proto: SignalSwitch
@@ -190862,7 +190882,7 @@ entities:
       pos: 73.5,-3.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -30469.287
+      secondsUntilStateChange: -30544.963
   - uid: 29575
     components:
     - type: Transform

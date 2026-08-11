@@ -4,7 +4,7 @@ meta:
   engineVersion: 283.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/11/2026 00:53:32
+  time: 08/11/2026 15:11:29
   entityCount: 38114
 maps:
 - 1
@@ -20931,7 +20931,7 @@ entities:
       pos: -15.5,-4.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -82257.164
+      secondsUntilStateChange: -82321.45
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -171332,7 +171332,7 @@ entities:
       pos: 16.5,54.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -8801.8545
+      secondsUntilStateChange: -8866.146
   - uid: 25934
     components:
     - type: Transform
@@ -203939,6 +203939,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -29.5,19.5
+    - type: DeviceLinkSource
+      linkedPorts:
+        33103:
+        - - StationRadioServerPort
+          - StationRadioRigPort
 - proto: StatueVenusBlue
   entities:
   - uid: 30934
@@ -214608,6 +214613,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -27.5,19.5
+    - type: DeviceLinkSource
+      linkedPorts:
+        33103:
+        - - VinylPlayerPort
+          - StationRadioRigPort
 - proto: WallFan
   entities:
   - uid: 32612
