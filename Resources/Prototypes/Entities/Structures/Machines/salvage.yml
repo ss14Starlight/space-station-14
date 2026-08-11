@@ -58,8 +58,10 @@
 
 - type: weightedRandomEntity
   id: RandomAsteroidPool
+  # Starlight-start: 1000
   weights:
-    AsteroidSalvageSmall: 3
-    AsteroidSalvageMedium: 7
-    AsteroidSalvageLarge: 5
-    AsteroidSalvageHuge: 3
+    AsteroidSalvageSmall: 167
+    AsteroidSalvageMedium: 388
+    AsteroidSalvageLarge: 278
+    AsteroidSalvageHuge: 167
+  # Starlight-end

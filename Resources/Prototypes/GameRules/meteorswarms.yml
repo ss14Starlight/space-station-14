@@ -44,17 +44,19 @@
 
 - type: weightedRandomEntity
   id: MeteorSpawnAsteroidWallTable
+  # Starlight-start: 1000
   weights:
-    MeteorRock: 10
-    MeteorRockCoal: 5
-    MeteorRockQuartz: 5
-    MeteorRockTin: 5
-    MeteorRockSilver: 2
-    MeteorRockGold: 2
-    MeteorRockPlasma: 2
-    MeteorRockDiamond: 2
-    MeteorRockUranium: 0.5
-    MeteorRockBananium: 0.5
+    MeteorRock: 293
+    MeteorRockCoal: 147
+    MeteorRockQuartz: 147
+    MeteorRockTin: 147
+    MeteorRockSilver: 59
+    MeteorRockGold: 59
+    MeteorRockPlasma: 59
+    MeteorRockDiamond: 59
+    MeteorRockUranium: 15
+    MeteorRockBananium: 15
+  # Starlight-end
 
 # Event Schedulers
 

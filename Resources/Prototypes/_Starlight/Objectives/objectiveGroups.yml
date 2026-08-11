@@ -2,10 +2,10 @@
 - type: weightedRandom
   id: SubTraitorObjectiveGroups
   weights:
-    TraitorObjectiveGroupSteal: 1
-    SubTraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
-    TraitorObjectiveGroupSocial: 0.25 #Involves helping/harming others without killing them or stealing their stuff, lowered because the chance of rolling this was enormous when its just one objective in the category
-    TraitorObjectiveGroupStory: 0.85  # Starlight
+    TraitorObjectiveGroupSteal: 323
+    SubTraitorObjectiveGroupState: 323 #As in, something about your character. Alive, dead, arrested, gained an ability...
+    TraitorObjectiveGroupSocial: 81 #Involves helping/harming others without killing them or stealing their stuff, lowered because the chance of rolling this was enormous when its just one objective in the category
+    TraitorObjectiveGroupStory: 273 # Starlight
 
 - type: weightedRandom
   id: SubTraitorObjectiveGroupState
@@ -15,35 +15,35 @@
 - type: weightedRandom
   id: TraitorObjectiveGroupStory
   weights:
-    RetrieveContrabandObjective: 1
-    AccessForAllObjective: 1
-    ArmsDealerObjective: 1
-    FrameObjective: 1
-    FalseUprisingObjective: 1
-    DuelistObjective: 1
-    EspionageObjective: 1
-    ManifestoObjective: 1
-    CallingCardObjective: 1
-    SELFObjective: 1
-    StalkingObjective: 1
-    DisgraceObjective: 1
-    HarassObjective: 1
-    ImpersonateObjective: 1
-    FeudObjective: 1
-    WasteObjective: 1
-    MaintsBarObjective: 1
-    PanicObjective: 1
-    RumorObjective: 1
-    SyndielandObjective: 1
+    RetrieveContrabandObjective: 5
+    AccessForAllObjective: 5
+    ArmsDealerObjective: 5
+    FrameObjective: 5
+    FalseUprisingObjective: 5
+    DuelistObjective: 5
+    EspionageObjective: 5
+    ManifestoObjective: 5
+    CallingCardObjective: 5
+    SELFObjective: 5
+    StalkingObjective: 5
+    DisgraceObjective: 5
+    HarassObjective: 5
+    ImpersonateObjective: 5
+    FeudObjective: 5
+    WasteObjective: 5
+    MaintsBarObjective: 5
+    PanicObjective: 5
+    RumorObjective: 5
+    SyndielandObjective: 5
 
 # Vampire
 - type: weightedRandom
   id: VampireObjectiveGroups
   weights:
-    VampireObjectiveGroupSteal: 1
-    VampireObjectiveGroupKill: 1
-    VampireObjectiveGroupDrain: 1
-    VampireObjectiveGroupState: 1
+    VampireObjectiveGroupSteal: 25
+    VampireObjectiveGroupKill: 25
+    VampireObjectiveGroupDrain: 25
+    VampireObjectiveGroupState: 25
 
 - type: weightedRandom
   id: VampireObjectiveGroupsStealOnly
@@ -58,24 +58,24 @@
 - type: weightedRandom
   id: VampireObjectiveGroupSteal
   weights:
-    CMOHyposprayVampireStealObjective: 1
-    RDHardsuitVampireStealObjective: 1
-    SecurityRareGunsVampireStealObjective: 1
-    MagbootsVampireStealObjective: 1
-    ClipboardVampireStealObjective: 1
-    CaptainIDVampireStealObjective: 1
-    CaptainJetpackVampireStealObjective: 1
-    CaptainGunVampireStealObjective: 1
+    CMOHyposprayVampireStealObjective: 614
+    RDHardsuitVampireStealObjective: 614
+    SecurityRareGunsVampireStealObjective: 614
+    MagbootsVampireStealObjective: 614
+    ClipboardVampireStealObjective: 614
+    CaptainIDVampireStealObjective: 614
+    CaptainJetpackVampireStealObjective: 614
+    CaptainGunVampireStealObjective: 614
     # Temp targets beyond this point, until proper vamp ones are made, so vamps don't roll the same 8 targets every shift. Tried to only pick things of value, so just command/nt + wardgun.
-    HOSWeaponVampireStealObjective: 1 #Starlight
-    VampireCMOHardsuitStealObjective: 1 # I'm so sorry CMO
-    VampireCEHardsuitStealObjective: 1 # Where are you going to hide it?
-    VampireHOSHardsuitStealObjective: 1 # Quite defensive.
-    VampireQMHardsuitStealObjective: 1 # Would you believe it was never an objective before?
-    VampireCaptainHardsuitStealObjective: 0.75 # Good luck.
-    VampireNTRepHardsuitStealObjective: 0.75 # Usually in the bridge... hard to get to.
-    VampireBSOHardsuitStealObjective: 0.75 # Same as the above...
-    VampireBSOWeaponStealObjective: 1
+    HOSWeaponVampireStealObjective: 614 #Starlight
+    VampireCMOHardsuitStealObjective: 614 # I'm so sorry CMO
+    VampireCEHardsuitStealObjective: 614 # Where are you going to hide it?
+    VampireHOSHardsuitStealObjective: 614 # Quite defensive.
+    VampireQMHardsuitStealObjective: 614 # Would you believe it was never an objective before?
+    VampireCaptainHardsuitStealObjective: 468 # Good luck.
+    VampireNTRepHardsuitStealObjective: 468 # Usually in the bridge... hard to get to.
+    VampireBSOHardsuitStealObjective: 468 # Same as the above...
+    VampireBSOWeaponStealObjective: 614
 
 - type: weightedRandom
   id: VampireObjectiveGroupKill
@@ -90,23 +90,23 @@
 - type: weightedRandom
   id: VampireObjectiveGroupState
   weights:
-    VampireSurviveObjective: 1
-    VampireEscapeObjective: 1
-    ReputationObjective: 0.5
-    FalseOutbreakObjective: 0.75
+    VampireSurviveObjective: 308
+    VampireEscapeObjective: 308
+    ReputationObjective: 154
+    FalseOutbreakObjective: 230
 
 # Thieves
 - type: weightedRandom
   id: ThiefObjectiveGroupOuter # We use this to roll for thief objectives, similar to how traitors do it. Technically, we lose some control over it doing it this way (maxPicks), but I think the long term benefits of being able to add more variants to objectives without having to make 2 whole layers of objectives is worth the tradeoff.
   weights:
-    ThiefObjectiveGroupCollection: 1
-    ThiefObjectiveGroupItem: 1
-    ThiefObjectiveGroupStructure: 0.7 # Inheriting from the old "big" group.
-    ThiefObjectiveGroupAnimal: 0.7 # Inheriting from the old "big" group.
-    ThiefObjectiveGroupEscapeForced: 10 # High weight to basically force you to get it.
+    ThiefObjectiveGroupCollection: 75
+    ThiefObjectiveGroupItem: 75
+    ThiefObjectiveGroupStructure: 52 # Inheriting from the old "big" group.
+    ThiefObjectiveGroupAnimal: 52 # Inheriting from the old "big" group.
+    ThiefObjectiveGroupEscapeForced: 746 # High weight to basically force you to get it.
 
 - type: weightedRandom
   id: ThiefObjectiveGroupEscapeForced
   weights:
-    EscapeThiefShuttleObjective: 1
-    EscapeMasterThiefObjective: 0.33
+    EscapeThiefShuttleObjective: 75
+    EscapeMasterThiefObjective: 25

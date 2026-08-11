@@ -100,24 +100,28 @@
 
 - type: weightedRandomOre
   id: RandomOreDistributionStandard
+  # Starlight-start: 10000
   weights:
-    OreSteel: 10
-    OreCoal: 10
-    OreSpaceQuartz: 8
-    OreGold: 2
-    OrePlasma: 4
-    OreSilver: 1
-    OreUranium: 1
-    OreBananium: 0.5
-    OreArtifactFragment: 0.5
+    OreSteel: 2703
+    OreCoal: 2703
+    OreSpaceQuartz: 2162
+    OreGold: 541
+    OrePlasma: 1081
+    OreSilver: 270
+    OreUranium: 270
+    OreBananium: 135
+    OreArtifactFragment: 135
+  # Starlight-end
 
 - type: weightedRandomOre
   id: OreCrab
+  # Starlight-start: 1000
   weights:
-    OreQuartzCrab: 5
-    OreIronCrab: 5
-    OreUraniumCrab: 2
-    OreSilverCrab: 3
-    OreBananiumCrab: 1
-    OreCoalCrab: 5
-    OreGoldCrab: 2
+    OreQuartzCrab: 218
+    OreIronCrab: 218
+    OreUraniumCrab: 87
+    OreSilverCrab: 129
+    OreBananiumCrab: 43
+    OreCoalCrab: 218
+    OreGoldCrab: 87
+  # Starlight-end

@@ -204,9 +204,11 @@
 
 - type: weightedRandomOre
   id: IronRockCoalCrabProb
+  # Starlight-Start: 100
   weights:
-    OreCoal: 49
-    OreCoalCrab: 1
+    OreCoal: 98
+    OreCoalCrab: 2
+  # Starlight-End
 
 - type: entity
   id: IronRockCoalCrab100
@@ -227,9 +229,11 @@
 
 - type: weightedRandomOre
   id: IronRockGoldCrabProb
+  # Starlight-Start
   weights:
-    OreGold: 49
-    OreGoldCrab: 1
+    OreGold: 98
+    OreGoldCrab: 2
+  # Starlight-End
 
 - type: entity
   id: IronRockGoldCrab100
@@ -250,9 +254,11 @@
 
 - type: weightedRandomOre
   id: IronRockBananiumCrabProb
+  # Starlight-Start
   weights:
-    OreBananium: 49
-    OreBananiumCrab: 1
+    OreBananium: 98
+    OreBananiumCrab: 2
+  # Starlight-End
 
 - type: entity
   id: IronRockBananiumCrab100
@@ -273,9 +279,11 @@
 
 - type: weightedRandomOre
   id: IronRockIronCrabProb
+  # Starlight-Start
   weights:
-    OreSteel: 49
-    OreIronCrab: 1
+    OreSteel: 98
+    OreIronCrab: 2
+  # Starlight-End
 
 - type: entity
   id: IronRockIronCrab100
@@ -296,9 +304,11 @@
 
 - type: weightedRandomOre
   id: IronRockQuartzCrabProb
+  # Starlight-Start
   weights:
-    OreSpaceQuartz: 49
-    OreQuartzCrab: 1
+    OreSpaceQuartz: 98
+    OreQuartzCrab: 2
+  # Starlight-End
 
 - type: entity
   id: IronRockQuartzCrab100
@@ -319,9 +329,11 @@
 
 - type: weightedRandomOre
   id: IronRockSilverCrabProb
+  # Starlight-Start
   weights:
-    OreSilver: 49
-    OreSilverCrab: 1
+    OreSilver: 98
+    OreSilverCrab: 2
+  # Starlight-End
 
 - type: entity
   id: IronRockSilverCrab100
@@ -342,9 +354,11 @@
 
 - type: weightedRandomOre
   id: IronRockUraniumCrabProb
+  # Starlight-Start
   weights:
-    OreUranium: 49
-    OreUraniumCrab: 1
+    OreUranium: 98
+    OreUraniumCrab: 2
+  # Starlight-End
 
 - type: entity
   id: IronRockUraniumCrab100

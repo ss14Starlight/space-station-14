@@ -89,16 +89,17 @@
 
 - type: weightedRandomFillSolution
   id: RandomFillTrashPuddle
+  # Starlight-start: 1000
   fills:
   - quantity: 80
-    weight: 5
+    weight: 384
     reagents:
     - Vomit
     - InsectBlood
     - WeldingFuel
     - Mold
   - quantity: 55
-    weight: 4
+    weight: 308
     reagents:
     - PlantBGone
     - Potassium # :trollface:
@@ -111,13 +112,13 @@
     - Acetone
     - Bleach
   - quantity: 40
-    weight: 3
+    weight: 231
     reagents:
     - Blood
     - CopperBlood
     - Slime
   - quantity: 25
-    weight: 1
+    weight: 77
     reagents:
     - Omnizine
     - Desoxyephedrine
@@ -127,6 +128,7 @@
     - Silver
     - Sodium
     - JuiceThatMakesYouWeh
+  # Starlight-end
 
 - type: weightedRandomFillSolution
   id: RandomFillTrashPuddleBloodbath

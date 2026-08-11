@@ -1,17 +1,19 @@
 - type: weightedRandom
   id: AsteroidOre
+  # Starlight-start: 1000
   weights:
-    OreIron: 1.0
-    OreQuartz: 1.0
-    OreCoal: 0.33
-    OreSalt: 0.25
-    OreGold: 0.25
-    OreSilver: 0.25
-    OrePlasma: 0.20
-    OreUranium: 0.20
-    OreArtifactFragment: 0.10
-    OreBananium: 0.10
-    OreBluespace: 0.5 # Starlight
+    OreIron: 239
+    OreQuartz: 239
+    OreCoal: 79
+    OreSalt: 60
+    OreGold: 60
+    OreSilver: 60
+    OrePlasma: 48
+    OreUranium: 48
+    OreArtifactFragment: 24
+    OreBananium: 24
+    OreBluespace: 119
+  # Starlight-end
 
 - type: oreDunGen
   id: OreIron

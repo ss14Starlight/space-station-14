@@ -1,22 +1,24 @@
 #default species weights used for randomly selected species
 - type: weightedRandomSpecies
   id: SpeciesWeights
+  # Starlight-start: 1000
   weights:
-    Human: 10
-    Reptilian: 5
-    Moth: 5
-    Vulpkanin: 5
-    SlimePerson: 4
-    IPC: 3
-    Elf: 3
-    Lagomorph: 4
-    Avali: 3
-    Resomi: 3
-    Felionoid: 3
-    Thaven: 2
-    Dwarf: 2
-    Diona: 2
-    Cyclorite: 2
-    Shadekin: 2
-    Vox: 1
-    Rodentia: 3
+    Human: 163
+    Reptilian: 81
+    Moth: 81
+    Vulpkanin: 81
+    SlimePerson: 65
+    IPC: 48
+    Elf: 48
+    Lagomorph: 65
+    Avali: 48
+    Resomi: 48
+    Felionoid: 48
+    Thaven: 32
+    Dwarf: 32
+    Diona: 32
+    Cyclorite: 32
+    Shadekin: 32
+    Vox: 16
+    Rodentia: 48
+  # Starlight-end

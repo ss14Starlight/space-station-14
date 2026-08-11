@@ -1,32 +1,34 @@
 - type: weightedRandomXenoArchTrigger
   id: DefaultTriggers
+  # Starlight-Start: 1000
   weights:
-    TriggerMusic: 1
-    TriggerHeat: 1
-    TriggerCold: 0.5
-    TriggerNoOxygen: 1
-    TriggerWater: 1
-    TriggerCO2: 0.5
-    TriggerPlasma: 0.5
-    TriggerN2O: 0.5
-    TriggerTritium: 0.1
-    TriggerAmmonia: 0.1
-    TriggerFrezon: 0.1
-    TriggerRadiation: 1
-    TriggerPressureHigh: 0.5
-    TriggerPressureLow: 1
-    TriggerExamine: 1
-    TriggerBruteDamage: 1
-    #TriggerInteraction: 1 #this one interferes with activating artifact AND brute dmg!
-    TriggerWrenching: 0.5
-    TriggerPrying: 0.5
-    TriggerScrewing: 0.5
-    TriggerPulsing: 0.5
-    #TriggerTimer: 0.25 # Starlight-edit: possibly unreliable, need to look into artifact's system to see why TriggerTimer sometimes causes malfunctions despite being so apparently simple. Uncomment once fixed or resolved.
-    TriggerBlood: 1
-    TriggerThrow: 1
-    TriggerDeath: 1
-    TriggerMagnet: 1
+    TriggerNoOxygen: 60
+    TriggerBlood: 60
+    TriggerDeath: 60
+    TriggerMagnet: 60
+    TriggerMusic: 59
+    TriggerHeat: 59
+    TriggerWater: 59
+    TriggerRadiation: 59
+    TriggerPressureLow: 59
+    TriggerExamine: 59
+    TriggerBruteDamage: 59
+    TriggerThrow: 59
+    TriggerCold: 30
+    TriggerCO2: 30
+    TriggerPlasma: 30
+    TriggerN2O: 30
+    TriggerPressureHigh: 30
+    TriggerWrenching: 30
+    TriggerPrying: 30
+    TriggerScrewing: 30
+    TriggerPulsing: 30
+    TriggerTritium: 6
+    TriggerAmmonia: 6
+    TriggerFrezon: 6
+    #TriggerInteraction: 59 #this one interferes with activating artifact AND brute dmg!
+    #TriggerTimer: 15 # possibly unreliable, need to look into artifact's system to see why TriggerTimer sometimes causes malfunctions despite being so apparently simple. Uncomment once fixed or resolved.
+  # Starlight-End
 
 - type: xenoArchTrigger
   id: TriggerMusic

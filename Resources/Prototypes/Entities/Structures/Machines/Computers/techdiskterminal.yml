@@ -42,13 +42,17 @@
 
 - type: weightedRandom
   id: TechDiskTierWeights
+  # Starlight-start: 1000
   weights:
-    1: 25
-    2: 10
-    3: 1
+    1: 694
+    2: 278
+    3: 28
+  # Starlight-end
 
 - type: weightedRandom
   id: RareTechDiskTierWeights
+  # Starlight-start: 100
   weights:
-    2: 19
-    3: 1
+    2: 95
+    3: 5
+  # Starlight-end

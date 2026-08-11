@@ -103,16 +103,17 @@
 # Mopwata
 - type: weightedRandomFillSolution
   id: RandomFillMopwata
+  # Starlight-start: 1000
   fills:
   - quantity: 10
-    weight: 5
+    weight: 384
     reagents:
     - Blood
     - CopperBlood
     - Slime
     - Vomit
   - quantity: 10
-    weight: 4
+    weight: 308
     reagents:
     - Coffee
     - Tea
@@ -127,7 +128,7 @@
     - LemonLimeCranberry
     - PwrGame
   - quantity: 10
-    weight: 3
+    weight: 231
     reagents:
     - Whiskey
     - Vodka
@@ -137,7 +138,7 @@
     - Tequila
     - Absinthe
   - quantity: 10
-    weight: 1
+    weight: 77
     reagents:
     - SpaceDrugs
     - Mold
@@ -146,6 +147,7 @@
     - SpaceCleaner
     - MilkSpoiled
     - FourteenLoko
+  # Starlight-end
 
 - type: entity
   parent: [DrinkVisualsAllFilled, DrinkBottleGlassSmallBaseFull]

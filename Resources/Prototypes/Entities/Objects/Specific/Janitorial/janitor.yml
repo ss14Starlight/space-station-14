@@ -281,12 +281,14 @@
 
 - type: weightedRandomEntity
   id: PlungerLoot
+  # Starlight-start: 1000
   weights:
-    RandomSpawner100: 56
-    SpacemenFigurineSpawner90: 28
-    SpawnMobCockroach: 5
-    MaintenanceToolSpawner: 5
-    SpawnMobMoproach: 2
+    RandomSpawner100: 583
+    SpacemenFigurineSpawner90: 292
+    SpawnMobCockroach: 52
+    MaintenanceToolSpawner: 52
+    SpawnMobMoproach: 21
+  # Starlight-end
 
 - type: entity
   parent: BaseItem

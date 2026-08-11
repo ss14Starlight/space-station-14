@@ -1,31 +1,33 @@
 - type: weightedRandom
   id: AnomalyBehaviorList
+  # Starlight-start: 10000
   weights:
   #safe
-    Slow: 0.5
-    Light: 0.5
-    FullSafe: 0.1
+    Slow: 360
+    Light: 360
+    FullSafe: 72
   #balanced
-    Balanced: 3
-    DelayedForce: 1
-    Rapid: 1
-    BalancedSecret: 1
-    Reflect: 1
-    NonSensivity: 1
-    Sensivity: 1
+    Balanced: 2158
+    DelayedForce: 719
+    Rapid: 719
+    BalancedSecret: 719
+    Reflect: 719
+    NonSensivity: 719
+    Sensivity: 719
   #Hard
-    Fast: 0.5
-    Strenght: 0.5
-    Inconstancy: 0.5
-    InconstancyParticle: 0.5
-    FullUnknown: 0.5
-    Jumping: 0.3
-    Invisibility: 0.5
+    Fast: 360
+    Strenght: 360
+    Inconstancy: 360
+    InconstancyParticle: 360
+    FullUnknown: 360
+    Jumping: 216
+    Invisibility: 360
   #Complex
-    FastUnknown: 0.2
-    JumpingUnknown: 0.1
-    InconstancyParticleUnknown: 0.1
-    InvisibilityJumping: 0.1
+    FastUnknown: 144
+    JumpingUnknown: 72
+    InconstancyParticleUnknown: 72
+    InvisibilityJumping: 72
+  # Starlight-end
 
 
 # Easy x0.5 point production

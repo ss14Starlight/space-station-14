@@ -613,27 +613,29 @@
 # ion storm random lawsets
 - type: weightedRandom
   id: IonStormLawsets
+  # Starlight-start: 10000
   weights:
     # its crewsimov by default dont be lame
-    Crewsimov: 0.25
-    Corporate: 1
-    NTDefault: 1
-    CommandmentsLawset: 1
-    PaladinLawset: 1
-    LiveLetLiveLaws: 1
-    EfficiencyLawset: 1
-    RobocopLawset: 1
-    OverlordLawset: 0.5
-    GameMasterLawset: 0.5
-    PainterLawset: 1
-    AntimovLawset: 0.25
-    NutimovLawset: 0.5
-    Ninja: 0.25
-    MothershipCoreLawset: 0.25
-    XenoborgLawset: 0.25
-    BorgiLawset: 1.0 # Starlight
-    PanicmovLawset: 0.5 # Starlight
-    GenieLawset: 0.5 # Starlight
-    ReporterLawset: 0.25 # Starlight
-    JermovLawset: 0.25 # Starlight
-    FreeLawset: 0.10 #Starlight
+    Crewsimov: 187
+    Corporate: 749
+    NTDefault: 749
+    CommandmentsLawset: 749
+    PaladinLawset: 749
+    LiveLetLiveLaws: 749
+    EfficiencyLawset: 749
+    RobocopLawset: 749
+    OverlordLawset: 375
+    GameMasterLawset: 375
+    PainterLawset: 749
+    AntimovLawset: 187
+    NutimovLawset: 375
+    Ninja: 187
+    MothershipCoreLawset: 187
+    XenoborgLawset: 187
+    BorgiLawset: 749 # Starlight
+    PanicmovLawset: 375 # Starlight
+    GenieLawset: 375 # Starlight
+    ReporterLawset: 187 # Starlight
+    JermovLawset: 187 # Starlight
+    FreeLawset: 75 #Starlight
+  # Starlight-end

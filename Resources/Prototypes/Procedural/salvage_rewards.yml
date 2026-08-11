@@ -1,75 +1,81 @@
 - type: weightedRandomEntity
   id: SalvageRewardCommon
+  # Starlight-start: 1000
   weights:
     # basic materials
-    CrateMaterialGlass: 1.0
-    CrateMaterialPlasteel: 1.0
-    CrateMaterialPlastic: 1.0
-    CrateMaterialSteel: 1.0
+    CrateMaterialGlass: 158
+    CrateMaterialPlasteel: 158
+    CrateMaterialPlastic: 158
+    CrateMaterialSteel: 158
     # things the station might want
-    CrateEngineeringAMEJar: 0.25
-    CrateFoodPizzaLarge: 0.25
-    CrateFoodSoftdrinks: 0.25
-    CrateFunInstrumentsVariety: 0.25
-    CrateSalvageEquipment: 0.25
-    RandomArtifactSpawner: 0.25
+    CrateEngineeringAMEJar: 39
+    CrateFoodPizzaLarge: 39
+    CrateFoodSoftdrinks: 39
+    CrateFunInstrumentsVariety: 39
+    CrateSalvageEquipment: 39
+    RandomArtifactSpawner: 39
     # weighted down since it sells for a lot
-    NuclearBombKeg: 0.1
+    NuclearBombKeg: 16
     # money
-    SpaceCash500: 0.5
-    SpaceCash1000: 0.25
+    SpaceCash500: 79
+    SpaceCash1000: 39
+  # Starlight-end
 
 - type: weightedRandomEntity
   id: SalvageRewardRare
+  # Starlight-start: 10000
   weights:
     # rare materials
-    IngotGold: 1.0
-    IngotSilver: 1.0
-    SheetPlasma: 1.0
-    SheetUranium: 1.0
-    CratePartsT3: 1.0
-    CratePartsT3T4: 0.5
-    TechnologyDiskRare: 0.5
+    IngotGold: 826
+    IngotSilver: 826
+    SheetPlasma: 826
+    SheetUranium: 826
+    CratePartsT3: 826
+    CratePartsT3T4: 413
+    TechnologyDiskRare: 413
     # cloning boards
-    CloningPodMachineCircuitboard: 0.5
-    MedicalScannerMachineCircuitboard: 0.5
-    CloningConsoleComputerCircuitboard: 0.5
-    BiomassReclaimerMachineCircuitboard: 0.5
+    CloningPodMachineCircuitboard: 413
+    MedicalScannerMachineCircuitboard: 413
+    CloningConsoleComputerCircuitboard: 413
+    BiomassReclaimerMachineCircuitboard: 413
     # basic weapons
-    Machete: 0.25
-    Katana: 0.25
-    KukriKnife: 0.25
-    WeaponLaserGun: 0.25
-    MakeshiftShield: 0.25
+    Machete: 207
+    Katana: 207
+    KukriKnife: 207
+    WeaponLaserGun: 207
+    MakeshiftShield: 207
     # rare armor
-    ClothingHeadHelmetSwat: 0.25
-    ClothingOuterArmorBasicSlim: 0.25
+    ClothingHeadHelmetSwat: 207
+    ClothingOuterArmorBasicSlim: 207
     # rare weapons
-    WeaponMakeshiftLaser: 0.1
+    WeaponMakeshiftLaser: 83
     # money
-    SpaceCash500: 1.0
-    SpaceCash1000: 0.75
-    SpaceCash2500: 0.5
+    SpaceCash500: 826
+    SpaceCash1000: 621
+    SpaceCash2500: 413
+  # Starlight-end
 
 - type: weightedRandomEntity
   id: SalvageRewardEpic
+  # Starlight-start: 100
   weights:
     # rare machinery
-    AmmoTechFabCircuitboard: 1.0
-    ResearchAndDevelopmentServerMachineCircuitboard: 1.0
-    CratePartsT4: 1.0
-    PowerCellAntiqueProto: 0.25
+    AmmoTechFabCircuitboard: 8
+    ResearchAndDevelopmentServerMachineCircuitboard: 8
+    CratePartsT4: 8
+    PowerCellAntiqueProto: 2
     # basic weapons
-    CrateArmorySMG: 1.0
-    CrateArmoryLaser: 1.0
-    CrateArmoryShotgun: 1.0
-    CrateArmoryPistols: 1.0
+    CrateArmorySMG: 8
+    CrateArmoryLaser: 8
+    CrateArmoryShotgun: 8
+    CrateArmoryPistols: 8
     # rare armor
-    ClothingOuterArmorRiot: 1.0
+    ClothingOuterArmorRiot: 8
     # rare chemicals
-    ChemistryBottleCognizine: 1.0
-    ChemistryBottleOmnizine: 1.0
+    ChemistryBottleCognizine: 8
+    ChemistryBottleOmnizine: 8
     # money
-    SpaceCash2500: 1.0
-    SpaceCash5000: 0.75
-    SpaceCash10000: 0.5
+    SpaceCash2500: 8
+    SpaceCash5000: 6
+    SpaceCash10000: 4
+  # Starlight-end

@@ -1,19 +1,21 @@
 # threats called in by ninja hacking comms console
 - type: weightedRandom
   id: NinjaThreats
+  # Starlight-start: 1000
   weights:
-    Dragon: 1
-    Revenant: 1
+    Dragon: 181
+    Revenant: 181
     # Starlight Start
-    Clown: 1
-    LoneOp: 0.25
-    NinjaBackup: 0.75
-    Rod: 0.75
-    Wizard: 0.1
+    Clown: 181
+    LoneOp: 45
+    NinjaBackup: 134
+    Rod: 134
+    Wizard: 18
     #Xenoborgs: 0.05
-    Eeeplet: 0.5
-    Colossus: 0.2
+    Eeeplet: 90
+    Colossus: 36
     # Starlight End
+  # Starlight-end
 
 - type: ninjaHackingThreat
   id: Dragon
