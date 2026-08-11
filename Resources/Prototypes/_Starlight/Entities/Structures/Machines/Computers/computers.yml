@@ -227,6 +227,35 @@
   categories: [ ShouldMapStation ]
   name: remote salvage shuttle console, now broken
   description: Used to pilot the salvage shuttle remotely.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: shuttle-salvage
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: DroneConsole
+    components:
+      - type: SalvageShuttle
+  - type: RadarConsole
+    maxRange: 256
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#735ec3"
+  - type: Computer
+    board: SalvageShuttleConsoleCircuitboard
+  - type: StealTarget
+    stealGroup: SalvageShuttleConsoleCircuitboard
+  - type: AccessReader
+    access: [ [ "Shuttle" ], [ "Salvage" ] ]
 
 - type: entity
   parent: BaseComputerShuttle
