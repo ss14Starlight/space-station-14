@@ -489,30 +489,33 @@
 
 #region Misc
 
-# ── Deputize Salvage Personnel ────────────────────────────────────────────────
+# ── ITG Salvage Team ──────────────────────────────────────────────────────────
 - type: secureTerminalRequest
-  id: DeputizeSalvage
-  name: secure-terminal-deputize-salvage-name
-  description: secure-terminal-deputize-salvage-desc
-  announcement: secure-terminal-deputize-salvage-announcement
+  id: ITGSalvageTeam
+  name: secure-terminal-itg-salvage-team-name
+  description: secure-terminal-itg-salvage-team-desc
+  announcement: secure-terminal-itg-salvage-team-announcement
   announcementColor: "#ff4444"
   activationDelaySecs: 0
-  fee: 0
+  fee: 10000
   salaryPenalty: 0.0
   actionType: Announcement
   sortOrder: 200
   authGroups:
-    - [Captain, HeadOfSecurity]
+    - [Captain]
+    - [HeadOfSecurity]
   authGroupLabels:
-    - "Captain / HoS (1)"
+    - "Captain (1)"
+    - "Head of Security (2)"
   cooldownSecs: 600
+  authTimer: 60
 
-# ── Revoke Salvage Deputization ───────────────────────────────────────────────
+# ── Dismiss ITG Salvage Team ──────────────────────────────────────────────────
 - type: secureTerminalRequest
-  id: RevokeSalvageDeputization
-  name: secure-terminal-revoke-salvage-name
-  description: secure-terminal-revoke-salvage-desc
-  announcement: secure-terminal-revoke-salvage-announcement
+  id: DismissITGSalvageTeam
+  name: secure-terminal-dismiss-itg-salvage-team-name
+  description: secure-terminal-dismiss-itg-salvage-team-desc
+  announcement: secure-terminal-dismiss-itg-salvage-team-announcement
   announcementColor: "#ff4444"
   activationDelaySecs: 0
   fee: 0

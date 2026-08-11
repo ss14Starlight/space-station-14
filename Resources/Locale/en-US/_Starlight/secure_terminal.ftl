@@ -154,16 +154,15 @@ secure-terminal-med-pod-desc = Dispatches the Emergency Medical Pod — rapid-de
     Use when mass casualties exceed the station's medical capacity.
 secure-terminal-med-pod-announcement = The Emergency Medical Pod has been authorized and is en route. Estimated arrival: 5 minutes.
 
-secure-terminal-deputize-salvage-name = Deputize Salvage Personnel
-secure-terminal-deputize-salvage-desc = Formally deputizes Salvage as auxiliary security personnel.
-    Recommended when no Security personnel are present, or when Security is unable to handle active threats to the station.
-    This is a station-wide announcement only — it grants no additional access.
-secure-terminal-deputize-salvage-announcement = Salvage personnel have been deputized and are now acting in an auxiliary security capacity. Deputies are authorized to engage active station threats.
+secure-terminal-itg-salvage-team-name = ITG Salvage Team
+secure-terminal-itg-salvage-team-desc = Contracts the Interstellar Trade Guild's local Salvage team to engage active station threats.
+    Recommended when no Security personnel are present, or when Security cannot respond without assistance.
+secure-terminal-itg-salvage-team-announcement = The Interstellar Trade Guild's local Salvage team has been contracted to engage active station threats.
 
-secure-terminal-revoke-salvage-name = Revoke Salvage Deputization
-secure-terminal-revoke-salvage-desc = Ends the deputization of Salvage personnel and returns them to standard cargo duties.
-    This is a station-wide announcement only — no access is changed.
-secure-terminal-revoke-salvage-announcement = Salvage personnel are no longer deputized.
+secure-terminal-dismiss-itg-salvage-team-name = Dismiss ITG Salvage Team
+secure-terminal-dismiss-itg-salvage-team-desc = Ends the Interstellar Trade Guild's assistance contract and returns their team to standard duties.
+    Recommended once all threats to the station have been dealt with.
+secure-terminal-dismiss-itg-salvage-team-announcement = The Interstellar Trade Guild's contract has ended and their Salvage team has returned to standard duties.
 
 secure-terminal-nukerequest-name = Self Destruct Code
 secure-terminal-nukerequest-desc = Request the nuclear self-destruct codes.
