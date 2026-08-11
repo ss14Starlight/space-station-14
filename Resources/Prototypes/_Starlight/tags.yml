@@ -371,9 +371,6 @@
 - type: Tag
   id: InsulatedThread
 
-- type: Tag
-  id: IteratorTraitBackground
-
 # Used for the jet injector and advanced jet injector
 - type: Tag
   id: JetInjector

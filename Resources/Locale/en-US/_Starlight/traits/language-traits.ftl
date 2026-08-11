@@ -65,3 +65,6 @@ trait-language-lagomorphian-desc = The lynarxical tongue, developed as an integr
 
 trait-language-squeakish-name = Squeakish
 trait-language-squeakish-desc = You can speak Squeakish, the language of the Rodentia, which is made up of a series of chirps and squeaks.
+
+trait-language-scurretsign-name = Scurret Sign
+trait-language-scurretsign-desc = You've picked up on how to communicate in the complex sign language of the Scurrets, but not without a cost. The knowledge of the common tongue is beginning to slip...

@@ -44,24 +44,3 @@
   parent: Translator
   name: foreigner's translator
   description: A special-issue translator that helps foreigner's speak and understand this station's primary language.
-
-- type: entity
-  categories: [HideSpawnMenu]
-  id: TranslatorIterator
-  parent: Translator
-  name: iterator's translator
-  description: A special-issue translator that helps Iterator's understand this station's primary language.
-  components:
-    - type: Sprite
-      layers:
-        - state: icon
-        - state: color
-        - state: translator
-          shader: unshaded
-          visible: false
-          map: ["translator"]
-    - type: HandheldTranslator
-      understood:
-        - GalacticCommon
-      requires:
-        - ScurretSign

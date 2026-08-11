@@ -18,7 +18,6 @@
       time: 50h # Starlight - Literally the most pressured role in the game, you need extensive knowledge of your department
     - !type:TraitsRequirement # Starlight
       traits:
-        - Iterator
         - Muted
         - Blindness
       inverted: true

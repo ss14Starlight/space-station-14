@@ -18,7 +18,6 @@
       time: 25h # Starlight
     - !type:TraitsRequirement # Starlight
       traits:
-        - Iterator
         - Muted
       inverted: true
   weight: 20

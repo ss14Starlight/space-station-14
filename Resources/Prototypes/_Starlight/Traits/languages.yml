@@ -13,10 +13,6 @@
   conflicts:
     - Foreigner
   requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Foreigner
@@ -32,10 +28,6 @@
   conflicts:
     - ForeignerLight
   requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 # Galactic Languages // Should cost: 1
 
@@ -51,10 +43,6 @@
       languagesUnderstood:
         - Sign
   requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Classical
@@ -68,10 +56,6 @@
       languagesUnderstood:
         - Classical
   requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Darktongue
@@ -85,10 +69,6 @@
       languagesUnderstood:
         - Darktongue
   requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
     - !type:TraitsRequirement
       traits:
         - DarkElf
@@ -110,10 +90,6 @@
     - !type:TraitsRequirement
       traits:
         - Darktongue
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
     - !type:TraitsRequirement
       traits:
         - CaveElf
@@ -140,10 +116,6 @@
         - Felionoid
         - ProtoFelionoid
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Canilunzt
@@ -164,10 +136,6 @@
       species:
         - Vulpkanin
         - ProtoVulp
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
       inverted: true
 
 - type: trait
@@ -190,10 +158,6 @@
         - ProtoAvali
         - ProtoResomi
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Aielic
@@ -208,10 +172,6 @@
       languagesUnderstood:
         - Aielic
   requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
     - !type:TraitsRequirement
       traits:
         - HighElf
@@ -235,10 +195,6 @@
         - Dwarf
         - ProtoDwarf
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: SolCommon
@@ -257,10 +213,6 @@
       species:
         - Human
         - ProtoHuman
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
       inverted: true
 
 - type: trait
@@ -281,10 +233,6 @@
         - Vox
         - ProtoVox
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Draconic
@@ -303,10 +251,6 @@
       species:
         - Reptilian
         - ProtoReptilian
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
       inverted: true
 
 - type: trait
@@ -327,10 +271,6 @@
         - Shadekin
         - ProtoKin
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Bubblish
@@ -350,10 +290,6 @@
         - SlimePerson
         - ProtoSlimePerson
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Terrum
@@ -372,10 +308,6 @@
       species:
         - Cyclorite
         - ProtoCyclorite
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
       inverted: true
 
 - type: trait
@@ -400,10 +332,6 @@
       traits:
         - WoodElf
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Lepidic # Inferus: Change to "Lepidic"
@@ -424,10 +352,6 @@
         - Moth
         - ProtoMoth
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Thaveyan
@@ -446,10 +370,6 @@
       species:
         - Thaven
         - ProtoThaven
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
       inverted: true
 
 - type: trait
@@ -470,10 +390,6 @@
         - Lagomorph
         - ProtoLagomorph
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
 
 - type: trait
   id: Squeakish
@@ -492,7 +408,16 @@
       species:
         - Rodentia
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+
+- type: trait
+  id: ScurretSign
+  name: trait-language-scurretsign-name
+  description: trait-language-scurretsign-desc
+  category: LanguageTraits
+  cost: 3
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - ScurretSign
+      languagesUnderstood:
+        - ScurretSign

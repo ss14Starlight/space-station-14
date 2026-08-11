@@ -11,7 +11,6 @@
       proto: ExtRolesReq
     - !type:TraitsRequirement
       traits:
-        - Iterator
         - Muted
       inverted: true
   startingGear: NanoTrasenRepresentativeGear
