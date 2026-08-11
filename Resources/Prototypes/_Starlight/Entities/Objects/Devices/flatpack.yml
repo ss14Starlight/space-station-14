@@ -182,9 +182,9 @@
     - type: Flatpack
       entity: EndymionMemorial1
       randomEntities:
-        - EndymionMemorial1
-        - EndymionMemorial2
         - EndymionStatueLarge1
+        #- EndymionMemorial1 Sprites not yet made
+        #- EndymionMemorial2
 
 - type: entity
   parent: BaseFlatpack
@@ -196,4 +196,4 @@
       entity: EndymionStatue1
       randomEntities:
         - EndymionStatue1
-        - EndymionStatue2
+        #- EndymionStatue2 Sprites not yet made
