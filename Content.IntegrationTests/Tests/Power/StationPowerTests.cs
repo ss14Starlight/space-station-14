@@ -44,7 +44,6 @@ public sealed class StationPowerTests : GameTest
         */// Starlight-comment end
         //Starlight, do not accept any upstream maps into this list, we are keeping them out for package size and just general management reasons
         #region Starlight
-        "StarlightBarratry",
         "StarlightCork",
         "StarlightKiloton",
         "StarlightLagan",
