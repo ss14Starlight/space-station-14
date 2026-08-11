@@ -341,13 +341,13 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         }
     }
 
-            private void OnAnchorChanged(EntityUid uid, ElectrolyzerComponent comp, ref AnchorStateChangedEvent args)
-            {
-                if (!args.Anchored && comp.IsPowered)
-                {
-                    comp.IsPowered = false;
-                    UpdateAppearance(uid);
-                    _popup.PopupEntity(Loc.GetString("electrolyzer-turned-off"), uid);
-                }
-            }
+    private void OnAnchorChanged(EntityUid uid, ElectrolyzerComponent comp, ref AnchorStateChangedEvent args)
+    {
+        if (!args.Anchored && comp.IsPowered)
+        {
+            comp.IsPowered = false;
+            UpdateAppearance(uid);
+            _popup.PopupEntity(Loc.GetString("electrolyzer-turned-off"), uid);
+        }
+    }
 }
