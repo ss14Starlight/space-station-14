@@ -126,8 +126,8 @@
 
 - type: vessel
   id: Secuttle
-  name: NanoTrasen "Secuttle".
-  description: This is a shuttle designed for military operations, it has been modified to be more sutable for security dutys. (Armory is not full with guns as per Central Command regulations)
+  name: NTS "Catcher" Law
+  description: An old military-pattern shuttle retrofitted for use by station Security. Comes with a small but stocked medbay and a prisoner holding cell.
   price: 50000
   category: Medium
   group: Security
