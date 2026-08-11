@@ -72,6 +72,7 @@ public sealed partial class EmotesMenuSystem : EntitySystem
         _metaData.SetEntityName(action, name, metaDataCache);
         _actions.SetIcon((action, action.Comp), proto.Icon);
         _actions.SetEvent(action, new PlayEmoteActionEvent { ProtoId = proto.ID });
+        _actions.SetTemporary(action!, true);
 
         _popup.PopupEntity(Loc.GetString("emote-menu-bound", ("emote", name)), player.Value, player.Value);
     }
@@ -81,7 +82,7 @@ public sealed partial class EmotesMenuSystem : EntitySystem
         if (ev.ProtoId.Id.Length == 0)
             return;
 
-        _chat.TryEmoteWithChat(ev.Performer, ev.ProtoId);
+        ev.Handled = _chat.TryEmoteWithChat(ev.Performer, ev.ProtoId);
     }
 
     #endregion

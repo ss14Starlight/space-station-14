@@ -4,5 +4,6 @@
   id: ActionEmoteBindBase
   components:
   - type: Action
+    useDelay: 3
   - type: InstantAction
     event: null
