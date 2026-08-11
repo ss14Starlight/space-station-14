@@ -148,7 +148,7 @@ namespace Content.Server.Atmos.EntitySystems
                 for (var i = 0; i < Atmospherics.Directions; i++)
                 {
                     var indices = tile.GridIndices.Offset((AtmosDirection) (1 << i));
-                    if (_map.TryGetTile(ent.Comp3, indices, out var gridTile) && !gridTile.IsEmpty)
+                    if (_mapSystem.TryGetTile(ent.Comp3, indices, out var gridTile) && !gridTile.IsEmpty)
                     {
                         connected = true;
                         break;
@@ -176,7 +176,7 @@ namespace Content.Server.Atmos.EntitySystems
         {
             var idx = tile.GridIndices;
             bool mapAtmosphere;
-            if (_map.TryGetTile(ent.Comp3, idx, out var gTile) && !gTile.IsEmpty)
+            if (_mapSystem.TryGetTile(ent.Comp3, idx, out var gTile) && !gTile.IsEmpty)
             {
                 var contentDef = (ContentTileDefinition) _tileDefinitionManager[gTile.TypeId];
                 mapAtmosphere = contentDef.MapAtmosphere;
