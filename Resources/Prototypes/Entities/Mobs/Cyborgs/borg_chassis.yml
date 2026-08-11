@@ -159,7 +159,8 @@
     - type: ShowHealthBars
       damageContainers: # Starlight start
       - Biological
-      - Hybrid # Starlight end, Neocytes
+      - Hybrid
+      - IPC # Starlight end, Neocytes
     - type: InteractionPopup
       interactSuccessString: petting-success-syndicate-cyborg
       interactFailureString: petting-failure-syndicate-cyborg
@@ -176,21 +177,12 @@
       damageContainers:
       - Biological
       - Hybrid
+      - IPC
     - type: ActionGrant
       actions:
-      - ActionViewLaws
       - ActionMedTek
     - type: UserInterface
       interfaces:
-        enum.SiliconLawsUiKey.Key:
-          type: SiliconLawBoundUserInterface
-          requireInputValidation: false
-        enum.BorgUiKey.Key:
-          type: BorgBoundUserInterface
-        enum.StrippingUiKey.Key:
-          type: StrippableBoundUserInterface
-        enum.BorgSwitchableTypeUiKey.SelectBorgType:
-          type: BorgSelectTypeUserInterface
         enum.HealthAnalyzerUiKey.Key:
           type: HealthAnalyzerBoundUserInterface
     # Starlight END
@@ -419,11 +411,13 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-    - Hybrid # Starlight
+    - Hybrid
+    - IPC # Starlight
   - type: ShowHealthIcons
     damageContainers:
     - Biological
-    - Hybrid # Starlight
+    - Hybrid
+    - IPC # Starlight
 # Starlight Start
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
@@ -445,6 +439,20 @@
     - Medical
     - Science
 #Starlight End
+  # Starlight BEGIN
+  - type: HealthAnalyzer
+    damageContainers:
+    - Biological
+    - Hybrid
+    - IPC
+  - type: ActionGrant
+    actions:
+    - ActionMedTek
+  - type: UserInterface
+    interfaces:
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface
+  # Starlight END
 
 - type: entity
   parent: BaseBorgChassisDerelict

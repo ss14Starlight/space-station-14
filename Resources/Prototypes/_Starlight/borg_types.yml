@@ -74,6 +74,7 @@
     damageContainers:
     - Biological
     - Hybrid
+    - IPC
   - type: ActionGrant
     actions:
     - ActionViewLaws
