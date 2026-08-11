@@ -1,5 +1,0 @@
-# Neocyte guide entry moved to _Starlight/Guidebook/species.yml because we renamed all of it.
-- type: guideEntry
-  id: IPC
-  name: species-name-ipc
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/IPC.xml"
