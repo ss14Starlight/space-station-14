@@ -80,12 +80,14 @@ public sealed partial class CosmicEffigySystem : EntitySystem
             !TryComp<CosmicColossusComponent>(colossusUid, out var colossus))
             return;
 
-        var xform = Transform(colossusUid);
-        var location = FormattedMessage.RemoveMarkupOrThrow(
-            _navMap.GetNearestBeaconString((colossusUid, xform)));
+        if (colossus.EffigyCrits != 0)
+            {
+            var xform = Transform(colossusUid);
+            var location = FormattedMessage.RemoveMarkupOrThrow(
+                _navMap.GetNearestBeaconString((colossusUid, xform)));
 
-        _chatSystem.DispatchStationAnnouncement(colossusUid, Loc.GetString("cosmiccult-effigy-critical", ("location", location)), null, false, null, Color.FromHex("#cae8e8"));
-
+            _chatSystem.DispatchStationAnnouncement(colossusUid, Loc.GetString("cosmiccult-effigy-critical", ("location", location)), null, false, null, Color.FromHex("#cae8e8"));
+            }
         colossus.EffigyCrits++;
         Dirty(colossusUid, colossus);
     }
