@@ -20,9 +20,7 @@ namespace Content.Server._Starfall.Particles;
 /// TODO: KILL WHEN GIBBING IS PREDICTED/SHARED I BEG
 public sealed class GibMistParticleSystem : EntitySystem
 {
-    #region Starlight
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    #endregion
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!; // Starlight-edit
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
@@ -36,7 +34,7 @@ public sealed class GibMistParticleSystem : EntitySystem
         var contents = ent.Comp.BloodReferenceSolution.Contents;
         var color = contents.Count > 0
             ? _bloodstream.GetBloodColor((ent.Owner, ent.Comp))
-            : Color.Red;
+            : Color.Red; // Starlight-edit
 
         RaiseNetworkEvent(new GibMistParticleEvent(_transform.GetMapCoordinates(ent), color), Filter.Pvs(ent.Owner));
     }

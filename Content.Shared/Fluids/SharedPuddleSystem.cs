@@ -214,7 +214,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
                 var interpolateValue = quantity.Float() / solution.Volume.Float();
                 color = Color.InterpolateBetween(color,
-                    solution.GetColorWithOnly(_prototypeManager, standout),
+                    solution.GetColorWithOnly(_prototypeManager, standout), // Blimpuf edit
                     interpolateValue);
             }
         }

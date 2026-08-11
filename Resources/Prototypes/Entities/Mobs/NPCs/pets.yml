@@ -1046,7 +1046,7 @@
   - type: Damageable
     damageModifierSet: SlimePet
   - type: Bloodstream
-    bloodReagentColor: "#ffffff"
+    bloodReagentColor: "#ffffff" # Blimpuf edit
     bloodlossHealDamage:
       types:
         Bloodloss:

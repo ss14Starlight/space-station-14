@@ -909,12 +909,12 @@ namespace Content.Shared.Chemistry.Components
                 if (first)
                 {
                     first = false;
-                    mixColor = GetReagentColor(proto, reagent);
+                    mixColor = GetReagentColor(proto, reagent); // Blimpuf edit
                     continue;
                 }
 
                 var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, GetReagentColor(proto, reagent), interpolateValue);
+                mixColor = Color.InterpolateBetween(mixColor, GetReagentColor(proto, reagent), interpolateValue); // Blimpuf edit
             }
             return mixColor;
         }
@@ -952,12 +952,12 @@ namespace Content.Shared.Chemistry.Components
                 if (first)
                 {
                     first = false;
-                    mixColor = GetReagentColor(proto, reagent);
+                    mixColor = GetReagentColor(proto, reagent); // Blimpuf edit
                     continue;
                 }
 
                 var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, GetReagentColor(proto, reagent), interpolateValue);
+                mixColor = Color.InterpolateBetween(mixColor, GetReagentColor(proto, reagent), interpolateValue); // Blimpuf edit
             }
             return mixColor;
         }
