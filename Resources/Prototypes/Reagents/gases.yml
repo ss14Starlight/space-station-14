@@ -16,7 +16,7 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant, Protogen ] # FH
+          type: [ Human, Animal, Rat, Plant, Neocyte ] # FH + Starlight
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -47,7 +47,7 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Protogen ] # FH
+          type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Neocyte ] # FH + Starlight
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -242,7 +242,7 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Vox, Slime ]
+          type: [ Vox, Slime, Cyclorite, NeoVox ] # Starlight
       # Converts Nitrogen into Ammonia
       - !type:ModifyLungGas
         conditions:

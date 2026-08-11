@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Romero/Littlemen",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "firebolt"
+    },
+    {
+      "name": "fireorb"
+    },
+    {
+      "name": "firearrows"
+    },
+    {
+      "name": "eruption"
+    },
+    {
+      "name": "sculptureicon"
+    },
+    {
+      "name": "icerune"
+    },
+    {
+      "name": "arcticglare"
+    },
+    {
+      "name": "iceshard"
+    },
+    {
+      "name": "iceorb"
+    },
+    {
+      "name": "icepillars"
+    },
+    {
+      "name": "eruptionrune",
+      "delays": [
+       [
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        10]
+            ]
+
+    }
+  ]
+}

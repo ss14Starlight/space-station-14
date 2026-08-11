@@ -77,18 +77,16 @@
   id: BluespaceHarvesterPlushieTable
   # Starlight-Start: 1000
   weights:
-    PlushieGhost: 169
-    PlushieSharkBlue: 169
-    PlushieVox: 137
-    PlushieRGBee: 119
-    PlushieMagicarp: 102
-    PlushieRainbowCarp: 76
-    PlushieThrongler: 59
-    PlushieNuke: 51
-    PlushieShadekin: 42
-    PlushieGlados: 34
-    PlushieLargeSoftShark: 25
-    PlushieCosmicCult: 17
+    PlushieGhost: 183
+    PlushieSharkBlue: 183
+    PlushieVox: 147
+    PlushieRGBee: 129
+    PlushieMagicarp: 110
+    PlushieRainbowCarp: 83
+    PlushieThrongler: 64
+    PlushieNuke: 55
+    PlushieLargeSoftShark: 28
+    PlushieCosmicCult: 18
   # Starlight-End
 
 - type: weightedRandomEntity

@@ -1,0 +1,146 @@
+# Base Prototypes
+- type: entity
+  id: BaseNewspaper
+  parent: BaseItem
+  name: newspaper
+  description: A paperback newspaper. This one is several years out of date and doesn't seem to contain any information you don't already know.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: newspaper
+  - type: Item
+    size: Small
+    storedRotation: -90
+    # SL Start
+    inhandVisuals:
+      left:
+      - state: newspaper-inhand-left
+      right:
+      - state: newspaper-inhand-right
+  - type: Appearance
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: ExtinguishableSetCollisionWake
+  - type: Flammable
+    fireSpread: true
+    alwaysCombustible: true
+    canExtinguish: true
+    damage:
+      types:
+        Heat: 1
+  - type: FireVisuals
+    sprite: Effects/fire.rsi
+    normalState: fire
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Edible
+    delay: 7
+    forceFeedDelay: 7
+  - type: FlavorProfile
+    flavors:
+    - paper
+  - type: BadFood
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      SheetPrinter: 100
+  - type: Tag
+    tags:
+    - Paper # SL End
+
+# Newspapers
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperBigWatermelon
+  name: Galaxy NOW - October 1st, 2525 #SL Edit and the line under but it wont let me comment on that line?
+  description: "A paperback newspaper. The headline reads: 'World's Biggest 'SuperHuge' Watermelon Ever Grown On Garanir, Botanist Community In Shock'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperSpores
+  name: Galaxy NOW - October 8th, 2525 #SL Edit
+  description: "A paperback newspaper. The headline reads: 'Experts Warn Against Dangers of Spore Gas; Leak Aboard Botanist Ship Leaves 3 Hospitalized'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperGasLeaks
+  name: Galaxy NOW - October 15th, 2525 #SL Edit
+  description: "A paperback newspaper. The headline reads: 'New Space Travel Technology Potentially Linked to Dangerous Gas Leaks, Experts Say'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMaintenanceTar
+  name: Galaxy NOW - October 22nd, 2525 #SL Edit
+  description: "A paperback newspaper. The headline reads: 'Doctors Concerned About Rising Freezon Usage Amongst Teens'" #SL Edit
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperWater
+  name: Galaxy NOW - October 30th, 2525 #SL Edit
+  description: "A paperback newspaper. The headline reads: 'Water Shortage Creates Concern For Halloween Plans on Indar'" #SL Edit
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperWeldingFuel
+  name: Galaxy NOW - December 5th, 2525 #SL Edit
+  description: "A paperback newspaper. The headline reads: 'Citizens Concerned About Rising Tricordrazine Prices'" #SL Edit
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperParasite
+  name: Galaxy NOW - December 12th, 2525 #SL Edit
+  description: "A paperback newspaper. The headline reads: 'Parasite-Infested Cruise Ship Shot Down'" #SL Edit
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMining
+  name: Galaxy NOW - December 17th, 2525 #SL Edit
+  description: "A paperback newspaper. The headline reads: 'Mining Company Goes To War Over Asteroid Ownership Dispute'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMining2
+  name: Galaxy NOW - January 2nd, 2526 #SL Edit
+  description: "A paperback newspaper. The headline reads: 'Mining Company Cold War Ended, Jensen Mining Co. Claims Ownership Of Valuable Asteroid'"
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperMining3
+  name: Galaxy NOW - January 9th, 2526 #SL Edit
+  description: "A paperback newspaper. The headline reads: 'New Plasma Deposites Discovered in Asteroid Belt XLR-2781. Bidding War Begins'" #SL Edit
+
+- type: entity
+  parent: BaseNewspaper
+  id: NewspaperForeshadowing
+  name: Galaxy NOW - January 15th, 2526 #SL Edit
+  description: "A paperback newspaper. The headline reads: 'Reports of Worsening Cosmic Radiation Storms in Diphda Sector Confirmed by the Ministry of Health and Welfare'" #SL Edit
