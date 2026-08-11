@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
   changes:
-  - message: You can now late join as Traitors, Head Revs, Cosmic Cultists, Devils, and Initial Infected.
-    type: Tweak
-  id: 407115
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: Thieves, Vampires, Changelings, SELF Agents, Head Revs, Cosmic Cultists, and Devils now roll 4-8 minutes after round start, like Traitors.
-    type: Tweak
-  id: 407116
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
   - message: Reinforcement Traitors now get codewords.
     type: Tweak
   id: 407117
@@ -2799,4 +2785,18 @@ Entries:
   id: 407514
   time: '2026-08-11T19:16:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5604
+- author: Romero/Littlemen
+  changes:
+  - message: the cold case; a mauser C96 inspired pistol.
+    type: Add
+  id: 407515
+  time: '2026-08-11T19:42:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5586
+- author: Romero/Littlemen
+  changes:
+  - message: det has now loadout options for his lethal sidearm.
+    type: Add
+  id: 407516
+  time: '2026-08-11T19:42:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5586
 Order: -1
