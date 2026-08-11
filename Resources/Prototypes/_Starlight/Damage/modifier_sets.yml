@@ -73,9 +73,9 @@
     Cellular: 1.1
     Radiation: 1.2
 
-# ProtoDwarf
+# NeoDwarf
 - type: damageModifierSet
-  id: ProtoDwarf
+  id: NeoDwarf
   coefficients:
     Shock: 1.25
     Blunt: 1.1
@@ -83,9 +83,9 @@
     Heat: 1.15 # Their beards.
     Poison: 0.85 # Alcohol-optimized organs.
 
-# ProtoArachnid
+# NeoArachnid
 - type: damageModifierSet
-  id: ProtoArachnid
+  id: NeoArachnid
   coefficients:
     Shock: 1.25
     Blunt: 1.1
@@ -101,9 +101,9 @@
     Cellular: 0.9 # magic makes the flesh is less corruptible
     Blunt: 1.2 # brittle bones, etc.
 
-# ProtoElf
+# NeoElf
 - type: damageModifierSet
-  id: ProtoElf
+  id: NeoElf
   coefficients:
     Shock: 1.15 # They can counter some of the shock, magic resistance.
     Heat: 1.15 # They can share this with thaven, they've got similar enough body types.
@@ -120,9 +120,9 @@
     Cold: 0.75
     Heat: 1.25
 
-# ProtoLagomorph
+# NeoLagomorph
 - type: damageModifierSet
-  id: ProtoLagomorph
+  id: NeoLagomorph
   coefficients:
     Shock: 1.25
     Cold: 0.60 # They're already good against cold, so theirs can be lower.
@@ -235,6 +235,7 @@
     Piercing: 0.6
     Shock: 1.4
     Heat: 0.65
+    Structural: 0.7
   flatReductions:
     Blunt: 8
     Heat: 5

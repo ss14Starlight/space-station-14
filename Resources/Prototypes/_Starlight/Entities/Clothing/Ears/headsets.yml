@@ -28,6 +28,7 @@
         - EncryptionKeyCommon
     - type: Sprite
       sprite: _Starlight/Clothing/Ears/Headsets/magi.rsi
+    - type: HeadsetLoudMode
 
 - type: entity
   parent: ClothingHeadset
@@ -168,6 +169,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/marauder.ogg
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: ClothingHeadsetCargo
