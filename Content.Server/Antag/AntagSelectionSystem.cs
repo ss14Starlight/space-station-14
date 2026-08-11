@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag.Components;
+using Content.Server._Starlight.Humanoid;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
@@ -88,6 +89,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
     #region Starlight
     [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private NeocyteSystem _neocyte = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     #endregion
 
@@ -1157,8 +1159,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (prototype.StartingGear is not null)
             gear.Add(prototype.StartingGear.Value);
 
-        var selectedLoadout = GetSelectedLoadout(player, selectedProfile, prototype.RoleLoadout, out var selectedLoadoutProto); // Starlight, antag loadouts
-        _loadout.Equip(antag, gear, prototype.RoleLoadout, selectedLoadout, selectedLoadoutProto, prioritizeBackStorage: true); // Starlight
+        #region Starlight
+        var selectedLoadout = GetSelectedLoadout(player, selectedProfile, prototype.RoleLoadout, out var selectedLoadoutProto); // Antag loadouts
+        _neocyte.EquipSpeciesLoadoutForAntag(antag, selectedProfile, player, selectedLoadout, prototype.StartingGear);
+        _loadout.Equip(antag, gear, prototype.RoleLoadout, selectedLoadout, selectedLoadoutProto, prioritizeBackStorage: true);
+        #endregion
 
         // Ensure that we have the right mind for our entity.
         if (!_mind.TryGetMind(player, out var mind, out var mindComp) || mindComp.OwnedEntity != antag)

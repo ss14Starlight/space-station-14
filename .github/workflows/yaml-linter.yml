@@ -5,13 +5,13 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
-on:
-  push:
-    branches: [ master, staging, stable, Starlight, starlight-dev ]
-  merge_group:
-  pull_request:
-    types: [ opened, reopened, synchronize, ready_for_review ]
-  workflow_dispatch:
+#on:
+#  push:
+#    branches: [ master, staging, stable, Starlight, starlight-dev ]
+#  merge_group:
+#  pull_request:
+#    types: [ opened, reopened, synchronize, ready_for_review ]
+#  workflow_dispatch:
 
 jobs:
   build:

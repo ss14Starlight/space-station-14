@@ -5,7 +5,7 @@
   suffix: Dwarf
   components:
   - type: Metabolizer
-    metabolizerTypes: [Dwarf, Protogen]
+    metabolizerTypes: [Dwarf, Neocyte]
 
 - type: entity
   id: OrganDwarfLiver
