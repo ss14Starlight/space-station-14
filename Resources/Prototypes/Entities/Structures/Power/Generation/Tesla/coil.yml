@@ -119,10 +119,12 @@
     guides:
     - TeslaEngine
     - SingularityTeslaEngine
-  - type: Electrolyzer # Starlight
+  # Starlight-start
+  - type: Electrolyzer
     efficiency: .5
     passive: true
   - type: AtmosDevice
+  # Starlight-end
 
 - type: entity
   id: TeslaGroundingRod
