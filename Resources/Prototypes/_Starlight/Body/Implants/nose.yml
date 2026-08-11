@@ -13,8 +13,8 @@
 
 - type: entity
   id: NoseImplantOlfactory
-  name: scent-nose-implant-name
-  description: scent-nose-implant-description
+  name: olfactory implant
+  description: Enables you to perceive and track scents.
   parent: BaseEntityNoseImplant
   components:
   - type: Sprite
