@@ -1,0 +1,47 @@
+- type: entity
+  id: OrganNeoAvaliStomach
+  parent: OrganNeocyteStomach
+  name: avali biological reactor
+  suffix: Neo-Avali
+  components:
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+    isSpecialDigestibleExclusive: false
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+- type: entity
+  id: OrganNeoAvaliHeart
+  parent: OrganNeocyteHeart
+  name: avali cybernetic heart
+  suffix: Neo-Avali
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Avali, Neocyte]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
+- type: entity
+  id: OrganNeoAvaliLiver
+  parent: OrganNeocyteLiver
+  name: avali cybernetic liver
+  suffix: Neo-Avali
+  components:
+  - type: Metabolizer
+    updateInterval: 1.5
+    maxReagents: 1
+    metabolizerTypes: [Avali]
+    groups:
+    - id: Alcohol

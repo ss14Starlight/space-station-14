@@ -1,7 +1,7 @@
 - type: loadoutGroup
   id: RadioHostJumpsuit
   name: loadout-group-radiohost-jumpsuit
-  minLimit: 0
+  minLimit: 1
   loadouts:
   - JumpsuitHawaiBlack
   - JumpsuitHawaiBlue

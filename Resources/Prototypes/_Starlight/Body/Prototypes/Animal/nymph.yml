@@ -53,7 +53,7 @@
       connections:
       - legs
       organs:
-        lungs: OrganProtoDionaLungs
+        lungs: OrganNeoDionaLungs
         stomach: OrganAnimalStomach
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart
@@ -98,7 +98,7 @@
       - legs
       organs:
         lungs: OrganAnimalLungs
-        stomach: OrganProtoDionaStomach
+        stomach: OrganNeoDionaStomach
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
