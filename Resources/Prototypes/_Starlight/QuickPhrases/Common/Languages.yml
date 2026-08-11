@@ -4,12 +4,6 @@
   group: SpeciesLanguage
   abstract: true
 
-#- type: quickPhrase
-#  id: BasePetLanguagePhrase
-#  parent: BaseCommonPhrase
-#  group: PetLanguage
-#  abstract: true
-
 - type: quickPhrase
   parent: BaseSpeciesLanguagePhrase
   id: GalComPhrase
