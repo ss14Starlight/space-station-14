@@ -8,11 +8,9 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Tools.Components;
-#region Starlight
 using Content.Shared._Starlight.ItemSwitch.Components;
 using Content.Shared._Starlight.Chemistry.Components;
 using System.Linq;
-#endregion
 
 namespace Content.Shared.Tools.Systems;
 
