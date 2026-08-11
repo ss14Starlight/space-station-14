@@ -47,7 +47,8 @@
       machine_board: !type:Container
       machine_parts: !type:Container
       hidden_slot: !type:ContainerSlot
-  - type: PowerConsumer # Starlight
+  # Starlight-start
+  - type: PowerConsumer
   - type: NodeContainer
     examinable: true
     nodes:
@@ -58,3 +59,4 @@
     netsync: false
     maxCharge: 1000000
     startingCharge: 0
+  # Starlight-end
