@@ -1,11 +1,4 @@
 Entries:
-- author: Infiniteb1u3
-  changes:
-  - message: new shuttle JSS-MED Apotherkerin to Shipyard console.
-    type: Add
-  id: 407106
-  time: '2026-07-28T21:00:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5169
 - author: OMEGA
   changes:
   - message: Removed hull plates blocking TEG's cold loop from cooling.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407505
   time: '2026-08-11T09:38:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5555
+- author: Romero/Littlemen
+  changes:
+  - message: Two more combat gloves in secvend.
+    type: Tweak
+  id: 407506
+  time: '2026-08-11T10:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5556
 Order: -1
