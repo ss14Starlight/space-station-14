@@ -1,11 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: Explosion Resistance has been removed from the web vest.
-    type: Tweak
-  id: 407089
-  time: '2026-07-28T14:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5357
 - author: OMEGA
   changes:
   - message: When refilling RPD, RPLD or experimental variants of them, the correct name now displays.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407488
   time: '2026-08-10T23:12:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5526
+- author: Sparlight
+  changes:
+  - message: Fixed reinstalled surgical implants disappearing when attempting installation.
+    type: Fix
+  id: 407489
+  time: '2026-08-11T03:09:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5569
 Order: -1
