@@ -90,6 +90,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/Shipyard/pioneer.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/prospector.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/pts.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/Secuttle.yml"),
         new("/Maps/_Starlight/Shuttles/Shipyard/SpaceTruck.yml"),
 
         // Syndicate
