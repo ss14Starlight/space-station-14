@@ -1,34 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
   changes:
-  - message: Brighteyes now use different events for roundstart and midround spawns.
-    type: Tweak
-  id: 407118
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: When there are at least 30 players online, 60% of unreadied players are now counted towards GameRule minPlayers and 25% of unreadied/spectator players are now counted towards antag playerRatios.
-    type: Tweak
-  id: 407119
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: Late join antag odds have been lowered to a fixed 50%.
-    type: Tweak
-  id: 407120
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: You will now follow ghost roles when they spawn in if you were following them before they spawned.
-    type: Tweak
-  id: 407121
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
   - message: Survival and Kessler Syndrome now have a minimum player count of 15.
     type: Tweak
   id: 407122
@@ -2799,4 +2771,32 @@ Entries:
   id: 407517
   time: '2026-08-11T19:42:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5602
+- author: wonderfulnewworld
+  changes:
+  - message: Added 6 Wizard Duelist medallions, corresponding to each respective school.
+    type: Add
+  id: 407518
+  time: '2026-08-11T21:44:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5601
+- author: wonderfulnewworld
+  changes:
+  - message: Wizard Duelists now have many more rules to follow with regard to their duels; all duels must involve magic, they cannot change their clothing, they must always wear their medallions, victors are only decided when only one duelist has at least 3 or more medallions, outsiders who steal medallions must be dealt with harshly, and the victor must return alive to tell the tale.
+    type: Tweak
+  id: 407519
+  time: '2026-08-11T21:44:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5601
+- author: wonderfulnewworld
+  changes:
+  - message: (Wizard's Court) Added a beacon, so wizards can actually teleport back.
+    type: Tweak
+  id: 407520
+  time: '2026-08-11T21:44:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5601
+- author: wonderfulnewworld
+  changes:
+  - message: Fixed some inconsistencies in the way Space Wizards Federation is written.
+    type: Fix
+  id: 407521
+  time: '2026-08-11T21:44:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5601
 Order: -1
