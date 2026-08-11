@@ -9,10 +9,12 @@
   access:
   - Maintenance
   - Journalism
+  - Service
 
 - type: startingGear
   id: RadioHostGear
   equipment:
+    id: RadioHostPDA
     ears: ClothingHeadsetAltRadioHost
     belt: ClothingBeltStorageWaistbag
 
