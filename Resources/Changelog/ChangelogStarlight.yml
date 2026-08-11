@@ -1,11 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: When refilling RPD, RPLD or experimental variants of them, the correct name now displays.
-    type: Tweak
-  id: 407090
-  time: '2026-07-28T15:17:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5375
 - author: Caws
   changes:
   - message: (Boxcars) Removed Boxcars from the game files.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407489
   time: '2026-08-11T03:09:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5569
+- author: Sparlight
+  changes:
+  - message: Partial smellers (vulpkanins) can no longer detect scent emissions from cloaked entities.
+    type: Tweak
+  id: 407490
+  time: '2026-08-11T03:09:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5557
 Order: -1
