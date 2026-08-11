@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Fixtures.Attributes;
 using Robust.Shared;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Configuration;
@@ -16,21 +19,39 @@ namespace Content.IntegrationTests.Tests
 {
     [TestFixture]
     [TestOf(typeof(EntityUid))]
-    public sealed class EntityTest
+    public sealed class EntityTest : GameTest
     {
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
+        // Starlight Start
+        /// <summary>
+        ///     How many prototypes <see cref="SpawnAndDirtyAllEntities"/> spawns before syncing, asserting and
+        ///     deleting. Peak memory scales with this, not with the total prototype count. Raising it makes the test
+        ///     faster and hungrier; lowering it does the reverse.
+        /// </summary>
+        private const int DirtyBatchSize = 2000;
+        // Starlight End
+
+        public override PoolSettings PoolSettings => new()
+        {
+            Connected = true,
+            Dirty = true
+        };
+
+        public static PoolSettings Disconnected => new()
+        {
+            Dirty = true,
+        };
 
         [Test]
+        [PairConfig(nameof(Disconnected))]
         public async Task SpawnAndDeleteAllEntitiesOnDifferentMaps()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
             // is minimal relative to the rest of the test.
-            var settings = new PoolSettings { Dirty = true };
-            await using var pair = await PoolManager.GetServerClient(settings);
+            var pair = Pair;
             var server = pair.Server;
 
             var entityMan = server.ResolveDependency<IEntityManager>();
-            var mapManager = server.ResolveDependency<IMapManager>();
             var prototypeMan = server.ResolveDependency<IPrototypeManager>();
             var mapSystem = entityMan.System<SharedMapSystem>();
 
@@ -48,7 +69,7 @@ namespace Content.IntegrationTests.Tests
                 foreach (var protoId in protoIds)
                 {
                     mapSystem.CreateMap(out var mapId);
-                    var grid = mapManager.CreateGridEntity(mapId);
+                    var grid = mapSystem.CreateGridEntity(mapId);
                     // TODO: Fix this better in engine.
                     mapSystem.SetTile(grid.Owner, grid.Comp, Vector2i.Zero, new Tile(1));
                     var coord = new EntityCoordinates(grid.Owner, 0, 0);
@@ -79,17 +100,14 @@ namespace Content.IntegrationTests.Tests
 
                 Assert.That(entityMan.EntityCount, Is.Zero);
             });
-
-            await pair.CleanReturnAsync();
         }
 
         [Test]
+        [PairConfig(nameof(Disconnected))]
         public async Task SpawnAndDeleteAllEntitiesInTheSameSpot()
         {
-            // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
-            // is minimal relative to the rest of the test.
-            var settings = new PoolSettings { Dirty = true };
-            await using var pair = await PoolManager.GetServerClient(settings);
+            var pair = Pair;
+            Assert.That(pair.Client.Session, Is.Null);
             var server = pair.Server;
             var map = await pair.CreateTestMap();
 
@@ -134,8 +152,6 @@ namespace Content.IntegrationTests.Tests
 
                 Assert.That(entityMan.EntityCount, Is.Zero);
             });
-
-            await pair.CleanReturnAsync();
         }
 
         /// <summary>
@@ -145,16 +161,13 @@ namespace Content.IntegrationTests.Tests
         [Test]
         public async Task SpawnAndDirtyAllEntities()
         {
-            // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
-            // is minimal relative to the rest of the test.
-            var settings = new PoolSettings { Connected = true, Dirty = true };
-            await using var pair = await PoolManager.GetServerClient(settings);
+            var pair = Pair;
             var server = pair.Server;
             var client = pair.Client;
 
             var cfg = server.ResolveDependency<IConfigurationManager>();
             var prototypeMan = server.ResolveDependency<IPrototypeManager>();
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.System<SharedMapSystem>();
             var sEntMan = server.ResolveDependency<IEntityManager>();
             var mapSys = server.System<SharedMapSystem>();
 
@@ -167,50 +180,68 @@ namespace Content.IntegrationTests.Tests
                 .Where(p => !p.Components.ContainsKey("MapGrid")) // This will smash stuff otherwise.
                 .Select(p => p.ID)
                 .ToList();
+            // Starlight Start
+            var cEntMan = client.ResolveDependency<IEntityManager>();
 
-            await server.WaitPost(() =>
+            for (var i = 0; i < protoIds.Count; i += DirtyBatchSize)
             {
-                foreach (var protoId in protoIds)
+                var batch = protoIds.GetRange(i, Math.Min(DirtyBatchSize, protoIds.Count - i));
+            // Starlight End
+                await server.WaitPost(() =>
                 {
-                    mapSys.CreateMap(out var mapId);
-                    var grid = mapManager.CreateGridEntity(mapId);
-                    var ent = sEntMan.SpawnEntity(protoId, new EntityCoordinates(grid.Owner, 0.5f, 0.5f));
-                    foreach (var (_, component) in sEntMan.GetNetComponents(ent))
+                    foreach (var protoId in batch) // Starlight
                     {
-                        sEntMan.Dirty(ent, component);
+                        mapSys.CreateMap(out var mapId);
+                        var grid = mapManager.CreateGridEntity(mapId);
+                        var ent = sEntMan.SpawnEntity(protoId, new EntityCoordinates(grid.Owner, 0.5f, 0.5f));
+                        foreach (var (_, component) in sEntMan.GetNetComponents(ent))
+                        {
+                            sEntMan.Dirty(ent, component);
+                        }
                     }
-                }
-            });
+                });
 
-            await pair.RunTicksSync(15);
+                await pair.RunUntilSynced();
+                // Starlight Start
+                // Make sure the client actually received the entities.
+                // 500 is completely arbitrary and inherited from when this ran as a single pass; a short final batch
+                // scales it down. Note that the client & sever entity counts aren't expected to match.
+                Assert.That(cEntMan.EntityCount, Is.GreaterThan(Math.Min(500, batch.Count / 2)),
+                    $"Client received too few entities for the batch of {batch.Count} starting at index {i}.");
 
-            // Make sure the client actually received the entities
-            // 500 is completely arbitrary. Note that the client & sever entity counts aren't expected to match.
-            Assert.That(client.ResolveDependency<IEntityManager>().EntityCount, Is.GreaterThan(500));
-
-            await server.WaitPost(() =>
-            {
-                static IEnumerable<(EntityUid, TComp)> Query<TComp>(IEntityManager entityMan)
-                    where TComp : Component
+                await server.WaitPost(() =>
                 {
-                    var query = entityMan.AllEntityQueryEnumerator<TComp>();
+                    var toDelete = new List<EntityUid>();
+                    var query = sEntMan.AllEntityQueryEnumerator<MetaDataComponent>();
                     while (query.MoveNext(out var uid, out var meta))
                     {
-                        yield return (uid, meta);
+                        if (!meta.EntityDeleted)
+                            toDelete.Add(uid);
                     }
-                }
 
-                var entityMetas = Query<MetaDataComponent>(sEntMan).ToList();
-                foreach (var (uid, meta) in entityMetas)
-                {
-                    if (!meta.EntityDeleted)
+                    foreach (var uid in toDelete)
+                    {
                         sEntMan.DeleteEntity(uid);
-                }
+                    }
 
-                Assert.That(sEntMan.EntityCount, Is.Zero);
-            });
+                    Assert.Multiple(() =>
+                    {
+                        var leftover = sEntMan.AllEntityQueryEnumerator<MetaDataComponent>();
+                        while (leftover.MoveNext(out _, out var meta))
+                        {
+                            Assert.Fail($"Failed to delete {meta.EntityPrototype}, NAME: {meta.EntityName}");
+                        }
 
-            await pair.CleanReturnAsync();
+                        Assert.That(sEntMan.EntityCount, Is.Zero,
+                            $"One of these prototypes is to blame: {string.Join(",", batch)}");
+                    });
+                });
+
+                await pair.RunUntilSynced();
+
+                GC.Collect();
+            }
+            // Starlight End
         }
 
         /// <summary>
@@ -230,8 +261,7 @@ namespace Content.IntegrationTests.Tests
         [Test]
         public async Task SpawnAndDeleteEntityCountTest()
         {
-            var settings = new PoolSettings { Connected = true, Dirty = true };
-            await using var pair = await PoolManager.GetServerClient(settings);
+            var pair = Pair;
             var mapSys = pair.Server.System<SharedMapSystem>();
             var server = pair.Server;
             var client = pair.Client;
@@ -246,10 +276,16 @@ namespace Content.IntegrationTests.Tests
                 "AnnounceOnSpawn",
 
                 // Starlight start
+                "ReplaceOnInit",
                 // Most of the filled xenobiology slime cores intentionally spawn an entity
                 "FilledSlimeExtract",
                 "Loadout",
                 // Starlight end
+                // ES start
+                "ESTimedDespawn",
+                "ESSparkOnTrigger",
+                // ES end
+                "BluespaceLocker", // Moff Station
             };
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);
@@ -323,8 +359,6 @@ namespace Content.IntegrationTests.Tests
                         BuildDiffString(clientEntities, Entities(client.EntMan), client.EntMan));
                 }
             });
-
-            await pair.CleanReturnAsync();
         }
 
         private static string BuildDiffString(IEnumerable<EntityUid> oldEnts, IEnumerable<EntityUid> newEnts, IEntityManager entMan)
@@ -398,7 +432,7 @@ namespace Content.IntegrationTests.Tests
                 "ActivatableUI", // Requires enum key
             };
 
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
             var entityManager = server.ResolveDependency<IEntityManager>();
             var componentFactory = server.ResolveDependency<IComponentFactory>();
@@ -451,8 +485,6 @@ namespace Content.IntegrationTests.Tests
                     }
                 });
             });
-
-            await pair.CleanReturnAsync();
         }
     }
 }

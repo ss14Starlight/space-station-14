@@ -25,6 +25,11 @@ public sealed partial class GasLeakRuleComponent : Component
         Gas.Helium,
         Gas.AntiNoblium,
         // Funkystation End: Funky atmos - /tg/ gases
+        #region Starlight
+        // Starlight gases
+        Gas.Ulnitranium,
+        Gas.ZXA,
+        #endregion
     };
 
     /// <summary>

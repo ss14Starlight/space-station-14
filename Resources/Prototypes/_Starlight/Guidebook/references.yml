@@ -3,3 +3,9 @@
   name: guide-entry-sl-deepfried-recipes
   text: "/ServerInfo/_Starlight/Guidebook/Service/DeepFriedRecipes.xml"
   filterEnabled: True
+
+- type: guideEntry
+  id: IceCreamRecipes
+  name: guide-entry-sl-ice-cream-recipes
+  text: "/ServerInfo/_Starlight/Guidebook/Service/IceCreamMakerRecipes.xml"
+  filterEnabled: True

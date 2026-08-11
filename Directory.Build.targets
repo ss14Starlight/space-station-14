@@ -9,9 +9,34 @@
     10.0.0 in Robust.Server's dependency graph without touching the submodule.
   -->
   <ItemGroup Condition="'$(MSBuildProjectName)' == 'Robust.Server'">
-    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.0"/>
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions"/>
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(IsTestProject)' == 'true'
+                            and '$(EnableNUnitRunner)' == 'false'">
+    <!-- RobustToolbox has its own Directory.Build.props, so its NUnit adapter
+         initially evaluates with MTP disabled. This makes it not do that. -->
+    <_EnableNUnitRunnerLate>true</_EnableNUnitRunnerLate>
+    <_LateNUnitAdapterVersion>5.2.0</_LateNUnitAdapterVersion>
+    <EnableNUnitRunner>true</EnableNUnitRunner>
+    <IsTestingPlatformApplication>true</IsTestingPlatformApplication>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Reviewdog)' == 'true'">
+    <!-- Emit compiler and analyzer diagnostics for diff-aware CI reporting. -->
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <ErrorLog>$(BaseIntermediateOutputPath)reviewdog.sarif,version=2.1</ErrorLog>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(_EnableNUnitRunnerLate)' == 'true'">
+    <Reference Include="NUnit3.TestAdapter">
+      <HintPath>$(NuGetPackageRoot)nunit3testadapter/$(_LateNUnitAdapterVersion)/build/netcoreapp3.1/NUnit3.TestAdapter.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
   </ItemGroup>
 </Project>

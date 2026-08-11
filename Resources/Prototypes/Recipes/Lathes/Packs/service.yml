@@ -3,7 +3,7 @@
 - type: latheRecipePack
   id: ServiceStatic
   recipes:
-  - Bucket
+  #- Bucket # Starlight, moved to a separate pack
   - Ashtray
   - DrinkMug
   - DrinkMugMetal
@@ -26,6 +26,9 @@
   - Holoprojector
   - WetFloorSign
   - WireBrush
+  - MaterialDurathread # Starlight start
+  - SprayPainter
+  - SprayPainterAmmo # Starlight end
 
 - type: latheRecipePack
   id: ServiceBoardsStatic
@@ -35,6 +38,7 @@
   - MicrowaveMachineCircuitboard
   - OvenMachineCircuitboard # Starlight-edit
   - StoveMachineCircuitboard # Starlight-edit
+  - IceCreamMakerMachineCircuitBoard # Starlight-edit
   - ReagentGrinderMachineCircuitboard
   - ElectricGrillMachineCircuitboard
   - BoozeDispenserMachineCircuitboard

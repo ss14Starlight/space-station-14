@@ -112,6 +112,13 @@
         showInChat: true
         showInGuidebook: true
         probability: 0.05
+      # Starlight Begin
+      - !type:ForceSneeze
+        conditions:
+        - !type:ReagentCondition
+          reagent: Blackpepper
+          min: 2
+      # Starlight End
   reactiveEffects:
     Acidic:
       methods: [ Touch ]
@@ -123,6 +130,13 @@
         - !type:BreathingCondition
         - !type:InternalsCondition
           inverted: true
+      # Starlight Begin
+      - !type:ForceSneeze # _Starlight - anti-sniffer countermeasure, see Content.Shared/_Starlight/EntityEffects/Effects/Scent/ForceSneeze.cs
+        conditions:
+        - !type:BreathingCondition
+        - !type:InternalsCondition
+          inverted: true
+      # Starlight End
 
 - type: reagent
   id: Vinegar
@@ -234,6 +248,13 @@
           type: Local
           messages: [ "capsaicin-effect-light-burn" ]
           probability: 0.2
+        # Starlight Begin
+        - !type:ForceSneeze
+          conditions:
+            - !type:ReagentCondition
+              reagent: CapsaicinOil
+              min: 5
+        # Starlight End
 
 - type: reagent
   id: CocoaPowder #Candy and chocolate

@@ -1,25 +1,27 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from MS13 at commit https://github.com/Mojave-Sun/mojave-sun-13/commit/6fde5cf64e584727ce66d92d81352801670e172f",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-    "name": "base"
+      "name": "base",
+      "copyright": "Taken from MS13 at commit https://github.com/Mojave-Sun/mojave-sun-13/commit/6fde5cf64e584727ce66d92d81352801670e172f"
     },
     {
-    "name": "glow",
-	"delays": [
-		[
-			1,
-			1,
-			0.5,
-			1
-		]
-	]
+      "name": "glow",
+      "delays": [
+        [
+          1,
+          1,
+          0.5,
+          1
+        ]
+      ],
+      "copyright": "Taken from MS13 at commit https://github.com/Mojave-Sun/mojave-sun-13/commit/6fde5cf64e584727ce66d92d81352801670e172f"
     }
   ]
 }

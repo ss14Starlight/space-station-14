@@ -32,7 +32,8 @@ steal-target-groups-firing-pin = firing pin
 steal-target-groups-firing-pin-advanced-laser = prototype laser crystal
 steal-target-groups-firing-pin-smart-lmg = smartgun bolt assembly
 
-steal-target-groups-security-tech-fab-circuitboard = security techfab machine board
+steal-target-groups-departmental-tech-fab-circuitboard = cargo, engineering, medical, or science techfab machine board
+steal-target-groups-secure-tech-fab-circuitboard = command or security techfab machine board
 steal-target-groups-log-probe-cartridge = log probe cartridge
 steal-target-groups-med-tek-cartridge = med tek cartridge
 steal-target-groups-astro-nav-cartridge = astro nav cartridge
@@ -63,3 +64,6 @@ steal-target-groups-corporate-documents = classified corporate secrets documents
 steal-target-groups-criminal-documents = classified criminal reports documents
 steal-target-groups-secure-documents = classified secure documents
 steal-target-groups-secure-documents-brighteye = Bright-Eyes classified secure documents
+
+# Wizard Duelist
+steal-target-groups-wizard-medallions = Space Wizards Federation medallion

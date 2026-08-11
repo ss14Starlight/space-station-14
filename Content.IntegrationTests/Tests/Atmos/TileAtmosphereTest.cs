@@ -98,7 +98,7 @@ public abstract class TileAtmosphereTest : AtmosTest
 
         await Server.WaitAssertion(() =>
         {
-            var welder = SEntMan.SpawnEntity("Welder", source.ToCoordinates());
+            var welder = SEntMan.SpawnEntity("WelderNoSparks", source.ToCoordinates()); // Moffstation - Normal welder with sparks can fail the test
             Assert.That(ItemToggleSys.TryActivate(welder));
         });
 

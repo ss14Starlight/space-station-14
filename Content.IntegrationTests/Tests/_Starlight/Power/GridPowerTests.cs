@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Shared.Maps;
@@ -9,94 +10,129 @@ using Robust.Shared.Utility;
 
 namespace Content.IntegrationTests.Tests._Starlight.Power;
 
-public sealed class GridPowerTests
+[Parallelizable(ParallelScope.All)]
+public sealed class GridPowerTests : GameTest
 {
     private const string EmptyMap = "Empty";
 
-    private static readonly ResPath[] GridPaths =
+    private static readonly ResPath[] _gridPaths =
     [
-        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml"),
-        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml"),
-        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml"),
-        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml"),
-        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Full.yml"),
-        new("/Maps/_Starlight/Ruins/Salv_Sus.yml"),
-        new("/Maps/_Starlight/Salvage/Salv_Cargo_01.yml"),
-        new("/Maps/_Starlight/Salvage/Salv_Cargo_02.yml"),
+        // NT-CC
         new("/Maps/_Starlight/Shuttles/CC-NT/CBURN.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/CBURN_Q.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/Chaplain_GRID.yml"),
+        new("/Maps/_Starlight/Shuttles/CC-NT/Decimus_Shuttle_Magnus.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/DSshuttle.yml"),
-        new("/Maps/_Starlight/Shuttles/CC-NT/ERTShuttle.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/EngiAtmos_GRID.yml"),
+        new("/Maps/_Starlight/Shuttles/CC-NT/ERTShuttle.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/GammaWeaponry.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/Janitor_GRID.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/Medical_GRID.yml"),
+        new("/Maps/_Starlight/Shuttles/CC-NT/NSSV_MetaClass.yml"),
+        new("/Maps/_Starlight/Shuttles/CC-NT/NT-Experimental-Botany-shuttle.yml"),
+        new("/Maps/_Starlight/Shuttles/CC-NT/NTSF_Minos_Battlecruiser.yml"),
+        new("/Maps/_Starlight/Shuttles/CC-NT/NTSV_HarrierClass.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/PsiArmory.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/SecMed_GRID.yml"),
-        new("/Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml"),
-        new("/Maps/_Starlight/Shuttles/LancePirates.yml"),
-        new("/Maps/_Starlight/Shuttles/LynatiKr20/SmugglerMex.yml"),
-        new("/Maps/_Starlight/Shuttles/Mining/breaker.yml"),
-        new("/Maps/_Starlight/Shuttles/Mining/asteroidcracker.yml"),
-        new("/Maps/_Starlight/Shuttles/NSSV_MetaClass.yml"),
-        new("/Maps/_Starlight/Shuttles/NT-Experimental-Botany-shuttle.yml"),
-        new("/Maps/_Starlight/Shuttles/NTSV_HarrierClass.yml"),
-        new("/Maps/_Starlight/Shuttles/Radiotower.yml"),
-        new("/Maps/_Starlight/Shuttles/Reach.yml"),
-        new("/Maps/_Starlight/Shuttles/RecluseClassSHC.yml"),
-        new("/Maps/_Starlight/Shuttles/Salvage/pioneer.yml"),
+
+        // Secure Terminal
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Full.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml"),
+
+        // Security
+        new("/Maps/_Starlight/Shuttles/Security/oasis_briggle.yml"),
+        new("/Maps/_Starlight/Shuttles/Security/pursuit.yml"),
+        new("/Maps/_Starlight/Shuttles/Security/security_prism.yml"),
+
+        // Salvage
+        new("/Maps/_Starlight/Ruins/Salv_Sus.yml"),
+        new("/Maps/_Starlight/Salvage/Salv_Cargo_01.yml"),
+        new("/Maps/_Starlight/Salvage/Salv_Cargo_02.yml"),
         new("/Maps/_Starlight/Shuttles/Salvage/expeditioneer.yml"),
-        new("/Maps/_Starlight/Shuttles/Security/SP-4C3.yml"),
+
+        // Mining
+        new("/Maps/_Starlight/Shuttles/Mining/asteroidcracker.yml"),
+
+        // Cargo
+        new("/Maps/_Starlight/Shuttles/Cargo/cargo_plasma.yml"),
+        new("/Maps/_Starlight/Shuttles/Cargo/cargo_prism.yml"),
+        new("/Maps/_Starlight/Shuttles/Cargo/cargo_silica.yml"),
+        new("/Maps/_Starlight/Shuttles/Cargo/cargo_syndicate.yml"),
+        new("/Maps/_Starlight/Shuttles/Cargo/cargo_novolobster.yml"),
+
+        // Evac
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_cluster.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_delta.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_hotel.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_lox.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_manor.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_ming.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_prism.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_raven.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_silica.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_spacemall.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_starboard.yml"),
+        new("/Maps/_Starlight/Shuttles/Evac/emergency_syndicate.yml"),
+
+        // Shipyard
+        new("/Maps/_Starlight/Shuttles/Shipyard/barge.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/breaker.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/Bumblebee.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/Comet.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/GasTransport.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/Honeybee.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/JSS_MED_Apotherkerin.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/Mini_Ingeniator.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/Munchies.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/pioneer.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/prospector.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/pts.yml"),
+        new("/Maps/_Starlight/Shuttles/Shipyard/SpaceTruck.yml"),
+
+        // Syndicate
+        new("/Maps/_Starlight/Shuttles/Nukeops/blackhorse.yml"),
+        new("/Maps/_Starlight/Shuttles/Nukeops/widow.yml"),
+        new("/Maps/_Starlight/Shuttles/Nukeops/omen.yml"),
+        new("/Maps/_Starlight/Shuttles/Nukeops/leyline.yml"),
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml"),
+
+        // Other Antagonists
+        new("/Maps/_Starlight/Shuttles/mothership.yml"), // Xenoborgs
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/abductor_shuttle.yml"), // Abductors
+
+        // Events / Admemes
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/ShadowBorgiGrid.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/UnknownShuttleFireResponse.yml"),
-        new("/Maps/_Starlight/Shuttles/ShuttleEvent/abductor_shuttle.yml"),
-        new("/Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/incorporation.yml"),
-        new("/Maps/_Starlight/Shuttles/Signaleer.yml"),
-        new("/Maps/_Starlight/Shuttles/VoxATS.yml"),
-        new("/Maps/_Starlight/Shuttles/blackhorse.yml"),
-        new("/Maps/_Starlight/Shuttles/cargo_plasma.yml"),
-        new("/Maps/_Starlight/Shuttles/cargo_prism.yml"),
-        new("/Maps/_Starlight/Shuttles/cargo_silica.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_cluster.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_delta.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_manor.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_ming.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_prism.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_silica.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_spacemall.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_starboard.yml"),
-        new("/Maps/_Starlight/Shuttles/lotteryShuttleAdmeme.yml"),
-        new("/Maps/_Starlight/Shuttles/quantum_ark.yml"),
-        new("/Maps/_Starlight/Shuttles/quantum_ark_event.yml"),
-        new("/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml"),
-        new("/Maps/_Starlight/Shuttles/sec_patrol_one.yml"),
-        new("/Maps/_Starlight/Shuttles/sec_patrol_two.yml"),
-        new("/Maps/_Starlight/Shuttles/security_prism.yml"),
-        new("/Maps/_Starlight/Shuttles/oasis_briggle.yml"),
-        new("/Maps/_Starlight/Shuttles/ss_ana.yml"),
-        new("/Maps/_Starlight/Test/SL_admin_test_arena.yml"),
-        new("/Maps/_Starlight/Shuttles/mothership.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/montague.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/romeo.yml"),
-        new("/Maps/_Starlight/Shuttles/cargo_syndicate.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_syndicate.yml"),
-        new("/Maps/_Starlight/Shuttles/MedTak-AV-40.yml"),
-        new("/Maps/_Starlight/EventMaps/MedTakPointAlpha.yml"),
-        new("/Maps/_Starlight/Shuttles/pts.yml"),
-        new("/Maps/_Starlight/Shuttles/barge.yml"),
-        new("/Maps/_Starlight/Shuttles/prospector.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_lox.yml"),
-        new("/Maps/_Starlight/Shuttles/Mini_Ingeniator.yml"),
-        new("/Maps/_Starlight/Shuttles/Comet.yml"),
-        new("/Maps/_Starlight/Shuttles/Munchies.yml")
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/VisitorInquisitor.yml"),
+
+        new("/Maps/_Starlight/Shuttles/Admeme/LancePirates.yml"),
+        new("/Maps/_Starlight/Shuttles/Admeme/lotteryShuttleAdmeme.yml"),
+        new("/Maps/_Starlight/Shuttles/Admeme/quantum_ark.yml"),
+        new("/Maps/_Starlight/Shuttles/Admeme/quantum_ark_event.yml"),
+        new("/Maps/_Starlight/Shuttles/Admeme/Radiotower.yml"),
+        new("/Maps/_Starlight/Shuttles/Admeme/RecluseClassSHC.yml"),
+        new("/Maps/_Starlight/Shuttles/Admeme/scarletSHCdefenderFinal.yml"),
+        new("/Maps/_Starlight/Shuttles/Admeme/Signaleer.yml"),
+        new("/Maps/_Starlight/Shuttles/Admeme/SmugglerMex.yml"),
+        new("/Maps/_Starlight/Shuttles/Admeme/ss_ana.yml"),
+        new("/Maps/_Starlight/Shuttles/Admeme/VoxATS.yml"),
+
+        new("/Maps/_Starlight/MedTak/MedTak-AV-40.yml"),
+        new("/Maps/_Starlight/MedTak/MedTakPointAlpha.yml"),
+
+        new("/Maps/_Starlight/Test/SL_admin_test_arena.yml"),
     ];
 
-    [Test, TestCaseSource(nameof(GridPaths))]
+    [Test, TestCaseSource(nameof(_gridPaths))]
     public async Task TestGridApcLoad(ResPath gridFilePath)
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { });
+        var pair = Pair;
         var server = pair.Server;
 
         var entMan = server.EntMan;
@@ -147,7 +183,5 @@ public sealed class GridPowerTests
             if (mapId != MapId.Nullspace)
                 mapSystem.DeleteMap(mapId!);
         });
-
-        await pair.CleanReturnAsync();
     }
 }

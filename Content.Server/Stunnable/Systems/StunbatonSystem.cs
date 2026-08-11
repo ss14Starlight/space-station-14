@@ -12,14 +12,14 @@ using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Stunnable;
-
-#region Starlight
 using Content.Shared.CombatMode;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
+using Robust.Shared.Containers;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
-#endregion
+using Content.Shared.PowerCell.Components;
+using Content.Shared._Starlight.Stunnable;
 
 namespace Content.Server.Stunnable.Systems
 {
@@ -35,6 +35,7 @@ namespace Content.Server.Stunnable.Systems
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private SharedAudioSystem _audio = default!;
         [Dependency] private TagSystem _tagSystem = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
         #endregion
 
         public override void Initialize()
@@ -43,9 +44,10 @@ namespace Content.Server.Stunnable.Systems
 
             SubscribeLocalEvent<StunbatonComponent, AfterInteractEvent>(OnStunbatonAfterInteract); // Starlight-edit
             SubscribeLocalEvent<StunbatonComponent, ExaminedEvent>(OnExamined);
-            SubscribeLocalEvent<StunbatonComponent, SolutionContainerChangedEvent>(OnSolutionChange);
             SubscribeLocalEvent<StunbatonComponent, StaminaDamageOnHitAttemptEvent>(OnStaminaHitAttempt);
             SubscribeLocalEvent<StunbatonComponent, ChargeChangedEvent>(OnChargeChanged);
+            SubscribeLocalEvent<StunbatonComponent, EntInsertedIntoContainerMessage>(OnCellSlotInserted); // Starlight-edit
+            SubscribeLocalEvent<StunbatonComponent, EntRemovedFromContainerMessage>(OnCellSlotRemoved); // Starlight-edit
         }
 
 
@@ -119,13 +121,17 @@ namespace Content.Server.Stunnable.Systems
                 _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
             {
                 if (batteryEnt.HasValue)
-                    battery = batteryEnt.Value;
-                if (battery != null)
                 {
-                    var count = (int)(_battery.GetCharge((entity.Owner, battery)) / entity.Comp.EnergyPerUse);
-                    args.PushMarkup(Loc.GetString("melee-battery-examine", ("color", "yellow"), ("count", count)));
+                    battery = batteryEnt.Value;
                 }
+
+                if(battery == null)
+                    return;
+
+                var count = (int)(_battery.GetCharge(battery.Owner) / entity.Comp.EnergyPerUse);
+                args.PushMarkup(Loc.GetString("melee-battery-examine", ("color", "yellow"), ("count", count)));
             }
+
             // 🌟Starlight🌟 end
         }
 
@@ -139,53 +145,45 @@ namespace Content.Server.Stunnable.Systems
                 _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
             {
                 if (batteryEnt.HasValue)
-                    battery = batteryEnt.Value;
-                if (battery != null && _battery.GetCharge((entity.Owner, battery)) < entity.Comp.EnergyPerUse)
                 {
-                    args.Cancelled = true;
-                    if (args.User != null)
+                    battery = batteryEnt.Value;
+                    if(battery == null)
+                        return;
+
+                    if (_battery.GetCharge(battery.Owner) < entity.Comp.EnergyPerUse)
                     {
-                        _popup.PopupEntity(Loc.GetString("stunbaton-component-low-charge"), (EntityUid)args.User, (EntityUid)args.User);
+                        args.Cancelled = true;
+                        if (args.User != null)
+                        {
+                            _popup.PopupEntity(Loc.GetString("stunbaton-component-low-charge"), (EntityUid)args.User, (EntityUid)args.User);
+                        }
+                        return;
                     }
-                    return;
+
+                    if (TryComp<RiggableComponent>(battery.Owner, out var rig) && rig.IsRigged)
+                    {
+                        _riggableSystem.Explode(entity.Owner, _battery.GetCharge(battery.Owner), args.User);
+                    }
+                    UpdateAppearance(entity, isActive: true);
                 }
             }
             // 🌟Starlight🌟 end
-
-            if (TryComp<RiggableComponent>(entity, out var rig) && rig.IsRigged)
-            {
-                _riggableSystem.Explode(entity.Owner, _battery.GetCharge((entity, battery)), args.User);
-            }
         }
 
-        // https://github.com/space-wizards/space-station-14/pull/17288#discussion_r1241213341
-        private void OnSolutionChange(Entity<StunbatonComponent> entity, ref SolutionContainerChangedEvent args)
+        #region Starlight
+        protected override void TryTurnOff(Entity<StunbatonComponent> ent, ref ItemToggleDeactivateAttemptEvent args)
         {
-            // Explode if baton is activated and rigged.
-            if (!TryComp<RiggableComponent>(entity, out var riggable) ||
-                !TryComp<BatteryComponent>(entity, out var battery))
+            base.TryTurnOff(ent, ref args);
+            if(args.Cancelled)
                 return;
-
-            if (_itemToggle.IsActivated(entity.Owner) && riggable.IsRigged)
-                _riggableSystem.Explode(entity.Owner, _battery.GetCharge((entity, battery)));
+            UpdateAppearance(ent, isActive: false);
         }
-
-        // TODO: Not used anywhere?
-        private void SendPowerPulse(EntityUid target, EntityUid? user, EntityUid used)
-        {
-            RaiseLocalEvent(target, new PowerPulseEvent()
-            {
-                Used = used,
-                User = user
-            });
-        }
-
         private void OnChargeChanged(Entity<StunbatonComponent> entity, ref ChargeChangedEvent args)
         {
             // 🌟Starlight🌟 start
             Entity<BatteryComponent>? batteryEnt = null;
             if (TryComp<BatteryComponent>(entity.Owner, out var battery) ||
-             _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt)) // WHY did this get changed to return an entity, aaaa >_<
+                _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
             {
                 if(batteryEnt.HasValue)
                     battery = batteryEnt.Value;
@@ -194,10 +192,42 @@ namespace Content.Server.Stunnable.Systems
                     if (battery.LastCharge < entity.Comp.EnergyPerUse)
                     {
                         _itemToggle.TryDeactivate(entity.Owner, predicted: false);
+                        UpdateAppearance(entity, isActive: false);
                     }
                 }
             }
             // 🌟Starlight🌟 end
         }
+
+        private void OnCellSlotInserted(Entity<StunbatonComponent> ent, ref EntInsertedIntoContainerMessage args)
+        {
+            UpdateAppearance(ent);
+        }
+        private void OnCellSlotRemoved(Entity<StunbatonComponent> ent, ref EntRemovedFromContainerMessage args)
+        {
+            UpdateAppearance(ent);
+        }
+
+        private void UpdateAppearance(EntityUid uid, StunbatonComponent? comp = null, AppearanceComponent? appearance = null, bool isActive = false)
+        {
+            if (!Resolve(uid, ref comp, ref appearance, false))
+                return;
+
+            Entity<BatteryComponent>? batteryEnt = null;
+            if (TryComp<BatteryComponent>(uid, out var battery) ||
+                _powerCell.TryGetBatteryFromSlot(uid, out batteryEnt))
+            {
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_on, isActive);
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_off, !isActive);
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_nocell, false);
+            }
+            else
+            {
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_on, false);
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_off, false);
+                _appearance.SetData(uid, StunbatonVisuals.Stunbaton_nocell, true);
+            }
+        }
+        #endregion
     }
 }

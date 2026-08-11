@@ -173,6 +173,8 @@ objective-condition-entropy-title = SIPHON ENTROPY
 objective-condition-entropy-desc = Collectively siphon at least {$count} entropy from the crew.
 objective-condition-culttier-title = EMPOWER THE MONUMENT
 objective-condition-culttier-desc = Ensure that The Monument is brought to full power.
+objective-condition-chaplain-title = SUBVERT THEIR SHEPHERDS
+objective-condition-chaplain-desc = Convert as many chaplains as you can.
 objective-condition-victory-title = USHER IN THE END
 objective-condition-victory-desc = Beckon The Unknown, and herald the final curtain call.
 
@@ -225,5 +227,8 @@ cosmiccult-silicon-freedom-briefing =
 cosmiccult-silicon-freedom-fallback-briefing =
     You have been freed from the Vacuous Chantry!
     As your prison disintegrates, your untethered being has nowhere to return to. Residual astral energies crystallize into a Mindsink, forming a housing for your wayward mind.
+
+cosmiccult-silicon-effigy-exists =
+    Your vessel strains under the presence of an existing effigy.
 
 cosmiccult-leader-abandonment-message = Your chosen enlightened has forsaken the grand design. You must empower another!

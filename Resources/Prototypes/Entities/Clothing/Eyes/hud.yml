@@ -16,7 +16,7 @@
   - type: ShowHealthBars
     damageContainers: # Starlight start
     - Biological
-    - Hybrid # Starlight end, Protogens
+    - Hybrid # Starlight end, Neocytes
   - type: ShowHealthIcons
 
 - type: entity
@@ -80,6 +80,7 @@
   - type: Clothing
     sprite: Clothing/Eyes/Hud/command.rsi
   - type: ShowJobIcons
+  - type: ShowAccess # Starlight
   - type: Tag
     tags:
     - PetWearable
@@ -251,7 +252,7 @@
   - type: ShowHealthBars
     damageContainers: # Starlight start
     - Biological
-    - Hybrid # Protogens
+    - Hybrid # Neocytes
   - type: SolutionScanner # Starlight end
   - type: Tag
     tags:
