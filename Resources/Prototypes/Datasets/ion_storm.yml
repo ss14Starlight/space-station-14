@@ -664,7 +664,7 @@
   - TWENTY
   - TWO
   # Starlight-Start
-  - SIXTY SEVEN
+  # - SIXTY SEVEN # Inferus - fuck off
   # Starlight-End
 
 - type: dataset
@@ -997,6 +997,7 @@
   - TO BECOME CAPTAINS
   - TO BUILD SHITTLES
   # Starlight-End
+  - TO WALK INTO THE LAKE # Inferus
 
 # Specific actions that either harm humans or must be done to not
 # harm humans. Make sure they're plural and "not" can be tacked
@@ -1171,7 +1172,7 @@
   - SPACE PIRATES
   - SPACE SPIDERS
   - SPIDERS
-  - SYNDICATE AGENTS
+  - EPC AGENTS
   - TERRORISTS
   - THIEVES
   - THINGS UNDER THE BED

@@ -4,12 +4,16 @@
   description: job-description-nct
   playTimeTracker: JobNanotrasenCareerTrainer
   requirements:
-    - !type:RolesRequirement
-      proto: StaffAndMentorOnlyRolesReq
+    - !type:DepartmentTimeRequirement # Inferus
+      department: Command
+      time: 25h
+    #- !type:RolesRequirement # Inferus
+    #  proto: StaffAndMentorOnlyRolesReq
     - !type:TraitsRequirement
       traits:
         - Muted
       inverted: true
+  setPreference: false # Inferus - disable
   startingGear: NanotrasenCareerTrainerGear
   icon: JobIconNanotrasenCareerTrainer
   rules: job-rules-corporate-aligned

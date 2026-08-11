@@ -329,7 +329,7 @@
   parent: [BaseThiefObjective, BaseLivingObjective]
   id: EscapeMasterThiefObjective
   name: Become the greatest thief, and steal anything you perceive as having value.
-  description: Just make sure to get out alive and free.
+  description: Make sure to get out alive without getting caught!
   components:
   - type: Objective
     difficulty: 0.5 # You're granted freedom to steal stuff, so you should get less actual objectives.

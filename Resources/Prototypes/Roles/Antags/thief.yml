@@ -22,7 +22,7 @@
   multiAntagSetting: NotExclusive
   startingGear: ThiefGear
   components:
-  - type: Pacified
+  #- type: Pacified # Inferus - Thieves aren't pacified here!
   - type: Thieving
     stripTimeReduction: 2
     stealthy: true

@@ -1,0 +1,24 @@
+- type: antagCategory
+  id: EPC
+  name: antag-category-EPC-name
+  description: antag-category-EPC-desc
+  priority: -1
+  accentColor: "#19a842"
+  antags:
+  - Traitor
+  - TraitorSleeper
+  #- Nukeops
+  #- NukeopsCommander
+  #- NukeopsMedic
+  #- SELFAgent
+
+- type: antagCategory
+  id: Anomalous
+  name: antag-category-anomalous-name
+  description: antag-category-anomalous-desc
+  priority: 100
+  accentColor: "#5c1a6b"
+  antags:
+  - Brighteye
+  - Changeling # Changelings aren't really confirmed to be syndie-aligned, so they get to be here
+# - InitialInfected # disabled, admeme only

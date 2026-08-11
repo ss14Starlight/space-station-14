@@ -10,17 +10,17 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 36000 # 10h
-    - !type:RolesRequirement
-      proto: ExtRolesReq
+    #- !type:RolesRequirement # Inferus
+    #  proto: ExtRolesReq
     - !type:TraitsRequirement
       traits:
         - Muted
       inverted: true
+  setPreference: false # Inferus - disable
   startingGear: MagistrateGear
   icon: "JobIconMagistrate"
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nanotrasen
-  setPreference: true
   displayWeight: 5
   access:
   - Magistrate

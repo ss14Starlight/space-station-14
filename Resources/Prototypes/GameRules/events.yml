@@ -519,26 +519,27 @@
     - id: MobClownSpider
       prob: 0.05
 
-- type: entity
-  id: ZombieOutbreak
-  parent: BaseGameRule
-  components:
-  - type: StationEvent
-    earliestStart: 90
-    minimumPlayers: 40
-    weight: 1 # Zombies was happening basically every single survival round, so now it's super rare
-    duration: 1
-    occursDuringRoundEnd: false
-  - type: ZombieRule
-  - type: AntagSelection
-    antags:
-    - !type:LinearAntagCount
-      proto: InitialInfected
-      range:
-        min: 1
-        max: 3
-  - type: DynamicRuleCost
-    cost: 200
+# Inferus - disable zombies
+#- type: entity
+#  id: ZombieOutbreak
+#  parent: BaseGameRule
+#  components:
+#  - type: StationEvent
+#    earliestStart: 90
+#    minimumPlayers: 40
+#    weight: 1 # Zombies was happening basically every single survival round, so now it's super rare
+#    duration: 1
+#    occursDuringRoundEnd: false
+#  - type: ZombieRule
+#  - type: AntagSelection
+#    antags:
+#    - !type:LinearAntagCount
+#      proto: InitialInfected
+#      range:
+#        min: 1
+#        max: 3
+#  - type: DynamicRuleCost
+#    cost: 200
 
 - type: entity
   parent: [ BaseAntagGhostRoleRule, BaseNukeopsRule ]

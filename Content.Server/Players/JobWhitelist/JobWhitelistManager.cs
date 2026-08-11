@@ -48,12 +48,12 @@ public sealed partial class JobWhitelistManager : IPostInjectInit
         _whitelists.Remove(session.UserId);
     }
 
-    public async void AddWhitelist(NetUserId player, ProtoId<JobPrototype> job)
+    public async void AddWhitelist(NetUserId player, string roleId)
     {
         if (_whitelists.TryGetValue(player, out var whitelists))
-            whitelists.Add(job);
+            whitelists.Add(roleId);
 
-        await _db.AddJobWhitelist(player, job);
+        await _db.AddRoleWhitelist(player, roleId);
 
         if (_player.TryGetSessionById(player, out var session))
             SendJobWhitelist(session);
@@ -76,26 +76,23 @@ public sealed partial class JobWhitelistManager : IPostInjectInit
         return IsWhitelisted(session.UserId, job);
     }
 
-    public bool IsWhitelisted(NetUserId player, ProtoId<JobPrototype> job)
+    public bool IsWhitelisted(NetUserId player, string roleId)
     {
         if (!_whitelists.TryGetValue(player, out var whitelists))
         {
-            _sawmill.Error("Unable to check if player {Player} is whitelisted for {Job}. Stack trace:\\n{StackTrace}",
-                player,
-                job,
-                Environment.StackTrace);
+            _sawmill.Error("Unable to check whitelist for {Player} / {Role}", player, roleId);
             return false;
         }
 
-        return whitelists.Contains(job);
+        return whitelists.Contains(roleId);
     }
 
-    public async void RemoveWhitelist(NetUserId player, ProtoId<JobPrototype> job)
+    public async void RemoveWhitelist(NetUserId player, string roleId)
     {
-        _whitelists.GetValueOrDefault(player)?.Remove(job);
-        await _db.RemoveJobWhitelist(player, job);
+        _whitelists.GetValueOrDefault(player)?.Remove(roleId);
+        await _db.RemoveRoleWhitelist(player, roleId);
 
-        if (_player.TryGetSessionById(new NetUserId(player), out var session))
+        if (_player.TryGetSessionById(player, out var session))
             SendJobWhitelist(session);
     }
 

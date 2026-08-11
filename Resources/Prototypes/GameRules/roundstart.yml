@@ -434,14 +434,14 @@
   parent: RestrictedAntag
   id: DummyAntag
   prefRoles: # Only Station bound roles.
-  - InitialInfected
+# - InitialInfected # Inferus - disabled
   - Traitor
   - Thief
-  - HeadRev
+# - HeadRev # Inferus - disabled
   - Changeling # Starlight start
   - CosmicAntagCultist
   - Devil
-  - SELFAgent
+# - SELFAgent # Inferus - disabled
   - Vampire # Starlight end
 
 # event schedulers

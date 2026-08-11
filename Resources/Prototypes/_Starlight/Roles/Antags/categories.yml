@@ -1,19 +1,20 @@
 # Ported from Moffstation, but since we have to redo most of it, we have it in our files instead.
-- type: antagCategory
-  id: Syndicate
-  name: antag-category-syndicate-name
-  description: antag-category-syndicate-desc
-  priority: -1
-  accentColor: "#69152e"
-  antags:
-  - Traitor
-  - TraitorSleeper
-  - Nukeops
-  - NukeopsCommander
-  - NukeopsMedic
-  - SELFAgent
-  - Changeling
-  - InitialInfected
+# Inferus - syndicate rebrand to EPC
+#- type: antagCategory
+#  id: Syndicate
+#  name: antag-category-syndicate-name
+#  description: antag-category-syndicate-desc
+#  priority: -1
+#  accentColor: "#69152e"
+#  antags:
+#  - Traitor
+#  - TraitorSleeper
+#  - Nukeops
+#  - NukeopsCommander
+#  - NukeopsMedic
+#  - SELFAgent
+#  - Changeling
+#  - InitialInfected
 
 - type: antagCategory
   id: Outlaws
@@ -22,18 +23,19 @@
   priority: 2
   accentColor: "#753c2f"
   antags:
-  - Brighteye
+  #- Brighteye # Inferus - move to Anomalous
   - SpaceNinja
   - Thief
 
-- type: antagCategory
-  id: USSP
-  name: antag-category-ussp-name
-  description: antag-category-ussp-desc
-  priority: 4
-  accentColor: "#cc2500"
-  antags:
-  - HeadRev
+# Inferus - disable revs
+#- type: antagCategory
+#  id: USSP
+#  name: antag-category-ussp-name
+#  description: antag-category-ussp-desc
+#  priority: 4
+#  accentColor: "#cc2500"
+#  antags:
+#  - HeadRev
 
 - type: antagCategory
   id: Wizard
@@ -72,4 +74,4 @@
   description: antag-category-misc-desc
   accentColor: "#afa84d"
   priority: 100
-  default: true
+#  default: true # Inferus - when we disable antags, we WANT THEM DISABLED

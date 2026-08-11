@@ -1,6 +1,6 @@
 thief-role-greeting-human =
-    You are criminal scum, a kleptomaniac previously arrested and on parole for petty theft. You need to add more to your collection.
-    You were forcibly given a pacifism implant after your last arrest, but that can't stop you from getting your fix by any means necessary.
+    You are criminal scum, a kleptomaniac previously arrested and currently on parole for petty theft. You need to add more to your collection.
+# Inferus change: rewrite thief
 
 thief-role-greeting-animal =
     You are a kleptomaniac animal.

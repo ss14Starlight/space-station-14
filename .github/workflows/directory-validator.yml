@@ -1,4 +1,4 @@
-name: Check Starlight Directories
+name: Check Inferus Directories
 
 # Cancel older jobs on PRs when new changes are pushed
 concurrency:
@@ -16,17 +16,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Check for StarLight folders
+      - name: Check for Infernus folders
         run: |
-          bad_paths="$(find . -path './.git' -prune -o -type d -name '*StarLight*' -print)"
+          bad_paths="$(find . -path './.git' -prune -o -type d -name '*Infernus*' -print)"
 
           if [ -n "$bad_paths" ]; then
-            echo "::error::Found folders using StarLight. They should use Starlight."
+            echo "::error::Found folders using Infernus. They should use Inferus."
             echo "$bad_paths"
             exit 1
           else
-            echo "No StarLight folders found."
+            echo "No Infernus folders found."
           fi
 
-      - name: Validate _Starlight namespaces
+      - name: Validate _Inferus namespaces
         run: python3 Tools/_Starlight/check_starlight_namespaces.py

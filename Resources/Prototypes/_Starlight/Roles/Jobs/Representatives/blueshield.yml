@@ -13,8 +13,13 @@
     - !type:RoleTimeRequirement
       role: JobBrigmedic
       time: 3h # Lower stakes version of the same role, and forces you to get Paramed time too. Totals to about 8 hours paramed+brigmed combined.
-    - !type:RolesRequirement
-      proto: ExtRolesReq
+    #- !type:RolesRequirement # Inferus
+    #  proto: ExtRolesReq
+    #- !type:TraitsRequirement
+    #  traits:
+    #    - Iterator
+      inverted: true
+  setPreference: false # Inferus - disable
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   rules: job-rules-corporate-aligned

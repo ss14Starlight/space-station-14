@@ -6,16 +6,27 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 20h # Starlight
+      time: 10h # Inferus
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 20h # Starlight
+      time: 10h # Inferus
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 20h # Starlight
+      time: 10h # Inferus
+    # Inferus edit start - It's usually wise that caps should have at least BASIC knowledge of EVERY department!
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 10h
+    # Inferus edit end
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 25h # Starlight
+      time: 20h # Inferus
     - !type:TraitsRequirement # Starlight
       traits:
         - Muted

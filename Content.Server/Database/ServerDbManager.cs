@@ -335,8 +335,11 @@ namespace Content.Server.Database
 
         Task<List<string>> GetJobWhitelists(Guid player, CancellationToken cancel = default);
         Task<bool> IsJobWhitelisted(Guid player, ProtoId<JobPrototype> job);
-
         Task<bool> RemoveJobWhitelist(Guid player, ProtoId<JobPrototype> job);
+
+        Task<bool> AddRoleWhitelist(Guid player, string roleId); // Inferus
+        Task<bool> IsRoleWhitelisted(Guid player, string roleId); // Inferus
+        Task<bool> RemoveRoleWhitelist(Guid player, string roleId); // Inferus
 
         #endregion
 
@@ -1047,6 +1050,15 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.RemoveJobWhitelist(player, job));
         }
+
+        public Task<bool> AddRoleWhitelist(Guid player, string roleId)
+            => RunDbCommand(() => _db.AddRoleWhitelist(player, roleId)); // Inferus
+
+        public Task<bool> IsRoleWhitelisted(Guid player, string roleId)
+            => RunDbCommand(() => _db.IsRoleWhitelisted(player, roleId)); // Inferus
+
+        public Task<bool> RemoveRoleWhitelist(Guid player, string roleId)
+            => RunDbCommand(() => _db.RemoveRoleWhitelist(player, roleId)); // Inferus
 
         public Task<bool> UpsertIPIntelCache(DateTime time, IPAddress ip, float score)
         {

@@ -32,37 +32,48 @@ public sealed partial class JobWhitelistAddCommand : LocalizedCommands
         }
 
         var player = args[0].Trim();
-        var job = new ProtoId<JobPrototype>(args[1].Trim());
-        if (!_prototypes.TryIndex(job, out var jobPrototype))
+        var roleId = args[1].Trim();
+
+        string roleName;
+        if (_prototypes.TryIndex<JobPrototype>(roleId, out var jobPrototype))
         {
-            shell.WriteError(Loc.GetString("cmd-jobwhitelist-job-does-not-exist", ("job", job.Id)));
+            roleName = jobPrototype.LocalizedName;
+        }
+        else if (_prototypes.TryIndex<AntagPrototype>(roleId, out var antagPrototype))
+        {
+            roleName = Loc.GetString(antagPrototype.Name);
+        }
+        else
+        {
+            shell.WriteError(Loc.GetString("cmd-jobwhitelist-job-does-not-exist", ("job", roleId)));
             shell.WriteLine(Help);
             return;
         }
 
         var data = await _playerLocator.LookupIdByNameAsync(player);
-        if (data != null)
+        if (data == null)
         {
-            var guid = data.UserId;
-            var isWhitelisted = await _db.IsJobWhitelisted(guid, job);
-            if (isWhitelisted)
-            {
-                shell.WriteLine(Loc.GetString("cmd-jobwhitelistadd-already-whitelisted",
-                    ("player", player),
-                    ("jobId", job.Id),
-                    ("jobName", jobPrototype.LocalizedName)));
-                return;
-            }
-
-            _jobWhitelist.AddWhitelist(guid, job);
-            shell.WriteLine(Loc.GetString("cmd-jobwhitelistadd-added",
-                ("player", player),
-                ("jobId", job.Id),
-                ("jobName", jobPrototype.LocalizedName)));
+            shell.WriteError(Loc.GetString("cmd-jobwhitelist-player-not-found", ("player", player)));
             return;
         }
 
-        shell.WriteError(Loc.GetString("cmd-jobwhitelist-player-not-found", ("player", player)));
+        var guid = data.UserId;
+
+        // use string roleId APIs (from steps 3–4), not job-only APIs
+        if (await _db.IsRoleWhitelisted(guid, roleId))
+        {
+            shell.WriteLine(Loc.GetString("cmd-jobwhitelistadd-already-whitelisted",
+                ("player", player),
+                ("jobId", roleId),
+                ("jobName", roleName)));
+            return;
+        }
+
+        _jobWhitelist.AddWhitelist(guid, roleId);  // string overload from step 4
+        shell.WriteLine(Loc.GetString("cmd-jobwhitelistadd-added",
+            ("player", player),
+            ("jobId", roleId),
+            ("jobName", roleName)));
     }
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
@@ -76,9 +87,10 @@ public sealed partial class JobWhitelistAddCommand : LocalizedCommands
 
         if (args.Length == 2)
         {
-            return CompletionResult.FromHintOptions(
-                _prototypes.EnumeratePrototypes<JobPrototype>().Select(p => p.ID),
-                Loc.GetString("cmd-jobwhitelist-hint-job"));
+            var options = _prototypes.EnumeratePrototypes<JobPrototype>().Select(p => p.ID)
+            .Concat(_prototypes.EnumeratePrototypes<AntagPrototype>().Select(p => p.ID));
+
+            return CompletionResult.FromHintOptions(options, Loc.GetString("cmd-jobwhitelist-hint-job"));
         }
 
         return CompletionResult.Empty;
@@ -140,11 +152,11 @@ public sealed partial class GetJobWhitelistCommand : LocalizedCommands
 [AdminCommand(AdminFlags.Ban)]
 public sealed partial class RemoveJobWhitelistCommand : LocalizedCommands
 {
-    [Dependency] private IServerDbManager _db = default!;
-    [Dependency] private JobWhitelistManager _jobWhitelist = default!;
-    [Dependency] private IPlayerLocator _playerLocator = default!;
-    [Dependency] private IPlayerManager _players = default!;
-    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!;
+    [Dependency] private readonly IPlayerLocator _playerLocator = default!;
+    [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
     public override string Command => "jobwhitelistremove";
 
@@ -160,37 +172,46 @@ public sealed partial class RemoveJobWhitelistCommand : LocalizedCommands
         }
 
         var player = args[0].Trim();
-        var job = new ProtoId<JobPrototype>(args[1].Trim());
-        if (!_prototypes.TryIndex(job, out var jobPrototype))
+        var roleId = args[1].Trim();
+
+        string roleName;
+        if (_prototypes.TryIndex<JobPrototype>(roleId, out var jobPrototype))
         {
-            shell.WriteError(Loc.GetString("cmd-jobwhitelist-job-does-not-exist", ("job", job)));
+            roleName = jobPrototype.LocalizedName;
+        }
+        else if (_prototypes.TryIndex<AntagPrototype>(roleId, out var antagPrototype))
+        {
+            roleName = Loc.GetString(antagPrototype.Name);
+        }
+        else
+        {
+            shell.WriteError(Loc.GetString("cmd-jobwhitelist-job-does-not-exist", ("job", roleId)));
             shell.WriteLine(Help);
             return;
         }
 
         var data = await _playerLocator.LookupIdByNameAsync(player);
-        if (data != null)
+        if (data == null)
         {
-            var guid = data.UserId;
-            var isWhitelisted = await _db.IsJobWhitelisted(guid, job);
-            if (!isWhitelisted)
-            {
-                shell.WriteError(Loc.GetString("cmd-jobwhitelistremove-was-not-whitelisted",
-                    ("player", player),
-                    ("jobId", job.Id),
-                    ("jobName", jobPrototype.LocalizedName)));
-                return;
-            }
-
-            _jobWhitelist.RemoveWhitelist(guid, job);
-            shell.WriteLine(Loc.GetString("cmd-jobwhitelistremove-removed",
-                ("player", player),
-                ("jobId", job.Id),
-                ("jobName", jobPrototype.LocalizedName)));
+            shell.WriteError(Loc.GetString("cmd-jobwhitelist-player-not-found", ("player", player)));
             return;
         }
 
-        shell.WriteError(Loc.GetString("cmd-jobwhitelist-player-not-found", ("player", player)));
+        var guid = data.UserId;
+        if (!await _db.IsRoleWhitelisted(guid, roleId))
+        {
+            shell.WriteError(Loc.GetString("cmd-jobwhitelistremove-was-not-whitelisted",
+                ("player", player),
+                ("jobId", roleId),
+                ("jobName", roleName)));
+            return;
+        }
+
+        _jobWhitelist.RemoveWhitelist(guid, roleId);
+        shell.WriteLine(Loc.GetString("cmd-jobwhitelistremove-removed",
+            ("player", player),
+            ("jobId", roleId),
+            ("jobName", roleName)));
     }
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
@@ -204,9 +225,9 @@ public sealed partial class RemoveJobWhitelistCommand : LocalizedCommands
 
         if (args.Length == 2)
         {
-            return CompletionResult.FromHintOptions(
-                _prototypes.EnumeratePrototypes<JobPrototype>().Select(p => p.ID),
-                Loc.GetString("cmd-jobwhitelist-hint-job"));
+            var options = _prototypes.EnumeratePrototypes<JobPrototype>().Select(p => p.ID)
+                .Concat(_prototypes.EnumeratePrototypes<AntagPrototype>().Select(p => p.ID));
+            return CompletionResult.FromHintOptions(options, Loc.GetString("cmd-jobwhitelist-hint-job"));
         }
 
         return CompletionResult.Empty;

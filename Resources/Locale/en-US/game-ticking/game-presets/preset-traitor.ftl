@@ -24,13 +24,13 @@ traitor-death-match-end-round-description-entry = {$originalName}'s PDA, with {$
 
 # TraitorRole
 traitor-role-greeting =
-    You are an agent sent by [color = darkred]The Syndicate[/color] on behalf of {$corporation}.
+    You are an agent sent by [color = #19a842]The Environmental Preservation Coalition[/color].
     Your objectives and codewords are listed in the character menu. Use your uplink to buy the tools you'll need for this mission.
-    Death to NanoTrasen!
+    Aetheris shall fall!
 traitor-role-codewords =
     The codewords are: [color = lightgray]
     {$codewords}.[/color]
-    Codewords can be used in regular conversation to identify yourself discreetly to other syndicate agents.
+    Codewords can be used in regular conversation to identify yourself discreetly to other EPC agents.
     Listen for them, and keep them secret.
 traitor-role-uplink-code =
     Set your ringtone to the notes [color = lightgray]{$code}[/color] to lock or unlock your uplink.

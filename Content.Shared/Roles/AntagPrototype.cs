@@ -84,4 +84,11 @@ public sealed partial class AntagPrototype : IPrototype
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<PlayTimeTrackerPrototype>))]
     public string? PlayTimeTracker { get; private set; } = default!;
     // Starlight end
+
+    // Inferus
+    /// <summary>
+    /// Whether or not an antag role is whitelisted or not.
+    /// </summary>
+    [DataField]
+    public bool Whitelisted;
 }

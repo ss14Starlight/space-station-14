@@ -1841,23 +1841,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         public async Task<bool> AddJobWhitelist(Guid player, ProtoId<JobPrototype> job)
         {
-            await using var db = await GetDb();
-            var exists = await db.DbContext.RoleWhitelists
-                .Where(w => w.PlayerUserId == player)
-                .Where(w => w.RoleId == job.Id)
-                .AnyAsync();
-
-            if (exists)
-                return false;
-
-            var whitelist = new RoleWhitelist
-            {
-                PlayerUserId = player,
-                RoleId = job
-            };
-            db.DbContext.RoleWhitelists.Add(whitelist);
-            await db.DbContext.SaveChangesAsync();
-            return true;
+            return await AddRoleWhitelist(player, job.Id);
         }
 
         public async Task<List<string>> GetJobWhitelists(Guid player, CancellationToken cancel)
@@ -1871,19 +1855,46 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         public async Task<bool> IsJobWhitelisted(Guid player, ProtoId<JobPrototype> job)
         {
-            await using var db = await GetDb();
-            return await db.DbContext.RoleWhitelists
-                .Where(w => w.PlayerUserId == player)
-                .Where(w => w.RoleId == job.Id)
-                .AnyAsync();
+            return await IsRoleWhitelisted(player, job.Id);
         }
 
         public async Task<bool> RemoveJobWhitelist(Guid player, ProtoId<JobPrototype> job)
         {
+            return await RemoveRoleWhitelist(player, job.Id);
+        }
+
+        public async Task<bool> AddRoleWhitelist(Guid player, string roleId)
+        {
+            await using var db = await GetDb();
+            var exists = await db.DbContext.RoleWhitelists
+                .Where(w => w.PlayerUserId == player && w.RoleId == roleId)
+                .AnyAsync();
+
+            if (exists)
+                return false;
+
+            db.DbContext.RoleWhitelists.Add(new RoleWhitelist
+            {
+                PlayerUserId = player,
+                RoleId = roleId
+            });
+            await db.DbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> IsRoleWhitelisted(Guid player, string roleId)
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.RoleWhitelists
+                .Where(w => w.PlayerUserId == player && w.RoleId == roleId)
+                .AnyAsync();
+        }
+
+        public async Task<bool> RemoveRoleWhitelist(Guid player, string roleId)
+        {
             await using var db = await GetDb();
             var entry = await db.DbContext.RoleWhitelists
-                .Where(w => w.PlayerUserId == player)
-                .Where(w => w.RoleId == job.Id)
+                .Where(w => w.PlayerUserId == player && w.RoleId == roleId)
                 .SingleOrDefaultAsync();
 
             if (entry == null)

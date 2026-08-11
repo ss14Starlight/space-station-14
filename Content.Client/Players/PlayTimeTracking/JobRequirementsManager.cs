@@ -323,11 +323,18 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         return true;
     }
 
-    public bool CheckWhitelist(AntagPrototype antag, out FormattedMessage reason) // Starlight: Always return reason
+    public bool CheckWhitelist(AntagPrototype antag, out FormattedMessage reason) // Inferus - we did your job FOR you.
     {
-        reason = FormattedMessage.Empty; // Starlight
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("antag-whitelisted"));
 
-        // TODO: Implement antag whitelisting.
+        if (!_cfg.GetCVar(CCVars.GameRoleWhitelist))
+            return true;
+
+        if (antag.Whitelisted && !_jobWhitelists.Contains(antag.ID))
+        {
+            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("antag-not-whitelisted"));
+            return false;
+        }
 
         return true;
     }

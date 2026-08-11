@@ -1,0 +1,13 @@
+- type: entity
+  id: SpawnPointAetherisRep
+  parent: SpawnPointJobBase
+  name: Aetheris representative
+  components:
+  - type: SpawnPoint
+    job_id: AetherisRepresentative
+  - type: Sprite
+    sprite: _Starlight/Markers/jobs.rsi # placeholder
+    layers:
+      - state: green
+      - state: ntrep
+      - state: jobicon

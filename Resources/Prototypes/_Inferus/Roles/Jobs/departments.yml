@@ -1,0 +1,10 @@
+- type: department
+  id: Corporate
+  name: department-Corporate
+  description: department-Corporate-description
+  color: "#1A7A7A"
+  weight: -10
+  roles:
+  - AetherisRepresentative
+  editorHidden: false
+  primary: false

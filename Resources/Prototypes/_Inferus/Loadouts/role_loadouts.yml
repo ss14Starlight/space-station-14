@@ -1,0 +1,15 @@
+- type: roleLoadout
+  id: JobAetherisRepresentative
+  groups:
+#  - AetherisRepresentativeHead
+#  - AetherisRepresentativeNeck
+#  - AetherisRepresentativeJumpsuit
+#  - AetherisRepresentativeEyewear
+  - CommonBackpack
+#  - AetherisRepresentativeShoes
+  - Trinkets
+  - Scarves
+  - Pins
+#  - NTRPens
+  - Survival
+  - GroupSpeciesBreathTool

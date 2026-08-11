@@ -3,12 +3,13 @@
   name: roles-antag-brighteye-name
   antagonist: true
   setPreference: true
+  whitelisted: true # Inferus
   objective: roles-antag-brighteye-description
   guides: [ Shadekin, Brighteye ]
   roleLoadout: [ AntagBrighteye ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 172800 # 48h
+    time: 12h # Inferus
   - !type:SpeciesRequirement
     species:
     - Shadekin

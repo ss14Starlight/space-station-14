@@ -144,7 +144,7 @@ def mask_non_code(text: str) -> str:
 def expected_namespace(root: Path, file: Path) -> str | None:
     parts = file.relative_to(root).parts
 
-    if "_Starlight" not in parts:
+    if "_Infernus" not in parts:
         return None
 
     if not parts[0].startswith("Content."):
@@ -272,14 +272,14 @@ def main() -> int:
         failures += 1
 
     if failures == 0:
-        print("No _Starlight namespace errors found.")
+        print("No _Inferus namespace errors found.")
         print(f"Checked: {checked}")
         print(f"Skipped suppressed: {skipped_suppressed}")
         print(f"Skipped inactive/comment-only: {skipped_inactive}")
         return 0
 
     print()
-    print(f"{failures} _Starlight namespace error(s) found.")
+    print(f"{failures} _Inferus namespace error(s) found.")
     print(f"Checked: {checked}")
     print(f"Skipped suppressed: {skipped_suppressed}")
     print(f"Skipped inactive/comment-only: {skipped_inactive}")

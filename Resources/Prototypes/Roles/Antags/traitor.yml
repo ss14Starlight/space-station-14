@@ -1,13 +1,13 @@
 - type: antag
   id: Traitor
-  name: roles-antag-syndicate-agent-name
+  name: roles-antag-EPC-agent-name # Inferus - rebrand to EPC
   antagonist: true
   setPreference: true
-  objective: roles-antag-syndicate-agent-objective
+  objective: roles-antag-EPC-agent-objective # Inferus - rebrand to EPC
   guides: [ Traitors ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 12h # Starlight, mostly just to ensure you know basic controls.
+    time: 4h # Inferus - people are fast learners
   playTimeTracker: AntagTraitor # Starlight
 
 - type: antagSpecifier
@@ -29,14 +29,14 @@
 
 - type: antag
   id: TraitorSleeper
-  name: roles-antag-syndicate-agent-sleeper-name
+  name: roles-antag-EPC-agent-sleeper-name # Inferus - rebrand to EPC
   antagonist: true
   setPreference: true
-  objective: roles-antag-syndicate-agent-sleeper-objective
+  objective: roles-antag-EPC-agent-sleeper-objective # Inferus - rebrand to EPC
   guides: [ Traitors ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 12h # Starlight, mostly just to ensure you know basic controls.
+    time: 4h # Inferus - people are fast learners
   playTimeTracker: AntagTraitor # Starlight
 
 - type: antagSpecifier
