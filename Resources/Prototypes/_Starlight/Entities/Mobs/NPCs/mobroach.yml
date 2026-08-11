@@ -82,17 +82,6 @@
         behaviors:
         - !type:GibBehavior
           recursive: false
-    - type: Speech
-      speechVerb: Moth
-      speechSounds: Squeak
-      allowedEmotes: ['Chitter', 'Squeak', 'FlapWings']
-    - type: LanguageKnowledge
-      speaks:
-      - Mothroach
-      understands:
-      - Moffic
-      - Mothroach
-      - GalacticCommon
     - type: Loadout
       prototypes: [SyndicateOperativeGearMobroach]
     - type: Jump # Lil guy has jumps.

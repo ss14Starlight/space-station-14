@@ -165,10 +165,6 @@ uplink-syndicate-id-card-desc = A Syndicate ID card, with Syndicate access. Unli
 uplink-black-jetpack-name = Black Jetpack
 uplink-black-jetpack-desc = A black jetpack. It allows you to fly around in space. Refills not included, use your fuel wisely.
 
-#Starlight: mobroach
-uplink-reinforcement-radio-mothroach-name = Mothroach Reinforcement Teleporter
-uplink-reinforcement-radio-mothroach-desc =  Call in a trained mobroach to assist you. Comes with a single syndicate cigarette, a fedora, and a pair of cheap shades. Specializes in cleaning evidence and chittering.
-
 uplink-reinforcement-radio-ancestor-name = Genetic Ancestor Reinforcement Teleporter
 uplink-reinforcement-radio-ancestor-desc =  Call in a trained ancestor of your choosing to assist you. Comes with a single syndicate cigarette.
 
