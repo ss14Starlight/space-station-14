@@ -5,9 +5,9 @@
     "size": {"x": 32, "y": 32},
     "states": [
         {
-            "name": "visor",
+            "name": "light",
             "directions": 4,
-            "copyright": "Killer Tamashi's (discord) work, edited by Spaghetti-Bit"
+            "copyright": "Based off of Killer Tamashi's (Discord) work, edited by Spaghetti-Bit"
         }
     ]
 }
