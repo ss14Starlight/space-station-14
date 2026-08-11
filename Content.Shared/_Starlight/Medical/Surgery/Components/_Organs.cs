@@ -53,6 +53,10 @@ public sealed partial class FunctionalOrganComponent : Component
 
     [DataField("comps")]
     public ComponentRegistry? Components;
+
+    // Populated at install time with the component types this specific organ instance actually
+    // added, so extraction only removes what it installed, not whatever's currently present.
+    public HashSet<Type> Installed = [];
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]

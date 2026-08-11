@@ -1,60 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: Form text input will no longer close when clicking away.
-    type: Fix
-  id: 407083
-  time: '2026-07-28T14:26:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5378
-- author: OMEGA
-  changes:
-  - message: The RCD can now build airlocks and firelocks on top of each other.
-    type: Tweak
-  id: 407084
-  time: '2026-07-28T14:26:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5377
-- author: Wizden Team
-  changes:
-  - message: Inflatables can now be sourced from emergency lockers.
-    type: Add
-  id: 407085
-  time: '2026-07-28T14:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5357
-- author: Wizden Team
-  changes:
-  - message: Conducting gloves to Uplink for 1 TC.
-    type: Add
-  id: 407086
-  time: '2026-07-28T14:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5357
-- author: Wizden Team
-  changes:
-  - message: Most outer clothing can now only hold small Items.
-    type: Tweak
-  id: 407087
-  time: '2026-07-28T14:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5357
-- author: Wizden Team
-  changes:
-  - message: Fixed Det coat armor values.
-    type: Fix
-  id: 407088
-  time: '2026-07-28T14:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5357
-- author: Wizden Team
-  changes:
-  - message: Explosion Resistance has been removed from the web vest.
-    type: Tweak
-  id: 407089
-  time: '2026-07-28T14:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5357
-- author: OMEGA
-  changes:
-  - message: When refilling RPD, RPLD or experimental variants of them, the correct name now displays.
-    type: Tweak
-  id: 407090
-  time: '2026-07-28T15:17:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5375
 - author: Caws
   changes:
   - message: (Boxcars) Removed Boxcars from the game files.
@@ -2799,4 +2743,60 @@ Entries:
   id: 407482
   time: '2026-08-10T22:37:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5544
+- author: Conflee, Flareguy
+  changes:
+  - message: Added Newspapers and Magazines, newpropr with worldbuilding and lore for mappers to decorate with. 11 Newspapers, 21 'legit' Magazines, and 14 'disreputable' 'Zines are implemented currently.
+    type: Add
+  id: 407483
+  time: '2026-08-10T23:12:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5538
+- author: Romero/Littlemen, with thanks to SevenShade
+  changes:
+  - message: WAR WIZARD (admeme phase).
+    type: Add
+  id: 407484
+  time: '2026-08-10T23:12:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5526
+- author: Romero/Littlemen, with thanks to SevenShade
+  changes:
+  - message: The Cryomancer.
+    type: Add
+  id: 407485
+  time: '2026-08-10T23:12:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5526
+- author: Romero/Littlemen, with thanks to SevenShade
+  changes:
+  - message: The Pyromancer.
+    type: Add
+  id: 407486
+  time: '2026-08-10T23:12:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5526
+- author: Romero/Littlemen, with thanks to SevenShade
+  changes:
+  - message: 13 new spells, 2 special robes, one spellbook for the wizards.
+    type: Add
+  id: 407487
+  time: '2026-08-10T23:12:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5526
+- author: Romero/Littlemen, with thanks to SevenShade
+  changes:
+  - message: the option for actionsystem to change the speed of a projectile.
+    type: Tweak
+  id: 407488
+  time: '2026-08-10T23:12:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5526
+- author: Sparlight
+  changes:
+  - message: Fixed reinstalled surgical implants disappearing when attempting installation.
+    type: Fix
+  id: 407489
+  time: '2026-08-11T03:09:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5569
+- author: Sparlight
+  changes:
+  - message: Partial smellers (vulpkanins) can no longer detect scent emissions from cloaked entities.
+    type: Tweak
+  id: 407490
+  time: '2026-08-11T03:09:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5557
 Order: -1

@@ -21,7 +21,8 @@ public sealed partial class ScentMarkerComponent : Component
     public TimeSpan ExpiresAt;
 
     /// <summary>
-    // How pooled this marker is, 0-1. Maps to alpha/scale client-side.
+    /// How pooled this marker is, 0-1. Maps to alpha/scale client-side.
+    /// </summary>
     /// </summary>
     [DataField, AutoNetworkedField]
     public float Strength;
@@ -44,4 +45,10 @@ public sealed partial class ScentMarkerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool WasDead;
+    /// <summary>
+    /// Whether the emitter was cloaked (StealthComponent, hidden past its ExamineThreshold) at
+    /// the moment of this emission.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool WasCloaked;
 }
