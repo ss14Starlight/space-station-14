@@ -1,9 +1,12 @@
 scent-sniff-window-title = Scent Trace
 scent-sniff-window-empty = No scents detected.
+scent-sniff-window-empty-traces = No other scent traces detected.
 scent-sniff-window-entry-id = [color={$color}]Scent ({$id}...)[/color]
 scent-sniff-window-entry-detail = [color={$color}]{$species} - {$freshness}[/color]
 scent-sniff-window-track-tooltip = Click to track this scent
 scent-sniff-window-tracking-popup = You start tracking this scent.
+scent-sniff-window-track-own = Track this creature's scent directly
+scent-sniff-window-track-own-tooltip = Track this individual's scent directly.
 
 scent-species-non-humanoid = Non-Humanoid
 

@@ -21,3 +21,4 @@ station-beacon-lawyer = Lawyer
 station-beacon-janitor-cleaning-closet = Cleaning Closet
 station-beacon-washrooms = Washrooms
 station-beacon-radio-host = Radio Studio
+station-beacon-brigmedic = Brigmedic

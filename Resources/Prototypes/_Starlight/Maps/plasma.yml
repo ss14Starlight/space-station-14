@@ -16,7 +16,7 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/Shuttles/emergency_plasma.yml
         - type: StationCargoShuttle
-          path: /Maps/_Starlight/Shuttles/cargo_plasma.yml
+          path: /Maps/_Starlight/Shuttles/Cargo/cargo_plasma.yml
         - type: StationJobs
           availableJobs:
             #command (7)
