@@ -1,0 +1,75 @@
+- type: entity
+  parent: BaseMobNeocyte
+  id: BaseMobNeoElf
+  name: Urist McElgister
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    understands:
+    - GalacticCommon
+    - Machine
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Proto-Humie/parts.rsi
+    state: full
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
+  - type: Damageable
+    damageContainer: Hybrid
+    damageModifierSet: NeoElf
+  - type: HumanoidAppearance
+    species: NeoElf
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Inventory
+    templateId: neocyte
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: Wagging
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - SiliconEmotesFH
+    - NotLabelable
+    - Elf
+    - NeoElf
+    - Neocyte
+
+
+- type: entity
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
+  id: AppearanceNeoElf
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: NeoElf
+  - type: Inventory
+    templateId: neocyte
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

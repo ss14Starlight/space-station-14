@@ -42,7 +42,7 @@
   - type: Clickable
   - type: Sprite
     noRot: true
-    sprite: Objects/Decoration/Flora/flora_trees.rsi
+    sprite: _Starlight/Objects/Decoration/Flora/flora_trees.rsi #SL Edit
     drawdepth: Overdoors
     offset: 0,0.9
   - type: Physics
@@ -99,7 +99,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Objects/Decoration/Flora/flora_treessnow.rsi
+    sprite: _Starlight/Objects/Decoration/Flora/tree_snow.rsi #SL Edit
     offset: 0,0.7
   - type: Fixtures
     fixtures:
@@ -117,7 +117,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Objects/Decoration/Flora/flora_treeslarge.rsi
+    sprite: _Starlight/Objects/Decoration/Flora/flora_treeslarge.rsi #SL Edit
     offset: 0,1.55
   - type: Fixtures
     fixtures:
@@ -135,7 +135,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Objects/Decoration/Flora/flora_treesconifer.rsi
+    sprite: _Starlight/Objects/Decoration/Flora/tree_spruce_medium.rsi #SL Edit
     offset: 0,1.15
   - type: Fixtures
     fixtures:
@@ -239,24 +239,27 @@
   components:
   - type: Sprite
     layers:
-    - state: treesnow01
+    - state: tree01 #SL Edit
       map: ["random"]
   - type: RandomSprite
     available:
     - random:
-        treesnow01: ""
-        treesnow02: ""
-        treesnow03: ""
-        treesnow04: ""
-        treesnow05: ""
-        treesnow06: ""
+        #SL Start
+        tree01: ""
+        tree02: ""
+        tree03: ""
+        tree04: ""
+        tree05: ""
+        tree06: ""
+        #SL End
 
 - type: entity
-  parent: BaseTreeSnow
+  parent: BaseTreeConiferOld #SL Edit
   id: FloraTreeStump
   name: tree stump
   components:
   - type: Sprite
+    sprite: Objects/Decoration/Flora/flora_treessnow.rsi #SL Edit
     state: treestump
 
 - type: entity
@@ -279,23 +282,26 @@
         treelarge06: ""
 
 - type: entity
-  parent: BaseTreeConifer
+  parent: BaseTreeConiferSnow #SL Edit
   id: FloraTreeConifer
   name: snowy conifer
   components:
   - type: Sprite
     layers:
-    - state: treeconifer01
+    - state: tree01 #SL Edit
       map: ["random"]
   - type: RandomSprite
     available:
     - random:
-        treeconifer01: ""
-        treeconifer02: ""
-        treeconifer03: ""
+        # Starlight Start
+        tree01: ""
+        tree02: ""
+        tree03: ""
+        tree04: ""
+        # Starlight End
 
 - type: entity
-  parent: BaseTreeConifer
+  parent: BaseTreeConiferOld #SL
   id: FloraTreeChristmas01
   name: christmas tree
   components:
@@ -303,7 +309,7 @@
     state: treechristmas01
 
 - type: entity
-  parent: BaseTreeConifer
+  parent: BaseTreeConiferOld #SL
   id: FloraTreeChristmas02
   suffix: Safe Presents
   name: christmas tree
@@ -351,7 +357,7 @@
         orGroup: present
 
 - type: entity
-  parent: BaseTreeConifer
+  parent: BaseTreeConiferOld #SL
   id: FloraTreeStumpConifer
   name: tree stump
   components:

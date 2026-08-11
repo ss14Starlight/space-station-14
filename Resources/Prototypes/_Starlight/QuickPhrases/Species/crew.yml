@@ -33,94 +33,94 @@
   parent: BaseCrewSpeciesPhrase
   text: species-name-ipc
 
-# Protogens and protogen subspecies
+# Neocytes and neocyte subspecies
 
 - type: quickPhrase
-  id: SpeciesProtogenPhrase
+  id: SpeciesNeocytePhrase
   parent: BaseCrewSpeciesPhrase
-  text: species-name-protogen
+  text: species-name-neocyte
 
 - type: quickPhrase
-  id: SpeciesTrueProtogenPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-trueprotogen
+  id: SpeciesTrueNeocytePhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-trueneocyte
 
 - type: quickPhrase
-  id: SpeciesProtohumanPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protohuman
+  id: SpeciesNeoHumanPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neohuman
 
 - type: quickPhrase
-  id: SpeciesProtodionaPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protodiona
+  id: SpeciesNeoDionaPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neodiona
 
 - type: quickPhrase
-  id: SpeciesProtoarachnidPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protoarachnid
+  id: SpeciesNeoArachnidPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoarachnid
 
 - type: quickPhrase
-  id: SpeciesProtomothPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protomoth
+  id: SpeciesNeoMothPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neomoth
 
 - type: quickPhrase
-  id: SpeciesProtoreptilianPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protoreptilian
+  id: SpeciesNeoReptilianPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoreptilian
 
 - type: quickPhrase
-  id: SpeciesProtoslimepersonPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protoslimeperson
+  id: SpeciesNeoSlimePersonPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoslimeperson
 
 - type: quickPhrase
-  id: SpeciesProtovulpPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protovulp
+  id: SpeciesNeoVulpkaninPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neovulpkanin
 
 - type: quickPhrase
-  id: SpeciesProtoresomiPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protoresomi
+  id: SpeciesNeoResomiPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoresomi
 
 - type: quickPhrase
-  id: SpeciesProtoavaliPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protoavali
+  id: SpeciesNeoAvaliPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoavali
 
 - type: quickPhrase
-  id: SpeciesProtovoxPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protovox
+  id: SpeciesNeoVoxPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neovox
 
 - type: quickPhrase
-  id: SpeciesProtolagomorphPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protolagomorph
+  id: SpeciesNeoLagomorphPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neolagomorph
 
 - type: quickPhrase
-  id: SpeciesProtofelionoidPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protofelionoid
+  id: SpeciesNeoFelionoidPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neofelionoid
 
 - type: quickPhrase
-  id: SpeciesProtokinPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protokin
+  id: SpeciesNeoKinPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neokin
 
 - type: quickPhrase
-  id: SpeciesProtothavenPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protothaven
+  id: SpeciesNeoThavenPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neothaven
 
 - type: quickPhrase
-  id: SpeciesProtocycloritePhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protocyclorite
+  id: SpeciesNeoCycloritePhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neocyclorite
 
 - type: quickPhrase
-  id: SpeciesProtoelfPhrase
-  parent: SpeciesProtogenPhrase
-  text: subspecies-name-protoelf
+  id: SpeciesNeoElfPhrase
+  parent: SpeciesNeocytePhrase
+  text: subspecies-name-neoelf
