@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/10/2026 14:23:21
-  entityCount: 30392
+  time: 08/11/2026 18:19:14
+  entityCount: 30394
 maps:
 - 1
 grids:
@@ -10837,7 +10837,7 @@ entities:
       pos: -63.5,-31.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -233802.19
+      secondsUntilStateChange: -233867.73
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10862,7 +10862,7 @@ entities:
       pos: -58.5,-45.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -232199.69
+      secondsUntilStateChange: -232265.23
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10935,7 +10935,7 @@ entities:
       pos: 1.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -47345.863
+      secondsUntilStateChange: -47411.414
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11019,7 +11019,7 @@ entities:
       pos: -32.5,-52.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -239454.72
+      secondsUntilStateChange: -239520.27
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11622,7 +11622,7 @@ entities:
       pos: -71.5,-38.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -234312.52
+      secondsUntilStateChange: -234378.06
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -11829,7 +11829,7 @@ entities:
       pos: -83.5,-42.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -58873.79
+      secondsUntilStateChange: -58939.34
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11841,7 +11841,7 @@ entities:
       pos: -83.5,-46.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -58874.39
+      secondsUntilStateChange: -58939.94
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11853,7 +11853,7 @@ entities:
       pos: -83.5,-50.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -58875.156
+      secondsUntilStateChange: -58940.707
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11865,7 +11865,7 @@ entities:
       pos: -83.5,-32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -58872.39
+      secondsUntilStateChange: -58937.94
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11877,7 +11877,7 @@ entities:
       pos: -83.5,-28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -58871.824
+      secondsUntilStateChange: -58937.375
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11889,7 +11889,7 @@ entities:
       pos: -83.5,-24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -58871.324
+      secondsUntilStateChange: -58936.875
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11901,7 +11901,7 @@ entities:
       pos: 47.5,53.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -58896.625
+      secondsUntilStateChange: -58962.176
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11913,7 +11913,7 @@ entities:
       pos: 47.5,57.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -58895.99
+      secondsUntilStateChange: -58961.54
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11927,7 +11927,7 @@ entities:
       addComponents: []
       path: /Maps/_Starlight/Shuttles/Security/pursuit.yml
     - type: Door
-      secondsUntilStateChange: -114683.9
+      secondsUntilStateChange: -114749.445
       state: Opening
 - proto: AirlockExternalGlassShuttleLocked
   entities:
@@ -13301,7 +13301,7 @@ entities:
       pos: 34.5,43.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -312660.28
+      secondsUntilStateChange: -312725.84
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16742,6 +16742,18 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -17.5,-90.5
+      parent: 2
+  - uid: 21321
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -27.5,-89.5
+      parent: 2
+  - uid: 25384
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -27.5,-90.5
       parent: 2
   - uid: 30274
     components:
