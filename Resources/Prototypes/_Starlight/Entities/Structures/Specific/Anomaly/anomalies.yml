@@ -453,8 +453,8 @@
   - type: Anomaly
     initialSeverityRange:
       0.05: 0.05
-    minPulseLength: 90
-    maxPulseLength: 120
+    minPulseLength: 120
+    maxPulseLength: 180
     pulseSound: null
     shuffleParticlesOnMapInit: false
     randomBehaviorOnMapInit: false
@@ -548,7 +548,7 @@
     snapCardinals: true
     offset: 0,0.27
     layers:
-    - state: rift-unshaded
+    - state: empowered-rift
       shader: unshaded
   - type: Anomaly
     initialStabilityRange:
@@ -596,10 +596,10 @@
     - ParticleTransformation
   - type: Clickable
   - type: PointLight
-    radius: 1.5
+    radius: 1.9
     energy: 1.6
     castShadows: false
-    color: "#42a4ae"
+    color: "#6A4CFF"
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-forthecult
   - type: CosmicMalignEmpoweredRift

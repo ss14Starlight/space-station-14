@@ -13,6 +13,9 @@
   - type: NpcFactionMember
     factions:
     - CosmicCult
+  - type: CosmicMalignantHealing
+    healInterval: 1s
+    healAmount: 0.2
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
   - type: Sprite
@@ -137,6 +140,7 @@
       types:
         Bloodloss: 0
   - type: MobState
+    allowRevives: true
     allowedStates:
     - Alive
     - Dead
@@ -262,6 +266,7 @@
     - ColossusTitlesLone
     nameFormat: name-format-colossus
   - type: MobThresholds
+    allowRevives: true
     thresholds:
       0: Alive
       450: Dead
@@ -280,6 +285,7 @@
     - ColossusTitlesBase
     nameFormat: name-format-colossus
   - type: MobThresholds
+    allowRevives: true
     thresholds:
       0: Alive
       400: Dead

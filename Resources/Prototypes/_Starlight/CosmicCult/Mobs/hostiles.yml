@@ -34,7 +34,7 @@
     factions:
     - CosmicCult
   - type: CosmicMalignantHealing
-    healInterval: 1
+    healInterval: 1s
     healAmount: 0.1
   - type: GhostRole
     allowMovement: true
