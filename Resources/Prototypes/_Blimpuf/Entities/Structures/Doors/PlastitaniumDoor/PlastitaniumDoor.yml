@@ -1,7 +1,8 @@
 ﻿- type: entity
-  id: PlastitaniumDoor
-  parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
-  name: Plastitanium Door
+  id: PlastitaniumDoorIndesctructible # Starlight
+  parent: [ BaseStructure, BaseStructureDissolvable ]
+  name: plastitanium door # Starlight, lowercase
+  suffix: indestructible # Starlight
   description: It opens, it closes, and maybe crushes you.
   components:
     - type: Untamperable
@@ -125,17 +126,17 @@
     - type: Damageable
       damageContainer: StructuralInorganic
       damageModifierSet: StrongMetallic
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 1000
-          behaviors:
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: MetalSlam
+    #- type: Destructible # Starlight start
+    #  thresholds:
+    #    - trigger:
+    #        !type:DamageTrigger
+    #        damage: 1000
+    #      behaviors:
+    #        - !type:DoActsBehavior
+    #          acts: ["Destruction"]
+    #        - !type:PlaySoundBehavior
+    #          sound:
+    #            collection: MetalSlam # Starlight end
     - type: PlacementReplacement
       key: walls
     - type: Paintable
@@ -147,6 +148,7 @@
     - type: Tag
       tags:
         - Airlock
+        - Inedible # Starlight
     - type: BlockWeather
     - type: GuideHelp
       guides:
@@ -154,3 +156,25 @@
         - Networking
   placement:
     mode: SnapgridCenter
+
+# Starlight start
+- type: entity
+  id: PlastitaniumDoor
+  parent: PlastitaniumDoorIndesctructible
+  suffix: ""
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 1000
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalSlam
+    - type: Tag
+      tags:
+        - Airlock
+# Starlight end
