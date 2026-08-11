@@ -1,11 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: Removed hull plates blocking TEG's cold loop from cooling.
-    type: Fix
-  id: 407107
-  time: '2026-07-29T08:55:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5389
 - author: SeaTheProto
   changes:
   - message: allow Dominator, Miniature Energy Gun, Proto-5x, and the X-01's disabling settings to work with pacifism. Pacifists rejoice!
@@ -2799,4 +2792,11 @@ Entries:
   id: 407506
   time: '2026-08-11T10:01:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5556
+- author: Spaghetti-Bit
+  changes:
+  - message: Properly fixes the rest of neo-avali female sprite displacements (Shoes, armor, backpack, mask, and head).
+    type: Fix
+  id: 407507
+  time: '2026-08-11T10:25:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5558
 Order: -1
