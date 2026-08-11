@@ -110,7 +110,7 @@
       proto: SkilledOfficer
   dummyEntity: WeaponPistolColdCase
   storage:
-    back::
+    back:
     - WeaponPistolColdCase
     - MagazineBoxPistol40SP
 
