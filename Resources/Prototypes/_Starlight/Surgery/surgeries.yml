@@ -785,7 +785,7 @@
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
     steps:
-    - SurgeryStepLocateImplant
+    - SurgeryStepLocateNoseImplant
     - SurgeryStepClampOlfactoryNerve
     - SurgeryStepRemoveNoseImplant
   - type: SurgeryPartCondition
@@ -844,7 +844,7 @@
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
     steps:
-    - SurgeryStepLocateImplant
+    - SurgeryStepLocateHandImplant
     - SurgeryStepExposeNerves
     - SurgeryStepRemoveHandImplant
   - type: SurgeryPartCondition

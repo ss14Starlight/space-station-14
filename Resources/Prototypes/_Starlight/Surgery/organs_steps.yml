@@ -313,6 +313,30 @@
 
 - type: entity
   parent: SurgeryStepBase
+  id: SurgeryStepLocateNoseImplant
+  name: Locate Implant
+  components:
+  - type: SurgeryStep
+    duration: 2
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: nose_implant_scent
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepLocateHandImplant
+  name: Locate Implant
+  components:
+  - type: SurgeryStep
+    duration: 2
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: hand_implant_insulated
+
+- type: entity
+  parent: SurgeryStepBase
   id: SurgeryStepRemoveEyeImplant
   name: Remove Eye Implant
   components:

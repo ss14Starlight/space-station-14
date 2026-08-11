@@ -30,3 +30,6 @@ scent-verb-message = Wash scent, fingerprints, and DNA residue off the object!
 scent-evidence-scent = scent
 scent-evidence-forensics = fingerprints and other evidence
 scent-evidence-both = scent, fingerprints, and other evidence
+
+scent-nose-implant-name = olfactory implant
+scent-nose-implant-description = Enables you to perceive and track scents.

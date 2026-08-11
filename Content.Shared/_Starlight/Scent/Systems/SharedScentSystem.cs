@@ -39,7 +39,7 @@ public abstract partial class SharedScentSystem : EntitySystem
     }
 
     /// <summary>
-    /// Fires whether SmellerComponent is present from spawn or granted later
+    /// Runs when SmellerComponent initializes, whether it was present at spawn or granted later
     /// (i.e. an implant, a species change)
     /// </summary>
     /// <param name="uid">The entity the SmellerComponent was added to.</param>

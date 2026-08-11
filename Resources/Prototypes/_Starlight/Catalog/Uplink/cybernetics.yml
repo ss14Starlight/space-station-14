@@ -38,9 +38,8 @@
   description: uplink-olfactory-implant-desc
   icon:
     {
-      # TODO: placeholder art, reusing the eye implant welding sprite until dedicated nose implant art exists.
       sprite: /Textures/_Starlight/Objects/Specific/Medical/implants.rsi,
-      state: eye_implant_welding,
+      state: nose_implant_scent,
     }
   productEntity: NoseImplantOlfactory
   discountDownTo:
