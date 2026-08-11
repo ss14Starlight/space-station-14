@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Secret doors no longer display an interaction particle.
-    type: Tweak
-  id: 407097
-  time: '2026-07-28T19:29:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5385
 - author: Conflee
   changes:
   - message: Changed saturation of colored light tubes and bulbs to be 20% less saturated. Barely noticeable, but it blows out colors a bit less and is less painful to look at.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407496
   time: '2026-08-11T08:00:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5002
+- author: Hot Mic
+  changes:
+  - message: Fixed the Spritework for the Robotist's Labcoat while in open state. Lex Newbell rejoice!
+    type: Fix
+  id: 407497
+  time: '2026-08-11T08:33:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5540
 Order: -1
