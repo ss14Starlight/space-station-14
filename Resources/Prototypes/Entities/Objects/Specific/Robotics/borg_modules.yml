@@ -958,6 +958,7 @@
         whitelist:
           components:
           - Healing
+          - ConditionalHealing # Starlight
     - item: Brutepack
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -965,6 +966,7 @@
         whitelist:
           components:
           - Healing
+          - ConditionalHealing # Starlight
     - item: Ointment
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -972,6 +974,7 @@
         whitelist:
           components:
           - Healing
+          - ConditionalHealing # Starlight
     # Starlight start - improve first aid module ergonomics
     - item: PillCanister
       hand:
