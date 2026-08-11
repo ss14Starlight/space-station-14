@@ -1,11 +1,4 @@
 Entries:
-- author: SeaTheProto
-  changes:
-  - message: allow Dominator, Miniature Energy Gun, Proto-5x, and the X-01's disabling settings to work with pacifism. Pacifists rejoice!
-    type: Tweak
-  id: 407108
-  time: '2026-07-29T08:55:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5394
 - author: wonderfulnewworld
   changes:
   - message: Interaction particles are now optional via options menu.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407507
   time: '2026-08-11T10:25:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5558
+- author: EWanderer
+  changes:
+  - message: Mining Borgs can now hold tickets in their hands.
+    type: Tweak
+  id: 407508
+  time: '2026-08-11T10:25:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5559
 Order: -1
