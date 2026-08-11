@@ -206,14 +206,11 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
         return models;
     }
 
-    //Starlight-edit start
+    #region Starlight
 
-    private void HandleAlternativeRadialButtonClick(EmotePrototype emote)
-    {
-        EntityManager.RaisePredictiveEvent(new RequestBindEmoteMessage(emote.ID));
-    }
+    private void HandleAlternativeRadialButtonClick(EmotePrototype emote) => EntityManager.RaisePredictiveEvent(new RequestBindEmoteMessage(emote.ID));
 
-    //Starlight-edit stop
+    #endregion
 
     private void HandleRadialButtonClick(EmotePrototype prototype)
     {
