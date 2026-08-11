@@ -54,6 +54,7 @@
     - Paramedic
     - Mining
     - Debrief
+    - Journalism
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
