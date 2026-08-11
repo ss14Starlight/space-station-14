@@ -443,7 +443,7 @@
   - type: Transform
     anchored: true
   - type: Sprite
-    sprite: \_Starlight/CosmicCult/Tileset/malignrift.rsi
+    sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
     drawdepth: Mobs
     snapCardinals: true
     offset: 0,0.27
@@ -542,6 +542,8 @@
         - FlyingMobMask
         layer:
         - FlyingMobLayer
+  - type: Transform
+    anchored: true
   - type: Sprite
     sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
     drawdepth: Mobs
