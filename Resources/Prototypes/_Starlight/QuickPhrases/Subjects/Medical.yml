@@ -18,11 +18,6 @@
   parent: BaseMedicinePhrase
   text: reagent-name-insuzine
 
-#- type: quickPhrase
-#  id: ChemPyrazinePhrase
-#  parent: BaseMedicinePhrase
-#  text: reagent-name-pyrazine #why is pyra the only one that already exists in DV?
-
 - type: quickPhrase
   id: ChemSigynatePhrase
   parent: BaseMedicinePhrase
