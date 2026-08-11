@@ -32,6 +32,7 @@ secure-terminal-delay-note = { $minutes ->
     [1] ETA: 1 minute after authorization.
    *[other] ETA: {$minutes} minutes after authorization.
 }
+secure-terminal-delay-note-immediate = Takes effect immediately on authorization.
 
 secure-terminal-requires-no-war-note = Disabled during War Ops.
 secure-terminal-requires-war-note = Only available during War Ops.
