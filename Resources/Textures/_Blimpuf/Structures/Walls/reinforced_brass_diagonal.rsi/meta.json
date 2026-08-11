@@ -1,17 +1,19 @@
 {
-    "version": 1,
-    "size": {
-        "x": 32,
-        "y": 32
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "state0",
+	  "copyright": "Conflee, ItsMaitake"
     },
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Made by Conflee, brass variant edit by ItsMaitake on Blimpuf Station",
-    "states": [
-        {
-            "name": "state0"
-        },
-        {
-            "name": "state1"
-        }
-    ]
+    {
+      "name": "state1",
+	  "copyright": "Conflee, ItsMaitake"
+    }
+  ]
 }
