@@ -1423,14 +1423,14 @@ entities:
     - type: Transform
       pos: -3.5,6.5
       parent: 1
-- proto: ComputerSalvageExpeditionITG
+- proto: ComputerSalvageExpedition
   entities:
   - uid: 189
     components:
     - type: Transform
       pos: -2.5,6.5
       parent: 1
-- proto: ComputerSalvageJobBoardITG
+- proto: ComputerSalvageJobBoard
   entities:
   - uid: 190
     components:
