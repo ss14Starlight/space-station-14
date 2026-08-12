@@ -15,11 +15,11 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-    - Hybrid # Neocytes
+    - Hybrid # Protogens
   - type: ShowHealthIcons
     damageContainers:
     - Biological
-    - Hybrid # Neocytes
+    - Hybrid # Protogens
   - type: Tag
     tags:
     - HudMedical

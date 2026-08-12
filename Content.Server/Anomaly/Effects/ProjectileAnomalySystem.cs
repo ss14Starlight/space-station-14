@@ -18,6 +18,7 @@ public sealed partial class ProjectileAnomalySystem : EntitySystem
     [Dependency] private TransformSystem _xform = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private GunSystem _gunSystem = default!;
     [Dependency] private SharedMapSystem _map = default!;
 
@@ -97,7 +98,7 @@ public sealed partial class ProjectileAnomalySystem : EntitySystem
     {
         var mapPos = _xform.ToMapCoordinates(coords);
 
-        var spawnCoords = _map.TryFindGridAt(mapPos, out var gridUid, out _)
+        var spawnCoords = _mapManager.TryFindGridAt(mapPos, out var gridUid, out _)
                 ? _xform.WithEntityId(coords, gridUid)
                 : new(_map.GetMapOrInvalid(mapPos.MapId), mapPos.Position);
 

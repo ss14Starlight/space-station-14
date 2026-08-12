@@ -575,9 +575,7 @@ namespace Content.Shared.Preferences
             var configManager = collection.Resolve<IConfigurationManager>();
             var prototypeManager = collection.Resolve<IPrototypeManager>();
 
-            var speciesPrototype = ResolveSpecies(prototypeManager); // Starlight, species migrations
-
-            if (speciesPrototype is null || !speciesPrototype.RoundStart) // Starlight, species migrations
+            if (!prototypeManager.TryIndex(Species, out var speciesPrototype) || speciesPrototype.RoundStart == false)
             {
                 Species = SharedHumanoidAppearanceSystem.DefaultSpecies;
                 speciesPrototype = prototypeManager.Index(Species);

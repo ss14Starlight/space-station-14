@@ -1,0 +1,173 @@
+- type: roleLoadout
+  id: ProtogenLoadout
+  groups:
+  - ProtogenCybernetics
+
+- type: loadoutGroup
+  id: ProtogenCybernetics
+  name: loadout-group-protogen-cybernetics
+  minLimit: 1
+  defaultSelected: 1
+  loadouts:
+  - ProtogenArmorLightBasic
+  - ProtogenArmorLightSpeed
+  - ProtogenArmorMediumBasic
+  - ProtogenArmorMediumMagic
+  - ProtogenArmorHeavyBasic
+  - ProtogenArmorHeavySpace
+
+- type: loadout
+  id: ProtogenArmorLightBasic
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenLightBasicUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Protogen
+    - ProtoElf
+    - ProtoArachnid
+    - ProtoAvali
+    - ProtoCyclorite
+    - ProtoDiona
+    - ProtoDwarf
+    - ProtoFelionoid
+    - ProtoHuman
+    - ProtoKin
+    - ProtoLagomorph
+    - ProtoSlimePerson
+    - ProtoThaven
+    - ProtoMoth
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp
+
+- type: loadout
+  id: ProtogenArmorLightSpeed
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenLightSpeedUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Protogen
+    - ProtoElf
+    - ProtoArachnid
+    - ProtoAvali
+    - ProtoCyclorite
+    - ProtoDiona
+    - ProtoDwarf
+    - ProtoFelionoid
+    - ProtoHuman
+    - ProtoKin
+    - ProtoLagomorph
+    - ProtoSlimePerson
+    - ProtoThaven
+    - ProtoMoth
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp
+
+- type: loadout
+  id: ProtogenArmorMediumBasic
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenMediumBasicUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Protogen
+    - ProtoElf
+    - ProtoArachnid
+    - ProtoAvali
+    - ProtoCyclorite
+    - ProtoDiona
+    - ProtoDwarf
+    - ProtoFelionoid
+    - ProtoHuman
+    - ProtoKin
+    - ProtoLagomorph
+    - ProtoSlimePerson
+    - ProtoThaven
+    - ProtoMoth
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp
+
+- type: loadout
+  id: ProtogenArmorMediumMagic
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenMediumMagicUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Protogen
+    - ProtoElf
+    - ProtoArachnid
+    - ProtoAvali
+    - ProtoCyclorite
+    - ProtoDiona
+    - ProtoDwarf
+    - ProtoFelionoid
+    - ProtoHuman
+    - ProtoKin
+    - ProtoLagomorph
+    - ProtoSlimePerson
+    - ProtoThaven
+    - ProtoMoth
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp
+
+- type: loadout
+  id: ProtogenArmorHeavyBasic
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenHeavyBasicUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Protogen
+    - ProtoElf
+    - ProtoArachnid
+    - ProtoAvali
+    - ProtoCyclorite
+    - ProtoDiona
+    - ProtoDwarf
+    - ProtoFelionoid
+    - ProtoHuman
+    - ProtoKin
+    - ProtoLagomorph
+    - ProtoSlimePerson
+    - ProtoThaven
+    - ProtoMoth
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp
+
+- type: loadout
+  id: ProtogenArmorHeavySpace
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenHeavySpaceUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Protogen
+    - ProtoElf
+    - ProtoArachnid
+    - ProtoAvali
+    - ProtoCyclorite
+    - ProtoDiona
+    - ProtoDwarf
+    - ProtoFelionoid
+    - ProtoHuman
+    - ProtoKin
+    - ProtoLagomorph
+    - ProtoSlimePerson
+    - ProtoThaven
+    - ProtoMoth
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp

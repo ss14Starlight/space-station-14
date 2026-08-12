@@ -6,9 +6,9 @@ namespace Content.Shared.Coordinates.Helpers
 {
     public static class SnapgridHelper
     {
-        public static EntityCoordinates SnapToGrid(this EntityCoordinates coordinates, IEntityManager? entMan = null)
+        public static EntityCoordinates SnapToGrid(this EntityCoordinates coordinates, IEntityManager? entMan = null, IMapManager? mapManager = null)
         {
-            IoCManager.Resolve(ref entMan);
+            IoCManager.Resolve(ref entMan, ref mapManager);
             var xformSys = entMan.System<SharedTransformSystem>();
 
             var gridId = xformSys.GetGrid(coordinates.EntityId);

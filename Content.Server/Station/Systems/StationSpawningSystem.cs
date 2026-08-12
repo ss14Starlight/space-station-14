@@ -220,9 +220,8 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         }
 
         // Far Horizons species loadouts
-        var speciesLoadout = profile?.GetSpeciesLoadoutOrDefault(_actors.GetSession(entity), _prototypeManager);
-        if (species.Loadout != null && _prototypeManager.TryIndex(species.Loadout.Value, out var speciesLoadoutProto) && speciesLoadout != null)
-            EquipRoleLoadout(entity.Value, speciesLoadout, speciesLoadoutProto, profile);
+        if (species.Loadout != null && _prototypeManager.TryIndex(species.Loadout.Value, out var speciesLoadoutProto) && profile != null && profile.SpeciesLoadout != null)
+            EquipRoleLoadout(entity.Value, profile.SpeciesLoadout, speciesLoadoutProto);
 
         // Starlight end
 

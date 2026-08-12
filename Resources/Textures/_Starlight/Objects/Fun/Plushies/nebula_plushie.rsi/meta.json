@@ -1,32 +1,14 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "State based copyright",
-    "size":
-    {
+    "copyright": "By rtasva",
+    "size": {
         "x": 32,
         "y": 32
     },
-    "states":
-    [
+    "states": [
         {
-            "name": "icon",
-            "copyright": "Character & sprites by rtasva (GitHub/Discord), edited from sprites by deltaVelocity (GitHub/Discord)"
-        },
-        {
-            "name": "inhand-left",
-            "copyright": "Character & sprites by rtasva (GitHub/Discord)",
-            "directions": 4
-        },
-        {
-            "name": "inhand-right",
-            "copyright": "Character & sprites by rtasva (GitHub/Discord)",
-            "directions": 4
-        },
-        {
-            "name": "equipped-HELMET",
-            "copyright": "Character & sprites by rtasva (GitHub/Discord)",
-            "directions": 4
+            "name": "icon"
         }
     ]
 }

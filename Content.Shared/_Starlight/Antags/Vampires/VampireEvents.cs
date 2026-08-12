@@ -455,9 +455,8 @@ public record struct VampireShadowBoxingStartAttemptEvent(EntityUid Performer, E
     public bool Cancelled;
 }
 
-[DataDefinition]
 [Serializable, NetSerializable]
-public sealed partial class VampireShadowBoxingPunchEvent : EntityEventArgs
+public sealed class VampireShadowBoxingPunchEvent : EntityEventArgs
 {
     public NetEntity Source { get; }
     public NetEntity Target { get; }

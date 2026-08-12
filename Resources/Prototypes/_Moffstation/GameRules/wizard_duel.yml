@@ -11,7 +11,7 @@
   - type: AntagObjectives
     objectives:
     - WizardDuelistMeetObjective
-    - WizardDuelistMedallionObjective # Starlight
+    - WizardDuelistRelocateObjective
     - WizardDuelistDemonstrateObjective
   - type: AntagSelection
     agentName: wizard-round-end-name

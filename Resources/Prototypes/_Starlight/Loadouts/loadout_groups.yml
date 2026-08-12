@@ -438,7 +438,6 @@
   - SecurityRevolverDispatcher
   - SecurityPistolDP
   - SecurityMk58Gold
-  - SecurityColdCase
 
 # Assorted Boots
 - type: loadoutGroup
@@ -1155,13 +1154,6 @@
   - SecurityHud
   - DetectiveNoirGlasses
   - SecurityGlassesPrescription
-
-- type: loadoutGroup
-  id: DetectiveLethal
-  name: loadout-group-detective-lethal
-  loadouts:
-  - InspectorBelt
-  - ColdCaseBelt
 
 - type: loadoutGroup
   id: BrigmedicHead

@@ -1,0 +1,93 @@
+- type: entity
+  id: OrganProtoDionaStomach
+  parent: OrganDionaStomach
+  name: augmented stomach
+  suffix: Proto-Diona
+  description: "The diona's equivalent of a stomach, it reeks of asparagus and vinegar."
+  components:
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+    isSpecialDigestibleExclusive: false
+  - type: Metabolizer
+    maxReagents: 6
+    metabolizerTypes: [ Plant, Protogen ] # Can't do animal since they would get poisoned by theobromine.
+    removeEmpty: true
+    groups:
+      - id: Food
+      - id: Drink
+      - id: Medicine
+      - id: Poison
+      - id: Narcotic
+      - id: Alcohol
+  - type: OrganDamage
+    damage:
+      types:
+        Poison: 130
+        Cellular: 30 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 20
+        Caustic: 20
+        Radiation: 10
+
+- type: entity
+  id: OrganProtoDionaLungs
+  parent: OrganDionaLungs
+  name: diona augmented lungs
+  suffix: Proto-Diona
+  description: "A spongy mess of slimy, leaf-like structures. Capable of breathing both carbon dioxide and oxygen."
+  components:
+  - type: OrganDamage
+    damage:
+      types:
+        Asphyxiation: 130
+        Cellular: 30 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 20
+        Radiation: 30
+
+# Organs that turn into nymphs on removal
+- type: entity
+  id: OrganProtoDionaStomachNymph
+  categories: [ HideSpawnMenu ]
+  parent: OrganProtoDionaStomach
+  name: proto-diona nymph stomach
+  suffix: Proto-Diona Nymph
+  description: "Gross. This is hard to stomach."
+  components:
+  - type: Nymph
+    entityPrototype: OrganProtoDionaNymphStomach
+
+- type: entity
+  id: OrganProtoDionaNymphStomach
+  categories: [ HideSpawnMenu ]
+  parent: MobDionaNymphAccent
+  name: proto-diona nymph stomach
+  suffix: Proto-Diona Nymph
+  description: Contains the stomach of a formerly fully-formed Proto-Diona. It doesn't taste any better for it.
+  components:
+  - type: IsDeadIC
+  - type: Body
+    prototype: AnimalProtoNymphStomach
+
+- type: entity
+  id: OrganProtoDionaLungsNymph
+  categories: [ HideSpawnMenu ]
+  parent: OrganProtoDionaLungs
+  name: proto-diona nymph lungs
+  suffix: Proto-Diona Nymph
+  description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
+  components:
+  - type: Nymph
+    entityPrototype: OrganProtoDionaNymphLungs
+
+- type: entity
+  id: OrganProtoDionaNymphLungs
+  categories: [ HideSpawnMenu ]
+  parent: MobDionaNymphAccent
+  name: proto-diona nymph lungs
+  suffix: Proto-Diona Nymph
+  description: Contains the lungs of a formerly fully-formed Proto-Diona. Breathtaking.
+  components:
+  - type: IsDeadIC
+  - type: Body
+    prototype: AnimalProtoNymphLungs

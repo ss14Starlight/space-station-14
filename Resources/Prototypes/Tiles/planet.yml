@@ -58,25 +58,23 @@
 - type: tile
   id: FloorPlanetGrass
   name: tiles-grass-planet-floor
-  sprite: /Textures/_Starlight/Tiles/Grass/grass.png #SL Edit
-  variants: 6 #SL
+  sprite: /Textures/Tiles/Planet/Grass/grass.png
+  variants: 4
   placementVariants:
   - 1.0
   - 1.0
   - 1.0
   - 1.0
-  - 1.0 #SL
-  - 1.0 #SL
   edgeSpritePriority: 1
   edgeSprites:
-    SouthEast: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
-    NorthEast: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
-    NorthWest: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
-    SouthWest: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
-    South: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
-    East: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
-    North: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
-    West: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
+    SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
+    NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png
+    NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png
+    SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png
+    South: /Textures/Tiles/Planet/Grass/double_edge.png
+    East: /Textures/Tiles/Planet/Grass/double_edge.png
+    North: /Textures/Tiles/Planet/Grass/double_edge.png
+    West: /Textures/Tiles/Planet/Grass/double_edge.png
   baseTurf: FloorPlanetDirt
   isSubfloor: true
   footstepSounds:

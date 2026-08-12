@@ -426,11 +426,11 @@
     stock: 1
 
 - type: listing
-  id: EvolutionMenuUtilityNeocyte
-  name: evolutionmenu-utility-neocyte-name
-  description: evolutionmenu-utility-neocyte-desc
+  id: EvolutionMenuUtilityProtogen
+  name: evolutionmenu-utility-protogen-name
+  description: evolutionmenu-utility-protogen-desc
   icon: { sprite: _Starlight/Actions/changeling.rsi, state: protogen_armor }
-  productAction: ActionToggleNeocyteDisguise
+  productAction: ActionToggleProtogenDisguise
   cost:
     EvolutionPoint: 0
   categories:

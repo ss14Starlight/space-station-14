@@ -75,12 +75,12 @@ public sealed partial class MarkingSet
 
         foreach (var marking in markings)
         {
-            if (!markingManager.TryMigrateMarking(marking, out var migratedMarking, out var prototype)) // Starlight
+            if (!markingManager.TryGetMarking(marking, out var prototype))
             {
                 continue;
             }
 
-            AddBack(prototype.MarkingCategory, migratedMarking); // Starlight
+            AddBack(prototype.MarkingCategory, marking);
         }
     }
 
@@ -96,12 +96,12 @@ public sealed partial class MarkingSet
 
         foreach (var marking in markings)
         {
-            if (!markingManager.TryMigrateMarking(marking, out var migratedMarking, out var prototype)) // Starlight
+            if (!markingManager.TryGetMarking(marking, out var prototype))
             {
                 continue;
             }
 
-            AddBack(prototype.MarkingCategory, migratedMarking); // Starlight
+            AddBack(prototype.MarkingCategory, marking);
         }
     }
 
@@ -246,13 +246,11 @@ public sealed partial class MarkingSet
             var toRemove = new List<int>(); // Starlight - keep invalid indexes scoped to this category.
             for (var i = 0; i < list.Count; i++)
             {
-                if (!markingManager.TryMigrateMarking(list[i], out var migratedMarking, out var marking)) // Starlight
+                if (!markingManager.TryGetMarking(list[i], out var marking))
                 {
                     toRemove.Add(i);
                     continue;
                 }
-
-                list[i] = migratedMarking; // Starlight
 
                 // Starlight start - normalize old sprite-layer colors into shared color slots.
                 if (marking.ColorSlotCount != list[i].MarkingColors.Count)
@@ -291,29 +289,31 @@ public sealed partial class MarkingSet
                 continue;
             }
 
-            #region Starlight
-            // Starlight, ensure default markings are applied, but only if the marking is valid and the category has points left
-            //var index = 0;
-
-            foreach (var defaultMarking in points.DefaultMarkings)
+            var index = 0;
+            while (points.Points > 0 || index < points.DefaultMarkings.Count)
             {
-                if (points.Points <= 0)
-                    break;
+                if (index < points.DefaultMarkings.Count && markingManager.Markings.TryGetValue(points.DefaultMarkings[index], out var prototype)) //starlight: add index sanity check to avoid problems when removing markings
+                {
+                    var colors = MarkingColoring.GetMarkingLayerColors(
+                            prototype,
+                            skinColor,
+                            eyeColor,
+                            this
+                        );
+                    // begin starlight
+                    try {
+                        var marking = new Marking(points.DefaultMarkings[index], colors, false);
 
-                if (!markingManager.Markings.TryGetValue(defaultMarking, out var prototype))
-                    continue;
+                        AddBack(category, marking);
+                    } catch (System.ArgumentOutOfRangeException e) {
+                        // marking was deleted and cannot be added, let's purge it:
+                        points.DefaultMarkings.RemoveAt(index);
+                    }
+                    // end starlight
+                }
 
-                var colors = MarkingColoring.GetMarkingLayerColors(
-                    prototype,
-                    skinColor,
-                    eyeColor,
-                    this);
-
-                AddBack(
-                    category,
-                    new Marking(defaultMarking, colors, false));
+                index++;
             }
-            #endregion
         }
     }
 
