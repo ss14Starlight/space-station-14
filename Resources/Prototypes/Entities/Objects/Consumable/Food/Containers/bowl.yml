@@ -83,6 +83,7 @@
     state: bowl-trash
   - type: Tag
     tags:
+    - OrganicTrash # Starlight
     - Trash
   - type: PhysicalComposition
     materialComposition:

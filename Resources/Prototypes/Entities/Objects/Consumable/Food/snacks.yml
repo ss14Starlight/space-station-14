@@ -618,6 +618,7 @@
     size: Tiny
   - type: Tag
     tags:
+    - OrganicTrash # Starlight
     - Trash
   - type: PhysicalComposition
     materialComposition:

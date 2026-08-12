@@ -76,6 +76,7 @@
     storedOffset: 0,-6
   - type: Tag
     tags:
+    - OrganicTrash # Starlight
     - Trash
   - type: SpaceGarbage
 

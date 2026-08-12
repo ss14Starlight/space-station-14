@@ -542,6 +542,9 @@
   id: OmniCyberEyes
 
 - type: Tag
+  id: OrganicTrash
+
+- type: Tag
   id: OvenMachineBoard
 
 - type: Tag
@@ -555,6 +558,9 @@
 
 - type: Tag
   id: PatchPack
+
+- type: Tag
+  id: PathogenRottenFood
 
 - type: Tag
   id: PersonnelStorage

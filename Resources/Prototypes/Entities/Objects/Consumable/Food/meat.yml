@@ -549,6 +549,7 @@
     - Meat
     - Trash
     - Recyclable
+    - PathogenRottenFood # Starlight
   - type: Sprite
     state: rotten
   - type: SolutionContainerManager
