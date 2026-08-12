@@ -35,7 +35,6 @@ public sealed partial class CosmicColossusComponent : Component
     [DataField] public EntProtoId EffigyPlaceAction = "ActionCosmicColossusEffigy";
     [DataField] public int EffigyCrits;
     public EntityUid? EffigyPlaceActionEntity;
-
     public EntityUid? CurrentEffigy;
 
     [AutoPausedField, DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]

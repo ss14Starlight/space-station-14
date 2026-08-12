@@ -70,21 +70,17 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
                 playSound: false,
                 colorOverride: Color.Red);
 
-            var colossusQuery = EntityQueryEnumerator<CosmicColossusComponent>();
-
-            while (colossusQuery.MoveNext(out var colossusUid, out var colossus))
-            {
              _audio.PlayGlobal(
-                colossus.ScreamSfx,
+                new SoundPathSpecifier("/Audio/Misc/cosmic_scream.ogg"),
                 Filter.Broadcast(),
                 true,
-                AudioParams.Default.WithVolume(35f));
+                AudioParams.Default.WithVolume(25f));
 
             _audio.PlayGlobal(
                 new SoundPathSpecifier("/Audio/Misc/redalert.ogg"),
                 Filter.Broadcast(),
                 true);
-            }
+            
         }
 
         // if 10 has been reached, but count gone back to 2 we can reset the alarms.

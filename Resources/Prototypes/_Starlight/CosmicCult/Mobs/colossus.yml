@@ -78,7 +78,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape: 
+        shape:
           !type:PhysShapeCircle
           radius: 0.25
         density: 2500
@@ -397,9 +397,9 @@
         shape: !type:PhysShapeAabb
           bounds: "-0.5,-0.5,0.5,0.5"
         layer:
-         - SlipLayer
+          - SlipLayer
         mask:
-         - ItemMask
+          - ItemMask
         density: 2500
         hard: false
   - type: StepTrigger
@@ -408,7 +408,7 @@
     ignoreWeightless: true
     blacklist:
       tags:
-       - Catwalk
+        - Catwalk
   - type: TileEntityEffect
     effects:
     - !type:HealthChange
