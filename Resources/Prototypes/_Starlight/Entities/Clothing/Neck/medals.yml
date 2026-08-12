@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingMiscBase
+  id: ClothingNeckCentralCommandMedal
+  name: central command medal
+  description: Given by central command to commend exemplary behavior.
+  components:
+    - type: Sprite
+      sprite: Clothing/Neck/Medals/cargomedal.rsi
+    - type: Clothing
+      sprite: Clothing/Neck/Medals/cargomedal.rsi
+    - type: Tag
+      tags:
+        - Medal
+        - WhitelistChameleon
