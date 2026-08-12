@@ -1,39 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: ERT Chaplains will use their shuttle now.
-    type: Tweak
-  id: 407124
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: Antags should no longer roll less than they're supposed to.
-    type: Fix
-  id: 407125
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: Terror Spiders now actually spawn in vents.
-    type: Fix
-  id: 407126
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: Xenos will no longer roll antags.
-    type: Fix
-  id: 407127
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: Hot Mic
-  changes:
-  - message: Replaced the sprite for the Ticket. New Ticket sprite made by Yosif.
-    type: Tweak
-  id: 407128
-  time: '2026-07-31T07:09:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5326
 - author: Hot Mic
   changes:
   - message: Added new variants for Ticket colors. New colors for each department!
@@ -2799,4 +2764,39 @@ Entries:
   id: 407523
   time: '2026-08-12T20:28:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5614
+- author: Way
+  changes:
+  - message: (Manor) Radio Host is now mapped.
+    type: Add
+  id: 407524
+  time: '2026-08-12T20:28:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5605
+- author: Way
+  changes:
+  - message: (Manor) Departmental lathes are mapped.
+    type: Add
+  id: 407525
+  time: '2026-08-12T20:28:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5605
+- author: Way
+  changes:
+  - message: (Manor) Bar area facelift.
+    type: Tweak
+  id: 407526
+  time: '2026-08-12T20:28:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5605
+- author: Way
+  changes:
+  - message: (Manor) Minor kitchen facelift.
+    type: Tweak
+  id: 407527
+  time: '2026-08-12T20:28:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5605
+- author: Way
+  changes:
+  - message: (Manor) Various decal updates around the map.
+    type: Tweak
+  id: 407528
+  time: '2026-08-12T20:28:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5605
 Order: -1
