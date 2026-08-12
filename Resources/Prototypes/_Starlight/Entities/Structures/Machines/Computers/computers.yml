@@ -224,8 +224,7 @@
 - type: entity
   parent: BaseComputerShuttle
   id: CompuerShuttleSalvage
-  categories: [ ShouldMapStation ]
-  name: remote salvage shuttle console, now broken
+  name: remote salvage shuttle console
   description: Used to pilot the salvage shuttle remotely.
   components:
   - type: Sprite
@@ -292,7 +291,6 @@
     stealGroup: SalvageShuttleConsoleCircuitboard
   - type: AccessReader
     access: [ [ "Shuttle" ], [ "Salvage" ] ]
-
 
 # Mass Driver
 
@@ -866,7 +864,6 @@
     color: "#b89f25"
   - type: StealTarget
     stealGroup: ShipyardComputerCircuitboard
-
 
 - type: entity
   id: ComputerSalvageExpeditionITG
