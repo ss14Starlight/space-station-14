@@ -170,7 +170,6 @@ guide-entry-records = Character Records
 # Tools
 guide-entry-tools-combination-locks = Combination Locks
 
-
 # Roleplay
 guide-entry-roleplay-intro = Roleplay Guides
 guide-entry-roleplay-01 = The Basics
