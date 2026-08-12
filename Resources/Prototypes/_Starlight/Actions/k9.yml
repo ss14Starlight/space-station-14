@@ -9,7 +9,7 @@
     itemIconStyle: BigAction
     icon:
       sprite: _Starlight/Interface/Actions/actions_k9.rsi
-      state: latch-btn
+      state: latch
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge
@@ -34,7 +34,7 @@
     itemIconStyle: BigAction
     icon:
       sprite: _Starlight/Interface/Actions/actions_k9.rsi
-      state: bite-harder-btn
+      state: bite-harder
   - type: InstantAction
     event: !type:LatchBiteHarderActionEvent
 
@@ -49,7 +49,7 @@
     itemIconStyle: BigAction
     icon:
       sprite: _Starlight/Interface/Actions/actions_k9.rsi
-      state: sprint-btn
+      state: sprint
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge
