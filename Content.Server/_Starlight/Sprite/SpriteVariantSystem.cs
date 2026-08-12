@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Roles;
 using Content.Shared._Starlight.Sprite;
 using Robust.Shared.Random;
 
@@ -12,6 +13,7 @@ public sealed partial class SpriteVariantSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<SpriteVariantComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<SpriteVariantComponent, RoleLoadoutAppliedEvent>(OnRoleLoadoutApplied);
     }
 
     private void OnMapInit(EntityUid uid, SpriteVariantComponent comp, MapInitEvent ev)
@@ -21,5 +23,26 @@ public sealed partial class SpriteVariantSystem : EntitySystem
 
         comp.Variant = _random.Pick(comp.AvailableVariants);
         Dirty(uid, comp);
+    }
+
+    /// <summary>
+    /// Applies a player-picked variant from their role loadout, if one was
+    /// selected. Runs after MapInit, so this overrides any random pick that
+    /// already happened rather than deferring to it.
+    /// </summary>
+    private void OnRoleLoadoutApplied(EntityUid uid, SpriteVariantComponent comp, RoleLoadoutAppliedEvent ev)
+    {
+        foreach (var selections in ev.Loadout.SelectedLoadouts.Values)
+        {
+            foreach (var selection in selections)
+            {
+                if (!comp.AvailableVariants.Contains(selection.Prototype))
+                    continue;
+
+                comp.Variant = selection.Prototype;
+                Dirty(uid, comp);
+                return;
+            }
+        }
     }
 }

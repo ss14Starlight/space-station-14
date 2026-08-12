@@ -58,6 +58,8 @@ loadout-group-dutyofficer-jumpsuit = Duty officer jumpsuit
 loadout-group-dutyofficer-outerclothing = Duty officer outer clothing
 loadout-group-dutyofficer-belt = Duty officer belt
 
+loadout-group-k9-variant = K9 coat
+
 
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit

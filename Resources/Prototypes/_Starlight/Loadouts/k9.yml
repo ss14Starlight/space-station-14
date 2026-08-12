@@ -1,0 +1,33 @@
+- type: roleLoadout
+  id: JobK9
+  canCustomizeName: true
+  nameDataset: NamesCorgi
+  groups:
+  - K9Variant
+
+- type: loadoutGroup
+  id: K9Variant
+  name: loadout-group-k9-variant
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - k9-brown
+  - k9-black
+  - k9-tan
+  - k9-grey
+
+- type: loadout
+  id: k9-brown
+  dummyEntity: LoadoutDummyK9Brown
+
+- type: loadout
+  id: k9-black
+  dummyEntity: LoadoutDummyK9Black
+
+- type: loadout
+  id: k9-tan
+  dummyEntity: LoadoutDummyK9Tan
+
+- type: loadout
+  id: k9-grey
+  dummyEntity: LoadoutDummyK9Grey
