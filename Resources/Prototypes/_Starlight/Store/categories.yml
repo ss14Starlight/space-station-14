@@ -27,8 +27,14 @@
   name: store-category-medical-surgery
 
 - type: storeCategory
-  id: SLEnginery
-  name: store-category-enginery-main
+  id: SLAtmospherics
+  name: store-category-engineering-atmos
+  priority: 0
+
+- type: storeCategory
+  id: SLEngineering
+  name: store-category-engineering-main
+  priority: 1
 
 - type: storeCategory
   id: SLClown

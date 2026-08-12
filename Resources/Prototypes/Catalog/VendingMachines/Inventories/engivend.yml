@@ -18,6 +18,11 @@
     BoxInflatable: 2
     ClothingHeadHatCone: 4
     HoloprojectorEngineering: 3 # Starlight
+    RadioHandheld: 6 # Starlight-edit
+    GeigerCounter: 3 # Starlight-edit
+    MetalFoamGrenade: 4 # Starlight-edit
+    AirGrenade: 4 # Starlight-edit
+    HandLabeler: 4 # Starlight-edit
   contrabandInventory:
     CowToolboxFilled: 1
     DrinkBeerCan: 3
