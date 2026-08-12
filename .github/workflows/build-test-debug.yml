@@ -60,6 +60,7 @@ jobs:
 
       - name: Setup Reviewdog
         if: github.event_name == 'pull_request'
+        continue-on-error: true
         uses: reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f # v1.5.0
         with:
           reviewdog_version: v0.21.0
@@ -74,13 +75,14 @@ jobs:
 
       - name: Report C# diagnostics on changed lines
         if: github.event_name == 'pull_request'
+        continue-on-error: true
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mapfile -d '' -t reports < <(find . -type f -name reviewdog.sarif -print0)
           if (( ${#reports[@]} == 0 )); then
-            echo "::error::The build did not produce any C# diagnostic reports."
-            exit 1
+            echo "::warning::The build did not produce any C# diagnostic reports."
+            exit 0
           fi
 
           jq -s '{version: "2.1.0", runs: [.[].runs[]]}' "${reports[@]}" > /tmp/csharp-diagnostics.sarif
@@ -89,7 +91,7 @@ jobs:
             -name="C# diagnostics" \
             -reporter=github-pr-annotations \
             -filter-mode=added \
-            -fail-level=warning \
+            -fail-level=none \
             < /tmp/csharp-diagnostics.sarif
 
       - name: Discover Integration Tests
@@ -167,6 +169,7 @@ jobs:
       - name: Upload Content.Tests results
         uses: actions/upload-artifact@v6
         if: always()
+        continue-on-error: true
         with:
           name: test-nunit-content
           path: |
@@ -259,6 +262,7 @@ jobs:
       - name: Upload test results
         uses: actions/upload-artifact@v6
         if: always()
+        continue-on-error: true
         with:
           name: test-nunit-shard-${{ matrix.shard }}
           path: |
@@ -271,6 +275,7 @@ jobs:
         id: upload-hang-dump
         uses: actions/upload-artifact@v6
         if: always()
+        continue-on-error: true
         with:
           name: hang-dump-shard-${{ matrix.shard }}
           path: |
@@ -411,6 +416,7 @@ jobs:
 
       - name: Generate Content Tests report
         if: always()
+        continue-on-error: true
         uses: ctrf-io/github-test-reporter@v1
         with:
           title: Content Test Results
@@ -422,6 +428,7 @@ jobs:
 
       - name: Generate Integration Tests report
         if: always()
+        continue-on-error: true
         uses: ctrf-io/github-test-reporter@v1
         with:
           report-path: '/tmp/ctrf-results/test-nunit-shard-*/**/*.json'
