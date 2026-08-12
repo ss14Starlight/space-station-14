@@ -1,130 +1,4 @@
 Entries:
-- author: Glaud0283
-  changes:
-  - message: Added Gamorrah brigmedic and treasurer roles with their own IDs and PDAs.
-    type: Add
-  id: 407104
-  time: '2026-07-28T20:17:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5329
-- author: Glaud0283
-  changes:
-  - message: Casino contraband no longer shows a warning to casino staff.
-    type: Fix
-  id: 407105
-  time: '2026-07-28T20:17:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5329
-- author: Infiniteb1u3
-  changes:
-  - message: new shuttle JSS-MED Apotherkerin to Shipyard console.
-    type: Add
-  id: 407106
-  time: '2026-07-28T21:00:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5169
-- author: OMEGA
-  changes:
-  - message: Removed hull plates blocking TEG's cold loop from cooling.
-    type: Fix
-  id: 407107
-  time: '2026-07-29T08:55:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5389
-- author: SeaTheProto
-  changes:
-  - message: allow Dominator, Miniature Energy Gun, Proto-5x, and the X-01's disabling settings to work with pacifism. Pacifists rejoice!
-    type: Tweak
-  id: 407108
-  time: '2026-07-29T08:55:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5394
-- author: wonderfulnewworld
-  changes:
-  - message: Interaction particles are now optional via options menu.
-    type: Tweak
-  id: 407109
-  time: '2026-07-29T09:17:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5386
-- author: wonderfulnewworld
-  changes:
-  - message: Hypopens and microinjectors (so just the hyperzine one) no longer have interaction particles.
-    type: Tweak
-  id: 407110
-  time: '2026-07-29T11:59:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5388
-- author: CrazyPhantom
-  changes:
-  - message: Fixed decal performance issue on decal creation.
-    type: Fix
-  id: 407111
-  time: '2026-07-29T11:59:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5393
-- author: joshujo
-  changes:
-  - message: Gas filters can now filter multiple gases.
-    type: Add
-  id: 407112
-  time: '2026-07-29T13:45:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5390
-- author: redmushie
-  changes:
-  - message: Electrocution no longer causes the target to emit sparks. This would cause Supermatter tritium to ignite.
-    type: Remove
-  id: 407113
-  time: '2026-07-29T15:46:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5397
-- author: DocMoth, Forrestgod
-  changes:
-  - message: Changed the Shading for the AI Core.
-    type: Tweak
-  id: 407114
-  time: '2026-07-31T06:39:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5410
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: You can now late join as Traitors, Head Revs, Cosmic Cultists, Devils, and Initial Infected.
-    type: Tweak
-  id: 407115
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: Thieves, Vampires, Changelings, SELF Agents, Head Revs, Cosmic Cultists, and Devils now roll 4-8 minutes after round start, like Traitors.
-    type: Tweak
-  id: 407116
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: Reinforcement Traitors now get codewords.
-    type: Tweak
-  id: 407117
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: Brighteyes now use different events for roundstart and midround spawns.
-    type: Tweak
-  id: 407118
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: When there are at least 30 players online, 60% of unreadied players are now counted towards GameRule minPlayers and 25% of unreadied/spectator players are now counted towards antag playerRatios.
-    type: Tweak
-  id: 407119
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: Late join antag odds have been lowered to a fixed 50%.
-    type: Tweak
-  id: 407120
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
-  - message: You will now follow ghost roles when they spawn in if you were following them before they spawned.
-    type: Tweak
-  id: 407121
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
 - author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
   changes:
   - message: Survival and Kessler Syndrome now have a minimum player count of 15.
@@ -2799,4 +2673,130 @@ Entries:
   id: 407503
   time: '2026-08-11T08:33:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5387
+- author: wonderfulnewworld
+  changes:
+  - message: Avali, Reptillians, and Noctiliae can now eat Phenylpiperidine crystals.
+    type: Fix
+  id: 407504
+  time: '2026-08-11T09:13:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5547
+- author: OMEGA
+  changes:
+  - message: Access configurators and multitools can now configure access spanning multiple departments.
+    type: Fix
+  id: 407505
+  time: '2026-08-11T09:38:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5555
+- author: Romero/Littlemen
+  changes:
+  - message: Two more combat gloves in secvend.
+    type: Tweak
+  id: 407506
+  time: '2026-08-11T10:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5556
+- author: Spaghetti-Bit
+  changes:
+  - message: Properly fixes the rest of neo-avali female sprite displacements (Shoes, armor, backpack, mask, and head).
+    type: Fix
+  id: 407507
+  time: '2026-08-11T10:25:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5558
+- author: EWanderer
+  changes:
+  - message: Mining Borgs can now hold tickets in their hands.
+    type: Tweak
+  id: 407508
+  time: '2026-08-11T10:25:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5559
+- author: Limbesstar
+  changes:
+  - message: Tweaked the roboticist gas mask sprite.
+    type: Tweak
+  id: 407509
+  time: '2026-08-11T10:55:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5572
+- author: Forrestgod
+  changes:
+  - message: ERT Engineers now spawn with a T-ray Scanner.
+    type: Tweak
+  id: 407510
+  time: '2026-08-11T10:55:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5579
+- author: TaserTheFox
+  changes:
+  - message: More phrases to the AAC tablet.
+    type: Add
+  id: 407511
+  time: '2026-08-11T11:24:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5600
+- author: Swonki
+  changes:
+  - message: Dark Gygax Structural Armour.
+    type: Fix
+  id: 407512
+  time: '2026-08-11T11:24:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5583
+- author: Caws
+  changes:
+  - message: Renamed Radio Host's room station beacon from "Radio Host" to "Radio Studio".
+    type: Tweak
+  id: 407513
+  time: '2026-08-11T11:24:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5589
+- author: noxypaws
+  changes:
+  - message: use "Holy Book" instead of "Bible" in Cosmic Cult guidebook entries.
+    type: Tweak
+  id: 407514
+  time: '2026-08-11T19:16:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5604
+- author: Romero/Littlemen
+  changes:
+  - message: the cold case; a mauser C96 inspired pistol.
+    type: Add
+  id: 407515
+  time: '2026-08-11T19:42:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5586
+- author: Romero/Littlemen
+  changes:
+  - message: det has now loadout options for his lethal sidearm.
+    type: Add
+  id: 407516
+  time: '2026-08-11T19:42:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5586
+- author: CrazyPhantom
+  changes:
+  - message: Fixed welding fuel getting in censers.
+    type: Fix
+  id: 407517
+  time: '2026-08-11T19:42:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5602
+- author: wonderfulnewworld
+  changes:
+  - message: Added 6 Wizard Duelist medallions, corresponding to each respective school.
+    type: Add
+  id: 407518
+  time: '2026-08-11T21:44:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5601
+- author: wonderfulnewworld
+  changes:
+  - message: Wizard Duelists now have many more rules to follow with regard to their duels; all duels must involve magic, they cannot change their clothing, they must always wear their medallions, victors are only decided when only one duelist has at least 3 or more medallions, outsiders who steal medallions must be dealt with harshly, and the victor must return alive to tell the tale.
+    type: Tweak
+  id: 407519
+  time: '2026-08-11T21:44:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5601
+- author: wonderfulnewworld
+  changes:
+  - message: (Wizard's Court) Added a beacon, so wizards can actually teleport back.
+    type: Tweak
+  id: 407520
+  time: '2026-08-11T21:44:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5601
+- author: wonderfulnewworld
+  changes:
+  - message: Fixed some inconsistencies in the way Space Wizards Federation is written.
+    type: Fix
+  id: 407521
+  time: '2026-08-11T21:44:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5601
 Order: -1
