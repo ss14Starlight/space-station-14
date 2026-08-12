@@ -9,6 +9,11 @@ public static class ContentPostShaderIds
     public const string TargetOutline = "target-outline";
     public const string DragDropOutline = "drag-drop-outline";
 
+    // Starlight-start
+    public const string Hologram = "hologram";
+    public const string ReactorPart = "reactor-part";
+    // Starlight-end
+
     public static readonly string[] BeforeOutlines =
     {
         InteractionOutline,
