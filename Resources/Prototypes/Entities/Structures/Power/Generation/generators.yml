@@ -275,6 +275,19 @@
                 max: 1
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
+  # Starlight Start
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  # Starlight End
 
 # TODO: need radioactive fallout when destroyed
 

@@ -103,6 +103,19 @@
       - VoltageNetworks
       - Power
     - type: StationAiWhitelist #Starlight
+    # Starlight Start
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.45
+          density: 200
+          mask:
+          - MachineMask
+          layer:
+          - MachineLayer
+    # Starlight End
 
     # Interface
     - type: BatteryInterface

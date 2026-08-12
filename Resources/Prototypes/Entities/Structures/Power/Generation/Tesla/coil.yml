@@ -13,8 +13,12 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          #!type:PhysShapeAabb
+          #bounds: "-0.45,-0.45,0.45,0.45"
+          # Starlight Start
+          !type:PhysShapeCircle
+          radius: 0.45
+          # Starlight End
         density: 190
         mask:
         - MachineMask

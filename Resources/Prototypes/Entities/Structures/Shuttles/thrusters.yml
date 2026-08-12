@@ -102,6 +102,19 @@
       shader: unshaded
       visible: false
       offset: 0, 1
+  # Starlight Start
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  # Starlight End
 
 - type: entity
   parent: Thruster
@@ -280,6 +293,19 @@
     damageModifierSet: Electronic
   - type: StaticPrice
     price: 2000
+  # Starlight Start
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  # Starlight End
 
 - type: entity
   id: GyroscopeUnanchored

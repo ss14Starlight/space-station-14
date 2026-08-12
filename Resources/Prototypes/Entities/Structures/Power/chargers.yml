@@ -313,6 +313,19 @@
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: StationAIShuntThrough # Starlight
+  # Starlight Start
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  # Starlight End
 
 - type: entity
   parent: BorgCharger
