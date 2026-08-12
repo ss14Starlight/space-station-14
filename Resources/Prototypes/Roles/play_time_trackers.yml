@@ -83,6 +83,9 @@
   id: JobJanitor
 
 - type: playTimeTracker
+  id: JobK9 # Starlight
+
+- type: playTimeTracker
   id: JobLawyer
 
 - type: playTimeTracker

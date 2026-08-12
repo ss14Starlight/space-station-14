@@ -1,0 +1,15 @@
+- type: alert
+  id: Latched
+  icons:
+    - sprite: _Starlight/Interface/Actions/actions_k9.rsi
+      state: latch-alert
+  name: alerts-latched-name
+  description: alerts-latched-desc
+
+- type: alert
+  id: K9Sprint
+  icons:
+    - sprite: _Starlight/Interface/Actions/actions_k9.rsi
+      state: sprint-alert
+  name: alerts-k9-sprint-name
+  description: alerts-k9-sprint-desc

@@ -1,0 +1,40 @@
+- type: entity
+  parent: MobCorgiBase
+  id: MobK9
+  name: security K9
+  description: A dog trained for station security work.
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    understands:
+    - GalacticCommon
+    - Dog
+    - Canilunzt
+  - type: LanguageGrantImmune
+  - type: Inventory
+    speciesId: dog
+    templateId: K9
+  - type: Stripping
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: corgi
+      Critical:
+        Base: corgi_dead
+      Dead:
+        Base: corgi_dead
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Zoomies
+    action: K9Sprint
+    speedModifier: 1.8
+    thirstDrain: null
+    hungerDrain: null
+    duration: 3
+    zoomiesAlert: K9Sprint
+  - type: Latch
+    damagePerTick:
+      types:
+        Piercing: 3

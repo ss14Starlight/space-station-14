@@ -6,6 +6,7 @@ JobBlueShield = BlueShield Officer
 JobBoxer = Boxer
 JobDutyOfficer = Duty Officer
 JobIAA = Internal Affairs Agent
+JobK9 = Security K9
 JobMagistrate = Magistrate
 JobMailTech = Mail Technician
 JobMiningSpecialist = Mining Specialist
