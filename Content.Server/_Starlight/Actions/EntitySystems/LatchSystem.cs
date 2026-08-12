@@ -201,6 +201,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         _alert.ShowAlert(target, comp.LatchAlert);
 
         _audio.PlayPvs(comp.LatchStartSound, uid);
+        _chat.TryEmoteWithoutChat(uid, "Growl");
 
         Dirty(uid, comp);
     }
@@ -236,7 +237,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
     }
 
     /// <summary>
-    /// Applies one instance of latch damage to the target, with a chance to scream.
+    /// Applies one instance of latch damage, with a chance to scream/snarl.
     /// </summary>
     private void DealTick(EntityUid uid, LatchComponent comp, EntityUid target)
     {
@@ -244,6 +245,9 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         if (_random.Prob(comp.ScreamChance))
             _chat.TryEmoteWithoutChat(target, "Scream");
+
+        if (_random.Prob(comp.ScreamChance))
+            _chat.TryEmoteWithoutChat(uid, "Snarl");
     }
 
     /// <summary>

@@ -32,7 +32,7 @@ public sealed partial class LatchComponent : Component
     [DataField] public DamageSpecifier DamagePerTick = new();
 
     /// <summary>
-    /// Chance per damage tick that the target screams.
+    /// Chance per damage tick that the target screams and the latcher snarls.
     /// </summary>
     [DataField] public float ScreamChance = 0.5f;
 
