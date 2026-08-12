@@ -21,9 +21,9 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
-    private bool _corpseWarning10;
-    private bool _corpseWarning15;
-    private bool _corpseWarning20;
+    private bool _corpseWarning1;
+    private bool _corpseWarning2;
+    private bool _corpseWarning3;
 
     public override void Update(float frameTime)
     {
@@ -31,12 +31,12 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
 
         var corpseCount = _riftSystem.StoredCorpseCount;
     
-        if (!_corpseWarning10 && corpseCount >= 10)
+        if (!_corpseWarning1 && corpseCount >= 5)
         {
-            _corpseWarning10 = true;
+            _corpseWarning1 = true;
 
             _chatSystem.DispatchGlobalAnnouncement(
-                Loc.GetString("cosmiccult-rift-corpse10-warning"),
+                Loc.GetString("cosmiccult-rift-corpse1-warning"),
                 playSound: false,
                 colorOverride: Color.FromHex("#cae8e8"));
 
@@ -46,12 +46,12 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
                 true);
         }
 
-        if (!_corpseWarning15 && corpseCount >= 15)
+        if (!_corpseWarning2 && corpseCount >= 10)
         {
-            _corpseWarning15 = true;
+            _corpseWarning2 = true;
 
             _chatSystem.DispatchGlobalAnnouncement(
-                Loc.GetString("cosmiccult-rift-corpse15-warning"),
+                Loc.GetString("cosmiccult-rift-corpse2-warning"),
                 playSound: false,
                 colorOverride: Color.Red);
 
@@ -61,12 +61,12 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
                 true);
         }
 
-        if (!_corpseWarning20 && corpseCount >= 20)
+        if (!_corpseWarning3 && corpseCount >= 20)
         {
-            _corpseWarning20 = true;
+            _corpseWarning3 = true;
 
             _chatSystem.DispatchGlobalAnnouncement(
-                Loc.GetString("cosmiccult-rift-corpse20-warning"),
+                Loc.GetString("cosmiccult-rift-corpse3-warning"),
                 playSound: false,
                 colorOverride: Color.Red);
 
@@ -85,6 +85,24 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
                 Filter.Broadcast(),
                 true);
             }
+        }
+
+        // if 10 has been reached, but count gone back to 2 we can reset the alarms.
+        if (_corpseWarning2 && corpseCount <= 2)
+        {
+            _chatSystem.DispatchGlobalAnnouncement(
+                Loc.GetString("cosmiccult-rift-corpse-dewarning"),
+                playSound: false,
+                colorOverride: Color.Green);
+
+            _audio.PlayGlobal(
+                new SoundPathSpecifier("/Audio/_Starlight/Misc/notice1.ogg"),
+                Filter.Broadcast(),
+                true);
+
+            _corpseWarning1 = false;
+            _corpseWarning2 = false;
+            _corpseWarning3 = false;
         }
 
         var query = EntityQueryEnumerator<

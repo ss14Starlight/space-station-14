@@ -6,6 +6,7 @@ using Content.Server._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Roles;
 using Robust.Shared.Random;
 using Content.Server.Station.Systems;
+using Content.Server._Starlight.CosmicCult.EntitySystems;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -16,6 +17,9 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private StationSystem _station = default!;
+    [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
+    
+    
 
     public override void Initialize()
     {
@@ -29,6 +33,7 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         SubscribeLocalEvent<CosmicTierConditionComponent, ObjectiveGetProgressEvent>(OnGetTierProgress);
         SubscribeLocalEvent<CosmicVictoryConditionComponent, ObjectiveGetProgressEvent>(OnGetVictoryProgress);
         SubscribeLocalEvent<CosmicChaplainConditionComponent, ObjectiveGetProgressEvent>(OnGetChaplainProgress);
+        SubscribeLocalEvent<CosmicSacrificedCrewConditionComponent, ObjectiveGetProgressEvent>(OnGetSacrificedCrewProgress);
     }
 
     private void OnEffigyRequirementCheck(EntityUid uid, CosmicEffigyConditionComponent comp, ref RequirementCheckEvent args)
@@ -80,6 +85,9 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         }
         _metaData.SetEntityDescription(uid, description, args.Meta);
     }
+
+    private void OnGetSacrificedCrewProgress(Entity<CosmicSacrificedCrewConditionComponent> ent, ref ObjectiveGetProgressEvent args)
+        => args.Progress = Progress(_riftSystem.StoredCorpseCount, _number.GetTarget(ent.Owner));
 
     private void OnGetEntropyProgress(Entity<CosmicEntropyConditionComponent> ent, ref ObjectiveGetProgressEvent args)
         => args.Progress = Progress(ent.Comp.Siphoned, _number.GetTarget(ent.Owner));

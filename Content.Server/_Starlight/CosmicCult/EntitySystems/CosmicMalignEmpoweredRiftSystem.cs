@@ -9,15 +9,16 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Physics;
 using Content.Server.Temperature.Systems;
 using Content.Shared.Temperature.Components;
+using Content.Server.Atmos.Components;
 
 namespace Content.Server._Starlight.CosmicCult;
 
 public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TemperatureSystem _tempSys = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TemperatureSystem _tempSys = default!;
 
     public int StoredCorpseCount { get; private set; }
 
@@ -37,6 +38,8 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
         var corpse = ent.Comp.CorpseContainer.ContainedEntities[0];
 
         _container.Remove(corpse, ent.Comp.CorpseContainer);
+        RemComp<PressureImmunityComponent>(corpse);
+
 
         var riftCoordinates = Transform(ent.Owner).Coordinates;
         _transform.SetCoordinates(corpse, riftCoordinates);
@@ -61,17 +64,14 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 
                 if (TryComp<TemperatureComponent>(corpse, out var temperature))
                 {
-                    var temperatureDifference = temperature.CurrentTemperature;
+                    var currentTemperature = temperature.CurrentTemperature;
 
-                    if (temperatureDifference > 0)
+                    if (currentTemperature > 5f)
                     {
                         var heatCapacity = _tempSys.GetHeatCapacity(corpse, temperature);
-
-                        var heatToRemove =
-                            temperatureDifference *
-                            heatCapacity *
-                            rift.CoolingCoefficient *
-                            frameTime;
+                        var temperatureDrop = currentTemperature * rift.CoolingCoefficient * frameTime;
+                        var targetTemperature = Math.Max(0f, currentTemperature - temperatureDrop);
+                        var heatToRemove = (currentTemperature - targetTemperature) * heatCapacity;
 
                         _tempSys.ChangeHeat(
                             corpse,
@@ -114,15 +114,16 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 
                 // Store the corpse inside the rift.
                 if (_container.Insert(target, rift.CorpseContainer))
+                {
+                    EnsureComp<PressureImmunityComponent>(target);
                     break;
+                }
             }
         }
         StoredCorpseCount = corpseCount;
     }
 
-    private void OnStartup(
-        Entity<CosmicMalignEmpoweredRiftComponent> ent,
-        ref ComponentStartup args)
+    private void OnStartup(Entity<CosmicMalignEmpoweredRiftComponent> ent, ref ComponentStartup args)
     {
         ent.Comp.CorpseContainer = _container.EnsureContainer<Container>(
             ent.Owner,

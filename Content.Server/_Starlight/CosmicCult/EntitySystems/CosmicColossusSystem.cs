@@ -21,7 +21,6 @@ using Robust.Shared.Maths;
 using Robust.Shared.Audio;
 using Robust.Shared.Physics.Dynamics;
 
-
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
 public sealed partial class CosmicColossusSystem : EntitySystem
@@ -39,6 +38,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private ThrowingSystem _throw = default!;
     [Dependency] private PointLightSystem _pointLight = default!;
+    [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
     
 
     public override void Initialize()
