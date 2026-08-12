@@ -24,23 +24,23 @@
     layers:
     - state: unshaded_bg
       shader: unshaded
-      map: [ "underlay" ]
+      map: ["underlay"]
     - state: colossus
-      map: [ "base" ]
+      map: ["base"]
     - state: dead
       visible: false
-      map: [ "corpse" ]
+      map: ["corpse"]
     - state: unshaded_fg
       shader: unshaded
-      map: [ "overlay" ]
+      map: ["overlay"]
     - state: attacking
       shader: unshaded
       visible: false
-      map: [ "attack" ]
+      map: ["attack"]
     - state: hibernate
       shader: unshaded
       visible: false
-      map: [ "hibernating" ]
+      map: ["hibernating"]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -78,7 +78,8 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape: !type:PhysShapeCircle
+        shape: 
+          !type:PhysShapeCircle
           radius: 0.25
         density: 2500
         mask:
@@ -109,7 +110,7 @@
     weightlessAcceleration: 1.5
     weightlessFriction: 1
   - type: AmbientSound
-    volume: 8
+    volume: +8
     range: 18
     sound:
       path: /Audio/_Starlight/CosmicCult/colossus_ambience.ogg
@@ -396,9 +397,9 @@
         shape: !type:PhysShapeAabb
           bounds: "-0.5,-0.5,0.5,0.5"
         layer:
-        - SlipLayer
+         - SlipLayer
         mask:
-        - ItemMask
+         - ItemMask
         density: 2500
         hard: false
   - type: StepTrigger
@@ -407,7 +408,7 @@
     ignoreWeightless: true
     blacklist:
       tags:
-      - Catwalk
+       - Catwalk
   - type: TileEntityEffect
     effects:
     - !type:HealthChange

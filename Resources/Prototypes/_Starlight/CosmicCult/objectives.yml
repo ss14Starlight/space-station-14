@@ -135,6 +135,6 @@
      sprite: _Starlight\CosmicCult\Tileset\altar.rsi
      state: cosmic
   - type: NumberObjective
-    min: 8
+    min: 5
     max: 8
   - type: CosmicSacrificedCrewCondition
