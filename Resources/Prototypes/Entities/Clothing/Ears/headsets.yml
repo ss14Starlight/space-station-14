@@ -91,7 +91,6 @@
       path: /Audio/_Starlight/Effects/Radio/qm.ogg
   - type: HeadsetLoudMode #Starlight
 
-
 - type: entity
   parent: [ ClothingHeadset, BaseCentcommContraband ]
   id: ClothingHeadsetCentCom
