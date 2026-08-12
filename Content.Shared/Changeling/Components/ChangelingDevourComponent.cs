@@ -128,6 +128,15 @@ public sealed partial class ChangelingDevourComponent : Component
     public TimeSpan NextTick = TimeSpan.Zero;
 
     /// <summary>
+    /// DNA awarded for successfully devouring a new identity.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> DevourDnaReward = new()
+    {
+        { "ChangelingDNA", 10 }
+    };
+
+    /// <summary>
     /// The percentage of ANY brute damage resistance that will prevent devouring
     /// </summary>
     [DataField, AutoNetworkedField]

@@ -53,7 +53,7 @@ namespace Content.Shared.Maps
         public List<ProtoId<ContentTileDefinition>> BaseWhitelist { get; private set; } = new();
 
         [DataField]
-        public PrototypeFlags<ToolQualityPrototype> DeconstructTools { get; set; } = new();
+        public HashSet<ProtoId<ToolQualityPrototype>> DeconstructTools = new();
 
         /// <summary>
         /// Effective mass of this tile for grid impacts.
