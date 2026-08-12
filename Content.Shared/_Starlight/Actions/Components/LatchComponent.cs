@@ -1,6 +1,7 @@
 using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -28,6 +29,21 @@ public sealed partial class LatchComponent : Component
 
     [DataField] public TimeSpan TickInterval = TimeSpan.FromSeconds(0.75);
     [DataField] public DamageSpecifier DamagePerTick = new();
+
+    /// <summary>
+    /// Chance per damage tick that the target screams.
+    /// </summary>
+    [DataField] public float ScreamChance = 0.5f;
+
+    /// <summary>
+    /// Played on the latcher when a latch begins. Unset by default.
+    /// </summary>
+    [DataField] public SoundSpecifier? LatchStartSound;
+
+    /// <summary>
+    /// Played on the latcher when Bite Harder is used. Unset by default.
+    /// </summary>
+    [DataField] public SoundSpecifier? BiteHarderSound;
 
     [ViewVariables, AutoNetworkedField] public bool Active;
     [ViewVariables, AutoNetworkedField] public EntityUid? Target;

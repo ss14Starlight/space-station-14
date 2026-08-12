@@ -16,21 +16,20 @@ public sealed class LatchStatusControl : PanelContainer
 
     public LatchStatusControl()
     {
-        MinWidth = 260;
-        Margin = new Thickness(0, 8, 0, 0);
+        MinWidth = 180;
         PanelOverride = new StyleBoxFlat
         {
             BackgroundColor = new Color(0, 0, 0, 180),
-            ContentMarginLeftOverride = 10,
-            ContentMarginRightOverride = 10,
-            ContentMarginTopOverride = 6,
-            ContentMarginBottomOverride = 6,
+            ContentMarginLeftOverride = 6,
+            ContentMarginRightOverride = 6,
+            ContentMarginTopOverride = 4,
+            ContentMarginBottomOverride = 4,
         };
 
         var layout = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
-            SeparationOverride = 4,
+            SeparationOverride = 2,
         };
 
         _title = new Label
@@ -44,7 +43,7 @@ public sealed class LatchStatusControl : PanelContainer
         {
             MinValue = 0,
             MaxValue = 1,
-            MinHeight = 16,
+            MinHeight = 10,
             ForegroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = Color.OrangeRed },
             BackgroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = new Color(40, 40, 40) },
         };
@@ -53,7 +52,7 @@ public sealed class LatchStatusControl : PanelContainer
         {
             MinValue = 0,
             MaxValue = 1,
-            MinHeight = 6,
+            MinHeight = 4,
             ForegroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = Color.White },
             BackgroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = new Color(40, 40, 40) },
         };

@@ -5,6 +5,7 @@ using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Alert;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Chat;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.VirtualItem;
@@ -14,6 +15,8 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Whitelist;
+using Robust.Server.Audio;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Actions.EntitySystems;
@@ -25,11 +28,14 @@ public sealed partial class LatchSystem : SharedLatchSystem
 {
     [Dependency] private ActionsSystem _action = default!;
     [Dependency] private AlertsSystem _alert = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private CombatModeSystem _combatMode = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
+    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private StandingStateSystem _standing = default!;
 
@@ -133,6 +139,8 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.EndTime = extended > comp.MaxEndTime ? comp.MaxEndTime : extended;
         Dirty(uid, comp);
 
+        _audio.PlayPvs(comp.BiteHarderSound, uid);
+
         if (!comp.TickPaused)
             DealTick(uid, comp, target);
 
@@ -173,6 +181,8 @@ public sealed partial class LatchSystem : SharedLatchSystem
         _alert.ShowAlert(uid, comp.LatchAlert);
         _alert.ShowAlert(target, comp.LatchAlert);
 
+        _audio.PlayPvs(comp.LatchStartSound, uid);
+
         Dirty(uid, comp);
     }
 
@@ -204,11 +214,14 @@ public sealed partial class LatchSystem : SharedLatchSystem
     }
 
     /// <summary>
-    /// Applies one instance of latch damage to the target.
+    /// Applies one instance of latch damage to the target, with a chance to scream.
     /// </summary>
     private void DealTick(EntityUid uid, LatchComponent comp, EntityUid target)
     {
         _damageable.TryChangeDamage(target, comp.DamagePerTick, origin: uid);
+
+        if (_random.Prob(comp.ScreamChance))
+            _chat.TryEmoteWithoutChat(target, "Scream");
     }
 
     /// <summary>

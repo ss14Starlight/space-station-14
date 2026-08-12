@@ -39,7 +39,7 @@ public sealed partial class LatchUIController : UIController
 
         _control = new LatchStatusControl();
         viewport.AddChild(_control);
-        LayoutContainer.SetAnchorAndMarginPreset(_control, LayoutContainer.LayoutPreset.CenterTop, margin: 8);
+        LayoutContainer.SetAnchorAndMarginPreset(_control, LayoutContainer.LayoutPreset.CenterTop, margin: 140);
     }
 
     private void OnScreenUnload()
