@@ -36,7 +36,7 @@ public sealed partial class MarkingPoints
                 Points = points.Points,
                 Required = points.Required,
                 OnlyWhitelisted = points.OnlyWhitelisted,
-                DefaultMarkings = new(points.DefaultMarkings) // Starlight
+                DefaultMarkings = points.DefaultMarkings
             };
         }
 

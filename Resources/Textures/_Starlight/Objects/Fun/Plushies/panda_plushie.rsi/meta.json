@@ -1,24 +1,21 @@
 {
   "version": 1,
   "license": "CC-BY-NC-SA-3.0",
-  "copyright": "State based copyright",
+  "copyright": "Sprites by @_polaris_",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon",
-      "copyright": "Sprites by @_polaris_"
+      "name": "icon"
     },
     {
       "name": "inhand-left",
-      "copyright": "Sprites by @_polaris_",
       "directions": 4
     },
     {
       "name": "inhand-right",
-      "copyright": "Sprites by @_polaris_",
       "directions": 4
     }
   ]

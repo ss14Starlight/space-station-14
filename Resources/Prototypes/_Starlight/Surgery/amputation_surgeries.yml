@@ -15,7 +15,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - NeoSlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -62,7 +62,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - NeoSlimePerson
+    - ProtoSlimePerson
 
 - type: entity
   parent: SurgeryAmputationHead
@@ -79,4 +79,4 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - NeoSlimePerson
+    - ProtoSlimePerson

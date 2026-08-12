@@ -18,6 +18,7 @@ namespace Content.Server.EntityEffects.Effects.Solution;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class AreaReactionEntityEffectsSystem : EntityEffectSystem<SolutionComponent, AreaReactionEffect>
 {
+    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
@@ -33,7 +34,7 @@ public sealed partial class AreaReactionEntityEffectsSystem : EntityEffectSystem
         var spreadAmount = (int) Math.Max(0, Math.Ceiling(args.Scale / args.Effect.OverflowThreshold));
         var effect = args.Effect;
 
-        if (!_map.TryFindGridAt(mapCoords, out var gridUid, out var grid) ||
+        if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid) ||
             !_map.TryGetTileRef(gridUid, grid, xform.Coordinates, out var tileRef))
             return;
 

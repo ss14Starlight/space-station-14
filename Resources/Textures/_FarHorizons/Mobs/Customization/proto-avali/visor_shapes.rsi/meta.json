@@ -6,8 +6,7 @@
     "states": [
         {
             "name": "visor",
-            "directions": 4,
-            "copyright": "Killer Tamashi's (discord) work, edited by Spaghetti-Bit"
+            "directions": 4
         }
     ]
 }

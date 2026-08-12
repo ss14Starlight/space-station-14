@@ -11,21 +11,10 @@
   - type: RandomSpawner
     prototypes:
       - FloraTreeLarge
-      # - FloraTreeConifer #SL no snow
-      # - FloraTreeSnow #SL no snow
+      - FloraTreeConifer
+      - FloraTreeSnow
       - FloraTree
-      #Starlight Start
-      - FloraBirchTreeLargeSL
-      - FloraBirchTreeMediumSL
-      - FloraBirchTreeSmallSL
-      - FloraTreeConiferMediumSL
-      - FloraTreeConiferBigSL
-      - FloraTreeConiferSmallSL
-      - FloraDeadTreeSL
-      - FloraDeadTreeSmallSL
-      #Starlight End
     chance: 0.95
     rarePrototypes:
       - ShadowTree
-      - FloraTreeVampireSL #SL Edit
     rareChance: 0.05

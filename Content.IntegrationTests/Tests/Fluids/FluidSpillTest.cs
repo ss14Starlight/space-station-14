@@ -45,6 +45,7 @@ public sealed class FluidSpill : GameTest
     {
         var pair = Pair;
         var server = pair.Server;
+        var mapManager = server.ResolveDependency<IMapManager>();
         var entityManager = server.ResolveDependency<IEntityManager>();
         var puddleSystem = server.System<PuddleSystem>();
         var mapSystem = server.System<SharedMapSystem>();
@@ -61,7 +62,7 @@ public sealed class FluidSpill : GameTest
         await server.WaitPost(() =>
         {
             mapSystem.CreateMap(out var mapId);
-            var grid = mapSystem.CreateGridEntity(mapId);
+            var grid = mapManager.CreateGridEntity(mapId);
             gridId = grid.Owner;
 
             var plating = tileDefinitionManager["Plating"]; // Monolith

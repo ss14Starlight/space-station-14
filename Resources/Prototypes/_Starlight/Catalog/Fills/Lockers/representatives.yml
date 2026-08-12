@@ -8,7 +8,6 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: BookSecureTerminalManual
         - id: ClothingEyesHudSkills
         - id: ClothingEyesSunGlassesHudSkill
         - id: ClothingHeadHatCapNtrep
@@ -23,6 +22,7 @@
         - id: BoxFolderClipboardFilled
         - id: PrinterDocFlatpack
         - id: FaxMachineFlatpack
+        - id: PlushieEmmie
         - id: ClothingOuterHardsuitNtrep
         - id: BriefcaseSecure
         - !type:NestedSelector
