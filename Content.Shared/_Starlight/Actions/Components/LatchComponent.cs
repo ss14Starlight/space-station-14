@@ -19,6 +19,11 @@ public sealed partial class LatchComponent : Component
     [DataField] public EntProtoId ReleaseAction = "LatchRelease";
     [DataField] public ProtoId<AlertPrototype> LatchAlert = "Latched";
 
+    /// <summary>
+    /// Shown on the latcher (K9) instead of <see cref="LatchAlert"/>, which is shown on the target.
+    /// </summary>
+    [DataField] public ProtoId<AlertPrototype> LatcherAlert = "K9Latched";
+
     [DataField] public EntityWhitelist? Whitelist;
 
     [DataField] public float Range = 1.5f;

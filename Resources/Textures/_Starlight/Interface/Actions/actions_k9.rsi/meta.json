@@ -9,11 +9,11 @@
     "states": [
         {
             "name": "latch",
-            "copyright": "By DocMoth (GitHub)."
+            "copyright": "By xxhotgirl69 (GitHub)."
         },
         {
             "name": "bite-harder",
-            "copyright": "By DocMoth (GitHub)."
+            "copyright": "By xxhotgirl69 (GitHub)."
         },
         {
             "name": "sprint",
@@ -25,7 +25,15 @@
         },
         {
             "name": "latch-alert",
-            "copyright": "By DocMoth (GitHub)."
+            "copyright": "By xxhotgirl69 (GitHub)."
+        },
+        {
+            "name": "latch-alert-k9",
+            "copyright": "By xxhotgirl69 (GitHub)."
+        },
+        {
+            "name": "release",
+            "copyright": "By xxhotgirl69 (GitHub)."
         }
     ]
 }

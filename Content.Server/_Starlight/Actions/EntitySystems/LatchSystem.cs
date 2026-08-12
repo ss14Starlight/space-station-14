@@ -197,7 +197,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         _speed.RefreshMovementSpeedModifiers(uid);
         _speed.RefreshMovementSpeedModifiers(target);
 
-        _alert.ShowAlert(uid, comp.LatchAlert);
+        _alert.ShowAlert(uid, comp.LatcherAlert);
         _alert.ShowAlert(target, comp.LatchAlert);
 
         _audio.PlayPvs(comp.LatchStartSound, uid);
@@ -224,7 +224,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.ReleaseActionEntity = null;
 
         _speed.RefreshMovementSpeedModifiers(uid);
-        _alert.ClearAlert(uid, comp.LatchAlert);
+        _alert.ClearAlert(uid, comp.LatcherAlert);
 
         if (target is { } targetUid && Exists(targetUid))
         {
