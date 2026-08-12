@@ -24029,6 +24029,8 @@ entities:
       fixtures: {}
   - uid: 947
     components:
+    - type: MetaData
+      name: APC (radio studio)
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
