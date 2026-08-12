@@ -292,12 +292,12 @@
         - !type:MetabolizerTypeCondition
           type: [Plant]
 
-      # Starlight start, Neocytes
+      # Starlight start, Protogens
       - !type:Oxygenate
         factor: 8
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [Neocyte]
+          type: [Protogen]
       # Starlight end
 
       - !type:ModifyLungGas

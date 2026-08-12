@@ -2,6 +2,8 @@ using System.Numerics;
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Shared.CCVar;
+using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
@@ -22,6 +24,7 @@ namespace Content.IntegrationTests.Tests
 
             var pair = Pair;
             var server = pair.Server;
+            var mapManager = server.ResolveDependency<IMapManager>();
             var sEntities = server.ResolveDependency<IEntityManager>();
             var mapLoader = sEntities.System<MapLoaderSystem>();
             var mapSystem = sEntities.System<SharedMapSystem>();
@@ -36,12 +39,12 @@ namespace Content.IntegrationTests.Tests
                 mapSystem.CreateMap(out var mapId);
 
                 {
-                    var mapGrid = mapSystem.CreateGridEntity(mapId);
+                    var mapGrid = mapManager.CreateGridEntity(mapId);
                     xformSystem.SetWorldPosition(mapGrid, new Vector2(10, 10));
                     mapSystem.SetTile(mapGrid, new Vector2i(0, 0), new Tile(typeId: 1, flags: 1, variant: 255));
                 }
                 {
-                    var mapGrid = mapSystem.CreateGridEntity(mapId);
+                    var mapGrid = mapManager.CreateGridEntity(mapId);
                     xformSystem.SetWorldPosition(mapGrid, new Vector2(-8, -8));
                     mapSystem.SetTile(mapGrid, new Vector2i(0, 0), new Tile(typeId: 2, flags: 1, variant: 254));
                 }
@@ -64,7 +67,7 @@ namespace Content.IntegrationTests.Tests
             await server.WaitAssertion(() =>
             {
                 {
-                    if (!mapSystem.TryFindGridAt(newMap, new Vector2(10, 10), out var gridUid, out var mapGrid) ||
+                    if (!mapManager.TryFindGridAt(newMap, new Vector2(10, 10), out var gridUid, out var mapGrid) ||
                         !sEntities.TryGetComponent<TransformComponent>(gridUid, out var gridXform))
                     {
                         Assert.Fail();
@@ -78,7 +81,7 @@ namespace Content.IntegrationTests.Tests
                     });
                 }
                 {
-                    if (!mapSystem.TryFindGridAt(newMap, new Vector2(-8, -8), out var gridUid, out var mapGrid) ||
+                    if (!mapManager.TryFindGridAt(newMap, new Vector2(-8, -8), out var gridUid, out var mapGrid) ||
                         !sEntities.TryGetComponent<TransformComponent>(gridUid, out var gridXform))
                     {
                         Assert.Fail();

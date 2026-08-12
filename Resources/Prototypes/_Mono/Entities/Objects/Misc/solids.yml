@@ -41,6 +41,3 @@
           collection: GlassBreak
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Tag # Starlight start
-    tags:
-    - Pill # Starlight end

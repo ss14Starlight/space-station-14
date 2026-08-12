@@ -1,8 +1,5 @@
-# Hug Dispenser
 store-category-plushies = Plushies
-store-category-plushie-toys = Toys
 store-category-plushie-species = Species
-store-category-plushie-crew = Crew
 
 store-category-medical-chemistry = Chemistry
 store-category-medical-medical = Medical

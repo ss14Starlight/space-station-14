@@ -1,0 +1,267 @@
+- type: entity
+  id: BaseProtogenOrgan
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
+  - type: Organ
+  - type: Edible
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: Tag
+    tags:
+      - Meat
+
+
+- type: entity
+  id: OrganProtogenBrain
+  parent: [BaseOrganBrain, BaseProtogenOrgan]
+  name: cybernetic brain
+  suffix: Protogen
+  description: The source of incredible, unending intelligence. 01201020 02102111 01201210 02121012 20121210
+  components:
+  - type: Sprite
+    state: brain
+
+- type: entity
+  id: OrganProtogenEyes
+  parent: [BaseProtogenOrgan, BaseOrganEyes]
+  name: cybernetic eyes
+  suffix: Protogen
+  description: It's still focusing on you.. Creepy.
+  components:
+  - type: Sprite
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: Item
+    size: Small
+    heldPrefix: eyeballs
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+          Default: MobHumanoidEyes
+  - type: OrganDamage
+    damage:
+      types:
+        Poison: 10
+        Cellular: 15 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 10
+        Radiation: 10
+        Caustic: 10
+
+- type: entity
+  id: OrganProtogenTongue
+  parent: [BaseProtogenOrgan, BaseOrganTongue]
+  name: cybernetic tongue
+  suffix: Protogen
+  description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    state: tongue
+  - type: OrganDamage
+    damage:
+      types:
+        Poison: 10
+        Cellular: 15 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 10
+        Radiation: 10
+        Caustic: 10
+
+- type: entity
+  id: OrganProtogenTongueForked
+  parent: [BaseProtogenOrgan, BaseOrganTongue]
+  name: forked cybernetic tongue
+  suffix: Protogen
+  description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. Now split in two. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    state: tongueforked
+
+- type: entity
+  id: OrganProtogenEars
+  parent: [BaseProtogenOrgan, BaseOrganEars]
+  name: cybernetic ears
+  suffix: Protogen
+  description: Process audio at a higher quality than most humanoids, allowing for greater appreciation of techno music #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
+  id: OrganProtogenLungs
+  parent: [BaseProtogenOrgan, BaseOrganLungs]
+  name: cybernetic lungs
+  suffix: Protogen
+  description: Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    layers:
+    - state: lung-l
+    - state: lung-r
+  - type: Item
+    size: Small
+    heldPrefix: lungs
+  - type: Lung
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: Lung
+    metabolizerTypes: [ Protogen ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      Lung:
+        maxVol: 100.0
+        canReact: false
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: OrganDamage
+    damage:
+      types:
+        Asphyxiation: 130
+        Cellular: 30 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 20
+        Radiation: 30
+
+- type: entity
+  id: OrganProtogenHeart
+  parent: [BaseProtogenOrgan, BaseOrganHeart]
+  name: cybernetic heart
+  suffix: Protogen
+  description: Doesn't actually need to beat, simply mimics the movement to provide comfort for the user.
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Protogen]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+  - type: Item
+    size: Small
+    heldPrefix: heart
+  - type: OrganDamage
+    damage:
+      types:
+        Shock: 130
+        Cellular: 30 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 20
+        Caustic: 20
+        Radiation: 10
+
+- type: entity
+  id: OrganProtogenStomach
+  parent: [OrganAnimalStomach, BaseOrganStomach]
+  name: biological reactor
+  suffix: Protogen
+  description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
+    state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+    isSpecialDigestibleExclusive: false
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: OrganDamage
+    damage:
+      types:
+        Poison: 130
+        Cellular: 30 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 20
+        Caustic: 20
+        Radiation: 10
+
+- type: entity
+  id: OrganProtogenLiver
+  parent: [BaseProtogenOrgan, BaseOrganLiver]
+  name: cybernetic liver
+  suffix: Protogen
+  description: Pairing suggestion, a side of fermented RAM sticks and a nice CPU.
+  components:
+  - type: Sprite
+    state: liver
+  - type: Item
+    size: Small
+    heldPrefix: liver
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [Protogen]
+    groups:
+    - id: Alcohol
+  - type: OrganDamage
+    damage:
+      types:
+        Poison: 110
+        Cellular: 30 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 20
+        Caustic: 20
+        Radiation: 30
+
+- type: entity
+  id: OrganProtogenKidneys
+  parent: [BaseProtogenOrgan, BaseOrganKidneys]
+  name: cybernetic kidneys
+  suffix: Protogen
+  description: Pumps toxins out of the bloodstream and serves as a minor biological battery for electrical components #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    layers:
+    - state: kidney-l
+    - state: kidney-r
+  - type: Item
+    size: Small
+    heldPrefix: kidneys
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Protogen]
+    removeEmpty: true
+  - type: OrganDamage
+    damage:
+      types:
+        Poison: 10
+        Cellular: 30 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 20
+        Caustic: 20
+        Radiation: 10
+        Cold: 120

@@ -37,6 +37,7 @@ namespace Content.Client.Gameplay
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] protected IUserInterfaceManager UserInterfaceManager = default!;
         [Dependency] private IEntityManager _entityManager = default!;
         [Dependency] private IViewVariablesManager _vvm = default!;
@@ -230,8 +231,7 @@ namespace Content.Client.Gameplay
             {
                 var mousePosWorld = vp.PixelToMap(kArgs.PointerLocation.Position);
 
-                var map = _entitySystemManager.GetEntitySystem<SharedMapSystem>();
-                if (map.MapExists(mousePosWorld.MapId))
+                if (_mapManager.MapExists(mousePosWorld.MapId))
                 {
                     if (vp is ScalingViewport svp)
                     {
@@ -245,7 +245,7 @@ namespace Content.Client.Gameplay
                     var transformSystem = _entitySystemManager.GetEntitySystem<SharedTransformSystem>();
                     var mapSystem = _entitySystemManager.GetEntitySystem<MapSystem>();
 
-                    coordinates = map.TryFindGridAt(mousePosWorld, out var uid, out _)
+                    coordinates = _mapManager.TryFindGridAt(mousePosWorld, out var uid, out _)
                         ? mapSystem.MapToGrid(uid, mousePosWorld)
                         : transformSystem.ToCoordinates(mousePosWorld);
                 }
