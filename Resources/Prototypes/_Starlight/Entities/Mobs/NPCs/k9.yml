@@ -19,6 +19,7 @@
     - Canilunzt
   - type: LanguageGrantImmune
   - type: Inventory
+    forceDisplacements: true
     speciesId: dog
     templateId: K9
   - type: Stripping
