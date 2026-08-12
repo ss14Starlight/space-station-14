@@ -1,67 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Reduced scaling for Traitors, Vampires, Changelings, Thieves, SELF, Head Revolutionaries, and Devils by ~20% across the board, dependent on their specific gamemodes/subgamemodes.
-    type: Tweak
-  id: 407147
-  time: '2026-07-31T10:03:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5278
-- author: wonderfulnewworld
-  changes:
-  - message: Reduced TraitorLess, Nukeops, Revolutionary, and Cosmic Cult chance in Dynamic, giving it to Vampire instead.
-    type: Tweak
-  id: 407148
-  time: '2026-07-31T10:03:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5278
-- author: wonderfulnewworld
-  changes:
-  - message: Slightly increased VampireLess and SLChangelingLess's Dynamic Cost.
-    type: Tweak
-  id: 407149
-  time: '2026-07-31T10:03:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5278
-- author: wonderfulnewworld
-  changes:
-  - message: Slightly lowered SLDynamic's variant budget threshold.
-    type: Tweak
-  id: 407150
-  time: '2026-07-31T10:03:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5278
-- author: wonderfulnewworld
-  changes:
-  - message: Dynamic gets budget slighly less quickly.
-    type: Tweak
-  id: 407151
-  time: '2026-07-31T10:03:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5278
-- author: wonderfulnewworld
-  changes:
-  - message: Slightly decreased Dynamic's maximum budget.
-    type: Tweak
-  id: 407152
-  time: '2026-07-31T10:03:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5278
-- author: wonderfulnewworld
-  changes:
-  - message: Ninjas are slightly less common in Dynamic.
-    type: Tweak
-  id: 407153
-  time: '2026-07-31T10:03:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5278
-- author: wonderfulnewworld
-  changes:
-  - message: Slightly decreased spawn chance of midrounds (both types) in dynamic.
-    type: Tweak
-  id: 407154
-  time: '2026-07-31T10:03:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5278
-- author: wonderfulnewworld
-  changes:
-  - message: There can now be 1 more Devil.
-    type: Tweak
-  id: 407155
-  time: '2026-07-31T10:03:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5278
 - author: RedSpeeds
   changes:
   - message: Added automatic recall/no recall vote upon round end.
@@ -2799,4 +2736,67 @@ Entries:
   id: 407546
   time: '2026-08-12T21:04:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5580
+- author: Conflee
+  changes:
+  - message: Box - Added Radio Host, Station Radios, Department Lathes, and Magazine/Newspaper Spawners.
+    type: Add
+  id: 407547
+  time: '2026-08-12T21:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5610
+- author: Conflee
+  changes:
+  - message: Cog - Added Radio Host, Station Radios, Department Lathes, Magazine/Newspaper Spawners, Flippers the Magi pet, and Ice-cream Makers.
+    type: Add
+  id: 407548
+  time: '2026-08-12T21:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5610
+- author: Conflee
+  changes:
+  - message: Cog - Swapped the Escape Pod in the north east past Botany with a larger Life Pod, and added a Crew Monitoring Console to Security.
+    type: Tweak
+  id: 407549
+  time: '2026-08-12T21:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5610
+- author: Conflee
+  changes:
+  - message: Fland - Added Radio Host, Station Radios, Department Lathes, Magazine/Newspaper Spawners and Psychologist.
+    type: Add
+  id: 407550
+  time: '2026-08-12T21:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5610
+- author: Conflee
+  changes:
+  - message: Fland - Reorganized the Artifact Chamber in Sci to fit in 2 Chambers instead of 1, moved PACMAN generators in Engineering to no longer block a hallway, replaced the Escape Pod next to Shrine with a larger Life Pod.
+    type: Tweak
+  id: 407551
+  time: '2026-08-12T21:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5610
+- author: Conflee
+  changes:
+  - message: Kiloton - Added Radio Host, Station Radios, Department Lathes, and Magazine/Newspaper Spawners.
+    type: Add
+  id: 407552
+  time: '2026-08-12T21:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5610
+- author: Conflee
+  changes:
+  - message: Kiloton - Windows around Clinic can no longer be spaced as they are not space-facing, added a Crew Monitoring Console to Security.
+    type: Tweak
+  id: 407553
+  time: '2026-08-12T21:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5610
+- author: Conflee
+  changes:
+  - message: Space Mall - Added Radio Host, Station Radios, Department Lathes, and Magazine/Newspaper Spawners.
+    type: Add
+  id: 407554
+  time: '2026-08-12T21:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5610
+- author: Conflee
+  changes:
+  - message: Space Mall - Added a small gas canister storage room to Atmos to give them more to work with round start, fixed mismatched Sentry Turrets and Sentry Turret Control Pad's by AI Core.
+    type: Tweak
+  id: 407555
+  time: '2026-08-12T21:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5610
 Order: -1
