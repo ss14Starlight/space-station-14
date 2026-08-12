@@ -38,4 +38,4 @@
     - type: SolutionPurge
       solution: injector
       quantity: 5
-      duration: 5
+      duration: 5s
