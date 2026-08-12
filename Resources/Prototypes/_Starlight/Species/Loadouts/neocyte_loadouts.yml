@@ -1,0 +1,173 @@
+- type: roleLoadout
+  id: NeocyteLoadout
+  groups:
+  - NeocyteCybernetics
+
+- type: loadoutGroup
+  id: NeocyteCybernetics
+  name: loadout-group-neocyte-cybernetics
+  minLimit: 1
+  defaultSelected: 1
+  loadouts:
+  - NeocyteArmorLightBasic
+  - NeocyteArmorLightSpeed
+  - NeocyteArmorMediumBasic
+  - NeocyteArmorMediumMagic
+  - NeocyteArmorHeavyBasic
+  - NeocyteArmorHeavySpace
+
+- type: loadout
+  id: NeocyteArmorLightBasic
+  equipment:
+    outerClothing2: ClothingOuterArmorNeocyteLightBasicUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
+
+- type: loadout
+  id: NeocyteArmorLightSpeed
+  equipment:
+    outerClothing2: ClothingOuterArmorNeocyteLightSpeedUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
+
+- type: loadout
+  id: NeocyteArmorMediumBasic
+  equipment:
+    outerClothing2: ClothingOuterArmorNeocyteMediumBasicUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
+
+- type: loadout
+  id: NeocyteArmorMediumMagic
+  equipment:
+    outerClothing2: ClothingOuterArmorNeocyteMediumMagicUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
+
+- type: loadout
+  id: NeocyteArmorHeavyBasic
+  equipment:
+    outerClothing2: ClothingOuterArmorNeocyteHeavyBasicUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
+
+- type: loadout
+  id: NeocyteArmorHeavySpace
+  equipment:
+    outerClothing2: ClothingOuterArmorNeocyteHeavySpaceUnremovable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Neocyte
+    - NeoElf
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDiona
+    - NeoDwarf
+    - NeoFelionoid
+    - NeoHuman
+    - NeoKin
+    - NeoLagomorph
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
