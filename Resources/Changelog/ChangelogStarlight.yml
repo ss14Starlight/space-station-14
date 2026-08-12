@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
   changes:
-  - message: Non-humanoids with hands can now be Vampires and Wizard Duelists.
-    type: Tweak
-  id: 407123
-  time: '2026-07-31T06:39:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4958
-- author: wonderfulnewworld, Princess-Cheeseball, DIMMoon1, Velken, ScarKy0, psykana, KeTuFaisPiKiNut, neomoth, Tayrtahn, Sparlight
-  changes:
   - message: ERT Chaplains will use their shuttle now.
     type: Tweak
   id: 407124
@@ -2799,4 +2792,11 @@ Entries:
   id: 407522
   time: '2026-08-12T05:29:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5624
+- author: XeroTec/Meepmerp
+  changes:
+  - message: Fixed assistant lizard plushie playtime requirement.
+    type: Fix
+  id: 407523
+  time: '2026-08-12T20:28:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5614
 Order: -1
