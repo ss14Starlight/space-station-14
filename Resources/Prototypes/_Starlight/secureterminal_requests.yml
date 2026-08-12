@@ -52,7 +52,7 @@
     - "Captain / HoS (1)"
     - "Captain / HoS (2)"
   cooldownSecs: 3600
-  authTimer: 20
+  authTimer: 30
 
 # ── ERT Engineering ───────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -76,7 +76,7 @@
     - "Captain / CE (1)"
     - "Captain / CE (2)"
   cooldownSecs: 3600
-  authTimer: 20
+  authTimer: 30
 
 # ── ERT Medical ───────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -100,7 +100,7 @@
     - "Captain / CMO (1)"
     - "Captain / CMO (2)"
   cooldownSecs: 3600
-  authTimer: 20
+  authTimer: 30
 
 # ── ERT Janitorial ────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -124,7 +124,7 @@
     - "Captain / HoP (1)"
     - "Captain / HoP (2)"
   cooldownSecs: 3600
-  authTimer: 20
+  authTimer: 30
 
 # ── ERT Chaplain ──────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -148,7 +148,7 @@
     - "Captain / NTR (1)"
     - "Captain / NTR (2)"
   cooldownSecs: 3600
-  authTimer: 20
+  authTimer: 30
 
 # ── ERT CBURN ──────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -176,7 +176,7 @@
     - "Captain / HoS / CMO / RD (2)"
     - "Captain / HoS / CMO / RD (3)"
   cooldownSecs: 3600
-  authTimer: 20
+  authTimer: 30
 
 #region Alert Levels
 
@@ -202,7 +202,7 @@
     - "Captain / HoS / NTR (1)"
     - "Captain / HoS / NTR (2)"
   cooldownSecs: 900
-  authTimer: 20
+  authTimer: 30
 
 # ── Code PSI ──────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -224,7 +224,7 @@
     - "Captain / HoS / RD (1)"
     - "Captain / HoS / RD (2)"
   cooldownSecs: 900
-  authTimer: 20
+  authTimer: 30
 
 # ── Code Violet ──────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -246,7 +246,7 @@
     - "Captain / HoS / CMO / RD (1)"
     - "Captain / HoS / CMO / RD (2)"
   cooldownSecs: 600
-  authTimer: 20
+  authTimer: 30
 
 # ── End GAMMA ─────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -318,7 +318,6 @@
     - "Captain / HoS / RD (1)"
     - "Captain / HoS / RD (2)"
   cooldownSecs: 0
-
 #region Armory
 
 # ── Gamma Armory ──────────────────────────────────────────────────────────────
@@ -345,7 +344,7 @@
     - "Captain / HoS / NTR (1)"
     - "Captain / HoS / NTR (2)"
   cooldownSecs: 3600
-  authTimer: 20
+  authTimer: 30
 
 # ── Psi Armory ────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -371,7 +370,7 @@
     - "Captain / HoS / RD (1)"
     - "Captain / HoS / RD (2)"
   cooldownSecs: 3600
-  authTimer: 20
+  authTimer: 30
 
 # ── Emergency Medical Pod ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -393,7 +392,7 @@
     - "Captain / CMO (1)"
     - "Captain / CMO (2)"
   cooldownSecs: 3600
-  authTimer: 20
+  authTimer: 30
 
 #region Emergency Access
 
@@ -420,7 +419,7 @@
     - "Command Member (1)"
     - "Command Member (2)"
   cooldownSecs: 600
-  authTimer: 20
+  authTimer: 30
 
 # ── End Emergency Maintenance Access ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -465,7 +464,7 @@
     - "Command Member (1)"
     - "Command Member (2)"
   cooldownSecs: 600
-  authTimer: 20
+  authTimer: 30
 
 # ── End Station-Wide Emergency Access ─────────────────────────────────────────────────────
 - type: secureTerminalRequest

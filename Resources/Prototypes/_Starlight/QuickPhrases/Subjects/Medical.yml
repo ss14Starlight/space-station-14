@@ -1,0 +1,96 @@
+#see DV medical.yml for uses
+- type: quickPhrase
+  id: BaseMedicalEquipmentPhrase
+  parent: BaseMedicalSubjectPhrase
+  group: MedicalEquipment
+  abstract: true
+
+- type: quickPhrase
+  id: ChemLacerinolPhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-lacerinol
+
+- type: quickPhrase
+  id: ChemPuncturasePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-puncturase
+
+- type: quickPhrase
+  id: ChemBruizinePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-bruizine
+
+- type: quickPhrase
+  id: ChemInsuzinePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-insuzine
+
+- type: quickPhrase
+  id: ChemSigynatePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-sigynate
+
+- type: quickPhrase
+  id: ChemSalinePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-saline
+
+- type: quickPhrase
+  id: ChemAmoxlaPhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-amoxla
+
+- type: quickPhrase
+  id: ChemDiphenylmethylaminePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-diphenylmethylamine
+
+- type: quickPhrase
+  id: ChemPhalanximinePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-phalanximine
+
+- type: quickPhrase
+  id: ChemCryoxadonePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-cryoxadone
+
+- type: quickPhrase
+  id: ChemDoxarubixadonePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-doxarubixadone
+
+- type: quickPhrase
+  id: ChemArcryoxPhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-arcryox
+
+- type: quickPhrase
+  id: ChemNecrosolPhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-necrosol
+
+- type: quickPhrase
+  id: ChemOpporozidonePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-opporozidone
+
+- type: quickPhrase
+  id: ChemChronexalinePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-chronexaline
+
+- type: quickPhrase
+  id: ChemOculinePhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-oculine
+
+- type: quickPhrase
+  id: ChemAmbuzolPhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-ambuzol
+
+- type: quickPhrase
+  id: ChemUnstableMutagenPhrase
+  parent: BaseMedicinePhrase
+  text: reagent-name-unstable-mutagen
