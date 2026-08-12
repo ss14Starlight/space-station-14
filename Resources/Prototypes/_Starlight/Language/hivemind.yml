@@ -9,6 +9,8 @@
     obfuscationFont: true
     radioChannel: CosmicRadio
     chatTypeOverride: Whisper
+    ObfuscationFont: true
+    allowRadio: false
   obfuscation:
     !type:RandomObfuscation
 
