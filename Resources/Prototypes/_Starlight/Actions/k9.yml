@@ -46,10 +46,10 @@
   components:
   - type: Action
     itemIconStyle: BigAction
-    # Placeholder icon reusing latch's state; needs dedicated art.
+    # References a nonexistent state - shows ERROR until art lands.
     icon:
       sprite: _Starlight/Interface/Actions/actions_k9.rsi
-      state: latch
+      state: release
   - type: InstantAction
     event: !type:LatchReleaseActionEvent
 

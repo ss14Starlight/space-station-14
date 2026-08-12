@@ -21,6 +21,10 @@ public sealed partial class LatchUIController : UIController
     [Dependency] private IGameTiming _timing = default!;
 
     private LatchStatusControl? _control;
+    private Control? _topLeftCluster;
+
+    private const float FallbackTopMargin = 48f;
+    private const float ClusterGap = 12f;
 
     public override void Initialize()
     {
@@ -37,21 +41,42 @@ public sealed partial class LatchUIController : UIController
         if (viewport is null)
             return;
 
+        // Same "TopLeft" container as DefaultGameScreen.xaml (menu bar/vote/actions).
+        _topLeftCluster = UIManager.ActiveScreen?.FindControl<Control>("TopLeft");
+
         _control = new LatchStatusControl();
         viewport.AddChild(_control);
-        LayoutContainer.SetAnchorAndMarginPreset(_control, LayoutContainer.LayoutPreset.CenterTop, margin: 140);
+        LayoutContainer.SetAnchorPreset(_control, LayoutContainer.LayoutPreset.CenterTop);
+        RepositionControl();
     }
 
     private void OnScreenUnload()
     {
         _control?.Orphan();
         _control = null;
+        _topLeftCluster = null;
+    }
+
+    /// <summary>
+    /// Docks the banner below the top-left cluster's current height.
+    /// </summary>
+    private void RepositionControl()
+    {
+        if (_control is null)
+            return;
+
+        var margin = _topLeftCluster is { Height: > 0 } cluster
+            ? cluster.Height + ClusterGap
+            : FallbackTopMargin;
+        LayoutContainer.SetMarginTop(_control, margin);
     }
 
     public override void FrameUpdate(FrameEventArgs args)
     {
         if (_control is null)
             return;
+
+        RepositionControl();
 
         if (_player.LocalEntity is not { } local)
         {
