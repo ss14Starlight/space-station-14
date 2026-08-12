@@ -37,8 +37,8 @@ public sealed partial class BluespaceHarvesterComponent : Component
 
     // Dangerous mode settings
     [DataField] public int DangerousLevelThreshold = 7;
-    [DataField] public float BasePortalChancePerSecond = 0.003f; // 0.3% per second at level 7 - Lowered so higher levels can be used
-    [DataField] public float PortalChancePerLevelAboveThreshold = 0.0015f; // +0.15% per level above threshold - Lowered so higher levels can be used
+    [DataField] public float BasePortalChancePerSecond = 0.005f; // 0.5% per second at level 7
+    [DataField] public float PortalChancePerLevelAboveThreshold = 0.004f; // +0.4% per level above threshold - Lowered from +1% so higher levels can be used
     [DataField] public EntProtoId PortalPrototype = "BluespaceHarvesterPortal";
     [DataField] public List<EntProtoId> PortalMobPrototypes = new()
     {
@@ -47,12 +47,12 @@ public sealed partial class BluespaceHarvesterComponent : Component
         "MobBluespaceHarvesterOtherthing"
     };
 
-    [DataField] public int MinMobsPerPortal = 0.5f;  // Scaled mobs from portal
-    [DataField] public int MaxMobsPerPortal = 4f;  // Scaled mobs from portal
+    [DataField] public int MinMobsPerPortal = 3;  // Scaled mobs from portal
+    [DataField] public int MaxMobsPerPortal = 7;  // Scaled mobs from portal
 
     [DataField] public float PortalMinDistance = 3f;
 
-    [DataField] public float PortalMaxDistance = 7f;  // Increased max portal range from higher levels.
+    [DataField] public float PortalMaxDistance = 5f;  // Increased max portal range from higher levels.
 
     [DataField] public float PortalBlockDuration = 30f;
 

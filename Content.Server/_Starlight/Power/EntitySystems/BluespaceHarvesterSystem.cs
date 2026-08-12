@@ -203,7 +203,7 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
         // Spawn the portal near the harvester
         var xform = Transform(uid);
         var angle = _random.NextAngle();
-        var distance = _random.NextFloat(component.PortalMinDistance, component.PortalMaxDistance);
+        var distance = _random.NextFloat(component.PortalMinDistance, (component.PortalMaxDistance * levelsAboveThreshold)); // Higher levels rapidly increase max portal distance
         var offset = angle.ToVec() * distance;
         var portalCoords = xform.Coordinates.Offset(offset);
 
@@ -216,7 +216,7 @@ public sealed partial class BluespaceHarvesterSystem : EntitySystem
         component.IsBlocked = true;
         component.DesiredLevel = 0; // Reset level to 0 when portal spawns
 
-        var mobCount = _random.Next(component.MinMobsPerPortal, component.MaxMobsPerPortal + 1);
+        var mobCount = _random.Next((component.MinMobsPerPortal * levelsAboveThreshold), (component.MaxMobsPerPortal * levelsAboveThreshold) + 1); // Higher levels increase the number of Mobs
         for (var i = 0; i < mobCount; i++)
         {
             var mobProto = _random.Pick(component.PortalMobPrototypes);
