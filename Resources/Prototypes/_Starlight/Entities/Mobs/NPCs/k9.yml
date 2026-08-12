@@ -45,4 +45,4 @@
   - type: Latch
     damagePerTick:
       types:
-        Piercing: 3
+        Piercing: 1.5

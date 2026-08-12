@@ -16,6 +16,7 @@ public sealed partial class LatchComponent : Component
 {
     [DataField] public EntProtoId Action = "Latch";
     [DataField] public EntProtoId BiteHarderAction = "LatchBiteHarder";
+    [DataField] public EntProtoId ReleaseAction = "LatchRelease";
     [DataField] public ProtoId<AlertPrototype> LatchAlert = "Latched";
 
     [DataField] public EntityWhitelist? Whitelist;
@@ -59,6 +60,7 @@ public sealed partial class LatchComponent : Component
 
     [ViewVariables] public EntityUid? ActionEntity;
     [ViewVariables] public EntityUid? BiteHarderActionEntity;
+    [ViewVariables] public EntityUid? ReleaseActionEntity;
 
     /// <summary>
     /// Whether the target's DoT is paused (incapacitated). Movement lock stays active.

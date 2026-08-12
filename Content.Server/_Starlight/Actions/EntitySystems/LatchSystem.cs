@@ -54,6 +54,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         SubscribeLocalEvent<LatchActionEvent>(OnLatchAction);
         SubscribeLocalEvent<LatchBiteHarderActionEvent>(OnBiteHarderAction);
+        SubscribeLocalEvent<LatchReleaseActionEvent>(OnReleaseAction);
     }
 
     /// <summary>
@@ -71,6 +72,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
     {
         _action.RemoveAction(uid, comp.ActionEntity);
         _action.RemoveAction(uid, comp.BiteHarderActionEntity);
+        _action.RemoveAction(uid, comp.ReleaseActionEntity);
 
         if (comp.Active)
             EndLatch(uid, comp);
@@ -148,6 +150,22 @@ public sealed partial class LatchSystem : SharedLatchSystem
     }
 
     /// <summary>
+    /// Lets the latcher voluntarily end an active latch at any time.
+    /// </summary>
+    private void OnReleaseAction(LatchReleaseActionEvent ev)
+    {
+        if (ev.Handled)
+            return;
+
+        var uid = ev.Performer;
+        if (!TryComp<LatchComponent>(uid, out var comp) || !comp.Active)
+            return;
+
+        EndLatch(uid, comp);
+        ev.Handled = true;
+    }
+
+    /// <summary>
     /// Begins a latch: locks movement, downs the target, blocks a hand, and
     /// grants Bite Harder.
     /// </summary>
@@ -174,6 +192,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         _combatMode.SetInCombatMode(uid, false);
 
         _action.AddAction(uid, ref comp.BiteHarderActionEntity, comp.BiteHarderAction);
+        _action.AddAction(uid, ref comp.ReleaseActionEntity, comp.ReleaseAction);
 
         _speed.RefreshMovementSpeedModifiers(uid);
         _speed.RefreshMovementSpeedModifiers(target);
@@ -199,6 +218,9 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         _action.RemoveAction(uid, comp.BiteHarderActionEntity);
         comp.BiteHarderActionEntity = null;
+
+        _action.RemoveAction(uid, comp.ReleaseActionEntity);
+        comp.ReleaseActionEntity = null;
 
         _speed.RefreshMovementSpeedModifiers(uid);
         _alert.ClearAlert(uid, comp.LatchAlert);
