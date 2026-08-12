@@ -265,7 +265,7 @@
 
 - type: guideEntry
   id: Gasses
-  name: guide-entry-gasses1
+  name: guide-entry-gasses
   text: "/ServerInfo/_Starlight/Guidebook/Engineering/Gasses.xml" # STARLIGHT
 
 - type: guideEntry
