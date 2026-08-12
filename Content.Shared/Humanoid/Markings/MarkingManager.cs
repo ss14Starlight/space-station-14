@@ -1,7 +1,9 @@
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Starlight.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Humanoid.Markings
@@ -9,15 +11,19 @@ namespace Content.Shared.Humanoid.Markings
     public sealed partial class MarkingManager
     {
         [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IResourceManager _resourceManager = default!; // Starlight
 
+        private MarkingMigrationManager _migrationManager = default!; // Starlight
         private readonly List<MarkingPrototype> _index = new();
         public FrozenDictionary<MarkingCategories, FrozenDictionary<string, MarkingPrototype>> CategorizedMarkings = default!;
         public FrozenDictionary<string, MarkingPrototype> Markings = default!;
 
         public void Initialize()
         {
+            _migrationManager = new MarkingMigrationManager(_resourceManager); // Starlight
             _prototypeManager.PrototypesReloaded += OnPrototypeReload;
             CachePrototypes();
+            _migrationManager.CacheMigrations(Markings); // Starlight
         }
 
         private void CachePrototypes()
@@ -41,6 +47,27 @@ namespace Content.Shared.Humanoid.Markings
                 x => x.Key,
                 x => x.Value.ToFrozenDictionary());
         }
+
+        #region Starlight
+        /// <summary>
+        /// Resolves an old marking prototype ID through the marking migration files.
+        /// </summary>
+        public bool TryResolveMarkingId(string id, [NotNullWhen(true)] out string? resolvedId)
+        {
+            return _migrationManager.TryResolveMarkingId(id, Markings, out resolvedId);
+        }
+
+        /// <summary>
+        /// Resolves a marking and returns a copy containing its current prototype ID.
+        /// </summary>
+        public bool TryMigrateMarking(
+            Marking marking,
+            [NotNullWhen(true)] out Marking? migratedMarking,
+            [NotNullWhen(true)] out MarkingPrototype? prototype)
+        {
+            return _migrationManager.TryMigrateMarking(marking, Markings, out migratedMarking, out prototype);
+        }
+        #endregion
 
         public FrozenDictionary<string, MarkingPrototype> MarkingsByCategory(MarkingCategories category)
         {
@@ -153,7 +180,15 @@ namespace Content.Shared.Humanoid.Markings
 
         public bool TryGetMarking(Marking marking, [NotNullWhen(true)] out MarkingPrototype? markingResult)
         {
-            return Markings.TryGetValue(marking.MarkingId, out markingResult);
+            #region Starlight
+            if (!TryResolveMarkingId(marking.MarkingId, out var markingId))
+            {
+                markingResult = null;
+                return false;
+            }
+
+            return Markings.TryGetValue(markingId, out markingResult);
+            #endregion
         }
 
         /// <summary>
@@ -189,8 +224,13 @@ namespace Content.Shared.Humanoid.Markings
 
         private void OnPrototypeReload(PrototypesReloadedEventArgs args)
         {
-            if (args.WasModified<MarkingPrototype>())
-                CachePrototypes();
+            #region Starlight
+            if (!args.WasModified<MarkingPrototype>())
+                return;
+
+            CachePrototypes();
+            _migrationManager.CacheMigrations(Markings); // Starlight
+            #endregion
         }
 
         public bool CanBeApplied(string species, Sex sex, Marking marking, IPrototypeManager? prototypeManager = null)

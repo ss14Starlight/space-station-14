@@ -277,15 +277,29 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var proto = IoCManager.Resolve<IPrototypeManager>();
         var markingManager = IoCManager.Resolve<MarkingManager>();
 
-        if (!markingManager.MarkingsByCategory(MarkingCategories.Hair).ContainsKey(hairStyleId))
+        if (!markingManager.TryResolveMarkingId(hairStyleId, out var migratedHairStyleId) || // Starlight
+            !markingManager.MarkingsByCategory(MarkingCategories.Hair).ContainsKey(migratedHairStyleId)) // Starlight
         {
             hairStyleId = HairStyles.DefaultHairStyle;
         }
+        #region Starlight
+        else
+        {
+            hairStyleId = migratedHairStyleId;
+        }
+        #endregion
 
-        if (!markingManager.MarkingsByCategory(MarkingCategories.FacialHair).ContainsKey(facialHairStyleId))
+        if (!markingManager.TryResolveMarkingId(facialHairStyleId, out var migratedFacialHairStyleId) || // Starlight
+            !markingManager.MarkingsByCategory(MarkingCategories.FacialHair).ContainsKey(migratedFacialHairStyleId)) // Starlight
         {
             facialHairStyleId = HairStyles.DefaultFacialHairStyle;
         }
+        #region Starlight
+        else
+        {
+            facialHairStyleId = migratedFacialHairStyleId;
+        }
+        #endregion
 
         var markingSet = new MarkingSet();
         var skinColor = appearance.SkinColor;
