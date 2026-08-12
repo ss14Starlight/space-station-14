@@ -159,8 +159,7 @@
     - type: ShowHealthBars
       damageContainers: # Starlight start
       - Biological
-      - Hybrid
-      - IPC # Starlight end, Neocytes
+      - Hybrid # Starlight end, Neocytes
     - type: InteractionPopup
       interactSuccessString: petting-success-syndicate-cyborg
       interactFailureString: petting-failure-syndicate-cyborg
@@ -177,7 +176,6 @@
       damageContainers:
       - Biological
       - Hybrid
-      - IPC
     - type: ActionGrant
       actions:
       - ActionMedTek
@@ -412,12 +410,10 @@
     damageContainers:
     - Biological
     - Hybrid # Starlight, Neocytes
-    - IPC # Starlight
   - type: ShowHealthIcons
     damageContainers:
     - Biological
     - Hybrid # Starlight, Neocytes
-    - IPC # Starlight
 # Starlight Start
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
@@ -444,7 +440,6 @@
     damageContainers:
     - Biological
     - Hybrid
-    - IPC
   - type: ActionGrant
     actions:
     - ActionMedTek
