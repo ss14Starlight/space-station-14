@@ -112,7 +112,7 @@ public sealed partial class PaperVisualsComponent : Component
     ///     can still use markup to override color for subsections.
     /// </summary>
     [DataField]
-    public Color? DefaultTextColor = new Color(223, 223, 213);
+    public Color? DefaultTextColor;
 
     /// <summary>
     ///     This can enforce that your paper has a limited area to write in.
