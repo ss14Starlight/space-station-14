@@ -1,5 +1,5 @@
 using Content.Shared._Starfall.Particles;
-using Content.Shared._Starlight.Medical.Body.Systems; // Starlight
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Gibbing;
 using Robust.Shared.Player;
