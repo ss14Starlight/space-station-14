@@ -1,0 +1,6 @@
+- type: latheRecipePack
+  id: StarlightEngineeringBoards
+  recipes:
+  - SMESAdvancedMachineCircuitboard
+  - SMESHyperAdvancedMachineCircuitboard
+  - APCAdvancedElectronics

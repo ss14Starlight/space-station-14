@@ -7,6 +7,7 @@
     - eventdiet
   name: eventlight-title
   description: eventlight-description
+  minPlayers: 5
   showInVote: false
   rules:
     - SpaceTrafficControlEventScheduler
@@ -37,6 +38,7 @@
   alias:
     - shitstation
     - trashstation
+    - shittersafari2
   name: shitstation-title
   description: shitstation-description
   showInVote: true
@@ -80,6 +82,7 @@
   name: changeling-gamemode-title
   description: changeling-gamemode-description
   showInVote: false
+  minPlayers: 25
   rules:
     - SLChangeling
     - SLChangelingLess
@@ -149,7 +152,7 @@
     - ShitStationEventScheduler
     - Vampire
     - SiliconLiberation
-    - Brighteye
+    - SubBrighteye
     - ThiefGamerule
     - Devil
     - CosmicCult
@@ -187,7 +190,7 @@
     - SLChangeling
     - Vampire
     - SiliconLiberation
-    - Brighteye
+    - SubBrighteye
     - ThiefGamerule
     - LoneOpsSpawn
     - RailroadingTerminator
@@ -224,12 +227,10 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
-  minPlayers: 15
+  minPlayers: 40
   voteCooldown: 0 # This one actually can roll back to back.
   rules:
   - SLDynamicRuleLP
-  - DynamicStationEventScheduler
-  - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
+  - SpaceTrafficControlEventScheduler # No event/meteor schedulers, since we handle that in dynamic too.
   - BasicRoundstartVariation
   - RailroadingMinor

@@ -11,6 +11,7 @@ id-card-access-level-iaa = Internal Affairs
 id-card-access-level-salvagelead = Salvage Lead
 id-card-access-level-mining = Mining
 id-card-access-level-mail = Mail
+id-card-access-level-shuttle = Shuttle
 
 # Engineering
 
@@ -51,3 +52,4 @@ id-card-access-level-solgov = SolGov
 id-card-access-level-pirate = Pirate
 id-card-access-level-blackstar = Blackstar
 id-card-access-level-medtak = MedTak
+id-card-access-level-visitor = Visitor

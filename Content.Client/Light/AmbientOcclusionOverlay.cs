@@ -6,6 +6,7 @@ using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -23,12 +24,12 @@ public sealed partial class AmbientOcclusionOverlay : Overlay
     [Dependency] private IClyde _clyde = default!;
     [Dependency] private IConfigurationManager _cfgManager = default!;
     [Dependency] private IEntityManager _entManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IPrototypeManager _proto = default!;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowEntities;
 
     private readonly OverlayResourceCache<CachedResources> _resources = new ();
+    private List<Entity<MapGridComponent>> _grids = new();
 
     public AmbientOcclusionOverlay()
     {
@@ -115,7 +116,9 @@ public sealed partial class AmbientOcclusionOverlay : Overlay
                 // Don't want lighting affecting it.
                 worldHandle.UseShader(_proto.Index(UnshadedShader).Instance());
 
-                foreach (var grid in _mapManager.FindGridsIntersecting(mapId, worldBounds))
+                _grids.Clear();
+                maps.FindGridsIntersecting(mapId, worldBounds, ref _grids);
+                foreach (var grid in _grids)
                 {
                     var transform = xformSystem.GetWorldMatrix(grid.Owner);
                     var worldToTextureMatrix = Matrix3x2.Multiply(transform, invMatrix);
@@ -126,7 +129,7 @@ public sealed partial class AmbientOcclusionOverlay : Overlay
                         if (turfSystem.IsSpace(tileRef))
                             continue;
 
-                        var bounds = lookups.GetLocalBounds(tileRef, grid.TileSize);
+                        var bounds = lookups.GetLocalBounds(tileRef, grid.Comp.TileSize);
                         worldHandle.DrawRect(bounds, Color.White);
                     }
                 }

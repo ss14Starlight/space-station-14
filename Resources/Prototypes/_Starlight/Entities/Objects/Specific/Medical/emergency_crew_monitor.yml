@@ -36,7 +36,10 @@
     interfaces:
       enum.CrewMonitoringUIKey.Key:
         type: CrewMonitoringBoundUserInterface
+  - type: ItemToggle
+    onActivate: false
   - type: CrewMonitoringConsole
+  - type: CrewMonitorAlerts
   - type: CrewMonitoringFilter
     onlyShowWoundedOrDead: true
   - type: DeviceNetwork

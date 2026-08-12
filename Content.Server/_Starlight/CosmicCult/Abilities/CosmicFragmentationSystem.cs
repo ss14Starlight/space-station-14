@@ -4,6 +4,8 @@ using Content.Server.Popups;
 using Content.Shared.DoAfter;
 using Content.Shared.Mind;
 using Content.Shared.Actions;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Content.Shared.Silicons.Borgs.Components;
@@ -13,6 +15,7 @@ using Content.Shared._Starlight.CosmicCult;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Content.Server._Starlight.Language;
+using Content.Server.Actions;
 using Content.Shared._Starlight.Language;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Mobs;
@@ -33,6 +36,8 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
     [Dependency] private LanguageSystem _languageSystem = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
+    [Dependency] private ActionsSystem _actionsSystem = default!;
 
     private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
@@ -96,7 +101,12 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
     {
         if (args.Args.Target is not { } target)
             return;
-        if (args.Cancelled || args.Handled)
+        if (args.Cancelled)
+        {
+            RestoreFragmentationCharge(ent);
+            return;
+        }
+        if (args.Handled)
             return;
         args.Handled = true;
 
@@ -109,22 +119,49 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
             return;
         }
 
+        RestoreFragmentationCharge(ent);
         UnEmpower(ent);
         _actions.RemoveAction(ent.Owner, ent.Comp.CosmicFragmentationActionEntity);
         ent.Comp.ActionEntities.Remove(ent.Comp.CosmicFragmentationActionEntity);
         ent.Comp.CosmicFragmentationActionEntity = null;
     }
 
-    private void OnFragmentBorg(Entity<BorgChassisComponent> ent, ref MalignFragmentationEvent args) =>
-        HandleFragmentSilicon(ent.Owner, ref args);
+    private void RestoreFragmentationCharge(Entity<CosmicCultComponent> ent)
+    {
+        if (ent.Comp.CosmicFragmentationActionEntity is not { } action)
+            return;
 
-    private void OnFragmentIPC(Entity<IPCBrainHolderComponent> ent, ref MalignFragmentationEvent args) =>
+        if (!TryComp<LimitedChargesComponent>(action, out var charges))
+            return;
+
+        _charges.SetCharges((action, charges), 1);
+
+        _actionsSystem.SetCooldown(action, TimeSpan.Zero);
+    }
+
+    private void OnFragmentBorg(Entity<BorgChassisComponent> ent, ref MalignFragmentationEvent args)
+    {
+        if (args.Handled)
+            return;
+
         HandleFragmentSilicon(ent.Owner, ref args);
+    }
+
+    private void OnFragmentIPC(Entity<IPCBrainHolderComponent> ent, ref MalignFragmentationEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        HandleFragmentSilicon(ent.Owner, ref args);
+    }
 
     private void HandleFragmentSilicon(EntityUid ent, ref MalignFragmentationEvent args)
     {
         if (!_mind.TryGetMind(ent, out var mindId, out var mind))
+        {
+            args.Handled = true;
             return;
+        }
 
         var wisp = Spawn("CosmicChantryWisp", Transform(ent).Coordinates);
         var chantry = Spawn("CosmicBorgChantry", Transform(ent).Coordinates);
@@ -134,6 +171,7 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
         chantryComponent.VictimBody = ent;
 
         _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}");
+
         _mind.TransferTo(mindId, wisp, mind: mind);
 
         _mobStateSystem.ChangeMobState(ent, MobState.Critical);
@@ -149,11 +187,15 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
             null
         );
 
+        args.Handled = true;
         args.Succeeded = true;
     }
 
     private void OnFragmentAi(Entity<SiliconLawUpdaterComponent> ent, ref MalignFragmentationEvent args)
     {
+        if (args.Handled)
+            return;
+
         _container.TryGetContainer(args.Target, "circuit_holder", out var container);
         if (container == null)
             return;
@@ -166,7 +208,7 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
             Del(lawboard);
             return;
         }
-
+        args.Handled = true;
         args.Succeeded = true;
     }
 
@@ -190,5 +232,6 @@ public sealed partial class CosmicFragmentationSystem : EntitySystem
 [ByRefEvent]
 public record struct MalignFragmentationEvent(Entity<CosmicCultComponent> User, EntityUid Target)
 {
+    public bool Handled;
     public bool Succeeded;
 }

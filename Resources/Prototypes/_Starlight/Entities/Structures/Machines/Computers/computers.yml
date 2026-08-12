@@ -6,7 +6,9 @@
   components:
   - type: RecruitmentComputer
   - type: ActivatableUI
+    adminOnly: true
     key: enum.RecruitmentComputerUiKey.Key
+  - type: ActivatableUIRequiresAccess
   - type: UserInterface
     interfaces:
       enum.RecruitmentComputerUiKey.Key:
@@ -223,7 +225,8 @@
   parent: BaseComputerShuttle
   id: CompuerShuttleSalvage
   categories: [ ShouldMapStation ]
-  name: salvage shuttle console
+  name: remote salvage shuttle console
+  description: Used to pilot the salvage shuttle remotely.
   components:
   - type: Sprite
     layers:
@@ -251,6 +254,8 @@
     board: SalvageShuttleConsoleCircuitboard
   - type: StealTarget
     stealGroup: SalvageShuttleConsoleCircuitboard
+  - type: AccessReader
+    access: [ [ "Shuttle" ], [ "Salvage" ] ]
 
 # Mass Driver
 
@@ -399,7 +404,8 @@
   parent: BaseComputerShuttle
   id: ComputerShuttleMining
   categories: [ ShouldMapStation ]
-  name: mining shuttle console
+  name: remote mining shuttle console
+  description: Used to pilot the mining shuttle remotely.
   components:
     - type: Sprite
       layers:
@@ -430,12 +436,15 @@
       board: MiningShuttleConsoleCircuitboard
     - type: StealTarget
       stealGroup: MiningShuttleConsoleCircuitboard
+    - type: AccessReader
+      access: [["Shuttle"], ["Mining"]]
 
 # Security Shuttle Console
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleSecurity
-  name: security shuttle console
+  name: remote security shuttle console
+  description: Used to pilot the security shuttle remotely.
   components:
     - type: Sprite
       layers:
@@ -464,6 +473,8 @@
     # Starlight End
     - type: Computer
       board: SecurityShuttleConsoleCircuitboard
+    - type: AccessReader
+      access: [["Security"]]
 
 - type: entity
   parent: ComputerComms

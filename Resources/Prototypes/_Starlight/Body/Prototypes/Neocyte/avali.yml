@@ -1,0 +1,57 @@
+- type: body
+  id: NeoAvali
+  name: neo-avali
+  root: torso
+  slots:
+    head:
+      part: HeadAvali
+      connections:
+      - torso
+      organs:
+        brain: OrganNeocyteBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongueForked
+        eye_implant: null
+        brain_implant: BrainImplantNexus
+    torso:
+      part: TorsoAvali
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganNeoAvaliHeart
+        lungs: OrganNeocyteLungs
+        stomach: OrganNeoAvaliStomach
+        liver: OrganNeoAvaliLiver
+        kidneys: OrganNeocyteKidneys
+        cavity: null
+    right arm:
+      part: RightArmAvali
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmAvali
+      connections:
+      - left hand
+    right hand:
+      part: RightHandAvali
+      organs:
+        hand_implant: null
+    left hand:
+      part: LeftHandAvali
+      organs:
+        hand_implant: null
+    right leg:
+      part: RightLegAvali
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegAvali
+      connections:
+      - left foot
+    right foot:
+      part: RightFootAvali
+    left foot:
+      part: LeftFootAvali

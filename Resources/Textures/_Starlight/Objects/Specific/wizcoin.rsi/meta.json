@@ -5,10 +5,73 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Starlight, Made by staff member Conf",
+    "copyright": "State based copyright",
     "states": [
         {
-            "name": "wizcoin"
+            "name": "wizcoin",
+			"copyright": "Starlight, made by staff member Conf"
+        },
+        {
+            "name": "redwizcoin",
+			"copyright": "Conf, wonderfulnewworld"
+        },
+        {
+            "name": "red-equipped-NECK",
+			"copyright": "TG Station, wonderfulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "bluewizcoin",
+			"copyright": "Conf, wonderfulnewworld"
+        },
+        {
+            "name": "blue-equipped-NECK",
+			"copyright": "TG Station, wonderfulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "yellowwizcoin",
+			"copyright": "Conf, wonderfulnewworld"
+        },
+        {
+            "name": "yellow-equipped-NECK",
+			"copyright": "TG Station, wonderfulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "greenwizcoin",
+			"copyright": "Conf, wonderfulnewworld"
+        },
+        {
+            "name": "green-equipped-NECK",
+			"copyright": "TG Station, wonderfulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "purplewizcoin",
+			"copyright": "Conf, wonderfulnewworld"
+        },
+        {
+            "name": "purple-equipped-NECK",
+			"copyright": "TG Station, wonderfulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "orangewizcoin",
+			"copyright": "Conf, wonderfulnewworld"
+        },
+        {
+            "name": "orange-equipped-NECK",
+			"copyright": "TG Station, wonderfulnewworld",
+			"directions": 4
+        },
+        {
+            "name": "cyanwizcoin",
+			"copyright": "Conf, wonderfulnewworld"
+        },
+        {
+            "name": "omniwizcoin",
+			"copyright": "Conf, wonderfulnewworld"
         }
     ]
 }

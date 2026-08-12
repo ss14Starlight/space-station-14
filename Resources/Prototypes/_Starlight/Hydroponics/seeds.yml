@@ -72,3 +72,94 @@
       Min: 1
       Max: 20
       PotencyDivisor: 7
+
+- type: seed
+  id: mint
+  name: seeds-mint-name
+  noun: seeds-noun-seeds
+  displayName: seeds-mint-display-name
+  plantRsi: _Starlight/Objects/Specific/Hydroponics/mint.rsi
+  packetPrototype: MintSeeds
+  productPrototypes:
+    - FoodMintLeaf
+  mutationPrototypes:
+    - spearMint
+  lifespan: 25
+  maturation: 6
+  production: 2
+  yield: 3
+  potency: 5
+  growthStages: 5
+  waterConsumption: 0.3
+  nutrientConsumption: 0.4
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 20
+      PotencyDivisor: 20
+
+- type: seed
+  id: spearMint
+  name: seeds-spear-mint-name
+  noun: seeds-noun-seeds
+  displayName: seeds-spear-mint-display-name
+  plantRsi: _Starlight/Objects/Specific/Hydroponics/spearmint.rsi
+  packetPrototype: SpearMintSeeds
+  productPrototypes:
+    - SpearMint
+  lifespan: 40
+  maturation: 25
+  production: 1
+  yield: 2
+  potency: 10
+  growthStages: 5
+  waterConsumption: 0.6
+  nutrientConsumption: 0.8
+
+- type: seed
+  id: cinnamon
+  name: seeds-cinnamon-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cinnamon-display-name
+  plantRsi: _Starlight/Objects/Specific/Hydroponics/cinnamon.rsi
+  packetPrototype: CinnamonSeeds
+  productPrototypes:
+    - FoodCinnamonStick
+  mutationPrototypes:
+    - cinnaflare
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 5
+  growthStages: 5
+  waterConsumption: 0.3
+  nutrientConsumption: 0.4
+  chemicals:
+    Cinnamon:
+      Min: 5
+      Max: 20
+      PotencyDivisor: 20
+
+- type: seed
+  id: cinnaflare
+  name: seeds-cinnaflare-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cinnaflare-display-name
+  plantRsi: _Starlight/Objects/Specific/Hydroponics/cinnaflare.rsi
+  packetPrototype: CinnaflareSeeds
+  productPrototypes:
+    - CinnaflareStick
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 3
+  growthStages: 5
+  waterConsumption: 0.3
+  nutrientConsumption: 0.4
+  chemicals:
+    Oil:
+      Min: 5
+      Max: 20
+      PotencyDivisor: 20

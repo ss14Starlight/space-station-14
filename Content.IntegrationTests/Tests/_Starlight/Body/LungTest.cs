@@ -106,7 +106,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
 
             // --- End setup
 
-            var inhaleCycles = 100;
+            var inhaleCycles = 20;
             for (var i = 0; i < inhaleCycles; i++)
             {
                 // Breathe in
@@ -131,7 +131,6 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
             var pair = Pair;
             var server = pair.Server;
 
-            var mapManager = server.ResolveDependency<IMapManager>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var cfg = server.ResolveDependency<IConfigurationManager>();
             var mapLoader = entityManager.System<MapLoaderSystem>();

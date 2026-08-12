@@ -1,0 +1,113 @@
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: NanoTrasenBlacklistedAntag
+  jobBlacklist:
+  - BlueShield
+  - Magistrate
+  - NanoTrasenRepresentative
+  - StationAi
+  - IAA
+  - NanotrasenCareerTrainer
+  - Decimus
+  - NanoTrasenSpecialForces
+  - NTNCBlueShield
+
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: TSFBlacklistedAntag
+  jobBlacklist:
+  - SolGovOfficer
+  - SolGovOfficerSheriff
+  - TSFMCCrew
+  - TSFMarine
+  - TSFMarineElite
+
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: GeneralMindshieldBlacklistedAntag
+  jobBlacklist:
+  - SalvageLead
+  - SalvageSpecialist
+  - Paramedic
+
+# Zombie (Initial Infected)
+## Sabotaging Chem as a Chem II is too easy, and always the "best" thing you can do without question.
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: ZombieRestrictedAntag
+  jobBlacklist:
+  - Chemist
+
+# SELF
+## It's incredibly easy for Roboticists, since they can literally just pre-FREEmag them.
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: SelfRestrictedAntag
+  jobBlacklist:
+  - Roboticist
+
+# Vampire
+## Only Mining, because they literally die from starlight.
+## Oh, and Chaplain, because they're already restricted from it, so this saves us selection time later.
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: VampireRestrictedAntag
+  jobBlacklist:
+  - MiningSpecialist
+  - Chaplain
+
+# Changeling
+## Only Mining, although less important than their Vampire restriction, but moreso, because they have to forgo their entire job or kill the rest of mining to actually be a Changeling.
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: ChangelingRestrictedAntag
+  jobBlacklist:
+  - MiningSpecialist
+
+# Devil
+## Specifically excludes: Head of Personnel, Internal Affairs Agent, and Paramedic
+## Creates interesting roleplay opportunities for those roles
+## HoP is the Paperwork Devil and you can't convince me otherwise
+- type: antagSpecifier
+  abstract: true
+  parent: [BaseAntagSpecifier, CyborgBlacklistedAntag, InternBlacklistedAntag, TSFBlacklistedAntag]
+  id: DevilRestrictedAntag
+  jobBlacklist:
+  - Captain
+  - HeadOfSecurity
+  - ChiefMedicalOfficer
+  - ResearchDirector
+  - ChiefEngineer
+  - Quartermaster
+  - BlueShield
+  - NanoTrasenRepresentative
+  - Magistrate
+  - StationAi
+  - NanotrasenCareerTrainer
+  - Decimus
+  - NanoTrasenSpecialForces
+  - NTNCBlueShield
+  - Warden
+  - Detective
+  - Brigmedic
+  - DutyOfficer
+  - SecurityOfficer
+  - SecurityCadet
+  - SalvageLead
+  - SalvageSpecialist
+
+# Cosmic Cult
+## Just Chaplain, since, y'know.
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: CosmicCultRestrictedAntag
+  jobBlacklist:
+  - Chaplain

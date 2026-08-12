@@ -1,5 +1,108 @@
 # event schedulers
 - type: entity
+  id: ShitStationEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 0
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: ShitGameRulesTable
+
+- type: entityTable
+  id: ShitGameRulesTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+      - !type:NestedSelector
+        tableId: ShitEventsTable
+      - !type:NestedSelector
+        tableId: DerelictBorgEventTable
+      - id: IonStormPlus
+
+- type: entity
+  id: DynamicRampingEventScheduler # Dynamic Survival!?
+  parent: BaseGameRule
+  components:
+  - type: RampingStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: DynamicGameRulesTable
+
+- type: entity
+  parent: BaseGameRule
+  id: BaseDynamicEventScheduler
+  components:
+  - type: GameRule
+    minPlayers: 0
+  - type: SubGamemodes
+    rules:
+    - id: DynamicStationEventScheduler
+      prob: 1
+    - id: MeteorSwarmScheduler
+      prob: 1
+  - type: DynamicRuleCost
+    cost: 0 # Free, since we want this to roll most of the time.
+
+# Dynamic Survival!?
+- type: entity
+  parent: BaseGameRule
+  id: DynamicSurvivalEventScheduler
+  components:
+  - type: GameRule
+    minPlayers: 15
+  - type: SubGamemodes
+    rules:
+    - id: DynamicRampingEventScheduler
+      prob: 1
+    - id: MeteorSwarmScheduler
+      prob: 1
+  - type: DynamicRuleCost
+    cost: 150 # It can have less since it's not *as* bad as the other two
+
+# Dynamic Kessler Syndrome
+- type: entity
+  parent: BaseGameRule
+  id: DynamicKesslerSyndromeEventScheduler
+  components:
+  - type: GameRule
+    minPlayers: 15
+  - type: SubGamemodes
+    rules:
+    - id: KesslerSyndromeScheduler
+      prob: 1
+    - id: DynamicRampingEventScheduler
+      prob: 1
+  - type: DynamicRuleCost
+    cost: 200
+
+# It's literally just ShitStation.
+- type: entity
+  parent: BaseGameRule
+  id: DynamicShitStationEventScheduler
+  components:
+  - type: GameRule
+    minPlayers: 0
+  - type: SubGamemodes
+    rules:
+    - id: ShitStationEventScheduler
+      prob: 1
+    - id: DynamicStationEventScheduler
+      prob: 1
+    - id: DynamicStationEventScheduler
+      prob: 1
+    - id: MeteorSwarmScheduler
+      prob: 1
+    - id: BasicRoundstartVariation
+      prob: 1
+    - id: BasicRoundstartVariation
+      prob: 1
+    - id: BasicRoundstartVariation
+      prob: 1
+    - id: BasicRoundstartVariation
+      prob: 1
+  - type: DynamicRuleCost
+    cost: 150 # Lowering this, since BasicRoundstartVariation doesn't do much in Dynamic due to how Dynamic functions.
+
+- type: entity
   parent: BaseGameRule
   id: SubGamemodesRuleNoChangelings
   components:
@@ -15,14 +118,14 @@
       prob: 0.05 # rare
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #  prob: 0.05
-    - id: Brighteye
-      prob: 0.05 # We can go back down to 0.05, since they scale now.
+    #- id: SubBrighteye # Brighteye is disabled until more work is put in.
+    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
       prob: 0.17
 
 - type: entity
   parent: BaseGameRule
-  id: SubGamemodesRuleLessThieves
+  id: SubGamemodesRuleConversion
   components:
   - type: SubGamemodes
     rules:
@@ -36,8 +139,8 @@
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #      prob: 0.05
-    - id: Brighteye
-      prob: 0.05 # We can go back down to 0.05, since they scale now.
+    #- id: SubBrighteye
+    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
     # No SELF Agents in rev games because of the FREEmag.
     # no devil because this is the secret set used for conversion antags i guess? either way dont want revs spamming devil
 
@@ -57,8 +160,8 @@
       prob: 0.05 # rare
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #  prob: 0.05
-    - id: Brighteye
-      prob: 0.05 # We can go back down to 0.05, since they scale now.
+    #- id: SubBrighteye
+    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
       prob: 0.20
 
@@ -76,8 +179,8 @@
       prob: 0.05
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #      prob: 0.05
-    - id: Brighteye
-      prob: 0.05
+    #- id: SubBrighteye
+    #  prob: 0.05
     - id: SiliconLiberation
       prob: 0.12
 
@@ -97,8 +200,8 @@
       prob: 0.20
     #- id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
     #  prob: 0.05
-    - id: Brighteye
-      prob: 0.05 # We can go back down to 0.05, since they scale now.
+    #- id: SubBrighteye
+    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation # I mean technically there's nothing inherently wrong with them showing up.
       prob: 0.15
 
@@ -138,77 +241,14 @@
     - id: SiliconLiberation
       prob: 1
 
-- type: entity
-  parent: Traitor
-  id: TraitorLess
-  components:
-  - type: GameRule
-    minPlayers: 5
-    delay:
-      min: 240
-      max: 420
-  - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ Traitor ]
-      max: 12 # Starlight. For VampTraitorLing.
-      playerRatio: 17 # Starlight. For VampTraitorLing.
-      blacklist:
-        components:
-        - AntagImmune
-      lateJoinAdditional: false
-      allowNonHumans: true
-      mindRoles:
-      - MindRoleTraitor
-
-- type: entity
-  id: ShitStationEventScheduler
-  parent: BaseGameRule
-  components:
-  - type: BasicStationEventScheduler
-    scheduledGameRules: !type:NestedSelector
-      tableId: ShitGameRulesTable
-
+# Space traffic stuff, like visitors
 - type: entityTable
-  id: ShitGameRulesTable
+  id: SpaceTrafficControlTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
       - !type:NestedSelector
-        tableId: ShitEventsTable
+        tableId: UnknownShuttlesFriendlyTable
       - !type:NestedSelector
-        tableId: DerelictBorgEventTable
-      - id: IonStormPlus
-
-# Terror Spiders
-
-- type: entity
-  id: TerrorSpidersSpawn
-  parent: BaseGameRule
-  components:
-  - type: GameRule
-    minPlayers: 50
-    delay:
-      min: 240
-      max: 420
-  - type: VentSpawnRule
-  - type: AntagSpawner
-    prototype: MobTerrorPrincess
-  - type: TerrorSpiderRule
-  - type: AntagSelection
-    agentName: terror-princess-round-end-agent-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostTerrorPrincess
-      min: 1 # They don't need a max, since we're actually hitting 200 pop now...
-      playerRatio: 50
-      pickPlayer: false
-      mindRoles:
-      - MindRoleTerrorPrincess
-  - type: DynamicRuleCost
-    cost: 200
-
-- type: entity
-  parent: Nukeops
-  id: NukeopsLate
-  components:
-  - type: DynamicRuleCost
-    cost: 300
+        tableId: UnknownShuttlesFreelanceTable
+      - !type:NestedSelector
+        tableId: UnknownShuttlesHostileTable

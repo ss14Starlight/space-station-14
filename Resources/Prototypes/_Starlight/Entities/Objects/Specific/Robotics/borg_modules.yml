@@ -156,7 +156,8 @@
   - type: Sprite
     layers:
     - state: generic
-    - state: icon-hands
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-hands
   - type: ItemBorgModule
     hands:
     - forceRemovable: true
@@ -211,7 +212,8 @@
   - type: Sprite
     layers:
     - state: security
-    - state: icon-nt
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-nt
   - type: ItemBorgModule
     hands:
     - item: WeaponPDW9TaserBorg
@@ -234,7 +236,8 @@
   - type: Sprite
     layers:
     - state: security
-    - state: icon-nt
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-nt
   - type: ItemBorgModule
     hands:
     - item: BorgContrabandBag
@@ -348,16 +351,16 @@
   name: paperwork cyborg module
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: command
     - state: icon-paperwork
   - type: ItemBorgModule
     hands:
     - item: LuxuryPen
-    - item: BoxFolderCyborgClipboard
+    - item: HandLabeler
     - item: RubberStampApproved
     - item: RubberStampDenied
-    - item: HandLabeler
     - hand:
         emptyLabel: borg-slot-papers-empty
         emptyRepresentative: BorgModulePaperStampPlaceholder
@@ -366,6 +369,85 @@
           - Document
           components:
           - Stamp
+    - hand:
+        emptyLabel: borg-slot-idstamps-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          components:
+          - Pda
+          - IdCard
+          - Stamp
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
+
+- type: entity
+  id: FaxMachineBorg
+  parent: BaseItem
+  name: integrated fax transmitter
+  description: A miniaturised bluespace fax array. It can send documents anywhere on the network, but keeps no listing of its own for others to reply to.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/fax_machine.rsi
+    layers:
+    - state: idle
+      map: [ "enum.FaxMachineVisuals.VisualState" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FaxMachineVisuals.VisualState:
+        enum.FaxMachineVisuals.VisualState:
+          Printing: { state: printing }
+          Normal: { state: idle }
+  - type: ActivatableUI
+    key: enum.FaxUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.FaxUiKey.Key:
+        type: FaxBoundUi
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: FaxMachine
+    name: "Cyborg"
+    responsePings: false
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+        - FaxableObject
+  - type: ItemSlots
+  - type: ItemSlotQuickInsert
+    slot: Paper
+  - type: ContainerContainer
+    containers:
+      Paper: !type:ContainerSlot
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Fax
+    transmitFrequencyId: Fax
+
+- type: entity
+  id: BorgModulePaperworkPrinting
+  parent: [ BaseBorgModulePurrfus, BaseProviderBorgModule ]
+  name: paperwork printing module
+  description: A complete bureaucracy suite. Prints standard station forms, files them away, and faxes them out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+    layers:
+    - state: command
+    - state: icon-paperwork
+  - type: ItemBorgModule
+    hands:
+    - item: PrinterCyber
+    - item: FaxMachineBorg
+    - item: BoxFolderCyborgClipboard
+    - hand:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
 
@@ -378,7 +460,8 @@
   - type: Sprite
     layers:
     - state: service
-    - state: icon-bartending
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-bartending
   - type: ItemBorgModule
     hands:
     - item: DrinkGlass
@@ -503,7 +586,8 @@
   - type: Sprite
     layers:
     - state: service
-    - state: icon-cooking
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-cooking
   - type: ItemBorgModule
     hands:
     - item: BorgDropper
@@ -768,7 +852,8 @@
   - type: Sprite
     layers:
     - state: medical
-    - state: icon-surgery
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-surgery
   - type: ItemBorgModule
     hands:
     - item: Scalpel
@@ -891,6 +976,7 @@
   name: hauling cyborg module
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-mats
@@ -931,6 +1017,7 @@
   name: mail cyborg module
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-mail
@@ -959,6 +1046,7 @@
   description: Advanced module for cargo cyborgs, with specialised hydraulic clamps.
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-loading
@@ -977,7 +1065,8 @@
   - type: Sprite
     layers:
     - state: generic
-    - state: icon-plumbing
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-plumbing
   - type: ItemBorgModule
     hands:
     - item: RPLDRecharging
@@ -1015,6 +1104,7 @@
   name: makeshift knife cyborg module
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: makeshift
     - state: icon-knife
@@ -1056,6 +1146,7 @@
   description: Enables the borg to provide some measaure of defense. Is Law 1 still intact?
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: mining
     - state: icon-salvage-defense
