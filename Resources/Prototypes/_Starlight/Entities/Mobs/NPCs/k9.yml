@@ -4,6 +4,12 @@
   name: security K9
   description: A dog trained for station security work.
   components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Pets/k9.rsi
+    layers:
+    - map: ["enum.SpriteVariantLayers.Base"]
+      state: k9-brown
   - type: LanguageKnowledge
     speaks:
     - Dog
@@ -16,14 +22,15 @@
     speciesId: dog
     templateId: K9
   - type: Stripping
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: corgi
-      Critical:
-        Base: corgi_dead
-      Dead:
-        Base: corgi_dead
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 180
+  - type: SpriteVariant
+    availableVariants:
+    - k9-brown
+    - k9-black
+    - k9-tan
+    - k9-grey
   - type: NpcFactionMember
     factions:
     - NanoTrasen
