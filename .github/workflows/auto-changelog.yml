@@ -114,16 +114,7 @@ jobs:
             echo "No changes to commit."
           else
             git pull
-            git checkout -b changelog-update-${{ github.run_id }}
+
             git commit -m "Update changelog for PR #${{ steps.get_pr.outputs.result }} [skip ci]"
-            git push origin changelog-update-${{ github.run_id }}
-
-            # Create a pull request
-            gh pr create \
-              --title "Automated: Update changelog for PR #${{ steps.get_pr.outputs.result }}" \
-              --body "Automated changelog update" \
-              --base main
-          fi
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+            git push
+            fi
