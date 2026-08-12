@@ -36,6 +36,11 @@
     layer: Eyes
     prototypes:
       Default: MobCycloriteEyes
+  - type: ComponentBorgModule
+    components:
+  # - type: CycloriteVision
+    - type: NightVision
+      disabilityBlockable: true
 
 - type: entity
   id: OrganNeoCycloriteHeart

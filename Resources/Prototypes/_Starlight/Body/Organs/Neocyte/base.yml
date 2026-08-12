@@ -219,6 +219,10 @@
         Bloodloss: 20
         Caustic: 20
         Radiation: 10
+  - type: Tag
+    tags:
+      - Meat
+      - BorgModuleGeneric
 
 - type: entity
   id: OrganNeocyteLiver
