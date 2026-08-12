@@ -21,10 +21,19 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
+    /// <summary>
+    /// Tracks escalating global warnings as the number of empowered rifts increases.
+    /// Higher rift counts indicate that the Colossus threat is progressing.
+    /// </summary>
+
     private bool _corpseWarning1;
     private bool _corpseWarning2;
     private bool _corpseWarning3;
 
+    /// <summary>
+    /// Updates the cosmic rift health state and triggers global warnings as the
+    /// number of stored corpses reaches the configured threat thresholds.
+    /// </summary>
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -74,7 +83,7 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
                 new SoundPathSpecifier("/Audio/Misc/cosmic_scream.ogg"),
                 Filter.Broadcast(),
                 true,
-                AudioParams.Default.WithVolume(25f));
+                AudioParams.Default.WithVolume(25f));// i think this is not working and i cant hear an diffrence.
 
             _audio.PlayGlobal(
                 new SoundPathSpecifier("/Audio/Misc/redalert.ogg"),

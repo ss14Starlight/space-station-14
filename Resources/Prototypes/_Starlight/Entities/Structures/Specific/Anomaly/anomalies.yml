@@ -380,12 +380,12 @@
   id: ShadekinDarkNet
   categories: [HideSpawnMenu]
   components:
-  - type: Ensnaring
-    freeTime: 10
-    walkSpeed: 0.3
-    sprintSpeed: 0.3
-    staminaDamage: 100
-    ensnareSound: /Audio/_Starlight/Effects/Shadekin/nullphase.ogg
+    - type: Ensnaring
+      freeTime: 10
+      walkSpeed: 0.3
+      sprintSpeed: 0.3
+      staminaDamage: 100
+      ensnareSound: /Audio/_Starlight/Effects/Shadekin/nullphase.ogg
 
 - type: entity
   id: PortalDarkBreacher
