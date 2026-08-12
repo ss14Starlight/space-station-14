@@ -639,10 +639,11 @@
     - item: RadioHandheldExpedition # Starlight
     - hand: # Starlight
         emptyRepresentative: GoldOre
-        emptyLabel: borg-slot-ore-empty
+        emptyLabel: borg-slot-ore-ticket-empty
         whitelist:
           tags:
             - Ore
+            - SalvageTicket # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
 
@@ -665,10 +666,11 @@
     - item: OreBagOfHolding
     - hand: # Starlight
         emptyRepresentative: GoldOre
-        emptyLabel: borg-slot-ore-empty
+        emptyLabel: borg-slot-ore-ticket-empty
         whitelist:
           tags:
             - Ore
+            - SalvageTicket # Starlight
     - item: RadioHandheldExpedition # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }

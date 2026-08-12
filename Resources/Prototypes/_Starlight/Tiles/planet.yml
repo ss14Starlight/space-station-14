@@ -170,3 +170,54 @@
   heatCapacity: 10000
   weather: true
   indestructible: true
+
+# Grass
+- type: tile
+  id: FloorPlanetGrassClassic
+  name: tiles-grass-classic-planet-floor
+  sprite: /Textures/Tiles/Planet/Grass/grass.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png #SL Edit
+    NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png #SL Edit
+    NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png #SL Edit
+    SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png #SL Edit
+    South: /Textures/Tiles/Planet/Grass/double_edge.png #SL Edit
+    East: /Textures/Tiles/Planet/Grass/double_edge.png #SL Edit
+    North: /Textures/Tiles/Planet/Grass/double_edge.png #SL Edit
+    West: /Textures/Tiles/Planet/Grass/double_edge.png #SL Edit
+  baseTurf: FloorPlanetDirt
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  itemDrop: FloorTileItemGrass
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: parallax
+  id: MoodySky
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/moody_land.png"
+      slowness: 0.98
+      scale: 0.95, 0.95
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/moody_city.png"
+      slowness: 0.98
+      scale: 0.95, 0.95
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/dark_noise.png"
+      slowness: 0.95
+      scale: "2, 2"
+      scrolling: "0.4, -0.05"

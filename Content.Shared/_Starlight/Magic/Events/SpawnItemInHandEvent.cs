@@ -21,6 +21,7 @@ public sealed partial class SpawnItemInHandEvent : InstantActionEvent
 /// <summary>
 ///     Raised after an entity was spawned in someones hand.
 /// </summary>
+[DataDefinition]
 public sealed partial class AfterSpawnItemInHandEvent
 {
     /// <summary>

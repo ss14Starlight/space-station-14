@@ -8,9 +8,9 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Tools.Components;
-#region Starlight
 using Content.Shared._Starlight.ItemSwitch.Components;
-#endregion
+using Content.Shared._Starlight.Chemistry.Components;
+using System.Linq;
 
 namespace Content.Shared.Tools.Systems;
 
@@ -127,6 +127,17 @@ public abstract partial class SharedToolSystem
             && SolutionContainerSystem.TryGetDrainableSolution(target, out var targetSoln, out var targetSolution)
             && SolutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.FuelSolutionName, out var solutionComp, out var welderSolution))
         {
+            // Starlight Start
+            if (TryComp<RefillReagentFilterComponent>(entity.Owner, out var filter))
+            {
+                if (targetSolution.Contents.Any(sol => !filter.Reagents.Contains(sol.Reagent.Prototype)))
+                {
+                    _popup.PopupClient(Loc.GetString(filter.Popup), entity, args.User);
+                    args.Handled = true;
+                    return;
+                }
+            }
+            // Starlight End
             var trans = FixedPoint2.Min(welderSolution.AvailableVolume, targetSolution.Volume);
             if (trans > 0)
             {
