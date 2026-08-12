@@ -6,7 +6,7 @@
   name: guide-entry-rules
   ruleEntry: true
   priority: 10
-  text: "/ServerInfo/Guidebook/ServerRules/DefaultRules.xml"
+  text: "/ServerInfo/_Inferus/Guidebook/InferusRules.xml"
 
 - type: guideEntry
   id: CoreRuleset

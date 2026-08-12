@@ -1,0 +1,217 @@
+- type: guideEntry
+  id: InferusRules
+  name: guide-entry-rules
+  ruleEntry: true
+  priority: 10
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/InferusRules.xml"
+  children:
+  - RuleI0
+  - RuleI1-1
+  - RuleI1-2
+  - RuleI1-3
+  - RuleI1-4
+  - RuleI1-5
+  - RuleI2-1
+  - RuleI2-2
+  - RuleI2-3
+  - RuleI2-4
+  - RuleI2-5
+  - RuleI3-1
+  - RuleI3-2
+  - RuleI3-3
+  - RuleI3-4
+  - RuleI3-5
+  - RuleI3-6
+  - RuleI3-7
+  - RuleI3-8
+  - RuleI4-1
+  - RuleI4-2
+  - RuleI4-3
+  - RuleI4-4
+  - RuleI4-5
+  - RuleI4-6
+  - RuleI4-7
+  - RuleI4-8
+  - RuleI5-1
+  - RuleI5-2
+  - RuleI5-3
+
+- type: guideEntry
+  id: RuleI0
+  name: "0. The Golden Rule"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI0.xml"
+
+- type: guideEntry
+  id: RuleI1-1
+  name: "1.1. Admins have final say"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI1-1.xml"
+
+- type: guideEntry
+  id: RuleI1-2
+  name: "1.2. Players and Characters must be and behave like the age of 18 and above"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI1-2.xml"
+
+- type: guideEntry
+  id: RuleI1-3
+  name: "1.3. Don't be an asshole"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI1-3.xml"
+
+- type: guideEntry
+  id: RuleI1-4
+  name: "1.4. “Metacomming” is a case by case basis"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI1-4.xml"
+
+- type: guideEntry
+  id: RuleI1-5
+  name: "1.5. Do not Rule Lawyer anyone"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI1-5.xml"
+
+- type: guideEntry
+  id: RuleI2-1
+  name: "2.1. Safe Zones include Cryosleep, Atmos, Arrivals, and Dorms"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI2-1.xml"
+
+- type: guideEntry
+  id: RuleI2-2
+  name: "2.2. Roleplay as a believable character"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI2-2.xml"
+
+- type: guideEntry
+  id: RuleI2-3
+  name: "2.3. Metagaming and Metagrudging are FORBIDDEN"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI2-3.xml"
+
+- type: guideEntry
+  id: RuleI2-4
+  name: "2.4. Do Not abandon your roles"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI2-4.xml"
+
+- type: guideEntry
+  id: RuleI2-5
+  name: "2.5. Stick to your role"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI2-5.xml"
+
+- type: guideEntry
+  id: RuleI3-1
+  name: "3.1. Do not use familiar names"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI3-1.xml"
+
+- type: guideEntry
+  id: RuleI3-2
+  name: "3.2. Silicon/Positronics bound by law must follow those laws"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI3-2.xml"
+
+- type: guideEntry
+  id: RuleI3-3
+  name: "3.3. If you roll antag and don't want to play, ahelp to change"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI3-3.xml"
+
+- type: guideEntry
+  id: RuleI3-4
+  name: "3.4. Free agents and antagonistic ghost roles can be friendly"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI3-4.xml"
+
+- type: guideEntry
+  id: RuleI3-5
+  name: "3.5. If you are NOT an antagonist, do not behave as such"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI3-5.xml"
+
+- type: guideEntry
+  id: RuleI3-6
+  name: "3.6. Security are people too"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI3-6.xml"
+
+- type: guideEntry
+  id: RuleI3-7
+  name: "3.7. Metashields are non-existent here"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI3-7.xml"
+
+- type: guideEntry
+  id: RuleI3-8
+  name: "3.8. Suicide Roleplay is Convoluted"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI3-8.xml"
+
+- type: guideEntry
+  id: RuleI4-1
+  name: "4.1. We are ERP FRIENDLY, not ERP CENTRIC"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI4-1.xml"
+
+- type: guideEntry
+  id: RuleI4-2
+  name: "4.2. Public sex is allowed with subtle emotes"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI4-2.xml"
+
+- type: guideEntry
+  id: RuleI4-3
+  name: "4.3. Kinkshaming is prohibited"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI4-3.xml"
+
+- type: guideEntry
+  id: RuleI4-4
+  name: "4.4. Regarding extreme or triggering kinks…"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI4-4.xml"
+
+- type: guideEntry
+  id: RuleI4-5
+  name: "4.5. Do not abuse Safe Zones or 4.2"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI4-5.xml"
+
+- type: guideEntry
+  id: RuleI4-6
+  name: "4.6. Antagging and ERP"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI4-6.xml"
+
+- type: guideEntry
+  id: RuleI4-7
+  name: "4.7. Headsets for All"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI4-7.xml"
+
+- type: guideEntry
+  id: RuleI4-8
+  name: "4.8. Bestiality is ABSOLUTELY forbidden"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI4-8.xml"
+
+- type: guideEntry
+  id: RuleI5-1
+  name: "5.1. Command and Security are held at higher standards and more scrutiny"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI5-1.xml"
+
+- type: guideEntry
+  id: RuleI5-2
+  name: "5.2. Command, Security, and Medical are expected to be available for their department at all times"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI5-2.xml"
+
+- type: guideEntry
+  id: RuleI5-3
+  name: "5.3. Being demoted from your position may trigger an investigation by “Central Command.”"
+  ruleEntry: true
+  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/RuleI5-3.xml"
