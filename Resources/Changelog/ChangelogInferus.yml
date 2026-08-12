@@ -84,5 +84,18 @@ Entries:
   id: 1101
   time: '2026-08-11T23:54:25.000000+00:00'
   url: https://github.com/InferusSS14/Inferus/pull/11
+- author: Inferus
+  changes:
+  - message: Added something.
+    type: Add
+  - message: Removed something.
+    type: Remove
+  - message: Changed something.
+    type: Tweak
+  - message: Fixed something.
+    type: Fix
+  id: 101
+  time: '2026-08-12T01:07:18.000000+00:00'
+  url: https://github.com/Tarazicon/Inferus/pull/1
 Order: -1
 
