@@ -305,7 +305,7 @@
 - type: roleLoadout
   id: AntagNukeops
   groups:
-  - NeocyteCybernetics
+  - ProtogenCybernetics
   - SurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
@@ -313,7 +313,7 @@
 - type: roleLoadout
   id: AntagNukeopsCommander
   groups:
-  - NeocyteCybernetics
+  - ProtogenCybernetics
   - SurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
@@ -321,7 +321,7 @@
 - type: roleLoadout
   id: AntagNukeopsMedic
   groups:
-  - NeocyteCybernetics
+  - ProtogenCybernetics
   - SurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
@@ -329,13 +329,13 @@
 - type: roleLoadout
   id: AntagSpaceNinja
   groups:
-  - NeocyteCybernetics
+  - ProtogenCybernetics
   - GroupEVATank
 
 - type: roleLoadout
   id: AntagWizard
   groups:
-  - NeocyteCybernetics
+  - ProtogenCybernetics
   - SurvivalExtended
   - GroupSpeciesBreathTool
   - GroupTankHarness
@@ -343,7 +343,7 @@
 - type: roleLoadout
   id: AntagWizardDuelist
   groups:
-  - NeocyteCybernetics
+  - ProtogenCybernetics
   - SurvivalExtended
   - GroupSpeciesBreathTool
   - GroupTankHarness

@@ -31,7 +31,7 @@
   - SLSecurity
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 4
+    stock: 2
   - !type:BuyerAccessCondition
 
 - type: listing

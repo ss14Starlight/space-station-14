@@ -68,7 +68,6 @@ public sealed partial class FaxSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedTimeSystem _time = default!;
-    [Dependency] private SharedContainerSystem _container = default!;
     #endregion
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
@@ -661,13 +660,7 @@ public sealed partial class FaxSystem : EntitySystem
         var printout = component.PrintingQueue.Dequeue();
 
         var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
-        // Starlight start
-        var xform = Transform(uid);
-        var coords = _container.TryGetOuterContainer(uid, xform, out var outerContainer)
-            ? Transform(outerContainer.Owner).Coordinates
-            : xform.Coordinates;
-        var printed = Spawn(entityToSpawn, coords);
-        // Starlight end
+        var printed = Spawn(entityToSpawn, Transform(uid).Coordinates);
 
         if (TryComp<PaperComponent>(printed, out var paper))
         {

@@ -25,6 +25,7 @@ namespace Content.Server.Atmos.EntitySystems;
 [UsedImplicitly]
 public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 {
+    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private IParallelManager _parallel = default!;
@@ -36,6 +37,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private TileSystem _tile = default!;
+    [Dependency] private MapSystem _map = default!;
     [Dependency] public PuddleSystem Puddle = default!;
     [Dependency] private DamageableSystem _damage = default!;
 

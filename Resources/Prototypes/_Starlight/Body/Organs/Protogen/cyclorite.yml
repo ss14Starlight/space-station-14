@@ -1,0 +1,52 @@
+- type: entity
+  id: OrganProtoCycloriteLungs
+  parent: OrganProtogenLungs
+  name: cyclorite cybernetic lungs
+  suffix: Proto-Cyclorite
+  description: Filters nitrogen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system.
+  components:
+  - type: Lung
+    alert: LowNitrogen
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: Lung
+    metabolizerTypes: [ Slime ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+
+- type: entity
+  id: OrganProtoCycloriteEye
+  parent: OrganProtogenEyes
+  name: cyclorite cybernetic eye
+  suffix: Proto-Cyclorite
+  description: "Cyclorites see the world slightly differently."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Cyclorite/organs.rsi
+    layers:
+      - state: eyeball
+  - type: FunctionalOrgan
+    comps:
+    # - type: CycloriteVision
+    - type: NightVision
+      disabilityBlockable: true
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobCycloriteEyes
+
+- type: entity
+  id: OrganProtoCycloriteHeart
+  parent: OrganProtogenHeart
+  name: cyclorite cybernetic heart
+  suffix: Proto-Cyclorite
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Cyclorite, Protogen]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic

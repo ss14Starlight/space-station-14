@@ -125,7 +125,7 @@
     - !type:SpeciesRequirement
       species:
         - Shadekin
-        - NeoKin
+        - ProtoKin
         - IPC
       inverted: true
 
@@ -161,7 +161,7 @@
     - !type:SpeciesRequirement
       species:
         - Shadekin
-        - NeoKin
+        - ProtoKin
   conflicts:
     - ExtremeLightSensitivity
 
@@ -184,7 +184,7 @@
     - !type:SpeciesRequirement
       species:
         - Shadekin
-        - NeoKin
+        - ProtoKin
   conflicts:
     - HighLightSensitivity
 
@@ -202,8 +202,8 @@
     - !type:SpeciesRequirement
       species:
         - Cyclorite
-        - NeoCyclorite
+        - ProtoCyclorite
         - Resomi
-        - NeoResomi
+        - ProtoResomi
         - Shadekin
-        - NeoKin
+        - ProtoKin

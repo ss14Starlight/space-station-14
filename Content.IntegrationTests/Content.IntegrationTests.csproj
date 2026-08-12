@@ -3,21 +3,15 @@
     <OutputPath>..\bin\Content.IntegrationTests\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <Nullable>disable</Nullable>
-    <!-- Starlight Begin-->
-    <OutputType>Exe</OutputType>
-    <!-- Starlight End-->
   </PropertyGroup>
   <Import Project="../MSBuild/Content.props" />
   <ItemGroup>
     <PackageReference Include="NUnit" />
-    <PackageReference Include="NUnit3TestAdapter" VersionOverride="6.2.0" />
+    <PackageReference Include="NUnit3TestAdapter" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <!-- Starlight Begin-->
-    <PackageReference Include="Microsoft.Testing.Extensions.HangDump" />
-    <PackageReference Include="Microsoft.Testing.Extensions.Retry" />
-    <PackageReference Include="Microsoft.Testing.Extensions.CtrfReport" />
+    <!-- Starlight -->
     <PackageReference Include="MonoMod.RuntimeDetour" />
-    <!-- Starlight End-->
+    <!-- Starlight -->
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Content.Client\Content.Client.csproj" />

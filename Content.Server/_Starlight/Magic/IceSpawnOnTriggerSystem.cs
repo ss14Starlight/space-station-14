@@ -17,6 +17,7 @@ namespace Content.Server._Starlight.Magic;
 public sealed partial class IceSpawnOnTriggerSystem : EntitySystem
 {
     // System dependencies
+    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
@@ -60,7 +61,7 @@ public sealed partial class IceSpawnOnTriggerSystem : EntitySystem
         var targetCoords = _transformSystem.GetMapCoordinates(targetXform);
 
         // Try to get the grid at the target's position
-        if (!_mapSystem.TryFindGridAt(targetCoords, out var gridUid, out var grid))
+        if (!_mapManager.TryFindGridAt(targetCoords, out var gridUid, out var grid))
             return; // No grid found, can't spawn ice entities
 
         // Calculate which tiles are within the radius of the impact point

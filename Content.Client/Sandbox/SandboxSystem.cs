@@ -13,6 +13,7 @@ namespace Content.Client.Sandbox
     {
         [Dependency] private IClientAdminManager _adminManager = default!;
         [Dependency] private IClientConsoleHost _consoleHost = default!;
+        [Dependency] private IMapManager _map = default!;
         [Dependency] private IPlacementManager _placement = default!;
         [Dependency] private ContentEyeSystem _contentEye = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
@@ -110,7 +111,7 @@ namespace Content.Client.Sandbox
 
             // Try copy tile.
 
-            if (!_mapSystem.TryFindGridAt(_transform.ToMapCoordinates(coords), out var gridUid, out var grid) || !_mapSystem.TryGetTileRef(gridUid, grid, coords, out var tileRef))
+            if (!_map.TryFindGridAt(_transform.ToMapCoordinates(coords), out var gridUid, out var grid) || !_mapSystem.TryGetTileRef(gridUid, grid, coords, out var tileRef))
                 return false;
 
             if (_placement.Eraser)

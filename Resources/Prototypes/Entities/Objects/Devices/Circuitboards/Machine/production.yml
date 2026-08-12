@@ -1057,7 +1057,7 @@
     - type: Tag
       tags:
       - MicrowaveMachineBoard
-      - RamChip # FH + Starlight
+      - RamChip #Protogen joke, makes them able to eat them. - FH
 
 - type: entity
   id: SyndicateMicrowaveMachineCircuitboard

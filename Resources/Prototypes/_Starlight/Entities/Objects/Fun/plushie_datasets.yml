@@ -1,0 +1,173 @@
+- type: localizedDataset
+  id: PlushiesMatthew
+  values:
+    prefix: plushie-matthew-
+    count: 8
+
+- type: localizedDataset
+  id: PlushiesEmmie
+  values:
+    prefix: plushie-emmie-
+    count: 8
+
+- type: localizedDataset
+  id: PlushiesMorgana
+  values:
+    prefix: plushie-morgana-
+    count: 9
+
+- type: localizedDataset
+  id: PlushiesKiosha
+  values:
+    prefix: plushie-kiosha-
+    count: 8
+
+- type: localizedDataset
+  id: PlushiesLance
+  values:
+    prefix: plushie-lance-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesKiller
+  values:
+    prefix: plushie-killer-
+    count: 8
+
+- type: localizedDataset
+  id: PlushiesOp
+  values:
+    prefix: plushie-op-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesAmali
+  values:
+    prefix: plushie-amali-
+    count: 4
+
+- type: localizedDataset
+  id: PlushiesOog
+  values:
+    prefix: plushie-oog-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesPercy
+  values:
+    prefix: plushie-percy-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesAsh
+  values:
+    prefix: plushie-ash-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesGlados
+  values:
+    prefix: plushie-glados-
+    count: 9
+
+- type: localizedDataset
+  id: PlushiesWEH
+  values:
+    prefix: plushie-weh-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesRufia
+  values:
+    prefix: plushie-rufia-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesRomero
+  values:
+    prefix: plushie-romero-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesVanilla
+  values:
+    prefix: plushie-vanilla-
+    count: 5
+
+- type: localizedDataset
+  id: PlushiesPoley
+  values:
+    prefix: plushie-poley-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesGalio
+  values:
+    prefix: plushie-galio-
+    count: 7
+
+- type: localizedDataset
+  id: PlushiesRedwoods
+  values:
+    prefix: plushie-redwoods-
+    count: 8
+
+- type: localizedDataset
+  id: PlushiesVirus
+  values:
+    prefix: plushie-virus-
+    count: 5
+
+- type: localizedDataset
+  id: PlushiesRhea
+  values:
+    prefix: plushie-rhea-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesRemiie
+  values:
+    prefix: plushie-remiie-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesMalachi
+  values:
+    prefix: plushie-malachi-
+    count: 10
+
+- type: localizedDataset
+  id: PlushiesBrighteyes
+  values:
+    prefix: plushie-brighteyes-
+    count: 10
+
+- type: localizedDataset
+  id: PlushiesNebula
+  values:
+    prefix: plushie-nebula-
+    count: 8
+
+- type: localizedDataset
+  id: PlushiesKilla
+  values:
+    prefix: plushie-killa-
+    count: 5
+
+- type: localizedDataset
+  id: PlushiesEina
+  values:
+    prefix: plushie-eina-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesEinalia
+  values:
+    prefix: plushie-einalia-
+    count: 6
+
+- type: localizedDataset
+  id: PlushiesLiz
+  values:
+    prefix: plushie-liz-
+    count: 6

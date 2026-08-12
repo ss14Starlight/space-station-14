@@ -1,0 +1,11 @@
+<Document>
+  # Proto-Cyclorite
+<!-- Starlight, renamed back to Cyclorite.-->
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoCyclorite" Caption=""/>
+  </Box>
+
+  ## Resistances
+  - Receive [color=#ffa500]15% more heat damage[/color] and [color=#8147ff]25% more shock damage[/color].
+  - Receive [color=#65807d]15% less slash damage[/color], [color=#FF3636]10% less blunt damage[/color], and [color=#1e90ff]45% less cold damage[/color].
+</Document>

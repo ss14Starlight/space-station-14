@@ -4,7 +4,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Shadekin
-    - NeoKin
+    - ProtoKin
 
 - type: loadoutEffectGroup
   id: OxygenBreatherDwarf
@@ -12,7 +12,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Dwarf
-    - NeoDwarf
+    - ProtoDwarf
 
 - type: loadoutEffectGroup
   id: EffectsSpeciesRodentia
@@ -184,7 +184,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Elf
-    - NeoElf
+    - ProtoElf
 
 - type: loadout
   id: EmergencyNonbreatherSecurity

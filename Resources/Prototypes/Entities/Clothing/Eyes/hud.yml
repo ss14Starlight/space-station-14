@@ -16,7 +16,7 @@
   - type: ShowHealthBars
     damageContainers: # Starlight start
     - Biological
-    - Hybrid # Starlight end, Neocytes
+    - Hybrid # Starlight end, Protogens
   - type: ShowHealthIcons
 
 - type: entity
@@ -252,7 +252,7 @@
   - type: ShowHealthBars
     damageContainers: # Starlight start
     - Biological
-    - Hybrid # Neocytes
+    - Hybrid # Protogens
   - type: SolutionScanner # Starlight end
   - type: Tag
     tags:

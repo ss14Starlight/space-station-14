@@ -22,7 +22,7 @@ namespace Content.Client.Shuttles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShuttleNavControl : BaseShuttleControl
 {
-    private readonly SharedMapSystem _mapManager = default!;
+    [Dependency] private IMapManager _mapManager = default!;
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _transform;
 
@@ -56,7 +56,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public ShuttleNavControl() : base(64f, 256f, 256f)
     {
         RobustXamlLoader.Load(this);
-        _mapManager = EntManager.System<SharedMapSystem>();
         _shuttles = EntManager.System<SharedShuttleSystem>();
         _transform = EntManager.System<SharedTransformSystem>();
     }

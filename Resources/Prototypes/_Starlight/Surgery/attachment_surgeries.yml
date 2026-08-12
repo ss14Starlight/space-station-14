@@ -17,7 +17,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - NeoSlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryLimbSlotCondition
     slot: head
@@ -152,7 +152,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - NeoSlimePerson
+    - ProtoSlimePerson
 
 
 - type: entity
