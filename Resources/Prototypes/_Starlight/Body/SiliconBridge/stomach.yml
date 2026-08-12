@@ -1,4 +1,15 @@
 - type: entity
+  id: BorgedStomachModule
+  abstract: true
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: BorgCyberStomachStraw
+    - type: BorgModuleIcon
+      icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: cooking-module }
+    - type: SelectableBorgModule
+
+- type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseItem
   name: Straw
