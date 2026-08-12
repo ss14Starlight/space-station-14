@@ -48,9 +48,9 @@
           collection: MetalGlassBreak
   # Carpmosia-start - Defib Rechargers
   - type: Charger
-    slotId: ItemCabinet 
+    slotId: ItemCabinet
   - type: ApcPowerReceiver
-    powerLoad: 1 
+    powerLoad: 1
   - type: ExtensionCableReceiver
   - type: LightningTarget
     priority: 1
