@@ -8,15 +8,21 @@
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: Structures/Wallmounts/defib_cabinet.rsi
+    sprite: _Starlight/Structures/Wallmounts/defib_cabinet.rsi # Starlight Edit, new sprites
     noRot: false
     layers:
     - state: frame
+      map: ["enum.PowerChargerVisualLayers.Base"] # Carpmosia-edit - defib charger sprites
     - state: fill
       map: ["enum.ItemCabinetVisuals.Layer"]
       visible: true
     - state: closed
       map: ["enum.OpenableVisuals.Layer"]
+    # Carpmosia-start - defib charger sprites
+    - map: ["enum.PowerChargerVisualLayers.Light"]
+      state: "light-off"
+      shader: unshaded
+    # Carpmosia-end - defib charger sprites
   - type: ItemSlots
     slots:
       ItemCabinet:
@@ -40,6 +46,18 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
+  # Carpmosia-start - Defib Rechargers
+  - type: Charger
+    slotId: ItemCabinet 
+  - type: ApcPowerReceiver
+    powerLoad: 1 
+  - type: ExtensionCableReceiver
+  - type: LightningTarget
+    priority: 1
+  - type: PowerChargerVisuals
+    occupiedState: fill
+    emptyState: frame
+  # Carpmosia-end - Defib Rechargers
 
 - type: entity
   parent: DefibrillatorCabinet
