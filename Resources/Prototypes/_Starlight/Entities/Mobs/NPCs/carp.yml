@@ -40,6 +40,8 @@
         - id: MaterialToothSpaceCarp1
           amount: 1
           maxAmount: 4
+    - type: Pacified # prevent them from biting windows when they see people
+      disallowAllCombat: true
 
 - type: entity
   parent: BaseMobKoi
