@@ -41,7 +41,6 @@ guide-entry-spacing = Spacing
 guide-entry-deltapressure = Delta Pressure
 guide-entry-atmostools = Atmos Tools
 guide-entry-gasses = Gasses
-guide-entry-gasses5 = Rare Gasses
 guide-entry-botany = Botany
 guide-entry-shuttle-craft = Shuttle-craft
 guide-entry-networking = Networking
