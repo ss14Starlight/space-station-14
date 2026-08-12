@@ -1,0 +1,11 @@
+- type: reaction
+  id: DragonCum
+  requiredMixerCategories:
+    - Stir
+  reactants:
+    Firebolt:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    DragonCum: 2

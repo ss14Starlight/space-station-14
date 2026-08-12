@@ -1,0 +1,17 @@
+- type: reagent
+  id: DragonCum
+  name: reagent-name-dragoncum
+  parent: BaseAlcohol
+  desc: reagent-desc-dragoncum
+  physicalDesc: reagent-physical-desc-spicy
+  flavor: dragoncum
+  color: "#f2cc9e"
+  metamorphicChangeColor: true
+  metabolisms:
+    Drink:
+      effects:
+        - !type:SatiateThirst
+          factor: 2
+        - !type:AdjustReagent
+          reagent: Ethanol
+          amount: 0.2
