@@ -2,7 +2,7 @@ using Content.Shared._Starlight.Temperature.Components;
 using Content.Shared.Examine;
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Starlight.Temperature;
+namespace Content.Shared._Starlight.Clothing.EntitySystems;
 
 /// <summary>
 /// Adds examine text for clothing with temperature protection.
