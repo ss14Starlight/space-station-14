@@ -1,27 +1,6 @@
 Entries:
 - author: RedSpeeds
   changes:
-  - message: Added automatic recall/no recall vote upon round end.
-    type: Add
-  id: 407156
-  time: '2026-07-31T11:23:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5216
-- author: Fasuh
-  changes:
-  - message: Fixed RPD allowing to build more than one atmos device per tile.
-    type: Fix
-  id: 407157
-  time: '2026-07-31T12:05:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5416
-- author: Fasuh
-  changes:
-  - message: Fixed Construction menu allowing for overlapping atmos devices.
-    type: Fix
-  id: 407158
-  time: '2026-07-31T12:05:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5427
-- author: RedSpeeds
-  changes:
   - message: Made shuttle terminals lockable and they can now have accesses set to them.
     type: Add
   id: 407159
@@ -2799,4 +2778,25 @@ Entries:
   id: 407555
   time: '2026-08-12T21:04:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5610
+- author: Forrestgod
+  changes:
+  - message: (Serpentcrest) Radio Host room as well as Station Radios.
+    type: Add
+  id: 407556
+  time: '2026-08-12T21:33:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5567
+- author: Forrestgod
+  changes:
+  - message: (Serpentcrest) Departmental Lathes are now present inside each department.
+    type: Add
+  id: 407557
+  time: '2026-08-12T21:33:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5567
+- author: Forrestgod
+  changes:
+  - message: (Serpentcrest) Added Journalisim access doors to reporters office.
+    type: Tweak
+  id: 407558
+  time: '2026-08-12T21:33:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5567
 Order: -1
