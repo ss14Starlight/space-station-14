@@ -132,7 +132,7 @@
   components:
   - type: Objective
     icon:
-     sprite: _Starlight\CosmicCult\Tileset\altar.rsi
+     sprite: _Starlight/CosmicCult/Tileset/altar.rsi
      state: cosmic
   - type: NumberObjective
     min: 5
