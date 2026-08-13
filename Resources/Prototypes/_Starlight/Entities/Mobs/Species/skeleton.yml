@@ -55,6 +55,9 @@
   - type: Speech
     speechVerb: Skeleton
   - type: ZombieImmune
+  # Starlight - no soft tissue left for a pathogen to live in.
+  - type: PathogenImmunity
+    total: true
   - type: Vocal
     sounds:
       Male: Skeleton

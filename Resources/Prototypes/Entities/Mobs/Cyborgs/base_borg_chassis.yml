@@ -103,6 +103,9 @@
     - Common
     - Science
   - type: ZombieImmune
+  # Starlight - nothing organic to infect.
+  - type: PathogenImmunity
+    total: true
   - type: Repairable
     damageValue: -10 # 10 seconds to repair from crit
     doAfterDelay: 1

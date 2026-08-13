@@ -164,6 +164,9 @@
   - type: HumanoidAppearance
     species: IPC
   - type: ZombieImmune
+  # Starlight - a chassis of machine parts running on coolant has nothing to infect.
+  - type: PathogenImmunity
+    total: true
   - type: TypingIndicator
     proto: robot
   - type: Speech
