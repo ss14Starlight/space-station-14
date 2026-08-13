@@ -54,7 +54,10 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var rift, out var xform))
         {
-
+        /// <summary>
+        /// Tracks corpses already stored within empowered rifts and gradually
+        /// cools them toward a minimum temperature while they remain stored.
+        /// </summary>
             if (rift.CorpseContainer.Count > 0)
             {
                 corpseCount++;
@@ -85,6 +88,10 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
             if (rift.CorpseContainer.Count > 0)
                 continue;
 
+            /// <summary>
+            /// Searches the rift's tile for critical or dead humanoids and stores
+            /// the first valid corpse found inside the rift.
+            /// </summary>
             // Find entities occupying the rift's tile.
             var entities = _lookup.GetEntitiesIntersecting(
                 xform.Coordinates,
@@ -114,6 +121,7 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
                 // Store the corpse inside the rift.
                 if (_container.Insert(target, rift.CorpseContainer))
                 {
+                    corpseCount++;
                     EnsureComp<PressureImmunityComponent>(target);
                     break;
                 }

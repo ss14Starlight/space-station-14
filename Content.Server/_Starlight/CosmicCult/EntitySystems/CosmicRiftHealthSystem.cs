@@ -27,6 +27,7 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
     private bool _corpseWarning1;
     private bool _corpseWarning2;
     private bool _corpseWarning3;
+    private float? _corpseWarning3ScreamTimer;
 
     /// <summary>
     /// Updates the cosmic rift health state and triggers global warnings as the
@@ -37,6 +38,22 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
         base.Update(frameTime);
 
         var corpseCount = _riftSystem.StoredCorpseCount;
+
+        if (_corpseWarning3ScreamTimer.HasValue)
+        {
+            _corpseWarning3ScreamTimer -= frameTime;
+
+            if (_corpseWarning3ScreamTimer <= 0f)
+            {
+                _corpseWarning3ScreamTimer = null;
+
+                _audio.PlayGlobal(
+                    new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/colossus_scream.ogg"),
+                    Filter.Broadcast(),
+                    true,
+                    AudioParams.Default.WithVolume(20f));
+            }
+        }
 
         if (!_corpseWarning1 && corpseCount >= 5)
         {
@@ -71,17 +88,12 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
         if (!_corpseWarning3 && corpseCount >= 20)
         {
             _corpseWarning3 = true;
+            _corpseWarning3ScreamTimer = 5f;
 
             _chatSystem.DispatchGlobalAnnouncement(
                 Loc.GetString("cosmiccult-rift-corpse3-warning"),
                 playSound: false,
                 colorOverride: Color.Red);
-
-            _audio.PlayGlobal(
-                new SoundPathSpecifier("/Audio/Misc/cosmic_scream.ogg"),
-                Filter.Broadcast(),
-                true,
-                AudioParams.Default.WithVolume(25f));// i think this is not working and i cant hear an diffrence.
 
             _audio.PlayGlobal(
                 new SoundPathSpecifier("/Audio/Misc/redalert.ogg"),
@@ -105,6 +117,7 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
             _corpseWarning1 = false;
             _corpseWarning2 = false;
             _corpseWarning3 = false;
+            _corpseWarning3ScreamTimer = null;
         }
 
         var query = EntityQueryEnumerator<
