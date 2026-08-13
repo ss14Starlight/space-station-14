@@ -13,7 +13,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Protogen ] # Harmless to protogens
+          type: [ Neocyte ] # Harmless to Neocytes
           inverted: true
         damage:
           types: # Drinking battery acid is bad for you? Woh.
@@ -22,14 +22,14 @@
       - !type:SatiateThirst
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Protogen ]
+          type: [ Neocyte ]
         factor: 1 #yummy
-    Medicine: #Acts like vitamin but for protogens. Keep in mind the -50% healing debuff they get, hence buffed numbers.
+    Medicine: #Acts like vitamin but for Neocytes. Keep in mind the -50% healing debuff they get, hence buffed numbers.
       effects:
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Protogen ]
+          type: [ Neocyte ]
         damage:
           groups:
             Brute: -1
@@ -40,4 +40,4 @@
         factor: 1 # yummy
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Protogen ]
+          type: [ Neocyte ]

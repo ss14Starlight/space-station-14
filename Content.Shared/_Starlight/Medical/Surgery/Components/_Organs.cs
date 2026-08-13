@@ -8,6 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Medical.Surgery.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class EyeImplantComponent : Component;
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class NoseImplantComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class HandImplantComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class BrainImplantComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class OrganBrainComponent : Component;
@@ -52,6 +53,10 @@ public sealed partial class FunctionalOrganComponent : Component
 
     [DataField("comps")]
     public ComponentRegistry? Components;
+
+    // Populated at install time with the component types this specific organ instance actually
+    // added, so extraction only removes what it installed, not whatever's currently present.
+    public HashSet<Type> Installed = [];
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
