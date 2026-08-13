@@ -1,0 +1,57 @@
+- type: body
+  id: NeoCyclorite
+  name: neo-cyclorite
+  root: torso
+  slots:
+    head:
+      part: HeadCyclorite
+      connections:
+      - torso
+      organs:
+        brain: OrganNeocyteBrain
+        eyes: OrganNeoCycloriteEye
+        tongue: OrganNeocyteTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoCyclorite
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganNeoCycloriteHeart
+        lungs: OrganNeoCycloriteLungs
+        stomach: OrganNeocyteStomach
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
+        cavity: null
+    right arm:
+      part: RightArmCyclorite
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmCyclorite
+      connections:
+      - left hand
+    right hand:
+      part: RightHandCyclorite
+      organs:
+        hand_implant: null
+    left hand:
+      part: LeftHandCyclorite
+      organs:
+        hand_implant: null
+    right leg:
+      part: RightLegCyclorite
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegCyclorite
+      connections:
+      - left foot
+    right foot:
+      part: RightFootCyclorite
+    left foot:
+      part: LeftFootCyclorite

@@ -530,6 +530,9 @@
   id: Nexus
 
 - type: Tag
+  id: NonLethalMech # Used to allow nonlethal mech equipment on a mech.
+
+- type: Tag
   id: NotLabelable
 
 - type: Tag
@@ -572,12 +575,6 @@
   id: PrototypeJawsOfLife
 
 - type: Tag
-  id: ProtoElf
-
-- type: Tag
-  id: ProtoLagomorph
-
-- type: Tag
   id: PrototypeVibroblade
 
 - type: Tag
@@ -605,6 +602,9 @@
 
 - type: Tag
   id: RollerBed
+
+- type: Tag
+  id: SalvageTicket
 
 - type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun

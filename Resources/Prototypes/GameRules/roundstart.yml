@@ -200,6 +200,7 @@
         max: 4 # Starlight
   - type: DynamicRuleCost
     cost: 200
+    cooldown: 1 # Starlight
 
 # Starlight start
 # Such a small entry, not worth putting in its own file
@@ -209,6 +210,7 @@
   components:
   - type: DynamicRuleCost
     cost: 300
+    cooldown: 1
 # Starlight end
 
 - type: entity
@@ -309,6 +311,7 @@
         max: 3
   - type: DynamicRuleCost
     cost: 200
+    cooldown: 1 # Starlight
 
 - type: entity
   id: Sandbox
@@ -374,6 +377,7 @@
         max: 6
   - type: DynamicRuleCost
     cost: 200
+    cooldown: 1 # Starlight
 
 - type: entity
   abstract: true
@@ -383,7 +387,7 @@
   - type: XenoborgsRule
   - type: RuleGrids
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/mothership.yml
+    gridPath: /Maps/_Starlight/Shuttles/mothership.yml # Starlight
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:
       MothershipCore: [ MothershipCore ]

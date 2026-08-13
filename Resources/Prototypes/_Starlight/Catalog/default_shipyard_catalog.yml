@@ -5,7 +5,7 @@
   price: 21200
   category: Small
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/pts.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/pts.yml
 
 - type: vessel
   id: Barge
@@ -14,7 +14,7 @@
   price: 78500
   category: Medium
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/barge.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/barge.yml
 
 - type: vessel
   id: Prospector
@@ -23,7 +23,7 @@
   price: 31350
   category: Small
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/prospector.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/prospector.yml
 
 - type: vessel
   id: Ingeniator
@@ -32,7 +32,7 @@
   price: 85000
   category: Large
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/Mini_Ingeniator.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Mini_Ingeniator.yml
 
 - type: vessel
   id: Comet
@@ -41,7 +41,7 @@
   price: 98500
   category: Large
   group: Cargo
-  shuttlePath: /Maps/_Starlight/Shuttles/Comet.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Comet.yml
 
 - type: vessel
   id: Munchies
@@ -50,7 +50,7 @@
   price: 38250
   category: Medium
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/Munchies.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Munchies.yml
 
 - type: vessel
   id: CargoGas
@@ -59,7 +59,7 @@
   price: 21500
   category: Small
   group: Cargo
-  shuttlePath: /Maps/_Starlight/Shuttles/GasTransport.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/GasTransport.yml
 
 - type: vessel
   id: Pioneer
@@ -68,7 +68,7 @@
   price: 39200
   category: Medium
   group: Cargo
-  shuttlePath: /Maps/_Starlight/Shuttles/Salvage/pioneer.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/pioneer.yml
 
 - type: vessel
   id: Breaker
@@ -77,7 +77,7 @@
   price: 32850
   category: Medium
   group: Cargo
-  shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/breaker.yml
 
 - type: vessel
   id: Honeybee
@@ -86,7 +86,7 @@
   price: 30000
   category: Small
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/Honeybee.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Honeybee.yml
 
 - type: vessel
   id: Reach
@@ -95,7 +95,7 @@
   price: 700500
   category: Humongous
   group: Command
-  shuttlePath: /Maps/_Starlight/Shuttles/ReachButShipyard.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/ReachButShipyard.yml
 
 - type: vessel
   id: Apotherkerin
@@ -104,7 +104,7 @@
   price: 40000
   category: Small
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/JSS_MED_Apotherkerin.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/JSS_MED_Apotherkerin.yml
 
 - type: vessel
   id: Bumblebee
@@ -113,13 +113,13 @@
   price: 60000
   category: Medium
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/Bumblebee.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Bumblebee.yml
 
 - type: vessel
   id: SpaceTruck
-  name: Harm's Space Truck
-  description: A small sized space truck. This one has a legal IFF console on board... no one knows why it's installed or why it's on sale.
-  price: 15050
+  name: HARMS Space Truck
+  description: A cheap trailer truck with a semi-legal (check with your lawyer!) IFF console onboard. Comes with two beers and a sweet digital audio workstation for blasting your tunes as you cruise through space.
+  price: 14999
   category: Small
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/SpaceTruck.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/SpaceTruck.yml

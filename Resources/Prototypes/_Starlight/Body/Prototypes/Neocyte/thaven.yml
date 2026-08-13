@@ -1,0 +1,57 @@
+- type: body
+  id: NeoThaven
+  name: neo-thaven
+  root: torso
+  slots:
+    head:
+      part: HeadThaven
+      connections:
+      - torso
+      organs:
+        brain: OrganThavenBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoThaven
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganNeocyteHeart
+        lungs: OrganNeocyteLungs
+        stomach: OrganNeocyteStomach
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
+        cavity: null
+    right arm:
+      part: RightArmThaven
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmThaven
+      connections:
+      - left hand
+    right hand:
+      part: RightHandThaven
+      organs:
+        hand_implant: null
+    left hand:
+      part: LeftHandThaven
+      organs:
+        hand_implant: null
+    right leg:
+      part: RightLegThaven
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegThaven
+      connections:
+      - left foot
+    right foot:
+      part: RightFootThaven
+    left foot:
+      part: LeftFootThaven
