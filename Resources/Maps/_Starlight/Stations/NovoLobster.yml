@@ -4,7 +4,7 @@ meta:
   engineVersion: 283.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/13/2026 08:01:43
+  time: 08/13/2026 08:06:20
   entityCount: 40153
 maps:
 - 1
@@ -18699,11 +18699,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 99.5,24.5
-  - uid: 281
-    components:
-    - type: Transform
-      parent: 2
-      pos: 20.5,1.5
   - uid: 282
     components:
     - type: Transform
@@ -20095,6 +20090,11 @@ entities:
       pos: 26.5,-3.5
 - proto: AirlockHeadOfPersonnelLocked
   entities:
+  - uid: 281
+    components:
+    - type: Transform
+      parent: 2
+      pos: 20.5,1.5
   - uid: 513
     components:
     - type: Transform
@@ -98473,6 +98473,9 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 67.5,-56.5
+    - type: AccessReader
+      accessListsOriginal:
+      - - Security
 - proto: ComputerCargoOrdersService
   entities:
   - uid: 15429
