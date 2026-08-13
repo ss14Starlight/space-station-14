@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._Funkystation.VendingMachines;
 using Content.Shared.VendingMachines;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
@@ -204,5 +205,15 @@ public sealed partial class VendingMachineSystem : SharedVendingMachineSystem
             return;
 
         _sprite.LayerSetVisible(sprite.AsNullable(), actualLayer, false);
+    }
+
+    // Funky change - return the shared interface so state also reaches the keypad ui
+    private bool TryGetOpenUi(EntityUid uid, [NotNullWhen(true)] out IVendingMachineBoundUi? bui)
+    {
+        bui = UISystem.TryGetOpenUi<BoundUserInterface>(uid, VendingMachineUiKey.Key, out var baseBui)
+            ? baseBui as IVendingMachineBoundUi
+            : null;
+
+        return bui != null;
     }
 }

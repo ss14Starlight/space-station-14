@@ -1,8 +1,10 @@
 <DefaultWindow xmlns="https://spacestation14.io"
-            xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-            Title="{Loc 'nuke-user-interface-title'}"
-            MinSize="256 256"
-            SetSize="256 256">
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               xmlns:diegeticUI="clr-namespace:Content.Client._Moffstation.DiegeticUI"
+               Title="{Loc 'nuke-user-interface-title'}"
+               MinSize="320 310"
+               SetSize="320 310">
+    <!-- Moff - Adjusted window size above ^ -->
     <BoxContainer Orientation="Vertical"
                   HorizontalExpand="True"
                   VerticalExpand="True">
@@ -28,15 +30,17 @@
             <BoxContainer Orientation="Vertical"
                           HorizontalExpand="True"
                           Margin="5 0">
-                <Button Name="EjectButton"
+                <diegeticUI:MoffDiegeticButtonPhysical Name="EjectButton"
                         Text="{Loc 'nuke-user-interface-eject-button'}"
                         Margin="0 0 0 5"
                         Access="Public"/>
-                <Button Name="AnchorButton"
+                <diegeticUI:MoffDiegeticButtonPhysical Name="AnchorButton"
                         Text="{Loc 'nuke-user-interface-anchor-button'}"
                         Margin="0 0 0 5"
                         Access="Public"/>
-                <Button Name="ArmButton"
+                <diegeticUI:MoffDiegeticButtonPhysical Name="ArmButton"
+                        Color="Red"
+                        FontColor="White"
                         Text="{Loc 'nuke-user-interface-arm-button'}"
                         Access="Public"
                         StyleClasses="negative"/>

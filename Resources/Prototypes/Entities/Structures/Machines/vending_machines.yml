@@ -74,7 +74,7 @@
   - type: UserInterface
     interfaces:
       enum.VendingMachineUiKey.Key:
-        type: VendingMachineBoundUserInterface
+        type: VendingMachineKeypadBoundUserInterface # Funky change
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: WiresPanel

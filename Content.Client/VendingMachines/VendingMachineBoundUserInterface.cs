@@ -1,3 +1,4 @@
+using Content.Client._Funkystation.VendingMachines;
 using Content.Client.UserInterface.Controls;
 using Content.Client.VendingMachines.UI;
 using Content.Shared.VendingMachines;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace Content.Client.VendingMachines
 {
-    public sealed class VendingMachineBoundUserInterface : BoundUserInterface
+    public sealed partial class VendingMachineBoundUserInterface : BoundUserInterface, IVendingMachineBoundUi // Funky - diegetic vending
     {
         [ViewVariables]
         private VendingMachineMenu? _menu;
