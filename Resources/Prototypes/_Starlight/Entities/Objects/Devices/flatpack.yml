@@ -181,20 +181,5 @@
         - state: large
     - type: Flatpack
       entity: EndymionStatueLarge1
-      randomEntities:
+      randomEntities: #Structured to be able to add more options once we have sprites for more
         - EndymionStatueLarge1
-        #- EndymionMemorial1 Sprites not yet made
-        #- EndymionMemorial2
-
-#  Sprites not yet made
-#- type: entity
-#  parent: BaseFlatpack
-#  id: EndymionStatueFlatpack
-#  name: Endymion Memorial flatpack
-#  description: A flatpack sent to the station by the TSF to commemorate the 2123 loss of the NTSS Endymion, and the 2116 people lost to the endless stars.
-#  components:
-#    - type: Flatpack
-#      entity: EndymionStatue1
-#      randomEntities:
-#        - EndymionStatue1
-#        - EndymionStatue2 Sprites not yet made
