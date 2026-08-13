@@ -7,8 +7,13 @@ using Content.Server._Starlight.Scent.Components;
 using Content.Shared._Starlight.Scent;
 using Content.Shared._Starlight.Scent.Components;
 using Content.Shared._Starlight.Scent.Systems;
+using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Disposal.Unit;
 using Content.Shared.DoAfter;
+using Content.Shared.Doors;
+using Content.Shared.Doors.Components;
+using Content.Shared.Doors.Systems;
 using Content.Shared.Eye;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
@@ -19,6 +24,9 @@ using Content.Shared.Inventory;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
+using Content.Shared.Stealth;
+using Content.Shared.Stealth.Components;
+using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Content.Shared.Zombies;
 using Robust.Shared.Audio.Systems;
@@ -30,19 +38,21 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Scent.Systems;
 
-public sealed class ScentSystem : SharedScentSystem
+public sealed partial class ScentSystem : SharedScentSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private TagSystem _tags = default!;
+    [Dependency] private SharedStealthSystem _stealth = default!;
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
@@ -66,6 +76,23 @@ public sealed class ScentSystem : SharedScentSystem
             before: [typeof(ForensicsSystem), typeof(IngestionSystem)]);
         SubscribeLocalEvent<CleansScentComponent, CleanScentDoAfterEvent>(OnCleanScentDoAfter);
         SubscribeLocalEvent<CleansScentComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
+
+        SubscribeLocalEvent<DoorComponent, DoorStateChangedEvent>(OnDoorStateChanged);
+    }
+
+    // Only fires once StartOpening succeeds, so bolted or access-denied bumps don't leave a trace.
+    private void OnDoorStateChanged(EntityUid uid, DoorComponent component, DoorStateChangedEvent args)
+    {
+        if (args.State != DoorState.Opening)
+            return;
+
+        if (args.User is not { } user || !_tags.HasTag(user, SharedDoorSystem.DoorBumpTag))
+            return;
+
+        if (!TryComp<ScentComponent>(user, out var scent) || scent.ScentId is not { } scentId)
+            return;
+
+        ApplyScentTrace(user, scentId, uid);
     }
 
     private void OnSniffObjectAction(Entity<SmellerComponent> ent, ref SniffObjectActionEvent args)
@@ -77,7 +104,9 @@ public sealed class ScentSystem : SharedScentSystem
         if (trace != null)
             PruneExpiredTraces(trace);
 
-        if (trace == null || trace.Scents.Count == 0)
+        var hasOwnScent = TryComp<ScentComponent>(args.Target, out var targetScent) && targetScent.ScentId != null;
+
+        if ((trace == null || trace.Scents.Count == 0) && !hasOwnScent)
         {
             _popup.PopupEntity(Loc.GetString("scent-sniff-no-scents", ("target", Name(args.Target))), args.Target, ent.Owner);
             args.Handled = true;
@@ -102,22 +131,26 @@ public sealed class ScentSystem : SharedScentSystem
         if (args.Handled || args.Cancelled || args.Args.Target is not { } target)
             return;
 
-        if (!TryComp<ScentTraceComponent>(target, out var trace))
-            return;
-
-        PruneExpiredTraces(trace);
+        TryComp<ScentTraceComponent>(target, out var trace);
+        if (trace != null)
+            PruneExpiredTraces(trace);
 
         var now = _timing.CurTime;
-        var entries = new List<ScentTraceEntry>(trace.Scents.Count);
-        foreach (var (scentId, info) in trace.Scents)
+        var entries = new List<ScentTraceEntry>(trace?.Scents.Count ?? 0);
+        if (trace != null)
         {
-            var speciesName = Loc.GetString("scent-species-non-humanoid");
-            if (info.Species != null && _prototype.TryIndex<SpeciesPrototype>(info.Species, out var species))
-                speciesName = Loc.GetString(species.Name);
+            foreach (var (scentId, info) in trace.Scents)
+            {
+                var speciesName = Loc.GetString("scent-species-non-humanoid");
+                if (info.Species != null && _prototype.TryIndex<SpeciesPrototype>(info.Species, out var species))
+                    speciesName = Loc.GetString(species.Name);
 
-            var age = (float)(now - info.LastTouched).TotalSeconds;
-            entries.Add(new ScentTraceEntry(scentId, GetFreshness(age, trace.TraceLifetime), speciesName));
+                var age = (float)(now - info.LastTouched).TotalSeconds;
+                entries.Add(new ScentTraceEntry(scentId, GetFreshness(age, trace.TraceLifetime), speciesName));
+            }
         }
+
+        var ownScentId = TryComp<ScentComponent>(target, out var targetScent) ? targetScent.ScentId : null;
 
         if (!_ui.TryOpenUi(uid, ScentSniffUiKey.Key, uid))
         {
@@ -127,7 +160,7 @@ public sealed class ScentSystem : SharedScentSystem
         }
 
         component.SniffTarget = target;
-        _ui.SetUiState(uid, ScentSniffUiKey.Key, new ScentSniffBoundUserInterfaceState(entries));
+        _ui.SetUiState(uid, ScentSniffUiKey.Key, new ScentSniffBoundUserInterfaceState(entries, ownScentId));
 
         args.Handled = true;
     }
@@ -140,7 +173,7 @@ public sealed class ScentSystem : SharedScentSystem
 
     private void OnSmellerMove(Entity<SmellerComponent> ent, ref MoveEvent args)
     {
-        if (ent.Comp.SniffTarget is not { } target || !TryComp<TransformComponent>(target, out var targetXform))
+        if (ent.Comp.SniffTarget is not { } target || !TryComp(target, out TransformComponent? targetXform))
             return;
 
         if (_transform.InRange(args.NewPosition, targetXform.Coordinates, ent.Comp.SniffRange))
@@ -151,26 +184,27 @@ public sealed class ScentSystem : SharedScentSystem
     }
 
     // Zombies shouldn't be able to hunt survivors by scent.
-    private void OnSmellerZombified(Entity<SmellerComponent> ent, ref EntityZombifiedEvent args)
-    {
+    private void OnSmellerZombified(Entity<SmellerComponent> ent, ref EntityZombifiedEvent args) =>
         RemComp<SmellerComponent>(ent.Owner);
-    }
 
     private void OnTrackMessage(EntityUid uid, SmellerComponent component, ScentSniffTrackMessage args)
     {
         if (component.SniffTarget is not { } target || !Exists(target))
             return;
 
-        if (!TryComp<TransformComponent>(uid, out var xform) || !TryComp<TransformComponent>(target, out var targetXform))
+        if (!TryComp(uid, out TransformComponent? xform) || !TryComp(target, out TransformComponent? targetXform))
             return;
 
         if (!_transform.InRange(xform.Coordinates, targetXform.Coordinates, component.SniffRange))
             return;
 
-        if (!TryComp<ScentTraceComponent>(target, out var trace) || !trace.Scents.ContainsKey(args.ScentId))
+        var isOwnScent = TryComp<ScentComponent>(target, out var targetScent) && targetScent.ScentId == args.ScentId;
+        var isTracedScent = TryComp<ScentTraceComponent>(target, out var trace) && trace.Scents.ContainsKey(args.ScentId);
+
+        if (!isOwnScent && !isTracedScent)
             return;
 
-        SetTrackedScent((uid, component), args.ScentId);
+        SetTrackedScent((uid, component), args.ScentId, target);
         _popup.PopupEntity(Loc.GetString("scent-sniff-window-tracking-popup"), uid, uid);
     }
 
@@ -387,7 +421,7 @@ public sealed class ScentSystem : SharedScentSystem
 
             scent.NextEmitTime = now + RollEmitDelay(scent);
 
-            if (TryComp<TransformComponent>(uid, out var xform))
+            if (TryComp(uid, out TransformComponent? xform))
                 EmitScent((uid, scent, xform), scentId);
         }
     }
@@ -415,17 +449,25 @@ public sealed class ScentSystem : SharedScentSystem
         if (IsSealed(uid))
             return;
 
+        if (HasComp<BeingDisposedComponent>(uid))
+            return;
+
+        if (IsHiddenVentCrawl(uid))
+            return;
+
         if (TryMergeIntoExisting(ent))
             return;
 
-        var marker = Spawn(ScentMarkerPrototype, xform.Coordinates);
+        var marker = SpawnAtPosition(ScentMarkerPrototype, xform.Coordinates);
         var decayTime = GetDecayTime(scent, uid);
 
         var markerComp = Comp<ScentMarkerComponent>(marker);
         markerComp.ScentId = scentId;
         markerComp.ExpiresAt = _timing.CurTime + decayTime;
         markerComp.TotalDuration = decayTime;
-        markerComp.WasContained = IsContained(xform);
+        markerComp.ContainedIn = GetAirtightContainer(xform);
+        markerComp.WasDead = MobState.IsDead(uid);
+        markerComp.WasCloaked = IsCloaked(uid);
         Dirty(marker, markerComp);
 
         var despawn = Comp<TimedDespawnComponent>(marker);
@@ -446,11 +488,40 @@ public sealed class ScentSystem : SharedScentSystem
         return headSealed && outerSealed;
     }
 
-    // Is this entity's immediate parent an airtight container (locker, crate)?
-    private bool IsContained(TransformComponent xform)
+    // Checks all parents of the entity, so nested containment (e.g. a bag inside a crate)
+    // is still detected.
+    private EntityUid? GetAirtightContainer(TransformComponent xform)
     {
-        return TryComp<EntityStorageComponent>(xform.ParentUid, out var storage) && storage.Airtight;
+        var parent = xform.ParentUid;
+
+        while (parent.IsValid())
+        {
+            if (TryComp<EntityStorageComponent>(parent, out var storage) && storage.Airtight)
+                return parent;
+
+            if (!TryComp(parent, out TransformComponent? parentXform))
+                break;
+
+            parent = parentXform.ParentUid;
+        }
+
+        return null;
     }
+
+    // Same threshold the game already uses to decide an entity is too hidden to examine
+    // (StealthComponent.ExamineThreshold), reused here instead of picking a new cutoff.
+    private bool IsCloaked(EntityUid uid) =>
+        TryComp<StealthComponent>(uid, out var stealth) &&
+        stealth.Enabled &&
+        _stealth.GetVisibility(uid, stealth) <= stealth.ExamineThreshold;
+
+    // Suppressed everywhere in the gas pipe network except at a terminus (vent/scrubber), where
+    // the scent is genuinely reaching open air.
+    private bool IsHiddenVentCrawl(EntityUid uid) =>
+        TryComp<BeingVentCrawlComponent>(uid, out var ventCrawl) &&
+        (!TryComp<VentCrawlHolderComponent>(ventCrawl.Holder, out var holder) ||
+        holder.CurrentTube is not { } tube ||
+        !HasComp<VentCrawlEntryComponent>(tube));
 
     // Only merges into our own chain tail, never any other nearby marker. Revisiting an old spot
     // would otherwise rewrite the trail's visit order.
@@ -460,7 +531,7 @@ public sealed class ScentSystem : SharedScentSystem
 
         if (scent.LastMarkerEntity is not { } tail ||
             !TryComp<ScentMarkerComponent>(tail, out var marker) ||
-            !TryComp<TransformComponent>(tail, out var tailXform))
+            !TryComp(tail, out TransformComponent? tailXform))
         {
             return false;
         }
@@ -473,7 +544,9 @@ public sealed class ScentSystem : SharedScentSystem
         marker.Strength = Math.Min(1f, marker.Strength + scent.MergeStrengthStep);
         marker.ExpiresAt = _timing.CurTime + decayTime;
         marker.TotalDuration = decayTime;
-        marker.WasContained = IsContained(xform);
+        marker.ContainedIn = GetAirtightContainer(xform);
+        marker.WasDead = MobState.IsDead(uid);
+        marker.WasCloaked = IsCloaked(uid);
         Dirty(tail, marker);
 
         if (TryComp<TimedDespawnComponent>(tail, out var despawn))

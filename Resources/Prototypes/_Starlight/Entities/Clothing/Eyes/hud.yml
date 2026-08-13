@@ -108,7 +108,7 @@
     - type: ShowHealthBars
       damageContainers:
         - Biological
-        - Hybrid # Protogens
+        - Hybrid # Neocytes
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD

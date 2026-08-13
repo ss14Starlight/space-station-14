@@ -58,6 +58,7 @@ loadout-group-dutyofficer-jumpsuit = Duty officer jumpsuit
 loadout-group-dutyofficer-outerclothing = Duty officer outer clothing
 loadout-group-dutyofficer-belt = Duty officer belt
 
+loadout-group-detective-lethal = Detective lethal sidearm
 
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit
