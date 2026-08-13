@@ -355,36 +355,6 @@
   text: "/ServerInfo/Guidebook/Engineering/TEG.xml"
 
 - type: guideEntry
-  id: Supermatter
-  name: guide-entry-supermatter
-  text: "/ServerInfo/Guidebook/Engineering/Supermatter.xml"
-  children:
-  - SupermatterStability
-  - SupermatterStructuralRecovery
-  - SupermatterDelamination
-  - SupermatterAdvancedSupermatterHandling
-
-- type: guideEntry
-  id: SupermatterStability
-  name: guide-entry-supermatter-stability
-  text: "/ServerInfo/Guidebook/Engineering/SupermatterStability.xml"
-
-- type: guideEntry
-  id: SupermatterStructuralRecovery
-  name: guide-entry-supermatter-structural-recovery
-  text: "/ServerInfo/Guidebook/Engineering/SupermatterStructuralRecovery.xml"
-
-- type: guideEntry
-  id: SupermatterDelamination
-  name: guide-entry-supermatter-delamination
-  text: "/ServerInfo/Guidebook/Engineering/SupermatterDelamination.xml"
-
-- type: guideEntry
-  id: SupermatterAdvancedSupermatterHandling
-  name: guide-entry-supermatter-advanced-handling
-  text: "/ServerInfo/Guidebook/Engineering/SupermatterAdvancedSupermatterHandling.xml"
-
-- type: guideEntry
   id: RTG
   name: guide-entry-rtg
   text: "/ServerInfo/Guidebook/Engineering/RTG.xml"
