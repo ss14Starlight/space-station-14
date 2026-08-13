@@ -1462,7 +1462,17 @@
 - type: tile
   id: FloorGrass
   name: tiles-planet-grass-floor
-  sprite: /Textures/Tiles/grass.png
+  sprite: /Textures/_Starlight/Tiles/Grass/grass.png #SL Edit
+  #SL Start
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  #SL End
   baseTurf: FloorDirt
   isSubfloor: true
   footstepSounds:
@@ -1474,7 +1484,17 @@
 - type: tile
   id: FloorGrassJungle
   name: tiles-jungle-grass-floor
-  sprite: /Textures/Tiles/grassjungle.png
+  sprite: /Textures/_Starlight/Tiles/GrassTall/grass.png #SL Edit
+  #SL Start
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  #SL End
   baseTurf: FloorDirt
   isSubfloor: true
   footstepSounds:
@@ -1486,13 +1506,15 @@
 - type: tile
   id: FloorGrassDark
   name: tiles-dark-grass-floor
-  sprite: /Textures/Tiles/grassdark.png
-  variants: 4
+  sprite: /Textures/_Starlight/Tiles/GrassDark/grass.png #SL Edit
+  variants: 6 #SL
   placementVariants:
   - 1.0
   - 1.0
   - 1.0
   - 1.0
+  - 1.0 #SL
+  - 1.0 #SL
   baseTurf: FloorDirt
   isSubfloor: true
   footstepSounds:
@@ -1503,13 +1525,15 @@
 - type: tile
   id: FloorGrassLight
   name: tiles-light-grass-floor
-  sprite: /Textures/Tiles/grasslight.png
-  variants: 4
+  sprite: /Textures/_Starlight/Tiles/GrassLight/grass.png #SL Edit
+  variants: 6 #SL
   placementVariants:
   - 1.0
   - 1.0
   - 1.0
   - 1.0
+  - 1.0 #SL
+  - 1.0 #SL
   baseTurf: FloorDirt
   isSubfloor: true
   footstepSounds:
@@ -1956,23 +1980,25 @@
 - type: tile
   id: FloorAstroGrass
   name: tiles-astro-grass
-  sprite: /Textures/Tiles/Planet/Grass/grass.png
-  variants: 4
+  sprite: /Textures/_Starlight/Tiles/Grass/grass.png #SL Edit
+  variants: 6 #SL
   placementVariants:
   - 1.0
   - 1.0
   - 1.0
   - 1.0
+  - 1.0 #SL
+  - 1.0 #SL
   edgeSpritePriority: 1
   edgeSprites:
-    SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
-    NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png
-    NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png
-    SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png
-    South: /Textures/Tiles/Planet/Grass/double_edge.png
-    East: /Textures/Tiles/Planet/Grass/double_edge.png
-    North: /Textures/Tiles/Planet/Grass/double_edge.png
-    West: /Textures/Tiles/Planet/Grass/double_edge.png
+    SouthEast: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
+    NorthEast: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
+    NorthWest: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
+    SouthWest: /Textures/_Starlight/Tiles/Grass/single_edge.png #SL Edit
+    South: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
+    East: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
+    North: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
+    West: /Textures/_Starlight/Tiles/Grass/double_edge.png #SL Edit
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Cutting ]
@@ -1993,7 +2019,7 @@
 
 - type: tile
   id: FloorJungleAstroGrass
-  name: tiles-jungle-astro-grass
+  name: tiles-mowed-jungle-astro-grass #sl edit
   parent: FloorGrassJungle
   baseTurf: Plating
   isSubfloor: false
@@ -2004,7 +2030,7 @@
 - type: tile
   parent: FloorGrassDark
   id: FloorDarkAstroGrass
-  name: tiles-dark-astro-grass
+  name: tiles-mowed-dark-astro-grass #sl edit
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Cutting ]
@@ -2014,7 +2040,7 @@
 - type: tile
   parent: FloorGrassLight
   id: FloorLightAstroGrass
-  name: tiles-light-astro-grass
+  name: tiles-mowed-light-astro-grass #sl edit
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Cutting ]
