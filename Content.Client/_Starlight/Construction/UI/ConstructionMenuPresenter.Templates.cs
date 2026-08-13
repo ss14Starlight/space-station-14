@@ -6,6 +6,8 @@ using Content.Shared.Popups;
 using Robust.Client.UserInterface;
 using Robust.Shared.Enums;
 
+// ReSharper disable CheckNamespace
+// Partial of the upstream ConstructionMenuPresenter, so it has to share its namespace.
 namespace Content.Client.Construction.UI;
 
 internal sealed partial class ConstructionMenuPresenter

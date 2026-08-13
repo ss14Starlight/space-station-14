@@ -1,5 +1,7 @@
 using Content.Shared._Starlight.Construction;
 
+// ReSharper disable CheckNamespace
+// Partial of the upstream ConstructionSystem, so it has to share its namespace.
 namespace Content.Client.Construction;
 
 public sealed partial class ConstructionSystem
