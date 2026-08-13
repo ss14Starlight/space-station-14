@@ -65,7 +65,7 @@ public sealed partial class ConstructionSystem
         var template = new ConstructionTemplate
         {
             MapName = Name(map),
-            GridName = HasComp<MapGridComponent>(frame) ? Name(frame) : string.Empty,
+            OnGrid = HasComp<MapGridComponent>(frame),
             Origin = origin,
         };
 
@@ -106,9 +106,9 @@ public sealed partial class ConstructionSystem
 
         EntityUid frame;
 
-        if (!string.IsNullOrEmpty(template.GridName))
+        if (template.OnGrid)
         {
-            if (!TryFindGrid(mapUid, template.GridName, xform.GridUid, out var grid))
+            if (xform.GridUid is not { } grid)
                 return false;
 
             frame = grid;
@@ -118,30 +118,6 @@ public sealed partial class ConstructionSystem
 
         origin = new EntityCoordinates(frame, template.Origin);
         return true;
-    }
-
-    private bool TryFindGrid(EntityUid map, string name, EntityUid? preferred, out EntityUid grid)
-    {
-        grid = default;
-
-        if (preferred is { } uid && Transform(uid).MapUid == map && Name(uid) == name)
-        {
-            grid = uid;
-            return true;
-        }
-
-        var query = AllEntityQuery<MapGridComponent, TransformComponent>();
-
-        while (query.MoveNext(out var gridUid, out _, out var gridXform))
-        {
-            if (gridXform.MapUid != map || Name(gridUid) != name)
-                continue;
-
-            grid = gridUid;
-            return true;
-        }
-
-        return false;
     }
 
     /// <summary>

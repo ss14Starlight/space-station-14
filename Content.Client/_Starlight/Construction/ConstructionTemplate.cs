@@ -28,10 +28,10 @@ public sealed partial class ConstructionTemplate
     public string MapName = string.Empty;
 
     /// <summary>
-    /// Name of the grid the ghosts were saved on, empty if they were not on one.
+    /// Whether the ghosts were saved on a grid rather than directly on the map.
     /// </summary>
     [DataField]
-    public string GridName = string.Empty;
+    public bool OnGrid;
 
     /// <summary>
     /// Position of the origin within the saved map or grid.
