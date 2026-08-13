@@ -4,7 +4,7 @@ meta:
   engineVersion: 283.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/13/2026 07:40:14
+  time: 08/13/2026 07:43:18
   entityCount: 40153
 maps:
 - 1
@@ -194286,7 +194286,7 @@ entities:
     components:
     - type: MetaData
       name: brigmedic plumbing input
-      desc: Put chemicals in here to deliver them to the Brigmedic's plumbing dispenser..
+      desc: Put chemicals in here to deliver them to the Brigmedic's plumbing dispenser.
     - type: Transform
       parent: 2
       pos: -26.5,-24.5
