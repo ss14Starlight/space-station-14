@@ -60,6 +60,7 @@
   - type: StatusIcon
   - type: FixedJobIcon
     jobIcon: JobIconK9
+    jobTitle: job-name-k9
   - type: SpriteVariant
     availableVariants:
     - k9-brown
