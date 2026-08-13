@@ -15,6 +15,76 @@
   description: alerts-k9-latched-desc
 
 - type: alert
+  id: K9BrownHealth
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_alive.rsi
+    state: health0
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_alive.rsi
+    state: health1
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_alive.rsi
+    state: health2
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_alive.rsi
+    state: health3
+  name: alerts-health-name
+  description: alerts-health-desc
+  minSeverity: 0
+  maxSeverity: 3
+
+- type: alert
+  id: K9BrownCrit
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_critical.rsi
+    state: critical
+  name: alerts-crit-name
+  description: alerts-crit-desc
+
+- type: alert
+  id: K9BrownDead
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_dead.rsi
+    state: dead
+  name: alerts-dead-name
+  description: alerts-dead-desc
+
+- type: alert
+  id: K9TanHealth
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_alive.rsi
+    state: health0
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_alive.rsi
+    state: health1
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_alive.rsi
+    state: health2
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_alive.rsi
+    state: health3
+  name: alerts-health-name
+  description: alerts-health-desc
+  minSeverity: 0
+  maxSeverity: 3
+
+- type: alert
+  id: K9TanCrit
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_critical.rsi
+    state: critical
+  name: alerts-crit-name
+  description: alerts-crit-desc
+
+- type: alert
+  id: K9TanDead
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_dead.rsi
+    state: dead
+  name: alerts-dead-name
+  description: alerts-dead-desc
+
+- type: alert
   id: K9Sprint
   icons:
     - sprite: _Starlight/Interface/Actions/actions_k9.rsi

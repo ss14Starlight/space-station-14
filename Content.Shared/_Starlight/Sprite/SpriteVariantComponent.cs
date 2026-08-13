@@ -1,4 +1,6 @@
+using Content.Shared.Alert;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Sprite;
 
@@ -19,4 +21,17 @@ public sealed partial class SpriteVariantComponent : Component
     /// skip the random pick.
     /// </summary>
     [DataField, AutoNetworkedField] public string? Variant;
+
+    /// <summary>
+    /// Optional per-variant alert override (e.g. matching health HUD face).
+    /// </summary>
+    [DataField] public Dictionary<string, VariantAlertSet>? VariantAlerts;
+}
+
+[DataDefinition]
+public sealed partial class VariantAlertSet
+{
+    [DataField(required: true)] public ProtoId<AlertPrototype> Alive;
+    [DataField(required: true)] public ProtoId<AlertPrototype> Critical;
+    [DataField(required: true)] public ProtoId<AlertPrototype> Dead;
 }

@@ -1,5 +1,7 @@
 using Content.Shared._Starlight.Roles;
 using Content.Shared._Starlight.Sprite;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Sprite;
@@ -7,6 +9,7 @@ namespace Content.Server._Starlight.Sprite;
 public sealed partial class SpriteVariantSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private readonly MobThresholdSystem _thresholds = default!;
 
     public override void Initialize()
     {
@@ -23,6 +26,7 @@ public sealed partial class SpriteVariantSystem : EntitySystem
 
         comp.Variant = _random.Pick(comp.AvailableVariants);
         Dirty(uid, comp);
+        ApplyVariantAlerts(uid, comp);
     }
 
     /// <summary>
@@ -41,8 +45,26 @@ public sealed partial class SpriteVariantSystem : EntitySystem
 
                 comp.Variant = selection.Prototype;
                 Dirty(uid, comp);
+                ApplyVariantAlerts(uid, comp);
                 return;
             }
         }
+    }
+
+    /// <summary>
+    /// Swaps health/crit/dead alerts to match the variant, if one's defined.
+    /// </summary>
+    private void ApplyVariantAlerts(EntityUid uid, SpriteVariantComponent comp)
+    {
+        if (comp.VariantAlerts is null || comp.Variant is not { } variant ||
+            !comp.VariantAlerts.TryGetValue(variant, out var alertSet))
+            return;
+
+        _thresholds.SetStateAlertDict(uid, new()
+        {
+            { MobState.Alive, alertSet.Alive },
+            { MobState.Critical, alertSet.Critical },
+            { MobState.Dead, alertSet.Dead },
+        });
     }
 }

@@ -8,6 +8,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Events;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Mobs.Systems;
 
@@ -329,6 +330,22 @@ public sealed partial class MobThresholdSystem : EntitySystem
         Dirty(uid, component);
         VerifyThresholds(uid, component);
     }
+
+    // Starlight Start
+    /// <summary>
+    /// Overrides the per-state alert and refreshes the current one.
+    /// </summary>
+    public void SetStateAlertDict(EntityUid target, Dictionary<MobState, ProtoId<AlertPrototype>> dict,
+        MobThresholdsComponent? threshold = null)
+    {
+        if (!Resolve(target, ref threshold))
+            return;
+
+        threshold.StateAlertDict = dict;
+        Dirty(target, threshold);
+        VerifyThresholds(target, threshold);
+    }
+    // Starlight End
 
     #endregion
 
