@@ -37,13 +37,15 @@
         alive: K9BrownHealth
         critical: K9BrownCrit
         dead: K9BrownDead
+      k9-black:
+        alive: K9BlackHealth
+        critical: K9BlackCrit
+        dead: K9BlackDead
       k9-tan:
         alive: K9TanHealth
         critical: K9TanCrit
         dead: K9TanDead
-      # k9-black and k9-grey intentionally omitted - no art yet, they keep
-      # the default CorgiHealth/CorgiCrit/CorgiDead alerts inherited from
-      # MobCorgiBase until sprites are ready.
+      # k9-grey has no art yet - keeps the default corgi alerts.
   - type: NpcFactionMember
     factions:
     - NanoTrasen
