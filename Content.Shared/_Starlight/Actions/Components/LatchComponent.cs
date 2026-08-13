@@ -1,5 +1,6 @@
 using Content.Shared.Alert;
 using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -32,6 +33,17 @@ public sealed partial class LatchComponent : Component
     [DataField, AutoNetworkedField] public TimeSpan MaxDuration = TimeSpan.FromSeconds(15);
     [DataField] public TimeSpan ExtensionPerBite = TimeSpan.FromSeconds(2);
     [DataField] public TimeSpan ReductionPerHit = TimeSpan.FromSeconds(1);
+
+    /// <summary>
+    /// Damage that produces exactly ReductionPerHit/ExtensionPerBite; scales
+    /// linearly from there.
+    /// </summary>
+    [DataField] public FixedPoint2 ReferenceDamage = FixedPoint2.New(5);
+
+    /// <summary>
+    /// Stamina damage dealt to the target per Bite Harder use.
+    /// </summary>
+    [DataField] public float StaminaDamagePerBite = 15f;
 
     [DataField] public TimeSpan TickInterval = TimeSpan.FromSeconds(0.75);
     [DataField] public DamageSpecifier DamagePerTick = new();

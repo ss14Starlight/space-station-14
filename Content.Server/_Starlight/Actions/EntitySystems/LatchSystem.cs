@@ -6,7 +6,9 @@ using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Alert;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Chat;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mobs;
@@ -16,6 +18,7 @@ using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Whitelist;
 using Robust.Server.Audio;
+using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -36,6 +39,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private StandingStateSystem _standing = default!;
 
@@ -51,6 +55,8 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         SubscribeLocalEvent<LatchedComponent, ComponentShutdown>(OnLatchedShutdown);
         SubscribeLocalEvent<LatchedComponent, MobStateChangedEvent>(OnTargetMobStateChanged);
+
+        SubscribeLocalEvent<LatchBlockedHandComponent, ContainerGettingRemovedAttemptEvent>(OnBlockedHandRemoveAttempt);
 
         SubscribeLocalEvent<LatchActionEvent>(OnLatchAction);
         SubscribeLocalEvent<LatchBiteHarderActionEvent>(OnBiteHarderAction);
@@ -128,6 +134,14 @@ public sealed partial class LatchSystem : SharedLatchSystem
             ev.Cancel();
     }
 
+    /// <summary>
+    /// The latch's blocked hand can't be dropped via the drop key.
+    /// </summary>
+    private void OnBlockedHandRemoveAttempt(EntityUid uid, LatchBlockedHandComponent comp, ref ContainerGettingRemovedAttemptEvent args)
+    {
+        args.Cancel();
+    }
+
     private void OnBiteHarderAction(LatchBiteHarderActionEvent ev)
     {
         if (ev.Handled)
@@ -137,14 +151,23 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (!TryComp<LatchComponent>(uid, out var comp) || !comp.Active || comp.Target is not { } target)
             return;
 
-        var extended = comp.EndTime + comp.ExtensionPerBite;
+        // Ratio of the bite's damage that got through armor.
+        var effectiveness = 0f;
+
+        if (!comp.TickPaused)
+        {
+            var dealt = DealTick(uid, comp, target);
+            var attempted = comp.DamagePerTick.GetTotal();
+            effectiveness = attempted > FixedPoint2.Zero ? (dealt.GetTotal() / attempted).Float() : 1f;
+
+            _stamina.TakeStaminaDamage(target, comp.StaminaDamagePerBite, source: uid);
+        }
+
+        var extended = comp.EndTime + comp.ExtensionPerBite.Multiply(effectiveness);
         comp.EndTime = extended > comp.MaxEndTime ? comp.MaxEndTime : extended;
         Dirty(uid, comp);
 
         _audio.PlayPvs(comp.BiteHarderSound, uid);
-
-        if (!comp.TickPaused)
-            DealTick(uid, comp, target);
 
         ev.Handled = true;
     }
@@ -184,7 +207,10 @@ public sealed partial class LatchSystem : SharedLatchSystem
         Dirty(target, latched);
 
         if (_virtualItem.TrySpawnVirtualItemInHand(uid, target, out var blockingItem))
+        {
             latched.BlockedHandItem = blockingItem;
+            EnsureComp<LatchBlockedHandComponent>(blockingItem.Value);
+        }
 
         _standing.Down(target, force: true);
 
@@ -237,28 +263,33 @@ public sealed partial class LatchSystem : SharedLatchSystem
     }
 
     /// <summary>
-    /// Applies one instance of latch damage, with a chance to scream/snarl.
+    /// Applies one latch damage tick; returns actual damage dealt (post-armor).
     /// </summary>
-    private void DealTick(EntityUid uid, LatchComponent comp, EntityUid target)
+    private DamageSpecifier DealTick(EntityUid uid, LatchComponent comp, EntityUid target)
     {
-        _damageable.TryChangeDamage(target, comp.DamagePerTick, origin: uid);
+        _damageable.TryChangeDamage(target, comp.DamagePerTick, out var dealt, origin: uid);
 
         if (_random.Prob(comp.ScreamChance))
             _chat.TryEmoteWithoutChat(target, "Scream");
 
         if (_random.Prob(comp.ScreamChance))
             _chat.TryEmoteWithoutChat(uid, "Snarl");
+
+        return dealt;
     }
 
     /// <summary>
-    /// A hit on the latcher shortens the remaining duration by a fixed step.
+    /// A hit on the latcher shortens the duration, scaled by damage dealt.
     /// </summary>
     private void OnLatcherDamaged(EntityUid uid, LatchComponent comp, DamageChangedEvent ev)
     {
-        if (!comp.Active || !ev.DamageIncreased)
+        if (!comp.Active || !ev.DamageIncreased || ev.DamageDelta is not { } delta)
             return;
 
-        comp.EndTime -= comp.ReductionPerHit;
+        var dealt = delta.GetTotal();
+        var scale = comp.ReferenceDamage > FixedPoint2.Zero ? (dealt / comp.ReferenceDamage).Float() : 1f;
+
+        comp.EndTime -= comp.ReductionPerHit.Multiply(scale);
         Dirty(uid, comp);
 
         if (comp.EndTime <= Timing.CurTime)
