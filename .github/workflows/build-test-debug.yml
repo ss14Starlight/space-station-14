@@ -85,7 +85,10 @@ jobs:
             exit 0
           fi
 
-          jq -s '{version: "2.1.0", runs: [.[].runs[]]}' "${reports[@]}" > /tmp/csharp-diagnostics.sarif
+          jq -s '{version: "2.1.0", runs: [.[].runs[]
+            | .results = ((.results // [])
+              | map(select((.level // "warning") == "warning" or (.level // "warning") == "error")))]}' \
+            "${reports[@]}" > /tmp/csharp-diagnostics.sarif
           reviewdog \
             -f=sarif \
             -name="C# diagnostics" \
