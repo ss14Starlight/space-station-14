@@ -120,6 +120,41 @@
   description: alerts-dead-desc
 
 - type: alert
+  id: K9GreyHealth
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_alive.rsi
+    state: health0
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_alive.rsi
+    state: health1
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_alive.rsi
+    state: health2
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_alive.rsi
+    state: health3
+  name: alerts-health-name
+  description: alerts-health-desc
+  minSeverity: 0
+  maxSeverity: 3
+
+- type: alert
+  id: K9GreyCrit
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_critical.rsi
+    state: critical
+  name: alerts-crit-name
+  description: alerts-crit-desc
+
+- type: alert
+  id: K9GreyDead
+  category: Health
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_dead.rsi
+    state: dead
+  name: alerts-dead-name
+  description: alerts-dead-desc
+
+- type: alert
   id: K9Sprint
   icons:
     - sprite: _Starlight/Interface/Actions/actions_k9.rsi

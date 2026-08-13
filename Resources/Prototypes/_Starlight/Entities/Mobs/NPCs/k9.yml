@@ -79,7 +79,10 @@
         alive: K9TanHealth
         critical: K9TanCrit
         dead: K9TanDead
-      # k9-grey has no art yet - keeps the default corgi alerts.
+      k9-grey:
+        alive: K9GreyHealth
+        critical: K9GreyCrit
+        dead: K9GreyDead
   - type: NpcFactionMember
     factions:
     - NanoTrasen
