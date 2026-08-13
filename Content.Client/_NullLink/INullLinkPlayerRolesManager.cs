@@ -7,5 +7,6 @@ public interface INullLinkPlayerRolesManager
 
     bool ContainsAny(ulong[] roles);
     string? GetDiscordLink();
+    string? GetSteamLink();
     void Initialize();
 }
