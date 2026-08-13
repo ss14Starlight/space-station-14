@@ -29,6 +29,16 @@
   - type: RandomMetadata
     nameSegments:
     - NamesCorgi
+  - type: Access
+    tags:
+    - Security
+    - Brig
+    - Maintenance
+    - External
+    - Cryogenics
+  - type: StatusIcon
+  - type: FixedJobIcon
+    jobIcon: JobIconK9
   - type: SpriteVariant
     availableVariants:
     - k9-brown
