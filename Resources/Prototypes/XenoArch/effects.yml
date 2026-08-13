@@ -127,6 +127,22 @@
       weight: 4.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 4.0
+    # Starlight-start
+    - id: XenoArtifactAccessEngineering
+      weight: 1.5
+    - id: XenoArtifactAccessScience # this is nearly useless for most people who can obtain it
+      weight: 2.0
+    - id: XenoArtifactAccessCargo
+      weight: 1.5
+    - id: XenoArtifactAccessService
+      weight: 1.5
+    - id: XenoArtifactAccessSecurity
+      weight: 1.5
+    - id: XenoArtifactAccessMedical
+      weight: 1.5
+    - id: XenoArtifactAccessCommand
+      weight: 1.0
+    # Starlight-end
 
 - type: entityTable
   id: XenoArtifactEffectsHandheldOnlyTable

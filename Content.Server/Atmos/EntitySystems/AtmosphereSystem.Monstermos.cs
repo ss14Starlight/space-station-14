@@ -581,13 +581,13 @@ namespace Content.Server.Atmos.EntitySystems
             var reconsiderAdjacent = false;
 
             var mapGrid = ent.Comp3;
-            foreach (var entity in _map.GetAnchoredEntities(ent.Owner, mapGrid, tile.GridIndices))
+            foreach (var entity in _mapSystem.GetAnchoredEntities(ent.Owner, mapGrid, tile.GridIndices))
             {
                 if (_firelockQuery.TryGetComponent(entity, out var firelock))
                     reconsiderAdjacent |= _firelockSystem.EmergencyPressureStop(entity, firelock);
             }
 
-            foreach (var entity in _map.GetAnchoredEntities(ent.Owner, mapGrid, other.GridIndices))
+            foreach (var entity in _mapSystem.GetAnchoredEntities(ent.Owner, mapGrid, other.GridIndices))
             {
                 if (_firelockQuery.TryGetComponent(entity, out var firelock))
                     reconsiderAdjacent |= _firelockSystem.EmergencyPressureStop(entity, firelock);

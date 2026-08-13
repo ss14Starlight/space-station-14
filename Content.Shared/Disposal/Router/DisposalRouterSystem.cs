@@ -48,7 +48,8 @@ public sealed partial class DisposalRouterSystem : EntitySystem
 
         #region Starlight
         // Direction we entered the tube from
-        var cameFrom = args.Holder.Comp.CurrentDirection.GetOpposite();
+        var dir = args.Holder.Comp.CurrentDirection;
+        var cameFrom = dir.GetOpposite();
 
         // Makes disposals consistent.
         var straightThru = exits[0];

@@ -113,4 +113,37 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     protected virtual void RefreshUI(EntityUid body)
     {
     }
+
+    /// <summary>
+    /// Records a component type installed by a functional organ.
+    /// </summary>
+    /// <remarks>
+    /// FunctionalOrganComponent restricts write/execute access to this class; OrganSystem
+    /// (server) goes through this instead of touching Installed directly.
+    /// </remarks>
+    /// <param name="ent">The organ that installed the component.</param>
+    /// <param name="type">The installed component's type.</param>
+    public void AddInstalledComponent(Entity<FunctionalOrganComponent?> ent, Type type)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        ent.Comp.Installed.Add(type);
+    }
+
+    /// <summary>
+    /// Clears the component types tracked for a functional organ.
+    /// </summary>
+    /// <remarks>
+    /// FunctionalOrganComponent restricts write/execute access to this class; OrganSystem
+    /// (server) goes through this instead of touching Installed directly.
+    /// </remarks>
+    /// <param name="ent">The organ whose tracked components should be cleared.</param>
+    public void ClearInstalledComponents(Entity<FunctionalOrganComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        ent.Comp.Installed.Clear();
+    }
 }

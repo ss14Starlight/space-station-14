@@ -37,7 +37,8 @@ using Robust.Shared.Utility;
 using Content.Shared._Starlight.Radio;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Ghost;
-using Content.Server._Starlight.TextToSpeech; //Starlight
+using Content.Server._Starlight.TextToSpeech;
+using Content.Shared._Starlight.Clothing;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -117,9 +118,10 @@ public sealed partial class RadioSystem : EntitySystem
         EntityUid radioSource,
         LanguagePrototype? language = null, // Starlight
         bool suppressTTS = false, // Starlight
-        bool escapeMarkup = true)
+        bool escapeMarkup = true,
+        HeadsetLoudModeComponent? loudComp = null) // Starlight
     {
-        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language, suppressTTS: suppressTTS); // Starlight
+        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language, suppressTTS: suppressTTS, loudComp: loudComp); // Starlight
     }
 
     /// <summary>
@@ -134,7 +136,8 @@ public sealed partial class RadioSystem : EntitySystem
         EntityUid radioSource,
         LanguagePrototype? language = null, // Starlight
         bool suppressTTS = false, // Starlight
-        bool escapeMarkup = true)
+        bool escapeMarkup = true,
+        HeadsetLoudModeComponent? loudComp = null) // Starlight
     {
         // Starlight - start
         if (channel.AutoTranslate is not null)
@@ -182,18 +185,18 @@ public sealed partial class RadioSystem : EntitySystem
 
         _chime.TryGetSenderHeadsetChime(messageSource, out var chime);
 
-        var wrappedMessage = WrapRadioMessage(messageSource, channel, selectedName, content, language, false);
+        var wrappedMessage = WrapRadioMessage(messageSource, channel, selectedName, content, language, false, loudComp); // Starlight
 
         // most radios are relayed to chat, so lets parse the chat message beforehand
 
         var msg = new ChatMessage(ChatChannel.Radio, content, wrappedMessage, NetEntity.Invalid, null); // Starlight
 
         var obfuscated = _language.ObfuscateSpeech(content, language);
-        var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, selectedName, obfuscated, language, true);
+        var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, selectedName, obfuscated, language, true, loudComp);
         var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, NetEntity.Invalid, null) { Chime = chime, };
         var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource, []);
 
-        var ghostwrappedMessage = WrapRadioMessage(messageSource, channel, name, content, language, false);
+        var ghostwrappedMessage = WrapRadioMessage(messageSource, channel, name, content, language, false, loudComp);
         var ghostmsg = new ChatMessage(ChatChannel.Radio, content, ghostwrappedMessage, NetEntity.Invalid, null);
         var ghostev = new RadioReceiveEvent(messageSource, channel, ghostmsg, notUdsMsg, language, radioSource, []);
         // Starlight - End
@@ -300,7 +303,8 @@ public sealed partial class RadioSystem : EntitySystem
         CustomRadioChannelData channel,
         EntityUid radioSource,
         LanguagePrototype? language = null,
-        bool escapeMarkup = true)
+        bool escapeMarkup = true,
+        HeadsetLoudModeComponent? loudComp = null)
     {
         if (language == null)
             language = _language.GetLanguage(messageSource);
@@ -335,12 +339,12 @@ public sealed partial class RadioSystem : EntitySystem
 
         _chime.TryGetSenderHeadsetChime(messageSource, out var chime);
 
-        var wrappedMessage = WrapCustomRadioMessage(messageSource, channel, name, content, language, false);
+        var wrappedMessage = WrapCustomRadioMessage(messageSource, channel, name, content, language, false, loudComp);
 
         var msg = new ChatMessage(ChatChannel.Radio, content, wrappedMessage, NetEntity.Invalid, null);
 
         var obfuscated = _language.ObfuscateSpeech(content, language);
-        var obfuscatedWrapped = WrapCustomRadioMessage(messageSource, channel, name, obfuscated, language, true);
+        var obfuscatedWrapped = WrapCustomRadioMessage(messageSource, channel, name, obfuscated, language, true, loudComp);
         var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, NetEntity.Invalid, null) { Chime = chime, };
         var ev = new RadioReceiveEvent(messageSource, null, msg, notUdsMsg, language, radioSource, []);
 
@@ -454,8 +458,8 @@ public sealed partial class RadioSystem : EntitySystem
         string name,
         string message,
         LanguagePrototype language,
-        bool obfuscated
-        )
+        bool obfuscated,
+        HeadsetLoudModeComponent? loudComp = null) // Starlight
     {
         // TODO: code duplication with ChatSystem.WrapMessage
         var speech = _chat.GetSpeechVerb(source, message);
@@ -481,11 +485,15 @@ public sealed partial class RadioSystem : EntitySystem
         if ((language.Speech.ObfuscationFont ?? false) && !obfuscated)
             fonttype = speech.FontId;
 
+        bool isYelling = false;
+        if (speech.ID == "DefaultExclamationStrong")
+            isYelling = true;
+
         return Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
                 ("color", channel.Color),
                 ("languageColor", languageColor),
                 ("fontType", fonttype),
-                ("fontSize", language.Speech.FontSize ?? speech.FontSize),
+                ("fontSize", loudComp is not null ? loudComp.FontSize + speech.FontSize : isYelling ? speech.FontSize : language.Speech.FontSize ?? speech.FontSize), // starlight edit: loud mode
                 ("verb", Loc.GetString(verbId)),
                 ("channel", $"\\[{channel.LocalizedName}\\]"),
                 ("name", namestring),
@@ -498,7 +506,8 @@ public sealed partial class RadioSystem : EntitySystem
         string name,
         string message,
         LanguagePrototype language,
-        bool obfuscated
+        bool obfuscated,
+        HeadsetLoudModeComponent? loudComp = null
     )
     {
         // TODO: code duplication with ChatSystem.WrapMessage
@@ -518,11 +527,15 @@ public sealed partial class RadioSystem : EntitySystem
         if ((language.Speech.ObfuscationFont ?? false) && !obfuscated)
             fonttype = speech.FontId;
 
+        bool isYelling = false;
+        if (speech.ID == "DefaultExclamationStrong")
+            isYelling = true;
+
         return Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
             ("languageColor", languageColor),
             ("fontType", fonttype),
-            ("fontSize", language.Speech.FontSize ?? speech.FontSize),
+            ("fontSize", loudComp is not null ? loudComp.FontSize + speech.FontSize : isYelling ? speech.FontSize : language.Speech.FontSize ?? speech.FontSize),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", namestring),
