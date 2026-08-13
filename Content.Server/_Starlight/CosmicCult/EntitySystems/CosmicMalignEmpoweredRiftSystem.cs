@@ -11,7 +11,7 @@ using Content.Server.Temperature.Systems;
 using Content.Shared.Temperature.Components;
 using Content.Server.Atmos.Components;
 
-namespace Content.Server._Starlight.CosmicCult;
+namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
 public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 {
@@ -39,7 +39,6 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 
         _container.Remove(corpse, ent.Comp.CorpseContainer);
         RemComp<PressureImmunityComponent>(corpse);
-
 
         var riftCoordinates = Transform(ent.Owner).Coordinates;
         _transform.SetCoordinates(corpse, riftCoordinates);

@@ -1,6 +1,6 @@
 using Robust.Shared.Containers;
 
-namespace Content.Server._Starlight.CosmicCult.Components;
+namespace Content.Shared._Starlight.CosmicCult.Components;
 
 [RegisterComponent] public sealed partial class CosmicMalignEmpoweredRiftComponent : Component
 {

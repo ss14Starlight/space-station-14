@@ -1,7 +1,6 @@
 using Content.Server.Destructible;
-using Content.Server._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Damage.Components;
-using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -10,16 +9,15 @@ using Content.Server.Chat.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
-using Content.Shared._Starlight.CosmicCult.Components;
 
-namespace Content.Server._Starlight.CosmicCult;
+namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
 public sealed class CosmicRiftHealthSystem : EntitySystem
 {
-    [Dependency] private readonly CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     /// <summary>
     /// Tracks escalating global warnings as the number of empowered rifts increases.
