@@ -26,6 +26,9 @@
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 180
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCorgi
   - type: SpriteVariant
     availableVariants:
     - k9-brown
