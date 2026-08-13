@@ -19,7 +19,7 @@
     - Stunned
     - Stutter
   - type: Physics
-    bodyStatus: InAir
+    bodyStatus: OnGround
   - type: Fixtures
     fixtures:
       fix1:
