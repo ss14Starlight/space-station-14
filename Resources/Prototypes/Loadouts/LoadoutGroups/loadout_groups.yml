@@ -73,6 +73,8 @@
   - MaidOutfitTactical
   - MaidHeadbandTactical
   - TacticalMaidGloves
+  - JanitorMaidOutfit
+  - JanitorMaidOutfitMini
   - CoderSocks
   - PawBootTrinket
   - CatEars
@@ -609,6 +611,8 @@
   loadouts:
   - JanitorJumpsuit
   - JanitorJumpskirt
+  - JanitorMaidOutfit
+  - JanitorMaidOutfitMini
 
 
 - type: loadoutGroup
