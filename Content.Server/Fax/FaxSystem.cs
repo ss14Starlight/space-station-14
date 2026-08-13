@@ -824,13 +824,13 @@ public sealed partial class FaxSystem : EntitySystem
             string.IsNullOrEmpty(faxable.OutputtingText))
             return null;
 
-        if(!_documentManager.TryGetDocumentContents(faxable.OutputtingText, out var text)) return null;
-
-        return new FaxPrintout(
-            text,
-            Loc.GetString("fax-machine-printed-paper-name"),
-            prototypeId: component.PrintPaperId,
-            retainMetadata: true);
+        return !_documentManager.TryGetDocumentContents(faxable.OutputtingText, out var text)
+            ? null
+            : new FaxPrintout(
+                text,
+                Loc.GetString("fax-machine-printed-paper-name"),
+                prototypeId: component.PrintPaperId,
+                retainMetadata: true);
     }
 
     private bool SendFaxablePrintout(EntityUid uid, FaxMachineComponent component)
