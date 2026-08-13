@@ -21,3 +21,6 @@ signal-port-description-set-particle-lambda = Sets the type of particle this dev
 
 signal-port-name-trigger-spawn = Trigger Spawn
 signal-port-description-trigger-spawn = Activates the spawner, causing it to spawn something.
+
+signal-port-name-material-receiver = Material Receiver
+signal-port-description-material-receiver = Receives material from the material sender.

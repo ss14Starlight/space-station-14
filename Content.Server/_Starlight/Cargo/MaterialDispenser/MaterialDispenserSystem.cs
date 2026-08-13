@@ -1,4 +1,5 @@
-﻿using Content.Server._Starlight.Cargo.Components;
+﻿using System.Linq;
+using Content.Server._Starlight.Cargo.Components;
 using Content.Server._Starlight.Cargo.TamperSeal.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Materials;
@@ -13,6 +14,7 @@ using Content.Shared.Containers;
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.Materials;
+using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tools;
 using JetBrains.Annotations;
@@ -25,7 +27,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Starlight.Cargo.MaterialDispenser;
 
 /// <summary>
-/// This handles...
+/// This handles the MaterialDispenserComponent and its interactions with Lathe's
 /// </summary>
 [UsedImplicitly]
 public sealed class MaterialDispenserSystem : EntitySystem
@@ -43,7 +45,8 @@ public sealed class MaterialDispenserSystem : EntitySystem
 
 
     /// <inheritdoc/>
-    public override void Initialize(){
+    public override void Initialize()
+    {
         base.Initialize();
         SubscribeLocalEvent<MaterialDispenserComponent, ComponentStartup>(SubscribeUpdateUiState);
         SubscribeLocalEvent<MaterialDispenserComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
@@ -55,7 +58,6 @@ public sealed class MaterialDispenserSystem : EntitySystem
         SubscribeLocalEvent<MaterialDispenserComponent, MaterialDispenserDepartmentSelected>(OnDepartmentSelectMessage);
         SubscribeLocalEvent<MaterialDispenserComponent, MaterialDispenserModeChange>(OnModeChange);
         SubscribeLocalEvent<MaterialDispenserComponent, MaterialDispenserEjectCrate>(OnCrateEjectMessage);
-
     }
 
     private void OnCrateEjectMessage(Entity<MaterialDispenserComponent> ent, ref MaterialDispenserEjectCrate args)
@@ -65,13 +67,15 @@ public sealed class MaterialDispenserSystem : EntitySystem
         var crateMaterialAmount = ent.Comp.CrateMaterialAmount;
         var sheetVolume = _materialStorageSystem.GetSheetVolume(materialProto);
         var stationId = _stationSystem.GetOwningStation(ent.Owner);
-        if (stationId==null)
+        if (stationId == null)
         {
             return;
         }
 
         if (_materialStorageSystem.GetMaterialAmount(ent, crateMaterial) < crateMaterialAmount * sheetVolume)
         {
+            _popupSystem.PopupCursor(Loc.GetString("material-dispenser-insufficient-materials",[("amount", ent.Comp.CrateMaterialAmount), ("material", ent.Comp.CrateMaterial.Id)] ), args.Actor, PopupType.MediumCaution);
+
             return;
         }
 
@@ -79,11 +83,12 @@ public sealed class MaterialDispenserSystem : EntitySystem
 
 
         var item = Spawn(ent.Comp.CrateId, new EntityCoordinates(ent.Owner, 0, 0));
-        foreach (var material in ent.Comp.Buffer)
+        foreach (var spawnedMat in ent.Comp.Buffer
+                     .Select(material =>
+                         _materialStorageSystem.SpawnMultipleFromMaterial(material.Value, material.Key,
+                             Transform(item).Coordinates)).SelectMany(spawnedMats => spawnedMats))
         {
-            var spawnedMats = _materialStorageSystem.SpawnMultipleFromMaterial(material.Value, material.Key, Transform(item).Coordinates);
-
-            foreach (var spawnedMat in spawnedMats) _storageSystem.Insert(spawnedMat, item);
+            _storageSystem.Insert(spawnedMat, item);
         }
 
         ent.Comp.Buffer.Clear();
@@ -106,10 +111,6 @@ public sealed class MaterialDispenserSystem : EntitySystem
             value.Reward = (int)Math.Floor(ent.Comp.RewardMultiplier * price); // Rewards rounded down.
             value.Penalty = 0; // Penalties dont apply since miners provided materials.
             value.Refund = 0; // Refunds dont apply since miners provided materials.
-
-            // Attach an integrity component. This is used by the integrity system to detect repeat tampering.
-            var integrity = EnsureComp<TamperSealIntegrityBeaconComponent>(item);
-            integrity.StationId = (EntityUid)stationId;
         }
 
         DirtyEntity(item);
@@ -129,13 +130,14 @@ public sealed class MaterialDispenserSystem : EntitySystem
             return;
         var sheetVolume = _materialStorageSystem.GetSheetVolume(materialProto);
         var amount = args.Amount * sheetVolume;
+        // Transfer from the materialstorage component container to the buffer container kept inside the component or the other way around
         if (ent.Comp.Mode == MaterialDispenserMode.Transfer)
         {
             if (!args.FromBuffer)
             {
                 if (ent.Comp.Buffer.ContainsKey(args.Material) && ent.Comp.Buffer[args.Material] >= amount)
                 {
-                    if(!_materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, amount)) return;
+                    if (!_materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, amount)) return;
                     ent.Comp.Buffer[args.Material] -= amount;
 
 
@@ -144,12 +146,12 @@ public sealed class MaterialDispenserSystem : EntitySystem
             }
             else
             {
-                if(!_materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, -amount)) return;
+                if (!_materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, -amount)) return;
                 if (!ent.Comp.Buffer.ContainsKey(args.Material)) ent.Comp.Buffer.Add(args.Material, 0);
                 ent.Comp.Buffer[args.Material] += amount;
             }
-
         }
+        // Remove from buffer or storage and eject onto the floor
         else if (ent.Comp.Mode == MaterialDispenserMode.Eject)
         {
             if (!args.FromBuffer)
@@ -162,13 +164,16 @@ public sealed class MaterialDispenserSystem : EntitySystem
                     if (ent.Comp.Buffer[args.Material] <= 0) ent.Comp.Buffer.Remove(args.Material);
                 }
             }
+
             _materialStorageSystem.EjectMaterial(ent.Owner, args.Material, amount);
         }
+
         UpdateUiState(ent);
     }
 
 
-    private void OnDepartmentSelectMessage(Entity<MaterialDispenserComponent> ent, ref MaterialDispenserDepartmentSelected args)
+    private void OnDepartmentSelectMessage(Entity<MaterialDispenserComponent> ent,
+        ref MaterialDispenserDepartmentSelected args)
     {
         if (!_prototypeManager.TryIndex<CargoAccountPrototype>(args.Department, out _))
             return;
@@ -187,7 +192,5 @@ public sealed class MaterialDispenserSystem : EntitySystem
         var state = new MaterialDispenserBoundUserInterfaceState(materialDispenser.Mode, materialDispenser.Account.Id,
             materialDispenser.Buffer);
         _userInterfaceSystem.SetUiState(owner, MaterialDispenserUiKey.Key, state);
-
     }
-
 }

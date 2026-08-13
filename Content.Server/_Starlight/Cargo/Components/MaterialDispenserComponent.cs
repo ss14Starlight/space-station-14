@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Starlight.Cargo.Components;
 
 /// <summary>
-/// This is used for...
+/// This is used for marking a machine as a material dispenser to allow to spawn crates with materials in them.
 /// </summary>
 [RegisterComponent]
 [Access(typeof(MaterialDispenserSystem))]

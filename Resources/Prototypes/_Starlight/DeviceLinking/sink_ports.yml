@@ -40,5 +40,5 @@
 
 - type: sinkPort
   id: LatheReceiver
-  name: "Lathe Receiver"
-  description: "Lathe Receiver"
+  name: signal-port-name-material-receiver
+  description: signal-port-description-material-receiver

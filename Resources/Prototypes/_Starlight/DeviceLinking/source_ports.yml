@@ -73,5 +73,5 @@
 
 - type: sourcePort
   id: LatheSender
-  name: "Lathe Sender"
-  description: "Lathe Sender"
+  name: signal-port-name-material-sender
+  description: signal-port-description-material-sender

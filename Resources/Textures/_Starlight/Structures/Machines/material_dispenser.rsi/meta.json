@@ -1,17 +1,19 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by Cy the Nefarious",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
       {
-        "name": "base"
+        "name": "base",
+        "copyright": "Created by Cy the Nefarious"
       },
       {
         "name": "active",
+        "copyright": "Created by Cy the Nefarious",
         "delays": [
           [
             0.1,
@@ -25,6 +27,7 @@
       },
       {
         "name": "overlay_active",
+        "copyright": "Created by Cy the Nefarious",
         "delays": [
           [
             0.1,

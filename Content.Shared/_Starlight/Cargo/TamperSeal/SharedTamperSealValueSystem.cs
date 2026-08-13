@@ -81,31 +81,34 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
                 ApplyMutation(uid, (stationId, bank), refundCredit, "destroying", "refunded", args.User);
         }
 
-        // Play public sound.
-        if (args.ServerOnly)
+        if (value is { Penalty: > 0, Refund: > 0 })
         {
-            // We use coordinates because some server-side triggers involve the entity being completely destroyed.
-            // If we play sound on the entity or popup on the entity, they would never show up.
-            var coords = Transform(uid).Coordinates;
-            _audio.PlayPvs(value.PenaltySound, coords);
-            _popup.PopupCoordinates(Loc.GetString("tamper-seal-popup-destroy-end-penalty",
-                    ("recipient", Loc.GetString(recipient.TamperSealName)),
-                    ("deliverer", Loc.GetString(deliverer.TamperSealName)),
-                    ("penalty", Math.Abs(penalty.Amount))),
-                coords, PopupType.LargeCaution);
-        }
-        else
-        {
-            _audio.PlayPredicted(value.PenaltySound, Transform(uid).Coordinates, args.User);
-            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-end-penalty",
-                    ("recipient", Loc.GetString(recipient.TamperSealName)),
-                    ("deliverer", Loc.GetString(deliverer.TamperSealName)),
-                    ("penalty", Math.Abs(penalty.Amount))),
-                uid, args.User, PopupType.LargeCaution);
-        }
+            // Play public sound.
+            if (args.ServerOnly)
+            {
+                // We use coordinates because some server-side triggers involve the entity being completely destroyed.
+                // If we play sound on the entity or popup on the entity, they would never show up.
+                var coords = Transform(uid).Coordinates;
+                _audio.PlayPvs(value.PenaltySound, coords);
+                _popup.PopupCoordinates(Loc.GetString("tamper-seal-popup-destroy-end-penalty",
+                        ("recipient", Loc.GetString(recipient.TamperSealName)),
+                        ("deliverer", Loc.GetString(deliverer.TamperSealName)),
+                        ("penalty", Math.Abs(penalty.Amount))),
+                    coords, PopupType.LargeCaution);
+            }
+            else
+            {
+                _audio.PlayPredicted(value.PenaltySound, Transform(uid).Coordinates, args.User);
+                _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-end-penalty",
+                        ("recipient", Loc.GetString(recipient.TamperSealName)),
+                        ("deliverer", Loc.GetString(deliverer.TamperSealName)),
+                        ("penalty", Math.Abs(penalty.Amount))),
+                    uid, args.User, PopupType.LargeCaution);
+            }
 
-        // Cancel the "You destroy the seal" popup as we substituted it with the destruction popup.
-        args.ShowPopup = false;
+            // Cancel the "You destroy the seal" popup as we substituted it with the destruction popup.
+            args.ShowPopup = false;
+        }
     }
 
     /// <summary>

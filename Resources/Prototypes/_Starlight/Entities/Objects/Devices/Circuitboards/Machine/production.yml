@@ -1430,7 +1430,7 @@
 - type: entity
   id: MaterialDispenserMachineCircuitBoard
   parent: BaseMachineCircuitboard
-  name: Material packer machine board
+  name: material packer machine board
   components:
     - type: Sprite
       state: supply

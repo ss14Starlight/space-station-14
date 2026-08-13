@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: MachineMaterialDispenser
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: Material packer
+  name: material packer
   description: An advanced machine, capable of distributing materials into crates.
   components:
     - type: Sprite
