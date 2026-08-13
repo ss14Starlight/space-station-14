@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0",
+  "license": "CC-BY-SA-4.0",
   "copyright": "Edited by The Purple Screen",
   "size": {
     "x": 32,
@@ -9,11 +9,13 @@
   "states": [
     {
       "name": "green-inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
       "name": "green-inhand-right",
-	  "directions": 4
+	  "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
       "name": "ETO",

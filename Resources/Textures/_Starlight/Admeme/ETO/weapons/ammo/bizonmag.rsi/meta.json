@@ -4,52 +4,66 @@
         "x": 32,
         "y": 32
     },
-    "license": "CC-BY-SA-3.0",
+    "license": "CC-BY-SA-4.0",
     "copyright": "Made by The Purple Screen",
     "states": [
         {
-            "name": "base"
+            "name": "base",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "practice"
+            "name": "practice",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "red"
+            "name": "red",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "rubber"
+            "name": "rubber",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "uranium"
+            "name": "uranium",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "sp"
+            "name": "sp",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "fmj"
+            "name": "fmj",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "ap"
+            "name": "ap",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "incendiary"
+            "name": "incendiary",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "antimateriel"
+            "name": "antimateriel",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "improvised"
+            "name": "improvised",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "mag-0"
+            "name": "mag-0",
+      "copyright": "The Purple Screen"
         },
         {
             "name": "inhand-left-mag",
-            "directions": 4
+            "directions": 4,
+      "copyright": "The Purple Screen"
         },
         {
             "name": "inhand-right-mag",
-            "directions": 4
+            "directions": 4,
+      "copyright": "The Purple Screen"
         }
     ]
 }

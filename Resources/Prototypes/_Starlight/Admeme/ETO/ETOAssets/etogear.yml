@@ -10,7 +10,6 @@
     sprite: _Starlight/Admeme/ETO/etoglasses.rsi
   - type: FlashImmunity
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
   - type: EyeProtection
     protectionTime: 5
 
@@ -59,7 +58,6 @@
   - type: Clothing
     sprite: _Starlight/Admeme/ETO/clothing/etomask.rsi
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
   - type: ShowHealthBars
     damageContainers:
       - Biological
@@ -115,7 +113,7 @@
   parent: [ ClothingMaskGas, BaseETOContraband ]
   id: ClothingMaskGasETOCorpsman
   name: ETO corpsman gas mask
-  description: A Mask fit for the corpsman, modified with a MedHud to show a holographic heads up of the health of your fellow team members.
+  description: A mask fit for the corpsman, modified with a MedHud to show a holographic heads up of the health of your fellow team members.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/etomaskcorpsman.rsi
@@ -192,49 +190,11 @@
       maxIntensity: 75
 
 - type: entity
-  parent: [BaseHardBomb, BaseETOContraband]
+  parent: ETOBomb
   id: ETOBetterBomb
   name: PS-21ETO "Planet Buster"
-  description: A bomb of mass destruction, capable of ripping apart even the most fortified structures."Death to my enemy, Freedom to their slaves."
+  description: A bomb of mass destruction, capable of ripping apart even the most fortified structures."Death to my enemy, freedom to their slaves."
   components:
-    - type: Sprite
-      sprite: _Starlight/Admeme/ETO/etobomb.rsi
-      layers:
-        - state: ETO-bomb
-        - state: ETO-bomb-active
-          visible: false
-          map: [ "primed" ]
-        - state: ETO-bomb-wires
-          visible: false
-          map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-    - type: GenericVisualizer
-      visuals:
-        enum.DefusableVisuals.Active:
-          primed:
-            True: { visible: true }
-            False: { visible: false }
-        enum.WiresVisualLayers.MaintenancePanel:
-          enum.WiresVisualLayers.MaintenancePanel:
-            True: { visible: true }
-            False: { visible: false }
-    - type: Item
-      size: Large
-      shape:
-      - 0,0,4,4
-    - type: Clothing
-      quickEquip: false
-      slots:
-      - back
-      - suitStorage
-    - type: TimerTrigger
-      delay: 300
-      delayOptions: [300, 600, 900]
-      initialBeepDelay: 0
-      beepSound: /Audio/Machines/timer.ogg
-    - type: PointLight
-      color: "#C7001B"
-      radius: 1.1
-      softness: 1
     - type: Explosive
       explosionType: HardBomb
       totalIntensity: 500000.0

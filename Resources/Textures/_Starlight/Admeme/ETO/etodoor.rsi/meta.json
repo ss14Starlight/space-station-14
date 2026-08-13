@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0",
+  "license": "CC-BY-SA-4.0",
   "copyright": "Made by The Purple Screen",
   "size": {
     "x": 32,
@@ -8,16 +8,20 @@
   },
   "states": [
     {
-      "name": "assembly"
+      "name": "assembly",
+      "copyright": "The Purple Screen"
     },
     {
-      "name": "bolted_unlit"
+      "name": "bolted_unlit",
+      "copyright": "The Purple Screen"
     },
     {
-      "name": "closed"
+      "name": "closed",
+      "copyright": "The Purple Screen"
     },
     {
-      "name": "closed_unlit"
+      "name": "closed_unlit",
+      "copyright": "The Purple Screen"
     },
     {
       "name": "closing",
@@ -30,7 +34,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     },
     {
       "name": "closing_unlit",
@@ -43,7 +48,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     },
     {
       "name": "deny_unlit",
@@ -56,7 +62,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     },
     {
       "name": "open",
@@ -64,7 +71,8 @@
         [
           1
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     },
     {
       "name": "opening",
@@ -77,7 +85,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     },
     {
       "name": "opening_unlit",
@@ -90,7 +99,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     },
     {
       "name": "panel_closing",
@@ -103,7 +113,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     },
     {
       "name": "panel_open",
@@ -111,7 +122,8 @@
         [
           1
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     },
     {
       "name": "panel_opening",
@@ -124,7 +136,8 @@
           0.07,
           0.2
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     },
     {
       "name": "sparks",
@@ -137,10 +150,12 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     },
     {
-      "name": "welded"
+      "name": "welded",
+      "copyright": "The Purple Screen"
     },
     {
       "name": "emergency_unlit",
@@ -149,7 +164,8 @@
           0.4,
           0.4
         ]
-      ]
+      ],
+      "copyright": "The Purple Screen"
     }
   ]
 }

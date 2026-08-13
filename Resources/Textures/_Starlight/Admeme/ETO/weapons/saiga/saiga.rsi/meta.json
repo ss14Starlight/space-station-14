@@ -8,24 +8,30 @@
     },
     "states": [
         {
-            "name": "icon"
+            "name": "icon",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "base"
+            "name": "base",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "bolt-open"
+            "name": "bolt-open",
+      "copyright": "The Purple Screen"
         },
         {
-            "name": "mag-0"
+            "name": "mag-0",
+      "copyright": "The Purple Screen"
         },
         {
             "name": "equipped-BACKPACK",
-            "directions": 4
+            "directions": 4,
+      "copyright": "The Purple Screen"
         },
         {
             "name": "equipped-SUITSTORAGE",
-            "directions": 4
+            "directions": 4,
+      "copyright": "The Purple Screen"
         }
     ]
 }

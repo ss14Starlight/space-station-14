@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0",
+  "license": "CC-BY-SA-4.0",
   "copyright": "Made by The Purple Screen.",
   "size": {
     "x": 32,
@@ -8,31 +8,38 @@
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "The Purple Screen"
     },
     {
       "name": "equipped-OUTERCLOTHING",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
       "name": "equipped-OUTERCLOTHING-vox",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
       "name": "equipped-OUTERCLOTHING-resomi",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
       "name": "equipped-OUTERCLOTHING-avali",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     }
   ]
 }

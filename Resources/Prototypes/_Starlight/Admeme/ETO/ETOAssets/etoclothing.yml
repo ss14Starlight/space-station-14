@@ -37,7 +37,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitETOOperative
-  name: ETO Operative Jumpsuit
+  name: ETO operative jumpsuit
   description: A jumpsuit built for Freedom Fighters.
   components:
   - type: Sprite
@@ -59,7 +59,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitETOMedical
-  name: ETO Corpsman Jumpsuit
+  name: ETO corpsman jumpsuit
   description: A jumpsuit built for those who keep the freedom fighters alive.
   components:
   - type: Sprite
@@ -70,7 +70,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitETOCombatTech
-  name: ETO Combat Technician Jumpsuit
+  name: ETO combat technician jumpsuit
   description: A jumpsuit built for those who build the foundation of the future.
   components:
   - type: Sprite

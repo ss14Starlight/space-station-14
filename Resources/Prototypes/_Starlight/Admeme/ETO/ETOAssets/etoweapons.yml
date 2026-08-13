@@ -2,7 +2,9 @@
   name: PS Z46
   parent: [BaseSecurityContraband, BaseWeaponRifle]
   id: WeaponRifleZ46
-  description: A Private Servitude designed rifle that was built to compete with the arms race, chambers in .30 rifle rounds and hits like a car.
+  suffix: ETO
+  categories: [ DoNotMap ]
+  description: A rifle designed by Private Servitude to make heavier rifles more commonly available. Chambers in .30 rifle rounds.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/weapons/g36/g36.rsi
@@ -67,7 +69,9 @@
   name: PS Z77 T1
   parent: [BaseWeaponRifle, BaseSecurityContraband]
   id: WeaponRifleZ77T1
-  description: A battle rifle designed by Private Servitude, takes .20 rifle rounds.
+  description: A rifle designed by Private Servitude, cheaper than the commonly used Lecter. Takes .20 rifle rounds.
+  suffix: ETO
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/weapons/m77b1/m77.rsi
@@ -130,7 +134,9 @@
   name: PS DD-22 Dryson
   parent: [BaseWeaponSubMachineGun, BaseSecuritySalvageContraband]
   id: WeaponSubMachineGunDD22
-  description: Designed by Private Servitude, while it shares some similarities with the AKMS, it was made by an entirely different company. Chambers in .35 Rounds and feeds from a unique bottom mounted magazine.
+  description: An SMG designed by Private Servitude, partially inspired by the AKMS. Chambers in .35 Rounds and feeds from a unique bottom mounted magazine.
+  suffix: ETO
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/weapons/bizon.rsi
@@ -185,7 +191,9 @@
   name: PS Taiga-10
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunTaiga
-  description: A shotgun designed by Private Servitude, chambered in 12 gauge and feeds from 12 Gauge drum magazines. Can switch between semi-auto and full auto.
+  description: A shotgun designed by Private Servitude, feeds from 12 Gauge drum magazines. Can switch between semi-auto and full auto.
+  suffix: ETO
+  categories: [ DoNotMap ]
   components:
   - type: Item
     sprite: _Starlight/Admeme/ETO/weapons/saiga/saigainhand.rsi
@@ -234,7 +242,9 @@
   name: PS-75 Auto
   parent: [BaseWeaponPistol, BaseSecurityContraband]
   id: WeaponPistol75auto
-  description: A handgun with an ergonomic design, feeds from .35 pistol magazines and can fire in full-auto if the time calls for it.
+  description: A fully automatic handgun with an ergonomic design, feeds from .35 pistol magazines.
+  suffix: ETO
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/weapons/cz75.rsi

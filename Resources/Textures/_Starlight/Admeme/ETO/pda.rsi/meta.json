@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0",
+  "license": "CC-BY-SA-4.0",
   "copyright": "All PDA's here made by The Purple Screen.",
   "size": {
     "x": 32,
@@ -8,32 +8,40 @@
   },
   "states": [
     {
-      "name": "pda"
+      "name": "pda",
+      "copyright": "The Purple Screen"
     },
     {
-      "name": "id_overlay"
+      "name": "id_overlay",
+      "copyright": "The Purple Screen"
     },
     {
       "name": "equipped-BELT",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
-      "name": "insert_overlay"
+      "name": "insert_overlay",
+      "copyright": "The Purple Screen"
     },
     {
-      "name": "light_overlay"
+      "name": "light_overlay",
+      "copyright": "The Purple Screen"
     },
     {
       "name": "equipped-IDCARD",
-      "directions": 4
+      "directions": 4,
+      "copyright": "The Purple Screen"
     },
     {
       "name": "pda-ETO",
