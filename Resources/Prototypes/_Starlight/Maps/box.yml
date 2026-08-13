@@ -28,7 +28,6 @@
             Librarian: [ 1, 1 ]
             Lawyer: [ 1, 1 ]
             ServiceWorker: [ 2, 3 ]
-            RadioHost: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
