@@ -1,11 +1,4 @@
 Entries:
-- author: RedSpeeds
-  changes:
-  - message: Made shuttle terminals lockable and they can now have accesses set to them.
-    type: Add
-  id: 407159
-  time: '2026-07-31T12:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5186
 - author: neomoth
   changes:
   - message: Added new MPurp HUD theme.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407558
   time: '2026-08-12T21:33:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5567
+- author: Mack
+  changes:
+  - message: You can now deconstruct bar windows.
+    type: Fix
+  id: 407559
+  time: '2026-08-13T14:07:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5647
 Order: -1
