@@ -22,6 +22,27 @@
     forceDisplacements: true
     speciesId: dog
     templateId: K9
+    displacements:
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: outerClothing
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: suitstorage
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: mask
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: eyes
   - type: Stripping
   - type: RotationVisuals
     defaultRotation: 90
