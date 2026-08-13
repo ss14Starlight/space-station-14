@@ -87,6 +87,15 @@
   - type: FiringPinHolder
     supportedPins: [ Pistol, GunUpgrade ]
   # starlight end
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: SMGPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SMGDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SMGDrop
 
 - type: entity
   name: Atreides

@@ -7,9 +7,6 @@
     layers:
       - map: [ base ]
         state: icon
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Items/toolbox_drop.ogg
   - type: Storage
     maxItemSize: Normal
     grid:
@@ -36,6 +33,14 @@
           True: { state: icon-open }
           False: { state: icon }
   - type: Appearance
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_Goobstation/Items/handling/toolbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound: &toolboxDropSound
+      path: /Audio/Items/toolbox_drop.ogg
+  - type: EmitSoundOnLand
+    sound: *toolboxDropSound
 
 - type: entity
   name: emergency toolbox

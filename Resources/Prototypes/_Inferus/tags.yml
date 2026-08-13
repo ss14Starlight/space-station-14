@@ -1,0 +1,32 @@
+- type: Tag
+  id: FloralAnomalyCore
+
+- type: Tag
+  id: BlueSpaceAnomalyCore
+
+- type: Tag
+  id: FireAnomalyCore
+
+- type: Tag
+  id: FleshAnomalyCore
+
+- type: Tag
+  id: FrostAnomalyCore
+
+- type: Tag
+  id: GravAnomalyCore
+
+- type: Tag
+  id: RockAnomalyCore
+
+- type: Tag
+  id: ShadowAnomalyCore
+
+- type: Tag
+  id: ShockAnomalyCore
+
+- type: Tag
+  id: TechAnomalyCore
+
+- type: Tag
+  id: SantaAnomalyCore

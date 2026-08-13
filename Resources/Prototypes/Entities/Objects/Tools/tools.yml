@@ -4,9 +4,21 @@
   id: Wirecutter
   description: This kills the wire.
   components:
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_EE/Items/Handling/wirecutter_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_EE/Items/Handling/wirecutter_drop.ogg
+      params:
+        volume: -4
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Items/wirecutter_drop.ogg
+      path: /Audio/_EE/Items/Handling/wirecutter_drop.ogg
+      params:
+        volume: -4
   - type: Tag
     tags:
     - PlantSampleTaker
@@ -65,9 +77,21 @@
   id: Screwdriver
   description: Industrial grade torque in a small screwdriving package.
   components:
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_EE/Items/Handling/screwdriver_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_EE/Items/Handling/screwdriver_drop.ogg
+      params:
+        volume: -4
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/screwdriver_drop.ogg
+      params:
+        volume: -4
   - type: Tag
     tags:
     - Screwdriver
@@ -122,9 +146,21 @@
   id: Wrench
   description: 'A common tool for assembly and disassembly. Remember: lefty latchy, righty removey.'
   components:
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_EE/Items/Handling/wrench_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_EE/Items/Handling/wrench_drop.ogg
+      params:
+        volume: -4
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/wrench_drop.ogg
+      params:
+        volume: -4
   - type: Tag
     tags:
     - Wrench
@@ -172,9 +208,21 @@
   id: Multitool
   description: An advanced tool to copy, store, and send electrical pulses and signals through wires and machines.
   components:
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_EE/Items/Handling/multitool_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_EE/Items/Handling/multitool_drop.ogg
+      params:
+        volume: -4
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/multitool_drop.ogg
+      params:
+        volume: -4
   - type: Sprite
     sprite: Objects/Tools/multitool.rsi
     layers:
@@ -232,9 +280,21 @@
   id: NetworkConfigurator
   description: A tool for linking devices together. Has two modes, a list mode for mass linking devices and a linking mode for advanced device linking.
   components:
+    - type: EmitSoundOnPickup # Inferus
+      sound:
+        path: /Audio/_EE/Items/Handling/multitool_pickup.ogg
+        params:
+          volume: -4
+    - type: EmitSoundOnDrop
+      sound:
+        path: /Audio/_EE/Items/Handling/multitool_drop.ogg
+        params:
+          volume: -4
     - type: EmitSoundOnLand
       sound:
         path: /Audio/Items/multitool_drop.ogg
+        params:
+          volume: -4
     - type: Sprite
       sprite: Objects/Tools/network_configurator.rsi
       layers:

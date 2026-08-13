@@ -1,0 +1,105 @@
+- type: constructionGraph
+  id: AnomalyHat
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: bluespace
+      steps:
+      - tag: BlueSpaceAnomalyCore
+        name: construction-graph-tag-bluespaceanomcore
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+          state: core
+        doAfter: 5
+    - to: floral
+      steps:
+      - tag: FloralAnomalyCore
+        name: construction-graph-tag-floralanaomlycore
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/flora_core.rsi
+          state: core
+        doAfter: 5
+    - to: fire
+      steps:
+      - tag: FireAnomalyCore
+        name: construction-graph-tag-firealanaomlycore
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/pyro_core.rsi
+          state: core
+        doAfter: 5
+    - to: flesh
+      steps:
+      - tag: FleshAnomalyCore
+        name: construction-graph-tag-fleshalanaomlycore
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/flesh_core.rsi
+          state: core
+        doAfter: 5
+    - to: frost
+      steps:
+      - tag: FrostAnomalyCore
+        name: construction-graph-tag-frostalanaomlycore
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/ice_core.rsi
+          state: core
+        doAfter: 5
+    - to: grav
+      steps:
+      - tag: GravAnomalyCore
+        name: construction-graph-tag-gravalanaomlycore
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/gravity_core.rsi
+          state: core
+        doAfter: 5
+    - to: rock
+      steps:
+      - tag: RockAnomalyCore
+        name: construction-graph-tag-rockalanaomlycore
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/rock_core.rsi
+          state: core
+        doAfter: 5
+    - to: shadow
+      steps:
+      - tag: ShadowAnomalyCore
+        name: construction-graph-tag-shadowalanaomlycore
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/shadow_core.rsi
+          state: core
+        doAfter: 5
+    - to: shock
+      steps:
+      - tag: ShockAnomalyCore
+        name: construction-graph-tag-shockalanaomlycore
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/electric_core.rsi
+          state: core
+        doAfter: 5
+    - to: tech
+      steps:
+      - tag: TechAnomalyCore
+        name: construction-graph-tag-techalanaomlycore
+        icon:
+          sprite: Structures/Specific/Anomalies/Cores/tech_core.rsi
+          state: core
+        doAfter: 5
+  - node: bluespace
+    entity: anomalyhatbluespace
+  - node: floral
+    entity: anomalyhatfloral
+  - node: fire
+    entity: anomalyhatfire
+  - node: flesh
+    entity: anomalyhatflesh
+  - node: frost
+    entity: anomalyhatfrost
+  - node: grav
+    entity: anomalyhagrav
+  - node: rock
+    entity: anomalyhatrock
+  - node: shadow
+    entity: anomalyhatshadow
+  - node: shock
+    entity: anomalyhatshock
+  - node: tech

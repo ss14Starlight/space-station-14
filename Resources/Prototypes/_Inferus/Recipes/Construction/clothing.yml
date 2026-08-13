@@ -1,0 +1,79 @@
+- type: construction
+  id: AnomalyHatBluepsace
+  graph: AnomalyHat
+  startNode: start
+  targetNode: bluespace
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: AnomalyHatFloral
+  graph: AnomalyHat
+  startNode: start
+  targetNode: floral
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: AnomalyHatFire
+  graph: AnomalyHat
+  startNode: start
+  targetNode: fire
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: AnomalyHatFlesh
+  graph: AnomalyHat
+  startNode: start
+  targetNode: flesh
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: AnomalyHatFrost
+  graph: AnomalyHat
+  startNode: start
+  targetNode: frost
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: AnomalyHatGrav
+  graph: AnomalyHat
+  startNode: start
+  targetNode: grav
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: AnomalyHatRock
+  graph: AnomalyHat
+  startNode: start
+  targetNode: rock
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: AnomalyHatShadow
+  graph: AnomalyHat
+  startNode: start
+  targetNode: shadow
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: AnomalyHatShock
+  graph: AnomalyHat
+  startNode: start
+  targetNode: shock
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: AnomalyHatTech
+  graph: AnomalyHat
+  startNode: start
+  targetNode: tech
+  category: construction-category-clothing
+  objectType: Item

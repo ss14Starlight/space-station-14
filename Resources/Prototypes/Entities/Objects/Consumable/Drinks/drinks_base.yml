@@ -46,6 +46,21 @@
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_EE/Items/Handling/drinkglass_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_EE/Items/Handling/drinkglass_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_EE/Items/Handling/drinkglass_drop.ogg
+      params:
+        volume: -4
 
 ## Misc bases
 

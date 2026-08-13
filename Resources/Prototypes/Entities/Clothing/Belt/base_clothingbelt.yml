@@ -17,6 +17,18 @@
       Cloth: 50
   - type: StaticPrice
     price: 20
+  - type: EmitSoundOnPickup # Inferus
+    sound: &beltPickupSound
+      path: /Audio/_Goobstation/Items/handling/toolbelt_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound: &beltDropSound
+      path: /Audio/_Goobstation/Items/handling/toolbelt_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound: *beltDropSound
 
 - type: entity
   abstract: true

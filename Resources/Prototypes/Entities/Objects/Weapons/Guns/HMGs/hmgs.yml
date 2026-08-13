@@ -44,6 +44,15 @@
   - type: StaticPrice
     price: 500
   # No chamber because HMG may want its own
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
 
 - type: entity
   name: minigun

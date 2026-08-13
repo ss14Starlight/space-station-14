@@ -21,6 +21,16 @@
     - Slicing
   - type: Engraveable # Starlight
     engraveVerb: "engraving-verb-engrave"
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_Goobstation/Items/handling/knife_pickup.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/sabre_drop.ogg
+      params:
+        volume: -8
 
 #Shortswords
 - type: entity

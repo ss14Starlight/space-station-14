@@ -29,6 +29,18 @@
     receiveFrequencyId: BasicDevice
   - type: WirelessNetworkConnection
     range: 15
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound: &signallerDropSound
+      path: /Audio/_Goobstation/Items/handling/component_drop.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnLand
+    sound: *signallerDropSound
 
 - type: entity
   parent: RemoteSignaller
@@ -48,3 +60,12 @@
     range: 50
   - type: StaticPrice
     price: 30
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound: *signallerDropSound
+  - type: EmitSoundOnLand
+    sound: *signallerDropSound

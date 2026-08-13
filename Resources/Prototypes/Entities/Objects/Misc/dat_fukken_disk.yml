@@ -26,6 +26,21 @@
     - GhostOnlyWarp
   - type: StealTarget
     stealGroup: NukeDisk
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_EE/Items/Handling/disk_pickup.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_EE/Items/Handling/disk_drop.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_EE/Items/Handling/disk_drop.ogg
+      params:
+        volume: -8
 
 - type: entity
   name: nuclear authentication disk
@@ -45,3 +60,18 @@
   - type: SentienceTarget #Starlight
     flavorKind: station-event-random-sentience-flavor-inanimate #Starlight
     weight: 0.001 #Starlight
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_EE/Items/Handling/disk_pickup.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_EE/Items/Handling/disk_drop.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_EE/Items/Handling/disk_drop.ogg
+      params:
+        volume: -8

@@ -79,9 +79,9 @@
       types:
         Blunt: 15
     openSound:
-      path: /Audio/Machines/airlock_open.ogg
+      path: /Audio/_Funkystation/Machines/airlock_open.ogg # Inferus
     closeSound:
-      path: /Audio/_ES/Machines/airlock_close.ogg # Ephemeral Space - better door timings
+      path: /Audio/_Funkystation/Machines/airlock_close.ogg # Inferus
     denySound:
       path: /Audio/Machines/airlock_deny.ogg
   - type: ContainerContainer

@@ -64,6 +64,15 @@
     # starlight end
   - type: StaticPrice
     price: 500
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: RevolversPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RevolversDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RevolversDrop
 
 - type: entity
   name: deckard # Starlight, capitalization

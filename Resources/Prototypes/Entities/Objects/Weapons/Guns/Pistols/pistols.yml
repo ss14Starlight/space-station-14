@@ -96,6 +96,15 @@
   - type: AltFireMelee
   - type: ForceQuickDraw #All pistols can now be smart equipped from pockets instead of removing their magazines! Rejoice!
   # starlight end
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: PistolsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PistolsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PistolsDrop
 
 - type: entity
   name: viper

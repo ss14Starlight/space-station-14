@@ -6,6 +6,12 @@
   id: ClothingHeadHelmetBase
   abstract: true
   components:
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_Goobstation/Items/handling/helmet_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/helmet_drop.ogg
   - type: Tag
     tags:
     - WhitelistChameleon

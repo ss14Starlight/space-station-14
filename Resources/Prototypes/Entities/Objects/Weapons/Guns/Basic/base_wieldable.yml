@@ -24,3 +24,12 @@
   - type: MeleeRequiresWield
   - type: AltFireMelee
   # starlight end
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop

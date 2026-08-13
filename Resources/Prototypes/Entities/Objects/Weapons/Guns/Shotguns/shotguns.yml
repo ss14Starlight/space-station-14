@@ -75,6 +75,15 @@
   - type: FiringPinHolder
     supportedPins: [ Rifle, GunUpgrade ]
   # Starlight End
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: ShotgunsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: ShotgunsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShotgunsDrop
 
 - type: entity
   name: Bulldog

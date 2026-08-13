@@ -40,6 +40,18 @@
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
 # Starlight end
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_Goobstation/Items/handling/knife_pickup.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnDrop
+    sound: &knifeDropSound
+      path: /Audio/_Goobstation/Items/handling/knife_drop.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnLand
+    sound: *knifeDropSound
 
 - type: entity
   parent: BaseKnife

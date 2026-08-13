@@ -1,0 +1,259 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: anomalyhatfloral # floral
+  name: floral anomaly hat
+  description: How does it work, you may be asking? HOW?! WITH SCIENCE, OF COURSE!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    layers:
+    - state: flora
+      shader: unshaded
+  - type: Clothing
+    slots: [head]
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    clothingVisuals:
+      head:
+      - state: flora
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+  - type: Construction
+    graph: AnomalyHat
+    node: start
+
+- type: entity
+  parent: ClothingHeadBase
+  id: anomalyhatbluespace # bluespace
+  name: bluespace anomaly hat
+  description: How does it work, you may be asking? HOW?! WITH SCIENCE, OF COURSE!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    layers:
+    - state: bluespace
+      shader: unshaded
+  - type: Clothing
+    slots: [head]
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    clothingVisuals:
+      head:
+      - state: bluespace
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+  - type: Construction
+    graph: AnomalyHat
+    node: start
+
+- type: entity
+  parent: ClothingHeadBase
+  id: anomalyhatfire # fire
+  name: fire anomaly hat
+  description: How does it work, you may be asking? HOW?! WITH SCIENCE, OF COURSE!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    layers:
+    - state: fire
+      shader: unshaded
+  - type: Clothing
+    slots: [head]
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    clothingVisuals:
+      head:
+      - state: fire
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+  - type: Construction
+    graph: AnomalyHat
+    node: start
+
+- type: entity
+  parent: ClothingHeadBase
+  id: anomalyhatflesh # flesh
+  name: flesh anomaly hat
+  description: How does it work, you may be asking? HOW?! WITH SCIENCE, OF COURSE!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    layers:
+    - state: flesh
+      shader: unshaded
+  - type: Clothing
+    slots: [head]
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    clothingVisuals:
+      head:
+      - state: flesh
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+  - type: Construction
+    graph: AnomalyHat
+    node: start
+
+- type: entity
+  parent: ClothingHeadBase
+  id: anomalyhatfrost # frost
+  name: frost anomaly hat
+  description: How does it work, you may be asking? HOW?! WITH SCIENCE, OF COURSE!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    layers:
+    - state: frost
+      shader: unshaded
+  - type: Clothing
+    slots: [head]
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    clothingVisuals:
+      head:
+      - state: frost
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+  - type: Construction
+    graph: AnomalyHat
+    node: start
+
+- type: entity
+  parent: ClothingHeadBase
+  id: anomalyhagrav # grav
+  name: grav anomaly hat
+  description: How does it work, you may be asking? HOW?! WITH SCIENCE, OF COURSE!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    layers:
+    - state: grav
+      shader: unshaded
+  - type: Clothing
+    slots: [head]
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    clothingVisuals:
+      head:
+      - state: grav
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+  - type: Construction
+    graph: AnomalyHat
+    node: start
+
+- type: entity
+  parent: ClothingHeadBase
+  id: anomalyhatrock # rock
+  name: rock anomaly hat
+  description: How does it work, you may be asking? HOW?! WITH SCIENCE, OF COURSE!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    layers:
+    - state: rock
+      shader: unshaded
+  - type: Clothing
+    slots: [head]
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    clothingVisuals:
+      head:
+      - state: rock
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+  - type: Construction
+    graph: AnomalyHat
+    node: start
+
+- type: entity
+  parent: ClothingHeadBase
+  id: anomalyhatshadow # shadow
+  name: shadow anomaly hat
+  description: How does it work, you may be asking? HOW?! WITH SCIENCE, OF COURSE!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    layers:
+    - state: shadow
+      shader: unshaded
+  - type: Clothing
+    slots: [head]
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    clothingVisuals:
+      head:
+      - state: shadow
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+  - type: Construction
+    graph: AnomalyHat
+    node: start
+
+- type: entity
+  parent: ClothingHeadBase
+  id: anomalyhatshock # shock
+  name: shock anomaly hat
+  description: How does it work, you may be asking? HOW?! WITH SCIENCE, OF COURSE!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    layers:
+    - state: shock
+      shader: unshaded
+  - type: Clothing
+    slots: [head]
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    clothingVisuals:
+      head:
+      - state: shock
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+  - type: Construction
+    graph: AnomalyHat
+    node: start
+
+- type: entity
+  parent: ClothingHeadBase
+  id: anomalyhattech # tech
+  name: tech anomaly hat
+  description: How does it work, you may be asking? HOW?! WITH SCIENCE, OF COURSE!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    layers:
+    - state: tech
+      shader: unshaded
+  - type: Clothing
+    slots: [head]
+    sprite: Structures/Specific/Anomalies/inner_anom_layer.rsi
+    clothingVisuals:
+      head:
+      - state: tech
+        shader: unshaded
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+  - type: Construction
+    graph: AnomalyHat
+    node: start

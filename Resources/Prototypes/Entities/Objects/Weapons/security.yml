@@ -211,6 +211,14 @@
       guides:
       - Security
       - Antagonists
+    - type: EmitSoundOnPickup # Inferus
+      sound:
+        path: /Audio/_Goobstation/Items/handling/component_pickup.ogg
+    - type: EmitSoundOnDrop
+      sound: &flashDropSound
+        path: /Audio/_Goobstation/Items/handling/component_drop.ogg
+    - type: EmitSoundOnLand
+      sound: *flashDropSound
 
 - type: entity
   name: flash

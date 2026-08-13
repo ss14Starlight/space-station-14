@@ -6,8 +6,25 @@
   - type: Clothing
     slots:
     - outerClothing
+    equipSound: # Inferus
+      collection: GenericEquip
   - type: Sprite
     state: icon
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: GenericPickup
+      params:
+        volume: -9
+  - type: EmitSoundOnDrop
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -9
+  - type: EmitSoundOnLand
+    sound:
+      collection: GenericDrop
+      params:
+        volume: -9
 
 - type: entity
   abstract: true

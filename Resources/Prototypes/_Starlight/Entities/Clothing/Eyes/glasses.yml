@@ -315,7 +315,7 @@
   parent: [ClothingEyesBase, BaseSecurityScienceCommandContraband]
   id: ClothingEyesGlassesNullSpace
   name: nullspace goggles
-  description: An unusual pair of goggles developed during a time of inhumane experimentation involving Shadekin. They are designed to allow the wearer to peer into NullSpace.
+  description: An unusual pair of goggles developed by Aetheris Dynamics to be used by burned Shadekin trying to look back home. They are designed to allow the wearer to peer into NullSpace. # Inferus - we're not cruel to shadekin
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Eyes/Glasses/nullspacegoogles.rsi

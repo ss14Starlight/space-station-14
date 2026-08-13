@@ -103,6 +103,7 @@
   - type: MobMover
   - type: MovementSpeedModifier
   - type: LagCompensation
+  - type: UnderTableCrawling # Inferus
 
 - type: entity
   save: false

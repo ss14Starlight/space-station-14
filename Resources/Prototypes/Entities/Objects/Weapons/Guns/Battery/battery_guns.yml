@@ -30,6 +30,15 @@
     startingCharge: 1000
   - type: StaticPrice
     price: 500
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: LasersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
 
 - type: entity
   parent: [BaseWeaponBattery, BaseGunWieldable]

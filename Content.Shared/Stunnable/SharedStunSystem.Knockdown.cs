@@ -19,6 +19,8 @@ using Content.Shared.Standing;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Climbing.Components;
+using Content.Shared.Climbing.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
@@ -26,6 +28,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Stunnable;
 
@@ -44,6 +47,7 @@ public abstract partial class SharedStunSystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private StandingStateSystem _standingState = default!;
     [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private readonly ClimbSystem _climb = default!; // Inferus
 
     private static readonly ProtoId<ItemSizePrototype> MaxItemSize = "Small";
 
@@ -387,13 +391,21 @@ public abstract partial class SharedStunSystem
         if (!TryStand(entity))
             return true;
 
-        if (!IntersectingStandingColliders(entity.Owner))
+        if (!IntersectingStandingColliders(entity.Owner, out var collider))
             return false;
+
+        // Inferus - try climb instead of getting stuck
+        if (TryComp<ClimbableComponent>(collider.Value, out var colliderClimb)
+            && _climb.CanVault(colliderClimb, entity, collider.Value, out _))
+        {
+            // Next tick so standing finishes first
+            Robust.Shared.Timing.Timer.Spawn(0, () => _climb.ForciblySetClimbing(entity, collider.Value));
+            return false;
+        }
 
         _popup.PopupClient(Loc.GetString("knockdown-component-stand-no-room"), entity, entity, PopupType.SmallCaution);
         SetAutoStand(entity.Owner);
         return true;
-
     }
 
     private void OnForceStandup(ForceStandUpEvent msg, EntitySessionEventArgs args)
@@ -467,10 +479,11 @@ public abstract partial class SharedStunSystem
     ///     Checks if standing would cause us to collide with something and potentially get stuck.
     ///     Returns true if we will collide with something, and false if we will not.
     /// </summary>
-    private bool IntersectingStandingColliders(Entity<TransformComponent?> entity)
+    private bool IntersectingStandingColliders(Entity<TransformComponent?> entity, [NotNullWhen(true)] out EntityUid? collider)
     {
-        // Starlight begin
-        // Allows getting up from crawling while sneaking underneath the collider
+        collider = null;
+
+        // Starlight begin — existing
         if (TryComp<CrawlUnderObjectsComponent>(entity, out var crawlUnder) && crawlUnder.Enabled)
             return false;
         // Starlight end
@@ -507,7 +520,10 @@ public abstract partial class SharedStunSystem
                 {
                     var intersection = fixture.Shape.ComputeAABB(xform, i).IntersectPercentage(ourAABB);
                     if (intersection > 0.1f)
+                    { // Inferus Edit
+                        collider = ent;
                         return true;
+                    }
                 }
             }
         }

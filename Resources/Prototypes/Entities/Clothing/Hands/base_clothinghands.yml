@@ -7,6 +7,10 @@
     state: icon
   - type: Clothing
     slots: [gloves]
+    equipSound: # Inferus
+      path: /Audio/_Goobstation/Items/handling/generic_equip2.ogg
+      params:
+        volume: -4
   - type: Edible
     requiresSpecialDigestion: true
   - type: Item

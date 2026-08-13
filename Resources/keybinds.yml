@@ -666,3 +666,7 @@ binds:
 - function: FocusSubtleOOC
   mod1: Shift
   key: LBracket
+- function: ToggleCrawlingUnder
+  type: State
+  mod1: Shift
+  key: C

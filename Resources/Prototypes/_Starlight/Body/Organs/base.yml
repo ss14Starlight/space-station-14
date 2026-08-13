@@ -36,6 +36,15 @@
       Burger: Brain
       Taco: Brain
   - type: ActiveInputMover # Starlight
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction
 
 - type: entity
   id: BaseOrganEyes
@@ -58,6 +67,15 @@
     prototypes:
       Default: MobHumanoidEyes
     #Starlight end
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction
 
 - type: entity
   id: BaseOrganTongue
@@ -74,6 +92,15 @@
         Caustic: 10
   - type: Damageable
     damageContainer: Biological
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction
 
 - type: entity
   id: BaseOrganAppendix
@@ -89,6 +116,15 @@
         Radiation: 10
   - type: Damageable
     damageContainer: Biological
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction
 
 - type: entity
   id: BaseOrganEars
@@ -98,6 +134,15 @@
   - type: OrganDamage
   - type: Damageable
     damageContainer: Biological
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction
 
 - type: entity
   id: BaseOrganLungs
@@ -113,6 +158,15 @@
         Radiation: 30
   - type: Damageable
     damageContainer: Biological
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction
 
 - type: entity
   id: BaseOrganHeart
@@ -129,6 +183,15 @@
         Radiation: 10
   - type: Damageable
     damageContainer: Biological
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction
 
 - type: entity
   id: BaseOrganStomach
@@ -145,6 +208,15 @@
         Radiation: 10
   - type: Damageable
     damageContainer: Biological
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction
 
 - type: entity
   id: BaseOrganLiver
@@ -161,6 +233,15 @@
         Radiation: 30
   - type: Damageable
     damageContainer: Biological
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction
 
 - type: entity
   id: BaseOrganKidneys
@@ -178,3 +259,12 @@
         Cold: 120
   - type: Damageable
     damageContainer: Biological
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnDrop
+    sound:
+      collection: OrganInteraction
+  - type: EmitSoundOnLand
+    sound:
+      collection: OrganInteraction

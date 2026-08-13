@@ -3,7 +3,7 @@
   name: guide-entry-rules
   ruleEntry: true
   priority: 10
-  text: "/ServerInfo/_Inferus/Guidebook/ServerRules/InferusRules.xml"
+  text: "/ServerInfo/_Inferus/Guidebook/InferusRules.xml"
   children:
   - RuleI0
   - RuleI1-1

@@ -4,6 +4,16 @@
   id: Welder
   description: "Melts anything as long as it's fueled, don't forget your eye protection!"
   components:
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_EE/Items/Handling/welder_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_EE/Items/Handling/welder_drop.ogg
+      params:
+        volume: -4
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/welder_drop.ogg

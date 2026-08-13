@@ -18,6 +18,14 @@
     - type: Tag
       tags:
       - ConstructionMaterial
+    - type: EmitSoundOnPickup # Inferus
+      sound:
+        path: /Audio/_Goobstation/Items/handling/component_pickup.ogg
+    - type: EmitSoundOnDrop
+      sound: &partDropSound
+        path: /Audio/_Goobstation/Items/handling/component_drop.ogg
+    - type: EmitSoundOnLand
+      sound: *partDropSound
 
 - type: entity
   id: MicroManipulatorStockPart

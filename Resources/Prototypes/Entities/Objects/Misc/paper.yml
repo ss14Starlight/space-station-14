@@ -64,6 +64,12 @@
       SheetPrinter: 100
   - type: Item
     size: Tiny
+  - type: EmitSoundOnPickup # Inferus
+    sound: /Audio/_EE/Items/Handling/paper_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound: /Audio/_EE/Items/Handling/paper_drop.ogg
+  - type: EmitSoundOnLand
+    sound: /Audio/_EE/Items/Handling/paper_drop.ogg
 
 - type: entity
   name: paper

@@ -27,3 +27,18 @@
     price: 85
   - type: UseDelay
     delay: 1
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      path: /Audio/_EE/Items/Handling/multitool_pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_EE/Items/Handling/multitool_drop.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/multitool_drop.ogg
+      params:
+        volume: -4

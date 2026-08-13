@@ -79,6 +79,15 @@
   - type: FiringPinHolder
     supportedPins: [ Rifle, GunUpgrade ]
   # starlight end
+  - type: EmitSoundOnPickup # Inferus
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
 
 - type: entity
   name: Kardashev-Mosin

@@ -147,10 +147,10 @@
     isCollidableWhenOpen: true
     enteringOffset: 0, -0.6
     enteringRange: 0.03
-    closeSound:
-      path: /Audio/Items/deconstruct.ogg
     openSound:
-      path: /Audio/Items/deconstruct.ogg
+      path: /Audio/_Goobstation/Effects/closetopen.ogg # Inferus
+    closeSound:
+      path: /Audio/_Goobstation/Effects/closetclose.ogg # Inferus
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container
