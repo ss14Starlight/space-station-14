@@ -1,18 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Added new MPurp HUD theme.
-    type: Add
-  id: 407160
-  time: '2026-07-31T12:56:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5251
-- author: Johnny
-  changes:
-  - message: (CC-SC17) Added more windows to some places like medical to see the beautiful view.
-    type: Tweak
-  id: 407161
-  time: '2026-07-31T12:56:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5413
 - author: Johnny
   changes:
   - message: (CC-SC17) Made the panopticon look nicer and more resistant to spacing.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407559
   time: '2026-08-13T14:07:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5647
+- author: SirLutz
+  changes:
+  - message: Supermatter guidebook entry.
+    type: Add
+  id: 407560
+  time: '2026-08-13T14:28:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5429
+- author: SirLutz
+  changes:
+  - message: Supermatter guidebook hints for valid setups.
+    type: Add
+  id: 407561
+  time: '2026-08-13T14:28:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5429
 Order: -1
