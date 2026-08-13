@@ -85,7 +85,7 @@
   parent: [ ClothingMaskGas, BaseETOContraband ]
   id: ClothingMaskGasETO
   name: ETO operative mask
-  description: Standard ETO Operative mask, has some ballistic reinforcement to keep your face from being swiss cheesed all the time, but won't keep you alive alone.
+  description: Standard ETO operative mask, has some ballistic reinforcement to keep your face from being swiss cheesed all the time, but won't keep you alive on its own.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/etomaskgrunt.rsi
