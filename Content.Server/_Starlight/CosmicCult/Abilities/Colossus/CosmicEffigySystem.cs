@@ -35,7 +35,6 @@ public sealed partial class CosmicEffigySystem : EntitySystem
     [Dependency] private SharedChargesSystem _charges = default!;
     [Dependency] private ChatSystem _chatSystem = default!;
     [Dependency] private NavMapSystem _navMap = default!;
-    
     public override void Initialize()
     {
         base.Initialize();

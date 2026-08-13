@@ -100,8 +100,8 @@ public sealed partial class CosmicIngressSystem : EntitySystem
             return;
         }
 
-        // Revalidate the target after the DoAfter. 
-        if (!TryComp<DoorComponent>(target, out _)) 
+        /// Revalidate the target after the DoAfter.
+        if (!TryComp<DoorComponent>(target, out _))
             return;
 
         var coordinates = Transform(target).Coordinates;

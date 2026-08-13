@@ -45,8 +45,8 @@
 
   ## Empowered Malign Rifts
 
-  <Box> 
-    <GuideEntityEmbed Entity="CosmicMalignRift" Caption="Malign Rift"/> <GuideEntityEmbed Entity="CosmicMalignEmpoweredRift" Caption="Empowered Malign Rift"/> 
+  <Box>
+    <GuideEntityEmbed Entity="CosmicMalignRift" Caption="Malign Rift"/> <GuideEntityEmbed Entity="CosmicMalignEmpoweredRift" Caption="Empowered Malign Rift"/>
   </Box>
 
   A Colossus may empower a [color=#4cabb3]Malign Rift[/color], transforming it into an [color=#6A4CFF]Empowered Malign Rift[/color]. Unlike ordinary rifts, empowered rifts are immune to the decay that normally claims malign anomalies.

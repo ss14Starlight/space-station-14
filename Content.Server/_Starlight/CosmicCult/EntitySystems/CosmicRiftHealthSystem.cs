@@ -37,7 +37,7 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
         base.Update(frameTime);
 
         var corpseCount = _riftSystem.StoredCorpseCount;
-    
+
         if (!_corpseWarning1 && corpseCount >= 5)
         {
             _corpseWarning1 = true;
@@ -77,7 +77,7 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
                 playSound: false,
                 colorOverride: Color.Red);
 
-             _audio.PlayGlobal(
+            _audio.PlayGlobal(
                 new SoundPathSpecifier("/Audio/Misc/cosmic_scream.ogg"),
                 Filter.Broadcast(),
                 true,
@@ -87,7 +87,6 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
                 new SoundPathSpecifier("/Audio/Misc/redalert.ogg"),
                 Filter.Broadcast(),
                 true);
-            
         }
 
         // if 10 has been reached, but count gone back to 2 we can reset the alarms.
@@ -115,11 +114,11 @@ public sealed class CosmicRiftHealthSystem : EntitySystem
             DestructibleComponent>();
 
         while (query.MoveNext(
-                   out var uid,
-                   out var health,
-                   out var thresholds,
-                   out var damageable,
-                   out var destructible))
+                out var uid,
+                out var health,
+                out var thresholds,
+                out var damageable,
+                out var destructible))
         {
             var desiredBonus = corpseCount * health.HealthPerCorpse;
             var bonusDifference = desiredBonus - health.AppliedCorpseBonus;

@@ -39,7 +39,6 @@ public sealed partial class CosmicColossusSystem : EntitySystem
     [Dependency] private ThrowingSystem _throw = default!;
     [Dependency] private PointLightSystem _pointLight = default!;
     [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
-    
 
     public override void Initialize()
     {

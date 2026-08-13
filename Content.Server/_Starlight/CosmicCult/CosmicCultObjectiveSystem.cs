@@ -18,8 +18,6 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
-    
-    
 
     public override void Initialize()
     {

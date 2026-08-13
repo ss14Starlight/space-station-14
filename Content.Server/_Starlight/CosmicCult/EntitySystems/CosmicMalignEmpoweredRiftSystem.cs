@@ -103,7 +103,7 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
                 // The humanoid must be critical or dead.
                 if (!TryComp<MobStateComponent>(target, out var mobState))
                     continue;
-                
+
                 if (mobState.CurrentState is not (MobState.Critical or MobState.Dead))
                     continue;
 
