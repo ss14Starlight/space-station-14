@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Medical.Virology;
 
 /// <summary>
-/// A template a concrete strain is rolled from when an outbreak is seeded.
+/// A template a concrete strain is rolled from when virology creates a disease.
 ///
 /// Strains are generated rather than authored so that identification stays meaningful.
 /// A fixed strain is memorised after a few shifts, after which nobody ever touches
@@ -27,30 +27,47 @@ public sealed partial class PathogenArchetypePrototype : IPrototype
     [DataField(required: true)]
     public LocId Name;
 
+    /// <summary>
+    /// Analyzer description shown after the strain has been catalogued.
+    /// </summary>
     [DataField]
     public LocId? Description;
 
+    /// <summary>
+    /// Broad family used by symptoms and contamination. Later spread and PPE systems also
+    /// use this to choose the transmission route and protection checks.
+    /// </summary>
     [DataField]
     public PathogenType PathogenType = PathogenType.Virus;
 
+    /// <summary>
+    /// Severity tier. Higher tiers can replace lower-tier active infections.
+    /// </summary>
     [DataField]
     public PathogenTier Tier = PathogenTier.Ambient;
 
     /// <summary>
-    /// Weight for automatic ambient seeding. Zero means it is never seeded on its own and only
-    /// appears when something asks for it by name - which is how engineered strains work.
+    /// Future weight for automatic ambient seeding. Zero means seeding code should only
+    /// create it when something asks for it by name, which is how engineered strains work.
     /// </summary>
     [DataField]
     public float SeedWeight = 1f;
 
+    /// <summary>
+    /// Whether this archetype's effects are intended to help the host.
+    /// </summary>
     [DataField]
     public bool Beneficial;
 
+    /// <summary>
+    /// Whether natural recovery grants immunity to this specific rolled strain.
+    /// </summary>
     [DataField]
     public bool ImmunityOnRecovery = true;
 
     /// <summary>
-    /// Whether this respawns onto a random host when its last carrier loses it.
+    /// Whether this may respawn onto a random host when its last carrier loses it and
+    /// the extinction respawn gate is enabled.
     /// Ambient strains do; the station never really gets rid of a cold, it just develops
     /// herd immunity until there is nobody left to infect.
     /// </summary>
@@ -93,42 +110,79 @@ public sealed partial class PathogenArchetypePrototype : IPrototype
 
     // --- Rolled numbers ---
 
+    /// <summary>
+    /// Minimum rolled transmission strength. Stored and reported in PR A; later spread
+    /// code consumes it as a multiplier.
+    /// </summary>
     [DataField]
     public float MinTransmissibility = 0.03f;
 
+    /// <summary>
+    /// Maximum rolled transmission strength. Stored and reported in PR A; later spread
+    /// code consumes it as a multiplier.
+    /// </summary>
     [DataField]
     public float MaxTransmissibility = 0.06f;
 
+    /// <summary>
+    /// Minimum future spread radius in tiles.
+    /// </summary>
     [DataField]
     public float MinSpreadRange = 1.5f;
 
+    /// <summary>
+    /// Maximum future spread radius in tiles.
+    /// </summary>
     [DataField]
     public float MaxSpreadRange = 2f;
 
+    /// <summary>
+    /// Minimum time from infection to stage 1. Authored as seconds in YAML.
+    /// </summary>
     [DataField]
     public TimeSpan MinIncubation = TimeSpan.FromSeconds(60);
 
+    /// <summary>
+    /// Maximum time from infection to stage 1. Authored as seconds in YAML.
+    /// </summary>
     [DataField]
     public TimeSpan MaxIncubation = TimeSpan.FromSeconds(150);
 
+    /// <summary>
+    /// Minimum final stage a rolled strain can have, inclusive.
+    /// </summary>
     [DataField]
     public int MinStages = 2;
 
+    /// <summary>
+    /// Maximum final stage a rolled strain can have, inclusive.
+    /// </summary>
     [DataField]
     public int MaxStages = 3;
 
+    /// <summary>
+    /// Minimum time between stage increases after incubation. Authored as seconds in YAML.
+    /// </summary>
     [DataField]
     public TimeSpan MinStageDelay = TimeSpan.FromSeconds(90);
 
+    /// <summary>
+    /// Maximum time between stage increases after incubation. Authored as seconds in YAML.
+    /// </summary>
     [DataField]
     public TimeSpan MaxStageDelay = TimeSpan.FromSeconds(180);
 
     /// <summary>
-    /// Zero for both means the strain never clears on its own.
+    /// Minimum time from stage 1 to natural recovery. Authored as seconds in YAML.
+    /// Zero for both duration bounds means the strain never clears on its own.
     /// </summary>
     [DataField]
     public TimeSpan MinDuration = TimeSpan.FromMinutes(8);
 
+    /// <summary>
+    /// Maximum time from stage 1 to natural recovery. Authored as seconds in YAML.
+    /// Zero for both duration bounds means the strain never clears on its own.
+    /// </summary>
     [DataField]
     public TimeSpan MaxDuration = TimeSpan.FromMinutes(15);
 }

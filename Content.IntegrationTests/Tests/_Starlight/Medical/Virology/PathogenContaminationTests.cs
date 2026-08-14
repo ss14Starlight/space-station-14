@@ -321,6 +321,7 @@ public sealed class PathogenContaminationTests : GameTest
         var contamination = server.System<PathogenContaminationSystem>();
         var puddles = server.System<PuddleSystem>();
         var sources = server.System<PathogenContaminationSourceSystem>();
+        EntityUid puddle = default;
 
         await server.WaitPost(() =>
         {
@@ -328,7 +329,7 @@ public sealed class PathogenContaminationTests : GameTest
             sources.SampleSourcesForTest();
 
             var solution = new Solution("Mold", FixedPoint2.New(100));
-            Assert.That(puddles.TrySpillAt(testMap.Tile, solution, out _), Is.True);
+            Assert.That(puddles.TrySpillAt(testMap.Tile, solution, out puddle), Is.True);
             sources.SampleSourcesForTest();
         });
 
@@ -344,6 +345,8 @@ public sealed class PathogenContaminationTests : GameTest
                     Is.EqualTo(1.8f).Within(0.0001f));
             });
         });
+
+        await server.WaitPost(() => server.EntMan.DeleteEntity(puddle));
     }
 
     [Test]

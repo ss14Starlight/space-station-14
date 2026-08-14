@@ -1,22 +1,23 @@
 namespace Content.Shared._Starlight.Medical.Virology;
 
 /// <summary>
-/// Broad transmission family. Determines spread, symptoms, protection and contamination.
+/// Broad pathogen family. Currently drives symptoms and contamination; transmission and
+/// protection rules are not implemented yet.
 /// </summary>
 public enum PathogenType : byte
 {
     /// <summary>
-    /// Spreads through proximity.
+    /// Viral symptoms and contamination. Proximity spread is not implemented yet.
     /// </summary>
     Virus,
 
     /// <summary>
-    /// Spreads through physical contact only.
+    /// Bacterial symptoms and contamination. Contact spread is not implemented yet.
     /// </summary>
     Bacteria,
 
     /// <summary>
-    /// Spreads from environmental sources only, never directly between hosts.
+    /// Fungal symptoms and contamination. Environmental-only spread is not implemented yet.
     /// </summary>
     Fungus,
 }

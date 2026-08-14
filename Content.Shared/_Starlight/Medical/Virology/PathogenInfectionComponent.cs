@@ -9,6 +9,10 @@ namespace Content.Shared._Starlight.Medical.Virology;
 [RegisterComponent]
 public sealed partial class PathogenInfectionComponent : Component
 {
+    /// <summary>
+    /// Active infection records on this host. The current runtime keeps at most one,
+    /// but the list keeps the serialized shape open for future stacked infections.
+    /// </summary>
     [DataField]
     public List<PathogenInfection> Infections = new();
 }
@@ -27,7 +31,7 @@ public sealed partial class PathogenInfection
     public int Pathogen;
 
     /// <summary>
-    /// 0-3. Zero while incubating. Transmission is already active, but symptoms start at 1.
+    /// 0-3. Zero while incubating; symptoms start at 1.
     /// </summary>
     [DataField]
     public int Stage;
@@ -49,6 +53,13 @@ public sealed partial class PathogenInfection
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<string, TimeSpan> SymptomTimers = new();
+
+    /// <summary>
+    /// Cumulative damage already applied by capped pathogen damage effects, keyed by
+    /// damage type id. Pre-existing wounds do not consume this infection's cap.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<string, float> CappedDamage = new();
 
     /// <summary>
     /// Admin-test override for symptom cadence. Null uses each symptom prototype's

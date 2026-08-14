@@ -12,7 +12,7 @@ using Robust.Shared.Player;
 namespace Content.Server._Starlight.Medical.Virology;
 
 /// <summary>
-/// Central eligibility rules for automatic pathogen hosts. Natural transmission uses
+/// Central eligibility rules for automatic pathogen hosts. Future natural transmission will use
 /// biological host eligibility only, so going AFK cannot grant disease immunity.
 /// </summary>
 public sealed partial class PathogenHostSelectionSystem : EntitySystem

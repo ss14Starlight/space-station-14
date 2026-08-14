@@ -3,8 +3,10 @@ using System.Numerics;
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Medical.Virology;
 using Content.Shared._Starlight.Medical.Virology;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.Effects.StatusEffects;
 using Content.Shared.FixedPoint;
@@ -137,6 +139,44 @@ public sealed class PathogenEmergentSymptomTests : GameTest
     }
 
     [Test]
+    public async Task EmergentDamageCapIgnoresPreExistingDamage()
+    {
+        var server = Pair.Server;
+        var entities = server.EntMan;
+        var damageable = server.System<DamageableSystem>();
+        var effects = server.System<SharedEntityEffectsSystem>();
+
+        EntityUid patient = default;
+        await server.WaitPost(() =>
+        {
+            patient = entities.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
+
+            var preexisting = new DamageSpecifier();
+            preexisting.DamageDict["Heat"] = FixedPoint2.New(10);
+            Assert.That(damageable.TryChangeDamage(patient, preexisting, true), Is.True);
+
+            var infections = entities.EnsureComponent<PathogenInfectionComponent>(patient);
+            infections.Infections.Add(new PathogenInfection { Pathogen = 1 });
+
+            var effect = new PathogenCappedDamage
+            {
+                DamageType = new ProtoId<DamageTypePrototype>("Heat"),
+                Amount = 3,
+                Maximum = 6,
+            };
+
+            for (var i = 0; i < 3; i++)
+                effects.ApplyEffect(patient, effect);
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            var damage = entities.GetComponent<DamageableComponent>(patient);
+            Assert.That(damage.Damage.DamageDict["Heat"], Is.EqualTo(FixedPoint2.New(16)));
+        });
+    }
+
+    [Test]
     public async Task NumbFingersDropsOnlyTheActiveHandItem()
     {
         var server = Pair.Server;
@@ -146,22 +186,43 @@ public sealed class PathogenEmergentSymptomTests : GameTest
         var map = await Pair.CreateTestMap();
 
         EntityUid patient = default;
-        EntityUid item = default;
+        EntityUid active = default;
+        EntityUid offHand = default;
+        var pickedUpActive = false;
+        var pickedUpOffHand = false;
+        EntityUid? activeBefore = null;
         await server.WaitPost(() =>
         {
             var coordinates = new MapCoordinates(Vector2.Zero, map.MapId);
             patient = entities.SpawnEntity("MobHuman", coordinates);
-            item = entities.SpawnEntity("Crowbar", coordinates);
-            Assert.That(hands.TryPickupAnyHand(patient, item), Is.True);
-            Assert.That(hands.GetActiveItem(patient), Is.EqualTo(item));
+            active = entities.SpawnEntity("Crowbar", coordinates);
+            offHand = entities.SpawnEntity("Crowbar", coordinates);
 
-            effects.ApplyEffect(patient, new PathogenDropActiveItem());
+            pickedUpActive = hands.TryPickupAnyHand(patient, active);
+            pickedUpOffHand = hands.TryPickupAnyHand(patient, offHand);
+            activeBefore = hands.GetActiveItem(patient);
         });
+
+        // The second pickup has to land in a free hand, leaving the first one active.
+        Assert.Multiple(() =>
+        {
+            Assert.That(pickedUpActive, Is.True, "first item was not picked up");
+            Assert.That(pickedUpOffHand, Is.True, "second item was not picked up");
+            Assert.That(activeBefore, Is.EqualTo(active), "the first item should still be the active one");
+        });
+
+        await server.WaitPost(() => effects.ApplyEffect(patient, new PathogenDropActiveItem()));
 
         await server.WaitAssertion(() =>
         {
-            Assert.That(hands.GetActiveItem(patient), Is.Null);
-            Assert.That(entities.Deleted(item), Is.False);
+            Assert.Multiple(() =>
+            {
+                Assert.That(hands.GetActiveItem(patient), Is.Null);
+                Assert.That(hands.IsHolding(patient, active), Is.False);
+                Assert.That(hands.IsHolding(patient, offHand), Is.True);
+                Assert.That(entities.Deleted(active), Is.False);
+                Assert.That(entities.Deleted(offHand), Is.False);
+            });
         });
     }
 

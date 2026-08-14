@@ -6,13 +6,13 @@ namespace Content.Shared._Starlight.Medical.Virology;
 public enum PathogenTier : byte
 {
     /// <summary>
-    /// Harmless and self-clearing. Respawns after it dies out.
+    /// Harmless and self-clearing. Eligible for extinction respawn when that gate is enabled.
     /// </summary>
     Ambient,
 
     /// <summary>
-    /// Seeded when station contamination crosses a milestone. Survivable, and does not
-    /// respawn once cured.
+    /// Survivable escalation tier. Future milestone seeding creates these from station
+    /// contamination; they do not respawn once cured.
     /// </summary>
     Emergent,
 

@@ -121,7 +121,12 @@ public sealed class VirologyContentTests : GameTest
             {
                 foreach (var symptom in symptoms)
                 {
-                    if (!prototypes.TryIndex(symptom, out var proto))
+                    Assert.That(
+                        prototypes.TryIndex(symptom, out var proto),
+                        Is.True,
+                        $"Archetype '{archetype.ID}' lists missing symptom '{symptom}' under {field}.");
+
+                    if (proto is null)
                         continue;
 
                     Assert.That(

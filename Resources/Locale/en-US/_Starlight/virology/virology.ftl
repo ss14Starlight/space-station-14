@@ -100,19 +100,19 @@ pathogen-symptom-emergent-fungal-ocular-spore-flare-visible = {CAPITALIZE(THE($e
 
 # Strains
 pathogen-name-space-cold = space cold
-pathogen-desc-space-cold = A common and thoroughly unremarkable rhinovirus. Spreads readily, clears on its own, and has never killed anyone. Reliably makes an entire department miserable.
+pathogen-desc-space-cold = A common and thoroughly unremarkable rhinovirus. Self-limiting and rarely dangerous, but reliably makes an entire department miserable.
 
 pathogen-name-throat-rot = throat infection
 pathogen-desc-throat-rot = A mild bacterial infection of the upper airway. Slower to take hold than a cold, more stubborn once it has.
 
 pathogen-name-spore-bloom = spore rash
-pathogen-desc-spore-bloom = A mild surface fungal infection affecting exposed skin and eyes. It does not spread between people, but is difficult to clear from a room once settled.
+pathogen-desc-spore-bloom = A mild surface fungal infection affecting exposed skin and eyes. Unpleasant, visible, and usually self-limiting.
 
 pathogen-name-station-flu = station flu
-pathogen-desc-station-flu = A self-limiting viral flare-up that appears when the station has let contamination get ahead of it. Miserable, obvious, and worth virology's time, but not an antagonist weapon.
+pathogen-desc-station-flu = A self-limiting viral flare-up. Miserable, obvious, and worth virology's time, but not an antagonist weapon.
 
 pathogen-name-grey-lung = grey lung
-pathogen-desc-grey-lung = A bacterial airway infection that thrives in neglected medbay queues and dirty workrooms. It spreads steadily, then clears once treated and contained.
+pathogen-desc-grey-lung = A bacterial airway infection that leaves patients coughing, breathless, and visibly weakened before it clears with care.
 
 pathogen-name-mycosis = mycosis
-pathogen-desc-mycosis = A fungal infection of the skin, eyes, and muscles that lingers in neglected spaces. It is dangerous enough to demand treatment, but is built to create work rather than casualties.
+pathogen-desc-mycosis = A fungal infection of the skin, eyes, and muscles. It is dangerous enough to demand treatment, but is built to create work rather than casualties.

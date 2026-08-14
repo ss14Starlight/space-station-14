@@ -500,7 +500,7 @@ public sealed partial class VirologyTestCommand : IConsoleCommand
                 symptomId,
                 out _))
         {
-            shell.WriteError($"Unknown pathogen symptom '{args[2]}'.");
+            shell.WriteError($"Could not express pathogen symptom '{symptom.ID}' on {Pretty(target)}.");
             return;
         }
 

@@ -10,6 +10,9 @@ namespace Content.Shared._Starlight.Medical.Virology;
 [Prototype]
 public sealed partial class PathogenSymptomPrototype : IPrototype
 {
+    /// <summary>
+    /// Prototype id used by archetype symptom lists and runtime strains.
+    /// </summary>
     [ViewVariables]
     [IdDataField]
     public string ID { get; private set; } = default!;
@@ -33,7 +36,8 @@ public sealed partial class PathogenSymptomPrototype : IPrototype
     public TimeSpan Interval = TimeSpan.FromSeconds(30);
 
     /// <summary>
-    /// Fraction of <see cref="Interval"/> to randomly vary each expression by.eak.
+    /// Fraction of <see cref="Interval"/> used as +/- random variance for each expression.
+    /// For example, 0.35 allows the next interval to roll 35% shorter or longer.
     /// </summary>
     [DataField]
     public float IntervalVariance = 0.35f;

@@ -127,7 +127,7 @@ public sealed class VirologyAdminToolsTests : GameTest
         await SpawnPlayerHost();
 
         await server.WaitPost(() =>
-            console.ExecuteCommand($"virology custom {TestArchetype} spread=0 cap=0.25 symptoms=0 hosts=1"));
+            console.ExecuteCommand($"virology custom {TestArchetype} spread=0 cap=0.05 symptoms=0 hosts=1"));
 
         await server.WaitAssertion(() =>
         {
@@ -144,8 +144,8 @@ public sealed class VirologyAdminToolsTests : GameTest
                     "A zero spread multiplier must produce a strain that cannot transmit.");
                 Assert.That(
                     strain.MaxPrevalence,
-                    Is.LessThanOrEqualTo(0.25f),
-                    "The prevalence cap must not exceed what the admin asked for.");
+                    Is.EqualTo(0.05f).Within(0.0001f),
+                    "The prevalence cap must preserve what the admin asked for.");
                 Assert.That(
                     strain.Symptoms
                         .Select(id => prototypes.Index(id))

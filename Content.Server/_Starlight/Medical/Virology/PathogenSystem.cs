@@ -148,9 +148,9 @@ public sealed partial class PathogenSystem : EntitySystem
     }
 
     /// <summary>
-    /// An ambient strain that loses its last host reappears on someone else. The station
-    /// does not get rid of a cold by waiting; it gets rid of it by running out of people
-    /// who can still catch it, which the immunity check below handles on its own.
+    /// When extinction respawn is enabled, an ambient strain that loses its last host
+    /// reappears on someone else. The station does not get rid of a cold by waiting; it
+    /// gets rid of it by running out of people who can still catch it.
     /// </summary>
     private void RespawnExtinctStrains()
     {
@@ -342,6 +342,7 @@ public sealed partial class PathogenSystem : EntitySystem
                     return false;
 
                 GrantImmunity(uid, existingStrain.Id);
+                QueueExtinctionRespawn(existingStrain);
                 comp.Infections.Clear();
             }
         }
