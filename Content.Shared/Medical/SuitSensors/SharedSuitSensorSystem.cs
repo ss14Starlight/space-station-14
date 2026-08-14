@@ -17,6 +17,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Roles;
 using Content.Shared.Station;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -376,12 +377,17 @@ public abstract partial class SharedSuitSensorSystem : EntitySystem
                 userJobDepartments.Add(Loc.GetString(_proto.Index(department).Name));
         }
         // Starlight Start
-        else if (TryComp<FixedJobIconComponent>(sensor.User.Value, out var fixedJob))
+        else if (TryComp<FixedJobIconComponent>(sensor.User.Value, out var fixedJob) && _proto.Resolve(fixedJob.Job, out var job))
         {
             userName = MetaData(sensor.User.Value).EntityName;
-            userJobIcon = fixedJob.JobIcon;
-            if (fixedJob.JobTitle is { } jobTitle)
-                userJob = Loc.GetString(jobTitle);
+            userJob = job.LocalizedName;
+            userJobIcon = job.Icon;
+
+            foreach (var department in _proto.EnumeratePrototypes<DepartmentPrototype>())
+            {
+                if (department.Roles.Contains(fixedJob.Job))
+                    userJobDepartments.Add(Loc.GetString(department.Name));
+            }
         }
         // Starlight End
 

@@ -94,9 +94,9 @@
 - type: loadout
   id: K9DoubleEmergencyOxygenTank
   equipment:
-    suitstorage: DoubleEmergencyOxygenTank
+    suitstorage: DoubleEmergencyOxygenTankFilled
 
 - type: loadout
   id: K9ExtendedEmergencyOxygenTank
   equipment:
-    suitstorage: ExtendedEmergencyOxygenTank
+    suitstorage: ExtendedEmergencyOxygenTankFilled

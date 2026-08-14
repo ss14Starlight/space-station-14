@@ -50,6 +50,8 @@
   - type: RandomMetadata
     nameSegments:
     - NamesCorgi
+  - type: Vocal
+    screamAction: null
   - type: Access
     tags:
     - Security
@@ -59,8 +61,7 @@
     - Cryogenics
   - type: StatusIcon
   - type: FixedJobIcon
-    jobIcon: JobIconK9
-    jobTitle: job-name-k9
+    job: K9
   - type: SpriteVariant
     availableVariants:
     - k9-brown
@@ -87,6 +88,11 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+  - type: Tag
+    tags:
+    - DogEmotes
+  - type: AlwaysRevolutionaryConvertible
+  - type: CanEnterCryostorage
   - type: Zoomies
     action: K9Sprint
     speedModifier: 1.8

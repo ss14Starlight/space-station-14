@@ -27,6 +27,10 @@ public sealed partial class LatchComponent : Component
 
     [DataField] public EntityWhitelist? Whitelist;
 
+    /// <summary>
+    /// Max distance to engage, and also the distance a latch breaks at if
+    /// exceeded mid-latch (knockback, forced movement, etc).
+    /// </summary>
     [DataField] public float Range = 1.5f;
 
     [DataField] public TimeSpan BaseDuration = TimeSpan.FromSeconds(8);

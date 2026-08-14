@@ -31,9 +31,9 @@ public sealed partial class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIcons
         var iconId = JobIconForNoId;
 
         // Starlight Start
-        if (TryComp<FixedJobIconComponent>(uid, out var fixedIcon))
+        if (TryComp<FixedJobIconComponent>(uid, out var fixedIcon) && _prototype.Resolve(fixedIcon.Job, out var job))
         {
-            iconId = fixedIcon.JobIcon;
+            iconId = job.Icon;
         }
         else if (_accessReader.FindAccessItemsInventory(uid, out var items))
         // Starlight End

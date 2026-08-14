@@ -17,6 +17,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Whitelist;
+using Content.Shared.Wieldable;
 using Robust.Server.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
@@ -40,7 +41,9 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private SharedWieldableSystem _wieldable = default!;
     [Dependency] private StandingStateSystem _standing = default!;
 
     public override void Initialize()
@@ -212,6 +215,8 @@ public sealed partial class LatchSystem : SharedLatchSystem
             EnsureComp<LatchBlockedHandComponent>(blockingItem.Value);
         }
 
+        _wieldable.UnwieldAll(target, force: true);
+
         _standing.Down(target, force: true);
 
         // Re-asserted every tick in Update() too, so it can't be toggled back on.
@@ -360,6 +365,16 @@ public sealed partial class LatchSystem : SharedLatchSystem
             }
 
             if (comp.Target is not { } target || !Exists(target))
+            {
+                EndLatch(uid, comp);
+                continue;
+            }
+
+            // Knockback/forced movement can separate the pair after the
+            // initial lunge - break the latch rather than hold the victim
+            // for the full duration while out of their own melee range.
+            var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
+            if (distance > comp.Range)
             {
                 EndLatch(uid, comp);
                 continue;
