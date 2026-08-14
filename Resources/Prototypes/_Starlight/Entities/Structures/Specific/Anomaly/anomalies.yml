@@ -530,7 +530,6 @@
     mode: SnapgridCenter
   components:
   - type: InteractionOutline
-  - type: ContainerContainer
   - type: AntiRottingContainer
   - type: Physics
     bodyType: Static
