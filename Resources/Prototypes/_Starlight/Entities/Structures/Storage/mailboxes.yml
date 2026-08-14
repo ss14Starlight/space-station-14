@@ -22,6 +22,8 @@
   - type: ContainerContainer
     containers:
       mail_storage: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
   - type: Transform
   - type: Sprite
     noRot: true
