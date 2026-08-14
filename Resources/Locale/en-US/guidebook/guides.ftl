@@ -94,6 +94,7 @@ guide-entry-criminal-records = Criminal Records
 guide-entry-command = Command
 guide-entry-service = Service
 
+# Starlight-edit
 guide-entry-newplayer = How To Play SS14
 guide-entry-charactercreation = Creating Characters
 guide-entry-species = Species
