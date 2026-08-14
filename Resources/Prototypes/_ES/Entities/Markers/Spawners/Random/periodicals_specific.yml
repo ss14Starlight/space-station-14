@@ -1,0 +1,80 @@
+- type: entity
+  parent: MarkerBase
+  id: ESSpawnerRandomPeriodicalsNewspaper
+  name: Periodical Spawner
+  suffix: Newspaper
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _ES/Markers/spawners.rsi
+        state: newspaper
+  - type: RandomSpawner
+    prototypes:
+      - NewspaperBigWatermelon
+      - NewspaperSpores
+      - NewspaperGasLeaks
+      - NewspaperMaintenanceTar
+      - NewspaperWater
+      - NewspaperWeldingFuel
+      - NewspaperParasite
+      - NewspaperMining
+      - NewspaperMining2
+      - NewspaperMining3
+      - NewspaperForeshadowing
+
+- type: entity
+  parent: MarkerBase
+  id: ESSpawnerRandomPeriodicalsPuzzle
+  name: Periodical Spawner
+  suffix: Puzzle
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _ES/Markers/spawners.rsi
+        state: magazine
+  - type: RandomSpawner
+    prototypes:
+      - MagazineWordsearch
+      - MagazineCrossword
+
+- type: entity
+  parent: MarkerBase
+  id: ESSpawnerRandomPeriodicalsSpacePeople
+  name: Periodical Spawner
+  suffix: Space People
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _ES/Markers/spawners.rsi
+        state: magazine
+  - type: RandomSpawner
+    prototypes:
+      - MagazinePopularSpacepeople
+      - MagazinePopularSpacepeople2
+      - MagazinePopularSpacepeople3
+      - MagazinePopularSpacepeople4
+
+- type: entity
+  parent: MarkerBase
+  id: ESSpawnerRandomPeriodicalsFashion
+  name: Periodical Spawner
+  suffix: Fashion
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _ES/Markers/spawners.rsi
+        state: magazine
+  - type: RandomSpawner
+    prototypes:
+      - MagazineFashion
+      - MagazineFashion2
+      - MagazineFashion3
+      - MagazineFashion4
+      - MagazineFashion5
+      - MagazineFashion6
+      - MagazineFashion7
+      - MagazineFashion8

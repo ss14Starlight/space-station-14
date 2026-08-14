@@ -1,0 +1,85 @@
+- type: entity
+  name: ice sculpture
+  id: SummonIceSculpture
+  parent: MobElementalBase
+  description: An animated ice construct, filled with malevolent magic.
+  components:
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      understands:
+      - GalacticCommon
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+      blackboard:
+        NavSmash: !type:Bool
+          true
+    - type: NpcFactionMember
+      factions:
+      - Wizard #find a way to make the npc attack other wizs, half solved by ghostrole
+    - type: Sprite
+      sprite: _Starlight/Mobs/Demons/icesculpture.rsi
+      state: icesculpture
+    - type: CombatMode
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 185
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
+    - type: NoSlip
+    - type: MeleeWeapon
+      hidden: true
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      damage:
+        types:
+          Slash: 20
+          Cold: 10
+    - type: Tag
+      tags:
+        - DoorBumpOpener
+        - CannotSuicide
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: false
+      makeSentient: true
+      name: ghost-role-information-icesculpture-name
+      description: ghost-role-information-icesculpture-description
+      rules: ghost-role-information-icesculpture-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonistFlock
+    - type: GhostTakeoverAvailable
+    - type: Reflect #combo with pillar !
+      reflectProb: 0.5
+      reflects:
+       - Energy
+    - type: Prying
+      pryPowered: true
+      force: true
+      speedModifier: 1.5
+      useSound:
+         path: /Audio/Items/crowbar.ogg
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        150: Dead
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
