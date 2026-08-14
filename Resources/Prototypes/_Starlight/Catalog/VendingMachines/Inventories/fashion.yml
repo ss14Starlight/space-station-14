@@ -708,7 +708,7 @@
   id: ClothingNeckFoxfire
   productEntity: ClothingNeckFoxfire
   cost:
-    NTCredit: 500
+    NTCredit: 4444
   categories:
     - SLFashionOther
   conditions:
