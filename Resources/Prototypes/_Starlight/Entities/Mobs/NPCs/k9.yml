@@ -94,6 +94,7 @@
   - type: Tag
     tags:
     - DogEmotes
+    - DoorBumpOpener
   - type: AlwaysRevolutionaryConvertible
   - type: CanEnterCryostorage
   - type: Zoomies

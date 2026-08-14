@@ -1,14 +1,21 @@
+using Content.Client.Stylesheets;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._Starlight.Actions.UI;
 
 /// <summary>
-/// HUD banner shown to both parties of an active latch: title, progress bar,
-/// a smaller max-duration countdown bar, and instruction line.
+/// Floating banner above the local player during an active latch.
 /// </summary>
 public sealed class LatchStatusControl : PanelContainer
 {
+    private const int PanelWidth = 260;
+    private const int LabelWidth = 42;
+
+    // Default stylesheet ProgressBar foreground is a muted green; give the
+    // hard-cap bar a contrasting amber so the two are distinguishable.
+    private static readonly Color MaxBarColor = new(0.55f, 0.45f, 0.2f);
+
     private readonly Label _title;
     private readonly ProgressBar _bar;
     private readonly ProgressBar _maxBar;
@@ -16,67 +23,88 @@ public sealed class LatchStatusControl : PanelContainer
 
     public LatchStatusControl()
     {
-        MinWidth = 180;
-        PanelOverride = new StyleBoxFlat
-        {
-            BackgroundColor = new Color(0, 0, 0, 180),
-            ContentMarginLeftOverride = 6,
-            ContentMarginRightOverride = 6,
-            ContentMarginTopOverride = 4,
-            ContentMarginBottomOverride = 4,
-        };
+        MouseFilter = MouseFilterMode.Ignore;
+        MinWidth = PanelWidth;
+        MaxWidth = PanelWidth;
+        StyleClasses.Add(StyleClass.TooltipPanel);
 
         var layout = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             SeparationOverride = 2,
+            MaxWidth = PanelWidth,
+            MouseFilter = MouseFilterMode.Ignore,
         };
 
         _title = new Label
         {
             Text = "LATCHED",
             Align = Label.AlignMode.Center,
-            FontColorOverride = Color.OrangeRed,
+            StyleClasses = { StyleClass.TooltipTitle },
+            MouseFilter = MouseFilterMode.Ignore,
         };
 
         _bar = new ProgressBar
         {
             MinValue = 0,
             MaxValue = 1,
-            MinHeight = 10,
-            ForegroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = Color.OrangeRed },
-            BackgroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = new Color(40, 40, 40) },
+            MaxHeight = 6,
+            HorizontalExpand = true,
+            MouseFilter = MouseFilterMode.Ignore,
         };
 
         _maxBar = new ProgressBar
         {
             MinValue = 0,
             MaxValue = 1,
-            MinHeight = 4,
-            ForegroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = Color.White },
-            BackgroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = new Color(40, 40, 40) },
+            MaxHeight = 6,
+            HorizontalExpand = true,
+            ForegroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = MaxBarColor },
+            MouseFilter = MouseFilterMode.Ignore,
         };
 
         _instruction = new Label
         {
             Align = Label.AlignMode.Center,
-            FontColorOverride = Color.LightGray,
+            StyleClasses = { StyleClass.TooltipDesc },
+            MouseFilter = MouseFilterMode.Ignore,
         };
 
         layout.AddChild(_title);
-        layout.AddChild(_bar);
-        layout.AddChild(_maxBar);
+        layout.AddChild(BarRow("Time", _bar));
+        layout.AddChild(BarRow("Max", _maxBar));
         layout.AddChild(_instruction);
         AddChild(layout);
 
         Visible = false;
     }
 
+    private static BoxContainer BarRow(string label, ProgressBar bar)
+    {
+        var row = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Horizontal,
+            SeparationOverride = 4,
+            MouseFilter = MouseFilterMode.Ignore,
+        };
+
+        row.AddChild(new Label
+        {
+            Text = label,
+            MinWidth = LabelWidth,
+            StyleClasses = { StyleClass.TooltipDesc },
+            MouseFilter = MouseFilterMode.Ignore,
+        });
+        row.AddChild(bar);
+
+        return row;
+    }
+
     /// <summary>
-    /// Updates both bars and the instruction text, and shows the control.
+    /// Updates both bars and the instruction text.
     /// </summary>
-    /// <param name="fraction">Remaining time before the latch's current end time, 0 to 1.</param>
-    /// <param name="maxFraction">Remaining time before the latch's fixed hard cap, 0 to 1.</param>
+    /// <param name="fraction">Remaining time before the current end time, 0 to 1.</param>
+    /// <param name="maxFraction">Remaining time before the hard cap, 0 to 1.</param>
     public void UpdateState(float fraction, float maxFraction, string instruction)
     {
         Visible = true;
@@ -85,8 +113,5 @@ public sealed class LatchStatusControl : PanelContainer
         _instruction.Text = instruction;
     }
 
-    public void Hide()
-    {
-        Visible = false;
-    }
+    public void Hide() => Visible = false;
 }
