@@ -18,7 +18,7 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
-//    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TemperatureSystem _tempSys = default!;
 
     public int StoredCorpseCount { get; private set; }
@@ -38,10 +38,12 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 
         var corpse = ent.Comp.CorpseContainer.ContainedEntities[0];
         var xform = Transform(ent.Owner);
-        var destination = new EntityCoordinates(xform.ParentUid, xform.LocalPosition);
 
-        _container.Remove(corpse, ent.Comp.CorpseContainer, destination: destination);
-        RemComp<PressureImmunityComponent>(corpse);
+        if (_container.Remove(corpse, ent.Comp.CorpseContainer, reparent: false, force: true))
+        {
+            _transform.SetCoordinates(corpse, new EntityCoordinates(xform.ParentUid, xform.LocalPosition));
+            RemComp<PressureImmunityComponent>(corpse);
+        }
     }
 
     public override void Update(float frameTime)
