@@ -10,13 +10,13 @@ using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Paper;
 using Content.Shared.Radio;
 using Content.Shared.Salvage.JobBoard;
-using Content.Shared.Stacks;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 /// #starlight start
+using Content.Shared.Stacks;
 using Content.Server.Stack;
 /// #starlight end
 
@@ -33,9 +33,9 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
     [Dependency] private RadioSystem _radio = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
-/// #starlight start
+    /// #starlight start
     [Dependency] private StackSystem _stack = default!;
-/// #starlight end
+    /// #starlight end
 
     /// <summary>
     /// Radio channel that unlock messages are broadcast on.
