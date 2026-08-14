@@ -34,7 +34,7 @@
       radius: 2.5
       energy: 1.5
       enabled: false
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       castShadows: false
     - type: Rotatable
