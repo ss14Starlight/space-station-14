@@ -33,6 +33,11 @@ public sealed partial class LatchComponent : Component
     /// </summary>
     [DataField] public float Range = 1.5f;
 
+    /// <summary>
+    /// Extra slack for the ongoing drift check only, not the initial engage check.
+    /// </summary>
+    [DataField] public float RangeTolerance = 0.5f;
+
     [DataField] public TimeSpan BaseDuration = TimeSpan.FromSeconds(8);
     [DataField, AutoNetworkedField] public TimeSpan MaxDuration = TimeSpan.FromSeconds(15);
     [DataField] public TimeSpan ExtensionPerBite = TimeSpan.FromSeconds(2);
@@ -70,6 +75,13 @@ public sealed partial class LatchComponent : Component
     [ViewVariables, AutoNetworkedField] public bool Active;
     [ViewVariables, AutoNetworkedField] public EntityUid? Target;
     [ViewVariables, AutoNetworkedField] public TimeSpan EndTime;
+
+    /// <summary>
+    /// Latch start time; ending within RefundGracePeriod of this refunds the charge.
+    /// </summary>
+    [ViewVariables] public TimeSpan StartTime;
+
+    [DataField] public TimeSpan RefundGracePeriod = TimeSpan.FromSeconds(0.5);
 
     /// <summary>
     /// Fixed hard-cap timestamp set once when the latch starts. Bite Harder

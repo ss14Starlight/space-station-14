@@ -5,6 +5,7 @@ using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Alert;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -33,6 +34,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private ActionsSystem _action = default!;
     [Dependency] private AlertsSystem _alert = default!;
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
     [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private CombatModeSystem _combatMode = default!;
     [Dependency] private DamageableSystem _damageable = default!;
@@ -203,6 +205,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.EndTime = Timing.CurTime + comp.BaseDuration;
         comp.MaxEndTime = Timing.CurTime + comp.MaxDuration;
         comp.NextTickTime = Timing.CurTime + comp.TickInterval;
+        comp.StartTime = Timing.CurTime;
         comp.TickPaused = false;
 
         var latched = EnsureComp<LatchedComponent>(target);
@@ -243,6 +246,10 @@ public sealed partial class LatchSystem : SharedLatchSystem
     private void EndLatch(EntityUid uid, LatchComponent comp)
     {
         var target = comp.Target;
+
+        // Refund if the latch ended almost immediately.
+        if (comp.Active && comp.ActionEntity is { } actionEnt && Timing.CurTime - comp.StartTime < comp.RefundGracePeriod)
+            _charges.AddCharges((actionEnt, null, null), 1);
 
         comp.Active = false;
         comp.Target = null;
@@ -370,11 +377,10 @@ public sealed partial class LatchSystem : SharedLatchSystem
                 continue;
             }
 
-            // Knockback/forced movement can separate the pair after the
-            // initial lunge - break the latch rather than hold the victim
-            // for the full duration while out of their own melee range.
+            // Break if knocked out of range; RangeTolerance avoids
+            // instant-breaking from jitter right at the edge.
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
-            if (distance > comp.Range)
+            if (distance > comp.Range + comp.RangeTolerance)
             {
                 EndLatch(uid, comp);
                 continue;
