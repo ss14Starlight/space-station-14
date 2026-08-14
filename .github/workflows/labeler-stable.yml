@@ -10,7 +10,7 @@ on:
     types:
       - opened
     branches:
-      - 'Starlight'
+      - 'main'
 
 jobs:
   add_label:
@@ -22,4 +22,4 @@ jobs:
     steps:
     - uses: actions-ecosystem/action-add-labels@v1
       with:
-        labels: "Branch: Starlight"
+        labels: "Branch: main"

@@ -15,3 +15,7 @@ entity-effect-status-effect-RadiationProtection = radiation protection
 entity-effect-status-effect-Drowsiness = drowsiness
 entity-effect-status-effect-Adrenaline = adrenaline
 entity-effect-status-effect-PoliteLanguage = polite language
+entity-effect-status-effect-Insulated = insulated
+entity-effect-status-effect-NoSlip = no slip
+entity-effect-status-effect-NightVision = night vision
+entity-effect-status-effect-IgnoreSlowOnDamage = adrenaline speed

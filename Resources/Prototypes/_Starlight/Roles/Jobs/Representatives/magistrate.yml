@@ -16,7 +16,7 @@
       traits:
         - Muted
       inverted: true
-  setPreference: false # Inferus - disable
+  setPreference: true # Inferus - disable
   startingGear: MagistrateGear
   icon: "JobIconMagistrate"
   rules: job-rules-corporate-aligned

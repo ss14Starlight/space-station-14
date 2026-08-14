@@ -46,4 +46,4 @@ jobs:
         git add "Resources/Changelog/ChangelogInferus.yml"
         git add "Tools/changelogs/sent_changelog_ids.yml"
         git commit -m "Update sended changelogs [skip ci]"
-        git push git@github.com:${{ github.repository }}.git HEAD:Starlight
+        git push git@github.com:${{ github.repository }}.git HEAD:main

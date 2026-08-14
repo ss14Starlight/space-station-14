@@ -13,7 +13,7 @@
       traits:
         - Muted
       inverted: true
-  setPreference: false # Inferus - disable
+  setPreference: true # Inferus - disable
   startingGear: NanotrasenCareerTrainerGear
   icon: JobIconNanotrasenCareerTrainer
   rules: job-rules-corporate-aligned

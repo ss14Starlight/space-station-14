@@ -4,27 +4,40 @@
 Partitions test classes across shards for parallel CI execution.
 
 Mode 1 - Generate all shard filters to files:
-    dotnet test --list-tests ... | python3 partition_tests.py generate <total-shards> <output-dir>
-    Writes <output-dir>/shard_0.runsettings .. shard_N.runsettings
+    <test-app> --list-tests json | python3 partition_tests.py generate <total-shards> <output-dir> [timings-file]
+    Writes <output-dir>/shard_0.filter .. shard_N.filter, plus a
+    manifest.json recording how many tests were expected in total.
 
-Mode 2 - Read a pre-generated filter file:
-    python3 partition_tests.py read <runsettings-file>
-    Prints the filter to stdout (empty output if file is empty/missing)
+Mode 2 - Promote a merged CTRF report to the committed timings baseline:
+    python3 partition_tests.py harvest <ctrf-in> <ctrf-out> [--manifest <path>] [--keep-stdout]
+    The CI makes the merged report, we then parse it, then strip a bunch of un-needed stuff
+    to reduce the file size (like 4mb down do 400kb). The test needed for a baseline
+    has to be 1 clean run with no failures. Annoying, but required.
 
 Exit codes:
     0 - success
-    1 - error (bad arguments or no tests discovered in generate mode)
+    1 - error (bad arguments, nothing discovered, or a run unfit to be a baseline)
 """
 
 import sys
 import os
-import xml.etree.ElementTree as ET
+import json
+import statistics
 
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Weight multipliers for tests that are lighter than their test count suggests.
+# The baseline is a CTRF report so it stays readable by the same tooling that
+# produced it.
+CTRF_BASELINE_FILE = os.path.join(_SCRIPT_DIR, "test-timings.ctrf.json")
+
+MANIFEST_NAME = "manifest.json"
+
+EXPLICIT_TRAIT = "Explicit"
+
 # Looking at this, you are probably thinking,
 # Monsieur, have you lost your mind.
-# But this is a temporary solution. Once multithreading in the engine is fixed, all of this will be reverted.
+# But this is a permanent solution. The multithreading in the engine for tests will not be fixed anytime soon, all of this is here forever.
+# See https://github.com/dotnet/runtime/issues/107197, who knows, maybe by time time you see this it will be fixed.
 # How do you use it? Run the test, take the one that finished the fastest and decrease its weight, then increase the weight of the slowest one until they balance out.
 WEIGHT_OVERRIDES = {
     "AbsorbentOnRefillableTest": 0.125,
@@ -37,7 +50,6 @@ WEIGHT_OVERRIDES = {
     "AirlockBlockTest": 0.5,
     "AllCommandsHaveDescriptions": 0.5,
     "AllComponentsOneToOneDeleteTest": 0.5,
-    "AllGamePresetsStartTest": 85.0,
     "AllItemsHaveSpritesTest": 0.25,
     "AllMapsTested": 0.5,
     "AllSalvageMapsLoadableTest": 5.0,
@@ -176,8 +188,6 @@ WEIGHT_OVERRIDES = {
     "TestAllConcurrent": 0.25,
     "TestAllRestocksAreAvailableToBuy": 0.5,
     "TestAllServerPrototypesAreSerializable": 35.0,
-    "TestAntagGhostRoles": 35.0,
-    "TestAntagGhostRolesSequential": 90.0,
     "TestApcLoad": 10.0,
     "TestBatteriesProportional": 0.5,
     "TestBatteryRamp": 0.25,
@@ -267,76 +277,147 @@ WEIGHT_OVERRIDES = {
 }
 
 
-def parse_tests(lines):
-    """Parse test names from `dotnet test --list-tests` output."""
+def parse_tests_json(text):
+    """Parse `--list-tests json` output into explicit tests runnable tests."""
+    data = json.loads(text.lstrip("﻿ \t\r\n"))
     tests = []
-    in_list = False
-    for line in lines:
-        stripped = line.strip()
-        if "The following Tests are available:" in stripped:
-            in_list = True
+    explicit = []
+    for test in data.get("tests", []):
+        uid = test.get("uid") or test.get("displayName")
+        if not uid:
             continue
-        if in_list and stripped:
-            tests.append(stripped)
-    return tests
+        traits = test.get("traits") or []
+        if any(t.get("key") == EXPLICIT_TRAIT for t in traits):
+            explicit.append(uid)
+        else:
+            tests.append(uid)
+    return tests, explicit
 
 
 def extract_classes(tests):
-    """Extract unique test method groups with test counts from display names.
-
-    --list-tests outputs display names:
-      - Windows:  MethodName  or  MethodName(params)
-      - Linux:    FixtureName.MethodName  or  FixtureName.MethodName(params)
-
-    We always extract the METHOD name as the group key so behaviour is
-    consistent across platforms and the Name~ filter works everywhere.
-    """
+    """Group test uids by bare method name, with a count of cases per group."""
     counts = {}
     for test in tests:
-        name = test.split("(")[0].strip()
-        # If format is "Fixture.Method", take just the method part
-        dot = name.rfind(".")
-        method = name[dot + 1:] if dot > 0 else name
+        method = method_of(test)
         counts[method] = counts.get(method, 0) + 1
     return counts
 
 
-def build_filter(methods):
-    """Build a NUnit.Where expression from method names.
+def is_ctrf(data):
+    return isinstance(data, dict) and data.get("reportFormat") == "CTRF"
 
-    Uses NUnit Test Selection Language with exact method name matching.
-    This avoids substring issues (e.g. 'Test' matching 'TestConnect')
-    that plague VSTest Name~ filters.
-    """
+
+def timings_from_ctrf(data):
+    """Sum per-method seconds from a CTRF report, counting passes only."""
+    timings = {}
+    bad = 0
+    for test in data.get("results", {}).get("tests", []):
+        name = test.get("name")
+        if not name:
+            continue
+        kind = classify(test)
+        if kind != "passed":
+            bad += kind == "bad"
+            continue
+        try:
+            seconds = float(test.get("duration") or 0) / 1000.0
+        except (TypeError, ValueError):
+            continue
+        if seconds > 0:
+            method = method_of(name)
+            timings[method] = timings.get(method, 0.0) + seconds
+    if bad:
+        print(f"Ignored {bad} failed result(s) when reading timings",
+              file=sys.stderr)
+    return timings
+
+
+def load_timings(path):
+    """Load {method: seconds} measured timings from a CTRF baseline, or None."""
+    if not path or not os.path.exists(path):
+        return None
+    try:
+        with open(path) as f:
+            data = json.load(f)
+    except (OSError, ValueError) as e:
+        print(f"Warning: could not read timings file {path}: {e}", file=sys.stderr)
+        return None
+
+    if not is_ctrf(data):
+        print(f"Warning: {path} is not a CTRF report", file=sys.stderr)
+        return None
+
+    return timings_from_ctrf(data) or None
+
+
+def method_of(test_name):
+    """Reduce a test uid or display name to its bare method name."""
+    name = test_name.split("(")[0].strip()
+    dot = name.rfind(".")
+    return name[dot + 1:] if dot > 0 else name
+
+
+def build_filter(methods, all_methods):
+    """Build a Microsoft test-case filter from NUnit method names."""
     if not methods:
         return ""
-    return "||".join(f"method=='{m}'" for m in sorted(methods))
+    universe = sorted(all_methods)
+    clauses = []
+    for method in sorted(methods):
+        terms = [f"Name~{method}"]
+        terms += [f"Name!~{other}" for other in universe
+                  if other != method and method in other]
+        clauses.append("(" + "&".join(terms) + ")")
+    return "|".join(clauses)
 
 
 def cmd_generate():
-    if len(sys.argv) != 4:
-        print(f"Usage: {sys.argv[0]} generate <total-shards> <output-dir>", file=sys.stderr)
+    if len(sys.argv) not in (4, 5):
+        print(f"Usage: {sys.argv[0]} generate <total-shards> <output-dir> [timings-file]", file=sys.stderr)
         sys.exit(1)
 
     total = int(sys.argv[2])
     output_dir = sys.argv[3]
+    timings_path = sys.argv[4] if len(sys.argv) == 5 else CTRF_BASELINE_FILE
 
-    lines = sys.stdin.read().splitlines()
-    tests = parse_tests(lines)
+    tests, explicit = parse_tests_json(sys.stdin.read())
 
     if not tests:
         print("Error: no tests discovered from input", file=sys.stderr)
         sys.exit(1)
 
+    explicit_methods = sorted({method_of(t) for t in explicit})
+    if explicit:
+        print(f"Excluded {len(explicit)} test(s) from [Explicit] method(s): "
+              f"{', '.join(explicit_methods)}", file=sys.stderr)
+
     class_counts = extract_classes(tests)
+    all_methods = set(class_counts) | set(explicit_methods)
     print(f"Discovered {len(tests)} tests in {len(class_counts)} classes, distributing across {total} shards", file=sys.stderr)
 
-    os.makedirs(output_dir, exist_ok=True)
+    timings = load_timings(timings_path)
 
-    # Compute effective weight per class using overrides
-    def class_weight(cls):
-        multiplier = WEIGHT_OVERRIDES.get(cls, 1.0)
-        return class_counts[cls] * multiplier
+    if timings:
+        # Estimate unknown methods from the median per-test duration.
+        rates = sorted(timings[c] / class_counts[c] for c in class_counts if c in timings)
+        median_per_test = statistics.median(rates) if rates else 1.0
+        print(f"Using measured timings from {timings_path}: "
+              f"{len(rates)}/{len(class_counts)} classes have data, "
+              f"fallback = {median_per_test:.3f}s/test (median)", file=sys.stderr)
+
+        def class_weight(cls):
+            if cls in timings:
+                return timings[cls]
+            return class_counts[cls] * median_per_test
+    else:
+        # no timings file, weight by count * manual override.
+        print(f"No timings file at {timings_path}; using WEIGHT_OVERRIDES fallback", file=sys.stderr)
+
+        def class_weight(cls):
+            multiplier = WEIGHT_OVERRIDES.get(cls, 1.0)
+            return class_counts[cls] * multiplier
+
+    os.makedirs(output_dir, exist_ok=True)
 
     # Greedy load-balancing: assign heaviest classes first to least-loaded shard
     shards = [[] for _ in range(total)]
@@ -346,56 +427,166 @@ def cmd_generate():
         shards[lightest].append(cls)
         shard_loads[lightest] += class_weight(cls)
 
+    filters = []
     for shard in range(total):
         my_classes = sorted(shards[shard])
-        filter_expr = build_filter(my_classes)
+        filter_expr = build_filter(my_classes, all_methods)
+        filters.append(filter_expr)
         print(f"  Shard {shard}: {len(my_classes)} classes, weight {shard_loads[shard]:.1f} ({sum(class_counts[c] for c in my_classes)} tests)", file=sys.stderr)
         for cls in my_classes:
             w = class_weight(cls)
             print(f"    - {cls} ({class_counts[cls]} tests, weight {w:.1f})", file=sys.stderr)
 
-        rs_path = os.path.join(output_dir, f"shard_{shard}.runsettings")
-        with open(rs_path, "w", newline="\n") as f:
-            f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-            f.write("<RunSettings>\n")
-            f.write("  <NUnit>\n")
-            f.write("    <MapWarningTo>Failed</MapWarningTo>\n")
-            f.write(f"    <Where>{filter_expr}</Where>\n")
-            f.write("  </NUnit>\n")
-            f.write("</RunSettings>\n")
+        filter_path = os.path.join(output_dir, f"shard_{shard}.filter")
+        with open(filter_path, "w", newline="\n") as f:
+            f.write(filter_expr)
+            f.write("\n")
 
-def cmd_read():
-    if len(sys.argv) != 3:
-        print(f"Usage: {sys.argv[0]} read <runsettings-file>", file=sys.stderr)
+    # Record what a complete run looks like, so harvest can tell a full pass
+    # from one that was cut short and refuse to bless the latter.
+    manifest = {
+        "total": len(tests),
+        "methods": len(class_counts),
+        "shards": {str(s): sum(class_counts[c] for c in shards[s]) for s in range(total)},
+        "filters": filters,
+    }
+    with open(os.path.join(output_dir, MANIFEST_NAME), "w", newline="\n") as f:
+        json.dump(manifest, f, indent=2, sort_keys=True)
+        f.write("\n")
+    print(f"Wrote manifest: {manifest['total']} tests expected across {total} shards",
+          file=sys.stderr)
+
+def summarize_ctrf(data):
+    """Return (counts-by-status, total-tests) for a CTRF report."""
+    counts = {}
+    tests = data.get("results", {}).get("tests", [])
+    for test in tests:
+        status = test.get("status", "other")
+        counts[status] = counts.get(status, 0) + 1
+    return counts, len(tests)
+
+
+def classify(test):
+    """Bucket a CTRF result as 'passed', 'notrun' or 'bad'."""
+    status = test.get("status", "other")
+    if status == "passed":
+        return "passed"
+    if status == "skipped":
+        return "notrun"
+    if status == "other" and test.get("rawStatus") == "NotExecuted":
+        return "notrun"
+    return "bad"
+
+
+def baseline_refusals(data, total, manifest):
+    """List the reasons this run must not become a baseline."""
+    reasons = []
+
+    tests = data.get("results", {}).get("tests", [])
+    bad = [t for t in tests if classify(t) == "bad"]
+    if bad:
+        names = sorted({t.get("name", "?") for t in bad})
+        reasons.append(f"{len(bad)} test(s) did not pass and were not skipped: "
+                       + ", ".join(names[:5]) + (" ..." if len(names) > 5 else ""))
+
+    if not any(classify(t) == "passed" for t in tests):
+        reasons.append("no tests passed")
+
+    if manifest is not None:
+        expected = manifest.get("total")
+        if isinstance(expected, int) and total != expected:
+            reasons.append(f"ran {total} tests but the manifest expected {expected} "
+                           f"({expected - total} missing)")
+
+    return reasons
+
+
+def strip_test(test, keep_stdout):
+    """Strip the CTRF down to a more reasonable size."""
+    if keep_stdout:
+        return test
+    return {k: v for k, v in test.items()
+            if k not in ("stdout", "stderr", "trace", "message", "filePath")}
+
+
+def cmd_harvest():
+    args = sys.argv[2:]
+    keep_stdout = "--keep-stdout" in args
+    args = [a for a in args if a != "--keep-stdout"]
+
+    manifest_path = None
+    if "--manifest" in args:
+        i = args.index("--manifest")
+        if i + 1 >= len(args):
+            print("Error: --manifest needs a path", file=sys.stderr)
+            sys.exit(1)
+        manifest_path = args[i + 1]
+        del args[i:i + 2]
+
+    if len(args) != 2:
+        print(f"Usage: {sys.argv[0]} harvest <ctrf-in> <ctrf-out> "
+              f"[--manifest <path>] [--keep-stdout]", file=sys.stderr)
         sys.exit(1)
 
-    path = sys.argv[2]
-    if not os.path.exists(path):
-        return
-    with open(path) as f:
-        content = f.read().strip()
+    ctrf_in, ctrf_out = args
 
-    # Parse the XML content
-    root = ET.fromstring(content)
-    where = root.findtext("NUnit/Where", default="").strip()
-    if where:
-        methods = [part.replace("method==", "").strip("' ") for part in where.split("||")]
-        print(f"Running {len(methods)} test groups:", file=sys.stderr)
-        for m in methods:
-            print(f"  - {m}", file=sys.stderr)
-        print(where)
+    try:
+        with open(ctrf_in) as f:
+            data = json.load(f)
+    except (OSError, ValueError) as e:
+        print(f"Error: could not read CTRF report {ctrf_in}: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    if not is_ctrf(data):
+        print(f"Error: {ctrf_in} is not a CTRF report", file=sys.stderr)
+        sys.exit(1)
+
+    manifest = None
+    if manifest_path:
+        try:
+            with open(manifest_path) as f:
+                manifest = json.load(f)
+        except (OSError, ValueError) as e:
+            print(f"Error: could not read manifest {manifest_path}: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    counts, total = summarize_ctrf(data)
+    breakdown = ", ".join(f"{n} {s}" for s, n in sorted(counts.items())) or "nothing"
+    print(f"CTRF report {ctrf_in}: {total} results ({breakdown})", file=sys.stderr)
+
+    reasons = baseline_refusals(data, total, manifest)
+    if reasons:
+        print("Refusing to write a timings baseline:", file=sys.stderr)
+        for reason in reasons:
+            print(f"  - {reason}", file=sys.stderr)
+        print("Only a complete, fully passing run may become a baseline.",
+              file=sys.stderr)
+        sys.exit(1)
+
+    data["results"]["tests"] = [strip_test(t, keep_stdout)
+                                for t in data["results"]["tests"]]
+
+    with open(ctrf_out, "w", newline="\n") as f:
+        json.dump(data, f, indent=2, sort_keys=True)
+        f.write("\n")
+
+    timings = timings_from_ctrf(data)
+    print(f"Baseline written: {len(timings)} methods, "
+          f"{sum(timings.values()):.1f}s total -> {ctrf_out} "
+          f"({os.path.getsize(ctrf_out) / 1024:.0f} KiB)", file=sys.stderr)
 
 
 def main():
     if len(sys.argv) < 2:
-        print(f"Usage: {sys.argv[0]} <generate|read> ...", file=sys.stderr)
+        print(f"Usage: {sys.argv[0]} <generate|harvest> ...",
+              file=sys.stderr)
         sys.exit(1)
 
     cmd = sys.argv[1]
     if cmd == "generate":
         cmd_generate()
-    elif cmd == "read":
-        cmd_read()
+    elif cmd == "harvest":
+        cmd_harvest()
     else:
         print(f"Unknown command: {cmd}", file=sys.stderr)
         sys.exit(1)
@@ -403,3 +594,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

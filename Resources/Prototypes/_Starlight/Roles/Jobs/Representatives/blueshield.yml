@@ -19,7 +19,7 @@
     #  traits:
     #    - Iterator
       inverted: true
-  setPreference: false # Inferus - disable
+  setPreference: true # Inferus - disable
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   rules: job-rules-corporate-aligned

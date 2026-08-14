@@ -1,5 +1,8 @@
 name: Build & Test Debug
 
+env:
+  INTEGRATION_TEST_SHARD_COUNT: 4
+
 # Cancel older jobs on PRs when new changes are pushed
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -7,179 +10,391 @@ concurrency:
 
 on:
   push:
-    branches: [ master, staging, stable, main, upstream-devtest, fix/tests ]
+    branches: [ main ]
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
-    branches: [ master, staging, stable, main, upstream-devtest ]
+    branches: [ main ]
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      harvest:
+        description: "Run as a timings harvest: skip retries and publish the shard manifest."
+        type: boolean
+        default: false
+
+# Fork pull requests run this workflow with no repository token privileges beyond
+# read-only source access. PR comments are handled by test-report-comment.yml.
+permissions: {}
 
 jobs:
   build:
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      integration_test_filters: ${{ steps.integration-test-shards.outputs.filters }}
+      integration_test_shards: ${{ steps.integration-test-shards.outputs.shards }}
     steps:
-    - name: Checkout Master
-      uses: actions/checkout@v7
+      - name: Checkout Master
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && '0' || '1' }}
 
-    - name: Setup Submodule
-      run: |
-        git submodule update --init --recursive
+      - name: Setup Submodule
+        run: |
+          git submodule update --init --recursive
 
-    - name: Pull engine updates
-      uses: space-wizards/submodule-dependency@v0.1.5
+      - name: Pull engine updates
+        uses: space-wizards/submodule-dependency@v0.1.5
 
-    - name: Update Engine Submodules
-      run: |
-        cd RobustToolbox/
-        git submodule update --init --recursive
+      - name: Update Engine Submodules
+        run: |
+          cd RobustToolbox/
+          git submodule update --init --recursive
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v5
-      with:
-        dotnet-version: 10.0.x
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
 
-    - name: Install dependencies
-      run: dotnet restore
+      - name: Setup Reviewdog
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        uses: reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f # v1.5.0
+        with:
+          reviewdog_version: v0.21.0
 
-    - name: Build Project
-      run: dotnet build --configuration DebugOpt --no-restore /m
+      - name: Build Project
+        if: github.event_name != 'pull_request'
+        run: dotnet build --configuration DebugOpt /m
 
-    - name: Discover Integration Tests
-      run: |
-        dotnet test --list-tests --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj 2>&1 | \
-          python3 Tools/_Starlight/partition_tests.py generate 8 .integration-filters
+      - name: Build Project and collect C# diagnostics
+        if: github.event_name == 'pull_request'
+        run: dotnet build --configuration DebugOpt -p:Reviewdog=true /m
 
-    - name: Archive build output
-      run: tar --use-compress-program='zstd -T0' -cf /tmp/build.tar.zst --exclude='.git' .
+      - name: Report C# diagnostics on changed lines
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mapfile -d '' -t reports < <(find . -type f -name reviewdog.sarif -print0)
+          if (( ${#reports[@]} == 0 )); then
+            echo "::warning::The build did not produce any C# diagnostic reports."
+            exit 0
+          fi
 
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-output
-        path: /tmp/build.tar.zst
-        retention-days: 1
-        compression-level: 0
+          jq -s '{version: "2.1.0", runs: [.[].runs[]
+            | .results = ((.results // [])
+              | map(select((.level // "warning") == "warning" or (.level // "warning") == "error")))]}' \
+            "${reports[@]}" > /tmp/csharp-diagnostics.sarif
+
+          reviewdog \
+            -f=sarif \
+            -name="C# diagnostics" \
+            -reporter=github-pr-annotations \
+            -filter-mode=added \
+            -fail-level=none \
+            < /tmp/csharp-diagnostics.sarif
+
+      - name: Discover Integration Tests
+        id: integration-test-shards
+        run: |
+          bin/Content.IntegrationTests/Content.IntegrationTests --list-tests json | \
+            python3 Tools/_Starlight/partition_tests.py generate "$INTEGRATION_TEST_SHARD_COUNT" .integration-filters
+          echo "filters=$(jq -c '.filters' .integration-filters/manifest.json)" >> "$GITHUB_OUTPUT"
+          echo "shards=$(jq -c '.filters | keys' .integration-filters/manifest.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload shard manifest
+        if: inputs.harvest
+        uses: actions/upload-artifact@v6
+        with:
+          name: shard-manifest
+          path: .integration-filters/manifest.json
+          retention-days: 1
+
+      - name: Archive test binaries
+        run: tar --use-compress-program='zstd -T0' -cf /tmp/test-binaries.tar.zst bin
+
+      - name: Upload test binaries
+        uses: actions/upload-artifact@v6
+        with:
+          name: test-binaries
+          path: /tmp/test-binaries.tar.zst
+          retention-days: 1
+          compression-level: 0
 
   content-tests:
     needs: build
     name: Content Tests
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    permissions:
+      contents: read
+    timeout-minutes: 10
     steps:
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v5
-      with:
-        dotnet-version: 10.0.x
 
-    - name: Download build artifact
-      uses: actions/download-artifact@v8
-      with:
-        name: build-output
+      - name: Checkout
+        uses: actions/checkout@v7
 
-    - name: Extract build
-      run: tar --use-compress-program='zstd -d -T0' -xf build.tar.zst && rm build.tar.zst
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
 
-    - name: Restore packages
-      run: dotnet restore Content.Tests/Content.Tests.csproj
+      - name: Download test binaries
+        uses: actions/download-artifact@v8
+        with:
+          name: test-binaries
 
-    - name: Run Content.Tests
-      uses: nick-fields/retry@v4
-      with:
-        timeout_minutes: 15
-        max_attempts: 2
-        command: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
+      - name: Extract test binaries
+        run: tar --use-compress-program='zstd -d -T0' -xf test-binaries.tar.zst && rm test-binaries.tar.zst
 
-    - name: Test results
-      continue-on-error: true
-      if: always()
-      run: |
-        dotnet tool install -g dotnet-trx 2>/dev/null || true
-        mkdir -p /tmp/test-results
-        trx --path /tmp/test-results -o -v verbose || true
+      - name: Run Content.Tests
+        env:
+          HARVEST: ${{ inputs.harvest }}
+          RUN_DEBUG: ${{ runner.debug }}
+        run: |
+          PROGRESS=()
+          if [[ "$HARVEST" = "true" || "$RUN_DEBUG" = "1" ]]; then
+            PROGRESS=(--progress on --output Detailed )
+          fi
+          VERBOSITY=()
+          if [ "$RUN_DEBUG" = "1" ]; then
+            VERBOSITY=(--show-stdout All --show-stderr All)
+          fi
+          bin/Content.Tests/Content.Tests \
+            --retry-failed-tests 2 \
+            "${PROGRESS[@]}" \
+            "${VERBOSITY[@]}" \
+            --report-ctrf \
+            --report-ctrf-filename ctrf/ctrf-report.json \
+            --results-directory /tmp/test-results \
+            --settings .github/ci.runsettings
+
+      - name: Upload Content.Tests results
+        uses: actions/upload-artifact@v6
+        if: always()
+        continue-on-error: true
+        with:
+          name: test-nunit-content
+          path: |
+            /tmp/test-results/ctrf/ctrf-report.json
+            /tmp/test-results/Retries/**/ctrf/ctrf-report.json
+          retention-days: 7
+          if-no-files-found: error
 
   integration-tests:
     needs: build
     strategy:
       fail-fast: false
       matrix:
-        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+        shard: ${{ fromJSON(needs.build.outputs.integration_test_shards) }}
     name: "Integration Tests (shard ${{ matrix.shard }})"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 40
     steps:
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v5
-      with:
-        dotnet-version: 10.0.x
+      - name: Checkout
+        uses: actions/checkout@v7
 
-    - name: Download build artifact
-      uses: actions/download-artifact@v8
-      with:
-        name: build-output
+      - name: Setup Submodule
+        run: |
+          git submodule update --init --recursive
 
-    - name: Extract build
-      run: tar --use-compress-program='zstd -d -T0' -xf build.tar.zst && rm build.tar.zst
+      - name: Pull engine updates
+        uses: space-wizards/submodule-dependency@v0.1.5
 
-    - name: Restore packages
-      run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
+      - name: Update Engine Submodules
+        run: |
+          cd RobustToolbox/
+          git submodule update --init --recursive
 
-    - name: Run Content.IntegrationTests
-      id: run-integration-tests
-      uses: nick-fields/retry@v4
-      env:
-        DOTNET_gcServer: "1"
-      with:
-        timeout_minutes: 17
-        max_attempts: 2
-        retry_on: any
-        command: |
-          RUNSETTINGS=".integration-filters/shard_${{ matrix.shard }}.runsettings"
-          if [ ! -f "$RUNSETTINGS" ]; then
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+
+      - name: Download test binaries
+        uses: actions/download-artifact@v8
+        with:
+          name: test-binaries
+
+      - name: Extract test binaries
+        run: tar --use-compress-program='zstd -d -T0' -xf test-binaries.tar.zst && rm test-binaries.tar.zst
+
+      - name: Run Content.IntegrationTests
+        env:
+          HARVEST: ${{ inputs.harvest }}
+          RUN_DEBUG: ${{ runner.debug }}
+          TEST_FILTER: ${{ fromJSON(needs.build.outputs.integration_test_filters)[matrix.shard] }}
+        run: |
+          if [ -z "$TEST_FILTER" ]; then
             echo "No tests assigned to shard ${{ matrix.shard }}"
             exit 0
           fi
-          timeout --signal=TERM --kill-after=2m 15m \
-            dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --settings "$RUNSETTINGS"
-
-    - name: Test results
-      continue-on-error: true
-      if: always()
-      run: |
-        dotnet tool install -g dotnet-trx 2>/dev/null || true
-        mkdir -p /tmp/test-results
-        trx --path /tmp/test-results -o -v verbose || true
-
-    - name: Upload crash dumps
-      id: upload-dumps
-      uses: actions/upload-artifact@v4
-      if: ${{ always() && steps.run-integration-tests.outcome == 'failure' }}
-      with:
-        name: blame-dump-shard-${{ matrix.shard }}
-        path: |
-          /tmp/test-results/**/*.dmp
-          /tmp/test-results/**/*Sequence*.xml
-        retention-days: 3
-        if-no-files-found: ignore
-
-    - name: Report hung tests
-      continue-on-error: true
-      if: always()
-      run: |
-        shopt -s nullglob globstar
-        found=false
-        for seq in /tmp/test-results/**/*Sequence*.xml; do
-          if [ "$found" = false ]; then
-            echo "## :warning: Hung tests detected (shard ${{ matrix.shard }})" >> "$GITHUB_STEP_SUMMARY"
-            echo '```xml' >> "$GITHUB_STEP_SUMMARY"
-            found=true
+          PROGRESS=()
+          if [[ "$HARVEST" = "true" || $RUN_DEBUG == 1 ]]; then
+            PROGRESS=(--progress on --output Detailed)
+            while :; do
+              free --human --line --seconds 1 --count 1 | tr -d '\r\n'
+              echo
+              sleep 10
+            done &
+            MEMWATCH=$!
+            trap 'kill "$MEMWATCH" 2>/dev/null || true' EXIT
           fi
-          cat "$seq" >> "$GITHUB_STEP_SUMMARY"
-        done
-        if [ "$found" = true ]; then
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
-          if [ -n "${{ steps.upload-dumps.outputs.artifact-url }}" ]; then
-            echo ":floppy_disk: [Download crash dump](${{ steps.upload-dumps.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+          RETRY=(--retry-failed-tests 2)
+          if [ "$HARVEST" = "true" ]; then
+            RETRY=()
           fi
-        fi
+          VERBOSITY=()
+          if [ "$RUN_DEBUG" = "1" ]; then
+            VERBOSITY=(--show-stdout All --show-stderr All)
+          fi
+          bin/Content.IntegrationTests/Content.IntegrationTests \
+            --filter "$TEST_FILTER" \
+            --minimum-expected-tests 1 \
+            "${RETRY[@]}" \
+            "${PROGRESS[@]}" \
+            "${VERBOSITY[@]}" \
+            --hangdump \
+            --hangdump-timeout 5m \
+            --hangdump-filename "hang-dump-shard-${{ matrix.shard }}-{pname}-{pid}-{time}.dmp" \
+            --report-ctrf \
+            --report-ctrf-filename "shard-${{ matrix.shard }}-ctrf-report-{time}.json" \
+            --results-directory /tmp/test-results/ \
+            --settings .github/ci.runsettings
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v6
+        if: always()
+        continue-on-error: true
+        with:
+          name: test-nunit-shard-${{ matrix.shard }}
+          path: |
+            /tmp/test-results/shard-*-ctrf-report-*.json
+            /tmp/test-results/Retries/**/shard-*-ctrf-report-*.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Upload hang dump
+        id: upload-hang-dump
+        uses: actions/upload-artifact@v6
+        if: always()
+        continue-on-error: true
+        with:
+          name: hang-dump-shard-${{ matrix.shard }}
+          path: |
+            /tmp/test-results/**/hang-dump-shard-*.dmp
+            /tmp/test-results/**/hang-dump-shard-*.log
+          retention-days: 3
+          if-no-files-found: ignore
+
+      - name: Report hung tests
+        if: always()
+        continue-on-error: true
+        env:
+          HANG_DUMP_ARTIFACT_URL: ${{ steps.upload-hang-dump.outputs.artifact-url }}
+        run: |
+          shopt -s nullglob globstar
+          dumps=(/tmp/test-results/**/hang-dump-shard-*.dmp)
+          logs=(/tmp/test-results/**/hang-dump-shard-*.log)
+          if [ ${#dumps[@]} -eq 0 ] && [ ${#logs[@]} -eq 0 ]; then
+            exit 0
+          fi
+
+          echo "## :warning: Hung tests detected (shard ${{ matrix.shard }})" >> "$GITHUB_STEP_SUMMARY"
+          if [ ${#logs[@]} -gt 0 ]; then
+            echo '```text' >> "$GITHUB_STEP_SUMMARY"
+            for log in "${logs[@]}"; do
+              cat "$log" >> "$GITHUB_STEP_SUMMARY"
+            done
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          if [ -n "$HANG_DUMP_ARTIFACT_URL" ]; then
+            echo ":floppy_disk: [Download hang dump]($HANG_DUMP_ARTIFACT_URL)" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  yaml-linter:
+    name: YAML Linter
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && '0' || '1' }}
+
+      - name: Setup Submodule
+        run: |
+          git submodule update --init --recursive
+
+      - name: Pull engine updates
+        uses: space-wizards/submodule-dependency@v0.1.5
+
+      - name: Update Engine Submodules
+        run: |
+          cd RobustToolbox/
+          git submodule update --init --recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+
+      - name: Setup Reviewdog
+        if: github.event_name == 'pull_request'
+        uses: reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f # v1.5.0
+        with:
+          reviewdog_version: v0.21.0
+
+      - name: Download test binaries
+        uses: actions/download-artifact@v8
+        with:
+          name: test-binaries
+
+      - name: Extract test binaries
+        run: tar --use-compress-program='zstd -d -T0' -xf test-binaries.tar.zst && rm test-binaries.tar.zst
+
+      - name: Run Linter
+        if: github.event_name != 'pull_request'
+        run: bin/Content.YAMLLinter/Content.YAMLLinter
+
+      - name: Run Linter and report changed YAML lines
+        if: github.event_name == 'pull_request'
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          bin/Content.YAMLLinter/Content.YAMLLinter > /tmp/yaml-linter.log 2>&1
+          linter_status=$?
+          set -e
+
+          cat /tmp/yaml-linter.log
+
+          set +e
+          reviewdog \
+            -efm='%f:%l:%c: %t%*[^:]: %m' \
+            -name="YAML linter" \
+            -reporter=github-pr-annotations \
+            -filter-mode=added \
+            -fail-level=error \
+            < /tmp/yaml-linter.log
+          reviewdog_status=$?
+          set -e
+
+          if (( linter_status > 2 )); then
+            echo "::error::YAML linter crashed with exit code ${linter_status}."
+            exit "${linter_status}"
+          fi
+
+          if (( linter_status == 2 )); then
+            echo "::error::YAML field validation failed; see the log for non-localized errors."
+            exit 1
+          fi
+
+          exit "${reviewdog_status}"
 
   ci-success:
     name: Debug CI Required
@@ -188,14 +403,52 @@ jobs:
       - build
       - content-tests
       - integration-tests
-    runs-on: ubuntu-latest
+      - yaml-linter
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
     steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Download CTRF test results
+        continue-on-error: true
+        uses: actions/download-artifact@v8
+        with:
+          pattern: test-nunit-*
+          path: /tmp/ctrf-results
+
+      - name: Generate Content Tests report
+        if: always()
+        continue-on-error: true
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          title: Content Test Results
+          report-path: '/tmp/ctrf-results/test-nunit-content/**/*.json'
+          artifact-name: ct-report
+          upload-artifact: true
+          github-report: true
+          failed-folded-report: true
+
+      - name: Generate Integration Tests report
+        if: always()
+        continue-on-error: true
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          report-path: '/tmp/ctrf-results/test-nunit-shard-*/**/*.json'
+          title: Integration Test Results
+          github-report: true
+          failed-folded-report: true
+          artifact-name: it-report
+          upload-artifact: true
+
       - name: Fail if any dependency was not successful
-        if: ${{ needs.build.result != 'success' || needs['content-tests'].result != 'success' || needs['integration-tests'].result != 'success' }}
+        if: ${{ needs.build.result != 'success' || needs['content-tests'].result != 'success' || needs['integration-tests'].result != 'success' || needs['yaml-linter'].result != 'success' }}
         run: |
           echo "build=${{ needs.build.result }}"
           echo "content-tests=${{ needs['content-tests'].result }}"
           echo "integration-tests=${{ needs['integration-tests'].result }}"
+          echo "yaml-linter=${{ needs['yaml-linter'].result }}"
           exit 1
 
       - name: CI succeeded
@@ -206,10 +459,14 @@ jobs:
     needs:
       - content-tests
       - integration-tests
-    if: always()
-    runs-on: ubuntu-latest
+      - yaml-linter
+      - ci-success
+    runs-on: ubuntu-slim
     steps:
-      - name: Delete build artifact
-        uses: geekyeggo/delete-artifact@v5
+      - name: Delete test binaries
+        if: ${{ !(runner.debug == '1' || inputs.harvest == true || needs.ci-success.result == 'success') }}
+        continue-on-error: true
+        uses: geekyeggo/delete-artifact@v6
         with:
-          name: build-output
+          name: |
+            test-*
