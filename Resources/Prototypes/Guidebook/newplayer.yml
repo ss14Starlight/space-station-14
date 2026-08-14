@@ -12,7 +12,7 @@
 - type: guideEntry
   id: Controls
   name: guide-entry-controls
-  priority: 1
+  priority: 1 # Starlight-edit
   text: "/ServerInfo/Guidebook/NewPlayer/Controls/Controls.xml"
   children:
   - Radio
