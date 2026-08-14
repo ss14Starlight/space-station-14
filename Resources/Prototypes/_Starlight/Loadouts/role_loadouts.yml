@@ -355,3 +355,15 @@
   - SurvivalExtended
   - GroupSpeciesBreathTool
   - GroupTankHarness
+
+- type: roleLoadout
+  id: JobSalvageMedic
+  groups:
+    - GroupTankHarness
+    - SalvageSpecialistBackpack
+    - SalvageSpecialistOuterClothing
+    - SalvageSpecialistShoes
+    - Glasses
+    - Survival
+    - Trinkets
+    - GroupSpeciesBreathTool

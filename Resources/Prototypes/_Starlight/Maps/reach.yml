@@ -55,6 +55,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 1, 2 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 1, 2 ]
             CargoTechnician: [ 1, 2 ]
             MailTech: [ 1, 1 ]

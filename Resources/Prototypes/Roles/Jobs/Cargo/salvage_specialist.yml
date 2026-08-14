@@ -22,6 +22,9 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: NoObjectiveTarget
 
 - type: startingGear
   id: SalvageSpecialistGear

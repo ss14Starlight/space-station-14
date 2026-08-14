@@ -63,6 +63,7 @@
             #supply (12 - 15)
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ] #the salvagers yearn for the mines
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 3, 3 ] #the miners... yearn for the mines...
             MailTech: [ 1, 2 ]
             CargoTechnician: [ 4, 6 ]

@@ -20,6 +20,7 @@ job-name-cc-janitor = CentComm Janitor
 
 job-name-performer = Performer
 job-name-salvagelead = Salvage Lead
+job-name-salvagemedic = Salvage Medic
 job-name-dutyofficer = Duty Officer
 job-name-abductor = Abductor
 job-title-borgi = Borgi

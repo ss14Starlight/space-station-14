@@ -277,6 +277,10 @@
                     0.1
                 ]
             ]
+        },
+        {
+            "name": "SalvageMedic",
+            "copyright": "Swonki"
         }
     ]
 }

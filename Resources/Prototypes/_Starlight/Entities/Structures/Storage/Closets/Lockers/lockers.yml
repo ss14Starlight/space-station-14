@@ -395,3 +395,19 @@
     stateDoorClosed: salvage_door
   - type: AccessReader
     access: [["Salvage"]]
+
+# Salvage Medic
+- type: entity
+  id: LockerSalvageMedic
+  parent: LockerBaseSecure
+  name: salvage medic's locker
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: salvagemedic
+      stateDoorOpen: salvagemedic_open
+      stateDoorClosed: salvagemedic_door
+    - type: AccessReader
+      access: [["Salvage"]]

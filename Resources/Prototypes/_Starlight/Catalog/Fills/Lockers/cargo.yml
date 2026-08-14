@@ -6,6 +6,7 @@
     - id: BoxFolderClipboardSalvageLead
     - id: RubberStampSalvageLead
     - id: ClothingNeckMantleDecoratedSalvager
+    - id: ITGTrackerImplanter
 
 - type: entityTable
   id: FillSalvageLeadHardsuitSpatio
@@ -396,3 +397,57 @@
           tableId: LockerFillSalvageSpecialist
         - !type:NestedSelector
           tableId: LockerFillSalvageSpecialist
+
+- type: entityTable
+  id: LockerFillSalvageMedic
+  table: !type:AllSelector
+    children:
+      - id: ClothingBeltMedicalFilled
+      - id: SurvivalKnife
+      - id: HandheldGPSBasic
+      - id: RadioHandheldExpedition
+      - id: AppraisalTool
+      - id: FireExtinguisher
+      - id: Flare
+        prob: 0.3
+        rolls: !type:ConstantNumberSelector
+          value: 3
+      - id: ClothingNeckMantleMedic
+      - id: ITGTrackerImplanter
+      - id: BoxBodyBag
+      - id: EmergencyRollerBedSpawnFolded
+
+- type: entityTable
+  id: FillSalvageMedicHardsuitSpatio
+  table: !type:AllSelector
+    children:
+      - id: OxygenTankFilled
+      - id: ClothingShoesBootsMag
+      - id: ClothingOuterHardsuitSpatio
+      - id: ClothingMaskGasExplorer
+
+- type: entity
+  id: LockerSalvageMedicFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerSalvageMedic
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        entity_storage: !type:AllSelector
+          children:
+            - !type:NestedSelector
+              tableId: FillSalvageMedicHardsuitSpatio
+            - !type:NestedSelector
+              tableId: LockerFillSalvageMedic
+
+- type: entity
+  id: LockerSalvageMedicFilled
+  suffix: Filled
+  parent: LockerSalvageMedic
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        entity_storage: !type:AllSelector
+          children:
+            - !type:NestedSelector
+              tableId: LockerFillSalvageMedic
