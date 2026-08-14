@@ -10,6 +10,7 @@ using Robust.Shared.Physics;
 using Content.Server.Temperature.Systems;
 using Content.Shared.Temperature.Components;
 using Content.Server.Atmos.Components;
+using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
@@ -17,7 +18,7 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
+//    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TemperatureSystem _tempSys = default!;
 
     public int StoredCorpseCount { get; private set; }
@@ -36,12 +37,11 @@ public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
             return;
 
         var corpse = ent.Comp.CorpseContainer.ContainedEntities[0];
+        var xform = Transform(ent.Owner);
+        var destination = new EntityCoordinates(xform.ParentUid, xform.LocalPosition);
 
-        _container.Remove(corpse, ent.Comp.CorpseContainer);
+        _container.Remove(corpse, ent.Comp.CorpseContainer, destination: destination);
         RemComp<PressureImmunityComponent>(corpse);
-
-        var riftCoordinates = Transform(ent.Owner).Coordinates;
-        _transform.SetCoordinates(corpse, riftCoordinates);
     }
 
     public override void Update(float frameTime)
