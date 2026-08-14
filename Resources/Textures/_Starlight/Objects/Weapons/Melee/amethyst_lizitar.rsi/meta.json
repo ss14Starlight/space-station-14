@@ -8,23 +8,27 @@
     },
     "states": [
         {
-            "name": "icon"
-            "copyright": "done by OrangeJuiceGoose for Starlight"
+            "name": "icon",
+            "copyright": "done by OrangeJuiceGoose for Starlight",
+			"license": "CC-BY-SA-3.0"
         },
         {
             "name": "inhand-left",
-            "copyright": "done by OrangeJuiceGoose for Starlight"
-            "directions": 4
+            "directions": 4,
+            "copyright": "done by OrangeJuiceGoose for Starlight",
+			"license": "CC-BY-SA-3.0"
         },
         {
             "name": "inhand-right",
-            "copyright": "done by OrangeJuiceGoose for Starlight"
-            "directions": 4
+            "directions": 4,
+            "copyright": "done by OrangeJuiceGoose for Starlight",
+			"license": "CC-BY-SA-3.0"
         },
         {
             "name": "equipped-BACKPACK",
-            "copyright": "done by OrangeJuiceGoose for Starlight"
-            "directions": 4
+            "directions": 4,
+            "copyright": "done by OrangeJuiceGoose for Starlight",
+			"license": "CC-BY-SA-3.0"
         }
     ]
 }
