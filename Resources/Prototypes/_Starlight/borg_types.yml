@@ -162,6 +162,7 @@
   - BorgModulePrying
   - BorgModuleTool
   - BorgModulePaperwork
+  - BorgModulePaperworkPrinting
 
   radioChannels:
   - Common
@@ -177,6 +178,7 @@
     tags:
     - Borg
     - Debrief
+    - HeadOfPersonnel
 
   # Visual
   inventoryTemplateId: borgTall
@@ -228,3 +230,4 @@
       tags:
         - Borg
         - BorgCargo
+        - Quartermaster

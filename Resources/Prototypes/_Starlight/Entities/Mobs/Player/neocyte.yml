@@ -1,0 +1,109 @@
+- type: entity
+  save: false
+  name: Urist McToaster
+  parent: BaseMobNeocyte
+  id: MobNeocyte
+
+- type: entity
+  save: false
+  name: Urist McVulpster
+  parent: BaseMobNeoVulpkanin
+  id: MobNeoVulpkanin
+
+- type: entity
+  save: false
+  name: Urist McVoxster
+  parent: BaseMobNeoVox
+  id: MobNeoVox
+
+- type: entity
+  save: false
+  name: Urist McEarster
+  parent: BaseMobNeoThaven
+  id: MobNeoThaven
+
+- type: entity
+  save: false
+  name: Urist McSlimester
+  parent: BaseMobNeoSlimePerson
+  id: MobNeoSlimePerson
+
+- type: entity
+  save: false
+  name: Urist McDuskin
+  parent: BaseMobNeoKin
+  id: MobNeoKin
+
+- type: entity
+  save: false
+  name: Urist McRapster
+  parent: BaseMobNeoResomi
+  id: MobNeoResomi
+
+- type: entity
+  save: false
+  name: Urist McScalester
+  suffix: Urisst' Mztosster
+  parent: BaseMobNeoReptilian
+  id: MobNeoReptilian
+
+- type: entity
+  save: false
+  name: Urist McFluffster
+  parent: BaseMobNeoMoth
+  id: MobNeoMoth
+
+- type: entity
+  save: false
+  name: Urist McHandster
+  parent: BaseMobNeoHuman
+  id: MobNeoHuman
+
+- type: entity
+  save: false
+  name: Urist McFelinster
+  parent: BaseMobNeoFelionoid
+  id: MobNeoFelionoid
+
+- type: entity
+  save: false
+  name: Urist McHandster The Neo-Dwarf
+  parent: BaseMobNeoDwarf
+  id: MobNeoDwarf
+
+- type: entity
+  save: false
+  name: Urist McPlantster
+  parent: BaseMobNeoDiona
+  id: MobNeoDiona
+
+- type: entity
+  save: false
+  name: Urist McCyclorister
+  parent: BaseMobNeoCyclorite
+  id: MobNeoCyclorite
+
+- type: entity
+  save: false
+  name: Urist McSpaceRaptorster
+  suffix: Urist McAvalister
+  parent: BaseMobNeoAvali
+  id: MobNeoAvali
+
+- type: entity
+  save: false
+  name: Urist McWebster
+  parent: BaseMobNeoArachnid
+  id: MobNeoArachnid
+
+- type: entity
+  save: false
+  name: Urist McElgister
+  parent: BaseMobNeoElf
+  id: MobNeoElf
+
+- type: entity
+  save: false
+  name: Urist McBnuuister
+  parent: BaseMobNeoLagomorph
+  id: MobNeoLagomorph

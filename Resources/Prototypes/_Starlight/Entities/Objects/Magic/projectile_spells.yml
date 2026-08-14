@@ -1,0 +1,221 @@
+- type: entity
+  parent: ActionFireball #Remove actionupregadable if spell is put in shop alone
+  id: ActionFirebolt
+  name: Firebolt
+  description: Fires a fast but weaker bolt of fire toward the aimed location. (Cooldown of 5 seconds)
+  components:
+  - type: Action
+    useDelay: 5
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/fireball.ogg
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: firebolt
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileFirebolt
+  - type: SpeakOnAction
+    sentence: action-speech-spell-firebolt
+    tts: action-speech-spell-firebolt-tts
+    modifier: Spell
+
+- type: entity
+  parent: ActionFireball #Remove actionupregadable if spell is put in shop alone
+  id: ActionFireOrb
+  name: Fire Orb
+  description: Fires a slow moving Orb of fire that will ignite everyone in a big radius in a glorious inferno. (Cooldown of 4 minutes)
+  components:
+  - type: Action
+    useDelay: 240
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/fireball.ogg
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: fireorb
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileFireOrb
+      projectileSpeed: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-fireorb
+    tts: action-speech-spell-fireorb-tts
+    modifier: Spell
+
+- type: entity
+  parent: ActionFireball #Remove actionupregadable if spell is put in shop alone
+  id: ActionFireArrow
+  name: Fire arrow
+  description: Fires a solid flame in the form of an arrow. (Cooldown of 15 seconds)
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: firearrows
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:MultiProjectileSpellEvent
+      prototype: ProjectileFireArrow
+      projectileCount: 3
+      spreadDegrees: 16
+  - type: SpeakOnAction
+    sentence: action-speech-spell-firearrow
+    tts: action-speech-spell-firearrow-tts
+    modifier: Spell
+
+- type: entity
+  parent: BaseAction
+  id: ActionArcticGlare
+  name: Arctic Glare
+  description: Glare at your enemies with the fury of the artic, freezing anyone close (short range spell, 2 min cooldown).
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 120 #2 minutes
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: arcticglare
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:MultiProjectileSpellEvent
+      prototype: ProjectileIceGlare
+      projectileCount: 15
+      spreadDegrees: 120
+  - type: SpeakOnAction
+    sentence: action-speech-spell-arcticglare
+    tts: action-speech-spell-arcticglare-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionIceShard
+  name: Ice Shard
+  description: Throw a sharp shard of ice that will slice and freeze the first person it touches. (30 seconds cooldown)
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: iceshard
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileIceShard
+  - type: SpeakOnAction
+    sentence: action-speech-spell-iceshard
+    tts: action-speech-spell-iceshard-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  parent: ActionFireball #Remove actionupregadable if spell is put in shop alone
+  id: ActionIceOrb
+  name: Heart of Winter
+  description: Unleash a slow moving orb of ice, the orb throws icy shards every seconds and a half. Also destroys anything non living on impact. (3 min cooldown)
+  components:
+  - type: Action
+    useDelay: 180
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: iceorb
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileIceOrb
+      projectileSpeed: 2
+  - type: SpeakOnAction
+    sentence: action-speech-spell-iceorb
+    tts: action-speech-spell-iceorb-tts
+    modifier: Spell
+
+# Ice Storm Spell - Projectile-based ice spell
+- type: entity
+  parent: BaseAction
+  id: ActionIceStorm
+  name: Ice Storm
+  description: Summon a freezing blast of ice that chills everything it touches! (Cooldown of 2 minutes)
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 120 # 2 minutes
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/fireball.ogg
+    icon:
+      sprite: Structures/Specific/Anomalies/ice_anom.rsi
+      state: anom
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:MultiProjectileSpellEvent  # Starlight: Changed to fire multiple projectiles
+      prototype: ProjectileIceStormSingle
+      projectileCount: 3  # Starlight: Shoot 3 ice spikes
+      spreadDegrees: 12  # Starlight: Tight spread like a shotgun
+  - type: SpeakOnAction
+    sentence: action-speech-spell-icestorm
+    tts: action-speech-spell-icestorm-tts
+    modifier: Spell
+  - type: EorgPreventAction # Starlight
+
+# Starlight: Ice Storm projectile
+- type: entity
+  id: ProjectileIceStormSingle
+  parent: BaseBulletTrigger
+  name: ice spike
+  description: A freezing spike of magical ice!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/ice_anom.rsi
+    layers:
+    - state: bullet
+  - type: Projectile
+    damage:
+      types:
+        Cold: 30
+        Heat: 15  # Starlight: Frostburn effect - extreme cold causes burning sensation
+        Piercing: 12
+        Structural: 40
+    soundHit:
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: ChangeTemperatureOnCollide
+    heat: -120000 # Starlight: Very cold, in Joules (negative = cooling)
+    ignoreHeatResistance: false
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  # Starlight: Spawn IceCrust debris and replace tiles with snow while the projectile is flying
+  - type: IceTrail
+    spawnInterval: 0.05  # Starlight: Spawn IceCrust every 0.05 seconds
+    iceChance: 0.55  # Starlight: 55% ice, 45% snow
+    iceEntityId: IceCrust  # Starlight: Ice crust debris entity
+    snowTileId: FloorSnow  # Starlight: Snow floor tile
+  # Starlight: Custom component to spawn IceCrust debris and replace tiles with snow in a circle when hitting humanoids
+  - type: IceSpawnOnTrigger
+    radius: 2  # Starlight: 2 tile radius for a smaller area
+    requireHumanoid: true  # Starlight: Only create ice circle if we hit a living humanoid
+    iceChance: 0.60  # Starlight: 60% ice, 40% snow
+    iceEntityId: IceCrust  # Starlight: Ice crust debris entity
+    snowTileId: FloorSnow  # Starlight: Snow floor tile

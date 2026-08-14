@@ -6,7 +6,9 @@
   components:
   - type: RecruitmentComputer
   - type: ActivatableUI
+    adminOnly: true
     key: enum.RecruitmentComputerUiKey.Key
+  - type: ActivatableUIRequiresAccess
   - type: UserInterface
     interfaces:
       enum.RecruitmentComputerUiKey.Key:
@@ -252,6 +254,8 @@
     board: SalvageShuttleConsoleCircuitboard
   - type: StealTarget
     stealGroup: SalvageShuttleConsoleCircuitboard
+  - type: AccessReader
+    access: [ [ "Shuttle" ], [ "Salvage" ] ]
 
 # Mass Driver
 
@@ -432,6 +436,8 @@
       board: MiningShuttleConsoleCircuitboard
     - type: StealTarget
       stealGroup: MiningShuttleConsoleCircuitboard
+    - type: AccessReader
+      access: [["Shuttle"], ["Mining"]]
 
 # Security Shuttle Console
 - type: entity
@@ -467,6 +473,8 @@
     # Starlight End
     - type: Computer
       board: SecurityShuttleConsoleCircuitboard
+    - type: AccessReader
+      access: [["Security"]]
 
 - type: entity
   parent: ComputerComms

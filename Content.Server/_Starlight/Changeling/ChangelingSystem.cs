@@ -112,7 +112,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     public static readonly EntProtoId SpacesuitPrototype = "ChangelingClothingOuterHardsuit";
     public static readonly EntProtoId SpacesuitHelmetPrototype = "ChangelingClothingHeadHelmetHardsuit";
-    public static readonly EntProtoId ProtogenDisguisePrototype = "ChangelingClothingProtogenArmor"; // Starlight
+    public static readonly EntProtoId NeocyteDisguisePrototype = "ChangelingClothingNeocyteArmor"; // Starlight
 
     public static readonly EntProtoId SlowdownPrototype = "StatusEffectStaminaLow";
 
@@ -396,7 +396,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         {
             Name = metadata.EntityName,
             DNA = dna.DNA,
-            Appearance = appearance
+            Appearance = (target, appearance)
         };
 
         if (fingerprint.Fingerprint != null)
@@ -444,7 +444,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (data != null)
         {
-            if (!_proto.TryIndex(data.Appearance.Species, out var species))
+            if (!_proto.TryIndex(data.Appearance.Comp.Species, out var species))
                 return null;
             pid = species.Prototype;
         }

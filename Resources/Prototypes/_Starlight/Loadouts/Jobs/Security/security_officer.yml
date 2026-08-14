@@ -37,6 +37,21 @@
   equipment:
     pocket1: WeaponAdvancedTaser
 
+- type: loadout
+  id: SecurityPeacekeeper
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SkilledOfficer
+  dummyEntity: WeaponLauncherPeacekeeper
+  storage:
+    back:
+      - BoxPeacekeeperBaton
+      - GrenadeBaton
+      - BoxPeacekeeperFlash
+      - GrenadeGaslauncher
+      - GrenadeStingerlauncher
+      - WeaponLauncherPeacekeeper
+
 # Sidearm Options
 - type: loadout
   id: SecurityMk58
@@ -87,6 +102,17 @@
     back:
       - WeaponPistolGoldenMk58HighCapacity
       - MagazinePistolHighCapacitySPGolden
+
+- type: loadout
+  id: SecurityColdCase
+  effects:
+   - !type:GroupLoadoutEffect
+      proto: SkilledOfficer
+  dummyEntity: WeaponPistolColdCase
+  storage:
+    back:
+    - WeaponPistolColdCase
+    - MagazineBoxPistol40SP
 
 # Jumpsuit
 - type: loadout

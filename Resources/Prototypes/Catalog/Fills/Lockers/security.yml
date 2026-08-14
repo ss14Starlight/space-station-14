@@ -162,8 +162,6 @@
         prob: 1.8
     - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
       prob: 0.15
-    - id: PlushieMorgana #starlight
-    - id: PlushieKiller #starlight
     - id: JawsOfLifeMed #Starlight
 
 
@@ -224,10 +222,14 @@
       prob: 0.5
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseSecuritySL, BaseSecurityContraband] #SL parenting
   id: GunSafeDisabler
   name: disabler safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: disabler_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -241,10 +243,14 @@
       amount: 5
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafePistolMk58
   name: pistol safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: pistol_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -267,10 +273,14 @@
       amount: 2
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafeRifleLecter
   name: rifle safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: lecter_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -299,10 +309,14 @@
 # Starlight-end
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafeSubMachineGunDrozd
   name: smg safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: drozd_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -321,10 +335,14 @@
       amount: 5 # Starlight
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafeShotgunEnforcer
   name: heavy shotgun safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: enforcer_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -345,10 +363,14 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafeShotgunKammerer
   name: shotgun safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: kammerer_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -371,9 +393,13 @@
 - type: entity
   id: GunSafeSubMachineGunWt550
   suffix: Wt550
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   name: wt550 safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: wt550_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -390,10 +416,14 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseSecurityContraband]
+  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
   id: GunSafeLaserCarbine
   name: laser safe
   components:
+  #Starlight Start
+  - type: EntityStorageVisuals
+    stateDoorClosed: laser_gunsafe_doors
+  #Starlight End
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector

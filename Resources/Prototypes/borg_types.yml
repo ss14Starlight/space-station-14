@@ -37,6 +37,7 @@
       tags:
         - Borg
         - BorgResearch
+        - ResearchDirector
   # Starlight END
 
 # Engineering borg
@@ -79,6 +80,7 @@
     tags:
       - Borg
       - BorgEngineering
+      - ChiefEngineer
   # Starlight end
 
   # Visual
@@ -146,6 +148,7 @@
     tags:
       - Borg
       - BorgCargo
+      - Quartermaster
   # Starlight-end
 
 
@@ -223,17 +226,18 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-    - Hybrid # Starlight, Protogens
+    - Hybrid # Starlight, Neocytes
   - type: ShowHealthIcons
     damageContainers:
     - Biological
-    - Hybrid # Starlight, Protogens
+    - Hybrid # Starlight, Neocytes
   - type: Access # Starlight BEGIN
     groups:
       - CyborgAllAccess
     tags:
       - Borg
-      - BorgMedical # Starlight END
+      - BorgMedical
+      - ChiefMedicalOfficer # Starlight END
 
   # Visual
   inventoryTemplateId: borgDutch
