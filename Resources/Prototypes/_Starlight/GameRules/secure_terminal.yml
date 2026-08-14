@@ -181,7 +181,7 @@
     layers:
     - state: green
     - sprite: Markers/jobs.rsi
-      state: ertjanitor
+      state: ertjanitoreva
   - type: ConditionalSpawner
     prototypes:
     - RandomHumanoidSpawnerERTJanitorEVA
@@ -256,7 +256,7 @@
     layers:
     - state: green
     - sprite: Markers/jobs.rsi
-      state: chaplain
+      state: chaplaineva
   - type: ConditionalSpawner
     prototypes:
     - RandomHumanoidSpawnerERTChaplainEVA
