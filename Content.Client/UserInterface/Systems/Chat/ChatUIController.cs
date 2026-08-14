@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization; // Starlight: UTF-8 encode this file!
 using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.Managers;
@@ -398,14 +398,31 @@ public sealed partial class ChatUIController : UIController
 
     private void FocusChannel(ChatSelectChannel channel)
     {
+        // Starlight BEGIN
+        /*
+            We added the "MainChannel" property to fix the admin chat window not being prioritized
+            when the admin chat hotkey was pressed. This code was altered to prioritize a chat box
+            whose MainChannel == channel. If no such chat box is found, whichever chat box is
+            Main (the 'default' chat box) is used.
+
+            Note, I also tried to use the active chat filters to determine which box to select,
+            but it seems there's several boxes in the background that break this, so I opted
+            for this simpler approach of just having one "MainChannel".
+        */
+        ChatBox? fallback = null;
         foreach (var chat in _chats)
         {
-            if (!chat.Main)
-                continue;
+            if (chat.MainChannel == channel)
+            {
+                chat.Focus(channel);
+                return;
+            }
 
-            chat.Focus(channel);
-            break;
+            if (chat.Main)
+                fallback ??= chat;
         }
+        fallback?.Focus(channel);
+        // Starlight END
     }
 
     private void CycleChatChannel(bool forward)
@@ -764,8 +781,11 @@ public sealed partial class ChatUIController : UIController
         if (TryGetLanguage(ref text, out var foundLanguage))
         {
             language = foundLanguage;
-            if(text.Length<5) return (ChatSelectChannel.None, text, null, null, foundLanguage);
-            modText = text[4..];
+            if (foundLanguage.ChatPrefix is null)
+                throw new Exception("Chat prefix is null? This should be impossible");
+            var pfxLength = foundLanguage.ChatPrefix.Length + 1;
+            if (text.Length < pfxLength + 1) return (ChatSelectChannel.None, text, null, null, foundLanguage);
+            modText = text[pfxLength..];
         }
         //Starlight end
 
@@ -793,11 +813,20 @@ public sealed partial class ChatUIController : UIController
 
         if (chatChannel == ChatSelectChannel.Local)
         {
-            if (_ghost?.IsGhost != true && _ghost?.Player?.BypassGhostChat != true) // Starlight edit
+            if (_ghost?.IsGhost != true || _ghost?.Player?.BypassGhostChat == true) // Starlight edit
                 return (chatChannel, text, null, null, language); //Starlight edit
             else
                 chatChannel = ChatSelectChannel.Dead;
         }
+
+        // Starlight begin
+        if (chatChannel == ChatSelectChannel.Whisper && text.StartsWith('+')) // TRIM AHEAD
+        {
+            var idx = text.IndexOf(',');
+            text = text.Remove(idx, 1);
+            return (chatChannel, text, null, null, language);
+        }
+        // Starlight end
 
         return (chatChannel, text[1..].TrimStart(), null, null, language); //Starlight edit
     }
@@ -815,7 +844,7 @@ public sealed partial class ChatUIController : UIController
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        (var prefixChannel, text, var _, var _, _) = SplitInputContents(text); // Starlight edit
+        (var prefixChannel, text, var _, var _, var language) = SplitInputContents(text); // Starlight edit
 
         // Check if message is longer than the character limit
         if (text.Length > MaxMessageLength)
@@ -830,8 +859,14 @@ public sealed partial class ChatUIController : UIController
             channel = prefixChannel;
         else if (channel == ChatSelectChannel.Radio)
         {
-            // radio must have prefix as it goes through the say command.
-            text = $";{text}";
+            // Starlight begin
+            if (language?.ChatPrefix is not null)
+            {
+                var pfxLength = language.ChatPrefix.Length + 1;
+                text = text.Insert(pfxLength, ";");
+            }
+            else text = $";{text}";
+            // Starlight end
         }
 
         _manager.SendMessage(text, prefixChannel == 0 ? channel : prefixChannel);
@@ -876,8 +911,11 @@ public sealed partial class ChatUIController : UIController
     }
 
     // Starlight begin: dumb event listener for updating channel permissions
-    private void OnCorporealChanged(GhostCorporealEvent ev, EntitySessionEventArgs _) =>
+    private void OnCorporealChanged(GhostCorporealEvent ev, EntitySessionEventArgs _)
+    {
+        if (EntityManager.GetEntity(ev.Uid) != _player.LocalEntity) return;
         UpdateChannelPermissions();
+    }
     // Starlight end
 
     private void OnChatMessage(MsgChatMessage message)

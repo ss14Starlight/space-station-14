@@ -96,6 +96,7 @@
   name: CO2 gas miner
   parent: GasMinerBase
   id: GasMinerCarbonDioxide
+  categories: [ ShouldMapStation ] # Starlight
   components:
     - type: GasMiner
       spawnGas: CarbonDioxide
@@ -128,6 +129,7 @@
   name: water vapor gas miner
   parent: GasMinerBase
   id: GasMinerWaterVapor
+  categories: [ ShouldMapStation ] # Starlight
   components:
     - type: GasMiner
       spawnGas: WaterVapor

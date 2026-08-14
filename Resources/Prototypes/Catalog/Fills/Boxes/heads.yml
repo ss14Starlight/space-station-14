@@ -7,8 +7,10 @@
     containers:
       storagebase: !type:AllSelector
         children:
+        - id: CommandTechFabCircuitboard # Starlight
         - id: CommsComputerCircuitboard
         - id: StationRecordsComputerCircuitboard
+        - id: ShipyardComputerCircuitboard # Starlight
 
 - type: entity
   parent: ToteBase
@@ -19,6 +21,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
+        - id: EngineeringTechFabCircuitboard  # Starlight
         - id: CargoRequestEngineeringComputerCircuitboard
         - id: AlertsComputerCircuitboard
         - id: AtmosMonitoringComputerCircuitboard
@@ -49,6 +52,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
+        - id: ServiceTechFabCircuitboard # Starlight
         - id: IDComputerCircuitboard
         - id: FundingAllocationComputerCircuitboard
         - id: CargoRequestServiceComputerCircuitboard
@@ -89,6 +93,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
+        - id: CargoTechFabCircuitboard # Starlight
         - id: CargoBountyComputerCircuitboard
         - id: CargoRequestComputerCircuitboard
         - id: CargoSaleComputerCircuitboard
@@ -121,7 +126,7 @@
       storagebase: !type:AllSelector
         children:
         - id: CircuitImprinterMachineCircuitboard
-        - id: ProtolatheMachineCircuitboard
+        - id: ScienceTechFabCircuitboard # Starlight
         - id: ResearchComputerCircuitboard
         - id: CargoRequestScienceComputerCircuitboard
         - id: RoboticsConsoleCircuitboard

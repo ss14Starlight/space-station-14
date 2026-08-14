@@ -115,7 +115,7 @@
   - DaBling
   - CrapPlushie ##not a typo
   - LighterGatcha
-  #- MagicCrayon starlight edit commented out for now due to lag - 31-05-2026
+  - MagicCrayon
   - HappyHonk
   - LeftRipperArm
   - RightMechwrightArm
@@ -158,6 +158,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreather # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheese # Starlight
 
 # nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
@@ -453,6 +454,7 @@
   - ChefJumpsuit
   - ChefJumpskirt
   - MaidOutfit # Starlight
+  - ChefJumpsuitSenior # Starlight
 
 
 - type: loadoutGroup
@@ -463,6 +465,7 @@
   - ChefApron
   - ChefJacket
   - ChefWintercoat
+  - ChefJacketSenior # Starlight
 
 - type: loadoutGroup
   id: ChefJobTrinkets
@@ -738,6 +741,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherClown # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseClown # Starlight
 
 - type: loadoutGroup
   id: ClownJobTrinkets
@@ -809,6 +813,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherMime # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseMime # Starlight
 
 - type: loadoutGroup
   id: MimeJobTrinkets
@@ -1214,6 +1219,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherExtended # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseExtended # Starlight
 
 # Science
 - type: loadoutGroup
@@ -1431,6 +1437,8 @@
   loadouts:
   - WardenJumpsuit
   - WardenJumpskirt
+  - ClothingUniformJumpsuitFormalWarden #starlight
+  - ClothingUniformJumpskirtFormalWarden #starlight
 
 
 - type: loadoutGroup
@@ -1462,6 +1470,7 @@
   - SecurityBeret
   - SecurityHat
   - TrooperHat
+  - DeputyHat # starlight
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -1476,6 +1485,12 @@
   - TrooperUniform
   - SecurityJumpsuitBlue
   - SecurityJumpskirtBlue # starlight start
+  - FormalOfficerJumpsuit
+  - FormalOfficerJumpskirt
+  - FormalSeniorOfficerJumpsuit
+  - FormalSeniorOfficerJumpskirt
+  - DeputyFormalJumpskirt
+  - DeputyFormalJumpsuit
   - SecurityTshirt # starlight end
 
 - type: loadoutGroup
@@ -1558,7 +1573,6 @@
   - NoirJumpsuit
   - NoirJumpskirt
 
-
 - type: loadoutGroup
   id: DetectiveOuterClothing
   name: loadout-group-detective-outerclothing
@@ -1605,6 +1619,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonbreatherSecurity # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseSecurity # Starlight
 
 # Wildcards
 - type: loadoutGroup
@@ -1655,6 +1670,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseSyndicate # Starlight
 
 - type: loadoutGroup
   id: SurvivalMilitaryDouble
@@ -1667,6 +1683,7 @@
   - EmergencyElfOxygenMilitaryDouble # Starlight
   - EmergencyDwarfOxygenMilitaryDouble # Starlight
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseMilitary # Starlight
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool

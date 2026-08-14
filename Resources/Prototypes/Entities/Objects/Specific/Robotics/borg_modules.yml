@@ -627,7 +627,8 @@
   components:
   - type: Sprite
     layers:
-    - state: mining # Starlight
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi # Starlight
+      state: mining
     - state: icon-mining
   - type: ItemBorgModule
     hands:
@@ -638,10 +639,11 @@
     - item: RadioHandheldExpedition # Starlight
     - hand: # Starlight
         emptyRepresentative: GoldOre
-        emptyLabel: borg-slot-ore-empty
+        emptyLabel: borg-slot-ore-ticket-empty
         whitelist:
           tags:
             - Ore
+            - SalvageTicket # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
 
@@ -653,7 +655,8 @@
   components:
   - type: Sprite
     layers:
-    - state: mining # Starlight
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: mining # Starlight
     - state: icon-mining-adv
   - type: ItemBorgModule
     hands:
@@ -663,10 +666,11 @@
     - item: OreBagOfHolding
     - hand: # Starlight
         emptyRepresentative: GoldOre
-        emptyLabel: borg-slot-ore-empty
+        emptyLabel: borg-slot-ore-ticket-empty
         whitelist:
           tags:
             - Ore
+            - SalvageTicket # Starlight
     - item: RadioHandheldExpedition # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
@@ -678,7 +682,8 @@
   components:
   - type: Sprite
     layers:
-    - state: mining # Starlight
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi # Starlight
+      state: mining
     - state: icon-grappling-gun
   - type: ItemBorgModule
     hands:

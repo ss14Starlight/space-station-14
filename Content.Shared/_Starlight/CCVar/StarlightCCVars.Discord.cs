@@ -13,7 +13,6 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<string> Secret =
         CVarDef.Create("discord.secret", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
-
     /// <summary>
     /// Discord Webhooks
     /// </summary>

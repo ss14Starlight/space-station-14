@@ -230,6 +230,7 @@
     - captain
     - ai
     - general-command-staff
+    - secure-terminal
 
 
 - type: guideEntry
@@ -249,6 +250,41 @@
   name: guide-entry-sl-ai
   text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/ai.xml"
   priority: 3
+
+- type: guideEntry
+  id: secure-terminal
+  name: guide-entry-sl-secure-terminal
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/SecureTerminal/secure-terminal.xml"
+  priority: 4
+  children:
+    - secure-terminal-ert
+    - secure-terminal-alerts
+    - secure-terminal-armories
+    - secure-terminal-misc
+
+- type: guideEntry
+  id: secure-terminal-ert
+  name: guide-entry-sl-secure-terminal-ert
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/SecureTerminal/secure-terminal-ert.xml"
+  priority: 1
+
+- type: guideEntry
+  id: secure-terminal-alerts
+  name: guide-entry-sl-secure-terminal-alerts
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/SecureTerminal/secure-terminal-alerts.xml"
+  priority: 2
+
+- type: guideEntry
+  id: secure-terminal-armories
+  name: guide-entry-sl-secure-terminal-armories
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/SecureTerminal/secure-terminal-armories.xml"
+  priority: 3
+
+- type: guideEntry
+  id: secure-terminal-misc
+  name: guide-entry-sl-secure-terminal-misc
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/SecureTerminal/secure-terminal-misc.xml"
+  priority: 4
 
 
 
@@ -787,6 +823,7 @@
   children:
     - service-sop-headofpersonnel
     - service-sop-lawyer
+    - service-sop-reporter
 
 
 - type: guideEntry
@@ -800,3 +837,9 @@
   name: guide-entry-sl-service-sop-lawyer
   text: "/ServerInfo/Guidebook/StarlightSOP/ServiceSOP/Lawyer.xml"
   priority: 2
+
+- type: guideEntry
+  id: service-sop-reporter
+  name: guide-entry-sl-service-sop-reporter
+  text: "/ServerInfo/Guidebook/StarlightSOP/ServiceSOP/Reporter.xml"
+  priority: 3

@@ -34,7 +34,7 @@
             Quantity: 15
     - type: Tag
       tags:
-      - RamChip #Protogen joke, makes them able to eat them.
+      - RamChip # FH + Starlight
 # FH - End
 
 - type: entity
@@ -322,8 +322,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: CargoShuttleConsoleCircuitboard
-  name: cargo shuttle console board
-  description: A computer printed circuit board for a cargo shuttle console.
+  name: remote cargo shuttle console board # Starlight begin
+  description: A computer printed circuit board for a remote cargo shuttle console. # Starlight end
   components:
   - type: Sprite
     state: cpu_supply
@@ -345,7 +345,7 @@
   - type: Tag
     tags:
     - SurveillanceCameraMonitorCircuitboard
-    - RamChip # FH
+    - RamChip # FH + Starlight
   #Starlight start
   - type: Construction
     deconstructionTarget: null
@@ -386,7 +386,7 @@
     - type: Tag
       tags:
         - ComputerTelevisionCircuitboard
-        - RamChip # FH
+        - RamChip # FH + Starlight
 
 - type: entity
   parent: BaseComputerCircuitboard

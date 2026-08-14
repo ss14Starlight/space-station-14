@@ -10,11 +10,14 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 36000 # 10h
+  - !type:TraitsRequirement # Starlight
+    traits:
+      - Iterator
+    inverted: true
   startingGear: IAAGear
   icon: "JobIconIAA"
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nt-personnel
-  canBeAntag: false
   displayWeight: 3
   access:
   - IAA

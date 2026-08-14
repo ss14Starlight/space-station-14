@@ -42,12 +42,12 @@ public sealed partial class ChildBlockVisionSystem : EntitySystem
             var totalOrgans = _bodySystem.GetBodyOrganEntityComps<OrganComponent>((ent.Owner, body));
             var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((ent.Owner, body));
 
-            // if we got organs but no eyes then cancel the event to blind
-            if (totalOrgans.Count > 0 && eyes.Count == 0)
+            if (_bodySystem.HasOrganSlot(ent.Owner, body, "eyes") && eyes.Count == 0)
             {
                 args.Cancel();
                 return;
             }
+
         }
 
         var parent = _transform.GetParentUid(ent);

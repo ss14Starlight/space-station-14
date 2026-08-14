@@ -4,6 +4,7 @@
   sprite: /Textures/Tiles/plating.png
   baseTurf: Lattice
   isSubfloor: true
+  deconstructTools: [ Tearing ] # Starlight
   footstepSounds:
     collection: FootstepPlating
   friction: 1.5
@@ -19,7 +20,7 @@
   - 1.0
   - 1.0
   baseTurf: Plating # Starlight-edit - swap baseTurf to Plating, so when we weld it, we revert to that.
-  deconstructTools: [ Welding ] # Starlight - add welding as a deconstruct interaction, so we have an easy way to mend it.
+  deconstructTools: [ Welding, Tearing ] # Starlight - add welding as a deconstruct interaction, so we have an easy way to mend it.
   itemDrop: NothingEntity # Starlight - remove drop
   isSubfloor: true
   footstepSounds:
@@ -33,6 +34,7 @@
   sprite: /Textures/Tiles/Asteroid/asteroid_plating.png
   baseTurf: Lattice
   isSubfloor: true
+  deconstructTools: [ Tearing ] # Starlight
   footstepSounds:
     collection: FootstepPlating
   friction: 1.5
@@ -44,6 +46,7 @@
   sprite: /Textures/Tiles/Misc/clockwork/clockwork_floor.png
   baseTurf: Lattice
   isSubfloor: true
+  deconstructTools: [ Tearing ] # Starlight
   footstepSounds:
     collection: FootstepPlating
   friction: 1.5
@@ -55,10 +58,12 @@
   sprite: /Textures/Tiles/snow_plating.png #Not in the snow planet RSI because it doesn't have any metadata. Should probably be moved to its own folder later.
   baseTurf: Lattice
   isSubfloor: true
+  deconstructTools: [ Tearing ] # Starlight
   footstepSounds:
     collection: FootstepPlating
   friction: 0.75 #a little less then actual snow
   heatCapacity: 10000
+  weather: true # Starlight - it's got snow on it, so it's outside
 
 - type: tile
   id: PlatingIronsand

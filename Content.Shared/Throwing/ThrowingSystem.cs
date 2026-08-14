@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Camera;
 using Content.Shared.CCVar;
@@ -14,6 +15,9 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Throwing; // Starlight
+using Robust.Shared.Network;
+using Robust.Shared.Random; // Starlight
 
 namespace Content.Shared.Throwing;
 
@@ -37,14 +41,26 @@ public sealed partial class ThrowingSystem : EntitySystem
     [Dependency] private SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private INetManager _net = default!; // Starlight
+    [Dependency] private IRobustRandom _random = default!; // Starlight
 
     private EntityQuery<AnchorableComponent> _anchorableQuery;
+    // Starlight begin
+    private EntityQuery<PhysicsComponent> _physicsQuery;
+    /// <summary>
+    /// Items dropped when the holder falls down will be launched in
+    /// a direction offset by up to this many degrees from the holder's
+    /// movement direction.
+    /// </summary>
+    private const float DropHeldItemsSpread = 45;
+    // Starlight end
 
     public override void Initialize()
     {
         base.Initialize();
 
         _anchorableQuery = GetEntityQuery<AnchorableComponent>();
+        _physicsQuery = GetEntityQuery<PhysicsComponent>(); // Starlight
 
         Subs.CVar(_configManager, CCVars.TileFrictionModifier, value => _frictionModifier = value, true);
         Subs.CVar(_configManager, CCVars.AirFriction, value => _airDamping = value, true);
@@ -62,6 +78,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool animated = true,
         bool playSound = true,
         bool doSpin = true,
+        bool predicted = false, // Starlight
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         var thrownPos = _transform.GetMapCoordinates(uid);
@@ -70,7 +87,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         if (mapPos.MapId != thrownPos.MapId)
             return;
 
-        TryThrow(uid, mapPos.Position - thrownPos.Position, baseThrowSpeed, user, pushbackRatio, friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor);
+        TryThrow(uid, mapPos.Position - thrownPos.Position, baseThrowSpeed, user, pushbackRatio, friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor, predicted: predicted); // Starlight edit
     }
 
     /// <summary>
@@ -95,6 +112,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool animated = true,
         bool playSound = true,
         bool doSpin = true,
+        bool predicted = false, // Starlight
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         var physicsQuery = GetEntityQuery<PhysicsComponent>();
@@ -112,7 +130,7 @@ public sealed partial class ThrowingSystem : EntitySystem
             baseThrowSpeed,
             user,
             pushbackRatio,
-            friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor);
+            friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor, predicted: predicted); // Starlight edit
     }
 
     /// <summary>
@@ -140,6 +158,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool animated = true,
         bool playSound = true,
         bool doSpin = true,
+        bool predicted = false, // Starlight
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         if (baseThrowSpeed <= 0 || direction == Vector2Helpers.Infinity || direction == Vector2Helpers.NaN || direction == Vector2.Zero || friction < 0)
@@ -229,10 +248,15 @@ public sealed partial class ThrowingSystem : EntitySystem
             _physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
         }
 
+        // Starlight begin
+        if (predicted)
+            EnsureComp<PredictedThrownItemComponent>(uid);
+        // Starlight end
+
         if (user == null)
             return;
 
-        if (recoil)
+        if (recoil && _gameTiming.IsFirstTimePredicted && (_net.IsClient || !predicted)) // Starlight edit
             _recoil.KickCamera(user.Value, -direction * 0.04f);
 
         // Give thrower an impulse in the other direction
@@ -254,7 +278,38 @@ public sealed partial class ThrowingSystem : EntitySystem
             _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
     }
 
+    #region Starlight
 
+    public void PredictedFallThrowItem(EntityUid holder, EntityUid item, float baseThrowSpeed)
+    {
+        // If the holder doesn't have a physics component, they ain't moving
+        var holderVelocity = _physicsQuery.TryComp(holder, out var physics) ? physics.LinearVelocity : Vector2.Zero;
+        var spreadMaxAngle = Angle.FromDegrees(DropHeldItemsSpread);
+
+        // Rotate the item's throw vector a bit for each item
+        var angleOffset = _random.NextAnglePredicted(_gameTiming, -spreadMaxAngle, spreadMaxAngle);
+        // Rotate the holder's velocity vector by the angle offset to get the item's velocity vector
+        var itemVelocity = angleOffset.RotateVec(holderVelocity);
+        // Decrease the distance of the throw by a random amount
+        itemVelocity *= _random.NextFloatPredicted(_gameTiming, 1f);
+        // Heavier objects don't get thrown as far
+        // If the item doesn't have a physics component, it isn't going to get thrown anyway, but we'll assume infinite mass
+        itemVelocity *= _physicsQuery.TryComp(item, out var heldPhysics) ? heldPhysics.InvMass : 0;
+        // Throw at half the holder's intentional throw speed and
+        // vary the speed a little to make it look more interesting
+        var throwSpeed = baseThrowSpeed * _random.NextFloatPredicted(_gameTiming, 0.45f, 0.55f);
+
+        TryThrow(item,
+            itemVelocity,
+            throwSpeed,
+            holder,
+            pushbackRatio: 0,
+            compensateFriction: false,
+            predicted: true
+        );
+    }
+
+    #endregion
 }
 
 /// <summary>

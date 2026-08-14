@@ -427,6 +427,7 @@
   loadouts:
   - SecurityTaser
   - SecurityDominator
+  - SecurityPeacekeeper
 
 - type: loadoutGroup
   id: SecuritySidearm
@@ -437,6 +438,7 @@
   - SecurityRevolverDispatcher
   - SecurityPistolDP
   - SecurityMk58Gold
+  - SecurityColdCase
 
 # Assorted Boots
 - type: loadoutGroup
@@ -962,6 +964,10 @@
   - DutyOfficerJumpskirt
   - DutyOfficerJumpsuitBlue
   - DutyOfficerJumpskirtBlue
+  - DutyOfficerJumpsuitFormal
+  - DutyOfficerJumpskirtFormal
+  - DutyOfficerSeniorJumpsuitFormal
+  - DutyOfficerSeniorJumpskirtFormal
   - DutyOfficerJumpsuitOrange # DeltaV
   - DutyOfficerJumpskirtOrange # DeltaV
 
@@ -1151,6 +1157,13 @@
   - SecurityGlassesPrescription
 
 - type: loadoutGroup
+  id: DetectiveLethal
+  name: loadout-group-detective-lethal
+  loadouts:
+  - InspectorBelt
+  - ColdCaseBelt
+
+- type: loadoutGroup
   id: BrigmedicHead
   name: loadout-group-brigmedic-head
   minLimit: 0
@@ -1170,6 +1183,10 @@
   - JumpskirtBrigmedic
   - JumpsuitCorpsman
   - JumpskirtCorpsman
+  - FormalBrigmedicJumpsuit
+  - FormalBrigmedicJumpskirt
+  - SeniorBrigmedicJumpsuit
+  - SeniorBrigmedicJumpskirt
   - CorpsmanResponse
   - CorpsmanTrauma
   - BrigmedicJumpsuitOfLife

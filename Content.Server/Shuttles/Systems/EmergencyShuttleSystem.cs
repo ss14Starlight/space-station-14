@@ -79,7 +79,6 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
     // Starlight Start
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private BiomeSystem _biomes = default!;
     [Dependency] private DungeonSystem _dungeon = default!;
@@ -329,7 +328,17 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
             return null;
         }
 
-        var targetGrid = _station.GetLargestGrid(stationUid);
+        // Starlight BEGIN
+        EntityUid? targetGrid = null;
+
+        // Grab the "main grid" from the StationData comp.
+        if (TryComp<StationDataComponent>(stationUid, out var stationData) &&
+            stationData.MainGrids.TryFirstOrNull(out var mainGridId))
+            targetGrid = mainGridId;
+
+        // If that didn't work, try to find the biggest grid.
+        targetGrid ??= _station.GetLargestGrid(stationUid);
+        // Starlight END
 
         DockTime = _timing.CurTime;
 

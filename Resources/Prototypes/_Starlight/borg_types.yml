@@ -35,6 +35,15 @@
     department: Security
     time: 36000 #10 hrs
 
+  # Access
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgSecurity
+
 # Syndicate borgs
 
 - type: borgType
@@ -153,6 +162,7 @@
   - BorgModulePrying
   - BorgModuleTool
   - BorgModulePaperwork
+  - BorgModulePaperworkPrinting
 
   radioChannels:
   - Common
@@ -160,6 +170,7 @@
   - Science
   - Law
 
+  # Access
   addComponents:
   - type: Access
     groups:
@@ -167,6 +178,7 @@
     tags:
     - Borg
     - Debrief
+    - HeadOfPersonnel
 
   # Visual
   inventoryTemplateId: borgTall
@@ -209,3 +221,13 @@
   # Pet
   petSuccessString: petting-success-cargo-cyborg
   petFailureString: petting-failure-cargo-cyborg
+
+  # Access
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgCargo
+        - Quartermaster

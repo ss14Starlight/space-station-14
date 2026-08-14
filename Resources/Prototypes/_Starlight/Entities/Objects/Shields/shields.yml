@@ -76,6 +76,11 @@
       fuelCost: 10 # 1/2 of a Welder for a full repair
       doAfterDelay: 5
       allowSelfRepair: false
+    - type: Tag
+      tags:
+        - Shield
+    - type: Pierceable
+      level: Metal
 
 - type: entity
   name: paladin greatshield
@@ -331,17 +336,22 @@
       - type: DisarmMalus
         malus: 0.6
     - type: Sprite
-      sprite: Objects/Weapons/Melee/e_shield.rsi
+      sprite: _Starlight/Objects/Weapons/Melee/e_shield.rsi
       layers:
         - state: eshield-icon
-        - state: eshield-on
+        - state: eshield-on-base
           color: "#FFFFFF"
           visible: false
           shader: unshaded
           map: [ "shield" ]
+        - state: eshield-on-overlay
+          color: '#FFFFFF'
+          visible: false
+          shader: unshaded
+          map: [ "overlay" ]
     - type: Item
       size: Small
-      sprite: Objects/Weapons/Melee/e_shield.rsi
+      sprite: _Starlight/Objects/Weapons/Melee/e_shield.rsi
       heldPrefix: eshield
     - type: UseDelay
       delay: 0.5
@@ -349,11 +359,19 @@
       spriteLayer: shield
       inhandVisuals:
         left:
-          - state: inhand-left-shield
+          - state: inhand-left-shield-base
             shader: unshaded
+          - state: inhand-left-shield-overlay
+            shader: unshaded
+            map: [ "overlay" ]
         right:
-          - state: inhand-right-shield
+          - state: inhand-right-shield-base
             shader: unshaded
+          - state: inhand-right-shield-overlay
+            shader: unshaded
+            map: [ "overlay" ]
+      modulateIgnoreLayers: [ "overlay" ]
+      additionalLayers: [ "overlay" ]
     - type: PointLight
       netsync: false
       enabled: false
@@ -393,9 +411,16 @@
           Heat: 7
     - type: StaticPrice
       price: 350
+    - type: Tag
+      tags:
+        - Shield
+    - type: Pierceable
+      level: HardenedMetal
+    - type: EnergyColor
+      color: '#66b4fd'
 
 - type: entity
-  name: greenlight shield
+  name: X-03 green phase shield
   parent: [BaseItem, BaseCentcommContraband ]
   id: GreenLightShield
   categories: [ DoNotMap ]
@@ -421,35 +446,65 @@
       - Belt
       - suitStorage
     - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Melee/greenlight_shield.rsi
+      sprite: _Starlight/Objects/Weapons/Melee/nt_energy_shield.rsi
       layers:
         - state: off-icon
+        - state: on-icon-base
+          visible: false
+          map: [ "base" ]
         - state: on-icon
           color: "#FFFFFF"
           visible: false
           shader: unshaded
           map: [ "shield" ]
+        - state: on-icon-overlay
+          color: "#FFFFFF"
+          visible: false
+          shader: unshaded
+          map: [ "overlay" ]
     - type: Item
       size: Small
-      sprite: _Starlight/Objects/Weapons/Melee/greenlight_shield.rsi
-      heldPrefix: greenlight_shield-off
+      sprite: _Starlight/Objects/Weapons/Melee/nt_energy_shield.rsi
+      heldPrefix: off
+    - type: EnergyColor
+      color: "#9dfe9b"
+      hackingLocked: true
+      hackingUnlockQuality: Cutting
     - type: UseDelay
       delay: 0.5
     - type: ToggleableVisuals
       spriteLayer: shield
+      additionalLayers:
+        - base
+        - overlay
       inhandVisuals:
         left:
-          - state: greenlight_shield-on-inhand-left
+          - state: on-inhand-left-base
+            map: [ "ntshield-base" ]
+          - state: on-inhand-left
+            map: [ "ntshield-shield" ]
+            shader: unshaded
+          - state: on-inhand-left-overlay
+            map: [ "ntshield-overlay" ]
             shader: unshaded
         right:
-          - state: greenlight_shield-on-inhand-right
+          - state: on-inhand-right-base
+            map: [ "ntshield-base" ]
+          - state: on-inhand-right
+            map: [ "ntshield-shield" ]
             shader: unshaded
+          - state: on-inhand-right-overlay
+            map: [ "ntshield-overlay" ]
+            shader: unshaded
+      modulateIgnoreLayers:
+        - base
+        - overlay
     - type: ItemTogglePointLight
     - type: Reflect
-      reflectProb: 0.50
+      reflectProb: 0.10
       reflects:
         - Energy
-      reflectEnergyDraw: 80 # final stat TBD
+      reflectEnergyDraw: 80
     - type: Appearance
     - type: PointLight
       netsync: false
@@ -457,7 +512,7 @@
       radius: 2
       energy: 3
       color: "#439909"
-      castShadows: false #SL lighting optimization
+      castShadows: false
     - type: PowerCellSlot
       cellSlotId: cell_slot
     - type: ItemSlots
@@ -469,8 +524,49 @@
     - type: ForceQuickDraw
     - type: ToggleCellDraw
     - type: PowerCellDraw
-      drawRate: 2  # watts while active # final stat TBD
-    - type: Blocking # Stats TBD
+      drawRate: 2  # watts while active
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 1.0
+          Slash: 0.8
+          Piercing: 0.85
+          Heat: 0.6
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.95
+          Slash: 0.75
+          Piercing: 0.5
+          Heat: 0.4
+        flatReductions:
+          Heat: 1
+          Piercing: 1
+      damageEnergyDraw: 4
+    - type: Damageable
+      damageContainer: Shield
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: Tag
+      tags:
+        - Shield
+    - type: Pierceable
+      level: HardenedMetal
+
+- type: entity
+  name: X-03 phase shield
+  parent: [GreenLightShield, BaseBlueShieldContraband, BaseGrandTheftContraband ]
+  id: BlueLightShield
+  categories: [ DoNotMap ]
+  description: An experimental hardlight shield that has a micro reactor in place of the syndicate chemical based battery. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
+  components:
+    - type: PointLight
+      color: "#87CEEB"
+    - type: EnergyColor
+      color: '#9bcefe'
+    - type: PowerCellDraw
+      drawRate: 2  # watts while active
+    - type: Blocking
       passiveBlockModifier:
         coefficients:
           Blunt: 1.0
@@ -479,19 +575,17 @@
           Heat: 0.6
       activeBlockModifier:
         coefficients:
-          Blunt: 1.2
+          Blunt: 1.0
           Slash: 0.85
           Piercing: 0.5
           Heat: 0.4
         flatReductions:
           Heat: 1
           Piercing: 1
-      damageEnergyDraw: 10 #Final stat STB
-    - type: Damageable
-      damageContainer: Shield
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
+      damageEnergyDraw: 4
+    - type: Contraband
+      allowedDepartments: []
+      allowedJobs: [ BlueShield ]
 
 - type: entity
   parent: BaseShield

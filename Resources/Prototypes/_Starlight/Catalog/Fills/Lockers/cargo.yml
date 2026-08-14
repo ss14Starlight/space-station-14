@@ -34,6 +34,7 @@
 
 - type: entity
   id: LockerSalvageLeadFilledHardsuit
+  categories: [ ShouldMapStation ]
   suffix: Filled, Hardsuit
   parent: LockerSalvageLead
   components:
@@ -180,6 +181,19 @@
         - !type:NestedSelector
           tableId: LockerFillCargo
 
+- type: entity
+  id: LockerCargoLargeFilled
+  suffix: Filled
+  parent: LockerCargoLarge
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillCargo
+        - !type:NestedSelector
+          tableId: LockerFillCargo
 
 - type: entityTable
   id: LockerFillCargo
@@ -263,6 +277,20 @@
     containers:
       entity_storage: !type:AllSelector
         children:
+        - !type:NestedSelector
+          tableId: LockerFillMail
+
+- type: entity
+  id: LockerMailLargeFilled
+  suffix: Filled
+  parent: LockerMailLarge
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillMail
         - !type:NestedSelector
           tableId: LockerFillMail
 

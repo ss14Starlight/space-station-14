@@ -18,4 +18,21 @@ ghost-role-information-ntnc-consortium-officer-description = You are charged dir
 ghost-role-information-green-shield-officer-name = Greenshield Officer
 ghost-role-information-green-shield-officer-description = You are charged directly from the highest levels of CentComm to protect CentComm VIPs and maintain the peace at Central Command outposts.
 
+ghost-role-information-cburn-corpsman-name = CBURN Corpsman
+ghost-role-information-cburn-corpsman-description = A highly trained CentComm medical agent, capable of fixing injuries from various threats.
+
+ghost-role-information-cc-serviceworker-name = CentComm Service Worker
+ghost-role-information-cc-serviceworker-description = Perform menial labor on CentComm outposts.
+
+ghost-role-information-cc-chef-name = CentComm Chef
+ghost-role-information-cc-chef-description = Dish out food to weary station crews on CentComm outposts.
+
+ghost-role-information-cc-bartender-name = CentComm Bartender
+ghost-role-information-cc-bartender-description = Serve up drinks to weary station crews on CentComm outposts.
+
+ghost-role-information-cc-janitor-name = CentComm Janitor
+ghost-role-information-cc-janitor-description = Keep the floors on CentComm outposts squeaky clean.
+
 ghost-important-role = [bold]Now looking for candidates to play as {$rolename}[/bold]
+ghost-gui-aghost-toggle-ghost-visibility-popup-on = Invisible to non-admins.
+ghost-gui-aghost-toggle-ghost-visibility-popup-off = Visible to non-admins.

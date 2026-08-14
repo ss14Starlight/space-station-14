@@ -4,17 +4,20 @@
     "x": 32,
     "y": 64
   },
-  "copyright": "Drawn by Conflee for Starlight",
+  "copyright": "State based copyright",
   "license": "CC-BY-SA-3.0",
   "states": [
     {
-      "name": "Tower_0"
+      "name": "Tower_0",
+      "copyright": "Drawn by Conflee for Starlight"
     },
     {
-      "name": "Tower_150"
+      "name": "Tower_150",
+      "copyright": "Drawn by Conflee for Starlight"
     },
     {
-      "name": "Tower_300"
+      "name": "Tower_300",
+      "copyright": "Drawn by Conflee for Starlight"
     }
   ]
 }

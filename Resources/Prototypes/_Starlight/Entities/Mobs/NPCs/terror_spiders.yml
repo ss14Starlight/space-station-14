@@ -1,6 +1,6 @@
 - type: entity
   name: terror spider
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleSpaceMobBase, MobRespirator ]
   id: MobTerrorSpider
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
@@ -23,6 +23,24 @@
     - Xenomind
   - type: ThermalVision
     useAlternativeShader: true
+  - type: Barotrauma
+    maxDamage: 500
+    damage:
+      types:
+        Blunt: 0.2
+  - type: PressureProtection
+    highPressureModifier: 20
+    highPressureMultiplier: 1000
+  - type: TemperatureDamage
+    heatDamageThreshold: 400
+    coldDamageThreshold: 220
+    coldDamage:
+      types:
+        Cold: 0.1
+    heatDamage:
+      types:
+        Heat: 1.5
+  - type: TerrorSpider
   - type: OptionsVisualizer
     visuals:
       base:

@@ -13,51 +13,55 @@
     - id: DoorRemoteCargo
     - id: AstroNavCartridge
     - id: ClothingHandsKnuckleDustersQM
-    - id: PlushieLance #starlight
-    - id: RadioHandheldExpedition #starlight
-    - id: ClothingOuterHardsuitLuxmax #starlight
-    - id: SalvageShuttleConsoleCircuitboard #starlight
-    - id: MiningShuttleConsoleCircuitboard #starlight
-    - id: EncryptionKeySalvage #starlight
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: SpaceCash1000 #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: SpaceCash1000 #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: SpaceCash1000 #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: SpaceCash1000 #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: SpaceCash1000 #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
+    # Starlight start
+    - id: RadioHandheldExpedition
+    - id: ClothingOuterHardsuitLuxmax
+    - id: SalvageShuttleConsoleCircuitboard
+    - id: MiningShuttleConsoleCircuitboard
+    - id: EncryptionKeySalvage
+    - id: CargoTechFabFlatpack
+    - id: BookSecureTerminalManual # Starlight
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    #Starlight end
 
 - type: entity
   id: LockerQuarterMasterFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerQuarterMaster
   components:
@@ -93,6 +97,8 @@
     - id: EncryptionKeyExpedition #starlight
     - id: SpyglassCaptain #Starlight
     - id: CommunicationTablet #Starlight
+    - id: CommandTechFabFlatpack # Starlight
+    - id: BookSecureTerminalManual # Starlight
     - id: HeadSkeleton # A skull to accompany your skeleton crew # Starlight Edit: OrganSkeletonPersonHead -> HeadSkeleton
       conditions:
       - !type:PlayerCountCondition
@@ -128,15 +134,24 @@
   table: !type:AllSelector
     children:
     - id: ClothingOuterHardsuitCap
-    - id: ClothingMaskGasCaptain
+    #- id: ClothingMaskGasCaptain # Starlight
     - id: JetpackCaptainFilled
     - id: OxygenTankFilled
-    - id: NitrogenTankFilled # Starlight - vox gang
-    - id: CoolingUnit # Starlight
+    # Starlight Start
+    - id: NitrogenTankFilled
+    - id: CoolingUnit
+    - !type:GroupSelector
+      children:
+      - id: ClothingMaskGasCaptain
+        weight: 85
+      - id: ClothingMaskGasCaptainPodWars
+        weight: 15
+    # Starlight End
 
 # No laser locker, used when the antique laser is placed in the special display crate
 - type: entity
   id: LockerCaptainFilledNoLaser
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerCaptain
   components:
@@ -196,8 +211,9 @@
     - id: HoPIDCard
     - id: WeaponDisabler
     - id: ClothingEyesHudCommand
-    - id: BoxFolderHoPClipboard #Starlight Change
-    # Starlight Start
+    - id: BoxFolderHoPClipboard #Starlight start
+    - id: BookSecureTerminalManual # Starlight
+    - id: ServiceTechFabFlatpack
     - id: PrintedDocumentGreenshiftAlert
       conditions:
       - !type:GamemodeCondition
@@ -212,6 +228,7 @@
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerHeadOfPersonnel
   components:
@@ -242,12 +259,13 @@
     - id: AstroNavCartridge #FH
     - id: SheetSteel #FH
     - id: SheetGlass #FH
-    - id: RCD
+    - id: RCDChiefEngineer
     - id: RPD # Starlight: RPD
     - id: RCDAmmo
     - id: RubberStampCE
     - id: MetalFoamGrenade
-    - id: PlushieMatthew #starlight
+    - id: EngineeringTechFabFlatpack # Starlight
+    - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
@@ -271,6 +289,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerChiefEngineerFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerChiefEngineer
   components:
@@ -311,6 +330,7 @@
     - id: BoxEncryptionKeyMedical
     - id: BoxCMOCircuitboards
     - id: AutoMenderBurnFilled # Starlight start
+    - id: BookSecureTerminalManual # Starlight
     - id: AutoMenderBruteFilled
     - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingMaskSterile
@@ -342,6 +362,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerChiefMedicalOfficerFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerChiefMedicalOfficer
   components:
@@ -379,20 +400,21 @@
     - id: DoorRemoteResearch
     - id: HandTeleporter
     - id: RubberStampRd
-    - id: EncryptionKeyMedicalScience # Starlight, steal target
-      prob: 0.5 # Starlight
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    #region Starlight
+    - id: EncryptionKeyMedicalScience # Starlight start, steal target
+      prob: 0.5
+    - id: ScienceTechFabFlatpack
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
     - id: RDDiploma
     - id: XenobiologyConsoleCameraTagger
+    - id: BookSecureTerminalManual # Starlight
     #- id: PaperIonstormBorgs
     #  prob: 0.10 #1/10 rounds will have this paper that can be signed repeatedly for no discernable effect!
-    #endregion Starlight
+    # Starlight end
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -408,6 +430,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerResearchDirectorFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerResearchDirector
   components:
@@ -459,6 +482,7 @@
     - id: WantedListCartridge
     - id: DrinkHosFlask
     - id: SecurityShuttleConsoleCircuitboard # Starlight start
+    - id: BookSecureTerminalManual # Starlight
     - id: ClothingOuterWinterHoS
 #    - id: ClothingHandsGlovesCombat # Starlight, they spawn with them now.
     - id: SecureBriefings
@@ -485,6 +509,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerHeadOfSecurityFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerHeadOfSecurity
   components:
@@ -520,6 +545,7 @@
 
 - type: entity
   id: LockerFreezerVaultFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Vault, Filled
   parent: LockerFreezerBase
   components:

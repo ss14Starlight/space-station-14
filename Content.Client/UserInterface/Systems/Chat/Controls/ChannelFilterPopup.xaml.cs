@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Content.Shared.Chat;
 using Content.Shared.CCVar;
@@ -18,6 +19,10 @@ namespace Content.Client.UserInterface.Systems.Chat.Controls;
 [GenerateTypedNameReferences]
 public sealed partial class ChannelFilterPopup : Popup
 {
+    // Starlight begin
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    // Starlight end
     // order in which the available channel filters show up when available
     private static readonly ChatChannel[] ChannelFilterOrder =
     {
@@ -42,50 +47,68 @@ public sealed partial class ChannelFilterPopup : Popup
 
     // Starlight start
     private readonly Dictionary<ProtoId<RadioChannelPrototype>, CheckBox> _ttsMuteStates = new();
-    private TextToSpeechStreamSystem? _ttsStream;
-    private TextToSpeechSystem? _tts;
+
+    /// <summary>
+    ///     Event triggered when the clear TTS queue button is pressed.
+    /// </summary>
+    public event Action? OnClearTTSQueue;
+
+    /// <summary>
+    ///     Event triggered when a TTS channel's mute state is toggled.
+    /// </summary>
+    public event Action<ProtoId<RadioChannelPrototype>, bool>? OnTTSMuteStateChanged;
     // Starlight end
 
     public ChannelFilterPopup()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this); // Starlight
 
         HighlightButton.OnPressed += HighlightsEntered;
         // Add a placeholder text to the highlights TextEdit.
         HighlightEdit.Placeholder = new Rope.Leaf(Loc.GetString("hud-chatbox-highlights-placeholder"));
 
         // Load highlights if any were saved.
-        var cfg = IoCManager.Resolve<IConfigurationManager>();
-        string highlights = cfg.GetCVar(CCVars.ChatHighlights);
+        string highlights = _cfg.GetCVar(CCVars.ChatHighlights); // Starlight
 
         if (!string.IsNullOrEmpty(highlights))
         {
             UpdateHighlights(highlights);
         }
 
+        // Starlight start - auto-fill toggle
+        AutoFillCheckBox.Pressed = _cfg.GetCVar(CCVars.ChatAutoFillHighlights);
+        AutoFillCheckBox.OnToggled += OnAutoFillToggled;
+        _cfg.OnValueChanged(CCVars.ChatAutoFillHighlights, OnAutoFillCVarChanged);
+        // Starlight end
+
         // Starlight start
         InitializeTTSMuteChannels();
-        TTSClearQueueButton.OnPressed += _ => ClearQueue();
-        TTSToggleAllButton.OnPressed += _ => ToggleAllTTSCheckboxes();
+        TTSClearQueueButton.OnPressed += _ => OnClearTTSQueue?.Invoke();
+        TTSToggleAllButton.OnPressed += _ => ToggleAllTTSMuteCheckboxes();
         // Starlight end
     }
-    // Starlight start
 
-    private void ClearQueue()
+    // Starlight start
+    /// <summary>
+    ///     Cleans up event listeners and configuration subscriptions to avoid memory leaks.
+    /// </summary>
+    protected override void Dispose(bool disposing)
     {
-        if (_tts == null)
-        {
-            var entManager = IoCManager.Resolve<IEntityManager>();
-            _tts = entManager.System<TextToSpeechSystem>();
-        }
-        _tts?.ClearQueue();
+        base.Dispose(disposing);
+
+        if (!disposing) return;
+
+        _cfg.UnsubValueChanged(CCVars.ChatAutoFillHighlights, OnAutoFillCVarChanged);
     }
 
+    /// <summary>
+    ///     Creates checkbox toggle mute buttons for each defined Radio channel prototype.
+    /// </summary>
     private void InitializeTTSMuteChannels()
     {
-        var protoManager = IoCManager.Resolve<IPrototypeManager>();
-
-        foreach (var channel in protoManager.EnumeratePrototypes<RadioChannelPrototype>())
+        foreach (var channel in _protoManager.EnumeratePrototypes<RadioChannelPrototype>()
+                     .OrderBy(channel => Loc.GetString(channel.Name)))
         {
             var checkbox = new CheckBox
             {
@@ -94,31 +117,25 @@ public sealed partial class ChannelFilterPopup : Popup
             };
 
             var channelId = channel.ID;
-            checkbox.OnToggled += args => SetChanelMuted(args, channelId);
+            checkbox.OnToggled += args => OnTTSMuteStateChanged?.Invoke(channelId, args.Pressed);
 
             _ttsMuteStates[channel.ID] = checkbox;
             TTSChannelsVBox.AddChild(checkbox);
         }
     }
 
-    private void SetChanelMuted(ButtonToggledEventArgs args, string channelId)
+    /// <summary>
+    ///     Toggles all mute buttons on, then off, and so on.
+    /// </summary>
+    private void ToggleAllTTSMuteCheckboxes()
     {
-        if (_ttsStream == null)
-        {
-            var entManager = IoCManager.Resolve<IEntityManager>();
-            _ttsStream = entManager.System<TextToSpeechStreamSystem>();
-        }
-        _ttsStream?.SetChannelMuted(channelId, args.Pressed);
-    }
-
-    private void ToggleAllTTSCheckboxes()
-    {
-        // If all are checked, unchecks all. Otherwise, check all boxes.
         bool allChecked = _ttsMuteStates.Values.All(checkbox => checkbox.Pressed);
         bool newState = !allChecked;
-        foreach (var checkbox in _ttsMuteStates.Values)
+
+        foreach (var (channelId, checkbox) in _ttsMuteStates)
         {
             checkbox.Pressed = newState;
+            OnTTSMuteStateChanged?.Invoke(channelId, newState);
         }
     }
 
@@ -196,6 +213,50 @@ public sealed partial class ChannelFilterPopup : Popup
     {
         OnNewHighlights?.Invoke(Rope.Collapse(HighlightEdit.TextRope));
     }
+
+    // Starlight start
+    /// <summary>
+    ///     Event handler triggered when the auto-fill highlights checkbox is toggled.
+    /// </summary>
+    private void OnAutoFillToggled(ButtonToggledEventArgs args)
+    {
+        _cfg.SetCVar(CCVars.ChatAutoFillHighlights, args.Pressed);
+        _cfg.SaveToFile();
+    }
+
+    /// <summary>
+    ///     Event handler triggered when the auto-fill highlights CVar value changes.
+    /// </summary>
+    private void OnAutoFillCVarChanged(bool value)
+    {
+        AutoFillCheckBox.Pressed = value;
+    }
+
+    /// <summary>
+    ///     Updates and renders the list of active auto-generated highlights in the UI.
+    /// </summary>
+    public void UpdateAutoHighlights(string autoHighlights)
+    {
+        if (string.IsNullOrEmpty(autoHighlights))
+        {
+            AutoHighlightsLabel.Visible = false;
+            return;
+        }
+
+        var list = autoHighlights
+            .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Select(h => h.TrimStart('@'))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Select(FormattedMessage.EscapeText)
+            .Select(h => Loc.GetString("hud-chatbox-auto-highlights-bullet", ("item", h)));
+
+        var bullets = string.Join("\n", list);
+        var markup = Loc.GetString("hud-chatbox-auto-highlights-wrapper", ("bullets", bullets));
+
+        AutoHighlightsLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(markup));
+        AutoHighlightsLabel.Visible = true;
+    }
+    // Starlight end
 
     public void UpdateUnread(ChatChannel channel, int? unread)
     {

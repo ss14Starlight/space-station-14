@@ -7,6 +7,7 @@
     - type: Sprite
       sprite: _Starlight/Objects/Misc/infernal_contract.rsi
       layers:
+      - state: paper_invalid
       - state: paper_words
         map: ["enum.PaperVisualLayers.Writing"]
         visible: true

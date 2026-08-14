@@ -1,4 +1,13 @@
 - type: loadoutEffectGroup
+  id: SkilledDutyOfficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDutyOfficer
+      time: 54000 # 15 hrs
+
+- type: loadoutEffectGroup
   id: SeniorDutyOfficer
   effects:
     - !type:JobRequirementLoadoutEffect
@@ -42,6 +51,39 @@
   id: DutyOfficerJumpskirtBlue
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecBlue
+
+- type: loadout
+  id: DutyOfficerJumpsuitFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledDutyOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSecoff
+
+- type: loadout
+  id: DutyOfficerJumpskirtFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledDutyOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSecoff
+
+- type: loadout
+  id: DutyOfficerSeniorJumpsuitFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorDutyOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSeniorSecoff
+
+- type: loadout
+  id: DutyOfficerSeniorJumpskirtFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorDutyOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSeniorSecoff
+
 
 # Outer Clothing
 - type: loadout

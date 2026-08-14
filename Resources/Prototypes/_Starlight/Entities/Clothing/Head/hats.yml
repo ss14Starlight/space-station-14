@@ -200,6 +200,23 @@
         - HamsterWearable
         - WhitelistChameleon
 
+- type: entity
+  parent: [ClothingHeadBase, BaseSecurityContraband]
+  id: ClothingHeadDeputyHat
+  name: deputy's hat
+  description: el desperados...
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/deputy_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/deputy_hat.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
+
 #USSP
 - type: entity
   parent: [ClothingHeadBase, BaseSovietContraband]
@@ -627,6 +644,17 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
 
+- type: entity
+  parent: ClothingHeadHatWizard
+  id: ClothingHeadHatWitchyHat
+  name: witchy hat
+  description: Wicky-wicky-witchy hat!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/witchyhat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/witchyhat.rsi
+
 # Wizard duel!
 - type: entity
   parent: ClothingHeadHatRedwizard # Parents red since red wizard hat sprite base
@@ -699,3 +727,22 @@
       sprite: _Starlight/Clothing/Head/Hats/bunnygang.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Head/Hats/bunnygang.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretPrison
+  name: prison beret
+  description: A criminal's least favorite headwear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/beret_prison.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/beret_prison.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
