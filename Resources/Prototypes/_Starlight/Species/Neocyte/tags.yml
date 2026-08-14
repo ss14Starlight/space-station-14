@@ -1,0 +1,60 @@
+# Species tags
+- type: Tag
+  id: NeoArachnid
+
+- type: Tag
+  id: NeoAvali
+
+- type: Tag
+  id: NeoCyclorite
+
+- type: Tag
+  id: NeoDiona
+
+- type: Tag
+  id: NeoDwarf
+
+- type: Tag
+  id: NeoElf
+
+- type: Tag
+  id: NeoFelionoid
+
+- type: Tag
+  id: NeoHuman
+
+- type: Tag
+  id: NeoKin
+
+- type: Tag
+  id: NeoLagomorph
+
+- type: Tag
+  id: NeoMoth
+
+- type: Tag
+  id: NeoReptilian
+
+- type: Tag
+  id: NeoResomi
+
+- type: Tag
+  id: NeoSlimePerson
+
+- type: Tag
+  id: NeoThaven
+
+- type: Tag
+  id: NeoVox
+
+- type: Tag
+  id: NeoVulpkanin
+
+- type: Tag
+  id: Neocyte
+
+- type: Tag
+  id: NeocyteCybernetics
+
+- type: Tag
+  id: TrueNeocyte
