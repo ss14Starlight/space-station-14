@@ -155,13 +155,6 @@
     - state: nuclearbomb_gay
       map: [ "pride" ]
       visible: false
-    - state: paper #Starlight Begin # Add Bounty Slips
-      sprite: Structures/Storage/Crates/labels.rsi
-      map: ["enum.PaperLabelVisuals.Layer"]
-      visible: false
-  - type: Tag
-    tags:
-    - NukeKegBounty #Starlight End
   - type: Appearance
   - type: HolidayVisuals
     holidays:
@@ -176,25 +169,6 @@
           festive: { visible: true }
         pride:
           pride: { visible: true }
-      enum.PaperLabelVisuals.HasLabel: # Starlight BEGIN #Add Bounty Slips
-        enum.PaperLabelVisuals.Layer:
-          True: { visible: true }
-          False: { visible: false }
-      enum.PaperLabelVisuals.LabelType:
-        enum.PaperLabelVisuals.Layer:
-          Paper: { state: paper }
-          Bounty: { state: bounty }
-  - type: PaperLabel # Overrides parent
-    labelSlot:
-      priority: 100 # <-- Only change relative to BasePaperLabelable.
-      insertVerbText: comp-paper-label-insert
-      ejectVerbText: comp-paper-label-eject
-      whitelist:
-        components:
-          - Paper
-      blacklist:
-        tags:
-          - Book # Starlight END
   - type: Physics
     bodyType: Dynamic
   - type: Fixtures

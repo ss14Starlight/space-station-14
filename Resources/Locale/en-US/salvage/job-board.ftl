@@ -33,7 +33,6 @@ salv-job-board-name-BountySalvageOreBananium = Bananium (Ore)
 salv-job-board-name-BountyTeethSharkminnow = Sharkminnow
 salv-job-board-name-BountySalvageBandolier = Marine Bandolier
 salv-job-board-name-BountySalvageCommieID = Soviet ID Card
-salv-job-board-name-BountySalvageNukeKeg = Nuke Keg
 
 salv-job-board-name-BountyGoliathPlates = Goliath
 salv-job-board-name-BountyHivelordRemains = Hivelord
@@ -54,7 +53,6 @@ bounty-description-salvage-ore-uranium = We need a sample of uranium ore for our
 bounty-description-salvage-ore-bananium = We have an ongoing project to decode the mystifying clown genomic sequence. We believe a sample of raw bananium will help us achieve this. Note that this only comes from the rarest of deep-space asteroids.
 bounty-description-salvage-bandolier = We have a certain collector of USSP merchandise, they wish to finish their cosplay outfit, and have requested a few bandoliers. Get it done.
 bounty-description-salvage-commie-id = Again, this certain collector of USSP merchandise is really going out down to the ID Card, let's get them a few to get their LARP on fleek.
-bounty-description-salvage-nuke-keg = We have a very special customer in search of an interesting keg. It's uh... well no other way to put it, it's a nuclear bomb, but it's a keg... Do your best to retrieve one, make sure it's a keg please.
 
 bounty-description-remains = We need you to get a sample of a few Hivelord cores. Be aware that Hivelords can replicate infinitely if the core is not destroyed. Take care not to get overwhelmed.
 bounty-description-plates = We need you to get a couple sheets of Goliath hide. These guys are pretty slow, but be careful about the tentacles: they'll grab you and pull you to the ground. You don't want to know what happens next.

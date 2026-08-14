@@ -545,9 +545,6 @@
   id: NotLabelable
 
 - type: Tag
-  id: NukeKegBounty #BountySalvageNukeKeg
-
-- type: Tag
   id: NukiePlanet
 
 - type: Tag
