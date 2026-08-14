@@ -168,3 +168,18 @@
     - state: microwave
   - type: Flatpack
     allowUnpackOnTables: true
+
+- type: entity
+  parent: BaseFlatpack
+  id: EndymionMonumentFlatpack
+  name: Endymion Memorial flatpack
+  description: A flatpack sent to the station by the TSF to commemorate the 2123 loss of the NTSS Endymion, and the 2116 people lost to the endless stars.
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/flatpack.rsi
+      layers:
+        - state: large
+    - type: Flatpack
+      entity: EndymionStatueLarge1
+      randomEntities: #Structured to be able to add more options once we have sprites for more
+        - EndymionStatueLarge1

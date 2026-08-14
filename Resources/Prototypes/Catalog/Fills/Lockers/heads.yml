@@ -224,6 +224,11 @@
       conditions:
         - !type:HolidayActiveCondition
           holiday: FestiveSeason
+    - !type:GroupSelector #Structured to be able to add more options once we have sprites for more
+      children:
+      - id: EndymionMonumentFlatpack
+    - id: PrintedDocumentEndymionMemorial
+    - id: Multitool
     # Starlight End
 
 - type: entity
