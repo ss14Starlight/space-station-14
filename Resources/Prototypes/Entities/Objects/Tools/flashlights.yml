@@ -65,7 +65,7 @@
     storedRotation: -90
   - type: PointLight
     enabled: false
-    lightMask: ConeSingle
+    lightMask: SLCurve
     autoRot: true
     radius: 6
     netsync: false
