@@ -23,6 +23,8 @@ namespace Content.Shared.Localizations
             @"mm"
         };
 
+        private CultureInfo? ActiveCultureInfo; // STARLIGHT
+
         public void Initialize()
         {
             var culture = new CultureInfo(Culture);
@@ -50,7 +52,14 @@ namespace Content.Shared.Localizations
 
             _loc.AddFunction(cultureEn, "MAKEPLURAL", FormatMakePlural);
             _loc.AddFunction(cultureEn, "MANY", FormatMany);
+
+            ActiveCultureInfo = culture; // STARLIGHT
         }
+
+        /* BEGIN STARLIGHT */
+        // adding fancy localization functions directly into this file necessitated too many dependencies, so here's a bag on the side
+        public CultureInfo? GetActiveCulture() => ActiveCultureInfo;
+        /* END STARLIGHT */
 
         private ILocValue FormatMany(LocArgs args)
         {

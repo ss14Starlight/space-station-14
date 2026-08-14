@@ -42,6 +42,8 @@
     spawned:
     - id: FoodMeatHuman
       amount: 5
+  - type: GrudgeBearer # STARLIGHT; allows GrudgeBook binding
+    judginess: 1.0 # STARLIGHT; 0.0 = never generate grudges, 1.0 = generate grudges for every single crewmember
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
