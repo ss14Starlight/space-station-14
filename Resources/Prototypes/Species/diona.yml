@@ -21,6 +21,7 @@
   oldAge: 150
   maxAge: 250 # Starlight end
 
+# Starlight start
 - type: speciesBaseSprites
   id: MobDionaSprites
   sprites:
@@ -162,3 +163,4 @@
   baseSprite:
     sprite: Mobs/Species/Diona/parts.rsi
     state: r_foot
+# Starlight end
