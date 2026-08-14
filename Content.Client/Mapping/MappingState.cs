@@ -52,7 +52,7 @@ public sealed partial class MappingState : GameplayStateBase
     private EntityMenuUIController _entityMenuController = default!;
 
     private DecalPlacementSystem _decal = default!;
-    private MapSystem _map = default!;
+    private SharedMapSystem _map = default!;
     private SpriteSystem _sprite = default!;
     private TransformSystem _transform = default!;
     private VerbSystem _verbs = default!;
@@ -204,6 +204,7 @@ public sealed partial class MappingState : GameplayStateBase
         _entityMenuController = UserInterfaceManager.GetUIController<EntityMenuUIController>();
 
         _decal = _entityManager.System<DecalPlacementSystem>();
+        _map = _entityManager.System<SharedMapSystem>();
         _sprite = _entityManager.System<SpriteSystem>();
         _transform = _entityManager.System<TransformSystem>();
         _verbs = _entityManager.System<VerbSystem>();
