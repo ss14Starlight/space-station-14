@@ -48,8 +48,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitETOLead
-  name: ETO team lead jumpsuit
-  description: A jumpsuit built for those who lead the fight. Death to our enemy, freedom to their slaves.
+  name: ETO team leader jumpsuit
+  description: A jumpsuit built for those who lead the fight.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/jumpsuit/etolead.rsi
@@ -81,7 +81,7 @@
 - type: entity
   parent: [ClothingHeadBase, BaseETOContraband]
   id: ClothingHeadHatBeretETOLead
-  name: ETO lead beret
+  name: ETO leader beret
   description: A beret best fit for leaders.
   components:
     - type: Sprite

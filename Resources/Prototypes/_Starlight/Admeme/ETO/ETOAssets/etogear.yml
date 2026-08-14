@@ -50,8 +50,8 @@
 - type: entity
   parent: [ ClothingMaskGas, BaseETOContraband ]
   id: ClothingMaskGasETOLead
-  name: ETO lead gas mask
-  description: A mask best fit for a lead terrorist. Protects the wearer from pot shots, but won't keep you alive alone. Modified with an Admin and Health hud to show you health and the allegience of those around you.
+  name: ETO leader gas mask
+  description: A mask best fit for a leading terrorist. Protects the wearer from pot shots, but won't keep you alive alone. Modified with an Administration and Health HUD to show you health and the allegiance of those around you.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/etomask.rsi
