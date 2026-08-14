@@ -58,7 +58,7 @@
       50: Dead
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+    damageModifierSet: Malignstone
   - type: CosmicRiftHealth
     healthPerCorpse: 5
   - type: Destructible

@@ -288,3 +288,14 @@
     Piercing: 0.8
     Cold: 0.8
     Shock: 1.6
+
+- type: damageModifierSet
+  id: Malignstone
+  coefficients:
+    Blunt: 0.7
+    Slash: 0.5
+    Piercing: 0.55
+    Cold: 0.5
+  flatReductions:
+    Blunt: 5
+    Cold: 10

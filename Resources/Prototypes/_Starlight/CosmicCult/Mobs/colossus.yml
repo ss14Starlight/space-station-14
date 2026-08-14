@@ -124,7 +124,11 @@
     - Unimplantable
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+    damageModifierSet: Malignstone
+  - type: Armor # This not working makes me sad.
+    modifiers:
+      coefficients:
+        Piercing: 0.50
   - type: Destructible
     thresholds:
     - trigger:
@@ -164,7 +168,6 @@
       types:
         Bloodloss: 0
   - type: MobState
-    allowRevives: true
     allowedStates:
     - Alive
     - Dead
