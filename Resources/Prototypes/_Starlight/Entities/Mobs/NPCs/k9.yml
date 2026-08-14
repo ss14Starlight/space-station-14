@@ -88,6 +88,9 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4
   - type: Tag
     tags:
     - DogEmotes
