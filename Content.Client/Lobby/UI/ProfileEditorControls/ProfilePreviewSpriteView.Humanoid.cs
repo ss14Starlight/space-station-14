@@ -130,6 +130,10 @@ public sealed partial class ProfilePreviewSpriteView
                 // Starlight - the preview dummy never reaches the server, so
                 // give client-side systems a chance to react to the loadout too
                 EntMan.EventBus.RaiseLocalEvent(PreviewDummy, new RoleLoadoutAppliedEvent(loadout));
+                // Starlight - actually equip loadout-selected clothing on the
+                // dummy too, same as the humanoid path below does. Borg/AI
+                // never had wearable loadout slots so this was never hit.
+                GiveDummyLoadout(PreviewDummy, loadout);
                 return;
             }
         }

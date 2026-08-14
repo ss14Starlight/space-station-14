@@ -4,6 +4,9 @@
   nameDataset: NamesCorgi
   groups:
   - K9Variant
+  - K9OuterClothing
+  - K9Eyes
+  - K9SuitStorage
 
 - type: loadoutGroup
   id: K9Variant
@@ -31,3 +34,69 @@
 - type: loadout
   id: k9-grey
   dummyEntity: LoadoutDummyK9Grey
+
+# Outer clothing
+- type: loadoutGroup
+  id: K9OuterClothing
+  name: loadout-group-k9-outerclothing
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - K9ArmorVest
+  - K9ArmorVestBulletproof
+  - K9ArmorRiot
+
+- type: loadout
+  id: K9ArmorVest
+  equipment:
+    outerClothing: ClothingOuterArmorBasic
+
+- type: loadout
+  id: K9ArmorVestBulletproof
+  equipment:
+    outerClothing: ClothingOuterArmorBulletproof
+
+- type: loadout
+  id: K9ArmorRiot
+  equipment:
+    outerClothing: ClothingOuterArmorRiot
+
+# Eyes
+- type: loadoutGroup
+  id: K9Eyes
+  name: loadout-group-k9-eyes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - K9SecHud
+  - K9SecHudEyepatch
+
+- type: loadout
+  id: K9SecHud
+  equipment:
+    eyes: ClothingEyesHudSecurity
+
+- type: loadout
+  id: K9SecHudEyepatch
+  equipment:
+    eyes: ClothingEyesEyepatchHudSecurity
+
+# Suit storage
+- type: loadoutGroup
+  id: K9SuitStorage
+  name: loadout-group-k9-suitstorage
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - K9DoubleEmergencyOxygenTank
+  - K9ExtendedEmergencyOxygenTank
+
+- type: loadout
+  id: K9DoubleEmergencyOxygenTank
+  equipment:
+    suitstorage: DoubleEmergencyOxygenTank
+
+- type: loadout
+  id: K9ExtendedEmergencyOxygenTank
+  equipment:
+    suitstorage: ExtendedEmergencyOxygenTank
