@@ -531,6 +531,10 @@
   components:
   - type: InteractionOutline
   - type: AntiRottingContainer
+#  - type: ContainerContainer
+  - type: ContainerContainer
+    containers:
+      cosmic-empowered-rift-corpse: !type:Container
   - type: Physics
     bodyType: Static
     bodyStatus: InAir
