@@ -9,17 +9,21 @@
     "states": [
         {
             "name": "icon"
+            "copyright": "done by OrangeJuiceGoose for Starlight"
         },
         {
             "name": "inhand-left",
+            "copyright": "done by OrangeJuiceGoose for Starlight"
             "directions": 4
         },
         {
             "name": "inhand-right",
+            "copyright": "done by OrangeJuiceGoose for Starlight"
             "directions": 4
         },
         {
             "name": "equipped-BACKPACK",
+            "copyright": "done by OrangeJuiceGoose for Starlight"
             "directions": 4
         }
     ]
