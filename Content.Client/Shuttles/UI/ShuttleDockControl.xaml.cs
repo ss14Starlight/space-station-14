@@ -18,8 +18,8 @@ namespace Content.Client.Shuttles.UI;
 public sealed partial class ShuttleDockControl : BaseShuttleControl
 {
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     private readonly DockingSystem _dockSystem;
+    private readonly SharedMapSystem _mapManager;
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xformSystem;
 
@@ -62,6 +62,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
     {
         RobustXamlLoader.Load(this);
         _dockSystem = EntManager.System<DockingSystem>();
+        _mapManager = EntManager.System<SharedMapSystem>();
         _shuttles = EntManager.System<SharedShuttleSystem>();
         _xformSystem = EntManager.System<SharedTransformSystem>();
         MinSize = new Vector2(SizeFull, SizeFull);

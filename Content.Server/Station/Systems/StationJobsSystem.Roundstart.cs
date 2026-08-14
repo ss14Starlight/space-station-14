@@ -348,13 +348,13 @@ public sealed partial class StationJobsSystem
             var selectedAntags = _antag.GetPreSelectedAntagSpecifiers(session);
             if (selectedAntags.Count > 0)
             {
-                var selectedAntagPrefs = new HashSet<ProtoId<AntagPrototype>>();
+                var selectedAntagDefinitions = new List<AntagSpecifierPrototype>(); // Starlight
                 foreach (var antag in selectedAntags)
                 {
                     if (!_prototypeManager.Resolve(antag, out var antagProto))
                         continue;
 
-                    selectedAntagPrefs.UnionWith(antagProto.PrefRoles);
+                    selectedAntagDefinitions.Add(antagProto); // Starlight
                 }
 
                 antagCharacterJobs = new HashSet<ProtoId<JobPrototype>>();
@@ -363,8 +363,16 @@ public sealed partial class StationJobsSystem
                     if (character is not HumanoidCharacterProfile { Enabled: true } humanoid)
                         continue;
 
-                    if (!humanoid.AntagPreferences.Overlaps(selectedAntagPrefs))
+                    #region Starlight
+                    // A single character must satisfy every reservation. Taking the union of
+                    // preferences allows profile A to qualify one antag while profile B is spawned.
+                    if (selectedAntagDefinitions.Count != selectedAntags.Count ||
+                        !selectedAntagDefinitions.All(definition =>
+                            _antag.IsProfileValidForAntag(session, humanoid, definition)))
+                    {
                         continue;
+                    }
+                    #endregion
 
                     antagCharacterJobs.UnionWith(humanoid.JobPreferences);
                 }

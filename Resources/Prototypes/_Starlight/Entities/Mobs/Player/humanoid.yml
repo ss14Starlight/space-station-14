@@ -13,24 +13,13 @@
     - Shadekin
     - Felionoid
     - Thaven
-    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
-    - ProtoDiona
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
-    - ProtoAvali
-    - ProtoFelionoid
-    - ProtoKin
-    - ProtoThaven
-    - ProtoCyclorite
-    - ProtoDwarf
-    - ProtoMoth
-    - ProtoSlimePerson
-    - ProtoLagomorph
-    - ProtoElf
-    - Protogen
-    - ProtoHuman
+    - NeoDiona
+    - NeoResomi
+    - NeoVox
+    - NeoAvali
+    - NeoFelionoid
+    - NeoKin
+    - NeoThaven
   components:
     - type: AutoImplant
       implants:
@@ -787,24 +776,23 @@
     - SlimePerson
     - Lagomorph
     - Elf
-    - ProtoArachnid
-    - ProtoDiona
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
-    - ProtoAvali
-    - ProtoFelionoid
-    - ProtoKin
-    - ProtoThaven
-    - ProtoCyclorite
-    - ProtoDwarf
-    - ProtoMoth
-    - ProtoSlimePerson
-    - ProtoLagomorph
-    - ProtoElf
-    - Protogen
-    - ProtoHuman # Re-enable if we figure out how to force equip armor on them.
+    - NeoArachnid
+    - NeoDiona
+    - NeoReptilian
+    - NeoResomi
+    - NeoVox
+    - NeoVulpkanin
+    - NeoAvali
+    - NeoFelionoid
+    - NeoKin
+    - NeoThaven
+    - NeoCyclorite
+    - NeoDwarf
+    - NeoMoth
+    - NeoSlimePerson
+    - NeoLagomorph
+    - NeoElf
+    - Neocyte
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-marine-name
@@ -930,24 +918,6 @@
   id: CCGreenshieldBasic
   speciesBlacklist:
     - Vox
-    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
-    - ProtoDiona
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
-    - ProtoAvali
-    - ProtoFelionoid
-    - ProtoKin
-    - ProtoThaven
-    - ProtoCyclorite
-    - ProtoDwarf
-    - ProtoMoth
-    - ProtoSlimePerson
-    - ProtoLagomorph
-    - ProtoElf
-    - Protogen
-    - ProtoHuman
   parent: EventHumanoidCentcomm
   randomizeName: false
   components:

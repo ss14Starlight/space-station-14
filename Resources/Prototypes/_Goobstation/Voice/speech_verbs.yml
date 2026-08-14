@@ -1,0 +1,5 @@
+- type: speechVerb
+  id: Radio
+  name: chat-speech-verb-name-radio
+  speechVerbStrings:
+  - chat-speech-verb-radio

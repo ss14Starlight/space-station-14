@@ -34,7 +34,7 @@
             Quantity: 15
     - type: Tag
       tags:
-      - RamChip #Protogen joke, makes them able to eat them.
+      - RamChip # FH + Starlight
 # FH - End
 
 - type: entity
@@ -345,7 +345,7 @@
   - type: Tag
     tags:
     - SurveillanceCameraMonitorCircuitboard
-    - RamChip # FH
+    - RamChip # FH + Starlight
   #Starlight start
   - type: Construction
     deconstructionTarget: null
@@ -386,7 +386,7 @@
     - type: Tag
       tags:
         - ComputerTelevisionCircuitboard
-        - RamChip # FH
+        - RamChip # FH + Starlight
 
 - type: entity
   parent: BaseComputerCircuitboard

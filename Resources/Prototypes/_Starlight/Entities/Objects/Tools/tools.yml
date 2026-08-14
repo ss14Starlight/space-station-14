@@ -1037,6 +1037,7 @@
     - PlumbingRpldReactor
     - PlumbingRpldPillPress
     - PlumbingRpldFilter
+    - PlumbingRpldInlineFilter
     - PlumbingRpldSynthesizer
     - PlumbingRpldSmartDispenser
     - PlumbingRpldDrain
@@ -1138,5 +1139,4 @@
     possibleSets:
     - SaboteurSELF
     - PressSELF
-    - LiberatorSELF
     - SpySELF

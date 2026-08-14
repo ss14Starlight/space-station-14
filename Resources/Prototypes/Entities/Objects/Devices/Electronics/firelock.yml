@@ -12,7 +12,7 @@
     - type: Tag
       tags:
       - FirelockElectronics
-      - RamChip #Protogen joke, makes them able to eat them. - FH
+      - RamChip # FH + Starlight
     - type: StaticPrice
       price: 14
     - type: PhysicalComposition

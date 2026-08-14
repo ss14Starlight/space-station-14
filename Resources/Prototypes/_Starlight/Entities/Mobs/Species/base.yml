@@ -210,6 +210,9 @@
       enum.DamnationsMenuUiKey.Key:
         type: DevilDamnationsBoundUserInterface
         requireInputValidation: false
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+        requireInputValidation: false
       # starlight end
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface

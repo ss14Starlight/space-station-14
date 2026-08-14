@@ -14,7 +14,7 @@
   - type: Tag
     tags:
     - TimerSignalElectronics
-    - RamChip #Protogen joke, makes them able to eat them. - FH
+    - RamChip # FH + Starlight
   - type: StaticPrice
     price: 30
 
@@ -30,7 +30,7 @@
   - type: Tag
     tags:
     - TimerScreenElectronics
-    - RamChip #FH
+    - RamChip # FH + Starlight
 
 - type: entity
   id: BrigTimerElectronics
@@ -44,4 +44,4 @@
   - type: Tag
     tags:
     - TimerBrigElectronics
-    - RamChip #FH
+    - RamChip # FH + Starlight

@@ -39,5 +39,6 @@
   id: SELFAgentGear
   storage:
     back:
+    - AccessBreaker
     - EmagFREE
     - ToolboxSELF
