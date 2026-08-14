@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (CC-SC17) Made the panopticon look nicer and more resistant to spacing.
-    type: Tweak
-  id: 407162
-  time: '2026-07-31T12:56:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5413
-- author: Johnny
-  changes:
   - message: (CC-SC17) Added more windows to some places like medical to see the beautiful view.
     type: Tweak
   id: 407163
@@ -2799,4 +2792,11 @@ Entries:
   id: 407561
   time: '2026-08-13T14:28:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5429
+- author: Conflee
+  changes:
+  - message: Resprited the defib cabinet.
+    type: Tweak
+  id: 407562
+  time: '2026-08-14T07:17:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5640
 Order: -1
