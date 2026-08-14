@@ -49,9 +49,6 @@
   - type: IgnitionSource
     temperature: 400
     ignited: true
-  - type: Tag # Inferus
-    tags:
-    - FireAnomalyCore
 
 - type: entity
   parent: BaseAnomalyCore
@@ -65,9 +62,6 @@
     energy: 10
     color: "#1e070e"
     castShadows: false
-  - type: Tag # Inferus
-    tags:
-    - GravAnomalyCore
 
 - type: entity
   parent: BaseAnomalyCore
@@ -81,9 +75,6 @@
     energy: 2.7
     color: "#befaff"
     castShadows: false
-  - type: Tag # Inferus
-    tags:
-    - FrostAnomalyCore
 
 - type: entity
   parent: BaseAnomalyCore
@@ -98,9 +89,6 @@
     energy: 3.5
     color: "#cb5b7e"
     castShadows: false
-  - type: Tag # Inferus
-    tags:
-    - FleshAnomalyCore
 
 - type: entity
   parent: BaseAnomalyCore
@@ -114,9 +102,6 @@
     energy: 3.5
     color: "#5ca8cb"
     castShadows: false
-  - type: Tag # Inferus
-    tags:
-    - RockAnomalyCore
 
 - type: entity
   parent: BaseAnomalyCore
@@ -143,9 +128,6 @@
     energy: 3.5
     color: "#00ccff"
     castShadows: false
-  - type: Tag # Inferus
-    tags:
-    - BlueSpaceAnomalyCore
 
 - type: entity
   parent: BaseAnomalyCore
@@ -160,9 +142,6 @@
     color: "#ffffaa"
     castShadows: false
   - type: Electrified
-  - type: Tag # Inferus
-    tags:
-    - ShockAnomalyCore
 
 - type: entity
   parent: BaseAnomalyCore
@@ -178,9 +157,6 @@
     energy: 2.0
     color: "#6270bb"
     castShadows: false
-  - type: Tag # Inferus
-    tags:
-    - FloralAnomalyCore
 
 - type: entity
   parent: [ BaseAnomalyCore, BaseShadow ]
@@ -197,7 +173,6 @@
   - type: Tag # Starlight
     tags:
       - AnomalyCoreShadow
-      - ShadowAnomalyCore # Inferus
 
 - type: entity
   parent: BaseAnomalyCore
@@ -211,9 +186,6 @@
     energy: 2.0
     color: "#56c1e8"
     castShadows: false
-  - type: Tag # Inferus
-    tags:
-    - TechAnomalyCore
 
 - type: entity
   parent: BaseAnomalyCore
