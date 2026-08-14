@@ -91,7 +91,13 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
     {
         if (comp.Passive == true) /// Starlight: Don't try to activate passive electrolyzers
                     return;
+
         if (args.Handled) return;
+
+        if (!TryComp<BatteryComponent>(uid, out var battery)) ///Starlight: Electricity required
+            return;
+
+        var charge = _battery.GetCharge((uid, battery));
 
         if (comp.IsPowered)
         {
@@ -101,6 +107,8 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         }
         else
         {
+            if (charge <= 0f) ///Starlight: If battery is zero, can't turn on. Doesn't force already turned on electolyzers off in case of power shortfall because that would annoying.
+                return;
             TryTurnOn(uid, comp, args.User);
         }
 
@@ -233,12 +241,12 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         if (PlasmaFuel > 0f)
         {
-            fuelMultiplier = 0.1f;
+            fuelMultiplier = 0.01f;
         }
 
         _battery.ChangeCharge((uid, battery),-powerUsed * fuelMultiplier / electrolyzer.Efficiency);
 
-        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - (powerUsed - 500f));
+        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - powerUsed);
 
         if (electrolyzer.Passive == true)
         {
