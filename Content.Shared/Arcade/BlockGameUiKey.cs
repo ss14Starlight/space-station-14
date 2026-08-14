@@ -1,10 +1,9 @@
 ﻿using Robust.Shared.Serialization;
 
-namespace Content.Shared.Arcade
+namespace Content.Shared.Arcade.BlockGame;
+
+[Serializable, NetSerializable]
+public enum BlockGameUiKey
 {
-    [Serializable, NetSerializable]
-    public enum BlockGameUiKey
-    {
-        Key
-    }
+    Key
 }

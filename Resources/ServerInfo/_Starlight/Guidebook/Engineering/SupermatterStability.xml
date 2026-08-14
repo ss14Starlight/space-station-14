@@ -1,0 +1,63 @@
+<Document>
+  # Supermatter Stability
+
+  The Supermatter continuously monitors its own structural stability.
+
+  When stability falls below safe operating levels, the crystal automatically broadcasts warnings to the station's engineering radio network.
+
+  Stability is influenced by the environment surrounding the crystal. Engineers should continuously monitor chamber conditions and respond to any unexpected changes.
+
+  ## Sources of Stress
+
+  Any process that introduces additional energy into the crystal may reduce its structural stability.
+
+  Based on current Nanotrasen operating guidelines, Engineering personnel are advised to keep chamber conditions within the following recommended operating ranges whenever practical:
+
+  - Temperatures below approximately 350 K
+  - Chamber pressures between approximately 50 kPa and 250 kPa
+
+  Additional sources of structural stress include:
+
+  - Emitter shots
+  - Laser impacts
+  - Physical contact with the crystal
+
+  Operating outside these recommendations does not necessarily result in immediate instability, but prolonged or extreme deviations have been associated with accelerated structural degradation.
+
+  ## Chamber Conditions
+
+  The atmosphere surrounding the crystal plays a major role in maintaining stability.
+
+  Engineers should continuously monitor:
+
+  - Temperature
+  - Pressure
+  - Atmospheric composition
+
+  Standard station atmospheric conditions have consistently provided a reliable operating environment.
+
+  Significant changes should only be performed after careful planning.
+
+  ## Improving Stability
+
+  Proper chamber design improves the crystal's tolerance to changing operating conditions.
+
+  Cooling systems connected directly to the chamber should include overpressure countermeasures.
+
+  <Box>
+    <GuideEntityEmbed Entity="GasPressureRegulator" Caption="Pressure Regulator" />
+  </Box>
+
+  Pressure regulators can be connected to the cooling loop and chamber to limit excessive pressure buildup.
+
+  Additional inlet valves provide further protection by allowing pressure to be controlled at multiple points within the system.
+
+  Higher-capacity cooling systems may also be installed.
+
+  <Box>
+    <GuideEntityEmbed Entity="GasThermoMachineHellfireFreezer" Caption="Hellfire Freezer" />
+  </Box>
+
+  Hellfire Freezers provide increased cooling capacity, allowing the system to remove heat more effectively and maintain the chamber closer to the desired operating temperature during high-stress operation.
+
+</Document>

@@ -66,6 +66,7 @@
     solution: soap
   - type: BadFood
   - type: CleansForensics
+  - type: CleansScent # Starlight
   - type: Residue
     residueAdjective: residue-slippery
 

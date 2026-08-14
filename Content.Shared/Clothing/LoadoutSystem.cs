@@ -145,6 +145,7 @@ public sealed partial class LoadoutSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, LoadoutComponent component, MapInitEvent args)
     {
+        if (component.PostStationSpawn) return; // Starlight
         Equip(uid, component.StartingGear, component.RoleLoadout);
     }
 
@@ -152,17 +153,20 @@ public sealed partial class LoadoutSystem : EntitySystem
         // Starlight edit Start: Antag Loadouts
         List<ProtoId<RoleLoadoutPrototype>>? loadoutGroups,
         RoleLoadout? selectedLoadout = null,
-        RoleLoadoutPrototype? selectedLoadoutProto = null)
+        RoleLoadoutPrototype? selectedLoadoutProto = null, // Starlight
+        bool prioritizeBackStorage = false) // Starlight
         // Starlight edit End
     {
+        var priorityContext = prioritizeBackStorage ? new PriorityStorageEquipContext() : null; // Starlight
+
         // First, randomly pick a startingGear profile from those specified, and equip it.
         if (startingGear != null && startingGear.Count > 0)
-            _station.EquipStartingGear(uid, _random.Pick(startingGear), false);
+            _station.EquipStartingGear(uid, _random.Pick(startingGear), false, priorityContext); // Starlight
 
         // Starlight Start: Antag Loadouts
         if (selectedLoadout != null && selectedLoadoutProto != null)
         {
-            _station.EquipRoleLoadout(uid, selectedLoadout, selectedLoadoutProto);
+            _station.EquipRoleLoadout(uid, selectedLoadout, selectedLoadoutProto, null, priorityContext);
             GearEquipped(uid);
             return;
         }
@@ -180,7 +184,7 @@ public sealed partial class LoadoutSystem : EntitySystem
         var proto = _protoMan.Index(id);
         var loadout = new RoleLoadout(id);
         loadout.SetDefault(GetProfile(uid), _actors.GetSession(uid), _protoMan, true);
-        _station.EquipRoleLoadout(uid, loadout, proto);
+        _station.EquipRoleLoadout(uid, loadout, proto, null, priorityContext); // Starlight
 
         GearEquipped(uid);
     }
@@ -205,11 +209,13 @@ public sealed partial class LoadoutSystem : EntitySystem
 
     private void OnStartingGearEquipped(Entity<LoadoutComponent> entity, ref StartingGearEquippedEvent ev)
     {
+        if (entity.Comp.AppliedPostSpawnGear) return;
         var postSpawnGear = entity.Comp.PostSpawnGear;
         if (postSpawnGear is null) return;
         var uid = entity.Owner;
-        if (entity.Comp.PostSpawnGear is not null && postSpawnGear.Count > 0)
-            _station.EquipStartingGear(uid, _random.Pick(postSpawnGear), false);
+        if (entity.Comp.PostSpawnGear is null || postSpawnGear.Count <= 0) return;
+        _station.EquipStartingGear(uid, _random.Pick(postSpawnGear), false);
+        entity.Comp.AppliedPostSpawnGear = true;
     }
 
     #endregion Starlight

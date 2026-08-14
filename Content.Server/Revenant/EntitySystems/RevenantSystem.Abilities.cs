@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Revenant;
 using Content.Shared.Popups;
 using Content.Shared.Damage;
 using Content.Shared.Revenant;
@@ -31,7 +32,10 @@ using Robust.Shared.Utility;
 using Robust.Shared.Map.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
-using Content.Shared.SSDIndicator; // Starlight-edit
+using Content.Shared.SSDIndicator;
+using Content.Shared.Atmos;
+using Content.Shared.SSDIndicator;
+using Content.Shared.Atmos;
 
 namespace Content.Server.Revenant.EntitySystems;
 
@@ -59,6 +63,7 @@ public sealed partial class RevenantSystem
         SubscribeLocalEvent<RevenantComponent, RevenantDefileActionEvent>(OnDefileAction);
         SubscribeLocalEvent<RevenantComponent, RevenantOverloadLightsActionEvent>(OnOverloadLightsAction);
         SubscribeLocalEvent<RevenantComponent, RevenantBlightActionEvent>(OnBlightAction);
+        SubscribeLocalEvent<RevenantComponent, RevenantChillActionEvent>(OnChillAction); // Starlight-edit
         SubscribeLocalEvent<RevenantComponent, RevenantMalfunctionActionEvent>(OnMalfunctionAction);
     }
 
@@ -223,6 +228,63 @@ public sealed partial class RevenantSystem
 
         args.Handled = true;
     }
+
+    #region Starlight
+
+    ///<summary>
+    /// Creates ice tiles and adds freezon per ice tile
+    ///</summary>
+    private void OnChillAction(EntityUid uid, RevenantComponent component, RevenantChillActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryUseAbility(uid, component, component.chillCost, component.ChillDebuffs))
+            return;
+
+        args.Handled = true;
+
+        var xform = Transform(uid);
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
+            return;
+
+        //The tiles that always spawn
+        var coreTiles = _mapSystem.GetTilesIntersecting(
+            xform.GridUid.Value,
+            map,
+            Box2.CenteredAround(_transformSystem.GetWorldPosition(xform),
+            new Vector2(component.ChillCoreRadius, component.ChillCoreRadius)))
+            .ToArray();
+
+        //The tiles with a random chance of spawning
+        var falloffTiles = _mapSystem.GetTilesIntersecting(
+            xform.GridUid.Value,
+            map,
+            Box2.CenteredAround(_transformSystem.GetWorldPosition(xform),
+            new Vector2(component.ChillFalloffRadius, component.ChillFalloffRadius)))
+            .ToArray();
+
+        //Generate the ice tiles and add the moles for freezon
+        foreach (var tileref in falloffTiles)
+        {
+            //Generate the tiles in a radius that always spawn.
+            if(coreTiles.Contains(tileref))
+            {
+                Spawn("IceCrust", _mapSystem.ToCenterCoordinates(tileref, map));
+                _atmosphere.GetTileMixture(xform.GridUid.Value, null, tileref.GridIndices, true)?.AdjustMoles(Gas.Frezon, component.ChillFrezonPerTile);
+                continue;
+            }
+
+            //Percentage chance to generate ice tiles in the falloff area
+            if(_random.Prob(component.ChillFalloffChance)) {
+                Spawn("IceCrust", _mapSystem.ToCenterCoordinates(tileref, map));
+                _atmosphere.GetTileMixture(xform.GridUid.Value, null, tileref.GridIndices, true)?.AdjustMoles(Gas.Frezon, component.ChillFrezonPerTile);
+            }
+        }
+
+        return;
+    }
+    #endregion
 
     private void OnDefileAction(EntityUid uid, RevenantComponent component, RevenantDefileActionEvent args)
     {
