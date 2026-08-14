@@ -114,7 +114,7 @@ jobs:
             echo "No changes to commit."
           else
             git pull
-
             git commit -m "Update changelog for PR #${{ steps.get_pr.outputs.result }} [skip ci]"
             git push
-            fi
+          fi
+

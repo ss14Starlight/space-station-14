@@ -6,8 +6,8 @@
   objective: roles-antag-ssf-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 72000 # 20h
+    time: 10h # Inferus
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 36000 # 10h
+    time: 5h # Inferus
   playTimeTracker: AntagSSF

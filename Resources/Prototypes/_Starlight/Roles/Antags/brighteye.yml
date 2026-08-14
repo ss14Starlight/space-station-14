@@ -9,7 +9,7 @@
   roleLoadout: [ AntagBrighteye ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 12h # Inferus
+    time: 10h # Inferus
   - !type:SpeciesRequirement
     species:
     - Shadekin

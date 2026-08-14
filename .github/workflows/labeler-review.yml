@@ -1,6 +1,5 @@
 name: "Labels: Review"
 
-# Cancel older jobs on PRs when new changes are pushed
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -21,32 +20,34 @@ jobs:
         id: reviews
         run: |
           reviews=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews" \
             | jq -c '
               sort_by(.submitted_at)
               | group_by(.user.login)
               | map(last)
             ')
-          echo "reviews=$reviews" >> $GITHUB_OUTPUT
+          echo "reviews=$reviews" >> "$GITHUB_OUTPUT"
 
       - name: Parse reviewers by state
         id: reviews_parsed
         run: |
           approved=$(echo '${{ steps.reviews.outputs.reviews }}' \
-            | jq -c '[ map(select(.state=="APPROVED")) | map(.user.login) ]')
+            | jq -c '[.[] | select(.state=="APPROVED") | .user.login]')
           changes_requested=$(echo '${{ steps.reviews.outputs.reviews }}' \
-            | jq -c '[ map(select(.state=="CHANGES_REQUESTED")) | map(.user.login) ]')
+            | jq -c '[.[] | select(.state=="CHANGES_REQUESTED") | .user.login]')
           commented=$(echo '${{ steps.reviews.outputs.reviews }}' \
-            | jq -c '[ map(select(.state=="COMMENTED")) | map(.user.login) ]')
+            | jq -c '[.[] | select(.state=="COMMENTED") | .user.login]')
 
-          echo "approved=$approved" >> $GITHUB_OUTPUT
-          echo "changes_requested=$changes_requested" >> $GITHUB_OUTPUT
-          echo "commented=$commented" >> $GITHUB_OUTPUT
+          echo "approved=$approved" >> "$GITHUB_OUTPUT"
+          echo "changes_requested=$changes_requested" >> "$GITHUB_OUTPUT"
+          echo "commented=$commented" >> "$GITHUB_OUTPUT"
 
   check_approved:
     needs: collect_reviews
     if: needs.collect_reviews.outputs.approved != '[]'
     runs-on: ubuntu-latest
+    outputs:
+      approved_by_team: ${{ steps.aggregate.outputs.approved_by_team }}
     strategy:
       matrix:
         user: ${{ fromJSON(needs.collect_reviews.outputs.approved) }}
@@ -58,20 +59,71 @@ jobs:
           team: "maintainer,dev"
           GITHUB_TOKEN: ${{ secrets.LABELER_PAT }}
 
-      - name: Mark if approved by team
+      - name: Record membership result
+        id: record
+        run: |
+          if [ "${{ steps.membership.outputs.isTeamMember }}" = "true" ]; then
+            echo "is_member=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_member=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Flag team approval
         if: steps.membership.outputs.isTeamMember == 'true'
-        run: echo "approved_by_team=true" >> $GITHUB_ENV
+        run: echo "true" > approved_by_team.flag
+
+      - name: Upload flag if set
+        if: steps.membership.outputs.isTeamMember == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: approved-by-team-${{ matrix.user }}
+          path: approved_by_team.flag
+          retention-days: 1
+          if-no-files-found: ignore
+
+      - name: Aggregate (always run so outputs exist)
+        id: aggregate
+        if: always()
+        run: |
+          # In a matrix job each instance only knows its own result.
+          # We set the output true when THIS matrix user is a team member.
+          # Downstream job will check artifact presence instead if needed.
+          if [ "${{ steps.membership.outputs.isTeamMember }}" = "true" ]; then
+            echo "approved_by_team=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "approved_by_team=false" >> "$GITHUB_OUTPUT"
+          fi
 
   add_label_approved:
-    needs: check_approved
-    if: env.approved_by_team == 'true'
+    needs: [collect_reviews, check_approved]
+    if: always() && needs.collect_reviews.outputs.approved != '[]'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
     steps:
-      - uses: actions-ecosystem/action-add-labels@v1
+      - name: Download any team-approval flags
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: approved-by-team-*
+          merge-multiple: true
+          path: flags
+
+      - name: Decide and label
+        id: decide
+        run: |
+          if ls flags/approved_by_team.flag 1>/dev/null 2>&1; then
+            echo "should_label=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_label=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Add Approved label
+        if: steps.decide.outputs.should_label == 'true'
+        uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: "S: Approved"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   check_changes_requested:
     needs: collect_reviews
@@ -88,17 +140,46 @@ jobs:
           team: "maintainer,dev"
           GITHUB_TOKEN: ${{ secrets.LABELER_PAT }}
 
-      - name: Mark if changes requested by team
+      - name: Flag team changes requested
         if: steps.membership.outputs.isTeamMember == 'true'
-        run: echo "changes_by_team=true" >> $GITHUB_ENV
+        run: echo "true" > changes_by_team.flag
+
+      - name: Upload flag if set
+        if: steps.membership.outputs.isTeamMember == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: changes-by-team-${{ matrix.user }}
+          path: changes_by_team.flag
+          retention-days: 1
+          if-no-files-found: ignore
 
   add_label_changes:
-    needs: check_changes_requested
-    if: env.changes_by_team == 'true'
+    needs: [collect_reviews, check_changes_requested]
+    if: always() && needs.collect_reviews.outputs.changes_requested != '[]'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
     steps:
-      - uses: actions-ecosystem/action-add-labels@v1
+      - name: Download any changes-requested flags
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: changes-by-team-*
+          merge-multiple: true
+          path: flags
+
+      - name: Decide and label
+        id: decide
+        run: |
+          if ls flags/changes_by_team.flag 1>/dev/null 2>&1; then
+            echo "should_label=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_label=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Add Awaiting Changes label
+        if: steps.decide.outputs.should_label == 'true'
+        uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: "S: Awaiting Changes"
+          github_token: ${{ secrets.GITHUB_TOKEN }}

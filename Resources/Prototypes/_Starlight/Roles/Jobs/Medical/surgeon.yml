@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 57600 #16 hrs
+      time: 10h # Inferus
   startingGear: SurgeonGear
   icon: "JobIconSurgeon"
   supervisors: job-supervisors-cmo

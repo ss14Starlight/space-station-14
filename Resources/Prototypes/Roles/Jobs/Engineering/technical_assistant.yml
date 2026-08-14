@@ -6,10 +6,10 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 1h
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 10h
-      inverted: true # stop playing intern if you're good at engineering!
+    #- !type:DepartmentTimeRequirement
+    #  department: Engineering
+    #  time: 10h
+    #  inverted: true # Inferus - LET THE LIL GUY PLAY
   weight: -1 #Starlight
   startingGear: TechnicalAssistantGear
   icon: "JobIconTechnicalAssistant"

@@ -4,10 +4,10 @@
   description: job-description-intern
   playTimeTracker: JobMedicalIntern
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 10h
-      inverted: true # stop playing intern if you're good at med!
+    #- !type:DepartmentTimeRequirement
+    #  department: Medical
+    #  time: 10h
+    #  inverted: true # Inferus - LET THE LIL GUY PLAY
   weight: -1
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"

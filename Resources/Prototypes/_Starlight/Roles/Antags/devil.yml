@@ -8,10 +8,10 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 10h
-  - !type:SpeciesRequirement
-    species:
-    - IPC
-    inverted: true
+  #- !type:SpeciesRequirement # Inferus - let the bots be evil too
+  #  species:
+  #  - IPC
+  #  inverted: true
   playTimeTracker: AntagDevil
 
 - type: antagSpecifier

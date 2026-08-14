@@ -64,11 +64,9 @@
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
-    radius: 1.7
-    falloff: 3
-    softness: 5
+    mask: /Textures/_Starlight/Effects/LightMasks/cone_curve.png # Inferus
     autoRot: true
-    castShadows: false #SL lighting optimization
+    radius: 6
   - type: Ringer
   - type: RingerUplink
   - type: DeviceNetwork

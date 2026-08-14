@@ -6,10 +6,10 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 14400 # 4 hrs
+      time: 5h # Inferus
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 14400 # 4 hrs
+      time: 5h # Inferus
   startingGear: RoboticistGear
   icon: JobIconRoboticist
   supervisors: job-supervisors-rd

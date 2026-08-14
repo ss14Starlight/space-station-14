@@ -4,23 +4,23 @@
     Captain:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 6h # Starlight
+      time: 5h # Inferus
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 6h # Starlight
+      time: 5h # Inferus
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 6h # Starlight
+      time: 5h # Inferus
 # Starlight start
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 6h
+      time: 5h # Inferus
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 6h
+      time: 5h # Inferus
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 6h
+      time: 5h # Inferus
 # Starlight end
     - !type:DepartmentTimeRequirement
       department: Command
@@ -147,11 +147,11 @@
       time: 5h
     SecurityCadet:
     - !type:OverallPlaytimeRequirement
-      time: 30h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 30h #SL Edit 15h -> 30h
-      inverted: true # stop playing intern if you're good at security!
+      time: 10h
+    #- !type:DepartmentTimeRequirement
+    #  department: Security
+    #  time: 30h #SL Edit 15h -> 30h
+    #  inverted: true # Inferus - LET THE LIL GUY PLAY
     SecurityOfficer:
     - !type:DepartmentTimeRequirement
       department: Security
