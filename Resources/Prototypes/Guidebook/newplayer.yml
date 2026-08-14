@@ -6,8 +6,10 @@
   children:
   - Controls
   - CharacterCreation
+  # Starlight-start
   - RoleplayGuideIntro
   - SS14
+  # Starlight-end
 
 - type: guideEntry
   id: Controls
