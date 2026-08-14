@@ -285,7 +285,7 @@ public sealed partial class AntagSelectionSystem
     [PublicAPI]
     public bool CanTakeAntagGhostRole(ICommonSession session, AntagSpecifierPrototype definition)
     {
-        return !IsAntagBanned(session, definition) && _playTime.IsAllowed(session, definition.PrefRoles);
+        return !IsAntagBanned(session, definition) && _playTime.IsAllowedNonSpawning(session, definition.PrefRoles);
     }
     #endregion
 

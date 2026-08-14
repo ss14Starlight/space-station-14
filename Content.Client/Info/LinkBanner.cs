@@ -48,6 +48,14 @@ namespace Content.Client.Info
                     uriOpener.OpenUri(link);
             };
             buttons.AddChild(button);
+
+            var steamButton = new Button { Text = Loc.GetString("server-info-connect-steam-button") };
+            steamButton.OnPressed += _ => {
+                var link = _playerRoles.GetSteamLink();
+                if (link != null)
+                    uriOpener.OpenUri(link);
+            };
+            buttons.AddChild(steamButton);
             // NullLink end
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
