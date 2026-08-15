@@ -77,7 +77,7 @@
 - type: humanoidBaseSprite
   id: MobDionaEyes
   baseSprite:
-    sprite: _Starlight/Mobs/Customization/eyes.rsi
+    sprite: Mobs/Customization/eyes.rsi
     state: diona
 
 - type: humanoidBaseSprite
