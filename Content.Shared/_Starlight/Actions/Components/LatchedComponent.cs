@@ -8,6 +8,9 @@ namespace Content.Shared._Starlight.Actions.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class LatchedComponent : Component
 {
-    [ViewVariables, AutoNetworkedField] public EntityUid Latcher;
-    [ViewVariables] public EntityUid? BlockedHandItem;
+    [ViewVariables, AutoNetworkedField]
+    public EntityUid Latcher;
+
+    [ViewVariables]
+    public EntityUid? BlockedHandItem;
 }

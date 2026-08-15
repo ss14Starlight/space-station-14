@@ -14,24 +14,32 @@ public sealed partial class SpriteVariantComponent : Component
     /// <summary>
     /// RSI state names to pick from if <see cref="Variant"/> isn't set by spawn time.
     /// </summary>
-    [DataField] public List<string> AvailableVariants = new();
+    [DataField]
+    public List<string> AvailableVariants = new();
 
     /// <summary>
     /// The chosen state name. Settable ahead of spawn (e.g. by a loadout) to
     /// skip the random pick.
     /// </summary>
-    [DataField, AutoNetworkedField] public string? Variant;
+    [DataField, AutoNetworkedField]
+    public string? Variant;
 
     /// <summary>
     /// Optional per-variant alert override (e.g. matching health HUD face).
     /// </summary>
-    [DataField] public Dictionary<string, VariantAlertSet>? VariantAlerts;
+    [DataField]
+    public Dictionary<string, VariantAlertSet>? VariantAlerts;
 }
 
 [DataDefinition]
 public sealed partial class VariantAlertSet
 {
-    [DataField(required: true)] public ProtoId<AlertPrototype> Alive;
-    [DataField(required: true)] public ProtoId<AlertPrototype> Critical;
-    [DataField(required: true)] public ProtoId<AlertPrototype> Dead;
+    [DataField(required: true)]
+    public ProtoId<AlertPrototype> Alive;
+
+    [DataField(required: true)]
+    public ProtoId<AlertPrototype> Critical;
+
+    [DataField(required: true)]
+    public ProtoId<AlertPrototype> Dead;
 }

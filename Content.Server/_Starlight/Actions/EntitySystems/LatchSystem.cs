@@ -10,7 +10,6 @@ using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -20,7 +19,6 @@ using Content.Shared.Stunnable;
 using Content.Shared.Whitelist;
 using Content.Shared.Wieldable;
 using Robust.Server.Audio;
-using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -56,12 +54,9 @@ public sealed partial class LatchSystem : SharedLatchSystem
         SubscribeLocalEvent<LatchComponent, ComponentShutdown>(OnLatchShutdown);
         SubscribeLocalEvent<LatchComponent, DamageChangedEvent>(OnLatcherDamaged);
         SubscribeLocalEvent<LatchComponent, MobStateChangedEvent>(OnLatcherMobStateChanged);
-        SubscribeLocalEvent<LatchComponent, AttackAttemptEvent>(OnLatcherAttackAttempt);
 
         SubscribeLocalEvent<LatchedComponent, ComponentShutdown>(OnLatchedShutdown);
         SubscribeLocalEvent<LatchedComponent, MobStateChangedEvent>(OnTargetMobStateChanged);
-
-        SubscribeLocalEvent<LatchBlockedHandComponent, ContainerGettingRemovedAttemptEvent>(OnBlockedHandRemoveAttempt);
 
         SubscribeLocalEvent<LatchActionEvent>(OnLatchAction);
         SubscribeLocalEvent<LatchBiteHarderActionEvent>(OnBiteHarderAction);
@@ -128,23 +123,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         StartLatch(uid, comp, target);
         ev.Handled = true;
-    }
-
-    /// <summary>
-    /// Blocks manual attacks while latched, so Bite Harder is the only option.
-    /// </summary>
-    private void OnLatcherAttackAttempt(EntityUid uid, LatchComponent comp, AttackAttemptEvent ev)
-    {
-        if (comp.Active)
-            ev.Cancel();
-    }
-
-    /// <summary>
-    /// The latch's blocked hand can't be dropped via the drop key.
-    /// </summary>
-    private void OnBlockedHandRemoveAttempt(EntityUid uid, LatchBlockedHandComponent comp, ref ContainerGettingRemovedAttemptEvent args)
-    {
-        args.Cancel();
     }
 
     private void OnBiteHarderAction(LatchBiteHarderActionEvent ev)

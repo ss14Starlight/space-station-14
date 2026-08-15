@@ -10,5 +10,6 @@ namespace Content.Shared._Starlight.StatusIcon;
 [RegisterComponent]
 public sealed partial class FixedJobIconComponent : Component
 {
-    [DataField(required: true)] public ProtoId<JobPrototype> Job;
+    [DataField(required: true)]
+    public ProtoId<JobPrototype> Job;
 }
