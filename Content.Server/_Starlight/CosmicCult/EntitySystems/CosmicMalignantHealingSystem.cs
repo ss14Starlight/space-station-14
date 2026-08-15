@@ -12,13 +12,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
-public sealed class CosmicMalignantHealingSystem : EntitySystem
+public sealed partial class CosmicMalignantHealingSystem : EntitySystem
 {
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThresholds = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private ITileDefinitionManager _tileDefinition = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MobThresholdSystem _mobThresholds = default!;
 
     public override void Update(float frameTime)
     {

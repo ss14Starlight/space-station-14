@@ -14,7 +14,7 @@ using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
-public sealed class CosmicMalignEmpoweredRiftSystem : EntitySystem
+public sealed partial class CosmicMalignEmpoweredRiftSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;

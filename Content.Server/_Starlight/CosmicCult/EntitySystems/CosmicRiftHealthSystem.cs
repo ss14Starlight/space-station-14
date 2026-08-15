@@ -12,7 +12,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
-public sealed class CosmicRiftHealthSystem : EntitySystem
+public sealed partial class CosmicRiftHealthSystem : EntitySystem
 {
     [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
     [Dependency] private MobThresholdSystem _mobThreshold = default!;
