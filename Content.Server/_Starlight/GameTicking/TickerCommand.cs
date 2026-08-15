@@ -106,7 +106,7 @@ public sealed class TickerCommand : ToolshedCommand
     public void ToggleTimerOnend(IInvocationContext ctx, bool state)
     {
         _end ??= GetSys<RoundEndSystem>();
-        _end.ToggleTimerOnEnd(state);
+        _end.ToggleTimerOnEnd(state, ctx.Session);
         ctx.WriteLine($"The round restart timer will{(state ? " " : " NOT ")}start once round ends.");
     }
 }

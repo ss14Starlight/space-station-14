@@ -320,7 +320,12 @@ namespace Content.Server.RoundEnd
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
             _gameTicker.EndRound();
             // Starlight begin
-            if (!StartTimerOnRestart) return;
+            if (!StartTimerOnRestart)
+            {
+	            _countdownTokenSource?.Cancel();
+	            _countdownTokenSource = null;
+	            return;
+            }
             StartRestartTimer(countdownTime);
             // Starlight end
         }
