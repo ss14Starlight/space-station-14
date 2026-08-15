@@ -28,15 +28,15 @@ public sealed partial class LatchComponent : Component
     [DataField] public EntityWhitelist? Whitelist;
 
     /// <summary>
-    /// Max distance to engage, and also the distance a latch breaks at if
-    /// exceeded mid-latch (knockback, forced movement, etc).
+    /// Distance a latch breaks at if exceeded mid-latch. Independent of the
+    /// action's own engage range (TargetAction.range on the Latch prototype).
     /// </summary>
-    [DataField] public float Range = 1.5f;
+    [DataField] public float DriftBreakRange = 1.5f;
 
     /// <summary>
-    /// Extra slack for the ongoing drift check only, not the initial engage check.
+    /// Extra slack for the drift check, separate from engage range.
     /// </summary>
-    [DataField] public float RangeTolerance = 0.5f;
+    [DataField] public float DriftBreakTolerance = 0.5f;
 
     [DataField] public TimeSpan BaseDuration = TimeSpan.FromSeconds(8);
     [DataField, AutoNetworkedField] public TimeSpan MaxDuration = TimeSpan.FromSeconds(15);

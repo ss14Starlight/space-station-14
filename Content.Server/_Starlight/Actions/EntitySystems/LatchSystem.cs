@@ -380,7 +380,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
             // Break if knocked out of range; RangeTolerance avoids
             // instant-breaking from jitter right at the edge.
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
-            if (distance > comp.Range + comp.RangeTolerance)
+            if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance)
             {
                 EndLatch(uid, comp);
                 continue;
