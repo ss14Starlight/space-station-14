@@ -33,3 +33,14 @@
     jumpsuit: ClothingUniformJumpsuitSalvageMedic
     id: SalvageMedicPDA
     ears: ClothingHeadsetSalvageLead
+
+- type: chameleonOutfit
+  id: SalvageMedicChameleonOutfit
+  job: SalvageMedic
+  equipment:
+    head: ClothingHeadHatCargosoft
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGasExplorer
+    outerClothing: ClothingOuterWinterMiner
+    neck: ClothingNeckScarfStripedBrown
+    gloves: ClothingHandsGlovesColorBlack
