@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (CC-SC17) Added more windows to some places like medical to see the beautiful view.
-    type: Tweak
-  id: 407163
-  time: '2026-07-31T12:56:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5413
-- author: Johnny
-  changes:
   - message: (CC-SC17) fuckin stupid lil fuckin stupid decal misplacement grr its fixed now.
     type: Fix
   id: 407164
@@ -2799,4 +2792,11 @@ Entries:
   id: 407562
   time: '2026-08-14T07:17:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5640
+- author: Rinary
+  changes:
+  - message: Added.... First ever working implementation Steam authorization in SS14.
+    type: Add
+  id: 407563
+  time: '2026-08-15T17:41:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5671
 Order: -1
