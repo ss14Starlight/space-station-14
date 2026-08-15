@@ -1,17 +1,40 @@
 - type: entity
-  parent: Bed
+  parent: BaseStructure
   id: PetBed
   name: pet bed
   description: A comfy-looking bed for your pets. You can even strap your pet in, in case the gravity turns off.
   components:
+  - type: HealOnBuckle
+    damage:
+      types:
+        Poison: -0.1
+        Blunt: -0.1
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.05"
+        density: 190
+        mask:
+        - TableMask
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/pet_beds.rsi
     state: petbed
+    noRot: true
+  - type: Strap
+    position: Down
+    rotation: -90
   - type: Strap
     position: Stand
     rotation: 0
   - type: Damageable
     damageModifierSet: Inflatable
+    damageContainer: Inorganic
+  - type: PlaceableSurface
+    placeCentered: true
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
@@ -37,6 +60,11 @@
           MaterialCloth1:
             min: 1
             max: 2
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Anchorable
+  - type: Pullable
 
 - type: entity
   parent: PetBed
