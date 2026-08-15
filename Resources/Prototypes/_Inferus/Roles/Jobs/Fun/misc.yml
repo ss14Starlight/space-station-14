@@ -1,0 +1,12 @@
+- type: job
+  id: MakeshiftID
+  name: job-name-makeshiftid
+  overrideConsoleVisibility: false
+  hidden: true
+  description: job-description-assistant
+  playTimeTracker: JobMakeshiftID
+  icon: "JobIconMakeshiftID"
+  supervisors: job-supervisors-everyone
+  startingGear: AssistantGear
+  access:
+    - Maintenance

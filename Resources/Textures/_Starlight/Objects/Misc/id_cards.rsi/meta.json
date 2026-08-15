@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "taken from the game, Abductor ID by Walksanator | Salvage Lead/Medic/Specialist icons by mikeysaurus, makeshift by conf using TG base sprites | MedTak by SevenShades",
+  "copyright": "taken from the game, Abductor ID by Walksanator | Salvage Lead/Medic/Specialist icons by mikeysaurus, makeshift by conf using TG base sprites, edit & inhand by rhithebirdthing | MedTak by SevenShades",
   "size": {
     "x": 32,
     "y": 32
@@ -42,6 +42,14 @@
     },
     {
       "name": "makeshift"
+    },
+    {
+      "name": "makeshift-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "makeshift-inhand-right",
+	  "directions": 4
     },
     {
       "name": "mercenary",
