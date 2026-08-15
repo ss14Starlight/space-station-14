@@ -1,7 +1,7 @@
 - type: job
   id: SalvageSpecialist
   name: job-name-salvagespec
-  description: job-description-salvagespec
+  description: job-description-salvagespecSL
   rules: job-rules-itg-aligned #Starlight
   playTimeTracker: JobSalvageSpecialist
   requirements:
@@ -12,7 +12,7 @@
       time: 8h
   icon: "JobIconSalvageSpecialist" # Starlight - New distinct icon, Starlight end
   startingGear: SalvageSpecialistGear
-  supervisors: job-supervisors-itg
+  supervisors: job-supervisors-itg #starlight
   displayWeight: 4 # Starlight
   access:
   - Salvage
@@ -30,7 +30,7 @@
   id: SalvageSpecialistGear
   equipment:
    # id: SalvagePDA #Starlight
-    ears: ClothingHeadsetSalvageLead
+    ears: ClothingHeadsetSalvageLead #starlight
   #storage:
     #back:
     #- Stuff

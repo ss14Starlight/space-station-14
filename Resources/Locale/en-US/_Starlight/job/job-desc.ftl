@@ -20,3 +20,4 @@ job-description-nct = Your job is to try to assist as many crew members as possi
 job-description-stirstir = A disreputable monkey who should not be trusted. A real cell stuffer.
 job-description-prisoner = You are a corporate owned prisoner serving out a sentence in a hard labor colony.
 job-description-salvagemedic = Keep your salvage team alive off station. Make sure they all come back in one piece.
+job-description-salvagespecSL = Protect ITG assets and explore strange worlds to get rare goods to sell to the station.

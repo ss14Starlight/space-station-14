@@ -14,7 +14,6 @@
   icon: "JobIconSalvageMedic"
   startingGear: SalvageMedicGear
   supervisors: job-supervisors-itg
-  canBeAntag: false
   displayWeight: 4
   access:
   - Salvage
