@@ -4,6 +4,7 @@
   friction: 1.5
   heatCapacity: 10000
   isSubfloor: true
+  deconstructTools: [ Tearing ] # Starlight
   footstepSounds:
     collection: FootstepPlating
   baseTurf: Lattice
@@ -38,7 +39,6 @@
   parent: BasePlating
   name: tiles-hull-reinforced
   sprite: /Textures/Tiles/hull_reinforced.png
-  deconstructTools: [ Tearing ] # Starlight
   footstepSounds:
     collection: FootstepHull
   itemDrop: FloorTileItemSteel
@@ -71,7 +71,6 @@
   sprite: /Textures/Tiles/Asteroid/asteroid_plating.png
   baseTurf: Lattice
   isSubfloor: true
-  deconstructTools: [ Tearing ] # Starlight
   footstepSounds:
     collection: FootstepPlating
   friction: 1.5
@@ -84,7 +83,6 @@
   sprite: /Textures/Tiles/Misc/clockwork/clockwork_floor.png
   baseTurf: Lattice
   isSubfloor: true
-  deconstructTools: [ Tearing ] # Starlight
   footstepSounds:
     collection: FootstepPlating
   friction: 1.5
@@ -97,7 +95,6 @@
   sprite: /Textures/Tiles/snow_plating.png #Not in the snow planet RSI because it doesn't have any metadata. Should probably be moved to its own folder later.
   baseTurf: Lattice
   isSubfloor: true
-  deconstructTools: [ Tearing ] # Starlight
   footstepSounds:
     collection: FootstepPlating
   friction: 0.75 #a little less then actual snow
