@@ -677,6 +677,7 @@ public sealed partial class RCDSystem : EntitySystem
              && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var constructionRpdProto)
              && constructionRpdProto.TryGetComponent<TagComponent>(out var buildTags, _entityManager.ComponentFactory)
              && _tags.HasTag(buildTags, _unstackableTag);
+        var usesLayeredPipePlacement = prototype.HasLayers && (component.IsRpd || component.IsRPLD);
         // Starlight End: RPD
         _intersectingEntities.Clear();
         _lookup.GetLocalEntitiesIntersecting(gridUid, position, _intersectingEntities, -0.05f, LookupFlags.Uncontained);
@@ -685,7 +686,8 @@ public sealed partial class RCDSystem : EntitySystem
         {
             // If the entity is the exact same prototype as what we are trying to build, then block it.
             // This is to prevent spamming objects on the same tile (e.g. lights)
-            if (prototype.Prototype != null && MetaData(ent).EntityPrototype?.ID == prototype.Prototype)
+            // Starlight edit: If it's piping/plumbing stuff, then we can allow it
+            if (!usesLayeredPipePlacement && prototype.Prototype != null &&  MetaData(ent).EntityPrototype?.ID == prototype.Prototype)
             {
                 var isIdentical = true;
 
