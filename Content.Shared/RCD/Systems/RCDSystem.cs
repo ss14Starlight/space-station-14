@@ -304,45 +304,6 @@ public sealed partial class RCDSystem : EntitySystem
         }
         // Starlight End
 
-        // Starlight Start
-        var placementLayer = AtmosPipeLayer.Primary;
-        if ((component.IsRpd || component.IsRPLD) && prototype.HasLayers)
-        {
-            placementLayer = AtmosPipeLayer.Primary;
-
-            switch (component.CurrentMode)
-            {
-                case RpdMode.Primary:
-                    placementLayer = AtmosPipeLayer.Primary;
-                    break;
-
-                case RpdMode.Secondary:
-                    placementLayer = AtmosPipeLayer.Secondary;
-                    break;
-
-                case RpdMode.Tertiary:
-                    placementLayer = AtmosPipeLayer.Tertiary;
-                    break;
-
-                case RpdMode.Quaternary:
-                    placementLayer = component.IsRPLD ? AtmosPipeLayer.Tertiary : AtmosPipeLayer.Quaternary;
-                    break;
-
-                case RpdMode.Quinary:
-                    placementLayer = component.IsRPLD ? AtmosPipeLayer.Tertiary : AtmosPipeLayer.Quinary;
-                    break;
-
-                case RpdMode.Free:
-                    // Free mode layer is selected client-side and synced explicitly.
-                    if (component.LastSelectedLayer.HasValue)
-                    {
-                        placementLayer = component.LastSelectedLayer.Value;
-                    }
-                    break;
-            }
-        }
-        // Starlight End
-
         if (!IsRCDOperationStillValid(uid, component, gridUid.Value, mapGrid, tile, position, component.ConstructionDirection, args.Target, args.User))
             return;
 
