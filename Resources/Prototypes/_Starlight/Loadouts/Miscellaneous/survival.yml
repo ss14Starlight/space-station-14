@@ -55,7 +55,8 @@
   storage:
     back:
     - BoxSurvivalDwarf
-    - BookOfGrudges
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyNonBreather
@@ -85,7 +86,6 @@
     - BoxHugNonBreather
     - BookOfCantrips
 
-
 - type: loadout
   id: EmergencyDwarfOxygenClown
   effects:
@@ -94,6 +94,8 @@
   storage:
     back:
     - BoxHugDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyElfOxygenMime
@@ -113,6 +115,8 @@
   storage:
     back:
     - BoxMimeDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyNonBreatherMime
@@ -150,6 +154,8 @@
   storage:
     back:
     - BoxSurvivalEngineeringDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyNonBreatherMedical
@@ -178,6 +184,8 @@
   storage:
     back:
     - BoxSurvivalMedicalDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadoutEffectGroup
   id: ElfOxygenBreather
@@ -214,6 +222,8 @@
   storage:
     back:
     - BoxSurvivalSecurityDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyNonBreatherSyndicate
@@ -242,6 +252,8 @@
   storage:
     back:
     - BoxSurvivalSyndicate # no dwarf version; doesn't include a drink
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyElfOxygenMilitaryDouble
@@ -261,6 +273,8 @@
   storage:
     back:
     - BoxSurvivalMilitaryDouble # no dwarf version; doesn't include a drink
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 # Rodentia Cheese Loadouts
 - type: loadout

@@ -9,7 +9,6 @@ namespace Content.Shared._Starlight.StoryGen;
 public sealed partial class StoryGenLocalizationManager
 {
     [Dependency] private ContentLocalizationManager _clm = default!;
-    [Dependency] private ILocalizationManager _loc = default!; // non-static, unlike Loc
     [Dependency] private IEntityManager _entMan = default!;
     [Dependency] private SharedJobSystem _jobs = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -18,11 +17,14 @@ public sealed partial class StoryGenLocalizationManager
     public void Initialize()
     {
         var culture = _clm.GetActiveCulture();
+        var _loc = _clm.GetLocalizationManager();
 
         if(culture != null) {
             _loc.AddFunction(culture, "DATASET", FormatRandomDataset);
             _loc.AddFunction(culture, "JOB", FormatEntityJob);
-        }
+
+        } else
+            throw new Exception("No active culture. Panic.");
     }
 
     /// <summary>

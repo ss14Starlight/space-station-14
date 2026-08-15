@@ -59,6 +59,7 @@ namespace Content.Shared.Localizations
         /* BEGIN STARLIGHT */
         // adding fancy localization functions directly into this file necessitated too many dependencies, so here's a bag on the side
         public CultureInfo? GetActiveCulture() => ActiveCultureInfo;
+        public ILocalizationManager GetLocalizationManager() => _loc;
         /* END STARLIGHT */
 
         private ILocValue FormatMany(LocArgs args)

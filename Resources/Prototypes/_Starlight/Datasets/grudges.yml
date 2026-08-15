@@ -29,13 +29,7 @@
     count: 13
 
 - type: localizedDataset
-  id: GrudgeRelativeFemale
+  id: GrudgeRelative
   values:
-    prefix: book-grudges-relative-f-
-    count: 6
-
-- type: localizedDataset
-  id: GrudgeRelativeMale
-  values:
-    prefix: book-grudges-relative-m-
-    count: 6
+    prefix: book-grudges-relative-
+    count: 12

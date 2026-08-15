@@ -43,7 +43,11 @@
     - id: FoodMeatHuman
       amount: 5
   - type: GrudgeBearer # STARLIGHT; allows GrudgeBook binding
-    judginess: 1.0 # STARLIGHT; 0.0 = never generate grudges, 1.0 = generate grudges for every single crewmember
+    judginess: 1.0
+    grudgeSound: !type:SoundPathSpecifier
+      path: "/Audio/Items/Paper/paper_scribble5.ogg"
+    errorSound: !type:SoundPathSpecifier # debug only; remove
+      path: "/Audio/Effects/sadtrombone.ogg" # debug only; remove
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
