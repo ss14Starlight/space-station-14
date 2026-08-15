@@ -540,8 +540,8 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
         EnsureDefaultMarkings(uid, humanoid);
         SetTTSVoice(uid, profile.Voice, humanoid);
 
-        var sexChanged = new SexChangedEvent(humanoid.Sex, profile.Sex); // Starlight
-        RaiseLocalEvent(uid, ref sexChanged); // Starlight
+        //var sexChanged = new SexChangedEvent(humanoid.Sex, profile.Sex); // Starlight, don't need this, we use set sex
+        //RaiseLocalEvent(uid, ref sexChanged); // Starlight
 
         humanoid.Gender = profile.Gender;
         if (TryComp<GrammarComponent>(uid, out var grammar))
