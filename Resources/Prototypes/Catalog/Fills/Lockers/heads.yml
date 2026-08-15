@@ -56,7 +56,6 @@
         - Greenshift
         - Sandbox
     #Starlight end
-        - Sandbox #Starlight end
 
 - type: entity
   id: LockerQuarterMasterFilled
