@@ -6,7 +6,7 @@ namespace Content.Shared.Electrocution;
 
 public sealed class InsulatedSystem : EntitySystem
 {
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
 
     /// <inheritdoc />
     public override void Initialize()
