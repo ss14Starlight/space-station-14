@@ -117,5 +117,17 @@ Entries:
   id: 4001
   time: '2026-08-15T04:22:31.000000+00:00'
   url: https://github.com/InferusSS14/Inferus/pull/40
+- author: Inferus
+  changes:
+  - message: Makeshift ID cards can now be put into PDAs and ID consoles, but have
+      their own icon by default (anyone with ShowJobIconsComponent can tell you have
+      one, and remember, it's minor contraband!).
+    type: Tweak
+  - message: Resprited the makeshift ID card to look more like the normal ID cards
+      (why was it facing left?????).
+    type: Tweak
+  id: 3901
+  time: '2026-08-15T16:03:47.000000+00:00'
+  url: https://github.com/InferusSS14/Inferus/pull/39
 Order: -1
 
