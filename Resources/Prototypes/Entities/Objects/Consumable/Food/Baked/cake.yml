@@ -874,10 +874,12 @@
     state: birthday
   - type: SliceableFood
     slice: FoodCakeBirthdaySlice
+  # Starlight-start 
   - type: Tag
     tags:
     - Cake
-    - Birthday # Starlight
+    - Birthday
+  # Starlight-end
   - type: Item
     heldPrefix: birthday
 
