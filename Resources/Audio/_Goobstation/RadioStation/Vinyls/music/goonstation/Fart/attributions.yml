@@ -1,0 +1,4 @@
+- files: [ "buttris.ogg", "core_of_poo.ogg", "disco_poo.ogg", "eggshell.ogg", "fart_elise.ogg", "honkmas.ogg", "poo.ogg", "uguu.ogg", "warriors_honk.ogg", "we_are_number_two.ogg" ]
+  license: "CC-BY-SA-4.0"
+  copyright: "Taken from goonstation"
+  source: "https://github.com/goonstation/goonstation/tree/master/sound/radio_station/music"
