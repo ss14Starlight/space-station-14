@@ -110,5 +110,12 @@ Entries:
   id: 3801
   time: '2026-08-14T21:28:38.000000+00:00'
   url: https://github.com/InferusSS14/Inferus/pull/38
+- author: Tarazicon
+  changes:
+  - message: Changed more workflow files.
+    type: Tweak
+  id: 4001
+  time: '2026-08-15T04:22:31.000000+00:00'
+  url: https://github.com/InferusSS14/Inferus/pull/40
 Order: -1
 
