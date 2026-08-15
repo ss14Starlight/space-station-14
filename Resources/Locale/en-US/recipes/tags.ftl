@@ -126,6 +126,9 @@ construction-graph-tag-clarke-peripherals-control = clarke peripherals control m
 construction-graph-tag-ripley-central-control = ripley central control module
 construction-graph-tag-ripley-peripherals-control = ripley peripherals control module
 
+construction-graph-tag-remote-signaller = a basic remote signaler
+construction-graph-tag-remote-signaller-adv = an advanced remote signaler
+
 # SL End
 
 # structures

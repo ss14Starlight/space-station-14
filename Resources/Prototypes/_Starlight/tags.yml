@@ -625,6 +625,9 @@
   id: PrototypeVibroblade
 
 - type: Tag
+  id: RemoteSignallerAdvanced # Crafting whitelist: Advanced Deadman remote trigger
+
+- type: Tag
   id: RequiredForLmgTag
 
 - type: Tag
