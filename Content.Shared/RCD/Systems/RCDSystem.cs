@@ -687,7 +687,7 @@ public sealed partial class RCDSystem : EntitySystem
             // If the entity is the exact same prototype as what we are trying to build, then block it.
             // This is to prevent spamming objects on the same tile (e.g. lights)
             // Starlight edit: If it's piping/plumbing stuff, then we can allow it
-            if (!usesLayeredPipePlacement && prototype.Prototype != null &&  MetaData(ent).EntityPrototype?.ID == prototype.Prototype)
+            if (!usesLayeredPipePlacement && prototype.Prototype != null &&  MetaData(ent).EntityPrototype?.ID == prototype.Prototype) // Starlight
             {
                 var isIdentical = true;
 
