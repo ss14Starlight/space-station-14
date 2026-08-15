@@ -311,7 +311,7 @@ public sealed partial class TileSystem : EntitySystem
         }
 
         //Destroy any decals on the tile
-        var decals = _decal.GetDecalsInRange(gridUid, coordinates.SnapToGrid(EntityManager, _maps).Position, 0.5f);
+        var decals = _decal.GetDecalsInRange(gridUid, _turf.GetTileCenter(tileRef).Position, 0.5f); // Starlight
         foreach (var (id, _) in decals)
         {
             _decal.RemoveDecal(tileRef.GridUid, id);
