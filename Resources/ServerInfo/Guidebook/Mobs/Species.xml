@@ -29,7 +29,7 @@
   <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption="Vulpkanin"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="AppearanceProtogen" Caption="Protogen"/> <!--FH-->
+  <GuideEntityEmbed Entity="AppearanceNeocyte" Caption="Neocyte"/> <!--FH-->
   <GuideEntityEmbed Entity="AppearanceIPC" Caption="IPC"/> <!--FH-->
   </Box>
 <!-- Starlight end, reorganizing all of this alphabetically-->

@@ -89,7 +89,6 @@ jobs:
             | .results = ((.results // [])
               | map(select((.level // "warning") == "warning" or (.level // "warning") == "error")))]}' \
             "${reports[@]}" > /tmp/csharp-diagnostics.sarif
-
           reviewdog \
             -f=sarif \
             -name="C# diagnostics" \

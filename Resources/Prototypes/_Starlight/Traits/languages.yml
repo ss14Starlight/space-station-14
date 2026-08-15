@@ -114,7 +114,7 @@
     - !type:SpeciesRequirement
       species:
         - Felionoid
-        - ProtoFelionoid
+        - NeoFelionoid
       inverted: true
 
 - type: trait
@@ -135,7 +135,7 @@
     - !type:SpeciesRequirement
       species:
         - Vulpkanin
-        - ProtoVulp
+        - NeoVulpkanin
       inverted: true
 
 - type: trait
@@ -155,8 +155,8 @@
       species:
         - Avali
         - Resomi
-        - ProtoAvali
-        - ProtoResomi
+        - NeoAvali
+        - NeoResomi
       inverted: true
 
 - type: trait
@@ -193,7 +193,7 @@
     - !type:SpeciesRequirement
       species:
         - Dwarf
-        - ProtoDwarf
+        - NeoDwarf
       inverted: true
 
 - type: trait
@@ -212,7 +212,7 @@
     - !type:SpeciesRequirement
       species:
         - Human
-        - ProtoHuman
+        - NeoHuman
       inverted: true
 
 - type: trait
@@ -231,7 +231,7 @@
     - !type:SpeciesRequirement
       species:
         - Vox
-        - ProtoVox
+        - NeoVox
       inverted: true
 
 - type: trait
@@ -250,7 +250,7 @@
     - !type:SpeciesRequirement
       species:
         - Reptilian
-        - ProtoReptilian
+        - NeoReptilian
       inverted: true
 
 - type: trait
@@ -269,7 +269,7 @@
     - !type:SpeciesRequirement
       species:
         - Shadekin
-        - ProtoKin
+        - NeoKin
       inverted: true
 
 - type: trait
@@ -288,7 +288,7 @@
     - !type:SpeciesRequirement
       species:
         - SlimePerson
-        - ProtoSlimePerson
+        - NeoSlimePerson
       inverted: true
 
 - type: trait
@@ -307,7 +307,7 @@
     - !type:SpeciesRequirement
       species:
         - Cyclorite
-        - ProtoCyclorite
+        - NeoCyclorite
       inverted: true
 
 - type: trait
@@ -326,7 +326,7 @@
     - !type:SpeciesRequirement
       species:
         - Diona
-        - ProtoDiona
+        - NeoDiona
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -350,7 +350,7 @@
     - !type:SpeciesRequirement
       species:
         - Moth
-        - ProtoMoth
+        - NeoMoth
       inverted: true
 
 - type: trait
@@ -369,7 +369,7 @@
     - !type:SpeciesRequirement
       species:
         - Thaven
-        - ProtoThaven
+        - NeoThaven
       inverted: true
 
 - type: trait
@@ -388,7 +388,7 @@
     - !type:SpeciesRequirement
       species:
         - Lagomorph
-        - ProtoLagomorph
+        - NeoLagomorph
       inverted: true
 
 - type: trait

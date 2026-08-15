@@ -1245,7 +1245,7 @@
   # Starlight start
   - type: RandomGridFill
     pathWeights:
-      "/Maps/Shuttles/escape_pod_small.yml": 40
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_small.yml": 40
       "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_cheap.yml": 2
       "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_toilet.yml": 1
       "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_library.yml": 2
