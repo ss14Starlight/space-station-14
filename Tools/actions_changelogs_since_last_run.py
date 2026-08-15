@@ -20,7 +20,7 @@ DEBUG_CHANGELOG_FILE_OLD = Path("Resources/Changelog/Old.yml")
 GITHUB_API_URL = os.environ.get("GITHUB_API_URL", "https://api.github.com")
 
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
-DISCORD_CHANGELOG_ROLE_ID = int(os.environ.get("DISCORD_CHANGELOG_ROLE_ID", "1308143973684088883"))
+DISCORD_CHANGELOG_ROLE_ID = int(os.environ.get("DISCORD_CHANGELOG_ROLE_ID", "1536185201036886076"))
 
 CHANGELOG_FILE = "Resources/Changelog/ChangelogInferus.yml"
 TYPES_TO_EMOJI = {"Fix": "🐛", "Add": "🆕", "Remove": "❌", "Tweak": "⚒️"}
@@ -99,10 +99,14 @@ def get_last_changelog() -> str:
     session.headers["Accept"] = "Accept: application/vnd.github+json"
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
-    most_recent = get_most_recent_workflow(session, github_repository, github_run)
-    last_sha = most_recent["head_commit"]["id"]
-    print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
-    return get_last_changelog_by_sha(session, last_sha, github_repository)
+    try:
+        most_recent = get_most_recent_workflow(session, github_repository, github_run)
+        last_sha = most_recent["head_commit"]["id"]
+        print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
+        return get_last_changelog_by_sha(session, last_sha, github_repository)
+    except RuntimeError as e:
+        print(f"Warning: {e}. Returning empty changelog for first run.")
+        return "{}"  # Return empty YAML that becomes empty dict after parsing
 
 
 def get_last_changelog_by_sha(
@@ -182,7 +186,7 @@ def build_embed_for_pr(pr_id: str, entries: list[ChangelogEntry]) -> dict[str, A
   #      "fields": [
   #          {"name": "Author(s)", "value": author_field[:EMBED_FIELD_VALUE_LIMIT], "inline": False}
   #      ],
-        "footer": {"text": "Starlight changelog"},
+        "footer": {"text": "Inferus changelog"},
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
     if pr_id != "no-pr":
