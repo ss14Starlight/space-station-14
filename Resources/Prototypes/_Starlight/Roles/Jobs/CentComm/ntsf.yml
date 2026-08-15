@@ -14,7 +14,6 @@
   icon: JobIconNanoTrasenSpecialForces
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nanotrasen
-  canBeAntag: false
   bypassEorPacification: true
   accessGroups:
   - AllAccess

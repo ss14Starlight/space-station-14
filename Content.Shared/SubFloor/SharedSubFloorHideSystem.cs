@@ -51,7 +51,8 @@ namespace Content.Shared.SubFloor
             // No teleporting entities through floor tiles when anchoring them.
             var xform = Transform(uid);
 
-            if (TryComp<MapGridComponent>(xform.GridUid, out var grid)
+            if (!component.AllowAnchoringUnderCover // Starlight
+                && TryComp<MapGridComponent>(xform.GridUid, out var grid)
                 && HasFloorCover(xform.GridUid.Value, grid, Map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates)))
             {
                 _popup.PopupClient(Loc.GetString("subfloor-anchor-failure", ("entity", uid)), args.User);
@@ -63,7 +64,7 @@ namespace Content.Shared.SubFloor
         {
             // No un-anchoring things under the floor. Only required for something like vents, which are still interactable
             // despite being partially under the floor.
-            if (component.IsUnderCover)
+            if (!component.AllowAnchoringUnderCover && component.IsUnderCover) // Starlight
             {
                 _popup.PopupClient(Loc.GetString("subfloor-unanchor-failure", ("entity", uid)), args.User);
                 args.Cancel();
@@ -233,6 +234,7 @@ namespace Content.Shared.SubFloor
     [Serializable, NetSerializable]
     public enum SubfloorLayers : byte
     {
-        FirstLayer
+        FirstLayer, // Starlight
+        SecondLayer // Starlight
     }
 }

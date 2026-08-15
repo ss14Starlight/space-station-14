@@ -17,16 +17,13 @@
         staminaMultiplier: 100
       Rodentia:
         knockback: 0.02
-        staminaMultiplier: 100
+        staminaMultiplier: 110
       Resomi:
         knockback: 0.02
-        staminaMultiplier: 100
-      Avali:
-        knockback: 0.01 # half of what resomi take
-        staminaMultiplier: 100
+        staminaMultiplier: 110
       Felionoid:
         knockback: 0.01 #half of what resomi take
-        staminaMultiplier: 100
+        staminaMultiplier: 110
     # starlight start
   - type: MeleeWeapon
     wideAnimationRotation: 90

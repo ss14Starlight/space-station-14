@@ -152,11 +152,11 @@
     - type: AccessReader
       access: [["Blackstar"]]
 
-#MedTak
+#Visitor
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsMedTak
-  suffix: MedTak, Locked
+  id: DoorElectronicsVisitor
+  suffix: Visitor, Locked
   components:
     - type: AccessReader
-      access: [["MedTak"]]
+      access: [["Visitor"]]

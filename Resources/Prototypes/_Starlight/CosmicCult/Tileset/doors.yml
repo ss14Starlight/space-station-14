@@ -23,6 +23,8 @@
       path: /Audio/_Starlight/CosmicCult/door_open.ogg
     closeSound:
       path: /Audio/_Starlight/CosmicCult/door_close.ogg
+  - type: TimedDoorClosing
+    autoCloseDelay: 5
   - type: RCDDeconstructable
     deconstructable: false
   - type: Damageable

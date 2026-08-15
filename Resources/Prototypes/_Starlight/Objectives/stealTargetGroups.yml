@@ -249,11 +249,11 @@
     state: cart-nav
 
 - type: stealTargetGroup
-  id: SecurityTechFabCircuitboard
-  name: steal-target-groups-security-tech-fab-circuitboard
+  id: DepartmentalTechFabCircuitboard
+  name: steal-target-groups-departmental-tech-fab-circuitboard
   sprite:
-    sprite: Objects/Misc/module.rsi
-    state: security
+    sprite: _Starlight/Objects/Misc/techfabstealobjective.rsi
+    state: departmental
 
 - type: stealTargetGroup
   id: PTechCircuitboard
@@ -360,3 +360,11 @@
   sprite:
     sprite: _Starlight/Objects/Misc/medicalbeltstealobjective.rsi
     state: icon
+
+# Wizard Duelist medallions
+- type: stealTargetGroup
+  id: WizardMedallionCollection
+  name: steal-target-groups-wizard-medallions
+  sprite:
+    sprite: _Starlight/Objects/Specific/wizcoin.rsi
+    state: omniwizcoin

@@ -18,6 +18,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: ClownTheme
@@ -31,6 +32,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: FaithlessTheme
@@ -44,6 +46,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: MushroomTheme
@@ -57,6 +60,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: WalkerTheme
@@ -70,6 +74,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: ShadowDemon
@@ -89,6 +94,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
+  category: Patron
 
 - type: ghostTheme
   id: WizdenCarp
@@ -103,3 +109,4 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: WizdenPatronReq
+  category: Patron

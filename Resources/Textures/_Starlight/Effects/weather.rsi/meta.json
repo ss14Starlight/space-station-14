@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from CHOMPost21",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
@@ -9,6 +9,7 @@
     "states": [
         {
             "name": "fog",
+            "copyright": "Taken from CHOMPost21",
             "delays": [
                 [
                     0.1,
@@ -28,6 +29,7 @@
         },
         {
             "name": "starry_night",
+            "copyright": "Taken from CHOMPost21",
             "delays": [
                 [
                     0.2,
@@ -40,6 +42,7 @@
         },
         {
             "name": "acidfog",
+            "copyright": "Taken from CHOMPost21",
             "delays": [
                 [
                     0.2,
@@ -78,6 +81,7 @@
         },
         {
             "name": "anom_rain",
+            "copyright": "Taken from CHOMPost21",
             "delays": [
                 [
                     0.025,
@@ -117,6 +121,7 @@
         },
         {
             "name": "anom_rain_fast",
+            "copyright": "Taken from CHOMPost21",
             "delays": [
                 [
                     0.015000001,
@@ -153,6 +158,46 @@
                     0.015000001
                 ]
             ]
+        },
+        {
+        "name": "snowfall_lobster",
+        "copyright": "Snowfall edited from Citadel Station 13",
+        "delays": [
+            [
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02,
+            0.02
+            ]
+        ]
         }
     ]
 }

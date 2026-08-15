@@ -1,0 +1,129 @@
+- type: entity
+  id: BaseCustomSpawner
+  name: spawner
+  description: Spawns things.
+  abstract: true
+  components:
+    - type: CustomSpawner
+      hologramProtoId: CustomSpawnerHologram
+    - type: InteractionOutline
+    - type: Clickable
+    - type: DeviceLinkSource
+      ports:
+        - SpawnTriggered
+        - Enabled
+        - Disabled
+    - type: DeviceLinkSink
+      ports:
+        - TriggerSpawn
+        - On
+        - Off
+        - Toggle
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+    - type: WirelessNetworkConnection
+      range: 200
+
+- type: entity
+  id: CustomSpawnerStatic
+  parent: BaseCustomSpawner
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Physics
+      bodyType: Static
+    - type: Transform
+      anchored: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.2
+          density: 100
+          mask:
+            - TableMask
+    - type: CustomSpawner
+      hologramVisible: true
+      hologramSprite:
+        sprite: _Starlight/Objects/Devices/custom_spawner.rsi
+        state: default-holo
+      hologramColor1: "#65b8e2"
+      hologramColor2: "#3a6981"
+      hologramOffset: 0.01, 0.2
+    - type: Sprite
+      snapCardinals: true
+      sprite: _Starlight/Objects/Devices/custom_spawner.rsi
+      layers:
+        - state: pad
+        - map: [ "enabled" ]
+          state: powered
+          shader: unshaded
+        - map: [ "overlay" ]
+          state: overlay
+          shader: unshaded
+        - map: [ "overlay_anim" ]
+          state: activation
+          shader: unshaded
+    - type: PointLight
+      energy: 3
+      radius: 3
+      curveFactor: 5
+      falloff: 3
+
+- type: entity
+  id: CustomSpawner
+  parent: CustomSpawnerStatic
+  suffix: Anchorable
+  components:
+    - type: Pullable
+    - type: Anchorable
+
+- type: entity
+  id: CustomSpawnerMarker
+  parent: BaseCustomSpawner
+  suffix: Marker
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/custom_spawner.rsi
+      state: default-holo
+    - type: Marker
+    - type: CustomSpawner
+      isMarker: true
+      lightVisible: false
+
+- type: entity
+  id: CustomSpawnerMarkerHolo
+  parent: CustomSpawnerMarker
+  suffix: Marker, Hologram
+  components:
+    - type: CustomSpawner
+      isMarker: false
+      hologramVisible: true
+      updatePadSprites: false
+      hologramSprite:
+        sprite: _Starlight/Objects/Devices/custom_spawner.rsi
+        state: default-holo
+      hologramColor1: "#65b8e2"
+      hologramColor2: "#3a6981"
+    - type: PointLight
+
+- type: entity
+  id: CustomSpawnerHologram
+  name: hologram
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+    - type: Sprite
+    - type: CustomSpawnerHologram
+      rsi: _Starlight/Objects/Devices/custom_spawner.rsi
+      state: default-holo
+      shaderName: Hologram
+      color1: "#65b8e2"
+      color2: "#3a6981"
+      alpha: 0.9
+      intensity: 2
+      scrollRate: 0.125
+    - type: Tag
+      tags:
+        - HideContextMenu

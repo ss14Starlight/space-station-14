@@ -119,6 +119,10 @@
       - PosterContrabandHereticalExomorph
       - PosterContrabandBeep100
       - PosterContraband300Hotdogs
+      - PosterPrisonEspionage
+      - PosterPrisonPinup
+      - PosterPrisonObscene
+      - PosterContrabandNaN
       #endregion Starlight
     chance: 1
 
@@ -215,5 +219,13 @@
       - PosterLegitStarkistFancy
       - PosterLegitTSPDRangers
       - PosterLegitChipIn
+      - PosterLegitAndromedaBitters
+      - PosterLegitBlasto
+      - PosterLegitMidtownPizza
+      - PosterLegitMoffuchis
+      - PosterLegitPizzaImperator
+      - PosterLegitQuirks
+      - PosterLegitSlogan
+      - PosterLegitTipperCreamSoda
       #endregion Starlight
     chance: 1

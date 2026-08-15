@@ -6,7 +6,7 @@ alerts-vampire-blood-desc = Shows how much blood you've drunk. Extend your fangs
 alerts-vampire-fed-name = Blood Fullness
 alerts-vampire-fed-desc = Your current blood fullness. Drink blood to stay fed.
 
-roles-antag-vamire-name = Vampire
+roles-antag-vampire-name = Vampire
 roles-antag-vampire-description = Feed on the crew. Extend your fangs and drink their blood.
 
 roles-antag-thrall-name = Thrall
@@ -125,7 +125,7 @@ action-vampire-eternal-darkness-not-enough-blood = You have run out of blood to 
 action-vampire-eternal-darkness-start = You conjured eternal darkness...
 action-vampire-eternal-darkness-stop = The eternal darkness has dissipated...
 
-#Dantalion
+# Dantalion
 vampire-enthrall-start = You reach into {CAPITALIZE(THE($target))}'s mind...
 vampire-enthrall-success = {CAPITALIZE(THE($target))} bends the knee and becomes your thrall.
 vampire-enthrall-target = Your mind is overwhelmed by vampiric domination!

@@ -3,12 +3,16 @@
   name: store-category-plushies
 
 - type: storeCategory
+  id: SLToys
+  name: store-category-plushie-toys
+
+- type: storeCategory
   id: SLSpecies
   name: store-category-plushie-species
 
 - type: storeCategory
   id: SLCrew
-  name: Crew
+  name: store-category-plushie-crew
 
 - type: storeCategory
   id: SLChemistry
@@ -29,6 +33,10 @@
 - type: storeCategory
   id: SLClown
   name: store-category-service-clown
+
+- type: storeCategory
+  id: SLMime
+  name: store-category-service-mime
 
 - type: storeCategory
   id: SLSecurity
