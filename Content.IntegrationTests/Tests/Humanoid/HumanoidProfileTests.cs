@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests.Humanoid;
 
 [TestFixture]
-[TestOf(typeof(HumanoidProfileSystem))]
+[TestOf(typeof(SharedHumanoidAppearanceSystem))] // Starlight, no visual nubody
 public sealed class HumanoidProfileTests
 {
     private static readonly ProtoId<SpeciesPrototype> Vox = "Vox";
@@ -25,14 +25,14 @@ public sealed class HumanoidProfileTests
         await server.WaitAssertion(() =>
         {
             var entityManager = server.ResolveDependency<IEntityManager>();
-            var humanoidProfile = entityManager.System<HumanoidProfileSystem>();
+            var humanoidProfile = entityManager.System<SharedHumanoidAppearanceSystem>(); // Starlight, no visual nubody
             var human = entityManager.Spawn("MobHuman");
-            humanoidProfile.ApplyProfileTo(human, new HumanoidCharacterProfile()
+            humanoidProfile.LoadProfile(human, new HumanoidCharacterProfile() // Starlight, no visual nubody
                 .WithSex(Sex.Female)
                 .WithAge(67)
                 .WithGender(Gender.Neuter)
                 .WithSpecies(Vox));
-            var humanoidComponent = entityManager.GetComponent<HumanoidProfileComponent>(human);
+            var humanoidComponent = entityManager.GetComponent<HumanoidAppearanceComponent>(human); // Starlight, no visual nubody
             var voiceComponent = entityManager.GetComponent<VocalComponent>(human);
 
             Assert.That(humanoidComponent.Age, Is.EqualTo(67));
