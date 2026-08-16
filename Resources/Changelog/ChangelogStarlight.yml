@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Changed some of chapels walls to solid walls.
-    type: Tweak
-  id: 407263
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
   - message: (OASIS) Changed some vents and tables around in med bay.
     type: Tweak
   id: 407264
@@ -2799,4 +2792,11 @@ Entries:
   id: 407662
   time: '2026-08-16T16:24:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5654
+- author: Musiklie
+  changes:
+  - message: Mumbling (ending the message with ..) will now make your text smaller.
+    type: Tweak
+  id: 407663
+  time: '2026-08-16T16:57:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5663
 Order: -1
