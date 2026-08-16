@@ -729,6 +729,8 @@
   - ServiceWorkerChefJumpsuit
   - ServiceWorkerChefJumpskirt
   - MaidOutfit
+  - JanitorMaidOutfit 
+  - JanitorMaidOutfitMini 
 
 # Performer
 - type: loadoutGroup
