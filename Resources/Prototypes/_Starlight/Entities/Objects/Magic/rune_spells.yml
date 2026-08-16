@@ -2,14 +2,13 @@
   parent: BaseRuneAction
   id: ActionExplosionRuneWiz
   name: Explosion Rune
-  description: Summons a rune that explodes if used.
+  description: Summons a rune that explodes if walked on.
   components:
   - type: Action
     useDelay: 40
     icon:
-        sprite: Structures/Magic/Cult/rune.rsi
-        state: cult6
-        color: '#FF770055'
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: explosionrune
   - type: InstantAction
     event: !type:InstantSpawnSpellEvent
       prototype: ExplosionRuneWiz
@@ -20,10 +19,10 @@
   - type: EorgPreventAction
 
 - type: entity
-  parent: ActionIgniteRune
+  parent: BaseRuneAction
   id: ActionIgniteRuneWiz
   name: incendiary rune
-  description: Summons a rune that ignites if used.
+  description: Summons a rune that ignites anyone stepping on it.
   components:
   - type: SpeakOnAction
     sentence: action-speech-spell-iginiterune
@@ -32,9 +31,38 @@
   - type: Action
     useDelay: 40
     icon:
-        sprite: Structures/Magic/Cult/trap.rsi
-        state: trap
-  - type: EorgPreventAction
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: ignitionrune
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: IgniteRuneWiz
+
+- type: entity
+  parent: CollideRune
+  id: IgniteRuneWiz
+  name: ignition rune
+  components:
+    - type: TriggerOnCollide
+      fixtureID: ignition
+      maxTriggers: 1
+    - type: Fixtures
+      fixtures:
+        ignition:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.4,-0.4,0.4,0.4"
+          hard: false
+          mask:
+          - ItemMask
+          layer:
+          - SlipLayer
+    - type: DeleteOnTrigger
+    - type: IgniteOnCollide
+      fireStacks: 5
+    - type: Sprite
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      layers:
+        - state: ignitionrune
 
 - type: entity
   parent: ExplosionRune
@@ -47,9 +75,9 @@
       intensitySlope: 5
       maxIntensity: 4
     - type: Sprite
-      sprite: Structures/Magic/Cult/trap.rsi
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
       layers:
-        - state: trap
+        - state: explosionrune
 
 - type: entity
   parent: BaseRuneAction

@@ -165,6 +165,7 @@
         Slash: 0.8
         Piercing: 0.50
         Heat: 0.1
+        Cold: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9

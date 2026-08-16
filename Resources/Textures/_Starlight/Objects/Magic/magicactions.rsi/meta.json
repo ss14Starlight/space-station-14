@@ -55,6 +55,12 @@
         10]
             ]
 
+    },
+    {
+      "name": "ignitionrune"
+    },
+    {
+      "name": "explosionrune"
     }
   ]
 }
