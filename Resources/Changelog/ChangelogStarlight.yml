@@ -1,27 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Changed some vents and tables around in med bay.
-    type: Tweak
-  id: 407264
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Fixed drugstore welding fuel tank by moving it to a different wall.
-    type: Fix
-  id: 407265
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Fixed a random light in atsmo that was tripled.
-    type: Fix
-  id: 407266
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
   - message: (OASIS) Fixed an artifact spawning into the wall in artifact chamber.
     type: Fix
   id: 407267
@@ -2799,4 +2778,25 @@ Entries:
   id: 407663
   time: '2026-08-16T16:57:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5663
+- author: Common
+  changes:
+  - message: Specific accesses added for Clown and Mime.
+    type: Add
+  id: 407664
+  time: '2026-08-16T16:57:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5665
+- author: Common
+  changes:
+  - message: Change access on Clown Vend and Locker from theatre to Clown.
+    type: Tweak
+  id: 407665
+  time: '2026-08-16T16:57:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5665
+- author: Common
+  changes:
+  - message: Change access on Mime Vend and Locker from theatre to Mime.
+    type: Tweak
+  id: 407666
+  time: '2026-08-16T16:57:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5665
 Order: -1
