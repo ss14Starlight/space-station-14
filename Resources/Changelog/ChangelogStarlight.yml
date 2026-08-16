@@ -1,39 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Starboard) Removed roundstart mech weapons from Armory.
-    type: Remove
-  id: 407242
-  time: '2026-08-03T17:25:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5484
-- author: Conflee
-  changes:
-  - message: Fixed welcome popup buttons clipping.
-    type: Fix
-  id: 407243
-  time: '2026-08-03T17:25:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5483
-- author: Johnny
-  changes:
-  - message: Added the little personnel grabber to the paddy mech, its able to finally grab prisoners and put it in a back cell!
-    type: Add
-  id: 407244
-  time: '2026-08-03T18:33:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5488
-- author: Johnny
-  changes:
-  - message: Changed the paddy mech to only be able to accept nonlethal mech armaments.
-    type: Tweak
-  id: 407245
-  time: '2026-08-03T18:33:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5488
-- author: Johnny
-  changes:
-  - message: Changed the paddy mech to do less blunt damage with its fist.
-    type: Tweak
-  id: 407246
-  time: '2026-08-03T18:33:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5488
 - author: Johnny
   changes:
   - message: Changed paddies melee to do more stamina damage, around same as a truncheon.
@@ -2799,4 +2764,39 @@ Entries:
   id: 407641
   time: '2026-08-16T15:22:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5629
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added Pipe Docking Pipes to Cargo Dock.'
+    type: Add
+  id: 407642
+  time: '2026-08-16T15:22:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5668
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added Waste/Distro Pipes to Evac Docks.'
+    type: Add
+  id: 407643
+  time: '2026-08-16T15:22:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5668
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added Waste/Distro Pipes to Arrival Docks.'
+    type: Add
+  id: 407644
+  time: '2026-08-16T15:22:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5668
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added Waste/Distro Pipes to Docking Arm.'
+    type: Add
+  id: 407645
+  time: '2026-08-16T15:22:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5668
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Small waste system for Top East maintance Tunnels.'
+    type: Add
+  id: 407646
+  time: '2026-08-16T15:22:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5668
 Order: -1
