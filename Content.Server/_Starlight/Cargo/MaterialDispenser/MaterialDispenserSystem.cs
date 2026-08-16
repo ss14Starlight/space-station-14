@@ -83,13 +83,7 @@ public sealed class MaterialDispenserSystem : EntitySystem
 
 
         var item = Spawn(ent.Comp.CrateId, new EntityCoordinates(ent.Owner, 0, 0));
-        foreach (var spawnedMat in ent.Comp.Buffer
-                     .Select(material =>
-                         _materialStorageSystem.SpawnMultipleFromMaterial(material.Value, material.Key,
-                             Transform(item).Coordinates)).SelectMany(spawnedMats => spawnedMats))
-        {
-            _storageSystem.Insert(spawnedMat, item);
-        }
+        foreach (var spawnedMat in ent.Comp.Buffer.Select(material => _materialStorageSystem.SpawnMultipleFromMaterial(material.Value, material.Key, Transform(item).Coordinates)).SelectMany(spawnedMats => spawnedMats)) _storageSystem.Insert(spawnedMat, item);
 
         ent.Comp.Buffer.Clear();
 
