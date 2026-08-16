@@ -1,46 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: The "Base" kit of the SELF was removed.
-    type: Remove
-  id: 407197
-  time: '2026-08-01T15:45:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5443
-- author: Johnny
-  changes:
-  - message: The access breaker from the "base" kit of SELF was added as a normal equipment.
-    type: Add
-  id: 407198
-  time: '2026-08-01T15:45:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5443
-- author: Spaghett-Bit & ya3.14a
-  changes:
-  - message: The ATS guild has approved a shipment of higher-grade AstroNav programs to the Paramedic, Engineers, CE, Mining Specialists, and Salvage Specialists. The new features include an In-Built Mass scanner, however the compact nature of the PDA causes the range to be rather short.
-    type: Add
-  id: 407199
-  time: '2026-08-01T16:05:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5299
-- author: wondefulnewworld
-  changes:
-  - message: Added departmental techfabs for every department except NT Personnel.
-    type: Add
-  id: 407200
-  time: '2026-08-01T19:14:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5418
-- author: wondefulnewworld
-  changes:
-  - message: Added admin-only NanoTrasen, Central Command, and Syndicate techfabs.
-    type: Add
-  id: 407201
-  time: '2026-08-01T19:14:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5418
-- author: wondefulnewworld
-  changes:
-  - message: You can now emag the medical techfab.
-    type: Add
-  id: 407202
-  time: '2026-08-01T19:14:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5418
 - author: wondefulnewworld
   changes:
   - message: Added departmental techfab flatpacks to each head's locker, and machine boards to their respective totes.
@@ -2799,4 +2757,46 @@ Entries:
   id: 407596
   time: '2026-08-16T12:38:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5607
+- author: SirLutz
+  changes:
+  - message: Malign Minons now can fly over railings, tables, computers, thus not getting stuck.
+    type: Add
+  id: 407597
+  time: '2026-08-16T12:38:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5563
+- author: SirLutz
+  changes:
+  - message: Malign Minions now ghost after death when pressing WASD.
+    type: Add
+  id: 407598
+  time: '2026-08-16T12:38:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5563
+- author: SirLutz
+  changes:
+  - message: Malign Minions now have FlyingMobHitboxes.
+    type: Add
+  id: 407599
+  time: '2026-08-16T12:38:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5563
+- author: SirLutz
+  changes:
+  - message: Custoidan and Oracle do more struct damage so they can break reinf. windows.
+    type: Tweak
+  id: 407600
+  time: '2026-08-16T12:38:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5563
+- author: SirLutz
+  changes:
+  - message: Colossal Ingress now can also remove secure windoors and small firelocks.
+    type: Fix
+  id: 407601
+  time: '2026-08-16T12:38:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5563
+- author: SirLutz
+  changes:
+  - message: Malign passageway health reduced from 600->300, and RCD can remove them now.
+    type: Tweak
+  id: 407602
+  time: '2026-08-16T12:38:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5563
 Order: -1
