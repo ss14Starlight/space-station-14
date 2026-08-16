@@ -50,6 +50,10 @@
   - type: RandomMetadata
     nameSegments:
     - NamesCorgi
+  - type: Grammar
+    attributes:
+      gender: epicene
+      proper: true
   - type: Vocal
     screamAction: null
   - type: Access
