@@ -1,18 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Midis will no longer "Weh".
-    type: Fix
-  id: 407281
-  time: '2026-08-04T08:54:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5505
-- author: Orhu
-  changes:
-  - message: Added more Avali first names and pack names to the name generator.
-    type: Add
-  id: 407282
-  time: '2026-08-04T08:54:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5506
 - author: Hot Mic
   changes:
   - message: Updated the Flavor Text from "Special medical table for surgery. This one just seems to be a useless prop, though." to "Special medical table for surgery.".
@@ -2799,4 +2785,18 @@ Entries:
   id: 407680
   time: '2026-08-16T20:18:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5620
+- author: KarmaKitsuna
+  changes:
+  - message: Librarians Rejoice! 17 new stories from Starlight's first writing contest are coming to your library.
+    type: Add
+  id: 407681
+  time: '2026-08-16T20:39:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5588
+- author: KarmaKitsuna
+  changes:
+  - message: Book bans.
+    type: Add
+  id: 407682
+  time: '2026-08-16T20:39:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5588
 Order: -1
