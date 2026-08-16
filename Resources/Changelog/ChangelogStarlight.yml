@@ -1,20 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: Reduced subfloor gas tank volume from 1000L to 750L.
-    type: Tweak
-  id: 407181
-  time: '2026-08-01T11:09:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5425
-- author: redmushie
-  changes:
-  - message: Reduced gas ports on subfloor gas tank from 4 to 1.
-    type: Tweak
-  id: 407182
-  time: '2026-08-01T11:09:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5425
-- author: redmushie
-  changes:
   - message: Adjusted subfloor gas tank (de)construction steps to be a bit slower.
     type: Tweak
   id: 407183
@@ -2799,4 +2785,18 @@ Entries:
   id: 407580
   time: '2026-08-16T10:30:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5596
+- author: Romero
+  changes:
+  - message: Thermal implant are now a tech 3 med technology.
+    type: Tweak
+  id: 407581
+  time: '2026-08-16T10:51:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5545
+- author: Romero
+  changes:
+  - message: NVG are moved to tier 2.
+    type: Tweak
+  id: 407582
+  time: '2026-08-16T10:51:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5545
 Order: -1
