@@ -58,7 +58,7 @@ jobs:
     - name: Publish version
       run: Tools/publish_multi_request.py
       env:
-        FORK_ID: inferus-test
+        FORK_ID: starlight-test
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
 
