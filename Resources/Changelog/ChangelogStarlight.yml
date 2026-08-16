@@ -1,25 +1,4 @@
 Entries:
-- author: wonderfulnewworld, mirrorcult
-  changes:
-  - message: Using items in hand or interacting with things in your pockets/bag/storage etc now has interaction particles that only you can see.
-    type: Add
-  id: 407178
-  time: '2026-08-01T10:25:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5339
-- author: wonderfulnewworld, mirrorcult
-  changes:
-  - message: You can now set interaction particle visibility to be all, except in-hand, or none. (Default set to except in-hand).
-    type: Tweak
-  id: 407179
-  time: '2026-08-01T10:25:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5339
-- author: redmushie
-  changes:
-  - message: Added a tall 2000L gas tank that can be built via construction menu and spray-painted to any pipe color.
-    type: Add
-  id: 407180
-  time: '2026-08-01T11:09:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5425
 - author: redmushie
   changes:
   - message: Reduced subfloor gas tank volume from 1000L to 750L.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407577
   time: '2026-08-16T10:10:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5451
+- author: Johnny
+  changes:
+  - message: Changed all of the cargo shuttles to use pipe dock standards.
+    type: Tweak
+  id: 407578
+  time: '2026-08-16T10:30:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5596
+- author: Johnny
+  changes:
+  - message: Changed all of the mining/salvage shuttles to use pipe dock standards.
+    type: Tweak
+  id: 407579
+  time: '2026-08-16T10:30:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5596
+- author: Johnny
+  changes:
+  - message: Changed most cargo shuttles and mining/salvage shuttles to have BEAUTIFUL DIAGONAL TILES.
+    type: Tweak
+  id: 407580
+  time: '2026-08-16T10:30:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5596
 Order: -1
