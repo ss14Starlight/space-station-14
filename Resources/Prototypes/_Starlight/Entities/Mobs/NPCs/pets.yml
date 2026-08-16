@@ -326,7 +326,7 @@
   parent: MobAvaliDrone
   id: MobGDrone
   name: V.E.S.T.A.
-  description: Virtual Engineering Software Technician Assistant, protects your feet from small hazards and comes with basic networking protocols.
+  description: Virtual Engineering Specialized Technician Assistant, provides a small amount of light, and recharges power cells.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -344,21 +344,56 @@
     slots:
     - NECK
   - type: ProtectedFromStepTriggers
-  - type: NetworkConfigurator
-  - type: ActivatableUI
-    key: enum.NetworkConfiguratorUiKey.List
-    inHandsOnly: true
-  - type: UserInterface
-    interfaces:
-      enum.NetworkConfiguratorUiKey.List:
-        type: NetworkConfiguratorBoundUserInterface
-      enum.NetworkConfiguratorUiKey.Configure:
-        type: NetworkConfiguratorBoundUserInterface
-      enum.NetworkConfiguratorUiKey.Link:
-        type: NetworkConfiguratorBoundUserInterface
-  - type: Tag
-    tags:
-    - DoorElectronicsConfigurator
+  - type: Charger
+    slotId: charger_slot
+    portable: true
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - PowerCell
+          - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRechargeRate: 2
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
+  - type: PointLight
+    enabled: false
+    autoRot: true
+    netsync: false
+    radius: 4
+    energy: 2
+  - type: HandheldLight
+    wattage: 0.50
+    addPrefix: true
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
 
 - type: entity
   parent: MobAvaliDrone

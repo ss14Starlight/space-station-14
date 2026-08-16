@@ -24,15 +24,3 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-- type: listing
-  id: NaniteADrone
-  name: nanite-adrone-name
-  description: nanite-adrone-description
-  productAction: ActionAirDrone
-  cost:
-    Configuration: 2
-  categories:
-  - AvaliNanites
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
