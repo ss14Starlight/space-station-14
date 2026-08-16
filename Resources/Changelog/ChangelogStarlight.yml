@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Added a second hop window to hops office for a hops assistant or captain to assist a busy hop line.
-    type: Add
-  id: 407257
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
   - message: (OASIS) Removed the prolathe and autolathe from science and engi.
     type: Remove
   id: 407258
@@ -2799,4 +2792,11 @@ Entries:
   id: 407656
   time: '2026-08-16T15:53:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5638
+- author: Mack
+  changes:
+  - message: Construction ghosts templates.
+    type: Add
+  id: 407657
+  time: '2026-08-16T16:24:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5649
 Order: -1
