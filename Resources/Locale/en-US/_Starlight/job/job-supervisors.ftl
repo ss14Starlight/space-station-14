@@ -1,9 +1,11 @@
+job-supervisors-assistantmanager = the Assistant Manager, and absolutely everyone else
+job-supervisors-command = Command
 job-supervisors-magistrate = Magistrate
 job-supervisors-nanotrasen = NanoTrasen
 job-supervisors-nt-personnel = the NanoTrasen Representative and the Magistrate
+job-supervisors-prisoner = the Prison Officers, Deputy Governor, and Governor
 job-supervisors-service-arts = the Clown, the Mime, Musicians, and the Head of Personnel
+job-supervisors-solgov = Trans-Solar Federation
 job-supervisors-station-ai = the Station AI
 job-supervisors-warden = the Warden
 job-supervisors-none = Nobody
-job-supervisors-solgov = Trans-Solar Federation
-job-supervisors-prisoner = the Prison Officers, Deputy Governor, and Governor

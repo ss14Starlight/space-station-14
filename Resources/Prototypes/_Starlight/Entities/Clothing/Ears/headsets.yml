@@ -48,6 +48,20 @@
     sprite: Clothing/Ears/Headsets/service.rsi
 
 - type: entity
+  parent: [ ClothingHeadset, BaseCommandManagerContraband ]
+  id: ClothingHeadsetAssistantManager
+  name: assistant manager headset
+  description: A headset for the least poor among the poor.
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyCommon
+        - EncryptionKeyCommand
+    - type: Sprite
+      sprite: Clothing/Ears/Headsets/base.rsi
+
+- type: entity
   parent: [ ClothingHeadset, BaseMajorContraband ]
   id: ClothingHeadsetAssistantNinja
   name: stolen headset

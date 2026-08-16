@@ -32,6 +32,7 @@
   - SalvageLead
   - SalvageSpecialist
   - Paramedic
+  - AssistantManager
 
 # Zombie (Initial Infected)
 ## Sabotaging Chem as a Chem II is too easy, and always the "best" thing you can do without question.
@@ -102,6 +103,7 @@
   - SecurityCadet
   - SalvageLead
   - SalvageSpecialist
+  - AssistantManager
 
 # Cosmic Cult
 ## Just Chaplain, since, y'know.

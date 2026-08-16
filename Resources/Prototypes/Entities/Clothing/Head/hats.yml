@@ -234,7 +234,7 @@
     - CorgiWearable
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, BaseCommandManagerContraband] # Starlight
   id: ClothingHeadHatBeretCommand
   name: command beret
   description: A beret with the NanoTrasen logo. It has an aura of authority. # SL

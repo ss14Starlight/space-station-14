@@ -27,7 +27,7 @@
     # Starlight Start
     - id: PsychicScreach
     - id: SecurityDrill
-    - id: DoorRuntime
+    #- id: DoorRuntime
     - id: RadStorm
     - id: AuroraCaelus
     - id: SpaceWhale

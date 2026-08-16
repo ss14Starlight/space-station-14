@@ -9,7 +9,7 @@
   - type: HumanoidAppearance
     species: Gingerbread
   - type: Icon
-    sprite: Mobs/Species/Gingerbread/parts.rsi
+    sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: full
   - type: Body
     prototype: Gingerbread
