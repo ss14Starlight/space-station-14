@@ -1,16 +1,12 @@
-name: Discord Publish
-
-concurrency:
-  group: publish
+name: Publish Changelog
 
 on:
-  schedule:
-    # Runs at 00:00 every day (UTC)
-    - cron: '0 0 * * *'
   workflow_dispatch:
+  #schedule:
+  #- cron: '0 0 * * *'
 
 jobs:
-  publish:
+  publish_changelog:
     runs-on: ubuntu-latest
     environment:
       name: prod
@@ -20,23 +16,16 @@ jobs:
       contents: write
 
     steps:
-    - name: Install dependencies
-      run: sudo apt-get install -y python3-paramiko python3-lxml
 
-    - uses: actions/checkout@v3
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        token: ${{secrets.GITHUB_TOKEN}}
+        ref: master
 
-    - name: Publish changelog (Discord)
+    - name: Publish changelog
       run: Tools/actions_changelogs_since_last_run.py
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-
-    - name: Commit and push changes
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add "Resources/Changelog/ChangelogInferus.yml"
-        git add "Tools/changelogs/sent_changelog_ids.yml"
-        git commit -m "Update sended changelogs [skip ci]"
-        git push git@github.com:${{ github.repository }}.git HEAD:main
+        GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
+    continue-on-error: false
