@@ -1,18 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Fixed a bug where starting gear was seemingly trying to equip twice. This probably fixes something somewhere.
-    type: Fix
-  id: 407186
-  time: '2026-08-01T11:09:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5332
-- author: neomoth
-  changes:
-  - message: Fixed a bug where the second pass of starting gear would be given a second time when rolling an antag.
-    type: Fix
-  id: 407187
-  time: '2026-08-01T11:09:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5332
 - author: Xale
   changes:
   - message: "'Wing fang chu' is now classified as meat food."
@@ -2799,4 +2785,18 @@ Entries:
   id: 407585
   time: '2026-08-16T11:24:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5528
+- author: bynddark8, Rinary1
+  changes:
+  - message: Introduces recipes for doughs and cake batter to the in game guidebook.
+    type: Add
+  id: 407586
+  time: '2026-08-16T11:48:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5354
+- author: bynddark8, Rinary1
+  changes:
+  - message: Introduces a method to document chemical reactions in the guidebook  as cooking recipes.
+    type: Add
+  id: 407587
+  time: '2026-08-16T11:48:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5354
 Order: -1
