@@ -1,25 +1,4 @@
 Entries:
-- author: Xale
-  changes:
-  - message: Monkeys now have sound for some emotes such as scream, clap, salute, and whistle.
-    type: Add
-  id: 407193
-  time: '2026-08-01T14:40:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5435
-- author: Johnny
-  changes:
-  - message: Changed the price of reach in the shipyard.
-    type: Tweak
-  id: 407194
-  time: '2026-08-01T15:08:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5444
-- author: Johnny
-  changes:
-  - message: Changed the SELF spy kit to not be chameleon based, instead having a storage implanter, stechkin, camera bug, and chameleon projector.
-    type: Tweak
-  id: 407195
-  time: '2026-08-01T15:45:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5443
 - author: Johnny
   changes:
   - message: Changed the SELF saboteur kit to use meson goggles and jaws of death.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407592
   time: '2026-08-16T12:17:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5561
+- author: Orange Juice Goose
+  changes:
+  - message: Electrolyser now runs off of HV electricity, solid plasma can be used to massively boot its output.
+    type: Tweak
+  id: 407593
+  time: '2026-08-16T12:38:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5571
+- author: Orange Juice Goose
+  changes:
+  - message: Tesla coils and grounding rods can now electrolyze with very low efficiency.
+    type: Tweak
+  id: 407594
+  time: '2026-08-16T12:38:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5571
+- author: Orange Juice Goose
+  changes:
+  - message: Electrolyzer can no longer use uranium sheets as fuel.
+    type: Remove
+  id: 407595
+  time: '2026-08-16T12:38:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5571
 Order: -1
