@@ -49,6 +49,22 @@
   name: blue shield hud eyepatch
 
 - type: entity
+  parent: [BaseCommandManagerContraband, ClothingEyesHudCommand]
+  id: ClothingEyesEyepatchHudAssistantManager
+  name: assistant manager hud eyepatch
+  description: A jade-colored heads-up display that scans the humanoids in view and provides accurate data about their ID status. Surrender witness to its' near-invisible string.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/assistantpatch.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/assistantpatch.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+    - HudSecurity
+
+- type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesHudBrigmedic
   name: brigmedic hud
