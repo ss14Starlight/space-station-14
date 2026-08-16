@@ -1,3 +1,7 @@
+using Content.Server.Power.Components;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared.PowerCell;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Popups;
@@ -19,6 +23,7 @@ namespace Content.Server._Funkystation.Atmos.Portable;
 
 public sealed partial class ElectrolyzerSystem : EntitySystem
 {
+
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
@@ -28,61 +33,71 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
     [Dependency] private HandsSystem _handsSystem = default!;
     [Dependency] private TagSystem _tagSystem = default!;
     [Dependency] private AudioSystem _audio = default!;
-    private const float WorkingPower = 2f;
-    private const float PowerEfficiency = 1f;
+    [Dependency] private SharedBatterySystem _battery = default!; /// Starlight: Needed for electric charging
+    [Dependency] private PowerCellSystem _powerCell = default!; /// Starlight: ''
     private const string PlasmaTag = "SheetPlasma"; // Starlight Edit: PlasmaSheet -> SheetPlasma
-    private const string UraniumTag = "SheetUranium"; // Starlight Edit: UraniumSheet -> SheetUranium
 
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<ElectrolyzerComponent, SignalReceivedEvent>(OnSignalReceived);
         SubscribeLocalEvent<ElectrolyzerComponent, AtmosDeviceUpdateEvent>(OnDeviceUpdated);
         SubscribeLocalEvent<ElectrolyzerComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<ElectrolyzerComponent, InteractUsingEvent>(OnInteractUsingFuel);
         SubscribeLocalEvent<ElectrolyzerComponent, AnchorStateChangedEvent>(OnAnchorChanged);
+
     }
 
     private void OnSignalReceived(EntityUid uid, ElectrolyzerComponent comp, SignalReceivedEvent args)
     {
-        if (!TryComp<DeviceLinkSinkComponent>(uid, out _))
-            return;
-
-        bool? newState;
-
-        switch (args.Port)
+        if (comp.Passive == false) /// Starlight: Only check active electrolyzers for signals.
         {
-            case "On":
-                newState = true;
-                break;
-            case "Off":
-                newState = false;
-                break;
-            case "Toggle":
-                newState = !comp.IsPowered;
-                break;
-            default:
-                return;
-        }
+                if (!TryComp<DeviceLinkSinkComponent>(uid, out _))
+                    return;
 
-        if (newState == comp.IsPowered)
-            return;
+                bool? newState;
 
-        if (newState == true)
-        {
-            TryTurnOn(uid, comp);
-        }
-        else
-        {
-            comp.IsPowered = false;
-            UpdateAppearance(uid);
+                switch (args.Port)
+                {
+                    case "On":
+                        newState = true;
+                        break;
+                    case "Off":
+                        newState = false;
+                        break;
+                    case "Toggle":
+                        newState = !comp.IsPowered;
+                        break;
+                    default:
+                        return;
+                }
+
+                if (newState == comp.IsPowered)
+                    return;
+
+                if (newState == true)
+                {
+                    TryTurnOn(uid, comp);
+                }
+                else
+                {
+                    comp.IsPowered = false;
+                    UpdateAppearance(uid);
+                }
         }
     }
 
     private void OnActivate(EntityUid uid, ElectrolyzerComponent comp, ActivateInWorldEvent args)
     {
+        if (comp.Passive == true) /// Starlight: Don't try to activate passive electrolyzers
+                    return;
+
         if (args.Handled) return;
+
+        if (!TryComp<BatteryComponent>(uid, out var battery)) ///Starlight: Electricity required
+            return;
+
+        var charge = _battery.GetCharge((uid, battery));
 
         if (comp.IsPowered)
         {
@@ -92,6 +107,8 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         }
         else
         {
+            if (charge <= 0f) ///Starlight: If battery is zero, can't turn on. Doesn't force already turned on electolyzers off in case of power shortfall because that would annoying.
+                return;
             TryTurnOn(uid, comp, args.User);
         }
 
@@ -109,231 +126,227 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
     private void OnDeviceUpdated(EntityUid uid, ElectrolyzerComponent electrolyzer, ref AtmosDeviceUpdateEvent args)
     {
-        if (!Transform(uid).Anchored || !electrolyzer.IsPowered)
+        if (!TryComp<BatteryComponent>(uid, out var battery)) ///Starlight: Electricity required
             return;
 
-        if (electrolyzer.CurrentFuel <= 0f)
+        var charge = _battery.GetCharge((uid, battery));
+
+        if (!electrolyzer.Passive) /// Starlight: Only draw grid energy for active electrolyzers.
         {
-            if (!_itemSlots.TryGetSlot(uid, "fuel", out var slot) || slot.ContainerSlot?.ContainedEntity is not { } fuelEntity)
-            {
-                electrolyzer.IsPowered = false; // auto-shutdown if no more fuel possible
-                UpdateAppearance(uid);
-                _popup.PopupEntity(Loc.GetString("electrolyzer-no-fuel"), uid);
-                return;
-            }
+            if (!TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
+                    return;
 
-            if (!TryComp<StackComponent>(fuelEntity, out var stack) || stack.Count <= 0)
-            {
-                electrolyzer.IsPowered = false;
-                UpdateAppearance(uid);
-                _popup.PopupEntity(Loc.GetString("electrolyzer-no-fuel"), uid);
-                return;
-            }
+                if (!Transform(uid).Anchored)
+                {
+                    powerConsumer.DrawRate = 0f;
+                    return;
+                }
 
-            // Determine fuel value per sheet
-            float fuelPerSheet = 0f;
-            if (_tagSystem.HasTag(fuelEntity, PlasmaTag))
-                fuelPerSheet = electrolyzer.PlasmaFuelConversion;
-            else if (_tagSystem.HasTag(fuelEntity, UraniumTag))
-                fuelPerSheet = electrolyzer.UraniumFuelConversion;
-            else
-                return;
-
-            // Consume 1 sheet
-            _stackSystem.SetCount((fuelEntity, stack), stack.Count - 1);
-            electrolyzer.CurrentFuel = fuelPerSheet;
-
-            // If stack now empty, delete it
-            if (stack.Count <= 0)
-                EntityManager.QueueDeleteEntity(fuelEntity);
+                var missingCharge = battery.MaxCharge - charge;
+                powerConsumer.DrawRate = Math.Min(50_000f, Math.Max(0f, missingCharge / args.dt));
+                _battery.ChangeCharge((uid, battery), powerConsumer.ReceivedPower * args.dt);
+                charge = _battery.GetCharge((uid, battery));
         }
 
-        UpdateAppearance(uid);
+        if (electrolyzer.Passive == true)
+        {
+            electrolyzer.IsPowered = true;
+        }
+
+        if (charge <= 0f)
+        return;
+
+        if (!Transform(uid).Anchored || !electrolyzer.IsPowered)
+            return;
 
         var mixture = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map);
         if (mixture is null) return;
 
+        if (electrolyzer.Passive == false) /// Starlight: Fuel handling now optional, and doesnt check for passive electrolyzers.
+        {
+            if (electrolyzer.CurrentFuel <= 0f && _itemSlots.TryGetSlot(uid, "fuel", out var slot) && slot.ContainerSlot?.ContainedEntity is { } fuelEntity && TryComp<StackComponent>(fuelEntity, out var stack) && stack.Count > 0 && _tagSystem.HasTag(fuelEntity, PlasmaTag))
+            {
+                var remaining = stack.Count - 1;
+                _stackSystem.SetCount((fuelEntity, stack), remaining);
+                electrolyzer.CurrentFuel = electrolyzer.PlasmaFuelConversion;
+
+                if (remaining <= 0)
+                EntityManager.QueueDeleteEntity(fuelEntity);
+            }
+        }
+
+
+        var rate = (charge/battery.MaxCharge) / args.dt;
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);
         var initBZ = mixture.GetMoles(Gas.BZ);
         var temperature = mixture.Temperature;
-        float powerLoad = 100f;
-        float activeLoad = (4200f * (3f * WorkingPower) * WorkingPower) / (PowerEfficiency + WorkingPower);
         var oldHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
+
+        var H2OLoad = 0; ///Starlight: Dummy values, load is now combined rather than highest wins.
+        var HyperNobLoad = 0;
+        var BZLoad = 0;
 
         if (initH2O > 0.05f)
         {
-            var maxProportion = 2.5f * (float) Math.Pow(WorkingPower, 2);
-            var proportion = Math.Min(initH2O * 0.5f, maxProportion);
-            var temperatureEfficiency = Math.Min(mixture.Temperature / 1123.15f, 1f);
+            var temperatureEfficiency = Math.Min(mixture.Temperature / 1123.15f, 1f); ///Starlight: For some reason combustibles have variable oxy consumption? This keeps it balanced.
+            var h2oRate = Math.Min(Math.Min(2.5f * rate, initH2O / 2f), (2f * charge / electrolyzer.Efficiency)/Atmospherics.FireHydrogenEnergyReleased);
 
-            var h2oRemoved = proportion * 2f;
-            var oxyProduced = proportion * temperatureEfficiency;
-            var hydrogenProduced = proportion * 2f * temperatureEfficiency;
+            var h2oRemoved = h2oRate * 2f;
+            var oxyProduced = h2oRate * temperatureEfficiency;
+            var hydrogenProduced = h2oRate * 2f * temperatureEfficiency;
 
             mixture.AdjustMoles(Gas.WaterVapor, -h2oRemoved);
             mixture.AdjustMoles(Gas.Oxygen, oxyProduced);
             mixture.AdjustMoles(Gas.Hydrogen, hydrogenProduced);
 
-            var reactionPower = activeLoad * (hydrogenProduced / (maxProportion * 2f));
-            powerLoad = Math.Max(reactionPower, powerLoad);
+            H2OLoad = (int) (Atmospherics.FireHydrogenEnergyReleased * hydrogenProduced); ///Starlight: Load is determined by the energy made by re-igniting the hydrogen. Efficiency of device prevents free power.
         }
 
         if (initHyperNob > 0.01f && temperature < 150f)
         {
-            var maxProportion = 1.5f * (float) Math.Pow(WorkingPower, 2);
-            var proportion = Math.Min(initHyperNob, maxProportion);
-            mixture.AdjustMoles(Gas.HyperNoblium, -proportion);
-            mixture.AdjustMoles(Gas.AntiNoblium, proportion * 0.5f);
+            var HNobRate = (float) Math.Min((1.5 * rate), initHyperNob);
 
-            powerLoad = Math.Max(powerLoad, activeLoad * (proportion / maxProportion));
+            mixture.AdjustMoles(Gas.HyperNoblium, -HNobRate);
+            mixture.AdjustMoles(Gas.AntiNoblium, HNobRate);
+
+            HyperNobLoad = (int) (5000f * HNobRate); ///Starlight: High energy consumption.
         }
 
         if (initBZ > 0.01f)
         {
-            var proportion = Math.Min(initBZ * (1f - (float) Math.Pow(Math.E, -0.5f * temperature * WorkingPower / Atmospherics.FireMinimumTemperatureToExist)), initBZ);
-            mixture.AdjustMoles(Gas.BZ, -proportion);
-            mixture.AdjustMoles(Gas.Oxygen, proportion * 0.2f);
-            mixture.AdjustMoles(Gas.Halon, proportion * 2f);
-            var energyReleased = proportion * Atmospherics.HalonProductionEnergy;
+            var BZRate = (float) Math.Min(2.5 * rate, initBZ);
+
+            mixture.AdjustMoles(Gas.BZ, -BZRate);
+            mixture.AdjustMoles(Gas.Oxygen, BZRate * 0.2f);
+            mixture.AdjustMoles(Gas.Halon, BZRate * 2f);
+            var energyReleased = BZRate * Atmospherics.HalonProductionEnergy;
 
             var newHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
             if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
                 mixture.Temperature = Math.Max((mixture.Temperature * oldHeatCapacity + energyReleased) / newHeatCapacity, Atmospherics.TCMB);
-            powerLoad = Math.Max(powerLoad, activeLoad * Math.Min(proportion / 30f, 1));
+
+            BZLoad = (int) (BZRate); ///Starlight: Low energy consumption since overall its actually making more energy in thermal power.
         }
 
         var finalHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
         if (finalHeatCapacity > Atmospherics.MinimumHeatCapacity && finalHeatCapacity != oldHeatCapacity)
             mixture.Temperature = Math.Max(mixture.Temperature * oldHeatCapacity / finalHeatCapacity, Atmospherics.TCMB);
 
-        float fuelNeeded = powerLoad;
+        var powerUsed = (500f + H2OLoad + HyperNobLoad + BZLoad); ///Starlight: Gotta consume power
 
-        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - powerLoad);
+        var fuelMultiplier = 1f;
+
+        var PlasmaFuel = electrolyzer.CurrentFuel;
+
+        if (PlasmaFuel > 0f)
+        {
+            fuelMultiplier = 0.01f;
+        }
+
+        _battery.ChangeCharge((uid, battery),-powerUsed * fuelMultiplier / electrolyzer.Efficiency);
+
+        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - powerUsed);
+
+        if (electrolyzer.Passive == true)
+        {
+                electrolyzer.IsPowered = false;
+        }
 
         _gasOverlaySystem.UpdateSessions();
     }
 
     private void OnInteractUsingFuel(EntityUid uid, ElectrolyzerComponent comp, InteractUsingEvent args)
     {
-        if (args.Handled || args.Target != uid)
-            return;
-
-        if (!_itemSlots.TryGetSlot(uid, "fuel", out var slot) || slot.ContainerSlot == null)
-            return;
-
-        var heldItem = args.Used;
-        var existingItem = slot.ContainerSlot.ContainedEntity;
-
-        // Tag checks
-        bool heldIsPlasma = _tagSystem.HasTag(heldItem, PlasmaTag);
-        bool heldIsUranium = _tagSystem.HasTag(heldItem, UraniumTag);
-
-        if (!heldIsPlasma && !heldIsUranium)
-            return;
-
-        args.Handled = true;
-
-        if (existingItem == null)
+        if (comp.Passive == false) ///Starlight: Don't put fuel inside passive electrolyzers
         {
-            // Empty: insert normally
-            if (_itemSlots.TryInsert(uid, "fuel", heldItem, args.User))
-            {
-                _popup.PopupEntity(Loc.GetString("electrolyzer-fuel-inserted"), uid, args.User);
-            }
-            return;
-        }
+            if (args.Handled || args.Target != uid)
+                return;
 
-        bool existingIsPlasma = _tagSystem.HasTag(existingItem.Value, PlasmaTag);
-        bool existingIsUranium = _tagSystem.HasTag(existingItem.Value, UraniumTag);
+            if (!_itemSlots.TryGetSlot(uid, "fuel", out var slot) || slot.ContainerSlot == null)
+                return;
 
-        // Same type: merge
-        if ((heldIsPlasma && existingIsPlasma) || (heldIsUranium && existingIsUranium))
-        {
-            if (!TryComp<StackComponent>(heldItem, out var heldStack) ||
-                !TryComp<StackComponent>(existingItem.Value, out var existingStack))
+            var heldItem = args.Used;
+            var existingItem = slot.ContainerSlot.ContainedEntity;
+
+            // Tag checks
+            bool heldIsPlasma = _tagSystem.HasTag(heldItem, PlasmaTag);
+
+            if (!heldIsPlasma)
+                return;
+
+            args.Handled = true;
+
+            if (existingItem == null)
             {
-                _popup.PopupEntity(Loc.GetString("electrolyzer-cannot-merge-invalid-stack"), uid, args.User); // Should never happen
+                // Empty: insert normally
+                if (_itemSlots.TryInsert(uid, "fuel", heldItem, args.User))
+                {
+                    _popup.PopupEntity(Loc.GetString("electrolyzer-fuel-inserted"), uid, args.User);
+                }
                 return;
             }
 
-            int maxStack = _stackSystem.GetMaxCount(existingStack);
-            int total = existingStack.Count + heldStack.Count;
+                bool existingIsPlasma = _tagSystem.HasTag(existingItem.Value, PlasmaTag);
 
-            if (total > maxStack)
-            {
-                int toAdd = maxStack - existingStack.Count;
-                _stackSystem.SetCount((existingItem.Value, existingStack), maxStack);
-                _stackSystem.SetCount((heldItem, heldStack), heldStack.Count - toAdd);
-            }
-            else
-            {
-                _stackSystem.SetCount((existingItem.Value, existingStack), total);
-                EntityManager.QueueDeleteEntity(heldItem);
-            }
-
-            return;
-        }
-
-        // Different type: swap
-        EntityUid? ejected;
-        if (_itemSlots.TryEject(uid, "fuel", args.User, out ejected))
-        {
-            // Insert the new held item first
-            if (_itemSlots.TryInsert(uid, "fuel", heldItem, args.User))
-            {
-                _popup.PopupEntity(Loc.GetString("electrolyzer-fuel-swapped"), uid, args.User);
-
-                if (ejected != EntityUid.Invalid && TryComp<HandsComponent>(args.User, out var hands))
+                // Same type: merge
+                if ((heldIsPlasma && existingIsPlasma)) ///Starlight: Uranium no longer a valid solid fuel.
                 {
-                    var activeHandId = hands.ActiveHandId;
-                    if (activeHandId != null)
+                    if (!TryComp<StackComponent>(heldItem, out var heldStack) ||
+                        !TryComp<StackComponent>(existingItem.Value, out var existingStack))
                     {
-                        _handsSystem.TryPickup(args.User, ejected.Value, handId: activeHandId, handsComp: hands);
+                        _popup.PopupEntity(Loc.GetString("electrolyzer-cannot-merge-invalid-stack"), uid, args.User); // Should never happen
+                        return;
+                    }
+
+                    int maxStack = _stackSystem.GetMaxCount(existingStack);
+                    int total = existingStack.Count + heldStack.Count;
+
+                    if (total > maxStack)
+                    {
+                        int toAdd = maxStack - existingStack.Count;
+                        _stackSystem.SetCount((existingItem.Value, existingStack), maxStack);
+                        _stackSystem.SetCount((heldItem, heldStack), heldStack.Count - toAdd);
                     }
                     else
                     {
-                        _handsSystem.PickupOrDrop(args.User, ejected.Value);
+                        _stackSystem.SetCount((existingItem.Value, existingStack), total);
+                        EntityManager.QueueDeleteEntity(heldItem);
                     }
+
+                    return;
                 }
-            }
         }
     }
 
     private void TryTurnOn(EntityUid uid, ElectrolyzerComponent comp, EntityUid? user = null)
     {
-        if (comp.IsPowered)
-            return;
-
-        if (!Transform(uid).Anchored)
+        if (comp.Passive == false) ///Starlight: Can't toggle passive electrolyzers.
         {
-            if (user != null)
+            if (comp.IsPowered)
+                return;
+
+            if (!Transform(uid).Anchored)
             {
-                _popup.PopupEntity(Loc.GetString("electrolyzer-must-be-anchored"), uid, user.Value);
+                if (user != null)
+                {
+                    _popup.PopupEntity(Loc.GetString("electrolyzer-must-be-anchored"), uid, user.Value);
+                }
+                return;
             }
-            return;
+
+            comp.IsPowered = true;
+
+            _popup.PopupEntity(Loc.GetString("electrolyzer-turned-on"), uid);
+
+            if (comp.OnSound != null)
+            {
+                _audio.PlayPvs(comp.OnSound, uid, AudioParams.Default.WithVolume(-4f));
+            }
+
+            UpdateAppearance(uid);
+
         }
-
-        bool hasFuel = comp.CurrentFuel > 0f ||
-                       (_itemSlots.TryGetSlot(uid, "fuel", out var slot) &&
-                       slot.ContainerSlot?.ContainedEntity != null);
-
-        if (!hasFuel)
-        {
-            _popup.PopupEntity(Loc.GetString("electrolyzer-no-fuel"), uid);
-            return;
-        }
-
-        comp.IsPowered = true;
-
-        _popup.PopupEntity(Loc.GetString("electrolyzer-turned-on"), uid);
-
-        if (comp.OnSound != null)
-        {
-            _audio.PlayPvs(comp.OnSound, uid, AudioParams.Default.WithVolume(-4f));
-        }
-
-        UpdateAppearance(uid);
     }
 
     private void OnAnchorChanged(EntityUid uid, ElectrolyzerComponent comp, ref AnchorStateChangedEvent args)
