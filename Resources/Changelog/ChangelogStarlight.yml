@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Removed the prolathe and autolathe from science and engi.
-    type: Remove
-  id: 407258
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
   - message: (OASIS) Removed the exosuit chainsword and firedart from armory.
     type: Remove
   id: 407259
@@ -2799,4 +2792,11 @@ Entries:
   id: 407657
   time: '2026-08-16T16:24:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5649
+- author: Conflee
+  changes:
+  - message: increased Max Title Length from 25 to 35, and Max Content Length from 2048 to 3072, for News Articles.
+    type: Tweak
+  id: 407658
+  time: '2026-08-16T16:24:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5636
 Order: -1
