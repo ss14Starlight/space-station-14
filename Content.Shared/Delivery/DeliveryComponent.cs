@@ -93,9 +93,11 @@ public sealed partial class DeliveryComponent : Component
     [DataField]
     public bool SystemDeliverySpawn = false; // Starlight-edit
 
+    #region Starlight
     /// <summary>
-    /// Starlight-edit: indicates if the delivery is rewarded.
+    /// indicates if the delivery is rewarded.
     /// </summary>
     [DataField]
     public bool Rewarded;
+    #endregion
 }

@@ -15,7 +15,6 @@ public sealed partial class MailBoxComponent : Component
     /// </summary>
     [DataField] public ProtoId<DepartmentPrototype> Department;
 
-
     /// <summary>
     /// Names of the people who have mail in this mailbox.
     /// </summary>

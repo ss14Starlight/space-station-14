@@ -15,7 +15,7 @@ namespace Content.Shared._Starlight.Cargo.Mailboxes;
 /// <summary>
 /// This handles the MailBoxesComponent.
 /// </summary>
-public partial class SharedMailBoxesSystem : EntitySystem
+public sealed partial class SharedMailBoxesSystem : EntitySystem
 {
     [Dependency] private SharedJobSystem _jobSystem = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;

@@ -45,7 +45,6 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
         SubscribeLocalEvent<DeliveryComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<DeliveryComponent, EntGotInsertedIntoContainerMessage>(OnInsertedInContainer); // Starlight
 
-
         InitializeSpawning();
     }
     //Starlight-edit start
