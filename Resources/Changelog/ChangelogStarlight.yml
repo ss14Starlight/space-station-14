@@ -1,13 +1,6 @@
 Entries:
 - author: CommanderAlex365
   changes:
-  - message: Gave Mail Technicians shuttle access on skeleton crew.
-    type: Tweak
-  id: 407277
-  time: '2026-08-04T08:05:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5508
-- author: CommanderAlex365
-  changes:
   - message: Gave Cargo Technicians shuttle access by default.
     type: Fix
   id: 407278
@@ -2799,4 +2792,11 @@ Entries:
   id: 407676
   time: '2026-08-16T18:06:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5609
+- author: Conflee
+  changes:
+  - message: Changed the EntityHealthBarOverlay (Med HUD health bar) to not render if the entity is full health. This removes some visual clutter and should make parsing who is hurt in medbay easier for med staff.
+    type: Tweak
+  id: 407677
+  time: '2026-08-16T18:06:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5625
 Order: -1
