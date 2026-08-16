@@ -5,9 +5,9 @@
   description: Given by central command to commend exemplary behavior.
   components:
     - type: Sprite
-      sprite: Clothing/Neck/Medals/cargomedal.rsi
+      sprite: _Starlight/Clothing/Neck/Medals/ccmedal.rsi
     - type: Clothing
-      sprite: Clothing/Neck/Medals/cargomedal.rsi
+      sprite: _Starlight/Clothing/Neck/Medals/ccmedal.rsi
     - type: Tag
       tags:
         - Medal
