@@ -1,20 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Leth) Coroner locker.
-    type: Add
-  id: 407273
-  time: '2026-08-04T07:23:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5490
-- author: OMEGA
-  changes:
-  - message: (Leth) Surgeon locker.
-    type: Add
-  id: 407274
-  time: '2026-08-04T07:23:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5490
-- author: OMEGA
-  changes:
   - message: (Leth) Roboticist lockers.
     type: Add
   id: 407275
@@ -2799,4 +2785,18 @@ Entries:
   id: 407672
   time: '2026-08-16T17:32:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5643
+- author: wonderfulnewworld, ItsMaitake
+  changes:
+  - message: Added Brass Walls and Reinforced Brass Walls.
+    type: Add
+  id: 407673
+  time: '2026-08-16T17:32:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5613
+- author: wonderfulnewworld, ItsMaitake
+  changes:
+  - message: Added Brass Windows and Reinforced Brass Windows.
+    type: Add
+  id: 407674
+  time: '2026-08-16T17:32:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5613
 Order: -1
