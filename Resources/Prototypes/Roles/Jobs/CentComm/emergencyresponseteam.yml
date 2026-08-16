@@ -35,7 +35,7 @@
   parent: ERTLeaderGearEVA
   id: ERTLeaderGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJackFilled # Starlight
     head: ClothingHeadHelmetERTLeader
     outerClothing: ClothingOuterVestWebEliteCentcomm # Starlight
 
@@ -140,7 +140,7 @@
   parent: ERTChaplainGearEVA
   id: ERTChaplainGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJackFilled # Starlight
     head: ClothingHeadHatFez
     neck: ClothingNeckStoleChaplain
     outerClothing: ClothingOuterVestWebEliteCentcomm # Starlight
@@ -213,7 +213,7 @@
   parent: ERTEngineerGearEVA
   id: ERTEngineerGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJackFilled # Starlight
     head: ClothingHeadHelmetERTEngineer
     outerClothing: ClothingOuterVestWebEliteCentcomm # Starlight
 
@@ -309,7 +309,7 @@
   parent: ERTSecurityGearEVA
   id: ERTSecurityGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJackFilled # Starlight
     head: ClothingHeadHelmetERTSecurity
     outerClothing: ClothingOuterVestWebEliteCentcomm # Starlight
 
@@ -489,7 +489,7 @@
   parent: ERTMedicalGearEVA
   id: ERTMedicalGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJackFilled # Starlight
     head: ClothingHeadHelmetERTMedic
     outerClothing: ClothingOuterArmorPlate
 
