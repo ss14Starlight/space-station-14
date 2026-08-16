@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Changed the name of the SELF implanter to a different name (cause it wasnt used by self anymore).
-    type: Tweak
-  id: 407171
-  time: '2026-07-31T15:09:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5202
 - author: STARLIGHT TEAM
   changes:
   - message: Added Lancer Solo Strike as an arcade machine.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407570
   time: '2026-08-16T03:05:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5664
+- author: Limerent-Sun
+  changes:
+  - message: Slime chemical now inherits colours from the slime it comes from.
+    type: Add
+  id: 407571
+  time: '2026-08-16T09:38:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5530
 Order: -1

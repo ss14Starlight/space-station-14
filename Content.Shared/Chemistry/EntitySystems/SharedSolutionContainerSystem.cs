@@ -878,7 +878,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
                 }
 
                 recognized.Add(Loc.GetString("examinable-solution-recognized",
-                                            ("color", proto.SubstanceColor.ToHexNoAlpha()),
+                                            ("color", solution.GetColorWithOnly(PrototypeManager, proto.ID).ToHexNoAlpha()),
                                             ("chemical", proto.LocalizedName)));
             }
 
