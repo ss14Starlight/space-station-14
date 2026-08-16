@@ -1,13 +1,6 @@
 Entries:
 - author: wondefulnewworld
   changes:
-  - message: Added departmental techfab flatpacks to each head's locker, and machine boards to their respective totes.
-    type: Add
-  id: 407203
-  time: '2026-08-01T19:14:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5418
-- author: wondefulnewworld
-  changes:
   - message: Added a new steal objective for any 1 of the cargo, command, engineering, and science tech fab boards. Service excluded, since it's too easy.
     type: Add
   id: 407204
@@ -2799,4 +2792,11 @@ Entries:
   id: 407602
   time: '2026-08-16T12:38:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5563
+- author: Caws
+  changes:
+  - message: Space koi are now pacified and should no longer angrily bite the windows of their fish tanks.
+    type: Tweak
+  id: 407603
+  time: '2026-08-16T13:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5631
 Order: -1
