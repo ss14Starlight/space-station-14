@@ -1,3 +1,4 @@
+## Windows
 construction-bar-window = Bar Window
 construction-bar-window-diagonal = Bar Diagonal Window
 construction-bar-window-diagonal-alt = Bar Alternative Diagonal Window
@@ -22,3 +23,6 @@ construction-recipe-railing-round-yellow = yellow railing (round)
 
 construction-recipe-railing-boxing = ring rope
 construction-recipe-railing-corner-boxing = ring rope corner
+
+## Lights
+construction-recipe-floor-light = floor light
