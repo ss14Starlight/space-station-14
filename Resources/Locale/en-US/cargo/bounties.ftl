@@ -80,7 +80,6 @@ bounty-item-ring = Ring
 bounty-item-remains = Hivelord Remains
 bounty-item-plates = Goliath Hide Plates
 
-
 bounty-description-artifact = NanoTrasen is in some hot water for stealing artifacts from non-spacefaring planets. Return one and we'll compensate you for it.
 bounty-description-baseball-bat = Baseball fever is going on at CentComm! Be a dear and ship them some baseball bats, so that management can live out their childhood dream.
 bounty-description-box-hugs = Several chief officials have sustained serious boo-boos. A box of hugs is urgently needed to aid in their recovery.
