@@ -13,10 +13,24 @@
   - type: ProtectedFromStepTriggers
   - type: IgnoreSpiderWeb
   - type: Insulated
+  - type: Climbing
   - type: StatusEffects
     allowed:
     - Stunned
     - Stutter
+  - type: Physics
+    bodyStatus: OnGround
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 80
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
   - type: LanguageKnowledge
     speaks:
     - Cosmic
@@ -54,6 +68,8 @@
     thresholds:
       0: Alive
       50: Dead
+  - type: GhostOnMove
+    mustBeDead: true
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -116,8 +132,6 @@
   parent: [ BaseMobCosmicHostile, MobCosmicCustodian ]
   id: MobCosmicCustodianHostile #Bruiser/Sword/Lance stats
   components:
-  - type: Physics
-    bodyStatus: OnGround
   - type: TypingIndicator
     proto: CosmicTyping
   - type: GhostRole
@@ -134,7 +148,7 @@
         Cold: 5
         Blunt: 5
         Slash: 5
-        Structural: 10
+        Structural: 16
     soundHit:
       path: /Audio/_Starlight/CosmicCult/cosmicsword_hit.ogg
       params:
@@ -148,10 +162,8 @@
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicOracle ]
-  id: MobCosmicOracleHostile #Disabler
+  id: MobCosmicOracleHostile #Lead/Chaff
   components:
-  - type: Physics
-    bodyStatus: OnGround
   - type: TypingIndicator
     proto: CosmicTyping
   - type: GhostRole
@@ -168,7 +180,7 @@
         Asphyxiation: 10
         Cold: 5
         Blunt: 5
-        Structural: 5
+        Structural: 12
     soundHit:
       path: /Audio/_Starlight/CosmicCult/cosmiclance_hit.ogg
       params:
@@ -184,8 +196,6 @@
   parent: [ BaseMobCosmicHostile, MobCosmicLodestar ]
   id: MobCosmicLodestarHostile #ranged unit 25 damage from razor.
   components:
-  - type: Physics
-    bodyStatus: OnGround
   - type: GhostRole
     name: ghost-role-information-cosmic-lodestar-name
     description: ghost-role-information-cosmic-lodestar-description
