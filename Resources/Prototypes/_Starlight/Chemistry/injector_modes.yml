@@ -32,4 +32,4 @@
   transferAmounts:
     - 5
   containerDrawTime: 0.5s
-  injectSound: "Audio/Items/drink.ogg"
+  injectSound: "/Audio/Items/drink.ogg"
