@@ -61,8 +61,6 @@
     JuiceThatMakesYouWeh:
       amount: 30
     Razorium:
-      amount: 100
-    Iron:
       amount: 20
     Uranium:
       amount: 50
@@ -79,8 +77,6 @@
     JuiceThatMakesYouHew:
       amount: 30
     Razorium:
-      amount: 100
-    Iron:
       amount: 20
     Uranium:
       amount: 50
