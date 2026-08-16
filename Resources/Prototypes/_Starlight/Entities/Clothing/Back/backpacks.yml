@@ -44,7 +44,7 @@
     sprite: _Starlight/Clothing/Back/Backpacks/hop.rsi
 
 - type: entity
-  parent: [ClothingBackpack, BaseCommandContraband]
+  parent: [ClothingBackpack, BaseCommandManagerContraband]
   id: ClothingBackpackCommandGeneric
   name: command backpack
   description: A Command-colored backpack with NanoTrasen's colors. It has an aura of non-descript authority.

@@ -460,3 +460,95 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Retro Counters
+- type: construction
+  id: CounterRetroSteel
+  name: construction-recipe-counter-retro-steel
+  graph: CounterRetroSteel
+  startNode: start
+  targetNode: CounterRetroSteel
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CounterRetroWood
+  name: construction-recipe-counter-retro-wood
+  graph: CounterRetroWood
+  startNode: start
+  targetNode: CounterRetroWood
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CounterRetroKitchen
+  name: construction-recipe-counter-retro-kitchen
+  graph: CounterRetroKitchen
+  startNode: start
+  targetNode: CounterRetroKitchen
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CounterRetroSteelWood
+  name: construction-recipe-counter-retro-steel-wood
+  graph: CounterRetroSteelWood
+  startNode: start
+  targetNode: CounterRetroSteelWood
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CounterRetroWhiteOrange
+  name: construction-recipe-counter-retro-white-orange
+  graph: CounterRetroWhiteOrange
+  startNode: start
+  targetNode: CounterRetroWhiteOrange
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CounterRetroWhiteTeal
+  name: construction-recipe-counter-retro-white-teal
+  graph: CounterRetroWhiteTeal
+  startNode: start
+  targetNode: CounterRetroWhiteTeal
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CounterRetroDiner
+  name: construction-recipe-counter-retro-diner
+  graph: CounterRetroDiner
+  startNode: start
+  targetNode: CounterRetroDiner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

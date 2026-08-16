@@ -45,6 +45,52 @@
   lowerWarnAround: !type:AlarmThresholdSetting
     threshold: 1.3 # 78 kPa
 
+# Chamber - no lower bounds, and the upper warn multiplier resolves to 75000kPa.
+# Both upper checks are >=, so these fire at the stated values.
+- type: alarmThreshold
+  id: chamberPressure
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 90000
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.8333333
+
+# Sauna - steam dilutes the other gases, so these bounds are fractions of a
+# pressurised mix rather than of station air. Breathing breaks even at 8.4%
+# oxygen, so danger sits at 10% and warning at 13%, which tolerates steam up to
+# about 38% of the mix.
+- type: alarmThreshold
+  id: saunaOxygen
+  lowerBound: !type:AlarmThresholdSetting
+    threshold: 0.10
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.45
+  lowerWarnAround: !type:AlarmThresholdSetting
+    threshold: 1.3
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.8
+
+# Vox, Slimes and Cyclorites breathe nitrogen, so it breaks even at the same 8.4%
+# as oxygen does for everyone else and takes the same bounds.
+- type: alarmThreshold
+  id: saunaNitrogen
+  lowerBound: !type:AlarmThresholdSetting
+    threshold: 0.10
+  lowerWarnAround: !type:AlarmThresholdSetting
+    threshold: 1.3
+
+# Sauna - bounds copy stationTemperature, only the upper warn multiplier differs,
+# resolving to 323.15K.
+- type: alarmThreshold
+  id: saunaTemperature
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 393.15
+  lowerBound: !type:AlarmThresholdSetting
+    threshold: 233.15
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.82195
+  lowerWarnAround: !type:AlarmThresholdSetting
+    threshold: 1.1286
+
 # New Gases
 
 - type: alarmThreshold

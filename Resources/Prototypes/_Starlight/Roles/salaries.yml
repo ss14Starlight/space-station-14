@@ -36,6 +36,7 @@
     StationAi: 149
     Borg: 85
 
+    AssistantManager: 60
     Chaplain: 50
     Chef: 50
     Janitor: 30

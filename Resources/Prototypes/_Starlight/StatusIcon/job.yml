@@ -24,6 +24,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconAssistantManager
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: AssistantManager
+  jobName: job-name-assistantmanager
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconNTNCBlueShield
   icon:
     sprite: *starlight-job-icon-rsi

@@ -253,3 +253,18 @@
   canBuildInImpassable: false
   conditions:
   - !type:TileNotBlocked
+
+#Floor Lights
+- type: construction
+  id: LightFloorFixture
+  name: construction-recipe-floor-light
+  graph: FloorLightFixture
+  startNode: start
+  targetNode: floorLight
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

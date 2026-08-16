@@ -30,6 +30,8 @@
 
 - type: reaction
   id: CreateDough
+  guidebookGroups: # Starlight-edit
+    - Dough
   impact: Low
   quantized: true
   conserveEnergy: false
@@ -44,6 +46,8 @@
 
 - type: reaction
   id: CreateCornmealDough
+  guidebookGroups: # Starlight-edit
+    - Dough
   impact: Low
   quantized: true
   conserveEnergy: false
@@ -60,6 +64,8 @@
 
 - type: reaction
   id: CreateTortillaDough
+  guidebookGroups: # Starlight-edit
+    - Dough
   impact: Low
   quantized: true
   conserveEnergy: false
@@ -74,6 +80,9 @@
 
 - type: reaction
   id: CreateDoughCotton
+  guidebookGroups: # Starlight-edit
+    - Dough
+    - Moth
   impact: Low
   quantized: true
   conserveEnergy: false
@@ -90,6 +99,9 @@
 
 - type: reaction
   id: CreateCakeBatter
+  guidebookGroups: # Starlight-edit
+    - Dough
+    - Cake
   impact: Low
   quantized: true
   conserveEnergy: false
@@ -123,6 +135,9 @@
 
 - type: reaction
   id: CreatePieDough
+  guidebookGroups: # Starlight-edit
+    - Dough
+    - Pie
   impact: Low
   quantized: true
   conserveEnergy: false
