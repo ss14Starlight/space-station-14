@@ -1,18 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: (Leth) Roboticist lockers.
-    type: Add
-  id: 407275
-  time: '2026-08-04T07:23:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5490
-- author: Conflee
-  changes:
-  - message: Fixed Derelict Purrfus using the wrong sprite.
-    type: Fix
-  id: 407276
-  time: '2026-08-04T08:05:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5511
 - author: CommanderAlex365
   changes:
   - message: Gave Mail Technicians shuttle access on skeleton crew.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407674
   time: '2026-08-16T17:32:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5613
+- author: XeroTec/Meepmerp
+  changes:
+  - message: Plasteel knuckle dusters crafting recipe.
+    type: Add
+  id: 407675
+  time: '2026-08-16T18:06:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5609
+- author: XeroTec/Meepmerp
+  changes:
+  - message: Plasteel knuckle dusters makeshift anvil recipe.
+    type: Add
+  id: 407676
+  time: '2026-08-16T18:06:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5609
 Order: -1
