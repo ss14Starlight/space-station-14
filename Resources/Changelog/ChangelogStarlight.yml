@@ -1,20 +1,6 @@
 Entries:
 - author: Xale
   changes:
-  - message: Monkeys now have access to voice emotes in the emote wheel.
-    type: Add
-  id: 407191
-  time: '2026-08-01T14:40:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5435
-- author: Xale
-  changes:
-  - message: Monkeys now get the quick action to scream.
-    type: Add
-  id: 407192
-  time: '2026-08-01T14:40:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5435
-- author: Xale
-  changes:
   - message: Monkeys now have sound for some emotes such as scream, clap, salute, and whistle.
     type: Add
   id: 407193
@@ -2799,4 +2785,18 @@ Entries:
   id: 407590
   time: '2026-08-16T12:16:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5542
+- author: Kamila, AegisShield
+  changes:
+  - message: Added milk crates! Store your milk cartons in style, or repurpose one to file away your vinyl collection.
+    type: Add
+  id: 407591
+  time: '2026-08-16T12:17:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5561
+- author: Kamila, AegisShield
+  changes:
+  - message: A blood-red milk crate full of unsanctioned records has been spotted in syndicate hands.
+    type: Add
+  id: 407592
+  time: '2026-08-16T12:17:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5561
 Order: -1
