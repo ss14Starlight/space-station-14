@@ -118,6 +118,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
     {
         HandsGui?.Visible = false;
         HandsGui?.HandContainer.ClearButtons();
+        HandsGui?.FunctionalHandContainer.ClearButtons(); // Starlight
         _playerHandsComponent = null;
     }
 
@@ -126,6 +127,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
         DebugTools.Assert(_playerHandsComponent == null);
         HandsGui?.Visible = true;
         HandsGui?.HandContainer.PlayerHandsComponent = handsComp;
+        HandsGui?.FunctionalHandContainer.PlayerHandsComponent = handsComp; // Starlight
         _playerHandsComponent = handsComp;
         foreach (var (name, hand) in handsComp.Comp.Hands)
         {
@@ -170,18 +172,18 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
 
     private void HandBlocked(string handName)
     {
-        if (HandsGui?.HandContainer.TryGetButton(handName, out var hand) != true)
+        if (GetHand(handName) is not { } hand) // Starlight
             return;
 
-        hand!.Blocked = true;
+        hand.Blocked = true; // Starlight
     }
 
     private void HandUnblocked(string handName)
     {
-        if (HandsGui?.HandContainer.TryGetButton(handName, out var hand) != true)
+        if (GetHand(handName) is not { } hand) // Starlight
             return;
 
-        hand!.Blocked = false;
+        hand.Blocked = false; // Starlight
     }
 
     private void OnItemAdded(string name, EntityUid entity)
@@ -246,13 +248,13 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
             return;
         }
 
-        if (HandsGui?.HandContainer.TryGetButton(handName, out var handControl) != true || handControl == _activeHand)
+        if (HandsGui is not { } handsGui || GetHand(handName) is not { } handControl || handControl == _activeHand) // Starlight
             return;
 
         if (_activeHand != null)
             _activeHand.Highlight = false;
 
-        handControl!.Highlight = true;
+        handControl.Highlight = true; // Starlight
         _activeHand = handControl;
 
         if (_playerHandsComponent != null &&
@@ -265,22 +267,22 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
             if (foldedLocation == HandLocation.Left)
             {
                 _statusHandLeft = handControl;
-                HandsGui.UpdatePanelEntityLeft(heldEnt, hand.Value);
+                handsGui.UpdatePanelEntityLeft(heldEnt, hand.Value); // Starlight
             }
             else
             {
                 // Middle or right
                 _statusHandRight = handControl;
-                HandsGui.UpdatePanelEntityRight(heldEnt, hand.Value);
+                handsGui.UpdatePanelEntityRight(heldEnt, hand.Value); // Starlight
             }
 
-            HandsGui.SetHighlightHand(foldedLocation);
+            handsGui.SetHighlightHand(foldedLocation); // Starlight
         }
     }
 
     private HandButton? GetHand(string handName)
     {
-        return HandsGui?.HandContainer.GetButton(handName);
+        return HandsGui?.HandContainer.GetButton(handName) ?? HandsGui?.FunctionalHandContainer.GetButton(handName); // Starlight
     }
 
     private HandButton AddHand(string handName, Hand hand)
@@ -289,7 +291,12 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
         button.StoragePressed += StorageActivate;
         button.Pressed += HandPressed;
 
-        HandsGui?.HandContainer.TryAddButton(button);
+        #region Starlight
+        if (hand.Location == HandLocation.Functional)
+            HandsGui?.FunctionalHandContainer.TryAddButton(button);
+        else
+            HandsGui?.HandContainer.TryAddButton(button);
+        #endregion
 
         if (hand.EmptyRepresentative is { } representative)
         {
@@ -321,8 +328,17 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
 
     private void RemoveHand(string handName)
     {
-        if (HandsGui?.HandContainer.TryRemoveButton(handName, out var handButton) != true)
+        #region Starlight
+        if (HandsGui is not { } handsGui || GetHand(handName) is not { } handButton)
             return;
+
+        var container = handButton.HandLocation == HandLocation.Functional
+            ? handsGui.FunctionalHandContainer
+            : handsGui.HandContainer;
+
+        if (!container.TryRemoveButton(handName, out _))
+            return;
+        #endregion
 
         if (_statusHandLeft == handButton)
             _statusHandLeft = null;
@@ -368,18 +384,23 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
             return;
 
         // TODO this should be event based but 2 systems modify the same component differently for some reason
-        foreach (var hand in handsGui.HandContainer.GetButtons())
+        #region Starlight
+        foreach (var container in new[] { handsGui.HandContainer, handsGui.FunctionalHandContainer })
         {
-
-            if (!_entities.TryGetComponent(hand.Entity, out UseDelayComponent? useDelay))
+            foreach (var hand in container.GetButtons())
             {
-                hand.CooldownDisplay.Visible = false;
-                continue;
-            }
-            var delay = _useDelay.GetLastEndingDelay((hand.Entity.Value, useDelay));
 
-            hand.CooldownDisplay.Visible = true;
-            hand.CooldownDisplay.FromTime(delay.StartTime, delay.EndTime);
+                if (!_entities.TryGetComponent(hand.Entity, out UseDelayComponent? useDelay))
+                {
+                    hand.CooldownDisplay.Visible = false;
+                    continue;
+                }
+                var delay = _useDelay.GetLastEndingDelay((hand.Entity.Value, useDelay));
+
+                hand.CooldownDisplay.Visible = true;
+                hand.CooldownDisplay.FromTime(delay.StartTime, delay.EndTime);
+            }
+        #endregion
         }
     }
 

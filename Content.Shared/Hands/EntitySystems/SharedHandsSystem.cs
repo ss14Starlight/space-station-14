@@ -92,9 +92,21 @@ public abstract partial class SharedHandsSystem
         container.OccludesLight = false;
 
         ent.Comp.Hands.Add(handName, hand);
-        ent.Comp.SortedHands.Add(handName);
+        #region Starlight
+        //ent.Comp.SortedHands.Add(handName);
         // we use LINQ + ToList instead of the list sort because it's a stable sort vs the list sort
-        ent.Comp.SortedHands = ent.Comp.SortedHands.OrderBy(handId => ent.Comp.Hands[handId].Location).ToList();
+        //ent.Comp.SortedHands = ent.Comp.SortedHands.OrderBy(handId => ent.Comp.Hands[handId].Location).ToList();
+        switch (hand.Location)
+        {
+            case HandLocation.Middle:
+            case HandLocation.Functional:
+                ent.Comp.SortedHands.Add(handName);
+                break;
+            default:
+                ent.Comp.SortedHands.Insert(Math.Min((int)hand.Location, ent.Comp.SortedHands.Count), handName);
+                break;
+        }
+        #endregion
         Dirty(ent);
 
         OnPlayerAddHand?.Invoke((ent, ent.Comp), handName, hand.Location);
