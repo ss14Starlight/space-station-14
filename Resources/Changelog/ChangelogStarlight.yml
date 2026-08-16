@@ -1,20 +1,6 @@
 Entries:
 - author: neomoth
   changes:
-  - message: Rodentias spitting out items is now predicted.
-    type: Add
-  id: 407184
-  time: '2026-08-01T11:09:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5352
-- author: neomoth
-  changes:
-  - message: The Great Un-Predictening of Throwing has been implemented. (Still predicted for you, but fixes items teleporting in the air when other players and some other things cause an item to be thrown).
-    type: Fix
-  id: 407185
-  time: '2026-08-01T11:09:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5352
-- author: neomoth
-  changes:
   - message: Fixed a bug where starting gear was seemingly trying to equip twice. This probably fixes something somewhere.
     type: Fix
   id: 407186
@@ -2799,4 +2785,18 @@ Entries:
   id: 407583
   time: '2026-08-16T10:51:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5593
+- author: wonderfulnewworld
+  changes:
+  - message: Added a new job, Assistant Manager, in charge of delegating tasks to Assistants and changing their ID icons.
+    type: Add
+  id: 407584
+  time: '2026-08-16T11:24:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5528
+- author: wonderfulnewworld
+  changes:
+  - message: Added Blue Winter Boots.
+    type: Add
+  id: 407585
+  time: '2026-08-16T11:24:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5528
 Order: -1
