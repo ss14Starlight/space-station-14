@@ -181,7 +181,7 @@
   id: BorgModuleGaming
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: gaming cyborg module
-  description: A universal cyborg module for handling cash and casino supplies.
+  description: A universal cyborg module for handling cash and game supplies.
   components:
   - type: Tag
     tags:
@@ -189,6 +189,8 @@
   - type: Sprite
     layers:
     - state: generic
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-gaming
   - type: ItemBorgModule
     hands:
     - hand:
@@ -197,10 +199,12 @@
         whitelist:
           tags:
           - PlayingCardDeckBox
+          - CasinoChip
           components:
           - Cash
           - PlayingCard
           - PlayingCardDeck
+          - PlayingCardHand
           - TabletopGame
     - hand:
         emptyRepresentative: SpaceCash
@@ -208,10 +212,12 @@
         whitelist:
           tags:
           - PlayingCardDeckBox
+          - CasinoChip
           components:
           - Cash
           - PlayingCard
           - PlayingCardDeck
+          - PlayingCardHand
           - TabletopGame
     - hand:
         emptyRepresentative: SpaceCash
@@ -219,13 +225,15 @@
         whitelist:
           tags:
           - PlayingCardDeckBox
+          - CasinoChip
           components:
           - Cash
           - PlayingCard
           - PlayingCardDeck
+          - PlayingCardHand
           - TabletopGame
   - type: BorgModuleIcon
-    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: bookkeeping-module }
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: gaming-module }
 
 - type: entity
   id: BorgContrabandBag
