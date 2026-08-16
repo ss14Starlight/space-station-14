@@ -18,3 +18,6 @@ health-analyzer-report-summary-total-damage = [bold]Total Damage:[/bold] {$damag
 health-analyzer-report-injury-group = [bold]{$group}:[/bold] {$amount}
 health-analyzer-report-injury-type = {$type}: {$amount}
 health-analyzer-report-no-injuries = No injuries detected.
+health-analyzer-report-section-chemicals = Chemicals
+health-analyzer-report-chemical-line = {$name}: {$quantity}
+health-analyzer-report-no-chemicals = No active chemicals detected.

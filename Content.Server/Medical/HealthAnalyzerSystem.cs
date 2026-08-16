@@ -32,6 +32,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility; // Starlight-edit
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical;
+using Content.Shared.Chemistry.Reagent; // Starlight
 
 namespace Content.Server.Medical;
 
@@ -399,6 +400,25 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             .Cast<HealthAnalyzerDamageGroupSnapshot>()
             .ToList();
 
+        // Starlight BEGIN
+        var reagents = new List<HealthAnalyzerReagentSnapshot>();
+        if (uiState.MetabolizingReagents is { Count: > 0 } chemicals)
+        {
+            foreach (var (reagentId, quantity) in chemicals.OrderByDescending(r => r.Quantity))
+            {
+                var localizedName = reagentId;
+                var color = Color.White;
+                if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
+                {
+                    localizedName = reagentProto.LocalizedName;
+                    color = reagentProto.SubstanceColor;
+                }
+
+                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, color));
+            }
+        }
+        // Starlight END
+
         return new HealthAnalyzerPatientSnapshot(
             entityName,
             FormattedMessage.EscapeText(entityName),
@@ -408,7 +428,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             uiState.Temperature,
             uiState.BloodLevel,
             damageable.TotalDamage,
-            groupedInjuries);
+            groupedInjuries,
+            reagents); // Starlight
     }
 
     private HealthAnalyzerDamageGroupSnapshot? BuildDamageGroupSnapshot(
@@ -470,7 +491,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         if (snapshot.DamageGroups.Count == 0)
         {
             message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-no-injuries"));
-            return message.ToMarkup();
+            // return message.ToMarkup(); // Starlight - removed to allow chemicals section to render
         }
 
         foreach (var group in snapshot.DamageGroups)
@@ -499,6 +520,28 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             }
         }
 
+        // Starlight BEGIN
+        message.PushNewline();
+        message.AddMarkupOrThrow($"[head=2][bold]{Loc.GetString("health-analyzer-report-section-chemicals")}[/bold][/head]");
+        message.PushNewline();
+
+        if (snapshot.Reagents.Count == 0)
+        {
+            message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-no-chemicals"));
+            return message.ToMarkup();
+        }
+
+        foreach (var reagent in snapshot.Reagents)
+        {
+            var reagentLine = Loc.GetString(
+                "health-analyzer-report-chemical-line",
+                ("name", reagent.Name),
+                ("quantity", reagent.Amount));
+            message.AddMarkupOrThrow(HealthAnalyzerFormatting.WrapMarkupWithColor(reagentLine, reagent.Color));
+            message.PushNewline();
+        }
+        // Starlight END
+
         return message.ToMarkup();
     }
 
@@ -511,7 +554,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         float Temperature,
         float BloodLevel,
         FixedPoint2 TotalDamage,
-        List<HealthAnalyzerDamageGroupSnapshot> DamageGroups);
+        List<HealthAnalyzerDamageGroupSnapshot> DamageGroups,
+        List<HealthAnalyzerReagentSnapshot> Reagents); // Starlight
 
     private sealed record HealthAnalyzerDamageGroupSnapshot(
         string Name,
@@ -519,5 +563,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         List<HealthAnalyzerDamageTypeSnapshot> DamageTypes);
 
     private sealed record HealthAnalyzerDamageTypeSnapshot(string Name, FixedPoint2 Amount);
+
+    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, Color Color); // Starlight
     // Starlight-end
 }
