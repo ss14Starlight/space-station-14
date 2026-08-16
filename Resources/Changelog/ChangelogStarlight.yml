@@ -1,18 +1,4 @@
 Entries:
-- author: CommanderAlex365
-  changes:
-  - message: Gave Cargo Technicians shuttle access by default.
-    type: Fix
-  id: 407278
-  time: '2026-08-04T08:05:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5508
-- author: wonderfulnewworld
-  changes:
-  - message: Added 2 new instrument styles to the Synthesizer, Tine Piano and FM Piano.
-    type: Add
-  id: 407279
-  time: '2026-08-04T08:54:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5505
 - author: wonderfulnewworld
   changes:
   - message: Added 2 new instrument styles to the Trumpet, Vampiric and Grand.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407677
   time: '2026-08-16T18:06:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5625
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Removed medical analyzer from medical cyborg modules.
+    type: Remove
+  id: 407678
+  time: '2026-08-16T19:58:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5622
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Medical cyborgs can now scan from the action hotbar, like with medical PDAs.
+    type: Add
+  id: 407679
+  time: '2026-08-16T19:58:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5622
 Order: -1
