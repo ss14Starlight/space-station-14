@@ -1,41 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Added flippers that law pet to the courthouse.
-    type: Add
-  id: 407252
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added a station anchor to gen pop island.
-    type: Add
-  id: 407253
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added a bit more room to kitchen by digging into maints a little.
-    type: Add
-  id: 407254
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added a second stasis bed to oasis.
-    type: Add
-  id: 407255
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added blacklights to chapel with switches to turn them on and off as well as a main lighting switch.
-    type: Add
-  id: 407256
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
   - message: (OASIS) Added a second hop window to hops office for a hops assistant or captain to assist a busy hop line.
     type: Add
   id: 407257
@@ -2799,4 +2764,39 @@ Entries:
   id: 407651
   time: '2026-08-16T15:53:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5672
+- author: OMEGA
+  changes:
+  - message: The engi dispenser now has a separate Atmospherics tab, and sells a mini jetpack, double emergency oxygen and nitrogen tanks, and a holofan projector.
+    type: Add
+  id: 407652
+  time: '2026-08-16T15:53:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5638
+- author: OMEGA
+  changes:
+  - message: The EngiVend now stocks a handheld radio, Geiger counter and hand labeler.
+    type: Add
+  id: 407653
+  time: '2026-08-16T15:53:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5638
+- author: OMEGA
+  changes:
+  - message: The EngiDrobe and AtmosDrobe now stock a utility belt and a gas mask.
+    type: Add
+  id: 407654
+  time: '2026-08-16T15:53:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5638
+- author: OMEGA
+  changes:
+  - message: The Chief Engineer's access configurator now starts in their toolbelt instead of their locker.
+    type: Tweak
+  id: 407655
+  time: '2026-08-16T15:53:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5638
+- author: OMEGA
+  changes:
+  - message: Removed duplicate items from the Chief Engineer's locker.
+    type: Remove
+  id: 407656
+  time: '2026-08-16T15:53:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5638
 Order: -1
