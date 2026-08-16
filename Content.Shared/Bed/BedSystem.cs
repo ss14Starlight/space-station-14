@@ -3,9 +3,11 @@ using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Components;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Body.Events;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emag.Systems;
+using Content.Shared.Metabolism;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
@@ -20,9 +22,9 @@ public sealed partial class BedSystem : EntitySystem
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private EmagSystem _emag = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MetabolizerSystem _metabolizer = default!;
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private SharedMetabolizerSystem _metabolizer = default!;
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private SleepingSystem _sleepingSystem = default!;
 
