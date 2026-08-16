@@ -1,18 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Fixed an artifact spawning into the wall in artifact chamber.
-    type: Fix
-  id: 407267
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: OMEGA
-  changes:
-  - message: (Leth) The Right Honorable Flippers.
-    type: Add
-  id: 407268
-  time: '2026-08-04T07:23:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5490
 - author: OMEGA
   changes:
   - message: (Leth) Departmental Lathes.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407666
   time: '2026-08-16T16:57:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5665
+- author: Conflee
+  changes:
+  - message: Added a Cat Bed, Raccoon Bed, generic Pet Bed, and 9 colored Soft Pet Beds, for more decorating options for mappers.
+    type: Add
+  id: 407667
+  time: '2026-08-16T17:31:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5666
+- author: Conflee
+  changes:
+  - message: Resprited the Dog Bed slightly to match the new Pet Beds.
+    type: Tweak
+  id: 407668
+  time: '2026-08-16T17:31:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5666
 Order: -1
