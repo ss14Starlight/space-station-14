@@ -195,7 +195,7 @@
   description: Summons a magical rune that will place several immobile soul knives, hurting anyone who comes in contact with them.
   components:
   - type: Action
-    useDelay: 3
+    useDelay: 30
     icon:
         sprite: _Starlight/Objects/Magic/magicactions.rsi
         state: soulknives
@@ -208,8 +208,8 @@
       - id: KnivesRune
         amount: 1
   - type: SpeakOnAction
-    sentence: action-speech-spell-freezerune
-    tts: action-speech-spell-freezerune-tts
+    sentence: action-speech-spell-soulknives
+    tts: action-speech-spell-soulknives-tts
     modifier: Spell
   - type: EorgPreventAction
 
@@ -228,41 +228,68 @@
     oneShot: true
     spawnStrategy: All
     spawnData:
-    - protoId: ProjectileSoulKnife
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - -3, 3
-    - protoId: ProjectileSoulKnife
+      - -2, 2
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - 0, 3
-    - protoId: ProjectileSoulKnife
+      - 0, 2
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - 3, 3
-    - protoId: ProjectileSoulKnife
+      - 2, 2
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - -2, 1
-    - protoId: ProjectileSoulKnife
+      - -1, 1
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - 2, 1
-    - protoId: ProjectileSoulKnife
+      - 1, 1
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - -3, 0
-    - protoId: ProjectileSoulKnife
+      - 0, 1
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - 3, 0
-    - protoId: ProjectileSoulKnife
+      - -2, 0
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - -2, -1
-    - protoId: ProjectileSoulKnife
+      - 2, 0
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - 2, -1
-    - protoId: ProjectileSoulKnife
+      - 0, -1
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - -3, -3
-    - protoId: ProjectileSoulKnife
+      - -1, -1
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - 0, -3
-    - protoId: ProjectileSoulKnife
+      - 1, -1
+    - protoId: Runeknifespawn
       spawnOffsets:
-      - 3, -3
+      - -2, -2
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 0, -2
+    - protoId: Runeknifespawn
+      spawnOffsets:
+      - 2, -2
   - type: TimedDespawn
-    lifetime: 3
+    lifetime: 2
+
+- type: entity
+  parent: BaseRune
+  id: Runeknifespawn
+  name: orb
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: orbknives
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    examinable: false
+    popup: null
+    delay: 2
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    proto: ProjectileSoulKnife
+  - type: TimedDespawn
+    lifetime: 2.1

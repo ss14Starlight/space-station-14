@@ -320,4 +320,4 @@
     layers:
     - state: soulknives
   - type: TimedDespawn
-    lifespan: 20
+    lifespan: 40

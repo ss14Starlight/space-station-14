@@ -67,3 +67,6 @@ spellbook-eruption-desc = Summon a rune that after 2 seconds will start sending 
 
 spellbook-soulmancer-name = The Soulmancer path
 spellbook-soulmancer-desc = placeholder desc yes yes
+
+spellbook-soulknives-name = Rune of cutting
+spellbook-soulknives-desc = Summon several orbs that once charged, become spinning etheral knives.
