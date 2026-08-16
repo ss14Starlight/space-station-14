@@ -1,34 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Leth) Departmental Lathes.
-    type: Add
-  id: 407269
-  time: '2026-08-04T07:23:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5490
-- author: OMEGA
-  changes:
-  - message: (Leth) Distro and waste pipes added to all docks.
-    type: Add
-  id: 407270
-  time: '2026-08-04T07:23:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5490
-- author: OMEGA
-  changes:
-  - message: (Leth) Buy and sell pipes added to cargo shuttle docks.
-    type: Add
-  id: 407271
-  time: '2026-08-04T07:23:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5490
-- author: OMEGA
-  changes:
-  - message: (Leth) Shipyard console.
-    type: Add
-  id: 407272
-  time: '2026-08-04T07:23:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5490
-- author: OMEGA
-  changes:
   - message: (Leth) Coroner locker.
     type: Add
   id: 407273
@@ -2799,4 +2771,32 @@ Entries:
   id: 407668
   time: '2026-08-16T17:31:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5666
+- author: briochebear
+  changes:
+  - message: Added janitorial maid dress to janitor jumpsuit loadout.
+    type: Add
+  id: 407669
+  time: '2026-08-16T17:32:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5643
+- author: briochebear
+  changes:
+  - message: Added janitorial maid dress to service worker loadout.
+    type: Add
+  id: 407670
+  time: '2026-08-16T17:32:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5643
+- author: briochebear
+  changes:
+  - message: Added janitorial maid dress to trinkets category, under maid dresses.
+    type: Add
+  id: 407671
+  time: '2026-08-16T17:32:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5643
+- author: briochebear
+  changes:
+  - message: Janidrobe now offers the janitorial maid dress under the contraband catalogue, instead of the emagged catalogue.
+    type: Tweak
+  id: 407672
+  time: '2026-08-16T17:32:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5643
 Order: -1
