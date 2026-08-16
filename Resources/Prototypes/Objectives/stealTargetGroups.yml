@@ -172,12 +172,14 @@
     sprite: Objects/Tools/lantern.rsi
     state: lantern
 
-- type: stealTargetGroup
-  id: ClothingEyesHuds
-  name: steal-target-groups-huds
-  sprite:
-    sprite: Clothing/Eyes/Hud/sec.rsi
-    state: icon
+# Starlight start
+#- type: stealTargetGroup # We don't use this objective, too easy in general.
+#  id: ClothingEyesHuds
+#  name: steal-target-groups-huds
+#  sprite:
+#    sprite: Clothing/Eyes/Hud/sec.rsi
+#    state: icon
+# Starlight end
 
 # Thief single item
 
