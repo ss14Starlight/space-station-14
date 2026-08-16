@@ -29,8 +29,8 @@ public sealed class PowerStatePrototypeTest
             Assert.Multiple(delegate
             {
                 foreach (var prototype in protoMan.EnumeratePrototypes<EntityPrototype>()
-                             .Where(p => !p.Abstract)
-                             .Where(p => !pair.IsTestPrototype(p)))
+                            .Where(p => !p.Abstract)
+                            .Where(p => !pair.IsTestPrototype(p)))
                 {
                     if (!prototype.TryGetComponent<PowerStateComponent>(out var powerStateComp, entMan.ComponentFactory))
                         continue;

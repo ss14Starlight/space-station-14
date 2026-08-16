@@ -11,7 +11,7 @@ public abstract partial class SharedFeedbackManager : IEntityEventSubscriber
 
     private void InitSubscriptions()
     {
-       _configManager.OnValueChanged(CCVars.FeedbackValidOrigins, OnFeedbackOriginsUpdated, true);
+        _configManager.OnValueChanged(CCVars.FeedbackValidOrigins, OnFeedbackOriginsUpdated, true);
     }
 
     private void OnFeedbackOriginsUpdated(string newOrigins)
