@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Milk crate sprites drawn by aegis for Space Station 14 Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "milkcrate-0"
+    },
+    {
+      "name": "milkcrate-1"
+    },
+    {
+      "name": "milkcrate-2"
+    },
+    {
+      "name": "milkcrate-3"
+    },
+    {
+      "name": "milkcrate-4"
+    },
+    {
+      "name": "recordcrate-0"
+    },
+    {
+      "name": "recordcrate-1"
+    },
+    {
+      "name": "recordcrate-2"
+    },
+    {
+      "name": "recordcrate-3"
+    },
+    {
+      "name": "recordcrate-4"
+    },
+    {
+      "name": "recordcrate-5"
+    },
+    {
+      "name": "syndicrate-0"
+    },
+    {
+      "name": "syndicrate-1"
+    },
+    {
+      "name": "syndicrate-2"
+    },
+    {
+      "name": "syndicrate-3"
+    },
+    {
+      "name": "syndicrate-4"
+    },
+    {
+      "name": "syndicrate-5"
+    }
+  ]
+}

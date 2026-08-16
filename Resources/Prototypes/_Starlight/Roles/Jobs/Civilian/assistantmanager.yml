@@ -1,0 +1,47 @@
+- type: job
+  id: AssistantManager
+  name: job-name-assistantmanager
+  description: job-description-assistantmanager
+  playTimeTracker: JobAssistantManager
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 30h
+  - !type:RoleTimeRequirement
+    role: JobPassenger # How can you lead the masses if you've never been one of them?
+    time: 30h
+  - !type:RolesRequirement
+    proto: ExtRolesReq
+  - !type:TraitsRequirement # I don't think I need to explain why these traits are restricted, but for the inevitable case someone asks...
+    traits:
+      - Iterator # Can't delegate tasks if nobody can understand you.
+      - Muted # Can't delegate tasks if you can't speak.
+    inverted: true
+  weight: 15
+  startingGear: AssistantManagerGear
+  icon: "JobIconAssistantManager"
+  supervisors: job-supervisors-command
+  access:
+  - Maintenance
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: AssistantManagerGear
+  equipment:
+    id: AssistantManagerPDA
+    eyes: ClothingEyesEyepatchHudAssistantManager
+    ears: ClothingHeadsetAssistantManager
+
+- type: chameleonOutfit
+  id: AssistantManagerChameleonOutfit
+  job: AssistantManager
+  equipment:
+    head: ClothingHeadHatWelding
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckMantle
+    outerClothing: ClothingOuterWinterCoat
+    gloves: ClothingHandsGlovesColorYellowBudget
+

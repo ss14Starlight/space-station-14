@@ -43,6 +43,10 @@
 - type: entity
   parent: AirAlarm
   id: AirAlarmFreezer
+  # Starlight-start
+  name: freezer air alarm
+  description: An air alarm set up for use in freezers. It doesn't raise an alarm about the cold.
+  # Starlight-end
   suffix: Freezer Atmosphere, auto mode disabled
   components:
   - type: AirAlarm
