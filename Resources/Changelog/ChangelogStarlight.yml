@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: Changed the SELF saboteur kit to use meson goggles and jaws of death.
-    type: Tweak
-  id: 407196
-  time: '2026-08-01T15:45:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5443
-- author: Johnny
-  changes:
   - message: The "Base" kit of the SELF was removed.
     type: Remove
   id: 407197
@@ -2799,4 +2792,11 @@ Entries:
   id: 407595
   time: '2026-08-16T12:38:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5571
+- author: Musiklie
+  changes:
+  - message: Removed the DoorRuntime event, NT finally solved the virus.
+    type: Remove
+  id: 407596
+  time: '2026-08-16T12:38:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5607
 Order: -1
