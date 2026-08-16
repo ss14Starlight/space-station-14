@@ -195,6 +195,10 @@
     - type: Flammable
       damage:
         types: {}
+    - type: MeleeWeapon
+      damage:
+        types:
+          Slash: 12
     - type: Damageable
       damageModifierSet: DragonCarpResistances
     - type: Prying
