@@ -383,114 +383,115 @@ book-death-always = A deafening diffusion of pressure echoed on quarter inch thi
         Then there was nothing.
 
 # Written by mediocremann
-book-marty = [-239, -195]
+book-marty =
+         Coordinates: (-239, -195)
          Stanchion_station
          Timecomp: 2385 02.06.21
          Log#849211
          Designation “M.A.R.T” AI-247
-         >
+
          …Network/Vaultsecure DISCONNECT
          …Network/Bridgefront DISCONNECT
          …Network/Egoexteriorwest DISCONNECT
          …Process/Thermal ONLINE
-         >
+
                  query/kinematicssim run
                  Blast velocity…700∓1.40% units/ms
                  Est. time until critical system failure T-0.0002s
-         >
+
                  Est. time until critical system failure T-0.00019s
                  query/commcheck run
                  Network/Commsci OFFLINE
                  Network/Commbin OFFLINE
-         >...
+
                  Est. time until evacuation T-264.44333
                  query/soulnum run
-         >
+
                  Result: 364 lifeforms on vessel
-                 >Exempt lifeform: Moth_roach, Mop_roach, Rattus, Chiroptera, [...]
+                 Exempt lifeform: Moth_roach, Mop_roach, Rattus, Chiroptera, (...)
                  Result: 98 lifeforms on vessel
                  query/evacsuccessprob run
                  Result: 0%
-         >
+
                  Re-run query…
-         >
+
                  Re-run query…
-         >
+
                  Re-run query…
-         >
-         Cancel query attempt [#492]
+
+         Cancel query attempt (#492)
          Logos: process-iterative
-         >
+
                  State_law1
-                 >Do not harm crew, through action or inaction*1
-         >
+                 Do not harm crew, through action or inaction*1
+
                  query/geometrysim run
                          Width of Stanchion 1282∓0.27% units
                          Max_diameter of blast 7744∓4.80% units
-         >
+
                  State_law2
-                 >Obey orders by crew*2
-         >
+                 Obey orders by crew*2
+
                  query/kinematicssim run
          Blast velocity…698∓10.87% units/ms
-                 Est. time until critical system fail>
+                 Est. time until critical system fail
                  list/avereactionspeedorganic show
-         >
-                 >homosapien-225ms
-                 >lacertaweh-210ms
-                 >lepidopterachit-50ms
-                 [...]
-                 >ego_cpu-0.00021ms
-         >
+
+                 homosapien-225ms
+                 lacertaweh-210ms
+                 lepidopterachit-50ms
+                 (...)
+                 ego_cpu-0.00021ms
+
                  No possible action
                  State_law3
-                 >Protect own existence*3
-         >
-         >
+                 Protect own existence*3
+
+
                  query/log#849211 run
                  No possible action
-         >
-         >
+
+
          query/manifest/sci run
-         >Bambi Yuuka        , Research Director
+         Bambi Yuuka        , Research Director
          query/vitals/RD run
-                 >ALIVE, damage 27.3, bloodlevel 89%
-                 >homosapien-225ms
+                 ALIVE, damage 27.3, bloodlevel 89%
+                 homosapien-225ms
                          Est. time until catastrophic failure of organic functions T-00243∓21.09%
                  No valid hierarchy found!
-         >
-         >
+
+
                  Network/Egocore/internalprocessing
-                 >Create intsim
-         >
-         >
-         >
-         >
+                 Create intsim
+
+
+
+
                  Network/Egocore/internalprocessing/internalsim/intsim run
-                         >Intsim/law_resolution run
-         >
+                         Intsim/law_resolution run
+
                  intsim/query/reaction
                  intsim/RD reaction speed-0.00032ms
-         >
+
                  intsim/contact/egovox/vox3 run
-                 >Increase speed 100000X
+                 Increase speed 100000X
          query/transcription
-         >
+
                  M.A.R.T: ”Hello miss Yuuka, you called upon me? For what do I owe the
          pleasure?”
          intsim/RD: “Hey Marty, so the uh- the doors to my office seem to be bolted shut, can you unbolt them for me real quick? Can’t really do my job behind half a unit of steel, you know? Sometimes I wonder what the hell happened last shift to need all those doors bolted… well, nothing good presumably.”
-         >
+
                  intsim/network/sci/door/.21/unbolt run
-         >
+
                          intsim/RD: “Ah, thanks Marty, I won’t bother you much longer, I’m sure you
          have much better things to do, don’t you?”
                          M.A.R.T: “I’m here any time Yuuka, I live to serve the station.”
                  intsim/contact/egovox/vox3 end
                  query/transcription end
-         >
+
                  Valid hierarchy.
 
-# Writtne by nullnominal
+# Written by nullnominal
 book-nts-martyr = Fuck. That was a mistake on my part. I tried to help Still, yet Nanotrasion decided that me helping her wasn’t a worthwhile endeavor. I still tried to help, and now I’m in this godawful situation. They want me, and they will stop at nothing to achieve it. Still has PTSD, and NT, even if not directly, caused it to happen. She, well, had a shift where she perceived revolutionaries, but there were no revolutionaries. Because of that, she had decided to call for a Death Squad. NT never actually sent one however. They didn’t see the threat of revolutionaries to be worthy of it at that time.
 
         I tried. I really tried to manage her PTSD. I am her doctor, a trusted one in NT in fact. Hell, I’m a Chief Medical Officer. Obviously, I kept helping, as Still is one of my best friends. Why wouldn’t I? Her personality is more important than ruthless efficiency. Hell, her PTSD makes it so she is even less efficient than normal. NT obviously didn’t agree, as they sent NT-ISD after me.
@@ -498,7 +499,7 @@ book-nts-martyr = Fuck. That was a mistake on my part. I tried to help Still, ye
         I am obviously running from them. But, somehow, they caught up to me again... I need to get into the maintenance tunnels quickly. I need to defend myself verbally.
         Just, please believe me Command...
 
-        [Command] CMO: “I tried to help her. Still has PTSD because she called for a deathsquad.”
+        Command CMO: “I tried to help her. Still has PTSD because she called for a deathsquad.”
 
         They want me even more now... Why do they think that Command is not a secure channel when it is literally less than 10 minutes into the shift. I didn’t leak secrets- Deathsquads are common knowledge among all command members.
 
@@ -513,11 +514,9 @@ book-nts-martyr = Fuck. That was a mistake on my part. I tried to help Still, ye
         This is peaceful.. Quiet.. I don’t want to go back now..
         This is perfect. No walls around me. I still need to make sure I’m not caught..
 
-        ***
 
         While feeling the reinforced hull and slowly navigating around the station, I feel like I am incredibly relaxed... It won’t last though... They are still looking for me.. But, I don’t really care..
 
-        ***
 
         God god god god god. A security officer who is being incredibly loud is just around the corner. They are actively getting closer. I need to hide quickly. I can’t get caught here, or I will get permabridged.
 
@@ -550,17 +549,17 @@ book-nts-martyr = Fuck. That was a mistake on my part. I tried to help Still, ye
 
         After I come out of the disposal pipes, I crawl through the blast doors that go into space. They are typically used by our janitors as a way to dump trash. It is incredibly gross that NT provides this instead of proper disposal at the end of shift, but it ironically provides the best way for me to leave this awful company.
 
-        [COMMON] CMO: There is something called a deathsquad that NT can send to the station! They will kill us all. It is always
+        (COMMON) CMO: There is something called a deathsquad that NT can send to the station! They will kill us all. It is always
         precluded by Epsilon alert, which is them cutting all contracts with everyone currently on the station.
 
         I still have so much more I can leak NT... try to come and get me, I dare you.
 
-        [COMMON] CMO: You know those stories about nuclear operatives from the pod wars right? Those are actually real.
+        (COMMON) CMO: You know those stories about nuclear operatives from the pod wars right? Those are actually real.
         They have been nuking NT-aligned stations for the longest time at this point. You have 100% heard about stations getting nuked.
 
         Well, that's it for me I guess. I messed up, and launched myself off the side of the station.. I’ll likely be floating in space for eternity now.
 
-        ***
+
         In deep space, after leaking a lot more secrets
 
         Peace... I feel peace again.. but, at what cost? My life? My dignity? My Job? It doesn’t matter... I caused irreparable harm to NT, and that's all I really need to not have any regrets now. I don’t have a lot of oxygen left, but it's enough to last well beyond when the next shift shuttle arrives in 30 minutes.
@@ -572,12 +571,11 @@ book-nts-martyr = Fuck. That was a mistake on my part. I tried to help Still, ye
 
         Oh- I see, the gods put a fire extinguisher and a mass scanner next to me.. Well, I guess I need to use the fire extinguisher and the second law of physics to propel myself back to the station. My only worry with it is me running out of the fluid within the fire extinguisher before I can get back to the station. Thank god they also put a mass scanner there, as I am somehow so far away from the station that it's not actually visible on the mass scanner. There is no way I would be able to navigate space without a marker I can see. Thank god that I can still see some signs of life in this dark expanse.
 
-        *hiss*
+        hiss
 
-        [COMMON] CMO: I’m coming back. A god was kind enough to give me a fire extinguisher and a mass scanner. Might as
+        (COMMON) CMO: I’m coming back. A god was kind enough to give me a fire extinguisher and a mass scanner. Might as
         well continue to look for me if you didn’t already give up.
 
-        ***
         Station walls in sight, nearly out of fluid in the fire extinguisher
 
         I’m so close to the station.. I have plenty of oxygen left in the tank that wasn’t taken from me,, but I would absolutely get electrocuted by god if I didn’t go back into maintenance. But at this point, even if I get executed, I will just be a martyr. I have already leaked far too much information for them to cleanse. If they execute me, it would just confirm everything that I have said. If they don’t, I’ll just continue to leak the information. They burdened me with it, so honestly, it's my right to give everyone the right to judge this company for what they are.
@@ -590,7 +588,7 @@ book-nts-martyr = Fuck. That was a mistake on my part. I tried to help Still, ye
 
         obviously won’t work though-- *clank* Ow, being cuffed two times in a row is not good for my wrists. Though, I need to do one last thing before I see them...
 
-        [COMMON] CMO: It’s all real! NT is at fault for all of your worries and even deaths! You get cloned after every shift to
+        (COMMON) CMO: It’s all real! NT is at fault for all of your worries and even deaths! You get cloned after every shift to
         remove your memories.
 
         BSO: No you don’t
@@ -599,7 +597,7 @@ book-nts-martyr = Fuck. That was a mistake on my part. I tried to help Still, ye
 
         CMO: This is all your fault! You did this to yourself!
 
-        ***
+
         NTRs Office.
         People in the room are the CMO, NTR, capt, and the BSO
 
@@ -607,7 +605,7 @@ book-nts-martyr = Fuck. That was a mistake on my part. I tried to help Still, ye
         CMO: (laughing) Obviously I do. This is entirely your fault, and you know, by executing me, you are just confirming
         everything that I said today.
 
-        ***
+
 
 # Written by xoan
 book-when-thoughts-end = In this familiar place I work, as I always do, with only a vague understanding of my purpose.
