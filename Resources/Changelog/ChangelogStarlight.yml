@@ -1,55 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: (CC-SC17) fuckin stupid lil fuckin stupid decal misplacement grr its fixed now.
-    type: Fix
-  id: 407164
-  time: '2026-07-31T12:56:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5413
-- author: Turk1shcat
-  changes:
-  - message: The null glare cosmic cult ability now has an EMP effect to help the cosmic cult combat mechs.
-    type: Tweak
-  id: 407165
-  time: '2026-07-31T13:34:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5242
-- author: wonderfulnewworld, DuckManZach
-  changes:
-  - message: Overhauled the antag menu, sorting by faction, adding a search bar, and overall modernizing the design.
-    type: Tweak
-  id: 407166
-  time: '2026-07-31T14:29:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5290
-- author: wonderfulnewworld, luegamer, Nyxilath
-  changes:
-  - message: Added phenylpiperidine, a hard-to-make narcotic chemical that can be carefully crystalized for selling.
-    type: Add
-  id: 407167
-  time: '2026-07-31T14:29:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5300
-- author: wonderfulnewworld, luegamer, Nyxilath
-  changes:
-  - message: Walter can now be butchered for a singular phenylpiperidine crystal.
-    type: Add
-  id: 407168
-  time: '2026-07-31T14:29:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5300
-- author: Johnny
-  changes:
-  - message: Added a way for SELF to choose and change their loadouts based off what they wanted to do.
-    type: Add
-  id: 407169
-  time: '2026-07-31T15:09:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5202
-- author: Johnny
-  changes:
-  - message: Removed the large 5x5 storage implanter SELF got round-start.
-    type: Remove
-  id: 407170
-  time: '2026-07-31T15:09:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5202
-- author: Johnny
-  changes:
   - message: Changed the name of the SELF implanter to a different name (cause it wasnt used by self anymore).
     type: Tweak
   id: 407171
@@ -2799,4 +2750,53 @@ Entries:
   id: 407563
   time: '2026-08-15T17:41:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5671
+- author: Wizden Team
+  changes:
+  - message: Added icon indicating if the gloves are insulated or not.
+    type: Add
+  id: 407564
+  time: '2026-08-16T03:05:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5664
+- author: Wizden Team
+  changes:
+  - message: Now the Medibot has a DoAfter bar, displaying injection progress.
+    type: Add
+  id: 407565
+  time: '2026-08-16T03:05:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5664
+- author: Wizden Team
+  changes:
+  - message: Station tiles and floors can now be placed on planets, asteroids and different platings.
+    type: Tweak
+  id: 407566
+  time: '2026-08-16T03:05:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5664
+- author: Wizden Team
+  changes:
+  - message: The "Lizard Power" graffiti decal has been replaced.
+    type: Tweak
+  id: 407567
+  time: '2026-08-16T03:05:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5664
+- author: Wizden Team
+  changes:
+  - message: Audio for mortars, juicers and the paperfuge can no longer be stacked infinitely.
+    type: Fix
+  id: 407568
+  time: '2026-08-16T03:05:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5664
+- author: Wizden Team
+  changes:
+  - message: RCD can no longer spam lights in the same spot.
+    type: Fix
+  id: 407569
+  time: '2026-08-16T03:05:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5664
+- author: Wizden Team
+  changes:
+  - message: RCD can no longer be used to destroy indestructible tiles.
+    type: Fix
+  id: 407570
+  time: '2026-08-16T03:05:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5664
 Order: -1
