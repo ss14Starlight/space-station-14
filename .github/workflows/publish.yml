@@ -44,11 +44,11 @@ jobs:
       - name: Package client
         run: dotnet run --project Content.Packaging client --no-wipe-release
 
-      - name: Publish version
-        run: Tools/publish_multi_request.py
-        env:
-          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-          GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
+      #- name: Publish version
+      #  run: Tools/publish_multi_request.py
+      #  env:
+      #    PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+      #    GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
 
   update-changelog:
     name: Publish Changelogs
