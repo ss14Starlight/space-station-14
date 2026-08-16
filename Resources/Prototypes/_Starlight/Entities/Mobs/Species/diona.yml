@@ -30,7 +30,7 @@
   - type: Thirst
     baseDecayRate: 0.0083
   - type: Icon
-    sprite: Mobs/Species/Diona/parts.rsi
+    sprite: _Starlight/Mobs/Species/Diona/parts.rsi
     state: full
   - type: Body
     prototype: Diona
