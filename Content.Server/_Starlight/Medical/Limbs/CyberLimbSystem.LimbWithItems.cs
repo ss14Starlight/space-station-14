@@ -44,7 +44,7 @@ public sealed partial class CyberLimbSystem : EntitySystem
             {
                 var handId = $"{ent.Owner}_{item}";
                 var hands = EnsureComp<HandsComponent>(args.Performer);
-                _hands.AddHand((args.Performer, hands), handId, HandLocation.Functional, whitelist: ent.Comp.HandWhitelist);
+                _hands.AddHand((args.Performer, hands), handId, HandLocation.Left, whitelist: ent.Comp.HandWhitelist);
                 _hands.DoPickup(args.Performer, handId, item, hands);
                 EnsureComp<UnremoveableComponent>(item);
             }

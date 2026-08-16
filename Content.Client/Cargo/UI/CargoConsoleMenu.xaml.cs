@@ -229,7 +229,7 @@ namespace Content.Client.Cargo.UI
                     {
                         Text = Loc.GetString(
                             "cargo-console-menu-order-row-title",
-                            ("productName", productName),
+                            ("productName", order.ProductName),
                             ("orderAmount", order.OrderQuantity),
                             ("orderPrice", order.Price)),
                     },
