@@ -1,5 +1,6 @@
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
+using Content.Shared._Starlight.Chat; //Starlight
 using Content.Shared._Starlight.CloudEmotes; // Starlight
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
