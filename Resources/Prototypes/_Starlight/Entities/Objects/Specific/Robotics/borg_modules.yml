@@ -178,6 +178,56 @@
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
 
 - type: entity
+  id: BorgModuleGaming
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: gaming cyborg module
+  description: A universal cyborg module for handling cash and casino supplies.
+  components:
+  - type: Tag
+    tags:
+      - BorgModuleGeneric
+  - type: Sprite
+    layers:
+    - state: generic
+  - type: ItemBorgModule
+    hands:
+    - hand:
+        emptyRepresentative: SpaceCash
+        emptyLabel: borg-slot-games-gambling-empty
+        whitelist:
+          tags:
+          - PlayingCardDeckBox
+          components:
+          - Cash
+          - PlayingCard
+          - PlayingCardDeck
+          - TabletopGame
+    - hand:
+        emptyRepresentative: SpaceCash
+        emptyLabel: borg-slot-games-gambling-empty
+        whitelist:
+          tags:
+          - PlayingCardDeckBox
+          components:
+          - Cash
+          - PlayingCard
+          - PlayingCardDeck
+          - TabletopGame
+    - hand:
+        emptyRepresentative: SpaceCash
+        emptyLabel: borg-slot-games-gambling-empty
+        whitelist:
+          tags:
+          - PlayingCardDeckBox
+          components:
+          - Cash
+          - PlayingCard
+          - PlayingCardDeck
+          - TabletopGame
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: bookkeeping-module }
+
+- type: entity
   id: BorgContrabandBag
   parent: BaseStorageItem
   name: contraband bag
