@@ -142,7 +142,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         }
 
         if (!TryComp<PhysicsComponent>(ent, out var physComp))
-        return;
+            return;
         ent.Comp.Hibernating = false;
         ent.Comp.Attacking = false;
         _appearance.SetData(ent, ColossusVisuals.Status, ColossusStatus.Dead);
