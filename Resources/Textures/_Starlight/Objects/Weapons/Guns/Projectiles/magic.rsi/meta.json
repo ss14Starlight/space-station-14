@@ -30,6 +30,17 @@
     },
     {
       "name": "eruptionbomb"
+    },
+    {
+      "name": "soulknives",
+      "delays": [
+       [
+        0.3,
+        0.3,
+        0.3,
+        0.3
+        ]
+       ]
     }
   ]
 }

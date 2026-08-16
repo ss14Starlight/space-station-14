@@ -187,3 +187,82 @@
     delay: 1.5
   - type: SpawnOnTrigger
     proto: EruptionBomb
+
+- type: entity
+  parent: ActionFreezeRune
+  id: ActionSoulKnives
+  name: Rune of soul cutting
+  description: Summons a magical rune that will place several immobile soul knives, hurting anyone who comes in contact with them.
+  components:
+  - type: Action
+    useDelay: 3
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: soulknives
+  - type: TargetAction
+    range: 16
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: KnivesRune
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-freezerune
+    tts: action-speech-spell-freezerune-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  id: KnivesRune
+  name: rune of soul cutting
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/magicactions.rsi
+    layers:
+    - state: kniverune
+  - type: CustomSpawner
+    enabled: true
+    spawnOnInterval: true
+    spawnInterval: 0.1
+    oneShot: true
+    spawnStrategy: All
+    spawnData:
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - -3, 3
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - 0, 3
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - 3, 3
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - -2, 1
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - 2, 1
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - -3, 0
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - 3, 0
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - -2, -1
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - 2, -1
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - -3, -3
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - 0, -3
+    - protoId: ProjectileSoulKnife
+      spawnOffsets:
+      - 3, -3
+  - type: TimedDespawn
+    lifetime: 3

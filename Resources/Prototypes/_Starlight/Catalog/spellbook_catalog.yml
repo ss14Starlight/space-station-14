@@ -148,7 +148,7 @@
       - SpellbookFireMaster
 
 - type: listing
-  id: SpellFireballWar
+  id: SpellbookFireballWar
   name: spellbook-fireball-name
   description: spellbook-fireball-desc
   priority: 6
@@ -165,7 +165,7 @@
       - SpellbookFireMaster
 
 - type: listing
-  id: SpellFireArrow
+  id: SpellbookFireArrow
   name: spellbook-firearrow-name
   description: spellbook-firearrow-desc
   priority: 7
@@ -182,7 +182,7 @@
       - SpellbookFireMaster
 
 - type: listing
-  id: SpellEruption
+  id: SpellbookEruption
   name: spellbook-eruption-name
   description: spellbook-eruption-desc
   priority: 8
@@ -197,7 +197,6 @@
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookFireMaster
-
 
 - type: listing
   id: SpellbookVoidApplauseWar
@@ -366,3 +365,35 @@
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookSoulmancer
+  name: spellbook-soulmancer-name
+  description: spellbook-soulmancer-desc
+  priority: 19
+  productEntity: ClothingOuterSoftsuitWizardFrost
+  cost:
+    WizCoin: 15
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  disableRefund: true
+
+- type: listing
+  id: SpellbookSoulKnives
+  name: spellbook-soulknives-name
+  description: spellbook-soulknives-desc
+  priority: 20
+  productAction: ActionSoulKnives
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookSoulmancer

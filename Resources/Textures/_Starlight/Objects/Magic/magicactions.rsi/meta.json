@@ -61,6 +61,24 @@
     },
     {
       "name": "explosionrune"
+    },
+    {
+      "name": "soulknives"
+    },
+    {
+      "name": "kniverune",
+      "delays": [
+       [
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.6]
+            ]
     }
   ]
 }
