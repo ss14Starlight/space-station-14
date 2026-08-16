@@ -42,3 +42,28 @@
   id: Rodentia
   name: species-name-rodentia
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/Rodentia.xml"
+
+- type: guideEntry
+  id: Neocyte
+  name: species-name-neocyte
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Neocyte.xml"
+  children:
+  - NeocyteFrames
+  - TrueNeocyte
+  - NeoElf # You just have to ruin the alphabetical order, don't you?
+  - NeoArachnid
+  - NeoAvali
+  - NeoCyclorite
+  - NeoDiona
+  - NeoDwarf
+  - NeoFelionoid
+  - NeoHuman
+  - NeoKin
+  - NeoLagomorph
+  - NeoSlimePerson
+  - NeoThaven
+  - NeoMoth
+  - NeoReptilian
+  - NeoResomi
+  - NeoVox
+  - NeoVulpkanin

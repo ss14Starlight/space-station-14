@@ -1140,3 +1140,44 @@
     - type: BatterySelfRecharger
       autoRechargeRate: 150 # much faster charging...
       autoRechargePauseTime: 10 # but 10 second delay beteen shooting and it starting to recharge
+
+
+- type: entity
+  name: Frozen Tome
+  id: WeaponFrozentome
+  parent: [ BaseItem, BaseMagicalContraband ]
+  description: The frozen tome of greater frost ray, allows you to cast a deadly beam of cold magic that destroys enemies and walls alike.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/frozentome.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/frozentome.rsi
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/frozenbeam.ogg
+  - type: Battery
+    maxCharge: 100
+    startingCharge: 100
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
+    autoRechargePauseTime: 0
+  - type: BatteryAmmoProvider
+    proto: FreezeRayWiz
+    fireCost: 1
+  - type: RestrictByUserTag
+    contains:
+    - Wizard
+    messages:
+    - wizard-item-restricted-1
+    - wizard-item-restricted-2
+    - wizard-item-restricted-3
+    - wizard-item-restricted-4

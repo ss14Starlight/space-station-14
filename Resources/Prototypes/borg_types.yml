@@ -226,11 +226,11 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-    - Hybrid # Starlight, Protogens
+    - Hybrid # Starlight, Neocytes
   - type: ShowHealthIcons
     damageContainers:
     - Biological
-    - Hybrid # Starlight, Protogens
+    - Hybrid # Starlight, Neocytes
   - type: Access # Starlight BEGIN
     groups:
       - CyborgAllAccess

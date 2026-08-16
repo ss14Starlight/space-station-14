@@ -1,0 +1,161 @@
+- type: entity
+  parent: BaseRuneAction
+  id: ActionExplosionRuneWiz
+  name: Explosion Rune
+  description: Summons a rune that explodes if used.
+  components:
+  - type: Action
+    useDelay: 40
+    icon:
+        sprite: Structures/Magic/Cult/rune.rsi
+        state: cult6
+        color: '#FF770055'
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: ExplosionRuneWiz
+  - type: SpeakOnAction
+    sentence: action-speech-spell-explosionrune
+    tts: action-speech-spell-explosionrune-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  parent: ActionIgniteRune
+  id: ActionIgniteRuneWiz
+  name: incendiary rune
+  description: Summons a rune that ignites if used.
+  components:
+  - type: SpeakOnAction
+    sentence: action-speech-spell-iginiterune
+    tts: action-speech-spell-iginiterune-tts
+    modifier: Spell
+  - type: Action
+    useDelay: 40
+    icon:
+        sprite: Structures/Magic/Cult/trap.rsi
+        state: trap
+  - type: EorgPreventAction
+
+- type: entity
+  parent: ExplosionRune
+  id: ExplosionRuneWiz
+  name: explosion rune
+  components:
+    - type: Explosive
+      explosionType: DefaultnoSpace
+      totalIntensity: 20
+      intensitySlope: 5
+      maxIntensity: 4
+    - type: Sprite
+      sprite: Structures/Magic/Cult/trap.rsi
+      layers:
+        - state: trap
+
+- type: entity
+  parent: BaseRuneAction
+  id: ActionFreezeRune
+  name: Freeze Rune
+  description: Summons a rune that will freeze in place anyone who walks on it.
+  components:
+  - type: Action
+    useDelay: 25
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: icerune
+  - type: TargetAction
+    range: 10
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: FreezeRuneWiz
+        amount: 1
+      - id: FreezeRune2Wiz
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-freezerune
+    tts: action-speech-spell-freezerune-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  parent: StunRune
+  id: FreezeRuneWiz
+  name: freeze rune
+  components:
+    - type: TriggerOnCollide
+      fixtureID: rune
+      maxTriggers: 1
+    - type: StunOnCollide
+      stunAmount: 10
+      knockdownAmount: 10
+      fixture: rune
+    - type: Sprite
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      layers:
+      - state: icerune
+
+- type: entity
+  parent: CollideRune
+  id: FreezeRune2Wiz
+  name: freeze rune
+  components:
+    - type: TriggerOnCollide
+      fixtureID: rune
+      maxTriggers: 1
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Cryo
+      totalIntensity: 1
+      intensitySlope: 0.1
+      maxIntensity: 7
+    - type: Sprite
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      layers:
+      - state: icerune
+
+
+- type: entity
+  parent: ActionFreezeRune
+  id: ActionEruption
+  name: Eruption
+  description: Summon a rune that after 2 seconds will start sending fiery shrapnels in a wide area (40 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 40
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: eruption
+  - type: TargetAction
+    range: 16
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: EruptionRuneWiz
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-eruption
+    tts: action-speech-spell-eruption-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  parent: BaseRune
+  id: EruptionRuneWiz
+  name: eruption rune
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/magicactions.rsi
+    layers:
+    - state: eruptionrune
+  - type: PointLight
+    color: "#F5E12C"
+    radius: 1.0
+    energy: 6.0
+  - type: TimedDespawn
+    lifetime: 6
+  - type: RepeatingTrigger
+    delay: 1.5
+  - type: SpawnOnTrigger
+    proto: EruptionBomb

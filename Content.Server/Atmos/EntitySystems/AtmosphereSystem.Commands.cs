@@ -162,7 +162,7 @@ public sealed partial class AtmosphereSystem
         var volume = GetVolumeForTiles(ent);
         TryComp(ent.Comp4.MapUid, out MapAtmosphereComponent? mapAtmos);
 
-        var enumerator = _map.GetAllTilesEnumerator(ent, ent);
+        var enumerator = _mapSystem.GetAllTilesEnumerator(ent, ent);
         while (enumerator.MoveNext(out var tileRef))
         {
             var tile = GetOrNewTile(ent, ent, tileRef.Value.GridIndices);
@@ -183,7 +183,7 @@ public sealed partial class AtmosphereSystem
         if (playerMap == null)
             return CompletionResult.FromOptions(options);
 
-        foreach (var grid in _mapManager.GetAllGrids(playerMap.Value).OrderBy(o => o.Owner))
+        foreach (var grid in _mapSystem.GetAllGrids(playerMap.Value).OrderBy(o => o.Owner))
         {
             var uid = grid.Owner;
             if (!TryComp(uid, out TransformComponent? gridXform))

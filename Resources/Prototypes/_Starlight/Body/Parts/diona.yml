@@ -5,7 +5,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Mobs/Species/Diona/parts.rsi
+    sprite: _Starlight/Mobs/Species/Diona/parts.rsi
 
 - type: entity
   id: TorsoDiona

@@ -46,8 +46,6 @@
   - type: Machine
     board: StationRadioCircuitboard
   - type: RadioSpeaker
-    powerRequired: true
-    parseRadioPrefix: false
     enabled: true
     channels:
     - RadioShow

@@ -159,7 +159,7 @@
     - type: ShowHealthBars
       damageContainers: # Starlight start
       - Biological
-      - Hybrid # Starlight end, Protogens
+      - Hybrid # Starlight end, Neocytes
     - type: InteractionPopup
       interactSuccessString: petting-success-syndicate-cyborg
       interactFailureString: petting-failure-syndicate-cyborg

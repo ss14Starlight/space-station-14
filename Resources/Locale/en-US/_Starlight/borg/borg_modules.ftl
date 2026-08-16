@@ -1,6 +1,6 @@
 borg-slot-papers-empty = Documents and Stamps
 borg-slot-idstamps-empty = PDAs, IDs and Stamps
-borg-slot-ore-empty = Ore
+borg-slot-ore-ticket-empty = Ore and Tickets
 borg-slot-fuel-empty = Fuel tanks
 borg-slot-seeds-empty = Seeds
 borg-slot-syringe-empty = Syringes

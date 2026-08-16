@@ -27,7 +27,7 @@
     # Starlight Start
     - id: PsychicScreach
     - id: SecurityDrill
-    - id: DoorRuntime
+    #- id: DoorRuntime
     - id: RadStorm
     - id: AuroraCaelus
     - id: SpaceWhale
@@ -39,6 +39,7 @@
     - id: NanoChatSpamMidPop
     - id: NanoChatSpamHighPop
     - id: NanoChatSpamUltraPop
+    - id: FullMoonHowl
     # Starlight End
     - id: MalignRiftSpawn # Funky
 
@@ -283,7 +284,8 @@
     - SpiderChargeObjective
     - TerrorObjective
     - MassArrestObjective
-    - NinjaSurviveObjective
+#    - NinjaSurviveObjective
+    - ExtractObjective # 🌟Starlight🌟
   - type: AntagSelection
     agentName: ninja-round-end-agent-name
     antags:

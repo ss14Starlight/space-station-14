@@ -79,7 +79,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     // Starlight Start
-    [Dependency] private IMapManager _map = default!;
+    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private TagSystem _tags = default!;
     [Dependency] private SuitSensorSystem _suitSensors = default!;
     [Dependency] private FollowerSystem _followerSystem = default!;

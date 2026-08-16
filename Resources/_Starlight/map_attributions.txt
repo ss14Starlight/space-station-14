@@ -3,9 +3,6 @@
 - files: ["bagel.yml"]
   authors: Emisse, Starlight Team
 
-- files: ["barratry.yml"]
-  authors: Emogarbage, Scribbles0, Starlight Team
-
 - files: ["box.yml"]
   authors: ACJM, Emisse, Starlight Team
 

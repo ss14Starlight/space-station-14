@@ -17,7 +17,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.2,0.4,0.1,-0.1"
+          bounds: "-0.2,-0.1,0.1,0.4"
           #1st&3rd number controls West and East bounds. 2nd&4th control North and South bounds.
         density: 1000
         layer:

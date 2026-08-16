@@ -32,7 +32,7 @@
     - type: Tag
       tags:
         - WallmountSubstationElectronics
-        - RamChip #Protogen joke, makes them able to eat them. - FH
+        - RamChip # FH + Starlight
 
 # Wallmount Generator
 - type: entity
@@ -52,7 +52,7 @@
   - type: Tag
     tags:
       - WallmountGeneratorElectronics
-      - RamChip # FH
+      - RamChip # FH + Starlight
 
 # APU
 - type: entity
@@ -69,7 +69,7 @@
     - type: Tag
       tags:
         - WallmountGeneratorAPUElectronics
-        - RamChip # FH
+        - RamChip # FH + Starlight
 
 # Solar Tracker Electronics
 - type: entity
@@ -86,4 +86,4 @@
     - type: Tag
       tags:
         - SolarTrackerElectronics
-        - RamChip # FH
+        - RamChip # FH + Starlight
