@@ -207,7 +207,7 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     state: eyes_night
   discipline: Biochemical
-  tier: 2 #Starlight moved from 3 to 2
+  tier: 2
   cost: 7680
   recipeUnlocks:
     - CyberEyeNightVision
@@ -218,7 +218,6 @@
   - Medical
 
 # Tier 3
-#Starlight moved from arsenal to biochemical
 - type: technology
   id: CyberEyeThermalVision
   name: research-technology-thermalvision-eyes
@@ -236,7 +235,6 @@
   - Security
   - Medical
 
-#starlight, moved from civilian to medical
 - type: technology
   id: BluespaceChemistry
   name: research-technology-bluespace-chemistry
