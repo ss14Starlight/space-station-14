@@ -1,34 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (OASIS) Removed the exosuit chainsword and firedart from armory.
-    type: Remove
-  id: 407259
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Removed the paddy from armory at shift start. (Caws).
-    type: Remove
-  id: 407260
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Changed gen pop island turnstile firelocks to the wall version.
-    type: Tweak
-  id: 407261
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Changed kitchen layout a bit.
-    type: Tweak
-  id: 407262
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
-- author: Cvlancer
-  changes:
   - message: (OASIS) Changed some of chapels walls to solid walls.
     type: Tweak
   id: 407263
@@ -2799,4 +2771,32 @@ Entries:
   id: 407658
   time: '2026-08-16T16:24:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5636
+- author: Johnny
+  changes:
+  - message: Added some extra spawners for mappers to use for EVA ERT.
+    type: Add
+  id: 407659
+  time: '2026-08-16T16:24:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5654
+- author: Johnny
+  changes:
+  - message: Changed the ERT chaplain to be more in line with what its meant to do.
+    type: Tweak
+  id: 407660
+  time: '2026-08-16T16:24:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5654
+- author: Johnny
+  changes:
+  - message: Changed some other loadouts slightly based off feedback.
+    type: Tweak
+  id: 407661
+  time: '2026-08-16T16:24:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5654
+- author: Johnny
+  changes:
+  - message: ERT Now actually get knives in their boots (including magboots).
+    type: Tweak
+  id: 407662
+  time: '2026-08-16T16:24:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5654
 Order: -1
