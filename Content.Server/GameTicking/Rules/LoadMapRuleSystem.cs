@@ -27,7 +27,7 @@ public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleCo
     [Dependency] private GridPreloaderSystem _gridPreloader = default!;
     #region Starlight
     [Dependency] private IConfigurationManager _cfg = default!;
-    [Dependency] private IMapManager _maps = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private EntityManager _entMan = default!;
     [Dependency] private DynamicRuleSystem _dynamicRule = default!;

@@ -35,7 +35,7 @@
   - type: Hunger
   - type: Thirst
   - type: Icon
-    sprite: Mobs/Species/Slime/parts.rsi
+    sprite: _Starlight/Mobs/Species/Slime/parts.rsi
     state: full
   - type: Body
     prototype: Slime
@@ -97,7 +97,7 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Bloodstream
-    bloodReferenceSolution: # TODO Color slime blood based on their slime color or smth
+    bloodReferenceSolution:
       reagents:
       - ReagentId: Slime
         Quantity: 300

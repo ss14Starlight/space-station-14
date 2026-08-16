@@ -64,3 +64,305 @@
     - !type:ListingLimitedStockCondition
       stock: 1
 
+- type: listing
+  id: SpellbookFireMaster
+  name: spellbook-firemaster-name
+  description: spellbook-firemaster-desc
+  priority: 1
+  productEntity: ClothingOuterSoftsuitWizardFire
+  cost:
+    WizCoin: 15 #admeme for now
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  disableRefund: true
+
+- type: listing
+  id: SpellFirebolt
+  name: spellbook-firebolt-name
+  description: spellbook-firebolt-desc
+  priority: 2
+  productAction: ActionFirebolt
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookFireorb
+  name: spellbook-fireorb-name
+  description: spellbook-fireorb-desc
+  priority: 3
+  productAction: ActionFireOrb
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookIgniteRune
+  name: spellbook-igniterune-name
+  description: spellbook-igniterune-desc
+  priority: 4
+  productAction: ActionIgniteRuneWiz
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookExplosionRune
+  name: spellbook-explosionrune-name
+  description: spellbook-explosionrune-desc
+  priority: 5
+  productAction: ActionExplosionRuneWiz
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellFireballWar
+  name: spellbook-fireball-name
+  description: spellbook-fireball-desc
+  priority: 6
+  productAction: ActionFireballII
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellFireArrow
+  name: spellbook-firearrow-name
+  description: spellbook-firearrow-desc
+  priority: 7
+  productAction: ActionFireArrow
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellEruption
+  name: spellbook-eruption-name
+  description: spellbook-eruption-desc
+  priority: 8
+  productAction: ActionEruption
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+
+- type: listing
+  id: SpellbookVoidApplauseWar
+  name: spellbook-voidapplause-name
+  description: spellbook-voidapplause-desc
+  productAction: ActionVoidApplause
+  priority: 9
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookBlinkWar
+  name: spellbook-blink-name
+  description: spellbook-blink-desc
+  productAction: ActionBlink
+  priority: 10
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookFireMaster
+
+- type: listing
+  id: SpellbookCryomancer
+  name: spellbook-cryomancer-name
+  description: spellbook-cryomancer-desc
+  priority: 11
+  productEntity: ClothingOuterSoftsuitWizardFrost
+  cost:
+    WizCoin: 15
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  disableRefund: true
+
+- type: listing
+  id: SpellbookFreezeRune
+  name: spellbook-freezerune-name
+  description: spellbook-freezerune-desc
+  priority: 12
+  productAction: ActionFreezeRune
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookFrozenTome
+  name: spellbook-frozentome-name
+  description: spellbook-frozentome-desc
+  priority: 13
+  productEntity: WeaponFrozentome
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookIceSculpture
+  name: spellbook-icesculpture-name
+  description: spellbook-icesculpture-desc
+  priority: 14
+  productAction: ActionRuneSummonIce
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookArcticGlare
+  name: spellbook-arcticglare-name
+  description: spellbook-arcticglare-desc
+  priority: 15
+  productAction: ActionArcticGlare
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookIceShard
+  name: spellbook-iceshard-name
+  description: spellbook-iceshard-desc
+  priority: 16
+  productAction: ActionIceShard
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookIceOrb
+  name: spellbook-iceorb-name
+  description: spellbook-iceorb-desc
+  priority: 17
+  productAction: ActionIceOrb
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer
+
+- type: listing
+  id: SpellbookIcePillars
+  name: spellbook-icepillars-name
+  description: spellbook-icepillars-desc
+  priority: 18
+  productAction: ActionIcePillars
+  cost:
+    WizCoin: 0
+  categories:
+  - SpellbookWar
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+      - SpellbookCryomancer

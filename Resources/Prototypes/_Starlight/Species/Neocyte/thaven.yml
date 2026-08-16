@@ -1,0 +1,104 @@
+- type: species
+  id: NeoThaven
+  name: subspecies-name-neothaven
+  roundStart: true
+  prototype: MobNeoThaven
+  sprites: MobNeoThavenSprites
+  defaultSkinTone: "#ffffff"
+  markingLimits: MobNeoThavenMarkingLimits
+  dollPrototype: AppearanceNeoThaven
+  skinColoration: Hues
+  customName: true
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Neocyte
+  subspeciesName: subspecies-name-neothaven
+  maleFirstNames: NamesThaven
+  femaleFirstNames: NamesThaven
+  naming: First
+  sexes:
+  - Male
+  - Female
+  - Unsexed
+  loadout: NeocyteLoadout
+  profileMigration:
+    oldSpecies:
+    - ProtoThaven
+
+- type: speciesBaseSprites
+  id: MobNeoThavenSprites
+  sprites:
+    Hair: MobHumanoidAnyMarking
+    Head: MobThavenHead
+    Eyes: MobNeocyteEyes
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobThavenTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    LArm: MobThavenLArm
+    RArm: MobThavenRArm
+    LHand: MobThavenLHand
+    RHand: MobThavenRHand
+    LLeg: MobThavenLLeg
+    RLeg: MobThavenRLeg
+    LFoot: MobThavenLFoot
+    RFoot: MobThavenRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobNeoThavenMarkingLimits
+  points:
+    FaceCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoThavenVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoThavenLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoThavenMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoThavenLights ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: false
+    HeadTop:
+      points: 2
+      required: false
+    Head:
+      points: 4
+      required: false
+    Chest:
+      points: 4
+      required: false
+    Legs:
+      points: 4
+      required: false
+    Arms:
+      points: 4
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false

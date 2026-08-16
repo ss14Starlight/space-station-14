@@ -1,39 +1,47 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from ParadiseStation | Salvage/Mining PDAs by mikeysaurus, Veteran Salvage/Mining PDAs by PeterPoley for Starlight | Pun Pun, Senior Chemist+Senior Mail Tech/Corpsman+Vet Corpsman/Brigmedic and Duty Officer PDA by wonderfulnewworld (github) for Starlight",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "pda"
+      "name": "pda",
+      "copyright": "Paradise Station"
     },
     {
-      "name": "id_overlay"
+      "name": "id_overlay",
+      "copyright": "Paradise Station"
     },
     {
       "name": "equipped-BELT",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Paradise Station"
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Paradise Station"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Paradise Station"
     },
     {
-      "name": "insert_overlay"
+      "name": "insert_overlay",
+      "copyright": "Paradise Station"
     },
     {
-      "name": "light_overlay"
+      "name": "light_overlay",
+      "copyright": "Paradise Station"
     },
     {
       "name": "equipped-IDCARD",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Paradise Station"
     },
     {
       "name": "pda-blueshield",
@@ -59,29 +67,41 @@
             ]
         ]
     },
-    {
-      "name": "pda-mining"
+	{
+      "name": "pda-assistantmanager",
+      "copyright": "wonderfulnewworld"
     },
     {
-      "name": "pda-mailtech"
+      "name": "pda-mining",
+      "copyright": "mikeysaurus"
     },
     {
-      "name": "pda-ntnc-cs"
+      "name": "pda-mailtech",
+      "copyright": "wonderfulnewworld"
     },
     {
-      "name": "pda-commander"
+      "name": "pda-ntnc-cs",
+      "copyright": "ItsAbby"
     },
     {
-      "name": "pda-salvagelead"
+      "name": "pda-commander",
+      "copyright": "Fractalflower"
     },
     {
-      "name": "pda-veteransalvagelead"
+      "name": "pda-salvagelead",
+      "copyright": "mikeysaurus"
     },
     {
-      "name": "pda-veteransalvage"
+      "name": "pda-veteransalvagelead",
+      "copyright": "mikeysaurus"
     },
     {
-      "name": "pda-veteranmining"
+      "name": "pda-veteransalvage",
+      "copyright": "mikeysaurus"
+    },
+    {
+      "name": "pda-veteranmining",
+      "copyright": "mikeysaurus"
     },
     {
       "name": "pda-paramedic",
@@ -109,18 +129,15 @@
     },
     {
       "name": "pda-seniormailtech",
-      "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld"
     },
     {
       "name": "pda-seniorchemist",
-      "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld"
     },
     {
       "name": "pda-veteranbrigmedic",
       "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0",
       "delays": [
         [
           0.3,
@@ -133,7 +150,6 @@
     {
       "name": "pda-corpsman",
       "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0",
       "delays": [
         [
           0.3,
@@ -146,7 +162,6 @@
     {
       "name": "pda-veterancorpsman",
       "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0",
       "delays": [
         [
           0.3,
@@ -158,18 +173,15 @@
     },
     {
       "name": "pda-dutyofficer",
-      "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld"
     },
     {
       "name": "pda-punpun",
-      "copyright": "wonderfulnewworld",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld"
     },
     {
       "name": "pda-magi",
-      "copyright": "Wayiscute",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "Wayiscute"
     },
     {
       "name": "pda-solgov",
@@ -190,8 +202,7 @@
     },
     {
       "name": "pda-decimus",
-      "copyright": "StygianEagle",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "StygianEagle"
     },
     {
       "name": "pda-ntsf",

@@ -304,6 +304,28 @@
 
 - type: entity
   parent: BasePDA
+  id: AssistantManagerPDA
+  name: assistant manager PDA
+  description: The least poor among the poor.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-assistantmanager
+  - type: Pda
+    id: AssistantManagerIDCard
+  - type: PdaBorderColor
+    borderColor: "#789876"
+    accentVColor: "#447987"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-assistantmanager
+
+- type: entity
+  parent: BasePDA
   id: SalvageLeadPDA
   name: salvage lead PDA
   description: Smells like blood and ash.

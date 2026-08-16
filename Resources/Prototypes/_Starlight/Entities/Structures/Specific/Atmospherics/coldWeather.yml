@@ -46,6 +46,8 @@
 - type: entity
   parent: AirAlarm
   id: AirAlarmColdWeather
+  name: cold weather air alarm
+  description: An air alarm set up for use in cold weather. It tolerates freezing temperatures and low pressure.
   suffix: ColdWeather
   components:
   - type: AirAlarm

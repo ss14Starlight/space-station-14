@@ -200,8 +200,6 @@
   radioChannels:
   - Medical
 
-# Tier 3
-
 - type: technology
   id: CyberEyeNightVision
   name: research-technology-nightvision-eyes
@@ -209,7 +207,7 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     state: eyes_night
   discipline: Biochemical
-  tier: 3
+  tier: 2
   cost: 7680
   recipeUnlocks:
     - CyberEyeNightVision
@@ -219,7 +217,24 @@
   - Security
   - Medical
 
-#starlight, moved from civilian to medical
+# Tier 3
+- type: technology
+  id: CyberEyeThermalVision
+  name: research-technology-thermalvision-eyes
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eyes_thermal
+  discipline: Biochemical
+  tier: 3
+  cost: 9320
+  recipeUnlocks:
+    - CyberEyeThermal
+  technologyPrerequisites:
+    - CyberEyeNightVision
+  radioChannels:
+  - Security
+  - Medical
+
 - type: technology
   id: BluespaceChemistry
   name: research-technology-bluespace-chemistry
