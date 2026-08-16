@@ -15,6 +15,7 @@ using Content.Server.Connection;
 using Content.Server.Database;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.EUI;
+using Content.Server.FeedbackSystem;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;
 using Content.Server.GuideGenerator;
@@ -33,6 +34,7 @@ using Content.Server.Voting.Managers;
 using Content.Shared._NullLink;
 using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.CCVar;
+using Content.Shared.FeedbackSystem;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
 using Robust.Server;
@@ -101,6 +103,7 @@ namespace Content.Server.Entry
         [Dependency] private INullLinkEventBusManager _nullLinkEventBus = default!;
         [Dependency] private INullLinkPlayerManager _nullLinkPlayerManager = default!;
 #endregion Nulllink
+        [Dependency] private ServerFeedbackManager _feedbackManager = null!;
 
         public override void PreInit()
         {
@@ -198,6 +201,7 @@ namespace Content.Server.Entry
             _connection.PostInit();
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
+            _feedbackManager.Initialize();
 
             // NullLink start
             _actorRouter.Initialize();
