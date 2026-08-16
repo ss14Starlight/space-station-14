@@ -1,11 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Adjusted subfloor gas tank (de)construction steps to be a bit slower.
-    type: Tweak
-  id: 407183
-  time: '2026-08-01T11:09:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5425
 - author: neomoth
   changes:
   - message: Rodentias spitting out items is now predicted.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407582
   time: '2026-08-16T10:51:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5545
+- author: RedSpeeds
+  changes:
+  - message: Added a printout of the animal your faxing.
+    type: Add
+  id: 407583
+  time: '2026-08-16T10:51:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5593
 Order: -1
