@@ -1,0 +1,37 @@
+- type: entity
+  id: DestinyDie
+  parent: d20Dice
+  name: Destiny Die
+  description: A magical D20 die. Many things could happen with just a single roll.
+  suffix: Admeme, D20
+  components:
+    - type: DestinyDice
+      busyMessage: The die rejects the roll.
+      cooldownMessage: The die is on cooldown.
+      groups:
+        - targetRolls:
+            - targetValue: 1
+          successMessage: You feel like something bad is about to happen.
+          successPopupType: LargeCaution
+          delay: 3
+          effects:
+            - entityEffect: !type:NukeArmEffect
+
+- type: entity
+  id: DestinyDieD4
+  parent: d4Dice
+  name: Destiny Die
+  description: A magical D20 die. Many things could happen with just a single roll.
+  suffix: Admeme, D4
+  components:
+    - type: DestinyDice
+      busyMessage: The die rejects the roll.
+      cooldownMessage: The die is on cooldown.
+      groups:
+        - targetRolls:
+            - targetValue: 1
+          successMessage: You feel the room getting warmer.
+          successPopupType: LargeCaution
+          delay: 3
+          effects:
+            - entityEffect: !type:FloorIsLavaEffect
