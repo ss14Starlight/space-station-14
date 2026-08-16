@@ -90,7 +90,7 @@ public sealed class EntityHealthBarOverlay : Overlay
 
             // Starlight Start: Do not render the health bar is the entity is full health
             if (deathProgress is (1, false))
-            continue;
+                continue;
             // Starlight End
 
             var worldPosition = _transform.GetWorldPosition(xform);
