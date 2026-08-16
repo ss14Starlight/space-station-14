@@ -34,6 +34,8 @@ public abstract partial class SharedArmorSystem : EntitySystem
         SubscribeLocalEvent<ArmorComponent, GetVerbsEvent<ExamineVerb>>(OnArmorVerbExamine);
 
         SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<KnockDownAttemptEvent>>(OnKnockdownAttempt); // Starlight-edit
+        SubscribeLocalEvent<InnateArmorComponent, DamageModifyEvent>(OnInnateDamageModify); // Starlight-edit
+        SubscribeLocalEvent<InnateArmorComponent, CoefficientQueryEvent>(OnInnateCoefficientQuery); // Starlight-edit
     }
 
     #region Starlight
@@ -48,6 +50,23 @@ public abstract partial class SharedArmorSystem : EntitySystem
         // Starlight edit end
     }
     #endregion
+
+    #region Starlight
+    private void OnInnateDamageModify(EntityUid uid, InnateArmorComponent component, ref DamageModifyEvent args)
+    {
+        args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, component.Modifiers, args.ArmorPenetration, args.CanHeal);
+    }
+    private void OnInnateCoefficientQuery(EntityUid uid, InnateArmorComponent component, ref CoefficientQueryEvent args)
+    {
+        foreach (var armorCoefficient in component.Modifiers.Coefficients)
+        {
+            args.DamageModifiers.Coefficients[armorCoefficient.Key] =
+                args.DamageModifiers.Coefficients.TryGetValue(armorCoefficient.Key, out var coefficient)
+                    ? coefficient * armorCoefficient.Value
+                    : armorCoefficient.Value;
+        }
+    }
+    #endregion Starlight
 
     /// <summary>
     /// Get the total Damage reduction value of all equipment caught by the relay.
