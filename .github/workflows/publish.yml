@@ -57,16 +57,16 @@ jobs:
     permissions:
       contents: read
       actions: read
+    needs: build
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Publish changelog (Discord)
-        continue-on-error: true
+        continue-on-error: false
         run: Tools/actions_changelogs_since_last_run.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          DISCORD_CHANGELOG_ROLE_ID: "1308143973684088883"
