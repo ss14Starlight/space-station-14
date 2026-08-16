@@ -15,25 +15,15 @@ jobs:
     environment:
       name: prod
 
+    permissions:
+      pull-requests: write
+      contents: write
+
     steps:
     - name: Install dependencies
       run: sudo apt-get install -y python3-paramiko python3-lxml
 
     - uses: actions/checkout@v3
-
-    - name: Set up SSH
-      env:
-        ACTIONS_SSH_KEY: ${{ secrets.ACTIONS_SSH_KEY }}
-        TEST: ${{ secrets.TEST }}
-      run: |
-        mkdir -p ~/.ssh
-        echo "$ACTIONS_SSH_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
-        echo "$TEST"
-        chmod 600 ~/.ssh/id_ed25519
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-    - name: Test SSH Connection
-      run: ssh -T git@github.com || exit 0
 
     - name: Publish changelog (Discord)
       run: Tools/actions_changelogs_since_last_run.py
