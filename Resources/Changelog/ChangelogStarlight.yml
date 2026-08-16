@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Changed paddies melee to do more stamina damage, around same as a truncheon.
-    type: Tweak
-  id: 407247
-  time: '2026-08-03T18:33:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5488
 - author: Forrestgod
   changes:
   - message: 'Created a new Component: JobIconOverride, It lets admins override a job icon in the radio to whatever as well as the job title.'
@@ -2799,4 +2792,11 @@ Entries:
   id: 407646
   time: '2026-08-16T15:22:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5668
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Removed Scientist playtime requirement from S.E.L.F Agent.
+    type: Remove
+  id: 407647
+  time: '2026-08-16T15:22:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5651
 Order: -1
