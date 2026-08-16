@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BookBase
   id: BookConspiracies
   name: "What They Don't Want You To Know"
@@ -81,3 +81,24 @@
           color: "#cc0000"
     - type: Paper
       content: book-text-mars-incident
+
+- type: entity
+  parent: BaseGuidebook
+  id: BookSecureTerminalManual
+  name: Secure Terminal Manual
+  description: A guide to using the Secure Terminal system. Required reading for all command staff.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_base
+          color: "#1a2a3a"
+        - state: decor_wingette
+          color: "#2a3f55"
+        - state: icon_glow
+          color: "#ffd700"
+        - state: icon_corner
+          color: "#ffd700"
+    - type: GuideHelp
+      guides:
+        - secure-terminal-guide

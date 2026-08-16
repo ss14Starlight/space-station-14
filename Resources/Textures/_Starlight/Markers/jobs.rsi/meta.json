@@ -44,8 +44,11 @@
     },
 	{
       "name": "performer",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+	  "copyright": "wonderfulnewworld"
+    },
+	{
+      "name": "assistantmanager",
+	  "copyright": "wonderfulnewworld"
     },
     {
       "name": "decimusicon"

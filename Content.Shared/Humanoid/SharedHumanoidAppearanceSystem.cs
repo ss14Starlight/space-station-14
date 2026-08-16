@@ -440,7 +440,8 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
         var oldSex = humanoid.Sex;
         humanoid.Sex = sex;
         humanoid.MarkingSet.EnsureSexes(sex, _markingManager);
-        RaiseLocalEvent(uid, new SexChangedEvent(oldSex, sex));
+        var sexChangedEvent = new SexChangedEvent(oldSex, sex); // Starlight
+        RaiseLocalEvent(uid, ref sexChangedEvent); // Starlight
 
         if (sync)
         {

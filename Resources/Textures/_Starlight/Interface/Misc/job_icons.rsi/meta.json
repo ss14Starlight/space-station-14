@@ -74,6 +74,10 @@
                 ]
             ]
         },
+		{
+            "name": "AssistantManager",
+            "copyright": "wonderfulnewworld"
+        },
         {
             "name": "CentComm",
             "copyright": "Happyrobot33, fqqf"

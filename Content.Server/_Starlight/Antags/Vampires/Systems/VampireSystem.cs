@@ -784,8 +784,7 @@ public sealed partial class VampireSystem : EntitySystem
         var classComp = _componentFactory.GetComponent(reg.Type);
         EntityManager.AddComponent(uid, classComp);
 
-        if (classProto.ID == "Umbrae")
-            EnsureComp<NightVisionComponent>(uid);
+        EnsureComp<NightVisionComponent>(uid);
 
         comp.ChosenClassId = classProto.ID;
         _vampireClasses.WithLabels(classProto.ID).Inc();

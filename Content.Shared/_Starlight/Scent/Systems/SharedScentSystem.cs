@@ -3,6 +3,7 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
@@ -26,6 +27,13 @@ public abstract class SharedScentSystem : EntitySystem
         SubscribeLocalEvent<SmellerComponent, ComponentShutdown>(OnSmellerShutdown);
         SubscribeLocalEvent<SmellerComponent, ToggleSniffActionEvent>(OnToggleSniff);
         SubscribeLocalEvent<SmellerComponent, SneezeActionEvent>(OnSneeze);
+        SubscribeLocalEvent<SmellerComponent, MobStateChangedEvent>(OnMobStateChanged);
+    }
+
+    private void OnMobStateChanged(Entity<SmellerComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState == Content.Shared.Mobs.MobState.Dead)
+            ClearTrackedScent(ent);
     }
 
     private void OnSmellerMapInit(Entity<SmellerComponent> ent, ref MapInitEvent args)

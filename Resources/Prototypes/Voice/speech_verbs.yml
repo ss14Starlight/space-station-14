@@ -35,6 +35,7 @@
   speechVerbStrings:
   - chat-speech-verb-exclamation-strong
   priority: 10
+  fontSize: 14 #starlight, yelling
 
 - type: speechVerb
   id: Arachnid
