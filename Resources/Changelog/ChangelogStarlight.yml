@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Added 2 new instrument styles to the Trumpet, Vampiric and Grand.
-    type: Add
-  id: 407280
-  time: '2026-08-04T08:54:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5505
-- author: wonderfulnewworld
-  changes:
   - message: Midis will no longer "Weh".
     type: Fix
   id: 407281
@@ -2799,4 +2792,11 @@ Entries:
   id: 407679
   time: '2026-08-16T19:58:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5622
+- author: wonderfulnewworld, DivineHoBo
+  changes:
+  - message: Added plastitanium airlocks.
+    type: Add
+  id: 407680
+  time: '2026-08-16T20:18:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5620
 Order: -1
