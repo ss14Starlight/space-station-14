@@ -133,6 +133,21 @@
     job: BlueShield
 
 - type: entity
+  parent: IDCardStandard
+  id: AssistantManagerIDCard
+  name: assistant manager ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: AssistantManager
+  - type: PresetIdCard
+    job: AssistantManager
+
+- type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
   id: NTNCBlueShieldIDCard
   name: NanoTrasen navy corps marine's ID card

@@ -1,3 +1,4 @@
+job-description-assistantmanager = Manage your fellow Assistants, give them small tasks or informal jobs, and cultivate their progress, so that they may work towards the station's benefit.
 job-description-blueshield = Your primary job is to protect the heads. Remember, you are not a security officer.
 job-description-boxer = Fight your way to the top! Challenge the head of personnel and get brigged when you win.
 job-description-decimus = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.

@@ -58,6 +58,15 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Shoes/Boots/winterbootscargosenior.rsi
 
+- type: entity
+  parent: ClothingShoesBaseWinterBoots
+  id: ClothingShoesBootsWinterBlue
+  name: blue winter boots
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Boots/winterbootsblue.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Boots/winterbootsblue.rsi
 
 # Fashion-O-Mat Start
 - type: entity

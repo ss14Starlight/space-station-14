@@ -222,7 +222,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/hos_parade.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  parent: [ClothingUniformSkirtBase, BaseCommandManagerContraband] # Starlight, Assistant Manager.
   id: ClothingUniformJumpskirtCommandGeneric
   name: command jumpskirt
   description: A generic Command-colored jumpsuit not associated with any particular department.
