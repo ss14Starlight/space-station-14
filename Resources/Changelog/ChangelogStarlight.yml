@@ -1,11 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Fixed tall gas tank pipe connection visuals.
-    type: Fix
-  id: 407209
-  time: '2026-08-02T07:22:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5449
 - author: Caws
   changes:
   - message: (Shipyard) Due to the rising cost of manufacturing, Harm's 'Space Truck' has had its plastitanium walls replaced with regular reinforced walls. No refunds will be issued.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407608
   time: '2026-08-16T13:41:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5635
+- author: Conflee
+  changes:
+  - message: Added Floor Lights. Placed above carpets but below furniture. Can be walked over and objects can be dragged over them. Come in all bulb variants and colors. Can be constructed and deconstructed mid-round.
+    type: Add
+  id: 407609
+  time: '2026-08-16T14:14:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5674
 Order: -1
