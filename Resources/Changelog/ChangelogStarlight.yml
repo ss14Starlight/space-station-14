@@ -1,39 +1,4 @@
 Entries:
-- author: wondefulnewworld
-  changes:
-  - message: Added a new steal objective for any 1 of the cargo, command, engineering, and science tech fab boards. Service excluded, since it's too easy.
-    type: Add
-  id: 407204
-  time: '2026-08-01T19:14:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5418
-- author: wondefulnewworld
-  changes:
-  - message: Added the generic electronics to the circuit imprinter.
-    type: Add
-  id: 407205
-  time: '2026-08-01T19:14:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5418
-- author: wondefulnewworld
-  changes:
-  - message: The base protolathe can no longer be printed in the circuit imprinter unless you emag it.
-    type: Remove
-  id: 407206
-  time: '2026-08-01T19:14:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5418
-- author: wondefulnewworld
-  changes:
-  - message: Moved the dark breacher to the circuit imprinter.
-    type: Tweak
-  id: 407207
-  time: '2026-08-01T19:14:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5418
-- author: wondefulnewworld
-  changes:
-  - message: Combined the medical and security tech fab board steal objectives.
-    type: Tweak
-  id: 407208
-  time: '2026-08-01T19:14:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5418
 - author: redmushie
   changes:
   - message: Fixed tall gas tank pipe connection visuals.
@@ -2799,4 +2764,39 @@ Entries:
   id: 407603
   time: '2026-08-16T13:06:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5631
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a single radio host near arrivals.
+    type: Add
+  id: 407604
+  time: '2026-08-16T13:41:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5635
+- author: Cvlancer
+  changes:
+  - message: (Oasis)  Added several radios around the station.
+    type: Add
+  id: 407605
+  time: '2026-08-16T13:41:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5635
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added some more trash/scrap to the maints scrapyard.
+    type: Add
+  id: 407606
+  time: '2026-08-16T13:41:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5635
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Changed the reporter rooms door to use journalism access.
+    type: Tweak
+  id: 407607
+  time: '2026-08-16T13:41:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5635
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Fixed a maints door near kitchen not having power.
+    type: Fix
+  id: 407608
+  time: '2026-08-16T13:41:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5635
 Order: -1
