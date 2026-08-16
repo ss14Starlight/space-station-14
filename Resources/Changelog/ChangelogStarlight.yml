@@ -1,32 +1,4 @@
 Entries:
-- author: Forrestgod
-  changes:
-  - message: 'Created a new Component: JobIconOverride, It lets admins override a job icon in the radio to whatever as well as the job title.'
-    type: Add
-  id: 407248
-  time: '2026-08-03T18:33:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5411
-- author: redmushie
-  changes:
-  - message: Mapping variants of subfloor- and tall gas tanks prefilled with air.
-    type: Add
-  id: 407249
-  time: '2026-08-03T18:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5473
-- author: wonderfulnewworld
-  changes:
-  - message: CE now gets an Engi Techfab Flatpack in their locker.
-    type: Fix
-  id: 407250
-  time: '2026-08-03T20:30:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5499
-- author: Cvlancer
-  changes:
-  - message: (OASIS) Added all the new tech fabs to their respective departments.
-    type: Add
-  id: 407251
-  time: '2026-08-04T07:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5476
 - author: Cvlancer
   changes:
   - message: (OASIS) Added flippers that law pet to the courthouse.
@@ -2799,4 +2771,32 @@ Entries:
   id: 407647
   time: '2026-08-16T15:22:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5651
+- author: SirLutz
+  changes:
+  - message: Turnstile HP reduced from 500-> 150.
+    type: Tweak
+  id: 407648
+  time: '2026-08-16T15:53:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5672
+- author: SirLutz
+  changes:
+  - message: Airlocks HP reduced from 500 -> 300.
+    type: Tweak
+  id: 407649
+  time: '2026-08-16T15:53:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5672
+- author: SirLutz
+  changes:
+  - message: Firelocks HP reduced from 500 -> 250.
+    type: Tweak
+  id: 407650
+  time: '2026-08-16T15:53:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5672
+- author: SirLutz
+  changes:
+  - message: Reinf. Windoors HP reduced from 400 -> 300.
+    type: Tweak
+  id: 407651
+  time: '2026-08-16T15:53:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5672
 Order: -1
