@@ -1,6 +1,6 @@
 using Content.Server.Popups;
 using Content.Server.Temperature.Systems;
-using Content.Shared._Starlight.Temperature.Components; // Starlight
+using Content.Shared._Starlight.Temperature.Components;
 using Content.Shared._Starlight.Xenobiology.Potions; // Starlight
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
