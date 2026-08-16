@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Shipyard) Due to the rising cost of manufacturing, Harm's 'Space Truck' has had its plastitanium walls replaced with regular reinforced walls. No refunds will be issued.
-    type: Tweak
-  id: 407210
-  time: '2026-08-02T07:58:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5456
 - author: taydeo, Conflee
   changes:
   - message: Added a "Welcome to Starlight!" pop-up when a client joins the server for the first time, with useful information and content warnings.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407609
   time: '2026-08-16T14:14:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5674
+- author: DocMoth
+  changes:
+  - message: Foxfire Charm to fashion vend.
+    type: Add
+  id: 407610
+  time: '2026-08-16T14:57:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5659
 Order: -1
