@@ -84,7 +84,6 @@
   materials:
     Cloth: 600
     Plasteel: 1900
-    
 - type: latheRecipe
   id: KnuckleDustersTA
   result: ClothingHandsKnuckleDusters
