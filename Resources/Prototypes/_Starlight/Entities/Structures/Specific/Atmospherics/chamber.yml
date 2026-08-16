@@ -1,0 +1,141 @@
+# Chamber atmosphere - temperature and gas thresholds are ignored whatever the
+# chamber is filled with, pressure uses chamberPressure. Readings still report to
+# the alarm UI.
+
+# Air Sensor
+
+- type: entity
+  abstract: true
+  parent: AirSensorBase
+  id: AirSensorChamberBase
+  suffix: Chamber Atmosphere
+  components:
+  - type: AtmosMonitor
+    temperatureThresholdId: ignore
+    pressureThresholdId: chamberPressure
+    gasThresholdPrototypes:
+      Oxygen: ignore
+      Nitrogen: ignore
+      CarbonDioxide: ignore
+      Plasma: ignore
+      Tritium: ignore
+      WaterVapor: ignore
+      Ammonia: ignore
+      NitrousOxide: ignore
+      Frezon: ignore
+      BZ: ignore
+      Healium: ignore
+      Nitrium: ignore
+      Pluoxium: ignore
+      Hydrogen: ignore
+      HyperNoblium: ignore
+      ProtoNitrate: ignore
+      Zauker: ignore
+      Halon: ignore
+      Helium: ignore
+      AntiNoblium: ignore
+      Ulnitranium: ignore
+      ZXA: ignore
+
+- type: entity
+  parent: [AirSensorChamberBase, AirSensor]
+  id: AirSensorChamber
+  description: An air sensor set up for use in chambers. It only alarms on extreme pressure.
+
+# Gas Vent
+
+# Inherits the thresholds so no variant has to list the sensor base as a second
+# parent. Declares no sprite, so the vanilla alt sprite reaches the placement ghost.
+- type: entity
+  abstract: true
+  parent: AirSensorChamberBase
+  id: GasVentPumpChamberBase
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentPumpChamber
+      Secondary: GasVentPumpChamberAlt1
+      Tertiary: GasVentPumpChamberAlt2
+      Quaternary: GasVentPumpChamberAlt3
+      Quinary: GasVentPumpChamberAlt4
+
+- type: entity
+  parent: [GasVentPumpChamberBase, GasVentPump]
+  id: GasVentPumpChamber
+  placement:
+    mode: AlignAtmosPipeLayers
+  description: An air vent set up for use in chambers. It only alarms on extreme pressure.
+
+- type: entity
+  parent: [GasVentPumpChamberBase, GasVentPumpAlt1]
+  id: GasVentPumpChamberAlt1
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in chambers. It only alarms on extreme pressure.
+
+- type: entity
+  parent: [GasVentPumpChamberBase, GasVentPumpAlt2]
+  id: GasVentPumpChamberAlt2
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in chambers. It only alarms on extreme pressure.
+
+- type: entity
+  parent: [GasVentPumpChamberBase, GasVentPumpAlt3]
+  id: GasVentPumpChamberAlt3
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in chambers. It only alarms on extreme pressure.
+
+- type: entity
+  parent: [GasVentPumpChamberBase, GasVentPumpAlt4]
+  id: GasVentPumpChamberAlt4
+  categories: [ HideSpawnMenu ]
+  description: An air vent set up for use in chambers. It only alarms on extreme pressure.
+
+# Gas Scrubber
+
+- type: entity
+  abstract: true
+  parent: AirSensorChamberBase
+  id: GasVentScrubberChamberBase
+  components:
+  # Scrubbers default to enabled and nothing switches them off at map init, so a
+  # chamber would be stripped of its mix from round start.
+  - type: GasVentScrubber
+    enabled: false
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentScrubberChamber
+      Secondary: GasVentScrubberChamberAlt1
+      Tertiary: GasVentScrubberChamberAlt2
+      Quaternary: GasVentScrubberChamberAlt3
+      Quinary: GasVentScrubberChamberAlt4
+
+- type: entity
+  parent: [GasVentScrubberChamberBase, GasVentScrubber]
+  id: GasVentScrubberChamber
+  placement:
+    mode: AlignAtmosPipeLayers
+  description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
+
+- type: entity
+  parent: [GasVentScrubberChamberBase, GasVentScrubberAlt1]
+  id: GasVentScrubberChamberAlt1
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
+
+- type: entity
+  parent: [GasVentScrubberChamberBase, GasVentScrubberAlt2]
+  id: GasVentScrubberChamberAlt2
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
+
+- type: entity
+  parent: [GasVentScrubberChamberBase, GasVentScrubberAlt3]
+  id: GasVentScrubberChamberAlt3
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
+
+- type: entity
+  parent: [GasVentScrubberChamberBase, GasVentScrubberAlt4]
+  id: GasVentScrubberChamberAlt4
+  categories: [ HideSpawnMenu ]
+  description: An air scrubber set up for use in chambers. It only alarms on extreme pressure.
