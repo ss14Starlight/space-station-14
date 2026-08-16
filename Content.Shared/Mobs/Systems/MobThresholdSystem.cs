@@ -52,6 +52,12 @@ public sealed partial class MobThresholdSystem : EntitySystem
         component.TriggersAlerts = state.TriggersAlerts;
         component.CurrentThresholdState = state.CurrentThresholdState;
         component.AllowRevives = state.AllowRevives;
+        // Starlight Start
+        // OnGetState sends all 6 fields; this only applied 4. StateAlertDict
+        // and ShowOverlays were silently dropped on every state update.
+        component.StateAlertDict = state.StateAlertDict;
+        component.ShowOverlays = state.ShowOverlays;
+        // Starlight End
     }
 
     #region Public API
@@ -426,7 +432,7 @@ public sealed partial class MobThresholdSystem : EntitySystem
             {
                 percentage = FixedPoint2.Clamp(percentage.Value, 0, 1);
 
-                severity = (short) MathF.Round(
+                severity = (short)MathF.Round(
                     MathHelper.Lerp(
                         _alerts.GetMinSeverity(currentAlert),
                         _alerts.GetMaxSeverity(currentAlert),

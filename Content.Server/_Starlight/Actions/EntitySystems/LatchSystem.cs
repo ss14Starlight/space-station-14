@@ -227,7 +227,10 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         // Refund if the latch ended almost immediately.
         if (comp.Active && comp.ActionEntity is { } actionEnt && Timing.CurTime - comp.StartTime < comp.RefundGracePeriod)
+        {
             _charges.AddCharges((actionEnt, null, null), 1);
+            _action.ClearCooldown(actionEnt);
+        }
 
         comp.Active = false;
         comp.Target = null;
@@ -355,13 +358,21 @@ public sealed partial class LatchSystem : SharedLatchSystem
                 continue;
             }
 
-            // Break if knocked out of range; RangeTolerance avoids
-            // instant-breaking from jitter right at the edge.
+            // Knocked out of range; RangeTolerance avoids instant-breaking
+            // from jitter. Within the grace window, pull the target back in
+            // instead of breaking. After that, treat it as a real separation.
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
             if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance)
             {
-                EndLatch(uid, comp);
-                continue;
+                if (now - comp.StartTime < comp.RefundGracePeriod)
+                {
+                    _transform.SetCoordinates(target, Transform(uid).Coordinates);
+                }
+                else
+                {
+                    EndLatch(uid, comp);
+                    continue;
+                }
             }
 
             // Re-assert every tick so this can't be toggled back on mid-latch.
