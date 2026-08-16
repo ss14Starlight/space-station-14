@@ -874,7 +874,7 @@
     state: birthday
   - type: SliceableFood
     slice: FoodCakeBirthdaySlice
-  # Starlight-start 
+  # Starlight-start
   - type: Tag
     tags:
     - Cake
