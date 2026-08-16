@@ -16,3 +16,33 @@
   id: PlumbingMachines
   name: guide-entry-plumbingmachines
   text: "/ServerInfo/_Starlight/Guidebook/Engineering/PlumbingMachines.xml"
+
+- type: guideEntry
+  id: Supermatter
+  name: guide-entry-sl-engineering-supermatter
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/Supermatter.xml"
+  children:
+  - SupermatterStability
+  - SupermatterStructuralRecovery
+  - SupermatterDelamination
+  - SupermatterAdvancedSupermatterHandling
+
+- type: guideEntry
+  id: SupermatterStability
+  name: guide-entry-sl-engineering-supermatter-stability
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/SupermatterStability.xml"
+
+- type: guideEntry
+  id: SupermatterStructuralRecovery
+  name: guide-entry-sl-engineering-supermatter-structural-recovery
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/SupermatterStructuralRecovery.xml"
+
+- type: guideEntry
+  id: SupermatterDelamination
+  name: guide-entry-sl-engineering-supermatter-delamination
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/SupermatterDelamination.xml"
+
+- type: guideEntry
+  id: SupermatterAdvancedSupermatterHandling
+  name: guide-entry-sl-engineering-supermatter-advanced-handling
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/SupermatterAdvancedSupermatterHandling.xml"

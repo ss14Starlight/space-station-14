@@ -705,6 +705,17 @@
       stock: 2
 
 - type: listing
+  id: ClothingNeckFoxfire
+  productEntity: ClothingNeckFoxfire
+  cost:
+    NTCredit: 4444
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
   id: ClothingHeadHatBunny
   productEntity: ClothingHeadHatBunny
   cost:
