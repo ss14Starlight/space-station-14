@@ -224,6 +224,11 @@
       conditions:
         - !type:HolidayActiveCondition
           holiday: FestiveSeason
+    - !type:GroupSelector #Structured to be able to add more options once we have sprites for more
+      children:
+      - id: EndymionMonumentFlatpack
+    - id: PrintedDocumentEndymionMemorial
+    - id: Multitool
     # Starlight End
 
 - type: entity
@@ -243,27 +248,27 @@
   table: !type:AllSelector
     children:
     - id: ClothingNeckCloakCeElite
-    - id: AccessConfigurator
+#    - id: AccessConfigurator # Starlight-edit: moved to the CE toolbelt
     - id: BoxEncryptionKeyEngineering
     - id: CigarCase
       prob: 0.15
     - id: ClothingBeltChiefEngineerFilled
-    - id: ClothingEyesGlassesMeson
+#    - id: ClothingEyesGlassesMeson # Starlight-edit: spawned with, in the EngiVend
 #    - id: ClothingHandsGlovesColorYellow # Starlight, they spawn with these now.
     - id: ClothingHeadsetAltEngineering
     - id: DoorRemoteEngineering
     - id: BoxCECircuitboards
     - id: MatBag #FH
-    - id: WeaponGrapplingGun #FH
-    - id: BoxFlare #FH
+#    - id: WeaponGrapplingGun # Starlight-edit: in the EngiVend
+#    - id: BoxFlare # Starlight-edit: in the EngiVend
     - id: AstroNavCartridge #FH
     - id: SheetSteel #FH
     - id: SheetGlass #FH
     - id: RCDChiefEngineer
     - id: RPD # Starlight: RPD
-    - id: RCDAmmo
+#    - id: RCDAmmo # Starlight-edit: CE RCD self-recharges
     - id: RubberStampCE
-    - id: MetalFoamGrenade
+#    - id: MetalFoamGrenade # Starlight-edit: in the EngiVend
     - id: EngineeringTechFabFlatpack # Starlight
     - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
