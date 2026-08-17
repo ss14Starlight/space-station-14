@@ -1,25 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Molar gas mixer can be made flipped and also go on other gas pipe layers.
-    type: Fix
-  id: 407306
-  time: '2026-08-04T09:55:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5428
-- author: OMEGA
-  changes:
-  - message: Adds a new air alarm protoype, unlocked.
-    type: Add
-  id: 407307
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
-- author: OMEGA
-  changes:
-  - message: (Cork) Remade gas pipe network.
-    type: Add
-  id: 407308
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
 - author: OMEGA
   changes:
   - message: (Cork) Remade HV, MV and LV networks.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407705
   time: '2026-08-17T18:48:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5675
+- author: wonderulnewworld, sowelipililimute
+  changes:
+  - message: Drinking or eating things now gradually trickles into the bloodstream, instead of being a fixed delay.
+    type: Tweak
+  id: 407706
+  time: '2026-08-17T20:51:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5678
+- author: wonderulnewworld, sowelipililimute
+  changes:
+  - message: Reagent effect groups are now stages of metabolism in the guidebook.
+    type: Tweak
+  id: 407707
+  time: '2026-08-17T20:51:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5678
+- author: wonderulnewworld, sowelipililimute
+  changes:
+  - message: Many reagents that break down into other ones have clearer guidebook descriptions and slightly adjusted behavior.
+    type: Tweak
+  id: 407708
+  time: '2026-08-17T20:51:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5678
 Order: -1
