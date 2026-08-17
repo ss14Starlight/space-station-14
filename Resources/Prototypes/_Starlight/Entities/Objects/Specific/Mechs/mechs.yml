@@ -325,6 +325,10 @@
       baseSprintSpeed: 4.0
     - type: Damageable
       damageModifierSet: GygaxArmor
+    - type: InnateArmor
+      modifiers:
+        coefficients:
+          Piercing: 0.5 # x amount goes through
     - type: MechThrusters
     - type: PointLight
       mask: /Textures/Effects/LightMasks/cone.png
@@ -389,6 +393,10 @@
       baseSprintSpeed: 2.8
     - type: Damageable
       damageModifierSet: DurandArmor
+    - type: InnateArmor
+      modifiers:
+        coefficients:
+          Piercing: 0.45 # x amount goes through
     - type: MechThrusters
     - type: PointLight
       mask: /Textures/Effects/LightMasks/cone.png
@@ -456,6 +464,10 @@
       baseSprintSpeed: 2.2
     - type: Damageable
       damageModifierSet: HeavyArmorNT
+    - type: InnateArmor
+      modifiers:
+        coefficients:
+          Piercing: 0.40 # x amount goes through
     - type: MechThrusters
     - type: Prying
       pryPowered: true
@@ -527,6 +539,10 @@
       baseSprintSpeed: 3.7
     - type: Damageable
       damageModifierSet: HeavyArmorNT
+    - type: InnateArmor
+      modifiers:
+        coefficients:
+          Piercing: 0.35 # x amount goes through
     - type: MechThrusters
     - type: Prying
       pryPowered: true
@@ -600,7 +616,11 @@
       baseWalkSpeed: 2
       baseSprintSpeed: 4.5
     - type: Damageable
-      damageModifierSet: MediumArmorSyndi
+      damageModifierSet: DarkGygaxArmor
+    - type: InnateArmor
+      modifiers:
+        coefficients:
+          Piercing: 0.48 # x amount goes through
     - type: MechThrusters
     - type: PointLight
       mask: /Textures/Effects/LightMasks/cone.png
@@ -678,6 +698,10 @@
       baseSprintSpeed: 2.2
     - type: Damageable
       damageModifierSet: MaulerArmor
+    - type: InnateArmor
+      modifiers:
+        coefficients:
+          Piercing: 0.40 # x amount goes through
     - type: MechThrusters
     - type: Magboots
     - type: PointLight
@@ -828,6 +852,10 @@
       baseSprintSpeed: 4.5
     - type: Damageable
       damageModifierSet: MediumArmorSyndi
+    - type: InnateArmor
+      modifiers:
+        coefficients:
+          Piercing: 0.48 # x amount goes through
     - type: MechThrusters
     - type: PointLight
       mask: /Textures/Effects/LightMasks/cone.png

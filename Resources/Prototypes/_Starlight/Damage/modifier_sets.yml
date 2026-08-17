@@ -219,7 +219,7 @@
   coefficients:
     Blunt: 0.5
     Slash: 0.5
-    Piercing: 0.35
+    Piercing: 0.6 # 0.35 -> 0.6 + InnateArmor
     Shock: 1.8
     Heat: 0.6
     Structural: 0.4
@@ -232,7 +232,7 @@
   coefficients:
     Blunt: 0.65
     Slash: 0.65
-    Piercing: 0.6
+    Piercing: 0.9 # 0.6 -> 0.9 + InnateArmor
     Shock: 1.4
     Heat: 0.65
     Structural: 0.7
@@ -241,7 +241,7 @@
     Heat: 5
 
 - type: damageModifierSet
-  id: HeavyArmorSyndi
+  id: HeavyArmorSyndi # unused
   coefficients:
     Blunt: 0.5
     Slash: 0.5
