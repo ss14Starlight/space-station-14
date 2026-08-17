@@ -224,13 +224,13 @@
         type: Local
         messages: [ "capsaicin-effect-light-burn" ]
         probability: 0.2
-        # Starlight Begin
-        - !type:ForceSneeze
-          conditions:
-            - !type:ReagentCondition
-              reagent: CapsaicinOil
-              min: 5
-        # Starlight End
+      # Starlight Begin
+      - !type:ForceSneeze
+        conditions:
+        - !type:ReagentCondition
+          reagent: CapsaicinOil
+          min: 5
+      # Starlight End
 
 - type: reagent
   id: CocoaPowder #Candy and chocolate

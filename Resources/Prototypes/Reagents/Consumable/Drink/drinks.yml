@@ -359,7 +359,7 @@
   color: "#619494"
   fizziness: 0.8
   metabolisms: # Starlight start, diona stuff
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 3
@@ -423,7 +423,7 @@
   color: "#0064C8"
   fizziness: 0.4
   metabolisms: # Starlight start, diona stuff
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 3

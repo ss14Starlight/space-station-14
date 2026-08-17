@@ -150,7 +150,7 @@
   flavor: watermelon
   color: "#EF3520"
   metabolisms: # Starlight start, diona stuff
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 3

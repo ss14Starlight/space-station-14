@@ -65,7 +65,7 @@
   fizziness: 0.6
   # Starlight edit start - Make Ale work as a replacement for water for dwarves
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 4
@@ -105,7 +105,7 @@
   fizziness: 0.6
   # Starlight edit start - Make Beer work as food replacement for dwarves
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 1
@@ -162,6 +162,7 @@
       metabolites:
         Ethanol: 0.4
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorCognac # 10% cold resist
         time: 3
@@ -300,6 +301,7 @@
       metabolites:
         Ethanol: 0.4
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorGin # 10% caustic resist
         time: 3
@@ -399,6 +401,7 @@
       metabolites:
         Ethanol: 0.4
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorRum # 10% slash resist
         time: 3
@@ -445,6 +448,7 @@
       metabolites:
         Ethanol: 0.4
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorTequila # 10% heat resist
         time: 3
@@ -469,7 +473,7 @@
   metamorphicChangeColor: false
   # starlight - dwarf drink effects
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -504,6 +508,7 @@
     Digestion:
       metabolites:
         Ethanol: 0.4
+      effects:
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -533,6 +538,7 @@
       metabolites:
         Ethanol: 0.4
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorWhiskey # 10% blunt resist
         time: 3
@@ -614,7 +620,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make AlienBrainHemorrhage heal cellular damage for dwarves
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -646,7 +652,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make AlliesCocktail heal burn for dwarves while in critical
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -695,7 +701,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make Amasec heal like Arithrazine for dwarves
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -729,7 +735,7 @@
   metamorphicChangeColor: false
   # starlight - dwarf drink effects
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -766,6 +772,7 @@
       metabolites:
         Ethanol: 0.3
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorAntifreeze # 50% cold resist
         time: 3
@@ -813,6 +820,7 @@
       metabolites:
         Ethanol: 0.3
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorB52 # 25% Explosion Resist
         time: 3
@@ -954,6 +962,7 @@
       metabolites:
         Ethanol: 0.4
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusDamageBraveBull # +10 Structural
         time: 3
@@ -978,7 +987,7 @@
   metamorphicChangeColor: false
   # starlight - dwarf drink effects
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1047,7 +1056,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make CrushDepth work like Barozine (space immunity) for dwarves
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1098,7 +1107,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make DarkandStormy heal like Insuzine for dwarves
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1130,7 +1139,7 @@
   metamorphicChangeColor: true
   fizziness: 0.3
   metabolisms: # SL vampires
-    Drink:
+    Digestion:
       effects:
       - !type:HealthChange
         conditions:
@@ -1156,7 +1165,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms: # SL vampires
-    Drink:
+    Digestion:
       effects:
       - !type:HealthChange
         conditions:
@@ -1217,6 +1226,7 @@
       metabolites:
         Ethanol: 0.3
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorDriestMartini # 25% Brute Damage Resist
         time: 3
@@ -1256,7 +1266,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make ElectricShark give dwarves slow immunity
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1289,7 +1299,7 @@
   fizziness: 0.15
   # starlight - dwarf drink effects
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1323,6 +1333,7 @@
       metabolites:
         Ethanol: 0.4
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorGargleBlaster # 15% Blunt/Slash/Piercing Resist
         time: 3
@@ -1406,7 +1417,7 @@
   metamorphicChangeColor: true
   # starlight - dwarf drink effects
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1446,7 +1457,7 @@
   color: "#664e00"
   # Starlight edit start - Make Hooch work like Ephedrine for dwarves
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1491,7 +1502,7 @@
   fizziness: 0.6
   # Starlight edit start - Make IcedBeer heal like Dermaline for dwarves
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1528,6 +1539,7 @@
       metabolites:
         Ethanol: 0.3
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusScalarIrishCarBomb # +20% damage with melee weapons
         time: 3
@@ -1555,6 +1567,7 @@
       metabolites:
         Ethanol: 0.4
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusScalarIrishCream # +25% unarmed attack speed
         time: 3
@@ -1582,6 +1595,7 @@
     Digestion:
       metabolites:
         Ethanol: 0.3
+      effects:
       - !type:MovementSpeedModifier
         conditions:
         - !type:MetabolizerTypeCondition
@@ -1670,7 +1684,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make Manhattan give dwarves NoSlip component
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1719,7 +1733,7 @@
   fizziness: 0.7
   # Starlight edit start - Make ManlyDorf heal like Bicaridine for dwarves
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1768,6 +1782,7 @@
     Digestion:
       metabolites:
         Ethanol: 0.3
+      effects:
       - !type:GenericStatusEffect
         conditions:
         - !type:MetabolizerTypeCondition
@@ -1795,7 +1810,7 @@
   fizziness: 0.4
   # Starlight edit start - Make Mead work like Tricordrazine for dwarves
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1868,6 +1883,7 @@
     Digestion:
       metabolites:
         Ethanol: 0.5
+      effects:
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -1922,6 +1938,7 @@
       metabolites:
         Ethanol: 0.4
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorPainkiller # 25% Bloodloss Resist
         time: 3
@@ -1968,6 +1985,7 @@
     Digestion:
       metabolites:
         Ethanol: 0.4
+      effects:
       - !type:ModifyBloodLevel
         conditions:
         - !type:MetabolizerTypeCondition
@@ -2026,7 +2044,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make Radler heal brute for dwarves while in critical
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -2190,7 +2208,7 @@
   fizziness: 0.6
   # starlight - dwarf drink effects
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -2224,6 +2242,7 @@
     Digestion:
       metabolites:
         Ethanol: 0.3
+      effects:
       - !type:ModifyBleed
         conditions:
         - !type:MetabolizerTypeCondition
@@ -2389,6 +2408,7 @@
     Digestion:
       metabolites:
         Ethanol: 0.3
+      effects:
         - !type:HealthChange
           conditions:
           - !type:MetabolizerTypeCondition
@@ -2709,6 +2729,7 @@
         Ethanol: 0.2
         Copper: 0.1
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorMoscowMule # 10% Poison/Radiation Resist
         time: 3
@@ -2812,6 +2833,7 @@
       metabolites:
         Ethanol: 0.6
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: MobThresholdsDeathInTheAfternoon # raise crit to 129, lower death to 130
         time: 3
@@ -2883,6 +2905,7 @@
       metabolites:
         Ethanol: 0.2
     # starlight - dwarf drink effects
+      effects:
       - !type:ModifyStatusEffect
         effectProto: BonusArmorDaiquiri # 10% Blunt/Cold Resist & -5% Piercing/Shock Resist
         time: 3
@@ -2910,6 +2933,7 @@
       metabolites:
         Ethanol: 0.6
   # Starlight edit start - Make TheSunAlsoRises give dwarves NightVision component
+      effects:
       - !type:GenericStatusEffect
         conditions:
         - !type:MetabolizerTypeCondition
@@ -2993,7 +3017,7 @@
           Airloss: -2
           Brute: -2
   # Starlight edit end
-    Alcohol:
+    Metabolites:
       metabolismRate : 0.05
       effects:
       - !type:Drunk

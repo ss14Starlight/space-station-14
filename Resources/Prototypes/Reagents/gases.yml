@@ -236,7 +236,12 @@
         conditions: # Starlight start
           - !type:MetabolizerTypeCondition
             type: [ Cyclorite ]
-            inverted: true # Starlight end
+            inverted: true
+      - !type:ModifyBloodLevel
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        amount: 0.4 # Starlight end
     Respiration:
       effects:
       - !type:Oxygenate
@@ -258,14 +263,6 @@
         ratios:
           NitrousOxide: 1.0
           Nitrogen: -1.0
-    Medicine:
-      effects:
-        - !type:ModifyBloodLevel
-          conditions:
-            - !type:MetabolizerTypeCondition
-              type: [ Cyclorite ]
-          amount: 0.4
-
 - type: reagent
   id: NitrousOxide
   name: reagent-name-nitrous-oxide
