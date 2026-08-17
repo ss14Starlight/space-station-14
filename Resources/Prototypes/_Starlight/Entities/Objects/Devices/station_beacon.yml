@@ -198,7 +198,7 @@
   suffix: ATS
   components:
   - type: NavMapBeacon
-    defaultText: station-beacon-ATS
+    defaultText: station-beacon-ats
   - type: Tag
     tags:
     - NinjaBombingTargetBlocker
