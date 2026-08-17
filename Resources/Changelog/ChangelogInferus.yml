@@ -149,5 +149,12 @@ Entries:
   id: 4401
   time: '2026-08-16T03:33:39.000000+00:00'
   url: https://github.com/InferusSS14/Inferus/pull/44
+- author: Tarazicon
+  changes:
+  - message: Reduced role playtime requirements and made HoS, Captain, and sAI whitelist-only.
+    type: Tweak
+  id: 4601
+  time: '2026-08-17T00:45:17.000000+00:00'
+  url: https://github.com/InferusSS14/Inferus/pull/46
 Order: -1
 
