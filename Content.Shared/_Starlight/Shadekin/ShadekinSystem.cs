@@ -69,6 +69,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private SharedLanguageSystem _language = default!;
     [Dependency] private SharedPointLightSystem _pointLight = default!;
     [Dependency] private INetManager _net = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
     [Dependency] private EntityQuery<ShadegenAffectedComponent> _shadegenAffected = default!;
@@ -81,24 +82,6 @@ public sealed partial class ShadekinSystem : EntitySystem
     private static readonly EntProtoId<GameRuleComponent> _theDarkMap = "TheDarkMap";
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
-
-    private sealed class LightCone
-    {
-        public float Direction { get; set; }
-        public float InnerWidth { get; set; }
-        public float OuterWidth { get; set; }
-    }
-
-    private readonly Dictionary<string, List<LightCone>> _lightMasks = new()
-    {
-        ["/Textures/Effects/LightMasks/cone.png"] =
-            new List<LightCone> { new() { Direction = 0, InnerWidth = 30, OuterWidth = 60 } },
-        ["/Textures/Effects/LightMasks/double_cone.png"] = new List<LightCone>
-        {
-            new() { Direction = 0, InnerWidth = 30, OuterWidth = 60 },
-            new() { Direction = 180, InnerWidth = 30, OuterWidth = 60 }
-        }
-    };
 
     public override void Initialize()
     {
@@ -163,20 +146,14 @@ public sealed partial class ShadekinSystem : EntitySystem
     {
         var (lightPos, lightRot) = _transform.GetWorldPositionRotation(lightUid);
         lightPos += lightRot.RotateVec(lightComp.Offset);
-
-        var (targetPos, targetRot) = _transform.GetWorldPositionRotation(targetUid);
-
+        var targetPos = _transform.GetWorldPosition(targetUid);
         var mapDiff = targetPos - lightPos;
 
-        var oppositeMapDiff = (-lightRot).RotateVec(mapDiff);
-        var angle = oppositeMapDiff.ToWorldAngle();
+        if (MathHelper.CloseTo(mapDiff.LengthSquared(), 0f))
+            return Angle.Zero;
 
-        if (angle == double.NaN && _transform.ContainsEntity(targetUid, lightUid) || _transform.ContainsEntity(lightUid, targetUid))
-        {
-            angle = 0f;
-        }
-
-        return angle;
+        var maskRotation = SharedPointLightSystem.GetMaskWorldRotation(lightComp, lightRot);
+        return mapDiff.ToWorldAngle() - maskRotation;
     }
 
     /// <summary>
@@ -230,22 +207,23 @@ public sealed partial class ShadekinSystem : EntitySystem
             var attenuation = 1 - (denom * denom);
             var calculatedLight = 0f;
 
-            if (lightComp.LightMask is not null)
+            if (_prototype.TryIndex(lightComp.LightMask, out var mask))
             {
                 var angleToTarget = GetAngle(light, lightComp, uid);
-                foreach (var cone in _lightMasks[lightComp.LightMask])
+                foreach (var cone in mask.LightCones)
                 {
-                    float coneLight;
-                    var angleAttenuation = Math.Min((float)Math.Max(cone.OuterWidth - angleToTarget, 0f), cone.InnerWidth) / cone.OuterWidth;
+                    var angleOffset = Math.Abs(Angle.ShortestDistance(angleToTarget, cone.Direction));
 
-                    if (angleToTarget.Degrees - cone.Direction > cone.OuterWidth)
+                    if (angleOffset > cone.OuterWidth)
                         continue;
 
-                    if (angleToTarget.Degrees - cone.Direction > cone.InnerWidth
-                        && angleToTarget.Degrees - cone.Direction < cone.OuterWidth)
-                        coneLight = lightComp.Energy * attenuation * attenuation * angleAttenuation;
-                    else
-                        coneLight = lightComp.Energy * attenuation * attenuation;
+                    var coneLight = lightComp.Energy * attenuation * attenuation;
+                    if (angleOffset > cone.InnerWidth)
+                    {
+                        var angleAttenuation = (float) ((cone.OuterWidth - angleOffset) /
+                            (cone.OuterWidth - cone.InnerWidth));
+                        coneLight *= angleAttenuation;
+                    }
 
                     calculatedLight = Math.Max(calculatedLight, coneLight);
                 }
