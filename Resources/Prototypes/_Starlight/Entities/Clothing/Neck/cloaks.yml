@@ -395,8 +395,6 @@
       sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
-    - type: StealTarget
-      stealGroup: SalvLeadMantle # Veteran one counts too.
 
 - type: entity
   parent: ClothingNeckBase
