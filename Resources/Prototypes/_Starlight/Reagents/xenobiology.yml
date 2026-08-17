@@ -25,7 +25,7 @@
   flavor: medicine
   color: "#a579b5"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:EvenHealthChange
           damage:
@@ -51,7 +51,7 @@
   flavor: medicine
   color: "#50d977"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:ChangeSpeciesFromList
           speciesList:
@@ -110,7 +110,7 @@
   flavor: medicine
   color: "#50d977"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:ChangeSpecies
           species: SlimePerson
@@ -132,7 +132,7 @@
   flavor: medicine
   color: "#50d977"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:MutateIntoEntity
           entity: XenobiologySlimeGray
