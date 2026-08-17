@@ -1,3 +1,4 @@
+using System.Globalization; // Starlight
 using System.Linq; // Starlight-edit
 using Content.Server.Chat.Systems; // Starlight-edit
 using Content.Server.Medical.Components;
@@ -407,14 +408,11 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             foreach (var (reagentId, quantity) in chemicals.OrderByDescending(r => r.Quantity))
             {
                 var localizedName = reagentId;
-                var color = Color.White;
                 if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
-                {
                     localizedName = reagentProto.LocalizedName;
-                    color = reagentProto.SubstanceColor;
-                }
 
-                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, color));
+                var capitalizedName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(localizedName.ToLower());
+                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(capitalizedName), quantity));
             }
         }
         // Starlight END
@@ -491,6 +489,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         if (snapshot.DamageGroups.Count == 0)
         {
             message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-no-injuries"));
+            message.PushNewline(); // Starlight
             // return message.ToMarkup(); // Starlight - removed to allow chemicals section to render
         }
 
@@ -537,7 +536,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                 "health-analyzer-report-chemical-line",
                 ("name", reagent.Name),
                 ("quantity", reagent.Amount));
-            message.AddMarkupOrThrow(HealthAnalyzerFormatting.WrapMarkupWithColor(reagentLine, reagent.Color));
+            message.AddMarkupOrThrow(reagentLine);
             message.PushNewline();
         }
         // Starlight END
@@ -564,6 +563,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
     private sealed record HealthAnalyzerDamageTypeSnapshot(string Name, FixedPoint2 Amount);
 
-    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, Color Color); // Starlight
+    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount); // Starlight
     // Starlight-end
 }
