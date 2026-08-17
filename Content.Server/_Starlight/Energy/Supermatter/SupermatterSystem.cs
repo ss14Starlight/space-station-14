@@ -199,7 +199,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     {
         var radComp = EnsureComp<RadiationSourceComponent>(supermatter.Owner);
         radComp.Intensity = supermatter.Comp.AccRadiation.Float();
-        radComp.Slope = 1.5f;
+        radComp.Slope = Math.Max(0.15f, supermatter.Comp.AccRadiation / 10f); ///As radiation gets stronger, the slope increases, ensuring the rads don't pierce the entire fucking station
 
         supermatter.Comp.AccRadiation /= supermatter.Comp.RadiationStability;
     }

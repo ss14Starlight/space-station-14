@@ -69,8 +69,8 @@
                      max: 2
             - !type:PlaySoundBehavior
               sound:
-                collection: GlassBreak
-            - !type:TriggerBehavior
+                path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+            - !type:ExplodeBehavior
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
     - type: Sprite
@@ -81,6 +81,7 @@
     - type: Icon
       sprite: _Starlight/Objects/Specific/supermatter_cascade.rsi
       state: cascade_1
+    - type: Clickable
     - type: Physics
       bodyType: Static
     - type: Fixtures
@@ -160,6 +161,7 @@
 
 - type: entity
   id: CascadChunk
+  parent: BaseItem
   name: Cascad Chunk
   description: A chunk of degenerate supermatter. The remains are still dangerously radioactive.
   components:
@@ -183,3 +185,27 @@
       color: "#FFFF00"
       radius: 2
       energy: 2.5
+    - type: StaticPrice
+      price: 150
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 1
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            path: /Audio/_Starlight/Effects/supermatter/emitter2.ogg
+        - !type:ExplodeBehavior
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: DamageOnLand
+      damage:
+        types:
+          Blunt: 3
+    - type: Explosive
+      explosionType: Radioactive
+      totalIntensity: 5
+      tileBreakScale: 0.00001
