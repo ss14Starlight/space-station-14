@@ -15,6 +15,7 @@ using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.Railroading.Components.Watchers;
 using Content.Shared.Light.EntitySystems;
+using Robust.Shared.Network;
 
 namespace Content.Shared._Starlight.Shadekin;
 
@@ -29,17 +30,23 @@ public sealed partial class DarkPortalSystem : EntitySystem
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private RailroadingSupercritPortalSystem _railroadingSupercritPortal = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<DarkPortalComponent, OnAttemptPortalEvent>(OnAttemptPortal);
+
+        // Portal entry checks run on both sides, but portal state and anomaly effects are server-authoritative.
+        if (_net.IsClient)
+            return;
+
         SubscribeLocalEvent<DarkPortalComponent, ComponentStartup>(OnInit);
         SubscribeLocalEvent<DarkPortalComponent, AnomalyPulseEvent>(OnPulse);
         SubscribeLocalEvent<DarkPortalComponent, AnomalySupercriticalEvent>(OnSupercritical);
         SubscribeLocalEvent<DarkPortalComponent, AnomalyShutdownEvent>(OnShutdown);
 
         SubscribeLocalEvent<DarkPortalComponent, GetVerbsEvent<InteractionVerb>>(OnGetInteractionVerbs);
-        SubscribeLocalEvent<DarkPortalComponent, OnAttemptPortalEvent>(OnAttemptPortal);
         SubscribeLocalEvent<DarkPortalComponent, ExaminedEvent>(OnExamined);
     }
 
