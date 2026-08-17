@@ -8348,7 +8348,7 @@ entities:
     - type: Transform
       pos: 12.5,2.5
       parent: 1
-- proto: DefaultStationBeaconCargoBay
+- proto: DefaultStationBeaconATS
   entities:
   - uid: 1270
     components:
@@ -8368,9 +8368,6 @@ entities:
       text: ATS Docks
     - type: WarpPoint
       location: ATS Docks
-    - type: Tag
-      tags:
-        - NinjaBombingTargetBlocker
   - uid: 1272
     components:
     - type: Transform
@@ -8380,9 +8377,6 @@ entities:
       text: ATS Engine
     - type: WarpPoint
       location: ATS Engine
-    - type: Tag
-      tags:
-        - NinjaBombingTargetBlocker
   - uid: 1273
     components:
     - type: Transform
@@ -8392,9 +8386,6 @@ entities:
       text: ATS Atmos
     - type: WarpPoint
       location: ATS Atmos
-    - type: Tag
-      tags:
-        - NinjaBombingTargetBlocker
   - uid: 1274
     components:
     - type: Transform
@@ -8404,9 +8395,6 @@ entities:
       text: ATS Medbay
     - type: WarpPoint
       location: ATS Medbay
-    - type: Tag
-      tags:
-        - NinjaBombingTargetBlocker
   - uid: 1275
     components:
     - type: Transform
@@ -8416,9 +8404,6 @@ entities:
       text: ATS Offices
     - type: WarpPoint
       location: ATS Offices
-    - type: Tag
-      tags:
-        - NinjaBombingTargetBlocker
   - uid: 1276
     components:
     - type: Transform
@@ -8428,9 +8413,6 @@ entities:
       text: ATS Kitchen
     - type: WarpPoint
       location: ATS Kitchen
-    - type: Tag
-      tags:
-        - NinjaBombingTargetBlocker
   - uid: 1277
     components:
     - type: Transform
@@ -8440,9 +8422,6 @@ entities:
       text: ATS Break Room
     - type: WarpPoint
       location: ATS Break Room
-    - type: Tag
-      tags:
-        - NinjaBombingTargetBlocker
   - uid: 1278
     components:
     - type: Transform
@@ -8452,9 +8431,6 @@ entities:
       text: ATS Engineering
     - type: WarpPoint
       location: ATS Engineering
-    - type: Tag
-      tags:
-        - NinjaBombingTargetBlocker
 - proto: Defibrillator
   entities:
   - uid: 1279
