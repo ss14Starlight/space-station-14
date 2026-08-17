@@ -162,7 +162,6 @@ public abstract partial class SharedFlashSystem : EntitySystem
     /// <param name="displayPopup">Whether or not to show a popup to the target player.</param>
     /// <param name="melee">Was this flash caused by a melee attack? Used for checking for revolutionary conversion.</param>
     /// <param name="stunDuration">The time the target will be stunned. If null the target will be slowed down instead.</param>
-    /// <param name="overrideFlashImmunity">Whether to override flash immunity checks.</param> (STARLIGHT EDIT)
     public void Flash(
         EntityUid target,
         EntityUid? user,
@@ -171,8 +170,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
         float slowTo,
         bool displayPopup = true,
         bool melee = false,
-        TimeSpan? stunDuration = null,
-        bool overrideFlashImmunity = false)
+        TimeSpan? stunDuration = null)
     {
         var attempt = new FlashAttemptEvent(target, user, used);
         RaiseLocalEvent(target, ref attempt, true);
@@ -191,7 +189,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
         #endregion Starlight
 
         // don't paralyze, slowdown or convert to rev if the target is immune to flashes; STARLIGHT EDIT - functionality added to override flash immunity
-        if (!overrideFlashImmunity && !_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, flashDuration, true))
+        if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, flashDuration, true))
             return;
 
         if (stunDuration != null)
@@ -224,10 +222,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
     /// <param name="displayPopup">Whether or not to show a popup to the target player.</param>
     /// <param name="probability">Chance to be flashed. Rolled separately for each target in range.</param>
     /// <param name="sound">Additional sound to play at the source.</param>
-    /// starlight edit - start
-    /// <param name="overrideFlashImmunity">Whether to override flash immunity checks.</param>
-    /// <param name="ignoreEntities">Entities to ignore when flashing.</param>
-    /// starlight edit - end
+    /// <param name="ignoreEntities">Entities to ignore when flashing.</param> (STARLIGHT EDIT)
     public void FlashArea(
         EntityUid source, 
         EntityUid? user, 
@@ -237,7 +232,6 @@ public abstract partial class SharedFlashSystem : EntitySystem
         bool displayPopup = false, 
         float probability = 1f, 
         SoundSpecifier? sound = null,
-        bool overrideFlashImmunity = false,
         List<EntityUid>? ignoreEntities = null)
     {
         var transform = Transform(source);
@@ -270,7 +264,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
                 continue;
 
             // starlight edit - hardcoded melee and stun duration parameters and functionality to override flash immunity
-            Flash(entity, user, source, flashDuration, slowTo, displayPopup, false, null, overrideFlashImmunity);
+            Flash(entity, user, source, flashDuration, slowTo, displayPopup, false, null);
         }
 
         _audio.PlayPredicted(sound, source, user, AudioParams.Default.WithVolume(1f).WithMaxDistance(3f));
