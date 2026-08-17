@@ -15,6 +15,8 @@ public sealed partial class DestinyDiceComponent : Component
     [DataField("groups"), AutoNetworkedField] public List<DestinyDiceEffectGroup> EffectGroups = [];
     /// Effect group preset prototype to populate <see cref="EffectGroups"/> with, if defined to make prototyping simpler.
     [DataField, AutoNetworkedField] public ProtoId<DestinyDicePresetPrototype>? Preset;
+    /// Tracker to prevent <see cref="Robust.Shared.GameObjects.ComponentStartup"/> from adding preset groups more than once.
+    [ViewVariables, AutoNetworkedField] public bool PresetAdded;
 
     /// Message that pops up when the rolled value has no associated effect/groups.
     [DataField, AutoNetworkedField] public string? NoEffectMessage;

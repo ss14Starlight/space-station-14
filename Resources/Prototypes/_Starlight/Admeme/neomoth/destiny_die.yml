@@ -68,6 +68,16 @@
               targetData:
                 type: Self
 
+- type: entity
+  parent: d4Dice
+  name: Destiny Die
+  id: DestinyDieD4RiggedTest
+  components:
+    - type: Dice
+      riggedValue: 1
+    - type: DestinyDice
+      preset: TestPreset
+
 - type: destinyDiceEffect
   id: TestEffect
   entityEffect: !type:DestinyDiceProxyEffect
@@ -75,13 +85,13 @@
       - !type:SpawnEntity
         predicted: true
         entity: MobKoni
-    targetData:
-      type: Self
+  targetData:
+    type: Self
 
 - type: destinyDiceEffectGroup
   id: TestGroup
   targetRolls:
-    - targetValue: 3
+    - targetValue: 1
   successMessage: meow!!
   successPopupType: Medium
   delay: 1

@@ -35,4 +35,11 @@ public sealed partial class DiceComponent : Component
     [AutoNetworkedField]
     public int CurrentValue { get; set; } = 20;
 
+    #region Starlight
+
+    /// Value to rig the outcome of the roll for more consistent testing.
+    [DataField, AutoNetworkedField] public int? RiggedValue;
+
+    #endregion
+
 }

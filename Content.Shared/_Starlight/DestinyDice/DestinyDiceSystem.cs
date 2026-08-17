@@ -58,14 +58,16 @@ public sealed partial class DestinyDiceSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _aLog = default!;
     // TODO: nuke system stuff on server
 
-    // Opting to do this instead of entity query enumerator.
+    /// List of all active destiny dice.
     private readonly List<Entity<DestinyDiceComponent>> _activeDice = [];
+    /// List of all active destiny dice that are being actively predicted as well as their effects.
+    private readonly Dictionary<Entity<DestinyDiceComponent>, DestinyDiceEffect> _predictedDice = [];
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DestinyDiceComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<DestinyDiceComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         SubscribeLocalEvent<DestinyDiceComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<DestinyDiceComponent, ThrownEvent>(OnThrown);
@@ -74,13 +76,9 @@ public sealed partial class DestinyDiceSystem : EntitySystem
         SubscribeLocalEvent<DestinyDiceComponent, DiceRolledEvent>(OnDiceRolled);
     }
 
-    private void OnMapInit(Entity<DestinyDiceComponent> ent, ref MapInitEvent args)
+    private void OnComponentStartup(Entity<DestinyDiceComponent> ent, ref ComponentStartup args)
     {
-        /*
-         * TODO: FIGURE OUT WHY THE FUCK THIS RUNS ON CLIENT BUT DOESN'T ACTUALLY KEEP THE NEW GROUP IN THE
-         * CLIENTSIDE COMPONENT NO, I CANNOT DIRTY THE ENTITY/COMPONENT. ENTITY EFFECTS ARE WEIRD AND DONT LIKE IT.
-         */
-        if (ent.Comp.Preset is null) return;
+        if (ent.Comp.PresetAdded || ent.Comp.Preset is null) return;
         if (!_proto.TryIndex(ent.Comp.Preset, out var preset)) return;
 
         List<DestinyDiceEffectGroup> groups = [];
@@ -102,6 +100,7 @@ public sealed partial class DestinyDiceSystem : EntitySystem
         }
 
         ent.Comp.EffectGroups.AddRange(groups);
+        ent.Comp.PresetAdded = true;
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev) =>
@@ -224,138 +223,153 @@ public sealed partial class DestinyDiceSystem : EntitySystem
 
     public override void Update(float delta)
     {
+        Log.Info("yuppers.");
         foreach (var ent in _activeDice.ToList())
+            ProcessDice(ent);
+    }
+
+    private void ProcessDice(Entity<DestinyDiceComponent> ent)
+    {
+        Log.Info($"{_timing.CurTime}, {_timing.IsFirstTimePredicted}");
+        var (uid, comp) = ent;
+        var group = comp.CurrentEffectGroup;
+
+        if (group is null || !comp.IsActive || comp.CurrentEffectIndex >= group.Effects.Count)
         {
-            var (uid, comp) = ent;
-            var group = comp.CurrentEffectGroup;
-            //
-            // // Allow prediction to work properly
-            // if (_net.IsClient && _timing is { InPrediction: true, IsFirstTimePredicted: false })
-            //     comp.CurrentEffectIndex--;
+            _activeDice.Remove(ent);
+            comp.IsActive = false;
+            comp.IsPending = false;
+            comp.CurrentEffectIndex = 0;
+            comp.CurrentEffectGroup = null;
+            comp.CurrentEffect = null;
+            comp.EffectResults.Clear();
+            Log.Info("CLEARING EVERYTHING!!!!");
+            return;
+        }
 
-            if (group is null || !comp.IsActive || comp.CurrentEffectIndex >= group.Effects.Count)
+        // Skip if waiting for delay or for event.
+        if (_timing.CurTime < comp.GroupStartTime) return;
+        Log.Info("GROUP TIME PASS");
+
+        if (comp is { IsPending: true, CurrentEffectGroup: not null })
+        {
+            comp.NextEffectTriggerTime = _timing.CurTime + TimeSpan.FromSeconds(comp.CurrentEffectGroup.Delay);
+
+            if (comp.CurrentEffectGroup.SuccessMessage is not null)
+                _popup.PopupPredicted(Loc.GetString(comp.CurrentEffectGroup.SuccessMessage), uid, comp.ActiveRoller,
+                    comp.CurrentEffectGroup.SuccessPopupType);
+
+            comp.IsPending = false;
+        }
+
+        if (_timing.CurTime < comp.NextEffectTriggerTime) return;
+        if (comp.WaitingForEffectEnd) return;
+        Log.Info("EFFECT TIME PASS");
+
+        DestinyDiceEffect? effect = null;
+        var earlyFinish = false;
+        var foundValidEffect = false;
+
+        // If one effect fails we want to try and start the next one immediately if possible.
+        // Basically just going until we find an effect that passes checks or until we exhaust the list.
+        var index = comp.CurrentEffectIndex;
+
+        while (index < group.Effects.Count)
+        {
+            effect = group.Effects[index++];
+            effect.TimesRolled++;
+
+            if (effect.EntityEffect is null) continue; // Not valid.
+            Log.Info("EFFECT NULL PASS");
+
+            // Check for probability and conditions etc
+            if ((effect.MaxRolls > -1 && effect.TimesRolled >= effect.MaxRolls) ||
+                (effect.MaxTriggers > -1 && effect.TimesTriggered >= effect.MaxTriggers))
             {
-                _activeDice.Remove(ent);
-                comp.IsActive = false;
-                comp.IsPending = false;
-                comp.CurrentEffectIndex = 0;
-                comp.CurrentEffectGroup = null;
-                comp.CurrentEffect = null;
-                comp.EffectResults.Clear();
-                continue;
-            }
-
-            // Skip if waiting for delay or for event.
-            if (_timing.CurTime < comp.GroupStartTime) continue;
-
-            if (comp is { IsPending: true, CurrentEffectGroup: not null })
-            {
-                comp.NextEffectTriggerTime = _timing.CurTime + TimeSpan.FromSeconds(comp.CurrentEffectGroup.Delay);
-
-                if(comp.CurrentEffectGroup.SuccessMessage is not null)
-                    _popup.PopupPredicted(Loc.GetString(comp.CurrentEffectGroup.SuccessMessage), uid, comp.ActiveRoller,
-                        comp.CurrentEffectGroup.SuccessPopupType);
-
-                comp.IsPending = false;
-            }
-
-            if (_timing.CurTime < comp.NextEffectTriggerTime) continue;
-            if (comp.WaitingForEffectEnd) continue;
-
-            DestinyDiceEffect? effect = null;
-            var earlyFinish = false;
-            var foundValidEffect = false;
-
-            // If one effect fails we want to try and start the next one immediately if possible.
-            // Basically just going until we find an effect that passes checks or until we exhaust the list.
-            while (comp.CurrentEffectIndex < group.Effects.Count)
-            {
-                effect = group.Effects[comp.CurrentEffectIndex++];
-                effect.TimesRolled++;
-
-                if (effect.EntityEffect is null) continue; // Not valid.
-
-                // Check for probability and conditions etc
-                if ((effect.MaxRolls > -1 && effect.TimesRolled >= effect.MaxRolls) ||
-                    (effect.MaxTriggers > -1 && effect.TimesTriggered >= effect.MaxTriggers))
+                if (effect.ExhaustedMessage is not null)
+                    _popup.PopupPredicted(Loc.GetString(effect.ExhaustedMessage), uid, comp.ActiveRoller,
+                        effect.ExhaustedPopupType);
+                comp.EffectResults.Add(effect, false);
+                if (effect.RequiredTrigger)
                 {
-                    if (effect.ExhaustedMessage is not null)
-                        _popup.PopupPredicted(Loc.GetString(effect.ExhaustedMessage), uid, comp.ActiveRoller, effect.ExhaustedPopupType);
-                    comp.EffectResults.Add(effect, false);
-                    if (effect.RequiredTrigger)
-                    {
-                        earlyFinish = true;
-                        break;
-                    }
-                    continue;
-                }
-
-                if (effect.EntityEffect.Conditions is not null)
-                    switch (effect.AllConditionsMustPass)
-                    {
-                        case true when !_conditions.TryConditions(uid, effect.EntityEffect.Conditions?.ToArray()):
-                        case false when !_conditions.TryAnyCondition(uid, effect.EntityEffect.Conditions?.ToArray()):
-                            {
-                                comp.EffectResults.Add(effect, false);
-                                if (effect.RequiredTrigger)
-                                {
-                                    earlyFinish = true;
-                                    break;
-                                }
-                                continue;
-                            }
-                    }
-
-                var dependencyFail = false;
-                foreach (var foundEffect in effect.DependsOnIds
-                             .Select(id => group.Effects.FirstOrDefault(x => x.EffectId == id))
-                             .OfType<DestinyDiceEffect>())
-                {
-                    if (!comp.EffectResults.TryGetValue(foundEffect, out var effectResult)) continue;
-                    if (effectResult) continue;
-                    dependencyFail = true;
-                    comp.EffectResults.Add(effect, false);
-                    if (effect.RequiredTrigger)
-                        earlyFinish = true;
+                    earlyFinish = true;
                     break;
                 }
 
-                if (dependencyFail) break;
-
-                if (!_random.ProbPredicted(_timing, effect.Probability))
-                {
-                    comp.EffectResults.Add(effect, false);
-                    if (effect.RequiredTrigger)
-                    {
-                        earlyFinish = true;
-                        break;
-                    }
-                    continue;
-                }
-
-                foundValidEffect = true;
-                break;
-            }
-
-            if (earlyFinish || !foundValidEffect || effect?.EntityEffect is null)
-            {
-                if (effect?.FailureMessage is not null)
-                    _popup.PopupPredicted(Loc.GetString(effect.FailureMessage), uid, comp.ActiveRoller, effect.FailurePopupType);
-                comp.IsActive = false;
-                _activeDice.Remove(ent);
                 continue;
             }
 
-            effect.TimesTriggered++;
-            comp.EffectResults.Add(effect, true);
-            comp.CurrentEffect = effect;
-            if (effect.EndOnEvent) comp.WaitingForEffectEnd = true;
-            else comp.NextEffectTriggerTime = _timing.CurTime + TimeSpan.FromSeconds(effect.Delay);
-            if (effect.SuccessMessage is not null)
-                _popup.PopupPredicted(Loc.GetString(effect.SuccessMessage), uid, comp.ActiveRoller, effect.SuccessPopupType);
-            // Effect is applied unconditionally here as effects are checked manually earlier.
-            _effects.ApplyEffect(uid, effect.EntityEffect, user: uid);
+            if (effect.EntityEffect.Conditions is not null)
+                switch (effect.AllConditionsMustPass)
+                {
+                    case true when !_conditions.TryConditions(uid, effect.EntityEffect.Conditions?.ToArray()):
+                    case false when !_conditions.TryAnyCondition(uid, effect.EntityEffect.Conditions?.ToArray()):
+                        {
+                            comp.EffectResults.Add(effect, false);
+                            if (effect.RequiredTrigger)
+                            {
+                                earlyFinish = true;
+                                break;
+                            }
+
+                            continue;
+                        }
+                }
+
+            var dependencyFail = false;
+            foreach (var foundEffect in effect.DependsOnIds
+                         .Select(id => group.Effects.FirstOrDefault(x => x.EffectId == id))
+                         .OfType<DestinyDiceEffect>())
+            {
+                if (!comp.EffectResults.TryGetValue(foundEffect, out var effectResult)) continue;
+                if (effectResult) continue;
+                dependencyFail = true;
+                comp.EffectResults.Add(effect, false);
+                if (effect.RequiredTrigger)
+                    earlyFinish = true;
+                break;
+            }
+
+            if (dependencyFail) break;
+
+            if (!_random.ProbPredicted(_timing, effect.Probability))
+            {
+                comp.EffectResults.Add(effect, false);
+                if (effect.RequiredTrigger)
+                {
+                    earlyFinish = true;
+                    break;
+                }
+
+                continue;
+            }
+
+            foundValidEffect = true;
+            break;
         }
+
+        if (earlyFinish || !foundValidEffect || effect?.EntityEffect is null)
+        {
+            if (effect?.FailureMessage is not null)
+                _popup.PopupPredicted(Loc.GetString(effect.FailureMessage), uid, comp.ActiveRoller,
+                    effect.FailurePopupType);
+            comp.IsActive = false;
+            _activeDice.Remove(ent);
+            return;
+        }
+
+        effect.TimesTriggered++;
+        comp.EffectResults.Add(effect, true);
+        comp.CurrentEffect = effect;
+        if (effect.EndOnEvent) comp.WaitingForEffectEnd = true;
+        else comp.NextEffectTriggerTime = _timing.CurTime + TimeSpan.FromSeconds(effect.Delay);
+        if (effect.SuccessMessage is not null)
+            _popup.PopupPredicted(Loc.GetString(effect.SuccessMessage), uid, comp.ActiveRoller,
+                effect.SuccessPopupType);
+        // Effect is applied unconditionally here as effects are checked manually earlier.
+        Log.Info("RUNNING EFFECT!!!!!!!");
+        _effects.ApplyEffect(uid, effect.EntityEffect, user: uid);
+        comp.CurrentEffectIndex = index;
     }
 
     /// Quick helper to assign active values to the component for the current effect to reference.
@@ -432,7 +446,7 @@ public sealed partial class DestinyDiceSystem : EntitySystem
     }
     // ReSharper restore UseCollectionExpression
 
-    private DestinyDiceEffectGroup ProtoToGroup(DestinyDiceEffectGroupPrototype prototype) =>
+    private static DestinyDiceEffectGroup ProtoToGroup(DestinyDiceEffectGroupPrototype prototype) =>
         new()
         {
             RollData = prototype.RollData,
@@ -450,7 +464,7 @@ public sealed partial class DestinyDiceSystem : EntitySystem
             ExhaustedMessage = prototype.ExhaustedMessage
         };
 
-    private DestinyDiceEffect ProtoToEffect(DestinyDiceEffectPrototype prototype) =>
+    private static DestinyDiceEffect ProtoToEffect(DestinyDiceEffectPrototype prototype) =>
         new()
         {
             TargetData = prototype.TargetData,

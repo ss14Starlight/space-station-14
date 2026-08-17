@@ -85,6 +85,7 @@ public abstract partial class SharedDiceSystem : EntitySystem
             if (_timing.CurTime < dd.NextAllowedRollTime || dd.IsActive)
                 noRoll = true;
         if (noRoll) roll = entity.Comp.CurrentValue;
+        if (entity.Comp.RiggedValue.HasValue) roll = entity.Comp.RiggedValue.Value;
         // Starlight end
         SetCurrentSide(entity, roll);
         // Starlight begin

@@ -84,9 +84,9 @@ public sealed partial class TriggerSystem
                 return;
 
             if (predicted)
-                PredictedSpawnAttachedTo(proto, coords);
+                PredictedSpawnAttachedTo(proto, coords, overrides); // Starlight edit
             else if (_net.IsServer)
-                SpawnAttachedTo(proto, coords);
+                SpawnAttachedTo(proto, coords, overrides); // Starlight edit
         }
     }
 
