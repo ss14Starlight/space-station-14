@@ -34,17 +34,28 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         SubscribeLocalEvent<CosmicSacrificedCrewConditionComponent, ObjectiveGetProgressEvent>(OnGetSacrificedCrewProgress);
     }
 
+
     private void OnEffigyRequirementCheck(EntityUid uid, CosmicEffigyConditionComponent comp, ref RequirementCheckEvent args)
     {
         if (args.Cancelled || !_roles.MindHasRole<CosmicColossusRoleComponent>(args.MindId))
             return;
 
-        // Only pick beacons on the same owning station as the colossus.
-        // This avoids selecting CentCom or unrelated grids that happen to have warp beacons.
-        var station = args.Mind.CurrentEntity is { } currentEntity
-            ? _station.GetOwningStation(currentEntity)
-            : null;
+        if (args.Mind.CurrentEntity is not { } currentEntity)
+        {
+            args.Cancelled = true;
+            return;
+        }
 
+        var xform = Transform(currentEntity);
+
+        // Colossus must spawn on a grid.
+        if (xform.GridUid is not { } currentGrid)
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        var station = _station.GetOwningStation(currentEntity);
         if (station is null)
         {
             args.Cancelled = true;
@@ -53,19 +64,56 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
 
         var warps = new List<EntityUid>();
         var query = EntityQueryEnumerator<WarpPointComponent>();
+
+        // First: try beacons on the Colossus's current grid.
         while (query.MoveNext(out var warpUid, out var warp))
         {
-            if (warp.Location != null && _station.GetOwningStation(warpUid) == station)
+            if (warp.Location == null)
+                continue;
+
+            if (Transform(warpUid).GridUid != currentGrid)
+                continue;
+
+            if (_station.GetOwningStation(warpUid) != station)
+                continue;
+
+            warps.Add(warpUid);
+        }
+
+        // No beacon on the current grid: fall back to the station's largest grid.
+        if (warps.Count == 0)
+        {
+            var stationGrid = _station.GetLargestGrid((station.Value, null));
+
+            if (stationGrid is null)
             {
+                args.Cancelled = true;
+                return;
+            }
+
+            query = EntityQueryEnumerator<WarpPointComponent>();
+
+            while (query.MoveNext(out var warpUid, out var warp))
+            {
+                if (warp.Location == null)
+                    continue;
+
+                if (Transform(warpUid).GridUid != stationGrid)
+                    continue;
+
+                if (_station.GetOwningStation(warpUid) != station)
+                    continue;
+
                 warps.Add(warpUid);
             }
         }
-
-        if (warps.Count <= 0)
+        // No valid beacon found.
+        if (warps.Count == 0)
         {
             args.Cancelled = true;
             return;
         }
+
         comp.EffigyTarget = _random.Pick(warps);
     }
 

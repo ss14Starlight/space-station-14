@@ -57,6 +57,10 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         _codeCondition.SetCompleted(ent.Owner, ent.Comp.EffigyObjective);
         var effigy = Spawn(ent.Comp.EffigyPrototype, pos);
 
+        // Free the Colossus of the location
+        if (_mind.TryGetObjectiveComp<CosmicEffigyConditionComponent>(ent, out var obj))
+            obj.EffigyTarget = null;
+
         var effigyComp = EnsureComp<CosmicEffigyComponent>(effigy);
         effigyComp.Colossus = ent.Owner;
 
