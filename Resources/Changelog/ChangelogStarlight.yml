@@ -1,34 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Colossus Sunder ability can now pass through windows, girders, and open doors.
-    type: Tweak
-  id: 407286
-  time: '2026-08-04T09:55:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5344
-- author: SirLutz
-  changes:
-  - message: Colossus healing now has two charges, which recharge every 8 minutes.
-    type: Tweak
-  id: 407287
-  time: '2026-08-04T09:55:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5344
-- author: SirLutz
-  changes:
-  - message: Colossus can create another effigy 4 minutes after the previous one vanishes (crit, decay, or deletion).
-    type: Tweak
-  id: 407288
-  time: '2026-08-04T09:55:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5344
-- author: SirLutz
-  changes:
-  - message: Colossus is now able to cross spiderwebs without slowdown.
-    type: Tweak
-  id: 407289
-  time: '2026-08-04T09:55:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5344
-- author: SirLutz
-  changes:
   - message: Malign passageways automatically close after opening without requiring power.
     type: Add
   id: 407290
@@ -2799,4 +2771,32 @@ Entries:
   id: 407685
   time: '2026-08-17T11:23:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5219
+- author: STARLIGHT TEAM
+  changes:
+  - message: Lizard plushie and lizard sword chemistry recipes.
+    type: Add
+  id: 407686
+  time: '2026-08-17T11:47:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5412
+- author: STARLIGHT TEAM
+  changes:
+  - message: Amethyst Lizitar. Hew!
+    type: Add
+  id: 407687
+  time: '2026-08-17T11:47:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5412
+- author: STARLIGHT TEAM
+  changes:
+  - message: Lizard swords inject a little bit of juice on hit. Weh!
+    type: Tweak
+  id: 407688
+  time: '2026-08-17T11:47:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5412
+- author: STARLIGHT TEAM
+  changes:
+  - message: Amethyst lizard sword added to maints weapon pool and grand lottery loot pool.
+    type: Tweak
+  id: 407689
+  time: '2026-08-17T11:47:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5412
 Order: -1
