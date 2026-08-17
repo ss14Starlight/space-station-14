@@ -119,7 +119,7 @@ evolutionmenu-utility-stims-desc =
 evolutionmenu-utility-fleshmend-name = Fleshmend
 evolutionmenu-utility-fleshmend-desc =
     Rapidly heal yourself of all bruises and burns.
-    WARNING: Requires you to absorb at least 2 organics to use the ability.
+    WARNING: Requires you to absorb at least 2 organics to use the ability. // starlight edit
     Costs 35 chemicals.
 
 # Starlight - monkey form is permanent (until transform is fixed, at least)
