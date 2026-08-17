@@ -4,6 +4,9 @@
   parent: MobBaseScurret
   id: MobPlayerScurret
   components:
+  - type: Absorbable
+  - type: Hunger
+  - type: Thirst
   - type: HumanoidAppearance
     species: Scurret
   - type: NameIdentifier
