@@ -17,6 +17,10 @@
   - !type:RoleTimeRequirement
     role: AntagThief # Learn how to be subversive and stealthy.
     time: 1h
+  - !type:SpeciesRequirement
+    species:
+      - IPC # IPC's as ninjas is a horrible idea (EMP Implants, Spawns in space e.t.c)
+    inverted: true
   playTimeTracker: AntagNinja
   # Starlight end
 
