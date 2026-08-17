@@ -3,7 +3,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Body.Components;
+namespace Content.Shared._Starlight.Medical.Body.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(StomachSystem))]
 public sealed partial class StomachComponent : Component

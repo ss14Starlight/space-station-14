@@ -1,8 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared.Body.Events;
-using Content.Shared.Body.Systems;
-using Content.Shared.Body;
+using Content.Shared._Starlight.Medical.Body.Components;
+using Content.Shared._Starlight.Medical.Body.Events;
+using Content.Shared._Starlight.Medical.Body.Prototypes;
+using Content.Shared._Starlight.Railroading.Events;
+using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -19,23 +21,19 @@ using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared._Starlight.Medical.Body.Events;
-using Content.Shared._Starlight.Medical.Body.Prototypes;
-using Content.Shared._Starlight.Medical.Body.Systems;
 
-namespace Content.Shared.Metabolism;
+namespace Content.Shared._Starlight.Medical.Body.Systems;
 
 /// <inheritdoc/>
 public sealed class MetabolizerSystem : EntitySystem
 {
-    [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private MobStateSystem _mobStateSystem = default!;
-    [Dependency] private SharedEntityConditionsSystem _entityConditions = default!;
-    [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
-    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly SharedEntityConditionsSystem _entityConditions = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
     private EntityQuery<OrganComponent> _organQuery;
     private EntityQuery<SolutionContainerManagerComponent> _solutionQuery;
@@ -47,13 +45,19 @@ public sealed class MetabolizerSystem : EntitySystem
         _organQuery = GetEntityQuery<OrganComponent>();
         _solutionQuery = GetEntityQuery<SolutionContainerManagerComponent>();
 
-    private void OnMapInit(Entity<MetabolizerComponent> ent, ref MapInitEvent args)
-        => ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
+        SubscribeLocalEvent<MetabolizerComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<MetabolizerComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
+    }
 
-    private void OnApplyMetabolicMultiplier(Entity<MetabolizerComponent> ent, ref BodyRelayedEvent<ApplyMetabolicMultiplierEvent> args)
+    private void OnMapInit(Entity<MetabolizerComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
+    }
+
+    private void OnApplyMetabolicMultiplier(Entity<MetabolizerComponent> ent,
+        ref ApplyMetabolicMultiplierEvent args)
     {
         ent.Comp.UpdateIntervalMultiplier = args.Multiplier;
-        Dirty(ent);
     }
 
     public override void Update(float frameTime)
@@ -159,8 +163,8 @@ public sealed class MetabolizerSystem : EntitySystem
         _random.Shuffle(list);
 
         var isDead = _mobStateSystem.IsDead(solutionOwner.Value);
-
-        var actualEntity = ent.Comp2?.Body ?? solutionEntityUid.Value;
+        // Needed before the unknown-reagent branch so railroading observes every metabolized reagent.
+        var actualEntity = ent.Comp2?.Body ?? solutionOwner.Value;
 
         int reagents = 0;
         foreach (var (reagent, quantity) in list)
@@ -183,12 +187,13 @@ public sealed class MetabolizerSystem : EntitySystem
                 }
                 else
                 {
-                        mostToRemove = FixedPoint2.Clamp(quantity, 0, 1);
-
-                        var @event = new RailroadingReagentMetabolizedEvent(new ReagentQuantity(reagent, mostToRemove));
-                        RaiseLocalEvent(actualEntity, ref @event);
-
-                        solution.RemoveReagent(reagent, mostToRemove);
+                    var unknownToRemove = FixedPoint2.Clamp(FixedPoint2.New(1), 0, quantity);
+                    if (unknownToRemove > FixedPoint2.Zero)
+                    {
+                        var metabolized = new RailroadingReagentMetabolizedEvent(new ReagentQuantity(reagent, unknownToRemove));
+                        RaiseLocalEvent(actualEntity, ref metabolized);
+                        solution.RemoveReagent(reagent, unknownToRemove);
+                    }
                 }
 
                 continue;
@@ -212,8 +217,6 @@ public sealed class MetabolizerSystem : EntitySystem
             // still remove reagents
             if (isDead && !proto.WorksOnTheDead)
                 continue;
-
-            var actualEntity = ent.Comp2?.Body ?? solutionOwner.Value;
 
             // do all effects, if conditions apply
             foreach (var effect in entry.Effects)
@@ -252,9 +255,8 @@ public sealed class MetabolizerSystem : EntitySystem
             // remove a certain amount of reagent
             if (mostToRemove > FixedPoint2.Zero)
             {
-                    var @event = new RailroadingReagentMetabolizedEvent(new ReagentQuantity(reagent, mostToRemove));
-                    RaiseLocalEvent(actualEntity, ref @event);
-
+                var metabolized = new RailroadingReagentMetabolizedEvent(new ReagentQuantity(reagent, mostToRemove));
+                RaiseLocalEvent(actualEntity, ref metabolized);
                 solution.RemoveReagent(reagent, mostToRemove);
 
                 // We have processed a reagant, so count it towards the cap
@@ -317,43 +319,10 @@ public sealed class MetabolizerSystem : EntitySystem
                         continue;
                     break;
             }
+
             return false;
         }
+
         return true;
-    }
-
-    public bool TryAddMetabolizerType(Entity<MetabolizerComponent> ent, string metabolizerType)
-    {
-        if (!_prototypeManager.HasIndex<MetabolizerTypePrototype>(metabolizerType))
-            return false;
-
-        ent.Comp.MetabolizerTypes ??= new();
-        if (!ent.Comp.MetabolizerTypes.Add(metabolizerType))
-            return false;
-
-        Dirty(ent);
-        return true;
-    }
-
-    public bool TryRemoveMetabolizerType(Entity<MetabolizerComponent> ent, string metabolizerType)
-    {
-        if (ent.Comp.MetabolizerTypes == null)
-            return true;
-
-        if (!ent.Comp.MetabolizerTypes.Remove(metabolizerType))
-            return false;
-
-        Dirty(ent);
-        return true;
-    }
-
-    public void ClearMetabolizerTypes(Entity<MetabolizerComponent> ent)
-    {
-        if (ent.Comp.MetabolizerTypes == null || ent.Comp.MetabolizerTypes.Count == 0)
-            return;
-
-        ent.Comp.MetabolizerTypes.Clear();
-        Dirty(ent);
     }
 }
-

@@ -1,4 +1,4 @@
-using Content.Shared.Body.Components;
+using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -7,7 +7,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Medical.Body.Events;
 
-namespace Content.Shared.Body.Systems;
+namespace Content.Shared._Starlight.Medical.Body.Systems;
 
 public sealed class StomachSystem : EntitySystem
 {

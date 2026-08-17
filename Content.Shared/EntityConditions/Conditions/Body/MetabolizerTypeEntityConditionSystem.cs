@@ -1,7 +1,6 @@
-using System.Linq;
+using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared.Localizations;
-using Content.Shared.Metabolism;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.EntityConditions.Conditions.Body;

@@ -27,6 +27,7 @@ using Robust.Shared.Prototypes;
 #region Starlight
 using Content.Shared.Body.Organ;
 using Content.Shared._Starlight.Abstract.Extensions;
+using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
 #endregion
 

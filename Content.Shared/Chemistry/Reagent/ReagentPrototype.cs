@@ -6,7 +6,6 @@ using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Contraband;
 using Content.Shared.EntityEffects;
 using Content.Shared.Localizations;
-using Content.Shared.Metabolism;
 using Content.Shared.Nutrition;
 using Content.Shared.Roles;
 using Content.Shared.Slippery;
