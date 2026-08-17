@@ -104,7 +104,7 @@ public sealed partial class ProtoNitratePlasmaReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Zauker, -decomposeZauker);
         mixture.AdjustMoles(Gas.ZXA, -decomposeZXA);
 
-        var energyReleased = (Atmospherics.ProtoNitrateBZConversionEnergy * (production + (production * 100f/pressure)));
+        var energyReleased = ((Atmospherics.ProtoNitrateBZConversionEnergy / heatScale) * (production + (production * 100f/pressure)));
 
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)

@@ -70,7 +70,7 @@ public sealed partial class PluoxHydrogenFire : IGasReactionEffect
         mixture.AdjustMoles(Gas.Pluoxium, -burn * 0.5f);
         mixture.AdjustMoles(Gas.WaterVapor, burn);
 
-        var energyReleased = (Atmospherics.FireHydrogenEnergyReleased * burn);
+        var energyReleased = ((Atmospherics.FireHydrogenEnergyReleased / heatScale) * burn);
 
 ///While generic conversion interactions make sense to me, the exact mechanics of fire and fire visuals, do not.
 
