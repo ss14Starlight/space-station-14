@@ -220,7 +220,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             mixture.AdjustMoles(Gas.BZ, -BZRate);
             mixture.AdjustMoles(Gas.Oxygen, BZRate * 0.2f);
             mixture.AdjustMoles(Gas.Halon, BZRate * 2f);
-            var energyReleased = BZRate * Atmospherics.HalonProductionEnergy;
+            var energyReleased = BZRate * (Atmospherics.HalonProductionEnergy / heatScale);
 
             var newHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
             if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
