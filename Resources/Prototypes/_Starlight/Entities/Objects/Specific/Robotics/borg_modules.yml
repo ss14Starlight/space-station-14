@@ -206,6 +206,7 @@
           - PlayingCardDeck
           - PlayingCardHand
           - TabletopGame
+          - Dice
     - hand:
         emptyRepresentative: SpaceCash
         emptyLabel: borg-slot-games-gambling-empty
@@ -219,6 +220,7 @@
           - PlayingCardDeck
           - PlayingCardHand
           - TabletopGame
+          - Dice
     - hand:
         emptyRepresentative: SpaceCash
         emptyLabel: borg-slot-games-gambling-empty
@@ -232,6 +234,7 @@
           - PlayingCardDeck
           - PlayingCardHand
           - TabletopGame
+          - Dice
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: gaming-module }
 
