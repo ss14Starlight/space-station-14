@@ -384,9 +384,6 @@
       sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
-    - type: StealTarget
-      stealGroup: SalvLeadMantle
-
 
 - type: entity
   parent: [ ClothingNeckBase, BaseSalvageContraband ]
