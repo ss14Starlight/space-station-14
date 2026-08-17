@@ -418,6 +418,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
                     // Check for OD threshold
                     FixedPoint2? odThreshold = null;
+                    if (reagentProto.Metabolisms != null)
                     foreach (var (_, entry) in reagentProto.Metabolisms)
                     {
                         foreach (var effect in entry.Effects)
