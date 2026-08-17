@@ -35,10 +35,7 @@ public sealed class MaterialDispenserDepartmentSelected : BoundUserInterfaceMess
 {
     public readonly string Department;
 
-    public MaterialDispenserDepartmentSelected(string department)
-    {
-        Department = department;
-    }
+    public MaterialDispenserDepartmentSelected(string department) => Department = department;
 }
 
 [Serializable, NetSerializable]
@@ -51,10 +48,7 @@ public sealed class MaterialDispenserEjectCrate : BoundUserInterfaceMessage
 public sealed class MaterialDispenserModeChange : BoundUserInterfaceMessage
 {
     public readonly MaterialDispenserMode Mode;
-    public MaterialDispenserModeChange(MaterialDispenserMode mode)
-    {
-        Mode = mode;
-    }
+    public MaterialDispenserModeChange(MaterialDispenserMode mode) => Mode = mode;
 }
 
 [Serializable, NetSerializable]

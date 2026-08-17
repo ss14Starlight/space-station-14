@@ -21,25 +21,13 @@ public sealed partial class LatheLinkingDisplay : PanelContainer
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
         _controller = UserInterfaceManager.GetUIController<LatheLinkingUIController>();
-        LinkingTransferButton.OnPressed += _ =>
-        {
-            SetMode(false);
-        };
-        LinkingEjectButton.OnPressed += _ =>
-        {
-            SetMode(true);
-        };
+        LinkingTransferButton.OnPressed += _ => SetMode(false);
+        LinkingEjectButton.OnPressed += _ => SetMode(true);
     }
 
-    public void SetEntity(EntityUid entity)
-    {
-        _entity = entity;
-    }
+    public void SetEntity(EntityUid entity) => _entity = entity;
 
-    public void SetMode(bool eject)
-    {
-        _controller.SendToggleMessage(_entity, eject);
-    }
+    public void SetMode(bool eject) => _controller.SendToggleMessage(_entity, eject);
 
     protected override void FrameUpdate(FrameEventArgs args)
     {

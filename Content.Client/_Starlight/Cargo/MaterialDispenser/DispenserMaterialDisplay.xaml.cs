@@ -36,7 +36,6 @@ public sealed partial class DispenserMaterialDisplay : PanelContainer
         var spriteSys = _entityManager.System<SpriteSystem>();
         Icon.Texture = spriteSys.Frame0(_prototypeManager.Index<MaterialPrototype>(material).Icon);
 
-
         Material = material;
         UpdateVolume(volume);
     }

@@ -30,9 +30,7 @@ public sealed partial class MaterialDispenserWindow : FancyWindow
     private Dictionary<int, string> _departmentOptions = new();
 
     public event Action<string>? OnDepartmentSelected;
-    public event Action<MaterialDispenserMode>? OnModeChanged;
     public event Action<string, int,bool>? OnAmountButton;
-
 
     public MaterialDispenserWindow()
     {

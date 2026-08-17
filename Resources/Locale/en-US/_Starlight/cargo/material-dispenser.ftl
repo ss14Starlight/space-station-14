@@ -9,4 +9,3 @@ material-dispenser-eject = Eject
 material-dispenser-no-materials = Buffer is empty
 material-dispenser-insufficient-materials = Unable to make crate. Requires {$amount} of {$material} in storage.
 
-
