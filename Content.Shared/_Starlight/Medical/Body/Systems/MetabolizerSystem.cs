@@ -206,7 +206,7 @@ public sealed class MetabolizerSystem : EntitySystem
 
             // we're done here entirely if this is true
             if (reagents >= ent.Comp1.MaxReagentsProcessable)
-                return;
+                break;
 
             var scale = (float) mostToRemove;
             if (!solutionData.MetabolizeAll)

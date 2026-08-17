@@ -138,7 +138,7 @@
   metabolisms:
     Digestion:
       metabolites:
-        Water: 0.8
+        Water: 0.5
         Vitamin: 0.2
       effects:
       - !type:Vomit
@@ -147,6 +147,10 @@
           - !type:ReagentCondition
             reagent: Vinegar
             min: 6
+    Bloodstream: # Starlight start
+      effects:
+      - !type:SatiateThirst
+        factor: 1.5 # Starlight end, it's not really thirst quenching
 
 - type: reagent
   id: Rice

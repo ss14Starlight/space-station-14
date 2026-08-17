@@ -40,8 +40,6 @@ public sealed class StomachSystem : EntitySystem
             return false;
         }
 
-        _solutionContainerSystem.TryAddSolution(stomach.Solution.Value, solution);
-
-        return true;
+        return _solutionContainerSystem.TryAddSolution(stomach.Solution.Value, solution);
     }
 }

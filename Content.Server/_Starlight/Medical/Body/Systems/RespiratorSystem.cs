@@ -326,7 +326,7 @@ public sealed partial class RespiratorSystem : EntitySystem
         if (!Resolve(lung, ref lung.Comp))
             return 0;
 
-        if (lung.Comp.Stages == null)
+        if (!lung.Comp.Stages.Contains(RespirationStage))
             return 0;
 
         float saturation = 0;
