@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Colossus ingress now tears away existing doorways and creates a malign passageway.
-    type: Tweak
-  id: 407285
-  time: '2026-08-04T09:55:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5344
-- author: SirLutz
-  changes:
   - message: Colossus Sunder ability can now pass through windows, girders, and open doors.
     type: Tweak
   id: 407286
@@ -2799,4 +2792,11 @@ Entries:
   id: 407684
   time: '2026-08-17T02:04:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5669
+- author: STARLIGHT TEAM
+  changes:
+  - message: Guidebook entries with basic information on how to create for all existing atmospheric gasses AND metal hydrogen.
+    type: Add
+  id: 407685
+  time: '2026-08-17T11:23:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5219
 Order: -1
