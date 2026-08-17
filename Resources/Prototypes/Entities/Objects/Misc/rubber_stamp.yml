@@ -144,7 +144,7 @@
   name: head of personnel's rubber stamp
   parent: [RubberStampBase, BaseCommandContraband]
   id: RubberStampHop
-  description: A rubber stamp for stamping important documents. Is slightly chewed.
+  description: A rubber stamp for stamping important documents. Slightly chewed.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -172,7 +172,7 @@
   name: mime's rubber stamp
   parent: RubberStampBase
   id: RubberStampMime
-  description: ...
+  description: A rubber stamp for silently stamping important documents.
   # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp

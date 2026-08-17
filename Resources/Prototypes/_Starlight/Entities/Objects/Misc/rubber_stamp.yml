@@ -207,7 +207,7 @@
   name: cc department stamps box
   parent: BoxCardboard
   id: BoxStampsCCDepartments
-  description: A box containing rubber stamps. You would think by the 26th century there would be something more sophisticated than a rubber stamp.
+  description: A small box containing stamps. You would think by the 26th century there would be something more sophisticated than a rubber stamp.
   components:
     - type: Storage
       maxItemSize: Small
@@ -361,7 +361,7 @@
   name: cc administrative stamps box
   parent: BoxCardboard
   id: BoxStampsCCAdministrative
-  description: A box containing rubber stamps. You would think by the 26th century there would be something more sophisticated than a rubber stamp.
+  description: A small box containing stamps. You would think by the 26th century there would be something more sophisticated than a rubber stamp.
   components:
     - type: Storage
       maxItemSize: Small
