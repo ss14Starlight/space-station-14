@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Medical.Body.Prototypes;
 
 [Prototype]
-public sealed partial class MetabolizerTypePrototype : IPrototype
+public sealed partial class MetabolismStagePrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

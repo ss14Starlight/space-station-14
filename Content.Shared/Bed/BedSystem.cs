@@ -20,9 +20,9 @@ public sealed partial class BedSystem : EntitySystem
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private EmagSystem _emag = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MetabolizerSystem _metabolizer = default!;
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private SharedMetabolizerSystem _metabolizer = default!;
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private SleepingSystem _sleepingSystem = default!;
 
