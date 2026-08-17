@@ -13,6 +13,7 @@ public sealed partial class NullLinkPlayerRolesManager : INullLinkPlayerRolesMan
 
     private ImmutableHashSet<ulong> _roles = [];
     private string? _discordLink;
+    private string? _steamLink;
     private ISawmill _sawmill = default!;
 
     public event Action PlayerRolesChanged = delegate { };
@@ -27,6 +28,7 @@ public sealed partial class NullLinkPlayerRolesManager : INullLinkPlayerRolesMan
     {
         _roles = message.Roles;
         _discordLink = message.DiscordLink;
+        _steamLink = message.SteamLink;
 
         _sawmill.Info("Updated player roles");
         PlayerRolesChanged?.Invoke();
@@ -34,6 +36,9 @@ public sealed partial class NullLinkPlayerRolesManager : INullLinkPlayerRolesMan
 
     public string? GetDiscordLink()
         => _discordLink;
+
+    public string? GetSteamLink()
+        => _steamLink;
 
     public bool ContainsAny(ulong[] roles)
         => roles.Any(_roles.Contains);

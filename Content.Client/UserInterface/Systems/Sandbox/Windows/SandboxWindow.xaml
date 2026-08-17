@@ -8,6 +8,10 @@
         <Button Name="SpawnTilesButton" Access="Public" Text="{Loc sandbox-window-spawn-tiles-button}"/>
         <Button Name="SpawnEntitiesButton" Access="Public" Text="{Loc sandbox-window-spawn-entities-button}"/>
         <Button Name="SpawnDecalsButton" Access="Public" Text="{Loc sandbox-window-spawn-decals-button}"/>
+        <!-- Starlight-start -->
+        <Button Name="FinishConstructionGhostsButton" Access="Public"
+            Text="{Loc sandbox-window-finish-construction-ghosts-button}"/>
+        <!-- Starlight-end -->
 
         <Label Text="{Loc sandbox-window-visibility-label}"/>
         <Button Name="ToggleLightButton" Access="Public" Text="{Loc sandbox-window-toggle-lights-button}" ToggleMode="True"/>
