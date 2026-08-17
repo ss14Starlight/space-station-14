@@ -570,7 +570,10 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
         foreach (var group in groupedReagents)
         {
-            message.AddMarkupOrThrow($"[bold]{group.Key}[/bold]");
+            var groupName = Loc.GetString($"reagent-group-{group.Key}");
+            if (groupName == $"reagent-group-{group.Key}")
+                groupName = group.Key;
+            message.AddMarkupOrThrow($"[bold]{FormattedMessage.EscapeText(groupName)}[/bold]");
             message.PushNewline();
 
             foreach (var reagent in group)

@@ -92,12 +92,19 @@ public static class HealthAnalyzerFormatting
         return index == -1 ? DamageGroupOrder.Length : index;
     }
 
+    /// <summary>
+    /// Returns the sort order index for a reagent group.
+    /// Unknown groups are placed after all known groups by returning <see cref="ReagentGroupOrder"/> length.
+    /// </summary>
     public static int GetReagentGroupSortKey(string groupId)
     {
         var index = Array.IndexOf(ReagentGroupOrder, groupId);
         return index == -1 ? ReagentGroupOrder.Length : index;
     }
 
+    /// <summary>
+    /// Returns the OD warning markup string colored with <see cref="SeverityDangerColor"/>.
+    /// </summary>
     public static string FormatOdWarningMarkup()
     {
         return WrapMarkupWithColor(" !!", SeverityDangerColor);

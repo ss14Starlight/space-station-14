@@ -21,3 +21,15 @@ health-analyzer-report-no-injuries = No injuries detected.
 health-analyzer-report-section-chemicals = Chemicals
 health-analyzer-report-chemical-line = {$name}: {$quantity}u
 health-analyzer-report-no-chemicals = No active chemicals detected.
+
+reagent-group-Medicine = Medicine
+reagent-group-Narcotics = Narcotics
+reagent-group-Toxins = Toxins
+reagent-group-Pyrotechnic = Pyrotechnic
+reagent-group-Botanical = Botanical
+reagent-group-Biological = Biological
+reagent-group-Foods = Foods
+reagent-group-Drinks = Drinks
+reagent-group-Elements = Elements
+reagent-group-Special = Special
+reagent-group-Unknown = Unknown
