@@ -1,252 +1,186 @@
+# Inferus - changed a lot
 - type: jobRequirementOverride
   id: Reduced
   jobs:
+    # Command
     Captain:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 5h # Inferus
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 5h # Inferus
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 5h # Inferus
-# Starlight start
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 5h # Inferus
-    - !type:DepartmentTimeRequirement
-      department: Cargo
-      time: 5h # Inferus
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 5h # Inferus
-# Starlight end
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 10h # Starlight
-# Starlight start
     - !type:OverallPlaytimeRequirement
-      time: 10h
-    - !type:RoleTimeRequirement
-      role: JobStationAi
-      time: 1h
-    HeadOfPersonnel:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 3h
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 3h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 3h
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 3h
-    - !type:DepartmentTimeRequirement
-      department: Cargo
-      time: 3h
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 3h
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 5h
-    - !type:OverallPlaytimeRequirement
-      time: 7h
-    HeadOfSecurity:
-    - !type:RoleTimeRequirement
-      role: JobWarden
-      time: 8h
-    ChiefEngineer:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 3h
-    - !type:OverallPlaytimeRequirement
-      time: 5h
-    - !type:RoleTimeRequirement
-      role: JobAtmosphericTechnician
-      time: 3h
-    - !type:RoleTimeRequirement
-      role: JobStationEngineer
-      time: 1h
-    ResearchDirector:
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 3h
-    - !type:OverallPlaytimeRequirement
-      time: 5h
-    - !type:RoleTimeRequirement
-      role: JobScientist
-      time: 1h
-    ChiefMedicalOfficer:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 3h
-    - !type:OverallPlaytimeRequirement
-      time: 5h
-    - !type:RoleTimeRequirement
-      role: JobMedicalDoctor
-      time: 1h
-    - !type:RoleTimeRequirement
-      role: JobChemist
-      time: 1h
-    Quartermaster:
-    - !type:DepartmentTimeRequirement
-      department: Cargo
-      time: 3h
-    - !type:OverallPlaytimeRequirement
-      time: 5h
-    - !type:RoleTimeRequirement
-      role: JobCargoTechnician
-      time: 1h
-    - !type:RoleTimeRequirement
-      role: JobSalvageSpecialist
-      time: 2h
-    MedicalDoctor:
-    - !type:OverallPlaytimeRequirement
-      time: 0
-    - !type:RoleTimeRequirement
-      role: JobMedicalIntern
-      time: 1h
-    Chemist:
-    - !type:OverallPlaytimeRequirement
-      time: 0
-    - !type:RoleTimeRequirement
-      role: JobMedicalIntern
-      time: 1h
-    Paramedic:
-    - !type:OverallPlaytimeRequirement
-      time: 0
-    - !type:RoleTimeRequirement
-      role: JobMedicalDoctor
-      time: 1h
-    StationEngineer:
-    - !type:OverallPlaytimeRequirement
-      time: 0
-    - !type:RoleTimeRequirement
-      role: JobTechnicalAssistant
-      time: 1h
-    AtmosphericTechnician:
-    - !type:OverallPlaytimeRequirement
-      time: 0
-    - !type:RoleTimeRequirement
-      role: JobStationEngineer
-      time: 1h
-    Warden:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
       time: 20h
-    - !type:RoleTimeRequirement
-      role: JobDetective
-      time: 1h
-    DutyOfficer:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 5h
-    SecurityCadet:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 4h
+
+    HeadOfPersonnel:
     - !type:OverallPlaytimeRequirement
       time: 10h
-    #- !type:DepartmentTimeRequirement
-    #  department: Security
-    #  time: 30h #SL Edit 15h -> 30h
-    #  inverted: true # Inferus - LET THE LIL GUY PLAY
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 2h
+
+    HeadOfSecurity:
+    - !type:OverallPlaytimeRequirement
+      time: 15h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 3h
+
+    ChiefEngineer:
+    - !type:OverallPlaytimeRequirement
+      time: 15h
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 3h
+
+    ChiefMedicalOfficer:
+    - !type:OverallPlaytimeRequirement
+      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 2h
+
+    ResearchDirector:
+    - !type:OverallPlaytimeRequirement
+      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 2h
+
+    Quartermaster:
+    - !type:OverallPlaytimeRequirement
+      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 2h
+
+    # Security
+    Warden:
+    - !type:OverallPlaytimeRequirement
+      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 2h
+
     SecurityOfficer:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 10h
+      time: 2h
+
     Detective:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 2h
+
     Brigmedic:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 2h
+
+    DutyOfficer:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 2h
+
+    Lawyer:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 2h
+    - !type:DepartmentTimeRequirement
+      department: Civilian # i'm saul goodman
+      time: 2h
+
+    SecurityCadet:  # intern
+    - !type:OverallPlaytimeRequirement
+      time: 1h
+
+    # Engineering
+    StationEngineer:
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 2h
+
+    AtmosphericTechnician:
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 2h
+
+    TechnicalAssistant:  # intern
+    - !type:OverallPlaytimeRequirement
+      time: 1h
+
+    # Medical
+    MedicalDoctor:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 8h
-    StationAi:
+      time: 2h
+
+    Chemist:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 2h
+
+    Paramedic:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 2h
+
+    MedicalIntern:  # intern
     - !type:OverallPlaytimeRequirement
-      time: 0
+      time: 1h
+
+    # Science
+    Scientist:
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 2h
+
+    ResearchAssistant:  # intern
+    - !type:OverallPlaytimeRequirement
+      time: 1h
+
+    # Cargonia
+    CargoTechnician:
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 2h
+
+    SalvageSpecialist:
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 2h
+
+    # Silicon
+    StationAi:
     - !type:RoleTimeRequirement
       role: JobBorg
-      time: 3h
+      time: 2h
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 4h
+
     Borg:
     - !type:OverallPlaytimeRequirement
       time: 1h
+
+    # Civilian
     Bartender:
     - !type:OverallPlaytimeRequirement
       time: 0
-    - !type:RoleTimeRequirement
-      role: JobServiceWorker
-      time: 20m
     Chef:
     - !type:OverallPlaytimeRequirement
       time: 0
-    - !type:RoleTimeRequirement
-      role: JobServiceWorker
-      time: 20m
-    Scientist:
-    - !type:OverallPlaytimeRequirement
-      time: 0
-    - !type:RoleTimeRequirement
-      role: JobResearchAssistant
-      time: 1h
-    SalvageSpecialist:
-    - !type:OverallPlaytimeRequirement
-      time: 0
-    - !type:RoleTimeRequirement
-      role: JobCargoTechnician
-      time: 90m
     Botanist:
     - !type:OverallPlaytimeRequirement
       time: 0
-    - !type:RoleTimeRequirement
-      role: JobServiceWorker
-      time: 20m
-    Clown:
-    - !type:OverallPlaytimeRequirement
-      time: 0
-    - !type:RoleTimeRequirement
-      role: JobPassenger
-      time: 10m
-    CargoTechnician:
-    - !type:OverallPlaytimeRequirement
-      time: 0
-    TechnicalAssistant:
-    - !type:OverallPlaytimeRequirement
-      time: 5m
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 25h #SL edit 15 -> 25
-      inverted: true
-    MedicalIntern:
-    - !type:OverallPlaytimeRequirement
-      time: 5m
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 25h #SL edit 15 -> 25
-      inverted: true
-    ResearchAssistant:
-    - !type:OverallPlaytimeRequirement
-      time: 5m
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 25h #SL edit 15 -> 25
-      inverted: true
     Chaplain:
     - !type:OverallPlaytimeRequirement
       time: 0
     Janitor:
     - !type:OverallPlaytimeRequirement
       time: 0
-    Lawyer:
-    - !type:RoleTimeRequirement
-      role: JobIAA
-      time: 1h
     Librarian:
+    - !type:OverallPlaytimeRequirement
+      time: 0
+    Clown:
     - !type:OverallPlaytimeRequirement
       time: 0
     Mime:
@@ -257,11 +191,4 @@
       time: 0
     ServiceWorker:
     - !type:OverallPlaytimeRequirement
-      time: 5m
-    Performer:
-    - !type:OverallPlaytimeRequirement
-      time: 5m
-    Visitor:
-    - !type:OverallPlaytimeRequirement
       time: 0
-# Starlight end

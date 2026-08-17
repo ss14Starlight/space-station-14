@@ -33,7 +33,12 @@ role-timer-blacklisted-species-fail = Your character [color=yellow]must not[/col
 
 role-timer-whitelisted-traits-pass = Your character [color=limegreen]must[/color] have one of the following traits: [color=limegreen]{$traits}[/color]
 role-timer-whitelisted-traits-fail = Your character [color=yellow]must[/color] have one of the following traits: [color=yellow]{$traits}[/color]
-role-timer-blacklisted-traits-pass = Your character [color=limegreen]must not[/color] have one of the following traits: [color=limegreen]{$traits}[/color]
+role-timer-blacklisted-traits-pass = Your character [color=limegreen]does not[/color] have one of the following traits: [color=limegreen]{$traits}[/color]
 role-timer-blacklisted-traits-fail = Your character [color=yellow]must not[/color] have one of the following traits: [color=yellow]{$traits}[/color]
 
 role-ban = You have been [color=red]banned[/color] from this role.
+
+# Inferus
+
+antag-whitelisted = You [color=limegreen]are[/color] whitelisted to play this antagonist.
+antag-not-whitelisted = You [color=yellow]are not[/color] whitelisted to play this antagonist.

@@ -226,13 +226,19 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         // Check the player's bans
         if (_jobBans.Contains(job.ID))
         {
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-ban")); // Starlight: Formatted
+            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-ban"));
             return false;
         }
 
-        // Check whitelist requirements
         if (!CheckWhitelist(job, out reason))
             return false;
+
+        // Inferus: granted roles (job whitelist entry) skip playtime requirements
+        if (_jobWhitelists.Contains(job.ID))
+        {
+            reason = new FormattedMessage();
+            return true;
+        }
 
         var player = _playerManager.LocalSession;
         if (player == null)
@@ -264,6 +270,13 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         // Check whitelist requirements
         if (!CheckWhitelist(antag, out reason))
             return false;
+
+        // Inferus: granted roles skip playtime requirements
+        if (_jobWhitelists.Contains(antag.ID))
+        {
+            reason = new FormattedMessage();
+            return true;
+        }
 
         var player = _playerManager.LocalSession;
         if (player == null)

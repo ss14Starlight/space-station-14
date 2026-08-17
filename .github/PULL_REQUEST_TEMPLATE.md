@@ -17,7 +17,7 @@
 
 **Changelog**
 <!-- If you want players to know about changes made in this PR, specify them using the template outside the comment. -->
-:cl: Inferus
+:cl:
 - add: Added something.
 - remove: Removed something.
 - tweak: Changed something.

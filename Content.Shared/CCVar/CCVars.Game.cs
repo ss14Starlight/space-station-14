@@ -125,7 +125,7 @@ public sealed partial class CCVars
     ///     Override default role requirements using a <see cref="JobRequirementOverridePrototype"/>
     /// </summary>
     public static readonly CVarDef<string>
-        GameRoleTimerOverride = CVarDef.Create("game.role_timer_override", "", CVar.SERVER | CVar.REPLICATED);
+        GameRoleTimerOverride = CVarDef.Create("game.role_timer_override", "Reduced", CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     If roles should be restricted based on whether or not they are whitelisted.

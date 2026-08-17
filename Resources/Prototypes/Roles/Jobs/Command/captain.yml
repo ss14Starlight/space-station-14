@@ -3,6 +3,7 @@
   name: job-name-captain
   description: job-description-captain
   playTimeTracker: JobCaptain
+  whitelisted: true # Inferus
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
