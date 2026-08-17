@@ -5,7 +5,7 @@
   coefficients:
     Blunt: 0.8
     Slash: 0.75
-    Piercing: 1.0 # 0.65 -> 1.0 + InnateArmor
+    Piercing: 1.35 # 0.65 -> 1.35 + InnateArmor
     Shock: 1.2
     Heat: 0.8
     Structural: 0.8
@@ -18,7 +18,7 @@
   coefficients:
     Blunt: 0.65
     Slash: 0.65
-    Piercing: 0.95 # 0.6 -> 0.95 + InnateArmor
+    Piercing: 1.25 # 0.6 -> 1.25 + InnateArmor
     Shock: 1.4
     Heat: 0.65
     Structural: 0.7
@@ -31,7 +31,7 @@
   coefficients:
     Blunt: 0.4
     Slash: 0.6
-    Piercing: 0.85 # 0.55 -> 0.85 + InnateArmor
+    Piercing: 1.20 # 0.55 -> 1.20 + InnateArmor
     Shock: 1.4
     Heat: 0.7
     Structural: 0.8
@@ -44,7 +44,7 @@
   coefficients:
     Blunt: 0.35
     Slash: 0.55
-    Piercing: 0.75 # 0.45 -> 0.75 + InnateArmor
+    Piercing: 1.15 # 0.45 -> 1.15 + InnateArmor
     Shock: 0.8
     Heat: 0.65
     Structural: 0.6
