@@ -12,11 +12,15 @@ public enum DestinyDiceTargetType : byte
     None, // No specific target.
     Self, // Targets the die.
     Roller, // Targets the active roller of the die.
-    Nearby, // Targets nearby entities.
-    Prototype, // Targets all instances of a specific prototype.
-    Whitelist, // Targets all entities that pass the provided whitelist.
-    NearbyPrototype, // Targets nearby entities that are an instance of a specific prototype.
-    NearbyWhitelist, // Targets nearby entities that pass the provided whitelist.
+    Filter // Target based on several filters such as range, ghosts, actors, etc.
+}
+
+public enum DestinyDiceGridFilter : byte
+{
+    None,
+    SameGrid,
+    OtherGrids,
+    NoGrid,
 }
 
 /*
@@ -115,10 +119,15 @@ public sealed partial class DestinyDiceEffect : ICloneable
     /// The delay before the NEXT effect in the group will trigger.
     [DataField] public float Delay;
     /// <summary>
-    /// Signifies that this effect is required to pass checks and trigger. If <see keyword="true"/>, and this effect
+    /// Signifies that this effect is required to pass checks and trigger. If <see langword="true"/>, and this effect
     /// fails to trigger for any reason, the group will prematurely finish triggering effects.
     /// </summary>
     [DataField] public bool RequiredTrigger;
+    /// <summary>
+    /// When <see langword="true"/>, instead of relying on <see cref="Delay"/>, process the next event upon
+    /// the <see cref="DestinyDiceEffectEndEvent"/> event being raised on the die.
+    /// </summary>
+    [DataField] public bool EndOnEvent;
 
     // Yes I am aware that "rolls" isn't really the correct term here, but I don't care, sorry.
     /// <summary>
@@ -174,7 +183,7 @@ public sealed partial class DestinyDiceEffect : ICloneable
 public sealed partial class DestinyDiceTargetData
 {
     /// Determines what the effect will target.
-    [DataField] public DestinyDiceTargetType TargetType = DestinyDiceTargetType.None;
+    [DataField("type")] public DestinyDiceTargetType TargetType = DestinyDiceTargetType.None;
     /// Quick way to determine whether ghosts can be targeted or not.
     [DataField] public bool AllowGhosts;
     /// Quick way to determine whether targets must be controlled by a player or not.
@@ -183,7 +192,7 @@ public sealed partial class DestinyDiceTargetData
     /// The range to check for targets if <see cref="TargetType"/> is <see cref="DestinyDiceTargetType.Nearby"/>,
     /// <see cref="DestinyDiceTargetType.NearbyWhitelist"/>, or <see cref="DestinyDiceTargetType.NearbyPrototype"/>.
     /// </summary>
-    [DataField] public float Range;
+    [DataField] public float? Range;
     /// <summary>
     /// The entity prototype ID to target if <see cref="TargetType"/> is <see cref="DestinyDiceTargetType.Prototype"/>
     /// or <see cref="DestinyDiceTargetType.NearbyPrototype"/>.
@@ -194,6 +203,10 @@ public sealed partial class DestinyDiceTargetData
     /// or <see cref="DestinyDiceTargetType.NearbyWhitelist"/>.
     /// </summary>
     [DataField] public EntityWhitelist? Whitelist;
+    /// Limit targets to those on the current map.
+    [DataField] public bool SameMap;
+    /// Limit targets by the given grid filter.
+    [DataField] public DestinyDiceGridFilter GridFilter = DestinyDiceGridFilter.None;
 }
 
 [DataDefinition, Serializable, NetSerializable]

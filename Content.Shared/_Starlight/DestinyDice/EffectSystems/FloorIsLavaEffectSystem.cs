@@ -9,17 +9,13 @@ namespace Content.Shared._Starlight.DestinyDice.EffectSystems;
 public sealed partial class FloorIsLavaEffectSystem : EntityEffectSystem<DestinyDiceComponent, FloorIsLavaEffect>
 {
     [Dependency] private TurfSystem _turf = default!;
-    [Dependency] private TileSystem _tile = default!;
     [Dependency] private SharedMapSystem _map = default!;
 
     private const string LavaPrototypeId = "FloorLavaEntity";
 
     protected override void Effect(Entity<DestinyDiceComponent> entity, ref EntityEffectEvent<FloorIsLavaEffect> args)
     {
-        if (!TryComp<DestinyDiceComponent>(args.User, out var dd))
-            return;
-
-        var uid = dd.ActiveGrid;
+        var uid = entity.Comp.ActiveGrid;
         if (uid is null) return;
 
         if (!TryComp<MapGridComponent>(uid, out var grid))

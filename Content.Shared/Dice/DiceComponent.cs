@@ -23,8 +23,10 @@ public sealed partial class DiceComponent : Component
     [DataField]
     public int Offset { get; private set; } = 0;
 
-    [DataField]
-    public int Sides { get; private set; } = 20;
+    // Starlight begin - No reason this shouldn't be networked automatically. Makes it easier to test things.
+    [DataField, AutoNetworkedField]
+    public int Sides { get; set; } = 20;
+    // Starlight end
 
     /// <summary>
     ///     The currently displayed value.

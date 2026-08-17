@@ -18,13 +18,11 @@ public sealed partial class NukeArmEffectSystem : EntityEffectSystem<DestinyDice
 
     protected override void Effect(Entity<DestinyDiceComponent> entity, ref EntityEffectEvent<NukeArmEffect> args)
     {
-        Log.Info($"{args.User}");
-        if (!TryComp<DestinyDiceComponent>(args.User, out var dd)) return;
         var query = EntityQueryEnumerator<NukeDiskComponent>();
         List<EntityUid> disks = []; // Pick randomly in the event that multiple disks are found + none on station grid.
         while (query.MoveNext(out var uid, out _))
         {
-            if (Transform(uid).GridUid == dd.ActiveGrid)
+            if (Transform(uid).GridUid == entity.Comp.ActiveGrid)
             {
                 Arm(uid);
                 return;

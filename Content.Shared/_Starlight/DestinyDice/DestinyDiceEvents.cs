@@ -1,6 +1,6 @@
+using Robust.Shared.Serialization;
+
 namespace Content.Shared._Starlight.DestinyDice;
 
-public sealed class DestinyDiceEvents
-{
-    
-}
+[Serializable, NetSerializable]
+public sealed class DestinyDiceEffectEndEvent : EntityEventArgs;

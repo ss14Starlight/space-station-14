@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.DestinyDice;
 using Content.Shared._Starlight.Dice;
 using Content.Shared.Examine;
@@ -5,6 +6,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Dice;
@@ -14,6 +16,7 @@ public abstract partial class SharedDiceSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IRobustRandom _random = default!; // Starlight
 
     public override void Initialize()
     {
@@ -74,10 +77,9 @@ public abstract partial class SharedDiceSystem : EntitySystem
 
     private void Roll(Entity<DiceComponent> entity, EntityUid? user = null)
     {
-        var rand = new System.Random((int)_timing.CurTick.Value);
-
-        var roll = rand.Next(1, entity.Comp.Sides + 1);
         // Starlight begin
+        var rand = _random.GetPredictedRandom(_timing);
+        var roll = rand.Next(1, entity.Comp.Sides + 1);
         var noRoll = false;
         if (TryComp<DestinyDiceComponent>(entity, out var dd))
             if (_timing.CurTime < dd.NextAllowedRollTime || dd.IsActive)

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.Dice;
@@ -13,6 +14,7 @@ using Content.Shared.EntityEffects;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.Fluids;
 using Content.Shared.GameTicking;
+using Content.Shared.Ghost;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Maps;
@@ -21,6 +23,9 @@ using Content.Shared.Sprite;
 using Content.Shared.Station;
 using Content.Shared.Tabletop;
 using Content.Shared.Throwing;
+using Content.Shared.Whitelist;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
@@ -28,22 +33,25 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.DestinyDice;
 
-public abstract partial class SharedDestinyDiceSystem : EntitySystem
+public sealed partial class DestinyDiceSystem : EntitySystem
 {
     [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private SharedItemSystem _item = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedCargoSystem _cargo = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedStationSystem _station = default!;
     [Dependency] private SharedGodmodeSystem _godmode = default!;
     [Dependency] private SharedTabletopSystem _tabletop = default!;
     [Dependency] private SharedExplosionSystem _explosion = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
     [Dependency] private SharedAtmosphereSystem _atmos = default!;
     [Dependency] private SharedScaleVisualsSystem _scale = default!;
     [Dependency] private SharedEntityEffectsSystem _effects = default!;
     [Dependency] private SharedEntityConditionsSystem _conditions = default!;
     [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;
@@ -62,39 +70,38 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
         SubscribeLocalEvent<DestinyDiceComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<DestinyDiceComponent, ThrownEvent>(OnThrown);
         SubscribeLocalEvent<DestinyDiceComponent, LandEvent>(OnLand);
+        SubscribeLocalEvent<DestinyDiceComponent, DestinyDiceEffectEndEvent>(OnEffectEnd);
         SubscribeLocalEvent<DestinyDiceComponent, DiceRolledEvent>(OnDiceRolled);
-    }
-
-    private void AssignActiveValues(EntityUid uid, DestinyDiceComponent comp, EntityUid? roller)
-    {
-        if (comp.IsActive) return;
-        comp.ActiveRoller = roller;
-        comp.RollerGrid = roller is not null ? Transform(roller.Value).GridUid : EntityUid.Invalid;
-        comp.ActiveGrid = Transform(uid).GridUid;
     }
 
     private void OnMapInit(Entity<DestinyDiceComponent> ent, ref MapInitEvent args)
     {
+        /*
+         * TODO: FIGURE OUT WHY THE FUCK THIS RUNS ON CLIENT BUT DOESN'T ACTUALLY KEEP THE NEW GROUP IN THE
+         * CLIENTSIDE COMPONENT NO, I CANNOT DIRTY THE ENTITY/COMPONENT. ENTITY EFFECTS ARE WEIRD AND DONT LIKE IT.
+         */
         if (ent.Comp.Preset is null) return;
         if (!_proto.TryIndex(ent.Comp.Preset, out var preset)) return;
 
-        ent.Comp.EffectGroups.Clear();
         List<DestinyDiceEffectGroup> groups = [];
-        foreach (var groupProtoId in preset.EffectGroupIds)
+        foreach (var groupProtoId in preset.Groups)
         {
+            Log.Info($"{groupProtoId}");
             if (!_proto.TryIndex(groupProtoId, out var groupProto)) return;
-            var group = (DestinyDiceEffectGroup)groupProto.Group.Clone();
-            group.Effects.Clear(); // Don't set these manually in the prototype.
-            foreach (var effectProtoId in groupProto.EffectIds)
+            Log.Info($"exists");
+            var group = ProtoToGroup(groupProto);
+            foreach (var effectProtoId in groupProto.Effects)
             {
+                Log.Info($"{effectProtoId}");
                 if (!_proto.TryIndex(effectProtoId, out var effectProto)) return;
-                group.Effects.Add(effectProto.Effect);
+                Log.Info("exists");
+                group.Effects.Add(ProtoToEffect(effectProto));
             }
 
             groups.Add(group);
         }
 
-        ent.Comp.EffectGroups = groups;
+        ent.Comp.EffectGroups.AddRange(groups);
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev) =>
@@ -111,6 +118,9 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
 
     private void OnLand(Entity<DestinyDiceComponent> ent, ref LandEvent args) =>
         AssignActiveValues(ent, ent, args.User);
+
+    private void OnEffectEnd(Entity<DestinyDiceComponent> ent, ref DestinyDiceEffectEndEvent args) =>
+        ent.Comp.WaitingForEffectEnd = false;
 
     private void OnDiceRolled(Entity<DestinyDiceComponent> ent, ref DiceRolledEvent args)
     {
@@ -130,7 +140,6 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
             return;
         }
 
-        comp.PreviousValue = comp.CurrentValue;
         comp.CurrentValue = args.Value;
 
         // Now we check which groups are eligible based on current value, and pick from the set.
@@ -159,21 +168,18 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
 
         if (targetGroups.Count == 0)
         {
-            Log.Info("no targets");
             if (comp.NoEffectMessage is not null)
                 _popup.PopupPredicted(Loc.GetString(comp.NoEffectMessage), uid, comp.ActiveRoller, comp.NoEffectPopupType);
             return;
         }
 
         var rolledGroup = _random.PickPredicted(_timing, targetGroups);
-        Log.Info("picked target group");
         rolledGroup.TimesRolled++;
 
         // Check for probability and conditions etc
         if ((rolledGroup.MaxRolls > -1 && rolledGroup.TimesRolled >= rolledGroup.MaxRolls) ||
             (rolledGroup.MaxTriggers > -1 && rolledGroup.TimesTriggered >= rolledGroup.MaxTriggers))
         {
-            Log.Info("minmax fail");
             if (rolledGroup.ExhaustedMessage is not null)
                 _popup.PopupPredicted(Loc.GetString(rolledGroup.ExhaustedMessage), uid, comp.ActiveRoller, rolledGroup.ExhaustedPopupType);
             return;
@@ -185,7 +191,6 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
                 case true when !_conditions.TryConditions(uid, rolledGroup.Conditions.ToArray()):
                 case false when !_conditions.TryAnyCondition(uid, rolledGroup.Conditions.ToArray()):
                     {
-                        Log.Info("condition fail");
                         if (rolledGroup.FailureMessage is not null)
                             _popup.PopupPredicted(Loc.GetString(rolledGroup.FailureMessage), uid, comp.ActiveRoller, rolledGroup.FailurePopupType);
                         return;
@@ -194,28 +199,26 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
 
         if (!_random.ProbPredicted(_timing, rolledGroup.Probability))
         {
-            Log.Info("prob fail");
             if (rolledGroup.FailureMessage is not null)
                 _popup.PopupPredicted(Loc.GetString(rolledGroup.FailureMessage), uid, comp.ActiveRoller, rolledGroup.FailurePopupType);
             return;
         }
 
-        Log.Info("triggering group");
         rolledGroup.TimesTriggered++;
         comp.CurrentEffectIndex = 0;
         comp.CurrentEffectGroup = rolledGroup;
-        comp.NextEffectTriggerTime = _timing.CurTime + TimeSpan.FromSeconds(1) + TimeSpan.FromSeconds(rolledGroup.Delay); // Mandatory one-second delay before executing.
         comp.IsActive = true;
-
-        comp.NextAllowedRollTime = comp.RollDelay.HasValue ? _timing.CurTime + TimeSpan.FromSeconds(comp.RollDelay.Value) : TimeSpan.Zero;
-
-        if (rolledGroup.SuccessMessage is not null)
+        if (comp.GroupDelay.HasValue)
         {
-            Log.Info("popup success message");
-            _popup.PopupPredicted(Loc.GetString(rolledGroup.SuccessMessage), uid, comp.ActiveRoller, rolledGroup.SuccessPopupType);
+            comp.GroupStartTime = _timing.CurTime + TimeSpan.FromSeconds(comp.GroupDelay.Value);
+            comp.IsPending = true;
         }
-        _activeDice.Add(ent);
 
+        comp.NextAllowedRollTime = comp.RollDelay.HasValue
+            ? _timing.CurTime + TimeSpan.FromSeconds(comp.RollDelay.Value)
+            : TimeSpan.Zero;
+
+        _activeDice.Add((uid, comp));
         _aLog.Add(LogType.Action, LogImpact.Low, $"Entity {ToPrettyString(uid)} rolled a Destiny Die and triggered an effect group.");
     }
 
@@ -225,12 +228,16 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
         {
             var (uid, comp) = ent;
             var group = comp.CurrentEffectGroup;
+            //
+            // // Allow prediction to work properly
+            // if (_net.IsClient && _timing is { InPrediction: true, IsFirstTimePredicted: false })
+            //     comp.CurrentEffectIndex--;
 
-            Log.Info($"group: {group}, active: {comp.IsActive}, idx: {comp.CurrentEffectIndex}, count: {group?.Effects.Count}");
             if (group is null || !comp.IsActive || comp.CurrentEffectIndex >= group.Effects.Count)
             {
                 _activeDice.Remove(ent);
                 comp.IsActive = false;
+                comp.IsPending = false;
                 comp.CurrentEffectIndex = 0;
                 comp.CurrentEffectGroup = null;
                 comp.CurrentEffect = null;
@@ -238,8 +245,22 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
                 continue;
             }
 
+            // Skip if waiting for delay or for event.
+            if (_timing.CurTime < comp.GroupStartTime) continue;
+
+            if (comp is { IsPending: true, CurrentEffectGroup: not null })
+            {
+                comp.NextEffectTriggerTime = _timing.CurTime + TimeSpan.FromSeconds(comp.CurrentEffectGroup.Delay);
+
+                if(comp.CurrentEffectGroup.SuccessMessage is not null)
+                    _popup.PopupPredicted(Loc.GetString(comp.CurrentEffectGroup.SuccessMessage), uid, comp.ActiveRoller,
+                        comp.CurrentEffectGroup.SuccessPopupType);
+
+                comp.IsPending = false;
+            }
+
             if (_timing.CurTime < comp.NextEffectTriggerTime) continue;
-            Log.Info("time check pass");
+            if (comp.WaitingForEffectEnd) continue;
 
             DestinyDiceEffect? effect = null;
             var earlyFinish = false;
@@ -253,13 +274,11 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
                 effect.TimesRolled++;
 
                 if (effect.EntityEffect is null) continue; // Not valid.
-                Log.Info("effect not null");
 
                 // Check for probability and conditions etc
                 if ((effect.MaxRolls > -1 && effect.TimesRolled >= effect.MaxRolls) ||
                     (effect.MaxTriggers > -1 && effect.TimesTriggered >= effect.MaxTriggers))
                 {
-                    Log.Info("Max hit");
                     if (effect.ExhaustedMessage is not null)
                         _popup.PopupPredicted(Loc.GetString(effect.ExhaustedMessage), uid, comp.ActiveRoller, effect.ExhaustedPopupType);
                     comp.EffectResults.Add(effect, false);
@@ -277,7 +296,6 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
                         case true when !_conditions.TryConditions(uid, effect.EntityEffect.Conditions?.ToArray()):
                         case false when !_conditions.TryAnyCondition(uid, effect.EntityEffect.Conditions?.ToArray()):
                             {
-                                Log.Info("Condition fail");
                                 comp.EffectResults.Add(effect, false);
                                 if (effect.RequiredTrigger)
                                 {
@@ -295,7 +313,6 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
                 {
                     if (!comp.EffectResults.TryGetValue(foundEffect, out var effectResult)) continue;
                     if (effectResult) continue;
-                    Log.Info("Dependency fail");
                     dependencyFail = true;
                     comp.EffectResults.Add(effect, false);
                     if (effect.RequiredTrigger)
@@ -307,7 +324,6 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
 
                 if (!_random.ProbPredicted(_timing, effect.Probability))
                 {
-                    Log.Info("prob fail");
                     comp.EffectResults.Add(effect, false);
                     if (effect.RequiredTrigger)
                     {
@@ -318,11 +334,9 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
                 }
 
                 foundValidEffect = true;
-                Log.Info("found effect");
                 break;
             }
 
-            Log.Info($"ef: {earlyFinish}, fve: {foundValidEffect}");
             if (earlyFinish || !foundValidEffect || effect?.EntityEffect is null)
             {
                 if (effect?.FailureMessage is not null)
@@ -335,10 +349,124 @@ public abstract partial class SharedDestinyDiceSystem : EntitySystem
             effect.TimesTriggered++;
             comp.EffectResults.Add(effect, true);
             comp.CurrentEffect = effect;
-            comp.NextEffectTriggerTime = _timing.CurTime + TimeSpan.FromSeconds(effect.Delay);
+            if (effect.EndOnEvent) comp.WaitingForEffectEnd = true;
+            else comp.NextEffectTriggerTime = _timing.CurTime + TimeSpan.FromSeconds(effect.Delay);
+            if (effect.SuccessMessage is not null)
+                _popup.PopupPredicted(Loc.GetString(effect.SuccessMessage), uid, comp.ActiveRoller, effect.SuccessPopupType);
             // Effect is applied unconditionally here as effects are checked manually earlier.
-            Log.Info("Attempting to do effect.");
             _effects.ApplyEffect(uid, effect.EntityEffect, user: uid);
         }
     }
+
+    /// Quick helper to assign active values to the component for the current effect to reference.
+    private void AssignActiveValues(EntityUid uid, DestinyDiceComponent comp, EntityUid? roller)
+    {
+        if (comp.IsActive) return;
+        comp.ActiveRoller = roller;
+        comp.RollerGrid = roller is not null ? Transform(roller.Value).GridUid : EntityUid.Invalid;
+        comp.ActiveGrid = Transform(uid).GridUid;
+        comp.ActiveMap = Transform(uid).MapUid;
+    }
+
+    // ReSharper disable UseCollectionExpression - Sandboxing moment.
+    /// <summary>
+    /// Gets the effect targets for the current DD effect on the die.
+    /// If you are using this from an entity effect, it should correspond to the DD effect that triggered it.
+    /// </summary>
+    /// <param name="ent">The destiny die entity.</param>
+    /// <param name="targets">An <see cref="IEnumerable{EntityUid}"/> containing the target entities.</param>
+    /// <returns>Boolean value based on if there are valid targets or not.</returns>
+    public bool GetEffectTargets(Entity<DestinyDiceComponent> ent, [NotNullWhen(true)] out IEnumerable<EntityUid>? targets)
+    {
+        var (uid, comp) = ent;
+        targets = null;
+
+        switch (comp.CurrentEffect?.TargetData.TargetType)
+        {
+            case DestinyDiceTargetType.None:
+                return false;
+            case DestinyDiceTargetType.Self:
+                targets = new [] { uid };
+                return true;
+            case DestinyDiceTargetType.Roller:
+                targets = new[] { comp.ActiveRoller ?? EntityUid.Invalid };
+                return true;
+            case DestinyDiceTargetType.Filter:
+                {
+                    // This can very quickly get expensive so at least try to filter out the most things possible as early as possible.
+                    var effect = comp.CurrentEffect;
+                    targets = EntityManager.GetEntities();
+                    if (effect.TargetData.TargetPrototypeId is not null)
+                        targets = targets.Where(x =>
+                            MetaData(x).EntityPrototype?.ID == effect.TargetData.TargetPrototypeId);
+                    if (!effect.TargetData.AllowGhosts) targets = targets.Where(x => !HasComp<GhostComponent>(x));
+                    if (!effect.TargetData.ActorControlled) targets = targets.Where(HasComp<ActorComponent>);
+                    if (effect.TargetData.Whitelist is not null)
+                        targets = targets.Where(x => _whitelist.IsValid(effect.TargetData.Whitelist, x));
+                    if (effect.TargetData.SameMap)
+                        targets = targets.Where(x => Transform(x).MapUid == comp.ActiveMap);
+                    switch (effect.TargetData.GridFilter)
+                    {
+                        case DestinyDiceGridFilter.None: break;
+                        case DestinyDiceGridFilter.SameGrid:
+                            targets = targets.Where(x => Transform(x).GridUid == comp.ActiveGrid);
+                            break;
+                        case DestinyDiceGridFilter.OtherGrids:
+                            targets = targets.Where(x => Transform(x).GridUid != comp.ActiveGrid);
+                            break;
+                        case DestinyDiceGridFilter.NoGrid:
+                            targets = targets.Where(x => Transform(x).GridUid is null);
+                            break;
+                        default:
+                            throw new Exception("How. ??????");
+                    }
+
+                    if (!effect.TargetData.Range.HasValue) return true;
+                    var nearby = _lookup.GetEntitiesInRange(uid, effect.TargetData.Range.Value);
+                    targets = targets.Where(x => nearby.Contains(x));
+                    return true;
+                }
+            default:
+                throw new Exception("Again, how. ??????");
+        }
+    }
+    // ReSharper restore UseCollectionExpression
+
+    private DestinyDiceEffectGroup ProtoToGroup(DestinyDiceEffectGroupPrototype prototype) =>
+        new()
+        {
+            RollData = prototype.RollData,
+            Conditions = prototype.Conditions,
+            AllConditionsMustPass = prototype.AllConditionsMustPass,
+            Weight = prototype.Weight,
+            Probability = prototype.Probability,
+            Delay = prototype.Delay,
+            MaxRolls = prototype.MaxRolls,
+            MaxTriggers = prototype.MaxTriggers,
+            TimesRolled = prototype.TimesRolled,
+            TimesTriggered = prototype.TimesTriggered,
+            SuccessMessage = prototype.SuccessMessage,
+            FailureMessage = prototype.FailureMessage,
+            ExhaustedMessage = prototype.ExhaustedMessage
+        };
+
+    private DestinyDiceEffect ProtoToEffect(DestinyDiceEffectPrototype prototype) =>
+        new()
+        {
+            TargetData = prototype.TargetData,
+            EntityEffect = prototype.EntityEffect,
+            AllConditionsMustPass = prototype.AllConditionsMustPass,
+            DependsOnIds = prototype.DependsOnIds,
+            Probability = prototype.Probability,
+            EffectId = prototype.EffectId,
+            Delay = prototype.Delay,
+            RequiredTrigger = prototype.RequiredTrigger,
+            MaxRolls = prototype.MaxRolls,
+            MaxTriggers = prototype.MaxTriggers,
+            TimesRolled = prototype.TimesRolled,
+            TimesTriggered = prototype.TimesTriggered,
+            SuccessMessage = prototype.SuccessMessage,
+            FailureMessage = prototype.FailureMessage,
+            ExhaustedMessage = prototype.ExhaustedMessage
+        };
 }
