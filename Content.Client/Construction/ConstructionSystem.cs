@@ -172,6 +172,8 @@ namespace Content.Client.Construction
             if (component.Prototype?.Name is null)
                 return;
 
+            _comment.Examine((uid, component), args); // Starlight-edit
+
             using (args.PushGroup(nameof(ConstructionGhostComponent)))
             {
                 args.PushMarkup(Loc.GetString(

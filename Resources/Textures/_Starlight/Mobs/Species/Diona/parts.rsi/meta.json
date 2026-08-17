@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full",
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "head_f",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "head_m",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "l_arm",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "l_foot",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "l_hand",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "l_leg",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "r_arm",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "r_foot",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "r_hand",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "r_leg",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "torso_f",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    },
+    {
+      "name": "torso_m",
+      "directions": 4,
+	  "copyright": "Paradise Station, EmoGarbage"
+    }
+  ]
+}
