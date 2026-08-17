@@ -1,9 +1,9 @@
 // ReSharper disable CheckNamespace
-
+using Content.Shared.Armor;
 using Content.Shared.Damage;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Armor;
+namespace Content.Shared._Starlight.Armor;
 
 /// <summary>
 /// Provides armor directly to an entity without requiring an ArmorComponent on worn equipment.

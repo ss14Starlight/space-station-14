@@ -9,6 +9,7 @@ using Robust.Shared.Utility;
 
 #region Starlight
 using Content.Shared.Stunnable;
+using Content.Shared._Starlight.Armor;
 #endregion Starlight
 
 namespace Content.Shared.Armor;
