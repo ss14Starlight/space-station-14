@@ -3,7 +3,7 @@ using Content.Shared.Chat;
 using Content.Shared.Popups;
 using Content.Server.Chat.Systems;
 using Content.Shared._Starlight.Actions.Events;
-using Content.Shared._Starlight.Chat; //Starlight
+using Content.Shared._Starlight.Chat;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Speech;
