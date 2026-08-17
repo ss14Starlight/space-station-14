@@ -199,6 +199,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     {
         var radComp = EnsureComp<RadiationSourceComponent>(supermatter.Owner);
         radComp.Intensity = supermatter.Comp.AccRadiation.Float();
+        radComp.Slope = 1.5f;
 
         supermatter.Comp.AccRadiation /= supermatter.Comp.RadiationStability;
     }
