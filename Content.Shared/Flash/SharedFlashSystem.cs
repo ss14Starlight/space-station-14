@@ -188,7 +188,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
         }
         #endregion Starlight
 
-        // don't paralyze, slowdown or convert to rev if the target is immune to flashes; STARLIGHT EDIT - functionality added to override flash immunity
+        // don't paralyze, slowdown or convert to rev if the target is immune to flashes
         if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, flashDuration, true))
             return;
 
@@ -263,8 +263,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
             if (!_examine.InRangeUnOccluded(entity, mapPosition, range, predicate: (e) => _damagedByFlashingQuery.HasComponent(e)))
                 continue;
 
-            // starlight edit - hardcoded melee and stun duration parameters and functionality to override flash immunity
-            Flash(entity, user, source, flashDuration, slowTo, displayPopup, false, null);
+            Flash(entity, user, source, flashDuration, slowTo, displayPopup);
         }
 
         _audio.PlayPredicted(sound, source, user, AudioParams.Default.WithVolume(1f).WithMaxDistance(3f));
