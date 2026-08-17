@@ -21,33 +21,6 @@ public sealed partial class DoorSystem : SharedDoorSystem
         SubscribeLocalEvent<DoorComponent, AnimationCompletedEvent>(OnAnimationCompleted);
     }
 
-    private void OnAnimationCompleted(Entity<DoorComponent> entity, ref AnimationCompletedEvent args)
-    {
-        if (args.Key != DoorComponent.OpenKey && args.Key != DoorComponent.CloseKey)
-            return;
-
-        if (!TryComp<SpriteComponent>(entity, out var sprite)) // Starlight
-            return;
-
-        switch (entity.Comp.State)
-        {
-            case DoorState.Open:
-                foreach (var (layer, layerState) in entity.Comp.OpenSpriteStates)
-                {
-                    _sprite.LayerSetRsiState((entity.Owner, sprite), layer, layerState);
-                }
-
-                break;
-            case DoorState.Closed:
-                foreach (var (layer, layerState) in entity.Comp.ClosedSpriteStates)
-                {
-                    _sprite.LayerSetRsiState((entity.Owner, sprite), layer, layerState);
-                }
-
-                break;
-        }
-    }
-
     protected override void OnComponentInit(Entity<DoorComponent> ent, ref ComponentInit args)
     {
         var comp = ent.Comp;
