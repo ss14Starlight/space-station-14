@@ -18,6 +18,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Content.Server.Pinpointer;
 using Content.Shared.Anomaly.Components;
+using Content.Server.Nuke;
+using Content.Server.Station.Systems;
+using Content.Shared.Station.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities.Colossus;
 
@@ -35,6 +38,7 @@ public sealed partial class CosmicEffigySystem : EntitySystem
     [Dependency] private SharedChargesSystem _charges = default!;
     [Dependency] private ChatSystem _chatSystem = default!;
     [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private StationSystem _station = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -54,16 +58,37 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         if (!VerifyPlacement(ent, out var pos))
             return;
 
-        _codeCondition.SetCompleted(ent.Owner, ent.Comp.EffigyObjective);
         var effigy = Spawn(ent.Comp.EffigyPrototype, pos);
 
-        // Free the Colossus of the location
+        // Give the Colossus an objective if they spawned on a station.
         if (_mind.TryGetObjectiveComp<CosmicEffigyConditionComponent>(ent, out var obj))
-            obj.EffigyTarget = null;
+        {
+            var station = _station.GetOwningStation(ent.Owner);
 
-        var effigyComp = EnsureComp<CosmicEffigyComponent>(effigy);
-        effigyComp.Colossus = ent.Owner;
+            // If we are on a grid without a station, use the grid containing the nuke.
+            if (station == null && Transform(ent).GridUid is { } currentGrid)
+            {
+                var nukeQuery = EntityQueryEnumerator<NukeComponent, TransformComponent>();
+                while (nukeQuery.MoveNext(out var nukeUid, out _, out var nukeTransform))
+                {
+                    if (nukeTransform.GridUid == null || nukeTransform.GridUid == currentGrid)
+                        continue;
 
+                    station = _station.GetOwningStation(nukeUid);
+                    if (station != null)
+                        break;
+                }
+            }
+
+            // No station found means the Colossus gets no effigy objective.
+            if (station != null)
+            {
+                obj.EffigyTarget = station;
+                _codeCondition.SetCompleted(ent.Owner, ent.Comp.EffigyObjective);
+            }
+        }
+
+        // Free the Colossus of the location
         ent.Comp.CurrentEffigy = effigy;
         if (ent.Comp.EffigyPlaceActionEntity is { } action && TryComp<LimitedChargesComponent>(action, out var charges))
         {
