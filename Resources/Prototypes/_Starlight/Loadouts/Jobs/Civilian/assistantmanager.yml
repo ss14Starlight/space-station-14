@@ -1,0 +1,69 @@
+- type: loadoutEffectGroup
+  id: SeniorAssistantManager
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobAssistantManager
+        time: 216000
+
+# Head
+- type: loadout
+  id: AssistantManagerHead
+  equipment:
+    head: ClothingHeadHatCommandSoft
+
+- type: loadout
+  id: AssistantManagerBeret
+  equipment:
+    head: ClothingHeadHatBeretCommand
+
+# Jumpsuit
+- type: loadout
+  id: AssistantManagerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCommandGeneric
+
+- type: loadout
+  id: AssistantManagerJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCommandGeneric
+
+# Backpack
+- type: loadout
+  id: AssistantManagerBackpack
+  equipment:
+    back: ClothingBackpackCommandGeneric
+
+- type: loadout
+  id: AssistantManagerSatchel
+  equipment:
+    back: ClothingBackpackSatchelCommandGeneric
+
+- type: loadout
+  id: AssistantManagerDuffel
+  equipment:
+    back: ClothingBackpackDuffelCommandGeneric
+
+# Gloves
+- type: loadout
+  id: AssistantManagerGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorBlue
+
+- type: loadout
+  id: AssistantManagerMittens
+  equipment:
+    gloves: ClothingHandsMittensColorBlue
+
+# Outer Clothing
+- type: loadout
+  id: AssistantManagerWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterColorBlue
+
+# Feet
+- type: loadout
+  id: BlueWinterBoots
+  equipment:
+    shoes: ClothingShoesBootsWinterBlue

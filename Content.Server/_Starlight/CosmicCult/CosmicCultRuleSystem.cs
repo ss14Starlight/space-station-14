@@ -64,6 +64,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Radio.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared._Starlight.Shadekin.Components;
+using Prometheus;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -131,6 +132,12 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     /// Mind role to add to cultists.
     /// </summary>
     public static readonly EntProtoId MindRole = "MindRoleCosmicCult";
+
+    private static readonly Counter _cultistCounter = Metrics.CreateCounter("cultist_counter",
+        "Keeps a track of the amount of times cultist win or loose", ["results"]);
+
+    private static readonly Gauge _convertsGauage = Metrics.CreateGauge("cultist_converts",
+        "Keeps track of the amount of players converted this round");
 
     public override void Initialize()
     {
@@ -552,6 +559,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         GameRuleComponent gameRule,
         ref RoundEndTextAppendEvent args)
     {
+
         var ftlKey = component.WinType.ToString().ToLower();
         var winType = Loc.GetString($"cosmiccult-roundend-{ftlKey}");
         var summaryText = Loc.GetString($"cosmiccult-summary-{ftlKey}");
@@ -561,6 +569,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         args.AddLine(Loc.GetString("cosmiccult-roundend-cultpop-count", ("count", component.PercentConverted)));
         args.AddLine(Loc.GetString("cosmiccult-roundend-entropy-count", ("count", component.EntropySiphoned)));
         args.AddLine(Loc.GetString("cosmiccult-roundend-monument-stage", ("stage", component.CurrentTier)));
+
+        _cultistCounter.WithLabels(component.WinType.ToString()).Inc();
     }
 
     public void IncrementCultObjectiveEntropy(Entity<CosmicCultComponent> ent)
@@ -578,6 +588,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     public void AdjustCultObjectiveConversion(int value)
     {
+        _convertsGauage.Inc(value); // I know, I know using an Inc function with potential negative values is bad. Blame Prometheus for not having an .Adjust function...
         var query = EntityQueryEnumerator<CosmicConversionConditionComponent>();
         while (query.MoveNext(out _, out var conversionComp))
         {
