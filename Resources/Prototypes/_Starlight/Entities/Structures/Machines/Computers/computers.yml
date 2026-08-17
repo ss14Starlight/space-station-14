@@ -285,8 +285,6 @@
     color: "#735ec3"
   - type: Computer
     board: SalvageShuttleConsoleCircuitboard
-  - type: StealTarget
-    stealGroup: SalvageShuttleConsoleCircuitboard
   - type: AccessReader
     access: [ [ "Shuttle" ], [ "Salvage" ] ]
 
