@@ -17,14 +17,7 @@ public sealed partial class DnaData : ReagentData
     }
 
     public override bool Equals(ReagentData? other)
-    {
-        if (other == null)
-        {
-            return false;
-        }
-
-        return ((DnaData) other).DNA == DNA;
-    }
+        => other is DnaData dnaData && dnaData.DNA == DNA; // Blimpuf edit
 
     public override int GetHashCode()
     {

@@ -168,6 +168,15 @@
     - type: Contraband
       allowedJobs: [ Reporter ]
 
+- type: entity
+  id: BaseCommandManagerContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Command ]
+    allowedJobs: [ AssistantManager ]
+
 # for ~objective items not held by command
 - type: entity
   id: BaseWardenGrandTheftContraband

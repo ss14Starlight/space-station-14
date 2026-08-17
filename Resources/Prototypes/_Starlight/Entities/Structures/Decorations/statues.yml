@@ -63,3 +63,31 @@
             - None
           layer:
             - MidImpassable
+
+- type: entity
+  id: EndymionStatueLarge1
+  parent: BaseStructure
+  name: Small Endymion Memorial
+  description: |
+    A memorial commissioned in 2143 to commemorate the lives lost aboard the Endymion and Blu-E, carved from a recovered fragment of the ships' hull and shaped into their likeness. The names of the lost crew are carved on it.
+    "In reaching to the future, we must never forget those who came before us."
+    - TSF representative Kennedy Sunderland
+  components:
+    - type: Sprite
+      noRot: true
+      sprite: _Starlight/Structures/Decorations/Statues(2x2).rsi
+      state: endymion1
+      drawdepth: Mobs
+      offset: "0.0,0.5"
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeAabb
+            bounds: "-0.70,0.00,0.70,0.30"
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MidImpassable
+            - LowImpassable
+    - type: Anchorable
