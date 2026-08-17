@@ -204,6 +204,15 @@
     stealGroup: CaptainTablet
 
 - type: entity
+  parent: BaseTraitorStealObjective
+  id: EncryptionKeyHybridStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Captain, NanoTrasenRepresentative, Magistrate, BlueShield, IAA, NanotrasenCareerTrainer, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, Lawyer, ResearchDirector, Roboticist, Scientist, ResearchAssistant ]
+  - type: StealCondition
+    stealGroup: EncryptionKeyHybrid
+
+- type: entity
   parent: BaseTraitorNanoTrasenStealObjective
   id: NTRepBriefcaseSecureStealObjective
   components:
