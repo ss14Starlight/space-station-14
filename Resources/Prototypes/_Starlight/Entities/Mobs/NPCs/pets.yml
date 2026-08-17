@@ -126,6 +126,9 @@
     attributes:
       proper: true
       gender: male
+  - type: GuideHelp
+    guides:
+    - StirStir
 
 ## ADMIN MICE
 

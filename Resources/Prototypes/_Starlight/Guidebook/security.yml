@@ -2,3 +2,8 @@
   id: SupernaturalEntities
   name: guide-entry-rules-supernatural-entities
   text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SupernaturalEntities.xml"
+
+- type: guideEntry
+  id: StirStir
+  name: guide-entry-stirstir
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/StirStir.xml"
