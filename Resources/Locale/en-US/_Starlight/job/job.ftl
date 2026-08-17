@@ -22,6 +22,7 @@ job-name-performer = Performer
 job-name-salvagelead = Salvage Lead
 job-name-salvagemedic = Salvage Medic
 job-name-dutyofficer = Duty Officer
+job-name-assistantmanager = Assistant Manager
 job-name-abductor = Abductor
 job-title-borgi = Borgi
 

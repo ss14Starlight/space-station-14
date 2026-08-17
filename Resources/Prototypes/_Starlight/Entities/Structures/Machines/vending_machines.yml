@@ -157,7 +157,8 @@
   - type: Store
     name: vendor-engineering-dispenser
     categories:
-    - SLEnginery
+    - SLEngineering
+    - SLAtmospherics
     - SLSecret
 
 - type: entity
@@ -168,7 +169,7 @@
   description: Get your honk fix here! Surprise the station with HohohonkersVend — the ultimate machine for hilarious pranks. Hack it, and you'll unlock something special!
   components:
   - type: AccessReader
-    access: [["Theatre"]]
+    access: [["Clown"]]
   - type: Store
     name: vendor-clown-dispenser
     categories:
@@ -185,7 +186,7 @@
   description: All the gear a mime could need. Go put the captain in an invisible box!
   components:
   - type: AccessReader
-    access: [["Theatre"]]
+    access: [["Mime"]]
   - type: Store
     name: vendor-mime-dispenser
     categories:

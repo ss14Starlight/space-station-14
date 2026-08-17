@@ -32,6 +32,7 @@
             ServiceWorker: [ 5, 5 ]
             Boxer: [ 2, 2 ]
             Lawyer: [ 2, 2 ]
+            RadioHost: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
