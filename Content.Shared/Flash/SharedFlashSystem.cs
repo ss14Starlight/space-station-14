@@ -224,13 +224,13 @@ public abstract partial class SharedFlashSystem : EntitySystem
     /// <param name="sound">Additional sound to play at the source.</param>
     /// <param name="ignoreEntities">Entities to ignore when flashing.</param> (STARLIGHT EDIT)
     public void FlashArea(
-        EntityUid source, 
-        EntityUid? user, 
-        float range, 
-        TimeSpan flashDuration, 
+        EntityUid source,
+        EntityUid? user,
+        float range,
+        TimeSpan flashDuration,
         float slowTo = 0.8f,
-        bool displayPopup = false, 
-        float probability = 1f, 
+        bool displayPopup = false,
+        float probability = 1f,
         SoundSpecifier? sound = null,
         List<EntityUid>? ignoreEntities = null)
     {
