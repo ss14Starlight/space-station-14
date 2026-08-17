@@ -325,4 +325,9 @@ public sealed class MetabolizerSystem : EntitySystem
 
         return true;
     }
+
+    public bool HasStage(
+        Entity<MetabolizerComponent?> ent,
+        ProtoId<MetabolismStagePrototype> stage) => Resolve(ent, ref ent.Comp, logMissing: false)
+            && ent.Comp.Stages.Contains(stage);
 }
