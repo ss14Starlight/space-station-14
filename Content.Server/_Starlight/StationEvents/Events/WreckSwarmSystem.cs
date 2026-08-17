@@ -1,18 +1,18 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Server._Starlight.Salvage.Ruins;
 using Content.Server._Starlight.StationEvents.Components;
-using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared._Starlight.Salvage.Ruins;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Station.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Physics.Components;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.StationEvents.Events;
 
@@ -20,19 +20,22 @@ public sealed partial class WreckSwarmSystem : StationEventSystem<WreckSwarmComp
 {
     #region Dependencies
 
-    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IPrototypeManager _proto = default!;
-    [Dependency] private StationSystem _station = default!;
     [Dependency] private MapLoaderSystem _loader = default!;
-    [Dependency] private SharedMapSystem _mapSystem = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private RuinGeneratorSystem _ruinGenerator = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     #endregion
 
     #region Fields
 
     private readonly List<RuinMapPrototype> _ruinMaps = [];
+    private List<Entity<MapGridComponent>> _intersectingGrids = [];
+    private readonly List<GridLaunchSnapshot> _gridSnapshots = [];
 
     #endregion
 
@@ -40,74 +43,29 @@ public sealed partial class WreckSwarmSystem : StationEventSystem<WreckSwarmComp
 
     protected override void ActiveTick(EntityUid uid, WreckSwarmComponent component, GameRuleComponent gameRule, float frameTime)
     {
-        if (_station.GetStations().Count == 0)
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent) ||
+            stationEvent.TargetStation is not { } station ||
+            !TryComp<StationDataComponent>(station, out var stationData) ||
+            stationData.Grids.Count == 0)
         {
             ForceEndSelf(uid, gameRule);
             return;
         }
-
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
-        {
-            ForceEndSelf(uid, gameRule);
-            return;
-        }
-
-        if (stationEvent.TargetStation is null)
-        {
-            ForceEndSelf(uid, gameRule);
-            return;
-        }
-
-        if (_station.GetLargestGrid(stationEvent.TargetStation.Value) is not { } grid)
-        {
-            ForceEndSelf(uid, gameRule);
-            return;
-        }
-
-        var mapId = Transform(grid).MapID;
-        var playableArea = _physics.GetWorldAABB(grid);
-
-        var minimumDistance = (playableArea.TopRight - playableArea.Center).Length() + 50f;
-        var maximumDistance = minimumDistance + 100f;
-
-        var center = playableArea.Center;
-
-        var angle = RobustRandom.NextAngle();
-        var spawnAngle = RobustRandom.NextAngle();
-
-        var offset = angle.RotateVec(new Vector2(((maximumDistance - minimumDistance) * RobustRandom.NextFloat()) + minimumDistance, 0));
-
-        var spawnPosition = new MapCoordinates(center + offset, mapId);
 
         var wreckMap = _mapSystem.CreateMap();
         var wreckMapXform = Transform(wreckMap);
 
         if (!TrySpawnWreck(component, wreckMapXform.MapID) ||
-            wreckMapXform.ChildCount == 0 ||
-            !_mapSystem.TryGetMap(spawnPosition.MapId, out var spawnUid))
+            !TryCollectWreckGrids(wreckMap, out var footprint) ||
+            !TryPlanLaunch(station, stationData, component, footprint, out var plan) ||
+            !_mapSystem.TryGetMap(plan.MapId, out var spawnMapUid))
         {
             _mapSystem.DeleteMap(wreckMapXform.MapID);
             ForceEndSelf(uid, gameRule);
             return;
         }
 
-        var mapChildren = wreckMapXform.ChildEnumerator;
-
-        while (mapChildren.MoveNext(out var mapChild))
-        {
-            var wreckXForm = Comp<TransformComponent>(mapChild);
-            var localPos = wreckXForm.LocalPosition;
-
-            _transform.SetParent(mapChild, wreckXForm, spawnUid.Value);
-            _transform.SetWorldPositionRotation(mapChild, spawnPosition.Position + localPos, spawnAngle, wreckXForm);
-
-            // Fail soft if physics is missing rather than throwing mid-event.
-            if (!TryComp<PhysicsComponent>(mapChild, out var physics))
-                continue;
-
-            _physics.SetLinearVelocity(mapChild, -offset.Normalized() * component.Velocity, body: physics);
-        }
-
+        ApplyLaunch(spawnMapUid.Value, plan);
         _mapSystem.DeleteMap(wreckMapXform.MapID);
 
         if (component.Announcement is { } locId)
@@ -135,6 +93,42 @@ public sealed partial class WreckSwarmSystem : StationEventSystem<WreckSwarmComp
             return false;
 
         return _ruinGenerator.SpawnRuinGrid(tempMapId, result, seed) != null;
+    }
+
+    private bool TryCollectWreckGrids(EntityUid wreckMap, [NotNullWhen(true)] out WreckFootprint? footprint)
+    {
+        footprint = null;
+        var children = new List<WreckGridInfo>();
+        var mapXform = Transform(wreckMap);
+        var enumerator = mapXform.ChildEnumerator;
+        Box2? combined = null;
+
+        while (enumerator.MoveNext(out var child))
+        {
+            if (!TryComp<MapGridComponent>(child, out var grid))
+                continue;
+
+            if (!_ruinGenerator.TryPrepareWreckGrid(child))
+                continue;
+
+            var xform = Transform(child);
+            var info = new WreckGridInfo(child, xform.LocalPosition, xform.LocalRotation, grid.LocalAABB);
+            children.Add(info);
+
+            var childBox = Matrix3Helpers.CreateTransform(info.LocalPosition, info.LocalRotation)
+                .TransformBox(info.LocalAABB);
+            combined = combined == null ? childBox : combined.Value.Union(childBox);
+        }
+
+        if (children.Count == 0 || combined == null)
+            return false;
+
+        var bounds = combined.Value;
+        footprint = new WreckFootprint(
+            children,
+            bounds.Center,
+            (bounds.TopRight - bounds.Center).Length());
+        return true;
     }
 
     private List<RuinMapPrototype> GetRuinMaps()

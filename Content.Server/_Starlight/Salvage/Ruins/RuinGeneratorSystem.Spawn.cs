@@ -7,6 +7,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Friction;
 using Content.Shared.Gravity;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Physics;
@@ -28,10 +29,12 @@ public sealed partial class RuinGeneratorSystem
     private static readonly ProtoId<DamageTypePrototype> StructuralDamageType = "Structural";
     // Wreck-only biome: scrap/treasure/decals without thrusters, gyros, or mob spawners.
     private static readonly ProtoId<BiomeTemplatePrototype> SpaceRuinWreckBiome = "SpaceRuinWreck";
+    private const float WreckFrictionModifier = 0.25f; // Makes it so the wreck doesn't slow down too much before it hits the station.
 
     [Dependency] private AnchorableSystem _anchorable = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private DecalSystem _decals = default!;
+    [Dependency] private TileFrictionController _friction = default!;
     [Dependency] private GravitySystem _gravity = default!;
     [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
@@ -68,20 +71,35 @@ public sealed partial class RuinGeneratorSystem
         _gravity.EnableGravity(ruinGrid.Owner);
         _metaData.SetEntityName(ruinGrid.Owner, Loc.GetString("station-event-wreck-ruin-name"));
 
-        // ShuttleSystem.OnGridInit adds ShuttleComponent to every non-map grid. Strip it so wrecks
-        // are debris (physics collision only) and do not trigger Starlight shuttle-impact damage.
-        RemComp<ShuttleComponent>(ruinGrid.Owner);
-
-        // Removing ShuttleComponent runs ShuttleSystem's shutdown handler, which makes the body static.
-        // Restore normal moving-grid physics so WreckSwarm can propel the debris toward the station.
-        if (!TryComp<PhysicsComponent>(ruinGrid.Owner, out var physics))
+        if (!TryPrepareWreckGrid(ruinGrid.Owner))
             return null;
 
-        _physics.SetBodyType(ruinGrid.Owner, BodyType.Dynamic, body: physics);
-        _physics.SetBodyStatus(ruinGrid.Owner, physics, BodyStatus.InAir);
-        _physics.SetFixedRotation(ruinGrid.Owner, false, body: physics);
-
         return ruinGrid.Owner;
+    }
+
+    /// <summary>
+    /// Strips shuttle impact handling and restores a free-flying dynamic body with wreck friction.
+    /// Used by both generated ruins and fixed-grid wrecks.
+    /// </summary>
+    /// <returns>False if the grid had no physics and was queued for deletion.</returns>
+    public bool TryPrepareWreckGrid(EntityUid grid)
+    {
+        // Keep the original wreck damping without making both colliding grids process shuttle impact damage.
+        RemComp<ShuttleComponent>(grid);
+
+        if (!TryComp<PhysicsComponent>(grid, out var physics))
+        {
+            QueueDel(grid);
+            return false;
+        }
+
+        _physics.SetBodyType(grid, BodyType.Dynamic, body: physics);
+        _physics.SetBodyStatus(grid, physics, BodyStatus.InAir);
+        _physics.SetFixedRotation(grid, false, body: physics);
+
+        var friction = EnsureComp<TileFrictionModifierComponent>(grid);
+        _friction.SetModifier(grid, WreckFrictionModifier, friction);
+        return true;
     }
 
     private void SpawnRuinWindows(EntityUid gridUid, MapGridComponent grid, RuinResult ruinResult, int seed)

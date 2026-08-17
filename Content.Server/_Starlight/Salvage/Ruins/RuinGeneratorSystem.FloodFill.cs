@@ -82,7 +82,10 @@ public sealed partial class RuinGeneratorSystem
                 if (!costMap.TryGetValue(current, out var tileCost))
                     continue;
 
-                var totalCostIfAdded = accumulatedCost + tileCost;
+                // Each stage needs an anchor even when its selected start is a high-cost wall or window.
+                var totalCostIfAdded = current == currentStart
+                    ? 0
+                    : accumulatedCost + tileCost;
                 if (totalCostIfAdded > budgetPerStage)
                     continue;
 

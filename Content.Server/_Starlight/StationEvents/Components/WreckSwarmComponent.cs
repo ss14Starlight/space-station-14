@@ -10,10 +10,10 @@ namespace Content.Server._Starlight.StationEvents.Components;
 public sealed partial class WreckSwarmComponent : Component
 {
     /// <summary>
-    /// World-space speed applied toward the station. Kept moderate so debris slams without needing shuttle-impact lethality.
+    /// World-space speed applied toward the station, matching the original wreck swarm.
     /// </summary>
     [DataField]
-    public float Velocity = 20f;
+    public float Velocity = 50f;
 
     /// <summary>
     /// The announcement played when a wreck swarm begins.

@@ -21,7 +21,7 @@
     globalAnnouncement: false
   - type: WreckSwarm
     chunkConfig: Medium
-    velocity: 20
+    velocity: 50
 
 - type: entity
   parent: GameRuleWreckSwarmSpawn
@@ -34,7 +34,7 @@
     globalAnnouncement: false
   - type: WreckSwarm
     chunkConfig: Small
-    velocity: 20
+    velocity: 50
 
 - type: entity
   parent: GameRuleWreckSwarmSpawn
@@ -47,7 +47,7 @@
     globalAnnouncement: false
   - type: WreckSwarm
     chunkConfig: Medium
-    velocity: 20
+    velocity: 50
 
 - type: entity
   parent: GameRuleWreckSwarmSpawn
@@ -62,4 +62,4 @@
     announcement: station-event-incoming-wreck-large-announcement
     announcementSound: /Audio/Announcements/attention.ogg
     chunkConfig: Large
-    velocity: 20
+    velocity: 50

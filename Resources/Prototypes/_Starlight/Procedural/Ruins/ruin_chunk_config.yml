@@ -3,8 +3,8 @@
 
 - type: ruinChunkConfig
   id: Default
-  floodFillPoints: 25
-  floodFillStages: 7
+  floodFillPoints: 13
+  floodFillStages: 4
   wallDestroyChance: 0.30
   windowDamageChance: 0.10
   floorToLatticeChance: 0.15
@@ -81,24 +81,24 @@
 
 - type: ruinChunkConfig
   id: Small
-  floodFillPoints: 18
-  floodFillStages: 5
+  floodFillPoints: 9
+  floodFillStages: 3
   wallDestroyChance: 0.30
   windowDamageChance: 0.10
   floorToLatticeChance: 0.15
 
 - type: ruinChunkConfig
   id: Medium
-  floodFillPoints: 25
-  floodFillStages: 7
+  floodFillPoints: 13
+  floodFillStages: 4
   wallDestroyChance: 0.30
   windowDamageChance: 0.10
   floorToLatticeChance: 0.15
 
 - type: ruinChunkConfig
   id: Large
-  floodFillPoints: 45
-  floodFillStages: 8
+  floodFillPoints: 22
+  floodFillStages: 4
   wallDestroyChance: 0.25
   windowDamageChance: 0.10
   floorToLatticeChance: 0.12
