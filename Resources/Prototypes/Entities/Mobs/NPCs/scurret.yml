@@ -59,11 +59,11 @@
       Male: Scurret
       Female: Scurret
       Unsexed: Scurret
-    wilhelmProbability: 0.001 # the scug, it screams like a man
+    wilhelmProbability: 0.01 # the scug, it screams like a man
   - type: Speech
     speechVerb: Wawa
     speechSounds: Wawa
-    # allowedEmotes: ["Thump"] # Inferus: admittedly a hackfix
+    allowedEmotes: ["Thump"] # They're 80% tail
   - type: TypingIndicator
     proto: moth
   - type: InteractionPopup
