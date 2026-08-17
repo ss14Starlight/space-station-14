@@ -148,15 +148,6 @@
 
 - type: entity
   parent: [BaseThiefStealObjective, BaseThiefCargoStealObjective]
-  id: SalvageShuttleConsoleCircuitboardStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: SalvageShuttleConsoleCircuitboard
-  - type: Objective
-    difficulty: 0.7
-
-- type: entity
-  parent: [BaseThiefStealObjective, BaseThiefCargoStealObjective]
   id: MiningShuttleConsoleCircuitboardStealObjective
   components:
   - type: StealCondition
