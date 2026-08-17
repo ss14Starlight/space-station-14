@@ -13,9 +13,14 @@
       - material: MetalRod
         amount: 4
         doAfter: 10 #starlight, increased
-      - material: Steel
-        amount: 1
+#Starlight region
+#      - material: Steel
+#        amount: 1
+#        doAfter: 5 #starlight, increased
+      - material: Plasteel
+        amount: 4
         doAfter: 5 #starlight, increased
+#Starlight region end
 
   - node: turnstile
     entity: Turnstile
