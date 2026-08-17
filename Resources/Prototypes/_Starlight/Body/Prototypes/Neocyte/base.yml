@@ -1,0 +1,57 @@
+- type: body
+  id: Neocyte
+  name: neocyte
+  root: torso
+  slots:
+    head:
+      part: HeadNeocyte
+      connections:
+      - torso
+      organs:
+        brain: OrganNeocyteBrain
+        eyes: OrganNeocyteEyes
+        tongue: OrganNeocyteTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoNeocyte
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganNeocyteHeart
+        lungs: OrganNeocyteLungs
+        stomach: OrganNeocyteStomach
+        liver: OrganNeocyteLiver
+        kidneys: OrganNeocyteKidneys
+        cavity: null
+    right arm:
+      part: RightArmNeocyte
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmNeocyte
+      connections:
+      - left hand
+    right hand:
+      part: RightHandNeocyte
+      organs:
+        hand_implant: null
+    left hand:
+      part: LeftHandNeocyte
+      organs:
+        hand_implant: null
+    right leg:
+      part: RightLegNeocyte
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegNeocyte
+      connections:
+      - left foot
+    right foot:
+      part: RightFootNeocyte
+    left foot:
+      part: LeftFootNeocyte

@@ -1,0 +1,7 @@
+- type: accessLevel
+  id: Clown
+  name: id-card-access-level-clown
+
+- type: accessLevel
+  id: Mime
+  name: id-card-access-level-mime

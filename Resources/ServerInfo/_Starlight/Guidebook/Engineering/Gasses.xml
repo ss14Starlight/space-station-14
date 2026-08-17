@@ -1,0 +1,90 @@
+﻿<Document>
+  # Gasses
+  Mundane gasses that are easily found in nature. Some are used to breathe whereas others have minor uses.
+
+  ## Air Mix
+  <Box>
+    <GuideEntityEmbed Entity="AirCanister" Caption=""/>
+    <GuideEntityEmbed Entity="AirTank" Caption=""/>
+  </Box>
+
+  A mixture of gasses that is breathable to most species on the station.
+  It consists of 21% oxygen and 79% nitrogen.
+
+  ## Oxygen
+  <Box>
+    <GuideEntityEmbed Entity="OxygenCanister" Caption=""/>
+    <GuideEntityEmbed Entity="OxygenTank" Caption=""/>
+    <GuideEntityEmbed Entity="DoubleEmergencyOxygenTank" Caption=""/>
+    <GuideEntityEmbed Entity="ExtendedEmergencyOxygenTank" Caption=""/>
+    <GuideEntityEmbed Entity="EmergencyOxygenTank" Caption=""/>
+  </Box>
+
+  A common gas, used by most species on the station to breathe.
+
+  Oxygen is an oxidizer, which means it supports combustion.  In spite of this obvious safety hazard, most species require it to live.
+
+  ## Nitrogen
+  <Box>
+    <GuideEntityEmbed Entity="NitrogenCanister" Caption=""/>
+    <GuideEntityEmbed Entity="NitrogenTank" Caption=""/>
+    <GuideEntityEmbed Entity="DoubleEmergencyNitrogenTank" Caption=""/>
+    <GuideEntityEmbed Entity="ExtendedEmergencyNitrogenTank" Caption=""/>
+    <GuideEntityEmbed Entity="EmergencyNitrogenTank" Caption=""/>
+  </Box>
+
+  An inert gas, used in part with oxygen to create a breathable atmosphere.
+
+  Some species like Slimes breathe nitrogen, with the Vox species requiring strictly nitrogen to breathe.
+
+  ## Carbon Dioxide
+  <Box>
+    <GuideEntityEmbed Entity="CarbonDioxideCanister" Caption=""/>
+  </Box>
+
+  A waste gas produced by most species on the station. A common byproduct of combustion.
+
+  Has radiation absorbing properties making it a useful moderator in certain power sources.
+
+  ## Water Vapor
+  <Box>
+    <GuideEntityEmbed Entity="WaterVaporCanister" Caption=""/>
+  </Box>
+  A common gas, can be produced by the burning of hydrogen or tritium.
+
+  Water vapor has a good specific heat capacity compared to other mundane gasses, making it useful for heat transfer.
+
+  ## Nitrous Oxide
+  <Box>
+    <GuideEntityEmbed Entity="NitrousOxideCanister" Caption=""/>
+    <GuideEntityEmbed Entity="EmergencyFunnyOxygenTank" Caption=""/>
+  </Box>
+  A chemically reactive combination of oxygen and nitrogen that is primarily used as a anesthetic or narcotic in most species.
+
+  Can be created by heating oxygen and ammonia, combining frezon and nitrogen, or exhalations from slime based organisms.  Can be decomposed into its component atoms by heating to roughly 850 K.
+
+  ## Ammonia
+  <Box>
+    <GuideEntityEmbed Entity="AmmoniaCanister" Caption=""/>
+  </Box>
+  A gas produced by the decomposition of bodies or exhalation from vox.
+
+  Can be condensed to create several useful chemicals, or heated with oxygen to create nitrous oxide and water vapor.
+
+  ## Hydrogen
+  <Box>
+    <GuideEntityEmbed Entity="HydrogenCanister" Caption=""/>
+  </Box>
+  The most common atom in the universe.
+
+  Highly dangerous due to being flammable and invisible to the naked eye. Primarily produced by electrolyzing water as well as a byproduct of more advanced processes.
+
+  ## Helium
+  <Box>
+    <GuideEntityEmbed Entity="HeliumCanister" Caption=""/>
+  </Box>
+  The second most common atom in the universe.
+
+  Has limited practical uses due to being incredibly inert, but can be sold on the market for minor value due to the difficulty of isolating such an inert gas.
+
+</Document>

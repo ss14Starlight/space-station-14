@@ -109,7 +109,7 @@ public sealed partial class MonumentSystem : SharedMonumentSystem
                         {
                             {
                                 "CosmicGod", new EntityPrototype.ComponentRegistryEntry(
-                                    new CosmicGodComponent { TriggerRoundEnd = true }, new MappingDataNode())
+                                    new CosmicGodComponent { TriggerRoundEnd = true })
                             }
                         }));
             }

@@ -5,11 +5,11 @@
   - !type:SpeciesLoadoutEffect
     species:
     - SlimePerson
-    - ProtoSlimePerson # Far Horizons/Starlight
+    - NeoSlimePerson # Far Horizons + Starlight
     - Vox
-    - ProtoVox # Far Horizons/Starlight
+    - NeoVox # Far Horizons + Starlight
     - Cyclorite #🌟Starlight🌟
-    - ProtoCyclorite # Far Horizons/Starlight
+    - NeoCyclorite # Far Horizons + Starlight
 
 - type: loadoutEffectGroup
   id: OxygenBreather
@@ -17,28 +17,28 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Arachnid
-    - ProtoArachnid # Far Horizons
+    - NeoArachnid # Far Horizons + Starlight
     - Diona # Starlight: Remove Dwarf
-    - ProtoDiona # Far Horizons/Starlight
+    - NeoDiona # Far Horizons + Starlight
     - Human
-    - ProtoHuman # Far Horizons/Starlight
+    - NeoHuman # Far Horizons + Starlight
     - Moth
-    - ProtoMoth # Far Horizons
+    - NeoMoth # Far Horizons + Starlight
     - Reptilian
-    - ProtoReptilian # Far Horizons/Starlight
+    - NeoReptilian # Far Horizons + Starlight
     - Vulpkanin # Starlight
-    - ProtoVulp # Far Horizons
+    - NeoVulpkanin # Far Horizons + Starlight
     - Felionoid #🌟Starlight🌟
-    - ProtoFelionoid # Far Horizons/Starlight
+    - NeoFelionoid # Far Horizons + Starlight
     - Resomi #🌟Starlight🌟
-    - ProtoResomi # Far Horizons
+    - NeoResomi # Far Horizons + Starlight
     - Avali #🌟Starlight🌟
-    - ProtoAvali # Far Horizons
+    - NeoAvali # Far Horizons + Starlight
     - Thaven # Starlight
-    - ProtoThaven # Far Horizons
+    - NeoThaven # Far Horizons + Starlight
     - Lagomorph # Starlight
-    - ProtoLagomorph # Starlight
-    - Protogen # Far Horizons
+    - NeoLagomorph # Starlight
+    - Neocyte # Far Horizons + Starlight
 
 
 

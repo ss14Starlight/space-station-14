@@ -22,7 +22,7 @@
     graph: LightFixture
     node: tubeLight
   - type: Sprite
-    sprite: Structures/Wallmounts/Lighting/light_tube.rsi
+    sprite: _Starlight/Structures/Wallmounts/Lighting/light_tube.rsi #SL Edit
     drawdepth: WallMountedItems
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
@@ -36,7 +36,7 @@
     energy: 0.8
     radius: 10
     softness: 1
-    offset: "0, -0.5"
+    offset: "0, 0.495"
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -101,7 +101,7 @@
   parent: AlwaysPoweredWallLight
   components:
   - type: Sprite
-    sprite: Structures/Wallmounts/Lighting/light_tube.rsi
+    sprite: _Starlight/Structures/Wallmounts/Lighting/light_tube.rsi #SL Edit
     state: empty
   - type: PointLight
     enabled: false
@@ -264,7 +264,7 @@
       sound:
         path: /Audio/Ambience/Objects/light_hum.ogg
     - type: Sprite
-      sprite: Structures/Wallmounts/Lighting/light_small.rsi
+      sprite: _Starlight/Structures/Wallmounts/Lighting/light_small.rsi #SL Edit
       state: base
     - type: PointLight
       energy: 1.0
@@ -318,13 +318,13 @@
   parent: SmallLight
   components:
   - type: Sprite
-    sprite: Structures/Wallmounts/Lighting/light_small.rsi
+    sprite: _Starlight/Structures/Wallmounts/Lighting/light_small.rsi #SL Edit
     state: empty
   - type: AmbientSound
     enabled: false
   - type: PointLight
     enabled: false
-    offset: "0, -0.5"
+    offset: "0, 0.495"
   - type: ContainerContainer
     containers:
       light_bulb: !type:ContainerSlot
@@ -450,7 +450,7 @@
     energy: 1 #Starlight
     offset: "0, 0.4"
     color: "#7CFC00"
-    mask: /Textures/Effects/LightMasks/double_cone.png
+    lightMask: ConeDouble
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: Battery
@@ -465,7 +465,7 @@
   - type: RotatingLight
     speed: 40
   - type: Sprite
-    sprite: Structures/Wallmounts/Lighting/emergency_light.rsi
+    sprite: _Starlight/Structures/Wallmounts/Lighting/emergency_light.rsi #SL Edit
     layers:
     - state: base
       map: [ "enum.EmergencyLightVisualLayers.Base" ]

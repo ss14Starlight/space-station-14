@@ -1,0 +1,441 @@
+# Base prototypes
+- type: entity
+  parent: BaseItem
+  id: BaseMagazine
+  name: magazine
+  description: A finely-printed magazine. Even in space, hard-boiled forms of media distribution like this can never fail you.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: popular_spacepeople
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#ffa69b"
+      right:
+      - state: magazine-inhand-right
+        color: "#ffa69b"
+  - type: Appearance
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: ExtinguishableSetCollisionWake
+  - type: Flammable
+    fireSpread: true
+    alwaysCombustible: true
+    canExtinguish: true
+    damage:
+      types:
+        Heat: 1
+  - type: FireVisuals
+    sprite: Effects/fire.rsi
+    normalState: fire
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Edible
+    delay: 7
+    forceFeedDelay: 7
+  - type: FlavorProfile
+    flavors:
+    - paper
+  - type: BadFood
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      SheetPrinter: 100
+  - type: Tag
+    tags:
+    - Paper # SL End
+
+# Magazines
+# When adding new issues, DON'T FORGET TO ADD THEM AS SPAWNERS / TO EXISTING SPAWNERS!
+#
+# CognitoWood
+- type: entity
+  parent: BaseMagazine
+  id: MagazineCognitoWood
+  name: "CognitoWood #1"
+  description: "A comic book about CognitoWood, the mind-bending diona superhero. The headline reads: 'Perseverance, Lethargy, and Branches, Super-Nymphs United!'"
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: cognitowood
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#b3b3b3"
+      right:
+      - state: magazine-inhand-right
+        color: "#b3b3b3" # SL End
+
+# Cooking and Botany
+- type: entity
+  parent: BaseMagazine
+  id: MagazineCookingAndBotany
+  name: Chell's Cooking & Botany
+  description: "A magazine containing various cooking recipes & botanical tips for aspiring chefs onboard space stations. The headline reads: 'Best Recipes of 2065'"
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: cooking
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#9ed63a"
+      right:
+      - state: magazine-inhand-right
+        color: "#9ed63a" # SL End
+
+# Crossword
+- type: entity
+  parent: BaseMagazine
+  id: MagazineCrossword
+  name: crossword magazine
+  description: A magazine containing various crossword puzzles. Popular amongst detectives.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: crossword
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#b3b3b3"
+      right:
+      - state: magazine-inhand-right
+        color: "#b3b3b3" # SL End
+
+# Wordsearch
+- type: entity
+  parent: BaseMagazine
+  id: MagazineWordsearch
+  name: wordsearch magazine
+  description: A magazine containing various wordsearch puzzles. Who even cares about these, anyways?
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: wordsearch
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#b3b3b3"
+      right:
+      - state: magazine-inhand-right
+        color: "#b3b3b3" # SL End
+
+# Earth News
+- type: entity
+  parent: BaseMagazine
+  id: MagazineEarthNews
+  name: "Oxygenated Wonders, Sol News Highlights #6" #SL Edit
+  description: "A magazine containing a positive spin on Sol news. The headline reads: 'New species discovered, atmosphere-based mobility innovations, and more!'" #SL Edit
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: earth_news
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#3285ba"
+      right:
+      - state: magazine-inhand-right
+        color: "#3285ba" # SL End
+
+# Gun News
+- type: entity
+  parent: BaseMagazine
+  id: MagazineFirearms
+  name: "Mel's Classified Firearms #20"
+  description: "A magazine containing the latest & greatest innovations from firearms manufacturers. The headline reads: 'NEW Energy Pistol Unveiled from Microstar'" #SL Edit
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: guns
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#007923"
+      right:
+      - state: magazine-inhand-right
+        color: "#007923" # SL End
+
+# Medical News
+- type: entity
+  parent: BaseMagazine
+  id: MagazineMedicalScience
+  name: "Galactic Reagents #52"
+  description: "A magazine containing news relating to medical science advancements. The headline reads: 'Burstworm Cure Found?'"
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: medical
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#9ed63a"
+      right:
+      - state: magazine-inhand-right
+        color: "#9ed63a" # SL End
+
+# Popular Spacepeople TODAY
+- type: entity
+  parent: BaseMagazine
+  id: MagazinePopularSpacepeople
+  name: "Popular Spacepeople TODAY #120"
+  description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'Ostro Napalm unveils their gender affirming surgery'"
+
+- type: entity
+  parent: MagazinePopularSpacepeople
+  id: MagazinePopularSpacepeople2
+  name: "Popular Spacepeople TODAY #131"
+  description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'Sunshine Sprite's new controversial outfit choice floors fans'"
+
+- type: entity
+  parent: MagazinePopularSpacepeople
+  id: MagazinePopularSpacepeople3
+  name: "Popular Spacepeople TODAY #145"
+  description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'Maksym Millions's new dietary supplement sparks controversy'"
+
+- type: entity
+  parent: MagazinePopularSpacepeople
+  id: MagazinePopularSpacepeople4
+  name: "Popular Spacepeople TODAY #150"
+  description: "A magazine containing the latest celebrity gossip & news. The headline reads: 'Bubble Brown found dead at 39 - natural causes or syndicate intervention?'"
+
+# Revolutionary
+- type: entity
+  parent: [ BaseMagazine, BaseMinorContraband ] # SL Edit literally 1984
+  id: MagazineRevolutionary
+  name: "REVOLUTION! #1"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Firebombs & You'"
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: zine_revolutionary
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#b3b3b3"
+      right:
+      - state: magazine-inhand-right
+        color: "#b3b3b3" # SL End
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary2
+  name: "REVOLUTION! #3"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Spears, Nailed Planks, Bolas, and Other Homemade Weapons'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary3
+  name: "REVOLUTION! #4"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Emergency Weaponry in Industrial Environments: Toolboxes, Oxygen Tanks, and More'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary4
+  name: "REVOLUTION! #5"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Safe Telecomms Sabotage: How to Protest & Not Fuck Over the Masses'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary5
+  name: "REVOLUTION! #6"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'TSPD Blockade Falls - A Huge Win for Freedom'" #SL Edit
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary6
+  name: "REVOLUTION! #7"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Station Bots & Their Vulnerabilities'"
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary7
+  name: "REVOLUTION! #8"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Protecting Your Identity Against Space Surveillance: Gas Masks, Fire Helmets, and Other Solutions'" #SL Edit
+
+- type: entity
+  parent: MagazineRevolutionary
+  id: MagazineRevolutionary8
+  name: "REVOLUTION! #10"
+  description: "A zine containing guides & updates for revolutionaries. The headline reads: 'Non-Governmental Threats: Stay Vigilant Against Syndicate Agents'"
+
+# Conspiracy
+- type: entity
+  parent: [ BaseMagazine, BaseMinorContraband ] # SL Edit literally 1984
+  id: MagazineConspiracy
+  name: True History
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Where NanoTrasen Really Went'" #SL Edit
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: zine_conspiracy
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#eb0c07"
+      right:
+      - state: magazine-inhand-right
+        color: "#eb0c07" # SL End
+
+- type: entity
+  parent: MagazineConspiracy
+  id: MagazineConspiracy2
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Helios Logistics behind water shortages'" #SL Edit
+
+- type: entity
+  parent: MagazineConspiracy
+  id: MagazineConspiracy3
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Rising barricade usage orchestrated by Big Wood'"
+
+- type: entity
+  parent: MagazineConspiracy
+  id: MagazineConspiracy4
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'RATMEN ARE REAL AND IN YOUR STATION'"
+
+- type: entity
+  parent: MagazineConspiracy
+  id: MagazineConspiracy5
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'The plan to forge people into a large sphere & why you should be worried'"
+
+- type: entity
+  parent: MagazineConspiracy
+  id: MagazineConspiracy6
+  description: "A zine containing various crazed ramblings & conspiracy theories. The headline reads: 'Space Diner chefs caught secretly lacing food with floor tile dirt'" #SL Edit
+
+# Fashion
+- type: entity
+  parent: BaseMagazine
+  id: MagazineFashion
+  name: "Fashion Fanatics #4"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Outfits for scientific research'"
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: fashion
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#ffe14d"
+      right:
+      - state: magazine-inhand-right
+        color: "#ffe14d" # SL End
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion2
+  name: "Fashion Fanatics #14"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Androgynous performer outfits for budding enbies'"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion3
+  name: "Fashion Fanatics #15"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Aquatic-themed outfit ideas'"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion4
+  name: "Fashion Fanatics #17"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Rough-and-tumble outfits for space bikers'"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion5
+  name: "Fashion Fanatics #20"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Swirly-glass outfits for swirly glasses girls'"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion6
+  name: "Fashion Fanatics #22"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Color-coordinated outfit ideas for teams and groups'"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion7
+  name: "Fashion Fanatics #23"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Space outfits with a chrome finish'"
+
+- type: entity
+  parent: MagazineFashion
+  id: MagazineFashion8
+  name: "Fashion Fanatics #24"
+  description: "A magazine containing various fashion ideas & news. The headline reads: 'Diona work uniform styles to maximize gestalt comfort'"
+
+# Engineering Progress News
+- type: entity
+  parent: BaseMagazine
+  id: MagazineEngineerNews
+  name: "ShuttleTech #2"
+  description: "A magazine containing the latest news on engineering & tech advancements. The headline reads: 'NanoTrasen-competitor leaks information from rumored megathruster schematics'" #SL Edit
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/magazines.rsi
+    state: space
+  - type: Item
+    size: Small # SL Start
+    inhandVisuals:
+      left:
+      - state: magazine-inhand-left
+        color: "#3f3f3f"
+      right:
+      - state: magazine-inhand-right
+        color: "#3f3f3f" # SL End
+
+- type: entity
+  parent: MagazineEngineerNews
+  id: MagazineEngineerNews2
+  name: "ShuttleTech #5"
+  description: "A magazine containing the latest news on engineering & tech advancements. The headline reads: 'Experimental cryogenic power source research begins'"

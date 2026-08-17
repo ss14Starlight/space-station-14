@@ -9,7 +9,7 @@
     - Medical
   flavor: perfid
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
         - !type:HealthChange
           damage:

@@ -1,0 +1,39 @@
+- type: loadout
+  id: JumpsuitHawaiBlack
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiBlack
+
+- type: loadout
+  id: JumpsuitHawaiBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiBlue
+
+- type: loadout
+  id: JumpsuitHawaiRed
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiRed
+
+- type: loadout
+  id: JumpsuitHawaiYellow
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiYellow
+
+- type: loadout
+  id: RadioHostSunglasses
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses
+
+- type: loadout
+  id: OuterclothingFlannelJacketRed
+  equipment:
+    outerClothing: ClothingOuterFlannelRed
+
+- type: loadout
+  id: OuterclothingFlannelJacketBlue
+  equipment:
+    outerClothing: ClothingOuterFlannelBlue
+
+- type: loadout
+  id: OuterclothingFlannelJacketGreen
+  equipment:
+    outerClothing: ClothingOuterFlannelGreen

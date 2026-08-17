@@ -3,9 +3,6 @@
 - files: ["bagel.yml"]
   authors: Emisse, Starlight Team
 
-- files: ["barratry.yml"]
-  authors: Emogarbage, Scribbles0, Starlight Team
-
 - files: ["box.yml"]
   authors: ACJM, Emisse, Starlight Team
 
@@ -44,6 +41,9 @@
 
 - files: ["ming.yml"]
   authors: PubliclyExecutedPig, Starlight Team
+
+- files: ["novolobster.yml"]
+  authors: CawsForConcern (remake), Starlight Team
 
 - files: ["oasis.yml"]
   authors: CptJeanLuc, cvlancer (expansions), Starlight Team

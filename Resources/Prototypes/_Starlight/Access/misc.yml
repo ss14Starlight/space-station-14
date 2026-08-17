@@ -36,6 +36,7 @@
     - SalvageLead
     - Mail
     - Shuttle
+    - Journalism
 
 - type: accessLevel
   id: Debug1

@@ -1,0 +1,66 @@
+- type: entity
+  parent: BaseMobNeocyte
+  id: BaseMobNeoHuman
+  name: Urist McHandster
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    - SolCommon
+    understands:
+    - GalacticCommon
+    - Machine
+    - SolCommon
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Proto-Humie/parts.rsi
+    state: full
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
+  - type: Damageable
+    damageContainer: Hybrid
+    damageModifierSet: NeoHuman
+  - type: HumanoidAppearance
+    species: NeoHuman
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Inventory
+    templateId: neocyte
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: Wagging
+
+
+- type: entity
+  parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
+  id: AppearanceNeoHuman
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: NeoHuman
+  - type: Inventory
+    templateId: neocyte
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
