@@ -56,7 +56,7 @@ public sealed class PowerStateTest : GameTest
                 Assert.That(receiver.Load, Is.EqualTo(powerState.IdlePowerDraw).Within(0.01f));
             });
 
-            var system = entManager.System<SharedPowerStateSystem>();
+            var system = entManager.System<PowerStateSystem>();
             system.SetWorkingState((ent, powerState), true);
 
             Assert.Multiple(() =>
@@ -91,7 +91,7 @@ public sealed class PowerStateTest : GameTest
 
             var receiver = entManager.GetComponent<Server.Power.Components.ApcPowerReceiverComponent>(ent);
             var powerState = entManager.GetComponent<PowerStateComponent>(ent);
-            var system = entManager.System<SharedPowerStateSystem>();
+            var system = entManager.System<PowerStateSystem>();
             Entity<PowerStateComponent> newEnt = (ent, powerState);
 
             Assert.Multiple(() =>
@@ -142,7 +142,7 @@ public sealed class PowerStateTest : GameTest
 
             var receiver = entManager.GetComponent<Server.Power.Components.ApcPowerReceiverComponent>(ent);
             var powerState = entManager.GetComponent<PowerStateComponent>(ent);
-            var system = entManager.System<SharedPowerStateSystem>();
+            var system = entManager.System<PowerStateSystem>();
             Entity<PowerStateComponent> valueTuple = (ent, powerState);
 
             Assert.Multiple(() =>

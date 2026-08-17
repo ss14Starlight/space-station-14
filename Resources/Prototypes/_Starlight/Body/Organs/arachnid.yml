@@ -39,6 +39,7 @@
     size: Small
     heldPrefix: stomach
   - type: Stomach
+    digestionDelay: 30
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -63,8 +64,13 @@
       - state: lung-r
   - type: Lung
   - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
     metabolizerTypes: [ Human ]
-    stages: [ Respiration ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -95,7 +101,11 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Arachnid]
-    stages: [ Bloodstream ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
 - type: entity
   id: OrganArachnidLiver
   parent: [BaseHumanOrgan, BaseOrganLiver]
@@ -111,7 +121,9 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [Animal]
-    stages: [ Metabolites ]
+    groups:
+    - id: Alcohol
+
 - type: entity
   id: OrganArachnidKidneys
   parent: [BaseHumanOrgan, BaseOrganKidneys]
@@ -130,6 +142,7 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [Animal]
+    removeEmpty: true
 
 - type: entity
   id: OrganArachnidEyes

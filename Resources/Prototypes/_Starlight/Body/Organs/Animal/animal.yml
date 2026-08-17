@@ -38,8 +38,13 @@
   - type: Organ
   - type: Lung
   - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
     metabolizerTypes: [ Animal ]
-    stages: [ Respiration ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
       Lung:
@@ -76,7 +81,9 @@
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [ Animal ]
-    stages: [ Digestion ]
+    groups:
+    - id: Food
+    - id: Drink
   - type: Item
     size: Small
     heldPrefix: stomach
@@ -111,7 +118,8 @@
   - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [ Animal ]
-    stages: [ Metabolites ]
+    groups:
+    - id: Alcohol
   - type: Item
     size: Small
     heldPrefix: liver
@@ -128,7 +136,10 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Animal ]
-    stages: [ Bloodstream ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
   - type: Item
     size: Small
     heldPrefix: heart
@@ -147,6 +158,7 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Animal ]
+    removeEmpty: true
   - type: Item
     size: Small
     heldPrefix: kidneys

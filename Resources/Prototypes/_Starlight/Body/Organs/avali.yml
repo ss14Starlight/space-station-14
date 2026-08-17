@@ -37,7 +37,10 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Avali]
-    stages: [ Bloodstream ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: heart-on
@@ -52,7 +55,8 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [Avali]
-    stages: [ Metabolites ]
+    groups:
+    - id: Alcohol
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: liver
@@ -78,8 +82,13 @@
   description: "The lungs of an Avali."
   components:
   - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
     metabolizerTypes: [ Resomi, Human ] #They get both so they can still breathe oxygen without us needing to add Resomi everywhere Human is listed
-    stages: [ Respiration ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     layers:

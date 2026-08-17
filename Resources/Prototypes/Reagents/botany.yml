@@ -10,7 +10,7 @@
     - !type:PlantAdjustNutrition
       amount: 2
   metabolisms:
-    Digestion:
+    Food:
       effects:
       - !type:SatiateHunger
         conditions:
@@ -34,7 +34,7 @@
       probability: 0.3
       amount: 0.4
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:SatiateHunger
         conditions:
@@ -67,7 +67,7 @@
     - !type:PlantAdjustPests
       amount: -6
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         damage:
@@ -100,7 +100,7 @@
     - !type:PlantAdjustMutationMod
       amount: 0.1
   metabolisms:
-    Bloodstream:
+    Medicine:
       effects:
       - !type:HealthChange
         damage:
@@ -132,7 +132,7 @@
       amount: 1
     - !type:RobustHarvest {}
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
@@ -156,6 +156,8 @@
             Asphyxiation: 1
             Heat: 2
             Poison: 1
+    Medicine:
+      effects:
       - !type:Polymorph
         prototype: TreeMorph
         conditions:
@@ -200,7 +202,7 @@
     - !type:PlantAdjustWeeds
       amount: -6
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
@@ -226,7 +228,7 @@
   - !type:PlantAdjustHealth
     amount: 0.5
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         conditions: #Starlight
@@ -236,14 +238,16 @@
         damage:
           types:
             Caustic: 1
-      - !type:HealthChange #Starlight
+    Medicine: #Starlight
+      effects:
+      - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Avali, Resomi ]  # The birds, excluding Vox (they exhale ammonia, they don't want a ton of ammonia build up)
         damage:
           types:
             Asphyxiation: -1
-    Respiration:
+    Gas:
       effects:
       - !type:HealthChange
         conditions:
@@ -339,7 +343,7 @@
     amount: 1
   - !type:PlantDiethylamine {}
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:

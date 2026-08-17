@@ -26,7 +26,10 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Resomi]
-    stages: [ Bloodstream ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
     state: heart-on
@@ -63,8 +66,13 @@
   description: "The lungs of a Resomi."
   components:
   - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
     metabolizerTypes: [ Resomi, Human ] #They get both so they can still breathe oxygen without us needing to add Resomi everywhere Human is listed
-    stages: [ Respiration ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
     layers:

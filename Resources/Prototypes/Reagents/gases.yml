@@ -11,7 +11,7 @@
   boilingPoint: -183.0
   meltingPoint: -218.4
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:Oxygenate
         conditions:
@@ -42,7 +42,7 @@
             type: [ Vox ]
         clear: true
         time: 5
-    Respiration:
+    Gas:
       effects:
       - !type:Oxygenate
         conditions:
@@ -89,7 +89,7 @@
   - !type:FlammableTileReaction
     temperatureMultiplier: 1.5
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
@@ -98,7 +98,7 @@
       - !type:AdjustReagent
         reagent: Inaprovaline
         amount: -2.0
-    Respiration:
+    Gas:
       effects:
       - !type:HealthChange
         ignoreResistances: true
@@ -137,13 +137,13 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
           types:
             Radiation: 1.5
-    Respiration:
+    Gas:
       effects:
       - !type:HealthChange
         ignoreResistances: true
@@ -166,7 +166,7 @@
   flavor: bitter
   color: "#66ff33"
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:Oxygenate
         conditions:
@@ -188,7 +188,7 @@
           type: [ Plant ]
           inverted: true
         factor: -4
-    Respiration:
+    Gas:
       effects:
       - !type:Oxygenate
         conditions:
@@ -227,7 +227,7 @@
   boilingPoint: -195.8
   meltingPoint: -210.0
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
@@ -236,13 +236,8 @@
         conditions: # Starlight start
           - !type:MetabolizerTypeCondition
             type: [ Cyclorite ]
-            inverted: true
-      - !type:ModifyBloodLevel
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Cyclorite ]
-        amount: 0.4 # Starlight end
-    Respiration:
+            inverted: true # Starlight end
+    Gas:
       effects:
       - !type:Oxygenate
         conditions:
@@ -263,6 +258,14 @@
         ratios:
           NitrousOxide: 1.0
           Nitrogen: -1.0
+    Medicine:
+      effects:
+        - !type:ModifyBloodLevel
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          amount: 0.4
+
 - type: reagent
   id: NitrousOxide
   name: reagent-name-nitrous-oxide
@@ -273,13 +276,13 @@
   boilingPoint: -88
   meltingPoint: -90
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
           types:
             Poison: 1
-    Respiration:
+    Gas:
       effects:
       - !type:Emote
         minScale: 0.2
@@ -363,7 +366,7 @@
   boilingPoint: -195.8
   meltingPoint: -210.0
   metabolisms:
-    Bloodstream:
+    Narcotic:
       effects:
       - !type:HealthChange
         ignoreResistances: true
@@ -388,7 +391,7 @@
         probability: 0.1
         conditions:
         minScale: 2
-    Respiration:
+    Gas:
       effects:
       - !type:HealthChange
         minScale: 0.5

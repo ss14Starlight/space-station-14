@@ -20,7 +20,6 @@
 - type: tile
   id: PlatingRCD
   parent: Plating
-  name: tiles-rcd-plating
   baseWhitelist:
     - TrainLattice
     - FloorPlanetDirt

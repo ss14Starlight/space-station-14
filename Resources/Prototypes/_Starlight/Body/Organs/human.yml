@@ -132,8 +132,13 @@
     heldPrefix: lungs
   - type: Lung
   - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
     metabolizerTypes: [ Human ]
-    stages: [ Respiration ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -163,7 +168,10 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Human]
-    stages: [ Bloodstream ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
   - type: Item
     size: Small
     heldPrefix: heart
@@ -196,7 +204,10 @@
     # mm yummy
     maxReagents: 3
     metabolizerTypes: [Human]
-    stages: [ Digestion ]
+    groups:
+    - id: Food
+    - id: Drink
+
 - type: entity
   id: OrganHumanLiver
   parent: [BaseHumanOrgan, BaseOrganLiver]
@@ -211,7 +222,9 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [Human]
-    stages: [ Metabolites ]
+    groups:
+    - id: Alcohol
+
 - type: entity
   id: OrganHumanKidneys
   parent: [BaseHumanOrgan, BaseOrganKidneys]
@@ -229,3 +242,4 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [Human]
+    removeEmpty: true

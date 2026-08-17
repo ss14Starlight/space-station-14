@@ -11,7 +11,15 @@
     - type: Metabolizer
       maxReagents: 3
       metabolizerTypes: [ Slime ]
-      stages: [ Digestion, Bloodstream, Metabolites ]
+      removeEmpty: true
+      groups:
+        - id: Food
+        - id: Drink
+        - id: Medicine
+        - id: Poison
+        - id: Narcotic
+        - id: Alcohol
+          rateModifier: 2
     - type: SolutionContainerManager
       solutions:
         stomach:
@@ -37,8 +45,13 @@
     - type: Lung
       alert: LowNitrogen
     - type: Metabolizer
+      removeEmpty: true
+      solutionOnBody: false
+      solution: "Lung"
       metabolizerTypes: [ Slime ]
-      stages: [ Respiration ]
+      groups:
+      - id: Gas
+        rateModifier: 100.0
     - type: SolutionContainerManager
       solutions:
         organ:

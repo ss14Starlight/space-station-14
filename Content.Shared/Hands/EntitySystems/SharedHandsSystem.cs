@@ -92,13 +92,10 @@ public abstract partial class SharedHandsSystem
         container.OccludesLight = false;
 
         ent.Comp.Hands.Add(handName, hand);
-        #region Starlight
-        //ent.Comp.SortedHands.Add(handName);
-        // we use LINQ + ToList instead of the list sort because it's a stable sort vs the list sort
-        //ent.Comp.SortedHands = ent.Comp.SortedHands.OrderBy(handId => ent.Comp.Hands[handId].Location).ToList();
+        //Starlight start
         switch (hand.Location)
         {
-            case HandLocation.Middle:
+            case HandLocation.Middle: //Middle hands are functional hands but on hotbar. Special sorting for this would be possible, but quite inefficient.
             case HandLocation.Functional:
                 ent.Comp.SortedHands.Add(handName);
                 break;
@@ -106,7 +103,7 @@ public abstract partial class SharedHandsSystem
                 ent.Comp.SortedHands.Insert(Math.Min((int)hand.Location, ent.Comp.SortedHands.Count), handName);
                 break;
         }
-        #endregion
+        //Starlight end
         Dirty(ent);
 
         OnPlayerAddHand?.Invoke((ent, ent.Comp), handName, hand.Location);

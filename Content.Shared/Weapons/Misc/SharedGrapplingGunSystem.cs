@@ -21,7 +21,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Weapons.Misc;
 
-public abstract class SharedGrapplingGunSystem : VirtualController
+public abstract partial class SharedGrapplingGunSystem : VirtualController
 {
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] private IEntityManager _entities = default!;
@@ -77,6 +77,7 @@ public abstract class SharedGrapplingGunSystem : VirtualController
 
         TryComp<AppearanceComponent>(uid, out var appearance);
         _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, false, appearance);
+        Dirty(uid, component);
     }
 
     private void OnGrapplingDeselected(EntityUid uid, GrapplingGunComponent component, HandDeselectedEvent args)
@@ -181,7 +182,6 @@ public abstract class SharedGrapplingGunSystem : VirtualController
         }
 
         component.Reeling = value;
-
         DirtyField(uid, component, nameof(GrapplingGunComponent.Reeling));
     }
 
@@ -199,6 +199,7 @@ public abstract class SharedGrapplingGunSystem : VirtualController
             {
                 if (_netManager.IsServer) // Client might not receive the joint due to PVS culling, so lets not spam them with 23895739 mispredicted ungrapples
                     Ungrapple((uid, grappling), true);
+
                 continue;
             }
 

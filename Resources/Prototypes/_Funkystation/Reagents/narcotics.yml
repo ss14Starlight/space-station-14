@@ -8,10 +8,10 @@
   flavor: sour
   color: "#e1a116"
   metabolisms:
-    Respiration: # Starlight
+    Gas:
       effects:
       - !type:Jitter
-    Bloodstream: # Starlight
+    Narcotic:
       effects:
       - !type:Jitter
       - !type:ModifyStatusEffect
@@ -43,6 +43,8 @@
             reagent: NitrosylPlasmide
             min: 30
       # Starlight END
+    Medicine:
+      effects:
       - !type:ResetNarcolepsy
         conditions:
         - !type:ReagentCondition

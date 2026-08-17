@@ -12,7 +12,12 @@
     - type: Metabolizer
       maxReagents: 6
       metabolizerTypes: [ Slime ]
-      stages: [ Digestion, Metabolites ]
+      removeEmpty: true
+      groups:
+        - id: Food
+        - id: Drink
+        - id: Alcohol
+          rateModifier: 2.5
     - type: SolutionContainerManager
       solutions:
         stomach:
@@ -38,8 +43,13 @@
   - type: Lung
     alert: LowNitrogen
   - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
     metabolizerTypes: [ Slime ]
-    stages: [ Respiration ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -74,7 +84,11 @@
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Slime ]
-    stages: [ Bloodstream ]
+    removeEmpty: true
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
 
 # Starlight start
 - type: entity

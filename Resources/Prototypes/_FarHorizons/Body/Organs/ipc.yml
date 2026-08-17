@@ -74,7 +74,10 @@
   - type: Metabolizer
     maxReagents: 0 #Shoddy workaround to prevent metabolisation of chems without making new heart proto
     metabolizerTypes: [Human]
-    stages: [ Bloodstream ] # Starlight
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
   - type: Item
     size: Small
     heldPrefix: heart

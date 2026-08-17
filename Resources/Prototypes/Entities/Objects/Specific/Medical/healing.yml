@@ -366,12 +366,10 @@
   - type: Stack
     stackType: AloeCream
     count: 10
-  - type: Item
-    storedRotation: 90
-    storedOffset: 4, 0
+  - type: Item # Starlight start
     storedSprite:
       state: cream
-      sprite: Objects/Specific/Hydroponics/aloe.rsi
+      sprite: Objects/Specific/Hydroponics/aloe.rsi # Starlight end
 
 - type: entity
   parent: BaseHealingItem

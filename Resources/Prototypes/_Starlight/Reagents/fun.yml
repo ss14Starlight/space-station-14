@@ -7,7 +7,7 @@
   flavor: dogfood
   color: "#ed9715"
   metabolisms:
-    Bloodstream:
+    Poison:
       metabolismRate: 0.2
       effects:
         - !type:HealthChange
@@ -45,7 +45,9 @@
               type: [ Cyclorite ]
           reagent: ConcentratedCorgiJuice
           amount: 0.1
-        # Medicine
+    Medicine:
+      metabolismRate: 0.5
+      effects:
         - !type:HealthChange
           damage:
             groups:

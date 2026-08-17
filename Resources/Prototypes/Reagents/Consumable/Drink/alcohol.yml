@@ -16,10 +16,17 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.6
+    Drink:
       effects:
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
+    Narcotic: # The green fairy
+      metabolismRate : 0.01
+      effects:
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.05
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
         conditions:
@@ -65,7 +72,7 @@
   fizziness: 0.6
   # Starlight edit start - Make Ale work as a replacement for water for dwarves
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 4
@@ -105,7 +112,7 @@
   fizziness: 0.6
   # Starlight edit start - Make Beer work as food replacement for dwarves
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 1
@@ -138,9 +145,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.1
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.1
 
 - type: reagent
   id: Cognac
@@ -158,11 +169,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorCognac # 10% cold resist
         time: 3
@@ -186,9 +200,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
 
 - type: reagent
   id: Ethanol
@@ -201,7 +219,7 @@
   boilingPoint: 78.2
   meltingPoint: -114.1
   metabolisms:
-    Metabolites:
+    Alcohol:
       metabolismRate: 0.05
       effects:
       - !type:HealthChange
@@ -297,11 +315,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorGin # 10% caustic resist
         time: 3
@@ -370,12 +391,15 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.1
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.05
+    Poison:
+      effects:
       - !type:HealthChange
         damage:
           types:
@@ -397,11 +421,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorRum # 10% slash resist
         time: 3
@@ -425,9 +452,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
 
 - type: reagent
   id: Tequila
@@ -444,11 +475,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorTequila # 10% heat resist
         time: 3
@@ -473,7 +507,7 @@
   metamorphicChangeColor: false
   # starlight - dwarf drink effects
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -505,10 +539,13 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make Vodka heal radiation like Hyronalin for dwarves
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -534,11 +571,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorWhiskey # 10% blunt resist
         time: 3
@@ -579,12 +619,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.6
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 3
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
   fizziness: 0.8
 
 # Mixed Alcohol
@@ -620,7 +661,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make AlienBrainHemorrhage heal cellular damage for dwarves
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -652,7 +693,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make AlliesCocktail heal burn for dwarves while in critical
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -701,7 +742,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make Amasec heal like Arithrazine for dwarves
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -735,7 +776,7 @@
   metamorphicChangeColor: false
   # starlight - dwarf drink effects
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -768,11 +809,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorAntifreeze # 50% cold resist
         time: 3
@@ -796,10 +840,16 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
-        Uranium: 0.1
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+      - !type:AdjustReagent
+        reagent: Uranium
+        amount: 0.05
 
 - type: reagent
   id: B52
@@ -816,11 +866,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorB52 # 25% Explosion Resist
         time: 3
@@ -889,9 +942,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
   fizziness: 0.3
 
 - type: reagent
@@ -909,9 +966,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
 
 - type: reagent
   id: BloodyMary
@@ -958,11 +1019,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusDamageBraveBull # +10 Structural
         time: 3
@@ -987,7 +1051,7 @@
   metamorphicChangeColor: false
   # starlight - dwarf drink effects
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1017,9 +1081,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
 
 - type: reagent
   id: Cosmopolitan
@@ -1036,9 +1104,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
 
 - type: reagent
   id: CrushDepth
@@ -1056,7 +1128,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make CrushDepth work like Barozine (space immunity) for dwarves
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1086,9 +1158,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.14
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
   fizziness: 0.2
 
 - type: reagent
@@ -1107,7 +1183,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make DarkandStormy heal like Insuzine for dwarves
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1139,7 +1215,7 @@
   metamorphicChangeColor: true
   fizziness: 0.3
   metabolisms: # SL vampires
-    Digestion:
+    Drink:
       effects:
       - !type:HealthChange
         conditions:
@@ -1165,7 +1241,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms: # SL vampires
-    Digestion:
+    Drink:
       effects:
       - !type:HealthChange
         conditions:
@@ -1191,14 +1267,15 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.1
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
       - !type:SatiateHunger
         factor: -2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.05
       - !type:HealthChange
         damage:
           groups:
@@ -1222,11 +1299,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorDriestMartini # 25% Brute Damage Resist
         time: 3
@@ -1266,7 +1346,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make ElectricShark give dwarves slow immunity
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1299,7 +1379,7 @@
   fizziness: 0.15
   # starlight - dwarf drink effects
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1329,11 +1409,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorGargleBlaster # 15% Blunt/Slash/Piercing Resist
         time: 3
@@ -1357,9 +1440,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.14
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
   fizziness: 0.4 # A little high, but it has fizz in the name
 
 - type: reagent
@@ -1377,9 +1464,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.14
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
   fizziness: 0.4
 
 - type: reagent
@@ -1397,9 +1488,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
 
 - type: reagent
   id: Grog
@@ -1417,7 +1512,7 @@
   metamorphicChangeColor: true
   # starlight - dwarf drink effects
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1457,7 +1552,7 @@
   color: "#664e00"
   # Starlight edit start - Make Hooch work like Ephedrine for dwarves
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1502,7 +1597,7 @@
   fizziness: 0.6
   # Starlight edit start - Make IcedBeer heal like Dermaline for dwarves
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1535,11 +1630,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusScalarIrishCarBomb # +20% damage with melee weapons
         time: 3
@@ -1563,11 +1661,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusScalarIrishCream # +25% unarmed attack speed
         time: 3
@@ -1592,10 +1693,13 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make IrishCoffee increase movement speed for dwarves
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
       - !type:MovementSpeedModifier
         conditions:
         - !type:MetabolizerTypeCondition
@@ -1664,9 +1768,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
 
 - type: reagent
   id: Manhattan
@@ -1684,7 +1792,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make Manhattan give dwarves NoSlip component
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1733,7 +1841,7 @@
   fizziness: 0.7
   # Starlight edit start - Make ManlyDorf heal like Bicaridine for dwarves
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1779,10 +1887,13 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make Martini work like Potassium Iodide for dwarves
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
       - !type:GenericStatusEffect
         conditions:
         - !type:MetabolizerTypeCondition
@@ -1810,7 +1921,7 @@
   fizziness: 0.4
   # Starlight edit start - Make Mead work like Tricordrazine for dwarves
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -1880,10 +1991,13 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make Moonshine heal like Sigynate for dwarves
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.5
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.25
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -1908,12 +2022,15 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.5
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.25
+    Poison:
+      effects:
       - !type:HealthChange
         damage:
           types:
@@ -1934,11 +2051,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorPainkiller # 25% Bloodloss Resist
         time: 3
@@ -1962,9 +2082,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
 
 - type: reagent
   id: RedMead
@@ -1982,10 +2106,13 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make RedMead heal like Saline + Dexaline for dwarves
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
       - !type:ModifyBloodLevel
         conditions:
         - !type:MetabolizerTypeCondition
@@ -2024,9 +2151,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
 
 - type: reagent
   id: Radler
@@ -2044,7 +2175,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make Radler heal brute for dwarves while in critical
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -2092,9 +2223,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.14
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: CogChamp
@@ -2111,15 +2246,16 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
+    Drink:
       effects:
         - !type:GenericStatusEffect
           key: RatvarianLanguage
           component: RatvarianLanguage
         - !type:SatiateThirst
           factor: 2
+        - !type:AdjustReagent
+          reagent: Ethanol
+          amount: 0.15
 
 - type: reagent
   id: Silencer
@@ -2136,7 +2272,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:GenericStatusEffect
         key: Muted
@@ -2208,7 +2344,7 @@
   fizziness: 0.6
   # starlight - dwarf drink effects
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -2239,10 +2375,13 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make TequilaSunrise work like Tranexamic Acid for dwarves
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
       - !type:ModifyBleed
         conditions:
         - !type:MetabolizerTypeCondition
@@ -2281,10 +2420,16 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
-        Uranium: 0.1
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+      - !type:AdjustReagent
+        reagent: Uranium
+        amount: 0.05
 
 - type: reagent
   id: ToxinsSpecial
@@ -2331,9 +2476,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
 
 - type: reagent
   id: VodkaTonic
@@ -2350,9 +2499,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.14
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
   fizziness: 0.4
 
 - type: reagent
@@ -2370,9 +2523,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.14
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
   fizziness: 0.3
 
 - type: reagent
@@ -2390,9 +2547,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.14
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
   fizziness: 0.4
 
 - type: reagent
@@ -2405,10 +2566,13 @@
   color: "#e5d27e"
   # Starlight edit start - Make WhiteGilgamesh heal like Dylovene for dwarves
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
+    Drink:
       effects:
+        - !type:SatiateThirst
+          factor: 1
+        - !type:AdjustReagent
+          reagent: Ethanol
+          amount: 0.15
         - !type:HealthChange
           conditions:
           - !type:MetabolizerTypeCondition
@@ -2434,9 +2598,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
 
 - type: reagent
   id: VodkaRedBool
@@ -2453,13 +2621,16 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.2
-        Theobromine: 0.1
+    Drink:
       effects:
         - !type:SatiateThirst
           factor: 1
+        - !type:AdjustReagent
+          reagent: Ethanol
+          amount: 0.10
+        - !type:AdjustReagent
+          reagent: Theobromine
+          amount: 0.05
         - !type:ModifyStatusEffect
           effectProto: StatusEffectDrowsiness
           time: 1
@@ -2481,13 +2652,16 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
-        Theobromine: 0.1
+    Drink:
       effects:
         - !type:SatiateThirst
           factor: 1
+        - !type:AdjustReagent
+          reagent: Ethanol
+          amount: 0.15
+        - !type:AdjustReagent
+          reagent: Theobromine
+          amount: 0.05
         - !type:ModifyStatusEffect
           effectProto: StatusEffectDrowsiness
           time: 1
@@ -2517,13 +2691,16 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.2
-        Theobromine: 0.1
+    Drink:
       effects:
         - !type:SatiateThirst
           factor: 1
+        - !type:AdjustReagent
+          reagent: Ethanol
+          amount: 0.10
+        - !type:AdjustReagent
+          reagent: Theobromine
+          amount: 0.05
         - !type:ModifyStatusEffect
           effectProto: StatusEffectDrowsiness
           time: 1
@@ -2566,13 +2743,16 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
-        Theobromine: 0.1
+    Drink:
       effects:
         - !type:SatiateThirst
           factor: 1
+        - !type:AdjustReagent
+          reagent: Ethanol
+          amount: 0.15
+        - !type:AdjustReagent
+          reagent: Theobromine
+          amount: 0.05
         - !type:ModifyStatusEffect
           effectProto: StatusEffectDrowsiness
           time: 1
@@ -2604,13 +2784,16 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.14
-        Theobromine: 0.1
+    Drink:
       effects:
         - !type:SatiateThirst
           factor: 1
+        - !type:AdjustReagent
+          reagent: Ethanol
+          amount: 0.07
+        - !type:AdjustReagent
+          reagent: Theobromine
+          amount: 0.05
         - !type:ModifyStatusEffect
           effectProto: StatusEffectDrowsiness
           time: 1
@@ -2638,13 +2821,16 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make Rubberneck work like Desoxyephedrine (meth) for dwarves
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.3
-        Theobromine: 0.1
+    Drink:
       effects:
         - !type:SatiateThirst
           factor: 1
+        - !type:AdjustReagent
+          reagent: Ethanol
+          amount: 0.15
+        - !type:AdjustReagent
+          reagent: Theobromine
+          amount: 0.05
         - !type:ModifyStatusEffect
           effectProto: StatusEffectDrowsiness
           time: 1
@@ -2686,9 +2872,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
 
 - type: reagent
   id: Caipirinha
@@ -2705,9 +2895,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.2
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.1
 
 - type: reagent
   id: MoscowMule
@@ -2724,12 +2918,17 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.2
-        Copper: 0.1
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+      - !type:AdjustReagent
+        reagent: Copper
+        amount: 0.05
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorMoscowMule # 10% Poison/Radiation Resist
         time: 3
@@ -2753,15 +2952,16 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.14
+    Drink:
       effects:
       - !type:GenericStatusEffect
         key: Muted
         component: Muted
       - !type:SatiateThirst
         factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: Mimosa
@@ -2778,9 +2978,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.14
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: Mayojito
@@ -2797,9 +3001,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.15
+    Drink:
       effects:
       - !type:Vomit
         conditions:
@@ -2813,6 +3015,9 @@
             Poison: .5
       - !type:SatiateThirst
         factor: 1
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
 
 - type: reagent
   id: DeathInTheAfternoon
@@ -2829,11 +3034,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.6
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: MobThresholdsDeathInTheAfternoon # raise crit to 129, lower death to 130
         time: 3
@@ -2863,9 +3071,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.6
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
 
 - type: reagent
   id: EspressoMartini
@@ -2882,9 +3094,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
 
 - type: reagent
   id: Daiquiri
@@ -2901,11 +3117,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.2
-    # starlight - dwarf drink effects
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.1
+    # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
         effectProto: BonusArmorDaiquiri # 10% Blunt/Cold Resist & -5% Piercing/Shock Resist
         time: 3
@@ -2929,11 +3148,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.6
-  # Starlight edit start - Make TheSunAlsoRises give dwarves NightVision component
+    Drink:
       effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
+  # Starlight edit start - Make TheSunAlsoRises give dwarves NightVision component
       - !type:GenericStatusEffect
         conditions:
         - !type:MetabolizerTypeCondition
@@ -2959,9 +3181,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.4
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
 
 - type: reagent
   id: ZombieCocktail
@@ -2978,9 +3204,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.5
+    Drink:
+      effects:
+        - !type:SatiateThirst
+          factor: 1
+        - !type:AdjustReagent
+          reagent: Ethanol
+          amount: 0.25
 
 - type: reagent
   id: BacchusBlessing
@@ -2998,9 +3228,7 @@
   metamorphicChangeColor: false
   # Starlight edit start - Make BacchusBlessing heal like Omnizine for dwarves
   metabolisms:
-    Digestion:
-      metabolites:
-        Ethanol: 0.9
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 3
@@ -3017,7 +3245,7 @@
           Airloss: -2
           Brute: -2
   # Starlight edit end
-    Metabolites:
+    Alcohol:
       metabolismRate : 0.05
       effects:
       - !type:Drunk

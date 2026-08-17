@@ -8,7 +8,7 @@
   flavor: shocking
   color: "#ffe270"
   metabolisms:
-    Bloodstream: # Starlight
+    Poison:
       effects:
       - !type:HealthChange
         conditions:
@@ -24,7 +24,8 @@
         - !type:MetabolizerTypeCondition
           type: [ Neocyte ]
         factor: 1 #yummy
-      # Acts like vitamin but for Neocytes. Keep in mind the -50% healing debuff they get, hence buffed numbers.
+    Medicine: #Acts like vitamin but for Neocytes. Keep in mind the -50% healing debuff they get, hence buffed numbers.
+      effects:
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition

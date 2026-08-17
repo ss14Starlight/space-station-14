@@ -22,7 +22,6 @@ using Content.Server.Jittering;
 using Content.Shared.Jittering;
 using Content.Shared.Kitchen.EntitySystems;
 using Content.Shared.Power;
-using Content.Shared.Power.EntitySystems;
 
 namespace Content.Server._Starlight.Kitchen.EntitySystems
 {
@@ -41,7 +40,6 @@ namespace Content.Server._Starlight.Kitchen.EntitySystems
         [Dependency] private SharedDestructibleSystem _destructible = default!;
         [Dependency] private RandomHelperSystem _randomHelper = default!;
         [Dependency] private JitteringSystem _jitter = default!;
-        [Dependency] private SharedPowerStateSystem _powerState = default!;
 
         public override void Initialize()
         {
@@ -138,15 +136,11 @@ namespace Content.Server._Starlight.Kitchen.EntitySystems
         private void OnActiveGrinderStart(Entity<ActiveReagentGrinderComponent> ent, ref ComponentStartup args)
         {
             _jitter.AddJitter(ent, -10, 100);
-
-            // Not all grinders need power.
-            _powerState.TrySetWorkingState(ent.Owner, true);
         }
 
         private void OnActiveGrinderRemove(Entity<ActiveReagentGrinderComponent> ent, ref ComponentRemove args)
         {
             RemComp<JitteringComponent>(ent);
-            _powerState.TrySetWorkingState(ent.Owner, false);
         }
 
         private void OnEntRemoveAttempt(Entity<ReagentGrinderComponent> entity, ref ContainerIsRemovingAttemptEvent args)

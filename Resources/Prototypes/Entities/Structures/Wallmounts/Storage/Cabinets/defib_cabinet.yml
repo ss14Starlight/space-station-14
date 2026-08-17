@@ -24,9 +24,6 @@
         whitelist:
           components:
           - Defibrillator
-  - type: Construction
-    graph: DefibrillatorCabinet
-    node: done
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger

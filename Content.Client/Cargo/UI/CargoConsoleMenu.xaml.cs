@@ -32,9 +32,9 @@ namespace Content.Client.Cargo.UI
         private readonly EntityQuery<CargoOrderConsoleComponent> _orderConsoleQuery;
         private readonly EntityQuery<StationBankAccountComponent> _bankQuery;
 
-        public event Action<CargoProductRow?>? OnItemSelected;
-        public event Action<CargoOrderData?>? OnOrderApproved;
-        public event Action<CargoOrderData?>? OnOrderCanceled;
+        public event Action<ButtonEventArgs>? OnItemSelected;
+        public event Action<ButtonEventArgs>? OnOrderApproved;
+        public event Action<ButtonEventArgs>? OnOrderCanceled;
 
         public event Action<ProtoId<CargoAccountPrototype>?, int>? OnAccountAction;
 
@@ -167,7 +167,7 @@ namespace Content.Client.Cargo.UI
                     };
                     button.MainButton.OnPressed += args =>
                     {
-                        OnItemSelected?.Invoke(button);
+                        OnItemSelected?.Invoke(args);
                     };
                     Products.AddChild(button);
                 }
@@ -217,61 +217,33 @@ namespace Content.Client.Cargo.UI
                     continue;
 
                 var proto = _protoManager.Index(order.CargoProductId); // Starlight
-                var requester = !string.IsNullOrEmpty(order.Requester) ?
-                    order.Requester : Loc.GetString("cargo-console-menu-order-row-alerts-requester-unknown");
                 var account = _protoManager.Index(order.Account);
 
                 var row = new CargoOrderRow
                 {
                     Order = order,
-
-                    Title =
-                    {
-                        Text = Loc.GetString(
-                            "cargo-console-menu-order-row-title",
-                            ("productName", order.ProductName),
-                            ("orderAmount", order.OrderQuantity),
-                            ("orderPrice", order.Price)),
-                    },
-
-                    Stride =
-                    {
-                        PanelOverride = new StyleBoxFlat
-                        {
-                            BackgroundColor = account.Color,
-                            ContentMarginBottomOverride = 2,
-                        },
-                    },
-
                     Icon = { Texture = _spriteSystem.Frame0(proto.Icon) }, // Starlight
-
                     ProductName =
                     {
                         Text = Loc.GetString(
                             "cargo-console-menu-populate-orders-cargo-order-row-product-name-text",
-                            ("orderRequester", requester),
+                            ("productName", order.ProductName), // Starlight
+                            ("orderAmount", order.OrderQuantity),
+                            ("orderRequester", order.Requester),
                             ("accountColor", account.Color),
                             ("account", Loc.GetString(account.Code)))
                     },
-
                     Description =
                     {
-                        Text = !string.IsNullOrEmpty(order.Reason) ?
-                            Loc.GetString(
-                                "cargo-console-menu-order-row-product-description",
-                                ("orderReason", order.Reason))
-                        :
-                            Loc.GetString(
-                                "cargo-console-menu-order-row-product-description",
-                                ("orderReason", Loc.GetString("cargo-console-menu-order-row-alerts-reason-absent")))
+                        Text = Loc.GetString("cargo-console-menu-order-reason-description",
+                                                        ("reason", order.Reason))
                     }
                 };
-
-                row.Cancel.OnPressed += (args) => { OnOrderCanceled?.Invoke(order); };
+                row.Cancel.OnPressed += (args) => { OnOrderCanceled?.Invoke(args); };
 
                 // TODO: Disable based on access.
                 row.SetApproveVisible(orderConsole.Mode != CargoOrderConsoleMode.SendToPrimary);
-                row.Approve.OnPressed += (args) => { OnOrderApproved?.Invoke(order); };
+                row.Approve.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
                 Requests.AddChild(row);
             }
         }
@@ -324,7 +296,8 @@ namespace Content.Client.Cargo.UI
                                            TransferSpinBox.Value > bankAccount.Accounts[orderConsole.Account] * orderConsole.TransferLimit ||
                                            _timing.CurTime < orderConsole.NextAccountActionTime;
 
-            RightPart.Visible = orderConsole.Mode != CargoOrderConsoleMode.PrintSlip;
+            OrdersSpacer.Visible = orderConsole.Mode != CargoOrderConsoleMode.PrintSlip;
+            Orders.Visible = orderConsole.Mode != CargoOrderConsoleMode.PrintSlip;
         }
     }
 }

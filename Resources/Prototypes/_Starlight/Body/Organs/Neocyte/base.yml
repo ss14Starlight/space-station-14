@@ -119,8 +119,13 @@
     heldPrefix: lungs
   - type: Lung
   - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: Lung
     metabolizerTypes: [ Neocyte ]
-    stages: [ Respiration ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -155,7 +160,10 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Neocyte]
-    stages: [ Bloodstream ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
   - type: Item
     size: Small
     heldPrefix: heart
@@ -219,7 +227,8 @@
   - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [Neocyte]
-    stages: [ Metabolites ]
+    groups:
+    - id: Alcohol
   - type: OrganDamage
     damage:
       types:
@@ -246,6 +255,7 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [Neocyte]
+    removeEmpty: true
   - type: OrganDamage
     damage:
       types:

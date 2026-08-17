@@ -21,7 +21,6 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared._Starlight.BreathOrgan.Components;
-using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared._Starlight.Medical.Body.Systems;
@@ -45,7 +44,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     [Dependency] private SharedEntityConditionsSystem _entityConditions = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
-    private static readonly ProtoId<MetabolismStagePrototype> RespirationStage = new("Respiration");
+    private static readonly ProtoId<MetabolismGroupPrototype> GasId = new("Gas");
 
     public override void Initialize()
     {
@@ -326,7 +325,7 @@ public sealed partial class RespiratorSystem : EntitySystem
         if (!Resolve(lung, ref lung.Comp))
             return 0;
 
-        if (lung.Comp.Stages == null)
+        if (lung.Comp.MetabolismGroups == null)
             return 0;
 
         float saturation = 0;
@@ -336,7 +335,7 @@ public sealed partial class RespiratorSystem : EntitySystem
             if (reagent.Metabolisms == null)
                 continue;
 
-            if (!reagent.Metabolisms.Metabolisms.TryGetValue(RespirationStage, out var entry))
+            if (!reagent.Metabolisms.TryGetValue(GasId, out var entry))
                 continue;
 
             foreach (var effect in entry.Effects)

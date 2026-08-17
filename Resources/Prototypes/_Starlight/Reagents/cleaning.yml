@@ -10,7 +10,7 @@
   meltingPoint: -11.0
   contrabandSeverity: Syndicate
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:

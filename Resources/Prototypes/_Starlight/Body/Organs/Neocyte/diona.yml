@@ -13,7 +13,14 @@
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Plant, Neocyte ] # Can't do animal since they would get poisoned by theobromine.
-    stages: [ Digestion, Bloodstream, Metabolites ]
+    removeEmpty: true
+    groups:
+      - id: Food
+      - id: Drink
+      - id: Medicine
+      - id: Poison
+      - id: Narcotic
+      - id: Alcohol
   - type: OrganDamage
     damage:
       types:

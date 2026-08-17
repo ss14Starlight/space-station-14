@@ -8,9 +8,7 @@
   color: "#664300"
   recognizable: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Theobromine: 0.1
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -18,6 +16,9 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/coffeeglass.rsi
     state: icon_empty
@@ -35,9 +36,13 @@
   color: "#664300"
   recognizable: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Theobromine: 0.1
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
 
 - type: reagent
   id: Cream
@@ -48,7 +53,7 @@
   flavor: creamy
   color: "#DFD7AF"
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 1
@@ -62,7 +67,7 @@
   flavor: nutty
   color: "#f4eadb"
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 4 # Coconut water is 94% water
@@ -81,7 +86,7 @@
   flavor: creamy
   color: "#FFEABF"
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -101,7 +106,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -157,12 +162,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Theobromine: 0.1
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
         time: 2
@@ -198,10 +204,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Theobromine: 0.1
-
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
 
 - type: reagent
   id: JuiceBerryPoison
@@ -213,9 +222,11 @@
   flavor: bitter
   color: "#6600CC"
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
+    Poison:
+      effects:
       - !type:HealthChange
         damage:
           types:
@@ -237,7 +248,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -257,7 +268,7 @@
     - !type:PlantAdjustWater
       amount: 0.9
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 4
@@ -278,7 +289,7 @@
   color: "#DEDACD"
   recognizable: true
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 4
@@ -301,7 +312,7 @@
   flavor: terrible
   color: "#faffba"
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: -2
@@ -313,7 +324,7 @@
   group: Drinks
   physicalDesc: reagent-physical-desc-nothing
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -335,7 +346,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 6
@@ -343,6 +354,8 @@
         effectProto: StatusEffectDrowsiness
         time: 3
         type: Remove
+    Poison:
+      effects:
       - !type:HealthChange
         damage:
           types:
@@ -359,7 +372,7 @@
   color: "#619494"
   fizziness: 0.8
   metabolisms: # Starlight start, diona stuff
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 3
@@ -384,7 +397,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -403,9 +416,13 @@
   color: "#8a5a3a"
   recognizable: true
   metabolisms:
-    Digestion:
-      metabolites:
-        Theobromine: 0.1
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/teaglass.rsi
     state: icon_empty
@@ -423,7 +440,7 @@
   color: "#0064C8"
   fizziness: 0.4
   metabolisms: # Starlight start, diona stuff
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 3
@@ -455,7 +472,7 @@
   friction: 0.4
   # Starlight edit start - Make Water work like Ipecac for Dwarfs, but even worse, also let Diona treat water as food
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 4
@@ -473,7 +490,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Plant ]
   # Starlight edit end
-    Respiration:
+    Gas:
       effects:
       - !type:HealthChange
         ignoreResistances: true
@@ -504,7 +521,7 @@
   boilingPoint: 100.0
   friction: 0.05 # Copied from Ice Crust
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 3 # Slightly worse for quenching thirst than just straight water
@@ -534,7 +551,7 @@
   flavor: cheapnoodles
   color: "#664300"
   metabolisms:
-    Digestion:
+    Food:
       effects:
       - !type:SatiateHunger
         factor: 1
@@ -548,7 +565,7 @@
   flavor: cheapnoodles
   color: "#664300"
   metabolisms:
-    Digestion:
+    Food:
       effects:
       - !type:SatiateHunger
         factor: 4
@@ -568,12 +585,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Digestion:
-      metabolites:
-        Theobromine: 0.1
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 4
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
 
 - type: reagent
   id: Pilk
@@ -584,7 +602,7 @@
   flavor: pilk
   color: "#e7c69f"
   metabolisms:
-    Digestion:
+    Drink:
       effects:
         - !type:SatiateThirst
           factor: 1
@@ -640,7 +658,7 @@
   flavor: mopwata
   color: "#59502b"
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 0.6

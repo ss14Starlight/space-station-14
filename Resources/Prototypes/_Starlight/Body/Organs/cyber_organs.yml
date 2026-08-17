@@ -133,7 +133,10 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [BudgetCyber]
-    stages: [ Metabolites ]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
+
 - type: entity
   id: BudgetCyberStomach
   name: budget cyber stomach
@@ -155,7 +158,10 @@
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [BudgetCyber]
-    stages: [ Digestion ]
+    groups:
+    - id: Food
+    - id: Drink
+
 - type: entity
   id: BudgetCyberKidneys
   name: budget cyber kidneys

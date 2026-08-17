@@ -36,6 +36,8 @@ public sealed class HotbarUIController : UIController
         _inventory = UIManager.GetUIController<InventoryUIController>();
         _hands = UIManager.GetUIController<HandsUIController>();
         _storage = UIManager.GetUIController<StorageUIController>();
+        _hands.RegisterHandContainer(handsContainer);
+        _hands.RegisterHandContainer(FunctionalhandsContainer);  //🌟Starlight🌟
     }
 
     public void ReloadHotbar()

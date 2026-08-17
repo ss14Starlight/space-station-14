@@ -1,5 +1,4 @@
-using Content.Shared._Starlight.Medical.Body.Components;
-using Content.Shared._Starlight.Medical.Body.Prototypes;
+﻿using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared.Localizations;
 using Robust.Shared.Prototypes;
 
@@ -28,20 +27,5 @@ public sealed partial class MetabolizerTypeCondition : EntityConditionBase<Metab
         return Loc.GetString("entity-condition-guidebook-organ-type",
             ("name", names),
             ("shouldhave", !Inverted));
-    }
-}
-
-/// <summary>
-/// Returns true if this entity has any of the listed metabolizer types.
-/// </summary>
-/// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
-public sealed partial class MetabolizerTypeEntityConditionSystem : EntityConditionSystem<MetabolizerComponent, MetabolizerTypeCondition>
-{
-    protected override void Condition(Entity<MetabolizerComponent> entity, ref EntityConditionEvent<MetabolizerTypeCondition> args)
-    {
-        if (entity.Comp.MetabolizerTypes == null)
-            return;
-
-        args.Result = entity.Comp.MetabolizerTypes.Overlaps(args.Condition.Type);
     }
 }

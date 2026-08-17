@@ -8,8 +8,14 @@
   - type: Lung
     alert: LowNitrogen
   - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: Lung
     metabolizerTypes: [ Slime, Cyclorite ]
-    stages: [ Respiration ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+
 - type: entity
   id: OrganNeoCycloriteEye
   parent: OrganNeocyteEyes
@@ -40,4 +46,7 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Cyclorite, Neocyte]
-    stages: [ Bloodstream ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic

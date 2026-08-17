@@ -28,7 +28,11 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Avali, Neocyte]
-    stages: [ Bloodstream ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
 - type: entity
   id: OrganNeoAvaliLiver
   parent: OrganNeocyteLiver
@@ -39,4 +43,5 @@
     updateInterval: 1.5
     maxReagents: 1
     metabolizerTypes: [Avali]
-    stages: [ Metabolites ]
+    groups:
+    - id: Alcohol

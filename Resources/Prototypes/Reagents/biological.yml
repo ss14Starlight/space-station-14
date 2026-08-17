@@ -15,9 +15,7 @@
   standsout: true
   physicalDesc: reagent-physical-desc-ferrous
   metabolisms:
-    Digestion:
-      metabolites:
-        UncookedAnimalProteins: 0.2
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 1.0
@@ -25,6 +23,13 @@
           - !type:MetabolizerTypeCondition
             type: [ Human ]
             inverted: true
+    Food:
+      effects:
+        - !type:AdjustReagent
+          reagent: UncookedAnimalProteins
+          amount: 0.1
+    Medicine:
+      effects:
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -66,7 +71,7 @@
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
-    Digestion:
+    Food:
       # Delicious!
       effects:
       - !type:SatiateHunger
@@ -98,7 +103,7 @@
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
-    Digestion:
+    Food:
       # Sweet!
       effects:
       - !type:SatiateHunger
@@ -141,12 +146,12 @@
   flavor: bitter
   color: "#2b0700"
   metabolisms:
-    Digestion:
+    Drink:
       # Disgusting!
       effects:
       - !type:SatiateThirst
         factor: -0.5
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         damage:
@@ -165,7 +170,7 @@
   color: "#f4692e"
   recognizable: true
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 1.5
@@ -217,12 +222,13 @@
     requiredSlipSpeed: 4.0 #It's not as slippery as water
   friction: 0.4
   metabolisms:
-    Digestion:
-      metabolites:
-        Nutriment: 0.1
+    Drink:
       effects:
       - !type:SatiateThirst
         factor: 0.5
+      - !type:AdjustReagent
+        reagent: Nutriment
+        amount: 0.1
   footstepSound:
     collection: FootstepBlood
     params:
@@ -237,10 +243,12 @@
   flavor: mindful
   color: "#C584B8"
   metabolisms:
-    Digestion:
+    Drink:
       effects:
       - !type:SatiateHunger
         factor: 1.5
+    Poison:
+      effects:
       - !type:HealthChange
         damage:
           types:

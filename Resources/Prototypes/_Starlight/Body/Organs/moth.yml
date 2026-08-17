@@ -36,4 +36,7 @@
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [ Moth ]
-    stages: [ Digestion ]
+    removeEmpty: true
+    groups:
+      - id: Food
+      - id: Drink

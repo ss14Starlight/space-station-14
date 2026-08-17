@@ -89,7 +89,11 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Slime ]
-    stages: [ Bloodstream ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
 - type: entity
   id: OrganAbductorStomach
   parent: [BaseAbductorOrgan, BaseOrganStomach]
@@ -116,7 +120,10 @@
     # mm yummy
     maxReagents: 3
     metabolizerTypes: [ Slime ]
-    stages: [ Digestion ]
+    groups:
+    - id: Food
+    - id: Drink
+
 - type: entity
   id: OrganAbductorLiver
   parent: [BaseAbductorOrgan, BaseOrganLiver]
@@ -129,7 +136,10 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [ Slime ]
-    stages: [ Metabolites ]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
+
 - type: entity
   id: OrganAbductorKidneys
   parent: [BaseAbductorOrgan, BaseOrganKidneys]
@@ -145,3 +155,4 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Slime ]
+    removeEmpty: true
