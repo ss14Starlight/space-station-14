@@ -1,4 +1,3 @@
-using System.Globalization; // Starlight
 using System.Linq; // Starlight-edit
 using Content.Server.Chat.Systems; // Starlight-edit
 using Content.Server.Medical.Components;
@@ -416,34 +415,36 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                     localizedName = reagentProto.LocalizedName;
                     group = reagentProto.Group;
 
-                    // Check for OD threshold
-                    FixedPoint2? odThreshold = null;
-                    if (reagentProto.Metabolisms != null)
-                    foreach (var (_, entry) in reagentProto.Metabolisms)
+                    // Check for OD threshold only for Medicine and Narcotics.
+                    if (group is "Medicine" or "Narcotics"
+                        && reagentProto.Metabolisms != null)
                     {
-                        foreach (var effect in entry.Effects)
+                        FixedPoint2? odThreshold = null;
+                        foreach (var (_, entry) in reagentProto.Metabolisms)
                         {
-                            if (effect.Conditions == null)
-                                continue;
-
-                            foreach (var condition in effect.Conditions)
+                            foreach (var effect in entry.Effects)
                             {
-                                if (condition is ReagentCondition reagentCondition
-                                    && reagentCondition.Reagent == reagentId
-                                    && reagentCondition.Min > FixedPoint2.Zero)
+                                if (effect.Conditions == null)
+                                    continue;
+
+                                foreach (var condition in effect.Conditions)
                                 {
-                                    if (odThreshold == null || reagentCondition.Min < odThreshold)
-                                        odThreshold = reagentCondition.Min;
+                                    if (condition is ReagentCondition reagentCondition
+                                        && reagentCondition.Reagent == reagentId
+                                        && reagentCondition.Min > FixedPoint2.Zero)
+                                    {
+                                        if (odThreshold == null || reagentCondition.Min < odThreshold)
+                                            odThreshold = reagentCondition.Min;
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    isOverdosed = odThreshold != null && quantity >= odThreshold.Value;
+                        isOverdosed = odThreshold != null && quantity >= odThreshold.Value;
+                    }
                 }
 
-                var capitalizedName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(localizedName.ToLower());
-                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(capitalizedName), quantity, group, isOverdosed));
+                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group, isOverdosed));
             }
         }
         // Starlight END
@@ -580,7 +581,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                     ("quantity", reagent.Amount));
                 if (reagent.IsOverdosed)
                     reagentLine += HealthAnalyzerFormatting.FormatOdWarningMarkup();
-                message.AddMarkupOrThrow(reagentLine);
+                message.AddMarkupOrThrow($"- {reagentLine}");
                 message.PushNewline();
             }
         }
