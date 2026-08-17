@@ -313,9 +313,9 @@ public sealed partial class ChangelingSystem : EntitySystem
         DoScreech(uid, comp);
 
         var power = comp.ShriekPower;
-        // Starlight edit - Overrides flash immunity. Why would a shriek get blocked by glasses? Also ignores the changeling doing the shriek.
+        // Starlight edit - ignores the changeling doing the shriek so you dont flash yourself
         List<EntityUid> ignoreList = new() { uid };
-        _flash.FlashArea(uid, uid, power, TimeSpan.FromMilliseconds(power * 2f * 1000f), 0.8f, false, 1f, null, true, ignoreList);
+        _flash.FlashArea(uid, uid, power, TimeSpan.FromMilliseconds(power * 2f * 1000f), 0.8f, false, 1f, null, ignoreList);
 
         var lookup = _lookup.GetEntitiesInRange(uid, power);
         var lights = GetEntityQuery<PoweredLightComponent>();
