@@ -1,0 +1,159 @@
+- type: species
+  id: Scurret
+  name: species-name-scurret
+  roundStart: true
+  prototype: MobPlayerScurret
+  sprites: MobScurretSprites
+  defaultSkinTone: "#e0ffd3"
+  markingLimits: MobScurretMarkingLimits
+  dollPrototype: AppearanceScurret
+  skinColoration: Hues
+  eyesColoration: Hues
+  maleFirstNames: NamesFirstScurret
+  femaleFirstNames: NamesFirstScurret
+  lastNames: NamesLastScurret
+  customName: true
+  sexes:
+    - Male
+    - Female
+  minWidth: 0.8
+  defaultWidth: 1
+  maxWidth: 1.15
+  minHeight: 0.72
+  defaultHeight: 0.8
+  maxHeight: 0.87
+  minAge: 18
+  youngAge: 8 # Unreachable
+  oldAge: 27
+  maxAge: 45
+
+- type: speciesBaseSprites
+  id: MobScurretSprites
+  sprites:
+    Head: MobScurretHead
+    Eyes: MobHumanoidAnyMarking
+    Chest: MobScurretTorso
+    Tail: MobScurretTail
+    LArm: MobScurretLArm
+    RArm: MobScurretRArm
+    LHand: MobScurretLHand
+    RHand: MobScurretRHand
+    LLeg: MobScurretLLeg
+    RLeg: MobScurretRLeg
+    LFoot: MobScurretLFoot
+    RFoot: MobScurretRFoot
+    BodyCover: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobScurretMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Tail:
+      points: 3
+      required: false
+    Head:
+      points: 2
+      required: false
+    Eyes:
+      points: 1
+      required: true
+      defaultMarkings: [ScurretFaceNormal]
+    Chest:
+      points: 1
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 2
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobScurretHead
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: MobScurretHeadMale
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: MobScurretHeadFemale
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: MobScurretTorso
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: MobScurretTorsoMale
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: MobScurretTorsoFemale
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: MobScurretLLeg
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobScurretLHand
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobScurretLArm
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobScurretLFoot
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobScurretRLeg
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobScurretRHand
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobScurretRArm
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobScurretRFoot
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: r_foot
+
+- type: humanoidBaseSprite
+  id: MobScurretTail
+  baseSprite:
+    sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+    state: tail

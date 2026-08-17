@@ -1,0 +1,17 @@
+- type: entity
+  save: false
+  name: Wistful Dreams
+  parent: MobBaseScurret
+  id: MobPlayerScurret
+  components:
+  - type: HumanoidAppearance
+    species: Scurret
+  - type: NameIdentifier
+    group: null
+  - type: LanguageKnowledge
+    speaks:
+      - ScurretSign
+      - GalacticCommon
+    understands:
+      - ScurretSign
+      - GalacticCommon

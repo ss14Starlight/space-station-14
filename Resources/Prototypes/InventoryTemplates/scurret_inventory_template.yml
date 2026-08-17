@@ -74,9 +74,10 @@
     uiWindowPos: 3,2
     strippingWindowPos: 0,5
     displayName: Back
-    whitelist:
-      tags:
-      - ScurretWearable
+    #Inferus - remove whitelist
+    # whitelist:
+    #   tags:
+    #   - ScurretWearable
   - name: outerClothing
     slotTexture: suit
     slotFlags: OUTERCLOTHING
@@ -84,6 +85,20 @@
     uiWindowPos: 0,3
     strippingWindowPos: 1,3
     displayName: Suit
-    whitelist:
-      tags:
-      - ScurretWearable
+    #Inferus - remove whitelist
+    # whitelist:
+    #   tags:
+    #   - ScurretWearable
+  # Inferus start - give scurrets a pocket
+  - name: pocket
+    slotTexture: pocket
+    fullTextureName: template_small
+    slotFlags: POCKET
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 0,3
+    strippingWindowPos: 0,4
+    dependsOn: jumpsuit
+    displayName: Pocket
+    stripHidden: true
+  # Inferus end - give scurrets a pocket

@@ -408,16 +408,3 @@
       species:
         - Rodentia
       inverted: true
-
-- type: trait
-  id: ScurretSign
-  name: trait-language-scurretsign-name
-  description: trait-language-scurretsign-desc
-  category: LanguageTraits
-  cost: 3
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - ScurretSign
-      languagesUnderstood:
-        - ScurretSign
