@@ -527,8 +527,8 @@
         #starlight-start
         maxVol: 20
         reagents:
-          - ReagentId: Respirazone
-            Quantity: 20
+        - ReagentId: Respirazone
+          Quantity: 20
         #starlight-end
 
 - type: entity
