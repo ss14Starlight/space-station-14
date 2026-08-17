@@ -1,3 +1,5 @@
+// ReSharper disable CheckNamespace
+
 using Content.Shared.Damage;
 using Robust.Shared.GameStates;
 
