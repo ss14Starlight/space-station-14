@@ -385,7 +385,16 @@ public sealed partial class IngestionSystem : EntitySystem
         var afterEv = new IngestedEvent(args.User, entity, split, forceFed, beforeEv.Transfer >= beforeEv.Max);
         RaiseLocalEvent(food, ref afterEv);
 
-        _stomach.TryTransferSolution(stomachToUse.Value.Owner, split, stomachToUse);
+        #region Starlight
+        if (!_stomach.TryTransferSolution(stomachToUse.Value.Owner, split, stomachToUse))
+        {
+            // Stackable foods already restored the split earlier
+            if (!beforeEv.Refresh)
+                _solutionContainer.TryAddSolution(solution.Value, split);
+
+            return;
+        }
+        #endregion
 
         if (!afterEv.Destroy)
         {

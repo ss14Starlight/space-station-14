@@ -97,6 +97,7 @@ public sealed partial class MetabolizerComponent : Component
     ///     A list of metabolism stages that this metabolizer will act on, in order of precedence.
     /// </summary>
     [DataField]
+    [Access(typeof(MetabolizerSystem), Other = AccessPermissions.ReadExecute)]
     public List<ProtoId<MetabolismStagePrototype>> Stages = new();
 }
 
