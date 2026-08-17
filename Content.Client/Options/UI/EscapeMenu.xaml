@@ -7,6 +7,7 @@
 
     <BoxContainer Orientation="Vertical" SeparationOverride="4" MinWidth="150">
         <Button Access="Public" Name="DiscordButton" Text="{Loc 'ui-escape-connect-discord'}"/>
+		<Button Access="Public" Name="SteamButton" Text="{Loc 'ui-escape-connect-steam'}"/>
         <changelog:ChangelogButton Access="Public" Name="ChangelogButton"/>
         <ui:VoteCallMenuButton />
         <PanelContainer StyleClasses="LowDivider" Margin="0 2.5 0 2.5" />
