@@ -6,6 +6,10 @@
   placement:
     mode: AlignAtmosPipeLayers
   components:
+  # Starlight-start
+  - type: DeviceNetwork
+    prefix: device-address-prefix-sensor
+  # Starlight-end
   - type: Sprite
     sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor.rsi # Carpmosia-edit - 5 pipe layers
     drawdepth: BelowFloor
