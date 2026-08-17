@@ -163,7 +163,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         EnsureComp<AbsorbedComponent>(target);
         // Starlight edit start - doubles the length of the rotting timer from 10 to 20
-        if (TryComp<PerishableComponent>(target, out var perishable)) 
+        if (TryComp<PerishableComponent>(target, out var perishable))
         {
             _rotting.SetRotAfter(target, TimeSpan.FromMinutes(20), perishable);
         }
@@ -323,9 +323,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             // breaks lights
             if (lights.HasComponent(ent))
                 _light.TryDestroyBulb(ent);
-        
     }
-
     private void OnToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp, ref ToggleStrainedMusclesEvent args) => ToggleStrainedMuscles(uid, comp);
 
     private void ToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp)
