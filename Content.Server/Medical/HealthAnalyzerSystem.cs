@@ -34,6 +34,7 @@ using Robust.Shared.Utility; // Starlight-edit
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical;
 using Content.Shared.Chemistry.Reagent; // Starlight
+using Content.Shared.EntityConditions.Conditions; // Starlight
 
 namespace Content.Server.Medical;
 
@@ -408,11 +409,40 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             foreach (var (reagentId, quantity) in chemicals.OrderByDescending(r => r.Quantity))
             {
                 var localizedName = reagentId;
+                var group = "Unknown";
+                var isOverdosed = false;
                 if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
+                {
                     localizedName = reagentProto.LocalizedName;
+                    group = reagentProto.Group;
+
+                    // Check for OD threshold
+                    FixedPoint2? odThreshold = null;
+                    foreach (var (_, entry) in reagentProto.Metabolisms)
+                    {
+                        foreach (var effect in entry.Effects)
+                        {
+                            if (effect.Conditions == null)
+                                continue;
+
+                            foreach (var condition in effect.Conditions)
+                            {
+                                if (condition is ReagentCondition reagentCondition
+                                    && reagentCondition.Reagent == reagentId
+                                    && reagentCondition.Min > FixedPoint2.Zero)
+                                {
+                                    if (odThreshold == null || reagentCondition.Min < odThreshold)
+                                        odThreshold = reagentCondition.Min;
+                                }
+                            }
+                        }
+                    }
+
+                    isOverdosed = odThreshold != null && quantity >= odThreshold.Value;
+                }
 
                 var capitalizedName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(localizedName.ToLower());
-                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(capitalizedName), quantity));
+                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(capitalizedName), quantity, group, isOverdosed));
             }
         }
         // Starlight END
@@ -530,14 +560,28 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             return message.ToMarkup();
         }
 
-        foreach (var reagent in snapshot.Reagents)
+        var groupedReagents = snapshot.Reagents
+            .OrderBy(r => HealthAnalyzerFormatting.GetReagentGroupSortKey(r.Group))
+            .ThenBy(r => r.Group)
+            .ThenByDescending(r => r.Amount)
+            .GroupBy(r => r.Group);
+
+        foreach (var group in groupedReagents)
         {
-            var reagentLine = Loc.GetString(
-                "health-analyzer-report-chemical-line",
-                ("name", reagent.Name),
-                ("quantity", reagent.Amount));
-            message.AddMarkupOrThrow(reagentLine);
+            message.AddMarkupOrThrow($"[bold]{group.Key}[/bold]");
             message.PushNewline();
+
+            foreach (var reagent in group)
+            {
+                var reagentLine = Loc.GetString(
+                    "health-analyzer-report-chemical-line",
+                    ("name", reagent.Name),
+                    ("quantity", reagent.Amount));
+                if (reagent.IsOverdosed)
+                    reagentLine += HealthAnalyzerFormatting.FormatOdWarningMarkup();
+                message.AddMarkupOrThrow(reagentLine);
+                message.PushNewline();
+            }
         }
         // Starlight END
 
@@ -563,6 +607,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
     private sealed record HealthAnalyzerDamageTypeSnapshot(string Name, FixedPoint2 Amount);
 
-    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount); // Starlight
+    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, string Group, bool IsOverdosed); // Starlight
     // Starlight-end
 }

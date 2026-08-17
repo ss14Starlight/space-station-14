@@ -8,6 +8,7 @@ namespace Content.Shared._Starlight.Medical;
 public static class HealthAnalyzerFormatting
 {
     public static readonly string[] DamageGroupOrder = { "Burn", "Brute", "Airloss", "Toxin", "Genetic" };
+    public static readonly string[] ReagentGroupOrder = { "Medicine", "Narcotics", "Toxins", "Pyrotechnic", "Botanical", "Biological", "Foods", "Drinks", "Elements", "Special" };
     private static readonly Color SeveritySafeColor = Color.FromHex("#00FF00");
     private static readonly Color SeverityDangerColor = Color.FromHex("#8B0000");
 
@@ -89,6 +90,17 @@ public static class HealthAnalyzerFormatting
     {
         var index = Array.IndexOf(DamageGroupOrder, groupId);
         return index == -1 ? DamageGroupOrder.Length : index;
+    }
+
+    public static int GetReagentGroupSortKey(string groupId)
+    {
+        var index = Array.IndexOf(ReagentGroupOrder, groupId);
+        return index == -1 ? ReagentGroupOrder.Length : index;
+    }
+
+    public static string FormatOdWarningMarkup()
+    {
+        return WrapMarkupWithColor(" !!", SeverityDangerColor);
     }
 
     public static string WrapMarkupWithColor(string markup, Color? color)
