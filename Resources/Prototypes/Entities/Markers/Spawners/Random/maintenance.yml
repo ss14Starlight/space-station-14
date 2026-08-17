@@ -470,8 +470,10 @@
       - id: Shiv
       - id: SawImprov
       - id: HydroponicsToolMiniHoe
+      # Starlight-start
       - id: EmeraldLizitar
-      - id: AmethystLizitar #starlight
+      - id: AmethystLizitar
+      # Starlight-end
       - id: ClothingHandsKnuckleDusters
       - !type:NestedSelector
         tableId: AllToyWeaponsTable
