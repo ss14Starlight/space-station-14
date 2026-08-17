@@ -498,26 +498,19 @@
   parent: ChemicalMedipen
   id: AirlossAutoInjector
   name: airloss auto-injector
-  #starlight-start
-  #description: A single-dose, non-refillable medipen containing saline and dexalin plus, used to quickly and easily treat blood loss and asphyxiation.
-  description: A single-dose, non-refillable medipen containing respirazone, used to quickly and easily treat blood loss and asphyxiation.
-  #starlight-end
+  description: A single-dose, non-refillable medipen containing respirazone, used to quickly and easily treat blood loss and asphyxiation. # Starlight-edit
   components:
   - type: Item
     inhandVisuals:
       left:
       - state: base-needle-inhand-left
       - state: base-colorA-inhand-left
-        #starlight-start
-        color: "#4fb2a5"
-        #starlight-end
+        color: "#4fb2a5" # Starlight-edit
       - state: base-colorB-inhand-left
       right:
       - state: base-needle-inhand-right
       - state: base-colorA-inhand-right
-        #starlight-start
-        color: "#4fb2a5"
-        #starlight-end
+        color: "#4fb2a5" # Starlight-edit
       - state: base-colorB-inhand-right
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
@@ -532,12 +525,6 @@
     solutions:
       pen:
         #starlight-start
-        #maxVol: 40
-        #reagents:
-        #- ReagentId: Saline
-        #  Quantity: 20
-        #- ReagentId: DexalinPlus
-        #  Quantity: 20
         maxVol: 20
         reagents:
           - ReagentId: Respirazone
