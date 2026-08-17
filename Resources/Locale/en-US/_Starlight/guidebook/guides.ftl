@@ -57,6 +57,13 @@ guide-entry-sl-command-clarifications = Command Clarifications
 guide-entry-sl-general-command-staff = General Command Staff
 guide-entry-sl-captain = Captain
 guide-entry-sl-ai = AI
+guide-entry-sl-secure-terminal = Secure Terminal
+guide-entry-sl-secure-terminal-ert = ERT Teams
+guide-entry-sl-secure-terminal-alerts = Alert Levels
+guide-entry-sl-secure-terminal-armories = Armories & Pods
+guide-entry-sl-secure-terminal-misc = Misc
+
+guide-entry-sl-secure-terminal-guide = Secure Terminal
 
 guide-entry-sl-non-crew-policies = Non-crew Policies
 guide-entry-sl-docking-and-visitors = Docking and Visitors
@@ -91,6 +98,11 @@ guide-entry-sl-legal-sop-intro = Legal
 guide-entry-sl-engineering-sop-intro = Engineering
 guide-entry-sl-engineering-sop-genproc-intro = General Procedures
 guide-entry-sl-engineering-sop-power-generation = Power Generation
+guide-entry-sl-engineering-supermatter = Supermatter Crystal
+guide-entry-sl-engineering-supermatter-stability = Stability
+guide-entry-sl-engineering-supermatter-structural-recovery = Structural Recovery
+guide-entry-sl-engineering-supermatter-delamination = Delamination
+guide-entry-sl-engineering-supermatter-advanced-handling = Advanced Supermatter Handling
 guide-entry-sl-engineering-sop-station-damage = Station Damage
 guide-entry-sl-engineering-sop-staff-intro = Staff Procedures
 guide-entry-sl-engineering-sop-chief-engineer = Chief Engineer
@@ -157,6 +169,7 @@ guide-entry-terror-spiders = Terror Spiders
 guide-entry-devil = Devil
 
 guide-entry-sl-deepfried-recipes = Deep Fried
+guide-entry-sl-dough-recipes = Dough
 guide-entry-sl-ice-cream-recipes = Ice Cream Maker
 
 # Plumbing guides

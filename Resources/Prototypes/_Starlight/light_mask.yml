@@ -1,0 +1,15 @@
+﻿- type: lightMask
+  id: SLCosmic
+  maskPath: /Textures/_Starlight/CosmicCult/LightMasks/cosmic.png
+  lightCones:
+  - direction: 0 # TODO STARLIGHT check these values to be correct
+    innerWidth: 30
+    outerWidth: 60
+
+- type: lightMask
+  id: SLCurve
+  maskPath: /Textures/_Starlight/Effects/LightMasks/cone_curve.png
+  lightCones:
+  - direction: 0 # TODO STARLIGHT check these values to be correct
+    innerWidth: 30
+    outerWidth: 60

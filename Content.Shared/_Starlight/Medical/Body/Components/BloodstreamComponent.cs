@@ -154,6 +154,13 @@ public sealed partial class BloodstreamComponent : Component
     public Solution BloodReferenceSolution = new([new("Blood", 300)]);
 
     /// <summary>
+    /// Optional visual color for blood reagents from this entity.
+    /// This is stored on the reagent instance, so transferred blood keeps its color.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Color? BloodReagentColor;
+
+    /// <summary>
     /// Caches the blood data of an entity.
     /// This is modified by DNA on init so it's not savable.
     /// </summary>

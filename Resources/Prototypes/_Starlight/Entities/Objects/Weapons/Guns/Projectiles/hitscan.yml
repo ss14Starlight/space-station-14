@@ -1825,4 +1825,29 @@
     impactFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_beam_heavy2
-# Starlight
+
+- type: entity
+  parent: BasicHitscanNoBeam
+  id: FreezeRayWiz
+  name: freeze ray wizard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Cold: 50
+        Structural: 150
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_magic
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
+  - type: TriggerOnHitscanFired
+  - type: SpeakOnTrigger
+    text: action-speech-spell-frozentome
+    targetUser: true

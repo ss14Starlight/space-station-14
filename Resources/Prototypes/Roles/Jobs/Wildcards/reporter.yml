@@ -12,6 +12,7 @@
   access:
   - Service
   - Maintenance
+  - Journalism # Starlight
 
 - type: startingGear
   id: ReporterGear

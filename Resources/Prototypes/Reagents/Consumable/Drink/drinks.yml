@@ -497,6 +497,11 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Slime ]
+        # Starlight start - Cyclorites and Neo-Vox inherit Slime gas metabolism, but water vapor is harmless.
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite, NeoVox ]
+          inverted: true
+        # Starlight end
         damage:
           types:
             Heat: 3

@@ -1,0 +1,19 @@
+- files: ["commander_announcement.ogg", "commander_figurines.ogg", "commander_resignation.ogg", "commander_support.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "taken from goonstation"
+  source: "https://github.com/goonstation/goonstation/tree/master/sound/radio_station"
+
+- files: ["cloning_psa.ogg", "security_psa.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "taken from goonstation"
+  source: "https://github.com/goonstation/goonstation/tree/master/sound/radio_station/adverts"
+
+- files: ["syndicateFM.ogg", "JNE.ogg", "NextUp.ogg", "Ninja.ogg", "numbers.ogg", "numbersShort.ogg", "numbersAdmin.ogg"]
+  license: "CC-BY-ND-4.0"
+  copyright: "Recorded by Jvne"
+  source: "https://juneialduncan21@gmail.com"
+
+- files: ["amusing_duck.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "taken from goonstation"
+  source: "https://github.com/goonstation/goonstation/blob/master/sound/misc/amusingduck.ogg"

@@ -1,0 +1,10 @@
+# Radio Host
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineRadioHost
+  suffix: "SRV: Radio Host"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Radio Host"
+      order: 590

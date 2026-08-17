@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.Traits;
 using Content.Server.Antag;
@@ -11,12 +12,14 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Server.GameTicking.Rules;
 
 public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfileRuleComponent>
 {
     [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private AntagSelectionSystem _antagSelection = default!; // Starlight
     [Dependency] private IServerPreferencesManager _prefs = default!;
     [Dependency] private MetaDataSystem _metaSystem = default!; // Starlight
     [Dependency] private TraitSystem _traitSystem = default!; //Starlight
@@ -38,11 +41,25 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
 
         // Try to find a profile with this antagonist enabled on the player preferences
         HumanoidCharacterProfile? profile = null;
-        if (args.Session != null)
+        if (args.Session is { } session) // Starlight
         {
             //var roles = args.AntagRoles; // Starlight
+            var antag = args.Antag; // Starlight
             var prefs = _prefs.GetPreferences(args.Session.UserId);
-            profile = prefs.SelectProfileForAntag(args.Antag.PrefRoles); // Starlight
+            #region Starlight
+            var profilePool = prefs.Characters.Values
+            .OfType<HumanoidCharacterProfile>()
+            .Where(candidate =>
+            candidate.Enabled &&
+            _antagSelection.IsProfileValidForAntag(
+                session,
+                candidate,
+                antag))
+            .ToList();
+
+            if (profilePool.Count > 0)
+                profile = RobustRandom.Pick(profilePool);
+            #endregion
         }
 
         #region Starlight

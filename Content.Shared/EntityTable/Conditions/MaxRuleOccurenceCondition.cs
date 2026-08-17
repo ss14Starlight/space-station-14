@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.EntityTable;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.GameTicking;
 using Robust.Shared.Prototypes;
@@ -32,23 +33,27 @@ public sealed partial class MaxRuleOccurenceCondition : EntityTableCondition
         IPrototypeManager proto,
         EntityTableContext ctx)
     {
-        string rule;
+        EntProtoId rule; // Starlight
+
         if (RuleOverride is { } ruleOverride)
         {
             rule = ruleOverride;
         }
+        #region Starlight
+        else if (root is EntSelector entSelector)
+        {
+            rule = entSelector.Id;
+        }
+        #endregion
         else
         {
-            rule = root is EntSelector entSelector
-                ? entSelector.Id
-                : string.Empty;
+            return false; // Starlight
         }
 
-        if (rule == string.Empty)
-            return false;
+        if (ctx.TryGetData<GameRuleTableContext>(out var gameRuleContext)) // Starlight
+            return gameRuleContext.Count(rule) < Max; // Starlight
 
         var gameTicker = entMan.System<SharedGameTicker>();
-
-        return gameTicker.AllPreviousGameRules.Count(p => p.Item2 == rule) < Max;
+        return gameTicker.AllPreviousGameRules.Count(previous => previous.Item2 == rule.Id) < Max; // Starlight
     }
 }

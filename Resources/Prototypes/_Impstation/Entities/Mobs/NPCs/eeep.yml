@@ -273,7 +273,7 @@
 #region Starlight
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
-    baseSprintSpeed: 6
+    baseSprintSpeed: 7
     baseWeightlessModifier: 0.6
   - type: BatteryDrainer
     fullDrain: true
@@ -281,6 +281,13 @@
     sparkSound:
      path: /Audio/Effects/PowerSink/charge_fire.ogg
     minimumDrain: 1000
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 6
+        Shock: 6
+        Structural: 10
   - type: AltFireMelee
   - type: Prying
     pryPowered: true

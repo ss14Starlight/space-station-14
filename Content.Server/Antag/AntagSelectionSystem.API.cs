@@ -53,7 +53,7 @@ public sealed partial class AntagSelectionSystem
     }
 
     #region Starlight
-    private int GetEffectivePlayerCount(int activePlayers)
+    private int GetEffectivePlayerCountPlayerRatio(int activePlayers)
     {
         var onlinePlayers = _playerManager.Sessions.Length;
 
@@ -62,7 +62,7 @@ public sealed partial class AntagSelectionSystem
 
         var inactivePlayers = Math.Max(0, onlinePlayers - activePlayers);
 
-        // Count 60% of lobby/spectating/unready players.
+        // Count 25% of lobby/spectating/unready players.
         return activePlayers + (int)(inactivePlayers * _unreadyPlayerMultiplier);
     }
     #endregion
@@ -104,7 +104,7 @@ public sealed partial class AntagSelectionSystem
     {
         var runningCount = 0;
         var count = 0;
-        var effectivePlayers = GetEffectivePlayerCount(playerCount); // Starlight, effective players to include *some* people who don't ready up
+        var effectivePlayers = GetEffectivePlayerCountPlayerRatio(playerCount); // Starlight, effective players to include *some* people who don't ready up
 
         // We assume that antag definitions are prioritized by order, and take up slots that other roles may take.
         // I.E for Nukies, it selects 1 commander which takes up 10 players, then one corpsman which takes up another 10, then we select X nukies based on the remaining player count.
@@ -141,7 +141,7 @@ public sealed partial class AntagSelectionSystem
     public int GetTargetAntagCount(Entity<AntagSelectionComponent> gameRule, int playerCount, AntagSpecifierPrototype proto)
     {
         var runningCount = 0;
-        var effectivePlayers = GetEffectivePlayerCount(playerCount); // Starlight, effective players to include *some* people who don't ready up
+        var effectivePlayers = GetEffectivePlayerCountPlayerRatio(playerCount); // Starlight, effective players to include *some* people who don't ready up
 
         // We assume that antag definitions are prioritized by order, and take up slots that other roles may take.
         // I.E for Nukies, it selects 1 commander which takes up 10 players, then one corpsman which takes up another 10, then we select X nukies based on the remaining player count.
@@ -184,13 +184,48 @@ public sealed partial class AntagSelectionSystem
         return !gameRule.Comp.AssignedMinds.TryGetValue(proto, out var assigned) ? 0 : assigned.Count;
     }
 
+    #region Starlight
+    /// <summary>
+    /// Gets the number of still-available ghost roles reserving slots for an antagonist type.
+    /// </summary>
+    [PublicAPI]
+    public int GetPendingAntagGhostRoleCount(
+        Entity<AntagSelectionComponent> gameRule,
+        ProtoId<AntagSpecifierPrototype> proto)
+    {
+        var count = 0;
+
+        foreach (var ghostRole in _ghostRole.GhostRoles)
+        {
+            if (ghostRole.Comp.Taken ||
+                !TryComp<GhostRoleAntagSpawnerComponent>(ghostRole.Owner, out var spawner) ||
+                spawner.Rule != gameRule.Owner ||
+                spawner.Definition != proto)
+            {
+                continue;
+            }
+
+            count++;
+        }
+
+        return count;
+    }
+    #endregion
+
     /// <summary>
     /// Checks if all antags of this specific type from this specific game rule have been assigned.
     /// </summary>
     [PublicAPI]
     public bool AllAntagsAssigned(Entity<AntagSelectionComponent> gameRule, AntagSpecifierPrototype proto, int players)
     {
-        return GetAssignedAntagCount(gameRule, proto) >= GetTargetAntagCount(gameRule, players, proto);
+        #region Starlight
+        var assigned = GetAssignedAntagCount(gameRule, proto);
+        var pendingGhostRoles = GetPendingAntagGhostRoleCount(gameRule, proto);
+        var target = Math.Max(gameRule.Comp.SelectionTargets.GetValueOrDefault(proto.ID), GetTargetAntagCount(gameRule, players, proto));
+
+        return assigned + pendingGhostRoles >= target;
+        // return GetAssignedAntagCount(gameRule, proto) >= GetTargetAntagCount(gameRule, players, proto);
+        #endregion
     }
 
     /// <summary>
@@ -434,7 +469,8 @@ public sealed partial class AntagSelectionSystem
 
                 foreach (var player in set)
                 {
-                    if (result.TryGetValue(player, out var jobs))
+                    #region Starlight
+                    /*if (result.TryGetValue(player, out var jobs))
                     {
                         if (proto.JobWhitelist != null)
                         {
@@ -455,7 +491,10 @@ public sealed partial class AntagSelectionSystem
                     else
                     {
                         result.Add(player, (proto.JobWhitelist, proto.JobBlacklist));
-                    }
+                    }*/
+                    var jobs = result.GetValueOrDefault(player);
+                    result[player] = MergeAntagJobs(jobs, proto);
+                    #endregion
                 }
             }
         }
@@ -492,7 +531,8 @@ public sealed partial class AntagSelectionSystem
                 if (!Proto.Resolve(antag.Proto, out var proto))
                     continue;
 
-                if (proto.JobWhitelist != null)
+                #region Starlight
+                /*if (proto.JobWhitelist != null)
                 {
                     if (whitelist == null)
                         whitelist = proto.JobWhitelist;
@@ -506,12 +546,46 @@ public sealed partial class AntagSelectionSystem
                         blacklist = proto.JobBlacklist;
                     else
                         blacklist.UnionWith(proto.JobBlacklist);
-                }
+                }*/
+                (whitelist, blacklist) = MergeAntagJobs((whitelist, blacklist), proto);
+                #endregion
             }
         }
 
         return (whitelist, blacklist);
     }
+
+    #region Starlight
+    /// <summary>
+    /// Merges the job whitelist and blacklist of a given antag definition with the existing job whitelist and blacklist for a player.
+    /// </summary>
+    /// <param name="jobs">The existing job whitelist and blacklist for a player.</param>
+    /// <param name="definition">The antag definition containing its own job whitelist and blacklist.</param>
+    /// <returns>The merged job whitelist and blacklist.</returns>
+    private static (HashSet<ProtoId<JobPrototype>>? Whitelist, HashSet<ProtoId<JobPrototype>>? Blacklist)
+        MergeAntagJobs(
+            (HashSet<ProtoId<JobPrototype>>? Whitelist, HashSet<ProtoId<JobPrototype>>? Blacklist) jobs,
+            AntagSpecifierPrototype definition)
+    {
+        if (definition.JobWhitelist != null)
+        {
+            if (jobs.Whitelist == null)
+                jobs.Whitelist = new HashSet<ProtoId<JobPrototype>>(definition.JobWhitelist);
+            else
+                jobs.Whitelist.IntersectWith(definition.JobWhitelist);
+        }
+
+        if (definition.JobBlacklist != null)
+        {
+            if (jobs.Blacklist == null)
+                jobs.Blacklist = new HashSet<ProtoId<JobPrototype>>(definition.JobBlacklist);
+            else
+                jobs.Blacklist.UnionWith(definition.JobBlacklist);
+        }
+
+        return jobs;
+    }
+    #endregion
 
     /// <summary>
     /// Get all sessions that have been preselected for antag.
@@ -588,6 +662,54 @@ public sealed partial class AntagSelectionSystem
             yield return antag;
         }
     }
+
+    #region Starlight
+    /// <summary>
+    /// Returns whether this specific character profile can be used for an antag definition.
+    /// Account-level antag eligibility is not sufficient here because another enabled character may
+    /// be the profile that actually satisfies the preference or a profile-specific requirement.
+    /// TLDR: blame multi-slot
+    /// </summary>
+    [PublicAPI]
+    public bool IsProfileValidForAntag(
+        ICommonSession session,
+        HumanoidCharacterProfile profile,
+        ProtoId<AntagSpecifierPrototype> definition)
+    {
+        return Proto.Resolve(definition, out var antag) && IsProfileValidForAntag(session, profile, antag);
+    }
+
+    /// <inheritdoc cref="IsProfileValidForAntag(ICommonSession,HumanoidCharacterProfile,ProtoId{AntagSpecifierPrototype})"/>
+    [PublicAPI]
+    public bool IsProfileValidForAntag(
+        ICommonSession session,
+        HumanoidCharacterProfile profile,
+        AntagSpecifierPrototype definition)
+    {
+        foreach (var role in definition.PrefRoles)
+        {
+            if (!profile.AntagPreferences.Contains(role))
+                continue;
+
+            // Session bans and playtime are checked before pre-selection. Passing null here
+            // intentionally checks only profile-specific requirements such as species, age,
+            // and traits for the exact character that will spawn.
+            if (JobRequirements.TryRequirementsMet(
+                    _role.GetRoleRequirements(role),
+                    session,
+                    null,
+                    out _,
+                    EntityManager,
+                    _prototypeManager,
+                    profile))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    #endregion
 
     /// <summary>
     /// Checks if a player has been assigned antag for a specific game rule.

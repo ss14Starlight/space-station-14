@@ -1,0 +1,123 @@
+# Milk crates with gradual fill sprites, using the same StorageFillVisualizer pattern as CdRack.
+- type: entity
+  abstract: true
+  id: BaseMilkCrate
+  parent: BaseStructureDynamic
+  components:
+  - type: Appearance
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: InteractionOutline
+  - type: Transform
+    noRot: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlastic1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: RecordMilkCrate
+  parent: BaseMilkCrate
+  name: record crate
+  description: A sturdy plastic milk crate repurposed for filing away sleeved vinyls. It won't hold anything else.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Storage/milkcrate.rsi
+    snapCardinals: true
+    layers:
+      - map: ["enum.StorageFillLayers.Fill"]
+        state: recordcrate-0
+  - type: StorageFillVisualizer
+    maxFillLevels: 6
+    fillBaseName: recordcrate
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Normal
+    whitelist:
+      tags:
+        - VinylSleeve
+  - type: Construction
+    graph: MilkCrateGraph
+    node: recordMilkCrate
+
+- type: entity
+  id: MilkCrate
+  parent: BaseMilkCrate
+  name: milk crate
+  description: A sturdy plastic crate for hauling milk cartons. It won't hold anything else.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Storage/milkcrate.rsi
+    snapCardinals: true
+    layers:
+      - map: ["enum.StorageFillLayers.Fill"]
+        state: milkcrate-0
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: milkcrate
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Normal
+    whitelist:
+      tags:
+        - MilkCarton
+  - type: Construction
+    graph: MilkCrateGraph
+    node: milkCrate
+
+- type: entity
+  id: SyndicateMilkCrate
+  parent: [BaseMilkCrate, BaseSyndicateContraband]
+  name: syndicate milk crate
+  description: A blood-red plastic milk crate for filing away sleeved vinyls. Nanotrasen would rather you didn't listen to these.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Storage/milkcrate.rsi
+    snapCardinals: true
+    layers:
+      - map: ["enum.StorageFillLayers.Fill"]
+        state: syndicrate-0
+  - type: StorageFillVisualizer
+    maxFillLevels: 6
+    fillBaseName: syndicrate
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Normal
+    whitelist:
+      tags:
+        - VinylSleeve
+  - type: Construction
+    graph: MilkCrateGraph
+    node: syndicateMilkCrate

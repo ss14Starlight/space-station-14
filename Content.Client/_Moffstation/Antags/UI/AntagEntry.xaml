@@ -26,8 +26,9 @@
                          HorizontalAlignment="Center"
                          SetSize="20 20"
                          Stretch="KeepAspectCentered"
+                         MouseFilter="Stop"
                          TexturePath="/Textures/Interface/VerbIcons/lock.svg.192dpi.png"
-                         Visible="False"/>
+                         Visible="False"/> <!-- Starlight, enable unlock requirements again -->
         </BoxContainer>
 
         <!-- Trait Info -->
