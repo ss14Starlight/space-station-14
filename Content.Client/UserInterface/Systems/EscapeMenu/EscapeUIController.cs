@@ -73,6 +73,12 @@ public sealed partial class EscapeUIController : UIController, IOnStateEntered<G
             if(_playerRoles.GetDiscordLink() is string link)
                 _uri.OpenUri(link);
         };
+
+        _escapeWindow.SteamButton.OnPressed += _ =>
+        {
+            if (_playerRoles.GetSteamLink() is string link)
+                _uri.OpenUri(link);
+        };
         // NullLink end
 
         _escapeWindow.ChangelogButton.OnPressed += _ =>

@@ -665,7 +665,6 @@
     - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
     - item: SyndiBorgHypo
     - item: AutoMenderBrute
     - item: AutoMenderBurn
@@ -722,7 +721,6 @@
     - state: icon-defib
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
     - item: DefibrillatorSyndicateOneHandedUnpowered
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic

@@ -177,6 +177,9 @@
   id: Condiment
 
 - type: Tag
+  id: ConstructionComment
+
+- type: Tag
   id: CrispyRiceBar
 
 - type: Tag
@@ -509,6 +512,9 @@
   id: MicroManipulatorStockPart
 
 - type: Tag
+  id: MilkCarton # Storage whitelist: MilkCrate
+
+- type: Tag
   id: MimeMask #used in the security mime mask crafting graph
 
 - type: Tag
@@ -710,6 +716,9 @@
 
 - type: Tag
   id: Vial
+
+- type: Tag
+  id: VinylSleeve # Storage whitelist: RecordMilkCrate, SyndicateMilkCrate
 
 - type: Tag
   id: WallmountMassScannerElectronics
