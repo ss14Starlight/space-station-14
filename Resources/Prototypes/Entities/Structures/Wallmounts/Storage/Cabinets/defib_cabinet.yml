@@ -8,7 +8,7 @@
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: Structures/Wallmounts/defib_cabinet.rsi
+    sprite: _Starlight/Structures/Wallmounts/defib_cabinet.rsi # Starlight Edit, new sprites
     noRot: false
     layers:
     - state: frame
