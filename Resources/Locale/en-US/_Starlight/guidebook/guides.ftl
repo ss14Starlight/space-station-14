@@ -183,10 +183,16 @@ guide-entry-records = Character Records
 # Tools
 guide-entry-tools-combination-locks = Combination Locks
 
-
 # Roleplay
 guide-entry-roleplay-intro = Roleplay Guides
 guide-entry-roleplay-01 = The Basics
 guide-entry-roleplay-02 = Collaborative Storytelling
 guide-entry-roleplay-03 = Losing Is Fun
 guide-entry-roleplay-04 = Acting With Mechanics
+
+# Engineering
+guide-entry-gasses = Mundane Gasses
+guide-entry-gasses2 = Key Gasses
+guide-entry-gasses3 = Utility Gasses
+guide-entry-gasses4 = Advanced Gasses
+guide-entry-gasses5 = Rare Gasses

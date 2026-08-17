@@ -51,6 +51,10 @@
   - AtmosphericUpsets
   - AtmosTools
   - Gasses
+  - Gasses2 #Starlight: Extended guides
+  - Gasses3
+  - Gasses4
+  - Gasses5 #End Starlight
 
 - type: guideEntry
   id: GasManipulation
@@ -262,7 +266,7 @@
 - type: guideEntry
   id: Gasses
   name: guide-entry-gasses
-  text: "/ServerInfo/Guidebook/Engineering/Gasses.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/Gasses.xml" # STARLIGHT
 
 - type: guideEntry
   id: ShuttleCraft
