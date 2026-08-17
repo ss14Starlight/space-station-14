@@ -148,7 +148,7 @@
     baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 3.6
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
     radius: 3
     energy: 5
