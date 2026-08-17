@@ -58,12 +58,12 @@
         - to: chairFroggy
           steps:
             - material: Plastic
-              amount: 4
+              amount: 2
               doAfter: 2
         - to: chairLovey
           steps:
             - material: Plastic
-              amount: 4
+              amount: 2
               doAfter: 2
 
 
@@ -179,7 +179,7 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetPlastic1
-              amount: 4
+              amount: 2
           steps:
             - tool: Screwing
               doAfter: 2
@@ -191,7 +191,7 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetPlastic1
-              amount: 4
+              amount: 2
           steps:
             - tool: Screwing
               doAfter: 2

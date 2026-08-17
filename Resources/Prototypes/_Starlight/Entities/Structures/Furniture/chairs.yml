@@ -239,7 +239,7 @@
   name: lovey chair
   id: ChairLovey
   parent: SeatBase
-  description: Wait a second ... this isn't froggy chair. Well, whatever it is, it's repulsively cute!
+  description: Wait a second ... this isn't a froggy chair. Well, whatever it is, it's repulsively cute!
   components:
     - type: Transform
       anchored: true
