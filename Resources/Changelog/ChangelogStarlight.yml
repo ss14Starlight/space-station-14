@@ -1,20 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Malign passageways automatically close after opening without requiring power.
-    type: Add
-  id: 407290
-  time: '2026-08-04T09:55:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5344
-- author: SirLutz
-  changes:
-  - message: Effigies now have guaranteed rift spawns and minion spawns, ensuring a mix of minions and rifts.
-    type: Tweak
-  id: 407291
-  time: '2026-08-04T09:55:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5344
-- author: SirLutz
-  changes:
   - message: Malign minions are now ghost roles, allowing them to support the Colossus and Cult.
     type: Add
   id: 407292
@@ -2799,4 +2785,18 @@ Entries:
   id: 407689
   time: '2026-08-17T11:47:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5412
+- author: OMEGA
+  changes:
+  - message: handheld engineering monitor to Chief Engineer's locker.
+    type: Add
+  id: 407690
+  time: '2026-08-17T12:07:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5431
+- author: Rinary
+  changes:
+  - message: Removed glass and steel sheets from CE's locker.
+    type: Remove
+  id: 407691
+  time: '2026-08-17T12:07:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5431
 Order: -1
