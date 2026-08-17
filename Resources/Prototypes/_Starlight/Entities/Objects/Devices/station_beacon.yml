@@ -197,8 +197,8 @@
   id: DefaultStationBeaconATS
   suffix: ATS
   components:
-    - type: NavMapBeacon
-      defaultText: station-beacon-ATS
-    - type: Tag
-      tags:
-        - NinjaBombingTargetBlocker
+  - type: NavMapBeacon
+    defaultText: station-beacon-ATS
+  - type: Tag
+    tags:
+    - NinjaBombingTargetBlocker
