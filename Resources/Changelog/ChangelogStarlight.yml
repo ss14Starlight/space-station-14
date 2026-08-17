@@ -1,18 +1,4 @@
 Entries:
-- author: Hot Mic
-  changes:
-  - message: Updated the Flavor Text from "Special medical table for surgery. This one just seems to be a useless prop, though." to "Special medical table for surgery.".
-    type: Tweak
-  id: 407283
-  time: '2026-08-04T08:54:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5509
-- author: wonderfulnewworld
-  changes:
-  - message: Phenylpiperidine no longer says it applies forced sleep when it actually doesn't.
-    type: Fix
-  id: 407284
-  time: '2026-08-04T09:24:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5501
 - author: SirLutz
   changes:
   - message: Colossus ingress now tears away existing doorways and creates a malign passageway.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407682
   time: '2026-08-16T20:39:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5588
+- author: Born Stellar, Hermit, SevenShades, Naterthegreater
+  changes:
+  - message: Added Endymion event prelude content.
+    type: Add
+  id: 407683
+  time: '2026-08-17T02:04:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5669
+- author: Born Stellar, Hermit, SevenShades, Naterthegreater
+  changes:
+  - message: Endymion memorial flatpack to HOP's locker fill.
+    type: Add
+  id: 407684
+  time: '2026-08-17T02:04:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5669
 Order: -1
