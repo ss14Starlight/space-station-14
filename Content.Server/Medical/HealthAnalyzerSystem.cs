@@ -420,7 +420,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                         && reagentProto.Metabolisms != null)
                     {
                         FixedPoint2? odThreshold = null;
-                        foreach (var (_, entry) in reagentProto.Metabolisms)
+                        foreach (var (_, entry) in reagentProto.Metabolisms.Metabolisms)
                         {
                             foreach (var effect in entry.Effects)
                             {
