@@ -609,6 +609,7 @@
     event: !type:ActionFleshmendEvent {}
   - type: ChangelingAction
     chemicalCost: 35
+    requireAbsorbed: 2 # easily one of the strongest combat abilities. Shouldn't be available round start
     useInLesserForm: true
 
 - type: entity

@@ -11,6 +11,7 @@ changeling-absorb-fail-unabsorbable = The target is not absorbable.
 changeling-absorb-end-self = Another organic absorbed. You are evolving.
 changeling-absorb-end-self-ling = Another changeling absorbed. You are evolving more rapidly.
 changeling-absorb-onexamine = [color=red]The body feels hollow.[/color]
+changeling-absorb-onexamine-fluid = [color=white]The body is covered in a thick chemical.[/color]
 
 changeling-transform-cycle = Switched to {$target}'s DNA.
 changeling-transform-cycle-empty = You don't have any DNA strains!
