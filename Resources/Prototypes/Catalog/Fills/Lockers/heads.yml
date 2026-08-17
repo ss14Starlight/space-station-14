@@ -262,10 +262,9 @@
 #    - id: WeaponGrapplingGun # Starlight-edit: in the EngiVend
 #    - id: BoxFlare # Starlight-edit: in the EngiVend
     - id: AstroNavCartridge #FH
-    - id: SheetSteel #FH
-    - id: SheetGlass #FH
     - id: RCDChiefEngineer
     - id: RPD # Starlight: RPD
+    - id: HandheldEngineeringMonitor # Starlight-edit: CE's handheld power/atmospherics monitor
 #    - id: RCDAmmo # Starlight-edit: CE RCD self-recharges
     - id: RubberStampCE
 #    - id: MetalFoamGrenade # Starlight-edit: in the EngiVend
