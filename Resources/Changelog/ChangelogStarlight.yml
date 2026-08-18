@@ -1,11 +1,4 @@
 Entries:
-- author: Orhu
-  changes:
-  - message: Removed the name "Jax" from the Shadekin random name pool.
-    type: Remove
-  id: 407333
-  time: '2026-08-06T10:57:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5517
 - author: neomoth
   changes:
   - message: You can now multitool the energy shield to make it RGB.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407732
   time: '2026-08-18T17:36:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5692
+- author: Forrestgod
+  changes:
+  - message: Space Ninjas now spawn in with a Cooling unit on there suit storage.
+    type: Fix
+  id: 407733
+  time: '2026-08-18T18:05:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5693
 Order: -1
