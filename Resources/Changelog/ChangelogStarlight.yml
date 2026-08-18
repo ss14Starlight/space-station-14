@@ -1,41 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (LAGAN) Added Vend of silence mimes room.
-    type: Add
-  id: 407359
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
-  - message: (LAGAN) Added ticket machine to cargo.
-    type: Add
-  id: 407360
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
-  - message: (LAGAN) Added another fuel dispenser to robotics.
-    type: Add
-  id: 407361
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
-  - message: (LAGAN) Added a coffee dispenser and sink to the side bar.
-    type: Add
-  id: 407362
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
-  - message: (LAGAN) Added that uhh penguin pet to court house.
-    type: Add
-  id: 407363
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
   - message: (LAGAN) Added a second window to the hop line for someone to help.
     type: Add
   id: 407364
@@ -2799,4 +2764,39 @@ Entries:
   id: 407758
   time: '2026-08-18T22:49:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5626
+- author: bynddark8
+  changes:
+  - message: Introduces the Assistant Manager's task master digi-board, which allows them to change the job titles and HUD icons of their yellow gloved underlings.
+    type: Add
+  id: 407759
+  time: '2026-08-18T23:21:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5546
+- author: bynddark8
+  changes:
+  - message: Adds the task master digi-board to the Assistant Manager's loadout.
+    type: Tweak
+  id: 407760
+  time: '2026-08-18T23:21:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5546
+- author: bynddark8
+  changes:
+  - message: Adds 8 new sprites for informal "job" icons that can be assigned by the Assistant Manager.
+    type: Add
+  id: 407761
+  time: '2026-08-18T23:21:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5546
+- author: bynddark8
+  changes:
+  - message: Introduces the ability to the HUD icon associated with an ID card without changing its access on an ID card computer.
+    type: Add
+  id: 407762
+  time: '2026-08-18T23:21:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5546
+- author: bynddark8
+  changes:
+  - message: Emagging an ID card computer will allow its user to set their HUD icons to non-corporate approved imagery.
+    type: Add
+  id: 407763
+  time: '2026-08-18T23:21:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5546
 Order: -1
