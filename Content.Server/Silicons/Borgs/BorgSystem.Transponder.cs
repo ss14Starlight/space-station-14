@@ -11,6 +11,10 @@ using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Emag.Systems;
 using Robust.Shared.Utility;
 using Content.Shared.Containers.ItemSlots;
+using Content.Server._Starlight.Silicons.Borgs;
+using Content.Shared._Starlight.Silicons.Borgs;
+using Content.Shared.NameIdentifier;
+using Content.Shared.NameModifier.EntitySystems;
 
 namespace Content.Server.Silicons.Borgs;
 
@@ -19,6 +23,9 @@ public sealed partial class BorgSystem
 {
     [Dependency] private EmagSystem _emag = default!;
     [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private BorgLockdownSystem _lockdown = default!; // Starlight
+    [Dependency] private NameModifierSystem _nameModifierSystem = default!; // Starlight
+    [Dependency] private BorgLocationTrackerSystem _borgLocation = default!; // Starlight
 
     private void InitializeTransponder()
     {
@@ -43,18 +50,22 @@ public sealed partial class BorgSystem
 
             var hpPercent = CalcHP(uid);
 
-            // checks if it has a brain and if the brain is not a empty MMI (gives false anyway if the fake disable is true)
-            var hasBrain = CheckBrain(chassis.BrainEntity) && !comp.FakeDisabled;
+            // checks if it has a brain and if the brain is not a empty MMI
+            var hasBrain = CheckBrain(chassis.BrainEntity); // Starlight: the fake is reported as a lock down, not as a missing brain
             var canDisable = comp.NextDisable == null && !comp.FakeDisabling;
+            var identifier = TryComp<NameIdentifierComponent>(uid, out var nameIdentifier) ? nameIdentifier.FullIdentifier : string.Empty; // Starlight
             var data = new CyborgControlData(
                 comp.Sprite,
                 comp.Name,
-                meta.EntityName,
+                _nameModifierSystem.GetBaseName(uid), // Starlight: the identifier travels in its own field
                 chargeFraction,
                 hpPercent,
                 chassis.ModuleCount,
                 hasBrain,
-                canDisable);
+                canDisable,
+                _lockdown.IsLockedDown(uid) || comp.FakeDisabled, // Starlight
+                identifier, // Starlight
+                _borgLocation.GetReportedLocation(uid)); // Starlight
 
             var payload = new NetworkPayload()
             {
@@ -77,12 +88,7 @@ public sealed partial class BorgSystem
             return;
         }
 
-        if (ent.Comp2.BrainEntity is not { } brain)
-            return;
-
-        var message = Loc.GetString(ent.Comp1.DisabledPopup, ("name", Name(ent, ent.Comp3)));
-        _popup.PopupEntity(message, ent);
-        _container.Remove(brain, ent.Comp2.BrainContainer);
+        _lockdown.SetLockedDown((ent.Owner, ent.Comp2), true); // Starlight - lock down instead of ejecting the brain
     }
 
     private void OnPacketReceived(Entity<BorgTransponderComponent> ent, ref DeviceNetworkPacketEvent args)
@@ -104,6 +110,15 @@ public sealed partial class BorgSystem
 
         // update ui immediately
         ent.Comp1.NextBroadcast = _timing.CurTime;
+
+        // Starlight begin
+        if (_lockdown.IsLockedDown(ent) || ent.Comp1.FakeDisabled)
+        {
+            ent.Comp1.FakeDisabled = false;
+            _lockdown.SetLockedDown((ent.Owner, ent.Comp2), false);
+            return;
+        }
+        // Starlight end
 
         // pretend the borg is being disabled forever now
         if (CheckEmagged(ent, "disabled"))

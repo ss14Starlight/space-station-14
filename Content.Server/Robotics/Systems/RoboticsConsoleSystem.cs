@@ -110,7 +110,8 @@ public sealed partial class RoboticsConsoleSystem : SharedRoboticsConsoleSystem
         };
 
         _deviceNetwork.QueuePacket(ent, args.Address, payload);
-        _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(args.Actor):user} disabled borg {data.Name} with address {args.Address}");
+        var action = data.LockedDown ? "released" : "disabled"; // Starlight
+        _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(args.Actor):user} {action} borg {data.FullName} with address {args.Address}"); // Starlight
     }
 
     private void OnDestroy(Entity<RoboticsConsoleComponent> ent, ref RoboticsConsoleDestroyMessage args)
@@ -135,9 +136,9 @@ public sealed partial class RoboticsConsoleSystem : SharedRoboticsConsoleSystem
 
         _deviceNetwork.QueuePacket(ent, args.Address, payload);
 
-        var message = Loc.GetString(ent.Comp.DestroyMessage, ("name", data.Name));
+        var message = Loc.GetString(ent.Comp.DestroyMessage, ("name", data.FullName)); // Starlight
         _radio.SendRadioMessage(ent, message, ent.Comp.RadioChannel, ent);
-        _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(args.Actor):user} destroyed borg {data.Name} with address {args.Address}");
+        _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(args.Actor):user} destroyed borg {data.FullName} with address {args.Address}"); // Starlight
 
         ent.Comp.NextDestroy = now + ent.Comp.DestroyCooldown;
         Dirty(ent, ent.Comp);

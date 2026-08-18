@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Silicons.Borgs; // Starlight
 using Content.Shared.Silicons.Borgs;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
@@ -31,6 +32,9 @@ public sealed class BorgBoundUserInterface : BoundUserInterface
             SendPredictedMessage(new BorgEjectBatteryBuiMessage());
         };
 
+        _menu.LockdownButtonPressed += () => SendMessage(new BorgToggleLockdownBuiMessage()); // Starlight
+        _menu.ResetChassisButtonPressed += () => SendMessage(new BorgResetChassisBuiMessage()); // Starlight
+
         _menu.NameChanged += name =>
         {
             SendPredictedMessage(new BorgSetNameBuiMessage(name));
@@ -47,5 +51,7 @@ public sealed class BorgBoundUserInterface : BoundUserInterface
         _menu?.UpdateBatteryButton();
         _menu?.UpdateBrainButton();
         _menu?.UpdateModulePanel();
+        _menu?.UpdateLockdownButton(); // Starlight
+        _menu?.UpdateResetChassisButton(); // Starlight
     }
 }
