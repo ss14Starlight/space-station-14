@@ -194,6 +194,6 @@
     sprite: Objects/Fun/Instruments/structureinstruments.rsi
     state: drum
   product: BigDrumsInstrument
-  cost: 1500
+  cost: 750 # Starlight, make it consistent with the others
   category: cargoproduct-category-name-fun
   group: market
