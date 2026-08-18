@@ -1,20 +1,6 @@
 Entries:
 - author: neomoth
   changes:
-  - message: You can now multitool the X-03 green phase shield to make it RGB, though it requires an extra step.
-    type: Add
-  id: 407335
-  time: '2026-08-06T10:57:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5459
-- author: neomoth
-  changes:
-  - message: You can now multitool the X-03 phase shield to make it RGB, though it requires an extra step.
-    type: Add
-  id: 407336
-  time: '2026-08-06T10:57:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5459
-- author: neomoth
-  changes:
   - message: You can now multitool the X-09 Headsman to make it RGB, though it requires an extra step.
     type: Add
   id: 407337
@@ -2799,4 +2785,18 @@ Entries:
   id: 407734
   time: '2026-08-18T18:05:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5696
+- author: bynddark8
+  changes:
+  - message: Fixes an issue where CentComm EOR ghost roles were not mindshielded.
+    type: Fix
+  id: 407735
+  time: '2026-08-18T18:05:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5695
+- author: bynddark8
+  changes:
+  - message: Fixes an issue where CentComm EOR ghost roles would not spawn on CentComm SC17.
+    type: Fix
+  id: 407736
+  time: '2026-08-18T18:05:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5695
 Order: -1
