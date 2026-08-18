@@ -79,8 +79,8 @@ public sealed partial class LatchUIController : UIController
         }
         // As the target.
         else if (_entities.TryGetComponent<LatchedComponent>(local, out var latchedComp) &&
-                 _entities.TryGetComponent<LatchComponent>(latchedComp.Latcher, out var latcherComp) &&
-                 latcherComp.Active)
+                    _entities.TryGetComponent<LatchComponent>(latchedComp.Latcher, out var latcherComp) &&
+                    latcherComp.Active)
         {
             instruction = "Harm the latcher\nto break free faster!";
             endTime = latcherComp.EndTime;
