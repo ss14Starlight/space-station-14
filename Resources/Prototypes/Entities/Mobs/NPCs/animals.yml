@@ -1342,7 +1342,7 @@
 - type: entity
   name: genetic ancestor
   id: MobBaseAncestor
-  parent: [SimpleMobBase, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal
+  parent: [SimpleMobBaseAntag, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal + inherits Antag so they can roll antags
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
@@ -3118,7 +3118,7 @@
 
 - type: entity
   abstract: true
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [SimpleMobBaseAntag, StripableInventoryBase] # Starlight, so smart corgis can still roll antag
   id: MobCorgiBase
   name: corgi
   description: Finally, a space corgi!
