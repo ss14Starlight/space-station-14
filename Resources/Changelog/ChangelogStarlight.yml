@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (LAGAN) Added ice cream maker to kitchen.
-    type: Add
-  id: 407358
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
   - message: (LAGAN) Added Vend of silence mimes room.
     type: Add
   id: 407359
@@ -2799,4 +2792,11 @@ Entries:
   id: 407757
   time: '2026-08-18T22:49:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5576
+- author: Caws
+  changes:
+  - message: Examining clothing (e.g. winter coats, hardsuits, etc.) will now tell you exactly how good (or bad) it is at protecting you from hot & cold temperatures.
+    type: Add
+  id: 407758
+  time: '2026-08-18T22:49:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5626
 Order: -1
