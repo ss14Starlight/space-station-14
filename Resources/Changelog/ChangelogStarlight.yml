@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: Adds new random names for Avali (first and pack), Borgis (and all variants), Corgis, Cyclorites, Devils (name and title), Resomi (pack only), Shadekin, and Thaven.
-    type: Add
-  id: 407332
-  time: '2026-08-06T10:57:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5517
-- author: Orhu
-  changes:
   - message: Removed the name "Jax" from the Shadekin random name pool.
     type: Remove
   id: 407333
@@ -2799,4 +2792,11 @@ Entries:
   id: 407731
   time: '2026-08-18T17:07:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5706
+- author: Forrestgod
+  changes:
+  - message: Ninja Bombing Objective can no longer give you ATS.
+    type: Fix
+  id: 407732
+  time: '2026-08-18T17:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5692
 Order: -1
