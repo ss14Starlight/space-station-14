@@ -108,6 +108,7 @@ public sealed partial class ActionComponent : Component
     ///     <see cref="AttachedEntity"/>, then it will default to using <see cref="Container"/>
     /// </summary>
     /// <remarks>
+    /// Starlight Remarks:
     /// Requires an attached performer before trusting <see cref="Container"/>. On removal,
     /// <see cref="AttachedEntity"/> is cleared but <see cref="Container"/> is not, so for an innate
     /// action this would otherwise resolve to the former performer's own sprite.
@@ -119,7 +120,7 @@ public sealed partial class ActionComponent : Component
             if (EntIcon != null)
                 return EntIcon;
 
-            if (AttachedEntity != null && AttachedEntity != Container)
+            if (AttachedEntity != null && AttachedEntity != Container) // Starlight: Require AttachedEntity isn't null
                 return Container;
 
             return null;
