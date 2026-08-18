@@ -1,4 +1,4 @@
-using Content.Server._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -64,13 +64,6 @@ public sealed partial class CosmicMalignantHealingSystem : EntitySystem
 
             _damageable.TryChangeDamage(uid, damage, true, true);
             _mobThresholds.VerifyThresholds(uid, null, mobState, damageable);
-            // Calculate the remaining total damage after healing.
-            // Damageable uses FixedPoint2 internally, so convert to float.
-            var totalDamage = 0f;
-
-            foreach (var amount in damageable.Damage.DamageDict.Values)
-                totalDamage += (float)amount;
-
         }
     }
 }

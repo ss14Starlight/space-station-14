@@ -1,10 +1,9 @@
-using Content.Server._Starlight.CosmicCult.EntitySystems;
 using Content.Shared.Maps;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.CosmicCult.Components;
+namespace Content.Shared._Starlight.CosmicCult.Components;
 
-[RegisterComponent, Access(typeof(CosmicMalignantHealingSystem))]
+[RegisterComponent]
 public sealed partial class CosmicMalignantHealingComponent : Component
 {
     [DataField]
