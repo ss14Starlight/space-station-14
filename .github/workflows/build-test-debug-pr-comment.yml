@@ -66,11 +66,13 @@ jobs:
           report-path: '/tmp/ctrf-results/**/*.json'
           title: Content + Integration Test Results
           community-report: true
-          community-report-name: cobra-report
+          community-report-name: summary-short
+          failed-folded-report: true
           issue: ${{ steps.pr.outputs.number }}
           overwrite-comment: true
           comment-tag: debug-ci-test-report
           exit-on-no-files: false
           exit-on-fail: false
+          report-order: 'summary-short,failed-folded-report'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

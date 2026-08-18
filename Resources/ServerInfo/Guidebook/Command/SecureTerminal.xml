@@ -1,0 +1,50 @@
+<Document>
+# Secure Terminal
+
+<Box>
+  <GuideEntityEmbed Entity="ComputerComms" Caption="Main Communications Console"/>
+  <GuideEntityEmbed Entity="KeycardAuth" Caption="Keycard Authentication Device"/>
+</Box>
+
+The Secure Terminal is a system built into the station's [color=#ffd700]Main Communications Console[/color]. It gives command staff a formal way to request and authorise major decisions; things like calling Emergency Response Teams, escalating the station's alert level, or deploying emergency armories.
+
+Every request made through this system is announced to the station, and in most cases requires multiple people to co-authorize before anything happens.
+
+## Starting a Request
+
+Only someone who holds the correct access can open a proposal. There are typically two [color=#ffd700]Main Communications Consoles[/color] on the station where requests can be started; one on the [bold]Bridge[/bold] and one in the [bold]Captain's office[/bold]. Either works.
+
+In the Main Communications Console, select 'Secure Terminal' to begin. From there you will see a list of available requests. Select the one relevant to the situation, provide a reason if prompted, and submit it. The terminal will immediately notify all Keycard Authentication Devices on the station that a proposal is pending, and a countdown will begin for co-authorizers to respond.
+
+Keep in mind:
+
+- Only [bold]one proposal[/bold] can be active at a time.
+- Most requests have a [bold]fee[/bold] drawn from your account when submitted; this is held until the proposal resolves.
+- Certain requests are [bold]one-time-use[/bold] per shift and cannot be re-submitted once used.
+
+## Co-Authorization
+
+Most requests require more than one person to approve them before anything happens. This is where the [color=#ffd700]Keycard Authentication Devices[/color] come in.
+
+The Captain and Every head of staff has one of these devices installed in their office. When a proposal is active, the authentication device will light up [color=blue]blue[/color]. A co-authorizer can walk up to it, and add their authorization to the pending request.
+
+All Keycard Authentication Devices on the station are identical; they are not tied to a specific head of staff. Any command member with the right access can walk up to [italic]any[/italic] device, regardless of whose office it is in, and use it to co-authorize a pending proposal.
+
+Each [color=#ffd700]Main Communications Console[/color] and each [color=#ffd700]Keycard Authentication Device[/color] can only contribute [bold]one authorization per request[/bold]. Once a device has been used to authorise a proposal, it is locked out for that request; a second person cannot use the same device to co-authorize and will need to find a different [color=#ffd700]Keycard Authentication Device[/color] or [color=#ffd700]Main Communications Console[/color].
+
+Additionally, each individual command member can only authorize [bold]once per request[/bold].
+
+Once all required co-authorizations are collected, the terminal begins its activation countdown. The request will then activate automatically when the timer runs out, unless it requires approval from Central Command.
+
+If the timer for collecting co-authorizations runs out before everyone has authorized, the proposal is cancelled and any held fee is refunded. As a general rule, you have [bold]30 seconds[/bold] to get everyone to co-authorize, though certain requests (such as the Nuclear Response Team) have no co-authorization time limit.
+
+## A Few Things Worth Knowing
+
+- [bold]Canceling a request[/bold] can be done by any command member through the console; not just the person who started it.
+- Some requests require [bold]Central Command[/bold] approval before they activate, regardless of how many command staff have authorized. If no Central Command members are available, certain requests will bypass this and proceed automatically.
+- Armories and pods can be [bold]recalled[/bold] if they block evac or are no longer needed, once a short cooldown has elapsed.
+- If both consoles are destroyed or otherwise unavailable, the Captain's locker contains a [bold]Communications Computer Board[/bold] that can be used to build a replacement.
+- If the terminal cannot be used at all, a [bold]fax[/bold] to Central Command is the next best option. As a last resort, the [bold]red phone[/bold] in the Captain's office provides a direct line, though this should only be used if nothing else is available.
+
+
+</Document>

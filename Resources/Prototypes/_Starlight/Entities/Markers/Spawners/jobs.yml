@@ -68,6 +68,20 @@
       - state: jobicon
 
 - type: entity
+  id: SpawnPointAssistantManager
+  parent: SpawnPointJobBase
+  name: assistant manager
+  components:
+  - type: SpawnPoint
+    job_id: AssistantManager
+  - type: Sprite
+    sprite: _Starlight/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: assistantmanager
+      - state: jobicon
+
+- type: entity
   id: SpawnPointSalvageLead
   parent: SpawnPointJobBase
   name: salvage lead

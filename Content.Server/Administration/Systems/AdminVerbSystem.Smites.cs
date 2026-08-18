@@ -67,6 +67,7 @@ using Robust.Shared.Spawners;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server._Starlight.Terminator;
+using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Speech.Components;

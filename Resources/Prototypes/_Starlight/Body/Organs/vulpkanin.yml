@@ -23,7 +23,6 @@
       size: Small
       heldPrefix: stomach
     - type: Stomach
-      updateInterval: 1.5
     # Starlight end
     - type: SolutionContainerManager
       solutions:

@@ -1,0 +1,93 @@
+<Document>
+# ERT Teams
+
+## ERT Security
+
+[bold]Called by:[/bold] [color=#fcdf03]Captain[/color] and [color=#ff4242]Head of Security[/color], with [color=#86d420]Central Command[/color] approval.
+
+[bold]Conditions:[/bold] Active, confirmed hostile threats have overwhelmed station security's ability to respond. Remaining security staff are insufficient to contain or eliminate the threat, and the situation poses ongoing danger to the crew.
+
+Must not be called during a War Declaration; the Nuclear Response Team should be called instead.
+
+[bold]One-time use per shift.[/bold]
+
+[bold]Canceled when:[/bold] The threat has been neutralized or sufficiently contained that security can manage without external support.
+
+[bold]Canceled by:[/bold] [color=#fcdf03]Captain[/color] and [color=#ff4242]Head of Security[/color].
+
+## ERT Engineering
+
+[bold]Called by:[/bold] [color=#fcdf03]Captain[/color] and [color=#ff733c]Chief Engineer[/color].
+
+[bold]Conditions:[/bold] Catastrophic station damage (such as structural breaches, atmospheric failure, or total power loss) cannot be addressed by available engineering staff within a reasonable timeframe, and the damage poses a direct risk to crew survival.
+
+[bold]One-time use per shift.[/bold]
+
+[bold]Canceled when:[/bold] Engineering staff have regained the ability to manage repairs, or the damage no longer poses an immediate threat.
+
+[bold]Canceled by:[/bold] [color=#fcdf03]Captain[/color] and [color=#ff733c]Chief Engineer[/color].
+
+## ERT Medical
+
+[bold]Called by:[/bold] [color=#fcdf03]Captain[/color] and [color=#57b8f0]Chief Medical Officer[/color].
+
+[bold]Conditions:[/bold] A mass casualty event has exceeded the capacity of medical staff to treat, and crew survival is at risk as a direct result.
+
+[bold]One-time use per shift.[/bold]
+
+[bold]Canceled when:[/bold] The medical emergency has stabilized and staff can manage remaining casualties without external support.
+
+[bold]Canceled by:[/bold] [color=#fcdf03]Captain[/color] and [color=#57b8f0]Chief Medical Officer[/color].
+
+## ERT Janitorial
+
+[bold]Called by:[/bold] [color=#fcdf03]Captain[/color] and [color=#2cdb2c]Head of Personnel[/color].
+
+[bold]Conditions:[/bold] The entire station is so messy that janitorial staff cannot clean it in a reasonable time.
+
+[bold]One-time use per shift.[/bold]
+
+[bold]Canceled when:[/bold] The station mess has been reduced to a level that janitorial staff can handle in a reasonable time.
+
+[bold]Canceled by:[/bold] [color=#fcdf03]Captain[/color] and [color=#2cdb2c]Head of Personnel[/color].
+
+## ERT Chaplain
+
+[bold]Called by:[/bold] [color=#fcdf03]Captain[/color] and [color=#2253b5]NanoTrasen Representative[/color].
+
+[bold]Conditions:[/bold] Cult activity on the station cannot be handled by existing security and the chaplain.
+
+[bold]One-time use per shift.[/bold]
+
+[bold]Canceled when:[/bold] Cult activity has been reduced to a level that existing security and the chaplain can handle.
+
+[bold]Canceled by:[/bold] [color=#fcdf03]Captain[/color] and [color=#2253b5]NanoTrasen Representative[/color].
+
+## ERT CBURN
+
+[bold]Called by any three of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], [color=#57b8f0]Chief Medical Officer[/color], or [color=#cd7ccd]Research Director[/color].
+
+[bold]Conditions:[/bold] Code Violet is active. A biological or viral outbreak has been confirmed, and containment has failed or is at imminent risk of failure. Standard medical and security response are insufficient.
+
+Must not be called during a War Declaration.
+
+[bold]One-time use per shift.[/bold]
+
+[bold]Canceled when:[/bold] The outbreak has been contained and CBURN intervention is no longer necessary.
+
+[bold]Canceled by any three of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], [color=#57b8f0]Chief Medical Officer[/color], or [color=#cd7ccd]Research Director[/color].
+
+## Nuclear Response Team
+
+[bold]Called by:[/bold] [color=#fcdf03]Captain[/color] and [color=#ff4242]Head of Security[/color].
+
+[bold]Conditions:[/bold] A War Declaration has been made against the station.
+
+Only available after war has been declared. Has no co-authorization time limit.
+
+[bold]One-time use per shift.[/bold]
+
+[bold]Canceled when:[/bold] The war threat has been repelled or the situation no longer requires additional security personnel.
+
+[bold]Canceled by:[/bold] [color=#fcdf03]Captain[/color] and [color=#ff4242]Head of Security[/color].
+</Document>

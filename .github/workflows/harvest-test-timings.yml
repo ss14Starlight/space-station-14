@@ -58,6 +58,7 @@ jobs:
 
       - name: Generate Harvest Tests report
         if: always()
+        continue-on-error: true
         uses: ctrf-io/github-test-reporter@v1
         with:
           title: Harvest Results
