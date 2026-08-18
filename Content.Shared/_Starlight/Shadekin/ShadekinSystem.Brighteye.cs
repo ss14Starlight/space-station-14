@@ -5,17 +5,17 @@ using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Inventory;
-using Content.Server.Spawners.Components;
-using Content.Server._Starlight.Bluespace;
 using Content.Shared.Zombies;
-using Content.Server.Cargo.Components;
+using Content.Shared._Starlight.Bluespace;
 using Content.Shared.Mindshield.Components;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.Station;
+using Content.Shared.Cargo.Components;
+using Content.Shared.Spawners.Components;
 
-namespace Content.Server._Starlight.Shadekin;
+namespace Content.Shared._Starlight.Shadekin;
 
-public sealed partial class ShadekinSystem : EntitySystem
+public sealed partial class ShadekinSystem
 {
     public void InitializeBrighteye()
     {
@@ -106,10 +106,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     private void MindShieldImplanted(EntityUid uid, MindShieldComponent comp, ComponentStartup args)
     {
         if (HasComp<BrighteyeComponent>(uid))
-        {
             RemCompDeferred<MindShieldComponent>(uid);
-            return;
-        }
     }
 
     private void OnCoreOrganImplanted(Entity<OrganShadekinCoreComponent> ent, ref SurgeryOrganImplantationCompleted args)
@@ -140,8 +137,8 @@ public sealed partial class ShadekinSystem : EntitySystem
 
         if (component.Portal is not null)
         {
-            SpawnAtPosition(component.ShadekinShadow, Transform(component.Portal.Value).Coordinates);
-            QueueDel(component.Portal.Value);
+            PredictedSpawnAtPosition(component.ShadekinShadow, Transform(component.Portal.Value).Coordinates);
+            PredictedQueueDel(component.Portal.Value);
         }
 
         if (TryComp<BodyComponent>(uid, out var body))
@@ -216,7 +213,7 @@ public sealed partial class ShadekinSystem : EntitySystem
                 _inventorySystem.TryUnequip(uid, slot.Name, true, true, false, inventoryComponent);
 
         // Spawn the Shadow.
-        SpawnAtPosition(component.ShadekinShadow, Transform(uid).Coordinates);
+        PredictedSpawnAtPosition(component.ShadekinShadow, Transform(uid).Coordinates);
 
         // Teleport to "The Dark"
         foreach (var spawnUid in spawns)
@@ -225,7 +222,7 @@ public sealed partial class ShadekinSystem : EntitySystem
             break;
         }
 
-        var effect = SpawnAtPosition(component.ShadekinPhaseInEffect2, Transform(uid).Coordinates);
+        var effect = PredictedSpawnAtPosition(component.ShadekinPhaseInEffect2, Transform(uid).Coordinates);
         Transform(effect).LocalRotation = Transform(uid).LocalRotation;
 
         RaiseLocalEvent(uid, new RejuvenateEvent());
@@ -286,7 +283,7 @@ public sealed partial class ShadekinSystem : EntitySystem
         }
         else
         {
-            _popup.PopupEntity(Loc.GetString("shadekin-noenergy"), uid, uid, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("shadekin-noenergy"), uid, uid, PopupType.LargeCaution);
             return false;
         }
 
@@ -298,31 +295,31 @@ public sealed partial class ShadekinSystem : EntitySystem
         if (brighteye.Rejuvenating && brighteye.Energy >= brighteye.MaxEnergy)
         {
             brighteye.Rejuvenating = false;
-            _popup.PopupEntity(Loc.GetString("shadekin-rejuvenate-compleated"), uid, uid, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("shadekin-rejuvenate-compleated"), uid, uid, PopupType.LargeCaution);
             _alerts.ClearAlert(uid, brighteye.RejuvenationAlert);
         }
 
         if (component.CurrentState == ShadekinState.Low) // On Low State, we gain and lose nothing!
             return;
 
-        int newenergy = 0;
+        var newEnergy = 0;
 
         if (brighteye.Energy > 0 && component.CurrentState != ShadekinState.Dark) // First we will handle energy drain on light.
         {
             if (component.CurrentState == ShadekinState.Extreme)
-                newenergy = -5;
+                newEnergy = -5;
             else if (component.CurrentState == ShadekinState.High)
-                newenergy = -2;
+                newEnergy = -2;
             else if (component.CurrentState == ShadekinState.Annoying)
-                newenergy = -1;
+                newEnergy = -1;
         }
         else if (brighteye.Energy < brighteye.MaxEnergy && component.CurrentState == ShadekinState.Dark) // We now handle energy gain.
         {
             // TODO: Add buffs here depanding on different situations?
-            newenergy = 1;
+            newEnergy = 1;
         }
 
-        brighteye.Energy = Math.Clamp(brighteye.Energy + newenergy, 0, brighteye.MaxEnergy);
+        brighteye.Energy = Math.Clamp(brighteye.Energy + newEnergy, 0, brighteye.MaxEnergy);
         Dirty(uid, brighteye);
     }
 }

@@ -1,10 +1,11 @@
+using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
 using Content.Shared.Research.Components;
 
-namespace Content.Server._Starlight.NullSpace;
+namespace Content.Shared._Starlight.NullSpace.Systems;
 
 public sealed partial class NullSpaceDrainerSystem : EntitySystem
 {

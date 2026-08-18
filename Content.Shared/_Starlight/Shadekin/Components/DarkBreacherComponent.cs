@@ -1,8 +1,9 @@
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.Shadekin.Components;
+namespace Content.Shared._Starlight.Shadekin.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class DarkBreacherComponent : Component
 {
     [DataField]

@@ -1,9 +1,10 @@
 using Content.Shared.Roles;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Spawners.Components;
+namespace Content.Shared.Spawners.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class SpawnPointComponent : Component, ISpawnPoint
 {
     /// <summary>

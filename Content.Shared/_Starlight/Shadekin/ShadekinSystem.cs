@@ -1,6 +1,7 @@
 using Content.Shared.Humanoid;
 using Content.Shared.Alert;
 using System.Linq;
+using Content.Shared._Starlight.Bluespace;
 using Content.Shared.Examine;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
@@ -17,28 +18,28 @@ using Content.Shared.Body.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Tag;
 using Robust.Shared.Random;
-using Content.Server._Starlight.NullSpace;
-using Content.Server._Starlight.Bluespace;
-using Content.Server.Stunnable;
 using Content.Shared.Damage.Systems;
-using Content.Server.DoAfter;
 using Content.Shared.Ensnaring;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Map.Components;
-using Content.Server.GameTicking;
-using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Medical.Body.Events;
 using Robust.Shared.Containers;
-using Content.Server.Examine;
-using Robust.Server.GameObjects;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.NullSpace.Components;
-using Content.Server._Starlight.Shadekin.Components;
+using Content.Shared._Starlight.Language.Systems;
+using Content.Shared._Starlight.Light;
+using Content.Shared._Starlight.NullSpace.Systems;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.DoAfter;
+using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Stunnable;
+using Robust.Shared.Network;
 
-namespace Content.Server._Starlight.Shadekin;
+namespace Content.Shared._Starlight.Shadekin;
 
 public sealed partial class ShadekinSystem : EntitySystem
 {
@@ -57,40 +58,30 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private NullSpacePhaseSystem _nullspace = default!;
-    [Dependency] private StunSystem _stunSystem = default!;
-    [Dependency] private DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedStunSystem _stunSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private SharedEnsnareableSystem _ensnareable = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private StatusEffectsSystem _status = default!;
-    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private SharedGameTicker _gameTicker = default!;
     [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private ExamineSystem _examine = default!;
-    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
+    [Dependency] private SharedLanguageSystem _language = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+
+    [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
+    [Dependency] private EntityQuery<ShadegenAffectedComponent> _shadegenAffected = default!;
 
     private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
     private static readonly ProtoId<TagPrototype> _coreTag = "ShadekinCore";
     private static readonly ProtoId<TagPrototype> _damagedCoreTag = "DamagedShadekinCore";
+    private static readonly ProtoId<DamageTypePrototype> _heatType = "Heat";
+    private static readonly ProtoId<DamageTypePrototype> _cellularType = "Cellular";
+    private static readonly EntProtoId<GameRuleComponent> _theDarkMap = "TheDarkMap";
     private TimeSpan _nextUpdate = TimeSpan.Zero;
-    private TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
-
-    private sealed class LightCone
-    {
-        public float Direction { get; set; }
-        public float InnerWidth { get; set; }
-        public float OuterWidth { get; set; }
-    }
-    private readonly Dictionary<string, List<LightCone>> lightMasks = new()
-    {
-        ["/Textures/Effects/LightMasks/cone.png"] = new List<LightCone>
-    {
-        new LightCone { Direction = 0, InnerWidth = 30, OuterWidth = 60 }
-    },
-        ["/Textures/Effects/LightMasks/double_cone.png"] = new List<LightCone>
-    {
-        new LightCone { Direction = 0, InnerWidth = 30, OuterWidth = 60 },
-        new LightCone { Direction = 180, InnerWidth = 30, OuterWidth = 60 }
-    }
-    };
+    private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
 
     public override void Initialize()
     {
@@ -98,11 +89,17 @@ public sealed partial class ShadekinSystem : EntitySystem
         SubscribeLocalEvent<OrganShadekinCoreComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<OrganShadekinCoreComponent, OrganAddedToBodyEvent>(CoreOrganInit);
 
-        SubscribeLocalEvent<ShadekinComponent, ComponentShutdown>((uid, _, _) => RemComp<BrighteyeComponent>(uid));
+        SubscribeLocalEvent<ShadekinComponent, ComponentShutdown>((ent, ref _) =>
+        {
+            if (_timing.ApplyingState)
+                return;
+
+            RemComp<BrighteyeComponent>(ent);
+        });
         SubscribeLocalEvent<ShadekinComponent, EyeColorInitEvent>(OnEyeColorChange);
         SubscribeLocalEvent<ShadekinComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
         SubscribeLocalEvent<ShadekinComponent, NullSpaceShuntEvent>(NullSpaceShunt);
-        SubscribeLocalEvent<ShadekinComponent, BeforeDamageChangedEvent>((uid, _, args) => args.Damage.DamageDict["Asphyxiation"] = 0);
+        SubscribeLocalEvent<ShadekinComponent, BeforeDamageChangedEvent>((_, ref args) => args.Damage.DamageDict["Asphyxiation"] = 0);
 
         InitializeBrighteye();
         InitializeAbilities();
@@ -133,7 +130,10 @@ public sealed partial class ShadekinSystem : EntitySystem
     {
         if (TryComp<BodyComponent>(uid, out var body) && _bodySystem.TryGetOrgansWithComponent<OrganShadekinCoreComponent>((uid, body), out _)) // Wizden
         {
-            _popup.PopupEntity(Loc.GetString("shadekin-shunt"), uid, uid, PopupType.LargeCaution);
+            // TODO STARLIGHT predict this properly, right now all callers are on server
+            if (_net.IsServer)
+                _popup.PopupEntity(Loc.GetString("shadekin-shunt"), uid, uid, PopupType.LargeCaution);
+
             _stunSystem.TryKnockdown(uid, TimeSpan.FromSeconds(1), autoStand: false);
             ApplyCoreDamage(uid, 5);
         }
@@ -146,20 +146,14 @@ public sealed partial class ShadekinSystem : EntitySystem
     {
         var (lightPos, lightRot) = _transform.GetWorldPositionRotation(lightUid);
         lightPos += lightRot.RotateVec(lightComp.Offset);
-
-        var (targetPos, targetRot) = _transform.GetWorldPositionRotation(targetUid);
-
+        var targetPos = _transform.GetWorldPosition(targetUid);
         var mapDiff = targetPos - lightPos;
 
-        var oppositeMapDiff = (-lightRot).RotateVec(mapDiff);
-        var angle = oppositeMapDiff.ToWorldAngle();
+        if (MathHelper.CloseTo(mapDiff.LengthSquared(), 0f))
+            return Angle.Zero;
 
-        if (angle == double.NaN && _transform.ContainsEntity(targetUid, lightUid) || _transform.ContainsEntity(lightUid, targetUid))
-        {
-            angle = 0f;
-        }
-
-        return angle;
+        var maskRotation = SharedPointLightSystem.GetMaskWorldRotation(lightComp, lightRot);
+        return mapDiff.ToWorldAngle() - maskRotation;
     }
 
     /// <summary>
@@ -173,22 +167,27 @@ public sealed partial class ShadekinSystem : EntitySystem
         // TODO STARLIGHT replace this with RobustToolbox's LightLevelSystem
         var illumination = 0f;
 
-        var shadeQuery = _lookup.GetEntitiesInRange<ShadegenComponent>(Transform(uid).Coordinates, 10); // Why 10 when theres different ranges? because light check does not go above 20.
+        var xform = Transform(uid);
+        var shadeQuery = _lookup.GetEntitiesInRange<ShadegenComponent>(xform.Coordinates, 10); // Why 10 when theres different ranges? because light check does not go above 20.
 
         foreach (var shadegen in shadeQuery)
-            if (_transform.InRange(Transform(uid).Coordinates, Transform(shadegen.Owner).Coordinates, shadegen.Comp.Range))
+            if (_transform.InRange(xform.Coordinates, Transform(shadegen.Owner).Coordinates, shadegen.Comp.Range))
                 return illumination;
 
-        var lightQuery = _lookup.GetEntitiesInRange<PointLightComponent>(Transform(uid).Coordinates, 10, LookupFlags.All | LookupFlags.Approximate);
+        var lightQuery = _lookup.GetEntitiesInRange<SLPointLightComponent>(xform.Coordinates, 10, LookupFlags.All | LookupFlags.Approximate);
 
         foreach (var light in lightQuery)
         {
-            if (HasComp<DarkLightComponent>(light.Owner) || HasComp<ShadegenAffectedComponent>(light.Owner))
+            if (_darkLightQuery.HasComp(light.Owner) || _shadegenAffected.HasComp(light.Owner))
                 continue;
 
-            if (!light.Comp.Enabled
-                || light.Comp.Radius < 1
-                || light.Comp.Energy <= 0)
+            SharedPointLightComponent? lightComp = null;
+            if (!_pointLight.ResolveLight(light, ref lightComp))
+                continue;
+
+            if (!lightComp.Enabled
+                || lightComp.Radius < 1
+                || lightComp.Energy <= 0)
                 continue;
 
             // Check if our entity is in a container with OccludesLight, if yes, is it the same as the light?
@@ -199,36 +198,38 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (_container.TryGetContainingContainer(light.Owner, out var lightcontainer) && lightcontainer.OccludesLight && !_container.IsInSameOrNoContainer(uid, light.Owner))
                 continue;
 
-            if (!_examine.InRangeUnOccluded(light, uid, light.Comp.Radius, null))
+            if (!_examine.InRangeUnOccluded(light, uid, lightComp.Radius))
                 continue;
 
-            Transform(uid).Coordinates.TryDistance(EntityManager, Transform(light).Coordinates, out var dist);
+            xform.Coordinates.TryDistance(EntityManager, Transform(light).Coordinates, out var dist);
 
-            var denom = dist / light.Comp.Radius;
+            var denom = dist / lightComp.Radius;
             var attenuation = 1 - (denom * denom);
             var calculatedLight = 0f;
 
-            if (light.Comp.LightMask is not null)
+            if (_prototype.TryIndex(lightComp.LightMask, out var mask))
             {
-                var angleToTarget = GetAngle(light, light.Comp, uid);
-                foreach (var cone in lightMasks[light.Comp.LightMask])
+                var angleToTarget = GetAngle(light, lightComp, uid);
+                foreach (var cone in mask.LightCones)
                 {
-                    var coneLight = 0f;
-                    var angleAttenuation = (float)Math.Min((float)Math.Max(cone.OuterWidth - angleToTarget, 0f), cone.InnerWidth) / cone.OuterWidth;
+                    var angleOffset = Math.Abs(Angle.ShortestDistance(angleToTarget, cone.Direction));
 
-                    if (angleToTarget.Degrees - cone.Direction > cone.OuterWidth)
+                    if (angleOffset > cone.OuterWidth)
                         continue;
-                    else if (angleToTarget.Degrees - cone.Direction > cone.InnerWidth
-                        && angleToTarget.Degrees - cone.Direction < cone.OuterWidth)
-                        coneLight = light.Comp.Energy * attenuation * attenuation * angleAttenuation;
-                    else
-                        coneLight = light.Comp.Energy * attenuation * attenuation;
+
+                    var coneLight = lightComp.Energy * attenuation * attenuation;
+                    if (angleOffset > cone.InnerWidth)
+                    {
+                        var angleAttenuation = (float) ((cone.OuterWidth - angleOffset) /
+                            (cone.OuterWidth - cone.InnerWidth));
+                        coneLight *= angleAttenuation;
+                    }
 
                     calculatedLight = Math.Max(calculatedLight, coneLight);
                 }
             }
             else
-                calculatedLight = light.Comp.Energy * attenuation * attenuation;
+                calculatedLight = lightComp.Energy * attenuation * attenuation;
 
             illumination += calculatedLight; //Math.Max(illumination, calculatedLight);
         }
@@ -268,14 +269,14 @@ public sealed partial class ShadekinSystem : EntitySystem
     private void ApplyLightDamage(EntityUid uid, float dmg)
     {
         var damage = new DamageSpecifier();
-        damage.DamageDict.Add("Heat", dmg);
+        damage.DamageDict.Add(_heatType, dmg);
         _damageable.TryChangeDamage(uid, damage, true, false);
     }
 
     private void ApplyCoreDamage(EntityUid uid, float dmg)
     {
         var damage = new DamageSpecifier();
-        damage.DamageDict.Add("Cellular", dmg);
+        damage.DamageDict.Add(_cellularType, dmg);
         _damageable.TryChangeDamage(uid, damage, false, false);
     }
 
@@ -355,12 +356,15 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (_tag.HasTag(mapuid, _theDarkTag))
                 return;
         }
-        _gameTicker.StartGameRule("TheDarkMap");
+        _gameTicker.StartGameRule(_theDarkMap);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        if (_net.IsClient)
+            return;
 
         var query = EntityQueryEnumerator<ShadekinComponent>();
         while (query.MoveNext(out var uid, out var component))
