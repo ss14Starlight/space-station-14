@@ -55,7 +55,7 @@ public sealed partial class MobThresholdSystem : EntitySystem
         // Starlight Start
         // OnGetState sends all 6 fields; this only applied 4. StateAlertDict
         // and ShowOverlays were silently dropped on every state update.
-        component.StateAlertDict = state.StateAlertDict;
+        component.StateAlertDict = new Dictionary<MobState, ProtoId<AlertPrototype>>(state.StateAlertDict);
         component.ShowOverlays = state.ShowOverlays;
         // Starlight End
     }
