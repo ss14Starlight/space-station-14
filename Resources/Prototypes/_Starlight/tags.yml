@@ -384,6 +384,7 @@
 - type: Tag
   id: JetInjector
 
+# Used to define clothing that the security K9 can wear.
 - type: Tag
   id: K9Wearable
 

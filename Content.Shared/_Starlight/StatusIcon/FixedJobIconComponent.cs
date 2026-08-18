@@ -11,6 +11,9 @@ namespace Content.Shared._Starlight.StatusIcon;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class FixedJobIconComponent : Component
 {
+    /// <summary>
+    /// The JobPrototype that the entity using this component is configured to use.
+    /// </summary>
     [DataField(required: true), AutoNetworkedField]
     public ProtoId<JobPrototype> Job;
 }

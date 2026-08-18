@@ -113,5 +113,8 @@ public sealed class LatchStatusControl : PanelContainer
         _instruction.Text = instruction;
     }
 
+    /// <summary>
+    /// Hides the latch status window.
+    /// </summary>
     public void Hide() => Visible = false;
 }

@@ -31,15 +31,27 @@ public sealed partial class SpriteVariantComponent : Component
     public Dictionary<string, VariantAlertSet>? VariantAlerts;
 }
 
+/// <summary>
+/// The set of HUD alerts to use for the sprite variant.
+/// </summary>
 [DataDefinition]
 public sealed partial class VariantAlertSet
 {
+    /// <summary>
+    /// Which StateAlertDict set to use for when the variant is considered alive.
+    /// </summary>
     [DataField(required: true)]
     public ProtoId<AlertPrototype> Alive;
 
+    /// <summary>
+    /// Which StateAlertDict set to use for when the variant is considered in critical condition.
+    /// </summary>
     [DataField(required: true)]
     public ProtoId<AlertPrototype> Critical;
 
+    /// <summary>
+    /// Which StateAlertDict set to use for when the variant is considered dead.
+    /// </summary>
     [DataField(required: true)]
     public ProtoId<AlertPrototype> Dead;
 }

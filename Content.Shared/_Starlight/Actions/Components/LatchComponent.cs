@@ -15,15 +15,30 @@ namespace Content.Shared._Starlight.Actions.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class LatchComponent : Component
 {
+    /// <summary>
+    /// The action this component grants for latching onto a target.
+    /// Used for action grants, in the event the ActionEntity is null or invalid.
+    /// </summary>
     [DataField]
     public EntProtoId Action = "Latch";
 
+    /// <summary>
+    /// The action this component grants for 'biting harder' to extend the latch.
+    /// Used for action grants, in the event the BiteHarderActionEntity is null or invalid.
+    /// </summary>
     [DataField]
     public EntProtoId BiteHarderAction = "LatchBiteHarder";
 
+    /// <summary>
+    /// The action this component grants for releasing the latch early.
+    /// Used for action grants, in the event the ReleaseActionEntity is null or invalid.
+    /// </summary>
     [DataField]
     public EntProtoId ReleaseAction = "LatchRelease";
 
+    /// <summary>
+    /// The alert to display to the target of the latch.
+    /// </summary>
     [DataField]
     public ProtoId<AlertPrototype> LatchAlert = "Latched";
 
@@ -49,15 +64,29 @@ public sealed partial class LatchComponent : Component
     [DataField]
     public float DriftBreakTolerance = 0.5f;
 
+    /// <summary>
+    /// The starting, base duration of the latch, in seconds.
+    /// </summary>
     [DataField]
     public TimeSpan BaseDuration = TimeSpan.FromSeconds(8);
 
+    /// <summary>
+    /// The overall limit to how long the latch can be held for.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public TimeSpan MaxDuration = TimeSpan.FromSeconds(15);
 
+    /// <summary>
+    /// How long, in seconds, the 'bite harder' action will extend the latch for.
+    /// This value is affected by armor values on the latch target.
+    /// </summary>
     [DataField]
     public TimeSpan ExtensionPerBite = TimeSpan.FromSeconds(2);
 
+    /// <summary>
+    /// How long, in seconds, that a hit done to the Latcher will reduce the latch duration.
+    /// This value is affected by armor values on the Latcher.
+    /// </summary>
     [DataField]
     public TimeSpan ReductionPerHit = TimeSpan.FromSeconds(1);
 
@@ -74,9 +103,17 @@ public sealed partial class LatchComponent : Component
     [DataField]
     public float StaminaDamagePerBite = 15f;
 
+    /// <summary>
+    /// How frequently the latch should apply 'ticks', mostly used
+    /// for ticking damage onto the latch target.
+    /// </summary>
     [DataField]
     public TimeSpan TickInterval = TimeSpan.FromSeconds(0.75);
 
+    /// <summary>
+    /// A damage specifier for how much damage will be dealt to a target
+    /// on each tick processed for the latch's duration.
+    /// </summary>
     [DataField]
     public DamageSpecifier DamagePerTick = new();
 
@@ -98,12 +135,21 @@ public sealed partial class LatchComponent : Component
     [DataField]
     public SoundSpecifier? BiteHarderSound;
 
+    /// <summary>
+    /// Whether the latch is currently active.
+    /// </summary>
     [ViewVariables, AutoNetworkedField]
     public bool Active;
 
+    /// <summary>
+    /// The entity being targeted by the latch.
+    /// </summary>
     [ViewVariables, AutoNetworkedField]
     public EntityUid? Target;
 
+    /// <summary>
+    /// The specific, discrete end time designated for the latch.
+    /// </summary>
     [ViewVariables, AutoNetworkedField]
     public TimeSpan EndTime;
 
@@ -123,15 +169,30 @@ public sealed partial class LatchComponent : Component
     [ViewVariables, AutoNetworkedField]
     public TimeSpan MaxEndTime;
 
+    /// <summary>
+    /// The timestamp for when the next latch bite tick should occur.
+    /// </summary>
     [ViewVariables]
     public TimeSpan NextTickTime;
 
+    /// <summary>
+    /// The actual latch action entity to grant to the target.
+    /// If null or invalid, the Action field is granted instead.
+    /// </summary>
     [ViewVariables]
     public EntityUid? ActionEntity;
 
+    /// <summary>
+    /// The actual bite harder action entity to grant to the target.
+    /// If null or invalid, the BiteHarderAction field is granted instead.
+    /// </summary>
     [ViewVariables]
     public EntityUid? BiteHarderActionEntity;
 
+    /// <summary>
+    /// The actual release action entity to grant to the target.
+    /// If null or invalid, the ReleaseAction field is granted instead.
+    /// </summary>
     [ViewVariables]
     public EntityUid? ReleaseActionEntity;
 
