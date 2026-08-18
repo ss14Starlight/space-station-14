@@ -359,14 +359,15 @@ public sealed partial class LatchSystem : SharedLatchSystem
             }
 
             // Knocked out of range; RangeTolerance avoids instant-breaking
-            // from jitter. Within the grace window, pull the target back in
-            // instead of breaking. After that, treat it as a real separation.
+            // from jitter. Within the grace window, pull the K9 to the
+            // target instead of breaking. After that, treat it as a real
+            // separation.
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
             if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance)
             {
                 if (now - comp.StartTime < comp.RefundGracePeriod)
                 {
-                    _transform.SetCoordinates(target, Transform(uid).Coordinates);
+                    _transform.SetCoordinates(uid, Transform(target).Coordinates);
                 }
                 else
                 {
