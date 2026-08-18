@@ -1,60 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: (Cork) Artifact chambers reworked to enable more control of chamber state.
-    type: Tweak
-  id: 407316
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
-- author: OMEGA
-  changes:
-  - message: (Cork) TEG and distro pipes simplified.
-    type: Tweak
-  id: 407317
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
-- author: Orange Juice Goose
-  changes:
-  - message: Overhauled the fland SM room to be more usable for both beginners and experts.
-    type: Tweak
-  id: 407318
-  time: '2026-08-05T08:57:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5513
-- author: Spaghetti-Bit
-  changes:
-  - message: Fixed some ProtoAvali displacements (Gloves and Jumpsuit).
-    type: Fix
-  id: 407319
-  time: '2026-08-05T14:28:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5515
-- author: Sparlight
-  changes:
-  - message: Dying makes you lose your currently-tracked scent.
-    type: Tweak
-  id: 407320
-  time: '2026-08-05T14:54:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5500
-- author: Sparlight
-  changes:
-  - message: Scent emissions now no longer get stuck on mechs/rollerbeds.
-    type: Fix
-  id: 407321
-  time: '2026-08-05T14:54:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5500
-- author: Sparlight
-  changes:
-  - message: Scent emissions no longer travel down disposal tubes and emit while being disposed.
-    type: Fix
-  id: 407322
-  time: '2026-08-05T14:54:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5500
-- author: Sparlight
-  changes:
-  - message: Scent emissions no longer emit from vent-crawling entities unless they are at a vent terminus.
-    type: Fix
-  id: 407323
-  time: '2026-08-05T14:54:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5500
 - author: Sparlight
   changes:
   - message: Scents no longer appear in replays.
@@ -2799,4 +2743,60 @@ Entries:
   id: 407715
   time: '2026-08-18T02:59:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5697
+- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
+  changes:
+  - message: MIDI files for instruments are now stored and used as a persistent collection.
+    type: Add
+  id: 407716
+  time: '2026-08-18T03:22:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5703
+- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
+  changes:
+  - message: MIDI files in your collection can be filtered and played in random order.
+    type: Add
+  id: 407717
+  time: '2026-08-18T03:22:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5703
+- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
+  changes:
+  - message: The minimum volume for MIDI Input can now be adjusted inside the instrument UI.
+    type: Add
+  id: 407718
+  time: '2026-08-18T03:22:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5703
+- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
+  changes:
+  - message: Added drum kit. It can be ordered in cargo for 750 spesos.
+    type: Add
+  id: 407719
+  time: '2026-08-18T03:22:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5703
+- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
+  changes:
+  - message: Added a fretless bass guitar instrument.
+    type: Add
+  id: 407720
+  time: '2026-08-18T03:22:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5703
+- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
+  changes:
+  - message: Cargo request computer now has separate category for instruments.
+    type: Add
+  id: 407721
+  time: '2026-08-18T03:22:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5703
+- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
+  changes:
+  - message: The GUI for instruments has been completely overhauled.
+    type: Tweak
+  id: 407722
+  time: '2026-08-18T03:22:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5703
+- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
+  changes:
+  - message: Instruments from cargo has been tweaked and reduced in price.
+    type: Tweak
+  id: 407723
+  time: '2026-08-18T03:22:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5703
 Order: -1
