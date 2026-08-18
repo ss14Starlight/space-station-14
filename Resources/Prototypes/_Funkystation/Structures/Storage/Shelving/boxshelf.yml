@@ -60,24 +60,64 @@
         whitelist:
           tags:
           - CardboardboxLarge
+        #SL start
+          components:
+          - Delivery
+        blacklist:
+        sizes: #disallow anything that isnt huge
+        - Large
+        - Normal
+        - Small
+        - Tiny
+        #SL End
         insertOnInteract: true
         priority: 9
       fill3:
         whitelist:
           tags:
           - CardboardboxLarge
+        #SL start
+          components:
+          - Delivery
+        blacklist:
+        sizes: #disallow anything that isnt huge
+        - Large
+        - Normal
+        - Small
+        - Tiny
+        #SL End
         insertOnInteract: true
         priority: 8
       fill2:
         whitelist:
           tags:
           - CardboardboxLarge
+        #SL start
+          components:
+          - Delivery
+        blacklist:
+        sizes: #disallow anything that isnt huge
+        - Large
+        - Normal
+        - Small
+        - Tiny
+        #SL End
         insertOnInteract: true
         priority: 7
       fill1:
         whitelist:
           tags:
           - CardboardboxLarge
+        #SL start
+          components:
+          - Delivery
+        blacklist:
+        sizes: #disallow anything that isnt huge
+        - Large
+        - Normal
+        - Small
+        - Tiny
+        #SL End
         insertOnInteract: true
         priority: 6
   - type: ContainerContainer
@@ -95,21 +135,37 @@
         whitelist:
           tags:
           - CardboardboxLarge
+        #SL start
+          components:
+          - Delivery
+        #SL End
       fill2:
         minCount: 2
         whitelist:
           tags:
           - CardboardboxLarge
+        #SL start
+          components:
+          - Delivery
+        #SL End
       fill3:
         minCount: 3
         whitelist:
           tags:
           - CardboardboxLarge
+        #SL start
+          components:
+          - Delivery
+        #SL End
       fill4:
         minCount: 4
         whitelist:
           tags:
           - CardboardboxLarge
+        #SL start
+          components:
+          - Delivery
+        #SL End
     sprite: _Funkystation/Structures/Furniture/boxshelf.rsi
   - type: Construction
     graph: BoxShelf

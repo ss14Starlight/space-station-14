@@ -15,7 +15,7 @@
     - type: Rotatable
     - type: InteractionOutline
     - type: Storage
-      maxItemSize: Huge
+      maxItemSize: Ginormous #edit to allowcardboard boxes
       grid:
       - 0,0,19,7
       quickInsert: true
@@ -24,7 +24,10 @@
         - Delivery
         sizes:
         - Huge #this is here to allow ONLY packages onboard
-        requireAll: true
+        - Ginormous #and cardboard boxes
+        tags:
+        - CardboardboxLarge
+        requireAll: false
       blacklist:
         sizes: #disallow anything that isnt huge
         - Large
