@@ -1,11 +1,13 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared._Starlight.Shadekin.Components;
 
 /// <summary>
 /// Protect the Ent or Wearer of the Ent from suffering from "The Dark" effect.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class TheDarkImmuneComponent : Component
 {
     [DataField]
-    public bool Ranged = false;
+    public bool Ranged;
 }
