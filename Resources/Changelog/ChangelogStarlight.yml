@@ -1,20 +1,6 @@
 Entries:
 - author: neomoth
   changes:
-  - message: Made so items that provide bonus damage on wield can opt to respect ItemToggleComponent, such that if an item is deactivated it will not provide the damage bonus.
-    type: Tweak
-  id: 407338
-  time: '2026-08-06T10:57:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5459
-- author: neomoth
-  changes:
-  - message: Fix a bug where wielding an item with ItemToggleActiveSound with prediction enabled would cause the client-side audio entity to not get deleted when unwielding the item.
-    type: Fix
-  id: 407339
-  time: '2026-08-06T10:57:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5459
-- author: neomoth
-  changes:
   - message: Some mapped energy swords that tried to have pre-set colors now no longer reroll their color on map init.
     type: Fix
   id: 407340
@@ -2799,4 +2785,18 @@ Entries:
   id: 407737
   time: '2026-08-18T18:56:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5503
+- author: Teddiousbear
+  changes:
+  - message: Ticket rewards to salvage bounties.
+    type: Add
+  id: 407738
+  time: '2026-08-18T19:24:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5510
+- author: Teddiousbear
+  changes:
+  - message: 6 New salvage bounties.
+    type: Add
+  id: 407739
+  time: '2026-08-18T19:24:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5510
 Order: -1
