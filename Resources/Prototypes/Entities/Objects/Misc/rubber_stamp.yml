@@ -29,6 +29,7 @@
   name: alternate rubber stamp
   parent: RubberStampBase
   id: RubberStampBaseAlt
+  description: A rubber stamp for stamping important documents. How are you reading this? # Starlight
   abstract: true
   components:
   - type: Stamp
@@ -44,6 +45,7 @@
   name: captain's rubber stamp
   parent: [RubberStampBase, BaseCommandContraband]
   id: RubberStampCaptain
+  description: A rubber stamp for stamping important documents. 9/10 clowns recommend stealing this. The 10th clown already has. # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -57,6 +59,7 @@
   name: CentComm rubber stamp
   parent: RubberStampBase
   id: RubberStampCentcom
+  description: A rubber stamp for stamping important documents. Tell them who's boss! # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -70,6 +73,7 @@
   name: chaplain's rubber stamp
   parent: RubberStampBase
   id: RubberStampChaplain
+  description: A rubber stamp for stamping important documents. Holy rubber to bless the holy paper. # Starlight
   # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp
@@ -83,6 +87,7 @@
   name: lawyer's rubber stamp
   parent: RubberStampBase
   id: RubberStampLawyer
+  description: A rubber stamp for stamping important documents. Did you know that you have rights? # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -97,6 +102,7 @@
   name: clown's rubber stamp
   parent: RubberStampBase
   id: RubberStampClown
+  description: A rubber stamp for stamping important documents. Funni. # Starlight
   # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp
@@ -110,6 +116,7 @@
   name: chief engineer's rubber stamp
   parent: [RubberStampBase, BaseCommandContraband]
   id: RubberStampCE
+  description: A rubber stamp for stamping important documents. Used to approve the maints bars, the rage cages, and the shittles. # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -123,6 +130,7 @@
   name: chief medical officer's rubber stamp
   parent: [RubberStampBase, BaseCommandContraband]
   id: RubberStampCMO
+  description: A rubber stamp for stamping important documents. For when the doctor is in. # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -136,6 +144,7 @@
   name: head of personnel's rubber stamp
   parent: [RubberStampBase, BaseCommandContraband]
   id: RubberStampHop
+  description: A rubber stamp for stamping important documents. Slightly chewed. # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -149,6 +158,7 @@
   name: head of security's rubber stamp
   parent: [RubberStampBase, BaseCommandContraband]
   id: RubberStampHos
+  description: A rubber stamp for stamping important documents. I love the smell of rubber in the morning. # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -162,6 +172,7 @@
   name: mime's rubber stamp
   parent: RubberStampBase
   id: RubberStampMime
+  description: A rubber stamp for silently stamping important documents. # Starlight
   # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp
@@ -176,6 +187,7 @@
   name: quartermaster's rubber stamp
   parent: [RubberStampBase, BaseCommandContraband]
   id: RubberStampQm
+  description: A rubber stamp for stamping important documents. For when they do fill out a damn form. # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -189,6 +201,7 @@
   name: research director's rubber stamp
   parent: [RubberStampBase, BaseCommandContraband]
   id: RubberStampRd
+  description: A rubber stamp for stamping important documents. Covered in ash and plasma residue. # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -202,6 +215,7 @@
   name: trader's rubber stamp
   parent: RubberStampBase
   id: RubberStampTrader
+  description: A rubber stamp for stamping important documents. Money must be made. # Starlight
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-trader
@@ -214,6 +228,7 @@
   name: syndicate rubber stamp
   parent: [RubberStampBase, BaseMinorContraband] #SL Edit Syndie > Minor Contra
   id: RubberStampSyndicate
+  description: A rubber stamp for stamping important documents. Especially secret documents. # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -229,6 +244,7 @@
   name: warden's rubber stamp
   parent: [RubberStampBase, BaseSecurityContraband]
   id: RubberStampWarden
+  description: A rubber stamp for stamping important documents. Mostly used for approving whatever maints loot the secoffs bring in. # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -242,6 +258,7 @@
   name: APPROVED rubber stamp
   parent: RubberStampBaseAlt
   id: RubberStampApproved
+  description: A rubber stamp for accepting important documents. # Starlight
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-approved
@@ -254,6 +271,7 @@
   name: DENIED rubber stamp
   parent: RubberStampBaseAlt
   id: RubberStampDenied
+  description: A rubber stamp for rejecting important documents. # Starlight
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-denied
@@ -266,6 +284,7 @@
   name: detective's rubber stamp
   parent: [RubberStampBase, BaseSecurityContraband]
   id: RubberStampDetective
+  description: A rubber stamp for stamping important documents. The stamp talks to itself, too. # Starlight
   categories: [ DoNotMap ]
   components:
   - type: Stamp
