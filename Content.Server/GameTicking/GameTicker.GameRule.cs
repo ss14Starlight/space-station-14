@@ -161,7 +161,7 @@ public sealed partial class GameTicker
     /// Game rules can be 'started' separately from being added. 'Starting' them usually
     /// happens at round start while they can be added and removed before then.
     /// </summary>
-    public bool StartGameRule([ForbidLiteral] string ruleId)
+    public override bool StartGameRule([ForbidLiteral] string ruleId) // Starlight-edit: Implement shared game rule start API
     {
         return StartGameRule(ruleId, out _);
     }

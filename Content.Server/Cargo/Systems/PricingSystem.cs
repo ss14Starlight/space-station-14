@@ -16,6 +16,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Research.Prototypes;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared.Cargo.Components;
+
 #region Starlight
 using System.Linq;
 using Content.Shared.Body.Components;
