@@ -107,6 +107,11 @@ public sealed partial class ActionComponent : Component
     ///     Entity to use for the action icon. If no entity is provided and the <see cref="Container"/> differs from
     ///     <see cref="AttachedEntity"/>, then it will default to using <see cref="Container"/>
     /// </summary>
+    /// <remarks>
+    /// Requires an attached performer before trusting <see cref="Container"/>. On removal,
+    /// <see cref="AttachedEntity"/> is cleared but <see cref="Container"/> is not, so for an innate
+    /// action this would otherwise resolve to the former performer's own sprite.
+    /// </remarks>
     public EntityUid? EntityIcon
     {
         get
@@ -114,7 +119,7 @@ public sealed partial class ActionComponent : Component
             if (EntIcon != null)
                 return EntIcon;
 
-            if (AttachedEntity != Container)
+            if (AttachedEntity != null && AttachedEntity != Container)
                 return Container;
 
             return null;
