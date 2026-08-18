@@ -30,7 +30,7 @@
   flavor: sweet
   color: "#f0008d" # cherry magenta
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       # Cannot overdose; it's magic
       - !type:ModifyBleed
