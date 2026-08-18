@@ -187,8 +187,8 @@
 
 - type: marking
   id: VoxBeakCoverStripe
-  bodyPart: Snout
-  markingCategory: SnoutCover
+  bodyPart: Snout # Starlight, no visual nubody
+  markingCategory: SnoutCover # Starlight, no visual nubody
   coloring:
     default:
       type:
@@ -201,8 +201,8 @@
 
 - type: marking
   id: VoxBeakCoverTip
-  bodyPart: Snout
-  markingCategory: SnoutCover
+  bodyPart: Snout # Starlight, no visual nubody
+  markingCategory: SnoutCover # Starlight, no visual nubody
   coloring:
     default:
       type:

@@ -177,6 +177,9 @@
   id: Condiment
 
 - type: Tag
+  id: ConstructionComment
+
+- type: Tag
   id: CrispyRiceBar
 
 - type: Tag
@@ -322,6 +325,9 @@
 
 - type: Tag
   id: GygaxTargetingControlModule
+
+- type: Tag
+  id: HandheldEngineeringMonitor #CE's handheld monitor
 
 - type: Tag
   id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
@@ -507,6 +513,9 @@
 
 - type: Tag
   id: MicroManipulatorStockPart
+
+- type: Tag
+  id: MilkCarton # Storage whitelist: MilkCrate
 
 - type: Tag
   id: MimeMask #used in the security mime mask crafting graph
@@ -710,6 +719,9 @@
 
 - type: Tag
   id: Vial
+
+- type: Tag
+  id: VinylSleeve # Storage whitelist: RecordMilkCrate, SyndicateMilkCrate
 
 - type: Tag
   id: WallmountMassScannerElectronics

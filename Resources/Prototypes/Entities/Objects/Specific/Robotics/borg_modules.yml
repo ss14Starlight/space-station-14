@@ -938,7 +938,7 @@
     - state: icon-treatment
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    #- item: HandheldHealthAnalyzer # Starlight
     #- item: AdvancedJetInjector # Starlight-disable - remove jet injector in favor of a syringe that can be replaced with a jet injector as resources allow
     # Starlight start - add swappable syringe slot
     - item: Syringe
@@ -1008,7 +1008,7 @@
     - state: icon-defib
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    #- item: HandheldHealthAnalyzer # Starlight
     - item: DefibrillatorOneHandedUnpowered
     - item: Crowbar
     - item: BorgFireExtinguisher
@@ -1081,7 +1081,7 @@
     - state: icon-chem
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    #- item: HandheldHealthAnalyzer # Starlight
     - item: BorgHypo
     # Starlight-remove - drop the topical slots to make room for our added automenders and beaker slots
     #- item: Gauze
