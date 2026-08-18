@@ -340,5 +340,4 @@
     - !type:GroupLoadoutEffect
       proto: IPC
   equipment:
-    suitstorage:
-      - CoolingUnit
+    suitstorage: CoolingUnit
