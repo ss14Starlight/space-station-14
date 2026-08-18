@@ -1,6 +1,9 @@
 using System.Linq;
+using Content.Server.GameTicking.Events;
 using Content.Shared._Starlight.Salvage.Ruins;
+using Content.Shared.CCVar;
 using Content.Shared.Maps;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -9,12 +12,14 @@ namespace Content.Server._Starlight.Salvage.Ruins;
 
 /// <summary>
 /// Generates irregular station ruin chunks from station map YAML via cost-based flood-fill.
-/// Cost maps are built lazily on first use and cached for the rest of the round.
+/// Cost maps are preloaded on round start when <see cref="CCVars.ProcgenPreload"/> is true (the default).
+/// <see cref="GenerateRuin"/> always parses on demand if the map is not already cached.
 /// </summary>
 public sealed partial class RuinGeneratorSystem : EntitySystem
 {
     #region Dependencies
 
+    [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private ILogManager _logManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
@@ -26,7 +31,8 @@ public sealed partial class RuinGeneratorSystem : EntitySystem
     private ISawmill _sawmill = default!;
 
     /// <summary>
-    /// Cached map data keyed by map path. Built on demand to avoid round-start hitch from parsing full stations.
+    /// Cached map data keyed by map path.
+    /// Filled on round start when <see cref="CCVars.ProcgenPreload"/> is true, and by on-demand parse otherwise.
     /// </summary>
     private readonly Dictionary<ResPath, CachedMapData> _cachedMapData = new();
 
@@ -64,29 +70,75 @@ public sealed partial class RuinGeneratorSystem : EntitySystem
         base.Initialize();
         _sawmill = _logManager.GetSawmill("ruin.generator");
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {
-        // Only clear when ruin maps change; do not rebuild all maps here (avoids reload hitch).
-        if (!args.WasModified<RuinMapPrototype>())
+        // Cost maps bake in the chunk config, so either prototype invalidates them.
+        // Do not rebuild all maps here (avoids reload hitch).
+        if (!args.WasModified<RuinMapPrototype>() && !args.WasModified<RuinChunkConfigPrototype>())
             return;
 
-        _sawmill.Info("RuinMapPrototype reloaded, clearing cost map cache");
+        _sawmill.Info("Ruin prototypes reloaded, clearing cost map cache");
         _cachedMapData.Clear();
+    }
+
+    private void OnRoundStart(RoundStartingEvent ev)
+    {
+        if (!_cfg.GetCVar(CCVars.ProcgenPreload))
+        {
+            _sawmill.Info("Skipping ruin map preload (procgen.preload is false); maps will parse on first generate.");
+            return;
+        }
+
+        var loaded = 0;
+        var failed = 0;
+        foreach (var proto in _prototypeManager.EnumeratePrototypes<RuinMapPrototype>())
+        {
+            if (TryCacheMap(proto.MapPath))
+                loaded++;
+            else
+            {
+                failed++;
+                _sawmill.Error($"Failed to preload ruin map {proto.ID} ({proto.MapPath})");
+            }
+        }
+
+        _sawmill.Info($"Ruin map preload finished: {loaded} cached, {failed} failed");
+    }
+
+    /// <summary>
+    /// Parses and caches cost-map data for <paramref name="mapPath"/> if it is not already cached.
+    /// </summary>
+    public bool TryCacheMap(ResPath mapPath)
+    {
+        if (_cachedMapData.ContainsKey(mapPath))
+            return true;
+
+        return BuildCostMapForMap(mapPath);
+    }
+
+    /// <summary>
+    /// Returns whether <paramref name="mapPath"/> already has a cached cost map.
+    /// </summary>
+    public bool IsMapCached(ResPath mapPath)
+    {
+        return _cachedMapData.ContainsKey(mapPath);
     }
 
     /// <summary>
     /// Generates a ruin chunk from the specified map using multi-stage flood-fill.
+    /// Parses and caches the map on demand when it was not preloaded.
     /// </summary>
     public RuinResult? GenerateRuin(ResPath mapPath, int seed, RuinChunkConfigPrototype? config = null)
     {
         if (!_cachedMapData.TryGetValue(mapPath, out var cachedData))
         {
-            _sawmill.Info($"Building cost map for {mapPath} on-demand...");
-            if (!BuildCostMapForMap(mapPath) || !_cachedMapData.TryGetValue(mapPath, out cachedData))
+            _sawmill.Info($"Ruin map {mapPath} is not cached; parsing on demand.");
+            if (!TryCacheMap(mapPath) || !_cachedMapData.TryGetValue(mapPath, out cachedData))
             {
-                _sawmill.Error($"Failed to build cost map for {mapPath}");
+                _sawmill.Error($"Failed to parse ruin map {mapPath}");
                 return null;
             }
         }

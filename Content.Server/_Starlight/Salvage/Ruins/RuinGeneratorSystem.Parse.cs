@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Content.Shared._Starlight.Salvage.Ruins;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Sequence;
 using Robust.Shared.Serialization.Markdown.Value;
@@ -31,15 +32,15 @@ public sealed partial class RuinGeneratorSystem
         if (!TryParseTileMap(mapData, mapPath, out var tileMap))
             return false;
 
-        // Multi-grid maps are unsupported; only the first grid UID is used as the ruin source.
-        if (!TryGetFirstGridUid(mapData, mapPath, out var firstGridUid))
-            return false;
-
         if (!mapData.TryGet("entities", out SequenceDataNode? entitiesNode))
         {
             _sawmill.Error($"Map file {mapPath} missing entities section");
             return false;
         }
+
+        // Multi-grid maps are unsupported; only the first grid UID is used as the ruin source.
+        if (!TryGetFirstGridUid(mapData, entitiesNode, mapPath, out var firstGridUid))
+            return false;
 
         if (!TryGetMapGridComponent(entitiesNode, firstGridUid, mapPath, out var mapGridComponent))
             return false;
@@ -65,6 +66,12 @@ public sealed partial class RuinGeneratorSystem
         }
 
         var defaultConfig = GetDefaultConfig();
+        if (defaultConfig == null)
+        {
+            _sawmill.Error($"Cannot build cost map for {mapPath}: no RuinChunkConfigPrototype available (expected Default)");
+            return false;
+        }
+
         var wallEntities = ParseWallEntities(entitiesNode, firstGridUid, defaultConfig);
         var windowEntities = ParseWindowEntities(entitiesNode, firstGridUid, defaultConfig);
         var costMap = BuildCostMap(coordinateMap, windowEntities, wallEntities, defaultConfig);
@@ -123,24 +130,78 @@ public sealed partial class RuinGeneratorSystem
         return true;
     }
 
-    private bool TryGetFirstGridUid(MappingDataNode mapData, ResPath mapPath, out int firstGridUid)
+    private bool TryGetFirstGridUid(
+        MappingDataNode mapData,
+        SequenceDataNode entitiesNode,
+        ResPath mapPath,
+        out int firstGridUid)
     {
         firstGridUid = 0;
 
-        if (!mapData.TryGet("grids", out SequenceDataNode? gridsNode) || gridsNode.Sequence.Count == 0)
+        if (mapData.TryGet("grids", out SequenceDataNode? gridsNode) && gridsNode.Sequence.Count > 0)
         {
-            _sawmill.Error($"Map file {mapPath} missing or empty grids section");
-            return false;
-        }
+            if (gridsNode.Sequence[0] is ValueDataNode firstGridUidNode &&
+                int.TryParse(firstGridUidNode.Value, out firstGridUid))
+            {
+                return true;
+            }
 
-        if (gridsNode.Sequence[0] is not ValueDataNode firstGridUidNode ||
-            !int.TryParse(firstGridUidNode.Value, out firstGridUid))
-        {
             _sawmill.Error($"Map file {mapPath} first grid UID is invalid");
             return false;
         }
 
-        return true;
+        // Older format-6 maps (including /Maps/Test/floor3x3.yml) omit the grids list.
+        if (TryFindFirstMapGridUid(entitiesNode, out firstGridUid))
+            return true;
+
+        _sawmill.Error($"Map file {mapPath} missing or empty grids section");
+        return false;
+    }
+
+    private static bool TryFindFirstMapGridUid(SequenceDataNode entitiesNode, out int gridUid)
+    {
+        gridUid = 0;
+
+        foreach (var protoGroup in entitiesNode.Sequence)
+        {
+            if (protoGroup is not MappingDataNode protoGroupNode)
+                continue;
+
+            if (!protoGroupNode.TryGet("entities", out SequenceDataNode? entitiesInGroup) || entitiesInGroup == null)
+                continue;
+
+            foreach (var entity in entitiesInGroup.Sequence)
+            {
+                if (entity is not MappingDataNode entityNode)
+                    continue;
+
+                if (!entityNode.TryGet("uid", out ValueDataNode? uidNode) || uidNode == null)
+                    continue;
+
+                if (!int.TryParse(uidNode.Value, out var entityUid))
+                    continue;
+
+                if (!entityNode.TryGet("components", out SequenceDataNode? componentsNode) || componentsNode == null)
+                    continue;
+
+                foreach (var component in componentsNode.Sequence)
+                {
+                    if (component is not MappingDataNode componentNode)
+                        continue;
+
+                    if (!componentNode.TryGet("type", out ValueDataNode? typeNode) || typeNode == null)
+                        continue;
+
+                    if (typeNode.Value != "MapGrid")
+                        continue;
+
+                    gridUid = entityUid;
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private bool TryGetMapGridComponent(
@@ -237,7 +298,15 @@ public sealed partial class RuinGeneratorSystem
             // Map chunk format: version defaults to 7 when omitted (Robust map serialization).
             var version = 7;
             if (chunkNode.TryGet("version", out ValueDataNode? versionNode))
-                int.TryParse(versionNode.Value, out version);
+            {
+                if (!int.TryParse(versionNode.Value, out var parsedVersion))
+                {
+                    _sawmill.Warning($"Invalid chunk version '{versionNode.Value}' in {mapPath} chunk {chunkIndexStr}");
+                    continue;
+                }
+
+                version = parsedVersion;
+            }
 
             byte[] tileBytes;
             try
@@ -300,27 +369,10 @@ public sealed partial class RuinGeneratorSystem
         return coordinateMap;
     }
 
-    private HashSet<string> GetWallPrototypesSet(RuinChunkConfigPrototype? config)
+    private static HashSet<string> GetPrototypeIdSet(IEnumerable<EntProtoId> prototypes)
     {
-        config ??= GetDefaultConfig();
-        if (config == null || config.WallPrototypes.Count == 0)
-            return new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-
         var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        foreach (var proto in config.WallPrototypes)
-            set.Add(proto.Id);
-
-        return set;
-    }
-
-    private HashSet<string> GetWindowPrototypesSet(RuinChunkConfigPrototype? config)
-    {
-        config ??= GetDefaultConfig();
-        if (config == null || config.WindowPrototypes.Count == 0)
-            return new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-
-        var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        foreach (var proto in config.WindowPrototypes)
+        foreach (var proto in prototypes)
             set.Add(proto.Id);
 
         return set;
@@ -329,10 +381,10 @@ public sealed partial class RuinGeneratorSystem
     private List<(Vector2i Position, string PrototypeId)> ParseWallEntities(
         SequenceDataNode entitiesNode,
         int gridUid,
-        RuinChunkConfigPrototype? config)
+        RuinChunkConfigPrototype config)
     {
         var wallEntities = new List<(Vector2i, string)>();
-        var wallPrototypes = GetWallPrototypesSet(config);
+        var wallPrototypes = GetPrototypeIdSet(config.WallPrototypes);
 
         foreach (var protoGroup in entitiesNode.Sequence)
         {
@@ -365,10 +417,10 @@ public sealed partial class RuinGeneratorSystem
     private List<(Vector2i Position, string PrototypeId, Angle Rotation)> ParseWindowEntities(
         SequenceDataNode entitiesNode,
         int gridUid,
-        RuinChunkConfigPrototype? config)
+        RuinChunkConfigPrototype config)
     {
         var windowEntities = new List<(Vector2i, string, Angle)>();
-        var windowPrototypes = GetWindowPrototypesSet(config);
+        var windowPrototypes = GetPrototypeIdSet(config.WindowPrototypes);
 
         foreach (var protoGroup in entitiesNode.Sequence)
         {
@@ -474,12 +526,15 @@ public sealed partial class RuinGeneratorSystem
         Dictionary<Vector2i, string> coordinateMap,
         List<(Vector2i Position, string PrototypeId, Angle Rotation)> windowEntities,
         List<(Vector2i Position, string PrototypeId)> wallEntities,
-        RuinChunkConfigPrototype? config)
+        RuinChunkConfigPrototype config)
     {
         var costMap = new Dictionary<Vector2i, int>();
-        var windowPositions = new HashSet<Vector2i>(windowEntities.Select(w => w.Position));
+        var windowsByPosition = new Dictionary<Vector2i, string>();
+        foreach (var (pos, proto, _) in windowEntities)
+            windowsByPosition[pos] = proto;
+
         var wallPositions = new HashSet<Vector2i>(wallEntities.Select(w => w.Position));
-        var wallCost = config?.WallCost ?? 6;
+        var wallCost = config.WallCost;
 
         foreach (var (pos, tileId) in coordinateMap)
         {
@@ -487,21 +542,9 @@ public sealed partial class RuinGeneratorSystem
             {
                 costMap[pos] = wallCost;
             }
-            else if (windowPositions.Contains(pos))
+            else if (windowsByPosition.TryGetValue(pos, out var windowProto))
             {
-                string? windowProto = null;
-                foreach (var window in windowEntities)
-                {
-                    if (window.Position != pos)
-                        continue;
-
-                    windowProto = window.PrototypeId;
-                    break;
-                }
-
-                costMap[pos] = windowProto != null
-                    ? GetWindowCost(windowProto, config)
-                    : GetTileCost(tileId, config);
+                costMap[pos] = GetWindowCost(windowProto, config);
             }
             else
             {
@@ -524,29 +567,33 @@ public sealed partial class RuinGeneratorSystem
         return costMap;
     }
 
-    private int GetWindowCost(string prototypeId, RuinChunkConfigPrototype? config)
+    private static int GetLongestSubstringCost(string id, Dictionary<string, int> costs, int defaultCost)
     {
-        if (config == null || config.WindowCosts.Count == 0)
-            return config?.DefaultWindowCost ?? 4;
+        if (costs.Count == 0)
+            return defaultCost;
 
-        var id = prototypeId.ToLowerInvariant();
+        var lookup = id.ToLowerInvariant();
         var bestMatch = string.Empty;
-        foreach (var (pattern, _) in config.WindowCosts)
+        foreach (var (pattern, _) in costs)
         {
-            if (pattern.Length > bestMatch.Length && id.Contains(pattern.ToLowerInvariant()))
+            if (pattern.Length > bestMatch.Length && lookup.Contains(pattern.ToLowerInvariant()))
                 bestMatch = pattern;
         }
 
-        if (bestMatch.Length > 0 && config.WindowCosts.TryGetValue(bestMatch, out var cost))
+        if (bestMatch.Length > 0 && costs.TryGetValue(bestMatch, out var cost))
             return cost;
 
-        return config.DefaultWindowCost;
+        return defaultCost;
     }
 
-    private bool IsWallTile(string tileId, RuinChunkConfigPrototype? config)
+    private static int GetWindowCost(string prototypeId, RuinChunkConfigPrototype config)
     {
-        config ??= GetDefaultConfig();
-        if (config == null || config.WallTileIds.Count == 0)
+        return GetLongestSubstringCost(prototypeId, config.WindowCosts, config.DefaultWindowCost);
+    }
+
+    private static bool IsWallTile(string tileId, RuinChunkConfigPrototype config)
+    {
+        if (config.WallTileIds.Count == 0)
             return false;
 
         foreach (var wallTileId in config.WallTileIds)
@@ -558,27 +605,12 @@ public sealed partial class RuinGeneratorSystem
         return false;
     }
 
-    private int GetTileCost(string tileId, RuinChunkConfigPrototype? config)
+    private static int GetTileCost(string tileId, RuinChunkConfigPrototype config)
     {
         if (IsWallTile(tileId, config))
-            return config?.WallCost ?? 20;
+            return config.WallCost;
 
-        config ??= GetDefaultConfig();
-        if (config == null || config.TileCosts.Count == 0)
-            return config?.DefaultTileCost ?? 1;
-
-        var id = tileId.ToLowerInvariant();
-        var bestMatch = string.Empty;
-        foreach (var (pattern, _) in config.TileCosts)
-        {
-            if (pattern.Length > bestMatch.Length && id.Contains(pattern.ToLowerInvariant()))
-                bestMatch = pattern;
-        }
-
-        if (bestMatch.Length > 0 && config.TileCosts.TryGetValue(bestMatch, out var cost))
-            return cost;
-
-        return config.DefaultTileCost;
+        return GetLongestSubstringCost(tileId, config.TileCosts, config.DefaultTileCost);
     }
 
     private static bool MatchesWindowPrefix(string protoId, HashSet<string> windowPrototypes)

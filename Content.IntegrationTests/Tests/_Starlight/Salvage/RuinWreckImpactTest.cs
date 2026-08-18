@@ -3,6 +3,7 @@ using System.Linq;
 using System.Numerics;
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
+using Content.IntegrationTests.Tests._Starlight;
 using Content.Server._Starlight.Salvage.Ruins;
 using Content.Shared.CCVar;
 using Content.Shared.Friction;
@@ -47,7 +48,7 @@ public sealed class RuinWreckImpactTest : GameTest
 
         await server.WaitAssertion(() =>
         {
-            mapSystem.SetTiles(stationGrid.Owner, stationGrid.Comp, MakeSquareTiles(sideLength, stationTile));
+            mapSystem.SetTiles(stationGrid.Owner, stationGrid.Comp, RuinTestHelpers.MakeSquareTiles(sideLength, stationTile));
             initialStationTileCount = mapSystem.GetAllTiles(stationGrid.Owner, stationGrid.Comp).Count();
 
             Assert.That(entityManager.HasComponent<ShuttleComponent>(stationGrid.Owner), Is.True,
@@ -58,7 +59,7 @@ public sealed class RuinWreckImpactTest : GameTest
 
             var ruin = new RuinGeneratorSystem.RuinResult
             {
-                FloorTiles = MakeSquareTiles(sideLength, stationTile),
+                FloorTiles = RuinTestHelpers.MakeSquareTiles(sideLength, stationTile),
                 Bounds = new Box2(0f, 0f, sideLength, sideLength),
             };
 
@@ -84,9 +85,10 @@ public sealed class RuinWreckImpactTest : GameTest
 
         await server.WaitAssertion(() =>
         {
-            var remainingTiles = entityManager.EntityExists(stationGrid.Owner)
-                ? mapSystem.GetAllTiles(stationGrid.Owner, stationGrid.Comp).Count()
-                : 0;
+            Assert.That(entityManager.EntityExists(stationGrid.Owner), Is.True,
+                "The station grid was deleted; tile loss cannot be attributed to impact damage.");
+
+            var remainingTiles = mapSystem.GetAllTiles(stationGrid.Owner, stationGrid.Comp).Count();
             var wreckPosition = transformSystem.GetWorldPosition(wreckGrid);
             var wreckVelocity = entityManager.GetComponent<PhysicsComponent>(wreckGrid).LinearVelocity;
 
@@ -97,23 +99,5 @@ public sealed class RuinWreckImpactTest : GameTest
     }
 
     #endregion
-
-    #region Helpers
-
-    private static List<(Vector2i Position, Tile Tile)> MakeSquareTiles(int sideLength, Tile tile)
-    {
-        var tiles = new List<(Vector2i Position, Tile Tile)>(sideLength * sideLength);
-
-        for (var x = 0; x < sideLength; x++)
-        {
-            for (var y = 0; y < sideLength; y++)
-            {
-                tiles.Add((new Vector2i(x, y), tile));
-            }
-        }
-
-        return tiles;
-    }
-
-    #endregion
 }
+

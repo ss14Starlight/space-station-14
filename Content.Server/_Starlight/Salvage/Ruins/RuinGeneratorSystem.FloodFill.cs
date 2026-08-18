@@ -79,13 +79,14 @@ public sealed partial class RuinGeneratorSystem
 
                 stageVisited.Add(current);
 
-                if (!costMap.TryGetValue(current, out var tileCost))
+                if (!costMap.ContainsKey(current))
                     continue;
 
                 // Each stage needs an anchor even when its selected start is a high-cost wall or window.
+                // accumulatedCost already includes this tile's own cost from enqueue.
                 var totalCostIfAdded = current == currentStart
                     ? 0
-                    : accumulatedCost + tileCost;
+                    : accumulatedCost;
                 if (totalCostIfAdded > budgetPerStage)
                     continue;
 

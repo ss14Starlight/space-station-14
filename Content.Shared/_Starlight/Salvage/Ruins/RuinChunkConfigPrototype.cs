@@ -9,6 +9,9 @@ namespace Content.Shared._Starlight.Salvage.Ruins;
 [Prototype]
 public sealed partial class RuinChunkConfigPrototype : IPrototype
 {
+    /// <summary>
+    /// Unique identifier for this ruin chunk configuration.
+    /// </summary>
     [ViewVariables]
     [IdDataField]
     public string ID { get; private set; } = default!;

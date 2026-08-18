@@ -57,7 +57,7 @@ public sealed partial class WreckSwarmSystem : StationEventSystem<WreckSwarmComp
 
         if (!TrySpawnWreck(component, wreckMapXform.MapID) ||
             !TryCollectWreckGrids(wreckMap, out var footprint) ||
-            !TryPlanLaunch(station, stationData, component, footprint, out var plan) ||
+            !TryPlanLaunch((station, stationData), component, footprint, out var plan) ||
             !_mapSystem.TryGetMap(plan.MapId, out var spawnMapUid))
         {
             _mapSystem.DeleteMap(wreckMapXform.MapID);
@@ -83,9 +83,20 @@ public sealed partial class WreckSwarmSystem : StationEventSystem<WreckSwarmComp
 
         var ruinMaps = GetRuinMaps();
         if (ruinMaps.Count == 0)
+        {
+            Sawmill.Warning("Wreck swarm found no ruin map prototypes; ending without spawn.");
             return false;
+        }
 
-        var ruinMap = RobustRandom.Pick(ruinMaps);
+        // Prefer a preloaded map when any exist; GenerateRuin still parses on demand if the pick is cold.
+        var cachedMaps = new List<RuinMapPrototype>();
+        foreach (var map in ruinMaps)
+        {
+            if (_ruinGenerator.IsMapCached(map.MapPath))
+                cachedMaps.Add(map);
+        }
+
+        var ruinMap = RobustRandom.Pick(cachedMaps.Count > 0 ? cachedMaps : ruinMaps);
         var config = ResolveChunkConfig(component);
         var seed = RobustRandom.Next();
 

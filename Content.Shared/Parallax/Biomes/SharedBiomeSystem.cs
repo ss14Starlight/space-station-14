@@ -212,6 +212,15 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         return TryGetEntity(indices, component, grid == null ? null : (grid.Owner, grid), out entity);
     }
 
+    /// <summary>
+    /// Tries to get the relevant entity for this tile.
+    /// </summary>
+    //Starlight - Begin
+    /// <param name="noiseCache">
+    /// Optional per-layer noise cache. Reuse a cache only for calls that pass the same
+    /// <paramref name="layers"/> instance and the same <paramref name="seed"/>, because entries are keyed by layer index.
+    /// </param>
+    //Starlight - End
     public bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, Entity<MapGridComponent>? grid,
         [NotNullWhen(true)] out string? entity,
         Dictionary<int, FastNoiseLite>? noiseCache = null) //Starlight
@@ -272,6 +281,15 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Tries to get the relevant entity for this tile.
+    /// </summary>
+    //Starlight - Begin
+    /// <param name="noiseCache">
+    /// Optional per-layer noise cache. Reuse a cache only for calls that pass the same
+    /// <paramref name="layers"/> instance and the same <paramref name="seed"/>, because entries are keyed by layer index.
+    /// </param>
+    //Starlight - End
     [Obsolete("Use the Entity<MapGridComponent>? overload")]
     public bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, MapGridComponent grid,
         [NotNullWhen(true)] out string? entity,
@@ -283,6 +301,12 @@ public abstract partial class SharedBiomeSystem : EntitySystem
     /// <summary>
     /// Tries to get the relevant decals for this tile.
     /// </summary>
+    //Starlight - Begin
+    /// <param name="noiseCache">
+    /// Optional per-layer noise cache. Reuse a cache only for calls that pass the same
+    /// <paramref name="layers"/> instance and the same <paramref name="seed"/>, because entries are keyed by layer index.
+    /// </param>
+    //Starlight - End
     public bool TryGetDecals(Vector2i indices, List<IBiomeLayer> layers, int seed, Entity<MapGridComponent>? grid,
         [NotNullWhen(true)] out List<(string ID, Vector2 Position)>? decals,
         Dictionary<int, FastNoiseLite>? noiseCache = null) //Starlight
@@ -371,6 +395,12 @@ public abstract partial class SharedBiomeSystem : EntitySystem
     /// <summary>
     /// Tries to get the relevant decals for this tile.
     /// </summary>
+    //Starlight - Begin
+    /// <param name="noiseCache">
+    /// Optional per-layer noise cache. Reuse a cache only for calls that pass the same
+    /// <paramref name="layers"/> instance and the same <paramref name="seed"/>, because entries are keyed by layer index.
+    /// </param>
+    //Starlight - End
     [Obsolete("Use the Entity<MapGridComponent>? overload")]
     public bool TryGetDecals(Vector2i indices, List<IBiomeLayer> layers, int seed, MapGridComponent grid,
         [NotNullWhen(true)] out List<(string ID, Vector2 Position)>? decals,

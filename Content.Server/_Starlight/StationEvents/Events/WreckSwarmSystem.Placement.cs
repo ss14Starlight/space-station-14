@@ -44,21 +44,20 @@ public sealed partial class WreckSwarmSystem
     #region Methods
 
     private bool TryPlanLaunch(
-        EntityUid station,
-        StationDataComponent stationData,
+        Entity<StationDataComponent> station,
         WreckSwarmComponent component,
         WreckFootprint footprint,
-		[NotNullWhen(true)] out WreckLaunchPlan? plan)
+        [NotNullWhen(true)] out WreckLaunchPlan? plan)
     {
         plan = null;
 
-        if (!TryGetStationAimPoint((station, stationData), out var targetCoords))
+        if (!TryGetStationAimPoint(station, out var targetCoords))
             return false;
 
         var targetMap = _transform.ToMapCoordinates(targetCoords);
         var mapId = targetMap.MapId;
         var targetWorld = targetMap.Position;
-        var stationGrids = stationData.Grids;
+        var stationGrids = station.Comp.Grids;
         var stationAabb = GetCombinedStationAabb(stationGrids, mapId);
         if (stationAabb == null)
             return false;
@@ -171,10 +170,11 @@ public sealed partial class WreckSwarmSystem
         }
 
         var toAttach = new List<EntityUid>();
-        var query = EntityQueryEnumerator<TransformComponent>();
-        while (query.MoveNext(out var uid, out var xform))
+        var enumerator = Transform(wreckMap).ChildEnumerator;
+        while (enumerator.MoveNext(out var uid))
         {
-            if (xform.MapUid != wreckMap || uid == wreckMap)
+            var xform = Transform(uid);
+            if (uid == wreckMap)
                 continue;
 
             if (wreckGrids.Contains(uid) || HasComp<MapComponent>(uid) || HasComp<MapGridComponent>(uid))
@@ -368,7 +368,7 @@ public sealed partial class WreckSwarmSystem
     /// Rejects candidates with structure inside <see cref="NearbyClearance"/>, including
     /// interior station voids whose tiles never overlap the wreck footprint.
     /// </summary>
-    private bool SpawnBlockedByNearbyGeometry(MapId mapId, Vector2 spawnCenter)
+    internal bool SpawnBlockedByNearbyGeometry(MapId mapId, Vector2 spawnCenter)
     {
         for (var i = 0; i < RadialClearanceRays; i++)
         {
