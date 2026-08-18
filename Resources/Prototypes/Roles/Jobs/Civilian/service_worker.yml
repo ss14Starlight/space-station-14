@@ -17,9 +17,11 @@
   - Kitchen
   - Hydroponics # Starlight
   extendedAccess:
-  - Theatre # Starlight
-  - Journalism # Starlight
-#  - Hydroponics # Starlight
+  - Theatre # Starlight start
+  - Journalism
+#  - Hydroponics
+  - Clown
+  - Mime # Starlight end
 
 - type: startingGear
   id: ServiceWorkerGear
