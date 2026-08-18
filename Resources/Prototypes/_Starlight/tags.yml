@@ -399,6 +399,19 @@
 - type: Tag
   id: JetInjector
 
+# JobIcon tags below classify JobIconPrototypes for console icon pickers (see JobIconPrototype.Tags)
+- type: Tag
+  id: JobIconAssistantManager
+
+- type: Tag
+  id: JobIconCentComm
+
+- type: Tag
+  id: JobIconCrew
+
+- type: Tag
+  id: JobIconSyndicate
+
 - type: Tag
   id: L6Saw
 
