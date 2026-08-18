@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: When you roll an antag that adds items to your inventory, if your back storage doesn't have enough room, it'll drop enough items from your back storage to fit your new gear in. If you're not wearing back storage, or your back storage is too small, it'll put them in your hands instead. Failing both of those cases, then it'll drop them on the floor.
-    type: Fix
-  id: 407346
-  time: '2026-08-06T22:28:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5494
-- author: wonderfulnewworld
-  changes:
   - message: Pun Pun and other non-bag equippers can now actually get their Thief and SELF gear.
     type: Fix
   id: 407347
@@ -2799,4 +2792,11 @@ Entries:
   id: 407745
   time: '2026-08-18T20:20:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5699
+- author: Way
+  changes:
+  - message: Station Radio Random Spawner for mappers, allowing for less linear placement of Radios.
+    type: Add
+  id: 407746
+  time: '2026-08-18T20:52:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5705
 Order: -1
