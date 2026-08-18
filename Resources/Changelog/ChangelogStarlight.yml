@@ -1,32 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: HP Ammo no longer heals wearers of the cybersun juggernaut suit, decimus, deathsquad... etc, anyone with really high armor, basically.
-    type: Fix
-  id: 407349
-  time: '2026-08-07T01:11:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5536
-- author: wonderfulnewworld
-  changes:
-  - message: Antag papers work again.
-    type: Fix
-  id: 407350
-  time: '2026-08-07T01:11:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5536
-- author: wonderfulnewworld
-  changes:
-  - message: Antag requirements show up again.
-    type: Fix
-  id: 407351
-  time: '2026-08-07T01:11:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5536
-- author: JohnJJohn, Rouden, H20we, loltart
-  changes:
-  - message: Radio Host equipment has found it's way into the sector.
-    type: Add
-  id: 407352
-  time: '2026-08-07T05:50:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5288
 - author: JohnJJohn, Rouden, H20we, loltart
   changes:
   - message: Syndicate agents can find illegal CDs in their uplinks.
@@ -2799,4 +2771,32 @@ Entries:
   id: 407748
   time: '2026-08-18T21:28:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5698
+- author: OJG
+  changes:
+  - message: Cascad Chunks. Can be obtained by digging through Cascad.
+    type: Add
+  id: 407749
+  time: '2026-08-18T21:49:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5694
+- author: OJG
+  changes:
+  - message: Supermatter radiation output also increases the radiation falloff, hopefully stopping "everyone dies in one second" scenarios.
+    type: Tweak
+  id: 407750
+  time: '2026-08-18T21:49:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5694
+- author: OJG
+  changes:
+  - message: Cascads are now radioactive! And they explode when you break them!
+    type: Tweak
+  id: 407751
+  time: '2026-08-18T21:49:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5694
+- author: OJG
+  changes:
+  - message: Cascads can now be targeted with mouse 1.
+    type: Fix
+  id: 407752
+  time: '2026-08-18T21:49:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5694
 Order: -1
