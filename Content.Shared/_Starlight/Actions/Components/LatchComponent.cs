@@ -176,21 +176,21 @@ public sealed partial class LatchComponent : Component
     public TimeSpan NextTickTime;
 
     /// <summary>
-    /// The actual latch action entity to grant to the target.
+    /// The actual latch action entity to grant to the latcher.
     /// If null or invalid, the Action field is granted instead.
     /// </summary>
     [ViewVariables]
     public EntityUid? ActionEntity;
 
     /// <summary>
-    /// The actual bite harder action entity to grant to the target.
+    /// The actual bite harder action entity to grant to the latcher.
     /// If null or invalid, the BiteHarderAction field is granted instead.
     /// </summary>
     [ViewVariables]
     public EntityUid? BiteHarderActionEntity;
 
     /// <summary>
-    /// The actual release action entity to grant to the target.
+    /// The actual release action entity to grant to the latcher.
     /// If null or invalid, the ReleaseAction field is granted instead.
     /// </summary>
     [ViewVariables]
