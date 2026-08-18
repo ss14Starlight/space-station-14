@@ -1,48 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Cork) Departmental Lathes.
-    type: Add
-  id: 407310
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
-- author: OMEGA
-  changes:
-  - message: (Cork) The Right Honorable Flippers.
-    type: Add
-  id: 407311
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
-- author: OMEGA
-  changes:
-  - message: (Cork) Distro and waste pipes added to all docks.
-    type: Add
-  id: 407312
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
-- author: OMEGA
-  changes:
-  - message: (Cork) Buy and sell pipes added to cargo shuttle docks.
-    type: Add
-  id: 407313
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
-- author: OMEGA
-  changes:
-  - message: (Cork) Unlocked air alarms mapped to Science chambers.
-    type: Add
-  id: 407314
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
-- author: OMEGA
-  changes:
-  - message: (Cork) Removed Artifact chamber blast doors. No more ashing half the station!.
-    type: Remove
-  id: 407315
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
-- author: OMEGA
-  changes:
   - message: (Cork) Artifact chambers reworked to enable more control of chamber state.
     type: Tweak
   id: 407316
@@ -2799,4 +2757,46 @@ Entries:
   id: 407709
   time: '2026-08-18T02:39:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5702
+- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
+  changes:
+  - message: Wires, the Atmospherics Console, Shuttle Consoles, Stamps, now correctly render again.
+    type: Fix
+  id: 407710
+  time: '2026-08-18T02:59:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5697
+- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
+  changes:
+  - message: Fixed melee attack and interaction particle animations being rotated wrong if your camera is rotated.
+    type: Fix
+  id: 407711
+  time: '2026-08-18T02:59:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5697
+- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
+  changes:
+  - message: Revenants no longer collide with regular ghosts.
+    type: Fix
+  id: 407712
+  time: '2026-08-18T02:59:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5697
+- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
+  changes:
+  - message: Airlock animations no longer break when you walk through them as they're closing.
+    type: Fix
+  id: 407713
+  time: '2026-08-18T02:59:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5697
+- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
+  changes:
+  - message: Sheathes and the NT Rep/normal Cane now have better melee attack animations on normal attack and wide swing.
+    type: Fix
+  id: 407714
+  time: '2026-08-18T02:59:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5697
+- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
+  changes:
+  - message: NT Rep's cane now generates sparks.
+    type: Fix
+  id: 407715
+  time: '2026-08-18T02:59:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5697
 Order: -1
