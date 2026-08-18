@@ -135,6 +135,8 @@
         borg_module:
         - MobRoachModule
     - type: BorgChassis
+      hasMindState: mothroach
+      noMindState: mothroach
     - type: GhostRole
       prob: 0.05
       makeSentient: true
