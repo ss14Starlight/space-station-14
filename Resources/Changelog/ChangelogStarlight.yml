@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (LAGAN) Added stir stir to gen pop.
-    type: Add
-  id: 407357
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
   - message: (LAGAN) Added ice cream maker to kitchen.
     type: Add
   id: 407358
@@ -2799,4 +2792,11 @@ Entries:
   id: 407756
   time: '2026-08-18T22:19:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5690
+- author: RedSpeeds
+  changes:
+  - message: Fixed asteroids lacking collision.
+    type: Fix
+  id: 407757
+  time: '2026-08-18T22:49:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5576
 Order: -1
