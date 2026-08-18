@@ -59,6 +59,8 @@ public sealed partial class CosmicEffigySystem : EntitySystem
             return;
 
         var effigy = Spawn(ent.Comp.EffigyPrototype, pos);
+        var effigyComp = EnsureComp<CosmicEffigyComponent>(effigy);
+        effigyComp.Colossus = ent.Owner;
 
         // Give the Colossus an objective if they spawned on a station.
         if (_mind.TryGetObjectiveComp<CosmicEffigyConditionComponent>(ent, out var obj))
