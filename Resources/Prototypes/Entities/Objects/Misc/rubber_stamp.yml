@@ -102,7 +102,7 @@
   name: clown's rubber stamp
   parent: RubberStampBase
   id: RubberStampClown
-  description: A rubber stamp for stamping important documents. Funni.
+  description: A rubber stamp for stamping important documents. Funni. # Starlight
   # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp
