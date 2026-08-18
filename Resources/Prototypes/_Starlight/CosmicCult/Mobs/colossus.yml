@@ -125,10 +125,6 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Malignstone
-  - type: Armor # This not working makes me sad.
-    modifiers:
-      coefficients:
-        Piercing: 0.50
   - type: Destructible
     thresholds:
     - trigger:

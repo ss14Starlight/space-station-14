@@ -125,7 +125,7 @@
   - type: CosmicEffigyCondition
 
 - type: entity
-  parent: [BaseCosmicColossusObjective, BaseCodeObjective]
+  parent: [BaseCosmicColossusObjective]
   id: ColossusSacrificeObjective
   name: SACRIFICE
   description: Sacrifice crew to empowered rifts.

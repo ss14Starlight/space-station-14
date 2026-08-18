@@ -9,6 +9,7 @@ using Content.Server.Chat.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Content.Shared.GameTicking;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
@@ -20,14 +21,29 @@ public sealed partial class CosmicRiftHealthSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
 
     /// <summary>
-    /// Tracks escalating global warnings as the number of empowered rifts increases.
-    /// Higher rift counts indicate that the Colossus threat is progressing.
+    /// Tracks escalating global warnings as the number of stored corpses increases.
+    /// Higher corpse counts indicate that the Colossus threat is progressing.
     /// </summary>
 
     private bool _corpseWarning1;
     private bool _corpseWarning2;
     private bool _corpseWarning3;
     private float? _corpseWarning3ScreamTimer;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+    }
+
+    private void OnRoundRestart(RoundRestartCleanupEvent args)
+    {
+        _corpseWarning1 = false;
+        _corpseWarning2 = false;
+        _corpseWarning3 = false;
+        _corpseWarning3ScreamTimer = null;
+    }
 
     /// <summary>
     /// Updates the cosmic rift health state and triggers global warnings as the
@@ -51,7 +67,7 @@ public sealed partial class CosmicRiftHealthSystem : EntitySystem
                     new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/colossus_scream.ogg"),
                     Filter.Broadcast(),
                     true,
-                    AudioParams.Default.WithVolume(20f));
+                    AudioParams.Default.WithVolume(5f));
             }
         }
 

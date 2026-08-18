@@ -110,9 +110,9 @@ public sealed partial class CosmicEffigySystem : EntitySystem
 
         if (colossus.EffigyCrits != 0)
             {
-            var xform = Transform(colossusUid);
-            var location = FormattedMessage.RemoveMarkupOrThrow(
-                _navMap.GetNearestBeaconString((colossusUid, xform)));
+                var xform = Transform(ent.Owner);
+                var location = FormattedMessage.RemoveMarkupOrThrow(
+                    _navMap.GetNearestBeaconString((ent.Owner, xform)));
 
             _chatSystem.DispatchStationAnnouncement(colossusUid, Loc.GetString("cosmiccult-effigy-critical", ("location", location)), null, false, null, Color.FromHex("#cae8e8"));
             }

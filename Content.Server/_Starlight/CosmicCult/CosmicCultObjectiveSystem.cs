@@ -7,6 +7,9 @@ using Content.Shared._Starlight.CosmicCult.Roles;
 using Robust.Shared.Random;
 using Content.Server.Station.Systems;
 using Content.Server._Starlight.CosmicCult.EntitySystems;
+using System.Numerics;
+using Robust.Shared.Map;
+using Content.Server.Nuke;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -18,6 +21,7 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -34,6 +38,29 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         SubscribeLocalEvent<CosmicSacrificedCrewConditionComponent, ObjectiveGetProgressEvent>(OnGetSacrificedCrewProgress);
     }
 
+
+    private bool IsValidEffigyObjectiveWarp(EntityUid colossus, EntityUid warpUid, WarpPointComponent warp, EntityUid station, EntityUid? requiredGrid = null)
+    {
+        if (warp.Location == null)
+            return false;
+
+        var colossusXform = Transform(colossus);
+        var warpXform = Transform(warpUid);
+
+        if (requiredGrid != null && warpXform.GridUid != requiredGrid)
+            return false;
+
+        if (_station.GetOwningStation(warpUid) != station)
+            return false;
+
+        if (colossusXform.MapID != warpXform.MapID)
+            return false;
+
+        if ((_transform.GetWorldPosition(colossusXform) - _transform.GetWorldPosition(warpXform)).LengthSquared() <= 15 * 15)
+            return false;
+
+        return true;
+    }
 
     private void OnEffigyRequirementCheck(EntityUid uid, CosmicEffigyConditionComponent comp, ref RequirementCheckEvent args)
     {
@@ -68,24 +95,31 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         // First: try beacons on the Colossus's current grid.
         while (query.MoveNext(out var warpUid, out var warp))
         {
-            if (warp.Location == null)
-                continue;
-
-            if (Transform(warpUid).GridUid != currentGrid)
-                continue;
-
-            if (_station.GetOwningStation(warpUid) != station)
+            if (!IsValidEffigyObjectiveWarp(currentEntity, warpUid, warp, station.Value, currentGrid))
                 continue;
 
             warps.Add(warpUid);
         }
 
-        // No beacon on the current grid: fall back to the station's largest grid.
+        // No beacon on the current grid: fall back to the grid containing the nuke.
         if (warps.Count == 0)
         {
-            var stationGrid = _station.GetLargestGrid((station.Value, null));
+            EntityUid? nukeGrid = null;
 
-            if (stationGrid is null)
+            var nukeQuery = EntityQueryEnumerator<NukeComponent, TransformComponent>();
+            while (nukeQuery.MoveNext(out var nukeUid, out _, out var nukeXform))
+            {
+                if (nukeXform.GridUid is not { } grid)
+                    continue;
+
+                if (_station.GetOwningStation(nukeUid) != station)
+                    continue;
+
+                nukeGrid = grid;
+                break;
+            }
+
+            if (nukeGrid is null)
             {
                 args.Cancelled = true;
                 return;
@@ -95,13 +129,7 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
 
             while (query.MoveNext(out var warpUid, out var warp))
             {
-                if (warp.Location == null)
-                    continue;
-
-                if (Transform(warpUid).GridUid != stationGrid)
-                    continue;
-
-                if (_station.GetOwningStation(warpUid) != station)
+                if (!IsValidEffigyObjectiveWarp(currentEntity, warpUid, warp, station.Value, nukeGrid))
                     continue;
 
                 warps.Add(warpUid);

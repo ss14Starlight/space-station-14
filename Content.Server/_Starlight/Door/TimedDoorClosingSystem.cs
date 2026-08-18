@@ -33,6 +33,10 @@ public sealed class TimedDoorClosingSystem : EntitySystem
         ent.Comp.NextClose = _timing.CurTime + ent.Comp.AutoCloseDelay;
     }
 
+    /// <summary>
+    /// Processes scheduled automatic door closing and postpones closing while the doorway is blocked.
+    /// </summary>
+
     public override void Update(float frameTime)
     {
         var query = EntityQueryEnumerator<TimedDoorClosingComponent, DoorComponent>();
