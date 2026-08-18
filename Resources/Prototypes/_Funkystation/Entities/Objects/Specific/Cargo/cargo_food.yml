@@ -13,7 +13,7 @@
   id: BoxFoodSoftdrinks
   parent: CardboardBoxLargeService
   name: softdrinks box
-  description: A variety of sodas to complement a small party, without having to empty the soda machines. Includes 14 sodas.
+  description: A variety of sodas to complement a small party, without having to empty the soda machines. Includes 16 sodas.
   components:
   - type: StorageFill
     contents:
