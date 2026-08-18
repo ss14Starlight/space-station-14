@@ -1,13 +1,12 @@
-using Content.Server.Spawners.EntitySystems;
+using Content.Shared._Starlight.Spawners.EntitySystems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Spawners.Components;
+namespace Content.Shared._Starlight.Spawners.Components;
 
 /// <summary>
-/// When a <c>TimedDespawnComponent"</c> despawns, another one will be spawned in its place.
+/// When a <c>TimedDespawnComponent</c> despawns, another one will be spawned in its place.
 /// </summary>
-[RegisterComponent, Access(typeof(SpawnOnDespawnSystem))]
+[RegisterComponent, Access(typeof(SharedSpawnOnDespawnSystem))]
 public sealed partial class SpawnOnDespawnComponent : Component
 {
     /// <summary>
