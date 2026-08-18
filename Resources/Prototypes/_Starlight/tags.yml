@@ -9,6 +9,9 @@
   id: AbductorScientist
 
 - type: Tag
+  id: AbyssiumOre #BountySalvageAbyssiumOre
+
+- type: Tag
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
 
 - type: Tag
@@ -28,6 +31,9 @@
 
 - type: Tag
   id: AvianFood
+
+- type: Tag
+  id: Bandolier #CargoBounty: BountySalvageBandolier
 
 - type: Tag
   id: BibleThwackRemovable
@@ -172,6 +178,9 @@
 
 - type: Tag
   id: CombatRemote # Tag: used on the RemoteSignallerCombat
+
+- type: Tag
+  id: CommieID # BountySalvageCommieID
 
 - type: Tag
   id: Compy
@@ -551,6 +560,9 @@
   id: NukiePlanet
 
 - type: Tag
+  id: OldTreasure #BountySalvageOldTreasure
+
+- type: Tag
   id: OmniCyberEyes
 
 - type: Tag
@@ -667,6 +679,9 @@
   id: SovietWarehouse
 
 - type: Tag
+  id: SpaceBearHide #BountySalvageSpaceBearHide
+
+- type: Tag
   id: SpecialMech
 
 - type: Tag
@@ -731,6 +746,9 @@
 
 - type: Tag
   id: Wizard
+
+- type: Tag
+  id: RawXenoMeat #BountySalvageRawXenoMeat
 
 - type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.
