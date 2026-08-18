@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulworld
   changes:
-  - message: Added rule cooldowns for Nukeops, NukeopsLate, Revolutionary, Zombie, Cosmic Cult, Wizard Duel, and Terror Spiders in dynamic.
-    type: Add
-  id: 407342
-  time: '2026-08-06T22:28:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5491
-- author: wonderfulworld
-  changes:
   - message: Devil and Brighteye not having enough players will now no longer prevent the round from starting.
     type: Tweak
   id: 407343
@@ -2799,4 +2792,11 @@ Entries:
   id: 407741
   time: '2026-08-18T20:20:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5708
+- author: Johnny
+  changes:
+  - message: Ferry has power now, power fixed.
+    type: Tweak
+  id: 407742
+  time: '2026-08-18T20:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5709
 Order: -1
