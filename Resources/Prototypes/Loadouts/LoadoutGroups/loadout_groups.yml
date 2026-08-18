@@ -162,7 +162,7 @@
   - EmergencyIPC # 🌟Starlight🌟
   - EmergencyCheese # Starlight
 
-# Oxygen, Nitrogen or Cooling Unit, Depending on what the species needs
+# Oxygen, Nitrogen or Cooling Unit, Depending on what the species needs (Cooling unit is SL)
 - type: loadoutGroup
   id: GroupEVATank
   name: loadout-group-EVA-tank
