@@ -37,26 +37,26 @@ public sealed class WreckSwarmLaunchTest : GameTest
     [TestPrototypes]
     private const string Prototypes = @"
 - type: entity
-  id: TestWreckSwarmStation
-  parent: BaseStation
-  components:
-  - type: Transform
-  - type: StationEventEligible
+    id: TestWreckSwarmStation
+    parent: BaseStation
+    components:
+    - type: Transform
+    - type: StationEventEligible
 
 - type: entity
-  parent: BaseGameRule
-  id: TestWreckSwarmLaunch
-  components:
-  - type: GameRule
-  - type: StationEvent
-    duration: 60
-    earliestStart: 0
-    minimumPlayers: 0
-    weight: 0
-    globalAnnouncement: false
-  - type: WreckSwarm
-    fixedGrid: /Maps/Test/floor3x3.yml
-    velocity: 50
+    parent: BaseGameRule
+    id: TestWreckSwarmLaunch
+    components:
+    - type: GameRule
+    - type: StationEvent
+        duration: 60
+        earliestStart: 0
+        minimumPlayers: 0
+        weight: 0
+        globalAnnouncement: false
+    - type: WreckSwarm
+        fixedGrid: /Maps/Test/floor3x3.yml
+        velocity: 50
 ";
 
     #endregion

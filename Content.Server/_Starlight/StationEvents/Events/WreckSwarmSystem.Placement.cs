@@ -48,7 +48,7 @@ public sealed partial class WreckSwarmSystem
         StationDataComponent stationData,
         WreckSwarmComponent component,
         WreckFootprint footprint,
-        [NotNullWhen(true)] out WreckLaunchPlan? plan)
+		[NotNullWhen(true)] out WreckLaunchPlan? plan)
     {
         plan = null;
 
@@ -95,9 +95,9 @@ public sealed partial class WreckSwarmSystem
             {
                 hitPoint = hitResult.HitPos;
             }
-            else if (firstHit == null &&
-                     ray.Intersects(stationAabb.Value, out _, out hitPoint) &&
-                     !RayBlockedByNonStationGrid(rayOrigin, hitPoint))
+            else if (firstHit == null
+                && ray.Intersects(stationAabb.Value, out _, out hitPoint)
+                && !RayBlockedByNonStationGrid(rayOrigin, hitPoint))
             {
                 // No structural fixtures yet; still aim at the station hull.
             }
