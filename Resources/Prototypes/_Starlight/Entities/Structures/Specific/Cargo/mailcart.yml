@@ -22,9 +22,6 @@
       whitelist:
         components:
         - Delivery
-        sizes:
-        - Huge #this is here to allow ONLY packages onboard
-        - Ginormous #and cardboard boxes
         tags:
         - CardboardboxLarge
         requireAll: false
