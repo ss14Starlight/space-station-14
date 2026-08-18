@@ -1,11 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: Reduced signal valve noise volume and radius.
-    type: Tweak
-  id: 407331
-  time: '2026-08-06T10:40:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5523
 - author: Orhu
   changes:
   - message: Adds new random names for Avali (first and pack), Borgis (and all variants), Corgis, Cyclorites, Devils (name and title), Resomi (pack only), Shadekin, and Thaven.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407730
   time: '2026-08-18T04:09:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5704
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed vomiting not removing chemicals from the player's stomach.
+    type: Fix
+  id: 407731
+  time: '2026-08-18T17:07:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5706
 Order: -1
