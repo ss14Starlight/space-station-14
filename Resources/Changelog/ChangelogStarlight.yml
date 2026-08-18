@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Princess-Cheeseballs
-  changes:
-  - message: You can now roll antag if you join in that awkward period between round start and gamerule start.
-    type: Fix
-  id: 407348
-  time: '2026-08-06T22:28:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5438
 - author: wonderfulnewworld
   changes:
   - message: HP Ammo no longer heals wearers of the cybersun juggernaut suit, decimus, deathsquad... etc, anyone with really high armor, basically.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407747
   time: '2026-08-18T21:28:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5595
+- author: Johnny
+  changes:
+  - message: Arachnids and others who speak chittin now use anatomically correct language.
+    type: Tweak
+  id: 407748
+  time: '2026-08-18T21:28:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5698
 Order: -1
