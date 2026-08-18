@@ -1,13 +1,6 @@
 Entries:
 - author: neomoth
   changes:
-  - message: You can now multitool the X-09 Headsman to make it RGB, though it requires an extra step.
-    type: Add
-  id: 407337
-  time: '2026-08-06T10:57:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5459
-- author: neomoth
-  changes:
   - message: Made so items that provide bonus damage on wield can opt to respect ItemToggleComponent, such that if an item is deactivated it will not provide the damage bonus.
     type: Tweak
   id: 407338
@@ -2799,4 +2792,11 @@ Entries:
   id: 407736
   time: '2026-08-18T18:05:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5695
+- author: Orhu
+  changes:
+  - message: Birthday Cake can now be eaten by all species.
+    type: Tweak
+  id: 407737
+  time: '2026-08-18T18:56:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5503
 Order: -1
